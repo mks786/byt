@@ -49,5 +49,10 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarContactosPorAsociado(asociado);
         }
+
+        public static ComandoBase<Contacto> ObtenerComandoConsultarContactoPorId(Contacto contacto)
+        {
+            return new ComandoConsultarContactoPorId(contacto);
+        }
     }
 }

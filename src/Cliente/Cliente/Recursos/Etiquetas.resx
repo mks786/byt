@@ -834,7 +834,7 @@ Cuenta solo digital:</value>
     <value>Marcas y Patentes</value>
   </data>
   <data name="cbiSoloAdministracion" xml:space="preserve">
-    <value>Sólo Administración</value>
+    <value>Solo Administración</value>
   </data>
   <data name="cbiSoloEstadoDeCuenta" xml:space="preserve">
     <value>Sólo Estado de Cuenta</value>
@@ -2906,5 +2906,29 @@ en Prensa:</value>
   </data>
   <data name="menuItemCorresponsal" xml:space="preserve">
     <value>Corresponsal</value>
+  </data>
+  <data name="btnVerCreacion" xml:space="preserve">
+    <value>Ver Corr.Creación</value>
+  </data>
+  <data name="btnVerUltEntrada" xml:space="preserve">
+    <value>Ver Últ. Entrada</value>
+  </data>
+  <data name="btnVerUltEnviada" xml:space="preserve">
+    <value>Ver Últ. Enviada</value>
+  </data>
+  <data name="lsvCartaCreacion" xml:space="preserve">
+    <value>Corr. Creación</value>
+  </data>
+  <data name="lsvCartaEntrada" xml:space="preserve">
+    <value>Últ. Entrada</value>
+  </data>
+  <data name="lsvCartaEnviada" xml:space="preserve">
+    <value>Últ. Enviada</value>
+  </data>
+  <data name="lsvFechaCreacion" xml:space="preserve">
+    <value>Fecha Creación</value>
+  </data>
+  <data name="lsvFuncion" xml:space="preserve">
+    <value>Función</value>
   </data>
 </root>

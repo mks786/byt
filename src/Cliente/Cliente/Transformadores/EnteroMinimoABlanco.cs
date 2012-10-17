@@ -12,7 +12,7 @@ namespace Trascend.Bolet.Cliente.Transformadores
         {
             int numero =  int.Parse(value.ToString());
 
-            return numero.Equals(int.MinValue) ? "" : numero.ToString(); 
+            return numero.Equals(int.MinValue) || numero.Equals(0) ? "" : numero.ToString(); 
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

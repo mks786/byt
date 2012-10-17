@@ -64,6 +64,7 @@
     <Compile Include="Comandos\ComandosAsignacion\ComandoEliminarAsignacionesPorCarta.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoConsultarAsociadoConTodo.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoConsultarAsociadosFiltro.cs" />
+    <Compile Include="Comandos\ComandosAsociado\ComandoConsultarContactosDelAsociado.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoVerificarCartasDeAsociado.cs" />
     <Compile Include="Comandos\ComandosAuditoria\ComandoAuditoriaPorFkyTabla.cs" />
     <Compile Include="Comandos\ComandosBoletin\ComandoConsultarResolucionesDeBoletin.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Comandos\ComandosCesion\ComandoEliminarCesion.cs" />
     <Compile Include="Comandos\ComandosCesion\ComandoInsertarOModificarCesion.cs" />
     <Compile Include="Comandos\ComandosCesion\ComandoVerificarExistenciaCesion.cs" />
+    <Compile Include="Comandos\ComandosContacto\ComandoConsultarContactoPorId.cs" />
     <Compile Include="Comandos\ComandosCorresponsal\ComandoConsultarTodosCorresponsables.cs" />
     <Compile Include="Comandos\ComandosCorresponsal\ComandoEliminarCorresponsal.cs" />
     <Compile Include="Comandos\ComandosCorresponsal\ComandoInsertarOModificarCorresponsal.cs" />

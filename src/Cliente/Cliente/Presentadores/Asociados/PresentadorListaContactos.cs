@@ -27,6 +27,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+        private IAsociadoServicios _asociadoServicios;
+        private IContactoServicios _contactoServicios;
+
 
         /// <summary>
         /// Constructor Predeterminado
@@ -42,6 +45,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             this._ventanaPadre = ventanaPadre;
             this._ventana = ventana;
             this._asociado = (Asociado)asociado;
+
+            this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
+
+            this._contactoServicios = (IContactoServicios)Activator.GetObject(typeof(IContactoServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ContactoServicios"]);
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -66,9 +75,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaContactos,
                     Recursos.Ids.Contacto);
-
-                this._ventana.Contactos = ((Asociado)this._asociado).Contactos;
-                this._ventana.TotalHits = ((Asociado)this._asociado).Contactos.Count.ToString();
+                IList<ContactosDelAsociadoVista> contactos = this._asociadoServicios.ConsultarContactosDelAsociado(_asociado, true);
+                this._ventana.Contactos = contactos;
+                this._ventana.TotalHits = contactos.Count.ToString();
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -100,8 +109,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
             if (this._ventana.ContactoSeleccionado != null)
             {
-                ((Contacto)this._ventana.ContactoSeleccionado).Asociado = this._asociado;
-                this.Navegar(new ConsultarContacto(this._ventana.ContactoSeleccionado));
+                //((Contacto)this._ventana.ContactoSeleccionado).Asociado = this._asociado;
+                Contacto contactoAConsultar = new Contacto(((ContactosDelAsociadoVista)this._ventana.ContactoSeleccionado).Contacto);
+                contactoAConsultar.Asociado = this._asociado;
+                Contacto contacto = this._contactoServicios.ConsultarPorId(contactoAConsultar);
+                contacto.Asociado = this._asociado;
+                this.Navegar(new ConsultarContacto(contacto));
             }
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

@@ -202,5 +202,52 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return retorno.Equals(string.Empty) ? false : true;
         }
 
+
+        /// <summary>
+        /// Método que consulta los contactos de un asociado a traves de una vista
+        /// </summary>
+        /// <param name="asociado"></param>
+        /// <returns></returns>
+        public IList<ContactosDelAsociadoVista> ObtenerContactosDelAsociado(Asociado asociado, bool todos)
+        {
+            IList<ContactosDelAsociadoVista> recordatorios = null;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                string filtro = "";
+
+                if (!todos)
+                    filtro += " and c.Tipo = 'A'";
+
+                string cabecera = string.Format(Recursos.ConsultasHQL.ObtenerContactosPorAsociadoVista, asociado.Id);
+
+                IQuery query = Session.CreateQuery(cabecera + filtro);
+                recordatorios = query.List<ContactosDelAsociadoVista>();
+
+
+
+                //}
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.exObtenerMarcasPorFechaRenovacion);
+            }
+            finally
+            {
+                Session.Close();
+            }
+            return recordatorios;
+        }
     }
 }

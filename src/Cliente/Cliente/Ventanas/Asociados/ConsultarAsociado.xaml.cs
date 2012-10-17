@@ -5,6 +5,7 @@ using Trascend.Bolet.Cliente.Contratos.Asociados;
 using Trascend.Bolet.Cliente.Presentadores.Asociados;
 using Trascend.Bolet.ControlesByT;
 using System.Windows.Media;
+using Trascend.Bolet.Cliente.Ayuda;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Asociados
 {
@@ -16,6 +17,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
 
         private PresentadorConsultarAsociado _presentador;
         private bool _cargada;
+        private GridViewColumnHeader _CurSortCol = null;
+        private SortAdorner _CurAdorner = null;
         private object p;
         private IConsultarAsociados iConsultarAsociados;
 
@@ -256,6 +259,29 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             this._btnAuditoriaAdministracion.Background = Brushes.LightGreen;
             this._btnAuditoriaDatos.Background = Brushes.LightGreen;
         }
+
+        public GridViewColumnHeader CurSortCol
+        {
+            get { return _CurSortCol; }
+            set { _CurSortCol = value; }
+        }
+
+        public SortAdorner CurAdorner
+        {
+            get { return _CurAdorner; }
+            set { _CurAdorner = value; }
+        }
+
+        public object ListaContactos
+        {
+            get { return this._lstContactos.DataContext; }
+            set { this._lstContactos.DataContext = value; }
+        }
+
+        public object ContactoSeleccionado 
+        {
+            get { return this._lstContactos.SelectedItem; }
+        }
         #endregion
 
         public ConsultarAsociado(object asociado, object ventanaPadre)
@@ -365,6 +391,26 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         private void _btnCorrespondenciasDatos_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrACorrespondencia();
+        }
+
+        private void _Ordenar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader);
+        }
+
+        private void _btnVerEnviada_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarUltimaCorrespondenciaEnviada();
+        }
+
+        private void _btnVerCreacion_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarCorrespondenciaCreacion();
+        }
+
+        private void _btnVerEntrada_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarUltimaCorrespondenciaEntrada();
         }
 
     }

@@ -986,4 +986,10 @@
   <data name="ObtenerReportePatentePorCodigoPatente" xml:space="preserve">
     <value>Select p from ReportePatente p where p.CodigoPatente = {0}</value>
   </data>
+  <data name="ObtenerContactosPorAsociadoVista" xml:space="preserve">
+    <value>Select c from ContactosDelAsociadoVista c where c.Id like '{0}-%'</value>
+  </data>
+  <data name="ObtenerContactoPorId" xml:space="preserve">
+    <value>Select c from Contacto c where c.Id = {0} and c.Asociado.Id = {1}</value>
+  </data>
 </root>

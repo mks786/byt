@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using Trascend.Bolet.Cliente.Ayuda;
 
 namespace Trascend.Bolet.Cliente.Contratos.Asociados
 {
@@ -57,6 +58,14 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
         void pintarCorrespondencia();
 
         void ArchivoNoEncontrado();
+
+        GridViewColumnHeader CurSortCol { get; set; }
+
+        SortAdorner CurAdorner { get; set; }
+
+        object ListaContactos { get; set; }
+
+        object ContactoSeleccionado { get; }
 
 
     }

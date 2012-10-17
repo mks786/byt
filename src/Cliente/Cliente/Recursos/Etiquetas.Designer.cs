@@ -837,6 +837,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ver Corr.Creación.
+        /// </summary>
+        public static string btnVerCreacion {
+            get {
+                return ResourceManager.GetString("btnVerCreacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ver Doc..
         /// </summary>
         public static string btnVerDoc {
@@ -896,6 +905,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string btnVerTitulo {
             get {
                 return ResourceManager.GetString("btnVerTitulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ver Últ. Entrada.
+        /// </summary>
+        public static string btnVerUltEntrada {
+            get {
+                return ResourceManager.GetString("btnVerUltEntrada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ver Últ. Enviada.
+        /// </summary>
+        public static string btnVerUltEnviada {
+            get {
+                return ResourceManager.GetString("btnVerUltEnviada", resourceCulture);
             }
         }
         
@@ -1368,7 +1395,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sólo Administración.
+        ///   Looks up a localized string similar to Solo Administración.
         /// </summary>
         public static string cbiSoloAdministracion {
             get {
@@ -4548,6 +4575,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Corr. Creación.
+        /// </summary>
+        public static string lsvCartaCreacion {
+            get {
+                return ResourceManager.GetString("lsvCartaCreacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Últ. Entrada.
+        /// </summary>
+        public static string lsvCartaEntrada {
+            get {
+                return ResourceManager.GetString("lsvCartaEntrada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Últ. Enviada.
+        /// </summary>
+        public static string lsvCartaEnviada {
+            get {
+                return ResourceManager.GetString("lsvCartaEnviada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ciudad.
         /// </summary>
         public static string lsvCiudad {
@@ -4836,6 +4890,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fecha Creación.
+        /// </summary>
+        public static string lsvFechaCreacion {
+            get {
+                return ResourceManager.GetString("lsvFechaCreacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fecha Entrada.
         /// </summary>
         public static string lsvFechaEntrada {
@@ -4949,6 +5012,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvFormato {
             get {
                 return ResourceManager.GetString("lsvFormato", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Función.
+        /// </summary>
+        public static string lsvFuncion {
+            get {
+                return ResourceManager.GetString("lsvFuncion", resourceCulture);
             }
         }
         

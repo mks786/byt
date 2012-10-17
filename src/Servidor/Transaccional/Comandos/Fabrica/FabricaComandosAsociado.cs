@@ -56,5 +56,10 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoVerificarCartasDeAsociado(asociado);
         }
+
+        public static ComandoBase<IList<ContactosDelAsociadoVista>> ObtenerComandoConsultarContactosDelAsociado(Asociado asociado, bool todos)
+        {
+            return new ComandoConsultarContactosDelAsociado(asociado, todos);
+        }
     }
 }

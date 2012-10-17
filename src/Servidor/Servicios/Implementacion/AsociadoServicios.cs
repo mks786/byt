@@ -287,5 +287,37 @@ namespace Trascend.Bolet.Servicios.Implementacion
                 throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
             }
         }
+
+
+
+        public IList<ContactosDelAsociadoVista> ConsultarContactosDelAsociado(Asociado asociado, bool todos)
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                IList<ContactosDelAsociadoVista> retorno = ControladorAsociado.ConsultarContactosDelAsociado(asociado, todos);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                return retorno;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
+        }
     }
 }

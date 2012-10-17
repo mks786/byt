@@ -36,7 +36,7 @@
         <GroupBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">
             <StackPanel Name="_gridDatos" 
                         DataContext="{Binding}" Width="Auto">
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,449,0">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,60,449,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
@@ -121,19 +121,19 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblEmail}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtEmail" Width="570" MaxLength="255"  Text="{Binding Path=Email}"/>
+                    <custom:ByTTextBox Name="_txtEmail" Width="550" MaxLength="255"  Text="{Binding Path=Email}"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,50,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblWeb}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtWeb" Width="580" MaxLength="255"  Text="{Binding Path=Web}"/>
+                    <custom:ByTTextBox Name="_txtWeb" Width="550" MaxLength="255"  Text="{Binding Path=Web}"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,50,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblObservacion}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtObservacion" Height="70" Width="540" MaxLength="255"  Text="{Binding Path=Observacion}"/>
+                    <custom:ByTTextBox Name="_txtObservacion" Height="70" Width="550" MaxLength="255"  Text="{Binding Path=Observacion}"/>
                 </WrapPanel>
             </StackPanel>
         </GroupBox>

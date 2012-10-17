@@ -5,11 +5,23 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="800"
+      xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos" Loaded="Page_Loaded">
+    <Page.Resources>
+        <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
+        <Style x:Key="ElementInError" TargetType="{x:Type FrameworkElement}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip"
+                    Value="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={x:Static RelativeSource.Self}}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="540"/>
+            <ColumnDefinition Width="800"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
@@ -31,7 +43,7 @@
             </StackPanel>
         </GroupBox>
         <GroupBox Grid.Column="1" Grid.Row="0"  Margin="5">
-            <ListView Name="_lstResultados" ItemsSource="{Binding}" 
+            <!--<ListView Name="_lstResultados" ItemsSource="{Binding}" 
                       MouseDoubleClick="_lstResultados_MouseDoubleClick" SelectionMode="Single"
                       Style="{DynamicResource EstiloListView}">
                 <ListView.View>
@@ -47,6 +59,81 @@
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Telefono}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Telefono" Content="{x:Static recurso:Etiquetas.lsvTelefono}"/>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>-->
+
+            <ListView Name="_lstResultados" ItemsSource="{Binding}" 
+                      SelectionMode="Single" MouseDoubleClick="_lstResultados_MouseDoubleClick"
+                      Style="{DynamicResource EstiloListView}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Email}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Email" Content="{x:Static recurso:Etiquetas.lsvEmail}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Funcion}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Funcion" Content="{x:Static recurso:Etiquetas.lsvFuncion}"/>
+                        </GridViewColumn>
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=CartaCreacion}" Width="150">
+                                        <GridViewColumnHeader Click="_Ordenar_Click" Tag="CartaCreacion" Content="{x:Static recurso:Etiquetas.lsvCartaCreacion}"/>
+                                    </GridViewColumn>-->
+                        <GridViewColumn Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="CartaCreacion" Content="{x:Static recurso:Etiquetas.lsvCartaCreacion}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <Binding Path="CartaCreacion" Converter="{StaticResource convertir}"/>
+                                                    </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Fecha}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Fecha" Content="{x:Static recurso:Etiquetas.lsvFechaCreacion}"/>
+                        </GridViewColumn>
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=UltimaCartaSalida}" Width="150">
+                                        <GridViewColumnHeader Click="_Ordenar_Click" Tag="UltimaCartaSalida" Content="{x:Static recurso:Etiquetas.lsvCartaEnviada}"/>
+                                    </GridViewColumn>-->
+                        <GridViewColumn Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="UltimaCartaSalida" Content="{x:Static recurso:Etiquetas.lsvCartaEnviada}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <Binding Path="UltimaCartaSalida" Converter="{StaticResource convertir}"/>
+                                                    </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaMaxEnv}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaMaxEnv" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
+                        </GridViewColumn>
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=UltimaCartaEntrada}" Width="150">
+                                        <GridViewColumnHeader Click="_Ordenar_Click" Tag="UltimaCartaEntrada" Content="{x:Static recurso:Etiquetas.lsvCartaEntrada}"/>
+                                    </GridViewColumn>-->
+                        <GridViewColumn Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="UltimaCartaEntrada" Content="{x:Static recurso:Etiquetas.lsvCartaEntrada}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <Binding Path="UltimaCartaEntrada" Converter="{StaticResource convertir}"/>
+                                                    </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaMaxEnt}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaMaxEnt" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>

@@ -29,5 +29,13 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
         /// <returns>true en caso de tener cartas, false en caso contrario</returns>
         bool VerificarCartasDeAsociado(Asociado asociado);
 
+        /// <summary>
+        /// Método que obtiene los contactos de un asociado
+        /// </summary>
+        /// <param name="recordatorio">recordatorio a filtrar</param>
+        /// /// <param name="fechas">fechas de renovación de marca a filtrar</param>
+        /// <returns>lista de recordatorios filtrados</returns>
+        IList<ContactosDelAsociadoVista> ObtenerContactosDelAsociado(Asociado asociado, bool todos);
+
     }
 }

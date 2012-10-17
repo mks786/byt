@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="ContactosDelAsociadoVista" table="VI_CONTACTOS" mutable="false">
+
+
+    <id name="Id" column="ID" type="string"/>
+
+
+    <property name="Tipo" column="TIPO" type="char"/>
+    <property name="Asociado" column="CASOCIADO" type="int"/>
+    <property name="Contacto" column="CNUMERO" type="int"/>
+    <property name="Email" column="XEMAIL" type="string"/>
+    <property name="Funcion" column="XFUNCION" type="string"/>
+    <property name="Nombre" column="XCONTACTO" type="string"/>
+
+
+    <property name="Fecha" column="FECHA" type="string"/>
+    <property name="FechaMaxEnv" column="FMAXENV" type="string"/>
+    <property name="FechaMaxEnt" column="FMAXENT" type="string"/>
+
+
+    <property name="CartaCreacion" column="CORCREA" type="int"/>
+    <property name="UltimaCartaSalida" column="MAXENV" type="int"/>
+    <property name="UltimaCartaEntrada" column="MAXENT" type="int"/>
+
+  </class>
+
+</hibernate-mapping>
+
+

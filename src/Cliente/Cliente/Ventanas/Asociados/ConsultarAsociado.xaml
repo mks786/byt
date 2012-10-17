@@ -6,9 +6,11 @@
       xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="800"
+      xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos" Loaded="Page_Loaded">
     <Page.Resources>
+        <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
         <Style x:Key="ElementInError" TargetType="{x:Type FrameworkElement}">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="True">
@@ -33,8 +35,8 @@
         </Grid.RowDefinitions>
 
 
-            <TabControl Grid.Column="1" Grid.Row="1" Name="_tbcPestañas" DataContext="{Binding}">
-                <TabItem Header="Datos" Name="_tabDatos">
+        <TabControl Grid.Column="1" Grid.Row="1" Name="_tbcPestañas" DataContext="{Binding}">
+            <TabItem Header="Datos" Name="_tabDatos">
                 <ScrollViewer Grid.Column="1" Grid.Row="1" VerticalScrollBarVisibility="Auto">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -291,7 +293,7 @@
                     </Grid>
                 </ScrollViewer>
             </TabItem>
-                <TabItem Header="Administracion" Name="_tabAministracion">
+            <TabItem Header="Administración" Name="_tabAministracion">
                 <ScrollViewer Grid.Column="1" Grid.Row="1" VerticalScrollBarVisibility="Auto">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -433,6 +435,109 @@
                             <TextBlock Name="_txbTrasferenciaAdministracion" Text="{x:Static recurso:Etiquetas.btnTrasferencia}"/>
                         </Button>
 
+
+                        <!--Vista de contactos del asociado-->
+
+                        <ListView Name="_lstContactos" ItemsSource="{Binding}" MaxHeight="150" Grid.Row="9" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3"
+                      SelectionMode="Single"
+                      Style="{DynamicResource EstiloListView}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
+                                        <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="120">
+                                        <GridViewColumnHeader Click="_Ordenar_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Email}" Width="120">
+                                        <GridViewColumnHeader Click="_Ordenar_Click" Tag="Email" Content="{x:Static recurso:Etiquetas.lsvEmail}"/>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Funcion}" Width="150">
+                                        <GridViewColumnHeader Click="_Ordenar_Click" Tag="Funcion" Content="{x:Static recurso:Etiquetas.lsvFuncion}"/>
+                                    </GridViewColumn>
+                                    <!--<GridViewColumn DisplayMemberBinding="{Binding Path=CartaCreacion}" Width="150">
+                                        <GridViewColumnHeader Click="_Ordenar_Click" Tag="CartaCreacion" Content="{x:Static recurso:Etiquetas.lsvCartaCreacion}"/>
+                                    </GridViewColumn>-->
+                                    <GridViewColumn Width="120">
+                                        <GridViewColumnHeader Click="_Ordenar_Click" Tag="CartaCreacion" Content="{x:Static recurso:Etiquetas.lsvCartaCreacion}"/>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <Binding Path="CartaCreacion" Converter="{StaticResource convertir}"/>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Fecha}" Width="150">
+                                        <GridViewColumnHeader Click="_Ordenar_Click" Tag="Fecha" Content="{x:Static recurso:Etiquetas.lsvFechaCreacion}"/>
+                                    </GridViewColumn>
+                                    <!--<GridViewColumn DisplayMemberBinding="{Binding Path=UltimaCartaSalida}" Width="150">
+                                        <GridViewColumnHeader Click="_Ordenar_Click" Tag="UltimaCartaSalida" Content="{x:Static recurso:Etiquetas.lsvCartaEnviada}"/>
+                                    </GridViewColumn>-->
+                                    <GridViewColumn Width="120">
+                                        <GridViewColumnHeader Click="_Ordenar_Click" Tag="UltimaCartaSalida" Content="{x:Static recurso:Etiquetas.lsvCartaEnviada}"/>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <Binding Path="UltimaCartaSalida" Converter="{StaticResource convertir}"/>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=FechaMaxEnv}" Width="150">
+                                        <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaMaxEnv" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
+                                    </GridViewColumn>
+                                    <!--<GridViewColumn DisplayMemberBinding="{Binding Path=UltimaCartaEntrada}" Width="150">
+                                        <GridViewColumnHeader Click="_Ordenar_Click" Tag="UltimaCartaEntrada" Content="{x:Static recurso:Etiquetas.lsvCartaEntrada}"/>
+                                    </GridViewColumn>-->
+                                    <GridViewColumn Width="120">
+                                        <GridViewColumnHeader Click="_Ordenar_Click" Tag="UltimaCartaEntrada" Content="{x:Static recurso:Etiquetas.lsvCartaEntrada}"/>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <Binding Path="UltimaCartaEntrada" Converter="{StaticResource convertir}"/>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=FechaMaxEnt}" Width="150">
+                                        <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaMaxEnt" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+
+
+
+                        <WrapPanel Orientation="Vertical" Grid.Row="9" Grid.Column="5" Grid.RowSpan="3">
+                            <Button Name="_btnVerCreacion" Height="25" Width="120" Click="_btnVerCreacion_Click" Margin="20,20,0,0">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.btnVerCreacion}"/>
+                            </Button>
+                            <Button Name="_btnVerEntrada" Height="25" Width="120" Click="_btnVerEntrada_Click" Margin="20,20,0,0">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.btnVerUltEntrada}"/>
+                            </Button>
+                            <Button Name="_btnVerEnviada" Height="25" Width="120" Click="_btnVerEnviada_Click" Margin="20,20,0,0">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.btnVerUltEnviada}"/>
+                            </Button>
+                        </WrapPanel>
+
+                        <!--Fin Vista de contactos del asociado-->
+
+
+
+
+
+
+
+
+
+
                         <!--control de facturacion-->
                         <Button  Grid.Column="1" Grid.Row="12" Name="_btnCXPINTAdministracion" HorizontalAlignment="Center" VerticalAlignment="Center" 
                              Height="25" Width="90" IsEnabled="False">
@@ -514,9 +619,9 @@
                         </WrapPanel>
                     </Grid>
                 </ScrollViewer>
-                </TabItem>
-            </TabControl>
-        
+            </TabItem>
+        </TabControl>
+
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
             <Button Name="_btnModificar"  VerticalAlignment="Bottom" Height="25" Width="90" 
                     Click="_btnModificar_Click"  IsDefault="True">

@@ -13,6 +13,9 @@ using System.Collections.Generic;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
 using Trascend.Bolet.Cliente.Ventanas.Cartas;
 using System.ComponentModel;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using Trascend.Bolet.Cliente.Ayuda;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 {
@@ -29,6 +32,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         private ITipoClienteServicios _tipoClienteServicios;
         private IPaisServicios _paisServicios;
         private IContactoServicios _contactoServicios;
+        private ICartaServicios _cartaServicios;
         private IListaDatosDominioServicios _listaDatosDominioServicios;
         private IDatosTransferenciaServicios _datosTransferenciaServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
@@ -75,6 +79,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["DatosTransferenciaServicios"]);
                 this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+                this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -173,6 +179,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     this._ventana.pintarAuditoria();
                 if (this._asociadoServicios.VerificarCartasPorAsociado(asociado))
                     this._ventana.pintarCorrespondencia();
+
+                IList<ContactosDelAsociadoVista> listaContactos = this._asociadoServicios.ConsultarContactosDelAsociado(asociado, false);
+                this._ventana.ListaContactos = listaContactos;
 
                 this._ventana.FocoPredeterminado();
 
@@ -449,6 +458,83 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         public void IrACorrespondencia()
         {
             Navegar(new ConsultarCartas(this._ventana, this._ventana.Asociado));
+        }
+
+
+        /// <summary>
+        /// Método que ordena una columna
+        /// </summary>
+        public void OrdenarColumna(GridViewColumnHeader column)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            String field = column.Tag as String;
+
+            if (this._ventana.CurSortCol != null)
+            {
+                AdornerLayer.GetAdornerLayer(this._ventana.CurSortCol).Remove(this._ventana.CurAdorner);
+                ((ListView)this._ventana.ListaContactos).Items.SortDescriptions.Clear();
+            }
+
+            ListSortDirection newDir = ListSortDirection.Ascending;
+            if (this._ventana.CurSortCol == column && this._ventana.CurAdorner.Direction == newDir)
+                newDir = ListSortDirection.Descending;
+
+            this._ventana.CurSortCol = column;
+            this._ventana.CurAdorner = new SortAdorner(this._ventana.CurSortCol, newDir);
+            AdornerLayer.GetAdornerLayer(this._ventana.CurSortCol).Add(this._ventana.CurAdorner);
+            ((ListView)this._ventana.ListaContactos).Items.SortDescriptions.Add(
+                new SortDescription(field, newDir));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+
+        public void ConsultarUltimaCorrespondenciaEnviada()
+        {
+            if ((ContactosDelAsociadoVista)this._ventana.ContactoSeleccionado != null)
+            {
+                if (((ContactosDelAsociadoVista)this._ventana.ContactoSeleccionado).UltimaCartaSalida != 0)
+                {
+                    Carta ultimaCorrespondenciaEnviada = this._cartaServicios.ObtenerCartasFiltro(
+                        new Carta(((ContactosDelAsociadoVista)this._ventana.ContactoSeleccionado).UltimaCartaSalida))[0];
+                    Navegar(new ConsultarCarta(ultimaCorrespondenciaEnviada, this._ventana));
+                }
+            }
+        }
+
+
+        public void ConsultarCorrespondenciaCreacion()
+        {
+            if ((ContactosDelAsociadoVista)this._ventana.ContactoSeleccionado != null)
+            {
+                if (((ContactosDelAsociadoVista)this._ventana.ContactoSeleccionado).CartaCreacion != 0)
+                {
+                    Carta correspondenciaCreacion = this._cartaServicios.ObtenerCartasFiltro(
+                        new Carta(((ContactosDelAsociadoVista)this._ventana.ContactoSeleccionado).CartaCreacion))[0];
+                    Navegar(new ConsultarCarta(correspondenciaCreacion, this._ventana));
+                }
+            }
+        }
+
+
+        public void ConsultarUltimaCorrespondenciaEntrada()
+        {
+            if ((ContactosDelAsociadoVista)this._ventana.ContactoSeleccionado != null)
+            {
+                if (((ContactosDelAsociadoVista)this._ventana.ContactoSeleccionado).UltimaCartaEntrada != 0)
+                {
+                    Carta ultimaCorrespondenciaEntrada = this._cartaServicios.ObtenerCartasFiltro(
+                        new Carta(((ContactosDelAsociadoVista)this._ventana.ContactoSeleccionado).UltimaCartaEntrada))[0];
+                    Navegar(new ConsultarCarta(ultimaCorrespondenciaEntrada, this._ventana));
+                }
+            }
         }
     }
 }
