@@ -185,6 +185,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
 
                 Interesado interesado = this.CargarDatosFiltro();
 
+                Mouse.OverrideCursor = Cursors.Wait;
+
                 if (this._filtroValido >= 2)
                 {
                     IEnumerable<Interesado> interesadosFiltrados = this._interesadoServicios.ObtenerInteresadosFiltro(interesado);
@@ -314,6 +316,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
+                Mouse.OverrideCursor = null;
             }
             catch (Exception ex)
             {
@@ -321,7 +324,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
-
 
         private Interesado CargarDatosFiltro()
         {

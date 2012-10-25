@@ -148,6 +148,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             set { this._lblHits.Text = value; }
         }
 
+        public string NombreAsociado
+        {
+            set { this._txtAsociado.Text = value; }
+        }
         #endregion
 
         /// <summary>
@@ -163,7 +167,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        public ConsultarCartas(object ventana, object asociado) : this()
+        public ConsultarCartas(object ventana, object asociado)
+            : this()
         {
             this._precargada = true;
             this._presentador = new PresentadorConsultarCartas(this, asociado, ventana);
@@ -177,7 +182,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorConsultarCartas(this, null, null,listaCartas);
+            this._presentador = new PresentadorConsultarCartas(this, null, null, listaCartas);
         }
 
 
@@ -276,12 +281,43 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
 
         private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.LimpiarCampos();
+            this._presentador.Navegar(new ConsultarCartas());
         }
 
         private void _cbxResponsable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void _txtAsociado_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            MostrarCamposAsociadosFiltrar(Visibility.Visible);
+            MostrarCampoAsociado(Visibility.Collapsed);
+        }
+
+        private void MostrarCamposAsociadosFiltrar(object visibilidad)
+        {
+            this._lblIdAsociado.Visibility = (Visibility)visibilidad;
+            this._txtIdAsociado.Visibility = (Visibility)visibilidad;
+            this._lblNombreAsociado.Visibility = (Visibility)visibilidad;
+            this._txtNombreAsociado.Visibility = (Visibility)visibilidad;
+            this._btnConsultarAsociado.Visibility = (Visibility)visibilidad;
+            this._lstAsociados.Visibility = (Visibility)visibilidad;
+        }
+
+        private void MostrarCampoAsociado(object visibilidad)
+        {
+            //this._lblAsociado.Visibility = (Visibility)visibilidad;
+            this._txtAsociado.Visibility = (Visibility)visibilidad;
+        }
+
+        private void _lstAsociados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (this._presentador.CambiarAsociado())
+            {
+                MostrarCamposAsociadosFiltrar(Visibility.Collapsed);
+                MostrarCampoAsociado(Visibility.Visible);
+            }
         }
 
     }

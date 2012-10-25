@@ -25,7 +25,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosAsociado
         public ComandoConsultarContactosDelAsociado(Asociado asociado, bool todos)
         {
             this._asociado = asociado;
-            this._todos = true;
+            this._todos = todos;
         }
 
         /// <summary>

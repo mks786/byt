@@ -12,6 +12,7 @@ using NLog;
 using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.Marcas;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
+using Trascend.Bolet.Cliente.Ventanas.Corresponsales;
 using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
@@ -1793,6 +1794,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             {
                 Poder poder = ((Marca)this._ventana.Marca).Poder.Id != int.MinValue ? ((Marca)this._ventana.Marca).Poder : null;
                 Navegar(new ConsultarPoder(poder, this._ventana));
+            }
+        }
+
+        public void IrVentanaCorresponsal()
+        {
+            if ((Corresponsal)this._ventana.CorresponsalSolicitud != null)
+            {
+                Corresponsal corresponsal = ((Corresponsal)this._ventana.CorresponsalSolicitud).Id != int.MinValue ? (Corresponsal)this._ventana.CorresponsalSolicitud : null;
+                Navegar(new AgregarCorresponsal(this._ventana, corresponsal));
             }
         }
 

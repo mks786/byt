@@ -2931,4 +2931,7 @@ en Prensa:</value>
   <data name="lsvFuncion" xml:space="preserve">
     <value>Función</value>
   </data>
+  <data name="lsvFechaInscripcion" xml:space="preserve">
+    <value>Fecha Inscripción</value>
+  </data>
 </root>

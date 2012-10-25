@@ -661,6 +661,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._txtReferenciaAsociado.IsEnabled = valor;
         }
 
+        private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.Navegar(new ConsultarPatentes());
+        }
+
 
     }
 }

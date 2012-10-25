@@ -4935,6 +4935,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fecha Inscripción.
+        /// </summary>
+        public static string lsvFechaInscripcion {
+            get {
+                return ResourceManager.GetString("lsvFechaInscripcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fecha Operación.
         /// </summary>
         public static string lsvFechaOperacion {

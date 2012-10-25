@@ -161,7 +161,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 {
                     if (variosFiltros)
                         filtro += " and ";
-                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteReferencia, Patente.PrimeraReferencia);
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteReferencia, Patente.PrimeraReferencia.ToUpper());
                     variosFiltros = true;
                 }
 

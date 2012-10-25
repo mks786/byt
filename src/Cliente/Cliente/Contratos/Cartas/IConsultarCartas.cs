@@ -40,5 +40,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
         void Mensaje(string mensaje,int opcion);
 
         string TotalHits { set; }
+
+        string NombreAsociado { set; }
     }
 }

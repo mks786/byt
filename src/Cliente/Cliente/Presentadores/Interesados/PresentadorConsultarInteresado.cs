@@ -27,6 +27,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
@@ -63,9 +64,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -81,8 +83,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarInteresado,
-                    Recursos.Ids.ConsultarInteresado);
+                ActualizarTitulo();
 
                 Interesado interesado = (Interesado)this._ventana.Interesado;
 
@@ -109,13 +110,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
             finally
             {
                 Mouse.OverrideCursor = null;
             }
         }
+
+        public void ActualizarTitulo()
+        {
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarInteresado,
+                       Recursos.Ids.ConsultarInteresado);
+        }
+
 
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
@@ -183,6 +191,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
             }
         }
 
+
         /// <summary>
         /// Método que elimina un Interesado de la base de datos
         /// </summary>
@@ -236,6 +245,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
             }
         }
 
+
         /// <summary>
         /// Método que guarda el registro para la auditoría
         /// </summary>
@@ -284,6 +294,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
             }
         }
 
+
         /// <summary>
         /// Método que llama a la ventana para ver la lista de poderes del
         /// interesado
@@ -300,7 +311,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 IList<Poder> poderes = this._poderServicios.ConsultarPoderesPorInteresado((Interesado)this._ventana.Interesado);
 
                 _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.PoderEliminado;
-                this.Navegar(new ListaPoderes(poderes, (Interesado)this._ventana.Interesado));
+                this.Navegar(new ListaPoderes(poderes, (Interesado)this._ventana.Interesado, this._ventana));
 
 
                 #region trace
@@ -330,6 +341,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
             }
         }
 
+
         /// <summary>
         /// Método que invoca una nueva página "ConsultarInteresados" y la instancia con el objeto seleccionado
         /// </summary>
@@ -347,5 +359,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
     }
 }

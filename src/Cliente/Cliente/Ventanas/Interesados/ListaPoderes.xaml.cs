@@ -65,11 +65,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Interesados
         #endregion
 
 
-        public ListaPoderes(object poderes, object interesado)
+        public ListaPoderes(object poderes, object interesado,object ventana)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorListaPoderes(this, poderes, interesado);
+            this._presentador = new PresentadorListaPoderes(this, poderes, interesado,ventana);
 
         }
 
@@ -89,7 +89,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Interesados
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Regresar();
+            this._presentador.RegresarVentanaPadre();
         }
 
         private void _btnAgregar_Click(object sender, RoutedEventArgs e)

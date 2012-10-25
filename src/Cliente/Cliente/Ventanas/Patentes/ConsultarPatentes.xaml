@@ -517,9 +517,9 @@
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Interesado.Nombre" Content="{x:Static recurso:Etiquetas.lsvInteresado}"/>
                         </GridViewColumn>
 
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaPublicacion, StringFormat=dd/MM/yyyy}" Width="180">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaInscripcion, StringFormat=dd/MM/yyyy}" Width="180">
 
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaPublicacion" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaInscripcion" Content="{x:Static recurso:Etiquetas.lsvFechaInscripcion}"/>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
@@ -536,6 +536,9 @@
             </DataGrid>-->
         </GroupBox>
 
+        <Button Name="_btnLimpiarCampos" Grid.Column="1" Grid.Row="1" Margin="5" Width="100" HorizontalAlignment="Left" Click="_btnLimpiarCampos_Click">
+            <TextBlock Text="{x:Static recurso:Etiquetas.btnLimpiarCampos}"/>
+        </Button>
         <!--Botones Aceptar|Cancelar-->
         <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">

@@ -359,7 +359,7 @@
                         <Label Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right" Margin="0,3" Grid.RowSpan="2">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoCliente}"/>
                         </Label>
-                        <ComboBox Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2"  Name="_cbxTipoClienteAdministracion" 
+                        <ComboBox Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="1"  Name="_cbxTipoClienteAdministracion" 
                               Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" Margin="0,5" Grid.RowSpan="2" SelectedIndex="0" IsEnabled="False">
                         </ComboBox>
 
@@ -438,7 +438,7 @@
 
                         <!--Vista de contactos del asociado-->
 
-                        <ListView Name="_lstContactos" ItemsSource="{Binding}" MaxHeight="150" Grid.Row="9" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3"
+                        <ListView IsEnabled="False" Name="_lstContactos" ItemsSource="{Binding}" MaxHeight="150" Grid.Row="9" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="4"
                       SelectionMode="Single"
                       Style="{DynamicResource EstiloListView}">
                             <ListView.View>

@@ -751,12 +751,12 @@
                         </GridViewColumn>
 
                         <GridViewColumn Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaPublicacion" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaInscripcion" Content="{x:Static recurso:Etiquetas.lsvFechaInscripcion}"/>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock>
                                         <TextBlock.Text>
-                                            <Binding Path="FechaPublicacion" StringFormat="{}{0:dd/MM/yyyy}"/>
+                                            <Binding Path="FechaInscripcion" StringFormat="{}{0:dd/MM/yyyy}"/>
                                         </TextBlock.Text>
                                     </TextBlock>
                                 </DataTemplate>

@@ -140,6 +140,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Interesados
                 this._presentador.CargarPagina();
                 EstaCargada = true;
             }
+            else
+                this._presentador.ActualizarTitulo();
         }
 
         private void _btnAuditoria_Click(object sender, RoutedEventArgs e)

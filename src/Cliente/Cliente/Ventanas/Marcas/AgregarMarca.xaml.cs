@@ -1691,5 +1691,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             this._presentador.IrVentanaAsociado();
         }
+
+
+        private void _btnIrCorresponsal_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVentanaCorresponsal();
+        }
     }
 }

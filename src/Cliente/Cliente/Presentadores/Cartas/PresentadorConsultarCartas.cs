@@ -542,5 +542,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         {
             this.Navegar((Page)_ventanaAVolver);
         }
+
+        public bool CambiarAsociado()
+        {
+            bool retorno = false;
+            try
+            {
+
+                if (this._ventana.Asociado != null)
+                {
+                    retorno = true;
+                    this._ventana.NombreAsociado = ((Asociado)this._ventana.Asociado).Nombre;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            return retorno;
+        }
     }
 }

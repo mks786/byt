@@ -170,6 +170,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
                 this._txtDescuentoDatos.IsEnabled = value;
                 this._txtRifDatos.IsEnabled = value;
                 this._txtNitDatos.IsEnabled = value;
+                this._lstContactos.IsEnabled = value;
 
                 if(this._chkAlertaAdministracion.IsChecked.Value)
                     this._txtAlarmaAdministracion.IsEnabled = value;

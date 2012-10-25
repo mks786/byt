@@ -272,7 +272,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Interesados
 
         private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.LimpiarCampos();
+            this._presentador.Navegar(new ConsultarInteresados());
         }
     }
 }

@@ -1492,7 +1492,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to upper(p.ReferenciaAsociadoInternacional) like &apos;%{0}%&apos;.
+        ///   Looks up a localized string similar to upper(p.ReferenciaAsociadoInternacional) like upper(&apos;%{0}%&apos;).
         /// </summary>
         public static string FiltroObtenerPatenteReferenciaAsociadoInternacional {
             get {
@@ -1501,7 +1501,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to upper(p.ReferenciaInteresadoInternacional) like &apos;%{0}%&apos;.
+        ///   Looks up a localized string similar to upper(p.ReferenciaInteresadoInternacional) like upper(&apos;%{0}%&apos;).
         /// </summary>
         public static string FiltroObtenerPatenteReferenciaInteresadoInternacional {
             get {

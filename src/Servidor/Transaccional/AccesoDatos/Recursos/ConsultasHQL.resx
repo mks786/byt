@@ -973,11 +973,11 @@
     <value>p.PaisInternacional.Id ={0}</value>
   </data>
   <data name="FiltroObtenerPatenteReferenciaAsociadoInternacional" xml:space="preserve">
-    <value>upper(p.ReferenciaAsociadoInternacional) like '%{0}%'</value>
+    <value>upper(p.ReferenciaAsociadoInternacional) like upper('%{0}%')</value>
     <comment>Filtra marca por referencia de asociado internacional</comment>
   </data>
   <data name="FiltroObtenerPatenteReferenciaInteresadoInternacional" xml:space="preserve">
-    <value>upper(p.ReferenciaInteresadoInternacional) like '%{0}%'</value>
+    <value>upper(p.ReferenciaInteresadoInternacional) like upper('%{0}%')</value>
     <comment>Filtra marca por referencia de asociado internacional</comment>
   </data>
   <data name="EliminarReportePatentePorCodigoPatente" xml:space="preserve">

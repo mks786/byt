@@ -14,6 +14,7 @@ using Trascend.Bolet.Cliente.Contratos.Marcas;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.Cliente.Ventanas.Renovaciones;
+using Trascend.Bolet.Cliente.Ventanas.Corresponsales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
@@ -327,8 +328,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 if (marca.Corresponsal != null)
                 {
-                    this._ventana.DescripcionCorresponsalSolicitud = marca.Corresponsal.GetType().Equals(typeof(Corresponsal)) ? marca.Corresponsal.Descripcion : "";
-                    this._ventana.DescripcionCorresponsalDatos = marca.Corresponsal.GetType().Equals(typeof(Corresponsal)) ? marca.Corresponsal.Descripcion : "";
+                    //this._ventana.DescripcionCorresponsalSolicitud = marca.Corresponsal.GetType().Equals(typeof(Corresponsal)) ? marca.Corresponsal.Descripcion : "";
+                    //this._ventana.DescripcionCorresponsalDatos = marca.Corresponsal.GetType().Equals(typeof(Corresponsal)) ? marca.Corresponsal.Descripcion : "";
+                    CargarCorresponsales();
                 }
 
                 this._ventana.NumPoderDatos = marca.Poder != null ? marca.Poder.NumPoder : "";
@@ -2221,7 +2223,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             Marca marca = CargarMarcaDeLaPantalla();
 
-            if ((null == marca.Poder) || (marca.Poder.NumPoder.Equals("")))
+            if ((null == marca.Poder) || (string.IsNullOrEmpty(marca.Poder.NumPoder)))
                 retorno = retorno ?
                     this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinNumeroDePoder) == retorno : retorno;
 
@@ -2663,6 +2665,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
 
             return retorno;
+        }
+
+        public void IrVentanaCorresponsal()
+        {
+            if ((Corresponsal)this._ventana.CorresponsalSolicitud != null)
+            {
+                Corresponsal corresponsal = ((Corresponsal)this._ventana.CorresponsalSolicitud).Id != int.MinValue ? (Corresponsal)this._ventana.CorresponsalSolicitud : null;
+                Navegar(new AgregarCorresponsal(this._ventana,corresponsal));
+            }
         }
     }
 }

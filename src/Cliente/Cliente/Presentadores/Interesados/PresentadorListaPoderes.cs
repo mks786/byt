@@ -26,7 +26,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorListaPoderes(IListaPoderes ventana, object poderes, object interesado)
+        public PresentadorListaPoderes(IListaPoderes ventana, object poderes, object interesado, object ventanaPadre)
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -36,6 +36,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
             this._ventana = ventana;
             this._poderes = (IList<Poder>)poderes;
             this._interesado = (Interesado)interesado;
+            this._ventanaPadre = ventanaPadre;
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
