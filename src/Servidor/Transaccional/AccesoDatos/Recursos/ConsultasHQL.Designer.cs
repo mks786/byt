@@ -358,7 +358,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to a.Id = &apos;{0}&apos;.
+        ///   Looks up a localized string similar to upper(a.Id) = &apos;{0}&apos;.
         /// </summary>
         public static string FiltroObtenerAgenteId {
             get {

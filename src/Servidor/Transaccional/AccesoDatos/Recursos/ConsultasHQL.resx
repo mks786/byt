@@ -301,7 +301,7 @@
     <comment>Cabecera del query para el filtro de agentes</comment>
   </data>
   <data name="FiltroObtenerAgenteId" xml:space="preserve">
-    <value>a.Id = '{0}'</value>
+    <value>upper(a.Id) = '{0}'</value>
     <comment>Filtro por Id</comment>
   </data>
   <data name="FiltroObtenerAgenteNombre" xml:space="preserve">

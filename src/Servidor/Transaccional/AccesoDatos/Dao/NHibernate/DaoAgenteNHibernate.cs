@@ -117,7 +117,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerAgenteDesinflados);
                 if ((null != agente) && (!string.IsNullOrEmpty(agente.Id)))
                 {
-                    filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerAgenteId, agente.Id);
+                    filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerAgenteId, agente.Id.ToUpper());
                     variosFiltros = true;
                 }
                 if (!string.IsNullOrEmpty(agente.Nombre))
