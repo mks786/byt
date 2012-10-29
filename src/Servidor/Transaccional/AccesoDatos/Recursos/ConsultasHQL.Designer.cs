@@ -682,7 +682,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to c.Referencia = &apos;{0}&apos;.
+        ///   Looks up a localized string similar to upper(c.Referencia) like &apos;%{0}%&apos;.
         /// </summary>
         public static string FiltroObtenerCartaReferencia {
             get {

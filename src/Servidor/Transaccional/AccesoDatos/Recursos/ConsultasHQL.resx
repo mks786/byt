@@ -757,7 +757,7 @@
     <comment>Filtra marca por tipo de estad</comment>
   </data>
   <data name="FiltroObtenerCartaReferencia" xml:space="preserve">
-    <value>c.Referencia = '{0}'</value>
+    <value>upper(c.Referencia) like '%{0}%'</value>
     <comment>Filtro por Id</comment>
   </data>
   <data name="VerificarCartasPorAsociado" xml:space="preserve">

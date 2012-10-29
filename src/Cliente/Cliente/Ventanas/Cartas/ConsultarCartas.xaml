@@ -103,7 +103,7 @@
                         <Label Name="_lblAsociado" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
                         </Label>
-                        <custom:ByTTextBox Name="_txtAsociado" BorderBrush="LightGreen" Text="" Width="150" MaxLength="15" Grid.Row="0" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                        <custom:ByTTextBox IsReadOnly="True" Name="_txtAsociado" BorderBrush="LightGreen" Text="" Width="150" MaxLength="15" Grid.Row="0" Grid.Column="1" Height="25" HorizontalAlignment="Left"
                                  GotFocus="_btnConsultarInteresadoFocus" GotKeyboardFocus="_btnConsultarInteresadoFocus" Filtro="True" MouseDoubleClick="_txtAsociado_MouseDoubleClick"/>
                         <Label  Visibility="Collapsed" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Name="_lblIdAsociado">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>

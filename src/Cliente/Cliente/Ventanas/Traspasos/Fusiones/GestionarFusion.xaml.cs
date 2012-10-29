@@ -551,6 +551,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             this._presentador.Modificar();
         }
 
+
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
             if (this.TextoBotonRegresar == Recursos.Etiquetas.btnRegresar)
@@ -694,7 +695,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             this._txtIdMarcaFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lstMarcas.Visibility = (System.Windows.Visibility)value;
             this._btnConsultarMarca.Visibility = (System.Windows.Visibility)value;
-            this._btnIrAsociados.Visibility = (System.Windows.Visibility)value;
+            //this._btnIrAsociados.Visibility = (System.Windows.Visibility)value;
         }
 
         private void GestionarVisibilidadDatosDeMarca(object value)

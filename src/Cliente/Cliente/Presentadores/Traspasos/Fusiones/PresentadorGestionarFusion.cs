@@ -569,9 +569,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 fusion.Poder = ((Marca)this._ventana.MarcaFiltrada).Poder;
             }
 
-            if (null != this._ventana.InteresadoEntreFiltrado)
-                fusion.InteresadoEntre = ((Interesado)this._ventana.InteresadoEntreFiltrado).Id != int.MinValue ?
-                                                            (Interesado)this._ventana.InteresadoEntreFiltrado : null;
+            //if (null != this._ventana.InteresadoEntreFiltrado)
+            //    fusion.InteresadoEntre = ((Interesado)this._ventana.InteresadoEntreFiltrado).Id != int.MinValue ?
+            //                                                (Interesado)this._ventana.InteresadoEntreFiltrado : null;
 
             if (null != this._ventana.InteresadoSobrevivienteFiltrado)
                 fusion.InteresadoSobreviviente = ((Interesado)this._ventana.InteresadoSobrevivienteFiltrado).Id != int.MinValue ?
@@ -1151,12 +1151,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                         this._ventana.InteresadoEntre = ((Marca)this._ventana.Marca).Interesado;
                         this._ventana.IdInteresadoEntre = ((Marca)this._ventana.Marca).Interesado.Id.ToString();
                     }
-                    if (null != ((Marca)this._ventana.Marca).Agente)
-                    {
-                        this._ventana.AgenteApoderado = ((Marca)this._ventana.Marca).Agente;
-                        this._ventana.IdApoderado = ((Marca)this._ventana.Marca).Agente.Id.ToString();
-                    }
-                    this._ventana.Poder = ((Marca)this._ventana.Marca).Poder;
+                    //if (null != ((Marca)this._ventana.Marca).Agente)
+                    //{
+                    //    this._ventana.AgenteApoderado = ((Marca)this._ventana.Marca).Agente;
+                    //    this._ventana.IdApoderado = ((Marca)this._ventana.Marca).Agente.Id.ToString();
+                    //}
+                    //this._ventana.Poder = ((Marca)this._ventana.Marca).Poder;
 
 
                     if (null != ((Marca)this._ventana.Marca).Asociado)

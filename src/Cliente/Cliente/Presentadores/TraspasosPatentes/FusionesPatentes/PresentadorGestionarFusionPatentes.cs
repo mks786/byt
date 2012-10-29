@@ -81,8 +81,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                     this._ventana.FusionPatente = fusion;
                     _agregar = false;
 
-                    this._ventana.DomicilioPatenteTercero = ((FusionPatente)fusion).FusionPatenteTercero.Domicilio;
-                    this._ventana.NombrePatenteTercero = ((FusionPatente)fusion).FusionPatenteTercero.Nombre;
+                    if (null != ((FusionPatente)fusion).FusionPatenteTercero)
+                    {
+                        this._ventana.DomicilioPatenteTercero = ((FusionPatente)fusion).FusionPatenteTercero.Domicilio;
+                        this._ventana.NombrePatenteTercero = ((FusionPatente)fusion).FusionPatenteTercero.Nombre;
+                    }
                 }
                 else
                 {
@@ -212,16 +215,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                         this._ventana.EsPatenteNacional(!((Patente)this._ventana.Patente).LocalidadPatente.Equals("I"));
                     else
                         this._ventana.EsPatenteNacional(true);
+                    if (null != fusion.FusionPatenteTercero)
+                    {
+                        if (null != fusion.FusionPatenteTercero.Estado)
+                            this._ventana.Corporacion = this.BuscarEstado(estados, fusion.FusionPatenteTercero.Estado);
 
-                    if (null != fusion.FusionPatenteTercero.Estado)
-                        this._ventana.Corporacion = this.BuscarEstado(estados, fusion.FusionPatenteTercero.Estado);
+                        if (null != fusion.FusionPatenteTercero.Pais)
+                            this._ventana.PaisPatenteTercero = this.BuscarPais(paisesMT, fusion.FusionPatenteTercero.Pais);
 
-                    if (null != fusion.FusionPatenteTercero.Pais)
-                        this._ventana.PaisPatenteTercero = this.BuscarPais(paisesMT, fusion.FusionPatenteTercero.Pais);
-
-                    if (null != fusion.FusionPatenteTercero.Nacionalidad)
-                        this._ventana.NacionalidadPatenteTercero = this.BuscarPais(nacionalidadesMT, fusion.FusionPatenteTercero.Nacionalidad);
-
+                        if (null != fusion.FusionPatenteTercero.Nacionalidad)
+                            this._ventana.NacionalidadPatenteTercero = this.BuscarPais(nacionalidadesMT, fusion.FusionPatenteTercero.Nacionalidad);
+                    }
 
                     CargarPatente();
 
@@ -1087,8 +1091,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                         this._ventana.EsPatenteNacional(true);
 
                     if (((Patente)this._ventana.Patente).Interesado != null)
+                    {
                         this._ventana.IdInteresadoEntre = (((Patente)this._ventana.Patente).Interesado).Id.ToString();
-
+                        this._ventana.NombreInteresadoEntre = (((Patente)this._ventana.Patente).Interesado).Nombre;
+                    }
                     IList<Interesado> listaAux = new List<Interesado>();
                     listaAux.Add(new Interesado(int.MinValue));
 

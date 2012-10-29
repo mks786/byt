@@ -88,7 +88,7 @@
                             <Label VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
                             </Label>
-                            <custom:ByTTextBox Name="_txtMarcaNombre" Text="" Width="150" MaxLength="15" Grid.Row="0" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                            <custom:ByTTextBox BorderBrush="LightGreen" Name="_txtMarcaNombre" Text="" Width="150" MaxLength="15" Grid.Row="0" Grid.Column="1" Height="25" HorizontalAlignment="Left"
                                  GotFocus="_txtMarcaNombre_GotFocus" GotKeyboardFocus="_txtMarcaNombre_GotFocus" SoloNumero="True" Filtro="True" Margin="-40,0,0,0" IsReadOnly="True" />
                             <Label Name="_lblCodigo" Visibility="Collapsed" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>

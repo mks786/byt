@@ -164,6 +164,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             this._presentador = new PresentadorConsultarCartas(this, null, null);
         }
 
+
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
@@ -174,6 +175,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             this._presentador = new PresentadorConsultarCartas(this, asociado, ventana);
 
         }
+
 
         /// <summary>
         /// Constructor Con Que recive la lista de cartas anteriormente consultada
@@ -186,7 +188,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         }
 
 
-
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             if (_precargada)
@@ -194,6 +195,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             else
                 this._presentador.Cancelar();
         }
+
 
         private void _btnConsultar_Click(object sender, RoutedEventArgs e)
         {
@@ -203,15 +205,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             validarCamposVacios();
         }
 
+
         private void _lstResultados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             this._presentador.IrConsultarCarta();
         }
 
+
         private void _Ordenar_Click(object sender, RoutedEventArgs e)
         {
-            //this._presentador.OrdenarColumna(sender as GridViewColumnHeader);
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader);
         }
+
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -224,10 +229,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
                 this._presentador.ActualizarTitulo();
         }
 
+
         private void _btnConsultarAsociado_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.BuscarAsociado();
         }
+
 
         private void _btnConsultarInteresadoFocus(object sender, RoutedEventArgs e)
         {
@@ -235,11 +242,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             this._btnConsultarAsociado.IsDefault = true;
         }
 
+
         private void _btnConsultarFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultar.IsDefault = true;
             this._btnConsultarAsociado.IsDefault = false;
         }
+
 
         /// <summary>
         /// Método que se encarga de posicionar el cursor en los campos del filto
@@ -269,31 +278,37 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
                 this._txtId.Focus();
         }
 
+
         private void _dpkFecha_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
+
 
         private void _btnTransferir_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
+
         private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.Navegar(new ConsultarCartas());
         }
+
 
         private void _cbxResponsable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
+
         private void _txtAsociado_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             MostrarCamposAsociadosFiltrar(Visibility.Visible);
             MostrarCampoAsociado(Visibility.Collapsed);
         }
+
 
         private void MostrarCamposAsociadosFiltrar(object visibilidad)
         {
@@ -305,11 +320,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             this._lstAsociados.Visibility = (Visibility)visibilidad;
         }
 
+
         private void MostrarCampoAsociado(object visibilidad)
         {
             //this._lblAsociado.Visibility = (Visibility)visibilidad;
             this._txtAsociado.Visibility = (Visibility)visibilidad;
         }
+
 
         private void _lstAsociados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {

@@ -54,7 +54,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 {
                     if (variosFiltros)
                         filtro += " and ";
-                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaReferencia, carta.Referencia);
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaReferencia, carta.Referencia.ToUpper());
                 }
                 if ((null != carta.Fecha) && (!carta.Fecha.Equals(DateTime.MinValue)))
                 {

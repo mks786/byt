@@ -140,6 +140,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
 
         public string NombreInteresadoEntre
         {
+            get { return this._txtNombreInteresadoEntre.Text; }
             set { this._txtNombreInteresadoEntre.Text = value; }
         }
 
@@ -752,8 +753,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
 
             this._cbxPaisPatenteTercero.Visibility = (System.Windows.Visibility)value;
             this._cbxNacionalidadPatenteTercero.Visibility = (System.Windows.Visibility)value;
-            this._txtIdPatenteTerceroFiltrar.Visibility = (System.Windows.Visibility)value;
-            //this._txtEstadoPatenteTercero.Visibility = (System.Windows.Visibility)value;
+            //this._txtIdPatenteTerceroFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._txtNombrePatenteTercero.Visibility = (System.Windows.Visibility)value;
             this._cbxCorporacion.Visibility = (System.Windows.Visibility)value;
             this._lblY.Visibility = (System.Windows.Visibility)value;
             this._lblEstadoPatenteTercero.Visibility = (System.Windows.Visibility)value;
@@ -763,6 +764,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
             this._lblNombrePatenteTercero.Visibility = (System.Windows.Visibility)value;
 
 
+            //this._txtEstadoPatenteTercero.Visibility = (System.Windows.Visibility)value;
         }
 
         #endregion

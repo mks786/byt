@@ -41,7 +41,7 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.FusionesPatentes
 
         object InteresadoEntre { get; set; }
 
-        string NombreInteresadoEntre { set; }
+        string NombreInteresadoEntre { get; set; }
 
         string IdInteresadoEntre { get; set; }
 
