@@ -92,5 +92,7 @@ namespace Trascend.Bolet.Cliente.Contratos.AbandonosPatente
         void PintarAsociado();
 
         void ConvertirEnteroMinimoABlanco();
+
+        void HabilitarCampoServicio();
     }
 }

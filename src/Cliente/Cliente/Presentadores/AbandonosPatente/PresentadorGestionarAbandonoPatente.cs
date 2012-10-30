@@ -63,6 +63,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                 }
                 else
                 {
+                    //this._ventana.HabilitarCampos = true;
                     Operacion abandonoAgregar = new Operacion();
                     abandonoAgregar.BAplicada = false;
                     this._ventana.Operacion = abandonoAgregar;
@@ -74,8 +75,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                     this._ventana.TextoBotonRegresar = Recursos.Etiquetas.btnCancelar;
 
                     this._ventana.ActivarControlesAlAgregar();
-
-
 
                 }
 
@@ -136,8 +135,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                 if (_agregar == false)
                 {
 
-
-
                     Operacion operacion = (Operacion)this._ventana.Operacion;
 
                     if (((Operacion)operacion).Patente != null)
@@ -164,6 +161,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                     CargarAsociado();
 
                     CargaBoletines();
+
+                    this._ventana.HabilitarCampoServicio();
                 }
 
                 this._ventana.ConvertirEnteroMinimoABlanco();

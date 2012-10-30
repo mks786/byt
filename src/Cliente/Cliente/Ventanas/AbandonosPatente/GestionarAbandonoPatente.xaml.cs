@@ -146,7 +146,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
         public string NombrePatenteFiltrar
         {
             get { return this._txtNombrePatenteFiltrar.Text; }
-        }       
+        }
 
         public object PatentesFiltradas
         {
@@ -171,7 +171,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
             get { return this._cbxBoletin.SelectedItem; }
             set { this._cbxBoletin.SelectedItem = value; }
         }
-  
+
         public string Region
         {
             get
@@ -194,7 +194,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
             set
             {
                 this._txtIdOperacion.IsEnabled = value;
-                this._txtAplicada.IsEnabled = value;               
+                this._txtAplicada.IsEnabled = value;
                 //this._dpkFechaOperacion.IsEnabled = value; 
 
 
@@ -204,11 +204,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
                 this._txtNombrePatenteFiltrar.IsEnabled = value;
                 this._btnConsultarPatente.IsEnabled = value;
 
+
                 this._txtNombreAsociado.IsEnabled = value;
                 this._txtIdAsociado.IsEnabled = value;
                 this._txtIdAsociadoFiltrar.IsEnabled = value;
                 this._txtNombreAsociadoFiltrar.IsEnabled = value;
                 this._btnConsultarAsociado.IsEnabled = value;
+
 
                 this._txtNombreInteresado.IsEnabled = value;
                 this._txtIdInteresado.IsEnabled = value;
@@ -222,9 +224,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
 
                 this._txtDescripcionServicio.IsEnabled = value;
 
-                this._txtDescripcionOperacion.IsEnabled = value;                
+
+                this._txtDescripcionOperacion.IsEnabled = value;
+
             }
         }
+
 
         public void PintarMarca()
         {
@@ -261,7 +266,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
             get { return _CurAdorner; }
             set { _CurAdorner = value; }
         }
-   
+
         public void Mensaje(string mensaje, int opcion)
         {
             if (opcion == 0)
@@ -270,6 +275,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
                 MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
+
+        public void HabilitarCampoServicio()
+        {
+            this._txtDescripcionOperacion.IsReadOnly = false;
+        }
         #endregion
 
         public GestionarAbandonoPatente(object abandono)
@@ -279,7 +289,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
             this._presentador = new PresentadorGestionarAbandonoPatente(this, abandono);
         }
 
-                /// <summary>
+        /// <summary>
         /// Constructor para la consulta desde operaciones
         /// </summary>
         /// <param name="abandono">la abandono a mostrar</param>
@@ -390,21 +400,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
             {
                 this._presentador.Eliminar();
             }
-        }       
-      
+        }
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             if (!EstaCargada)
             {
                 this._presentador.CargarPagina();
-                
+
                 if (this._presentador._agregar == true)
                 {
                     PintarAsociado();
                     PintarInteresado();
                     PintarMarca();
                 }
-                
+
                 EstaCargada = true;
             }
         }
@@ -416,7 +426,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
             else if (((Button)sender).Name.Equals("_btnConsultarInteresado"))
                 this._presentador.ConsultarInteresados();
             else if (((Button)sender).Name.Equals("_btnConsultarAsociado"))
-                this._presentador.ConsultarAsociados();            
+                this._presentador.ConsultarAsociados();
         }
 
         #region Eventos Patentes
@@ -548,7 +558,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
             this._btnAceptar.IsDefault = false;
         }
 
-        #endregion       
+        #endregion
 
         #region Eventos Asociado
 
@@ -557,7 +567,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
             if (this._presentador.CambiarAsociado())
             {
                 GestionarVisibilidadDatosDeAsociado(Visibility.Visible);
-                GestionarVisibilidadFiltroAsociado(Visibility.Collapsed);                
+                GestionarVisibilidadFiltroAsociado(Visibility.Collapsed);
             }
         }
 
@@ -614,7 +624,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
             this._btnAceptar.IsDefault = false;
         }
 
-        #endregion       
+        #endregion
 
     }
 }
