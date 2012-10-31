@@ -209,6 +209,9 @@
         </GroupBox>
 
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
+            <Button Name="_btnVerPoder" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnVerPoder_Click">
+                <TextBlock Text="{x:Static recurso:Etiquetas.btnVerPoder}"/>
+            </Button>
             <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" 
                     Click="_btnModificar_Click"  IsDefault="True">
                 <Button.Style>

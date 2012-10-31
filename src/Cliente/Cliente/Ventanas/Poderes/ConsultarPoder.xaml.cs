@@ -311,5 +311,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
 
         }
 
+        private void _btnVerPoder_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }
