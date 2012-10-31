@@ -589,7 +589,7 @@
 
                         <custom:ByTTextBox Grid.Column="1" Grid.Row="18" Name="_txtObservacionSolicitud" VerticalAlignment="Center"
                                            Text="{Binding Path=Observacion}" Grid.ColumnSpan="7" Margin="0,5,0,0" 
-                                           MaxLength="250" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
+                                           MaxLength="2000" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
                                            Height="125" SpellCheck.IsEnabled="True"></custom:ByTTextBox>
 
                         <Separator Name="_spdrBotones" Margin="10,5,0,0" Grid.Column="0" Grid.Row="19" Grid.ColumnSpan="12" VerticalAlignment="Center"/>
@@ -1335,7 +1335,7 @@
                             </Label>
                             <custom:ByTTextBox Grid.Column="6" Grid.Row="0" Grid.RowSpan="5" Name="_txtComentarioDatos" VerticalAlignment="Center"
                                            Text="{Binding Path=Observacion}" Grid.ColumnSpan="6" Margin="10,10,0,0" 
-                                           MaxLength="200" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
+                                           MaxLength="2000" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
                                             SpellCheck.IsEnabled="True" Height="250" Width="300"></custom:ByTTextBox>
 
                             <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">

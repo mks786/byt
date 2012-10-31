@@ -161,7 +161,7 @@
                       MouseDoubleClick="_lstResultados_MouseDoubleClick" SelectionMode="Single"
                       Style="{DynamicResource EstiloListView}">
                 <ListView.View>
-                    <GridView>
+                    <!--<GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                         </GridViewColumn>
@@ -173,6 +173,39 @@
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=FechaPrioridad}" Width="110">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaPrioridad" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
+                        </GridViewColumn>
+                    </GridView>-->
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                        </GridViewColumn>
+
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoInscripcion}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="CodigoInscripcion" Content="{x:Static recurso:Etiquetas.lsvSolicitud}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=PrimeraReferencia}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="PrimeraReferencia" Content="{x:Static recurso:Etiquetas.lsvReferencia}"/>
+                        </GridViewColumn>
+
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Id}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Asociado.Id" Content="{x:Static recurso:Etiquetas.lsvCodigoAsociado}"/>
+                        </GridViewColumn>
+
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Nombre}" Width="250">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Asociado.Nombre" Content="{x:Static recurso:Etiquetas.lsvAsociado}"/>
+                        </GridViewColumn>
+
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Interesado.Id}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Interesado.Id" Content="{x:Static recurso:Etiquetas.lsvCodigoInteresado}"/>
+                        </GridViewColumn>
+
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Interesado.Nombre}" Width="250">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Interesado.Nombre" Content="{x:Static recurso:Etiquetas.lsvInteresado}"/>
+                        </GridViewColumn>
+
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaInscripcion, StringFormat=dd/MM/yyyy}" Width="180">
+
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaInscripcion" Content="{x:Static recurso:Etiquetas.lsvFechaInscripcion}"/>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>

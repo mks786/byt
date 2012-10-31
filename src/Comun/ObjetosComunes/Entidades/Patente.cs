@@ -6,7 +6,9 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     [Serializable]
     public class Patente
     {
+
         #region Atributos
+
 
         private int _id;
         private string _descripcion;
@@ -61,6 +63,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<InfoBolPatente> _infoBoles;
         private IList<Memoria> _memorias;
 
+
         #region Internacional
 
         private string _localidadPatente;
@@ -73,7 +76,9 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         #endregion
 
+
         #endregion
+
 
         #region Constructores
 
@@ -94,6 +99,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         #endregion
+
 
         #region Propiedades
 
@@ -689,5 +695,6 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
 
         #endregion
+
     }
 }
