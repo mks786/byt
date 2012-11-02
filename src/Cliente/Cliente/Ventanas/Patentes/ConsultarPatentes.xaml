@@ -105,7 +105,7 @@
                             <Label Name="_lblPatente">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblPatente}"/>
                             </Label>
-                            <custom:ByTTextBox Name="_txtDescripcion" Text="{Binding Path=Descripcion}" Width="150" MaxLength="8"
+                            <custom:ByTTextBox Name="_txtDescripcion" Text="{Binding Path=Descripcion}" Width="150" MaxLength="255"
                              GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
                         </WrapPanel>
                         <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">

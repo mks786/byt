@@ -1644,6 +1644,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                     IList<Asociado> resultados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoAux);
 
+                    resultados.Insert(0, new Asociado());
+
                     this._ventana.AsociadosInternacionalesDatos = resultados;
                     this._ventana.AsociadosInternacionales = resultados;
 
@@ -1690,6 +1692,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                     IList<Asociado> resultados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoAux);
 
+                    resultados.Insert(0, new Asociado());
+
                     this._ventana.AsociadosInternacionalesDatos = resultados;
                     this._ventana.AsociadosInternacionales = resultados;
 
@@ -1724,10 +1728,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             {
                 if (this._ventana.AsociadoInternacional != null)
                 {
-                    this._ventana.TextoAsociadoInternacional = ((Asociado)this._ventana.AsociadoInternacional).Nombre;
-                    this._ventana.AsociadoInternacionalDatos = this._ventana.AsociadoInternacional;
-                    this._ventana.AsociadoInternacional = this._ventana.AsociadoInternacional;
-
+                    if (((Asociado)this._ventana.AsociadoInternacional).Id != 0)
+                    {
+                        this._ventana.TextoAsociadoInternacional = ((Asociado)this._ventana.AsociadoInternacional).Nombre;
+                        this._ventana.AsociadoInternacionalDatos = this._ventana.AsociadoInternacional;
+                        this._ventana.AsociadoInternacional = this._ventana.AsociadoInternacional;
+                    }
+                    else
+                    {
+                        this._ventana.AsociadoInternacional = null;
+                        this._ventana.AsociadoInternacionalDatos = null;
+                    }
                     retorno = true;
                 }
             }
@@ -1752,9 +1763,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             {
                 if (this._ventana.AsociadoInternacionalDatos != null)
                 {
-                    this._ventana.TextoAsociadoInternacional = ((Asociado)this._ventana.AsociadoInternacionalDatos).Nombre;
-                    this._ventana.AsociadoInternacional = this._ventana.AsociadoInternacional;
-                    this._ventana.AsociadoInternacionalDatos = this._ventana.AsociadoInternacional;
+                    if (((Asociado)this._ventana.AsociadoInternacionalDatos).Id != 0)
+                    {
+                        this._ventana.TextoAsociadoInternacional = ((Asociado)this._ventana.AsociadoInternacionalDatos).Nombre;
+                        this._ventana.AsociadoInternacional = this._ventana.AsociadoInternacional;
+                        this._ventana.AsociadoInternacionalDatos = this._ventana.AsociadoInternacional;
+                    }
+                    else
+                    {
+                        this._ventana.AsociadoInternacional = null;
+                        this._ventana.AsociadoInternacionalDatos = null;
+                    }
 
                     retorno = true;
                 }
@@ -1796,6 +1815,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 Navegar(new ConsultarPoder(poder, this._ventana));
             }
         }
+
 
         public void IrVentanaCorresponsal()
         {

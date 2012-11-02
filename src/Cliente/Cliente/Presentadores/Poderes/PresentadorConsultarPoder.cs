@@ -404,7 +404,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                System.Diagnostics.Process.Start(ConfigurationManager.AppSettings["rutaPoderes"].ToString() + ((Poder)this._ventana.Poder).Id + ".pdf");
+                string rutaArchivo = ConfigurationManager.AppSettings["rutaPoderes"].ToString() + ((Poder)this._ventana.Poder).Id + ".pdf";
+                System.Diagnostics.Process.Start(rutaArchivo);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

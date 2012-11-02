@@ -2350,6 +2350,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                     IList<Asociado> resultados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoAux);
 
+                    resultados.Insert(0,new Asociado());
+
                     this._ventana.AsociadosInternacionalesDatos = resultados;
                     this._ventana.AsociadosInternacionales = resultados;
 
@@ -2395,6 +2397,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     asociadoAux.Nombre = !this._ventana.NombreAsociadoInternacionalFiltrarDatos.Equals(string.Empty) ? this._ventana.NombreAsociadoInternacionalFiltrarDatos : string.Empty;
 
                     IList<Asociado> resultados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoAux);
+                    
+                    resultados.Insert(0,new Asociado());
 
                     this._ventana.AsociadosInternacionalesDatos = resultados;
                     this._ventana.AsociadosInternacionales = resultados;
@@ -2430,10 +2434,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             {
                 if (this._ventana.AsociadoInternacional != null)
                 {
-                    this._ventana.TextoAsociadoInternacional = ((Asociado)this._ventana.AsociadoInternacional).Nombre;
-                    this._ventana.AsociadoInternacionalDatos = this._ventana.AsociadoInternacional;
-                    this._ventana.AsociadoInternacional = this._ventana.AsociadoInternacional;
+                    if (((Asociado)this._ventana.AsociadoInternacional).Id != 0)
+                    {
+                        this._ventana.TextoAsociadoInternacional = ((Asociado)this._ventana.AsociadoInternacional).Nombre;
+                        this._ventana.AsociadoInternacionalDatos = this._ventana.AsociadoInternacional;
+                        this._ventana.AsociadoInternacional = this._ventana.AsociadoInternacional;
 
+
+                    }
+                    else
+                    {
+                        this._ventana.AsociadoInternacional = null;
+                        this._ventana.AsociadoInternacionalDatos = null;
+                    }
                     retorno = true;
                 }
             }
@@ -2458,10 +2471,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             {
                 if (this._ventana.AsociadoInternacionalDatos != null)
                 {
-                    this._ventana.TextoAsociadoInternacional = ((Asociado)this._ventana.AsociadoInternacionalDatos).Nombre;
-                    this._ventana.AsociadoInternacional = this._ventana.AsociadoInternacional;
-                    this._ventana.AsociadoInternacionalDatos = this._ventana.AsociadoInternacional;
-
+                    if (((Asociado)this._ventana.AsociadoInternacionalDatos).Id != 0)
+                    {
+                        this._ventana.TextoAsociadoInternacional = ((Asociado)this._ventana.AsociadoInternacionalDatos).Nombre;
+                        this._ventana.AsociadoInternacional = this._ventana.AsociadoInternacional;
+                        this._ventana.AsociadoInternacionalDatos = this._ventana.AsociadoInternacional;
+                    }
+                    else
+                    {
+                        this._ventana.AsociadoInternacional = null;
+                        this._ventana.AsociadoInternacionalDatos = null;
+                    }
                     retorno = true;
                 }
             }

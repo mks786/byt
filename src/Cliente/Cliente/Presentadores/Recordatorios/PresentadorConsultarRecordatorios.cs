@@ -460,25 +460,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
 
             string[] tipoRecordatorio = new string[2];
 
-            if (((ListaDatosValores)this._ventana.Recordatorio).Valor == "0")
+            if (((ListaDatosValores)this._ventana.Recordatorio).Valor == "1")
             {
-                tipoRecordatorio[0] = "AVISO DE RENOVACION";
-                tipoRecordatorio[1] = "RENEWAL NOTICE";
-            }
-            else if (((ListaDatosValores)this._ventana.Recordatorio).Valor == "1")
-            {
-                tipoRecordatorio[0] = "PRIMER RECORDATORIO";
-                tipoRecordatorio[1] = "FIRST REIMNDER";
+                tipoRecordatorio[0] = ConfigurationManager.AppSettings["TipoRecordatorio1ES"];
+                tipoRecordatorio[1] = ConfigurationManager.AppSettings["TipoRecordatorio1EN"];
             }
             else if (((ListaDatosValores)this._ventana.Recordatorio).Valor == "2")
             {
-                tipoRecordatorio[0] = "SEGUNDO RECORDATORIO";
-                tipoRecordatorio[1] = "SECOND REMINDER";
+                tipoRecordatorio[0] = ConfigurationManager.AppSettings["TipoRecordatorio2ES"];
+                tipoRecordatorio[1] = ConfigurationManager.AppSettings["TipoRecordatorio2EN"];
             }
             else if (((ListaDatosValores)this._ventana.Recordatorio).Valor == "3")
             {
-                tipoRecordatorio[0] = "URGENTE - ULTIMO RECORDATORIO";
-                tipoRecordatorio[1] = "URGENT - LAST REMINDER";
+                tipoRecordatorio[0] = ConfigurationManager.AppSettings["TipoRecordatorio3ES"];
+                tipoRecordatorio[1] = ConfigurationManager.AppSettings["TipoRecordatorio3EN"];
+            }
+            else if (((ListaDatosValores)this._ventana.Recordatorio).Valor == "4")
+            {
+                tipoRecordatorio[0] = ConfigurationManager.AppSettings["TipoRecordatorio4ES"];
+                tipoRecordatorio[1] = ConfigurationManager.AppSettings["TipoRecordatorio4EN"];
             }
 
             #region trace
