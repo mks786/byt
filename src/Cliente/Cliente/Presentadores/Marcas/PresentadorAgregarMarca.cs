@@ -347,7 +347,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 poderes.Insert(0, primerPoder);
                 this._ventana.PoderesDatos = poderes;
                 this._ventana.PoderesSolicitud = poderes;
-
+                CargarAsociadoInternacionalVacio();
 
                 #region Internacional
 
@@ -944,7 +944,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
                     this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
 
+                    this._ventana.PoderesDatos = null;
+                    this._ventana.PoderesSolicitud = null;
+                    this._ventana.PoderDatos = null;
+                    this._ventana.PoderSolicitud = null;
 
+                    this._ventana.NumPoderDatos = string.Empty;
+                    this._ventana.NumPoderSolicitud = string.Empty;
                 }
 
 
@@ -987,6 +993,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.IdInteresadoSolicitud = ((Interesado)this._ventana.InteresadoDatos).Id.ToString();
                     this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
                     this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
+
+
+                    this._ventana.PoderesDatos = null;
+                    this._ventana.PoderesSolicitud = null;
+                    this._ventana.PoderDatos = null;
+                    this._ventana.PoderSolicitud = null;
+
+                    this._ventana.NumPoderDatos = string.Empty;
+                    this._ventana.NumPoderSolicitud = string.Empty;
                 }
 
                 #region trace
@@ -1809,7 +1824,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         public void IrVentanaPoder()
         {
-            if ((Poder)this._ventana.PoderSolicitud != null)
+            if (((Poder)this._ventana.PoderSolicitud != null) && (((Poder)this._ventana.PoderSolicitud).Id != int.MinValue))
             {
                 Poder poder = ((Marca)this._ventana.Marca).Poder.Id != int.MinValue ? ((Marca)this._ventana.Marca).Poder : null;
                 Navegar(new ConsultarPoder(poder, this._ventana));
@@ -1826,5 +1841,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
+        public void CargarAsociadoInternacionalVacio()
+        {
+            IList<Asociado> asociados = new List<Asociado>();
+            asociados.Add(new Asociado());
+            this._ventana.AsociadosInternacionalesDatos = asociados;
+            this._ventana.AsociadosInternacionales = asociados;
+        }
     }
 }

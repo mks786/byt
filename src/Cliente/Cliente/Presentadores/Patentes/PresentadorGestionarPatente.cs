@@ -445,6 +445,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                         this._ventana.TextoAsociadoInternacional = _patente.AsociadoInternacional.Nombre;
                     }
+                    else
+                        CargarAsociadoInternacionalVacio();
 
 
                     if (null != _patente.Asociado)
@@ -453,6 +455,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                     if ((null != _patente.Interesado) && (null != _patente.Agente))
                         _cargarPoderInicial = true;
+
                 }
                 else
                 {
@@ -466,6 +469,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this.CargarDetalles();
                     this.CargarStatusWeb();
                     this.CargarBoletines();
+                    CargarAsociadoInternacionalVacio();
                 }
 
                 this._ventana.BorrarCeros();
@@ -2350,7 +2354,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                     IList<Asociado> resultados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoAux);
 
-                    resultados.Insert(0,new Asociado());
+                    resultados.Insert(0, new Asociado());
 
                     this._ventana.AsociadosInternacionalesDatos = resultados;
                     this._ventana.AsociadosInternacionales = resultados;
@@ -2397,8 +2401,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     asociadoAux.Nombre = !this._ventana.NombreAsociadoInternacionalFiltrarDatos.Equals(string.Empty) ? this._ventana.NombreAsociadoInternacionalFiltrarDatos : string.Empty;
 
                     IList<Asociado> resultados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoAux);
-                    
-                    resultados.Insert(0,new Asociado());
+
+                    resultados.Insert(0, new Asociado());
 
                     this._ventana.AsociadosInternacionalesDatos = resultados;
                     this._ventana.AsociadosInternacionales = resultados;
@@ -2521,6 +2525,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 Poder poder = ((Patente)this._ventana.Patente).Poder.Id != int.MinValue ? ((Patente)this._ventana.Patente).Poder : null;
                 Navegar(new ConsultarPoder(poder, this._ventana));
             }
+        }
+
+        public void CargarAsociadoInternacionalVacio()
+        {
+            IList<Asociado> asociados = new List<Asociado>();
+            asociados.Add(new Asociado());
+            this._ventana.AsociadosInternacionalesDatos = asociados;
+            this._ventana.AsociadosInternacionales = asociados;
         }
     }
 }

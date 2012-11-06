@@ -962,7 +962,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void ocultarLstInteresadoSolicitud()
         {
-            this._presentador.CambiarInteresadoSolicitud();
+            //this._presentador.CambiarInteresadoSolicitud();
             this._lstInteresadosSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._btnConsultarInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdInteresadoSolicitudFiltrar.Visibility = System.Windows.Visibility.Collapsed;
@@ -1284,9 +1284,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             if (!this._poderesCargados)
                 this._presentador.CargarPoderes();
 
-
-
-
             ocultarLstCorresponsalSolicitud();
             ocultarLstAsociadoSolicitud();
             ocultarLstInteresadoSolicitud();
@@ -1588,6 +1585,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
             this._btnAceptar.IsDefault = false;
             this._btnConsultarAsociadoInternacionalSolicitud.IsDefault = true;
+
+            //this._presentador.CargarAsociadoInternacionalVacio();
         }
 
 
@@ -1605,6 +1604,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
             this._btnAceptar.IsDefault = false;
             this._btnConsultarAsociadoInternacionalDatos.IsDefault = true;
+
+            //this._presentador.CargarAsociadoInternacionalVacio();
         }
 
 

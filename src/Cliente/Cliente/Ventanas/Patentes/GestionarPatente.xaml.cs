@@ -2021,5 +2021,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._lblPoderDatos.Visibility = Visibility.Visible;
             this._btnIrPoderDatos.Visibility = Visibility.Collapsed;
         }
+
     }
 }

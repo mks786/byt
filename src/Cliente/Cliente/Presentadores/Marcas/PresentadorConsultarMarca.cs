@@ -479,6 +479,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                     this._ventana.TextoAsociadoInternacional = marca.AsociadoInternacional.Nombre;
                 }
+                else
+                    CargarAsociadoInternacionalVacio();
                 #endregion
 
                 this._ventana.BorrarCeros();
@@ -2710,6 +2712,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 Corresponsal corresponsal = ((Corresponsal)this._ventana.CorresponsalSolicitud).Id != int.MinValue ? (Corresponsal)this._ventana.CorresponsalSolicitud : null;
                 Navegar(new AgregarCorresponsal(this._ventana, corresponsal));
             }
+        }
+
+
+
+        public void CargarAsociadoInternacionalVacio()
+        {
+            IList<Asociado> asociados = new List<Asociado>();
+            asociados.Add(new Asociado());
+            this._ventana.AsociadosInternacionalesDatos = asociados;
+            this._ventana.AsociadosInternacionales = asociados;
         }
     }
 }
