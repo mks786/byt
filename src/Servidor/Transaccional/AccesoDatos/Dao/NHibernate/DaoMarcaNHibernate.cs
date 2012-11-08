@@ -75,6 +75,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaFichas, marca.Fichas);
+                    variosFiltros = true;
                 }
 
                 if (!string.IsNullOrEmpty(marca.Descripcion))
@@ -82,6 +83,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaDescripcion, marca.Descripcion.ToUpper());
+                    variosFiltros = true;
                 }
 
                 if ((null != marca.FechaPublicacion) && (!marca.FechaPublicacion.Equals(DateTime.MinValue)))
@@ -91,6 +93,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     string fecha = String.Format("{0:dd/MM/yy}", marca.FechaPublicacion);
                     string fecha2 = String.Format("{0:dd/MM/yy}", marca.FechaPublicacion.Value.AddDays(1));
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaFecha, fecha, fecha2);
+                    variosFiltros = true;
                 }
 
                 if (null != marca.Recordatorio)
@@ -99,6 +102,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                         filtro += " and ";
 
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaRecordatorio, marca.Recordatorio);
+                    variosFiltros = true;
                 }
 
                 if ((null != marca.Nacional) && (marca.Nacional.Id != 0))
