@@ -445,15 +445,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
                 this._chkInstruccionesRenovacion.IsEnabled = value;
                 this._chkRenovacionTramitente.IsEnabled = value;
-                this._chkConflicto.IsEnabled = value;
+                //this._chkConflicto.IsEnabled = value;
                 //this._chkEtiquetaSolicitud.IsEnabled = value;
                 //this._chkEtiquetaDatos.IsEnabled = value;
-                this._chkOtraInf.IsEnabled = value;
-                this._chkPoder.IsEnabled = value;
-                this._chkPoderYPrioridad.IsEnabled = value;
-                this._chkPrioridad.IsEnabled = value;
-                this._chkReclasificacionNacional.IsEnabled = value;
-                this._chkOtroDatos.IsEnabled = value;
+                //this._chkOtraInf.IsEnabled = value;
+                //this._chkPoder.IsEnabled = value;
+                //this._chkPoderYPrioridad.IsEnabled = value;
+                //this._chkPrioridad.IsEnabled = value;
+                //this._chkReclasificacionNacional.IsEnabled = value;
+                //this._chkOtroDatos.IsEnabled = value;
                 this._chkEtiquetaDatos.IsEnabled = value;
                 this._chkEtiquetaSolicitud.IsEnabled = value;
 
@@ -471,15 +471,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._btnCarpeta.IsEnabled = value;
                 this._btnCertificados.IsEnabled = value;
                 this._btnClaseCompletaSolicitud.IsEnabled = value;
-                this._btnConflicto.IsEnabled = value;
-                this._btnConflictoELI.IsEnabled = value;
-                this._btnConflictoINC.IsEnabled = value;
+                //this._btnConflicto.IsEnabled = value;
+                //this._btnConflictoELI.IsEnabled = value;
+                //this._btnConflictoINC.IsEnabled = value;
                 this._btnConsultarAsociadoDatos.IsEnabled = value;
                 this._btnConsultarAsociadoSolicitud.IsEnabled = value;
                 this._btnConsultarInteresadoDatos.IsEnabled = value;
                 this._btnConsultarInteresadoSolicitud.IsEnabled = value;
                 this._btnDuplicar.IsEnabled = value;
-                this._btnEnviarRecordatorios.IsEnabled = value;
+                //this._btnEnviarRecordatorios.IsEnabled = value;
                 this._btnFacturacionDatos.IsEnabled = value;
                 this._btnFM02.IsEnabled = value;
                 this._btnFM02Venen.IsEnabled = value;
@@ -494,25 +494,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._btnLAnexoFM02.IsEnabled = value;
                 this._btnLFM02.IsEnabled = value;
                 this._btnLFM02Venen.IsEnabled = value;
-                this._btnLista.IsEnabled = value;
+                //this._btnLista.IsEnabled = value;
                 this._btnNoRegistro.IsEnabled = value;
                 this._btnNoSolicitud.IsEnabled = value;
                 this._btnOperacionesDatos.IsEnabled = value;
-                this._btnOtraInf.IsEnabled = value;
-                this._btnOtraInfELI.IsEnabled = value;
-                this._btnOtraInfINC.IsEnabled = value;
-                this._btnPoder.IsEnabled = value;
-                this._btnPoderELI.IsEnabled = value;
-                this._btnPoderINC.IsEnabled = value;
-                this._btnPoderYPrioridad.IsEnabled = value;
-                this._btnPoderYPrioridadELI.IsEnabled = value;
-                this._btnPoderYPrioridadINC.IsEnabled = value;
-                this._btnPrioridad.IsEnabled = value;
-                this._btnPrioridadELI.IsEnabled = value;
-                this._btnPrioridadINC.IsEnabled = value;
-                this._btnReclasificacionNacional.IsEnabled = value;
-                this._btnReclasificacionNacionalELI.IsEnabled = value;
-                this._btnReclasificacionNacionalINC.IsEnabled = value;
+                //this._btnOtraInf.IsEnabled = value;
+                //this._btnOtraInfELI.IsEnabled = value;
+                //this._btnOtraInfINC.IsEnabled = value;
+                //this._btnPoder.IsEnabled = value;
+                //this._btnPoderELI.IsEnabled = value;
+                //this._btnPoderINC.IsEnabled = value;
+                //this._btnPoderYPrioridad.IsEnabled = value;
+                //this._btnPoderYPrioridadELI.IsEnabled = value;
+                //this._btnPoderYPrioridadINC.IsEnabled = value;
+                //this._btnPrioridad.IsEnabled = value;
+                //this._btnPrioridadELI.IsEnabled = value;
+                //this._btnPrioridadINC.IsEnabled = value;
+                //this._btnReclasificacionNacional.IsEnabled = value;
+                //this._btnReclasificacionNacionalELI.IsEnabled = value;
+                //this._btnReclasificacionNacionalINC.IsEnabled = value;
                 this._btnRenovacion.IsEnabled = value;
                 this._btnRevisarWeb.IsEnabled = value;
                 this._btnSaldo.IsEnabled = value;
@@ -530,12 +530,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
                 this._dpkFecha.IsEnabled = value;
                 this._dpkFechaPrioridad.IsEnabled = value;
-                this._dpkFechaRequeridaConflicto.IsEnabled = value;
-                this._dpkFechaRequeridaOtraInf.IsEnabled = value;
-                this._dpkFechaRequeridaPoder.IsEnabled = value;
-                this._dpkFechaRequeridaPoderYPrioridad.IsEnabled = value;
-                this._dpkFechaRequeridaPrioridad.IsEnabled = value;
-                this._dpkFechaRequeridaReclasificacionNacional.IsEnabled = value;
+                //this._dpkFechaRequeridaConflicto.IsEnabled = value;
+                //this._dpkFechaRequeridaOtraInf.IsEnabled = value;
+                //this._dpkFechaRequeridaPoder.IsEnabled = value;
+                //this._dpkFechaRequeridaPoderYPrioridad.IsEnabled = value;
+                //this._dpkFechaRequeridaPrioridad.IsEnabled = value;
+                //this._dpkFechaRequeridaReclasificacionNacional.IsEnabled = value;
 
                 #endregion
             }

@@ -5241,6 +5241,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Persona.
+        /// </summary>
+        public static string lsvPersona {
+            get {
+                return ResourceManager.GetString("lsvPersona", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Próximo Evento.
         /// </summary>
         public static string lsvProximoPaso {

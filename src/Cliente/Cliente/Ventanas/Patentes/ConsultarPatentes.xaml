@@ -500,6 +500,9 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=PrimeraReferencia}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="PrimeraReferencia" Content="{x:Static recurso:Etiquetas.lsvReferencia}"/>
                         </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Servicio.Descripcion}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Servicio.Descripcion" Content="{x:Static recurso:Etiquetas.lsvSituacion}"/>
+                        </GridViewColumn>
 
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Id}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Asociado.Id" Content="{x:Static recurso:Etiquetas.lsvCodigoAsociado}"/>

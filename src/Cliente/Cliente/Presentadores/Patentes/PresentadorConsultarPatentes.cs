@@ -211,6 +211,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                         patenteAuxiliar = new Patente(patente.Id);
                         Asociado asociadoAuxiliar = new Asociado();
                         Interesado interesadoAuxiliar = new Interesado();
+                        Servicio servicioAuxiliar = new Servicio();
 
                         patenteAuxiliar.PrimeraReferencia = patente.PrimeraReferencia;
                         patenteAuxiliar.Descripcion = patente.Descripcion != null ? patente.Descripcion : "";
@@ -227,6 +228,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                         {
                             interesadoAuxiliar = patente.Interesado;
                             patenteAuxiliar.Interesado = interesadoAuxiliar;
+                        }
+
+                        if ((patente.Servicio != null) && (!string.IsNullOrEmpty(patente.Servicio.Descripcion)))
+                        {
+                            servicioAuxiliar = patente.Servicio;
+                            patenteAuxiliar.Servicio = servicioAuxiliar;
                         }
 
                         flagError = 0;

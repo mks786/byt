@@ -173,6 +173,9 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Nombre}" Width="240">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Asociado.Nombre" Content="{x:Static recurso:Etiquetas.lsvAsociado}"/>
                         </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Persona}" Width="240">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Persona" Content="{x:Static recurso:Etiquetas.lsvPersona}"/>
+                        </GridViewColumn>
                         
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Referencia, StringFormat={}{0:dd/MM/yyyy}}" Width="210">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Referencia" Content="{x:Static recurso:Etiquetas.lsvReferencia}"/>

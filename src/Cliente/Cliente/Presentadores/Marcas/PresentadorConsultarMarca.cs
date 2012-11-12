@@ -674,31 +674,32 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                             if (marca.Interesado != null)
                             {
-                                bool exitoso = this._marcaServicios.InsertarOModificar(marca, UsuarioLogeado.Hash);
-
-                                if (exitoso)
+                                if (marca.Poder != null)
                                 {
-                                    this._ventana.HabilitarCampos = false;
-                                    this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                                    bool exitoso = this._marcaServicios.InsertarOModificar(marca, UsuarioLogeado.Hash);
 
-                                    //if (marca.Servicio.Id.Equals("AB"))
-                                    //{
-                                    //    this._ventana.DeshabilitarBotonModificar();
-                                    //}
+                                    if (exitoso)
+                                    {
+                                        this._ventana.HabilitarCampos = false;
+                                        this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+
+                                        //if (marca.Servicio.Id.Equals("AB"))
+                                        //{
+                                        //    this._ventana.DeshabilitarBotonModificar();
+                                        //}
+                                    }
                                 }
+                                else
+                                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinPoder, 0);
                             }
                             else
                                 this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinInteresado, 0);
                         }
                         else
-                        {
                             this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorMarcaInternacional, 0);
-                        }
                     }
                     else
-                    {
                         this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderesConAgente, 0);
-                    }
 
                 }
 
@@ -1343,6 +1344,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     _interesadoAnterior = this._interesadoServicios.ConsultarInteresadoConTodo(interesadoAux);
                 }
 
+
+
+                this._ventana.PoderesDatos = null;
+                this._ventana.PoderesSolicitud = null;
+                this._ventana.PoderDatos = null;
+                this._ventana.PoderSolicitud = null;
+
+                this._ventana.IdPoderDatos = string.Empty;
+                this._ventana.IdPoderSolicitud = string.Empty;
+                this._ventana.NumPoderDatos = string.Empty;
+
                 this._ventana.ConvertirEnteroMinimoABlanco();
 
                 #region trace
@@ -1406,6 +1418,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     Interesado interesadoAux = new Interesado(int.Parse(this._ventana.IdInteresadoSolicitud));
                     _interesadoAnterior = this._interesadoServicios.ConsultarInteresadoConTodo(interesadoAux);
                 }
+
+
+
+                this._ventana.PoderesDatos = null;
+                this._ventana.PoderesSolicitud = null;
+                this._ventana.PoderDatos = null;
+                this._ventana.PoderSolicitud = null;
+
+                this._ventana.IdPoderDatos = string.Empty;
+                this._ventana.IdPoderSolicitud = string.Empty;
+                this._ventana.NumPoderDatos = string.Empty;
 
                 this._ventana.ConvertirEnteroMinimoABlanco();
 

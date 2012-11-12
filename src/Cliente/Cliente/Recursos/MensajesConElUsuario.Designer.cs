@@ -1313,6 +1313,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disculpe, código de Entrada Alterna repetido.
+        /// </summary>
+        internal static string ErrorEntradaAlternaRepetida {
+            get {
+                return ResourceManager.GetString("ErrorEntradaAlternaRepetida", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to La entrada alterna que intenta introducir ya existe.
         /// </summary>
         internal static string ErrorEntradaAlternaRepetido {
@@ -1412,6 +1421,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Debe seleccionar un medio.
+        /// </summary>
+        internal static string ErrorMedio {
+            get {
+                return ResourceManager.GetString("ErrorMedio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disculpe, el Id de la Memoria está repetido.
         /// </summary>
         internal static string ErrorMemoriaRepetida {
@@ -1462,6 +1480,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ErrorPoderNoEncontrado {
             get {
                 return ResourceManager.GetString("ErrorPoderNoEncontrado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debe seleccionar un receptor.
+        /// </summary>
+        internal static string ErrorReceptor {
+            get {
+                return ResourceManager.GetString("ErrorReceptor", resourceCulture);
             }
         }
         
@@ -1561,6 +1588,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ErrorSinLicenciatario {
             get {
                 return ResourceManager.GetString("ErrorSinLicenciatario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disculpe debe elegir un poder para la Marca.
+        /// </summary>
+        internal static string ErrorSinPoder {
+            get {
+                return ResourceManager.GetString("ErrorSinPoder", resourceCulture);
             }
         }
         

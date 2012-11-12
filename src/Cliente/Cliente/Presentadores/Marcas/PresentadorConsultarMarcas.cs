@@ -264,6 +264,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         MarcaAuxiliar.PrimeraReferencia = marca.PrimeraReferencia;
                         Asociado asociadoAuxiliar = new Asociado();
                         Interesado interesadoAuxiliar = new Interesado();
+                        Servicio servicioAuxiliar = new Servicio();
 
                         MarcaAuxiliar.Descripcion = marca.Descripcion != null ? marca.Descripcion : "";
 
@@ -277,6 +278,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         {
                             interesadoAuxiliar.Nombre = marca.Interesado.Nombre;
                             MarcaAuxiliar.Interesado = interesadoAuxiliar;
+                        }
+
+                        if ((marca.Servicio != null)&&(!string.IsNullOrEmpty(marca.Servicio.Descripcion)))
+                        {
+                            servicioAuxiliar = marca.Servicio;
+                            MarcaAuxiliar.Servicio = servicioAuxiliar;
                         }
 
                         MarcaAuxiliar.Nacional = marca.Nacional;

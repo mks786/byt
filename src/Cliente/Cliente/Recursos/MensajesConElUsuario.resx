@@ -922,4 +922,16 @@
   <data name="ErrorCorresponsalRepetido" xml:space="preserve">
     <value>Disculpe el Id del corresponsal se encuentra repetido</value>
   </data>
+  <data name="ErrorSinPoder" xml:space="preserve">
+    <value>Disculpe debe elegir un poder para la Marca</value>
+  </data>
+  <data name="ErrorEntradaAlternaRepetida" xml:space="preserve">
+    <value>Disculpe, código de Entrada Alterna repetido</value>
+  </data>
+  <data name="ErrorMedio" xml:space="preserve">
+    <value>Debe seleccionar un medio</value>
+  </data>
+  <data name="ErrorReceptor" xml:space="preserve">
+    <value>Debe seleccionar un receptor</value>
+  </data>
 </root>

@@ -88,8 +88,8 @@
                             <RowDefinition Height="25"/>
                             <RowDefinition Height="25"/>
                             <RowDefinition Height="25"/>
-                            <RowDefinition Height="25"/>
-                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="0"/>
+                            <RowDefinition Height="0"/>
                         </Grid.RowDefinitions>
                         <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
@@ -748,7 +748,7 @@
                         <!--Final Modulo de saldos-->
                         <Separator Grid.Column="0" Grid.Row="20" Grid.ColumnSpan="7" VerticalAlignment="Bottom" />
 
-                        <Label Grid.Column="9" Grid.Row="18" VerticalAlignment="Center" HorizontalContentAlignment="Center">
+                        <!--<Label Grid.Column="9" Grid.Row="18" VerticalAlignment="Center" HorizontalContentAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaRequerida}"/>
                         </Label>
 
@@ -765,9 +765,9 @@
                         <Button  Name="_btnPoderINC" HorizontalAlignment="Right" Grid.Column="10" Grid.Row="19"
                             Height="25" Width="60">INC</Button>
                         <Button  Name="_btnPoderELI" HorizontalAlignment="Left" Grid.Column="11" Grid.Row="19"
-                            Height="25" Width="60">ELI</Button>
+                            Height="25" Width="60">ELI</Button>-->
 
-                        <CheckBox   Name="_chkPrioridad" Grid.Column="7" Grid.Row="20" VerticalAlignment="Center"
+                        <!--<CheckBox   Name="_chkPrioridad" Grid.Column="7" Grid.Row="20" VerticalAlignment="Center"
                          HorizontalAlignment="Right" IsChecked="{Binding Path=BAutorizar}" Margin="0,0,95,0" Grid.ColumnSpan="2">
                         </CheckBox>
                         <Button  Name="_btnPrioridad" HorizontalAlignment="Right" Grid.Column="7" Grid.Row="20" Grid.ColumnSpan="2"
@@ -780,9 +780,9 @@
                         <Button  Name="_btnPrioridadINC" HorizontalAlignment="Right" Grid.Column="10" Grid.Row="20"
                             Height="25" Width="60">INC</Button>
                         <Button  Name="_btnPrioridadELI" HorizontalAlignment="Left" Grid.Column="11" Grid.Row="20"
-                            Height="25" Width="60">ELI</Button>
+                            Height="25" Width="60">ELI</Button>-->
 
-                        <CheckBox   Name="_chkPoderYPrioridad" Grid.Column="7" Grid.Row="21" VerticalAlignment="Center"
+                        <!--<CheckBox   Name="_chkPoderYPrioridad" Grid.Column="7" Grid.Row="21" VerticalAlignment="Center"
                          HorizontalAlignment="Right" IsChecked="{Binding Path=BAutorizar}" Margin="0,0,95,0" Grid.ColumnSpan="2">
                         </CheckBox>
                         <Button  Name="_btnPoderYPrioridad" HorizontalAlignment="Right" Grid.Column="7" Grid.Row="21" Grid.ColumnSpan="2"
@@ -795,9 +795,9 @@
                         <Button  Name="_btnPoderYPrioridadINC" HorizontalAlignment="Right" Grid.Column="10" Grid.Row="21"
                             Height="25" Width="60">INC</Button>
                         <Button  Name="_btnPoderYPrioridadELI" HorizontalAlignment="Left" Grid.Column="11" Grid.Row="21"
-                            Height="25" Width="60">ELI</Button>
+                            Height="25" Width="60">ELI</Button>-->
 
-                        <CheckBox   Name="_chkReclasificacionNacional" Grid.Column="7" Grid.Row="22" VerticalAlignment="Center"
+                        <!--<CheckBox   Name="_chkReclasificacionNacional" Grid.Column="7" Grid.Row="22" VerticalAlignment="Center"
                          HorizontalAlignment="Right" IsChecked="{Binding Path=BAutorizar}" Margin="0,0,95,0" Grid.ColumnSpan="2">
                         </CheckBox>
                         <Button  Name="_btnReclasificacionNacional" HorizontalAlignment="Right" Grid.Column="7" Grid.Row="22" Grid.ColumnSpan="2"
@@ -810,9 +810,9 @@
                         <Button  Name="_btnReclasificacionNacionalINC" HorizontalAlignment="Right" Grid.Column="10" Grid.Row="22"
                             Height="25" Width="60">INC</Button>
                         <Button  Name="_btnReclasificacionNacionalELI" HorizontalAlignment="Left" Grid.Column="11" Grid.Row="22"
-                            Height="25" Width="60">ELI</Button>
+                            Height="25" Width="60">ELI</Button>-->
 
-                        <CheckBox   Name="_chkConflicto" Grid.Column="7" Grid.Row="23" VerticalAlignment="Center"
+                        <!--<CheckBox   Name="_chkConflicto" Grid.Column="7" Grid.Row="23" VerticalAlignment="Center"
                          HorizontalAlignment="Right" IsChecked="{Binding Path=BAutorizar}" Margin="0,0,95,0" Grid.ColumnSpan="2">
                         </CheckBox>
                         <Button  Name="_btnConflicto" HorizontalAlignment="Right" Grid.Column="7" Grid.Row="23" Grid.ColumnSpan="2"
@@ -825,9 +825,9 @@
                         <Button  Name="_btnConflictoINC" HorizontalAlignment="Right" Grid.Column="10" Grid.Row="23"
                             Height="25" Width="60">INC</Button>
                         <Button  Name="_btnConflictoELI" HorizontalAlignment="Left" Grid.Column="11" Grid.Row="23"
-                            Height="25" Width="60">ELI</Button>
+                            Height="25" Width="60">ELI</Button>-->
 
-                        <CheckBox   Name="_chkOtraInf" Grid.Column="7" Grid.Row="24" VerticalAlignment="Center"
+                        <!--<CheckBox   Name="_chkOtraInf" Grid.Column="7" Grid.Row="24" VerticalAlignment="Center"
                          HorizontalAlignment="Right" IsChecked="{Binding Path=BAutorizar}" Margin="0,0,95,0" Grid.ColumnSpan="2">
                         </CheckBox>
                         <Button  Name="_btnOtraInf" HorizontalAlignment="Right" Grid.Column="7" Grid.Row="24" Grid.ColumnSpan="2"
@@ -840,12 +840,12 @@
                         <Button  Name="_btnOtraInfINC" HorizontalAlignment="Right" Grid.Column="10" Grid.Row="24"
                             Height="25" Width="60">INC</Button>
                         <Button  Name="_btnOtraInfELI" HorizontalAlignment="Left" Grid.Column="11" Grid.Row="24"
-                            Height="25" Width="60">ELI</Button>
+                            Height="25" Width="60">ELI</Button>-->
 
-                        <WrapPanel Grid.Column="8" Grid.Row="25" Grid.ColumnSpan="4" VerticalAlignment="Bottom" HorizontalAlignment="Center" Orientation="Horizontal">
+                        <!--<WrapPanel Grid.Column="8" Grid.Row="25" Grid.ColumnSpan="4" VerticalAlignment="Bottom" HorizontalAlignment="Center" Orientation="Horizontal">
                             <Button  Name="_btnLista" Height="25" Width="80">Lista</Button>
                             <Button  Name="_btnEnviarRecordatorios" Height="25" Width="110" Margin="8,0,0,0">Enviar recordatorios</Button>
-                        </WrapPanel>
+                        </WrapPanel>-->
 
                         <WrapPanel Grid.Column="1" Grid.Row="21" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
                             <Button  Name="_btnDuplicar" Height="25" Width="100" Click="_btnDuplicar_Click">

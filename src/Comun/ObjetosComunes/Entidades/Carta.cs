@@ -47,6 +47,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         #endregion
 
+
         #region Constructores
 
         /// <summary>
@@ -65,6 +66,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         #endregion
 
+            
         #region Propiedades
 
         /// <summary>

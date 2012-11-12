@@ -504,14 +504,40 @@
                             <GridViewColumn DisplayMemberBinding="{Binding Path=Recibo}" Width="80">
                                 <GridViewColumnHeader  Tag="Recibo" Content="{x:Static recurso:Etiquetas.lsvRecibo}"/>
                             </GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=FechaAnualidad}" Width="80">
+                            <!--<GridViewColumn DisplayMemberBinding="{Binding Path=FechaAnualidad}" Width="80">
                                 <GridViewColumnHeader  Tag="FechaAnualidad" Content="{x:Static recurso:Etiquetas.lsvFechaAnualidad}"/>
+                            </GridViewColumn>-->
+
+                            <GridViewColumn Width="150">
+                                <GridViewColumnHeader Tag="FechaAnualidad" Content="{x:Static recurso:Etiquetas.lsvFechaAnualidad}"/>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                        <TextBlock.Text>
+                                            <Binding Path="FechaAnualidad" StringFormat="{}{0:dd/MM/yyyy}"/>
+                                        </TextBlock.Text>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
                             </GridViewColumn>
                             <GridViewColumn DisplayMemberBinding="{Binding Path=Voucher}" Width="80">
                                 <GridViewColumnHeader  Tag="Voucher" Content="{x:Static recurso:Etiquetas.lsvVoucher}"/>
                             </GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=FechaVoucher}" Width="80">
+                            <!--<GridViewColumn DisplayMemberBinding="{Binding Path=FechaVoucher}" Width="80">
                                 <GridViewColumnHeader  Tag="FechaVoucher" Content="{x:Static recurso:Etiquetas.lsvFechaVoucher}"/>
+                            </GridViewColumn>-->
+
+                            <GridViewColumn Width="150">
+                                <GridViewColumnHeader Tag="FechaVoucher" Content="{x:Static recurso:Etiquetas.lsvFechaVoucher}"/>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                        <TextBlock.Text>
+                                            <Binding Path="FechaVoucher" StringFormat="{}{0:dd/MM/yyyy}"/>
+                                        </TextBlock.Text>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
                             </GridViewColumn>
                             <GridViewColumn DisplayMemberBinding="{Binding Path=Situacion}" Width="80">
                                 <GridViewColumnHeader  Tag="Situacion" Content="{x:Static recurso:Etiquetas.lsvSituacion}"/>

@@ -476,14 +476,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                             marca = AgregarDatosInternacionales(marca);
                         else
                             marca.LocalidadMarca = "N";
-
-                        int? exitoso = this._marcaServicios.InsertarOModificarMarca(marca, UsuarioLogeado.Hash);
-
-                        if (!exitoso.Equals(null))
+                        if (marca.Poder != null)
                         {
-                            marca.Id = (int)exitoso;
-                            this.Navegar(new ConsultarMarca(marca, null));
+                            int? exitoso = this._marcaServicios.InsertarOModificarMarca(marca, UsuarioLogeado.Hash);
+
+                            if (!exitoso.Equals(null))
+                            {
+                                marca.Id = (int)exitoso;
+                                this.Navegar(new ConsultarMarca(marca, null));
+                            }
                         }
+                        else
+                            this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinPoder, 0);
                     }
                     else
                     {
@@ -999,6 +1003,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.PoderesSolicitud = null;
                     this._ventana.PoderDatos = null;
                     this._ventana.PoderSolicitud = null;
+
 
                     this._ventana.NumPoderDatos = string.Empty;
                     this._ventana.NumPoderSolicitud = string.Empty;

@@ -141,6 +141,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.EntradasAlternas
             set { this._cbxPersona.SelectedItem = value; }
         }
 
+        public void BorrarCeros() 
+        {
+            this._txtId.Text = string.Empty;
+        }
+
         #endregion
 
         public AgregarEntradaAlterna()

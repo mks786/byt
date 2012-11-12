@@ -27,7 +27,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
         <!--Resultados-->
@@ -142,12 +142,27 @@
 
         <!--Botones Regresar-->
         <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
+           
             <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
                 <Button Name="_btnAgregar" VerticalAlignment="Bottom" Height="25" Width="110" Click="_btnAgregar_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnNuevoContacto}"/>
                 </Button>
                 <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="110" Click="_btnRegresar_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
+                </Button>
+            </WrapPanel>
+        </GroupBox>
+
+        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
+            <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5" Orientation="Horizontal">
+                <Button Name="_btnVerCreacion" Height="25" Width="120" Click="_btnVerCreacion_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnVerCreacion}"/>
+                </Button>
+                <Button Name="_btnVerEntrada" Height="25" Width="120" Click="_btnVerEntrada_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnVerUltEntrada}"/>
+                </Button>
+                <Button Name="_btnVerEnviada" Height="25" Width="120" Click="_btnVerEnviada_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnVerUltEnviada}"/>
                 </Button>
             </WrapPanel>
         </GroupBox>

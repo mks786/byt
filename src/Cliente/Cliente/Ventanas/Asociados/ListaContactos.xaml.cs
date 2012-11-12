@@ -105,5 +105,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         {
             this._presentador.IrConsultarContacto();
         }
+
+
+
+        private void _btnVerEnviada_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarUltimaCorrespondenciaEnviada();
+        }
+
+        private void _btnVerCreacion_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarCorrespondenciaCreacion();
+        }
+
+        private void _btnVerEntrada_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarUltimaCorrespondenciaEntrada();
+        }
     }
 }

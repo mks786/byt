@@ -59,7 +59,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
         public void CargarPagina()
-        { 
+        {
             try
             {
 
@@ -70,13 +70,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
 
                 Mouse.OverrideCursor = Cursors.Wait;
 
-           
+
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarEntradaAlterna,
                     Recursos.Ids.AgregarEntradaAlterna);
 
-                this._ventana.Medios = this._medioServicios.ConsultarTodos();
+                IList<Medio> medios = this._medioServicios.ConsultarTodos();
+                Medio primerMedio = new Medio();
+                primerMedio.Id = "NGN";
+                medios.Insert(0, primerMedio);
 
-                this._ventana.Receptores = this._usuarioServicios.ConsultarTodos();
+                this._ventana.Medios = medios;
+
+                this._ventana.BorrarCeros();
+
+
+                IList<Usuario> receptores = this._usuarioServicios.ConsultarTodos();
+                Usuario primerUsuario = new Usuario();
+                primerUsuario.Iniciales = string.Empty;
+                receptores.Insert(0, primerUsuario);
+                this._ventana.Receptores = receptores;
 
                 IList<Remitente> remitentes = this._remitenteServicios.ConsultarTodos();
                 Remitente primerRemitente = new Remitente();
@@ -149,27 +161,42 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                 entradaAlterna.Categoria = !((Categoria)this._ventana.Categoria).Id.Equals("NGN") ? (Categoria)this._ventana.Categoria : null;
                 entradaAlterna.TipoDestinatario = this._ventana.TipoDestinatario;
 
-                if (!this._ventana.Hora.Equals(""))
-                    entradaAlterna.Hora = new DateTime(entradaAlterna.Fecha.Value.Year, entradaAlterna.Fecha.Value.Month, entradaAlterna.Fecha.Value.Day,
-                        !this._ventana.Hora.Equals(" ") ? int.Parse((string)this._ventana.Hora) : 0,
-                        !this._ventana.Minuto.Equals(" ") ? int.Parse((string)this._ventana.Minuto) : 0, 0);
-
-                if (entradaAlterna.TipoDestinatario != ' ')
+                if (!entradaAlterna.Medio.Id.Equals("NGN"))
                 {
-                    entradaAlterna.CodigoDestinatartio = entradaAlterna.TipoDestinatario == 'D' ? ((Departamento)_ventana.Departamento).Id : ((Usuario)_ventana.Persona).Iniciales;
-                    entradaAlterna.DescripcionDestinatario = entradaAlterna.TipoDestinatario == 'D' ? ((Departamento)_ventana.Departamento).Descripcion : ((Usuario)_ventana.Persona).NombreCompleto;
-                }
+                    if (!entradaAlterna.Receptor.Equals(string.Empty))
+                    {
+                        if (!this._ventana.Hora.Equals(""))
+                            entradaAlterna.Hora = new DateTime(entradaAlterna.Fecha.Value.Year, entradaAlterna.Fecha.Value.Month, entradaAlterna.Fecha.Value.Day,
+                                !this._ventana.Hora.Equals(" ") ? int.Parse((string)this._ventana.Hora) : 0,
+                                !this._ventana.Minuto.Equals(" ") ? int.Parse((string)this._ventana.Minuto) : 0, 0);
 
-                if (!this._entradaAlternaServicios.VerificarExistencia(entradaAlterna))
-                {
-                    bool exitoso = this._entradaAlternaServicios.InsertarOModificar(entradaAlterna, UsuarioLogeado.Hash);
+                        if (entradaAlterna.TipoDestinatario != ' ')
+                        {
+                            entradaAlterna.CodigoDestinatartio = entradaAlterna.TipoDestinatario == 'D' ? ((Departamento)_ventana.Departamento).Id : ((Usuario)_ventana.Persona).Iniciales;
+                            entradaAlterna.DescripcionDestinatario = entradaAlterna.TipoDestinatario == 'D' ? ((Departamento)_ventana.Departamento).Descripcion : ((Usuario)_ventana.Persona).NombreCompleto;
+                        }
 
-                    if (exitoso)
-                        this.Navegar(Recursos.MensajesConElUsuario.EntradaAlternaInsertado, false);
+                        if (!this._entradaAlternaServicios.VerificarExistencia(entradaAlterna))
+                        {
+                            bool exitoso = this._entradaAlternaServicios.InsertarOModificar(entradaAlterna, UsuarioLogeado.Hash);
+
+                            if (exitoso)
+                                this.Navegar(Recursos.MensajesConElUsuario.EntradaAlternaInsertado, false);
+                        }
+                        else
+                        {
+                            this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorEntradaAlternaRepetida);
+                        }
+
+                    }
+                    else
+                    {
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorReceptor);
+                    }
                 }
                 else
                 {
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorAgenteRepetido);
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorMedio);
                 }
 
                 #region trace
