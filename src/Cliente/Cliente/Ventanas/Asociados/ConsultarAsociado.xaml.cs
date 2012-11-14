@@ -283,6 +283,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         {
             get { return this._lstContactos.SelectedItem; }
         }
+
+        public void Mensaje(string mensaje)
+        {
+            MessageBox.Show(mensaje, "Alerta", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
         #endregion
 
         public ConsultarAsociado(object asociado, object ventanaPadre)
@@ -412,6 +417,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         private void _btnVerEntrada_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.ConsultarUltimaCorrespondenciaEntrada();
+        }
+
+        private void _btnIrWeb_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrWebAsociado();
         }
 
     }

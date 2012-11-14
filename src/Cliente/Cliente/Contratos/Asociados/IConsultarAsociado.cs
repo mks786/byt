@@ -67,6 +67,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
 
         object ContactoSeleccionado { get; }
 
+        void Mensaje(string mensaje);
 
     }
 }

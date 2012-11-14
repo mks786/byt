@@ -19,9 +19,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Anualidades
 
         object Asociado { get; set; }
 
-        string DescripcionFiltrar { get; set; }
+        //string DescripcionFiltrar { get; set; }
 
-        string Fecha { get; set; }
+        //string Fecha { get; set; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 

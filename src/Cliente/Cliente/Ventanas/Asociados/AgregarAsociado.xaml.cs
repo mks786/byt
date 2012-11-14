@@ -143,6 +143,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             this._txtNombreDatos.Focus();
         }
 
+        public void Mensaje(string mensaje)
+        {
+            MessageBox.Show(mensaje, "Alerta", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
+
         #endregion
 
         public AgregarAsociado()
@@ -181,6 +186,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             {
                 this._txtAlarmaAdministracion.IsEnabled = true;
             }
+        }
+
+        private void _btnIrWeb_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrWebAsociado();
         }
     }
 }

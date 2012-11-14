@@ -217,7 +217,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     if (null != this._ventana.Persona)
                         carta.Persona = !((Contacto)this._ventana.Persona).Id.Equals("NGN") ? ((Contacto)this._ventana.Persona).Nombre : null;
                     if (null != this._ventana.Resumen)
-                        carta.Resumen = !((Resumen)this._ventana.Resumen).Id.Equals("NGN") ? ((Resumen)this._ventana.Resumen): null;
+                        carta.Resumen = !((Resumen)this._ventana.Resumen).Id.Equals("NGN") ? ((Resumen)this._ventana.Resumen) : null;
                     if ((null != this._ventana.Acuse) && ((ListaDatosValores)this._ventana.Acuse).Id != "NGN")
                         carta.Acuse = ((ListaDatosValores)this._ventana.Acuse).Valor[0];
                     else
@@ -233,14 +233,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                         if (exitoso)
                         {
                             this._ventana.HabilitarCampos = false;
-                            this.Navegar(new ConsultarCarta(carta,this._ventana));
-                          //  this.Navegar(Recursos.MensajesConElUsuario.CartaInsertada, false);
+                            this.Navegar(new ConsultarCarta(carta, this._ventana));
+                            //  this.Navegar(Recursos.MensajesConElUsuario.CartaInsertada, false);
                         }
                     }
                     else
                     {
-                        this._ventana.Mensaje(String.Format(Recursos.MensajesConElUsuario.ErrorCartaRepetida,carta.Id));
+                        this._ventana.Mensaje(String.Format(Recursos.MensajesConElUsuario.ErrorCartaRepetida, carta.Id));
                     }
+                }
+                else
+                {
+                    this._ventana.Mensaje(String.Format(Recursos.MensajesConElUsuario.ErrorTrackingErroneo));
                 }
 
                 #region trace

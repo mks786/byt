@@ -195,9 +195,12 @@
                             </custom:ByTTextBox.Text>
                         </custom:ByTTextBox>
 
-                        <Label Grid.Column="3" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <!--<Label Grid.Column="3" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblWeb}"/>
-                        </Label>
+                        </Label>-->
+                        <Button Grid.Column="3" Grid.Row="9" Name="_btnIrWeb" VerticalAlignment="Center" Height="25" Width="50" HorizontalAlignment="Right" Click="_btnIrWeb_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblWeb}"/>
+                        </Button>
                         <custom:ByTTextBox  Grid.Column="4" Grid.Row="9" Name="_txtWebDatos" VerticalAlignment="Center" 
                          Margin="0,0,60,0" Text="{Binding Path=Web}" Grid.ColumnSpan="2" MaxLength="60"></custom:ByTTextBox>
 

@@ -10,6 +10,7 @@ using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using System.Collections.Generic;
 using Trascend.Bolet.Cliente.Ventanas.Asociados;
+using System.Text.RegularExpressions;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 {
@@ -210,6 +211,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             {
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+        public void IrWebAsociado()
+        {
+            if (!string.IsNullOrEmpty(((Asociado)this._ventana.Asociado).Web))
+            {
+                Match match = Regex.Match(((Asociado)this._ventana.Asociado).Web, @"^http(s)?://([\w-]+.)+[\w-]+(/[\w- ./?%&=])?$",
+        RegexOptions.IgnoreCase);
+                if (match.Success)
+                    IrURL(((Asociado)this._ventana.Asociado).Web);
+                else
+                    this._ventana.Mensaje("Disculpe, URL errónea");
             }
         }
 

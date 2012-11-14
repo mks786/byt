@@ -130,7 +130,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 comandoConsultarAsignaciones.Ejecutar();
                 IList<Asignacion> listAsignaciones = comandoConsultarAsignaciones.Receptor.ObjetoAlmacenado;
 
-                if (listAsignaciones.Count != carta.Asignaciones.Count)
+                if ((carta.Asignaciones != null) && (listAsignaciones.Count != carta.Asignaciones.Count))
                 {
                     ComandoBase<bool> comandoEliminar = FabricaComandosAsignacion.ObtenerComandoEliminarAsignacionesPorCarta(carta);
                     comandoEliminar.Ejecutar();

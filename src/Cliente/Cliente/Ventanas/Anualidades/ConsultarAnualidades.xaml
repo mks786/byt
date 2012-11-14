@@ -57,7 +57,7 @@
                         <custom:ByTTextBox Name="_txtId" Width="150" MaxLength="40" Filtro="True" 
                                        GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
                     </WrapPanel>
-                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                    <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                         <Label>
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPatente}"/>
                         </Label>
@@ -74,7 +74,7 @@
                                 <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
                             </DatePicker.SelectedDate>
                         </DatePicker>
-                    </WrapPanel>
+                    </WrapPanel>-->
 
 
                     <Separator Margin="0,5,0,5"/>

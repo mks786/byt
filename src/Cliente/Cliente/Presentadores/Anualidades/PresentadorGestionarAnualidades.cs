@@ -177,11 +177,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                     Patente patente = (Patente)this._ventana.Patente;
 
                     this._ventana.NombrePatente = ((Patente)this._ventana.Patente).Descripcion;
-                    this._ventana.NombreAsociadoSolicitud = patente.Asociado.Nombre;
-                    this._ventana.NombreInteresadoSolicitud = patente.Interesado.Nombre;
+                    this._ventana.NombreAsociadoSolicitud = patente.Asociado != null ? patente.Asociado.Nombre : string.Empty;
+                    this._ventana.NombreInteresadoSolicitud = patente.Interesado != null ? patente.Interesado.Nombre : string.Empty;
                     this._ventana.Anualidades = patente.Anualidades;
-                    this._ventana.Referencia = patente.PrimeraReferencia;
-                    this._ventana.RegistroCodigo = patente.CodigoRegistro;
+                    this._ventana.Referencia = patente.PrimeraReferencia != null ? patente.PrimeraReferencia : string.Empty;
+                    this._ventana.RegistroCodigo = patente.CodigoRegistro != null ? patente.CodigoRegistro : string.Empty;
                     //   this._ventana.RegistroFecha = patente.FechaRegistro;
 
 
@@ -373,9 +373,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                     bool exitoso = this._anualidadServicios.InsertarOModificarAnualidad(patente, UsuarioLogeado.Hash);
 
                     if ((exitoso) && (this._agregar == false))
-                        this.Navegar(Recursos.MensajesConElUsuario.AnualidadModificada, false);
+                        //this.Navegar(Recursos.MensajesConElUsuario.AnualidadModificada, false);
+                        this._ventana.HabilitarCampos = false;
                     else if ((exitoso) && (this._agregar == true))
-                        this.Navegar(Recursos.MensajesConElUsuario.AnualidadInsertada, false);
+                        //this.Navegar(Recursos.MensajesConElUsuario.AnualidadInsertada, false);
+                        this._ventana.HabilitarCampos = false;
                 }
 
                 #region trace

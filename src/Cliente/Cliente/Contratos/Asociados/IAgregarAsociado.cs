@@ -40,5 +40,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
         object TipoPersona { get; set; }
 
         object TipoPersonas { get; set; }
+
+        void Mensaje(string mensaje);
     }
 }

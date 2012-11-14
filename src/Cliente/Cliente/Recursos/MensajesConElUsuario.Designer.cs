@@ -394,7 +394,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anualidad Eliminada Con Exito.
+        ///   Looks up a localized string similar to Anualidad Eliminada Con éxito.
         /// </summary>
         internal static string AnualidadEliminada {
             get {
@@ -403,7 +403,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anualdiad Insertada Con Exito.
+        ///   Looks up a localized string similar to Anualdiad Insertada Con éxito.
         /// </summary>
         internal static string AnualidadInsertada {
             get {
@@ -412,7 +412,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anualidad Modificada Con Exito.
+        ///   Looks up a localized string similar to Anualidad Modificada Con éxito.
         /// </summary>
         internal static string AnualidadModificada {
             get {
@@ -1642,6 +1642,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ErrorTipoInfoBolRepetido {
             get {
                 return ResourceManager.GetString("ErrorTipoInfoBolRepetido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disculpe el tracking introducido no coincide con el formato.
+        /// </summary>
+        internal static string ErrorTrackingErroneo {
+            get {
+                return ResourceManager.GetString("ErrorTrackingErroneo", resourceCulture);
             }
         }
         

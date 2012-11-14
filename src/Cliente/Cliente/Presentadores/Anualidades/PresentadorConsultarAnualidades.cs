@@ -165,11 +165,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 }
 
 
-                if (!this._ventana.DescripcionFiltrar.Equals(""))
-                {
-                    filtroValido = 2;
-                    PatenteAuxiliar.Descripcion = this._ventana.DescripcionFiltrar.ToUpper();
-                }
+                //if (!this._ventana.DescripcionFiltrar.Equals(""))
+                //{
+                //    filtroValido = 2;
+                //    PatenteAuxiliar.Descripcion = this._ventana.DescripcionFiltrar.ToUpper();
+                //}
 
                 //if (!this._ventana.Fecha.Equals(""))
                 //{
@@ -452,8 +452,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
         public void LimpiarCampos()
         {
             this._ventana.Id = null;
-            this._ventana.DescripcionFiltrar = null;
-            this._ventana.Fecha = null;
+            //this._ventana.DescripcionFiltrar = null;
+            //this._ventana.Fecha = null;
 
             this._ventana.Asociados = null;
             this._ventana.IdAsociadoFiltrar = null;

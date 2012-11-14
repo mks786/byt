@@ -191,9 +191,12 @@
                             </custom:ByTTextBox.Text>
                         </custom:ByTTextBox>
 
-                        <Label Grid.Column="3" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <!--<Label Grid.Column="3" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblWeb}"/>
-                        </Label>
+                        </Label>-->
+                        <Button Grid.Column="3" Grid.Row="9" Name="_btnIrWeb" VerticalAlignment="Center" Height="25" Width="50" HorizontalAlignment="Right" Click="_btnIrWeb_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblWeb}"/>
+                        </Button>
                         <custom:ByTTextBox Grid.Column="4" Grid.Row="9" Name="_txtWebDatos" VerticalAlignment="Center" 
                              Text="{Binding Path=Web}" Grid.ColumnSpan="2" Margin="0,0,20,0"
                              IsEnabled="False" MaxLength="60">
@@ -347,7 +350,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblDescuento}"/>
                         </Label>
                         <custom:ByTTextBox MaxLength="7" Grid.Column="2" Grid.Row="1" Name="_txtDescuentoAdministracion" VerticalAlignment="Center" 
-                         Text="{Binding Path=Descuento}" Grid.ColumnSpan="1" 
+                         Text="{Binding Path=Descuento}" Width="40" HorizontalAlignment="Left"
                          IsEnabled="False" SoloPorcentaje="True"></custom:ByTTextBox>
 
                         <Label Grid.Column="3" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">

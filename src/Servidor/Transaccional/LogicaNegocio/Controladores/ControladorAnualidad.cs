@@ -239,14 +239,16 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 int contador = UltimoIdAnualidad.Receptor.ObjetoAlmacenado;
                 bool bandera3 = true;
 
+                int numeroIncremental = 0;
                 if (patente.Anualidades.Count() != 0)
                 {
                     IList<Anualidad> anualidades = patente.Anualidades;
 
-
                     //Recorre las anualidades obtenidas del presentador
                     foreach (Anualidad anualidad1 in patente.Anualidades)
                     {
+                        numeroIncremental++;
+                        anualidad1.QAnualidad = numeroIncremental;
                         bool bandera = false;
                         if (anualidad1.Id == 0)
                         {

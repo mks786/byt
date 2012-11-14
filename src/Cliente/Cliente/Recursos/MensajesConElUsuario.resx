@@ -751,13 +751,13 @@
     <value>Patente modificada con éxito</value>
   </data>
   <data name="AnualidadEliminada" xml:space="preserve">
-    <value>Anualidad Eliminada Con Exito</value>
+    <value>Anualidad Eliminada Con éxito</value>
   </data>
   <data name="AnualidadInsertada" xml:space="preserve">
-    <value>Anualdiad Insertada Con Exito</value>
+    <value>Anualdiad Insertada Con éxito</value>
   </data>
   <data name="AnualidadModificada" xml:space="preserve">
-    <value>Anualidad Modificada Con Exito</value>
+    <value>Anualidad Modificada Con éxito</value>
   </data>
   <data name="MemoriaEliminado" xml:space="preserve">
     <value>Memoria eliminada con éxito</value>
@@ -933,5 +933,8 @@
   </data>
   <data name="ErrorReceptor" xml:space="preserve">
     <value>Debe seleccionar un receptor</value>
+  </data>
+  <data name="ErrorTrackingErroneo" xml:space="preserve">
+    <value>Disculpe el tracking introducido no coincide con el formato</value>
   </data>
 </root>

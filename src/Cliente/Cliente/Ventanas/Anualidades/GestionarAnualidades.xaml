@@ -33,7 +33,7 @@
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="0"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -82,14 +82,14 @@
                         </Label>
 
                         <custom:ByTTextBox IsEnabled="False"  Grid.Column="1" Grid.Row="0" Name="_txtIdPatenteFiltrar" VerticalAlignment="Center" SoloNumero="True" 
-                         MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed" GotFocus="_txtPatenteFiltrar_GotFocus" GotKeyboardFocus="_txtPatenteFiltrar_GotFocus" 
+                         MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed" MouseDoubleClick="_txtPatenteFiltrar_GotFocus" 
                          ></custom:ByTTextBox>
 
                         <Label Name="_lblNombrePatente" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                         </Label>
-                        <custom:ByTTextBox   IsEnabled="False"  Grid.Column="4" Grid.Row="0" Name="_txtNombrePatenteFiltrar" VerticalAlignment="Center"  Grid.ColumnSpan="2"
-                         MaxLength="255" Visibility="Collapsed" GotFocus="_txtPatenteFiltrar_GotFocus" GotKeyboardFocus="_txtPatenteFiltrar_GotFocus" ></custom:ByTTextBox>
+                        <custom:ByTTextBox IsEnabled="False"  Grid.Column="4" Grid.Row="0" Name="_txtNombrePatenteFiltrar" VerticalAlignment="Center"  Grid.ColumnSpan="2"
+                         MaxLength="255" Visibility="Collapsed" MouseDoubleClick="_txtPatenteFiltrar_GotFocus" ></custom:ByTTextBox>
 
                         <Button IsEnabled="False" Name="_btnConsultarPatente" Width="65" IsDefault="False" Grid.Row="0" Grid.Column="6" Height="25" 
                                 HorizontalAlignment="Right" Click="_btnConsultar" Visibility="Collapsed">
@@ -493,13 +493,13 @@
                     
                 </Grid>
 
-                <ListView IsEnabled="False" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="9" Margin="0,25,0,0" Grid.RowSpan="1" Name="_lstAnualidades" ItemsSource="{Binding}" 
+                <ListView IsEnabled="False" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="9" Margin="0,-20,0,0" Grid.RowSpan="1" Name="_lstAnualidades" ItemsSource="{Binding}" 
                       SelectionMode="Single" VerticalAlignment="Top" MouseLeftButtonUp="_lstAnualidades_MouseDoubleClick"
-                      Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="200" >
+                      Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="300" >
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="50">
-                                <GridViewColumnHeader  Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=QAnualidad}" Width="50">
+                                <GridViewColumnHeader  Tag="QAnualidad" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                             </GridViewColumn>
                             <GridViewColumn DisplayMemberBinding="{Binding Path=Recibo}" Width="80">
                                 <GridViewColumnHeader  Tag="Recibo" Content="{x:Static recurso:Etiquetas.lsvRecibo}"/>

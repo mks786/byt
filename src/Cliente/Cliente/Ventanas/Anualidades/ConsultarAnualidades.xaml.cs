@@ -50,17 +50,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
         }
 
 
-        public string DescripcionFiltrar
-        {
-            get { return this._txtDescripcion.Text; }
-            set { this._txtDescripcion.Text = value; }
-        }
+        //public string DescripcionFiltrar
+        //{
+        //    get { return this._txtDescripcion.Text; }
+        //    set { this._txtDescripcion.Text = value; }
+        //}
 
-        public string Fecha
-        {
-            get { return this._dpkFecha.SelectedDate.ToString(); }
-            set { this._dpkFecha.Text = value; }
-        }
+        //public string Fecha
+        //{
+        //    get { return this._dpkFecha.SelectedDate.ToString(); }
+        //    set { this._dpkFecha.Text = value; }
+        //}
 
         public bool EstaCargada
         {
@@ -144,7 +144,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
         {
             this._btnConsultar.Focus();
             this._presentador.Consultar();
-            this._dpkFecha.Text = string.Empty;
+            //this._dpkFecha.Text = string.Empty;
             validarCamposVacios();
         }
 
@@ -204,18 +204,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
                 this._txtId.Focus();
             }
 
-            if (!this._txtDescripcion.Text.Equals(""))
-            {
-                todosCamposVacios = false;
-                this._txtDescripcion.Focus();
-            }
+            //if (!this._txtDescripcion.Text.Equals(""))
+            //{
+            //    todosCamposVacios = false;
+            //    this._txtDescripcion.Focus();
+            //}
 
 
-            if (!this._dpkFecha.Text.Equals(""))
-            {
-                todosCamposVacios = false;
-                this._dpkFecha.Focus();
-            }
+            //if (!this._dpkFecha.Text.Equals(""))
+            //{
+            //    todosCamposVacios = false;
+            //    this._dpkFecha.Focus();
+            //}
 
             if (todosCamposVacios)
                 this._txtId.Focus();

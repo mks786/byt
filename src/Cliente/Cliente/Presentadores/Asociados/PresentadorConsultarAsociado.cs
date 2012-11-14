@@ -16,6 +16,7 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using Trascend.Bolet.Cliente.Ayuda;
+using System.Text.RegularExpressions;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 {
@@ -534,6 +535,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                         new Carta(((ContactosDelAsociadoVista)this._ventana.ContactoSeleccionado).UltimaCartaEntrada))[0];
                     Navegar(new ConsultarCarta(ultimaCorrespondenciaEntrada, this._ventana));
                 }
+            }
+        }
+
+
+        public void IrWebAsociado()
+        {
+            if (!string.IsNullOrEmpty(((Asociado)this._ventana.Asociado).Web))
+            {
+                Match match = Regex.Match(((Asociado)this._ventana.Asociado).Web, @"^http(s)?://([\w-]+.)+[\w-]+(/[\w- ./?%&=])?$",
+        RegexOptions.IgnoreCase);
+                if (match.Success)
+                    IrURL(((Asociado)this._ventana.Asociado).Web);
+                else
+                    this._ventana.Mensaje("Disculpe, URL errónea");
             }
         }
     }
