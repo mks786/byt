@@ -26,8 +26,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
 
         public void Mensaje(string mensaje)
         {
-            throw new System.NotImplementedException();
+            MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
 
         public object Asociado
         {
@@ -81,6 +82,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
                 throw new System.NotImplementedException();
             }
         }
+
 
         public object Remitentes
         {
@@ -434,22 +436,29 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             this._lblIdAsociado.Visibility = System.Windows.Visibility.Visible;
             this._lblNombreAsociado.Visibility = System.Windows.Visibility.Visible;
             this._btnConsultarAsociado.IsDefault = true;
+
+            this._btnAceptar.IsDefault = false;
+            this._btnConsultarAsociado.IsDefault = true;
         }
 
 
         private void _lstAsociados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            this._presentador.CambiarAsociado();
-            this._lstAsociados.Visibility = System.Windows.Visibility.Collapsed;
-            this._btnConsultarAsociado.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtIdAsociado.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtNombreAsociado.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtAsociado.Visibility = System.Windows.Visibility.Visible;
-            this._txtCodigoAsociado.Visibility = System.Windows.Visibility.Visible;
-            this._lblIdAsociado.Visibility = System.Windows.Visibility.Collapsed;
-            this._lblNombreAsociado.Visibility = System.Windows.Visibility.Collapsed;
-            this._btnAceptar.IsDefault = false;
+            if (this._presentador.CambiarAsociado())
+            {
+                this._lstAsociados.Visibility = System.Windows.Visibility.Collapsed;
+                this._btnConsultarAsociado.Visibility = System.Windows.Visibility.Collapsed;
+                this._txtIdAsociado.Visibility = System.Windows.Visibility.Collapsed;
+                this._txtNombreAsociado.Visibility = System.Windows.Visibility.Collapsed;
+                this._txtAsociado.Visibility = System.Windows.Visibility.Visible;
+                this._txtCodigoAsociado.Visibility = System.Windows.Visibility.Visible;
+                this._lblIdAsociado.Visibility = System.Windows.Visibility.Collapsed;
+                this._lblNombreAsociado.Visibility = System.Windows.Visibility.Collapsed;
+                this._btnAceptar.IsDefault = false;
 
+                this._btnAceptar.IsDefault = true;
+                this._btnConsultarAsociado.IsDefault = false;
+            }
         }
 
 

@@ -278,8 +278,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         /// <summary>
         /// Método que se encarga de cambiar el asociado de la ventana
         /// </summary>
-        public void CambiarAsociado()
+        public bool CambiarAsociado()
         {
+            bool retorno = false;
             try
             {
                 #region trace
@@ -287,8 +288,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (((Asociado)this._ventana.Asociado).Id != int.MinValue)
+                if ((this._ventana.Asociado != null) && ((Asociado)this._ventana.Asociado).Id != int.MinValue)
                 {
+                    retorno = true;
                     Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.Asociado);
                     asociado.Contactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
                     this._ventana.NombreAsociado = ((Asociado)this._ventana.Asociado).Nombre;
@@ -306,6 +308,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             {
                 this._ventana.Personas = null;
             }
+
+            return retorno;
         }
 
         /// <summary>
@@ -325,7 +329,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             if ((!this._ventana.idAsociadoFiltrar.Equals("")) || (!this._ventana.NombreAsociadoFiltrar.Equals("")))
             {
                 asociadoAFiltrar.Id = !this._ventana.idAsociadoFiltrar.Equals("") ? int.Parse(this._ventana.idAsociadoFiltrar) : 0;
-                asociadoAFiltrar.Nombre = !this._ventana.NombreAsociadoFiltrar.Equals("") 
+                asociadoAFiltrar.Nombre = !this._ventana.NombreAsociadoFiltrar.Equals("")
                     ? this._ventana.NombreAsociadoFiltrar.ToUpper() : "";
 
 

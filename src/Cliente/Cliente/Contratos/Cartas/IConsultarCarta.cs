@@ -5,6 +5,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
     {
         object Carta { get; set; }
 
+        void Mensaje(string mensaje);
+
         bool HabilitarCampos { set; }
 
         string TextoBotonModificar { get; set; }

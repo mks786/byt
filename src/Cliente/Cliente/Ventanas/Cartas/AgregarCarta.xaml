@@ -176,9 +176,9 @@
 
 
                     <custom:ByTTextBox    Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3"  Name="_txtAsociado" VerticalAlignment="Center"
-                          Margin="0,0,0,0" BorderBrush="Green" Text="" MaxLength="255" MouseDoubleClick="_txtAsociado_GotFocus"  ></custom:ByTTextBox>
+                          Margin="0,0,0,0" BorderBrush="LightGreen" Text="" MaxLength="255" MouseDoubleClick="_txtAsociado_GotFocus"  ></custom:ByTTextBox>
                     <custom:ByTTextBox    Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1"  Name="_txtCodigoAsociado" VerticalAlignment="Center"
-                          Margin="0,0,5,0" BorderBrush="Green"  Text=""  MaxLength="255" MouseDoubleClick="_txtAsociado_GotFocus" ></custom:ByTTextBox>
+                          Margin="0,0,5,0" BorderBrush="LightGreen"  Text=""  MaxLength="255" MouseDoubleClick="_txtAsociado_GotFocus" ></custom:ByTTextBox>
                     
                     <custom:ByTTextBox    Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1" Name="_txtIdAsociado" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="45" MaxLength="255"  Visibility="Collapsed"  ></custom:ByTTextBox>
