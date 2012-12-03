@@ -84,6 +84,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                 {
                     this._ventana.CambioDeNombre = CambioDeNombre;
                     _agregar = false;
+                    CambiarAModificar();
                 }
                 else
                 {

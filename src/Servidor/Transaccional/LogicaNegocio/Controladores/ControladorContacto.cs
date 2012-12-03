@@ -12,7 +12,9 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 {
     public class ControladorContacto : ControladorBase
     {
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         /// <summary>
         /// Método que consulta la lista de todos los contactos
@@ -47,6 +49,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             return retorno;
         }
 
+
         public static IList<Contacto> ConsultarContactosPorAsociado(Asociado asociado)
         {
             IList<Contacto> retorno;
@@ -73,6 +76,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             }
             return retorno;
         }
+
 
         /// <summary>
         /// Método que inserta o modifica un Contacto
@@ -107,6 +111,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             }
             return exitoso;
         }
+
 
         /// <summary>
         /// Método que elimina un contacto
@@ -168,6 +173,34 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 throw ex;
             }
 
+            return retorno;
+        }
+
+
+        public static IList<Contacto> ConsultarContactosFiltro(Contacto contacto)
+        {
+            IList<Contacto> retorno;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<IList<Contacto>> comando = FabricaComandosContacto.ObtenerComandoConsultarContactosFiltro(contacto);
+                comando.Ejecutar();
+                retorno = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
             return retorno;
         }
     }

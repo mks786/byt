@@ -50,7 +50,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return contactos;
         }
 
-
+        /// <summary>
+        /// Método que consulta los contactos por Id
+        /// </summary>
+        /// <param name="contacto"></param>
+        /// <returns></returns>
         public Contacto ConsultarContactoPorId(Contacto contacto)
         {
             Contacto retorno;
@@ -81,6 +85,58 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             }
 
             return retorno;
+        }
+
+
+        public IList<Contacto> ObtenerContactosFiltro(Contacto contacto)
+        {
+            IList<Contacto> contactos = null;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                bool variosFiltros = false;
+                string filtro = "";
+                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerContacto);
+
+                //Por código
+                if ((null != contacto) && (contacto.Id != 0))
+                {
+                    filtro = string.Format(Recursos.ConsultasHQL.FiltroIdContacto, contacto.Id);
+                    variosFiltros = true;
+                }
+
+                //Por correo
+                if (!string.IsNullOrEmpty(contacto.Email))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroCorreoContacto, contacto.Email);
+                    variosFiltros = true;
+                }
+
+                IQuery query = Session.CreateQuery(cabecera + filtro);
+                contactos = query.List<Contacto>();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+            }
+            finally
+            {
+                Session.Close();
+            }
+            return contactos;
         }
     }
 }

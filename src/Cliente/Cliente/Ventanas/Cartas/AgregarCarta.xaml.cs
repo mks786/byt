@@ -116,18 +116,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             set { this._cbxResumen.DataContext = value; }
         }
 
-        public object Departamento
-        {
-            get { return this._cbxDepartamento.SelectedItem; }
-            set { this._cbxDepartamento.SelectedItem = value; }
-        }
-
-        public object Departamentos
-        {
-            get { return this._cbxDepartamento.DataContext; }
-            set { this._cbxDepartamento.DataContext = value; }
-        }
-
         public object Persona
         {
             get { return this._cbxContacto.SelectedItem; }
@@ -150,6 +138,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         {
             get { return this._cbxAcuse.DataContext; }
             set { this._cbxAcuse.DataContext = value; }
+        }
+
+        public object Departamento
+        {
+            get { return this._cbxDepartamento.SelectedItem; }
+            set { this._cbxDepartamento.SelectedItem = value; }
+        }
+
+        public object Departamentos
+        {
+            get { return this._cbxDepartamento.DataContext; }
+            set { this._cbxDepartamento.DataContext = value; }
         }
 
         public object Medio

@@ -2,23 +2,24 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using Trascend.Bolet.Cliente.Ayuda;
-using Trascend.Bolet.Cliente.Contratos.Cartas;
-using Trascend.Bolet.Cliente.Presentadores.Cartas;
+using Trascend.Bolet.Cliente.Contratos.Contactos;
+using Trascend.Bolet.Cliente.Presentadores.Contactos;
 
-namespace Trascend.Bolet.Cliente.Ventanas.Cartas
+namespace Trascend.Bolet.Cliente.Ventanas.Contactos
 {
     /// <summary>
     /// Interaction logic for ConsultarTodosPoder.xaml
     /// </summary>
-    public partial class ConsultarCartas : Page, IConsultarCartas
+    public partial class ConsultarContactos : Page, IConsultarContactos
     {
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
-        private PresentadorConsultarCartas _presentador;
+        private PresentadorConsultarContactos _presentador;
         private bool _cargada;
         private bool _precargada = false;
 
         #region IConsultarCartas
+
 
 
         public object Resultados
@@ -27,20 +28,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             set { this._lstResultados.DataContext = value; }
         }
 
-
         public string Id
         {
             get { return this._txtId.Text; }
             set { this._txtId.Text = value; }
         }
 
-
         public object Responsable
         {
             get { return this._cbxResponsable.SelectedItem; }
             set { this._cbxResponsable.SelectedItem = value; }
         }
-
 
         public object Responsables
         {
@@ -54,13 +52,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             get { return this._lstResultados.SelectedItem; }
         }
 
-
         public object CartaFiltrar
         {
             get { return this._splFiltro.DataContext; }
             set { this._splFiltro.DataContext = value; }
         }
-
 
         public string IdAsociadoFiltrar
         {
@@ -75,27 +71,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             set { this._txtNombreAsociado.Text = value; }
         }
 
-
-        public string IdContactoFiltrar
-        {
-            get { return this._txtIdContacto.Text; }
-            set { this._txtIdContacto.Text = value; }
-        }
-
-
-        public string CorreoContactoFiltrar
-        {
-            get { return this._txtCorreoContacto.Text; }
-            set { this._txtCorreoContacto.Text = value; }
-        }
-
-
         public string ResumenFiltrar
         {
             get { return this._txtResumen.Text; }
             set { this._txtResumen.Text = value; }
         }
-
 
         public string ReferenciaFiltrar
         {
@@ -103,13 +83,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             set { this._txtReferencia.Text = value; }
         }
 
-
         public string Fecha
         {
             get { return this._dpkFecha.SelectedDate.ToString(); }
             set { this._dpkFecha.Text = value; }
         }
-
 
         public bool EstaCargada
         {
@@ -117,18 +95,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             set { this._cargada = value; }
         }
 
-
         public void FocoPredeterminado()
         {
             this._txtId.Focus();
         }
 
-
         public object PoderSeleccionado
         {
             get { return this._lstResultados.SelectedItem; }
         }
-
 
         public GridViewColumnHeader CurSortCol
         {
@@ -136,13 +111,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             set { _CurSortCol = value; }
         }
 
-
         public SortAdorner CurAdorner
         {
             get { return _CurAdorner; }
             set { _CurAdorner = value; }
         }
-
 
         public ListView ListaResultados
         {
@@ -150,34 +123,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             set { this._lstResultados = value; }
         }
 
-
         public object Asociados
         {
             get { return this._lstAsociados.DataContext; }
             set { this._lstAsociados.DataContext = value; }
         }
 
-
         public object Asociado
         {
             get { return this._lstAsociados.SelectedItem; }
             set { this._lstAsociados.SelectedItem = value; }
         }
-
-
-        public object Contactos
-        {
-            get { return this._lstContactos.DataContext; }
-            set { this._lstContactos.DataContext = value; }
-        }
-
-
-        public object Contacto
-        {
-            get { return this._lstContactos.SelectedItem; }
-            set { this._lstContactos.SelectedItem = value; }
-        }
-
 
         public void Mensaje(string mensaje, int opcion)
         {
@@ -187,87 +143,36 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
                 MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
-
         public string TotalHits
         {
             set { this._lblHits.Text = value; }
         }
 
-
         public string NombreAsociado
         {
             set { this._txtAsociado.Text = value; }
         }
-
-
-        public string NombreContacto
-        {
-            set { this._txtContacto.Text = value; }
-        }
-
-
-        public object Departamento
-        {
-            get { return this._cbxDepartamento.SelectedItem; }
-            set { this._cbxDepartamento.SelectedItem = value; }
-        }
-
-
-        public object Departamentos
-        {
-            get { return this._cbxDepartamento.DataContext; }
-            set { this._cbxDepartamento.DataContext = value; }
-        }
-
-
-        public object Medio
-        {
-            get { return this._cbxMedio.SelectedItem; }
-            set { this._cbxMedio.SelectedItem = value; }
-        }
-
-
-        public object Medios
-        {
-            get { return this._cbxMedio.DataContext; }
-            set { this._cbxMedio.DataContext = value; }
-        }
-
-
-        public string Tracking
-        {
-            get { return this._txtTracking.Text; }
-            set { this._txtTracking.Text = value; }
-        }
-
-
-        public string AnexoTracking
-        {
-            get { return this._txtAnexoTracking.Text; }
-            set { this._txtAnexoTracking.Text = value; }
-        }
-
         #endregion
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        public ConsultarCartas()
+        public ConsultarContactos()
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorConsultarCartas(this, null, null);
+            this._presentador = new PresentadorConsultarContactos(this, null, null);
         }
 
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        public ConsultarCartas(object ventana, object asociado)
+        public ConsultarContactos(object ventana, object asociado)
             : this()
         {
             this._precargada = true;
-            this._presentador = new PresentadorConsultarCartas(this, asociado, ventana);
+            this._presentador = new PresentadorConsultarContactos(this, asociado, ventana);
 
         }
 
@@ -275,18 +180,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         /// <summary>
         /// Constructor Con Que recive la lista de cartas anteriormente consultada
         /// </summary>
-        public ConsultarCartas(object listaCartas)
+        public ConsultarContactos(object listaCartas)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorConsultarCartas(this, null, null, listaCartas);
+            this._presentador = new PresentadorConsultarContactos(this, null, null, listaCartas);
         }
 
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             if (_precargada)
-                this._presentador.Volver();
+                this._presentador.RegresarVentanaPadre();
             else
                 this._presentador.Cancelar();
         }
@@ -334,7 +239,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         private void _btnConsultarInteresadoFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultar.IsDefault = false;
-            this._btnConsultarContacto.IsDefault = false;
             this._btnConsultarAsociado.IsDefault = true;
         }
 
@@ -389,7 +293,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
 
         private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Navegar(new ConsultarCartas());
+            this._presentador.Navegar(new ConsultarContactos());
         }
 
 
@@ -403,9 +307,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         {
             MostrarCamposAsociadosFiltrar(Visibility.Visible);
             MostrarCampoAsociado(Visibility.Collapsed);
-
-            MostrarCamposContactosFiltrar(Visibility.Collapsed);
-            MostrarCampoContacto(Visibility.Visible);
         }
 
 
@@ -433,73 +334,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             {
                 MostrarCamposAsociadosFiltrar(Visibility.Collapsed);
                 MostrarCampoAsociado(Visibility.Visible);
-
-                this._btnConsultar.IsDefault = true;
-                this._btnConsultarContacto.IsDefault = false;
-                this._btnConsultarAsociado.IsDefault = false;
             }
         }
-
-
-        private void _txtContacto_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            MostrarCamposContactosFiltrar(Visibility.Visible);
-            MostrarCampoContacto(Visibility.Collapsed);
-
-
-            MostrarCampoAsociado(Visibility.Visible);
-            MostrarCamposAsociadosFiltrar(Visibility.Collapsed);
-        }
-
-
-        private void _lstContactos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (this._presentador.CambiarContacto())
-            {
-                MostrarCamposContactosFiltrar(Visibility.Collapsed);
-                MostrarCampoContacto(Visibility.Visible);
-
-                this._btnConsultar.IsDefault = true;
-                this._btnConsultarContacto.IsDefault = false;
-                this._btnConsultarAsociado.IsDefault = false;
-            }
-
-            
-        }
-
-
-        private void _btnConsultarContacto_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.BuscarContacto();
-        }
-
-
-        private void MostrarCamposContactosFiltrar(object visibilidad)
-        {
-            this._lblIdContacto.Visibility = (Visibility)visibilidad;
-            this._txtIdContacto.Visibility = (Visibility)visibilidad;
-            this._lblNombreContacto.Visibility = (Visibility)visibilidad;
-            this._txtCorreoContacto.Visibility = (Visibility)visibilidad;
-            this._btnConsultarContacto.Visibility = (Visibility)visibilidad;
-            this._lstContactos.Visibility = (Visibility)visibilidad;
-        }
-
-
-        private void MostrarCampoContacto(object visibilidad)
-        {
-            //this._lblContacto.Visibility = (Visibility)visibilidad;
-            this._txtContacto.Visibility = (Visibility)visibilidad;
-
-        }
-
-        private void _txtContacto_GotFocus(object sender, RoutedEventArgs e)
-        {
-            this._btnConsultar.IsDefault = false;
-            this._btnConsultarContacto.IsDefault = true;
-            this._btnConsultarAsociado.IsDefault = false;
-        }
-
-
 
     }
 }

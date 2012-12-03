@@ -75,6 +75,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
                 {
                     this._ventana.CambioDeNombrePatente = CambioDeNombrePatente;
                     _agregar = false;
+                    CambiarAModificar();
                 }
                 else
                 {

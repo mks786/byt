@@ -13,6 +13,10 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
         /// <returns>Lista de Contactos del asociado solicitado</returns>
         IList<Contacto> ObtenerContactosPorAsociado(Asociado asociado);
 
+
         Contacto ConsultarContactoPorId(Contacto contacto);
+
+
+        IList<Contacto> ObtenerContactosFiltro(Contacto contacto);
     }
 }

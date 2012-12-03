@@ -32,11 +32,24 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 bool variosFiltros = false;
                 string filtro = "";
                 string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerCarta);
+
+                //Por código
                 if ((null != carta) && (carta.Id != 0))
                 {
                     filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaId, carta.Id);
                     variosFiltros = true;
                 }
+
+                //Por medio
+                if (!string.IsNullOrEmpty(carta.Medio))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaMedio, carta.Medio);
+                    variosFiltros = true;
+                }
+
+                //Por asociado
                 if ((null != carta.Asociado) && (!carta.Asociado.Id.Equals("")))
                 {
                     if (variosFiltros)
@@ -44,18 +57,33 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaIdAsociado, carta.Asociado.Id);
                     variosFiltros = true;
                 }
-                if ((null != carta.Resumen) && (!carta.Resumen.Descripcion.Equals("")))
-                {
-                    if (variosFiltros)
-                        filtro += " and ";
-                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaResumen, carta.Resumen.Descripcion);
-                }
+
+                //Por referencia
                 if ((null != carta.Referencia) && (!carta.Referencia.Equals("")))
                 {
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaReferencia, carta.Referencia.ToUpper());
                 }
+
+                //Por departamento
+                if ((null != carta.Departamento) && (!carta.Departamento.Id.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaIdDepartamento, carta.Departamento.Id);
+                    variosFiltros = true;
+                }
+
+                //Por resumen
+                if ((null != carta.Resumen) && (!carta.Resumen.Descripcion.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaResumen, carta.Resumen.Descripcion);
+                }
+
+                //Por fecha
                 if ((null != carta.Fecha) && (!carta.Fecha.Equals(DateTime.MinValue)))
                 {
                     if (variosFiltros)
@@ -64,6 +92,23 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     string fecha2 = String.Format("{0:dd/MM/yy}", carta.Fecha.AddDays(1));
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaFecha, fecha, fecha2);
                 }
+
+                //Por tracking
+                if ((null != carta.Tracking) && (!carta.Tracking.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaTracking, carta.Tracking.ToUpper());
+                }
+
+                //Por tracking anexo
+                if ((null != carta.AnexoTracking) && (!carta.AnexoTracking.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaAnexoTracking, carta.AnexoTracking.ToUpper());
+                }
+
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 cartas = query.List<Carta>();
 

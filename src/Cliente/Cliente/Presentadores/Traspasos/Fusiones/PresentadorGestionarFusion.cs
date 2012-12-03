@@ -81,9 +81,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 {
                     this._ventana.Fusion = fusion;
                     _agregar = false;
-
-                    this._ventana.DomicilioMarcaTercero = ((Fusion)fusion).FusionMarcaTercero.Domicilio;
-                    this._ventana.NombreMarcaTercero = ((Fusion)fusion).FusionMarcaTercero.Nombre;
+                    CambiarAModificar();
+                    if (((Fusion)fusion).FusionMarcaTercero != null)
+                    {
+                        this._ventana.DomicilioMarcaTercero = ((Fusion)fusion).FusionMarcaTercero.Domicilio;
+                        this._ventana.NombreMarcaTercero = ((Fusion)fusion).FusionMarcaTercero.Nombre;
+                    }
                 }
                 else
                 {

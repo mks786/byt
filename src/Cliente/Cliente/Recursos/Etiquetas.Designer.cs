@@ -1819,6 +1819,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tracking Conf.:.
+        /// </summary>
+        public static string lblAnexoTracking {
+            get {
+                return ResourceManager.GetString("lblAnexoTracking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Año:.
         /// </summary>
         public static string lblAno {
@@ -2338,6 +2347,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblConflicto {
             get {
                 return ResourceManager.GetString("lblConflicto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contacto.
+        /// </summary>
+        public static string lblContacto {
+            get {
+                return ResourceManager.GetString("lblContacto", resourceCulture);
             }
         }
         
@@ -4742,6 +4760,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvDe {
             get {
                 return ResourceManager.GetString("lsvDe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Departamento.
+        /// </summary>
+        public static string lsvDepartamento {
+            get {
+                return ResourceManager.GetString("lsvDepartamento", resourceCulture);
             }
         }
         

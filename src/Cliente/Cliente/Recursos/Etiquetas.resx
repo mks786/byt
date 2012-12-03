@@ -2937,4 +2937,13 @@ en Prensa:</value>
   <data name="lsvPersona" xml:space="preserve">
     <value>Persona</value>
   </data>
+  <data name="lblAnexoTracking" xml:space="preserve">
+    <value>Tracking Conf.:</value>
+  </data>
+  <data name="lblContacto" xml:space="preserve">
+    <value>Contacto</value>
+  </data>
+  <data name="lsvDepartamento" xml:space="preserve">
+    <value>Departamento</value>
+  </data>
 </root>

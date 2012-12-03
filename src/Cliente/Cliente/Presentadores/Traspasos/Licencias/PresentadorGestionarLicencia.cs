@@ -81,6 +81,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 {
                     this._ventana.Licencia = licencia;
                     _agregar = false;
+                    CambiarAModificar();
                 }
                 else
                 {

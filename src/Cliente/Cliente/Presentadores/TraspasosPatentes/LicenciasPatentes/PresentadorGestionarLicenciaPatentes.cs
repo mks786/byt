@@ -80,6 +80,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
                 {
                     this._ventana.LicenciaPatente = licencia;
                     _agregar = false;
+                    CambiarAModificar();
                 }
                 else
                 {

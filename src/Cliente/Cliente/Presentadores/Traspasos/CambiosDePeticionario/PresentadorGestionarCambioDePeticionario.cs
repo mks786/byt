@@ -80,6 +80,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                 {
                     this._ventana.CambioPeticionario = cambioPeticionario;
                     _agregar = false;
+                    CambiarAModificar();
                 }
                 else
                 {

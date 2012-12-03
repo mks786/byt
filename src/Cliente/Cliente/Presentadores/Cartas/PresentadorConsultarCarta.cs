@@ -724,7 +724,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                         if (null != this._ventana.MedioTrackingConfirmacion)
                             carta.AnexoMedio = ((Medio)this._ventana.MedioTrackingConfirmacion).Id;
 
-                        carta.Acuse = ((ListaDatosValores)this._ventana.Acuse).Valor[0];
+                        if ((null != this._ventana.Acuse) && ((ListaDatosValores)this._ventana.Acuse).Id != "NGN")
+                            carta.Acuse = ((ListaDatosValores)this._ventana.Acuse).Valor[0];
                         carta.Medio = ((Medio)this._ventana.Medio).Id;
                         carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
                         bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);

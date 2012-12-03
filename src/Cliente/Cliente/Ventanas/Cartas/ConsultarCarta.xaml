@@ -236,9 +236,13 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblDepartamento}"/>
                 </Label>
                 <custom:ByTTextBox Grid.ColumnSpan="3" Name="_txtNombreDepartamento" Text="{Binding Path=DescripcionDepartamento}" Grid.Column="2" Grid.Row="4" Height="20"></custom:ByTTextBox>
-                <Label Grid.Column="5" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <!--<Label Grid.Column="5" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Top">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblPersona}"/>
-                </Label>
+                </Label>-->
+                <Button Grid.Column="5" Grid.Row="4" Name="_btnIrPersona" VerticalAlignment="Center" Height="25" Width="110"
+                    Click="_btnIrPersona_Click">
+                    <TextBlock Name="_txbAbrirCorrespondencia" Text="{x:Static recurso:Etiquetas.lblPersona}"/>
+                </Button>
                 <!--<Button  Grid.Column="1"   Grid.Row="5"  Name="_btnPersona" VerticalAlignment="Center" Height="25" Width="90" Click="_btnPersona_Click">Persona: </Button>-->
                 <ComboBox  IsEnabled="True" Grid.Column="6" Grid.Row="4" Grid.ColumnSpan="4" Name="_cbxContacto"  Height="20" ItemsSource="{Binding}"
                       DisplayMemberPath="Nombre" SelectedIndex="0" VerticalAlignment="Top">
@@ -452,7 +456,7 @@
 
             <Button Name="_btnAbrirCorrespondencia" VerticalAlignment="Bottom" Height="25" Width="110"
                     Click="_btnAbrirCorrespondencia_Click">
-                <TextBlock Name="_txbAbrirCorrespondencia" Text="{x:Static recurso:Etiquetas.btnVerCorrespondencia}"/>
+                <TextBlock Name="_txbVerCorrespondencia" Text="{x:Static recurso:Etiquetas.btnVerCorrespondencia}"/>
             </Button>
             <Button Name="_btnAuditoria" VerticalAlignment="Bottom" Height="25" Width="90"
                     Click="_btnAuditoria_Click">

@@ -76,6 +76,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
                 {
                     this._ventana.CambioDeDomicilioPatente = cambioDeDomicilio;
                     _agregar = false;
+                    CambiarAModificar();
                 }
                 else
                 {

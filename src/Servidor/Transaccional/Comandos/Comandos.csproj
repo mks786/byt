@@ -99,6 +99,7 @@
     <Compile Include="Comandos\ComandosCesion\ComandoInsertarOModificarCesion.cs" />
     <Compile Include="Comandos\ComandosCesion\ComandoVerificarExistenciaCesion.cs" />
     <Compile Include="Comandos\ComandosContacto\ComandoConsultarContactoPorId.cs" />
+    <Compile Include="Comandos\ComandosContacto\ComandoConsultarContactosFiltro.cs" />
     <Compile Include="Comandos\ComandosCorresponsal\ComandoConsultarTodosCorresponsables.cs" />
     <Compile Include="Comandos\ComandosCorresponsal\ComandoEliminarCorresponsal.cs" />
     <Compile Include="Comandos\ComandosCorresponsal\ComandoInsertarOModificarCorresponsal.cs" />

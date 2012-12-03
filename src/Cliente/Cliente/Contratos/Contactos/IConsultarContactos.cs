@@ -1,9 +1,9 @@
 ﻿using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Ayuda;
 
-namespace Trascend.Bolet.Cliente.Contratos.Cartas
+namespace Trascend.Bolet.Cliente.Contratos.Contactos
 {
-    interface IConsultarCartas : IPaginaBase
+    interface IConsultarContactos : IPaginaBase
     {
         string Id { get; set; }
 
@@ -42,27 +42,5 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
         string TotalHits { set; }
 
         string NombreAsociado { set; }
-
-        object Departamento { get; set; }
-
-        object Departamentos { get; set; }
-
-        object Medio { get; set; }
-
-        object Medios { get; set; }
-
-        string Tracking { get; set; }
-
-        string AnexoTracking { get; set; }
-
-        string IdContactoFiltrar { get; set; }
-
-        string CorreoContactoFiltrar { get; set; }
-
-        object Contactos { get; set; }
-
-        object Contacto { get; set; }
-
-        string NombreContacto { set; }
     }
 }

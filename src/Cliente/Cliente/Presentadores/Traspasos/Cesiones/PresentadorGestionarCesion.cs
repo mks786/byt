@@ -80,6 +80,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 {
                     this._ventana.Cesion = cesion;
                     _agregar = false;
+                    CambiarAModificar();
                 }
                 else
                 {

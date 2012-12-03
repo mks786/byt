@@ -6,6 +6,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     [Serializable]
     public class Carta
     {
+
         #region Atributos
 
         private int _id;
@@ -66,7 +67,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         #endregion
 
-            
+
         #region Propiedades
 
         /// <summary>
@@ -259,7 +260,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         public virtual DateTime? FechaReal
         {
-            get {
+            get
+            {
 
                 if (null != _fechaReal)
                     return _fechaReal.Value.Date;
@@ -334,5 +336,6 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _fechaAltDate = value; }
         }
         #endregion
+
     }
 }

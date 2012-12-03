@@ -11,6 +11,7 @@ using Trascend.Bolet.ObjetosComunes.Entidades;
 using System.Collections.Generic;
 using Trascend.Bolet.Cliente.Ventanas.Asociados;
 using System.Text.RegularExpressions;
+using Trascend.Bolet.ControlesByT.Ventanas;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 {
@@ -103,7 +104,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
                 IList<Etiqueta> etiquetas = this._etiquetaServicios.ConsultarTodos();
                 Etiqueta primeraEtiqueta = new Etiqueta();
-                primeraEtiqueta.Id = "NGN";
+                primeraEtiqueta.Id = string.Empty;
                 etiquetas.Insert(0, primeraEtiqueta);
                 this._ventana.Etiquetas = etiquetas;
 
@@ -227,5 +228,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             }
         }
 
+
+        public void VerEtiqueta()
+        {
+            if (((Etiqueta)this._ventana.Etiqueta).Id != string.Empty)
+            {
+                string stringAMostrar = "Español:" +
+                                        Environment.NewLine +
+                                        ((Etiqueta)this._ventana.Etiqueta).Descripcion1 +
+                                        Environment.NewLine + "Inglés: " +
+                                        Environment.NewLine +
+                                        ((Etiqueta)this._ventana.Etiqueta).Descripcion2;
+
+                ChildWindow detalle = new ChildWindow(stringAMostrar);
+                detalle.ShowDialog();
+            }
+
+        }
     }
 }

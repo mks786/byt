@@ -79,6 +79,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 {
                     this._ventana.CambioDeDomicilio = cambioDeDomicilio;
                     _agregar = false;
+                    CambiarAModificar();
                 }
                 else
                 {

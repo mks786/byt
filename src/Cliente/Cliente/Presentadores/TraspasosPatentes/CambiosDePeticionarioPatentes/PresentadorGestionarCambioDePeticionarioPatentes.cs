@@ -177,6 +177,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
                 {
                     this._ventana.ConvertirEnteroMinimoABlanco("Anterior");
                     this._ventana.ConvertirEnteroMinimoABlanco("Actual");
+                    CambiarAModificar();
 
                     CambioPeticionarioPatente cesion = (CambioPeticionarioPatente)this._ventana.CambioPeticionarioPatente;
 

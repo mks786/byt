@@ -80,6 +80,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                 {
                     this._ventana.FusionPatente = fusion;
                     _agregar = false;
+                    CambiarAModificar();
 
                     if (null != ((FusionPatente)fusion).FusionPatenteTercero)
                     {

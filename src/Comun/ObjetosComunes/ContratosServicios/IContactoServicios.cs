@@ -12,5 +12,13 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// <param name="asociado">Asociado a consultar contactos</param>
         /// <returns>Lista de contactos del asociado</returns>
         IList<Contacto> ConsultarContactosPorAsociado(Asociado asociado);
+
+
+        /// <summary>
+        /// Servicio que se encarga de consultar los Contactos de un asociado
+        /// </summary>
+        /// <param name="asociado">Asociado a consultar contactos</param>
+        /// <returns>Lista de contactos del asociado</returns>
+        IList<Contacto> ConsultarContactosFiltro(Contacto contacto);
     }
 }

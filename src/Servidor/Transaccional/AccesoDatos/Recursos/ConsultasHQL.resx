@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CabeceraObtenerCarta" xml:space="preserve">
-    <value>Select c from Carta c left join fetch c.Resumen as resumen left join fetch c.Asociado as asociado where </value>
+    <value>Select c from Carta c left join fetch c.Resumen as resumen left join fetch c.Asociado as asociado left join fetch c.Departamento as dpto where </value>
     <comment>Cabecera del query para el filtro de cartas</comment>
   </data>
   <data name="FiltroObtenerCartaFecha" xml:space="preserve">
@@ -991,5 +991,28 @@
   </data>
   <data name="ObtenerContactoPorId" xml:space="preserve">
     <value>Select c from Contacto c where c.Id = {0} and c.Asociado.Id = {1}</value>
+  </data>
+  <data name="CabeceraObtenerContacto" xml:space="preserve">
+    <value>Select c from Contacto c where </value>
+    <comment>Cabecera del query para el filtro de cartas</comment>
+  </data>
+  <data name="FiltroCorreoContacto" xml:space="preserve">
+    <value>upper(c.Email) like '%{0}%'</value>
+  </data>
+  <data name="FiltroIdContacto" xml:space="preserve">
+    <value>c.Id = '{0}'</value>
+  </data>
+  <data name="FiltroObtenerCartaAnexoTracking" xml:space="preserve">
+    <value>upper(c.Anexo)Tracking like '%{0}%'</value>
+  </data>
+  <data name="FiltroObtenerCartaIdDepartamento" xml:space="preserve">
+    <value>c.Departamento.Id = '{0}'</value>
+  </data>
+  <data name="FiltroObtenerCartaMedio" xml:space="preserve">
+    <value>c.Medio = '{0}'</value>
+    <comment>Filtro por Id</comment>
+  </data>
+  <data name="FiltroObtenerCartaTracking" xml:space="preserve">
+    <value>upper(c.Tracking) like '%{0}%'</value>
   </data>
 </root>

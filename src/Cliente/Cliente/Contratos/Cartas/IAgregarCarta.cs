@@ -47,13 +47,13 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
 
         object Resumenes { get; set; }
 
-        object Departamento { get; set; }
-
-        object Departamentos { get; set; }
-
         object Persona { get; set; }
 
         object Personas { get; set; }
+
+        object Departamento { get; set; }
+
+        object Departamentos { get; set; }
 
         object Medio { get; set; }
 

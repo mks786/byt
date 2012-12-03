@@ -3,6 +3,7 @@ using Trascend.Bolet.Cliente.Contratos.Cartas;
 using Trascend.Bolet.Cliente.Presentadores.Cartas;
 using System.Windows;
 using System.Windows.Input;
+using Trascend.Bolet.Cliente.Ventanas.Contactos;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Cartas
 {
@@ -634,6 +635,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
                 this._presentador.AnteriorCarta();
                 this._txtResumen.Focus();
             }
+        }
+
+        private void _btnIrPersona_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.Navegar(new ConsultarContactos(this,null));
         }
 
 
