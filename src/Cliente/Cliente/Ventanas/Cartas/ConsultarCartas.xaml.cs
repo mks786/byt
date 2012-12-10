@@ -111,6 +111,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         }
 
 
+        public string FechaAnexo
+        {
+            get { return this._dpkFechaAnexo.SelectedDate.ToString(); }
+            set { this._dpkFechaAnexo.Text = value; }
+        }
+
+
         public bool EstaCargada
         {
             get { return this._cargada; }
@@ -297,7 +304,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             this._btnConsultar.Focus();
             this._presentador.Consultar();
             this._dpkFecha.Text = string.Empty;
-            validarCamposVacios();
+            ValidarCamposVacios();
         }
 
 
@@ -349,7 +356,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         /// <summary>
         /// Método que se encarga de posicionar el cursor en los campos del filto
         /// </summary>
-        private void validarCamposVacios()
+        private void ValidarCamposVacios()
         {
             bool todosCamposVacios = true;
             if (!this._txtId.Text.Equals(""))
@@ -492,13 +499,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
 
         }
 
+
         private void _txtContacto_GotFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultar.IsDefault = false;
             this._btnConsultarContacto.IsDefault = true;
             this._btnConsultarAsociado.IsDefault = false;
         }
-
 
 
     }

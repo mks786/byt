@@ -8,6 +8,3 @@
     <property name="Descripcion" column="XDESCRIP" type="string"/>
   </class>
 </hibernate-mapping>
-
-
-

@@ -17,6 +17,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using Trascend.Bolet.Cliente.Ayuda;
 using System.Text.RegularExpressions;
+using Trascend.Bolet.ControlesByT.Ventanas;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 {
@@ -147,7 +148,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
                 IList<Etiqueta> etiquetas = this._etiquetaServicios.ConsultarTodos();
                 Etiqueta primeraEtiqueta = new Etiqueta();
-                primeraEtiqueta.Id = "NGN";
+                primeraEtiqueta.Id = string.Empty;
                 etiquetas.Insert(0, primeraEtiqueta);
                 this._ventana.Etiquetas = etiquetas;
                 this._ventana.Etiqueta = this.BuscarEtiqueta(etiquetas, asociado.Etiqueta);
@@ -550,6 +551,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 else
                     this._ventana.Mensaje("Disculpe, URL errónea");
             }
+        }
+
+
+        public void VerEtiqueta()
+        {
+            if (((Etiqueta)this._ventana.Etiqueta).Id != string.Empty)
+            {
+                string stringAMostrar = "Español:" +
+                                        Environment.NewLine +
+                                        ((Etiqueta)this._ventana.Etiqueta).Descripcion1 +
+                                        Environment.NewLine + "Inglés: " +
+                                        Environment.NewLine +
+                                        ((Etiqueta)this._ventana.Etiqueta).Descripcion2;
+
+                ChildWindow detalle = new ChildWindow(stringAMostrar);
+                detalle.ShowDialog();
+            }
+
         }
     }
 }

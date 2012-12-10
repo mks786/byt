@@ -31,6 +31,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
 
         string Fecha { get; set; }
 
+        string FechaAnexo { get; set; }
+
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }

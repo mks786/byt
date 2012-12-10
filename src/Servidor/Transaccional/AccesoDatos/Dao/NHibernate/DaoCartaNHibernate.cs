@@ -10,6 +10,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 {
     class DaoCartaNHibernate : DaoBaseNHibernate<Carta, int>, IDaoCarta
     {
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
@@ -58,6 +59,15 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
+                //Por contacto
+                if ((null != carta.Contactos) && (carta.Contactos.Count != 0))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaNombreContacto, carta.Contactos[0].Nombre);
+                    variosFiltros = true;
+                }
+
                 //Por referencia
                 if ((null != carta.Referencia) && (!carta.Referencia.Equals("")))
                 {
@@ -91,6 +101,16 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     string fecha = String.Format("{0:dd/MM/yy}", carta.Fecha);
                     string fecha2 = String.Format("{0:dd/MM/yy}", carta.Fecha.AddDays(1));
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaFecha, fecha, fecha2);
+                }
+
+                //Por fecha
+                if ((null != carta.AnexoFecha) && (carta.AnexoFecha.Value != null) && (!carta.AnexoFecha.Equals(DateTime.MinValue)))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    string fecha = String.Format("{0:dd/MM/yy}", carta.AnexoFecha);
+                    string fecha2 = String.Format("{0:dd/MM/yy}", carta.AnexoFecha.Value.AddDays(1));
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaFechaAnexo, fecha, fecha2);
                 }
 
                 //Por tracking

@@ -28,6 +28,7 @@
     <property name="AnexoMedio" type="String" column="`XANEXO_MEDIO`"/>
     <property name="AnexoTracking" type="String" column="`XANEXO_TRACKING`"/>
     <property name="Tracking" type="String" column="`XTRACKING`"/>
+    <property name="NombreContacto" type="String" column="`PERSONA`"/>
 
     <many-to-one name="Asociado" class="Asociado">
       <column name="ASOCIADO"/>

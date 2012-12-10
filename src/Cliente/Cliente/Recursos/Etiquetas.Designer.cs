@@ -2784,6 +2784,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fecha Anexo:.
+        /// </summary>
+        public static string lblFechaAnexo {
+            get {
+                return ResourceManager.GetString("lblFechaAnexo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fecha Anualidad:.
         /// </summary>
         public static string lblFechaAnualidad {
@@ -4868,6 +4877,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvFecha {
             get {
                 return ResourceManager.GetString("lsvFecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fecha Anexo.
+        /// </summary>
+        public static string lsvFechaAnexo {
+            get {
+                return ResourceManager.GetString("lsvFechaAnexo", resourceCulture);
             }
         }
         

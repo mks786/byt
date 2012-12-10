@@ -2946,4 +2946,10 @@ en Prensa:</value>
   <data name="lsvDepartamento" xml:space="preserve">
     <value>Departamento</value>
   </data>
+  <data name="lblFechaAnexo" xml:space="preserve">
+    <value>Fecha Anexo:</value>
+  </data>
+  <data name="lsvFechaAnexo" xml:space="preserve">
+    <value>Fecha Anexo</value>
+  </data>
 </root>

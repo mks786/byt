@@ -424,6 +424,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             this._presentador.IrWebAsociado();
         }
 
+        private void _btnVerEtiqueta_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.VerEtiqueta();
+        }
+
     }
 }
 

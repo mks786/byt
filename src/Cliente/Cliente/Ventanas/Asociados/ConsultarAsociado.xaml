@@ -418,12 +418,18 @@
                               Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" IsEnabled="True">
                         </ComboBox>
 
-                        <Label Grid.Column="3" Grid.Row="7" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <!--<Label Grid.Column="3" Grid.Row="7" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblEtiqueta}"/>
-                        </Label>
-                        <ComboBox Grid.Column="4" Grid.Row="7" Grid.ColumnSpan="1"  Name="_cbxEtiquetaAdministracion" 
-                              Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion1" SelectedIndex="0" IsEnabled="True">
+                        </Label>-->
+                        <Button Grid.RowSpan="1" Click="_btnVerEtiqueta_Click" Grid.Column="3" Grid.Row="7" Name="_btnVerEtiqueta" HorizontalAlignment="Right" VerticalAlignment="Center" Height="25">
+                            <TextBlock Name="_txbVerEtiqueta" Text="{x:Static recurso:Etiquetas.lblEtiqueta}"/>
+                        </Button>
+                        <ComboBox Grid.Column="4" Grid.Row="7" Grid.ColumnSpan="2"  Name="_cbxEtiquetaAdministracion" Margin="0,0,60,0"  
+                              Height="20" ItemsSource="{Binding}" DisplayMemberPath="Id" SelectedIndex="0">
                         </ComboBox>
+                        <!--<ComboBox Grid.Column="4" Grid.Row="7" Grid.ColumnSpan="1"  Name="_cbxEtiquetaAdministracion" 
+                              Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion1" SelectedIndex="0" IsEnabled="True">
+                        </ComboBox>-->
 
                         <Label Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFormaPago}"/>

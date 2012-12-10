@@ -212,6 +212,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     medios.Insert(0, primerMedio);
                     this._ventana.Medios = medios;
 
+                    IList<Asociado> asociados = new List<Asociado>();
+                    Asociado asociado = new Asociado();
+                    asociado.Id = int.MinValue;
+                    asociados.Add(asociado);
+                    this._ventana.Asociados = asociados;
+
+                    IList<Contacto> contactos = new List<Contacto>();
+                    Contacto contacto = new Contacto();
+                    contacto.Asociado = new Asociado();
+                    contacto.Id = int.MinValue;
+                    contactos.Add(contacto);
+                    this._ventana.Contactos = contactos;
+
                     IList<Departamento> departamentos = this._departamentoServicios.ConsultarTodos();
                     Departamento primerDepartamento = new Departamento();
                     primerDepartamento.Descripcion = string.Empty;
@@ -296,6 +309,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                 }
 
+                if ((null != this._ventana.Contacto) && (((Contacto)this._ventana.Contacto).Id != int.MinValue))
+                {
+                    cartaAuxiliar.Contactos = new List<Contacto>();
+                    cartaAuxiliar.Contactos.Add((Contacto)this._ventana.Contacto);
+                    filtroValido++;
+                }
+
                 if (((Departamento)this._ventana.Departamento).Id != string.Empty)
                 {
                     cartaAuxiliar.Departamento = (Departamento)this._ventana.Departamento;
@@ -346,8 +366,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     DateTime fechaCarta = DateTime.Parse(this._ventana.Fecha);
                     filtroValido = 2;
                     cartaAuxiliar.Fecha = fechaCarta;
+                }
 
-
+                if (!this._ventana.FechaAnexo.Equals(""))
+                {
+                    DateTime fechaCarta = DateTime.Parse(this._ventana.FechaAnexo);
+                    filtroValido = 2;
+                    cartaAuxiliar.AnexoFecha = fechaCarta;
                 }
 
                 if ((null != this._ventana.Responsable) && ((Usuario)this._ventana.Responsable).Id != "NGN")
@@ -425,7 +450,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     if (_cartasDeUnResponsable.Count == 0)
                         this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
-                if ((this._cartas.Count == 0) && (_cartasDeUnResponsable.Count == 0))
+                if ((this._cartas.Count == 0) && ((null != _cartasDeUnResponsable) && (_cartasDeUnResponsable.Count == 0)))
                 {
                     this._ventana.Resultados = null;
                     this._ventana.TotalHits = "0";
@@ -550,8 +575,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 asociadoAFiltrar.Id = !this._ventana.IdAsociadoFiltrar.Equals("") ? int.Parse(this._ventana.IdAsociadoFiltrar) : 0;
                 asociadoAFiltrar.Nombre = !this._ventana.NombreAsociadoFiltrar.Equals("") ? this._ventana.NombreAsociadoFiltrar.ToUpper() : string.Empty;
 
+                Asociado asociado = new Asociado();
+                asociado.Id = int.MinValue;
 
                 IList<Asociado> asociadosFiltrados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoAFiltrar);
+                asociadosFiltrados.Insert(0, asociado);
 
                 if (asociadosFiltrados.Count != 0)
                     this._ventana.Asociados = asociadosFiltrados.ToList<Asociado>();
@@ -599,10 +627,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 ContactoAFiltrar.Email = !this._ventana.CorreoContactoFiltrar.Equals("") ? this._ventana.CorreoContactoFiltrar.ToUpper() : string.Empty;
 
 
-                IList<Contacto> ContactosFiltrados = this._contactoServicios.ConsultarContactosFiltro(ContactoAFiltrar);
+                Contacto contacto = new Contacto();
+                contacto.Id = int.MinValue;
+                contacto.Asociado = new Asociado();
 
-                if (ContactosFiltrados.Count != 0)
-                    this._ventana.Contactos = ContactosFiltrados.ToList<Contacto>();
+                IList<Contacto> contactosFiltrados = this._contactoServicios.ConsultarContactosFiltro(ContactoAFiltrar);
+                contactosFiltrados.Insert(0, contacto);
+
+                if (contactosFiltrados.Count != 0)
+                    this._ventana.Contactos = contactosFiltrados.ToList<Contacto>();
                 else
                     this._ventana.Contactos = this._contactos;
             }

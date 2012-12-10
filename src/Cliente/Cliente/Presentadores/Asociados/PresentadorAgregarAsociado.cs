@@ -215,6 +215,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             }
         }
 
+
         public void IrWebAsociado()
         {
             if (!string.IsNullOrEmpty(((Asociado)this._ventana.Asociado).Web))

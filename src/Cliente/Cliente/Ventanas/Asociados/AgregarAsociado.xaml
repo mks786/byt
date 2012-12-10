@@ -72,7 +72,7 @@
                         <!--<Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigo}"/>
                     </Label>
-                    <custom:ByTTextBox  Grid.Column="2" Grid.Row="0" Name="_txtCodigoDatos" VerticalAlignment="Center" 
+                    <custom:ByTTextBox  Grid.Column="2" Grid.Row=iqueat"0" Name="_txtCodigoDatos" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="100" Text="{Binding Path=Id}"></custom:ByTTextBox>-->
 
                         <Label Grid.Column="3" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Right">

@@ -33,6 +33,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         private IConsultarMarca _ventana;
 
 
@@ -194,6 +195,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             try
             {
+
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -326,8 +328,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.NombreAsociadoDatos = marca.Asociado != null ? marca.Asociado.Nombre : "";
                 this._ventana.NombreAsociadoSolicitud = marca.Asociado != null ? marca.Asociado.Nombre : "";
 
-                if (null != marca.Asociado)
+                if ((null != marca.Asociado) && (null != marca.Asociado.TipoCliente))
                     this._ventana.PintarAsociado(marca.Asociado.TipoCliente.Id);
+                else if (null != marca.Asociado)
+                    this._ventana.PintarAsociado("1");
 
                 if (marca.Corresponsal != null)
                 {
@@ -491,6 +495,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
+
             }
             catch (Exception ex)
             {
