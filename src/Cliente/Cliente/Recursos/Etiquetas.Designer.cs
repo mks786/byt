@@ -756,6 +756,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Seleccionar.
+        /// </summary>
+        public static string btnSeleccionar {
+            get {
+                return ResourceManager.GetString("btnSeleccionar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Siguiente.
         /// </summary>
         public static string btnSiguiente {
@@ -4764,6 +4773,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Datos del Asociado.
+        /// </summary>
+        public static string lsvDatosAsociado {
+            get {
+                return ResourceManager.GetString("lsvDatosAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to De.
         /// </summary>
         public static string lsvDe {
@@ -7298,6 +7316,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleConsultarContacto {
             get {
                 return ResourceManager.GetString("titleConsultarContacto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consultar Contactos por Asociado.
+        /// </summary>
+        public static string titleConsultarContactosPorAsociado {
+            get {
+                return ResourceManager.GetString("titleConsultarContactosPorAsociado", resourceCulture);
             }
         }
         

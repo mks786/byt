@@ -78,6 +78,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
             throw new NotImplementedException();
         }
 
+
         /// <summary>
         /// Servicio que insertar o modifica una Carta
         /// </summary>

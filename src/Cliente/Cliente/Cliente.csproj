@@ -116,6 +116,7 @@
     <Compile Include="Contratos\Asociados\IAgregarAsociado.cs" />
     <Compile Include="Contratos\Asociados\IConsultarAsociado.cs" />
     <Compile Include="Contratos\Asociados\IConsultarAsociados.cs" />
+    <Compile Include="Contratos\Cartas\IConsultarContactosPorAsociado.cs" />
     <Compile Include="Contratos\Cartas\IAgregarCarta.cs" />
     <Compile Include="Contratos\Cartas\IConsultarCartas.cs" />
     <Compile Include="Contratos\Cartas\IConsultarCarta.cs" />
@@ -337,6 +338,7 @@
     <Compile Include="Presentadores\Asociados\PresentadorAgregarAsociado.cs" />
     <Compile Include="Presentadores\Asociados\PresentadorConsultarAsociado.cs" />
     <Compile Include="Presentadores\Asociados\PresentadorConsultarAsociados.cs" />
+    <Compile Include="Presentadores\Cartas\PresentadorConsultarContactosPorAsociado.cs" />
     <Compile Include="Presentadores\Cartas\PresentadorConsultarCarta.cs" />
     <Compile Include="Presentadores\Cartas\PresentadorAgregarCarta.cs" />
     <Compile Include="Presentadores\Cartas\PresentadorConsultarCartas.cs" />
@@ -773,6 +775,9 @@
     </Compile>
     <Compile Include="Ventanas\Cartas\AgregarCarta.xaml.cs">
       <DependentUpon>AgregarCarta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Cartas\ConsultarContactosPorAsociado.xaml.cs">
+      <DependentUpon>ConsultarContactosPorAsociado.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Cartas\ConsultarCarta.xaml.cs">
       <DependentUpon>ConsultarCarta.xaml</DependentUpon>
@@ -1428,6 +1433,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Cartas\AgregarCarta.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Cartas\ConsultarContactosPorAsociado.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

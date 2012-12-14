@@ -45,7 +45,6 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<Asignacion> _asignaciones;
         private IList<Anexo> _anexosConfirmacion;
         private string _operacion;
-        private string _nombreContacto;
 
         #endregion
 
@@ -335,12 +334,6 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _fechaAltDate; }
             set { _fechaAltDate = value; }
-        }
-
-        public virtual string NombreContacto
-        {
-            get { return _nombreContacto; }
-            set { _nombreContacto = value; }
         }
 
         #endregion

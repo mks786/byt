@@ -214,7 +214,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select c from Contacto c where .
+        ///   Looks up a localized string similar to Select c from Contacto c left outer join fetch c.Asociado where .
         /// </summary>
         public static string CabeceraObtenerContacto {
             get {
@@ -367,6 +367,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to c.Asociado.Id = {0}.
+        /// </summary>
+        public static string FiltroAsociadoContacto {
+            get {
+                return ResourceManager.GetString("FiltroAsociadoContacto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to upper(c.Email) like &apos;%{0}%&apos;.
         /// </summary>
         public static string FiltroCorreoContacto {
@@ -376,11 +385,38 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to upper(c.Departamento) like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroDepartamentoContacto {
+            get {
+                return ResourceManager.GetString("FiltroDepartamentoContacto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to upper(c.Fax) like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroFaxContacto {
+            get {
+                return ResourceManager.GetString("FiltroFaxContacto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to c.Id = &apos;{0}&apos;.
         /// </summary>
         public static string FiltroIdContacto {
             get {
                 return ResourceManager.GetString("FiltroIdContacto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to upper(c.Nombre) like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroNombreContacto {
+            get {
+                return ResourceManager.GetString("FiltroNombreContacto", resourceCulture);
             }
         }
         
@@ -1762,6 +1798,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to upper(c.Telefono) like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroTelefonoContacto {
+            get {
+                return ResourceManager.GetString("FiltroTelefonoContacto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select p from Poder p left join fetch p.Agentes where p.Id = &apos;{0}&apos; order by p.Id desc.
         /// </summary>
         public static string ObtenerAgentesDeUnPoder {
@@ -1852,7 +1897,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select c from Contacto c where c.Asociado.id = &apos;{0}&apos;.
+        ///   Looks up a localized string similar to Select c from Contacto c left outer join fetch c.Asociado where c.Asociado.id = {0}.
         /// </summary>
         public static string ObtenerContactosPorAsociado {
             get {

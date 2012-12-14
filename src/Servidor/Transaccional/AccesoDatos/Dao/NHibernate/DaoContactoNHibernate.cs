@@ -29,8 +29,14 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerContactosPorAsociado, asociado.Id));
+                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerContactosPorAsociado, asociado.Id) + " order by c.Asociado DESC, c.Id DESC");
                 contactos = query.List<Contacto>();
+
+                foreach (Contacto contacto in contactos)
+                {
+                    contacto.Asociado = contacto.Asociado;
+
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -115,9 +121,56 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 {
                     if (variosFiltros)
                         filtro += " and ";
-                    filtro += string.Format(Recursos.ConsultasHQL.FiltroCorreoContacto, contacto.Email);
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroCorreoContacto, contacto.Email.ToUpper());
                     variosFiltros = true;
                 }
+
+                //Por Asociado
+                if (contacto.Asociado != null)
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroAsociadoContacto, contacto.Asociado.Id);
+                    variosFiltros = true;
+                }
+
+                //Por nombre
+                if (!string.IsNullOrEmpty(contacto.Nombre))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroNombreContacto, contacto.Nombre.ToUpper());
+                    variosFiltros = true;
+                }
+
+                //Por Departamento
+                if (!string.IsNullOrEmpty(contacto.Departamento))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroDepartamentoContacto, contacto.Departamento.ToUpper());
+                    variosFiltros = true;
+                }
+
+                //Por Telefono
+                if (!string.IsNullOrEmpty(contacto.Telefono))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroTelefonoContacto, contacto.Telefono.ToUpper());
+                    variosFiltros = true;
+                }
+
+                //Por Fax
+                if (!string.IsNullOrEmpty(contacto.Fax))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroFaxContacto, contacto.Fax.ToUpper());
+                    variosFiltros = true;
+                }
+
+                filtro += " order by c.Asociado DESC, c.Id DESC";
 
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 contactos = query.List<Contacto>();

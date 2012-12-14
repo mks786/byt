@@ -74,6 +74,8 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return retorno;
         }
+
+
         ///// <summary>
         ///// Método que inserta o modifica un boletin
         ///// </summary>
@@ -154,7 +156,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                         foreach (Asignacion asignacion in carta.Asignaciones)
                         {
                             ComandoBase<bool> comandoAsignacion = FabricaComandosAsignacion.ObtenerComandoInsertarOModificar(asignacion);
-                            asignacion.Iniciales = asignacion.Responsable.Iniciales;
+                            asignacion.Iniciales = null != asignacion.Responsable ? asignacion.Responsable.Iniciales : asignacion.Iniciales;
                             comandoAsignacion.Ejecutar();
                         }
                     }
@@ -173,6 +175,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             }
             return exitoso;
         }
+
 
         ///// <summary>
         ///// Método que elimina un boletin
@@ -205,13 +208,18 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 auditoria.Fk = carta.Id;
 
                 ComandoBase<bool> comandoCarta = FabricaComandosCarta.ObtenerComandoEliminarCarta(carta);
+                ComandoBase<bool> comandoAsignacion = FabricaComandosAsignacion.ObtenerComandoEliminarAsignacionesPorCarta(carta);
                 ComandoBase<bool> comandoAuditoria = FabricaComandosAuditoria.ObtenerComandoInsertarOModificar(auditoria);
                 ComandoBase<bool> comandoAuditoriaContador = FabricaComandosContadorAuditoria.ObtenerComandoInsertarOModificar(contadorAuditoria);
 
                 comandoCarta.Ejecutar();
                 exitoso = comandoCarta.Receptor.ObjetoAlmacenado;
 
-                if (exitoso)
+                comandoAsignacion.Ejecutar();
+
+                bool exitosoEliminarAsignacion = comandoAsignacion.Receptor.ObjetoAlmacenado;
+
+                if (exitoso && exitosoEliminarAsignacion)
                 {
                     comandoAuditoria.Ejecutar();
                     comandoAuditoriaContador.Ejecutar();

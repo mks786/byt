@@ -152,7 +152,7 @@
     <comment>Selecciona todas las auditorias que poseen una FK en una tabla espacifica</comment>
   </data>
   <data name="ObtenerContactosPorAsociado" xml:space="preserve">
-    <value>Select c from Contacto c where c.Asociado.id = '{0}'</value>
+    <value>Select c from Contacto c left outer join fetch c.Asociado where c.Asociado.id = {0}</value>
     <comment>Selecciona todos los contactos de un asociado</comment>
   </data>
   <data name="ObtenerDatosTransferenciaPorAsociado" xml:space="preserve">
@@ -993,7 +993,7 @@
     <value>Select c from Contacto c where c.Id = {0} and c.Asociado.Id = {1}</value>
   </data>
   <data name="CabeceraObtenerContacto" xml:space="preserve">
-    <value>Select c from Contacto c where </value>
+    <value>Select c from Contacto c left outer join fetch c.Asociado where </value>
     <comment>Cabecera del query para el filtro de cartas</comment>
   </data>
   <data name="FiltroCorreoContacto" xml:space="preserve">
@@ -1020,5 +1020,20 @@
   </data>
   <data name="FiltroObtenerCartaFechaAnexo" xml:space="preserve">
     <value>c.AnexoFecha between '{0}' and '{1}'</value>
+  </data>
+  <data name="FiltroAsociadoContacto" xml:space="preserve">
+    <value>c.Asociado.Id = {0}</value>
+  </data>
+  <data name="FiltroDepartamentoContacto" xml:space="preserve">
+    <value>upper(c.Departamento) like '%{0}%'</value>
+  </data>
+  <data name="FiltroFaxContacto" xml:space="preserve">
+    <value>upper(c.Fax) like '%{0}%'</value>
+  </data>
+  <data name="FiltroNombreContacto" xml:space="preserve">
+    <value>upper(c.Nombre) like '%{0}%'</value>
+  </data>
+  <data name="FiltroTelefonoContacto" xml:space="preserve">
+    <value>upper(c.Telefono) like '%{0}%'</value>
   </data>
 </root>

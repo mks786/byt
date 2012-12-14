@@ -26,11 +26,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorAgregarContacto(IAgregarContacto ventana, object asociado)
+        public PresentadorAgregarContacto(IAgregarContacto ventana, object asociado, object ventanaPadre)
         {
             try
             {
                 this._ventana = ventana;
+                this._ventanaPadre = ventanaPadre;
                 this._asociado = (Asociado)asociado;
                 this._ventana.Contacto = new Contacto();
                 //((Contacto)this._ventana.Contacto).Carta = this._carta;
@@ -143,7 +144,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                 if (exitoso)
                 {
                     this._asociado.Contactos.Insert(0, contacto);
-                    this.Navegar(new ListaContactos(this._asociado, null));
+                    this.Navegar(new ListaContactos(this._asociado, this._ventanaPadre));
                 }
 
                 #region trace

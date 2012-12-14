@@ -937,4 +937,7 @@
   <data name="ErrorTrackingErroneo" xml:space="preserve">
     <value>Disculpe el tracking introducido no coincide con el formato</value>
   </data>
+  <data name="ContactosBloqueados" xml:space="preserve">
+    <value>Disculpe, los contactos se encuentran bloqueados ya que estos pertenece al Asociado seleccionado</value>
+  </data>
 </root>

@@ -570,5 +570,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             }
 
         }
+
+
+        public void RefrescarVentanaPadre()
+        {
+            ((ConsultarContactosPorAsociado)_ventanaPadre).Refrescar();
+        }
     }
 }

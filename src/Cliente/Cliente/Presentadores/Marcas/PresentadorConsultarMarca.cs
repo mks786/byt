@@ -2554,7 +2554,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             if ((Asociado)this._ventana.AsociadoSolicitud != null)
             {
                 Asociado asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
-                Navegar(new ConsultarAsociado(asociado, this._ventana));
+                Navegar(new ConsultarAsociado(asociado, this._ventana, false));
             }
         }
 

@@ -2952,4 +2952,13 @@ en Prensa:</value>
   <data name="lsvFechaAnexo" xml:space="preserve">
     <value>Fecha Anexo</value>
   </data>
+  <data name="lsvDatosAsociado" xml:space="preserve">
+    <value>Datos del Asociado</value>
+  </data>
+  <data name="btnSeleccionar" xml:space="preserve">
+    <value>Seleccionar</value>
+  </data>
+  <data name="titleConsultarContactosPorAsociado" xml:space="preserve">
+    <value>Consultar Contactos por Asociado</value>
+  </data>
 </root>

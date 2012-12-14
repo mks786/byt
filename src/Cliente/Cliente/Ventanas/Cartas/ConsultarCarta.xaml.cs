@@ -639,7 +639,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
 
         private void _btnIrPersona_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Navegar(new ConsultarContactos(this,null));
+            this._presentador.Navegar(new ConsultarContactosPorAsociado(this,null));
         }
 
 
@@ -688,5 +688,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         //    this._presentador.IrListaJustificaciones();
         //}      
 
+
+        public void SeleccionarContactoYAsociado(object asociado, object contacto)
+        {
+            this._presentador.SeleccionarContactoYAsociado(asociado, contacto);
+        }
+
+        private void _btnIrAsociado_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVentanaAsociado();
+        }
     }
 }

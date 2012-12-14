@@ -6,6 +6,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     [Serializable]
     public class Departamento
     {
+
         #region Atributos
 
         private string _id;
@@ -13,6 +14,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<Usuario> _usuarios;
 
         #endregion
+
 
         #region Constructores
 
@@ -31,6 +33,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         #endregion
+
 
         #region Propiedades
 
@@ -62,5 +65,6 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         #endregion
+
     }
 }

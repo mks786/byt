@@ -6,12 +6,13 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     [Serializable]
     public class Contacto
     {
+
         #region Atributos
 
         private int _id;
 
         private Asociado _asociado;
-        
+
         private string _nombre;
 
         private string _telefono;
@@ -25,10 +26,13 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _cargo;
 
         private Carta _carta;
-        
+
         private string _departamento;
 
+        private string _datosAsociado;
+
         #endregion
+
 
         #region Constructores
 
@@ -47,6 +51,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         #endregion
+
 
         #region Propiedades
 
@@ -176,6 +181,33 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _carta = value; }
         }
 
+        public virtual string DatosAsociado
+        {
+            get
+            {
+                _datosAsociado = string.Empty;
+                string salto = Environment.NewLine;
+                _datosAsociado += Asociado.Id + ", " + Asociado.Nombre + salto;
+                _datosAsociado += Asociado.Domicilio + salto;
+                _datosAsociado += Asociado.Telefono1 + ", " + Asociado.Telefono2 + "," + Asociado.Telefono3 + salto;
+                _datosAsociado += Asociado.Fax1 + ", " + Asociado.Fax2 + "," + Asociado.Fax3 + salto;
+                _datosAsociado += Asociado.Web + salto;
+                _datosAsociado += Asociado.Email + salto;
+                return _datosAsociado;
+            }
+            set
+            {
+                string salto = Environment.NewLine;
+                _datosAsociado += Asociado.Nombre + salto;
+                _datosAsociado += Asociado.Domicilio + salto;
+                _datosAsociado += Asociado.Telefono1 + ", " + Asociado.Telefono2 + "," + Asociado.Telefono3 + salto;
+                _datosAsociado += Asociado.Fax1 + ", " + Asociado.Fax2 + "," + Asociado.Fax3 + salto;
+                _datosAsociado += Asociado.Web + salto;
+                _datosAsociado += Asociado.Email + salto;
+            }
+        }
+
         #endregion
+
     }
 }

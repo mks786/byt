@@ -2275,7 +2275,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             if (((Patente)this._ventana.Patente != null) && (((Patente)this._ventana.Patente).Asociado != null))
             {
                 Asociado asociado = ((Patente)this._ventana.Patente).Asociado.Id != int.MinValue ? ((Patente)this._ventana.Patente).Asociado : null;
-                Navegar(new ConsultarAsociado(asociado, this._ventana));
+                Navegar(new ConsultarAsociado(asociado, this._ventana,false));
             }
         }
 

@@ -1419,7 +1419,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
             bool retorno = false;
             IList<Usuario> responsables;
-            if (null != ((Carta)this._ventana.Carta).Asignaciones)
+            if ((null != ((Carta)this._ventana.Carta).Asignaciones) && (((Carta)this._ventana.Carta).Asignaciones).Count > 0)
             {
                 responsables = ListAsignacionesToUsuarios(((Carta)this._ventana.Carta).Asignaciones);
                 this._ventana.ResponsablesList = responsables.ToList<Usuario>();
@@ -1552,7 +1552,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                 if (this._cartaServicios.Eliminar((Carta)this._ventana.Carta, UsuarioLogeado.Hash))
                 {
-                    this.Navegar(Recursos.MensajesConElUsuario.CartaEliminadaConExito, false);
+                    if ((_cartasARecorrer != null) && (_cartasARecorrer.Count > 0))
+                    {
+                        _cartasARecorrer.RemoveAt(_posicion - 1);
+
+                        if (_posicion == _cartasARecorrer.Count())
+                            _posicion = 0;
+
+                        this._ventana.Carta = this._cartasARecorrer[_posicion - 1];
+                        _otraCarta = true;
+                        this.CargarPagina();
+                    }
+                    else
+                        this.Navegar(Recursos.MensajesConElUsuario.CartaEliminadaConExito, false);
                 }
 
                 #region trace
@@ -1617,8 +1629,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             if (this._ventana.Asociado != null)
             {
                 Asociado asociado = ((Asociado)this._ventana.Asociado).Id != int.MinValue ? (Asociado)this._ventana.Asociado : null;
-                Navegar(new ConsultarAsociado(asociado, this._ventana));
+                Navegar(new ConsultarAsociado(asociado, this._ventana, false));
             }
+        }
+
+        public void SeleccionarContactoYAsociado(object asociado, object contacto)
+        {
+            Asociado asociadoNuevo = (Asociado)asociado;
+            Contacto contactoNuevo = (Contacto)contacto;
+
+            this._ventana.Asociados = null;
+
+            IList<Asociado> asociados = new List<Asociado>();
+            asociados.Add(asociadoNuevo);
+            this._ventana.Asociados = asociados;
+            this._ventana.Asociado = asociadoNuevo;
+            this.CambiarAsociado();
+            this._ventana.Persona = contacto;
         }
     }
 }

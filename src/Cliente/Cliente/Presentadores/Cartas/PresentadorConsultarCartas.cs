@@ -603,23 +603,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            //IEnumerable<Asociado> asociadosFiltrados = (IList<Asociado>)this._asociados;
-
-            //if (!string.IsNullOrEmpty(this._ventana.IdAsociadoFiltrar))
-            //{
-            //    asociadosFiltrados = from p in asociadosFiltrados
-            //                         where p.Id == int.Parse(this._ventana.IdAsociadoFiltrar)
-            //                         select p;
-            //}
-
-            //if (!string.IsNullOrEmpty(this._ventana.NombreAsociadoFiltrar))
-            //{
-            //    asociadosFiltrados = from p in asociadosFiltrados
-            //                         where p.Nombre != null &&
-            //                         p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoFiltrar.ToLower())
-            //                         select p;
-            //}
-
+            
             if ((!this._ventana.IdContactoFiltrar.Equals("")) || (!this._ventana.CorreoContactoFiltrar.Equals("")))
             {
                 Contacto ContactoAFiltrar = new Contacto();

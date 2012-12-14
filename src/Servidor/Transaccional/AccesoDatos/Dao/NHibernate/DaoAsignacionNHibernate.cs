@@ -84,7 +84,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return asignaciones;
         }
 
-
+        /// <summary>
+        /// Método que se encarga de eliminar todas las asignaciones pertenecientes a una Carta
+        /// </summary>
+        /// <param name="carta"></param>
+        /// <returns></returns>
         public bool EliminarAsignacionesPorCarta(Carta carta)
         {
             bool retorno = false;
@@ -113,6 +117,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             {
                 Session.Close();
             }
+
             return true;
         }
     }

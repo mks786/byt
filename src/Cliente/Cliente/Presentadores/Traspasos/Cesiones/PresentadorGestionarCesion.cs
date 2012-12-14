@@ -2681,7 +2681,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             if ((null != (Marca)this._ventana.Marca) && (((Marca)this._ventana.Marca).Asociado != null))
             {
                 Asociado asociado = ((Marca)this._ventana.Marca).Asociado.Id != int.MinValue ? ((Marca)this._ventana.Marca).Asociado : null;
-                Navegar(new ConsultarAsociado(asociado, this._ventana));
+                Navegar(new ConsultarAsociado(asociado, this._ventana, false));
             }
         }
     }
