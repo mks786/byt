@@ -44,6 +44,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<Justificacion> _justificaciones;
         private IList<Contacto> _contactos;
         private IList<Carta> _cartas;
+        private IList<EmailAsociado> _emails;
         private IList<DatosTransferencia> _datosTransferencias;
 
         #endregion
@@ -67,7 +68,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// Constructor que inicializa el codigo del asociado
         /// </summary>
         /// <param name="codigo">Codigo del asociado</param>
-        public Asociado(int id) : this()
+        public Asociado(int id)
+            : this()
         {
             this._id = id;
         }
@@ -538,6 +540,12 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _datosTransferencias; }
             set { _datosTransferencias = value; }
+        }
+
+        public virtual IList<EmailAsociado> Emails
+        {
+            get { return _emails; }
+            set { _emails = value; }
         }
 
         #endregion

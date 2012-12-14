@@ -532,5 +532,19 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// </summary>
         /// <returns>IDaoReportePatente</returns>
         public abstract IDaoReportePatente ObtenerDaoReportePatente();
+
+
+        /// <summary>
+        /// Método que devuelve el DaoEmailAsociado del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoEmailAsociado</returns>
+        public abstract IDaoEmailAsociado ObtenerDaoEmailAsociado();
+
+
+        /// <summary>
+        /// Método que devuelve el DaoTipoEmailAsociado del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoTipoEmailAsociado</returns>
+        public abstract IDaoTipoEmailAsociado ObtenerDaoTipoEmailAsociado();
     }
 }

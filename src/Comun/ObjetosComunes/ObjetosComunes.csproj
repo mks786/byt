@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContratosServicios\IEmailAsociadoServicios.cs" />
+    <Compile Include="ContratosServicios\ITipoEmailAsociadoServicios.cs" />
     <Compile Include="ContratosServicios\IReportePatenteServicios.cs" />
     <Compile Include="ContratosServicios\IInstruccionDeRenovacionServicios.cs" />
     <Compile Include="ContratosServicios\IInfoBolMarcaTerServicios.cs" />
@@ -144,6 +146,8 @@
     <Compile Include="Entidades\CesionPatente.cs" />
     <Compile Include="Entidades\Anualidad.cs" />
     <Compile Include="Entidades\ContactosDelAsociadoVista.cs" />
+    <Compile Include="Entidades\EmailAsociado.cs" />
+    <Compile Include="Entidades\TipoEmailAsociado.cs" />
     <Compile Include="Entidades\ReportePatente.cs" />
     <Compile Include="Entidades\FusionMarcaTercero.cs" />
     <Compile Include="Entidades\FusionPatenteTercero.cs" />

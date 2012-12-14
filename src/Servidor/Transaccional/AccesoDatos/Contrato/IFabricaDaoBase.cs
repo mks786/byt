@@ -499,5 +499,19 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
          /// </summary>
          /// <returns>Dao Solicitado</returns>
          IDaoReportePatente ObtenerDaoReportePatente();
+
+
+         /// <summary>
+         /// Metodo con el que se obtiene el Dao Solicitado
+         /// </summary>
+         /// <returns>Dao Solicitado</returns>
+         IDaoEmailAsociado ObtenerDaoEmailAsociado();
+
+
+         /// <summary>
+         /// Metodo con el que se obtiene el Dao Solicitado
+         /// </summary>
+         /// <returns>Dao Solicitado</returns>
+         IDaoTipoEmailAsociado ObtenerDaoTipoEmailAsociado();
     }
 }

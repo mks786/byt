@@ -331,6 +331,11 @@
                     <MenuItem Name="_menuItemUsuarioAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemUsuarioAgregar_Click"/>
                     <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
                 </MenuItem>
+                <MenuItem Name="_menuItemTipoEmailAsociado" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemTipoEmailAsociado}">
+                    <MenuItem Name="_menuItemTipoEmailAsociadoConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemTipoEmailAsociadoConsultar_Click"/>
+                    <MenuItem Name="_menuItemTipoEmailAsociadoAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemTipoEmailAsociadoAgregar_Click"/>
+                    <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
+                </MenuItem>
             </MenuItem>
             <MenuItem Name="_menuItemAyuda" Header="{x:Static resx:Etiquetas.menuItemAyuda}">
                 <MenuItem Name="_menuItemAyudaAcerca" Header="{x:Static resx:Etiquetas.menuItemAyudaAcerca}" ></MenuItem>

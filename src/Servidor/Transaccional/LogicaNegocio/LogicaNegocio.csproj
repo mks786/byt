@@ -124,6 +124,8 @@
     <Compile Include="Controladores\ControladorInfoBolMarcaTer.cs" />
     <Compile Include="Controladores\ControladorInstruccionDeRenovacion.cs" />
     <Compile Include="Controladores\ControladorReportePatente.cs" />
+    <Compile Include="Controladores\ControladorEmailAsociado.cs" />
+    <Compile Include="Controladores\ControladorTipoEmailAsociado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

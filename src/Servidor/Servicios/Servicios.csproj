@@ -71,6 +71,8 @@
     <Compile Include="Implementacion\CambioPeticionarioPatenteServicios.cs" />
     <Compile Include="Implementacion\CesionPatenteServicios.cs" />
     <Compile Include="Implementacion\AnualidadServicios.cs" />
+    <Compile Include="Implementacion\TipoEmailAsociadoServicios.cs" />
+    <Compile Include="Implementacion\EmailAsociadoServicios.cs" />
     <Compile Include="Implementacion\ReportePatenteServicios.cs" />
     <Compile Include="Implementacion\InstruccionDeRenovacionServicios.cs" />
     <Compile Include="Implementacion\InfoBolMarcaTerServicios.cs" />

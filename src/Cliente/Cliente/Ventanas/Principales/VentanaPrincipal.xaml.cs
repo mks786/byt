@@ -143,7 +143,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         #endregion
 
-        #region Historia
+        #region Tablas
 
         private void _menuItemAgenteAgregar_Click(object sender, RoutedEventArgs e)
         {
@@ -324,6 +324,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         private void _menuItemCorresponsalAgregar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.AgregarCorresponsal();
+        }
+
+        private void _menuItemTipoEmailAsociadoConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarTipoEmailAsociado();
+        }
+
+        private void _menuItemTipoEmailAsociadoAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.GestionarTipoEmailAsociado();
         }
 
         #endregion

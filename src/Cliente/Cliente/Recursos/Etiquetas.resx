@@ -2961,4 +2961,7 @@ en Prensa:</value>
   <data name="titleConsultarContactosPorAsociado" xml:space="preserve">
     <value>Consultar Contactos por Asociado</value>
   </data>
+  <data name="menuItemTipoEmailAsociado" xml:space="preserve">
+    <value>Email Asociado</value>
+  </data>
 </root>

@@ -6465,6 +6465,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email Asociado.
+        /// </summary>
+        public static string menuItemTipoEmailAsociado {
+            get {
+                return ResourceManager.GetString("menuItemTipoEmailAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tipo de Fecha.
         /// </summary>
         public static string menuItemTipoFecha {

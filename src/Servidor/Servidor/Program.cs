@@ -2,6 +2,7 @@
 using System.Runtime.Remoting;
 using Trascend.Bolet.Servicios;
 using Trascend.Bolet.Servicios.Implementacion;
+using Trascend.Bolet.ObjetosComunes.Entidades;
 
 namespace Trascend.Bolet.Servidor
 {
@@ -14,6 +15,11 @@ namespace Trascend.Bolet.Servidor
         {
 
             RemotingConfiguration.Configure(_archivo, false);
+            UsuarioServicios servicio = new UsuarioServicios();
+            Usuario usuarioPrueba = new Usuario();
+            usuarioPrueba.Password = "PRUEBA";
+            usuarioPrueba.Id = "PRUEBA";
+            servicio.Autenticar(usuarioPrueba);
             Console.WriteLine("Se han cargado " + ConfiguracionServicios.CargarUsuarios() + " sesiones de archivo XML");
             Console.WriteLine("Configuracion cargada...");
             Console.ReadLine();

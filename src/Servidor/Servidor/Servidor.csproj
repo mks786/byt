@@ -117,6 +117,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Comun\ObjetosComunes\ObjetosComunes.csproj">
+      <Project>{15437671-F551-4B4B-9E06-283A1D241CE0}</Project>
+      <Name>ObjetosComunes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Servicios\Servicios.csproj">
       <Project>{C62DF7FE-106D-40BA-BE19-1BEEDE960D30}</Project>
       <Name>Servicios</Name>

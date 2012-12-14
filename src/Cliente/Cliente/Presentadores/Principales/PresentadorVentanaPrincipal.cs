@@ -60,6 +60,7 @@ using Trascend.Bolet.Cliente.Ventanas.Patentes;
 using Trascend.Bolet.Cliente.Ventanas.Anualidades;
 using Trascend.Bolet.Cliente.Ventanas.Reportes;
 using Trascend.Bolet.Cliente.Ventanas.Corresponsales;
+using Trascend.Bolet.Cliente.Ventanas.TiposEmailAsociado;
 using System.Diagnostics;
 using System.Collections.Generic;
 
@@ -373,7 +374,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void AgregarCorresponsal()
         {
-            this._ventana.Contenedor.Navigate(new AgregarCorresponsal(null,null));
+            this._ventana.Contenedor.Navigate(new AgregarCorresponsal(null, null));
         }
 
         /// <summary>
@@ -506,7 +507,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void GestionarRenovacionMarca()
         {
-            this._ventana.Contenedor.Navigate(new GestionarRenovacion(null,null));
+            this._ventana.Contenedor.Navigate(new GestionarRenovacion(null, null));
         }
 
         /// <summary>
@@ -1197,6 +1198,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                     if (objeto.Id.Equals(Recursos.Ids.Usuario))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
+                                case "_menuItemTipoEmailAsociado":
+                                    if (objeto.Id.Equals(Recursos.Ids.Asociado))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
 
                                 #endregion
 
@@ -1246,34 +1251,34 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemTablasCorrespondencia":
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                        //foreach (ItemsControl item3 in itemNivel2.Items)
-                                        //{
-                                        //    switch (item3.Name)
-                                        //    {
-                                        //        case "_menuItemAnexo":
-                                        //            if(objeto.Id.Equals(Recursos.Ids.Anexo))
-                                        //                item3.Visibility = System.Windows.Visibility.Visible;
-                                        //            break;
-                                        //        case "_menuItemCategoria":
-                                        //            if (objeto.Id.Equals(Recursos.Ids.Categoria))
-                                        //                item3.Visibility = System.Windows.Visibility.Visible;
-                                        //            break;
-                                        //        case "_menuItemMedio":
-                                        //            if (objeto.Id.Equals(Recursos.Ids.Medio))
-                                        //                item3.Visibility = System.Windows.Visibility.Visible;
-                                        //            break;
-                                        //        case "_menuItemRemitente":
-                                        //            if (objeto.Id.Equals(Recursos.Ids.Remitente))
-                                        //                item3.Visibility = System.Windows.Visibility.Visible;
-                                        //            break;
-                                        //        case "_menuItemResumen":
-                                        //            if (objeto.Id.Equals(Recursos.Ids.Resumen))
-                                        //                item3.Visibility = System.Windows.Visibility.Visible;
-                                        //            break;
-                                        //    }
-                                            
-                                        //}
+                                    itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    //foreach (ItemsControl item3 in itemNivel2.Items)
+                                    //{
+                                    //    switch (item3.Name)
+                                    //    {
+                                    //        case "_menuItemAnexo":
+                                    //            if(objeto.Id.Equals(Recursos.Ids.Anexo))
+                                    //                item3.Visibility = System.Windows.Visibility.Visible;
+                                    //            break;
+                                    //        case "_menuItemCategoria":
+                                    //            if (objeto.Id.Equals(Recursos.Ids.Categoria))
+                                    //                item3.Visibility = System.Windows.Visibility.Visible;
+                                    //            break;
+                                    //        case "_menuItemMedio":
+                                    //            if (objeto.Id.Equals(Recursos.Ids.Medio))
+                                    //                item3.Visibility = System.Windows.Visibility.Visible;
+                                    //            break;
+                                    //        case "_menuItemRemitente":
+                                    //            if (objeto.Id.Equals(Recursos.Ids.Remitente))
+                                    //                item3.Visibility = System.Windows.Visibility.Visible;
+                                    //            break;
+                                    //        case "_menuItemResumen":
+                                    //            if (objeto.Id.Equals(Recursos.Ids.Resumen))
+                                    //                item3.Visibility = System.Windows.Visibility.Visible;
+                                    //            break;
+                                    //    }
+
+                                    //}
 
                                     break;
                                 case "_menuItemTransferirPlantilla":
@@ -1289,8 +1294,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                 #region Patentes [LISTO]
 
                                 case "_menuItemGestionDePatentes":
-        
-                                   itemNivel2.Visibility = System.Windows.Visibility.Visible;
+
+                                    itemNivel2.Visibility = System.Windows.Visibility.Visible;
 
                                     foreach (ItemsControl item3 in itemNivel2.Items)
                                     {
@@ -1398,7 +1403,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                     if (objeto.Id.Equals(Recursos.Ids.Marca))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
-                                    
+
 
                                 #endregion
 
@@ -1445,6 +1450,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                         }
                     }
             }
+        }
+
+        public void GestionarTipoEmailAsociado()
+        {
+            Navegar(new GestionarTipoEmailAsociado(null, null));
+        }
+
+        public void ConsultarTipoEmailAsociado()
+        {
+            Navegar(new ConsultarTiposEmailAsociado());
         }
     }
 }

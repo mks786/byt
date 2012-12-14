@@ -67,6 +67,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato\IDaoEmailAsociado.cs" />
+    <Compile Include="Contrato\IDaoTipoEmailAsociado.cs" />
     <Compile Include="Contrato\IDaoReportePatente.cs" />
     <Compile Include="Contrato\IDaoFusionPatenteTercero.cs" />
     <Compile Include="Contrato\IDaoFusionMarcaTercero.cs" />
@@ -152,6 +154,8 @@
     <Compile Include="Contrato\IDaoBase.cs" />
     <Compile Include="Contrato\IDaoUsuario.cs" />
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
+    <Compile Include="Dao\NHibernate\DaoEmailAsociadoNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoTipoEmailAsociadoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoReportePatenteNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoFusionPatenteTerceroNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoFusionMarcaTerceroNHibernate.cs" />
@@ -673,6 +677,16 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapeado\ContactosDelAsociadoVista.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\TipoEmailAsociado.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\EmailAsociado.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

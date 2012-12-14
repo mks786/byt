@@ -202,6 +202,10 @@
     <Compile Include="Comandos\ComandosTipoBase\ComandoInsertarOModificarTipoBase.cs" />
     <Compile Include="Comandos\ComandosTipoBase\ComandoVerificarExistenciaTipoBase.cs" />
     <Compile Include="Comandos\ComandosTipoCliente\ComandoConsultarTodosTipoClientes.cs" />
+    <Compile Include="Comandos\ComandosTipoEmailAsociado\ComandoConsultarTodasTipoEmailAsociado.cs" />
+    <Compile Include="Comandos\ComandosTipoEmailAsociado\ComandoEliminarTipoEmailAsociado.cs" />
+    <Compile Include="Comandos\ComandosTipoEmailAsociado\ComandoInsertarOModificarTipoEmailAsociado.cs" />
+    <Compile Include="Comandos\ComandosTipoEmailAsociado\ComandoVerificarExistenciaTipoEmailAsociado.cs" />
     <Compile Include="Comandos\ComandosTipoFecha\ComandoVerificarExistenciaTipoFecha.cs" />
     <Compile Include="Comandos\ComandosTipoInfobol\ComandoVerificarExistenciaTipoInfoBol.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoAutentificarUsuario.cs" />
@@ -403,10 +407,16 @@
     <Compile Include="Comandos\ComandosReportePatente\ComandoConsultarReportePatentePorUsuario.cs" />
     <Compile Include="Comandos\ComandosReportePatente\ComandoEjecutarProcedimiento.cs" />
     <Compile Include="Comandos\ComandosReportePatente\ComandoEliminarReportePatente.cs" />
+    <Compile Include="Comandos\ComandosEmailAsociado\ComandoConsultarTodasTipoEmailAsociado.cs" />
+    <Compile Include="Comandos\ComandosEmailAsociado\ComandoEliminarTipoEmailAsociado.cs" />
+    <Compile Include="Comandos\ComandosEmailAsociado\ComandoInsertarOModificarTipoEmailAsociado.cs" />
+    <Compile Include="Comandos\ComandosEmailAsociado\ComandoVerificarExistenciaTipoEmailAsociado.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosEmailAsociado.cs" />
+    <Compile Include="Fabrica\FabricaComandosTipoEmailAsociado.cs" />
     <Compile Include="Fabrica\FabricaComandosReportePatente.cs" />
     <Compile Include="Fabrica\FabricaComandosFusionPatenteTercero.cs" />
     <Compile Include="Fabrica\FabricaComandosFusionMarcaTercero.cs" />

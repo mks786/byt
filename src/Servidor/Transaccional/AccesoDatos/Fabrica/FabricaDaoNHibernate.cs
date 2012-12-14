@@ -861,5 +861,25 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoReportePatenteNHibernate();
         }
+
+
+        /// <summary>
+        /// Método que devuelve el DaoMemoria
+        /// </summary>
+        /// <returns>IDaoMemoria</returns>
+        public override IDaoEmailAsociado ObtenerDaoEmailAsociado()
+        {
+            return new DaoEmailAsociadoNHibernate();
+        }
+
+
+        /// <summary>
+        /// Método que devuelve el DaoMemoria
+        /// </summary>
+        /// <returns>IDaoMemoria</returns>
+        public override IDaoTipoEmailAsociado ObtenerDaoTipoEmailAsociado()
+        {
+            return new DaoTipoEmailAsociadoNHibernate();
+        }
     }
 }

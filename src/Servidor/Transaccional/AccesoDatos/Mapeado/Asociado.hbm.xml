@@ -62,6 +62,11 @@
       <one-to-many class="Carta" not-found="ignore"/>
     </bag>
 
+    <bag name="Emails" inverse="true">
+      <key column="CEMAIL"/>
+      <one-to-many class="EmailAsociado" not-found="ignore"/>
+    </bag>
+
     <bag name="DatosTransferencias" table="FAC_ASO_TRANF" inverse="true" generic="true">
       <key column="CNUMERO"/>
       <composite-element class="DatosTransferencia">
