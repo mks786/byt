@@ -156,10 +156,5 @@ namespace Trascend.Bolet.Cliente.Ventanas.TiposEmailAsociado
             //if (todosCamposVacios)
             //    this._txtId.Focus();
         }
-
-        private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.LimpiarCampos();
-        }
     }
 }

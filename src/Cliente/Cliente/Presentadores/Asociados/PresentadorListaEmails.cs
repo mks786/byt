@@ -1,70 +1,43 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
-using System.Linq;
-using System.Net.Sockets;
-using System.Runtime.Remoting;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using NLog;
 using Trascend.Bolet.Cliente.Ayuda;
-using Trascend.Bolet.Cliente.Contratos.TiposEmailAsociado;
-using Trascend.Bolet.Cliente.Ventanas.TiposEmailAsociado;
+using Trascend.Bolet.Cliente.Contratos.Asociados;
+using Trascend.Bolet.Cliente.Ventanas.EmailsAsociado;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
-using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using System.Collections.Generic;
+using System.Net.Sockets;
+using System.Runtime.Remoting;
 
-namespace Trascend.Bolet.Cliente.Presentadores.TiposEmailAsociado
+namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 {
-    class PresentadorConsultarTiposEmailAsociado : PresentadorBase
+    class PresentadorListaEmails : PresentadorBase
     {
 
+        private IListaEmails _ventana;
+        private Asociado _asociado;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
-
-
-        private IConsultarTiposEmailAsociado _ventana;
-        private ITipoEmailAsociadoServicios _TipoEmailAsociadoServicios;
-        private IDepartamentoServicios _departamentoServicios;
-        private IList<TipoEmailAsociado> _TiposEmailAsociado;
 
 
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorConsultarTiposEmailAsociado(IConsultarTiposEmailAsociado ventana)
-        {
-            try
-            {
-                this._ventana = ventana;
-                this._TipoEmailAsociadoServicios = (ITipoEmailAsociadoServicios)Activator.GetObject(typeof(ITipoEmailAsociadoServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoEmailAsociadoServicios"]);
-                this._departamentoServicios = (IDepartamentoServicios)Activator.GetObject(typeof(IDepartamentoServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["DepartamentoServicios"]);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-            }
-        }
-
-
-        /// <summary>
-        /// Método que se encarga de actualizar el título de la ventana
-        /// </summary>
-        public void ActualizarTitulo()
+        public PresentadorListaEmails(IListaEmails ventana, object asociado)
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaDeTiposEmail,
-                string.Empty);
+            this._ventana = ventana;
+            this._asociado = (Asociado)asociado;
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -87,33 +60,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.TiposEmailAsociado
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ActualizarTitulo();
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaEmailAsociado,
+                    string.Empty);
 
-                this._TiposEmailAsociado = this._TipoEmailAsociadoServicios.ConsultarTodos();
-                this._ventana.Resultados = this._TiposEmailAsociado;
-                this._ventana.TotalHits = this._TiposEmailAsociado.Count.ToString();
+                //this._asociado.Emails = FiltrarEmailsPorDepartamento(UsuarioLogeado.Departamento, _asociado.Emails);
+
+                this._ventana.Emails = this._asociado.Emails;
+
+
+
+                this._ventana.TotalHits = this._asociado.Emails.Count.ToString();
                 this._ventana.FocoPredeterminado();
-
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(ex.Message, true);
-            }
-            catch (RemotingException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-            }
-            catch (SocketException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
             }
             catch (Exception ex)
             {
@@ -127,19 +89,40 @@ namespace Trascend.Bolet.Cliente.Presentadores.TiposEmailAsociado
         }
 
 
-
-
         /// <summary>
-        /// Método que invoca una nueva página "ConsultarTipoEmailAsociado" y la instancia con el objeto seleccionado
+        /// Método que invoca una nueva página "ConsultarEmailAsociado" y la instancia con el objeto seleccionado
         /// </summary>
-        public void IrConsultarTipoEmailAsociado()
+        public void IrConsultarEmailAsociado()
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new GestionarTipoEmailAsociado(this._ventana.TipoEmailAsociadoSeleccionado, this));
+            if (null != this._ventana.EmailSeleccionado)
+            {
+                ((EmailAsociado)this._ventana.EmailSeleccionado).Asociado = this._asociado;
+
+                this.Navegar(new ConsultarEmailAsociado(this._ventana.EmailSeleccionado, _asociado));
+            }
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+
+        /// <summary>
+        /// Método que invova una nueva página "AgregarEmailAsociado" y la instancia con el objeto seleccionado
+        /// </summary>
+        public void IrAgregarEmail()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this.Navegar(new AgregarEmailAsociado(this._asociado));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -182,20 +165,5 @@ namespace Trascend.Bolet.Cliente.Presentadores.TiposEmailAsociado
             #endregion
         }
 
-
-        public void LimpiarCampos()
-        {
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
-
-            Navegar(new ConsultarTiposEmailAsociado());
-
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
-        }
     }
 }

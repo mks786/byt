@@ -9,6 +9,7 @@ using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using System.Collections.Generic;
+using Trascend.Bolet.Cliente.Ventanas.Auditorias;
 
 namespace Trascend.Bolet.Cliente.Presentadores.TiposEmailAsociado
 {
@@ -22,6 +23,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TiposEmailAsociado
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private bool _agregar;
+        private IList<Auditoria> _auditorias;
 
         /// <summary>
         /// Constructor predeterminado
@@ -73,11 +75,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.TiposEmailAsociado
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarPais,
-                    Recursos.Ids.ConsultarPais);
                 if (_agregar)
+                {
                     this._ventana.TipoEmailAsociado = new TipoEmailAsociado();
-                
+
+
+                    this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarTipoEmail,
+                        string.Empty);
+                }
+                else
+                {
+
+                    this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarTipoEmail,
+                        string.Empty);
+                    Auditoria auditoria = new Auditoria();
+                    auditoria.Fk = int.Parse(((TipoEmailAsociado)this._ventana.TipoEmailAsociado).Id);
+                    auditoria.Tabla = "FAC_ASO_TIPO_COR";
+                    _auditorias = this._tipoEmailAsociadoServicios.AuditoriaPorFkyTabla(auditoria);
+
+
+                    this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
+
+                    if (_auditorias.Count > 0)
+                        this._ventana.PintarAuditoria();
+                }
 
                 IList<Departamento> departamentos = this._departamentoServicios.ConsultarTodos();
                 Departamento primerDepartamento = new Departamento();
@@ -127,14 +148,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.TiposEmailAsociado
                 }
                 else
                 {
+                    bool noExiste = false;
+
                     TipoEmailAsociado tipoEmail = (TipoEmailAsociado)this._ventana.TipoEmailAsociado;
 
                     tipoEmail.Departamento = ((Departamento)this._ventana.Departamento);
 
-                    if (this._tipoEmailAsociadoServicios.InsertarOModificar(tipoEmail, UsuarioLogeado.Hash))
+                    ((TipoEmailAsociado)this._ventana.TipoEmailAsociado).Operacion = _agregar ? "INSERT" : "UPDATE";
+
+                    if (((_agregar) && !this._tipoEmailAsociadoServicios.VerificarExistencia((TipoEmailAsociado)this._ventana.TipoEmailAsociado)) || (!_agregar))
                     {
-                        _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.PaisModificado;
-                        this.Navegar(_paginaPrincipal);
+                        if (this._tipoEmailAsociadoServicios.InsertarOModificar(tipoEmail, UsuarioLogeado.Hash))
+                        {
+                            string mensaje = _agregar ? Recursos.MensajesConElUsuario.TipoEmailInsertado : Recursos.MensajesConElUsuario.TipoEmailModificado;
+                            _paginaPrincipal.MensajeUsuario = mensaje;
+                            this.Navegar(_paginaPrincipal);
+                        }
+                    }
+                    else
+                    {
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.IdRepetido);
                     }
                 }
 
@@ -178,11 +211,55 @@ namespace Trascend.Bolet.Cliente.Presentadores.TiposEmailAsociado
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                //if (this._paisServicios.Eliminar((Pais)this._ventana.Pais, UsuarioLogeado.Hash))
-                //{
-                //    _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.PaisEliminado;
-                //    this.Navegar(_paginaPrincipal);
-                //}
+                ((TipoEmailAsociado)this._ventana.TipoEmailAsociado).Operacion = "DELETE";
+                if (this._tipoEmailAsociadoServicios.Eliminar((TipoEmailAsociado)this._ventana.TipoEmailAsociado, UsuarioLogeado.Hash))
+                {
+                    _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.TipoEmailEliminado;
+                    this.Navegar(_paginaPrincipal);
+                }
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+
+        /// <summary>
+        /// Método que muestra la ventana de Auditoría de un Asociado
+        /// </summary>
+        public void Auditoria()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                this.Navegar(new ListaAuditorias(_auditorias));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Contratos.TiposEmailAsociado;
 using Trascend.Bolet.Cliente.Presentadores.TiposEmailAsociado;
+using System.Windows.Media;
 
 namespace Trascend.Bolet.Cliente.Ventanas.TiposEmailAsociado
 {
@@ -14,7 +15,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TiposEmailAsociado
         private PresentadorGestionarTipoEmailAsociado _presentador;
         private bool _cargada;
 
-        #region IConsultarPais
+        #region IGestionarTipoEmailAsociado
 
         public bool EstaCargada
         {
@@ -62,6 +63,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.TiposEmailAsociado
             set { this._txbModificar.Text = value; }
         }
 
+        public void PintarAuditoria()
+        {
+            this._btnAuditoria.Visibility = Visibility.Visible;
+            this._btnAuditoria.Background = Brushes.LightGreen;
+        }
+
+        public void Mensaje(string mensaje)
+        {
+            MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
         #endregion
 
         public GestionarTipoEmailAsociado(object tipoEmail, object ventanaPadre)
@@ -84,8 +96,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TiposEmailAsociado
 
         private void _btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarPais,
-                "Eliminar Pais", MessageBoxButton.YesNo, MessageBoxImage.Question))
+            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarTipoEmail,
+                "Eliminar Tipo Email", MessageBoxButton.YesNo, MessageBoxImage.Question))
             {
                 this._presentador.Eliminar();
             }
@@ -98,6 +110,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.TiposEmailAsociado
                 this._presentador.CargarPagina();
                 EstaCargada = true;
             }
+        }
+
+        private void _btnAuditoria_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.Auditoria();
         }
     }
 }

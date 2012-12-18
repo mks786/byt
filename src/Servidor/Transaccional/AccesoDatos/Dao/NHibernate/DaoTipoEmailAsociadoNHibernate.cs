@@ -62,10 +62,5 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         {
             throw new NotImplementedException();
         }
-
-        public bool VerificarExistencia(string id)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

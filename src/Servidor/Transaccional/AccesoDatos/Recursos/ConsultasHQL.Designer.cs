@@ -1852,7 +1852,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select distinct(a) from Asociado a left outer join fetch a.Justificaciones where a.Id = &apos;{0}&apos; order by a.Id.
+        ///   Looks up a localized string similar to Select distinct(a) from Asociado a left outer join fetch a.Justificaciones left outer join fetch a.Emails where a.Id = &apos;{0}&apos; order by a.Id.
         /// </summary>
         public static string ObtenerAsociadoConTodo {
             get {
@@ -1920,6 +1920,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string ObtenerDatosTransferenciaPorAsociado {
             get {
                 return ResourceManager.GetString("ObtenerDatosTransferenciaPorAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select e from EmailAsociado e left outer join fetch e.Asociado left join fetch e.TipoEmailAsociado where e.Asociado.Id = {0}.
+        /// </summary>
+        public static string ObtenerEmailsPorAsociado {
+            get {
+                return ResourceManager.GetString("ObtenerEmailsPorAsociado", resourceCulture);
             }
         }
         

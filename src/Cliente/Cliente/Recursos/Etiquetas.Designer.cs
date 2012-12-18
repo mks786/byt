@@ -332,6 +332,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Emails.
+        /// </summary>
+        public static string btnEmails {
+            get {
+                return ResourceManager.GetString("btnEmails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enviar a Recordatorios.
         /// </summary>
         public static string btnEnviarARecordatorios {
@@ -607,6 +616,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string btnNuevoDatosCredito {
             get {
                 return ResourceManager.GetString("btnNuevoDatosCredito", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nuevo Email.
+        /// </summary>
+        public static string btnNuevoEmail {
+            get {
+                return ResourceManager.GetString("btnNuevoEmail", resourceCulture);
             }
         }
         
@@ -6762,6 +6780,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agregar Email a Asociado.
+        /// </summary>
+        public static string titleAgregarEmailAsociado {
+            get {
+                return ResourceManager.GetString("titleAgregarEmailAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agregar Entrada Alterna.
         /// </summary>
         public static string titleAgregarEntradaAlterna {
@@ -7019,6 +7046,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleAgregarTipoBase {
             get {
                 return ResourceManager.GetString("titleAgregarTipoBase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agregar Tipo de Email.
+        /// </summary>
+        public static string titleAgregarTipoEmail {
+            get {
+                return ResourceManager.GetString("titleAgregarTipoEmail", resourceCulture);
             }
         }
         
@@ -7343,6 +7379,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleConsultarDatosTransferencia {
             get {
                 return ResourceManager.GetString("titleConsultarDatosTransferencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consultar Email a Asociado.
+        /// </summary>
+        public static string titleConsultarEmailAsociado {
+            get {
+                return ResourceManager.GetString("titleConsultarEmailAsociado", resourceCulture);
             }
         }
         
@@ -7775,6 +7820,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleConsultarTipoBase {
             get {
                 return ResourceManager.GetString("titleConsultarTipoBase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consultar Tipo de Email.
+        /// </summary>
+        public static string titleConsultarTipoEmail {
+            get {
+                return ResourceManager.GetString("titleConsultarTipoEmail", resourceCulture);
             }
         }
         
@@ -8486,6 +8540,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleListaDatosTransferencia {
             get {
                 return ResourceManager.GetString("titleListaDatosTransferencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lista de Tipos de Email.
+        /// </summary>
+        public static string titleListaDeTiposEmail {
+            get {
+                return ResourceManager.GetString("titleListaDeTiposEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lista de Emails del Asociado.
+        /// </summary>
+        public static string titleListaEmailAsociado {
+            get {
+                return ResourceManager.GetString("titleListaEmailAsociado", resourceCulture);
             }
         }
         

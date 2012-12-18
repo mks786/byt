@@ -252,6 +252,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             this._btnCorrespondenciasAdministracion.Background = Brushes.LightGreen;
         }
 
+        public void pintarEmails()
+        {
+            this._btnVerEmails.Background = Brushes.LightGreen;
+        }
+
         public void pintarDatosTransferencia()
         {
             this._btnTrasferenciaAdministracion.Background = Brushes.LightGreen;
@@ -433,6 +438,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         private void _btnVerEtiqueta_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.VerEtiqueta();
+        }
+
+        private void _btnVerEmails_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.VerEmailsAsociado();
         }
 
     }

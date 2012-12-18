@@ -13,5 +13,9 @@ namespace Trascend.Bolet.Cliente.Contratos.TiposEmailAsociado
         object Departamentos { get; set; }
 
         string TextoBotonModificar { get; set; }
+
+        void PintarAuditoria();
+
+        void Mensaje(string mensaje);
     }
 }

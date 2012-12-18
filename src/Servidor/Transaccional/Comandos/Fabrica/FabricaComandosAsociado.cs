@@ -61,5 +61,10 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarContactosDelAsociado(asociado, todos);
         }
+
+        public static ComandoBase<IList<EmailAsociado>> ObtenerComandoConsultarEmailsDelAsociado(Asociado asociado)
+        {
+            return new ComandoConsultarEmailsDelAsociado(asociado);
+        }
     }
 }

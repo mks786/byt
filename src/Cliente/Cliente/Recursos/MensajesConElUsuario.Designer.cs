@@ -998,6 +998,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ¿Está seguro que desea eliminar el Tipo Email?.
+        /// </summary>
+        internal static string ConfirmacionEliminarTipoEmail {
+            get {
+                return ResourceManager.GetString("ConfirmacionEliminarTipoEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ¿Seguro que desea eliminar el tipo de Fecha?.
         /// </summary>
         internal static string ConfirmacionEliminarTipoFecha {
@@ -1637,6 +1646,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disculpe no puede crear dos tipos de mails iguales para el Asociado.
+        /// </summary>
+        internal static string ErrorTipoDeEmailRepetido {
+            get {
+                return ResourceManager.GetString("ErrorTipoDeEmailRepetido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to El tipo de fecha que intenta introducir ya existe.
         /// </summary>
         internal static string ErrorTipoFechaRepetido {
@@ -1858,6 +1876,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string IdOClaveObligatorio {
             get {
                 return ResourceManager.GetString("IdOClaveObligatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disculpe el Id que ingresó ya existe.
+        /// </summary>
+        internal static string IdRepetido {
+            get {
+                return ResourceManager.GetString("IdRepetido", resourceCulture);
             }
         }
         
@@ -2434,6 +2461,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string TipoBaseModificado {
             get {
                 return ResourceManager.GetString("TipoBaseModificado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tipo de email eliminado con éxito.
+        /// </summary>
+        internal static string TipoEmailEliminado {
+            get {
+                return ResourceManager.GetString("TipoEmailEliminado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tipo de email insertado con éxito.
+        /// </summary>
+        internal static string TipoEmailInsertado {
+            get {
+                return ResourceManager.GetString("TipoEmailInsertado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tipo de email modificado con éxito.
+        /// </summary>
+        internal static string TipoEmailModificado {
+            get {
+                return ResourceManager.GetString("TipoEmailModificado", resourceCulture);
             }
         }
         

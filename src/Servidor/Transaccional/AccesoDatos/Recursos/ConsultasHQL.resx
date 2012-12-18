@@ -144,7 +144,7 @@
     <comment>Consulta las asignaciones de una carta determinada</comment>
   </data>
   <data name="ObtenerAsociadoConTodo" xml:space="preserve">
-    <value>Select distinct(a) from Asociado a left outer join fetch a.Justificaciones where a.Id = '{0}' order by a.Id</value>
+    <value>Select distinct(a) from Asociado a left outer join fetch a.Justificaciones left outer join fetch a.Emails where a.Id = '{0}' order by a.Id</value>
     <comment>Selecciona el asociado con todas sus listas</comment>
   </data>
   <data name="ObtenerAuditoriaPorFKYTabla" xml:space="preserve">
@@ -1035,5 +1035,8 @@
   </data>
   <data name="FiltroTelefonoContacto" xml:space="preserve">
     <value>upper(c.Telefono) like '%{0}%'</value>
+  </data>
+  <data name="ObtenerEmailsPorAsociado" xml:space="preserve">
+    <value>Select e from EmailAsociado e left outer join fetch e.Asociado left join fetch e.TipoEmailAsociado where e.Asociado.Id = {0}</value>
   </data>
 </root>

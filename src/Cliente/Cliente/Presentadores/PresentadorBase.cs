@@ -745,6 +745,23 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+        public TipoEmailAsociado BuscarTipoEmail(IList<TipoEmailAsociado> emails, TipoEmailAsociado tipoEmailAsociado)
+        {
+            TipoEmailAsociado retorno = null;
+
+            if (tipoEmailAsociado != null)
+                foreach (TipoEmailAsociado tipoEmail in emails)
+                {
+                    if (tipoEmail.Id == tipoEmailAsociado.Id)
+                    {
+                        retorno = tipoEmail;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
 
         /// <summary>
         /// Método que busca un estado dentro de una lista de Idiomas
@@ -2277,6 +2294,111 @@ namespace Trascend.Bolet.Cliente.Presentadores
                 retorno = false;
             }
             return retorno;
+        }
+
+
+        public bool VerificarExistenciaEmailAsociado(string emailBuscado, Asociado asociado)
+        {
+            bool retorno = false;
+
+            if (asociado.Emails.Count > 0)
+                foreach (EmailAsociado email in asociado.Emails)
+                {
+                    if (email.TipoEmailAsociado.Id.Equals(emailBuscado))
+                    {
+                        retorno = true;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        public IList<TipoEmailAsociado> FiltrarEmailsPorDepartamento(Departamento departamentoBuscado, IList<TipoEmailAsociado> listaTipoEmailAsociado)
+        {
+            try
+            {
+                IList<int> posiciones = new List<int>();
+                int i = 0;
+                foreach (TipoEmailAsociado tipoEmail in listaTipoEmailAsociado)
+                {
+                    if (tipoEmail.Departamento.Id != departamentoBuscado.Id)
+                        posiciones.Insert(0, i);
+
+                    i++;
+                }
+
+                foreach (int posicion in posiciones)
+                {
+                    listaTipoEmailAsociado.RemoveAt(posicion);
+                }
+
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            return listaTipoEmailAsociado;
+        }
+
+
+        public IList<EmailAsociado> FiltrarEmailsPorDepartamento(Departamento departamentoBuscado, IList<EmailAsociado> listaEmailAsociado)
+        {
+            try
+            {
+                IList<int> posiciones = new List<int>();
+                int i = 0;
+                foreach (EmailAsociado emailAsociado in listaEmailAsociado)
+                {
+                    if (emailAsociado.TipoEmailAsociado.Departamento.Id != departamentoBuscado.Id)
+                        posiciones.Insert(0, i);
+
+                    i++;
+                }
+
+                foreach (int posicion in posiciones)
+                {
+                    listaEmailAsociado.RemoveAt(posicion);
+                }
+
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            return listaEmailAsociado;
         }
     }
 }

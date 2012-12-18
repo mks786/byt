@@ -18,6 +18,7 @@ using System.Windows.Documents;
 using Trascend.Bolet.Cliente.Ayuda;
 using System.Text.RegularExpressions;
 using Trascend.Bolet.ControlesByT.Ventanas;
+using Trascend.Bolet.Cliente.Ventanas.EmailsAsociado;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 {
@@ -34,6 +35,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         private ITipoClienteServicios _tipoClienteServicios;
         private IPaisServicios _paisServicios;
         private IContactoServicios _contactoServicios;
+        private ITipoEmailAsociadoServicios _tipoEmailAsociadoServicios;
+        private IEmailAsociadoServicios _emailAsociadoServicios;
         private ICartaServicios _cartaServicios;
         private IListaDatosDominioServicios _listaDatosDominioServicios;
         private IDatosTransferenciaServicios _datosTransferenciaServicios;
@@ -83,6 +86,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
                 this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
+                this._tipoEmailAsociadoServicios = (ITipoEmailAsociadoServicios)Activator.GetObject(typeof(ITipoEmailAsociadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoEmailAsociadoServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -119,11 +124,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 Asociado asociado = (Asociado)this._ventana.Asociado;
 
                 asociado.Contactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
+                //asociado.Emails = FiltrarEmailsPorDepartamento(UsuarioLogeado.Departamento, this._asociadoServicios.ConsultarEmailsDelAsociado(asociado));
+                asociado.Emails = this._asociadoServicios.ConsultarEmailsDelAsociado(asociado);
                 asociado.DatosTransferencias = this._datosTransferenciaServicios.ConsultarDatosTransferenciaPorAsociado(asociado);
 
 
 
                 IList<Pais> paises = this._paisServicios.ConsultarTodos();
+
                 this._ventana.Paises = paises;
                 this._ventana.Pais = this.BuscarPais(paises, asociado.Pais);
 
@@ -179,6 +187,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     this._ventana.pintarDatosTransferencia();
                 if (_auditorias.Count > 0)
                     this._ventana.pintarAuditoria();
+                if (asociado.Emails.Count > 0)
+                    this._ventana.pintarEmails();
                 if (this._asociadoServicios.VerificarCartasPorAsociado(asociado))
                     this._ventana.pintarCorrespondencia();
 
@@ -575,6 +585,46 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         public void RefrescarVentanaPadre()
         {
             ((ConsultarContactosPorAsociado)_ventanaPadre).Refrescar();
+        }
+
+
+        public void VerEmailsAsociado()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ((Asociado)this._ventana.Asociado).Emails = this._asociadoServicios.ConsultarEmailsDelAsociado((Asociado)this._ventana.Asociado);
+                Navegar(new ListaEmails(this._ventana.Asociado));
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
         }
     }
 }

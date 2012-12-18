@@ -10,6 +10,7 @@ using Trascend.Bolet.Cliente.Contratos.Asociados;
 using Trascend.Bolet.Cliente.Ventanas.DatosTransferencias;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using Trascend.Bolet.Cliente.Ventanas.EmailsAsociado;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 {
@@ -113,7 +114,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new AgregarDatosTransferencia(this._asociado));
+            this.Navegar(new AgregarEmailAsociado(this._asociado));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

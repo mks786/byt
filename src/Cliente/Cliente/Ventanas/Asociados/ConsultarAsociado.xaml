@@ -276,6 +276,9 @@
                             <Button Name="_btnVerExpedienteDatos" VerticalAlignment="Bottom" Height="25" Width="105" Click="_btnVerExpediente_Click">
                                 <TextBlock Name="_txbVerExpedienteDatos" Text="{x:Static recurso:Etiquetas.btnVerExpediente}"/>
                             </Button>
+                            <Button Name="_btnVerEmails" VerticalAlignment="Bottom" Height="25" Width="105" Click="_btnVerEmails_Click">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.btnEmails}"/>
+                            </Button>
                         </WrapPanel>
 
                         <WrapPanel Grid.Column="4" Grid.Row="14" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">

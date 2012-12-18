@@ -57,6 +57,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
 
         void pintarCorrespondencia();
 
+        void pintarEmails();
+
         void ArchivoNoEncontrado();
 
         GridViewColumnHeader CurSortCol { get; set; }

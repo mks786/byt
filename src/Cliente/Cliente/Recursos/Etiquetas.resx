@@ -2964,4 +2964,28 @@ en Prensa:</value>
   <data name="menuItemTipoEmailAsociado" xml:space="preserve">
     <value>Email Asociado</value>
   </data>
+  <data name="btnEmails" xml:space="preserve">
+    <value>Emails</value>
+  </data>
+  <data name="btnNuevoEmail" xml:space="preserve">
+    <value>Nuevo Email</value>
+  </data>
+  <data name="titleAgregarEmailAsociado" xml:space="preserve">
+    <value>Agregar Email a Asociado</value>
+  </data>
+  <data name="titleAgregarTipoEmail" xml:space="preserve">
+    <value>Agregar Tipo de Email</value>
+  </data>
+  <data name="titleConsultarEmailAsociado" xml:space="preserve">
+    <value>Consultar Email a Asociado</value>
+  </data>
+  <data name="titleConsultarTipoEmail" xml:space="preserve">
+    <value>Consultar Tipo de Email</value>
+  </data>
+  <data name="titleListaDeTiposEmail" xml:space="preserve">
+    <value>Lista de Tipos de Email</value>
+  </data>
+  <data name="titleListaEmailAsociado" xml:space="preserve">
+    <value>Lista de Emails del Asociado</value>
+  </data>
 </root>

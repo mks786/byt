@@ -92,63 +92,42 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                //ComandoBase<bool> comandoInsertarOModificarContadorAsignacion = null;
 
-                
-                //Auditoria auditoria = new Auditoria();
-                //ComandoBase<ContadorAuditoria> comandoContadorAuditoriaPoximoValor = FabricaComandosContadorAuditoria.ObtenerComandoConsultarPorId("SEG_AUDITORIA");
+                Auditoria auditoria = new Auditoria();
+                ComandoBase<ContadorAuditoria> comandoContadorAuditoriaPoximoValor = FabricaComandosContadorAuditoria.ObtenerComandoConsultarPorId("SEG_AUDITORIA");
 
-                //comandoContadorAuditoriaPoximoValor.Ejecutar();
-                //ContadorAuditoria contadorAuditoria = comandoContadorAuditoriaPoximoValor.Receptor.ObjetoAlmacenado;
+                comandoContadorAuditoriaPoximoValor.Ejecutar();
+                ContadorAuditoria contadorAuditoria = comandoContadorAuditoriaPoximoValor.Receptor.ObjetoAlmacenado;
 
 
-                //auditoria.Id = contadorAuditoria.ProximoValor++;
-                //auditoria.Usuario = ObtenerUsuarioPorHash(hash).Id;
-                //auditoria.Fecha = System.DateTime.Now;
-                //auditoria.Operacion = EmailAsociado.Operacion;
-                //auditoria.Tabla = "ENTRADA";
-                //auditoria.Fk = EmailAsociado.Id.ToString();
+                auditoria.Id = contadorAuditoria.ProximoValor++;
+                auditoria.Usuario = ObtenerUsuarioPorHash(hash).Id;
+                auditoria.Fecha = System.DateTime.Now;
+                auditoria.Operacion = EmailAsociado.Operacion;
+                auditoria.Tabla = "FAC_ASOCIADO_EMAILS";
+                auditoria.Fk = EmailAsociado.Id;
 
-                //ComandoBase<IList<Asignacion>> comandoConsultarAsignaciones = FabricaComandosAsignacion.ObtenerComandoConsultarAsignacionesPorEmailAsociado(EmailAsociado);
-                //comandoConsultarAsignaciones.Ejecutar();
-                //IList<Asignacion> listAsignaciones = comandoConsultarAsignaciones.Receptor.ObjetoAlmacenado;
+                ComandoBase<bool> comando = FabricaComandosEmailAsociado.ObtenerComandoInsertarOModificar(EmailAsociado);
+                ComandoBase<bool> comandoAuditoria = FabricaComandosAuditoria.ObtenerComandoInsertarOModificar(auditoria);
+                ComandoBase<bool> comandoAuditoriaContador = FabricaComandosContadorAuditoria.ObtenerComandoInsertarOModificar(contadorAuditoria);
 
-                //if ((EmailAsociado.Asignaciones != null) && (listAsignaciones.Count != EmailAsociado.Asignaciones.Count))
-                //{
-                //    ComandoBase<bool> comandoEliminar = FabricaComandosAsignacion.ObtenerComandoEliminarAsignacionesPorEmailAsociado(EmailAsociado);
-                //    comandoEliminar.Ejecutar();
-                //}
+                EmailAsociado.Id = int.Parse(EmailAsociado.Asociado.Id.ToString()+EmailAsociado.TipoEmailAsociado.Id);
 
-                //ComandoBase<bool> comando = FabricaComandosEmailAsociado.ObtenerComandoInsertarOModificar(EmailAsociado);
-                //ComandoBase<bool> comandoAuditoria = FabricaComandosAuditoria.ObtenerComandoInsertarOModificar(auditoria);
-                //ComandoBase<bool> comandoAuditoriaContador = FabricaComandosContadorAuditoria.ObtenerComandoInsertarOModificar(contadorAuditoria);
+                comando.Ejecutar();
+                exitoso = comando.Receptor.ObjetoAlmacenado;
 
-                //comando.Ejecutar();
-                //exitoso = comando.Receptor.ObjetoAlmacenado;
-
-                //if (exitoso)
-                //{
-                //    comandoAuditoria.Ejecutar();
-                //    comandoAuditoriaContador.Ejecutar();
-
-                //    if (comandoInsertarOModificarContadorAsignacion != null)
-                //    {
-                //        comandoInsertarOModificarContadorAsignacion.Ejecutar();
-                //        foreach (Asignacion asignacion in EmailAsociado.Asignaciones)
-                //        {
-                //            ComandoBase<bool> comandoAsignacion = FabricaComandosAsignacion.ObtenerComandoInsertarOModificar(asignacion);
-                //            asignacion.Iniciales = null != asignacion.Responsable ? asignacion.Responsable.Iniciales : asignacion.Iniciales;
-                //            comandoAsignacion.Ejecutar();
-                //        }
-                //    }
-                //}
-
-
+                if (exitoso)
+                {
+                    comandoAuditoria.Ejecutar();
+                    comandoAuditoriaContador.Ejecutar();
+                }
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
                     logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
             }
+
+
             catch (ApplicationException ex)
             {
                 logger.Error(ex.Message);
@@ -185,8 +164,8 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 auditoria.Usuario = ObtenerUsuarioPorHash(hash).Id;
                 auditoria.Fecha = System.DateTime.Now;
                 auditoria.Operacion = EmailAsociado.Operacion;
-                auditoria.Tabla = "ENTRADA";
-                auditoria.Fk = int.Parse(EmailAsociado.Id);
+                auditoria.Tabla = "FAC_ASOCIADO_EMAILS";
+                auditoria.Fk = EmailAsociado.Id;
 
                 ComandoBase<bool> comandoEmailAsociado = FabricaComandosEmailAsociado.ObtenerComandoEliminarEmailAsociado(EmailAsociado);
                 ComandoBase<bool> comandoAuditoria = FabricaComandosAuditoria.ObtenerComandoInsertarOModificar(auditoria);
@@ -197,7 +176,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
 
 
-                if (exitoso )
+                if (exitoso)
                 {
                     comandoAuditoria.Ejecutar();
                     comandoAuditoriaContador.Ejecutar();

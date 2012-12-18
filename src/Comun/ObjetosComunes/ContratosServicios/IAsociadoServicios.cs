@@ -47,5 +47,15 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// <param name="asociado">Asociado con los parametros a filtrar</param>
         /// <returns>Lista de ContactosDelAsociadoVista del asociado</returns>
         IList<ContactosDelAsociadoVista> ConsultarContactosDelAsociado(Asociado asociado, bool todos);
+
+
+
+
+        /// <summary>
+        /// Servicio que se encarga de consultar los emails de un Asociado
+        /// </summary>
+        /// <param name="asociado"></param>
+        /// <returns></returns>
+        IList<EmailAsociado> ConsultarEmailsDelAsociado(Asociado asociado);
     }
 }

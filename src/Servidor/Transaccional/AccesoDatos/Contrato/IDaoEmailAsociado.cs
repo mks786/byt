@@ -4,7 +4,7 @@ using NHibernate;
 
 namespace Trascend.Bolet.AccesoDatos.Contrato
 {
-    public interface IDaoEmailAsociado : IDaoBase<EmailAsociado, string>
+    public interface IDaoEmailAsociado : IDaoBase<EmailAsociado, int>
     {
 
 

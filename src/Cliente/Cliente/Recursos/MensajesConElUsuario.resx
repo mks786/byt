@@ -940,4 +940,22 @@
   <data name="ContactosBloqueados" xml:space="preserve">
     <value>Disculpe, los contactos se encuentran bloqueados ya que estos pertenece al Asociado seleccionado</value>
   </data>
+  <data name="ConfirmacionEliminarTipoEmail" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar el Tipo Email?</value>
+  </data>
+  <data name="TipoEmailEliminado" xml:space="preserve">
+    <value>Tipo de email eliminado con éxito</value>
+  </data>
+  <data name="TipoEmailInsertado" xml:space="preserve">
+    <value>Tipo de email insertado con éxito</value>
+  </data>
+  <data name="TipoEmailModificado" xml:space="preserve">
+    <value>Tipo de email modificado con éxito</value>
+  </data>
+  <data name="IdRepetido" xml:space="preserve">
+    <value>Disculpe el Id que ingresó ya existe</value>
+  </data>
+  <data name="ErrorTipoDeEmailRepetido" xml:space="preserve">
+    <value>Disculpe no puede crear dos tipos de mails iguales para el Asociado</value>
+  </data>
 </root>

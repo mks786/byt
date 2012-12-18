@@ -37,5 +37,12 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
         /// <returns>lista de recordatorios filtrados</returns>
         IList<ContactosDelAsociadoVista> ObtenerContactosDelAsociado(Asociado asociado, bool todos);
 
+        /// <summary>
+        /// Método que obtiene los emails de un asociado
+        /// </summary>
+        /// <param name="asociado"></param>
+        /// <returns></returns>
+        IList<EmailAsociado> ObtenerEmailsDelAsociado(Asociado asociado);
+
     }
 }

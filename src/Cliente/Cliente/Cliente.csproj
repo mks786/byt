@@ -109,6 +109,7 @@
     <Compile Include="Contratos\Agentes\IConsultarAgentes.cs" />
     <Compile Include="Contratos\Anualidades\IConsultarAnualidades.cs" />
     <Compile Include="Contratos\Anualidades\IGestionarAnualidades.cs" />
+    <Compile Include="Contratos\Asociados\IListaEmails.cs" />
     <Compile Include="Contratos\Asociados\IListaDatosTransferencia.cs" />
     <Compile Include="Contratos\Asociados\IListaContactos.cs" />
     <Compile Include="Contratos\Asociados\IListaJustificaciones.cs" />
@@ -129,6 +130,8 @@
     <Compile Include="Contratos\CartasOuts\IConsultarCartasOuts.cs" />
     <Compile Include="Contratos\AbandonosPatente\IConsultarAbandonosPatente.cs" />
     <Compile Include="Contratos\AbandonosPatente\IGestionarAbandonoPatente.cs" />
+    <Compile Include="Contratos\EmailsAsociado\IConsultarEmailAsociado.cs" />
+    <Compile Include="Contratos\EmailsAsociado\IAgregarEmailAsociado.cs" />
     <Compile Include="Contratos\TiposEmailAsociado\IGestionarTipoEmailAsociado.cs" />
     <Compile Include="Contratos\TiposEmailAsociado\IConsultarTiposEmailAsociado.cs" />
     <Compile Include="Contratos\Corresponsales\IAgregarCorresponsal.cs" />
@@ -333,6 +336,7 @@
     </Compile>
     <Compile Include="Presentadores\Anualidades\PresentadorConsultarAnualidades.cs" />
     <Compile Include="Presentadores\Anualidades\PresentadorGestionarAnualidades.cs" />
+    <Compile Include="Presentadores\Asociados\PresentadorListaEmails.cs" />
     <Compile Include="Presentadores\Asociados\PresentadorListaDatosTransferencia.cs" />
     <Compile Include="Presentadores\Asociados\PresentadorListaContactos.cs" />
     <Compile Include="Presentadores\Asociados\PresentadorListaJustificaciones.cs" />
@@ -350,6 +354,8 @@
     <Compile Include="Presentadores\CartasOuts\PresentadorConsultarCartasOuts.cs" />
     <Compile Include="Presentadores\AbandonosPatente\PresentadorConsultarAbandonosPatente.cs" />
     <Compile Include="Presentadores\AbandonosPatente\PresentadorGestionarAbandonoPatente.cs" />
+    <Compile Include="Presentadores\EmailsAsociado\PresentadorConsultarEmailAsociado.cs" />
+    <Compile Include="Presentadores\EmailsAsociado\PresentadorAgregarEmailAsociado.cs" />
     <Compile Include="Presentadores\TiposEmailAsociado\PresentadorGestionarTipoEmailAsociado.cs" />
     <Compile Include="Presentadores\TiposEmailAsociado\PresentadorConsultarTiposEmailAsociado.cs" />
     <Compile Include="Presentadores\Corresponsales\PresentadorAgregarCorresponsal.cs" />
@@ -759,6 +765,9 @@
     <Compile Include="Ventanas\Asociados\ConsultarAsociados.xaml.cs">
       <DependentUpon>ConsultarAsociados.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\Asociados\ListaEmails.xaml.cs">
+      <DependentUpon>ListaEmails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Asociados\ListaDatosTransferencias.xaml.cs">
       <DependentUpon>ListaDatosTransferencias.xaml</DependentUpon>
     </Compile>
@@ -806,6 +815,12 @@
     </Compile>
     <Compile Include="Ventanas\AbandonosPatente\GestionarAbandonoPatente.xaml.cs">
       <DependentUpon>GestionarAbandonoPatente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EmailsAsociado\AgregarEmailAsociado.xaml.cs">
+      <DependentUpon>AgregarEmailAsociado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EmailsAsociado\ConsultarEmailAsociado.xaml.cs">
+      <DependentUpon>ConsultarEmailAsociado.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\TiposEmailAsociado\ConsultarTiposEmailAsociado.xaml.cs">
       <DependentUpon>ConsultarTiposEmailAsociado.xaml</DependentUpon>
@@ -1418,6 +1433,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Ventanas\Asociados\ListaEmails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Ventanas\Asociados\ListaDatosTransferencias.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1495,6 +1514,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\AbandonosPatente\GestionarAbandonoPatente.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\EmailsAsociado\AgregarEmailAsociado.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\EmailsAsociado\ConsultarEmailAsociado.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

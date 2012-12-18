@@ -9,12 +9,12 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         #region Atributos
 
-        private string _id;
+        private int _id;
         private Asociado _asociado;
         private TipoEmailAsociado _tipoEmailAsociado;
         private string _email;
         private string _operacion;
-                
+
         #endregion
 
 
@@ -29,7 +29,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// Constructor que inicializa el Id del Anexo
         /// </summary>
         /// <param name="id">Id del Anexo</param>
-        public EmailAsociado(string id)
+        public EmailAsociado(int id)
         {
             this._id = id;
         }
@@ -42,10 +42,21 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el id del Anexo
         /// </summary>
-        public virtual string Id
+        public virtual int Id
         {
-            get { return this._id; }
-            set { this._id = value; }
+            get
+            {
+                //if (null != this._tipoEmailAsociado)
+                //    return this._asociado.Id.ToString() + "-" + this._tipoEmailAsociado.Id.ToString();
+                //else
+                //    return string.Empty;
+
+                return this._id;
+            }
+            set { 
+                //this._id = this._asociado.Id.ToString() + "-" + this._tipoEmailAsociado.Id.ToString(); 
+                this._id = value;
+            }
         }
 
         /// <summary>
@@ -81,6 +92,46 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _operacion = value; }
         }
 
+        #endregion
+
+        #region Overrides
+
+
+        /// <summary>
+        /// Sobreescritura del Método Equals debido a que la clase tiene id compuesto
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+            var t = obj as Contacto;
+            if (t == null)
+                return false;
+            if ((Id.Equals(t.Id)) && (Asociado.Id == (t.Asociado.Id)))
+                return true;
+            return false;
+
+        }
+
+        /// <summary>
+        /// Sobreescritura del Método GetHashCode debido a que la clase tiene id compuesto
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        /// <summary>
+        /// Sobreescritura del Método ToString debido a que la clase tiene id compuesto
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return base.ToString();
+        }
         #endregion
     }
 }

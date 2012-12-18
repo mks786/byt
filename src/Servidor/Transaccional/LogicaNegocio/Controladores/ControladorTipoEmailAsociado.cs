@@ -92,9 +92,33 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                Auditoria auditoria = new Auditoria();
+                ComandoBase<ContadorAuditoria> comandoContadorAuditoriaPoximoValor = FabricaComandosContadorAuditoria.ObtenerComandoConsultarPorId("SEG_AUDITORIA");
+
+                comandoContadorAuditoriaPoximoValor.Ejecutar();
+                ContadorAuditoria contadorAuditoria = comandoContadorAuditoriaPoximoValor.Receptor.ObjetoAlmacenado;
+
+
+                auditoria.Id = contadorAuditoria.ProximoValor++;
+                auditoria.Usuario = ObtenerUsuarioPorHash(hash).Id;
+                auditoria.Fecha = System.DateTime.Now;
+                auditoria.Operacion = TipoEmailAsociado.Operacion;
+                auditoria.Tabla = "FAC_ASO_TIPO_COR";
+                auditoria.Fk = int.Parse(TipoEmailAsociado.Id);
+
+                ComandoBase<bool> comandoAuditoria = FabricaComandosAuditoria.ObtenerComandoInsertarOModificar(auditoria);
+                ComandoBase<bool> comandoAuditoriaContador = FabricaComandosContadorAuditoria.ObtenerComandoInsertarOModificar(contadorAuditoria);
                 ComandoBase<bool> comandoInsertar = FabricaComandosTipoEmailAsociado.ObtenerComandoInsertarOModificar(TipoEmailAsociado);
+
                 comandoInsertar.Ejecutar();
+
                 exitoso = comandoInsertar.Receptor.ObjetoAlmacenado;
+
+                if (exitoso) {
+                    comandoAuditoria.Ejecutar();
+                    comandoAuditoriaContador.Ejecutar();
+                }
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -126,37 +150,32 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                //Auditoria auditoria = new Auditoria();
-                //ComandoBase<ContadorAuditoria> comandoContadorAuditoriaPoximoValor = FabricaComandosContadorAuditoria.ObtenerComandoConsultarPorId("SEG_AUDITORIA");
+                Auditoria auditoria = new Auditoria();
+                ComandoBase<ContadorAuditoria> comandoContadorAuditoriaPoximoValor = FabricaComandosContadorAuditoria.ObtenerComandoConsultarPorId("SEG_AUDITORIA");
 
-                //comandoContadorAuditoriaPoximoValor.Ejecutar();
-                //ContadorAuditoria contadorAuditoria = comandoContadorAuditoriaPoximoValor.Receptor.ObjetoAlmacenado;
+                comandoContadorAuditoriaPoximoValor.Ejecutar();
+                ContadorAuditoria contadorAuditoria = comandoContadorAuditoriaPoximoValor.Receptor.ObjetoAlmacenado;
 
 
-                //auditoria.Id = contadorAuditoria.ProximoValor++;
-                //auditoria.Usuario = ObtenerUsuarioPorHash(hash).Id;
-                //auditoria.Fecha = System.DateTime.Now;
-                //auditoria.Operacion = TipoEmailAsociado.Operacion;
-                //auditoria.Tabla = "ENTRADA";
-                //auditoria.Fk = TipoEmailAsociado.Id;
+                auditoria.Id = contadorAuditoria.ProximoValor++;
+                auditoria.Usuario = ObtenerUsuarioPorHash(hash).Id;
+                auditoria.Fecha = System.DateTime.Now;
+                auditoria.Operacion = TipoEmailAsociado.Operacion;
+                auditoria.Tabla = "FAC_ASO_TIPO_COR";
+                auditoria.Fk = int.Parse(TipoEmailAsociado.Id);
 
-                //ComandoBase<bool> comandoTipoEmailAsociado = FabricaComandosTipoEmailAsociado.ObtenerComandoEliminarTipoEmailAsociado(TipoEmailAsociado);
-                //ComandoBase<bool> comandoAsignacion = FabricaComandosAsignacion.ObtenerComandoEliminarAsignacionesPorTipoEmailAsociado(TipoEmailAsociado);
-                //ComandoBase<bool> comandoAuditoria = FabricaComandosAuditoria.ObtenerComandoInsertarOModificar(auditoria);
-                //ComandoBase<bool> comandoAuditoriaContador = FabricaComandosContadorAuditoria.ObtenerComandoInsertarOModificar(contadorAuditoria);
+                ComandoBase<bool> comandoTipoEmailAsociado = FabricaComandosTipoEmailAsociado.ObtenerComandoEliminarTipoEmailAsociado(TipoEmailAsociado);
+                ComandoBase<bool> comandoAuditoria = FabricaComandosAuditoria.ObtenerComandoInsertarOModificar(auditoria);
+                ComandoBase<bool> comandoAuditoriaContador = FabricaComandosContadorAuditoria.ObtenerComandoInsertarOModificar(contadorAuditoria);
 
-                //comandoTipoEmailAsociado.Ejecutar();
-                //exitoso = comandoTipoEmailAsociado.Receptor.ObjetoAlmacenado;
+                comandoTipoEmailAsociado.Ejecutar();
+                exitoso = comandoTipoEmailAsociado.Receptor.ObjetoAlmacenado;
 
-                //comandoAsignacion.Ejecutar();
-
-                //bool exitosoEliminarAsignacion = comandoAsignacion.Receptor.ObjetoAlmacenado;
-
-                //if (exitoso && exitosoEliminarAsignacion)
-                //{
-                //    comandoAuditoria.Ejecutar();
-                //    comandoAuditoriaContador.Ejecutar();
-                //}
+                if (exitoso)
+                {
+                    comandoAuditoria.Ejecutar();
+                    comandoAuditoriaContador.Ejecutar();
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

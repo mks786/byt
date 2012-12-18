@@ -4,20 +4,15 @@
                    namespace="Trascend.Bolet.ObjetosComunes.Entidades">
 
   <class name="EmailAsociado" table="FAC_ASOCIADO_EMAILS">
-    
-    <id name="Id" column="CODIGO" type="string"/>
+
+
+    <composite-id>
+      <key-property name="Id" column="CODIGO"/>
+      <key-many-to-one name="TipoEmailAsociado" column="CEMAIL" class="TipoEmailAsociado"/>
+      <key-many-to-one name="Asociado" column="CASOCIADO" class="Asociado"/>
+    </composite-id>
     
     <property name="Email" column="XEMAIL" type="string"/>
-
-
-    <many-to-one name="Asociado" class="Asociado">
-      <column name="CASOCIADO"/>
-    </many-to-one>
-    
-    <many-to-one name="TipoEmailAsociado" class="TipoEmailAsociado">
-      <column name="CEMAIL"/>
-    </many-to-one>
-    
   </class>
 </hibernate-mapping>
 

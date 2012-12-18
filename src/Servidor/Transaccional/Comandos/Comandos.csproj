@@ -66,6 +66,7 @@
     <Compile Include="Comandos\ComandosAsociado\ComandoConsultarAsociadosFiltro.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoConsultarContactosDelAsociado.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoVerificarCartasDeAsociado.cs" />
+    <Compile Include="Comandos\ComandosAsociado\ComandoConsultarEmailsDelAsociado.cs" />
     <Compile Include="Comandos\ComandosAuditoria\ComandoAuditoriaPorFkyTabla.cs" />
     <Compile Include="Comandos\ComandosBoletin\ComandoConsultarResolucionesDeBoletin.cs" />
     <Compile Include="Comandos\ComandosBusqueda\ComandoConsultarBusquedaPorID.cs" />
