@@ -445,6 +445,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             this._presentador.VerEmailsAsociado();
         }
 
+        private void _lstContactos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this._presentador.VerContacto();
+        }
+
     }
 }
 

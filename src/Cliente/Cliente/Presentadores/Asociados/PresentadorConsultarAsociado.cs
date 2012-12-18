@@ -19,6 +19,7 @@ using Trascend.Bolet.Cliente.Ayuda;
 using System.Text.RegularExpressions;
 using Trascend.Bolet.ControlesByT.Ventanas;
 using Trascend.Bolet.Cliente.Ventanas.EmailsAsociado;
+using Trascend.Bolet.Cliente.Ventanas.Contactos;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 {
@@ -599,6 +600,53 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
                 ((Asociado)this._ventana.Asociado).Emails = this._asociadoServicios.ConsultarEmailsDelAsociado((Asociado)this._ventana.Asociado);
                 Navegar(new ListaEmails(this._ventana.Asociado));
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+        public void VerContacto()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (this._ventana.ContactoSeleccionado != null)
+                {
+                    Asociado asociado = (Asociado)this._ventana.Asociado;
+
+                    Contacto contactoAConsultar = new Contacto(((ContactosDelAsociadoVista)this._ventana.ContactoSeleccionado).Contacto);
+                    contactoAConsultar.Asociado = asociado;
+                    Contacto contacto = this._contactoServicios.ConsultarPorId(contactoAConsultar);
+                    contacto.Asociado = asociado;
+                    this.Navegar(new ConsultarContacto(contacto));
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

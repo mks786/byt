@@ -450,7 +450,7 @@
                         <!--Vista de contactos del asociado-->
 
                         <ListView IsEnabled="True" Name="_lstContactos" ItemsSource="{Binding}" MaxHeight="150" Grid.Row="9" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="4"
-                      SelectionMode="Single"
+                      SelectionMode="Single" MouseDoubleClick="_lstContactos_MouseDoubleClick"
                       Style="{DynamicResource EstiloListView}">
                             <ListView.View>
                                 <GridView>
