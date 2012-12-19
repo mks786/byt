@@ -116,20 +116,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.EmailsAsociado
         #endregion
 
 
-        public ConsultarEmailAsociado(object email, object asociado)
+        public ConsultarEmailAsociado(object email, object asociado, object ventanaPadre)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorConsultarEmailAsociado(this, email, asociado);
+            this._presentador = new PresentadorConsultarEmailAsociado(this, email, asociado, ventanaPadre);
         }
 
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            if (true)
                 this._presentador.Regresar();
-            else
-                this._presentador.Cancelar();
         }
 
 
@@ -195,10 +192,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.EmailsAsociado
             }
         }
 
+
         private void _btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Eliminar();
+            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarEmail,
+                   "Eliminar Email", MessageBoxButton.YesNo, MessageBoxImage.Question))
+            {
+                this._presentador.Eliminar();
+            }
         }
+
 
         private void _btnAuditoria_Click(object sender, RoutedEventArgs e)
         {

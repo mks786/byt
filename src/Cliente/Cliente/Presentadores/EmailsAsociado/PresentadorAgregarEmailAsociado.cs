@@ -35,14 +35,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.EmailsAsociado
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorAgregarEmailAsociado(IAgregarEmailAsociado ventana, object asociado)
+        public PresentadorAgregarEmailAsociado(IAgregarEmailAsociado ventana, object asociado, object ventanaPadre)
         {
             try
             {
                 this._ventana = ventana;
-                EmailAsociado datosTransferencia = new EmailAsociado();
-                datosTransferencia.Asociado = (Asociado)asociado;
-                this._ventana.EmailAsociado = datosTransferencia;
+                EmailAsociado email = new EmailAsociado();
+                email.Asociado = (Asociado)asociado;
+                this._ventana.EmailAsociado = email;
+                this._ventanaPadre = ventanaPadre;
+
                 this._asociado = (Asociado)asociado;
                 this._emailAsociadoServicios = (IEmailAsociadoServicios)Activator.GetObject(typeof(IEmailAsociadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["EmailAsociadoServicios"]);
@@ -143,8 +145,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EmailsAsociado
                 {
                     EmailAsociado email = (EmailAsociado)this._ventana.EmailAsociado;
                     email.TipoEmailAsociado = (TipoEmailAsociado)this._ventana.TipoEmail;
-                    email.Id = int.Parse(email.Asociado.Id.ToString() + email.TipoEmailAsociado.Id);
-                    email.Operacion = "INSERT";
+                    email.Id = 0;
+                    email.Operacion = "CREATE";
                     if (!this.VerificarExistenciaEmailAsociado(email.TipoEmailAsociado.Id, _asociado))
                     {
                         bool exitoso = this._emailAsociadoServicios.InsertarOModificar(email, UsuarioLogeado.Hash);
@@ -152,6 +154,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EmailsAsociado
                         {
                             ((EmailAsociado)this._ventana.EmailAsociado).Asociado.Emails.Add(email);
                             this.Navegar(new ListaEmails(((EmailAsociado)this._ventana.EmailAsociado).Asociado));
+                            //((ListaEmails)this._ventanaPadre).RefrescarPagina();
+                            //this.Navegar((ListaEmails)this._ventanaPadre);
                         }
                     }
                     else
@@ -224,8 +228,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.EmailsAsociado
         }
 
 
-
-
         public bool CambiarTipoEmail()
         {
             bool retorno = false;
@@ -241,6 +243,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.EmailsAsociado
             }
 
             return retorno;
+        }
+
+
+        public void Regresar()
+        {
+            Navegar(new ListaEmails(this._asociado));
         }
     }
 }

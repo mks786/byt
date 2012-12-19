@@ -28,13 +28,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
         /// <param name="contacto">Contacto a mostrar</param>
-        public PresentadorConsultarContacto(IConsultarContacto ventana, object contacto)
+        public PresentadorConsultarContacto(IConsultarContacto ventana, object contacto, object ventanaPadre)
         {
             try
             {
                 this._ventana = ventana;
                 this._ventana.Contacto = contacto;
-
+                this._ventanaPadre = ventanaPadre;
                 this._ventana.setDepartamento = this.BuscarDepartamentoContacto(((Contacto)this._ventana.Contacto).Departamento);
                 this._ventana.setFuncion = this.BuscarFuncionContacto(((Contacto)this._ventana.Contacto).Funcion);
                 this._ventana.setCorrespondencia = ((Contacto)this._ventana.Contacto).Carta == null ? "" : ((Contacto)this._ventana.Contacto).Carta.Id.ToString();
@@ -120,6 +120,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                     {
                         Carta carta = new Carta();
                         carta.Id = int.Parse(this._ventana.getCorrespondencia);
+
                         if (this._cartaServicios.VerificarExistencia(carta))
                         {
                             contacto.Carta = carta;
@@ -136,7 +137,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                         exitoso = this._contactoServicios.InsertarOModificar(contacto, UsuarioLogeado.Hash);
                     }
                     if (exitoso)
-                        this.Navegar(new ListaContactos(((Contacto)this._ventana.Contacto).Asociado, null));
+                        if (this._ventanaPadre == null)
+                            this.Navegar(new ListaContactos(((Contacto)this._ventana.Contacto).Asociado, null));
+                        else
+                            RegresarVentanaPadre();
                 }
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

@@ -628,6 +628,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             }
         }
 
+
         public void VerContacto()
         {
             try
@@ -645,7 +646,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     contactoAConsultar.Asociado = asociado;
                     Contacto contacto = this._contactoServicios.ConsultarPorId(contactoAConsultar);
                     contacto.Asociado = asociado;
-                    this.Navegar(new ConsultarContacto(contacto));
+                    this.Navegar(new ConsultarContacto(contacto, this._ventana));
                 }
 
                 #region trace

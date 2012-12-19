@@ -102,20 +102,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.EmailsAsociado
         #endregion
 
 
-        public AgregarEmailAsociado(object asociado)
+        public AgregarEmailAsociado(object asociado, object ventanaPadre)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorAgregarEmailAsociado(this, asociado);
+            this._presentador = new PresentadorAgregarEmailAsociado(this, asociado, ventanaPadre);
         }
 
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            if (true)
                 this._presentador.Regresar();
-            else
-                this._presentador.Cancelar();
         }
 
 

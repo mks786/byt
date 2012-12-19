@@ -958,4 +958,7 @@
   <data name="ErrorTipoDeEmailRepetido" xml:space="preserve">
     <value>Disculpe no puede crear dos tipos de mails iguales para el Asociado</value>
   </data>
+  <data name="ConfirmacionEliminarEmail" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar el correo del Asociado?</value>
+  </data>
 </root>

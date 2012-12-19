@@ -105,5 +105,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         {
             this._presentador.IrConsultarEmailAsociado();
         }
+
+        public void RefrescarPagina() {
+            this._presentador.CargarPagina();
+        }
     }
 }

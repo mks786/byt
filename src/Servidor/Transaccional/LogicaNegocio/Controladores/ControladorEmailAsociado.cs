@@ -92,6 +92,16 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                ComandoBase<bool> comandoContador = null;
+
+                if (EmailAsociado.Operacion.Equals("CREATE"))
+                {
+                    ComandoBase<Contador> comandoProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("FAC_ASOCIADO_EMAILS");
+                    comandoProximoValor.Ejecutar();
+                    Contador contador = comandoProximoValor.Receptor.ObjetoAlmacenado;
+                    EmailAsociado.Id = contador.ProximoValor++;
+                    comandoContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contador);
+                }
 
                 Auditoria auditoria = new Auditoria();
                 ComandoBase<ContadorAuditoria> comandoContadorAuditoriaPoximoValor = FabricaComandosContadorAuditoria.ObtenerComandoConsultarPorId("SEG_AUDITORIA");
@@ -111,7 +121,8 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 ComandoBase<bool> comandoAuditoria = FabricaComandosAuditoria.ObtenerComandoInsertarOModificar(auditoria);
                 ComandoBase<bool> comandoAuditoriaContador = FabricaComandosContadorAuditoria.ObtenerComandoInsertarOModificar(contadorAuditoria);
 
-                EmailAsociado.Id = int.Parse(EmailAsociado.Asociado.Id.ToString()+EmailAsociado.TipoEmailAsociado.Id);
+
+
 
                 comando.Ejecutar();
                 exitoso = comando.Receptor.ObjetoAlmacenado;
@@ -120,6 +131,9 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 {
                     comandoAuditoria.Ejecutar();
                     comandoAuditoriaContador.Ejecutar();
+
+                    if (comandoContador != null)
+                        comandoContador.Ejecutar();
                 }
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

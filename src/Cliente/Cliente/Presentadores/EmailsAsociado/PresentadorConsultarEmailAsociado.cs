@@ -38,13 +38,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.EmailsAsociado
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorConsultarEmailAsociado(IConsultarEmailAsociado ventana, object email, object asociado)
+        public PresentadorConsultarEmailAsociado(IConsultarEmailAsociado ventana, object email, object asociado, object ventanaPadre)
         {
             try
             {
                 this._ventana = ventana;
                 this._ventana.EmailAsociado = email;
                 this._asociado = (Asociado)asociado;
+                this._ventanaPadre = ventanaPadre;
 
                 this._emailAsociadoServicios = (IEmailAsociadoServicios)Activator.GetObject(typeof(IEmailAsociadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["EmailAsociadoServicios"]);
@@ -87,8 +88,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.EmailsAsociado
                 //emails = FiltrarEmailsPorDepartamento(UsuarioLogeado.Departamento, emails);
                 this._ventana.TiposEmail = emails;
 
+
                 this._ventana.TipoEmail = BuscarTipoEmail(emails, ((EmailAsociado)this._ventana.EmailAsociado).TipoEmailAsociado);
                 _tipoEmailInicial = ((TipoEmailAsociado)this._ventana.TipoEmail).Id;
+
 
                 IList<Departamento> departamentos = this._departamentoServicios.ConsultarTodos();
                 Departamento primerDepartamento = new Departamento();
@@ -98,10 +101,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.EmailsAsociado
                 this._ventana.Funcion = ((EmailAsociado)this._ventana.EmailAsociado).TipoEmailAsociado.Funcion;
                 this._ventana.Descripcion = ((EmailAsociado)this._ventana.EmailAsociado).TipoEmailAsociado.Descripcion;
 
+
                 this._ventana.Departamento = this.BuscarDepartamento(departamentos, ((EmailAsociado)this._ventana.EmailAsociado).TipoEmailAsociado.Departamento);
+
 
                 if (UsuarioLogeado.Departamento.Id.Equals(((EmailAsociado)this._ventana.EmailAsociado).TipoEmailAsociado.Departamento.Id))
                     this._ventana.MostrarBotones();
+
 
                 Auditoria auditoria = new Auditoria();
                 auditoria.Fk = ((EmailAsociado)this._ventana.EmailAsociado).Id;
@@ -175,8 +181,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EmailsAsociado
                     bool exitoso = this._emailAsociadoServicios.InsertarOModificar(email, UsuarioLogeado.Hash);
                     if (exitoso)
                     {
-                        
-                        this.Navegar(new ListaEmails(((EmailAsociado)this._ventana.EmailAsociado).Asociado));
+                        //this.Navegar(new ListaEmails(((EmailAsociado)this._ventana.EmailAsociado).Asociado, this));
+                        ((ListaEmails)this._ventanaPadre).RefrescarPagina();
+                        this.Navegar((ListaEmails)this._ventanaPadre);
                     }
                 }
                 else
@@ -284,6 +291,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.EmailsAsociado
                 {
                     ((EmailAsociado)this._ventana.EmailAsociado).Asociado.Emails = Eliminar(email, ((EmailAsociado)this._ventana.EmailAsociado).Asociado.Emails);
                     this.Navegar(new ListaEmails(((EmailAsociado)this._ventana.EmailAsociado).Asociado));
+
+                    //this.Navegar(new ListaEmails(((EmailAsociado)this._ventana.EmailAsociado).Asociado));
+                    //((ListaEmails)this._ventanaPadre).RefrescarPagina();
+                    //this.Navegar((ListaEmails)this._ventanaPadre);
                 }
 
                 #region trace
@@ -322,7 +333,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EmailsAsociado
 
             foreach (EmailAsociado email in lista)
             {
-                if (email.Id == emailBuscado.Id) 
+                if (email.Id == emailBuscado.Id)
                 {
                     posiciones.Add(i);
                 }
@@ -336,7 +347,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.EmailsAsociado
 
             return lista;
         }
-
 
 
         /// <summary>
@@ -378,6 +388,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.EmailsAsociado
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+        }
+
+
+        public void Regresar()
+        {
+            Navegar(new ListaEmails(this._asociado));
         }
     }
 }

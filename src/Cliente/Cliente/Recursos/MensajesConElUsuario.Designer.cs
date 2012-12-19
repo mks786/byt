@@ -791,6 +791,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ¿Está seguro que desea eliminar el correo del Asociado?.
+        /// </summary>
+        internal static string ConfirmacionEliminarEmail {
+            get {
+                return ResourceManager.GetString("ConfirmacionEliminarEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ¿Seguro que desea eliminar la entrada alterna?.
         /// </summary>
         internal static string ConfirmacionEliminarEntradaAlterna {

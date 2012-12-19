@@ -77,7 +77,7 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblEmail}"/>
                 </Label>
                 <custom:ByTTextBox Name="_txtEmail" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center"  
-                         HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="200"
+                         HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="60"
                          ToolTip="{Binding ElementName=_txtEmail, Path=(Validation.Errors)[0].ErrorContent}">
                     <custom:ByTTextBox.Text>
                         <Binding Path="Email" UpdateSourceTrigger="PropertyChanged">
@@ -165,7 +165,7 @@
                 <TextBlock Name="_txbAceptar" Text="{x:Static recurso:Etiquetas.btnAceptar}"/>
             </Button>
             <Button Name="_btnCancelar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnCancelar_Click">
-                <TextBlock Name="_txbCancelar" Text="{x:Static recurso:Etiquetas.btnCancelar}"/>
+                <TextBlock Name="_txbCancelar" Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
             </Button>
         </WrapPanel>
     </Grid>

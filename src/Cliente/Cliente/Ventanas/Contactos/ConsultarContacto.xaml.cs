@@ -29,8 +29,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
 
         public bool HabilitarCampos
         {
-            set 
-            { 
+            set
+            {
                 this._txtNombre.IsEnabled = value;
                 this._txtTelefono.IsEnabled = value;
                 this._txtFax.IsEnabled = value;
@@ -51,14 +51,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
         public object Contacto
         {
             get { return this._gridDatos.DataContext; }
-            set{this._gridDatos.DataContext = value;}
+            set { this._gridDatos.DataContext = value; }
         }
 
         public string getDepartamento
         {
             get
             {
-                if (!string.Equals("",this._cbxDepartamento.Text)) 
+                if (!string.Equals("", this._cbxDepartamento.Text))
                 {
                     return ((string)this._cbxDepartamento.Text);
                 }
@@ -66,58 +66,58 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
             }
         }
 
-         public string setDepartamento
+        public string setDepartamento
         {
             set
             {
-                this._cbxDepartamento.Text = value ; 
+                this._cbxDepartamento.Text = value;
             }
         }
 
-         public string setFuncion
-         {
-             set
-             {
-                 this._cbxUso.Text = value;
-             }
-         }
+        public string setFuncion
+        {
+            set
+            {
+                this._cbxUso.Text = value;
+            }
+        }
 
-         public string getFuncion
-         {
-             get
-             {
-                 if (!string.Equals("", this._cbxUso.Text))
-                 {
-                     return ((string)this._cbxUso.Text);
-                 }
-                 return "";
-             }
-         }
+        public string getFuncion
+        {
+            get
+            {
+                if (!string.Equals("", this._cbxUso.Text))
+                {
+                    return ((string)this._cbxUso.Text);
+                }
+                return "";
+            }
+        }
 
-         public string getCorrespondencia
-         {
-             get { return this._txtCorrespondencia.Text; }
-         }
+        public string getCorrespondencia
+        {
+            get { return this._txtCorrespondencia.Text; }
+        }
 
-         public string setCorrespondencia
-         {
-             set { this._txtCorrespondencia.Text = value; }
-         }
+        public string setCorrespondencia
+        {
+            set { this._txtCorrespondencia.Text = value; }
+        }
 
-         public void mensaje(string mensaje)
-         {
-             MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-         }
+        public void mensaje(string mensaje)
+        {
+            MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
 
 
         #endregion
 
-        public ConsultarContacto(object contacto)
+        public ConsultarContacto(object contacto, object ventanaPadre)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorConsultarContacto(this, contacto);
-            
+            this._presentador = new PresentadorConsultarContacto(this, contacto, ventanaPadre);
+
         }
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)

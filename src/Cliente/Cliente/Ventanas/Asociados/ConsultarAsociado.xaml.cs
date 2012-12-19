@@ -174,9 +174,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
                 this._txtNitDatos.IsEnabled = value;
                 this._lstContactos.IsEnabled = value;
 
-                if(this._chkAlertaAdministracion.IsChecked.Value)
+                if (this._chkAlertaAdministracion.IsChecked.Value)
                     this._txtAlarmaAdministracion.IsEnabled = value;
-                
+
                 this._txtDiasCreditoAdministracion.IsEnabled = value;
                 this._txtDescuentoAdministracion.IsEnabled = value;
 
@@ -286,7 +286,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             set { this._lstContactos.DataContext = value; }
         }
 
-        public object ContactoSeleccionado 
+        public object ContactoSeleccionado
         {
             get { return this._lstContactos.SelectedItem; }
         }
@@ -382,7 +382,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
 
             if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "^\\$?(\\d{1,3},?(\\d{3},?)*\\d{3}(.\\d{0,3})?|\\d{1,3}(.\\d{2})?)$"))
                 e.Handled = true;
-            
+
         }
 
         private void _chkAlertaAdministracion_Click(object sender, RoutedEventArgs e)

@@ -9,7 +9,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="500"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
@@ -36,9 +36,9 @@
                       Style="{DynamicResource EstiloListView}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
-                        </GridViewColumn>
+                        </GridViewColumn>-->
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Email}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Email" Content="{x:Static recurso:Etiquetas.lsvEmail}"/>
                         </GridViewColumn>
