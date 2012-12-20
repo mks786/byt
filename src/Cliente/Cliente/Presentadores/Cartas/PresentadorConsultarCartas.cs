@@ -45,6 +45,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private IEnumerable<Carta> _cartasDeUnResponsableConAsociado;
         private IList<Asociado> _asociados;
         private IList<Contacto> _contactos;
+        private IList<Carta> _cartasReordenadas;
 
         /// <summary>
         /// Constructor Predeterminado
@@ -191,6 +192,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     _asociados.Add(carta.Asociado);
                     this._ventana.Asociado = carta.Asociado;
                     this._ventana.Resultados = this._cartaServicios.ObtenerCartasFiltro(carta);
+                    _cartasReordenadas = (IList<Carta>)this._ventana.Resultados;
                     this._ventana.TotalHits = ((IList<Carta>)this._ventana.Resultados).Count.ToString();
 
                 }
@@ -235,6 +237,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 if (_conListaDeCartas)
                 {
                     this._ventana.Resultados = this._cartasYaConsultadas;
+                    _cartasReordenadas = (IList<Carta>)this._ventana.Resultados;
                     this._ventana.TotalHits = _cartasYaConsultadas.Count.ToString();
                 }
                 this._ventana.FocoPredeterminado();
@@ -496,8 +499,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 }
                 else
                 {
-                    _posicion = ((List<Carta>)this._ventana.Resultados).IndexOf((Carta)this._ventana.CartaSeleccionado);
-                    this.Navegar(new ConsultarCarta(this._ventana.CartaSeleccionado, this._ventana.Resultados, _posicion, this._ventana));
+                    //_posicion = ((List<Carta>)this._ventana.Resultados).IndexOf((Carta)this._ventana.CartaSeleccionado);
+                    _posicion = (this._ventana.ListaResultados.Items.Cast<Carta>().ToList()).IndexOf((Carta)this._ventana.CartaSeleccionado);
+
+                    this.Navegar(new ConsultarCarta(this._ventana.CartaSeleccionado, this._ventana.ListaResultados.Items.Cast<Carta>().ToList(), _posicion, this._ventana, true));
                 }
             }
             #region trace
@@ -534,6 +539,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             AdornerLayer.GetAdornerLayer(this._ventana.CurSortCol).Add(this._ventana.CurAdorner);
             this._ventana.ListaResultados.Items.SortDescriptions.Add(
                 new SortDescription(field, newDir));
+            _cartasReordenadas = this._ventana.ListaResultados.Items.Cast<Carta>().ToList();
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -717,6 +723,37 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
             return retorno;
+        }
+
+
+        public void ElegirCarta(object cartaAElegir, object listaCartas)
+        {
+            try
+            {
+                this._ventana.Resultados = listaCartas;
+                this._ventana.TotalHits = ((IList<Carta>)listaCartas).Count.ToString();
+                this._ventana.CartaSeleccionado = cartaAElegir;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
     {
         string Id { get; set; }
 
-        object CartaSeleccionado { get; }
+        object CartaSeleccionado { get; set; }
 
         object Resultados { get; set; }
 

@@ -475,7 +475,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            Navegar(new ConsultarContactosPorAsociado(null, null));
+            Navegar(new ConsultarContactosPorAsociado(this._ventanaPadre, this._asociadoPrecargado));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
