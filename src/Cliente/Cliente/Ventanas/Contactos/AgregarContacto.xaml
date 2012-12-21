@@ -104,7 +104,16 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblEmail}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtEmail" Width="150" MaxLength="255"  Text="{Binding Path=Email}" />
+                    <custom:ByTTextBox Name="_txtEmail" Width="150" MaxLength="255" ToolTip="{Binding ElementName=_txtEmail, Path=(Validation.Errors)[0].ErrorContent}">
+                        <TextBox.Text>
+                            <Binding Path="Email" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <reglas:Obligatorio ValidatesOnTargetUpdated="True" />
+                                    <reglas:CorreoElectronico ValidatesOnTargetUpdated="False" />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </custom:ByTTextBox>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
@@ -166,6 +175,9 @@
                                 <Setter Property="IsEnabled" Value="False" />
                             </DataTrigger>
                             <DataTrigger Binding="{Binding ElementName=_txtNombre,Path=(Validation.HasError)}" Value="True">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=_txtEmail,Path=(Validation.HasError)}" Value="True">
                                 <Setter Property="IsEnabled" Value="False" />
                             </DataTrigger>
                         </Style.Triggers>

@@ -119,33 +119,40 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                 Contacto contacto = (Contacto)this._ventana.Contacto;
                 contacto.Departamento = this.transformarDepartamento(this._ventana.getDepartamento);
                 contacto.Funcion = this.transformarFuncion(this._ventana.getFuncion);
-
-                if (!string.IsNullOrEmpty(this._ventana.getCorrespondencia))
+                if (!string.IsNullOrEmpty(contacto.Email))
                 {
-                    Carta carta = new Carta();
-                    carta.Id = int.Parse(this._ventana.getCorrespondencia);
-
-                    if (this._cartaServicios.VerificarExistencia(carta))
+                    if (!string.IsNullOrEmpty(this._ventana.getCorrespondencia))
                     {
-                        contacto.Carta = carta;
-                        exitoso = this._contactoServicios.InsertarOModificar(contacto, UsuarioLogeado.Hash);
+                        Carta carta = new Carta();
+                        carta.Id = int.Parse(this._ventana.getCorrespondencia);
+
+                        if (this._cartaServicios.VerificarExistencia(carta))
+                        {
+                            contacto.Carta = carta;
+                            exitoso = this._contactoServicios.InsertarOModificar(contacto, UsuarioLogeado.Hash);
+                        }
+                        else
+                        {
+                            this._ventana.mensaje(Recursos.MensajesConElUsuario.ErrorCorrespondenciaNoEncontrada);
+                        }
                     }
                     else
                     {
-                        this._ventana.mensaje(Recursos.MensajesConElUsuario.ErrorCorrespondenciaNoEncontrada);
+                        contacto.Carta = null;
+                        exitoso = this._contactoServicios.InsertarOModificar(contacto, UsuarioLogeado.Hash);
+                    }
+
+                    if (exitoso)
+                    {
+                        this._asociado.Contactos.Insert(0, contacto);
+                        this.Navegar(new ListaContactos(this._asociado, this._ventanaPadre));
                     }
                 }
                 else
                 {
-                    contacto.Carta = null;
-                    exitoso = this._contactoServicios.InsertarOModificar(contacto, UsuarioLogeado.Hash);
+                    //this._ventana.mensaje(Recursos.MensajesConElUsuario.ErrorEmailObligatorio);
                 }
 
-                if (exitoso)
-                {
-                    this._asociado.Contactos.Insert(0, contacto);
-                    this.Navegar(new ListaContactos(this._asociado, this._ventanaPadre));
-                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
