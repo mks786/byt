@@ -1783,7 +1783,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             this._ventana.CorresponsalesEstanCargados = true;
 
-            Mouse.OverrideCursor = null;
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

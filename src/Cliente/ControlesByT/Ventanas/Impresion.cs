@@ -15,8 +15,9 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
     {
         //private bool _clickImprimir = false;
 
-        private StreamReader reader;
-        private Font fuente;
+        private StreamReader _reader;
+        private Font _fuente;
+        private string _ruta;
 
         //public bool ClickImprimir
         //{
@@ -24,7 +25,7 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
         //    set { _clickImprimir = value; }
         //}
 
-        public Impresion(string titulo, string folio)
+        public Impresion(string titulo, string folio, string ruta)
         {
             InitializeComponent();
 
@@ -35,6 +36,7 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
             this._folio.SelectionStart = this._folio.Text.Length;
             this._folio.SelectionLength = 0;
 
+            this._ruta = ruta;
             this._folio.AcceptsReturn = true;
 
         }
@@ -49,11 +51,13 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
             try
             {
                 //Genero el .txt utilizado para ejecutar el .bat
-                System.IO.File.WriteAllText(@"C:\print.txt", this._folio.Text);
+                System.IO.File.WriteAllText(_ruta, this._folio.Text);
+                //System.IO.File.WriteAllText(@"C:\Users\KRUSTY\Documents\print.txt", this._folio.Text);
 
 
-                reader = new StreamReader(@"C:\print.txt");
-                fuente = new Font("Verdana", 10);
+                _reader = new StreamReader(_ruta);
+                //reader = new StreamReader(@"C:\Users\KRUSTY\Documents\print.txt");
+                _fuente = new Font("Verdana", 10);
 
 
                 PrintDialog printDlg = new PrintDialog();
@@ -78,10 +82,19 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
             {
                 throw ex;
             }
+            catch (UnauthorizedAccessException ex)
+            {
+                throw ex;
+            }
             finally
             {
-                reader.Close();
-                System.IO.File.Delete(@"C:\print.txt");
+                if (null != _reader)
+                {
+                    _reader.Close();
+                    System.IO.File.Delete(@"C:\print.txt");
+                }
+
+
             }
 
         }
@@ -100,18 +113,20 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
             float posicionY = 0;
             int count = 0;
             //Read margins from PrintPageEventArgs  
-            float margenIzquierdo = ppeArgs.MarginBounds.Left;
-            float margenDerecho = ppeArgs.MarginBounds.Top;
+            //float margenIzquierdo = ppeArgs.MarginBounds.Left;
+            //float margenDerecho = ppeArgs.MarginBounds.Top;
+            float margenIzquierdo = 0;
+            float margenDerecho = 0;
             string linea = null;
             //Calculate the lines per page on the basis of the height of the page and the height of the font  
-            lineasPorPagina = ppeArgs.MarginBounds.Height / fuente.GetHeight(g);
+            lineasPorPagina = ppeArgs.MarginBounds.Height / _fuente.GetHeight(g);
             //Now read lines one by one, using StreamReader  
-            while (lineasPorPagina > count && ((linea = reader.ReadLine()) != null))
+            while (lineasPorPagina > count && ((linea = _reader.ReadLine()) != null))
             {
                 //Calculate the starting position  
-                posicionY = margenDerecho + (count * fuente.GetHeight(g));
+                posicionY = margenDerecho + (count * _fuente.GetHeight(g));
                 //Draw text  
-                g.DrawString(linea, fuente, Brushes.Black, margenIzquierdo, posicionY, new StringFormat());
+                g.DrawString(linea, _fuente, Brushes.Black, margenIzquierdo, posicionY, new StringFormat());
                 //Move to next line  
                 count++;
             }

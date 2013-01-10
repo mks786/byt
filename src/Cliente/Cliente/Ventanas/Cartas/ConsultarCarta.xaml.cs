@@ -373,11 +373,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         /// Constructor con Lista de resultados
         /// </summary>
         /// <param name="cartaSeleccionada"></param>
-        public ConsultarCarta(object cartaSeleccionada, object lista, int posicion, object ventanaPadre)
+        public ConsultarCarta(object cartaSeleccionada, object lista, int posicion, object ventanaPadre, bool volverRefresca)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorConsultarCarta(this, cartaSeleccionada, lista, posicion, ventanaPadre);
+            this._presentador = new PresentadorConsultarCarta(this, cartaSeleccionada, lista, posicion, ventanaPadre, volverRefresca);
             this._txtFocus.Focus();
         }
 

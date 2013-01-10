@@ -129,6 +129,8 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaAnexoTracking, carta.AnexoTracking.ToUpper());
                 }
 
+                filtro += " order by c.Id ASC";
+
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 cartas = query.List<Carta>();
 

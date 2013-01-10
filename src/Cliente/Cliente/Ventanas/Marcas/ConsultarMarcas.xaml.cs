@@ -4,6 +4,7 @@ using System.Windows.Input;
 using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.Marcas;
 using Trascend.Bolet.Cliente.Presentadores.Marcas;
+using Trascend.Bolet.ControlesByT;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 {

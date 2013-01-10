@@ -411,7 +411,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                 else
                 {
                     _posicion = ((List<Carta>)this._ventana.Resultados).IndexOf((Carta)this._ventana.CartaSeleccionado);
-                    this.Navegar(new ConsultarCarta(this._ventana.CartaSeleccionado, this._ventana.Resultados, _posicion, this._ventana));
+                    this.Navegar(new ConsultarCarta(this._ventana.CartaSeleccionado, this._ventana.Resultados, _posicion, this._ventana, false));
                 }
             }
             #region trace

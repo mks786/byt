@@ -52,6 +52,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         public object CartaSeleccionado
         {
             get { return this._lstResultados.SelectedItem; }
+            set { this._lstResultados.SelectedItem = value; }
         }
 
 
@@ -507,6 +508,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             this._btnConsultarAsociado.IsDefault = false;
         }
 
+        public void Refrescar(object cartaAElegir, object listaCartas) 
+        {
+            this._presentador.ElegirCarta(cartaAElegir, listaCartas);
+        }
 
     }
 }

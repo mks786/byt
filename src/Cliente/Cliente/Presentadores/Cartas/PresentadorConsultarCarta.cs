@@ -51,6 +51,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private bool _precargada = false;
         private bool _listaCartasCargada = false;
         private bool _otraCarta = false;
+        private bool _volverRefresca = false;
 
 
         /// <summary>
@@ -115,7 +116,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         /// Constructor Con Lista de Resultados
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorConsultarCarta(IConsultarCarta ventana, object carta, object cartasConsultadas, int posicion, object ventanaPadre)
+        public PresentadorConsultarCarta(IConsultarCarta ventana, object carta, object cartasConsultadas, int posicion, object ventanaPadre, bool volverRefresca)
         {
             try
             {
@@ -127,6 +128,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 this._ventana = ventana;
                 this._ventanaPadre = ventanaPadre;
                 this._ventana.Carta = carta;
+                this._volverRefresca = volverRefresca;
                 //this._precargada = ventanaAVolver.Equals(null) ? false : true;
                 //this._ventanaAVolver = ventanaAVolver;
                 this._listaCartasCargada = true;
@@ -835,10 +837,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                                                 ? ((Resumen)this._ventana.Resumen)
                                                 : null;
 
+
                         if (null != this._ventana.MedioTrackingConfirmacion)
                             carta.AnexoMedio = ((Medio)this._ventana.MedioTrackingConfirmacion).Id;
 
-                        carta.Acuse = ((ListaDatosValores)this._ventana.Acuse).Valor[0];
+                        if ((null != this._ventana.Acuse) && ((ListaDatosValores)this._ventana.Acuse).Id != "NGN")
+                            carta.Acuse = ((ListaDatosValores)this._ventana.Acuse).Valor[0];
                         carta.Medio = ((Medio)this._ventana.Medio).Id;
                         carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
                         bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
@@ -1597,6 +1601,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
         public void VolverAVentanaPadre()
         {
+            if (_volverRefresca)
+                ((ConsultarCartas)_ventanaPadre).Refrescar(this._ventana.Carta, this._cartasARecorrer);
+
             Navegar((Page)_ventanaPadre);
         }
 
