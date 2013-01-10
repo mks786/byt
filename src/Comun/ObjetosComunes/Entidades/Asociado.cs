@@ -47,6 +47,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<EmailAsociado> _emails;
         private IList<DatosTransferencia> _datosTransferencias;
 
+        //Facturacion
+        private string _valorquery;
+
+
         #endregion
 
         #region Constructores
@@ -548,6 +552,18 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _emails = value; }
         }
 
+
+        public virtual string ValorQuery
+        {
+            get
+            {
+                return this._valorquery;
+            }
+            set
+            {
+                this._valorquery = value;
+            }
+        }
         #endregion
 
     }
