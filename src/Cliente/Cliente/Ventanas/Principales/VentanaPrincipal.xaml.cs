@@ -656,6 +656,470 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         #endregion
 
+        #region Facturacion
+        private void _fac_menuItemTasaAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarTasa();
+        }
+
+        private void _fac_menuItemTasaConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarTasas();
+        }
+
+        private void _fac_menuItemAnualidadAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarFacAnualidad();
+        }
+
+        private void _fac_menuItemAnualidadConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarFacAnualidades();
+        }
+
+        private void _fac_menuItemDetalleEnvioAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarDetalleEnvio();
+        }
+
+        private void _fac_menuItemDetalleEnvioConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarDetalleEnvios();
+        }
+
+        private void _fac_menuItemDetallePagoAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarDetallePago();
+        }
+
+        private void _fac_menuItemDetallePagoConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarDetallePagos();
+        }
+
+
+        private void _fac_menuItemDocumentosMarcaAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarDocumentosMarca();
+        }
+
+        private void _fac_menuItemDocumentosMarcaConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarDocumentosMarcas();
+        }
+        private void _fac_menuItemDocumentosPatenteAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarDocumentosPatente();
+        }
+
+        private void _fac_menuItemDocumentosPatenteConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarDocumentosPatentes();
+        }
+        private void _fac_menuItemDocumentosTraduccionAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarDocumentosTraduccion();
+        }
+
+        private void _fac_menuItemDocumentosTraduccionConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarDocumentosTraducciones();
+        }
+        private void _fac_menuItemFacRecursoAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarFacRecurso();
+        }
+
+        private void _fac_menuItemFacRecursoConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarFacRecursos();
+        }
+        private void _fac_menuItemGuiaAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarGuia();
+        }
+
+        private void _fac_menuItemGuiaConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarGuias();
+        }
+        private void _fac_menuItemImpuestoAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarImpuesto();
+        }
+
+        private void _fac_menuItemImpuestoConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarImpuestos();
+        }
+        private void _fac_menuItemMaterialAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarMaterial();
+        }
+
+        private void _fac_menuItemMaterialConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarMateriales();
+        }
+        private void _fac_menuItemMotivoAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarMotivo();
+        }
+
+        private void _fac_menuItemMotivoConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarMotivos();
+        }
+        private void _fac_menuItemSociedadAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarSociedad();
+        }
+
+        private void _fac_menuItemSociedadConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarSociedades();
+        }
+        private void _fac_menuItemTipoClaseAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarTipoClase();
+        }
+
+        private void _fac_menuItemTipoClaseConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarTipoClases();
+        }
+        private void _fac_menuItemTipoMarcaAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarTipoMarca();
+        }
+
+        private void _fac_menuItemTipoMarcaConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarTipoMarcas();
+        }
+        private void _fac_menuItemTipoPatenteAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarTipoPatente();
+        }
+
+        private void _fac_menuItemTipoPatenteConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarTipoPatentes();
+        }
+
+        private void _fac_menuItemServicioAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarServicio();
+        }
+
+        private void _fac_menuItemServicioConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarServicios();
+        }
+
+        private void _fac_menuItemCorrespondenciaAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarCorrespondencia();
+        }
+
+        private void _fac_menuItemCorrespondenciaConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarCorrespondencias();
+        }
+
+        private void _fac_menuItemFacJustificacionAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarFacJustificacion();
+        }
+
+        private void _fac_menuItemFacJustificacionConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarFacJustificaciones();
+        }
+
+        private void _fac_menuItemEtiquetaAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarEtiqueta();
+        }
+
+        private void _fac_menuItemEtiquetaConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarEtiquetas();
+        }
+
+        private void _fac_menuItemDepartamentoServicioAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarDepartamentoServicio();
+        }
+
+        private void _fac_menuItemDepartamentoServicioConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarDepartamentoServicios();
+        }
+
+        private void _fac_menuItemDesgloseServicioAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarDesgloseServicio();
+        }
+
+        private void _fac_menuItemDesgloseServicioConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarDesgloseServicios();
+        }
+
+        private void _fac_menuItemTarifaServicioAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarTarifaServicio();
+        }
+
+        private void _fac_menuItemTarifaServicioConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarTarifaServicios();
+        }
+
+        private void _fac_menuItemConceptoGestionAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarConceptoGestion();
+        }
+
+        private void _fac_menuItemConceptoGestionConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarConceptoGestiones();
+        }
+
+        private void _fac_menuItemMediosGestionAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarMediosGestion();
+        }
+
+        private void _fac_menuItemMediosGestionConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarMediosGestiones();
+        }
+
+        private void _fac_menuItemViGestionAsociadoConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarViGestionAsociados();
+        }
+        private void _fac_menuItemChequeRecidoAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarChequeRecido();
+        }
+
+        private void _fac_menuItemChequeRecidoConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarChequeRecidos();
+        }
+
+        private void _fac_menuItemChequeRecidoConsultarDeposito_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarDepositoChequeRecidos();
+        }
+
+        private void _fac_menuItemFacPagoBoliviaConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarFacPagoBolivias();
+        }
+
+        private void _fac_menuItemFacPagoBoliviaConsultarPago_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarPagoFacPagoBolivias();
+        }
+        private void _fac_menuItemFacPagoBoliviaAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarFacPagoBolivia();
+        }
+
+        private void _fac_menuItemFacCobroConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarFacCobros();
+        }
+
+        private void _fac_menuItemFacCobroAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarFacCobro();
+        }
+
+
+        private void _fac_menuItemFacCreditoConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarFacCreditos();
+        }
+
+        private void _fac_menuItemFacCreditoAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarFacCredito();
+        }
+
+        private void _fac_menuItemFacFacturaProformaAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarFacFacturaProforma();
+        }
+
+        private void _fac_menuItemFacFacturaProformaConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarFacFacturaProformas();
+        }
+
+        private void _fac_menuItemFacFacturaProformaConsultarPendientes_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarFacFacturaProformasPendientes();
+        }
+        private void _fac_menuItemFacFacturaProformaConsultarDepartamentos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarFacFacturaProformasDepartamentos();
+        }
+        private void _fac_menuItemFacFacturaProformaConsultarAutorizacion_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarFacFacturaProformasAutorizacion();
+        }
+        private void _fac_menuItemProformaaFactura_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ProformaaFactura();
+        }
+        private void _fac_menuItemFacFacturaConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarFacFacturas();
+        }
+
+        private void _fac_menuItemFacFacturaAnulacion_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarFacFacturaAnulada();
+        }
+
+        private void _fac_menuItemFacFacturaConsultarAnuladas_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarFacFacturasAnuladas();
+        }
+
+        private void _fac_menuItemFacturaDigital_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.FacturasDigitales();
+        }
+
+        private void _fac_menuItemFacEstadoCuenta_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.FacEstadoCuenta();
+        }
+
+        private void _fac_menuItemFacPendientesRpt_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.FacPendientesRpt();
+        }
+
+
+        private void _fac_menuItemFacEnvioAsociado_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.FacEnvioAsociado();
+        }
+
+        private void _fac_menuItemFacGestionAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarFacGestion();
+        }
+
+        private void _fac_menuItemFacGestionConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarFacGestiones();
+        }
+
+        private void _fac_menuItemFacInternacional_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarFacInternacionalesProforma();
+        }
+
+        private void _fac_menuItemConsultaStatementPorProcesar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultaStatementPorProcesar();
+        }
+
+        private void _fac_menuItemConsultaFacturacionAnuladas_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultaFacturacionAnuladas();
+        }
+
+        private void _fac_menuItemConsultaFacturacionAsociado_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultaFacturacionAsociado();
+        }
+
+        private void _fac_menuItemConsultaFacturacionVigenteAsociado_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultaFacturacionVigenteAsociado();
+        }
+
+        private void _fac_menuItemConsultaFacturasAnuladas_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultaFacturasAnuladas();
+        }
+
+        private void _fac_menuItemConsultaCreditosAsociado_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultaCreditosAsociado();
+        }
+
+        private void _fac_menuItemConsultaCreditosVigentesAsociado_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultaCreditosVigentesAsociado();
+        }
+
+        private void _fac_menuItemConsultaPagosAsociado_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultaPagosAsociado();
+        }
+
+        private void _fac_menuItemConsultaOperacionesAsociado_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultaOperacionesAsociado();
+        }
+
+        private void _fac_menuItemResumenOperacionesRpt_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ResumenOperacionesRpt();
+        }
+
+        private void _fac_menuItemVentasTotalesRevRpt_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.VentasTotalesRevRpt();
+        }
+
+        private void _fac_menuItemVentasTotalesRpt_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.VentasTotalesRpt();
+        }
+
+        private void _fac_menuItemFacturaEncabezado_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.FacturaEncabezado();
+        }
+
+        private void _fac_menuItemFacturaDetalle_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.FacturaDetalle();
+        }
+
+        private void _fac_menuItemFacAsociadoProfit_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.FacAsociadoProfit();
+        }
+
+        private void _fac_menuItemFacFacturacionPendiente_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.FacFacturacionPendiente();
+        }
+
+        private void _fac_menuItemFacFacturacionPendienteVieja_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.FacFacturacionPendienteVieja();
+        }
+
+        private void _fac_menuItemFacFacturacionLoteVieja_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.FacFacturacionLoteVieja();
+        }
+
+        #endregion
+
         #endregion
 
         #region Eventos de la ventana

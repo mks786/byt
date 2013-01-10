@@ -1,0 +1,987 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AgenteEliminado" xml:space="preserve">
+    <value>Agente eliminado con éxito</value>
+  </data>
+  <data name="AgenteInsertado" xml:space="preserve">
+    <value>Agente insertado con éxito</value>
+  </data>
+  <data name="AgenteModificado" xml:space="preserve">
+    <value>Agente modificado con éxito</value>
+  </data>
+  <data name="AsociadoEliminado" xml:space="preserve">
+    <value>Agente eliminado con éxito</value>
+  </data>
+  <data name="AsociadoInsertado" xml:space="preserve">
+    <value>Agente insertado con éxito</value>
+  </data>
+  <data name="AsociadoModificado" xml:space="preserve">
+    <value>Agente modificado con éxito</value>
+  </data>
+  <data name="BoletinEliminado" xml:space="preserve">
+    <value>Boletin eliminado con éxito</value>
+  </data>
+  <data name="BoletinInsertado" xml:space="preserve">
+    <value>Boletin insertado con éxito</value>
+  </data>
+  <data name="BoletinModificado" xml:space="preserve">
+    <value>Boletin modificado con éxito</value>
+  </data>
+  <data name="ConfirmacionEliminarAgente" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el agente?</value>
+  </data>
+  <data name="ConfirmacionEliminarAsociado" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el agente?</value>
+  </data>
+  <data name="ConfirmacionEliminarBoletin" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el boletin?</value>
+  </data>
+  <data name="ConfirmacionEliminarEstado" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el estado?</value>
+  </data>
+  <data name="ConfirmacionEliminarEstatus" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el estatus?</value>
+  </data>
+  <data name="ConfirmacionEliminarInteresado" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el interesado?</value>
+  </data>
+  <data name="ConfirmacionEliminarInternacional" xml:space="preserve">
+    <value>¿Seguro que desea eliminar la clase internacional?</value>
+  </data>
+  <data name="ConfirmacionEliminarNacional" xml:space="preserve">
+    <value>¿Seguro que desea eliminar la clase nacional?</value>
+  </data>
+  <data name="ConfirmacionEliminarObjeto" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el objeto?</value>
+  </data>
+  <data name="ConfirmacionEliminarPais" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el país?</value>
+  </data>
+  <data name="ConfirmacionEliminarPoder" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el poder?</value>
+  </data>
+  <data name="ConfirmacionEliminarResolucion" xml:space="preserve">
+    <value>¿Seguro que desea eliminar la resolución?</value>
+  </data>
+  <data name="ConfirmacionEliminarRol" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el rol?</value>
+  </data>
+  <data name="ConfirmacionEliminarTipoFecha" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el tipo de Fecha?</value>
+  </data>
+  <data name="ConfirmacionEliminarTipoInfobol" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el tipo de infobol?</value>
+  </data>
+  <data name="ConfirmacionEliminarUsuario" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el usuario?</value>
+  </data>
+  <data name="ContactoInsertado" xml:space="preserve">
+    <value>Contacto insertado con éxito</value>
+  </data>
+  <data name="ErrorAsociadoNoEncontrado" xml:space="preserve">
+    <value>Archivo del asociado no encontrado.</value>
+  </data>
+  <data name="ErrorConexionServidor" xml:space="preserve">
+    <value>No se ha podido establecer conexión con el servidor</value>
+  </data>
+  <data name="ErrorInesperado" xml:space="preserve">
+    <value>Se ha producido un error inesperado</value>
+  </data>
+  <data name="ErrorPoderNoEncontrado" xml:space="preserve">
+    <value>Archivo del poder no encontrado.</value>
+  </data>
+  <data name="ErrorRemoting" xml:space="preserve">
+    <value>Se produjo un error con los objetos del servidor</value>
+  </data>
+  <data name="EstadoEliminado" xml:space="preserve">
+    <value>Estado eliminado con éxito</value>
+  </data>
+  <data name="EstadoInsertado" xml:space="preserve">
+    <value>Estado insertado con éxito</value>
+  </data>
+  <data name="EstadoModificado" xml:space="preserve">
+    <value>Estado modificado con éxito</value>
+  </data>
+  <data name="EstatusEliminado" xml:space="preserve">
+    <value>Estatus eliminado con éxito</value>
+  </data>
+  <data name="EstatusInsertado" xml:space="preserve">
+    <value>Estatus insertado con éxito</value>
+  </data>
+  <data name="EstatusModificado" xml:space="preserve">
+    <value>Estatus modificado con éxito</value>
+  </data>
+  <data name="fac_AnualidadEliminado" xml:space="preserve">
+    <value>Anualidad eliminado con éxito</value>
+  </data>
+  <data name="fac_AnualidadInsertado" xml:space="preserve">
+    <value>Anualidad insertado con éxito</value>
+  </data>
+  <data name="fac_AnualidadModificado" xml:space="preserve">
+    <value>Anualidad modificado con éxito</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarAnualidad" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Anualidad?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarDetalleEnvio" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Detalle Envio?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarDetallePago" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Detalle Pago?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarDocumentosMarca" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Documentos Marca?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarDocumentosPatente" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Documentos Patente?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarDocumentosTraduccion" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el DocumentosTraduccion?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacRecurso" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Recurso?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarGuia" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Guia?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarImpuesto" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Impuesto?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarMaterial" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Material?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarMotivo" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Motivo?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarSociedad" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Sociedad?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarTasa" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Tasa?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarTipoClase" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Tipo Clase?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarTipoMarca" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Tipo Marca?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarTipoPatente" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Tipo Patente?</value>
+  </data>
+  <data name="fac_DetalleEnvioEliminado" xml:space="preserve">
+    <value>DetalleEnvio eliminado con éxito</value>
+  </data>
+  <data name="fac_DetalleEnvioInsertado" xml:space="preserve">
+    <value>Detalle Envio insertado con éxito</value>
+  </data>
+  <data name="fac_DetalleEnvioModificado" xml:space="preserve">
+    <value>Detalle Envio modificado con éxito</value>
+  </data>
+  <data name="fac_DetallePagoEliminado" xml:space="preserve">
+    <value>Detalle Pago eliminado con éxito</value>
+  </data>
+  <data name="fac_DetallePagoInsertado" xml:space="preserve">
+    <value>Detalle Pago insertado con éxito</value>
+  </data>
+  <data name="fac_DetallePagoModificado" xml:space="preserve">
+    <value>Detalle Pago modificado con éxito</value>
+  </data>
+  <data name="fac_DocumentosMarcaEliminado" xml:space="preserve">
+    <value>Documentos Marca eliminado con éxito</value>
+  </data>
+  <data name="fac_DocumentosMarcaInsertado" xml:space="preserve">
+    <value>Documentos Marca insertado con éxito</value>
+  </data>
+  <data name="fac_DocumentosMarcaModificado" xml:space="preserve">
+    <value>Documentos Marca modificado con éxito</value>
+  </data>
+  <data name="fac_DocumentosPatenteEliminado" xml:space="preserve">
+    <value>Documentos Patente eliminado con éxito</value>
+  </data>
+  <data name="fac_DocumentosPatenteInsertado" xml:space="preserve">
+    <value>Documentos Patente insertado con éxito</value>
+  </data>
+  <data name="fac_DocumentosPatenteModificado" xml:space="preserve">
+    <value>Documentos Patente modificado con éxito</value>
+  </data>
+  <data name="fac_DocumentosTraduccionEliminado" xml:space="preserve">
+    <value>Documentos Traduccion eliminado con éxito</value>
+  </data>
+  <data name="fac_DocumentosTraduccionInsertado" xml:space="preserve">
+    <value>Documentos Traduccion insertado con éxito</value>
+  </data>
+  <data name="fac_DocumentosTraduccionModificado" xml:space="preserve">
+    <value>Documentos Traduccion modificado con éxito</value>
+  </data>
+  <data name="fac_ErrorAnualidadRepetida" xml:space="preserve">
+    <value>Error la Anualidad que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorDetalleEnvioRepetido" xml:space="preserve">
+    <value>Error el Detalle Envio que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorDetallePagoRepetido" xml:space="preserve">
+    <value>Error el Detalle Pago que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorDocumentosMarcaRepetido" xml:space="preserve">
+    <value>Error Documentos Marca que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorDocumentosPatenteRepetido" xml:space="preserve">
+    <value>Error Documentos Patente que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorDocumentosTraduccionRepetido" xml:space="preserve">
+    <value>Error Documentos Traduccion que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacRecursoRepetido" xml:space="preserve">
+    <value>Error Recurso que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorGuiaRepetida" xml:space="preserve">
+    <value>Error Guia que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorImpuestoRepetido" xml:space="preserve">
+    <value>Error Impuesto que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorMaterialRepetido" xml:space="preserve">
+    <value>Error Material que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorMotivoRepetido" xml:space="preserve">
+    <value>Error Motivo que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorSociedadRepetida" xml:space="preserve">
+    <value>Error Sociedad que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorTasaRepetida" xml:space="preserve">
+    <value>Error la Tasa que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorTipoClaseRepetido" xml:space="preserve">
+    <value>Error Tipo Clase que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorTipoMarcaRepetido" xml:space="preserve">
+    <value>Error Tipo Marca que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorTipoPatenteRepetido" xml:space="preserve">
+    <value>Error Tipo Patente que desea guardar ya existe</value>
+  </data>
+  <data name="fac_FacRecursoEliminado" xml:space="preserve">
+    <value>Recurso eliminado con éxito</value>
+  </data>
+  <data name="fac_FacRecursoInsertado" xml:space="preserve">
+    <value>Recurso insertado con éxito</value>
+  </data>
+  <data name="fac_FacRecursoModificado" xml:space="preserve">
+    <value>Recurso modificado con éxito</value>
+  </data>
+  <data name="fac_GuiaEliminado" xml:space="preserve">
+    <value>Guia eliminado con éxito</value>
+  </data>
+  <data name="fac_GuiaInsertado" xml:space="preserve">
+    <value>Guia insertado con éxito</value>
+  </data>
+  <data name="fac_GuiaModificado" xml:space="preserve">
+    <value>Guia modificado con éxito</value>
+  </data>
+  <data name="fac_ImpuestoEliminado" xml:space="preserve">
+    <value>Impuesto eliminado con éxito</value>
+  </data>
+  <data name="fac_ImpuestoInsertado" xml:space="preserve">
+    <value>Impuesto insertado con éxito</value>
+  </data>
+  <data name="fac_ImpuestoModificado" xml:space="preserve">
+    <value>Impuesto modificado con éxito</value>
+  </data>
+  <data name="fac_MaterialEliminado" xml:space="preserve">
+    <value>Material eliminado con éxito</value>
+  </data>
+  <data name="fac_MaterialInsertado" xml:space="preserve">
+    <value>Material insertado con éxito</value>
+  </data>
+  <data name="fac_MaterialModificado" xml:space="preserve">
+    <value>Material modificado con éxito</value>
+  </data>
+  <data name="fac_MotivoEliminado" xml:space="preserve">
+    <value>Motivo eliminado con éxito</value>
+  </data>
+  <data name="fac_MotivoInsertado" xml:space="preserve">
+    <value>Motivo insertado con éxito</value>
+  </data>
+  <data name="fac_MotivoModificado" xml:space="preserve">
+    <value>Motivo modificado con éxito</value>
+  </data>
+  <data name="fac_SociedadEliminado" xml:space="preserve">
+    <value>Sociedad eliminado con éxito</value>
+  </data>
+  <data name="fac_SociedadInsertado" xml:space="preserve">
+    <value>Sociedad insertado con éxito</value>
+  </data>
+  <data name="fac_SociedadModificado" xml:space="preserve">
+    <value>Sociedad modificado con éxito</value>
+  </data>
+  <data name="fac_TasaEliminado" xml:space="preserve">
+    <value>Tasa eliminado con éxito</value>
+  </data>
+  <data name="fac_TasaInsertado" xml:space="preserve">
+    <value>Tasa insertado con éxito</value>
+  </data>
+  <data name="fac_TasaModificado" xml:space="preserve">
+    <value>Tasamodificado con éxito</value>
+  </data>
+  <data name="fac_TipoClaseEliminado" xml:space="preserve">
+    <value>Tipo Clase eliminado con éxito</value>
+  </data>
+  <data name="fac_TipoClaseInsertado" xml:space="preserve">
+    <value>Tipo Clase insertado con éxito</value>
+  </data>
+  <data name="fac_TipoClaseModificado" xml:space="preserve">
+    <value>Tipo Clase modificado con éxito</value>
+  </data>
+  <data name="fac_TipoMarcaEliminado" xml:space="preserve">
+    <value>Tipo Marca eliminado con éxito</value>
+  </data>
+  <data name="fac_TipoMarcaInsertado" xml:space="preserve">
+    <value>Tipo Marca insertado con éxito</value>
+  </data>
+  <data name="fac_TipoMarcaModificado" xml:space="preserve">
+    <value>Tipo Marca modificado con éxito</value>
+  </data>
+  <data name="fac_TipoPatenteEliminado" xml:space="preserve">
+    <value>Tipo Patente eliminado con éxito</value>
+  </data>
+  <data name="fac_TipoPatenteInsertado" xml:space="preserve">
+    <value>Tipo Patente insertado con éxito</value>
+  </data>
+  <data name="fac_TipoPatenteModificado" xml:space="preserve">
+    <value>Tipo Patente modificado con éxito</value>
+  </data>
+  <data name="IdOClaveIncorrectos" xml:space="preserve">
+    <value>Usuario o clave incorrectos</value>
+  </data>
+  <data name="IdOClaveObligatorio" xml:space="preserve">
+    <value>Debe ingresar tanto el usuario como la contraseña</value>
+  </data>
+  <data name="InteresadoEliminado" xml:space="preserve">
+    <value>Interesado eliminado con éxito</value>
+  </data>
+  <data name="InteresadoInsertado" xml:space="preserve">
+    <value>Interesado insertado con éxito</value>
+  </data>
+  <data name="InteresadoModificado" xml:space="preserve">
+    <value>Interesado modificado con éxito</value>
+  </data>
+  <data name="InternacionalEliminado" xml:space="preserve">
+    <value>Clase internacional eliminado con éxito</value>
+  </data>
+  <data name="InternacionalInsertado" xml:space="preserve">
+    <value>Clase internacional insertado con éxito</value>
+  </data>
+  <data name="InternacionalModificado" xml:space="preserve">
+    <value>Clase internacional modificado con éxito</value>
+  </data>
+  <data name="JustificacionModificado" xml:space="preserve">
+    <value>Justificación modificada con éxito</value>
+  </data>
+  <data name="NacionalEliminado" xml:space="preserve">
+    <value>Clase nacional eliminado con éxito</value>
+  </data>
+  <data name="NacionalInsertado" xml:space="preserve">
+    <value>Clase nacional insertado con éxito</value>
+  </data>
+  <data name="NacionalModificado" xml:space="preserve">
+    <value>Clase nacional modificado con éxito</value>
+  </data>
+  <data name="ObjetoEliminado" xml:space="preserve">
+    <value>Objeto eliminado con éxito</value>
+  </data>
+  <data name="ObjetoInsertado" xml:space="preserve">
+    <value>Objeto insertado con éxito</value>
+  </data>
+  <data name="ObjetoModificado" xml:space="preserve">
+    <value>Objeto modificado con éxito</value>
+  </data>
+  <data name="PaisEliminado" xml:space="preserve">
+    <value>País eliminado con éxito</value>
+  </data>
+  <data name="PaisInsertado" xml:space="preserve">
+    <value>País insertado con éxito</value>
+  </data>
+  <data name="PaisModificado" xml:space="preserve">
+    <value>País modificado con éxito</value>
+  </data>
+  <data name="PoderEliminado" xml:space="preserve">
+    <value>Poder eliminado con éxito</value>
+  </data>
+  <data name="PoderInsertado" xml:space="preserve">
+    <value>Poder insertado con éxito</value>
+  </data>
+  <data name="PoderModificado" xml:space="preserve">
+    <value>Poder modificado con éxito</value>
+  </data>
+  <data name="ResolucionEliminado" xml:space="preserve">
+    <value>Resolución eliminada con éxito</value>
+  </data>
+  <data name="ResolucionInsertado" xml:space="preserve">
+    <value>Resolución insertada con éxito</value>
+  </data>
+  <data name="ResolucionModificado" xml:space="preserve">
+    <value>Resolución modificada con éxito</value>
+  </data>
+  <data name="RolEliminado" xml:space="preserve">
+    <value>Rol eliminado con éxito</value>
+  </data>
+  <data name="RolInsertado" xml:space="preserve">
+    <value>Rol insertado con éxito</value>
+  </data>
+  <data name="RolModificado" xml:space="preserve">
+    <value>Rol modificado con éxito</value>
+  </data>
+  <data name="TipoFechaEliminado" xml:space="preserve">
+    <value>Tipo de fecha eliminado con éxito</value>
+  </data>
+  <data name="TipoFechaInsertado" xml:space="preserve">
+    <value>Tipo de fecha insertado con éxito</value>
+  </data>
+  <data name="TipoFechaModificado" xml:space="preserve">
+    <value>Tipo de fecha modificado con éxito</value>
+  </data>
+  <data name="TipoInfobolEliminado" xml:space="preserve">
+    <value>Tipo de infobol eliminado con éxito</value>
+  </data>
+  <data name="TipoInfobolInsertado" xml:space="preserve">
+    <value>Tipo de infobol insertado con éxito</value>
+  </data>
+  <data name="TipoInfobolModificado" xml:space="preserve">
+    <value>Tipo de infobol modificado con éxito</value>
+  </data>
+  <data name="UsuarioEliminado" xml:space="preserve">
+    <value>Usuario eliminado con éxito</value>
+  </data>
+  <data name="UsuarioInsertado" xml:space="preserve">
+    <value>Usuario insertado con éxito</value>
+  </data>
+  <data name="UsuarioModificado" xml:space="preserve">
+    <value>Usuario modificado con éxito</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarServicio" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Servicio?</value>
+  </data>
+  <data name="fac_ErrorServicioRepetido" xml:space="preserve">
+    <value>Error Servicio que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ServicioEliminado" xml:space="preserve">
+    <value>Servicio eliminado con éxito</value>
+  </data>
+  <data name="fac_ServicioInsertado" xml:space="preserve">
+    <value>Servicio insertado con éxito</value>
+  </data>
+  <data name="fac_ServicioModificado" xml:space="preserve">
+    <value>Servicio modificado con éxito</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarCorrespondencia" xml:space="preserve">
+    <value>¿Seguro que desea eliminar la Correspondencia?</value>
+  </data>
+  <data name="fac_CorrespondenciaEliminado" xml:space="preserve">
+    <value>Correspondencia eliminado con éxito</value>
+  </data>
+  <data name="fac_CorrespondenciaInsertado" xml:space="preserve">
+    <value>Correspondencia insertado con éxito</value>
+  </data>
+  <data name="fac_CorrespondenciaModificado" xml:space="preserve">
+    <value>Correspondencia modificado con éxito</value>
+  </data>
+  <data name="fac_ErrorCorrespondenciaRepetido" xml:space="preserve">
+    <value>Error Correspondencia que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarEtiqueta" xml:space="preserve">
+    <value>¿Seguro que desea eliminar la Etiqueta?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacJustificacion" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Concepto Justificacion?</value>
+  </data>
+  <data name="fac_ErrorEtiquetaRepetido" xml:space="preserve">
+    <value>Error Etiqueta que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacJustificacionRepetido" xml:space="preserve">
+    <value>Error Concepto Justificacion que desea guardar ya existe</value>
+  </data>
+  <data name="fac_EtiquetaEliminado" xml:space="preserve">
+    <value>Etiqueta eliminado con éxito</value>
+  </data>
+  <data name="fac_EtiquetaInsertado" xml:space="preserve">
+    <value>Etiqueta insertado con éxito</value>
+  </data>
+  <data name="fac_EtiquetaModificado" xml:space="preserve">
+    <value>Etiqueta modificado con éxito</value>
+  </data>
+  <data name="fac_FacJustificacionEliminado" xml:space="preserve">
+    <value>Concepto Justificacion eliminado con éxito</value>
+  </data>
+  <data name="fac_FacJustificacionInsertado" xml:space="preserve">
+    <value>Concepto Justificacion insertado con éxito</value>
+  </data>
+  <data name="fac_FacJustificacionModificado" xml:space="preserve">
+    <value>Concepto Justificacion modificado con éxito</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarDepartamentoServicio" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Departamento Servicio?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarDesgloseServicio" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Desglose Servicio?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarTarifaServicio" xml:space="preserve">
+    <value>¿Seguro que desea eliminar la Tarifa Servicio?</value>
+  </data>
+  <data name="fac_DepartamentoServicioEliminado" xml:space="preserve">
+    <value>Departamento Servicio eliminado con éxito</value>
+  </data>
+  <data name="fac_DepartamentoServicioInsertado" xml:space="preserve">
+    <value>Departamento Servicio insertado con éxito</value>
+  </data>
+  <data name="fac_DepartamentoServicioModificado" xml:space="preserve">
+    <value>Departamento Servicio modificado con éxito</value>
+  </data>
+  <data name="fac_DesgloseServicioEliminado" xml:space="preserve">
+    <value>Desglose Servicio eliminado con éxito</value>
+  </data>
+  <data name="fac_DesgloseServicioInsertado" xml:space="preserve">
+    <value>Desglose Servicio insertado con éxito</value>
+  </data>
+  <data name="fac_DesgloseServicioModificado" xml:space="preserve">
+    <value>DesgloseServicio modificado con éxito</value>
+  </data>
+  <data name="fac_ErrorDepartamentoServicioRepetido" xml:space="preserve">
+    <value>Error Departamento Servicio que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorDesgloseServicioRepetido" xml:space="preserve">
+    <value>Error Desglose Servicio que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorTarifaServicioRepetido" xml:space="preserve">
+    <value>Error Tarifa Servicio que desea guardar ya existe</value>
+  </data>
+  <data name="fac_TarifaServicioEliminado" xml:space="preserve">
+    <value>Tarifa Servicio eliminado con éxito</value>
+  </data>
+  <data name="fac_TarifaServicioInsertado" xml:space="preserve">
+    <value>Tarifa Servicio insertado con éxito</value>
+  </data>
+  <data name="fac_TarifaServicioModificado" xml:space="preserve">
+    <value>Tarifa Servicio modificado con éxito</value>
+  </data>
+  <data name="fac_ConceptoGestionEliminado" xml:space="preserve">
+    <value>Concepto Gestión eliminado con éxito</value>
+  </data>
+  <data name="fac_ConceptoGestionInsertado" xml:space="preserve">
+    <value>Concepto Gestión insertado con éxito</value>
+  </data>
+  <data name="fac_ConceptoGestionModificado" xml:space="preserve">
+    <value>Concepto Gestión modificado con éxito</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarConceptoGestion" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Concepto Gestión?</value>
+  </data>
+  <data name="fac_ErrorConceptoGestionRepetido" xml:space="preserve">
+    <value>Error Concepto Gestión que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarMediosGestion" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Medios de Gestión?</value>
+  </data>
+  <data name="fac_ErrorMediosGestionRepetido" xml:space="preserve">
+    <value>Error Medios Gestión que desea guardar ya existe</value>
+  </data>
+  <data name="fac_MediosGestionEliminado" xml:space="preserve">
+    <value>Medios Gestión eliminado con éxito</value>
+  </data>
+  <data name="fac_MediosGestionInsertado" xml:space="preserve">
+    <value>Medios Gestión insertado con éxito</value>
+  </data>
+  <data name="fac_MediosGestionModificado" xml:space="preserve">
+    <value>Medios Gestión modificado con éxito</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarViGestionAsociado" xml:space="preserve">
+    <value>¿Seguro que desea eliminar Asociados Con Gestión?</value>
+  </data>
+  <data name="fac_ErrorViGestionAsociadoRepetido" xml:space="preserve">
+    <value>Error Asociados Con Gestión que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ViGestionAsociadoEliminado" xml:space="preserve">
+    <value>Asociados Con Gestión eliminado con éxito</value>
+  </data>
+  <data name="fac_ViGestionAsociadoInsertado" xml:space="preserve">
+    <value>Asociados Con Gestión insertado con éxito</value>
+  </data>
+  <data name="fac_ViGestionAsociadoModificado" xml:space="preserve">
+    <value>Asociados Con Gestión modificado con éxito</value>
+  </data>
+  <data name="fac_ChequeRecidoEliminado" xml:space="preserve">
+    <value>Cheques Recibidos eliminado con éxito</value>
+  </data>
+  <data name="fac_ChequeRecidoInsertado" xml:space="preserve">
+    <value>Cheques Recibidos insertado con éxito</value>
+  </data>
+  <data name="fac_ChequeRecidoModificado" xml:space="preserve">
+    <value>Cheques Recibidos modificado con éxito</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarChequeRecido" xml:space="preserve">
+    <value>¿Seguro que desea eliminar Cheques Recibidos?</value>
+  </data>
+  <data name="fac_ErrorChequeRecidoRepetido" xml:space="preserve">
+    <value>Error Cheques Recibidos que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacPagoBolivia" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro cxp Bolivia?</value>
+  </data>
+  <data name="fac_ErrorFacPagoBoliviaRepetido" xml:space="preserve">
+    <value>Error Registro cxp Bolivia que desea guardar ya existe</value>
+  </data>
+  <data name="fac_FacPagoBoliviaEliminado" xml:space="preserve">
+    <value>Registro cxp Bolivia eliminado con éxito</value>
+  </data>
+  <data name="fac_FacPagoBoliviaInsertado" xml:space="preserve">
+    <value>Registro cxp Bolivia insertado con éxito</value>
+  </data>
+  <data name="fac_FacPagoBoliviaModificado" xml:space="preserve">
+    <value>Registro cxp Bolivia modificado con éxito</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacCobro" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Cobro?</value>
+  </data>
+  <data name="fac_ErrorFacCobroRepetido" xml:space="preserve">
+    <value>Error Registro Cobros que desea guardar ya existe</value>
+  </data>
+  <data name="fac_FacCobroEliminado" xml:space="preserve">
+    <value>Registro Cobros eliminado con éxito</value>
+  </data>
+  <data name="fac_FacCobroInsertado" xml:space="preserve">
+    <value>Registro Cobros insertado con éxito</value>
+  </data>
+  <data name="fac_FacCobroModificado" xml:space="preserve">
+    <value>Registro Cobros modificado con éxito</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacCredito" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Creddito?</value>
+  </data>
+  <data name="fac_ErrorFacCreditoRepetido" xml:space="preserve">
+    <value>Error Registro Credditos que desea guardar ya existe</value>
+  </data>
+  <data name="fac_FacCreditoEliminado" xml:space="preserve">
+    <value>Registro Credditos eliminado con éxito</value>
+  </data>
+  <data name="fac_FacCreditoInsertado" xml:space="preserve">
+    <value>Registro Credditos insertado con éxito</value>
+  </data>
+  <data name="fac_FacCreditoModificado" xml:space="preserve">
+    <value>Registro Credditos modificado con éxito</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacFactuDetaAnulada" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Detalle Factura Anulada?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacFactuDetaProforma" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Detalle Proforma?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacFactura" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Factura?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacFacturaAnulada" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Factura Anulada?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacFacturaProforma" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Factura Proforma?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacOperacionAnulada" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Operacion Anulada?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacOperacionDetaAnulada" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Operacion Detalle Anulada?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacOperacionDetalle" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Operacion Detalle?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacOperacionDetalleTm" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Operacion DetalleTm?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacOperacionDetaProforma" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Operacion Detalle Proforma?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacOperacionDetaTmProforma" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Operacion DetaTm Proforma?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacOperacionProforma" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Operacion Proforma?</value>
+  </data>
+  <data name="fac_ErrorFacFactuDetaAnuladaRepetido" xml:space="preserve">
+    <value>Error Registro Detalle Factura Anuladas que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacFactuDetaProformaRepetido" xml:space="preserve">
+    <value>Error Registro Detalle Proformas que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacFacturaAnuladaRepetido" xml:space="preserve">
+    <value>Error Registro Factura Anuladas que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacFacturaProformaRepetido" xml:space="preserve">
+    <value>Error Registro Factura Proformas que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacFacturaRepetido" xml:space="preserve">
+    <value>Error Registro Facturas que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacOperacionAnuladaRepetido" xml:space="preserve">
+    <value>Error Registro Operacion Anuladas que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacOperacionDetaAnuladaRepetido" xml:space="preserve">
+    <value>Error Registro Operacion Detalle Anuladas que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacOperacionDetalleRepetido" xml:space="preserve">
+    <value>Error Registro Operacion Detalles que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacOperacionDetalleTmRepetido" xml:space="preserve">
+    <value>Error Registro Operacion DetalleTms que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacOperacionDetaProformaRepetido" xml:space="preserve">
+    <value>Error Registro Operacion Detalle Proformas que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacOperacionDetaTmProformaRepetido" xml:space="preserve">
+    <value>Error Registro Operacion DetaTm Proformas que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacOperacionProformaRepetido" xml:space="preserve">
+    <value>Error Registro Operacion Proformas que desea guardar ya existe</value>
+  </data>
+  <data name="fac_FacFactuDetaAnuladaEliminado" xml:space="preserve">
+    <value>Registro Detalle Factura Anuladas eliminado con éxito</value>
+  </data>
+  <data name="fac_FacFactuDetaAnuladaInsertado" xml:space="preserve">
+    <value>Registro Detalle Factura Anuladas insertado con éxito</value>
+  </data>
+  <data name="fac_FacFactuDetaAnuladaModificado" xml:space="preserve">
+    <value>Registro Detalle Factura Anuladas modificado con éxito</value>
+  </data>
+  <data name="fac_FacFactuDetaProformaEliminado" xml:space="preserve">
+    <value>Registro Detalle Proformas eliminado con éxito</value>
+  </data>
+  <data name="fac_FacFactuDetaProformaInsertado" xml:space="preserve">
+    <value>Registro Detalle Proformas insertado con éxito</value>
+  </data>
+  <data name="fac_FacFactuDetaProformaModificado" xml:space="preserve">
+    <value>Registro Detalle Proformas modificado con éxito</value>
+  </data>
+  <data name="fac_FacFacturaAnuladaEliminado" xml:space="preserve">
+    <value>Registro Factura Anuladas eliminado con éxito</value>
+  </data>
+  <data name="fac_FacFacturaAnuladaInsertado" xml:space="preserve">
+    <value>Registro Factura Anuladas insertado con éxito</value>
+  </data>
+  <data name="fac_FacFacturaAnuladaModificado" xml:space="preserve">
+    <value>Registro Factura Anuladas modificado con éxito</value>
+  </data>
+  <data name="fac_FacFacturaEliminado" xml:space="preserve">
+    <value>Registro Facturas eliminado con éxito</value>
+  </data>
+  <data name="fac_FacFacturaInsertado" xml:space="preserve">
+    <value>Registro Facturas insertado con éxito</value>
+  </data>
+  <data name="fac_FacFacturaModificado" xml:space="preserve">
+    <value>Registro Facturas modificado con éxito</value>
+  </data>
+  <data name="fac_FacFacturaProformaEliminado" xml:space="preserve">
+    <value>Proformas eliminada con éxito</value>
+  </data>
+  <data name="fac_FacFacturaProformaInsertado" xml:space="preserve">
+    <value>Proforma guardada con éxito, desea modificar la actual?</value>
+  </data>
+  <data name="fac_FacFacturaProformaModificado" xml:space="preserve">
+    <value>Proforma modificada con éxito</value>
+  </data>
+  <data name="fac_FacOperacionAnuladaEliminado" xml:space="preserve">
+    <value>Registro Operacion Anuladas eliminado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionAnuladaInsertado" xml:space="preserve">
+    <value>Registro Operacion Anuladas insertado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionAnuladaModificado" xml:space="preserve">
+    <value>Registro Operacion Anuladas modificado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetaAnuladaEliminado" xml:space="preserve">
+    <value>Registro Operacion Detalle Anuladas eliminado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetaAnuladaInsertado" xml:space="preserve">
+    <value>Registro Operacion Detalle Anuladas insertado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetaAnuladaModificado" xml:space="preserve">
+    <value>Registro Operacion Detalle Anuladas modificado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetalleEliminado" xml:space="preserve">
+    <value>Registro Operacion Detalles eliminado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetalleInsertado" xml:space="preserve">
+    <value>Registro Operacion Detalles insertado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetalleModificado" xml:space="preserve">
+    <value>Registro Operacion Detalles modificado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetalleTmEliminado" xml:space="preserve">
+    <value>Registro Operacion DetalleTms eliminado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetalleTmInsertado" xml:space="preserve">
+    <value>Registro Operacion DetalleTms insertado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetalleTmModificado" xml:space="preserve">
+    <value>Registro Operacion DetalleTms modificado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetaProformaEliminado" xml:space="preserve">
+    <value>Registro Operacion Detalle Proformas eliminado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetaProformaInsertado" xml:space="preserve">
+    <value>Registro Operacion Detalle Proformas insertado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetaProformaModificado" xml:space="preserve">
+    <value>Registro Operacion Detalle Proformas modificado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetaTmProformaEliminado" xml:space="preserve">
+    <value>Registro Operacion DetaTm Proformas eliminado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetaTmProformaInsertado" xml:space="preserve">
+    <value>Registro Operacion DetaTm Proformas insertado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetaTmProformaModificado" xml:space="preserve">
+    <value>Registro Operacion DetaTm Proformas modificado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionProformaEliminado" xml:space="preserve">
+    <value>Registro Operacion Proformas eliminado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionProformaInsertado" xml:space="preserve">
+    <value>Registro Operacion Proformas insertado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionProformaModificado" xml:space="preserve">
+    <value>Registro Operacion Proformas modificado con éxito</value>
+  </data>
+  <data name="fac_error_tasa_dia" xml:space="preserve">
+    <value>Debe cargarse las tasas del dia para procesar</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacGestion" xml:space="preserve">
+    <value>¿Seguro que desea eliminar Registro Gestion?</value>
+  </data>
+  <data name="fac_ErrorFacGestionRepetido" xml:space="preserve">
+    <value>Error Registro Gestion que desea guardar ya existe</value>
+  </data>
+  <data name="fac_FacGestionEliminado" xml:space="preserve">
+    <value>Registro Gestion eliminado con éxito</value>
+  </data>
+  <data name="fac_FacGestionInsertado" xml:space="preserve">
+    <value>Registro Gestion insertado con éxito</value>
+  </data>
+  <data name="fac_FacGestionModificado" xml:space="preserve">
+    <value>Registro Gestion modificado con éxito</value>
+  </data>
+</root>

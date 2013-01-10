@@ -961,4 +961,352 @@
   <data name="ConfirmacionEliminarEmail" xml:space="preserve">
     <value>¿Está seguro que desea eliminar el correo del Asociado?</value>
   </data>
+  <data name="fac_ChequeRecidoEliminado" xml:space="preserve">
+    <value>Cheques Recibidos eliminado con éxito</value>
+  </data>
+  <data name="fac_ChequeRecidoInsertado" xml:space="preserve">
+    <value>Cheques Recibidos insertado con éxito</value>
+  </data>
+  <data name="fac_ChequeRecidoModificado" xml:space="preserve">
+    <value>Cheques Recibidos modificado con éxito</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarChequeRecido" xml:space="preserve">
+    <value>¿Seguro que desea eliminar Cheques Recibidos?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarCorrespondencia" xml:space="preserve">
+    <value>¿Seguro que desea eliminar la Correspondencia?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarDepartamentoServicio" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Departamento Servicio?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarDesgloseServicio" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Desglose Servicio?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarEtiqueta" xml:space="preserve">
+    <value>¿Seguro que desea eliminar la Etiqueta?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacCobro" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Cobro?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacCredito" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Creddito?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacFactuDetaAnulada" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Detalle Factura Anulada?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacFactuDetaProforma" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Detalle Proforma?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacFactura" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Factura?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacFacturaAnulada" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Factura Anulada?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacFacturaProforma" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Factura Proforma?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacGestion" xml:space="preserve">
+    <value>¿Seguro que desea eliminar Registro Gestion?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacJustificacion" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Concepto Justificacion?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacOperacionAnulada" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Operacion Anulada?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacOperacionDetaAnulada" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Operacion Detalle Anulada?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacOperacionDetalle" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Operacion Detalle?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacOperacionDetalleTm" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Operacion DetalleTm?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacOperacionDetaProforma" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Operacion Detalle Proforma?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacOperacionDetaTmProforma" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Operacion DetaTm Proforma?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacOperacionProforma" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro Operacion Proforma?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacPagoBolivia" xml:space="preserve">
+    <value>¿Seguro que desea eliminarRegistro cxp Bolivia?</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarTarifaServicio" xml:space="preserve">
+    <value>¿Seguro que desea eliminar la Tarifa Servicio?</value>
+  </data>
+  <data name="fac_CorrespondenciaEliminado" xml:space="preserve">
+    <value>Correspondencia eliminado con éxito</value>
+  </data>
+  <data name="fac_CorrespondenciaInsertado" xml:space="preserve">
+    <value>Correspondencia insertado con éxito</value>
+  </data>
+  <data name="fac_CorrespondenciaModificado" xml:space="preserve">
+    <value>Correspondencia modificado con éxito</value>
+  </data>
+  <data name="fac_DepartamentoServicioEliminado" xml:space="preserve">
+    <value>Departamento Servicio eliminado con éxito</value>
+  </data>
+  <data name="fac_DepartamentoServicioInsertado" xml:space="preserve">
+    <value>Departamento Servicio insertado con éxito</value>
+  </data>
+  <data name="fac_DepartamentoServicioModificado" xml:space="preserve">
+    <value>Departamento Servicio modificado con éxito</value>
+  </data>
+  <data name="fac_DesgloseServicioEliminado" xml:space="preserve">
+    <value>Desglose Servicio eliminado con éxito</value>
+  </data>
+  <data name="fac_DesgloseServicioInsertado" xml:space="preserve">
+    <value>Desglose Servicio insertado con éxito</value>
+  </data>
+  <data name="fac_DesgloseServicioModificado" xml:space="preserve">
+    <value>DesgloseServicio modificado con éxito</value>
+  </data>
+  <data name="fac_ErrorChequeRecidoRepetido" xml:space="preserve">
+    <value>Error Cheques Recibidos que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorCorrespondenciaRepetido" xml:space="preserve">
+    <value>Error Correspondencia que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorDepartamentoServicioRepetido" xml:space="preserve">
+    <value>Error Departamento Servicio que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorDesgloseServicioRepetido" xml:space="preserve">
+    <value>Error Desglose Servicio que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorEtiquetaRepetido" xml:space="preserve">
+    <value>Error Etiqueta que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacCobroRepetido" xml:space="preserve">
+    <value>Error Registro Cobros que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacCreditoRepetido" xml:space="preserve">
+    <value>Error Registro Credditos que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacFactuDetaAnuladaRepetido" xml:space="preserve">
+    <value>Error Registro Detalle Factura Anuladas que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacFactuDetaProformaRepetido" xml:space="preserve">
+    <value>Error Registro Detalle Proformas que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacFacturaAnuladaRepetido" xml:space="preserve">
+    <value>Error Registro Factura Anuladas que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacFacturaProformaRepetido" xml:space="preserve">
+    <value>Error Registro Factura Proformas que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacFacturaRepetido" xml:space="preserve">
+    <value>Error Registro Facturas que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacGestionRepetido" xml:space="preserve">
+    <value>Error Registro Gestion que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacJustificacionRepetido" xml:space="preserve">
+    <value>Error Concepto Justificacion que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacOperacionAnuladaRepetido" xml:space="preserve">
+    <value>Error Registro Operacion Anuladas que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacOperacionDetaAnuladaRepetido" xml:space="preserve">
+    <value>Error Registro Operacion Detalle Anuladas que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacOperacionDetalleRepetido" xml:space="preserve">
+    <value>Error Registro Operacion Detalles que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacOperacionDetalleTmRepetido" xml:space="preserve">
+    <value>Error Registro Operacion DetalleTms que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacOperacionDetaProformaRepetido" xml:space="preserve">
+    <value>Error Registro Operacion Detalle Proformas que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacOperacionDetaTmProformaRepetido" xml:space="preserve">
+    <value>Error Registro Operacion DetaTm Proformas que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacOperacionProformaRepetido" xml:space="preserve">
+    <value>Error Registro Operacion Proformas que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorFacPagoBoliviaRepetido" xml:space="preserve">
+    <value>Error Registro cxp Bolivia que desea guardar ya existe</value>
+  </data>
+  <data name="fac_ErrorTarifaServicioRepetido" xml:space="preserve">
+    <value>Error Tarifa Servicio que desea guardar ya existe</value>
+  </data>
+  <data name="fac_error_tasa_dia" xml:space="preserve">
+    <value>Debe cargarse las tasas del dia para procesar</value>
+  </data>
+  <data name="fac_EtiquetaEliminado" xml:space="preserve">
+    <value>Etiqueta eliminado con éxito</value>
+  </data>
+  <data name="fac_EtiquetaInsertado" xml:space="preserve">
+    <value>Etiqueta insertado con éxito</value>
+  </data>
+  <data name="fac_EtiquetaModificado" xml:space="preserve">
+    <value>Etiqueta modificado con éxito</value>
+  </data>
+  <data name="fac_FacCobroEliminado" xml:space="preserve">
+    <value>Registro Cobros eliminado con éxito</value>
+  </data>
+  <data name="fac_FacCobroInsertado" xml:space="preserve">
+    <value>Registro Cobros insertado con éxito</value>
+  </data>
+  <data name="fac_FacCobroModificado" xml:space="preserve">
+    <value>Registro Cobros modificado con éxito</value>
+  </data>
+  <data name="fac_FacCreditoEliminado" xml:space="preserve">
+    <value>Registro Credditos eliminado con éxito</value>
+  </data>
+  <data name="fac_FacCreditoInsertado" xml:space="preserve">
+    <value>Registro Credditos insertado con éxito</value>
+  </data>
+  <data name="fac_FacCreditoModificado" xml:space="preserve">
+    <value>Registro Credditos modificado con éxito</value>
+  </data>
+  <data name="fac_FacFactuDetaAnuladaEliminado" xml:space="preserve">
+    <value>Registro Detalle Factura Anuladas eliminado con éxito</value>
+  </data>
+  <data name="fac_FacFactuDetaAnuladaInsertado" xml:space="preserve">
+    <value>Registro Detalle Factura Anuladas insertado con éxito</value>
+  </data>
+  <data name="fac_FacFactuDetaAnuladaModificado" xml:space="preserve">
+    <value>Registro Detalle Factura Anuladas modificado con éxito</value>
+  </data>
+  <data name="fac_FacFactuDetaProformaEliminado" xml:space="preserve">
+    <value>Registro Detalle Proformas eliminado con éxito</value>
+  </data>
+  <data name="fac_FacFactuDetaProformaInsertado" xml:space="preserve">
+    <value>Registro Detalle Proformas insertado con éxito</value>
+  </data>
+  <data name="fac_FacFactuDetaProformaModificado" xml:space="preserve">
+    <value>Registro Detalle Proformas modificado con éxito</value>
+  </data>
+  <data name="fac_FacFacturaAnuladaEliminado" xml:space="preserve">
+    <value>Registro Factura Anuladas eliminado con éxito</value>
+  </data>
+  <data name="fac_FacFacturaAnuladaInsertado" xml:space="preserve">
+    <value>Registro Factura Anuladas insertado con éxito</value>
+  </data>
+  <data name="fac_FacFacturaAnuladaModificado" xml:space="preserve">
+    <value>Registro Factura Anuladas modificado con éxito</value>
+  </data>
+  <data name="fac_FacFacturaEliminado" xml:space="preserve">
+    <value>Registro Facturas eliminado con éxito</value>
+  </data>
+  <data name="fac_FacFacturaInsertado" xml:space="preserve">
+    <value>Registro Facturas insertado con éxito</value>
+  </data>
+  <data name="fac_FacFacturaModificado" xml:space="preserve">
+    <value>Registro Facturas modificado con éxito</value>
+  </data>
+  <data name="fac_FacFacturaProformaEliminado" xml:space="preserve">
+    <value>Proformas eliminada con éxito</value>
+  </data>
+  <data name="fac_FacFacturaProformaInsertado" xml:space="preserve">
+    <value>Proforma guardada con éxito, desea modificar la actual?</value>
+  </data>
+  <data name="fac_FacFacturaProformaModificado" xml:space="preserve">
+    <value>Proforma modificada con éxito</value>
+  </data>
+  <data name="fac_FacGestionEliminado" xml:space="preserve">
+    <value>Registro Gestion eliminado con éxito</value>
+  </data>
+  <data name="fac_FacGestionInsertado" xml:space="preserve">
+    <value>Registro Gestion insertado con éxito</value>
+  </data>
+  <data name="fac_FacGestionModificado" xml:space="preserve">
+    <value>Registro Gestion modificado con éxito</value>
+  </data>
+  <data name="fac_FacJustificacionEliminado" xml:space="preserve">
+    <value>Concepto Justificacion eliminado con éxito</value>
+  </data>
+  <data name="fac_FacJustificacionInsertado" xml:space="preserve">
+    <value>Concepto Justificacion insertado con éxito</value>
+  </data>
+  <data name="fac_FacJustificacionModificado" xml:space="preserve">
+    <value>Concepto Justificacion modificado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionAnuladaEliminado" xml:space="preserve">
+    <value>Registro Operacion Anuladas eliminado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionAnuladaInsertado" xml:space="preserve">
+    <value>Registro Operacion Anuladas insertado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionAnuladaModificado" xml:space="preserve">
+    <value>Registro Operacion Anuladas modificado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetaAnuladaEliminado" xml:space="preserve">
+    <value>Registro Operacion Detalle Anuladas eliminado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetaAnuladaInsertado" xml:space="preserve">
+    <value>Registro Operacion Detalle Anuladas insertado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetaAnuladaModificado" xml:space="preserve">
+    <value>Registro Operacion Detalle Anuladas modificado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetalleEliminado" xml:space="preserve">
+    <value>Registro Operacion Detalles eliminado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetalleInsertado" xml:space="preserve">
+    <value>Registro Operacion Detalles insertado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetalleModificado" xml:space="preserve">
+    <value>Registro Operacion Detalles modificado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetalleTmEliminado" xml:space="preserve">
+    <value>Registro Operacion DetalleTms eliminado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetalleTmInsertado" xml:space="preserve">
+    <value>Registro Operacion DetalleTms insertado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetalleTmModificado" xml:space="preserve">
+    <value>Registro Operacion DetalleTms modificado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetaProformaEliminado" xml:space="preserve">
+    <value>Registro Operacion Detalle Proformas eliminado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetaProformaInsertado" xml:space="preserve">
+    <value>Registro Operacion Detalle Proformas insertado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetaProformaModificado" xml:space="preserve">
+    <value>Registro Operacion Detalle Proformas modificado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetaTmProformaEliminado" xml:space="preserve">
+    <value>Registro Operacion DetaTm Proformas eliminado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetaTmProformaInsertado" xml:space="preserve">
+    <value>Registro Operacion DetaTm Proformas insertado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionDetaTmProformaModificado" xml:space="preserve">
+    <value>Registro Operacion DetaTm Proformas modificado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionProformaEliminado" xml:space="preserve">
+    <value>Registro Operacion Proformas eliminado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionProformaInsertado" xml:space="preserve">
+    <value>Registro Operacion Proformas insertado con éxito</value>
+  </data>
+  <data name="fac_FacOperacionProformaModificado" xml:space="preserve">
+    <value>Registro Operacion Proformas modificado con éxito</value>
+  </data>
+  <data name="fac_FacPagoBoliviaEliminado" xml:space="preserve">
+    <value>Registro cxp Bolivia eliminado con éxito</value>
+  </data>
+  <data name="fac_FacPagoBoliviaInsertado" xml:space="preserve">
+    <value>Registro cxp Bolivia insertado con éxito</value>
+  </data>
+  <data name="fac_FacPagoBoliviaModificado" xml:space="preserve">
+    <value>Registro cxp Bolivia modificado con éxito</value>
+  </data>
+  <data name="fac_TarifaServicioEliminado" xml:space="preserve">
+    <value>Tarifa Servicio eliminado con éxito</value>
+  </data>
+  <data name="fac_TarifaServicioInsertado" xml:space="preserve">
+    <value>Tarifa Servicio insertado con éxito</value>
+  </data>
+  <data name="fac_TarifaServicioModificado" xml:space="preserve">
+    <value>Tarifa Servicio modificado con éxito</value>
+  </data>
 </root>

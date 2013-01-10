@@ -1,0 +1,52 @@
+﻿<Page x:Class="Ventanas.FacReportes.FacAsociadoProfit"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"       
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"      
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+      xmlns:recurso="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Recursos" Loaded="Page_Loaded"
+      Title="Reporte Factura">
+
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Name="_controls">
+        <Grid.ColumnDefinitions>
+            <!--<ColumnDefinition Width="10"/>-->
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="90"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+            <!--<RowDefinition Height="30"/>-->
+            <!--<RowDefinition Height="10"/>-->
+        </Grid.RowDefinitions>
+
+
+        <GroupBox Grid.Column="0" Grid.Row="1" Margin="5">
+            <StackPanel Name="_splFiltro"  VerticalAlignment="Center"  HorizontalAlignment="Left"
+                        DataContext="{Binding}">
+                
+                <WrapPanel Name="_Wp_cry2" HorizontalAlignment="Left" Margin="20" VerticalAlignment="Center"></WrapPanel>
+
+                <WrapPanel   HorizontalAlignment="Left" Margin="20" VerticalAlignment="Center"></WrapPanel>
+ 
+                <Separator Margin="0,5,0,5"/>
+                <WrapPanel Name="_Wp_cry"  HorizontalAlignment="Center" Margin="20" VerticalAlignment="Center">
+
+
+                    <Button Name="_btnImprimir" VerticalAlignment="Bottom" Height="25" Width="80"
+                    Click="_btnImprimir_Click">
+                        <TextBlock Name="_txbImprimir" Text="Generar Txt"/>
+                    </Button>
+                    <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="90"
+                    Click="_btnRegresar_Click">
+                        <TextBlock Name="_txbRegresar" Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
+                    </Button>
+                </WrapPanel>
+            </StackPanel>
+
+        </GroupBox>
+
+    </Grid>
+</Page>

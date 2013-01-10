@@ -1,0 +1,271 @@
+﻿<Page x:Class="Ventanas.ViGestionAsociados.ConsultarViGestionAsociados"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"  
+      xmlns:conv="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Transformadores"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+      xmlns:reglas="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Validaciones" 
+      xmlns:recurso="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Recursos" Loaded="Page_Loaded">
+    <Page.Resources>
+        <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <!--Área de Filtrado-->
+        <GroupBox Grid.Column="0" Grid.Row="0" Margin="5" Height="35" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label>
+                    <TextBlock FontSize="15" Text="{x:Static recurso:Etiquetas.lblTotalHits}"/>
+                </Label>
+                <Label>
+                    <TextBlock FontSize="15" Name="_lblHits"/>
+                </Label>
+
+            </StackPanel>
+        </GroupBox>
+        
+        <GroupBox Grid.Column="0" Grid.Row="0" Margin="5">
+            <StackPanel Name="_splFiltro"  VerticalAlignment="Center"  HorizontalAlignment="Center"
+                        DataContext="{Binding}">
+                <Separator Margin="0,0,0,5"/>
+
+                <!--***************Asociado-->
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
+                    <Label  Name ="_lblasociado" Visibility="Collapsed"  HorizontalAlignment="Right" VerticalAlignment="Top">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
+                    </Label>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" >
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <!--<custom:ByTTextBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4"  Name="_txtAsociadoId" VerticalAlignment="Center"                                     
+                         HorizontalAlignment="Left" Width="50" Text="" MaxLength="255" GotFocus="_txtAsociado_GotFocus" GotKeyboardFocus="_txtAsociado_GotFocus" Height="20" FontSize="10"></custom:ByTTextBox>-->
+                        <Label  Name ="_lblasociado2"  Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
+                        </Label>
+
+                        <custom:ByTTextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3"  Name="_txtAsociado" VerticalAlignment="Center"                                     
+                         HorizontalAlignment="Left" Width="200" Text="" MaxLength="255" MouseDoubleClick="_txtAsociado_MouseDoubleClick" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
+
+                        <custom:ByTTextBox Grid.Column="1" KeyDown="_Consultar_Enter" Grid.Row="0" Grid.ColumnSpan="4" Name="_txtIdAsociado" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="40" MaxLength="8" SoloNumero="True" Visibility="Collapsed"  ></custom:ByTTextBox>
+
+                        <custom:ByTTextBox Grid.Column="3" Grid.Row="0" KeyDown="_Consultar_Enter" Grid.ColumnSpan="4" Name="_txtNombreAsociado" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="140" MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
+
+                        <Label Name="_lblIdAsociado" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                        </Label>
+                        <Label Name="_lblNombreAsociado" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
+                        </Label>
+                        <Button Name="_btnConsultarAsociado" Width="55" IsDefault="False" Grid.Row="0" Grid.Column="4" Height="20" HorizontalAlignment="Right" Click="_btnConsultarAsociado_Click" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                        </Button>
+                        <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="5" Name="_lstAsociados" ItemsSource="{Binding}" 
+                      SelectionMode="Single" IsEnabled="False"
+                      Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150" MouseDoubleClick="_lstAsociados_MouseDoubleClick" VerticalAlignment="Top">
+                            <ListView.View>
+                                <GridView>
+                                    <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="45">
+                                            <GridViewColumnHeader  Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                        </GridViewColumn>-->
+                                    <GridViewColumn Width="45">
+                                        <GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <Binding Path="Id" Converter="{StaticResource convertir}"/>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="260">
+                                        <GridViewColumnHeader  Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                </WrapPanel>
+                <!--***************Fin Asociado-->
+
+                <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+
+                    <Label Name="_lblIdAsociado"  HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                    </Label>
+                    <TextBox  Grid.ColumnSpan="4" Name="_txtIdAsociado" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="45" MaxLength="255"  Visibility="Collapsed"  ></TextBox>
+
+                    <Label Name="_lblNombreAsociado"  HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
+                    </Label>
+
+                    <TextBox  Grid.ColumnSpan="4" Name="_txtNombreAsociado" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="177" MaxLength="255" Visibility="Collapsed"></TextBox>
+
+                    <TextBox  Grid.ColumnSpan="4"  Name="_txtAsociado" VerticalAlignment="Center"
+                         HorizontalAlignment="Left" Width="300" Text="" MaxLength="255" GotFocus="_txtAsociado_GotFocus" GotKeyboardFocus="_txtAsociado_GotFocus"  ></TextBox>
+                    <Button Name="_btnConsultarAsociado" Width="80" IsDefault="False"  Height="25" HorizontalAlignment="Right" Click="_btnConsultarAsociado_Click" Visibility="Collapsed">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                    </Button>
+                </WrapPanel>
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="2" Name="_lstId" ItemsSource="{Binding}" 
+                      SelectionMode="Single" IsEnabled="False"
+                      Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150" MouseDoubleClick="_lstAsociados_MouseDoubleClick" VerticalAlignment="Top">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="45">
+                                    <GridViewColumnHeader  Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="260">
+                                    <GridViewColumnHeader  Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                </WrapPanel>-->
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label Visibility="Hidden">
+                        <TextBlock Text="Cantidad"/>
+                    </Label>
+                    <TextBox Name="_txtNCantidad" Width="150" MaxLength="10" Focusable="True" 
+                    ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" Visibility="Hidden">
+                        <TextBox.Text>
+                            <Binding Path="NCantidad" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <reglas:SoloNumeros ValidatesOnTargetUpdated="True" />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </WrapPanel>
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="Fecha Ultima"/>
+                    </Label>
+
+                    <DatePicker Name="_dpkFechaUltima" Width="150" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFechaUltima_SelectedDateChanged">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="FechaUltima" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>    
+                    
+                    <!--<DatePicker Name="_dpkFechaUltima" Width="150" Text="{Binding Path=Id}"  Focusable="False" BorderBrush="{x:Null}" >
+
+                    </DatePicker>-->
+                </WrapPanel>
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="Moneda"/>
+                    </Label>
+                    <TextBox Name="_txtMoneda" Width="150" MaxLength="2" Focusable="True" 
+                    ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}">
+                        <TextBox.Text>
+                            <Binding Path="Moneda" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </WrapPanel>
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label Visibility="Hidden">
+                        <TextBlock Text="Saldo"/>
+                    </Label>
+                    <TextBox Name="_txtNSaldo" Width="150" MaxLength="2" Focusable="True" 
+                    ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" Visibility="Hidden">
+                        <TextBox.Text>
+                            <Binding Path="NSaldo" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <reglas:SoloNumeros ValidatesOnTargetUpdated="True" />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </WrapPanel>
+
+                <Separator Margin="0,5,0,5"/>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,5">
+                    <Button Name="_btnConsultar" Width="100" IsDefault="False" Click="_btnConsultar_Click" >
+                        <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                    </Button>
+                </WrapPanel>
+                <Separator Margin="0,5,0,5"/>
+            </StackPanel>
+
+        </GroupBox>
+
+        <!--Resultados-->
+        <GroupBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Margin="5">
+            <ListView Name="_lstResultados" ItemsSource="{Binding}"  MouseDoubleClick="_lstResultados_MouseDoubleClick" SelectionMode="Single" 
+                       Style="{DynamicResource EstiloListView}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id.Id}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id.Id" Content="Codigo Asociado"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Cantidad}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Cantidad" Content="Cantidad"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaUltima, StringFormat={}{0:dd/MM/yyyy}}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaUltima" Content="Fecha Ultima"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Moneda}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Moneda" Content="Moneda"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Saldo}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Saldo" Content="Saldo"/>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+
+        <!--Botones Regresar-->
+        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <Button Name="_btnCancelar" Width="100" Click="_btnCancelar_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnCancelar}"/>
+                </Button>
+                <Button Name="_btnLimpiar" VerticalAlignment="Center" Width="100" Click="_btnLimpiar_Click" HorizontalAlignment="Right">Limpiar</Button>
+            </StackPanel>
+        </GroupBox>
+
+    </Grid>
+</Page>

@@ -1,0 +1,153 @@
+﻿<Page x:Class="Ventanas.ViGestionAsociados.ConsultarFacGestionesAsociado"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"    
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
+      xmlns:local="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Ventanas.ViGestionAsociados"
+      mc:Ignorable="d" 
+      xmlns:reglas="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Validaciones"    
+      xmlns:conv="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Transformadores"      
+      d:DesignHeight="550" d:DesignWidth="800"
+      xmlns:recurso="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Recursos" Loaded="Page_Loaded" Height="Auto" Width="1000">
+    <Page.Resources>
+        <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
+        <conv:DosValresAUno x:Key="convertirADosValores"></conv:DosValresAUno>
+        <conv:DosValresAUno_2 x:Key="convertirADosValores_2"></conv:DosValresAUno_2>
+        <Style TargetType="{x:Type DatePickerTextBox}">
+            <Setter Property="Text" Value="{x:Static recurso:Etiquetas.dpkText}" />
+        </Style>
+
+        <Style x:Key="ElementInError" TargetType="{x:Type FrameworkElement}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip"
+                    Value="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={x:Static RelativeSource.Self}}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+    <Page.CommandBindings>
+        <!--<CommandBinding Command="desactivar_item" Executed="al_desactivar_item" />-->
+        <CommandBinding Command="local:ConsultarFacGestionesAsociado.Respuesta_Item"  Executed="al_Respuesta_Item" ></CommandBinding>
+        <CommandBinding Command="local:ConsultarFacGestionesAsociado.Gestion_Item"  Executed="al_Gestion_Item" ></CommandBinding>        
+    </Page.CommandBindings>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <!--<ColumnDefinition Width="400"/>-->
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <!--Área de Filtrado-->
+        <!--<GroupBox Grid.Column="0" Grid.Row="0" Margin="5" Height="35" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label>
+                    <TextBlock FontSize="15" Text="{x:Static recurso:Etiquetas.lblTotalHits}"/>
+                </Label>
+                <Label>
+                    <TextBlock FontSize="15" Name="_lblHits"/>
+                </Label>
+
+            </StackPanel>
+        </GroupBox>-->
+
+
+        <GroupBox Grid.Column="0" Grid.Row="0" Margin="5" Grid.ColumnSpan="2">
+            <StackPanel Name="datos"  VerticalAlignment="Center"  HorizontalAlignment="Center"
+                        DataContext="{Binding}">
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Center">
+                    <Label>
+                        <TextBlock Text="Asociado:"/>
+                    </Label>
+                    <custom:ByTTextBox  Name="_txtAsociado" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="200" ></custom:ByTTextBox>
+                    <custom:ByTTextBox  Name="_txtAsociadoDomicilio" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="250"  ></custom:ByTTextBox>
+                    <Label>
+                        <TextBlock Text="Tipo:"/>
+                    </Label>
+                    <custom:ByTTextBox  Name="_txtAsociadoTipo" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="100"  ></custom:ByTTextBox>
+                </WrapPanel>
+           </StackPanel>
+
+        </GroupBox>
+
+        <!--Resultados-->
+        <GroupBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="5" VerticalAlignment="Top"  HorizontalAlignment="Center"  >
+            <ListView Name="_lstResultados" ItemsSource="{Binding}" MouseDoubleClick="_lstResultados_MouseDoubleClick" SelectionMode="Single" 
+                       Style="{DynamicResource EstiloListView}" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="70">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="No Gestion"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaGestion, StringFormat={}{0:dd/MM/yyyy}}" Width="90">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaGestion" Content="Fecha Gestion"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Medio}" Width="50">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Medio" Content="Medio"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=ConceptoGestion}" Width="60">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="ConceptoGestion" Content="Concepto"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Observacion}" Width="200">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Observacion" Content="Observacion"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Inicial}" Width="60">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Inicial" Content="Iniciales"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoResp}" Width="70">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="CodigoResp" Content="Gestion"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Respuesta}" Width="70">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Respuesta" Content="Respuesta"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaIngreso, StringFormat={}{0:dd/MM/yyyy}}" Width="90">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaIngreso" Content="Fecha Ingreso"/>
+                        </GridViewColumn>
+                        <GridViewColumn Width="60" Header="">
+                            <!--<GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>-->
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="Btn_Registrar" Content="Ver"  Command="local:ConsultarFacGestionesAsociado.Respuesta_Item" CommandParameter="{Binding CodigoResp}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="75" Header="">
+                            <!--<GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>-->
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="Btn_Pago" Content="Respuesta"  Command="local:ConsultarFacGestionesAsociado.Gestion_Item" CommandParameter="{Binding Respuesta}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+
+        <!--Botones Regresar-->
+        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" BorderBrush="{x:Null}">
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
+                <Button Name="_btnCancelar" Width="100" Click="_btnCancelar_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnCancelar}"/>
+                </Button>
+                <Button Name="_btnRegresar" VerticalAlignment="Bottom" Width="100"
+                    Click="_btnRegresar_Click">
+                    <TextBlock Name="_txbRegresar" Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
+                </Button>
+            </StackPanel>
+        </GroupBox>
+
+    </Grid>
+</Page>

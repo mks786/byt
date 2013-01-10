@@ -337,6 +337,250 @@
                     <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
                 </MenuItem>
             </MenuItem>
+            
+            <!--Facturacion-->
+            <MenuItem Name="_menuItemAdministracion" Header="Administración">
+                <MenuItem Name="_menuItemFacturacionMaestros" Header="Maestros">
+                    <MenuItem Name="_fac_menuItemTasa" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemTasa}">
+                        <MenuItem Name="_fac_menuItemTasaConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemTasaConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemTasaAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemTasaAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemAnualidad" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemAnualidad}">
+                        <MenuItem Name="_fac_menuItemAnualidadConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemAnualidadConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemAnualidadAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemAnualidadAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemDetalleEnvio" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemDetalleEnvio}">
+                        <MenuItem Name="_fac_menuItemDetalleEnvioConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemDetalleEnvioConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemDetalleEnvioAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemDetalleEnvioAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemDetallePago" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemDetallePago}">
+                        <MenuItem Name="_fac_menuItemDetallePagoConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemDetallePagoConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemDetallePagoAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemDetallePagoAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemDocumentosMarca" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemDocumentosMarca}">
+                        <MenuItem Name="_fac_menuItemDocumentosMarcaConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemDocumentosMarcaConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemDocumentosMarcaAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemDocumentosMarcaAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemDocumentosPatente" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemDocumentosPatente}">
+                        <MenuItem Name="_fac_menuItemDocumentosPatenteConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemDocumentosPatenteConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemDocumentosPatenteAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemDocumentosPatenteAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemDocumentosTraduccion" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemDocumentosTraduccion}">
+                        <MenuItem Name="_fac_menuItemDocumentosTraduccionConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemDocumentosTraduccionConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemDocumentosTraduccionAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemDocumentosTraduccionAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemFacRecurso" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemFacRecurso}">
+                        <MenuItem Name="_fac_menuItemFacRecursoConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemFacRecursoConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemFacRecursoAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemFacRecursoAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemGuia" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemGuia}">
+                        <MenuItem Name="_fac_menuItemGuiaConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemGuiaConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemGuiaAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemGuiaAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemImpuesto" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemImpuesto}">
+                        <MenuItem Name="_fac_menuItemImpuestoConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemImpuestoConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemImpuestoAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemImpuestoAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemMaterial" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemMaterial}">
+                        <MenuItem Name="_fac_menuItemMaterialConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemMaterialConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemMaterialAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemMaterialAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemMotivo" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemMotivo}">
+                        <MenuItem Name="_fac_menuItemMotivoConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemMotivoConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemMotivoAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemMotivoAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemSociedad" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemSociedad}">
+                        <MenuItem Name="_fac_menuItemSociedadConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemSociedadConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemSociedadAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemSociedadAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemTipoClase" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemTipoClase}">
+                        <MenuItem Name="_fac_menuItemTipoClaseConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemTipoClaseConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemTipoClaseAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemTipoClaseAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemTipoMarca" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemTipoMarca}">
+                        <MenuItem Name="_fac_menuItemTipoMarcaConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemTipoMarcaConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemTipoMarcaAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemTipoMarcaAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemTipoPatente" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemTipoPatente}">
+                        <MenuItem Name="_fac_menuItemTipoPatenteConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemTipoPatenteConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemTipoPatenteAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemTipoPatenteAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemServicio" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemServicio}">
+                        <MenuItem Name="_fac_menuItemServicioConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemServicioConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemServicioAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemServicioAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemCorrespondencia" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemCorrespondencia}">
+                        <MenuItem Name="_fac_menuItemCorrespondenciaConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemCorrespondenciaConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemCorrespondenciAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemCorrespondenciaAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemFacJustificacion" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemFacJustificacion}">
+                        <MenuItem Name="_fac_menuItemFacJustificacionConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemFacJustificacionConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemFacJustificacionAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemFacJustificacionAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemEtiqueta" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemEtiqueta}">
+                        <MenuItem Name="_fac_menuItemServicioEtiquetaConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemEtiquetaConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemEtiquetAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemEtiquetaAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemDepartamentoServicio" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemDepartamentoServicio}">
+                        <MenuItem Name="_fac_menuItemServicioDepartamentoServicioConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemDepartamentoServicioConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemDepartamentoServicioAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemDepartamentoServicioAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemDesgloseServicio" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemDesgloseServicio}">
+                        <MenuItem Name="_fac_menuItemServicioDesgloseServicioConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemDesgloseServicioConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemDesgloseServicioAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemDesgloseServicioAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemTarifaServicio" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemTarifaServicio}">
+                        <MenuItem Name="_fac_menuItemServicioTarifaServicioConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemTarifaServicioConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemTarifaServicioAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemTarifaServicioAgregar_Click"/>
+                    </MenuItem>
+                </MenuItem>
+
+                <MenuItem Name="_menuItemFacturacionFacturas" Header="Facturación">
+                    <!--<MenuItem Name="_fac_menuItemConceptoGestion" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemConceptoGestion}">
+                        <MenuItem Name="_fac_menuItemServicioConceptoGestionConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemConceptoGestionConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemConceptoGestionAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemConceptoGestionAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemMediosGestion" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemMediosGestion}">
+                        <MenuItem Name="_fac_menuItemServicioMediosGestionConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemMediosGestionConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemMediosGestionAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemMediosGestionAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemViGestionAsociado" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemViGestionAsociado}">
+                        <MenuItem Name="_fac_menuItemServicioViGestionAsociadoConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemViGestionAsociadoConsultar_Click"/>                    
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemChequeRecido" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemChequeRecido}">
+                        <MenuItem Name="_fac_menuItemServicioChequeRecidoConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemChequeRecidoConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemServicioChequeRecidoConsultarDeposito" Header="Deposito en Banco" Click="_fac_menuItemChequeRecidoConsultarDeposito_Click"/>
+                        <MenuItem Name="_fac_menuItemServicioChequeRecidoAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemChequeRecidoAgregar_Click"/>                                        
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemFacPagoBolivia" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemFacPagoBolivia}">
+                        <MenuItem Name="_fac_menuItemServicioFacPagoBoliviaConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemFacPagoBoliviaConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemServicioFacPagoBoliviaConsultarPago" Header="Consultar Pago" Click="_fac_menuItemFacPagoBoliviaConsultarPago_Click"/>
+                        <MenuItem Name="_fac_menuItemServicioFacPagoBoliviaAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemFacPagoBoliviaAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemFacCobro" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemFacCobro}">
+                        <MenuItem Name="_fac_menuItemServicioFacCobroConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemFacCobroConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemServicioFacCobroAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemFacCobroAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemFacCredito" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemFacCredito}">
+                        <MenuItem Name="_fac_menuItemServicioFacCreditoConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemFacCreditoConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemServicioFacCreditoAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemFacCreditoAgregar_Click"/>
+                    </MenuItem>-->
+                    <MenuItem Name="_fac_menuItemFacFacturaProforma" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemFacFacturaProforma}">
+                        <MenuItem Name="_fac_menuItemFacFacturaProformaAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemFacFacturaProformaAgregar_Click"/>
+                        <MenuItem Name="_fac_menuItemFacFacturaProformaConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemFacFacturaProformaConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemFacFacturaProformaConsultarPendientes" Header="Consultar Pendientes" Click="_fac_menuItemFacFacturaProformaConsultarPendientes_Click"/>
+                        <MenuItem Name="_fac_menuItemFacFacturaProformaConsultarDepartamentos" Header="Consulta por Departamento" Click="_fac_menuItemFacFacturaProformaConsultarDepartamentos_Click"/>
+                        <MenuItem Name="_fac_menuItemFacFacturaProformaConsultarAutorizacion" Header="Consulta Autorizacion" Click="_fac_menuItemFacFacturaProformaConsultarAutorizacion_Click"/>
+                        <!--<MenuItem Name="_fac_menuItemServicioProformaaFactura" Header="Proforma a Factura" Click="_fac_menuItemProformaaFactura_Click"/>-->
+                        <!--<MenuItem Name="_fac_menuItemServicioFacFacturaConsultar" Header="Consultar Facturas" Click="_fac_menuItemFacFacturaConsultar_Click"/>-->
+                    </MenuItem>
+
+
+                    <MenuItem Name="_fac_menuItemFacFactura" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemFacFactura}">
+                        <!--<MenuItem Name="_fac_menuItemServicioFacFacturaProformaAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemFacFacturaProformaAgregar_Click"/>
+                        <MenuItem Name="_fac_menuItemServicioFacFacturaProformaConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemFacFacturaProformaConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemServicioFacFacturaProformaConsultarPendientes" Header="Consultar Pendientes" Click="_fac_menuItemFacFacturaProformaConsultarPendientes_Click"/>
+                        <MenuItem Name="_fac_menuItemServicioFacFacturaProformaConsultarDepartamentos" Header="Consulta por Departamento" Click="_fac_menuItemFacFacturaProformaConsultarDepartamentos_Click"/>
+                        <MenuItem Name="_fac_menuItemServicioFacFacturaProformaConsultarAutorizacion" Header="Consulta Autorizacion" Click="_fac_menuItemFacFacturaProformaConsultarAutorizacion_Click"/>
+                        <MenuItem Name="_fac_menuItemServicioProformaaFactura" Header="Proforma a Factura" Click="_fac_menuItemProformaaFactura_Click"/>-->
+                        <MenuItem Name="_fac_menuItemFacFacturaConsultar" Header="Consultar Facturas" Click="_fac_menuItemFacFacturaConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemFacFacturaConsultarAnuladas" Header="Consultar Facturas Anuladas" Click="_fac_menuItemFacFacturaConsultarAnuladas_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemProformaaFactura"  Visibility="Collapsed" Header="Proforma a Factura" Click="_fac_menuItemProformaaFactura_Click"/>
+
+                    <MenuItem Name="_fac_menuItemFacFacturaAnulacion" Visibility="Collapsed"  Header="Anular Facturas" Click="_fac_menuItemFacFacturaAnulacion_Click"/>
+
+                    <!--Consultas de facturacion-->
+                    <MenuItem Name="_fac_menuItemConsultasFacFacturacion" Header="Consultas">
+                        <MenuItem Name="_fac_menuItemConsultaFacturacionAnuladas"  Visibility="Collapsed" Header="Anuladas" Click="_fac_menuItemConsultaFacturacionAnuladas_Click"/>
+                        <MenuItem Name="_fac_menuItemConsultaFacturacionAsociado"  Visibility="Collapsed" Header="Facturas Todas" Click="_fac_menuItemConsultaFacturacionAsociado_Click"/>
+                        <MenuItem Name="_fac_menuItemConsultaFacturacionVigenteAsociado"  Visibility="Collapsed" Header="Facturas Vigentes" Click="_fac_menuItemConsultaFacturacionVigenteAsociado_Click"/>
+                        <MenuItem Name="_fac_menuItemConsultaStatementPorProcesar"  Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemConsultaStatementPorProcesar}" Click="_fac_menuItemConsultaStatementPorProcesar_Click"/>
+                        <MenuItem Name="_fac_menuItemConsultaFacturasAnuladas"  Visibility="Collapsed" Header="Facturas Anuladas" Click="_fac_menuItemConsultaFacturasAnuladas_Click"/>
+                    </MenuItem>
+
+                </MenuItem>
+
+                <MenuItem Name="_menuItemFacturacionCobranzas" Header="Cobranzas">
+                    <MenuItem Name="_menuItemFacturacionGestiones" Header="Gestiones">
+                        <MenuItem Name="_fac_menuItemConceptoGestion" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemConceptoGestion}">
+                            <MenuItem Name="_fac_menuItemConceptoGestionConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemConceptoGestionConsultar_Click"/>
+                            <MenuItem Name="_fac_menuItemConceptoGestionAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemConceptoGestionAgregar_Click"/>
+                        </MenuItem>
+                        <MenuItem Name="_fac_menuItemMediosGestion" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemMediosGestion}">
+                            <MenuItem Name="_fac_menuItemMediosGestionConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemMediosGestionConsultar_Click"/>
+                            <MenuItem Name="_fac_menuItemMediosGestionAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemMediosGestionAgregar_Click"/>
+                        </MenuItem>
+
+                        <MenuItem Name="_fac_menuItemViGestionAsociado" Visibility="Collapsed" Header="Asociados con Gestion" Click="_fac_menuItemViGestionAsociadoConsultar_Click"/>
+
+                        <MenuItem Name="_fac_menuItemFacGestion" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemFacGestion}">
+                            <MenuItem Name="_fac_menuItemFacGestionConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemFacGestionConsultar_Click"/>
+                            <MenuItem Name="_fac_menuItemFacGestionAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemFacGestionAgregar_Click"/>
+                        </MenuItem>
+                    </MenuItem>
+
+                    <MenuItem Name="_fac_menuItemChequeRecido" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemChequeRecido}">
+                        <MenuItem Name="_fac_menuItemChequeRecidoConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemChequeRecidoConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemChequeRecidoConsultarDeposito" Header="Deposito en Banco" Click="_fac_menuItemChequeRecidoConsultarDeposito_Click"/>
+                        <MenuItem Name="_fac_menuItemChequeRecidoAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemChequeRecidoAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemFacPagoBolivia" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemFacPagoBolivia}">
+                        <MenuItem Name="_fac_menuItemFacPagoBoliviaConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemFacPagoBoliviaConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemFacPagoBoliviaConsultarPago" Header="Consultar Pago" Click="_fac_menuItemFacPagoBoliviaConsultarPago_Click"/>
+                        <MenuItem Name="_fac_menuItemFacPagoBoliviaAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemFacPagoBoliviaAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemFacCobro" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemFacCobro}">
+                        <MenuItem Name="_fac_menuItemFacCobroConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemFacCobroConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemFacCobroAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemFacCobroAgregar_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_fac_menuItemFacCredito" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemFacCredito}">
+                        <MenuItem Name="_fac_menuItemFacCreditoConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemFacCreditoConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemFacCreditoAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemFacCreditoAgregar_Click"/>
+                    </MenuItem>
+
+                    <MenuItem Name="_fac_menuItemFacInternacional" Visibility="Collapsed"  Header="CxP Internacional" Click="_fac_menuItemFacInternacional_Click"/>
+
+                    <!--Consultas de Cobranza-->
+                    <MenuItem Name="_fac_menuItemConsultasCobranza" Header="Consultas">
+                        <MenuItem Name="_fac_menuItemConsultasCreditos" Visibility="Collapsed" Header="Creditos">
+                            <MenuItem Name="_fac_menuItemConsultaCreditosAsociado"   Header="Todos" Click="_fac_menuItemConsultaCreditosAsociado_Click"/>
+                            <MenuItem Name="_fac_menuItemConsultaCreditosVigentesAsociado"   Header="Vigentes" Click="_fac_menuItemConsultaCreditosVigentesAsociado_Click"/>
+                        </MenuItem>
+                        <MenuItem Name="_fac_menuItemConsultaPagosAsociado" Visibility="Collapsed"  Header="Pagos" Click="_fac_menuItemConsultaPagosAsociado_Click"/>
+                        <MenuItem Name="_fac_menuItemConsultaOperacionesAsociado" Visibility="Collapsed"  Header="Operaciones" Click="_fac_menuItemConsultaOperacionesAsociado_Click"/>
+                        <!--<MenuItem Name="_fac_menuItemConsultaFacturacionAnuladas"  Visibility="Collapsed" Header="Anuladas" Click="_fac_menuItemConsultaFacturacionAnuladas_Click"/>
+                        <MenuItem Name="_fac_menuItemConsultaFacturacionAsociado"  Visibility="Collapsed" Header="Facturas Todas" Click="_fac_menuItemConsultaFacturacionAsociado_Click"/>
+                        <MenuItem Name="_fac_menuItemConsultaFacturacionVigenteAsociado"  Visibility="Collapsed" Header="Facturas Vigentes" Click="_fac_menuItemConsultaFacturacionVigenteAsociado_Click"/>
+                        <MenuItem Name="_fac_menuItemConsultaStatementPorProcesar"  Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemConsultaStatementPorProcesar}" Click="_fac_menuItemConsultaStatementPorProcesar_Click"/>
+                        <MenuItem Name="_fac_menuItemConsultaFacturasAnuladas"  Visibility="Collapsed" Header="Facturas Anuladas" Click="_fac_menuItemConsultaFacturasAnuladas_Click"/>-->
+                    </MenuItem>
+                </MenuItem>
+
+                <MenuItem Name="_menuItemFacturacionReportes" Header="Reportes">
+                    <MenuItem Name="_fac_menuItemFacEstadoCuenta" Header="Estado Cuenta" Click="_fac_menuItemFacEstadoCuenta_Click"/>
+                    <MenuItem Name="_fac_menuItemFacPendientesRpt" Header="Pendientes" Click="_fac_menuItemFacPendientesRpt_Click"/>
+                    <MenuItem Name="_fac_menuItemResumenOperacionesRpt" Header="Resumen" Click="_fac_menuItemResumenOperacionesRpt_Click"/>
+                    <MenuItem Name="_fac_menuItemVentasTotalesRevRpt" Header="Ventas Totales Rev" Click="_fac_menuItemVentasTotalesRevRpt_Click"/>
+                    <MenuItem Name="_fac_menuItemVentasTotalesRpt" Header="Ventas Totales" Click="_fac_menuItemVentasTotalesRpt_Click"/>
+                    <MenuItem Name="_fac_menuItemFacFacturacionPendiente" Header="Facturacion Pendiente" Click="_fac_menuItemFacFacturacionPendiente_Click"/>
+
+
+                    <MenuItem Name="_menuItemFacturacionReportesViejos" Header="Facturacion Viejos">
+                        <MenuItem Name="_fac_menuItemFacFacturacionPendienteVieja" Header="Facturacion Pendiente" Click="_fac_menuItemFacFacturacionPendienteVieja_Click"/>
+                        <MenuItem Name="_fac_menuItemFacFacturacionLoteVieja" Header="Facturacion por Lote" Click="_fac_menuItemFacFacturacionLoteVieja_Click"/>
+                    </MenuItem>
+
+                    <MenuItem Name="_fac_menuItemFacEnvioAsociado" Header="Envio Asociado" Click="_fac_menuItemFacEnvioAsociado_Click"/>
+                    <MenuItem Name="_fac_menuItemFacAsociadoProfit" Header="Asociado Profit" Click="_fac_menuItemFacAsociadoProfit_Click"/>
+                    <MenuItem Name="_fac_menuItemFacturaEncabezado" Header="Facturas Profit Encab." Click="_fac_menuItemFacturaEncabezado_Click"/>
+                    <MenuItem Name="_fac_menuItemFacturaDetalle" Header="Facturas Profit Detalles" Click="_fac_menuItemFacturaDetalle_Click"/>
+                    <MenuItem Name="_fac_menuItemFacturaDigital" Header="Factura Digital" Click="_fac_menuItemFacturaDigital_Click"/>
+                </MenuItem>
+            </MenuItem>
+            <!--Fin Facturacion-->
+            
+            
             <MenuItem Name="_menuItemAyuda" Header="{x:Static resx:Etiquetas.menuItemAyuda}">
                 <MenuItem Name="_menuItemAyudaAcerca" Header="{x:Static resx:Etiquetas.menuItemAyudaAcerca}" ></MenuItem>
             </MenuItem>

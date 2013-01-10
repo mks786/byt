@@ -64,6 +64,47 @@ using Trascend.Bolet.Cliente.Ventanas.TiposEmailAsociado;
 using System.Diagnostics;
 using System.Collections.Generic;
 
+
+//Facturacion
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.Tasas;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacAnualidades;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.DetalleEnvios;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.DetallePagos;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.DocumentosMarcas;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.DocumentosPatentes;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.DocumentosTraducciones;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacRecursos;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.Guias;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.Impuestos;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.Materiales;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.Motivos;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.Sociedades;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.TipoClases;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.TipoMarcas;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.TipoPatentes;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.Servicios;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.Correspondencias;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacJustificaciones;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.Etiquetas;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.DepartamentoServicios;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.DesgloseServicios;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.TarifaServicios;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.ConceptoGestiones;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.MediosGestiones;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.ViGestionAsociados;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.ChequeRecidos;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacPagoBolivias;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacCreditos;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacCobros;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacFacturaProformas;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacFacturas;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacFacturaAnuladas;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacReportes;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacGestiones;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacInternacionales;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.Consultas;
+
+
 namespace Trascend.Bolet.Cliente.Presentadores.Principales
 {
     class PresentadorVentanaPrincipal : PresentadorBase
@@ -1040,6 +1081,468 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
 
         #endregion
 
+        #region Facturacion
+        // ''' <summary>
+        // ''' Método que coloca la página "AgregarTasa" en el Frame principal
+        // ''' </summary>
+        public void AgregarTasa()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarTasa());
+        }
+
+        /// <summary>
+        /// Método que coloca la página "ConsultarTasas" en el Frame principal
+        /// </summary>
+        public void ConsultarTasas()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarTasas());
+        }
+
+        public void AgregarFacAnualidad()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarFacAnualidad());
+        }
+
+        public void ConsultarFacAnualidades()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarFacAnualidades());
+        }
+
+        public void AgregarDetalleEnvio()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarDetalleEnvio());
+        }
+
+        public void ConsultarDetalleEnvios()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarDetalleEnvios());
+        }
+
+        public void AgregarDetallePago()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarDetallePago());
+        }
+
+        public void ConsultarDetallePagos()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarDetallePagos());
+        }
+        public void AgregarDocumentosMarca()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarDocumentosMarca());
+        }
+
+        public void ConsultarDocumentosMarcas()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarDocumentosMarcas());
+        }
+        public void AgregarDocumentosPatente()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarDocumentosPatente());
+        }
+
+        public void ConsultarDocumentosPatentes()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarDocumentosPatentes());
+        }
+        public void AgregarDocumentosTraduccion()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarDocumentosTraduccion());
+        }
+
+        public void ConsultarDocumentosTraducciones()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarDocumentosTraducciones());
+        }
+        public void AgregarFacRecurso()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarFacRecurso());
+        }
+
+        public void ConsultarFacRecursos()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarFacRecursos());
+        }
+        public void AgregarGuia()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarGuia());
+        }
+
+        public void ConsultarGuias()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarGuias());
+        }
+        public void AgregarImpuesto()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarImpuesto());
+        }
+
+        public void ConsultarImpuestos()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarImpuestos());
+        }
+        public void AgregarMaterial()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarMaterial());
+        }
+
+        public void ConsultarMateriales()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarMateriales());
+        }
+
+        public void AgregarMotivo()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarMotivo());
+        }
+
+        public void ConsultarMotivos()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarMotivos());
+        }
+
+        public void AgregarSociedad()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarSociedad());
+        }
+
+        public void ConsultarSociedades()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarSociedades());
+        }
+        public void AgregarTipoClase()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarTipoClase());
+        }
+
+        public void ConsultarTipoClases()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarTipoClases());
+        }
+        public void AgregarTipoMarca()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarTipoMarca());
+        }
+
+        public void ConsultarTipoMarcas()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarTipoMarcas());
+        }
+        public void AgregarTipoPatente()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarTipoPatente());
+        }
+
+        public void ConsultarTipoPatentes()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarTipoPatentes());
+        }
+
+        public void AgregarServicio()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarServicio());
+        }
+
+        public void ConsultarServicios()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarServicios());
+        }
+
+        public void AgregarCorrespondencia()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarCorrespondencia());
+        }
+
+        public void ConsultarCorrespondencias()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarCorrespondencias());
+        }
+
+        public void AgregarFacJustificacion()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarFacJustificacion());
+        }
+
+        public void ConsultarFacJustificaciones()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarFacJustificaciones());
+        }
+
+        public void AgregarEtiqueta()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarEtiqueta());
+        }
+
+        public void ConsultarEtiquetas()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarEtiquetas());
+        }
+
+        public void AgregarDepartamentoServicio()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarDepartamentoServicio());
+        }
+
+        public void ConsultarDepartamentoServicios()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarDepartamentoServicios());
+        }
+
+        public void AgregarDesgloseServicio()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarDesgloseServicio());
+        }
+
+        public void ConsultarDesgloseServicios()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarDesgloseServicios());
+        }
+
+        public void AgregarTarifaServicio()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarTarifaServicio());
+        }
+
+        public void ConsultarTarifaServicios()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarTarifaServicios());
+        }
+
+        public void AgregarConceptoGestion()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarConceptoGestion());
+        }
+
+        public void ConsultarConceptoGestiones()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarConceptoGestiones());
+        }
+
+        public void AgregarMediosGestion()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarMediosGestion());
+        }
+
+        public void ConsultarMediosGestiones()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarMediosGestiones());
+        }
+
+        public void ConsultarViGestionAsociados()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarViGestionAsociados());
+        }
+
+        public void AgregarChequeRecido()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarChequeRecido());
+        }
+        public void ConsultarChequeRecidos()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarChequeRecidos());
+        }
+        public void ConsultarDepositoChequeRecidos()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarDepositoChequeRecidos());
+        }
+
+        public void AgregarFacPagoBolivia()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarFacPagoBolivia());
+        }
+        public void ConsultarFacPagoBolivias()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarFacPagoBolivias());
+        }
+        public void ConsultarPagoFacPagoBolivias()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarPagoFacPagoBolivias());
+        }
+
+        public void AgregarFacCobro()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarFacCobro());
+        }
+        public void ConsultarFacCobros()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarFacCobros());
+        }
+
+        public void AgregarFacCredito()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarFacCredito());
+        }
+        public void ConsultarFacCreditos()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarFacCreditos());
+        }
+
+        public void AgregarFacFacturaProforma()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarFacFacturaProforma());
+        }
+        public void ConsultarFacFacturaProformas()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarFacFacturaProformas());
+        }
+        public void ConsultarFacFacturaProformasPendientes()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarFacFacturaProformasPendientes());
+        }
+        public void ConsultarFacFacturaProformasDepartamentos()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarFacFacturaProformasDepartamentos());
+        }
+        public void ConsultarFacFacturaProformasAutorizacion()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarFacFacturaProformasAutorizacion());
+        }
+        public void ProformaaFactura()
+        {
+            this._ventana.Contenedor.Navigate(new ProformaaFactura());
+        }
+        public void ConsultarFacFacturas()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarFacFacturas());
+        }
+
+        public void AgregarFacFacturaAnulada()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarFacFacturaAnulada());
+        }
+
+        public void ConsultarFacFacturasAnuladas()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarFacFacturasAnuladas());
+        }
+
+        public void FacturasDigitales()
+        {
+            this._ventana.Contenedor.Navigate(new FacturasDigitales());
+        }
+
+        public void FacEstadoCuenta()
+        {
+            this._ventana.Contenedor.Navigate(new EstadoCuentas());
+        }
+
+        public void FacPendientesRpt()
+        {
+            this._ventana.Contenedor.Navigate(new PendientesRpt());
+        }
+
+        public void FacEnvioAsociado()
+        {
+            this._ventana.Contenedor.Navigate(new FacEnvioAsociado());
+        }
+
+        public void AgregarFacGestion()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarFacGestion());
+        }
+
+        public void ConsultarFacGestiones()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarFacGestiones());
+        }
+
+        public void ConsultarFacInternacionalesProforma()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarFacInternacionalesProforma());
+        }
+
+        public void ConsultaStatementPorProcesar()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarFacStatementProcesar());
+        }
+
+        public void ConsultaFacturacionAnuladas()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultaFacturacionAnuladas());
+        }
+
+        public void ConsultaFacturacionAsociado()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultaFacturacionAsociado());
+        }
+
+        public void ConsultaFacturacionVigenteAsociado()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultaFacturacionVigenteAsociado());
+        }
+
+        public void ConsultaFacturasAnuladas()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultaFacturasAnuladas());
+        }
+
+        public void ConsultaCreditosAsociado()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultaCreditosAsociado());
+        }
+
+        public void ConsultaCreditosVigentesAsociado()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultaCreditosVigentesAsociado());
+        }
+
+        public void ConsultaPagosAsociado()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultaPagosAsociado());
+        }
+
+        public void ConsultaOperacionesAsociado()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultaOperacionesAsociado());
+        }
+
+        public void ResumenOperacionesRpt()
+        {
+            this._ventana.Contenedor.Navigate(new ResumenOperacionesRpt());
+        }
+
+        public void VentasTotalesRevRpt()
+        {
+            this._ventana.Contenedor.Navigate(new VentasTotalesRevRpt());
+        }
+
+        public void VentasTotalesRpt()
+        {
+            this._ventana.Contenedor.Navigate(new VentasTotalesRpt());
+        }
+
+        public void FacturaEncabezado()
+        {
+            this._ventana.Contenedor.Navigate(new FacturaEncabezado());
+        }
+
+        public void FacturaDetalle()
+        {
+            this._ventana.Contenedor.Navigate(new FacturaDetalle());
+        }
+
+        public void FacAsociadoProfit()
+        {
+            this._ventana.Contenedor.Navigate(new FacAsociadoProfit());
+        }
+
+        public void FacFacturacionPendiente()
+        {
+            this._ventana.Contenedor.Navigate(new FacFacturacionPendiente());
+        }
+
+        public void FacFacturacionPendienteVieja()
+        {
+            this._ventana.Contenedor.Navigate(new FacFacturacionPendienteVieja());
+        }
+
+        public void FacFacturacionLoteVieja()
+        {
+            this._ventana.Contenedor.Navigate(new FacFacturacionLoteVieja());
+        }
+
+        #endregion
+
         /// <summary>
         /// Método que ejecuta toda la lógica del cerrado de la aplicación
         /// </summary>
@@ -1448,6 +1951,334 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                 }
                             #endregion
                         }
+
+                        #region Facturacion
+                        //Facturacion
+                        foreach (ItemsControl itemNivel2 in menuNivel2)
+                        {
+                            ItemCollection menuNivel3 = itemNivel2.Items;
+
+                            foreach (ItemsControl itemNivel3 in menuNivel3)
+                            {
+                                switch (itemNivel3.Name)
+                                {
+                                    case "_fac_menuItemTasa":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_Tasa))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
+                                    case "_fac_menuItemAnualidad":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_Anualidad))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
+                                    case "_fac_menuItemDetalleEnvio":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_DetalleEnvio))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
+                                    case "_fac_menuItemDetallePago":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_DetallePago))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
+                                    case "_fac_menuItemDocumentosMarca":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_DocumentosMarca))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
+                                    case "_fac_menuItemDocumentosPatente":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_DocumentosPatente))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
+                                    case "_fac_menuItemDocumentosTraduccion":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_DocumentosTraduccion))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
+                                    case "_fac_menuItemFacRecurso":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_FacRecurso))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
+                                    case "_fac_menuItemGuia":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_Guia))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
+                                    case "_fac_menuItemImpuesto":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_Impuesto))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
+                                    case "_fac_menuItemMaterial":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_Material))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
+                                    case "_fac_menuItemMotivo":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_Motivo))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
+                                    case "_fac_menuItemSociedad":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_Sociedad))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
+                                    case "_fac_menuItemTipoClase":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_TipoClase))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
+                                    case "_fac_menuItemTipoMarca":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_TipoMarca))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
+                                    case "_fac_menuItemTipoPatente":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_TipoPatente))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
+                                    case "_fac_menuItemServicio":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_Servicio))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
+                                    case "_fac_menuItemCorrespondencia":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_Correspondencia))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
+                                    case "_fac_menuItemFacJustificacion":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_FacJustificacion))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
+                                    case "_fac_menuItemEtiqueta":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_Etiqueta))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
+                                    case "_fac_menuItemDesgloseServicio":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_DesgloseServicio))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+                                    case "_fac_menuItemTarifaServicio":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_TarifaServicio))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
+                                    case "_fac_menuItemChequeRecido":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_ChequeRecido))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
+                                    case "_fac_menuItemFacPagoBolivia":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_FacPagoBolivia))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+                                    case "_fac_menuItemFacCobro":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_FacCobro))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+                                    case "_fac_menuItemFacCredito":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_FacCredito))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+                                    case "_fac_menuItemFacFacturaProforma":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_FacFacturaProforma))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+                                    case "_fac_menuItemFacFactura":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_FacFacturaProforma))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+                                    case "_fac_menuItemFacFacturaAnulacion":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_FacFacturaAnulada))
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        break;
+
+                                    case "_fac_menuItemProformaaFactura":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_proformaafactura))
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        break;
+
+                                    case "_fac_menuItemFacInternacional":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_ConsultarFacInternacionalesProforma))
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        break;
+
+                                    //Facturacion 
+                                    case "_fac_menuItemResumenOperacionesRpt":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_menuItemResumenOperacionesRpt))
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        break;
+
+                                    //case "_fac_menuItemConsultaStatementPorProcesar":
+                                    //    if (objeto.Id.Equals(Recursos.Ids.fac_menuItemConsultaStatementPorProcesar))
+                                    //        itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                    //    break;
+                                }
+
+                                ItemCollection menuNivel4 = itemNivel3.Items;
+                                foreach (ItemsControl itemNivel4 in menuNivel4)
+                                {
+                                    switch (itemNivel4.Name)
+                                    {
+                                        case "_fac_menuItemConceptoGestion":
+                                            if (objeto.Id.Equals(Recursos.Ids.fac_ConceptoGestion))
+                                            {
+                                                itemNivel4.Visibility = System.Windows.Visibility.Visible;
+                                            }
+                                            break;
+
+                                        case "_fac_menuItemMediosGestion":
+                                            if (objeto.Id.Equals(Recursos.Ids.fac_MediosGestion))
+                                            {
+                                                itemNivel4.Visibility = System.Windows.Visibility.Visible;
+                                            }
+                                            break;
+
+                                        case "_fac_menuItemViGestionAsociado":
+                                            if (objeto.Id.Equals(Recursos.Ids.fac_ViGestionAsociado))
+                                            {
+                                                itemNivel4.Visibility = System.Windows.Visibility.Visible;
+                                            }
+                                            break;
+
+                                        case "_fac_menuItemFacGestion":
+                                            if (objeto.Id.Equals(Recursos.Ids.fac_FacGestion))
+                                            {
+                                                itemNivel4.Visibility = System.Windows.Visibility.Visible;
+                                            }
+                                            break;
+                                        case "_fac_menuItemConsultaStatementPorProcesar":
+                                            if (objeto.Id.Equals(Recursos.Ids.fac_menuItemConsultaStatementPorProcesar))
+                                            {
+                                                itemNivel4.Visibility = System.Windows.Visibility.Visible;
+                                            }
+                                            break;
+
+                                        case "_fac_menuItemConsultaFacturacionAnuladas":
+                                            if (objeto.Id.Equals(Recursos.Ids.fac_menuItemConsultaFacturacionAnuladas))
+                                            {
+                                                itemNivel4.Visibility = System.Windows.Visibility.Visible;
+                                            }
+                                            break;
+
+                                        case "_fac_menuItemConsultaFacturacionAsociado":
+                                            if (objeto.Id.Equals(Recursos.Ids.fac_menuItemConsultaFacturacionAsociado))
+                                            {
+                                                itemNivel4.Visibility = System.Windows.Visibility.Visible;
+                                            }
+                                            break;
+
+                                        case "_fac_menuItemConsultaFacturacionVigenteAsociado":
+                                            if (objeto.Id.Equals(Recursos.Ids.fac_menuItemConsultaFacturacionVigenteAsociado))
+                                            {
+                                                itemNivel4.Visibility = System.Windows.Visibility.Visible;
+                                            }
+                                            break;
+
+                                        case "_fac_menuItemConsultaFacturasAnuladas":
+                                            if (objeto.Id.Equals(Recursos.Ids.fac_menuItemConsultaFacturasAnuladas))
+                                            {
+                                                itemNivel4.Visibility = System.Windows.Visibility.Visible;
+                                            }
+                                            break;
+
+                                        case "_fac_menuItemConsultasCreditos":
+                                            if (objeto.Id.Equals(Recursos.Ids.fac_menuItemConsultaCreditosAsociado))
+                                            {
+                                                itemNivel4.Visibility = System.Windows.Visibility.Visible;
+                                            }
+                                            break;
+
+                                        case "_fac_menuItemConsultaPagosAsociado":
+                                            if (objeto.Id.Equals(Recursos.Ids.fac_menuItemConsultaPagosAsociado))
+                                            {
+                                                itemNivel4.Visibility = System.Windows.Visibility.Visible;
+                                            }
+                                            break;
+
+                                        case "_fac_menuItemConsultaOperacionesAsociado":
+                                            if (objeto.Id.Equals(Recursos.Ids.fac_menuItemConsultaOperacionesAsociado))
+                                            {
+                                                itemNivel4.Visibility = System.Windows.Visibility.Visible;
+                                            }
+                                            break;
+                                        case "_fac_menuItemResumenOperacionesRpt":
+                                            if (objeto.Id.Equals(Recursos.Ids.fac_menuItemResumenOperacionesRpt))
+                                                itemNivel4.Visibility = System.Windows.Visibility.Visible;
+                                            break;
+                                    }
+                                }
+
+
+
+                            }
+                        }//Fin Facturacion
+                        #endregion
+
                     }
             }
         }

@@ -1,0 +1,1572 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{661AAE25-3702-4BDB-958C-96875F9E6E70}</ProjectGuid>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Diginsoft.Bolet.Cliente.Fac</RootNamespace>
+    <AssemblyName>Diginsoft.Bolet.Cliente.Fac</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <MyType>Custom</MyType>
+    <PublishUrl>http://localhost/Diginsoft.Bolet.Cliente.Fac/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <IncrementalBuild>true</IncrementalBuild>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <IncrementalBuild>false</IncrementalBuild>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Diginsoft.Bolet.Cliente.Fac.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.1.3.42154, Culture=neutral, PublicKeyToken=3a9cab8f8d22bfb7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\CrystalDecisions.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="LinFu.DynamicProxy, Version=1.0.4.18998, Culture=neutral, PublicKeyToken=62a6874124340d6e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\LinFu.DynamicProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=f128d853bf8679c3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic.Compatibility" />
+    <Reference Include="Microsoft.VisualBasic.Compatibility.Data" />
+    <Reference Include="NHibernate, Version=3.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.LinFu, Version=3.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\NHibernate.ByteCode.LinFu.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=1.0.0.505, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Data.Linq, Version=1.13.41.2, Culture=neutral, PublicKeyToken=cab60358ab4081ea, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Remotion.Data.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="SAPBusinessObjects.WPF.Viewer, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\SAPBusinessObjects.WPF.Viewer.dll</HintPath>
+    </Reference>
+    <Reference Include="SAPBusinessObjects.WPF.ViewerShared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\SAPBusinessObjects.WPF.ViewerShared.dll</HintPath>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows" />
+    <Import Include="System.Windows.Controls" />
+    <Import Include="System.Windows.Data" />
+    <Import Include="System.Windows.Documents" />
+    <Import Include="System.Windows.Input" />
+    <Import Include="System.Windows.Shapes" />
+    <Import Include="System.Windows.Media" />
+    <Import Include="System.Windows.Media.Imaging" />
+    <Import Include="System.Windows.Navigation" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Contratos\Consultas\IConsultaOperacionesAsociado.vb" />
+    <Compile Include="Contratos\Consultas\IConsultaPagosAsociado.vb" />
+    <Compile Include="Contratos\Consultas\IConsultaCreditosVigentesAsociado.vb" />
+    <Compile Include="Contratos\Consultas\IConsultaCreditosAsociado.vb" />
+    <Compile Include="Contratos\Consultas\IConsultaFacturasAnuladas.vb" />
+    <Compile Include="Contratos\Consultas\IConsultaFacturacionVigenteAsociado.vb" />
+    <Compile Include="Contratos\Consultas\IConsultaFacturacionAsociado.vb" />
+    <Compile Include="Contratos\Consultas\IConsultaFacturacionAnuladas.vb" />
+    <Compile Include="Contratos\Consultas\IConsultarFacStatementProcesar.vb" />
+    <Compile Include="Contratos\FacInternacionales\FacInternacionalPago.vb" />
+    <Compile Include="Contratos\FacInternacionales\IConsultarFacInternacionalesProforma.vb" />
+    <Compile Include="Contratos\FacGestiones\IAgregarFacGestion.vb" />
+    <Compile Include="Contratos\FacGestiones\IConsultarFacGestion.vb" />
+    <Compile Include="Contratos\FacGestiones\IConsultarFacGestiones.vb" />
+    <Compile Include="Contratos\FacCobros\IConsultarFacCobro.vb" />
+    <Compile Include="Contratos\FacFacturas\IConsultarFacFacturasAnuladas.vb" />
+    <Compile Include="Contratos\FacInternacionales\FacInternacionalRegistro.vb" />
+    <Compile Include="Contratos\FacPagoBolivias\IConsultarFacPagoBolivia.vb" />
+    <Compile Include="Contratos\FacReportes\IFacturaCopiaRpt.vb" />
+    <Compile Include="Contratos\FacReportes\IVentasTotalesRpt.vb" />
+    <Compile Include="Contratos\FacReportes\IFacFacturacionLoteVieja.vb" />
+    <Compile Include="Contratos\FacReportes\IFacFacturacionPendienteVieja.vb" />
+    <Compile Include="Contratos\FacReportes\IFacFacturacionPendiente.vb" />
+    <Compile Include="Contratos\FacReportes\IFacAsociadoProfit.vb" />
+    <Compile Include="Contratos\FacReportes\IFacturaDetalle.vb" />
+    <Compile Include="Contratos\FacReportes\IVentasTotalesRevRpt.vb" />
+    <Compile Include="Contratos\FacReportes\IResumenOperacionesRpt.vb" />
+    <Compile Include="Contratos\FacReportes\IReportesEnvioAsociadoRpt.vb" />
+    <Compile Include="Contratos\FacReportes\IFacEnvioAsociado.vb" />
+    <Compile Include="Contratos\FacReportes\IReportesRpt.vb" />
+    <Compile Include="Contratos\FacReportes\IFacturaEncabezado.vb" />
+    <Compile Include="Contratos\FacReportes\IPendientesRpt.vb" />
+    <Compile Include="Contratos\FacReportes\IEstadoCuentas.vb" />
+    <Compile Include="Contratos\FacReportes\IFacturasDigitales.vb" />
+    <Compile Include="Contratos\FacReportes\IFacturaAnuladaRpt.vb" />
+    <Compile Include="Contratos\FacReportes\IFacturaRpt.vb" />
+    <Compile Include="Contratos\FacAnualidades\IAgregarFacAnualidad.vb" />
+    <Compile Include="Contratos\FacAnualidades\IConsultarFacAnualidad.vb" />
+    <Compile Include="Contratos\FacAnualidades\IConsultarFacAnualidades.vb" />
+    <Compile Include="Contratos\ChequeRecidos\IAgregarChequeRecido.vb" />
+    <Compile Include="Contratos\ChequeRecidos\IConsultarChequeRecido.vb" />
+    <Compile Include="Contratos\ChequeRecidos\IConsultarChequeRecidos.vb" />
+    <Compile Include="Contratos\ChequeRecidos\IConsultarDepositoChequeRecidos.vb" />
+    <Compile Include="Contratos\ConceptoGestiones\IAgregarConceptoGestion.vb" />
+    <Compile Include="Contratos\ConceptoGestiones\IConsultarConceptoGestion.vb" />
+    <Compile Include="Contratos\ConceptoGestiones\IConsultarConceptoGestiones.vb" />
+    <Compile Include="Contratos\Correspondencias\IAgregarCorrespondencia.vb" />
+    <Compile Include="Contratos\Correspondencias\IConsultarCorrespondencia.vb" />
+    <Compile Include="Contratos\Correspondencias\IConsultarCorrespondencias.vb" />
+    <Compile Include="Contratos\DepartamentoServicios\IAgregarDepartamentoServicio.vb" />
+    <Compile Include="Contratos\DepartamentoServicios\IConsultarDepartamentoServicio.vb" />
+    <Compile Include="Contratos\DepartamentoServicios\IConsultarDepartamentoServicios.vb" />
+    <Compile Include="Contratos\DesgloseServicios\IAgregarDesgloseServicio.vb" />
+    <Compile Include="Contratos\DesgloseServicios\IConsultarDesgloseServicio.vb" />
+    <Compile Include="Contratos\DesgloseServicios\IConsultarDesgloseServicios.vb" />
+    <Compile Include="Contratos\DetalleEnvios\IAgregarDetalleEnvio.vb" />
+    <Compile Include="Contratos\DetalleEnvios\IConsultarDetalleEnvio.vb" />
+    <Compile Include="Contratos\DetalleEnvios\IConsultarDetalleEnvios.vb" />
+    <Compile Include="Contratos\DetallePagos\IAgregarDetallePago.vb" />
+    <Compile Include="Contratos\DetallePagos\IConsultarDetallePago.vb" />
+    <Compile Include="Contratos\DetallePagos\IConsultarDetallePagos.vb" />
+    <Compile Include="Contratos\DocumentosMarcas\IAgregarDocumentosMarca.vb" />
+    <Compile Include="Contratos\DocumentosMarcas\IConsultarDocumentosMarca.vb" />
+    <Compile Include="Contratos\DocumentosMarcas\IConsultarDocumentosMarcas.vb" />
+    <Compile Include="Contratos\DocumentosPatentes\IAgregarDocumentosPatente.vb" />
+    <Compile Include="Contratos\DocumentosPatentes\IConsultarDocumentosPatente.vb" />
+    <Compile Include="Contratos\DocumentosPatentes\IConsultarDocumentosPatentes.vb" />
+    <Compile Include="Contratos\DocumentosTraducciones\IAgregarDocumentosTraduccion.vb" />
+    <Compile Include="Contratos\DocumentosTraducciones\IConsultarDocumentosTraduccion.vb" />
+    <Compile Include="Contratos\DocumentosTraducciones\IConsultarDocumentosTraducciones.vb" />
+    <Compile Include="Contratos\Etiquetas\IAgregarEtiqueta.vb" />
+    <Compile Include="Contratos\Etiquetas\IConsultarEtiquetas.vb" />
+    <Compile Include="Contratos\Etiquetas\IConsultarEtiqueta.vb" />
+    <Compile Include="Contratos\FacCobros\IAgregarFacCobro.vb" />
+    <Compile Include="Contratos\FacCobros\IConsultarFacCobros.vb" />
+    <Compile Include="Contratos\FacCreditos\IAgregarFacCredito.vb" />
+    <Compile Include="Contratos\FacCreditos\IConsultarFacCredito.vb" />
+    <Compile Include="Contratos\FacCreditos\IConsultarFacCreditos.vb" />
+    <Compile Include="Contratos\FacFactuDetaAnuladas\IAgregarFacFactuDetaAnulada.vb" />
+    <Compile Include="Contratos\FacFactuDetaAnuladas\IConsultarDepositoFacFactuDetaAnuladas.vb" />
+    <Compile Include="Contratos\FacFactuDetaAnuladas\IConsultarFacFactuDetaAnulada.vb" />
+    <Compile Include="Contratos\FacFactuDetaAnuladas\IConsultarFacFactuDetaAnuladas.vb" />
+    <Compile Include="Contratos\FacFacturaAnuladas\IAgregarFacFacturaAnulada.vb" />
+    <Compile Include="Contratos\FacFacturaProformas\IProformaaFactura.vb" />
+    <Compile Include="Contratos\FacFacturaProformas\IConsultarFacFacturaProformasAutorizacion.vb" />
+    <Compile Include="Contratos\FacFacturaProformas\IConsultarFacFacturaProformasDepartamentos.vb" />
+    <Compile Include="Contratos\FacFacturaProformas\IConsultarFacFacturaProformasPendientes.vb" />
+    <Compile Include="Contratos\FacFacturaProformas\IAgregarFacFacturaProforma.vb" />
+    <Compile Include="Contratos\FacFacturaProformas\IConsultarDepositoFacFacturaProformas.vb" />
+    <Compile Include="Contratos\FacFacturaProformas\IConsultarFacFacturaProforma.vb" />
+    <Compile Include="Contratos\FacFacturaProformas\IConsultarFacFacturaProformas.vb" />
+    <Compile Include="Contratos\FacFacturas\IConsultarFacFactura.vb" />
+    <Compile Include="Contratos\FacFacturas\IConsultarFacFacturaPase.vb" />
+    <Compile Include="Contratos\FacFacturas\IConsultarFacFacturas.vb" />
+    <Compile Include="Contratos\FacJustificaciones\IAgregarFacJustificacion.vb" />
+    <Compile Include="Contratos\FacJustificaciones\IConsultarFacJustificacion.vb" />
+    <Compile Include="Contratos\FacJustificaciones\IConsultarFacJustificaciones.vb" />
+    <Compile Include="Contratos\FacPagoBolivias\IAgregarFacPagoBolivia.vb" />
+    <Compile Include="Contratos\FacPagoBolivias\IConsultarFacPagoBolivias.vb" />
+    <Compile Include="Contratos\FacPagoBolivias\IConsultarPagoFacPagoBolivias.vb" />
+    <Compile Include="Contratos\FacRecurso\IAgregarFacRecurso.vb" />
+    <Compile Include="Contratos\FacRecurso\IConsultarFacRecurso.vb" />
+    <Compile Include="Contratos\FacRecurso\IConsultarFacRecursos.vb" />
+    <Compile Include="Contratos\Guias\IAgregarGuia.vb" />
+    <Compile Include="Contratos\Guias\IConsultarGuia.vb" />
+    <Compile Include="Contratos\Guias\IConsultarGuias.vb" />
+    <Compile Include="Contratos\Impuestos\IAgregarImpuesto.vb" />
+    <Compile Include="Contratos\Impuestos\IConsultarImpuesto.vb" />
+    <Compile Include="Contratos\Impuestos\IConsultarImpuestos.vb" />
+    <Compile Include="Contratos\IPaginaBaseFac.vb" />
+    <Compile Include="Contratos\Materiales\IAgregarMaterial.vb" />
+    <Compile Include="Contratos\Materiales\IConsultarMaterial.vb" />
+    <Compile Include="Contratos\Materiales\IConsultarMateriales.vb" />
+    <Compile Include="Contratos\MediosGestiones\IAgregarMediosGestion.vb" />
+    <Compile Include="Contratos\MediosGestiones\IConsultarMediosGestion.vb" />
+    <Compile Include="Contratos\MediosGestiones\IConsultarMediosGestiones.vb" />
+    <Compile Include="Contratos\Motivos\IAgregarMotivo.vb" />
+    <Compile Include="Contratos\Motivos\IConsultarMotivo.vb" />
+    <Compile Include="Contratos\Motivos\IConsultarMotivos.vb" />
+    <Compile Include="Contratos\Servicios\IAgregarServicio.vb" />
+    <Compile Include="Contratos\Servicios\IConsultarServicio.vb" />
+    <Compile Include="Contratos\Servicios\IConsultarServicios.vb" />
+    <Compile Include="Contratos\Sociedades\IAgregarSociedad.vb" />
+    <Compile Include="Contratos\Sociedades\IConsultarSociedad.vb" />
+    <Compile Include="Contratos\Sociedades\IConsultarSociedades.vb" />
+    <Compile Include="Contratos\TarifaServicios\IAgregarTarifaServicio.vb" />
+    <Compile Include="Contratos\TarifaServicios\IConsultarTarifaServicio.vb" />
+    <Compile Include="Contratos\TarifaServicios\IConsultarTarifaServicios.vb" />
+    <Compile Include="Contratos\Tasas\IAgregarTasa.vb" />
+    <Compile Include="Contratos\Tasas\IConsultarTasa.vb" />
+    <Compile Include="Contratos\Tasas\IConsultarTasas.vb" />
+    <Compile Include="Contratos\TipoClases\IAgregarTipoClase.vb" />
+    <Compile Include="Contratos\TipoClases\IConsultarTipoClase.vb" />
+    <Compile Include="Contratos\TipoClases\IConsultarTipoClases.vb" />
+    <Compile Include="Contratos\TipoMarcas\IAgregarTipoMarca.vb" />
+    <Compile Include="Contratos\TipoMarcas\IConsultarTipoMarca.vb" />
+    <Compile Include="Contratos\TipoMarcas\IConsultarTipoMarcas.vb" />
+    <Compile Include="Contratos\TipoPatentes\IAgregarTipoPatente.vb" />
+    <Compile Include="Contratos\TipoPatentes\IConsultarTipoPatente.vb" />
+    <Compile Include="Contratos\TipoPatentes\IConsultarTipoPatentes.vb" />
+    <Compile Include="Contratos\ViGestionAsociados\IConsultarFacGestionesAsociado.vb" />
+    <Compile Include="Contratos\ViGestionAsociados\IConsultarViGestionAsociados.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Presentadores\Anualidades\PresentadorAgregarAnualidad.vb" />
+    <Compile Include="Presentadores\Anualidades\PresentadorConsultarAnualidad.vb" />
+    <Compile Include="Presentadores\Anualidades\PresentadorConsultarAnualidades.vb" />
+    <Compile Include="Presentadores\ChequeRecidos\PresentadorAgregarChequeRecido.vb" />
+    <Compile Include="Presentadores\ChequeRecidos\PresentadorConsultarChequeRecidos.vb" />
+    <Compile Include="Presentadores\ChequeRecidos\PresentadorConsultarDepositoChequeRecidos.vb" />
+    <Compile Include="Presentadores\ConceptoGestiones\PresentadorAgregarConceptoGestion.vb" />
+    <Compile Include="Presentadores\ConceptoGestiones\PresentadorConsultarConceptoGestion.vb" />
+    <Compile Include="Presentadores\ConceptoGestiones\PresentadorConsultarConceptoGestiones.vb" />
+    <Compile Include="Presentadores\Consultas\PresentadorConsultaOperacionesAsociado.vb" />
+    <Compile Include="Presentadores\Consultas\PresentadorConsultaPagosAsociado.vb" />
+    <Compile Include="Presentadores\Consultas\PresentadorConsultaCreditosVigentesAsociado.vb" />
+    <Compile Include="Presentadores\Consultas\PresentadorConsultaCreditosAsociado.vb" />
+    <Compile Include="Presentadores\Consultas\PresentadorConsultaFacturasAnuladas.vb" />
+    <Compile Include="Presentadores\Consultas\PresentadorConsultaFacturacionVigenteAsociado.vb" />
+    <Compile Include="Presentadores\Consultas\PresentadorConsultaConsultaFacturacionAsociado.vb" />
+    <Compile Include="Presentadores\Consultas\PresentadorConsultaFacturacionAnuladas.vb" />
+    <Compile Include="Presentadores\Consultas\PresentadorConsultarFacStatementProcesar.vb" />
+    <Compile Include="Presentadores\FacInternacionales\PresentadorFacInternacionalPago.vb" />
+    <Compile Include="Presentadores\FacInternacionales\PresentadorConsultarFacInternacionalesProforma.vb" />
+    <Compile Include="Presentadores\FacGestiones\PresentadorAgregarFacGestion.vb" />
+    <Compile Include="Presentadores\FacGestiones\PresentadorConsultarFacGestion.vb" />
+    <Compile Include="Presentadores\FacGestiones\PresentadorConsultarFacGestiones.vb" />
+    <Compile Include="Presentadores\FacCobros\PresentadorConsultarFacCobro.vb" />
+    <Compile Include="Presentadores\FacFacturas\PresentadorConsultarFacFacturasAnuladas.vb" />
+    <Compile Include="Presentadores\FacInternacionales\PresentadorFacInternacionalRegistro.vb" />
+    <Compile Include="Presentadores\FacPagoBolivias\PresentadorConsultarFacPagoBolivia.vb" />
+    <Compile Include="Presentadores\FacReportes\PresentadorFacturaCopiaRpt.vb" />
+    <Compile Include="Presentadores\FacReportes\PresentadorVentasTotalesRpt.vb" />
+    <Compile Include="Presentadores\FacReportes\PresentadorFacFacturacionLoteVieja.vb" />
+    <Compile Include="Presentadores\FacReportes\PresentadorFacFacturacionPendienteVieja.vb" />
+    <Compile Include="Presentadores\FacReportes\PresentadorFacFacturacionPendiente.vb" />
+    <Compile Include="Presentadores\FacReportes\PresentadorFacAsociadoProfit.vb" />
+    <Compile Include="Presentadores\FacReportes\PresentadorFacturaDetalle.vb" />
+    <Compile Include="Presentadores\FacReportes\PresentadorVentasTotalesRevRpt.vb" />
+    <Compile Include="Presentadores\FacReportes\PresentadorResumenOperacionesRpt.vb" />
+    <Compile Include="Presentadores\FacReportes\PresentadorReportesEnvioAsociadoRpt.vb" />
+    <Compile Include="Presentadores\FacReportes\PresentadorFacEnvioAsociado.vb" />
+    <Compile Include="Presentadores\FacReportes\PresentadorReportesRpt.vb" />
+    <Compile Include="Presentadores\FacReportes\PresentadorFacturaEncabezado.vb" />
+    <Compile Include="Presentadores\FacReportes\PresentadorPendientesRpt.vb" />
+    <Compile Include="Presentadores\FacReportes\PresentadorEstadoCuentas.vb" />
+    <Compile Include="Presentadores\FacReportes\PresentadorFacturasDigitales.vb" />
+    <Compile Include="Presentadores\FacReportes\PresentadorFacturaAnuladaRpt.vb" />
+    <Compile Include="Presentadores\FacReportes\PresentadorFacturaRpt.vb" />
+    <Compile Include="Presentadores\Correspondencias\PresentadorAgregarCorrespondencia.vb" />
+    <Compile Include="Presentadores\Correspondencias\PresentadorConsultarCorrespondencia.vb" />
+    <Compile Include="Presentadores\Correspondencias\PresentadorConsultarCorrespondencias.vb" />
+    <Compile Include="Presentadores\DepartamentoServicios\PresentadorAgregarDepartamentoServicio.vb" />
+    <Compile Include="Presentadores\DepartamentoServicios\PresentadorConsultarDepartamentoServicio.vb" />
+    <Compile Include="Presentadores\DepartamentoServicios\PresentadorConsultarDepartamentoServicios.vb" />
+    <Compile Include="Presentadores\DesgloseServicios\PresentadorAgregarDesgloseServicio.vb" />
+    <Compile Include="Presentadores\DesgloseServicios\PresentadorConsultarDesgloseServicio.vb" />
+    <Compile Include="Presentadores\DesgloseServicios\PresentadorConsultarDesgloseServicios.vb" />
+    <Compile Include="Presentadores\DetalleEnvios\PresentadorAgregarDetalleEnvio.vb" />
+    <Compile Include="Presentadores\DetalleEnvios\PresentadorConsultarDetalleEnvio.vb" />
+    <Compile Include="Presentadores\DetalleEnvios\PresentadorConsultarDetalleEnvios.vb" />
+    <Compile Include="Presentadores\DetallePagos\PresentadorAgregarDetallePago.vb" />
+    <Compile Include="Presentadores\DetallePagos\PresentadorConsultarDetallePago.vb" />
+    <Compile Include="Presentadores\DetallePagos\PresentadorConsultarDetallePagos.vb" />
+    <Compile Include="Presentadores\DocumentosMarcas\PresentadorAgregarDocumentosMarca.vb" />
+    <Compile Include="Presentadores\DocumentosMarcas\PresentadorConsultarDocumentosMarca.vb" />
+    <Compile Include="Presentadores\DocumentosMarcas\PresentadorConsultarDocumentosMarcas.vb" />
+    <Compile Include="Presentadores\DocumentosPatentes\PresentadorAgregarDocumentosPatente.vb" />
+    <Compile Include="Presentadores\DocumentosPatentes\PresentadorConsultarDocumentosPatente.vb" />
+    <Compile Include="Presentadores\DocumentosPatentes\PresentadorConsultarDocumentosPatentes.vb" />
+    <Compile Include="Presentadores\DocumentosTraducciones\PresentadorAgregarDocumentosTraduccion.vb" />
+    <Compile Include="Presentadores\DocumentosTraducciones\PresentadorConsultarDocumentosTraduccion.vb" />
+    <Compile Include="Presentadores\DocumentosTraducciones\PresentadorConsultarDocumentosTraducciones.vb" />
+    <Compile Include="Presentadores\Etiquetas\PresentadorAgregarEtiqueta.vb" />
+    <Compile Include="Presentadores\Etiquetas\PresentadorConsultarEtiqueta.vb" />
+    <Compile Include="Presentadores\Etiquetas\PresentadorConsultarEtiquetas.vb" />
+    <Compile Include="Presentadores\FacCobros\PresentadorAgregarFacCobro.vb" />
+    <Compile Include="Presentadores\FacCobros\PresentadorConsultarFacCobros.vb" />
+    <Compile Include="Presentadores\FacCreditos\PresentadorAgregarFacCredito.vb" />
+    <Compile Include="Presentadores\FacCreditos\PresentadorConsultarFacCredito.vb" />
+    <Compile Include="Presentadores\FacCreditos\PresentadorConsultarFacCreditos.vb" />
+    <Compile Include="Presentadores\FacFacturaAnuladas\PresentadorAgregarFacFacturaAnulada.vb" />
+    <Compile Include="Presentadores\FacFacturaProformas\PresentadorProformaaFactura.vb" />
+    <Compile Include="Presentadores\FacFacturaProformas\PresentadorConsultarFacFacturaProformasAutorizacion.vb" />
+    <Compile Include="Presentadores\FacFacturaProformas\PresentadorConsultarFacFacturaProformasDepartamentos.vb" />
+    <Compile Include="Presentadores\FacFacturaProformas\PresentadorConsultarFacFacturaProformasPendientes.vb" />
+    <Compile Include="Presentadores\FacFacturaProformas\PresentadorAgregarFacFacturaProforma.vb" />
+    <Compile Include="Presentadores\FacFacturaProformas\PresentadorConsultarFacFacturaProforma.vb" />
+    <Compile Include="Presentadores\FacFacturaProformas\PresentadorConsultarFacFacturaProformas.vb" />
+    <Compile Include="Presentadores\FacFacturas\PresentadorConsultarFacFactura.vb" />
+    <Compile Include="Presentadores\FacFacturas\PresentadorConsultarFacFacturaPase.vb" />
+    <Compile Include="Presentadores\FacFacturas\PresentadorConsultarFacFacturas.vb" />
+    <Compile Include="Presentadores\FacJustificaciones\PresentadorAgregarFacJustificacion.vb" />
+    <Compile Include="Presentadores\FacJustificaciones\PresentadorConsultarFacJustificacion.vb" />
+    <Compile Include="Presentadores\FacJustificaciones\PresentadorConsultarFacJustificaciones.vb" />
+    <Compile Include="Presentadores\FacPagoBolivias\PresentadorAgregarFacPagoBolivia.vb" />
+    <Compile Include="Presentadores\FacPagoBolivias\PresentadorConsultarFacPagoBolivias.vb" />
+    <Compile Include="Presentadores\FacPagoBolivias\PresentadorConsultarPagoFacPagoBolivias.vb" />
+    <Compile Include="Presentadores\FacRecursos\PresentadorAgregarFacRecurso.vb" />
+    <Compile Include="Presentadores\FacRecursos\PresentadorConsultarFacRecurso.vb" />
+    <Compile Include="Presentadores\FacRecursos\PresentadorConsultarFacRecursos.vb" />
+    <Compile Include="Presentadores\Guias\PresentadorAgregarGuia.vb" />
+    <Compile Include="Presentadores\Guias\PresentadorConsultarGuia.vb" />
+    <Compile Include="Presentadores\Guias\PresentadorConsultarGuias.vb" />
+    <Compile Include="Presentadores\Impuestos\PresentadorAgregarImpuesto.vb" />
+    <Compile Include="Presentadores\Impuestos\PresentadorConsultarImpuesto.vb" />
+    <Compile Include="Presentadores\Impuestos\PresentadorConsultarImpuestos.vb" />
+    <Compile Include="Presentadores\Materiales\PresentadorAgregarMaterial.vb" />
+    <Compile Include="Presentadores\Materiales\PresentadorConsultarMaterial.vb" />
+    <Compile Include="Presentadores\Materiales\PresentadorConsultarMateriales.vb" />
+    <Compile Include="Presentadores\MediosGestiones\PresentadorAgregarMediosGestion.vb" />
+    <Compile Include="Presentadores\MediosGestiones\PresentadorConsultarMediosGestion.vb" />
+    <Compile Include="Presentadores\MediosGestiones\PresentadorConsultarMediosGestiones.vb" />
+    <Compile Include="Presentadores\Motivos\PresentadorAgregarMotivo.vb" />
+    <Compile Include="Presentadores\Motivos\PresentadorConsultarMotivo.vb" />
+    <Compile Include="Presentadores\Motivos\PresentadorConsultarMotivos.vb" />
+    <Compile Include="Presentadores\Servicios\PresentadorAgregarServicio.vb" />
+    <Compile Include="Presentadores\Servicios\PresentadorConsultarServicio.vb" />
+    <Compile Include="Presentadores\Servicios\PresentadorConsultarServicios.vb" />
+    <Compile Include="Presentadores\Sociedades\PresentadorAgregarSociedad.vb" />
+    <Compile Include="Presentadores\Sociedades\PresentadorConsultarSociedad.vb" />
+    <Compile Include="Presentadores\Sociedades\PresentadorConsultarSociedades.vb" />
+    <Compile Include="Presentadores\TarifaServicios\PresentadorAgregarTarifaServicio.vb" />
+    <Compile Include="Presentadores\TarifaServicios\PresentadorConsultarTarifaServicio.vb" />
+    <Compile Include="Presentadores\TarifaServicios\PresentadorConsultarTarifaServicios.vb" />
+    <Compile Include="Presentadores\Tasas\PresentadorAgregarTasa.vb" />
+    <Compile Include="Presentadores\Tasas\PresentadorConsultarTasa.vb" />
+    <Compile Include="Presentadores\Tasas\PresentadorConsultarTasas.vb" />
+    <Compile Include="Presentadores\TipoClases\PresentadorAgregarTipoClase.vb" />
+    <Compile Include="Presentadores\TipoClases\PresentadorConsultarTipoClase.vb" />
+    <Compile Include="Presentadores\TipoClases\PresentadorConsultarTipoClases.vb" />
+    <Compile Include="Presentadores\TipoMarcas\PresentadorAgregarTipoMarca.vb" />
+    <Compile Include="Presentadores\TipoMarcas\PresentadorConsultarTipoMarca.vb" />
+    <Compile Include="Presentadores\TipoMarcas\PresentadorConsultarTipoMarcas.vb" />
+    <Compile Include="Presentadores\TipoPatentes\PresentadorAgregarTipoPatente.vb" />
+    <Compile Include="Presentadores\TipoPatentes\PresentadorConsultarTipoPatente.vb" />
+    <Compile Include="Presentadores\TipoPatentes\PresentadorConsultarTipoPatentes.vb" />
+    <Compile Include="Presentadores\ViGestionAsociados\PresentadorConsultarFacGestionesAsociado.vb" />
+    <Compile Include="Presentadores\ViGestionAsociados\PresentadorConsultarViGestionAsociados.vb" />
+    <Compile Include="Recursos\Etiquetas.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Etiquetas.resx</DependentUpon>
+      <CustomToolNamespace>Recursos</CustomToolNamespace>
+    </Compile>
+    <Compile Include="Recursos\Ids.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ids.resx</DependentUpon>
+      <CustomToolNamespace>Recursos</CustomToolNamespace>
+    </Compile>
+    <Compile Include="Recursos\MensajesConElUsuario.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MensajesConElUsuario.resx</DependentUpon>
+      <CustomToolNamespace>Recursos</CustomToolNamespace>
+    </Compile>
+    <Compile Include="Recursos\MensajesValidaciones.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MensajesValidaciones.resx</DependentUpon>
+      <CustomToolNamespace>Recursos</CustomToolNamespace>
+    </Compile>
+    <Compile Include="Transformadores\DosValoresAUno_2.vb" />
+    <Compile Include="Transformadores\EnteroMinimoABlanco.vb" />
+    <Compile Include="Validaciones\CorreoElectronico.vb" />
+    <Compile Include="Validaciones\LongitudMaxima.vb" />
+    <Compile Include="Validaciones\Obligatorio.vb" />
+    <Compile Include="Validaciones\SoloNumeros.vb" />
+    <Compile Include="Ventanas\Anualidades\AgregarFacAnualidad.xaml.vb">
+      <DependentUpon>AgregarFacAnualidad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Anualidades\ConsultarFacAnualidad.xaml.vb">
+      <DependentUpon>ConsultarFacAnualidad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Anualidades\ConsultarFacAnualidades.xaml.vb">
+      <DependentUpon>ConsultarFacAnualidades.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\ChequeRecidos\AgregarChequeRecido.xaml.vb">
+      <DependentUpon>AgregarChequeRecido.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\ChequeRecidos\ConsultarChequeRecidos.xaml.vb">
+      <DependentUpon>ConsultarChequeRecidos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\ChequeRecidos\ConsultarDepositoChequeRecidos.xaml.vb">
+      <DependentUpon>ConsultarDepositoChequeRecidos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\ConceptoGestiones\AgregarConceptoGestion.xaml.vb">
+      <DependentUpon>AgregarConceptoGestion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\ConceptoGestiones\ConsultarConceptoGestion.xaml.vb">
+      <DependentUpon>ConsultarConceptoGestion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\ConceptoGestiones\ConsultarConceptoGestiones.xaml.vb">
+      <DependentUpon>ConsultarConceptoGestiones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Consultas\ConsultaFacturacionAnuladas.xaml.vb">
+      <DependentUpon>ConsultaFacturacionAnuladas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Consultas\ConsultarFacStatementProcesar.xaml.vb">
+      <DependentUpon>ConsultarFacStatementProcesar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Consultas\ConsultaFacturacionAsociado.xaml.vb">
+      <DependentUpon>ConsultaFacturacionAsociado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Consultas\ConsultaFacturacionVigenteAsociado.xaml.vb">
+      <DependentUpon>ConsultaFacturacionVigenteAsociado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Consultas\ConsultaFacturasAnuladas.xaml.vb">
+      <DependentUpon>ConsultaFacturasAnuladas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Consultas\ConsultaCreditosAsociado.xaml.vb">
+      <DependentUpon>ConsultaCreditosAsociado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Consultas\ConsultaCreditosVigentesAsociado.xaml.vb">
+      <DependentUpon>ConsultaCreditosVigentesAsociado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Consultas\ConsultaPagosAsociado.xaml.vb">
+      <DependentUpon>ConsultaPagosAsociado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Consultas\ConsultaOperacionesAsociado.xaml.vb">
+      <DependentUpon>ConsultaOperacionesAsociado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacFacturaProformas\Mostrar_Detalle.xaml.vb">
+      <DependentUpon>Mostrar_Detalle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacFacturas\Mostrar_Detalle.xaml.vb">
+      <DependentUpon>Mostrar_Detalle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacGestiones\Mostrar_Detalle_Carta.xaml.vb">
+      <DependentUpon>Mostrar_Detalle_Carta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacInternacionales\ConsultarFacInternacionalesProformas.xaml.vb">
+      <DependentUpon>ConsultarFacInternacionalesProformas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacGestiones\AgregarFacGestion.xaml.vb">
+      <DependentUpon>AgregarFacGestion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Correspondencias\AgregarCorrespondencia.xaml.vb">
+      <DependentUpon>AgregarCorrespondencia.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Correspondencias\ConsultarCorrespondencia.xaml.vb">
+      <DependentUpon>ConsultarCorrespondencia.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Correspondencias\ConsultarCorrespondencias.xaml.vb">
+      <DependentUpon>ConsultarCorrespondencias.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\DepartamentoServicios\AgregarDepartamentoServicio.xaml.vb">
+      <DependentUpon>AgregarDepartamentoServicio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\DepartamentoServicios\ConsultarDepartamentoServicio.xaml.vb">
+      <DependentUpon>ConsultarDepartamentoServicio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\DepartamentoServicios\ConsultarDepartamentoServicios.xaml.vb">
+      <DependentUpon>ConsultarDepartamentoServicios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\DesgloseServicios\AgregarDesgloseServicio.xaml.vb">
+      <DependentUpon>AgregarDesgloseServicio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\DesgloseServicios\ConsultarDesgloseServicio.xaml.vb">
+      <DependentUpon>ConsultarDesgloseServicio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\DesgloseServicios\ConsultarDesgloseServicios.xaml.vb">
+      <DependentUpon>ConsultarDesgloseServicios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\DetalleEnvios\AgregarDetalleEnvio.xaml.vb">
+      <DependentUpon>AgregarDetalleEnvio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\DetalleEnvios\ConsultarDetalleEnvio.xaml.vb">
+      <DependentUpon>ConsultarDetalleEnvio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\DetalleEnvios\ConsultarDetalleEnvios.xaml.vb">
+      <DependentUpon>ConsultarDetalleEnvios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\DetallePagos\AgregarDetallePago.xaml.vb">
+      <DependentUpon>AgregarDetallePago.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\DetallePagos\ConsultarDetallePago.xaml.vb">
+      <DependentUpon>ConsultarDetallePago.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\DetallePagos\ConsultarDetallePagos.xaml.vb">
+      <DependentUpon>ConsultarDetallePagos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\DocumentosMarcas\AgregarDocumentosMarca.xaml.vb">
+      <DependentUpon>AgregarDocumentosMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\DocumentosMarcas\ConsultarDocumentosMarca.xaml.vb">
+      <DependentUpon>ConsultarDocumentosMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\DocumentosMarcas\ConsultarDocumentosMarcas.xaml.vb">
+      <DependentUpon>ConsultarDocumentosMarcas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\DocumentosPatentes\AgregarDocumentosPatente.xaml.vb">
+      <DependentUpon>AgregarDocumentosPatente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\DocumentosPatentes\ConsultarDocumentosPatente.xaml.vb">
+      <DependentUpon>ConsultarDocumentosPatente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\DocumentosPatentes\ConsultarDocumentosPatentes.xaml.vb">
+      <DependentUpon>ConsultarDocumentosPatentes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\DocumentosTraducciones\AgregarDocumentosTraduccion.xaml.vb">
+      <DependentUpon>AgregarDocumentosTraduccion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\DocumentosTraducciones\ConsultarDocumentosTraduccion.xaml.vb">
+      <DependentUpon>ConsultarDocumentosTraduccion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\DocumentosTraducciones\ConsultarDocumentosTraducciones.xaml.vb">
+      <DependentUpon>ConsultarDocumentosTraducciones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Etiquetas\AgregarEtiqueta.xaml.vb">
+      <DependentUpon>AgregarEtiqueta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Etiquetas\ConsultarEtiqueta.xaml.vb">
+      <DependentUpon>ConsultarEtiqueta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Etiquetas\ConsultarEtiquetas.xaml.vb">
+      <DependentUpon>ConsultarEtiquetas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacCobros\AgregarFacCobro.xaml.vb">
+      <DependentUpon>AgregarFacCobro.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacCobros\ConsultarFacCobro.xaml.vb">
+      <DependentUpon>ConsultarFacCobro.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacCobros\ConsultarFacCobros.xaml.vb">
+      <DependentUpon>ConsultarFacCobros.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacCreditos\AgregarFacCredito.xaml.vb">
+      <DependentUpon>AgregarFacCredito.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacCreditos\ConsultarFacCredito.xaml.vb">
+      <DependentUpon>ConsultarFacCredito.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacCreditos\ConsultarFacCreditos.xaml.vb">
+      <DependentUpon>ConsultarFacCreditos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacFacturaAnuladas\AgregarFacFacturaAnulada.xaml.vb">
+      <DependentUpon>AgregarFacFacturaAnulada.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacFacturaProformas\AgregarFacFacturaProforma.xaml.vb">
+      <DependentUpon>AgregarFacFacturaProforma.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacFacturaProformas\ConsultarFacFacturaProforma.xaml.vb">
+      <DependentUpon>ConsultarFacFacturaProforma.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacFacturaProformas\ConsultarFacFacturaProformas.xaml.vb">
+      <DependentUpon>ConsultarFacFacturaProformas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacFacturaProformas\ConsultarFacFacturaProformasAutorizacion.xaml.vb">
+      <DependentUpon>ConsultarFacFacturaProformasAutorizacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacFacturaProformas\ConsultarFacFacturaProformasDepartamentos.xaml.vb">
+      <DependentUpon>ConsultarFacFacturaProformasDepartamentos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacFacturaProformas\ConsultarFacFacturaProformasPendientes.xaml.vb">
+      <DependentUpon>ConsultarFacFacturaProformasPendientes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacFacturaProformas\ProformaaFactura.xaml.vb">
+      <DependentUpon>ProformaaFactura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacFacturas\ConsultarFacFactura.xaml.vb">
+      <DependentUpon>ConsultarFacFactura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacFacturas\ConsultarFacFacturaPase.xaml.vb">
+      <DependentUpon>ConsultarFacFacturaPase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacFacturas\ConsultarFacFacturas.xaml.vb">
+      <DependentUpon>ConsultarFacFacturas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacFacturas\ConsultarFacFacturasAnuladas.xaml.vb">
+      <DependentUpon>ConsultarFacFacturasAnuladas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacGestiones\ConsultarFacGestion.xaml.vb">
+      <DependentUpon>ConsultarFacGestion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacGestiones\ConsultarFacGestiones.xaml.vb">
+      <DependentUpon>ConsultarFacGestiones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacInternacionales\FacInternacionalPago.xaml.vb">
+      <DependentUpon>FacInternacionalPago.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacInternacionales\FacInternacionalRegistro.xaml.vb">
+      <DependentUpon>FacInternacionalRegistro.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacJustificaciones\AgregarFacJustificacion.xaml.vb">
+      <DependentUpon>AgregarFacJustificacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacJustificaciones\ConsultarFacJustificacion.xaml.vb">
+      <DependentUpon>ConsultarFacJustificacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacJustificaciones\ConsultarFacJustificaciones.xaml.vb">
+      <DependentUpon>ConsultarFacJustificaciones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacPagoBolivias\AgregarFacPagoBolivia.xaml.vb">
+      <DependentUpon>AgregarFacPagoBolivia.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacPagoBolivias\ConsultarFacPagoBolivia.xaml.vb">
+      <DependentUpon>ConsultarFacPagoBolivia.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacPagoBolivias\ConsultarFacPagoBolivias.xaml.vb">
+      <DependentUpon>ConsultarFacPagoBolivias.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacPagoBolivias\ConsultarPagoFacPagoBolivias.xaml.vb">
+      <DependentUpon>ConsultarPagoFacPagoBolivias.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacRecursos\AgregarFacRecurso.xaml.vb">
+      <DependentUpon>AgregarFacRecurso.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacRecursos\ConsultarFacRecurso.xaml.vb">
+      <DependentUpon>ConsultarFacRecurso.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacRecursos\ConsultarFacRecursos.xaml.vb">
+      <DependentUpon>ConsultarFacRecursos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacReportes\FacturaCopiaRpt.xaml.vb">
+      <DependentUpon>FacturaCopiaRpt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacReportes\VentasTotalesRpt.xaml.vb">
+      <DependentUpon>VentasTotalesRpt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacReportes\FacFacturacionLoteVieja.xaml.vb">
+      <DependentUpon>FacFacturacionLoteVieja.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacReportes\FacFacturacionPendienteVieja.xaml.vb">
+      <DependentUpon>FacFacturacionPendienteVieja.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacReportes\FacFacturacionPendiente.xaml.vb">
+      <DependentUpon>FacFacturacionPendiente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacReportes\FacAsociadoProfit.xaml.vb">
+      <DependentUpon>FacAsociadoProfit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacReportes\FacturaDetalle.xaml.vb">
+      <DependentUpon>FacturaDetalle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacReportes\VentasTotalesRevRpt.xaml.vb">
+      <DependentUpon>VentasTotalesRevRpt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacReportes\ResumenOperacionesRpt.xaml.vb">
+      <DependentUpon>ResumenOperacionesRpt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacReportes\ReportesEnvioAsociadoRpt.xaml.vb">
+      <DependentUpon>ReportesEnvioAsociadoRpt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacReportes\FacEnvioAsociado.xaml.vb">
+      <DependentUpon>FacEnvioAsociado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacReportes\ReportesRpt.xaml.vb">
+      <DependentUpon>ReportesRpt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacReportes\FacturaEncabezado.xaml.vb">
+      <DependentUpon>FacturaEncabezado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacReportes\PendientesRpt.xaml.vb">
+      <DependentUpon>PendientesRpt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacReportes\EstadoCuentas.xaml.vb">
+      <DependentUpon>EstadoCuentas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacReportes\FacturasDigitales.xaml.vb">
+      <DependentUpon>FacturasDigitales.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacReportes\FacturaAnuladaRpt.xaml.vb">
+      <DependentUpon>FacturaAnuladaRpt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacReportes\FacturaRpt.xaml.vb">
+      <DependentUpon>FacturaRpt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Guias\AgregarGuia.xaml.vb">
+      <DependentUpon>AgregarGuia.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Guias\ConsultarGuia.xaml.vb">
+      <DependentUpon>ConsultarGuia.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Guias\ConsultarGuias.xaml.vb">
+      <DependentUpon>ConsultarGuias.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Impuestos\AgregarImpuesto.xaml.vb">
+      <DependentUpon>AgregarImpuesto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Impuestos\ConsultarImpuesto.xaml.vb">
+      <DependentUpon>ConsultarImpuesto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Impuestos\ConsultarImpuestos.xaml.vb">
+      <DependentUpon>ConsultarImpuestos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Materiales\AgregarMaterial.xaml.vb">
+      <DependentUpon>AgregarMaterial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Materiales\ConsultarMaterial.xaml.vb">
+      <DependentUpon>ConsultarMaterial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Materiales\ConsultarMateriales.xaml.vb">
+      <DependentUpon>ConsultarMateriales.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\MediosGestiones\AgregarMediosGestion.xaml.vb">
+      <DependentUpon>AgregarMediosGestion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\MediosGestiones\ConsultarMediosGestion.xaml.vb">
+      <DependentUpon>ConsultarMediosGestion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\MediosGestiones\ConsultarMediosGestiones.xaml.vb">
+      <DependentUpon>ConsultarMediosGestiones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Motivos\AgregarMotivo.xaml.vb">
+      <DependentUpon>AgregarMotivo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Motivos\ConsultarMotivo.xaml.vb">
+      <DependentUpon>ConsultarMotivo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Motivos\ConsultarMotivos.xaml.vb">
+      <DependentUpon>ConsultarMotivos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacReportes\FacturaRpt2.xaml.vb">
+      <DependentUpon>FacturaRpt2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Servicios\AgregarServicio.xaml.vb">
+      <DependentUpon>AgregarServicio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Servicios\ConsultarServicio.xaml.vb">
+      <DependentUpon>ConsultarServicio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Servicios\ConsultarServicios.xaml.vb">
+      <DependentUpon>ConsultarServicios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Sociedades\AgregarSociedad.xaml.vb">
+      <DependentUpon>AgregarSociedad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Sociedades\ConsultarSociedad.xaml.vb">
+      <DependentUpon>ConsultarSociedad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Sociedades\ConsultarSociedades.xaml.vb">
+      <DependentUpon>ConsultarSociedades.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TarifaServicios\AgregarTarifaServicio.xaml.vb">
+      <DependentUpon>AgregarTarifaServicio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TarifaServicios\ConsultarTarifaServicio.xaml.vb">
+      <DependentUpon>ConsultarTarifaServicio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TarifaServicios\ConsultarTarifaServicios.xaml.vb">
+      <DependentUpon>ConsultarTarifaServicios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Tasas\AgregarTasa.xaml.vb">
+      <DependentUpon>AgregarTasa.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Tasas\ConsultarTasa.xaml.vb">
+      <DependentUpon>ConsultarTasa.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Tasas\ConsultarTasas.xaml.vb">
+      <DependentUpon>ConsultarTasas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TipoClases\AgregarTipoClase.xaml.vb">
+      <DependentUpon>AgregarTipoClase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TipoClases\ConsultarTipoClase.xaml.vb">
+      <DependentUpon>ConsultarTipoClase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TipoClases\ConsultarTipoClases.xaml.vb">
+      <DependentUpon>ConsultarTipoClases.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TipoMarcas\AgregarTipoMarca.xaml.vb">
+      <DependentUpon>AgregarTipoMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TipoMarcas\ConsultarTipoMarca.xaml.vb">
+      <DependentUpon>ConsultarTipoMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TipoMarcas\ConsultarTipoMarcas.xaml.vb">
+      <DependentUpon>ConsultarTipoMarcas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TipoPatentes\AgregarTipoPatente.xaml.vb">
+      <DependentUpon>AgregarTipoPatente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TipoPatentes\ConsultarTipoPatente.xaml.vb">
+      <DependentUpon>ConsultarTipoPatente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TipoPatentes\ConsultarTipoPatentes.xaml.vb">
+      <DependentUpon>ConsultarTipoPatentes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\ViGestionAsociados\ConsultarFacGestionesAsociado.xaml.vb">
+      <DependentUpon>ConsultarFacGestionesAsociado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\ViGestionAsociados\ConsultarViGestionAsociados.xaml.vb">
+      <DependentUpon>ConsultarViGestionAsociados.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recursos\Etiquetas.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Etiquetas.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>Recursos</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recursos\Ids.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Ids.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>Recursos</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recursos\MensajesConElUsuario.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MensajesConElUsuario.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>Recursos</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recursos\MensajesValidaciones.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MensajesValidaciones.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>Recursos</CustomToolNamespace>
+    </EmbeddedResource>
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <AppDesigner Include="My Project\" />
+    <None Include="NLog.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Estilos\EstiloPrincipal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Anualidades\AgregarFacAnualidad.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Anualidades\ConsultarFacAnualidad.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Anualidades\ConsultarFacAnualidades.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\ChequeRecidos\AgregarChequeRecido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\ChequeRecidos\ConsultarChequeRecidos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\ChequeRecidos\ConsultarDepositoChequeRecidos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\ConceptoGestiones\AgregarConceptoGestion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\ConceptoGestiones\ConsultarConceptoGestion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\ConceptoGestiones\ConsultarConceptoGestiones.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Consultas\ConsultaFacturacionAnuladas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Consultas\ConsultarFacStatementProcesar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Consultas\ConsultaFacturacionAsociado.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Consultas\ConsultaFacturacionVigenteAsociado.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Consultas\ConsultaFacturasAnuladas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Consultas\ConsultaCreditosAsociado.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Consultas\ConsultaCreditosVigentesAsociado.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Consultas\ConsultaPagosAsociado.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Consultas\ConsultaOperacionesAsociado.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacFacturaProformas\Mostrar_Detalle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\FacFacturas\Mostrar_Detalle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacGestiones\Mostrar_Detalle_Carta.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacInternacionales\ConsultarFacInternacionalesProformas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacGestiones\AgregarFacGestion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Correspondencias\AgregarCorrespondencia.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Correspondencias\ConsultarCorrespondencia.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Correspondencias\ConsultarCorrespondencias.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\DepartamentoServicios\AgregarDepartamentoServicio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\DepartamentoServicios\ConsultarDepartamentoServicio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\DepartamentoServicios\ConsultarDepartamentoServicios.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\DesgloseServicios\AgregarDesgloseServicio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\DesgloseServicios\ConsultarDesgloseServicio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\DesgloseServicios\ConsultarDesgloseServicios.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\DetalleEnvios\AgregarDetalleEnvio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\DetalleEnvios\ConsultarDetalleEnvio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\DetalleEnvios\ConsultarDetalleEnvios.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\DetallePagos\AgregarDetallePago.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\DetallePagos\ConsultarDetallePago.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\DetallePagos\ConsultarDetallePagos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\DocumentosMarcas\AgregarDocumentosMarca.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\DocumentosMarcas\ConsultarDocumentosMarca.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\DocumentosMarcas\ConsultarDocumentosMarcas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\DocumentosPatentes\AgregarDocumentosPatente.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\DocumentosPatentes\ConsultarDocumentosPatente.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\DocumentosPatentes\ConsultarDocumentosPatentes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\DocumentosTraducciones\AgregarDocumentosTraduccion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\DocumentosTraducciones\ConsultarDocumentosTraduccion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\DocumentosTraducciones\ConsultarDocumentosTraducciones.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Etiquetas\AgregarEtiqueta.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Etiquetas\ConsultarEtiqueta.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Etiquetas\ConsultarEtiquetas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacCobros\AgregarFacCobro.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\FacCobros\ConsultarFacCobro.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacCobros\ConsultarFacCobros.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacCreditos\AgregarFacCredito.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\FacCreditos\ConsultarFacCredito.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacCreditos\ConsultarFacCreditos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacFacturaAnuladas\AgregarFacFacturaAnulada.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacFacturaProformas\AgregarFacFacturaProforma.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacFacturaProformas\ConsultarFacFacturaProforma.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacFacturaProformas\ConsultarFacFacturaProformas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacFacturaProformas\ConsultarFacFacturaProformasAutorizacion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacFacturaProformas\ConsultarFacFacturaProformasDepartamentos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacFacturaProformas\ConsultarFacFacturaProformasPendientes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacFacturaProformas\ProformaaFactura.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacFacturas\ConsultarFacFactura.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacFacturas\ConsultarFacFacturaPase.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacFacturas\ConsultarFacFacturas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacFacturas\ConsultarFacFacturasAnuladas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacGestiones\ConsultarFacGestion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacGestiones\ConsultarFacGestiones.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacInternacionales\FacInternacionalPago.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacInternacionales\FacInternacionalRegistro.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacJustificaciones\AgregarFacJustificacion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacJustificaciones\ConsultarFacJustificacion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacJustificaciones\ConsultarFacJustificaciones.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacPagoBolivias\AgregarFacPagoBolivia.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacPagoBolivias\ConsultarFacPagoBolivia.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacPagoBolivias\ConsultarFacPagoBolivias.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacPagoBolivias\ConsultarPagoFacPagoBolivias.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacRecursos\AgregarFacRecurso.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacRecursos\ConsultarFacRecurso.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacRecursos\ConsultarFacRecursos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacReportes\FacturaCopiaRpt.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacReportes\VentasTotalesRpt.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacReportes\FacFacturacionLoteVieja.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacReportes\FacFacturacionPendienteVieja.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacReportes\FacFacturacionPendiente.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacReportes\FacAsociadoProfit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacReportes\FacturaDetalle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacReportes\VentasTotalesRevRpt.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacReportes\ResumenOperacionesRpt.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacReportes\ReportesEnvioAsociadoRpt.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacReportes\FacEnvioAsociado.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacReportes\ReportesRpt.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacReportes\FacturaEncabezado.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacReportes\PendientesRpt.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacReportes\EstadoCuentas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacReportes\FacturasDigitales.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacReportes\FacturaAnuladaRpt.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacReportes\FacturaRpt.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Guias\AgregarGuia.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Guias\ConsultarGuia.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Guias\ConsultarGuias.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Impuestos\AgregarImpuesto.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Impuestos\ConsultarImpuesto.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Impuestos\ConsultarImpuestos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Materiales\AgregarMaterial.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Materiales\ConsultarMaterial.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Materiales\ConsultarMateriales.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\MediosGestiones\AgregarMediosGestion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\MediosGestiones\ConsultarMediosGestion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\MediosGestiones\ConsultarMediosGestiones.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Motivos\AgregarMotivo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Motivos\ConsultarMotivo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Motivos\ConsultarMotivos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacReportes\FacturaRpt2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Servicios\AgregarServicio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Servicios\ConsultarServicio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Servicios\ConsultarServicios.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Sociedades\AgregarSociedad.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Sociedades\ConsultarSociedad.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Sociedades\ConsultarSociedades.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\TarifaServicios\AgregarTarifaServicio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\TarifaServicios\ConsultarTarifaServicio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\TarifaServicios\ConsultarTarifaServicios.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Tasas\AgregarTasa.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Tasas\ConsultarTasa.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Tasas\ConsultarTasas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\TipoClases\AgregarTipoClase.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\TipoClases\ConsultarTipoClase.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\TipoClases\ConsultarTipoClases.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\TipoMarcas\AgregarTipoMarca.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\TipoMarcas\ConsultarTipoMarca.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\TipoMarcas\ConsultarTipoMarcas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\TipoPatentes\AgregarTipoPatente.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\TipoPatentes\ConsultarTipoPatente.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\TipoPatentes\ConsultarTipoPatentes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\ViGestionAsociados\ConsultarFacGestionesAsociado.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\ViGestionAsociados\ConsultarViGestionAsociados.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\bolet.ico" />
+    <Resource Include="images\logoBolet.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\logoBolet-1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\logoBolet-V.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Comun\ObjetosComunes\ObjetosComunes.csproj">
+      <Project>{15437671-F551-4B4B-9E06-283A1D241CE0}</Project>
+      <Name>ObjetosComunes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Comun\ObjetosComunes_Fac\ObjetosComunes_Fac.vbproj">
+      <Project>{802FFAF7-96CE-446C-A5ED-3DC7A16163AC}</Project>
+      <Name>ObjetosComunes_Fac</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cliente\Cliente.csproj">
+      <Project>{84CD6464-5709-4BE7-818D-5CE3FE2CF171}</Project>
+      <Name>Cliente %28Cliente\Cliente%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ControlesByT\ControlesByT.csproj">
+      <Project>{95CC239A-6E33-40B3-92D1-F67AF9ACC66E}</Project>
+      <Name>ControlesByT</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Transformadores\FechaABlanco.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Transformadores\DosValoresAUno.vb" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>

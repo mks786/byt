@@ -1,0 +1,879 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Agente" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
+  <data name="AgregarAgente" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
+  <data name="AgregarAsociado" xml:space="preserve">
+    <value>FAC_ASOCIADOS</value>
+  </data>
+  <data name="AgregarBoletin" xml:space="preserve">
+    <value>MYPTBOLETIN</value>
+  </data>
+  <data name="AgregarEstado" xml:space="preserve">
+    <value>MYP_ESTADOS</value>
+  </data>
+  <data name="AgregarEstatus" xml:space="preserve">
+    <value>MYP_TESTADOS</value>
+  </data>
+  <data name="AgregarInteresado" xml:space="preserve">
+    <value>MYP_INTERESADOS</value>
+  </data>
+  <data name="AgregarInternacional" xml:space="preserve">
+    <value>MYPTINT</value>
+  </data>
+  <data name="AgregarJustificacion" xml:space="preserve">
+    <value>FAC_CONJUST</value>
+  </data>
+  <data name="AgregarNacional" xml:space="preserve">
+    <value>MYPTNAC</value>
+  </data>
+  <data name="AgregarObjeto" xml:space="preserve">
+    <value>SEGTOBJ</value>
+  </data>
+  <data name="AgregarPais" xml:space="preserve">
+    <value>MYP_PAISES</value>
+  </data>
+  <data name="AgregarPoder" xml:space="preserve">
+    <value>MYP_PODERES</value>
+  </data>
+  <data name="AgregarResolucion" xml:space="preserve">
+    <value>MYP_RESOLBOL</value>
+  </data>
+  <data name="AgregarRol" xml:space="preserve">
+    <value>SEGMROL</value>
+  </data>
+  <data name="AgregarTasa" xml:space="preserve">
+    <value>FAC_TASAS</value>
+  </data>
+  <data name="AgregarTipoFecha" xml:space="preserve">
+    <value>MYP_TFECHAS</value>
+  </data>
+  <data name="AgregarTipoInfobol" xml:space="preserve">
+    <value>MYP_TINFOBOL</value>
+  </data>
+  <data name="AgregarUsuario" xml:space="preserve">
+    <value>SEGTUSU</value>
+  </data>
+  <data name="Asociado" xml:space="preserve">
+    <value>FAC_ASOCIADOS</value>
+  </data>
+  <data name="Boletin" xml:space="preserve">
+    <value>MYPTBOLETIN</value>
+  </data>
+  <data name="ConsultarAgente" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
+  <data name="ConsultarAgentes" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
+  <data name="ConsultarAsociado" xml:space="preserve">
+    <value>FAC_ASOCIADOS</value>
+  </data>
+  <data name="ConsultarAsociados" xml:space="preserve">
+    <value>FAC_ASOCIADOS</value>
+  </data>
+  <data name="ConsultarBoletin" xml:space="preserve">
+    <value>MYPTBOLETIN</value>
+  </data>
+  <data name="ConsultarContacto" xml:space="preserve">
+    <value>FAC_CONTACTOS</value>
+  </data>
+  <data name="ConsultarEstado" xml:space="preserve">
+    <value>MYP_ESTADOS</value>
+  </data>
+  <data name="ConsultarEstatus" xml:space="preserve">
+    <value>MYP_TESTADOS</value>
+  </data>
+  <data name="ConsultarEstatuses" xml:space="preserve">
+    <value>MYP_TESTADOS</value>
+  </data>
+  <data name="ConsultarInteresado" xml:space="preserve">
+    <value>MYP_INTERESADOS</value>
+  </data>
+  <data name="ConsultarInternacional" xml:space="preserve">
+    <value>MYPTINT</value>
+  </data>
+  <data name="ConsultarInternacionales" xml:space="preserve">
+    <value>MYPTINT</value>
+  </data>
+  <data name="ConsultarJustificaciones" xml:space="preserve">
+    <value>FAC_ASO_JUST</value>
+  </data>
+  <data name="ConsultarNacional" xml:space="preserve">
+    <value>MYPTNAC</value>
+  </data>
+  <data name="ConsultarNacionales" xml:space="preserve">
+    <value>MYPTNAC</value>
+  </data>
+  <data name="ConsultarObjeto" xml:space="preserve">
+    <value>SEGTOBJ</value>
+  </data>
+  <data name="ConsultarObjetos" xml:space="preserve">
+    <value>SEGTOBJ</value>
+  </data>
+  <data name="ConsultarPais" xml:space="preserve">
+    <value>MYP_PAISES</value>
+  </data>
+  <data name="ConsultarPaises" xml:space="preserve">
+    <value>MYP_PAISES</value>
+  </data>
+  <data name="ConsultarPoder" xml:space="preserve">
+    <value>MYP_PODERES</value>
+  </data>
+  <data name="ConsultarPoderes" xml:space="preserve">
+    <value>MYP_PODERES</value>
+  </data>
+  <data name="ConsultarResolucion" xml:space="preserve">
+    <value>MYP_RESOLBOL</value>
+  </data>
+  <data name="ConsultarResoluciones" xml:space="preserve">
+    <value>MYP_RESOLBOL</value>
+  </data>
+  <data name="ConsultarRol" xml:space="preserve">
+    <value>SEGMROL</value>
+  </data>
+  <data name="ConsultarRoles" xml:space="preserve">
+    <value>SEGMROL</value>
+  </data>
+  <data name="ConsultarTipoFecha" xml:space="preserve">
+    <value>MYP_TFECHAS</value>
+  </data>
+  <data name="ConsultarTipoFechas" xml:space="preserve">
+    <value>MYP_TFECHAS</value>
+  </data>
+  <data name="ConsultarTipoInfobol" xml:space="preserve">
+    <value>MYP_TINFOBOL</value>
+  </data>
+  <data name="ConsultarTipoInfoboles" xml:space="preserve">
+    <value>MYP_TINFOBOL</value>
+  </data>
+  <data name="ConsultarUsuario" xml:space="preserve">
+    <value>SEGTUSU</value>
+  </data>
+  <data name="ConsultarUsuarios" xml:space="preserve">
+    <value>SEGTUSU</value>
+  </data>
+  <data name="Contacto" xml:space="preserve">
+    <value>FAC_CONTACTOS</value>
+  </data>
+  <data name="EliminarAsociado" xml:space="preserve">
+    <value>FAC_ASOCIADOS</value>
+  </data>
+  <data name="EliminarBoletin" xml:space="preserve">
+    <value>MYPTBOLETIN</value>
+  </data>
+  <data name="EliminarEstado" xml:space="preserve">
+    <value>MYP_ESTADOS</value>
+  </data>
+  <data name="EliminarEstatus" xml:space="preserve">
+    <value>MYP_TESTADOS</value>
+  </data>
+  <data name="EliminarFecha" xml:space="preserve">
+    <value>MYP_TFECHAS</value>
+  </data>
+  <data name="EliminarInteresado" xml:space="preserve">
+    <value>MYP_INTERESADOS</value>
+  </data>
+  <data name="EliminarInternacional" xml:space="preserve">
+    <value>MYPTINT</value>
+  </data>
+  <data name="EliminarNacional" xml:space="preserve">
+    <value>MYPTNAC</value>
+  </data>
+  <data name="EliminarObjeto" xml:space="preserve">
+    <value>SEGTOBJ</value>
+  </data>
+  <data name="EliminarPais" xml:space="preserve">
+    <value>MYP_PAISES</value>
+  </data>
+  <data name="EliminarPoder" xml:space="preserve">
+    <value>MYP_PODERES</value>
+  </data>
+  <data name="EliminarResolucion" xml:space="preserve">
+    <value>MYP_RESOLBOL</value>
+  </data>
+  <data name="EliminarRol" xml:space="preserve">
+    <value>SEGMROL</value>
+  </data>
+  <data name="EliminarTipoInfobol" xml:space="preserve">
+    <value>MYP_TINFOBOL</value>
+  </data>
+  <data name="EliminarUsuario" xml:space="preserve">
+    <value>SEGTUSU</value>
+  </data>
+  <data name="Estado" xml:space="preserve">
+    <value>MYP_ESTADOS</value>
+  </data>
+  <data name="Estatus" xml:space="preserve">
+    <value>MYP_TESTADOS</value>
+  </data>
+  <data name="fac_AgregarAnualidad" xml:space="preserve">
+    <value>FAC_TANUALIDAD</value>
+  </data>
+  <data name="fac_AgregarDetalleEnvio" xml:space="preserve">
+    <value>FAC_DET_ENV</value>
+  </data>
+  <data name="fac_AgregarDetallePago" xml:space="preserve">
+    <value>FAC_DET_PG</value>
+  </data>
+  <data name="fac_AgregarDocumentosMarca" xml:space="preserve">
+    <value>FAC_TDOC_MARCA</value>
+  </data>
+  <data name="fac_AgregarDocumentosPatente" xml:space="preserve">
+    <value>FAC_TDOC_PATENTE</value>
+  </data>
+  <data name="fac_AgregarDocumentosTraduccion" xml:space="preserve">
+    <value>FAC_TDOC_TRADUCC</value>
+  </data>
+  <data name="fac_AgregarFacRecurso" xml:space="preserve">
+    <value>FAC_TRECURSO</value>
+  </data>
+  <data name="fac_AgregarGuia" xml:space="preserve">
+    <value>FAC_GUIAS</value>
+  </data>
+  <data name="fac_AgregarImpuesto" xml:space="preserve">
+    <value>FAC_IMPUESTOS</value>
+  </data>
+  <data name="fac_AgregarMaterial" xml:space="preserve">
+    <value>FAC_TMATERIAL</value>
+  </data>
+  <data name="fac_AgregarMotivo" xml:space="preserve">
+    <value>FAC_MOTIVO</value>
+  </data>
+  <data name="fac_AgregarSociedad" xml:space="preserve">
+    <value>FAC_SOCIEDAD</value>
+  </data>
+  <data name="fac_AgregarTasa" xml:space="preserve">
+    <value>FAC_TASAS</value>
+  </data>
+  <data name="fac_AgregarTipoClase" xml:space="preserve">
+    <value>FAC_TIPO_CLASE</value>
+  </data>
+  <data name="fac_AgregarTipoMarca" xml:space="preserve">
+    <value>FAC_TIPO_MARCA</value>
+  </data>
+  <data name="fac_AgregarTipoPatente" xml:space="preserve">
+    <value>FAC_TIPO_PATENTE</value>
+  </data>
+  <data name="fac_ConsultarDetalleEnvio" xml:space="preserve">
+    <value>FAC_DET_ENV</value>
+  </data>
+  <data name="fac_ConsultarDetallePago" xml:space="preserve">
+    <value>FAC_DET_PG</value>
+  </data>
+  <data name="fac_ConsultarDocumentosMarca" xml:space="preserve">
+    <value>FAC_TDOC_MARCA</value>
+  </data>
+  <data name="fac_ConsultarDocumentosPatente" xml:space="preserve">
+    <value>FAC_TDOC_PATENTE</value>
+  </data>
+  <data name="fac_ConsultarDocumentosTraduccion" xml:space="preserve">
+    <value>FAC_TDOC_TRADUCC</value>
+  </data>
+  <data name="fac_ConsultarFacRecurso" xml:space="preserve">
+    <value>FAC_TRECURSO</value>
+  </data>
+  <data name="fac_ConsultarGuia" xml:space="preserve">
+    <value>FAC_GUIAS</value>
+  </data>
+  <data name="fac_ConsultarImpuesto" xml:space="preserve">
+    <value>FAC_IMPUESTOS</value>
+  </data>
+  <data name="fac_ConsultarMaterial" xml:space="preserve">
+    <value>FAC_TMATERIAL</value>
+  </data>
+  <data name="fac_ConsultarMotivo" xml:space="preserve">
+    <value>FAC_MOTIVO</value>
+  </data>
+  <data name="fac_ConsultarSociedad" xml:space="preserve">
+    <value>FAC_SOCIEDAD</value>
+  </data>
+  <data name="fac_ConsultarTasa" xml:space="preserve">
+    <value>FAC_TASAS</value>
+  </data>
+  <data name="fac_ConsultarTipoMarca" xml:space="preserve">
+    <value>FAC_TIPO_MARCA</value>
+  </data>
+  <data name="fac_ConsultarTipoPatente" xml:space="preserve">
+    <value>FAC_TIPO_PATENTE</value>
+  </data>
+  <data name="fac_DetalleEnvio" xml:space="preserve">
+    <value>FAC_DET_ENV</value>
+  </data>
+  <data name="fac_DetallePago" xml:space="preserve">
+    <value>FAC_DET_PG</value>
+  </data>
+  <data name="fac_DocumentosMarca" xml:space="preserve">
+    <value>FAC_TDOC_MARCA</value>
+  </data>
+  <data name="fac_DocumentosPatente" xml:space="preserve">
+    <value>FAC_TDOC_PATENTE</value>
+  </data>
+  <data name="fac_DocumentosTraduccion" xml:space="preserve">
+    <value>FAC_TDOC_TRADUCC</value>
+  </data>
+  <data name="fac_FacRecurso" xml:space="preserve">
+    <value>FAC_TRECURSO</value>
+  </data>
+  <data name="fac_Guia" xml:space="preserve">
+    <value>FAC_GUIAS</value>
+  </data>
+  <data name="fac_Impuesto" xml:space="preserve">
+    <value>FAC_IMPUESTOS</value>
+  </data>
+  <data name="fac_Material" xml:space="preserve">
+    <value>FAC_TMATERIAL</value>
+  </data>
+  <data name="fac_Motivo" xml:space="preserve">
+    <value>FAC_MOTIVO</value>
+  </data>
+  <data name="fac_Sociedad" xml:space="preserve">
+    <value>FAC_SOCIEDAD</value>
+  </data>
+  <data name="fac_Tasa" xml:space="preserve">
+    <value>FAC_TASAS</value>
+  </data>
+  <data name="fac_TipoClase" xml:space="preserve">
+    <value>FAC_TIPO_CLASE</value>
+  </data>
+  <data name="fac_TipoFecha" xml:space="preserve">
+    <value>MYP_TFECHAS</value>
+  </data>
+  <data name="fac_TipoInfobol" xml:space="preserve">
+    <value>MYP_TINFOBOL</value>
+  </data>
+  <data name="fac_TipoMarca" xml:space="preserve">
+    <value>FAC_TIPO_MARCA</value>
+  </data>
+  <data name="fac_TipoPatente" xml:space="preserve">
+    <value>FAC_TIPO_PATENTE</value>
+  </data>
+  <data name="fac_Usuario" xml:space="preserve">
+    <value>SEGTUSU</value>
+  </data>
+  <data name="Interesado" xml:space="preserve">
+    <value>MYP_INTERESADOS</value>
+  </data>
+  <data name="Internacional" xml:space="preserve">
+    <value>MYPTINAC</value>
+  </data>
+  <data name="ListaAuditorias" xml:space="preserve">
+    <value>SEG_AUDITORIAS</value>
+  </data>
+  <data name="ListaPoderes" xml:space="preserve">
+    <value>LST_PODERES</value>
+  </data>
+  <data name="ModificarAsociado" xml:space="preserve">
+    <value>FAC_ASOCIADOS</value>
+  </data>
+  <data name="ModificarBoletin" xml:space="preserve">
+    <value>MYPTBOLETIN</value>
+  </data>
+  <data name="ModificarEstado" xml:space="preserve">
+    <value>MYP_ESTADOS</value>
+  </data>
+  <data name="ModificarEstatus" xml:space="preserve">
+    <value>MYP_TESTADOS</value>
+  </data>
+  <data name="ModificarFecha" xml:space="preserve">
+    <value>MYP_TFECHAS</value>
+  </data>
+  <data name="ModificarInteresado" xml:space="preserve">
+    <value>MYP_INTERESADOS</value>
+  </data>
+  <data name="ModificarInternacional" xml:space="preserve">
+    <value>MYPTINT</value>
+  </data>
+  <data name="ModificarNacional" xml:space="preserve">
+    <value>MYPTNAC</value>
+  </data>
+  <data name="ModificarObjeto" xml:space="preserve">
+    <value>SEGTOBJ</value>
+  </data>
+  <data name="ModificarPais" xml:space="preserve">
+    <value>MYP_PAISES</value>
+  </data>
+  <data name="ModificarPoder" xml:space="preserve">
+    <value>MYP_PODERES</value>
+  </data>
+  <data name="ModificarResolucion" xml:space="preserve">
+    <value>MYP_RESOLBOL</value>
+  </data>
+  <data name="ModificarRol" xml:space="preserve">
+    <value>SEGMROL</value>
+  </data>
+  <data name="ModificarTipoInfobol" xml:space="preserve">
+    <value>MYP_TINFOBOL</value>
+  </data>
+  <data name="ModificarUsuario" xml:space="preserve">
+    <value>SEGTUSU</value>
+  </data>
+  <data name="Nacional" xml:space="preserve">
+    <value>MYPTNAC</value>
+  </data>
+  <data name="Objeto" xml:space="preserve">
+    <value>SEGTOBJ</value>
+  </data>
+  <data name="Pais" xml:space="preserve">
+    <value>MYP_PAISES</value>
+  </data>
+  <data name="Poder" xml:space="preserve">
+    <value>MYP_PODERES</value>
+  </data>
+  <data name="Resolucion" xml:space="preserve">
+    <value>MYP_RESOLBOL</value>
+  </data>
+  <data name="Rol" xml:space="preserve">
+    <value>SEGMROL</value>
+  </data>
+  <data name="Tasa" xml:space="preserve">
+    <value>FAC_TASAS</value>
+  </data>
+  <data name="TipoFecha" xml:space="preserve">
+    <value>MYP_TFECHAS</value>
+  </data>
+  <data name="TipoInfobol" xml:space="preserve">
+    <value>MYP_TINFOBOL</value>
+  </data>
+  <data name="Usuario" xml:space="preserve">
+    <value>SEGTUSU</value>
+  </data>
+  <data name="fac_ConsultarAnualidad" xml:space="preserve">
+    <value>FAC_TANUALIDAD</value>
+  </data>
+  <data name="fac_ConsultarTipoClase" xml:space="preserve">
+    <value>FAC_TIPO_CLASE</value>
+  </data>
+  <data name="fac_ConsultarServicio" xml:space="preserve">
+    <value>FAC_SERVICIOS</value>
+  </data>
+  <data name="fac_Servicio" xml:space="preserve">
+    <value>FAC_SERVICIOS</value>
+  </data>
+  <data name="fac_AgregarCorrespondencia" xml:space="preserve">
+    <value>COR_MAIL_IN</value>
+  </data>
+  <data name="fac_ConsultarCorrespondencia" xml:space="preserve">
+    <value>COR_MAIL_IN</value>
+  </data>
+  <data name="fac_Correspondencia" xml:space="preserve">
+    <value>COR_MAIL_IN</value>
+  </data>
+  <data name="fac_AgregarEtiqueta" xml:space="preserve">
+    <value>FAC_ETI_FAC</value>
+  </data>
+  <data name="fac_AgregarFacJustificacion" xml:space="preserve">
+    <value>FAC_CONJUST</value>
+  </data>
+  <data name="fac_ConsultarEtiqueta" xml:space="preserve">
+    <value>FAC_ETI_FAC</value>
+  </data>
+  <data name="fac_ConsultarFacJustificacion" xml:space="preserve">
+    <value>FAC_CONJUST</value>
+  </data>
+  <data name="fac_Etiqueta" xml:space="preserve">
+    <value>FAC_ETI_FAC</value>
+  </data>
+  <data name="fac_FacJustificacion" xml:space="preserve">
+    <value>FAC_CONJUST</value>
+  </data>
+  <data name="fac_AgregarDepartamentoServicio" xml:space="preserve">
+    <value>FAC_DPTO_SERV</value>
+  </data>
+  <data name="fac_AgregarDesgloseServicio" xml:space="preserve">
+    <value>FAC_SERV_DESG</value>
+  </data>
+  <data name="fac_AgregarTarifaServicio" xml:space="preserve">
+    <value>FAC_TARIFAS_SERV</value>
+  </data>
+  <data name="fac_ConsultarDepartamentoServicio" xml:space="preserve">
+    <value>FAC_DPTO_SERV</value>
+  </data>
+  <data name="fac_ConsultarDesgloseServicio" xml:space="preserve">
+    <value>FAC_SERV_DESG</value>
+  </data>
+  <data name="fac_ConsultarTarifaServicio" xml:space="preserve">
+    <value>FAC_TARIFAS_SERV</value>
+  </data>
+  <data name="fac_DepartamentoServicio" xml:space="preserve">
+    <value>FAC_DPTO_SERV</value>
+  </data>
+  <data name="fac_DesgloseServicio" xml:space="preserve">
+    <value>FAC_SERV_DESG</value>
+  </data>
+  <data name="fac_TarifaServicio" xml:space="preserve">
+    <value>FAC_TARIFAS_SERV</value>
+  </data>
+  <data name="fac_AgregarConceptoGestion" xml:space="preserve">
+    <value>FAC_CPTO_GES</value>
+  </data>
+  <data name="fac_ConceptoGestion" xml:space="preserve">
+    <value>FAC_CPTO_GES</value>
+  </data>
+  <data name="fac_ConsultarConceptoGestion" xml:space="preserve">
+    <value>FAC_CPTO_GES</value>
+  </data>
+  <data name="fac_AgregarMediosGestion" xml:space="preserve">
+    <value>FAC_MEDIO_GES</value>
+  </data>
+  <data name="fac_ConsultarMediosGestion" xml:space="preserve">
+    <value>FAC_MEDIO_GES</value>
+  </data>
+  <data name="fac_MediosGestion" xml:space="preserve">
+    <value>FAC_MEDIOS_GES</value>
+  </data>
+  <data name="fac_AgregarViGestionAsociado" xml:space="preserve">
+    <value>FAC_GESTIONES_CG</value>
+  </data>
+  <data name="fac_ConsultarViGestionAsociado" xml:space="preserve">
+    <value>FAC_GESTIONES_CG</value>
+  </data>
+  <data name="fac_ViGestionAsociado" xml:space="preserve">
+    <value>FAC_GESTIONES_CG</value>
+  </data>
+  <data name="fac_AgregarChequeRecido" xml:space="preserve">
+    <value>FAC_CH_REC</value>
+  </data>
+  <data name="fac_ChequeRecido" xml:space="preserve">
+    <value>FAC_CH_REC</value>
+  </data>
+  <data name="fac_ConsultarChequeRecido" xml:space="preserve">
+    <value>FAC_CH_REC</value>
+  </data>
+  <data name="fac_AgregarFacPagoBolivia" xml:space="preserve">
+    <value>FAC_CXP_BOL</value>
+  </data>
+  <data name="fac_ConsultarFacPagoBolivia" xml:space="preserve">
+    <value>FAC_CXP_BOL</value>
+  </data>
+  <data name="fac_FacPagoBolivia" xml:space="preserve">
+    <value>FAC_CXP_BOL</value>
+  </data>
+  <data name="fac_AgregarFacCobro" xml:space="preserve">
+    <value>FAC_COBROS</value>
+  </data>
+  <data name="fac_ConsultarFacCobro" xml:space="preserve">
+    <value>FAC_COBROS</value>
+  </data>
+  <data name="fac_FacCobro" xml:space="preserve">
+    <value>FAC_COBROS</value>
+  </data>
+  <data name="fac_AgregarFacCredito" xml:space="preserve">
+    <value>FAC_CREDITOS</value>
+  </data>
+  <data name="fac_ConsultarFacCredito" xml:space="preserve">
+    <value>FAC_CREDITOS</value>
+  </data>
+  <data name="fac_FacCredito" xml:space="preserve">
+    <value>FAC_CREDITOS</value>
+  </data>
+  <data name="fac_AgregarFacFactuDetaAnulada" xml:space="preserve">
+    <value>FAC_DETALLES_ANU</value>
+  </data>
+  <data name="fac_AgregarFacFactuDetaProforma" xml:space="preserve">
+    <value>FAC_DETALLES_PRO</value>
+  </data>
+  <data name="fac_AgregarFacFactura" xml:space="preserve">
+    <value>FAC_FACTURAS</value>
+  </data>
+  <data name="fac_AgregarFacFacturaAnulada" xml:space="preserve">
+    <value>FAC_ANUL</value>
+  </data>
+  <data name="fac_AgregarFacFacturaProforma" xml:space="preserve">
+    <value>FAC_FACTURAS_PRO</value>
+  </data>
+  <data name="fac_AgregarFacOperacionAnulada" xml:space="preserve">
+    <value>FAC_OPERACIONES_ANU</value>
+  </data>
+  <data name="fac_AgregarFacOperacionDetaAnulada" xml:space="preserve">
+    <value>FAC_OPERACION_DET_ANU</value>
+  </data>
+  <data name="fac_AgregarFacOperacionDetalle" xml:space="preserve">
+    <value>FAC_OPERACION_DET</value>
+  </data>
+  <data name="fac_AgregarFacOperacionDetalleTm" xml:space="preserve">
+    <value>FAC_OPERACION_DET_TM</value>
+  </data>
+  <data name="fac_AgregarFacOperacionDetaProforma" xml:space="preserve">
+    <value>FAC_OPERACION_DET_PRO</value>
+  </data>
+  <data name="fac_AgregarFacOperacionDetaTmProforma" xml:space="preserve">
+    <value>FAC_OPERACION_DET_TM_PRO</value>
+  </data>
+  <data name="fac_AgregarFacOperacionProforma" xml:space="preserve">
+    <value>FAC_OPERACIONES_PRO</value>
+  </data>
+  <data name="fac_ConsultarFacFactuDetaAnulada" xml:space="preserve">
+    <value>FAC_DETALLES_ANU</value>
+  </data>
+  <data name="fac_ConsultarFacFactuDetaProforma" xml:space="preserve">
+    <value>FAC_DETALLES_PRO</value>
+  </data>
+  <data name="fac_ConsultarFacFactura" xml:space="preserve">
+    <value>FAC_FACTURAS</value>
+  </data>
+  <data name="fac_ConsultarFacFacturaAnulada" xml:space="preserve">
+    <value>FAC_ANUL</value>
+  </data>
+  <data name="fac_ConsultarFacFacturaProforma" xml:space="preserve">
+    <value>FAC_FACTURAS_PRO</value>
+  </data>
+  <data name="fac_ConsultarFacOperacionAnulada" xml:space="preserve">
+    <value>FAC_OPERACIONES_ANU</value>
+  </data>
+  <data name="fac_ConsultarFacOperacionDetaAnulada" xml:space="preserve">
+    <value>FAC_OPERACION_DET_ANU</value>
+  </data>
+  <data name="fac_ConsultarFacOperacionDetalle" xml:space="preserve">
+    <value>FAC_OPERACION_DET</value>
+  </data>
+  <data name="fac_ConsultarFacOperacionDetalleTm" xml:space="preserve">
+    <value>FAC_OPERACION_DET_TM</value>
+  </data>
+  <data name="fac_ConsultarFacOperacionDetaProforma" xml:space="preserve">
+    <value>FAC_OPERACION_DET_PRO</value>
+  </data>
+  <data name="fac_ConsultarFacOperacionDetaTmProforma" xml:space="preserve">
+    <value>FAC_OPERACION_DET_TM_PRO</value>
+  </data>
+  <data name="fac_ConsultarFacOperacionProforma" xml:space="preserve">
+    <value>FAC_OPERACIONES_PRO</value>
+  </data>
+  <data name="fac_FacFactuDetaAnulada" xml:space="preserve">
+    <value>FAC_DETALLES_ANU</value>
+  </data>
+  <data name="fac_FacFactuDetaProforma" xml:space="preserve">
+    <value>FAC_DETALLES_PRO</value>
+  </data>
+  <data name="fac_FacFactura" xml:space="preserve">
+    <value>FAC_FACTURAS</value>
+  </data>
+  <data name="fac_FacFacturaAnulada" xml:space="preserve">
+    <value>FAC_ANUL</value>
+  </data>
+  <data name="fac_FacFacturaProforma" xml:space="preserve">
+    <value>FAC_FACTURAS_PRO</value>
+  </data>
+  <data name="fac_FacOperacionAnulada" xml:space="preserve">
+    <value>FAC_OPERACIONES_ANU</value>
+  </data>
+  <data name="fac_FacOperacionDetaAnulada" xml:space="preserve">
+    <value>FAC_OPERACION_DET_ANU</value>
+  </data>
+  <data name="fac_FacOperacionDetalle" xml:space="preserve">
+    <value>FAC_OPERACION_DET</value>
+  </data>
+  <data name="fac_FacOperacionDetalleTm" xml:space="preserve">
+    <value>FAC_OPERACION_DET_TM</value>
+  </data>
+  <data name="fac_FacOperacionDetaProforma" xml:space="preserve">
+    <value>FAC_OPERACION_DET_PRO</value>
+  </data>
+  <data name="fac_FacOperacionDetaTmProforma" xml:space="preserve">
+    <value>FAC_OPERACION_DET_TM_PRO</value>
+  </data>
+  <data name="fac_FacOperacionProforma" xml:space="preserve">
+    <value>FAC_OPERACIONES_PRO</value>
+  </data>
+  <data name="fac_ConsultarDepositoChequeRecidos" xml:space="preserve">
+    <value>FAC_CH_REC_BA</value>
+  </data>
+  <data name="fac_AgregarFacGestion" xml:space="preserve">
+    <value>FAC_GESTIONES</value>
+  </data>
+  <data name="fac_ConsultarFacGestion" xml:space="preserve">
+    <value>FAC_GESTIONES</value>
+  </data>
+  <data name="fac_FacGestion" xml:space="preserve">
+    <value>FAC_GESTIONES</value>
+  </data>
+  <data name="fac_ConsultarFacInternacionalesProforma" xml:space="preserve">
+    <value>FAC_PRO_CXP</value>
+  </data>
+  <data name="fac_FacInternacionalRegistro" xml:space="preserve">
+    <value>FAC_PRO_CXP</value>
+  </data>
+  <data name="fac_FacInternacionalPago" xml:space="preserve">
+    <value>FAC_PRO_CXP</value>
+  </data>
+  <data name="fac_proformaafactura" xml:space="preserve">
+    <value>FAC_PRO_AUTOFAC</value>
+  </data>
+  <data name="fac_menuItemConsultaStatementPorProcesar" xml:space="preserve">
+    <value>FAC_STATEMENTXPR</value>
+  </data>
+  <data name="fac_menuItemConsultaFacturacionAnuladas" xml:space="preserve">
+    <value>FACNDANC</value>
+  </data>
+  <data name="fac_menuItemConsultaFacturacionAsociado" xml:space="preserve">
+    <value>FACNDASC</value>
+  </data>
+  <data name="fac_menuItemConsultaCreditosAsociado" xml:space="preserve">
+    <value>FACCNASC</value>
+  </data>
+  <data name="fac_menuItemConsultaCreditosVigentesAsociado" xml:space="preserve">
+    <value>FACCNVGC</value>
+  </data>
+  <data name="fac_menuItemConsultaFacturacionVigenteAsociado" xml:space="preserve">
+    <value>FACNDVGC</value>
+  </data>
+  <data name="fac_menuItemConsultaFacturasAnuladas" xml:space="preserve">
+    <value>FAC_ANUL_CON</value>
+  </data>
+  <data name="fac_menuItemConsultaOperacionesAsociado" xml:space="preserve">
+    <value>FACOPASC</value>
+  </data>
+  <data name="fac_menuItemConsultaPagosAsociado" xml:space="preserve">
+    <value>FACCRASC</value>
+  </data>
+  <data name="fac_menuItemResumenOperacionesRpt" xml:space="preserve">
+    <value>FACOPRR</value>
+  </data>
+  <data name="fac_menuItemVentasTotalesRevRpt" xml:space="preserve">
+    <value>FACVENR_T</value>
+  </data>
+  <data name="fac_menuItemFacturaEncabezado" xml:space="preserve">
+    <value>FACENCPROF</value>
+  </data>
+  <data name="fac_menuItemFacturaDetalle" xml:space="preserve">
+    <value>FACPROFDET</value>
+  </data>
+  <data name="fac_menuItemFacAsociadoProfit" xml:space="preserve">
+    <value>FACASOPROF</value>
+  </data>
+  <data name="fac_menuItemFacFacturacionPendiente" xml:space="preserve">
+    <value>FACTUPEND_N</value>
+  </data>
+  <data name="fac_menuItemFacFacturacionPendienteVieja" xml:space="preserve">
+    <value>FACTUPEND</value>
+  </data>
+  <data name="fac_menuItemFacFacturacionLoteVieja" xml:space="preserve">
+    <value>FACTULOT</value>
+  </data>
+  <data name="fac_menuItemFacGestionesAsociado" xml:space="preserve">
+    <value>FAC_GESTIONES_CN</value>
+  </data>
+  <data name="fac_menuItemVentasTotalesRpt" xml:space="preserve">
+    <value>FACVENR_TD</value>
+  </data>
+</root>

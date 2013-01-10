@@ -14,9 +14,12 @@ using System.Net.Sockets;
 using System.Runtime.Remoting;
 using System.IO;
 
+//facturacion
+using Diginsoft.Bolet.ObjetosComunes.Entidades;
+
 namespace Trascend.Bolet.Cliente.Presentadores
 {
-    class PresentadorBase
+    public class PresentadorBase
     {
 
         private static IVentanaPrincipal _ventanaPrincipal = VentanaPrincipal.ObtenerInstancia;
@@ -2400,5 +2403,299 @@ namespace Trascend.Bolet.Cliente.Presentadores
             }
             return listaEmailAsociado;
         }
+
+
+
+        //Facturacion
+        public string BuscarTipo(char tipo)
+        {
+            string retorno;
+            if (Recursos.Etiquetas.cbiMarcas[0].Equals(tipo))
+                retorno = Recursos.Etiquetas.cbiMarcas;
+            else if (Recursos.Etiquetas.cbiPatentes[0].Equals(tipo))
+                retorno = Recursos.Etiquetas.cbiPatentes;
+            else if (Recursos.Etiquetas.FaccbiCantidades[0].Equals(tipo))
+                retorno = Recursos.Etiquetas.FaccbiCantidades;
+            else if (Recursos.Etiquetas.FaccbiExterna[0].Equals(tipo))
+                retorno = Recursos.Etiquetas.FaccbiExterna;
+            else
+                retorno = Recursos.Etiquetas.cbiNinguno;
+
+            return retorno;
+        }
+
+        public string BuscarLocalidad(char localidad)
+        {
+            string retorno;
+            if (Recursos.Etiquetas.FaccbiNacional[0].Equals(localidad))
+                retorno = Recursos.Etiquetas.FaccbiNacional;
+            else if (Recursos.Etiquetas.FaccbiInternacional[0].Equals(localidad))
+                retorno = Recursos.Etiquetas.FaccbiInternacional;
+            else
+                retorno = Recursos.Etiquetas.FaccbiNacional;
+
+            return retorno;
+        }
+
+        public string BuscarEstructurasMultiples(char estructurasmultiples)
+        {
+            string retorno;
+            if (Recursos.Etiquetas.FaccbiMarcaCompleta[0].Equals(estructurasmultiples))
+                retorno = Recursos.Etiquetas.FaccbiMarcaCompleta;
+            else if (Recursos.Etiquetas.FaccbiMarcaRegSolicitud[0].Equals(estructurasmultiples))
+                retorno = Recursos.Etiquetas.FaccbiMarcaRegSolicitud;
+            else if (Recursos.Etiquetas.FaccbiPatenteRegSolicitud[0].Equals(estructurasmultiples))
+                retorno = Recursos.Etiquetas.FaccbiPatenteRegSolicitud;
+            else if (Recursos.Etiquetas.FaccbiPatenteSolicitud[0].Equals(estructurasmultiples))
+                retorno = Recursos.Etiquetas.FaccbiPatenteSolicitud;
+            else
+                retorno = Recursos.Etiquetas.cbiNinguno;
+
+            return retorno;
+        }
+
+        public string BuscarTipoDesgSer(char TipoDesgSer)
+        {
+            string retorno;
+            if (Recursos.Etiquetas.FaccbiGastos[0].Equals(TipoDesgSer))
+                retorno = Recursos.Etiquetas.FaccbiGastos;
+            else if (Recursos.Etiquetas.FaccbiHonorarios[0].Equals(TipoDesgSer))
+                retorno = Recursos.Etiquetas.FaccbiHonorarios;
+            else
+                retorno = Recursos.Etiquetas.cbiNinguno;
+            return retorno;
+        }
+
+        public Tarifa2 BuscarTarifa2(IList<Tarifa> tarifas, Tarifa2 tarifaBuscado)
+        {
+            Tarifa2 retorno = null;
+            Tarifa retorno2 = null;
+
+            if (tarifaBuscado != null)
+                foreach (Tarifa tarifa in tarifas)
+                {
+                    if (tarifa.Id.Equals(tarifaBuscado.Id))
+                    {
+                        retorno2 = tarifa;
+                        retorno.Descripcion = retorno2.Descripcion;
+                        retorno.Id = retorno2.Id;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        public FacServicio BuscarServicio(IList<FacServicio> servicios, FacServicio servicioBuscado)
+        {
+            FacServicio retorno = null;
+
+            if (servicioBuscado != null)
+                foreach (FacServicio servicio in servicios)
+                {
+                    if (servicio.Id.Equals(servicioBuscado.Id))
+                    {
+                        retorno = servicio;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        //public Asociado BuscarAsociado(IList<Asociado> Asociados, Asociado AsociadoBuscado)
+        //{
+        //    Asociado retorno = null;
+
+        //    if (AsociadoBuscado != null)
+        //        foreach (Asociado Asociado in Asociados)
+        //        {
+        //            if (Asociado.Id.Equals(AsociadoBuscado.Id))
+        //            {
+        //                retorno = Asociado;
+        //                break;
+        //            }
+        //        }
+
+        //    return retorno;
+        //}
+
+        public BancoG BuscarBancoG(IList<BancoG> BancoGs, BancoG BancoGBuscado)
+        {
+            BancoG retorno = null;
+
+            if (BancoGBuscado != null)
+                foreach (BancoG BancoG in BancoGs)
+                {
+                    if (BancoG.Id.Equals(BancoGBuscado.Id))
+                    {
+                        retorno = BancoG;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        public FacBanco BuscarFacBanco(IList<FacBanco> FacBancos, FacBanco FacBancoBuscado)
+        {
+            FacBanco retorno = null;
+
+            if (FacBancoBuscado != null)
+                foreach (FacBanco FacBanco in FacBancos)
+                {
+                    if (FacBanco.Id.Equals(FacBancoBuscado.Id))
+                    {
+                        retorno = FacBanco;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+
+        public string transformarEstMul(string funcion)
+        {
+            string retorno = "";
+            switch (funcion)
+            {
+                case "Marca Completa":
+                    retorno = "M1";
+                    break;
+                case "Marca Reg o Solicitud":
+                    retorno = "M2";
+                    break;
+                case "Patente Reg o Solicitud":
+                    retorno = "P1";
+                    break;
+                case "Patente Solicitud":
+                    retorno = "P2";
+                    break;
+                default:
+                    retorno = "NU";
+                    break;
+            }
+            return retorno;
+        }
+
+        public string BuscarTipoPago(char TipoPago)
+        {
+            string retorno;
+            if (Recursos.Etiquetas.fac_cbiDeposito[0].Equals(TipoPago))
+                retorno = Recursos.Etiquetas.fac_cbiDeposito;
+            else if (Recursos.Etiquetas.fac_cbiTransferencia[0].Equals(TipoPago))
+                retorno = Recursos.Etiquetas.fac_cbiTransferencia;
+            else
+                retorno = Recursos.Etiquetas.cbiNinguno;
+            return retorno;
+        }
+
+        public string BuscarFormaPago(char FormaPago)
+        {
+            string retorno;
+            if (Recursos.Etiquetas.fac_cbiDeposito[0].Equals(FormaPago))
+                retorno = Recursos.Etiquetas.fac_cbiDeposito;
+            else if (Recursos.Etiquetas.fac_cbiTransferencia[0].Equals(FormaPago))
+                retorno = Recursos.Etiquetas.fac_cbiTransferencia;
+            else if (Recursos.Etiquetas.fac_cbiCheque[0].Equals(FormaPago))
+                retorno = Recursos.Etiquetas.fac_cbiCheque;
+            else if (Recursos.Etiquetas.fac_cbiOtros[0].Equals(FormaPago))
+                retorno = Recursos.Etiquetas.fac_cbiOtros;
+            else
+                retorno = Recursos.Etiquetas.cbiNinguno;
+            return retorno;
+        }
+
+        public FacDetalleEnvio BuscarFacDetalleEnvio(IList<FacDetalleEnvio> DetalleEnvios, FacDetalleEnvio DetalleEnvioBuscado)
+        {
+            FacDetalleEnvio retorno = null;
+
+            if (DetalleEnvioBuscado != null)
+                foreach (FacDetalleEnvio DetalleEnvio in DetalleEnvios)
+                {
+                    if (DetalleEnvio.Id.Equals(DetalleEnvioBuscado.Id))
+                    {
+                        retorno = DetalleEnvio;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        public MediosGestion BuscarMediosGestion(IList<MediosGestion> MediosGestiones, MediosGestion MediosGestionBuscado)
+        {
+            MediosGestion retorno = null;
+
+            if (MediosGestionBuscado != null)
+                foreach (MediosGestion MediosGestion in MediosGestiones)
+                {
+                    if (MediosGestion.Id.Equals(MediosGestionBuscado.Id))
+                    {
+                        retorno = MediosGestion;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        public ConceptoGestion BuscarConceptoGestion(IList<ConceptoGestion> ConceptoGestiones, ConceptoGestion ConceptoGestionBuscado)
+        {
+            ConceptoGestion retorno = null;
+
+            if (ConceptoGestionBuscado != null)
+                foreach (ConceptoGestion ConceptoGestion in ConceptoGestiones)
+                {
+                    if (ConceptoGestion.Id.Equals(ConceptoGestionBuscado.Id))
+                    {
+                        retorno = ConceptoGestion;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+
+        public Guia BuscarGuia(IList<Guia> Guias, Guia GuiaBuscado)
+        {
+            Guia retorno = null;
+
+            if (GuiaBuscado != null)
+                foreach (Guia Guia in Guias)
+                {
+                    if (Guia.Id.Equals(GuiaBuscado.Id))
+                    {
+                        retorno = Guia;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        public object poner_decimal(string valor)
+        {
+            string retorna = null;
+            int posicion = 0;
+            retorna = valor.Replace(".", "-");
+            retorna = retorna.Replace(",", ".");
+            retorna = retorna.Replace("-", ",");
+            posicion = retorna.IndexOf(".");
+            if (posicion < 1)
+            {
+                retorna = retorna + ".00";
+            }
+
+            if (retorna == ".00")
+            {
+                retorna = "0" + retorna;
+            }
+
+            return retorna;
+        }
+
     }
 }

@@ -735,4 +735,361 @@
   <data name="InstruccionesDeRenovacion" xml:space="preserve">
     <value>MYP_INSTREN</value>
   </data>
+  <data name="fac_AgregarChequeRecido" xml:space="preserve">
+    <value>FAC_CH_REC</value>
+  </data>
+  <data name="fac_AgregarConceptoGestion" xml:space="preserve">
+    <value>FAC_CPTO_GES</value>
+  </data>
+  <data name="fac_AgregarCorrespondencia" xml:space="preserve">
+    <value>COR_MAIL_IN</value>
+  </data>
+  <data name="fac_AgregarDepartamentoServicio" xml:space="preserve">
+    <value>FAC_DPTO_SERV</value>
+  </data>
+  <data name="fac_AgregarDesgloseServicio" xml:space="preserve">
+    <value>FAC_SERV_DESG</value>
+  </data>
+  <data name="fac_AgregarEtiqueta" xml:space="preserve">
+    <value>FAC_ETI_FAC</value>
+  </data>
+  <data name="fac_AgregarFacCobro" xml:space="preserve">
+    <value>FAC_COBROS</value>
+  </data>
+  <data name="fac_AgregarFacCredito" xml:space="preserve">
+    <value>FAC_CREDITOS</value>
+  </data>
+  <data name="fac_AgregarFacFactuDetaAnulada" xml:space="preserve">
+    <value>FAC_DETALLES_ANU</value>
+  </data>
+  <data name="fac_AgregarFacFactuDetaProforma" xml:space="preserve">
+    <value>FAC_DETALLES_PRO</value>
+  </data>
+  <data name="fac_AgregarFacFactura" xml:space="preserve">
+    <value>FAC_FACTURAS</value>
+  </data>
+  <data name="fac_AgregarFacFacturaAnulada" xml:space="preserve">
+    <value>FAC_ANUL</value>
+  </data>
+  <data name="fac_AgregarFacFacturaProforma" xml:space="preserve">
+    <value>FAC_FACTU_PRO_NX</value>
+  </data>
+  <data name="fac_AgregarFacGestion" xml:space="preserve">
+    <value>FAC_GESTIONES</value>
+  </data>
+  <data name="fac_AgregarFacJustificacion" xml:space="preserve">
+    <value>FAC_CONJUST</value>
+  </data>
+  <data name="fac_AgregarFacOperacionAnulada" xml:space="preserve">
+    <value>FAC_OPERACIONES_ANU</value>
+  </data>
+  <data name="fac_AgregarFacOperacionDetaAnulada" xml:space="preserve">
+    <value>FAC_OPERACION_DET_ANU</value>
+  </data>
+  <data name="fac_AgregarFacOperacionDetalle" xml:space="preserve">
+    <value>FAC_OPERACION_DET</value>
+  </data>
+  <data name="fac_AgregarFacOperacionDetalleTm" xml:space="preserve">
+    <value>FAC_OPERACION_DET_TM</value>
+  </data>
+  <data name="fac_AgregarFacOperacionDetaProforma" xml:space="preserve">
+    <value>FAC_OPERACION_DET_PRO</value>
+  </data>
+  <data name="fac_AgregarFacOperacionDetaTmProforma" xml:space="preserve">
+    <value>FAC_OPERACION_DET_TM_PRO</value>
+  </data>
+  <data name="fac_AgregarFacOperacionProforma" xml:space="preserve">
+    <value>FAC_OPERACIONES_PRO</value>
+  </data>
+  <data name="fac_AgregarFacPagoBolivia" xml:space="preserve">
+    <value>FAC_CXP_BOL</value>
+  </data>
+  <data name="fac_AgregarMediosGestion" xml:space="preserve">
+    <value>FAC_MEDIO_GES</value>
+  </data>
+  <data name="fac_AgregarTarifaServicio" xml:space="preserve">
+    <value>FAC_TARIFAS_SERV</value>
+  </data>
+  <data name="fac_AgregarViGestionAsociado" xml:space="preserve">
+    <value>FAC_GESTIONES_CG</value>
+  </data>
+  <data name="fac_Anualidad" xml:space="preserve">
+    <value>FAC_TANUALIDAD</value>
+  </data>
+  <data name="fac_ChequeRecido" xml:space="preserve">
+    <value>FAC_CH_REC</value>
+  </data>
+  <data name="fac_ConceptoGestion" xml:space="preserve">
+    <value>FAC_CPTO_GES</value>
+  </data>
+  <data name="fac_ConsultarChequeRecido" xml:space="preserve">
+    <value>FAC_CH_REC</value>
+  </data>
+  <data name="fac_ConsultarConceptoGestion" xml:space="preserve">
+    <value>FAC_CPTO_GES</value>
+  </data>
+  <data name="fac_ConsultarCorrespondencia" xml:space="preserve">
+    <value>COR_MAIL_IN</value>
+  </data>
+  <data name="fac_ConsultarDepartamentoServicio" xml:space="preserve">
+    <value>FAC_DPTO_SERV</value>
+  </data>
+  <data name="fac_ConsultarDepositoChequeRecidos" xml:space="preserve">
+    <value>FAC_CH_REC_BA</value>
+  </data>
+  <data name="fac_ConsultarDesgloseServicio" xml:space="preserve">
+    <value>FAC_SERV_DESG</value>
+  </data>
+  <data name="fac_ConsultarEtiqueta" xml:space="preserve">
+    <value>FAC_ETI_FAC</value>
+  </data>
+  <data name="fac_ConsultarFacCobro" xml:space="preserve">
+    <value>FAC_COBROS</value>
+  </data>
+  <data name="fac_ConsultarFacCredito" xml:space="preserve">
+    <value>FAC_CREDITOS</value>
+  </data>
+  <data name="fac_ConsultarFacFactuDetaAnulada" xml:space="preserve">
+    <value>FAC_DETALLES_ANU</value>
+  </data>
+  <data name="fac_ConsultarFacFactuDetaProforma" xml:space="preserve">
+    <value>FAC_DETALLES_PRO</value>
+  </data>
+  <data name="fac_ConsultarFacFactura" xml:space="preserve">
+    <value>FAC_FACTURAS</value>
+  </data>
+  <data name="fac_ConsultarFacFacturaAnulada" xml:space="preserve">
+    <value>FAC_ANUL</value>
+  </data>
+  <data name="fac_ConsultarFacFacturaProforma" xml:space="preserve">
+    <value>FAC_FACTU_PRO_NX</value>
+  </data>
+  <data name="fac_ConsultarFacGestion" xml:space="preserve">
+    <value>FAC_GESTIONES</value>
+  </data>
+  <data name="fac_ConsultarFacInternacionalesProforma" xml:space="preserve">
+    <value>FAC_PRO_CXP</value>
+  </data>
+  <data name="fac_ConsultarFacJustificacion" xml:space="preserve">
+    <value>FAC_CONJUST</value>
+  </data>
+  <data name="fac_ConsultarFacOperacionAnulada" xml:space="preserve">
+    <value>FAC_OPERACIONES_ANU</value>
+  </data>
+  <data name="fac_ConsultarFacOperacionDetaAnulada" xml:space="preserve">
+    <value>FAC_OPERACION_DET_ANU</value>
+  </data>
+  <data name="fac_ConsultarFacOperacionDetalle" xml:space="preserve">
+    <value>FAC_OPERACION_DET</value>
+  </data>
+  <data name="fac_ConsultarFacOperacionDetalleTm" xml:space="preserve">
+    <value>FAC_OPERACION_DET_TM</value>
+  </data>
+  <data name="fac_ConsultarFacOperacionDetaProforma" xml:space="preserve">
+    <value>FAC_OPERACION_DET_PRO</value>
+  </data>
+  <data name="fac_ConsultarFacOperacionDetaTmProforma" xml:space="preserve">
+    <value>FAC_OPERACION_DET_TM_PRO</value>
+  </data>
+  <data name="fac_ConsultarFacOperacionProforma" xml:space="preserve">
+    <value>FAC_OPERACIONES_PRO</value>
+  </data>
+  <data name="fac_ConsultarFacPagoBolivia" xml:space="preserve">
+    <value>FAC_CXP_BOL</value>
+  </data>
+  <data name="fac_ConsultarMediosGestion" xml:space="preserve">
+    <value>FAC_MEDIO_GES</value>
+  </data>
+  <data name="fac_ConsultarTarifaServicio" xml:space="preserve">
+    <value>FAC_TARIFAS_SERV</value>
+  </data>
+  <data name="fac_ConsultarViGestionAsociado" xml:space="preserve">
+    <value>FAC_GESTIONES_CG</value>
+  </data>
+  <data name="fac_Correspondencia" xml:space="preserve">
+    <value>COR_MAIL_IN</value>
+  </data>
+  <data name="fac_DepartamentoServicio" xml:space="preserve">
+    <value>FAC_DPTO_SERV</value>
+  </data>
+  <data name="fac_DesgloseServicio" xml:space="preserve">
+    <value>FAC_SERV_DESG</value>
+  </data>
+  <data name="fac_DetalleEnvio" xml:space="preserve">
+    <value>FAC_DET_ENV</value>
+  </data>
+  <data name="fac_DetallePago" xml:space="preserve">
+    <value>FAC_DET_PG</value>
+  </data>
+  <data name="fac_DocumentosMarca" xml:space="preserve">
+    <value>FAC_TDOC_MARCA</value>
+  </data>
+  <data name="fac_DocumentosPatente" xml:space="preserve">
+    <value>FAC_TDOC_PATENTE</value>
+  </data>
+  <data name="fac_DocumentosTraduccion" xml:space="preserve">
+    <value>FAC_TDOC_TRADUCC</value>
+  </data>
+  <data name="fac_Etiqueta" xml:space="preserve">
+    <value>FAC_ETI_FAC</value>
+  </data>
+  <data name="fac_FacCobro" xml:space="preserve">
+    <value>FAC_COBROS</value>
+  </data>
+  <data name="fac_FacCredito" xml:space="preserve">
+    <value>FAC_CREDITOS</value>
+  </data>
+  <data name="fac_FacFactuDetaAnulada" xml:space="preserve">
+    <value>FAC_DETALLES_ANU</value>
+  </data>
+  <data name="fac_FacFactuDetaProforma" xml:space="preserve">
+    <value>FAC_DETALLES_PRO</value>
+  </data>
+  <data name="fac_FacFactura" xml:space="preserve">
+    <value>FAC_FACTURAS</value>
+  </data>
+  <data name="fac_FacFacturaAnulada" xml:space="preserve">
+    <value>FAC_ANUL</value>
+  </data>
+  <data name="fac_FacFacturaProforma" xml:space="preserve">
+    <value>FAC_FACTU_PRO_NX</value>
+  </data>
+  <data name="fac_FacGestion" xml:space="preserve">
+    <value>FAC_GESTIONES</value>
+  </data>
+  <data name="fac_FacInternacionalPago" xml:space="preserve">
+    <value>FAC_PRO_CXP</value>
+  </data>
+  <data name="fac_FacInternacionalRegistro" xml:space="preserve">
+    <value>FAC_PRO_CXP</value>
+  </data>
+  <data name="fac_FacJustificacion" xml:space="preserve">
+    <value>FAC_CONJUST</value>
+  </data>
+  <data name="fac_FacOperacionAnulada" xml:space="preserve">
+    <value>FAC_OPERACIONES_ANU</value>
+  </data>
+  <data name="fac_FacOperacionDetaAnulada" xml:space="preserve">
+    <value>FAC_OPERACION_DET_ANU</value>
+  </data>
+  <data name="fac_FacOperacionDetalle" xml:space="preserve">
+    <value>FAC_OPERACION_DET</value>
+  </data>
+  <data name="fac_FacOperacionDetalleTm" xml:space="preserve">
+    <value>FAC_OPERACION_DET_TM</value>
+  </data>
+  <data name="fac_FacOperacionDetaProforma" xml:space="preserve">
+    <value>FAC_OPERACION_DET_PRO</value>
+  </data>
+  <data name="fac_FacOperacionDetaTmProforma" xml:space="preserve">
+    <value>FAC_OPERACION_DET_TM_PRO</value>
+  </data>
+  <data name="fac_FacOperacionProforma" xml:space="preserve">
+    <value>FAC_OPERACIONES_PRO</value>
+  </data>
+  <data name="fac_FacPagoBolivia" xml:space="preserve">
+    <value>FAC_CXP_BOL</value>
+  </data>
+  <data name="fac_FacRecurso" xml:space="preserve">
+    <value>FAC_TRECURSO</value>
+  </data>
+  <data name="fac_Guia" xml:space="preserve">
+    <value>FAC_GUIAS</value>
+  </data>
+  <data name="fac_Impuesto" xml:space="preserve">
+    <value>FAC_IMPUESTOS</value>
+  </data>
+  <data name="fac_Material" xml:space="preserve">
+    <value>FAC_TMATERIAL</value>
+  </data>
+  <data name="fac_MediosGestion" xml:space="preserve">
+    <value>FAC_MEDIO_GES</value>
+  </data>
+  <data name="fac_menuItemConsultaCreditosAsociado" xml:space="preserve">
+    <value>FACCNASC</value>
+  </data>
+  <data name="fac_menuItemConsultaCreditosVigentesAsociado" xml:space="preserve">
+    <value>FACCNVGC</value>
+  </data>
+  <data name="fac_menuItemConsultaFacturacionAnuladas" xml:space="preserve">
+    <value>FACNDANC</value>
+  </data>
+  <data name="fac_menuItemConsultaFacturacionAsociado" xml:space="preserve">
+    <value>FACNDASC</value>
+  </data>
+  <data name="fac_menuItemConsultaFacturacionVigenteAsociado" xml:space="preserve">
+    <value>FACNDVGC</value>
+  </data>
+  <data name="fac_menuItemConsultaFacturasAnuladas" xml:space="preserve">
+    <value>FAC_ANUL_CON</value>
+  </data>
+  <data name="fac_menuItemConsultaOperacionesAsociado" xml:space="preserve">
+    <value>FACOPASC</value>
+  </data>
+  <data name="fac_menuItemConsultaPagosAsociado" xml:space="preserve">
+    <value>FACCRASC</value>
+  </data>
+  <data name="fac_menuItemConsultaStatementPorProcesar" xml:space="preserve">
+    <value>FAC_STATEMENTXPR</value>
+  </data>
+  <data name="fac_menuItemFacAsociadoProfit" xml:space="preserve">
+    <value>FACASOPROF</value>
+  </data>
+  <data name="fac_menuItemFacFacturacionLoteVieja" xml:space="preserve">
+    <value>FACTULOT</value>
+  </data>
+  <data name="fac_menuItemFacFacturacionPendiente" xml:space="preserve">
+    <value>FACTUPEND_N</value>
+  </data>
+  <data name="fac_menuItemFacFacturacionPendienteVieja" xml:space="preserve">
+    <value>FACTUPEND</value>
+  </data>
+  <data name="fac_menuItemFacGestionesAsociado" xml:space="preserve">
+    <value>FAC_GESTIONES_CN</value>
+  </data>
+  <data name="fac_menuItemFacturaDetalle" xml:space="preserve">
+    <value>FACPROFDET</value>
+  </data>
+  <data name="fac_menuItemFacturaEncabezado" xml:space="preserve">
+    <value>FACENCPROF</value>
+  </data>
+  <data name="fac_menuItemResumenOperacionesRpt" xml:space="preserve">
+    <value>FACOPRR</value>
+  </data>
+  <data name="fac_menuItemVentasTotalesRevRpt" xml:space="preserve">
+    <value>FACVENR_T</value>
+  </data>
+  <data name="fac_menuItemVentasTotalesRpt" xml:space="preserve">
+    <value>FACVENR_TD</value>
+  </data>
+  <data name="fac_Motivo" xml:space="preserve">
+    <value>FAC_MOTIVO</value>
+  </data>
+  <data name="fac_proformaafactura" xml:space="preserve">
+    <value>FAC_PRO_AUTOFAC</value>
+  </data>
+  <data name="fac_Servicio" xml:space="preserve">
+    <value>FAC_SERVICIOS</value>
+  </data>
+  <data name="fac_Sociedad" xml:space="preserve">
+    <value>FAC_SOCIEDAD</value>
+  </data>
+  <data name="fac_TarifaServicio" xml:space="preserve">
+    <value>FAC_TARIFAS_SERV</value>
+  </data>
+  <data name="fac_Tasa" xml:space="preserve">
+    <value>FAC_TASAS</value>
+  </data>
+  <data name="fac_TipoClase" xml:space="preserve">
+    <value>FAC_TIPO_CLASE</value>
+  </data>
+  <data name="fac_TipoMarca" xml:space="preserve">
+    <value>FAC_TIPO_MARCA</value>
+  </data>
+  <data name="fac_TipoPatente" xml:space="preserve">
+    <value>FAC_TIPO_PATENTE</value>
+  </data>
+  <data name="fac_ViGestionAsociado" xml:space="preserve">
+    <value>FAC_GESTIONES_CG</value>
+  </data>
 </root>

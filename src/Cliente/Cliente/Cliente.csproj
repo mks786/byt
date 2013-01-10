@@ -67,6 +67,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\lib\CrystalDecisions.Shared.dll</HintPath>
     </Reference>
+    <Reference Include="Diginsoft.Bolet.Cliente.Fac, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\Diginsoft.Bolet.Cliente.Fac.dll</HintPath>
+    </Reference>
+    <Reference Include="Diginsoft.Bolet.ObjetosComunes, Version=1.0.0.2, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\Diginsoft.Bolet.ObjetosComunes.dll</HintPath>
+    </Reference>
     <Reference Include="LinFu.DynamicProxy">
       <HintPath>..\..\..\lib\LinFu.DynamicProxy.dll</HintPath>
     </Reference>
@@ -76,9 +84,9 @@
     <Reference Include="NHibernate.ByteCode.LinFu">
       <HintPath>..\..\..\lib\NHibernate.ByteCode.LinFu.dll</HintPath>
     </Reference>
-    <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+    <Reference Include="NLog, Version=1.0.0.505, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files\NLog\.NET Framework 4.0\NLog.dll</HintPath>
+      <HintPath>..\..\..\lib\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -322,6 +330,199 @@
     <Compile Include="Contratos\Usuarios\IConsultarUsuarios.cs" />
     <Compile Include="Contratos\IPaginaBase.cs" />
     <Compile Include="App.cs" />
+    <Compile Include="FacReportes\DsFacEstadoCuenta.cs">
+      <DependentUpon>DsFacEstadoCuenta.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FacReportes\DsFacEstadoCuenta.Designer.cs">
+      <DependentUpon>DsFacEstadoCuenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FacReportes\DsFacFacturaPendiente.cs">
+      <DependentUpon>DsFacFacturaPendiente.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FacReportes\DsFacFacturaPendiente.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsFacFacturaPendiente.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FacReportes\DsFactura.cs">
+      <DependentUpon>DsFactura.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FacReportes\DsFacturaAnulada.cs">
+      <DependentUpon>DsFacturaAnulada.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FacReportes\DsFacturaAnulada.Designer.cs">
+      <DependentUpon>DsFacturaAnulada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FacReportes\DsFacturaDigital.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsFacturaDigital.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FacReportes\DsFacturasPendientesAsociados.cs">
+      <DependentUpon>DsFacturasPendientesAsociados.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FacReportes\DsFacturasPendientesAsociados.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsFacturasPendientesAsociados.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FacReportes\DSResumenOperacionesRpt.cs">
+      <DependentUpon>DSResumenOperacionesRpt.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FacReportes\DSResumenOperacionesRpt.Designer.cs">
+      <DependentUpon>DSResumenOperacionesRpt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FacReportes\DsVentasTotalesRevRpt.cs">
+      <DependentUpon>DsVentasTotalesRevRpt.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FacReportes\DsVentasTotalesRevRpt.Designer.cs">
+      <DependentUpon>DsVentasTotalesRevRpt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FacReportes\FacFacturacionLoteVieja.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FacFacturacionLoteVieja.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\FacturasPendientesAsociados.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FacturasPendientesAsociados.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\ResumenOperacionesRpt.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResumenOperacionesRpt.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RpFacEstadoCuenta.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RpFacEstadoCuenta.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RpFacFacturaPendiente.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RpFacFacturaPendiente.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RpFacFacturaPendiente2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RpFacFacturaPendiente2.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFacCartaAsociadoEs.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacCartaAsociadoEs.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFacCartaAsociadoIn.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacCartaAsociadoIn.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFactura.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFactura.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFacturaAnulada.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturaAnulada.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFacturacionPendienteMenor.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturacionPendienteMenor.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFacturaCopia.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturaCopia.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFacturaCopiaBf.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturaCopiaBf.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFacturaDeta.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturaDeta.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFacturaDigital.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturaDigital.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFacturaPendienteDeta.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturaPendienteDeta.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFacturaPendienteDeta2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturaPendienteDeta2.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFacturaPendienteDetaTotales.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturaPendienteDetaTotales.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\VentasTotalesRevRpt.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VentasTotalesRevRpt.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\VentasTotalesRpt.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VentasTotalesRpt.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Presentadores\Abandonos\PresentadorConsultarAbandonos.cs" />
     <Compile Include="Presentadores\Abandonos\PresentadorGestionarAbandono.cs" />
     <Compile Include="Presentadores\Agentes\PresentadorAgregarAgente.cs" />
@@ -2283,6 +2484,106 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="FacReportes\FacFacturacionLoteVieja.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FacFacturacionLoteVieja.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\FacturasPendientesAsociados.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FacturasPendientesAsociados.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\ResumenOperacionesRpt.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ResumenOperacionesRpt.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RpFacEstadoCuenta.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RpFacEstadoCuenta.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RpFacFacturaPendiente.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RpFacFacturaPendiente.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RpFacFacturaPendiente2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RpFacFacturaPendiente2.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RptFacCartaAsociadoEs.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacCartaAsociadoEs.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RptFacCartaAsociadoIn.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacCartaAsociadoIn.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RptFactura.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFactura.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RptFacturaAnulada.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacturaAnulada.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RptFacturacionPendienteMenor.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacturacionPendienteMenor.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RptFacturaCopia.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacturaCopia.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RptFacturaCopiaBf.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacturaCopiaBf.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RptFacturaDeta.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacturaDeta.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RptFacturaDigital.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacturaDigital.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RptFacturaPendienteDeta.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacturaPendienteDeta.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RptFacturaPendienteDeta2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacturaPendienteDeta2.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RptFacturaPendienteDetaTotales.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacturaPendienteDetaTotales.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\VentasTotalesRevRpt.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>VentasTotalesRevRpt.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\VentasTotalesRpt.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>VentasTotalesRpt.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -2392,6 +2693,94 @@
     </EmbeddedResource>
     <None Include="app.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="FacReportes\DsFacEstadoCuenta.xsc">
+      <DependentUpon>DsFacEstadoCuenta.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFacEstadoCuenta.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsFacEstadoCuenta1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FacReportes\DsFacEstadoCuenta.xss">
+      <DependentUpon>DsFacEstadoCuenta.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFacFacturaPendiente.xsc">
+      <DependentUpon>DsFacFacturaPendiente.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFacFacturaPendiente.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsFacFacturaPendiente.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FacReportes\DsFacFacturaPendiente.xss">
+      <DependentUpon>DsFacFacturaPendiente.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFactura.xsc">
+      <DependentUpon>DsFactura.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFactura.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsFactura1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FacReportes\DsFactura.xss">
+      <DependentUpon>DsFactura.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFacturaAnulada.xsc">
+      <DependentUpon>DsFacturaAnulada.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFacturaAnulada.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsFacturaAnulada1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FacReportes\DsFacturaAnulada.xss">
+      <DependentUpon>DsFacturaAnulada.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFacturaDigital.xsc">
+      <DependentUpon>DsFacturaDigital.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFacturaDigital.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsFacturaDigital.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FacReportes\DsFacturaDigital.xss">
+      <DependentUpon>DsFacturaDigital.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFacturasPendientesAsociados.xsc">
+      <DependentUpon>DsFacturasPendientesAsociados.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFacturasPendientesAsociados.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsFacturasPendientesAsociados.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FacReportes\DsFacturasPendientesAsociados.xss">
+      <DependentUpon>DsFacturasPendientesAsociados.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DSResumenOperacionesRpt.xsc">
+      <DependentUpon>DSResumenOperacionesRpt.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DSResumenOperacionesRpt.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSResumenOperacionesRpt1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FacReportes\DSResumenOperacionesRpt.xss">
+      <DependentUpon>DSResumenOperacionesRpt.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsVentasTotalesRevRpt.xsc">
+      <DependentUpon>DsVentasTotalesRevRpt.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsVentasTotalesRevRpt.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsVentasTotalesRevRpt1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FacReportes\DsVentasTotalesRevRpt.xss">
+      <DependentUpon>DsVentasTotalesRevRpt.xsd</DependentUpon>
     </None>
     <None Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

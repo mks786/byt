@@ -1,0 +1,32 @@
+﻿<Window x:Class="Ventanas.FacFacturaProformas.Mostrar_Detalle"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Mostrar Detalle" Height="330" Width="500" WindowStartupLocation="CenterScreen">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="0">
+            <Label  HorizontalContentAlignment="Left">
+                <TextBlock Text="Detalle en moneda original"/>
+            </Label>
+        </WrapPanel>
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="0" Margin="0,0,0,20">
+            <TextBox Name="_txtDetalle_Ing" MaxLength="255" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
+                              Height="90" SpellCheck.IsEnabled="True" Width="330"/>
+        </WrapPanel>
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="0">
+            <Label  HorizontalContentAlignment="Left">
+                <TextBlock Text="Detalle en Español"/>
+            </Label>
+        </WrapPanel>
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="0"  Margin="0,0,0,20">
+            <!--<Label Width="90" HorizontalContentAlignment="Left">
+                <TextBlock Text="Texto Español:"/>
+            </Label>-->
+            <TextBox Name="_txtDetalle_Esp" MaxLength="255" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
+                              Height="90" SpellCheck.IsEnabled="True" Width="330"/>
+        </WrapPanel>
+
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+            <Button Name="btn_guardar" Content="Guardar Y Cerrar" />
+        </WrapPanel>
+    </StackPanel>
+</Window>

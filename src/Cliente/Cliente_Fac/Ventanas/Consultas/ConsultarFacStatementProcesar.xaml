@@ -1,0 +1,74 @@
+﻿<Page x:Class="Ventanas.Consultas.ConsultarFacStatementProcesar"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"          
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+      xmlns:recurso="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Recursos" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Grid.Column="0" Grid.Row="0" Margin="5" Height="35" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label>
+                    <TextBlock FontSize="15" Text="{x:Static recurso:Etiquetas.lblTotalHits}"/>
+                </Label>
+                <Label>
+                    <TextBlock FontSize="15" Name="_lblHits"/>
+                </Label>
+
+            </StackPanel>
+        </GroupBox>
+        <!--Resultados-->
+        <GroupBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Margin="5">
+            <ListView Name="_lstResultados" ItemsSource="{Binding}" SelectionMode="Single" 
+                       Style="{DynamicResource EstiloListView}" Width="400">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="100">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="Statement"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaFactura, StringFormat={}{0:dd/MM/yyyy}}" Width="70">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaFactura" Content="Fecha Statement"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Cobro}" Width="100">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Cobro" Content="Cobro"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaCobro, StringFormat={}{0:dd/MM/yyyy}}" Width="70">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaCobro" Content="Fecha Cobro"/>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+
+  
+        <!--Botones Regresar-->
+        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <Button Name="_btnCancelar" Width="100" Click="_btnCancelar_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnCancelar}"/>
+                </Button>
+                <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="100"
+                    Click="_btnRegresar_Click">
+                    <TextBlock Name="_txbRegresar" Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
+                </Button>     
+<Button Name="_btnLimpiar" VerticalAlignment="Center" Width="100" Click="_btnLimpiar_Click" HorizontalAlignment="Right">Limpiar</Button>                
+            </StackPanel>
+        </GroupBox>
+       
+        
+    </Grid>
+</Page>

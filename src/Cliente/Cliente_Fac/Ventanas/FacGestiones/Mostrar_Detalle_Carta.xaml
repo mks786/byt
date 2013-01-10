@@ -1,0 +1,117 @@
+﻿<Window x:Class="Ventanas.FacGestiones.Mostrar_Detalle_Carta"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
+        xmlns:recurso="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Recursos"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Mostrar Detalle Entrada" Height="300" Width="500" WindowStartupLocation="CenterScreen">
+    
+    <StackPanel Name="_gridDatos" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"  HorizontalAlignment="Left"
+                        DataContext="{Binding}" Margin="0,0,20,0">
+
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
+            <Label Width="100">
+                <TextBlock Text="Código"/>
+            </Label>
+            <TextBox Name="_txtId" Width="80" MaxLength="7" Focusable="True" 
+                    ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True" IsReadOnly="True">
+                <TextBox.Text>
+                    <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">
+
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <Label>
+                <TextBlock Text="  "/>
+            </Label>
+            <Label>
+                <TextBlock Text="Fecha"/>
+            </Label>
+            <DatePicker Name="_dpkFecha" Width="100" Focusable="False" BorderBrush="{x:Null}">
+                <DatePicker.SelectedDate>
+                    <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
+                </DatePicker.SelectedDate>
+            </DatePicker>
+            <DatePicker Name="_dpkFechaAlt" Width="100" Focusable="False" BorderBrush="{x:Null}">
+                <DatePicker.SelectedDate>
+                    <Binding Path="FechaAlt" UpdateSourceTrigger="PropertyChanged"/>
+                </DatePicker.SelectedDate>
+            </DatePicker>
+        </WrapPanel>
+
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Center">
+            <Label Width="100">
+                <TextBlock Text="Asociado"/>
+            </Label>
+            <TextBox Name="_txtAsociadoId" Width="80" MaxLength="7" Focusable="True" 
+                    ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True" IsReadOnly="True">
+                <TextBox.Text>
+                    <Binding Path="Asociado.Id" UpdateSourceTrigger="PropertyChanged">
+
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBox Name="_txtAsociadoNombre" Width="250" MaxLength="7" Focusable="True" 
+                    ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True" IsReadOnly="True">
+                <TextBox.Text>
+                    <Binding Path="Asociado.Nombre" UpdateSourceTrigger="PropertyChanged">
+
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>            
+        </WrapPanel>
+
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Center">
+            <Label Width="100">
+                <TextBlock Text="Departamento"/>
+            </Label>
+            <TextBox Name="_txtDepartamento" Width="80" MaxLength="7" Focusable="True" 
+                    ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True" IsReadOnly="True">
+                <TextBox.Text>
+                    <Binding Path="Departamento.Id" UpdateSourceTrigger="PropertyChanged">
+
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBox Name="_txtDepartamentoNombre" Width="250" MaxLength="7" Focusable="True" 
+                    ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True" IsReadOnly="True">
+                <TextBox.Text>
+                    <Binding Path="Departamento.Descripcion" UpdateSourceTrigger="PropertyChanged">
+
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </WrapPanel>
+        
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Center">
+            <Label Width="100">
+                <TextBlock Text="Referencia"/>
+            </Label>
+            <TextBox Name="_txtReferencia" Width="330" MaxLength="7" Focusable="True" 
+                    ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True" IsReadOnly="True">
+                <TextBox.Text>
+                    <Binding Path="Referencia" UpdateSourceTrigger="PropertyChanged">
+
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </WrapPanel>
+
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Center">
+            <Label Width="100">
+                <TextBlock Text="Tracking"/>
+            </Label>
+            <TextBox Name="_txtTracking" Width="330" MaxLength="7" Focusable="True" 
+                    ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True" IsReadOnly="True">
+                <TextBox.Text>
+                    <Binding Path="Tracking" UpdateSourceTrigger="PropertyChanged">
+
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </WrapPanel>
+        
+        <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15" Orientation="Horizontal">
+            <Button Name="_btnVerCorrespondencia" VerticalAlignment="Bottom" Height="25" Width="130" Click="_btnVerCorrespondencia_Click">Ver Correspondencia</Button>
+        </WrapPanel>
+    </StackPanel>
+</Window>
