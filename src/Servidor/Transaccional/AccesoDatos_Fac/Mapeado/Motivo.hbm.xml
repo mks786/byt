@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades"> 
+
+  <class name="FacMotivo" table="FAC_MOTIVO">
+    <id name="Id" column="CODIGO" />
+    <property name="Detalle" column="XDETALLE" type="string"/>
+  </class>
+</hibernate-mapping>

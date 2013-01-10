@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="FacCredito" table="Fac_CREDITOS">
+    <id name="Id" column="CCREDITO" /> 
+    <property name="FechaCredito" column="FCREDITO" type="DateTime"/>    
+    <property name="BCredito" column="BCREDITO" type="double"/>
+    <many-to-one  name="Asociado" column="CASOCIADO" class="Asociado"/>
+    <many-to-one  name="Idioma" column="CIDIOMA" class="Idioma"/>
+    <many-to-one  name="Moneda" column="CMONEDA" class="Moneda"/>
+    <property name="Concepto" column="XCREDITO" type="String"/>
+    <property name="BCreditoBf" column="BCREDITO_BF" type="double"/>
+    <property name="Timestamp" column="TIMESTAMP" type="DateTime"/>
+    <many-to-one  name="Banco" column="CBANCO" class="FacBanco"/>
+    <property name="CreditoSent" column="CCREDITO_SENT" type="int"/>
+  </class>
+</hibernate-mapping>

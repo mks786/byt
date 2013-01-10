@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+              
+  <class name="FacInternacionalAnulada" table="FAC_CXP_INT_ANU">
+    <id name="Id" column="CPROFORMA" />
+    <many-to-one  name="Asociado" column="CASOCIADO" class="Asociado"/>
+    <many-to-one  name="Asociado_o" column="CASOCIADO_O" class="Asociado"/>
+    <property name="Numerofactura" column="NRO_FACTURA" type="String"/>
+    <property name="Monto" column="MONTO" type="Double"/>    
+    <property name="Fecha" column="FECHA" type="DateTime"/>    
+    <many-to-one  name="Pais" column="CPAIS" class="Pais"/>
+    <property name="Detalle" column="DETALLE" type="String"/>
+    <property name="FechaPago" column="FPAGO" type="DateTime"/>
+    <property name="TipoPago" column="MPAGO" type="char"/>
+    <property name="DescripcionPago" column="DESC_PAGO" type="String"/>
+    <many-to-one  name="Banco" column="CBANCO" class="FacBanco"/>
+    <!--<many-to-one name="Factura" column="CFACTURA" class="FacFactura"/>-->
+    <property name="Factura" column="CFACTURA" type="int"/>
+    <property name="FechaAnulacion" column="FANULA" type="DateTime"/>   
+  </class>
+</hibernate-mapping>

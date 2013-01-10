@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="FacBanco" table="FAC_BANCOS">
+    <id name="Id" column="CBANCO" />
+    <property name="XBanco" column="XBANCO" type="String"/>
+    <property name="Contacto" column="XCONTACTO" type="String"/>
+    <property name="Saldo" column="SALDO" type="double"/>
+    <property name="FechaSaldo" column="FSALDO" type="DateTime"/>
+    <property name="Iw" column="IW" type="string"/>
+    <property name="Moneda" column="CMONEDA" type="string"/>
+    <property name="XbancoWeb" column="XBANCO_WEB" type="string"/>
+    <property name="Ides" column="IDES" type="string"/>
+    <property name="Relacion" column="RELACION" type="int"/>
+  </class>
+</hibernate-mapping>

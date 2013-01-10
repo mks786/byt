@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Diginsoft.Bolet.ObjetosComunes"
+                   namespace="Diginsoft.Bolet.ObjetosComunes.Entidades">
+
+  <class name="ConceptoGestion" table="FAC_CPTO_GES">
+    <id name="Id" column="CCPTO" />
+    <property name="Descripcion" column="XDESCRIP" type="String"/>
+  </class>
+</hibernate-mapping>

@@ -49,9 +49,9 @@
     <Reference Include="NHibernate.ByteCode.LinFu">
       <HintPath>..\..\..\..\lib\NHibernate.ByteCode.LinFu.dll</HintPath>
     </Reference>
-    <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+    <Reference Include="NLog, Version=1.0.0.505, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files\NLog\.NET Framework 4.0\NLog.dll</HintPath>
+      <HintPath>..\..\..\..\lib\NLog.dll</HintPath>
     </Reference>
     <Reference Include="Remotion.Data.Linq">
       <HintPath>..\..\..\..\lib\Remotion.Data.Linq.dll</HintPath>

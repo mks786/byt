@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades"> 
+
+  <class name="FacDesgloseCole" table="FAC_DESG_COLE">
+    <composite-id>
+      <key-property name="Id" column="ITIPO" type="Char"/>
+      <key-many-to-one  name="Idioma" column="IDIOMA" class="Idioma"/>
+    </composite-id>
+    <property name="Detalle" column="XCOLE" type="string"/>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="FacServicio" table="FAC_SERVICIOS">
+    <id name="Id" column="COD_SER" />
+    <property name="Cod_Cont" column="COD_CONT" type="String"/>
+    <property name="Detalle_Esp" column="DETALLE_ESP" type="String"/>
+    <property name="Detalle_Ing" column="DETALLE_ING" type="String"/>
+    <property name="Itipo" column="ITIPO" type="Char"/>
+    <property name="Local" column="LOCAL" type="Char"/>
+    <property name="Itidoc" column="ITIDOC" type="Char"/>
+    <property name="Itraduc" column="ITRADUC" type="Char"/>
+    <property name="Anual" column="ANUAL" type="Char"/>
+    <property name="Detalles_Esp" column="DETALLES_ESP" type="String"/>
+    <property name="Detalles_Ing" column="DETALLES_ING" type="String"/>
+    <property name="Codmult" column="CODMULT" type="String"/>
+    <property name="Xreferencia" column="XREFERENCIA" type="String"/>    
+    <property name="Imult" column="IMULT" type="Char"/>
+    <property name="Imodpr" column="IMODPR" type="Char"/>
+    <property name="Recursos" column="RECURSOS" type="Char"/>
+    <property name="Material" column="MATERIAL" type="Char"/>
+    <property name="Aimpuesto" column="AIMPUESTO" type="Char"/>
+    <property name="Desg" column="DESG" type="Char"/>
+  </class>
+</hibernate-mapping>

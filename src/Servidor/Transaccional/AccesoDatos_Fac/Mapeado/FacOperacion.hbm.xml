@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="FacOperacion" table="FAC_OPERACIONES">
+    <composite-id>
+      <key-property name="Id" column="IOPERACION" />
+      <key-property name="CodigoOperacion" column="COPERACION " type="int" />
+    </composite-id>
+    <property name="FechaOperacion" column="FOPERACION" type="DateTime"/>
+    <many-to-one  name="Asociado" column="CASOCIADO" class="Asociado"/>
+    <many-to-one  name="Idioma" column="CIDIOMA" class="Idioma"/>
+    <many-to-one  name="Moneda" column="CMONEDA" class="Moneda"/>
+    <property name="Monto" column="BMONTO" type="double"/>
+    <property name="Saldo" column="BSALDO" type="double"/>
+    <property name="XOperacion" column="XOPERACION" type="string"/>
+    <property name="OperacionImp" column="FOPERACION_IMP" type="string"/>    
+    <property name="MontoBf" column="BMONTO_BF" type="double"/>
+    <property name="SaldoBf" column="BSALDO_BF" type="double"/>
+    <property name="St_Sel" column="ST_SEL" type="string"/>
+    <property name="St_Pro" column="ST_PRO" type="string"/>    
+    <property name="Relacion" column="NRELACION" type="int"/>
+    <property name="FechaIngreso" column="FINGNOT" type="DateTime"/>
+  </class>
+</hibernate-mapping>

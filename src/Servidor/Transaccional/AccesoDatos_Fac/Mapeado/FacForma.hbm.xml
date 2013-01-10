@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="FacForma" table="FAC_FORMAS">
+    <composite-id>
+      <key-property name="Id" column="CFORMA" type="int" />
+      <key-many-to-one name="Cobro" column="CCOBRO" class="FacCobro" />      
+    </composite-id>    
+    <property name="BForma" column="BFORMA" type="double"/>    
+    <property name="XForma" column="XFORMA" type="string"/>
+    <many-to-one  name="Credito" column="CCREDITO" class="FacCredito"/>
+    <property name="BFormaBf" column="BFORMA_BF" type="double"/>
+    <property name="Tasa" column="TASA" type="double"/>
+    <property name="TipoPago" column="XTIPOPAGO" type="string"/>
+  </class>
+</hibernate-mapping>

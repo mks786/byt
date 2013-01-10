@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+              
+  <class name="FacGestion" table="FAC_GESTIONES">
+    <composite-id>
+      <key-property name="Id" column="NRO_GESTION" type="int" />
+      <key-many-to-one  name="Asociado" column="CASOCIADO" class="Asociado"/>
+    </composite-id>
+    <property name="FechaGestion" column="FGESTION" type="DateTime"/>    
+    <property name="Medio" column="CMEDIO" type="String"/>
+    <property name="ConceptoGestion" column="CCPTO" type="String"/>
+    <property name="Observacion" column="XOBSER" type="String"/>    
+    <property name="CodigoResp" column="CRESP" type="int"/>    
+    <many-to-one  name="TipoAsociado" column="CTIPO" class="TipoCliente"/>
+    <property name="FechaIngreso" column="FINGRESO" type="DateTime"/>
+    <property name="Inicial" column="XINICIAL" type="String"/>
+    <property name="Respuesta" column="CRESPUESTA" type="int"/>
+    <property name="ConceptoGestion2" column="CCPTORES" type="String"/>
+    <property name="Xdestalleres" column="XDESTALLERES" type="String"/>
+    <property name="Ruta" column="XRUTA" type="String"/>
+    <property name="FechaModificacion" column="FMOD" type="DateTime"/>   
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,459 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{1EA8117A-1A21-4D7F-839C-715E15499366}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Diginsoft.Bolet.Comandos</RootNamespace>
+    <AssemblyName>Diginsoft.Bolet.Comandos</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Diginsoft.Bolet.Comandos.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Diginsoft.Bolet.Comandos.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NLog, Version=1.0.0.505, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\lib\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Comandos\ComandosDesgloseServicio\ComandoConsultarFacDesgloseServiciosFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacAnualidad\ComandoConsultarTodosFacAnualidades.vb" />
+    <Compile Include="Comandos\ComandosFacAnualidad\ComandoEliminarFacAnualidad.vb" />
+    <Compile Include="Comandos\ComandosFacAnualidad\ComandoInsertarOModificarFacAnualidad.vb" />
+    <Compile Include="Comandos\ComandosFacAnualidad\ComandoVerificarExistenciaFacAnualidad.vb" />
+    <Compile Include="Comandos\ComandosBancoG\ComandoConsultarTodosBancoGs.vb" />
+    <Compile Include="Comandos\ComandosBancoG\ComandoEliminarBancoG.vb" />
+    <Compile Include="Comandos\ComandosBancoG\ComandoInsertarOModificarBancoG.vb" />
+    <Compile Include="Comandos\ComandosBancoG\ComandoVerificarExistenciaBancoG.vb" />
+    <Compile Include="Comandos\ComandosChequeRecido\ComandoConsultarChequeRecidosFiltro.vb" />
+    <Compile Include="Comandos\ComandosChequeRecido\ComandoConsultarTodosChequeRecidos.vb" />
+    <Compile Include="Comandos\ComandosChequeRecido\ComandoEliminarChequeRecido.vb" />
+    <Compile Include="Comandos\ComandosChequeRecido\ComandoInsertarOModificarChequeRecido.vb" />
+    <Compile Include="Comandos\ComandosChequeRecido\ComandoVerificarExistenciaChequeRecido.vb" />
+    <Compile Include="Comandos\ComandosConceptoGestion\ComandoConsultarTodosConceptoGestiones.vb" />
+    <Compile Include="Comandos\ComandosConceptoGestion\ComandoEliminarConceptoGestion.vb" />
+    <Compile Include="Comandos\ComandosConceptoGestion\ComandoInsertarOModificarConceptoGestion.vb" />
+    <Compile Include="Comandos\ComandosConceptoGestion\ComandoVerificarExistenciaConceptoGestion.vb" />
+    <Compile Include="Comandos\ComandosCorrespondencia\ComandoConsultarTodosCorrespondencias.vb" />
+    <Compile Include="Comandos\ComandosCorrespondencia\ComandoEliminarCorrespondencia.vb" />
+    <Compile Include="Comandos\ComandosCorrespondencia\ComandoInsertarOModificarCorrespondencia.vb" />
+    <Compile Include="Comandos\ComandosCorrespondencia\ComandoVerificarExistenciaCorrespondencia.vb" />
+    <Compile Include="Comandos\ComandosDepartamentoServicio\ComandoConsultarFacDepartamentoServiciosFiltro.vb" />
+    <Compile Include="Comandos\ComandosDepartamentoServicio\ComandoConsultarTodosDepartamentoServicios.vb" />
+    <Compile Include="Comandos\ComandosDepartamentoServicio\ComandoEliminarDepartamentoServicio.vb" />
+    <Compile Include="Comandos\ComandosDepartamentoServicio\ComandoInsertarOModificarDepartamentoServicio.vb" />
+    <Compile Include="Comandos\ComandosDepartamentoServicio\ComandoVerificarExistenciaDepartamentoServicio.vb" />
+    <Compile Include="Comandos\ComandosDesgloseServicio\ComandoConsultarTodosDesgloseServicios.vb" />
+    <Compile Include="Comandos\ComandosDesgloseServicio\ComandoEliminarDesgloseServicio.vb" />
+    <Compile Include="Comandos\ComandosDesgloseServicio\ComandoInsertarOModificarDesgloseServicio.vb" />
+    <Compile Include="Comandos\ComandosDesgloseServicio\ComandoVerificarExistenciaDesgloseServicio.vb" />
+    <Compile Include="Comandos\ComandosDetalleEnvio\ComandoConsultarTodosDetalleEnvios.vb" />
+    <Compile Include="Comandos\ComandosDetalleEnvio\ComandoEliminarDetalleEnvio.vb" />
+    <Compile Include="Comandos\ComandosDetalleEnvio\ComandoInsertarOModificarDetalleEnvio.vb" />
+    <Compile Include="Comandos\ComandosDetalleEnvio\ComandoVerificarExistenciaDetalleEnvio.vb" />
+    <Compile Include="Comandos\ComandosDetallePago\ComandoConsultarTodosDetallePagos.vb" />
+    <Compile Include="Comandos\ComandosDetallePago\ComandoEliminarDetallePago.vb" />
+    <Compile Include="Comandos\ComandosDetallePago\ComandoInsertarOModificarDetallePago.vb" />
+    <Compile Include="Comandos\ComandosDetallePago\ComandoVerificarExistenciaDetallePago.vb" />
+    <Compile Include="Comandos\ComandosDocumentosMarca\ComandoConsultarTodosDocumentosMarcas.vb" />
+    <Compile Include="Comandos\ComandosDocumentosMarca\ComandoEliminarDocumentosMarca.vb" />
+    <Compile Include="Comandos\ComandosDocumentosMarca\ComandoInsertarOModificarDocumentosMarca.vb" />
+    <Compile Include="Comandos\ComandosDocumentosMarca\ComandoVerificarExistenciaDocumentosMarca.vb" />
+    <Compile Include="Comandos\ComandosDocumentosPatente\ComandoConsultarTodosDocumentosPatentes.vb" />
+    <Compile Include="Comandos\ComandosDocumentosPatente\ComandoEliminarDocumentosPatente.vb" />
+    <Compile Include="Comandos\ComandosDocumentosPatente\ComandoInsertarOModificarDocumentosPatente.vb" />
+    <Compile Include="Comandos\ComandosDocumentosPatente\ComandoVerificarExistenciaDocumentosPatente.vb" />
+    <Compile Include="Comandos\ComandosDocumentosTraduccion\ComandoConsultarTodosDocumentosTraducciones.vb" />
+    <Compile Include="Comandos\ComandosDocumentosTraduccion\ComandoEliminarDocumentosTraduccion.vb" />
+    <Compile Include="Comandos\ComandosDocumentosTraduccion\ComandoInsertarOModificarDocumentosTraduccion.vb" />
+    <Compile Include="Comandos\ComandosDocumentosTraduccion\ComandoVerificarExistenciaDocumentosTraduccion.vb" />
+    <Compile Include="Comandos\ComandosEtiqueta\ComandoConsultarTodosEtiquetas.vb" />
+    <Compile Include="Comandos\ComandosEtiqueta\ComandoEliminarEtiqueta.vb" />
+    <Compile Include="Comandos\ComandosEtiqueta\ComandoInsertarOModificarEtiqueta.vb" />
+    <Compile Include="Comandos\ComandosEtiqueta\ComandoVerificarExistenciaEtiqueta.vb" />
+    <Compile Include="Comandos\ComandosFacBanco\ComandoConsultarTodosFacBancos.vb" />
+    <Compile Include="Comandos\ComandosFacBanco\ComandoEliminarFacBanco.vb" />
+    <Compile Include="Comandos\ComandosFacBanco\ComandoInsertarOModificarFacBanco.vb" />
+    <Compile Include="Comandos\ComandosFacBanco\ComandoVerificarExistenciaFacBanco.vb" />
+    <Compile Include="Comandos\ComandosFacCobroFactura\ComandoConsultarFacCobroFacturasFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacCobroFactura\ComandoConsultarTodosFacCobroFacturas.vb" />
+    <Compile Include="Comandos\ComandosFacCobroFactura\ComandoEliminarFacCobroFactura.vb" />
+    <Compile Include="Comandos\ComandosFacCobroFactura\ComandoInsertarOModificarFacCobroFactura.vb" />
+    <Compile Include="Comandos\ComandosFacCobroFactura\ComandoVerificarExistenciaFacCobroFactura.vb" />
+    <Compile Include="Comandos\ComandosFacCobro\ComandoConsultarFacCobrosFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacCobro\ComandoConsultarTodosFacCobros.vb" />
+    <Compile Include="Comandos\ComandosFacCobro\ComandoEliminarFacCobro.vb" />
+    <Compile Include="Comandos\ComandosFacCobro\ComandoInsertarOModificarFacCobro.vb" />
+    <Compile Include="Comandos\ComandosFacCobro\ComandoVerificarExistenciaFacCobro.vb" />
+    <Compile Include="Comandos\ComandosFacContadorPro\ComandoInsertarOModificarComandosFacContadorPro.vb" />
+    <Compile Include="Comandos\ComandosFacCredito\ComandoConsultarFacCreditosFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacCredito\ComandoConsultarTodosFacCreditos.vb" />
+    <Compile Include="Comandos\ComandosFacCredito\ComandoEliminarFacCredito.vb" />
+    <Compile Include="Comandos\ComandosFacCredito\ComandoInsertarOModificarFacCredito.vb" />
+    <Compile Include="Comandos\ComandosFacCredito\ComandoVerificarExistenciaFacCredito.vb" />
+    <Compile Include="Comandos\ComandosFacFactuDetaAnulada\ComandoConsultarFacFactuDetaAnuladasFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacFactuDetaAnulada\ComandoConsultarTodosFacFactuDetaAnuladas.vb" />
+    <Compile Include="Comandos\ComandosFacFactuDetaAnulada\ComandoEliminarFacFactuDetaAnulada.vb" />
+    <Compile Include="Comandos\ComandosFacFactuDetaAnulada\ComandoInsertarOModificarFacFactuDetaAnulada.vb" />
+    <Compile Include="Comandos\ComandosFacFactuDetaAnulada\ComandoVerificarExistenciaFacFactuDetaAnulada.vb" />
+    <Compile Include="Comandos\ComandosFacFactuDetaProforma\ComandoConsultarFacFactuDetaProformasFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacFactuDetaProforma\ComandoConsultarTodosFacFactuDetaProformas.vb" />
+    <Compile Include="Comandos\ComandosFacFactuDetaProforma\ComandoEliminarFacFactuDetaProforma.vb" />
+    <Compile Include="Comandos\ComandosFacFactuDetaProforma\ComandoInsertarOModificarFacFactuDetaProforma.vb" />
+    <Compile Include="Comandos\ComandosFacFactuDetaProforma\ComandoVerificarExistenciaFacFactuDetaProforma.vb" />
+    <Compile Include="Comandos\ComandosFacFacturaAnulada\ComandoConsultarFacFacturaAnuladasFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacFacturaAnulada\ComandoConsultarTodosFacFacturaAnuladas.vb" />
+    <Compile Include="Comandos\ComandosFacFacturaAnulada\ComandoEliminarFacFacturaAnulada.vb" />
+    <Compile Include="Comandos\ComandosFacFacturaAnulada\ComandoInsertarOModificarFacFacturaAnulada.vb" />
+    <Compile Include="Comandos\ComandosFacFacturaAnulada\ComandoVerificarExistenciaFacFacturaAnulada.vb" />
+    <Compile Include="Comandos\ComandosFacFacturaProforma\ComandoConsultarFacFacturaProformasFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacFacturaProforma\ComandoConsultarTodosFacFacturaProformas.vb" />
+    <Compile Include="Comandos\ComandosFacFacturaProforma\ComandoEliminarFacFacturaProforma.vb" />
+    <Compile Include="Comandos\ComandosFacFacturaProforma\ComandoInsertarOModificarFacFacturaProforma.vb" />
+    <Compile Include="Comandos\ComandosFacFacturaProforma\ComandoVerificarExistenciaFacFacturaProforma.vb" />
+    <Compile Include="Comandos\ComandosFacFacturaTotalZ\ComandoConsultarFacFacturaTotalZsFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacFacturaTotalZ\ComandoConsultarTodosFacFacturaTotalZs.vb" />
+    <Compile Include="Comandos\ComandosFacFacturaTotal\ComandoConsultarFacFacturaTotalsFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacFacturaTotal\ComandoConsultarTodosFacFacturaTotals.vb" />
+    <Compile Include="Comandos\ComandosFacFactura\ComandoConsultarFacFacturasFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacFactura\ComandoConsultarTodosFacFacturas.vb" />
+    <Compile Include="Comandos\ComandosFacFactura\ComandoEliminarFacFactura.vb" />
+    <Compile Include="Comandos\ComandosFacFactura\ComandoInsertarOModificarFacFactura.vb" />
+    <Compile Include="Comandos\ComandosFacFactura\ComandoVerificarExistenciaFacFactura.vb" />
+    <Compile Include="Comandos\ComandosFacForma\ComandoConsultarFacFormasFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacForma\ComandoConsultarTodosFacFormas.vb" />
+    <Compile Include="Comandos\ComandosFacForma\ComandoEliminarFacForma.vb" />
+    <Compile Include="Comandos\ComandosFacForma\ComandoInsertarOModificarFacForma.vb" />
+    <Compile Include="Comandos\ComandosFacForma\ComandoVerificarExistenciaFacForma.vb" />
+    <Compile Include="Comandos\ComandosFacJustificacion\ComandoConsultarTodosFacJustificaciones.vb" />
+    <Compile Include="Comandos\ComandosFacJustificacion\ComandoEliminarFacJustificacion.vb" />
+    <Compile Include="Comandos\ComandosFacJustificacion\ComandoInsertarOModificarFacJustificacion.vb" />
+    <Compile Include="Comandos\ComandosFacJustificacion\ComandoVerificarExistenciaFacJustificacion.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionAnulada\ComandoConsultarFacOperacionAnuladasFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionAnulada\ComandoConsultarTodosFacOperacionAnuladas.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionAnulada\ComandoEliminarFacOperacionAnulada.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionAnulada\ComandoInsertarOModificarFacOperacionAnulada.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionAnulada\ComandoVerificarExistenciaFacOperacionAnulada.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionDetaAnulada\ComandoConsultarFacOperacionDetaAnuladasFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionDetaAnulada\ComandoConsultarTodosFacOperacionDetaAnuladas.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionDetaAnulada\ComandoEliminarFacOperacionDetaAnulada.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionDetaAnulada\ComandoInsertarOModificarFacOperacionDetaAnulada.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionDetaAnulada\ComandoVerificarExistenciaFacOperacionDetaAnulada.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionDetalleTm\ComandoConsultarFacOperacionDetalleTmsFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionDetalleTm\ComandoConsultarTodosFacOperacionDetalleTms.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionDetalleTm\ComandoEliminarFacOperacionDetalleTm.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionDetalleTm\ComandoInsertarOModificarFacOperacionDetalleTm.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionDetalleTm\ComandoVerificarExistenciaFacOperacionDetalleTm.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionDetalle\ComandoConsultarFacOperacionDetallesFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionDetalle\ComandoConsultarTodosFacOperacionDetalles.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionDetalle\ComandoEliminarFacOperacionDetalle.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionDetalle\ComandoInsertarOModificarFacOperacionDetalle.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionDetalle\ComandoVerificarExistenciaFacOperacionDetalle.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionDetaProforma\ComandoConsultarFacOperacionDetaProformasFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionDetaProforma\ComandoConsultarTodosFacOperacionDetaProformas.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionDetaProforma\ComandoEliminarFacOperacionDetaProforma.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionDetaProforma\ComandoInsertarOModificarFacOperacionDetaProformaa.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionDetaProforma\ComandoVerificarExistenciaFacOperacionDetaProforma.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionDetaTmProforma\ComandoConsultarFacOperacionDetaTmProformasFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionDetaTmProforma\ComandoConsultarTodosFacOperacionDetaTmProformas.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionDetaTmProforma\ComandoEliminarFacOperacionDetaTmProforma.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionDetaTmProforma\ComandoInsertarOModificarFacOperacionDetaTmProforma.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionDetaTmProforma\ComandoVerificarExistenciaFacOperacionDetaTmProforma.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionProforma\ComandoConsultarFacOperacionProformasFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionProforma\ComandoConsultarTodosFacOperacionProformas.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionProforma\ComandoEliminarFacOperacionProforma.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionProforma\ComandoInsertarOModificarFacOperacionProforma.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionProforma\ComandoVerificarExistenciaFacOperacionProforma.vb" />
+    <Compile Include="Comandos\ComandosFacOperacion\ComandoConsultarFacOperacionesFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacOperacion\ComandoConsultarTodosFacOperaciones.vb" />
+    <Compile Include="Comandos\ComandosFacOperacion\ComandoEliminarFacOperacion.vb" />
+    <Compile Include="Comandos\ComandosFacOperacion\ComandoInsertarOModificarFacOperacion.vb" />
+    <Compile Include="Comandos\ComandosFacOperacion\ComandoVerificarExistenciaFacOperacion.vb" />
+    <Compile Include="Comandos\ComandosFacPagoBolivia\ComandoConsultarFacPagoBoliviasFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacPagoBolivia\ComandoConsultarTodosFacPagoBolivias.vb" />
+    <Compile Include="Comandos\ComandosFacPagoBolivia\ComandoEliminarFacPagoBolivia.vb" />
+    <Compile Include="Comandos\ComandosFacPagoBolivia\ComandoInsertarOModificarFacPagoBolivia.vb" />
+    <Compile Include="Comandos\ComandosFacPagoBolivia\ComandoVerificarExistenciaFacPagoBolivia.vb" />
+    <Compile Include="Comandos\ComandosFacRecurso\ComandoConsultarTodosFacRecursos.vb" />
+    <Compile Include="Comandos\ComandosFacRecurso\ComandoEliminarFacRecurso.vb" />
+    <Compile Include="Comandos\ComandosFacRecurso\ComandoInsertarOModificarFacRecurso.vb" />
+    <Compile Include="Comandos\ComandosFacRecurso\ComandoVerificarExistenciaFacRecurso.vb" />
+    <Compile Include="Comandos\ComandosGuia\ComandoConsultarTodosGuias.vb" />
+    <Compile Include="Comandos\ComandosGuia\ComandoEliminarGuia.vb" />
+    <Compile Include="Comandos\ComandosGuia\ComandoInsertarOModificarGuia.vb" />
+    <Compile Include="Comandos\ComandosGuia\ComandoVerificarExistenciaGuia.vb" />
+    <Compile Include="Comandos\ComandosImpuesto\ComandoConsultarTodosDocumentosMarcas.vb" />
+    <Compile Include="Comandos\ComandosImpuesto\ComandoEliminarDocumentosMarca.vb" />
+    <Compile Include="Comandos\ComandosImpuesto\ComandoInsertarOModificarDocumentosMarca.vb" />
+    <Compile Include="Comandos\ComandosImpuesto\ComandoVerificarExistenciaDocumentosMarca.vb" />
+    <Compile Include="Comandos\ComandosMaterial\ComandoConsultarTodosDocumentosTraducciones.vb" />
+    <Compile Include="Comandos\ComandosMaterial\ComandoEliminarDocumentosTraduccion.vb" />
+    <Compile Include="Comandos\ComandosMaterial\ComandoInsertarOModificarDocumentosTraduccion.vb" />
+    <Compile Include="Comandos\ComandosMaterial\ComandoVerificarExistenciaDocumentosTraduccion.vb" />
+    <Compile Include="Comandos\ComandosMediosGestion\ComandoConsultarTodosMediosGestiones.vb" />
+    <Compile Include="Comandos\ComandosMediosGestion\ComandoEliminarMediosGestion.vb" />
+    <Compile Include="Comandos\ComandosMediosGestion\ComandoInsertarOModificarMediosGestion.vb" />
+    <Compile Include="Comandos\ComandosMediosGestion\ComandoVerificarExistenciaMediosGestion.vb" />
+    <Compile Include="Comandos\ComandosMotivo\ComandoConsultarTodosMotivos.vb" />
+    <Compile Include="Comandos\ComandosMotivo\ComandoEliminarMotivo.vb" />
+    <Compile Include="Comandos\ComandosMotivo\ComandoInsertarOModificarMotivo.vb" />
+    <Compile Include="Comandos\ComandosMotivo\ComandoVerificarExistenciaMotivo.vb" />
+    <Compile Include="Comandos\ComandosServicio\ComandoConsultarTodosServicios.vb" />
+    <Compile Include="Comandos\ComandosServicio\ComandoEliminarServicio.vb" />
+    <Compile Include="Comandos\ComandosServicio\ComandoInsertarOModificarServicio.vb" />
+    <Compile Include="Comandos\ComandosServicio\ComandoVerificarExistenciaServicio.vb" />
+    <Compile Include="Comandos\ComandosSociedad\ComandoConsultarTodosSociedades.vb" />
+    <Compile Include="Comandos\ComandosSociedad\ComandoEliminarSociedad.vb" />
+    <Compile Include="Comandos\ComandosSociedad\ComandoInsertarOModificarSociedad.vb" />
+    <Compile Include="Comandos\ComandosSociedad\ComandoVerificarExistenciaSociedad.vb" />
+    <Compile Include="Comandos\ComandosTarifaServicio\ComandoConsultarTarifaServiciosFiltro.vb" />
+    <Compile Include="Comandos\ComandosTarifaServicio\ComandoConsultarTodosTarifaServicios.vb" />
+    <Compile Include="Comandos\ComandosTarifaServicio\ComandoEliminarTarifaServicio.vb" />
+    <Compile Include="Comandos\ComandosTarifaServicio\ComandoInsertarOModificarTarifaServicio.vb" />
+    <Compile Include="Comandos\ComandosTarifaServicio\ComandoVerificarExistenciaTarifaServicio.vb" />
+    <Compile Include="Comandos\ComandosTasa\ComandoConsultarTasasFiltro.vb" />
+    <Compile Include="Comandos\ComandosTasa\ComandoConsultarTodosTasa.vb" />
+    <Compile Include="Comandos\ComandosTasa\ComandoEliminarTasa.vb" />
+    <Compile Include="Comandos\ComandosTasa\ComandoInsertarOModificarTasa.vb" />
+    <Compile Include="Comandos\ComandosTasa\ComandoVerificarExistenciaTasa.vb" />
+    <Compile Include="Comandos\ComandosTipoClase\ComandoConsultarTipoClasesFiltro.vb" />
+    <Compile Include="Comandos\ComandosTipoClase\ComandoConsultarTodosTipoClases.vb" />
+    <Compile Include="Comandos\ComandosTipoClase\ComandoEliminarTipoClase.vb" />
+    <Compile Include="Comandos\ComandosTipoClase\ComandoInsertarOModificarTipoClase.vb" />
+    <Compile Include="Comandos\ComandosTipoClase\ComandoVerificarExistenciaTipoClase.vb" />
+    <Compile Include="Comandos\ComandosTipoMarca\ComandoConsultarTipoMarcasFiltro.vb" />
+    <Compile Include="Comandos\ComandosTipoMarca\ComandoConsultarTodosTipoMarcas.vb" />
+    <Compile Include="Comandos\ComandosTipoMarca\ComandoEliminarTipoMarca.vb" />
+    <Compile Include="Comandos\ComandosTipoMarca\ComandoInsertarOModificarTipoMarca.vb" />
+    <Compile Include="Comandos\ComandosTipoMarca\ComandoVerificarExistenciaTipoMarca.vb" />
+    <Compile Include="Comandos\ComandosTipoPatente\ComandoConsultarTipoPatentesFiltro.vb" />
+    <Compile Include="Comandos\ComandosTipoPatente\ComandoConsultarTodosTipoPatentes.vb" />
+    <Compile Include="Comandos\ComandosTipoPatente\ComandoEliminarTipoPatente.vb" />
+    <Compile Include="Comandos\ComandosTipoPatente\ComandoInsertarOModificarTipoPatente.vb" />
+    <Compile Include="Comandos\ComandosTipoPatente\ComandoVerificarExistenciaTipoPatente.vb" />
+    <Compile Include="Comandos\ComandosViGestionAsociado\ComandoConsultarTodosViGestionAsociados.vb" />
+    <Compile Include="Comandos\ComandosFacImpuesto\ComandoConsultarFacImpuestosFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacImpuesto\ComandoConsultarTodosFacImpuesto.vb" />
+    <Compile Include="Comandos\ComandosFacImpuesto\ComandoEliminarFacImpuesto.vb" />
+    <Compile Include="Comandos\ComandosFacImpuesto\ComandoInsertarOModificarFacImpuesto.vb" />
+    <Compile Include="Comandos\ComandosFacImpuesto\ComandoVerificarExistenciaFacImpuesto.vb" />
+    <Compile Include="Comandos\ComandosFacInternacional\ComandoConsultarFacInternacionalesFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacInternacional\ComandoConsultarTodosFacInternacionales.vb" />
+    <Compile Include="Comandos\ComandosFacInternacional\ComandoEliminarFacInternacional.vb" />
+    <Compile Include="Comandos\ComandosFacInternacional\ComandoInsertarOModificarFacInternacional.vb" />
+    <Compile Include="Comandos\ComandosFacInternacional\ComandoVerificarExistenciaFacInternacional.vb" />
+    <Compile Include="Comandos\ComandosFacFactuDetalle\ComandoConsultarFacFactuDetallesFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacFactuDetalle\ComandoConsultarTodosFacFactuDetalles.vb" />
+    <Compile Include="Comandos\ComandosFacFactuDetalle\ComandoEliminarFacFactuDetalle.vb" />
+    <Compile Include="Comandos\ComandosFacFactuDetalle\ComandoInsertarOModificarFacFactuDetalle.vb" />
+    <Compile Include="Comandos\ComandosFacFactuDetalle\ComandoVerificarExistenciaFacFactuDetalle.vb" />
+    <Compile Include="Comandos\ComandosFacInternacionalAnulada\ComandoConsultarFacInternacionalAnuladasFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacInternacionalAnulada\ComandoConsultarTodosFacInternacionalAnuladas.vb" />
+    <Compile Include="Comandos\ComandosFacInternacionalAnulada\ComandoEliminarFacInternacionalAnulada.vb" />
+    <Compile Include="Comandos\ComandosFacInternacionalAnulada\ComandoInsertarOModificarFacInternacionalAnulada.vb" />
+    <Compile Include="Comandos\ComandosFacInternacionalAnulada\ComandoVerificarExistenciaFacInternacionalAnulada.vb" />
+    <Compile Include="Comandos\ComandosFacAnuladaFisica\ComandoConsultarFacAnuladaFisicasFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacAnuladaFisica\ComandoConsultarTodosFacAnuladaFisica.vb" />
+    <Compile Include="Comandos\ComandosFacAnuladaFisica\ComandoEliminarFacAnuladaFisica.vb" />
+    <Compile Include="Comandos\ComandosFacAnuladaFisica\ComandoInsertarOModificarFacAnuladaFisica.vb" />
+    <Compile Include="Comandos\ComandosFacAnuladaFisica\ComandoVerificarExistenciaFacAnuladaFisica.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionPais\ComandoConsultarFacOperacionPaisesFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionPais\ComandoConsultarTodosFacOperacionPaises.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionPais\ComandoEliminarFacOperacionPais.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionPais\ComandoInsertarOModificarFacOperacionPais.vb" />
+    <Compile Include="Comandos\ComandosFacOperacionPais\ComandoVerificarExistenciaFacOperacionPais.vb" />
+    <Compile Include="Comandos\ComandosFacFacturaPendiente\ComandoConsultarFacFacturaPendientesFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacFacturaPendiente\ComandoConsultarTodosFacFacturaPendientes.vb" />
+    <Compile Include="Comandos\ComandosFacStatementProcesar\ComandoConsultarFacStatementProcesarsFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacStatementProcesar\ComandoConsultarTodosFacStatementProcesars.vb" />
+    <Compile Include="Comandos\ComandosFacDesgloseCole\ComandoConsultarFacDesgloseColesFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacDesgloseCole\ComandoConsultarTodosFacDesgloseColes.vb" />
+    <Compile Include="Comandos\ComandosFacGestion\ComandoConsultarFacGestionesFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacGestion\ComandoConsultarTodosFacGestiones.vb" />
+    <Compile Include="Comandos\ComandosFacGestion\ComandoEliminarFacGestion.vb" />
+    <Compile Include="Comandos\ComandosFacGestion\ComandoInsertarOModificarFacGestion.vb" />
+    <Compile Include="Comandos\ComandosFacGestion\ComandoVerificarExistenciaFacGestion.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacGestion.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacDesgloseCole.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacStatementProcesar.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacFacturaPendiente.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacOperacionPais.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacAnuladaFisica.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacFacturaTotal.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacFacturaTotalZ.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacInternacionalAnulada.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacFactuDetalle.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacInternacional.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacImpuesto.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacAnualidad.vb" />
+    <Compile Include="Fabrica\FabricaComandosBancoG.vb" />
+    <Compile Include="Fabrica\FabricaComandosChequeRecido.vb" />
+    <Compile Include="Fabrica\FabricaComandosConceptoGestion.vb" />
+    <Compile Include="Fabrica\FabricaComandosCorrespondencia.vb" />
+    <Compile Include="Fabrica\FabricaComandosDepartamentoServicio.vb" />
+    <Compile Include="Fabrica\FabricaComandosDesgloseServicio.vb" />
+    <Compile Include="Fabrica\FabricaComandosDetalleEnvio.vb" />
+    <Compile Include="Fabrica\FabricaComandosDetallePago.vb" />
+    <Compile Include="Fabrica\FabricaComandosDocumentosMarca.vb" />
+    <Compile Include="Fabrica\FabricaComandosDocumentosPatente.vb" />
+    <Compile Include="Fabrica\FabricaComandosDocumentosTraduccion.vb" />
+    <Compile Include="Fabrica\FabricaComandosEtiqueta.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacBanco.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacCobro.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacCobroFactura.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacCredito.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacFactuDetaAnulada.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacFactuDetaProforma.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacFactura.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacFacturaAnulada.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacFacturaProforma.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacForma.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacJustificacion.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacOperacion.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacOperacionAnulada.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacOperacionDetaAnulada.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacOperacionDetalle.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacOperacionDetalleTm.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacOperacionDetaProforma.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacOperacionDetaTmProforma.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacOperacionProforma.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacPagoBolivia.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacRecurso.vb" />
+    <Compile Include="Fabrica\FabricaComandosGuia.vb" />
+    <Compile Include="Fabrica\FabricaComandosImpuesto.vb" />
+    <Compile Include="Fabrica\FabricaComandosMaterial.vb" />
+    <Compile Include="Fabrica\FabricaComandosMediosGestion.vb" />
+    <Compile Include="Fabrica\FabricaComandosMotivo.vb" />
+    <Compile Include="Fabrica\FabricaComandosServicio.vb" />
+    <Compile Include="Fabrica\FabricaComandosSociedad.vb" />
+    <Compile Include="Fabrica\FabricaComandosTarifaServicio.vb" />
+    <Compile Include="Fabrica\FabricaComandosTasa.vb" />
+    <Compile Include="Fabrica\FabricaComandosTipoClase.vb" />
+    <Compile Include="Fabrica\FabricaComandosTipoMarca.vb" />
+    <Compile Include="Fabrica\FabricaComandosTipoPatente.vb" />
+    <Compile Include="Fabrica\FabricaComandosViGestionAsociado.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Comun\ObjetosComunes\ObjetosComunes.csproj">
+      <Project>{15437671-F551-4B4B-9E06-283A1D241CE0}</Project>
+      <Name>ObjetosComunes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Comun\ObjetosComunes_Fac\ObjetosComunes_Fac.vbproj">
+      <Project>{802FFAF7-96CE-446C-A5ED-3DC7A16163AC}</Project>
+      <Name>ObjetosComunes_Fac</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AccesoDatos\AccesoDatos.csproj">
+      <Project>{4A1F952F-5803-4767-872E-EB1A35E0DAA6}</Project>
+      <Name>AccesoDatos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AccesoDatos_Fac\AccesoDatos_Fac.vbproj">
+      <Project>{EC493779-A099-49A4-813E-17CB118E8D86}</Project>
+      <Name>AccesoDatos_Fac</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Comandos\Comandos.csproj">
+      <Project>{21B2F87F-3BB7-4EB9-9AB5-60104DC9C073}</Project>
+      <Name>Comandos</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Comandos\ComandosFacContadorPro\ComandoConsultarPorIdComandosFacContadorPro.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Fabrica\FabricaComandosFacContadorPro.vb" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -149,6 +149,13 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerAsociadoDetallePago, asociado.DetallePago.Id);
                 }
 
+                if (!string.IsNullOrEmpty(asociado.ValorQuery))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += asociado.ValorQuery;
+                }
+
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 asociados = query.List<Asociado>();
 

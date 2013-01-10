@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="FacFactuDetaProforma" table="FAC_DETALLES_PRO ">
+    <composite-id>
+      <key-property name="Id" column="CDETALLE"/>
+      <key-many-to-one name="Factura" column="CFACTURA" class="FacFacturaProforma"/>
+    </composite-id>
+    <!--<many-to-one  name="Asociado" column="CASOCIADO" class="Asociado"/>-->                    
+    <property name="BDetalle" column="BDETALLE" type="double"/>
+    <property name="XDetalle" column="XDETALLE" type="string"/>
+    <property name="CServicio" column="CSERVICIO" type="string"/>
+    <property name="Pendiente" column="CPENDIENTE" type="int"/>
+    <many-to-one  name="Servicio" column="CODSER" class="FacServicio"/>
+    <property name="NCantidad" column="NCANT" type="int"/>
+    <property name="Pu" column="PU" type="double"/>
+    <property name="Descuento" column="DESCU" type="double"/>
+    <property name="Bsel" column="BSEL" type="char"/>
+    <property name="TipoServicio" column="ITIPOSERV" type="char"/>
+    <property name="Codigo" column="CODIGO" type="int"/>
+    <property name="Iimp" column="IIMP" type="char"/>
+    <property name="XDetalleEs" column="XDETALLE_ES" type="string"/>
+    <property name="BDetalleEs" column="BDETALLE_ES" type="double"/>
+    <property name="Tasa" column="BTASA" type="double"/>
+    <property name="Impuesto" column="AIMPUESTO" type="char"/>
+    <property name="MImpuesto" column="MIMPUESTO" type="double"/>
+    <property name="MDescuento" column="MDESCU" type="double"/>
+    <property name="BDetalleBf" column="BDETALLE_BF" type="double"/>
+    <property name="PuBf" column="PU_BF" type="double"/>
+    <property name="MImpuestoBf" column="MIMPUESTO_BF" type="double"/>
+    <property name="MDescuentoBf" column="MDESCU_BF" type="double"/>
+    <property name="Desglose" column="DESG" type="char"/>
+  </class>
+</hibernate-mapping>

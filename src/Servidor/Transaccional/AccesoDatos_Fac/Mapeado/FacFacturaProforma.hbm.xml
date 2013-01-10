@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="FacFacturaProforma" table="FAC_FACTURAS_PRO ">
+    <id name="Id" column="CFACTURA" />   
+    <property name="Anulada" column="IANULADA" type="string"/>    
+    <property name="FechaFactura" column="FFACTURA" type="DateTime"/>
+    <many-to-one  name="Asociado" column="CASOCIADO" class="Asociado"/>
+    <many-to-one  name="Idioma" column="CIDIOMA" class="Idioma"/>
+    <many-to-one  name="Moneda" column="CMONEDA" class="Moneda"/>
+    <property name="Caso" column="XCASO" type="string"/>    
+    <property name="Inicial" column="XINICIAL" type="string"/>
+    <property name="Impuesto" column="PIMPUESTO" type="double"/>  
+    <property name="Descuento" column="PDESCUENTO" type="double"/>
+    <many-to-one  name="AsociadoImp" column="CASOC_IMP" class="Asociado"/>
+    <!--<many-to-one  name="IdiomaImp" column="CIDIOMA" class="Idioma"/>
+    <many-to-one  name="MonedaImp" column="CMONEDA" class="Moneda"/>-->
+    <many-to-one  name="InteresadoImp" column="CINTE_IMP" class="Interesado"/>
+    <property name="Terrero" column="XTERRERO" type="char"/>
+    <property name="Email" column="XEMAIL" type="char"/>    
+    <property name="Seniat" column="CSENIAT" type="int"/>
+    <property name="FechaSeniat" column="FSENIAT" type="DateTime"/>
+    <property name="PSeniat" column="PSENIAT" type="double"/>
+    <property name="IP" column="IP" type="char"/>    
+    <property name="XAsociado" column="XASOCIADO" type="string"/>
+    <property name="Rif" column="XRIF" type="string"/>
+    <property name="XNit" column="XNIT" type="string"/>
+    <many-to-one  name="DetalleEnvio" column="CODENV" class="FacDetalleEnvio"/>
+    <property name="IMulmon" column="IMULMON" type="char"/>
+    <many-to-one  name="MonedaImp" column="CMONEDA_IMP" class="Moneda"/>    
+    <property name="TasaCambio" column="NTASACAMB" type="double"/>
+    <property name="Codeti" column="CODETI" type="string"/>
+    <property name="NumeroControl" column="NCONTROL" type="int"/>
+    <property name="Local" column="LOCAL" type="char"/>
+    <property name="Auto" column="IAUTO" type="char"/>
+    <property name="Ourref" column="OURREF" type="string"/>    
+    <property name="Instruc" column="INSTRUC" type="string"/>    
+    <property name="FechaEcuota" column="FECAUTO" type="DateTime"/>    
+    <property name="XCausaRec" column="XCAUSAREC" type="string"/>
+    <many-to-one  name="Carta" column="CENTRADA" class="Carta"/>   
+    <property name="CodigoDepartamento" column="CODDPTO" type="string"/>
+    <property name="CodigoSocio" column="CSOCIO" type="int"/>
+    <property name="MSocio" column="MSOCIO" type="double"/>
+    <property name="MCia" column="MCIA" type="double"/>    
+    <property name="CondFac" column="CONDFAC" type="string"/>
+    <property name="MSubtimpo" column="MSUBTIMPO" type="double"/>
+    <property name="MDescuento" column="MDESCUENTO" type="double"/>
+    <property name="MTbimp" column="MTBIMP" type="double"/>
+    <property name="Mtbexc" column="MTBEXC" type="double"/>
+    <property name="MSubtotal" column="MSUBTOTAL" type="double"/>
+    <property name="Mtimp" column="MTIMP" type="double"/>
+    <property name="Mttotal" column="MTTOTAL" type="double"/>
+    <property name="MSubtimpoBf" column="MSUBTIMPO_BF" type="double"/>
+    <property name="MDescuentoBf" column="MDESCUENTO_BF" type="double"/>
+    <property name="MTbimpBf" column="MTBIMP_BF" type="double"/>
+    <property name="MTbexcBf" column="MTBEXC_BF" type="double"/>
+    <property name="MSubtotalBf" column="MSUBTOTAL_BF" type="double"/>
+    <property name="MTimpBf" column="MTIMP_BF" type="double"/>
+    <property name="MTtotalBf" column="MTTOTAL_BF" type="double"/>
+    <property name="XAsociado_O" column="XASOCIADO_O" type="string"/>
+  </class>
+</hibernate-mapping>

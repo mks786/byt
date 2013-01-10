@@ -6,6 +6,8 @@ using Trascend.Bolet.LogicaNegocio.Controladores;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 
+using Diginsoft.Bolet.ObjetosComunes.ContratosServicios;
+using Diginsoft.Bolet.ObjetosComunes.Entidades;
 namespace Trascend.Bolet.Servicios.Implementacion
 {
     public class DetallePagoServicios : MarshalByRefObject, IDetallePagoServicios
@@ -65,9 +67,25 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <param name="entidad">Entidad a insertar</param>
         /// <param name="hash">Hash del usuario que inserta</param>
         /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
-        public bool InsertarOModificar(DetallePago detallePago, int hash)
+        public bool InsertarOModificar(DetallePago entidad, int hash)
         {
-            throw new NotImplementedException();
+            //#Region "trace"
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+            {
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            }
+            //#End Region
+
+            bool exitoso = Diginsoft.Bolet.LogicaNegocio.Controladores.ControladorDetallePago.InsertarOModificar(entidad, hash);
+
+            //#Region "trace"
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+            {
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            }
+            //#End Region
+
+            return exitoso;
         }
 
 
@@ -77,9 +95,25 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <param name="entidad">Entidad a eliminar</param>
         /// <param name="hash">hash del usuario que realiza la acción</param>
         /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
-        public bool Eliminar(DetallePago detallePago, int hash)
+        public bool Eliminar(DetallePago entidad, int hash)
         {
-            throw new NotImplementedException();
+            //#Region "trace"
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+            {
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            }
+            //#End Region
+
+            bool exitoso = Diginsoft.Bolet.LogicaNegocio.Controladores.ControladorDetallePago.Eliminar(entidad, hash);
+
+            //#Region "trace"
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+            {
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            }
+            //#End Region
+
+            return exitoso;
         }
 
 
@@ -90,7 +124,23 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         public bool VerificarExistencia(DetallePago entidad)
         {
-            throw new NotImplementedException();
+            //#Region "trace"
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+            {
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            }
+            //#End Region
+
+            bool exitoso = Diginsoft.Bolet.LogicaNegocio.Controladores.ControladorDetallePago.VerificarExistencia(entidad);
+
+            //#Region "trace"
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+            {
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            }
+            //#End Region
+
+            return exitoso;
         }
     }
 }

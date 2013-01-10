@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Diginsoft.Bolet.ObjetosComunes"
+                   namespace="Diginsoft.Bolet.ObjetosComunes.Entidades">
+
+  <class name="FacImpuesto" table="FAC_IMPUESTOS">
+    <id name="Id" column="FECHA"  type="DateTime" />
+    <property name="Impuesto" column="IMPUESTO" type="Double"/>
+  </class>
+</hibernate-mapping>

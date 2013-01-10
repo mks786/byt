@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{C107C131-97C6-4FB9-8DEE-8A9557F99108}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Diginsoft.Bolet.LogicaNegocio</RootNamespace>
+    <AssemblyName>Diginsoft.Bolet.LogicaNegocio</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Diginsoft.Bolet.LogicaNegocio.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Diginsoft.Bolet.LogicaNegocio.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NLog, Version=1.0.0.505, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\lib\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controladores\ControladorBancoG.vb" />
+    <Compile Include="Controladores\ControladorChequeRecido.vb" />
+    <Compile Include="Controladores\ControladorConceptoGestion.vb" />
+    <Compile Include="Controladores\ControladorCorrespondencia.vb" />
+    <Compile Include="Controladores\ControladorDepartamentoServicio.vb" />
+    <Compile Include="Controladores\ControladorDesgloseServicio.vb" />
+    <Compile Include="Controladores\ControladorDetalleEnvio.vb" />
+    <Compile Include="Controladores\ControladorDetallePago.vb" />
+    <Compile Include="Controladores\ControladorDocumentosMarca.vb" />
+    <Compile Include="Controladores\ControladorDocumentosPatente.vb" />
+    <Compile Include="Controladores\ControladorDocumentosTraduccion.vb" />
+    <Compile Include="Controladores\ControladorEtiqueta.vb" />
+    <Compile Include="Controladores\ControladorFacBanco.vb" />
+    <Compile Include="Controladores\ControladorFacCobro.vb" />
+    <Compile Include="Controladores\ControladorFacCobroFactura.vb" />
+    <Compile Include="Controladores\ControladorFacCredito.vb" />
+    <Compile Include="Controladores\ControladorFacFactuDetaAnulada.vb" />
+    <Compile Include="Controladores\ControladorFacFactuDetaProforma.vb" />
+    <Compile Include="Controladores\ControladorFacFactura.vb" />
+    <Compile Include="Controladores\ControladorFacFacturaAnulada.vb" />
+    <Compile Include="Controladores\ControladorFacFacturaProforma.vb" />
+    <Compile Include="Controladores\ControladorFacFacturaTotal.vb" />
+    <Compile Include="Controladores\ControladorFacFacturaTotalZ.vb" />
+    <Compile Include="Controladores\ControladorFacForma.vb" />
+    <Compile Include="Controladores\ControladorFacJustificacion.vb" />
+    <Compile Include="Controladores\ControladorFacOperacion.vb" />
+    <Compile Include="Controladores\ControladorFacOperacionAnulada.vb" />
+    <Compile Include="Controladores\ControladorFacOperacionDetaAnulada.vb" />
+    <Compile Include="Controladores\ControladorFacOperacionDetalle.vb" />
+    <Compile Include="Controladores\ControladorFacOperacionDetalleTm.vb" />
+    <Compile Include="Controladores\ControladorFacOperacionDetaProforma.vb" />
+    <Compile Include="Controladores\ControladorFacOperacionDetaTmProforma.vb" />
+    <Compile Include="Controladores\ControladorFacOperacionProforma.vb" />
+    <Compile Include="Controladores\ControladorFacPagoBolivia.vb" />
+    <Compile Include="Controladores\ControladorGuia.vb" />
+    <Compile Include="Controladores\ControladorImpuesto.vb" />
+    <Compile Include="Controladores\ControladorMediosGestion.vb" />
+    <Compile Include="Controladores\ControladorMotivo.vb" />
+    <Compile Include="Controladores\ControladorServicio.vb" />
+    <Compile Include="Controladores\ControladorSociedad.vb" />
+    <Compile Include="Controladores\ControladorTarifaServicio.vb" />
+    <Compile Include="Controladores\ControladorTasa.vb" />
+    <Compile Include="Controladores\ControladorFacAnualidad.vb" />
+    <Compile Include="Controladores\ControladorTipoClase.vb" />
+    <Compile Include="Controladores\ControladorTipoMarca.vb" />
+    <Compile Include="Controladores\ControladorTipoPatente.vb" />
+    <Compile Include="Controladores\ControladorFacRecurso.vb" />
+    <Compile Include="Controladores\ControladorMaterial.vb" />
+    <Compile Include="Controladores\ControladorViGestionAsociado.vb" />
+    <Compile Include="Controladores\ControladorContadorFac.vb" />
+    <Compile Include="Controladores\ControladorFacContadorPro.vb" />
+    <Compile Include="Controladores\ControladorFacImpuesto.vb" />
+    <Compile Include="Controladores\ControladorFacInternacional.vb" />
+    <Compile Include="Controladores\ControladorFacFactuDetalle.vb" />
+    <Compile Include="Controladores\ControladorFacInternacionalAnulada.vb" />
+    <Compile Include="Controladores\ControladorFacAnuladaFisica.vb" />
+    <Compile Include="Controladores\ControladorFacOperacionPais.vb" />
+    <Compile Include="Controladores\ControladorFacFacturaPendiente.vb" />
+    <Compile Include="Controladores\ControladorFacStatementProcesar.vb" />
+    <Compile Include="Controladores\ControladorFacDesgloseCole.vb" />
+    <Compile Include="Controladores\ControladorFacGestionl.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Comun\ObjetosComunes\ObjetosComunes.csproj">
+      <Project>{15437671-F551-4B4B-9E06-283A1D241CE0}</Project>
+      <Name>ObjetosComunes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Comun\ObjetosComunes_Fac\ObjetosComunes_Fac.vbproj">
+      <Project>{802FFAF7-96CE-446C-A5ED-3DC7A16163AC}</Project>
+      <Name>ObjetosComunes_Fac</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Comandos\Comandos.csproj">
+      <Project>{21B2F87F-3BB7-4EB9-9AB5-60104DC9C073}</Project>
+      <Name>Comandos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Comandos_Fac\Comandos_Fac.vbproj">
+      <Project>{1EA8117A-1A21-4D7F-839C-715E15499366}</Project>
+      <Name>Comandos_Fac</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogicaNegocio\LogicaNegocio.csproj">
+      <Project>{909389CB-11DE-41FB-B24F-D9AE6B10B82C}</Project>
+      <Name>LogicaNegocio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

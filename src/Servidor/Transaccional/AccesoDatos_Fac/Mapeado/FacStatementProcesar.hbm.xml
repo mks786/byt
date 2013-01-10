@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+  
+  <class name="FacStatementProcesar" table="FAC_STATEMENTXPROCESAR">
+    <id name="Id" column="CFACTURA" />
+    <property name="FechaFactura" column="FFACTURA" type="DateTime"/>
+    <property name="Cobro" column="CCOBRO" type="int"/>
+    <property name="FechaCobro" column="FCobro" type="DateTime"/>
+  </class>
+</hibernate-mapping>

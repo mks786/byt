@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Diginsoft.Bolet.ObjetosComunes"
+                   namespace="Diginsoft.Bolet.ObjetosComunes.Entidades">
+
+  <class name="Guia" table="FAC_GUIAS">
+    <id name="Id" column="COD_GUIA" />
+    <property name="Des_guia" column="DES_GUIA" type="String"/>
+    <property name="Fec_guia" column="FEC_GUIA" type="DateTime"/>
+  </class>
+</hibernate-mapping>

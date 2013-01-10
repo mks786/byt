@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="FacPagoBolivia" table="FAC_CXP_BOL">
+    <composite-id>
+      <key-many-to-one name="Id" column="CASOCIADO_REC" class="Asociado" />
+      <key-property name="FechaBanco" column="FBANCO" type="DateTime" />
+    </composite-id>        
+    <many-to-one  name="BancoPag" column="CBANCO_PAG" class="BancoG"/>
+    <property name="PagoRec" column="TPAGO_REC" type="Char"/>
+    <property name="MontoRec" column="MMONTO_REC" type="Double"/>
+    <property name="MontoBol" column="MMONTO_BOL" type="Double"/>
+    <property name="DescripcionRec" column="XDESCRIPCIO_REC" type="string"/>    
+    <property name="IPagado" column="IPAGADO" type="String"/>
+    <property name="PagoPag" column="TPAGO_PAG" type="Char"/>
+    <many-to-one  name="BancoRec" column="CBANCO_REC" class="FacBanco"/>
+    <property name="NumeroPag" column="NRO_PAG" type="string"/>
+    <property name="FechaPago" column="FPAGO" type="DateTime"/>
+    <property name="FechaReg" column="FREG" type="DateTime"/>
+    <many-to-one  name="Carta" column="CENTRADA" class="Carta"/>
+  </class>
+</hibernate-mapping>

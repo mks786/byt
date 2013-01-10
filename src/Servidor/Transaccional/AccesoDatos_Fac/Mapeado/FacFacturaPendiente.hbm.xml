@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+  
+  <class name="FacFacturaPendiente" table="FAC_PEND">
+    <id name="Id" column="CFACTURA" />
+    <property name="Anulada" column="IANULADA" type="string"/>
+    <property name="FechaFactura" column="FFACTURA" type="DateTime"/>
+    <many-to-one  name="Asociado" column="CASOCIADO" class="Asociado"/>
+    <many-to-one  name="Idioma" column="CIDIOMA" class="Idioma"/>
+    <many-to-one  name="Moneda" column="CMONEDA" class="Moneda"/>
+    <property name="Caso" column="XCASO" type="string"/>
+    <property name="Inicial" column="XINICIAL" type="string"/>
+    <property name="Impuesto" column="PIMPUESTO" type="double"/>
+    <property name="Descuento" column="PDESCUENTO" type="double"/>
+    <many-to-one  name="AsociadoImp" column="CASOC_IMP" class="Asociado"/>
+    <many-to-one  name="InteresadoImp" column="CINTE_IMP" class="Interesado"/>
+    <property name="Terrero" column="XTERRERO" type="char"/>
+    <property name="Email" column="XEMAIL" type="char"/>
+    <property name="Seniat" column="CSENIAT" type="int"/>
+    <property name="FechaSeniat" column="FSENIAT" type="DateTime"/>
+    <property name="PSeniat" column="PSENIAT" type="double"/>
+    <property name="IP" column="IP" type="char"/>
+    <property name="XAsociado" column="XASOCIADO" type="string"/>
+    <property name="Rif" column="XRIF" type="string"/>
+    <property name="XNit" column="XNIT" type="string"/>
+    <property name="FechaOperacion" column="FOPERACION" type="DateTime"/>
+    <many-to-one  name="Pais" column="CPAIS" class="Pais"/>
+    <property name="Codeti" column="CODETI" type="string"/>
+    <property name="NumeroControl" column="NCONTROL" type="int"/>
+    <property name="XOperacion" column="XOPERACION" type="string"/>
+    <property name="Monto" column="MONTO" type="double"/>
+    <property name="MontoBf" column="MONTO_BF" type="double"/>
+    <property name="Dias" column="DIAS" type="int"/>
+    <property name="Edoven" column="EDOVEN" type="string"/>
+    <property name="Edonot" column="EDONOT" type="string"/>       
+  </class>
+</hibernate-mapping>

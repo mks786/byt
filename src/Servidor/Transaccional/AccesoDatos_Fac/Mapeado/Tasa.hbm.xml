@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Diginsoft.Bolet.ObjetosComunes"
+                   namespace="Diginsoft.Bolet.ObjetosComunes.Entidades">
+
+  <class name="Tasa" table="Fac_Tasas">
+    <composite-id>
+      <key-property name="Id" column="FTASA"/>
+      <key-property name="Moneda" column="CMONEDA"/>
+    </composite-id>
+    <property name="Tasabf" column="BTASA" type="Single"/>
+    <property name="Tasabs" column="BTASAC" type="Single"/>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="ViGestionAsociado" table="VI_FAC_GESTIONES">
+    <composite-id>
+      <key-many-to-one name="Id" column="CASOCIADO" class="Asociado" />
+      <key-property name="Moneda" column="MONEDA" type="String"/>
+    </composite-id>
+    <property name="Cantidad" column="NCANT" type="Double"/>
+    <property name="FechaUltima" column="FULTIMA" type="DateTime"/> 
+    <property name="Saldo" column="SALDO" type="Double"/>
+  </class>
+</hibernate-mapping>

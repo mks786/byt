@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Diginsoft.Bolet.ObjetosComunes"
+                   namespace="Diginsoft.Bolet.ObjetosComunes.Entidades">
+
+  <class name="DocumentosPatente" table="FAC_TDOC_PATENTE">
+    <id name="Id" column="CODTDOC" />
+    <property name="Doc_Esp" column="XDOC_ESPE" type="String"/>
+    <property name="Doc_Ingl" column="XDOC_INGL" type="String"/>
+    <property name="Mont_Bs" column="MONT_BS" type="Double"/>
+    <property name="Mont_Us" column="MONT_US" type="Double"/>
+    <property name="Mont_Bf" column="MONT_BF" type="Double"/>
+  </class>
+</hibernate-mapping>

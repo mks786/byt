@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+  <class name="FacAnuladaFisica" table="FAC_ANUFISICA">
+    <composite-id>
+      <key-property name="Id" column="SECANULA" type="int" />
+      <key-property  name="FechaAnulacion" column="FANULA" type="DateTime" />
+    </composite-id>    
+    <property name="Control" column="CONTROL" type="int" />
+  </class>
+</hibernate-mapping>

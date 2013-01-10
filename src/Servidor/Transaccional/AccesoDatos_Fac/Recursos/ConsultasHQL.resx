@@ -1,0 +1,678 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CabeceraObtenerChequeRecido" xml:space="preserve">
+    <value>Select c from ChequeRecido c left join fetch c.Id as asociado left join fetch c.Banco as Banco</value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="CabeceraObtenerFacPagoBolivia" xml:space="preserve">
+    <value>Select c from FacPagoBolivia c left join fetch c.Id as asociado left join fetch c.BancoRec as BancoRec left join fetch c.BancoPag as BancoPag  left join fetch c.Carta as Carta</value>
+    <comment>Cabecera del query para el filtro de FacPagoBolivia</comment>
+  </data>
+  <data name="FiltroObtenerChequeRecidoBanco" xml:space="preserve">
+    <value>Banco.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerChequeRecidoDeposito" xml:space="preserve">
+    <value>c.Deposito= '{0}'</value>
+  </data>
+  <data name="FiltroObtenerChequeRecidoFecha" xml:space="preserve">
+    <value>c.Fecha between '{0}' and '{1}'</value>
+  </data>
+  <data name="FiltroObtenerChequeRecidoFechaReg" xml:space="preserve">
+    <value>c.FechaReg between '{0}' and '{1}'</value>
+  </data>
+  <data name="FiltroObtenerChequeRecidoId" xml:space="preserve">
+    <value>asociado.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerChequeRecidoNCheque" xml:space="preserve">
+    <value>c.NCheque= '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacPagoBoliviaBancoPag" xml:space="preserve">
+    <value>BancoPag.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacPagoBoliviaBancoRec" xml:space="preserve">
+    <value>BancoRec.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacPagoBoliviaFechaBanco" xml:space="preserve">
+    <value>c.FechaBanco between '{0}' and '{1}'</value>
+  </data>
+  <data name="FiltroObtenerFacPagoBoliviaFechaReg" xml:space="preserve">
+    <value>c.FechaReg between '{0}' and '{1}'</value>
+  </data>
+  <data name="FiltroObtenerFacPagoBoliviaId" xml:space="preserve">
+    <value>asociado.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacPagoBoliviaIPagado" xml:space="preserve">
+    <value>c.IPagado= '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacPagoBoliviaPagoRec" xml:space="preserve">
+    <value>c.PagoRec= '{0}'</value>
+  </data>
+  <data name="ObtenerAgentesYPoderes" xml:space="preserve">
+    <value>Select distinct(a) from Agente a left join fetch a.Poderes order by a.Id</value>
+    <comment>Selecciona todos los agentes y sus objetos</comment>
+  </data>
+  <data name="ObtenerAsociadoConTodo" xml:space="preserve">
+    <value>Select distinct(a) from Asociado a left outer join fetch a.Justificaciones where a.Id = '{0}' order by a.Id</value>
+    <comment>Selecciona el asociado con todas sus listas</comment>
+  </data>
+  <data name="ObtenerAuditoriaPorFKYTabla" xml:space="preserve">
+    <value>Select a from Auditoria a where a.Fk = '{0}' and a.Tabla = '{1}'</value>
+    <comment>Selecciona todas las auditorias que poseen una FK en una tabla espacifica</comment>
+  </data>
+  <data name="ObtenerContactosPorAsociado" xml:space="preserve">
+    <value>Select c from Contacto c where c.Asociado.id = '{0}'</value>
+    <comment>Selecciona todos los contactos de un asociado</comment>
+  </data>
+  <data name="ObtenerDatosTransferenciaPorAsociado" xml:space="preserve">
+    <value>Select d from DatosTransferencia d where d.Asociado.id = '{0}'</value>
+    <comment>Selecciona todos los datos de transferencia de un asociado</comment>
+  </data>
+  <data name="ObtenerPoderesPorInteresado" xml:space="preserve">
+    <value>Select p from Poder p where p.Interesado.Id = '{0}'</value>
+    <comment>Selecciona todas los poderes que posee un interesado</comment>
+  </data>
+  <data name="ObtenerRolesYObjetos" xml:space="preserve">
+    <value>Select distinct(r) from Rol r left join fetch r.Objetos order by r.Id</value>
+    <comment>Selecciona todos los roles y sus objetos</comment>
+  </data>
+  <data name="ObtenerUsuarioPorIdYPassword" xml:space="preserve">
+    <value>Select u from Usuario u left join fetch u.Rol as rol left join fetch rol.Objetos where u.Id = '{0}' and u.Password = '{1}'</value>
+    <comment>Selecciona el usuario, rol y objetos, si el Id y el Password concuerdan con algún usuario de la BD</comment>
+  </data>
+  <data name="VerificarExistenciaResolucion" xml:space="preserve">
+    <value>Select r from Resolucion r where r.Id = {0} and r.FechaResolucion = '{1}' and r.Boletin.Id =  {2}</value>
+    <comment>Verifica si existe una resolucion por sus ids</comment>
+  </data>
+  <data name="CabeceraObtenerTasa" xml:space="preserve">
+    <value>Select t from Tasa t</value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="FiltroObtenerTasaId" xml:space="preserve">
+    <value>t.Id between '{0}' and '{1}'</value>
+  </data>
+  <data name="FiltroObtenerTasaMoneda" xml:space="preserve">
+    <value>t.Moneda= '{0}'</value>
+  </data>
+  <data name="CabeceraObtenerFacCredito" xml:space="preserve">
+    <value>Select c from FacCredito c left join fetch c.Asociado as asociado left join fetch c.Banco as Banco left join fetch c.Idioma as Idioma left join fetch c.Moneda as Moneda</value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="FiltroObtenerFacCreditoAsociado" xml:space="preserve">
+    <value>asociado.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacCreditoBanco" xml:space="preserve">
+    <value>Banco.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacCreditoCreditoSent" xml:space="preserve">
+    <value>c.CreditoSent= {0}</value>
+  </data>
+  <data name="FiltroObtenerFacCreditoFechaCredito" xml:space="preserve">
+    <value>c.FechaCredito between '{0}' and '{1}'</value>
+  </data>
+  <data name="FiltroObtenerFacCreditoId" xml:space="preserve">
+    <value>c.Id= {0}</value>
+  </data>
+  <data name="FiltroObtenerFacCreditoIdioma" xml:space="preserve">
+    <value>Idioma.Id = '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacCreditoMoneda" xml:space="preserve">
+    <value>Moneda.Id = '{0}'</value>
+  </data>
+  <data name="CabeceraObtenerFacForma" xml:space="preserve">
+    <value>Select f from FacForma f left join fetch f.Cobro as Cobro left join fetch f.Credito as Credito</value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="FiltroObtenerFacFormaCredito" xml:space="preserve">
+    <value>Credito.Id = {0}</value>
+  </data>
+  <data name="CabeceraObtenerFacOperacion" xml:space="preserve">
+    <value>Select o from FacOperacion o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma</value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="FiltroObtenerFacOperacionAsociado" xml:space="preserve">
+    <value>Asociado.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacOperacionId" xml:space="preserve">
+    <value>o.Id= '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacOperacionIdioma" xml:space="preserve">
+    <value>Idioma.Id = '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacOperacionMoneda" xml:space="preserve">
+    <value>Moneda.Id = '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacOperacionSaldomayor" xml:space="preserve">
+    <value>o.Saldo &gt; 0</value>
+  </data>
+  <data name="FiltroObtenerFacOperacionCodigoOperacion" xml:space="preserve">
+    <value>o.CodigoOperacion = {0}</value>
+  </data>
+  <data name="CabeceraObtenerFacCobro" xml:space="preserve">
+    <value>Select c from FacCobro c left join fetch c.Asociado as asociado left join fetch c.Banco as Banco left join fetch c.Idioma as Idioma left join fetch c.Moneda as Moneda </value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="FiltroObtenerFacCobroAsociado" xml:space="preserve">
+    <value>asociado.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacCobroBanco" xml:space="preserve">
+    <value>Banco.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacCobroEstadoCuenta" xml:space="preserve">
+    <value>c.EstadoCuenta= {0}</value>
+  </data>
+  <data name="FiltroObtenerFacCobroFechaCobro" xml:space="preserve">
+    <value>c.FechaCobro between '{0}' and '{1}'</value>
+  </data>
+  <data name="FiltroObtenerFacCobroId" xml:space="preserve">
+    <value>c.Id= {0}</value>
+  </data>
+  <data name="FiltroObtenerFacCobroIdioma" xml:space="preserve">
+    <value>Idioma.Id = '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacCobroMoneda" xml:space="preserve">
+    <value>Moneda.Id = '{0}'</value>
+  </data>
+  <data name="CabeceraObtenerFacDepartamentoServicio" xml:space="preserve">
+    <value>Select d from FacDepartamentoServicio d left join fetch d.Id as departamento left join fetch d.Servicio as servicio</value>
+    <comment>Cabecera del query para el filtro de departemento servicio</comment>
+  </data>
+  <data name="FiltroObtenerFacDepartamentoServicioDepartamento" xml:space="preserve">
+    <value>departamento.Id = '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacDepartamentoServicioServicio" xml:space="preserve">
+    <value>servicio.Id = '{0}'</value>
+  </data>
+  <data name="CabeceraObtenerTarifaServicio" xml:space="preserve">
+    <value>Select t from TarifaServicio t left join fetch t.Tarifa as tarifa</value>
+    <comment>Cabecera del query para el filtro de TarifaServicio</comment>
+  </data>
+  <data name="FiltroObtenerTarifaServicioId" xml:space="preserve">
+    <value>t.Id= '{0}'</value>
+  </data>
+  <data name="FiltroObtenerTarifaServicioTarifa" xml:space="preserve">
+    <value>tarifa.Id = '{0}'</value>
+  </data>
+  <data name="CabeceraObtenerFacOperacionDetalleTm" xml:space="preserve">
+    <value>Select dt from FacOperacionDetalleTm dt left join fetch dt.Servicio as servicio left join fetch dt.Usuario as usuario</value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="FiltroObtenerFacOperacionDetalleTmCodigo" xml:space="preserve">
+    <value>dt.Codigo = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacOperacionDetalleTmDetalle" xml:space="preserve">
+    <value>dt.Detalle = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacOperacionDetalleTmId" xml:space="preserve">
+    <value>dt.Id = '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacOperacionDetalleTmServicio" xml:space="preserve">
+    <value>servicio.Id = '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacOperacionDetalleTmUsuario" xml:space="preserve">
+    <value>usuario.Id = '{0}'</value>
+  </data>
+  <data name="CabeceraObtenerTipoClase" xml:space="preserve">
+    <value>Select tc from TipoClase tc</value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="CabeceraObtenerTipoMarca" xml:space="preserve">
+    <value>Select tm from TipoMarca tm</value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="CabeceraObtenerTipoPatente" xml:space="preserve">
+    <value>Select tp from TipoPatente tp</value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="FiltroObtenerTipoClaseId" xml:space="preserve">
+    <value>tc.Id= '{0}'</value>
+  </data>
+  <data name="FiltroObtenerTipoMarcaId" xml:space="preserve">
+    <value>tm.Id= '{0}'</value>
+  </data>
+  <data name="FiltroObtenerTipoPatenteId" xml:space="preserve">
+    <value>tp.Id= '{0}'</value>
+  </data>
+  <data name="CabeceraObtenerFacImpuesto" xml:space="preserve">
+    <value>Select i from FacImpuesto i</value>
+    <comment>Cabecera del query para el filtro de FacImpuesto</comment>
+  </data>
+  <data name="FiltroObtenerFacImpuestoId" xml:space="preserve">
+    <value>i.Id between '{0}' and '{1}'</value>
+  </data>
+  <data name="CabeceraObtenerFacImpuestoMax" xml:space="preserve">
+    <value>Select i from FacImpuesto i where Id in (select max(Id) from i)</value>
+    <comment>Cabecera del query para el filtro de FacImpuesto</comment>
+  </data>
+  <data name="FiltroObtenerFacDepartamentoServicioServicioCod_Cont" xml:space="preserve">
+    <value>servicio.Cod_Cont = '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacDepartamentoServicioServicioItipo" xml:space="preserve">
+    <value>servicio.Itipo = '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacDepartamentoServicioServicioLocal" xml:space="preserve">
+    <value>servicio.Local = '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacDepartamentoServicioServicioXreferencia" xml:space="preserve">
+    <value>servicio.Xreferencia like '%{0}%'</value>
+  </data>
+  <data name="CabeceraObtenerFacOperacionDetaProforma" xml:space="preserve">
+    <value>Select dp from FacOperacionDetaProforma dp left join fetch dp.Factura as factura  left join fetch dp.Servicio as servicio</value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="FiltroObtenerFacOperacionDetaProformaDetalle" xml:space="preserve">
+    <value>dp.Detalle= {0}</value>
+  </data>
+  <data name="FiltroObtenerFacOperacionDetaProformaFactura" xml:space="preserve">
+    <value>factura.Id = {0}</value>
+  </data>
+  <data name="CabeceraObtenerFacOperacionDetaTmProforma" xml:space="preserve">
+    <value>Select dp from FacOperacionDetaTmProforma dp left join fetch dp.Usuario as usuario left join fetch dp.Factura as factura left join fetch dp.Servicio as servicio</value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="FiltroObtenerFacOperacionDetaTmProformaFactura" xml:space="preserve">
+    <value>factura.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacOperacionDetaTmProformaUsuario" xml:space="preserve">
+    <value>usuario.Id = '{0}'</value>
+  </data>
+  <data name="CabeceraObtenerFacDesgloseServicio" xml:space="preserve">
+    <value>Select d from FacDesgloseServicio d left join fetch d.Servicio as servicio</value>
+    <comment>Cabecera del query para el filtro de departemento servicio</comment>
+  </data>
+  <data name="FiltroObtenerFacDesgloseServicioServicio" xml:space="preserve">
+    <value>servicio.Id = '{0}'</value>
+  </data>
+  <data name="CabeceraObtenerFacFactuDetaProforma" xml:space="preserve">
+    <value>Select dp from FacFactuDetaProforma dp left join fetch dp.Factura as factura  left join fetch dp.Servicio as servicio</value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="FiltroObtenerFacFactuDetaProformaFactura" xml:space="preserve">
+    <value>factura.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacFactuDetaProformaServicio" xml:space="preserve">
+    <value>Servicio.Id = {0}</value>
+  </data>
+  <data name="CabeceraObtenerFacOperacionProforma" xml:space="preserve">
+    <value>Select op from FacOperacionProforma op</value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="FiltroObtenerFacOperacionProformaCodigoOperacion" xml:space="preserve">
+    <value>op.CodigoOperacion = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacOperacionProformaId" xml:space="preserve">
+    <value>op.Id= '{0}'</value>
+  </data>
+  <data name="CabeceraObtenerFacFacturaProforma" xml:space="preserve">
+    <value>Select fp from FacFacturaProforma fp left join fetch fp.Asociado as asociado left join fetch fp.Moneda as moneda left join fetch fp.AsociadoImp as asociadoimp  left join fetch fp.Carta as carta  left join fetch fp.InteresadoImp as interesadoimp  left join fetch fp.DetalleEnvio as detalleenvio</value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="FiltroObtenerFacFacturaProformaAsociado" xml:space="preserve">
+    <value>asociado.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaProformaAsociadoImp" xml:space="preserve">
+    <value>asociadoimp.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaProformaAuto" xml:space="preserve">
+    <value>fp.Auto in ('{0}')</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaProformaCarta" xml:space="preserve">
+    <value>carta.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaProformaDetalleEnvio" xml:space="preserve">
+    <value>detalleenvio.Id = '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaProformaFechaFactura" xml:space="preserve">
+    <value>fp.FechaFactura between '{0}' and '{1}'</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaProformaId" xml:space="preserve">
+    <value>fp.Id= {0}</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaProformaInicial" xml:space="preserve">
+    <value>fp.Inicial= '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaProformaInteresadoImp" xml:space="preserve">
+    <value>interesadoimp.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaProformaAuto2" xml:space="preserve">
+    <value>fp.Auto&lt;&gt;'{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaProformaCodigoDepartamento" xml:space="preserve">
+    <value>fp.CodigoDepartamento= '{0}'</value>
+  </data>
+  <data name="CabeceraObtenerFacInternacional" xml:space="preserve">
+    <value>Select fi from FacInternacional fi left join fetch fi.Asociado as asociado left join fetch fi.Banco as banco</value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="FiltroObtenerFacInternacionalId" xml:space="preserve">
+    <value>fi.Id = {0}</value>
+  </data>
+  <data name="CabeceraObtenerFacFactuDetalle" xml:space="preserve">
+    <value>Select dp from FacFactuDetalle dp left join fetch dp.Factura as factura  left join fetch dp.Servicio as servicio</value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="FiltroObtenerFacFactuDetalleFactura" xml:space="preserve">
+    <value>factura.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacFactuDetalleServicio" xml:space="preserve">
+    <value>Servicio.Id = {0}</value>
+  </data>
+  <data name="CabeceraObtenerFacFactura" xml:space="preserve">
+    <value>Select fp from FacFactura fp left join fetch fp.Asociado as asociado left join fetch fp.Moneda as moneda left join fetch fp.AsociadoImp as asociadoimp  left join fetch fp.Carta as carta  left join fetch fp.InteresadoImp as interesadoimp  left join fetch fp.DetalleEnvio as detalleenvio left join fetch fp.Proforma as facfacturaproforma</value>
+    <comment>Cabecera del query para el filtro de FacFactura</comment>
+  </data>
+  <data name="CabeceraObtenerFacOperacionDetalle" xml:space="preserve">
+    <value>Select dp from FacOperacionDetalle dp left join fetch dp.Factura as factura  left join fetch dp.Servicio as servicio</value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="FiltroObtenerFacFacturaAsociado" xml:space="preserve">
+    <value>asociado.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaAsociadoImp" xml:space="preserve">
+    <value>asociadoimp.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaCarta" xml:space="preserve">
+    <value>carta.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaCodigoDepartamento" xml:space="preserve">
+    <value>fp.CodigoDepartamento= '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaDetalleEnvio" xml:space="preserve">
+    <value>detalleenvio.Id = '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaFechaFactura" xml:space="preserve">
+    <value>fp.FechaFactura between '{0}' and '{1}'</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaId" xml:space="preserve">
+    <value>fp.Id= {0}</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaInicial" xml:space="preserve">
+    <value>fp.Inicial= '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaInteresadoImp" xml:space="preserve">
+    <value>interesadoimp.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacOperacionDetalleDetalle" xml:space="preserve">
+    <value>dp.Detalle= {0}</value>
+  </data>
+  <data name="FiltroObtenerFacOperacionDetalleFactura" xml:space="preserve">
+    <value>factura.Id = {0}</value>
+  </data>
+  <data name="CabeceraObtenerFacInternacionalAnulada" xml:space="preserve">
+    <value>Select fi from FacInternacionalAnulada fi left join fetch fi.Asociado as asociado left join fetch fi.Banco as banco</value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="FiltroObtenerFacInternacionalAnuladaId" xml:space="preserve">
+    <value>fi.Id = {0}</value>
+  </data>
+  <data name="CabeceraObtenerFacCobroFactura" xml:space="preserve">
+    <value>Select cf from FacCobroFactura cf</value>
+    <comment>Cabecera del query para el filtro de FacImpuesto</comment>
+  </data>
+  <data name="FiltroObtenerFacCobroFacturaFactura" xml:space="preserve">
+    <value>cf.Factura= {0}</value>
+  </data>
+  <data name="FiltroObtenerFacCobroFacturaId" xml:space="preserve">
+    <value>cf.Id= {0}</value>
+  </data>
+  <data name="CabeceraObtenerFacOperacionAnulada" xml:space="preserve">
+    <value>Select oa from FacOperacionAnulada oa left join fetch oa.Asociado as Asociado left join fetch oa.Moneda as Moneda left join fetch oa.Idioma as Idioma</value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="FiltroObtenerFacOperacionAnuladaCodigoOperacion" xml:space="preserve">
+    <value>oa.CodigoOperacion = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacOperacionAnuladaId" xml:space="preserve">
+    <value>oa.Id= '{0}'</value>
+  </data>
+  <data name="CabeceraObtenerFacFacturaAnulada" xml:space="preserve">
+    <value>Select fa from FacFacturaAnulada fa left join fetch fa.Asociado as asociado left join fetch fa.Moneda as moneda left join fetch fa.AsociadoImp as asociadoimp left join fetch fa.InteresadoImp as interesadoimp left join fetch fa.Motivo as motivo left join fetch fa.Motivo2 as motivo2</value>
+    <comment>Cabecera del query para el filtro de FacFacturaAnulada</comment>
+  </data>
+  <data name="FiltroObtenerFacFacturaAnuladaId" xml:space="preserve">
+    <value>fa.Id= {0}</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaAnuladaAnulada" xml:space="preserve">
+    <value>fa.Anulada= '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaAnulada" xml:space="preserve">
+    <value>fp.Anulada= '{0}'</value>
+  </data>
+  <data name="CabeceraObtenerFacFacturaTotalZ" xml:space="preserve">
+    <value>Select fp from FacFacturaTotalZ fp left join fetch fp.Asociado as asociado</value>
+    <comment>Cabecera del query para el filtro de FacFactura</comment>
+  </data>
+  <data name="FiltroObtenerFacFacturaTotalZFechaDesdeHasta" xml:space="preserve">
+    <value>fp.FechaOperacion between '{0}' and '{1}'</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaTotalZId" xml:space="preserve">
+    <value>fp.Id= {0}</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaTotalZTerrero" xml:space="preserve">
+    <value>fp.Terrero in {0}</value>
+  </data>
+  <data name="CabeceraObtenerFacOperacionPais" xml:space="preserve">
+    <value>Select o from FacOperacionPais o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma left join fetch o.Pais as Pais</value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="FiltroObtenerFacOperacionPaisAsociado" xml:space="preserve">
+    <value>Asociado.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacOperacionPaisCodigoOperacion" xml:space="preserve">
+    <value>o.CodigoOperacion = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacOperacionPaisId" xml:space="preserve">
+    <value>o.Id= '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacOperacionPaisIdioma" xml:space="preserve">
+    <value>Idioma.Id = '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacOperacionPaisMoneda" xml:space="preserve">
+    <value>Moneda.Id = '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacOperacionPaisPais" xml:space="preserve">
+    <value>Pais.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacOperacionPaisSaldomayor" xml:space="preserve">
+    <value>o.Saldo &gt; 0</value>
+  </data>
+  <data name="CabeceraObtenerFacFacturaPendiente" xml:space="preserve">
+    <value>Select fp from FacFacturaPendiente fp left join fetch fp.Asociado as asociado  left join fetch fp.Pais as pais</value>
+    <comment>Cabecera del query para el filtro de FacFactura</comment>
+  </data>
+  <data name="FiltroObtenerFacFacturaPendienteFechaDesdeHasta" xml:space="preserve">
+    <value>fp.FechaOperacion between '{0}' and '{1}'</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaPendienteId" xml:space="preserve">
+    <value>fp.Id= {0}</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaPendienteTerrero" xml:space="preserve">
+    <value>fp.Terrero in {0}</value>
+  </data>
+  <data name="CabeceraObtenerFacStatementProcesar" xml:space="preserve">
+    <value>Select fp from FacStatementProcesar fp</value>
+    <comment>Cabecera del query para el filtro de FacFactura</comment>
+  </data>
+  <data name="FiltroObtenerFacStatementProcesarCobro" xml:space="preserve">
+    <value>fp.Cobro in {0}</value>
+  </data>
+  <data name="FiltroObtenerFacStatementProcesarFechaCobro" xml:space="preserve">
+    <value>fp.FechaCobro between '{0}' and '{1}'</value>
+  </data>
+  <data name="FiltroObtenerFacStatementProcesarFechaFactura" xml:space="preserve">
+    <value>fp.FechaFactura between '{0}' and '{1}'</value>
+  </data>
+  <data name="FiltroObtenerFacStatementProcesarId" xml:space="preserve">
+    <value>fp.Id= {0}</value>
+  </data>
+  <data name="FiltroObtenerFacFormaCobro" xml:space="preserve">
+    <value>Cobro.Id = {0}</value>
+  </data>
+  <data name="CabeceraObtenerFacDesgloseCole" xml:space="preserve">
+    <value>Select d from FacDesgloseCole d left join fetch d.Idioma as idioma</value>
+    <comment>Cabecera del query para el filtro de departemento servicio</comment>
+  </data>
+  <data name="FiltroObtenerFacDesgloseColeId" xml:space="preserve">
+    <value>d.Id = '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacDesgloseColeIdioma" xml:space="preserve">
+    <value>idioma.Id = '{0}'</value>
+  </data>
+  <data name="CabeceraObtenerFacGestion" xml:space="preserve">
+    <value>Select fg from FacGestion fg left join fetch fg.Asociado as asociado </value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="FiltroObtenerFacGestionId" xml:space="preserve">
+    <value>fg.Id = {0}</value>
+  </data>
+  <data name="CabeceraObtenerFacGestiontoMax" xml:space="preserve">
+    <value>Select fg from FacGestion  fg left join fetch fg.Asociado as asociado where </value>
+    <comment>Cabecera del query para el filtro de FacImpuesto</comment>
+  </data>
+  <data name="FiltroObtenerFacGestionAsociado" xml:space="preserve">
+    <value>asociado.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacGestionConceptoGestion" xml:space="preserve">
+    <value>fg.ConceptoGestion= '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacGestionFechaGestion" xml:space="preserve">
+    <value>fg.FechaGestion between '{0}' and '{1}'</value>
+  </data>
+  <data name="FiltroObtenerFacGestionMedio" xml:space="preserve">
+    <value>fg.Medio= '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaProformaLocal" xml:space="preserve">
+    <value>fp.Local= '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaAnuladaAsociado" xml:space="preserve">
+    <value>asociado.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaAnuladaFechaAnulacion" xml:space="preserve">
+    <value>fa.FechaAnulacion between '{0}' and '{1}'</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaFechaSeniat" xml:space="preserve">
+    <value>fp.FechaSeniat between '{0}' and '{1}' order by fp.Seniat</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaIdDesdeHasta" xml:space="preserve">
+    <value>fp.Id&gt;= {0} and fp.Id&lt;={1}</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaSeniatDesdeHasta" xml:space="preserve">
+    <value>fp.Seniat&gt;= {0} and fp.Seniat&lt;={1}</value>
+  </data>
+</root>

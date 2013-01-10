@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="ChequeRecido" table="FAC_CH_REC">
+    <composite-id>
+      <key-many-to-one name="Id" column="CASOCIADO" class="Asociado" />
+      <key-property name="NCheque" column="CHQUE_NUM" type="String" />
+    </composite-id>    
+    <property name="Fecha" column="FECHA" type="DateTime"/>
+    <many-to-one  name="BancoG" column="CBANCO_G" class="BancoG"/>
+    <property name="Monto" column="MONTO" type="Double"/>    
+    <property name="Deposito" column="DEPOS" type="String"/>
+    <property name="FechaDeposito" column="FDESPO" type="DateTime"/>
+    <property name="NDeposito" column="NRODEP" type="string"/>
+    <many-to-one  name="Banco" column="CBANCO" class="FacBanco"/>
+    <property name="FechaReg" column="FREG" type="DateTime"/>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,476 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{EC493779-A099-49A4-813E-17CB118E8D86}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Diginsoft.Bolet.AccesoDatos</RootNamespace>
+    <AssemblyName>Diginsoft.Bolet.AccesoDatos</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Diginsoft.Bolet.AccesoDatos.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Diginsoft.Bolet.AccesoDatos.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.1.3.42154, Culture=neutral, PublicKeyToken=3a9cab8f8d22bfb7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="LinFu.DynamicProxy, Version=1.0.4.18998, Culture=neutral, PublicKeyToken=62a6874124340d6e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\LinFu.DynamicProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=3.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.LinFu, Version=3.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\NHibernate.ByteCode.LinFu.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=1.0.0.505, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\lib\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Data.Linq, Version=1.13.41.2, Culture=neutral, PublicKeyToken=cab60358ab4081ea, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Remotion.Data.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="system.data.oracleclient" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Contrato\IDaoFacGestion.vb" />
+    <Compile Include="Contrato\IDaoBaseFac.vb" />
+    <Compile Include="Contrato\IDaoFacDesgloseCole.vb" />
+    <Compile Include="Contrato\IDaoFacStatementProcesar.vb" />
+    <Compile Include="Contrato\IDaoFacFacturaPendiente.vb" />
+    <Compile Include="Contrato\IDaoFacOperacionPais.vb" />
+    <Compile Include="Contrato\IDaoFacAnuladaFisica.vb" />
+    <Compile Include="Contrato\IDaoFacFacturaTotal.vb" />
+    <Compile Include="Contrato\IDaoFacFacturaTotalZ.vb" />
+    <Compile Include="Contrato\IDaoFacInternacionalAnulada.vb" />
+    <Compile Include="Contrato\IDaoFacFactuDetalle.vb" />
+    <Compile Include="Contrato\IDaoFacInternacional.vb" />
+    <Compile Include="Contrato\IDaoFacImpuesto.vb" />
+    <Compile Include="Contrato\IDaoFacContadorPro.vb" />
+    <Compile Include="Contrato\ICorrespondencia.vb" />
+    <Compile Include="Contrato\IDaoFacAnualidad.vb" />
+    <Compile Include="Contrato\IDaoBancoG.vb" />
+    <Compile Include="Contrato\IDaoChequeRecido.vb" />
+    <Compile Include="Contrato\IDaoConceptoGestion.vb" />
+    <Compile Include="Contrato\IDaoDepartamentoServicio.vb" />
+    <Compile Include="Contrato\IDaoDesgloseServicio.vb" />
+    <Compile Include="Contrato\IDaoDetalleEnvio.vb" />
+    <Compile Include="Contrato\IDaoDetallePago.vb" />
+    <Compile Include="Contrato\IDaoDocumentosMarca.vb" />
+    <Compile Include="Contrato\IDaoDocumentosPatente.vb" />
+    <Compile Include="Contrato\IDaoDocumentosTraduccion.vb" />
+    <Compile Include="Contrato\IDaoEtiqueta.vb" />
+    <Compile Include="Contrato\IDaoFacBanco.vb" />
+    <Compile Include="Contrato\IDaoFacCobro.vb" />
+    <Compile Include="Contrato\IDaoFacCobroFactura.vb" />
+    <Compile Include="Contrato\IDaoFacCredito.vb" />
+    <Compile Include="Contrato\IDaoFacFactuDetaAnulada.vb" />
+    <Compile Include="Contrato\IDaoFacFactuDetaProforma.vb" />
+    <Compile Include="Contrato\IDaoFacFactura.vb" />
+    <Compile Include="Contrato\IDaoFacFacturaAnulada.vb" />
+    <Compile Include="Contrato\IDaoFacFacturaProforma.vb" />
+    <Compile Include="Contrato\IDaoFacForma.vb" />
+    <Compile Include="Contrato\IDaoFacJustificacion.vb" />
+    <Compile Include="Contrato\IDaoFacOperacion.vb" />
+    <Compile Include="Contrato\IDaoFacOperacionAnulada.vb" />
+    <Compile Include="Contrato\IDaoFacOperacionDetaAnulada.vb" />
+    <Compile Include="Contrato\IDaoFacOperacionDetalle.vb" />
+    <Compile Include="Contrato\IDaoFacOperacionDetalleTm.vb" />
+    <Compile Include="Contrato\IDaoFacOperacionDetaProforma.vb" />
+    <Compile Include="Contrato\IDaoFacOperacionDetaTmProforma.vb" />
+    <Compile Include="Contrato\IDaoFacOperacionProforma.vb" />
+    <Compile Include="Contrato\IDaoFacPagoBolivia.vb" />
+    <Compile Include="Contrato\IDaoFacRecurso.vb" />
+    <Compile Include="Contrato\IDaoGuia.vb" />
+    <Compile Include="Contrato\IDaoImpuesto.vb" />
+    <Compile Include="Contrato\IDaoMaterial.vb" />
+    <Compile Include="Contrato\IDaoMediosGestion.vb" />
+    <Compile Include="Contrato\IDaoMotivo.vb" />
+    <Compile Include="Contrato\IDaoServicio.vb" />
+    <Compile Include="Contrato\IDaoSociedad.vb" />
+    <Compile Include="Contrato\IDaoTarifaServicio.vb" />
+    <Compile Include="Contrato\IDaoTasa.vb" />
+    <Compile Include="Contrato\IDaoTipoClase.vb" />
+    <Compile Include="Contrato\IDaoTipoMarca.vb" />
+    <Compile Include="Contrato\IDaoTipoPatente.vb" />
+    <Compile Include="Contrato\IDaoViGestionAsociado.vb" />
+    <Compile Include="Contrato\IFabricaDaoBaseFac.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacGestionNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacDesgloseColeNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacStatementProcesarNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacFacturaPendienteNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacOperacionPaisNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacAnuladaFisicaNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacFacturaTotalNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacFacturaTotalZNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacInternacionalAnuladaNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacFactuDetalleNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacInternacionalNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacImpuestoNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacContadorProNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacAnualidadNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoBancoGNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoChequeRecidoNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoConceptoGestionNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoCorrespondenciaNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoDepartamentoServicioNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoDesgloseServicioNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoDetalleEnvioNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoDetallePagoNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoDocumentosMarcaNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoDocumentosPatenteNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoDocumentosTraduccionNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoEtiquetaNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacBancoNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacCobroFacturaNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacCobroNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacCreditoNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacFactuDetaAnuladaNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacFactuDetaProformaNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacFacturaAnuladaNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacFacturaNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacFacturaProformaNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacFormaNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacJustificacionNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacOperacionAnuladaNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacOperacionDetaAnuladaNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacOperacionDetalleNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacOperacionDetalleTmNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacOperacionDetaProformaNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacOperacionDetaTmProformaNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacOperacionNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacOperacionProformaNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacPagoBoliviaNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacRecursoNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoGuiaNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoImpuestoNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoMaterialNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoMediosGestionNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoMotivoNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoServicioNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoSociedadNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoTarifaServicioNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoTasaNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoTipoClaseNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoTipoMarcaNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoTipoPatenteNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoViGestionAsociadoNHibernate.vb" />
+    <Compile Include="Fabrica\FabricaDaoBaseFac.vb" />
+    <Compile Include="Fabrica\FabricaDaoNHibernateFac.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Recursos\ConsultasHQL.Designer.vb">
+      <DependentUpon>ConsultasHQL.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Recursos\Errores.Designer.vb">
+      <DependentUpon>Errores.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FacAnualidad.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\DetalleEnvio.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\DocumentosMarca.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mapeado\DocumentosPatente.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mapeado\DocumentosTraduccion.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\FacRecurso.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\Guia.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\Impuesto.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\Material.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\Motivo.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\Sociedad.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\Tasa.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mapeado\TipoClase.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\TipoMarca.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\TipoPatente.hbm.xml" />
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>PublicVbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recursos\ConsultasHQL.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ConsultasHQL.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>Recursos</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recursos\Errores.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Errores.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>Recursos</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Comun\ObjetosComunes\ObjetosComunes.csproj">
+      <Project>{15437671-F551-4B4B-9E06-283A1D241CE0}</Project>
+      <Name>ObjetosComunes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Comun\ObjetosComunes_Fac\ObjetosComunes_Fac.vbproj">
+      <Project>{802FFAF7-96CE-446C-A5ED-3DC7A16163AC}</Project>
+      <Name>ObjetosComunes_Fac</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AccesoDatos\AccesoDatos.csproj">
+      <Project>{4A1F952F-5803-4767-872E-EB1A35E0DAA6}</Project>
+      <Name>AccesoDatos</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\Servicio.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FacJustificacion.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\DepartamentoServicio.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\DesgloseServicio.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\TarifaServicio.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\Tarifa2.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\ConceptoGestion.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\MediosGestion.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\ViGestionAsociado.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\BancoG.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\ChequeRecido.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FacBanco.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FacPagoBolivia.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FacOperacion.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FacCobro.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mapeado\FacCredito.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mapeado\FacForma.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FacCobroFactura.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FacContadorPro.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mapeado\FacImpuesto.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mapeado\FacInternacional.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mapeado\FacFactuDetalle.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mapeado\FacInternacionalAnulada.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mapeado\FacOperacionAnulada.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FacOperacionDetaAnulada.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FacOperacionDetalle.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FacOperacionDetalleTm.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FacOperacionDetaProforma.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FacOperacionDetaTmProforma.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FacOperacionProforma.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FacFactuDetaAnulada.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FacFactuDetaProforma.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FacFactura.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FacFacturaAnulada.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FacFacturaProforma.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FacAnuladaFisica.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FacOperacionPais.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mapeado\FacFacturaPendiente.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\FacStatementProcesar.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\FacDesgloseCole.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\FacGestion.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Content Include="Mapeado\FacFacturaTotal.xml" />
+    <EmbeddedResource Include="Mapeado\FacFacturaTotalZ.hbm.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

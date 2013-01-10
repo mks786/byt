@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="FacOperacionDetaTmProforma" table="FAC_OPERACION_DET_TM_PRO">
+    <!--<composite-id>
+      <key-property name="Id" column="IOPERACION" type="String" />
+      <key-many-to-one name="Usuario" column="USUARIO" class="Usuario"/>
+      <key-property name="Detalle" column="CDETALLE" type="int" />
+      <key-many-to-one name="Factura" column="CFACTURA" class="FacFacturaProforma"/>
+      <key-property name="Codigo" column="CODIGO" type="int" />
+    </composite-id>
+    <many-to-one  name="Servicio" column="COD_SER" class="FacServicio"/>
+  </class>-->
+    <composite-id>
+      <key-property name="Id" column="IOPERACION" type="String" />
+      <key-many-to-one name="Usuario" column="USUARIO" class="Usuario"/>
+      <key-property name="Detalle" column="CDETALLE" type="int" />
+      <key-many-to-one name="Servicio" column="COD_SER" class="FacServicio"/>
+      <key-property name="Codigo" column="CODIGO" type="int" />
+    </composite-id>
+    <many-to-one  name="Factura" column="CFACTURA" class="FacFacturaProforma"/>
+  </class>    
+</hibernate-mapping>
