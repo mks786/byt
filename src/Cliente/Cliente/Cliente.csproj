@@ -67,9 +67,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\lib\CrystalDecisions.Shared.dll</HintPath>
     </Reference>
-    <Reference Include="Diginsoft.Bolet.Cliente.Fac, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Cliente_Fac\bin\Debug\Diginsoft.Bolet.Cliente.Fac.dll</HintPath>
+    <Reference Include="Diginsoft.Bolet.Cliente.Fac">
+      <HintPath>..\..\..\lib\Diginsoft.Bolet.Cliente.Fac.dll</HintPath>
     </Reference>
     <Reference Include="LinFu.DynamicProxy">
       <HintPath>..\..\..\lib\LinFu.DynamicProxy.dll</HintPath>
