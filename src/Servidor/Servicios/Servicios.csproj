@@ -31,14 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Diginsoft.Bolet.LogicaNegocio, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\lib\Diginsoft.Bolet.LogicaNegocio.dll</HintPath>
-    </Reference>
-    <Reference Include="Diginsoft.Bolet.ObjetosComunes, Version=1.0.0.2, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\lib\Diginsoft.Bolet.ObjetosComunes.dll</HintPath>
-    </Reference>
     <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\lib\NLog.dll</HintPath>
@@ -144,9 +136,17 @@
       <Project>{15437671-F551-4B4B-9E06-283A1D241CE0}</Project>
       <Name>ObjetosComunes</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Comun\ObjetosComunes_Fac\ObjetosComunes_Fac.vbproj">
+      <Project>{802FFAF7-96CE-446C-A5ED-3DC7A16163AC}</Project>
+      <Name>ObjetosComunes_Fac</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Servidor\Transaccional\LogicaNegocio\LogicaNegocio.csproj">
       <Project>{909389CB-11DE-41FB-B24F-D9AE6B10B82C}</Project>
       <Name>LogicaNegocio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Transaccional\LogicaNegocio_Fac\LogicaNegocio_Fac.vbproj">
+      <Project>{C107C131-97C6-4FB9-8DEE-8A9557F99108}</Project>
+      <Name>LogicaNegocio_Fac</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

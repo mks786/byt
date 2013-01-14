@@ -53,18 +53,6 @@
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\..\..\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Diginsoft.Bolet.AccesoDatos, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\lib\Diginsoft.Bolet.AccesoDatos.dll</HintPath>
-    </Reference>
-    <Reference Include="Diginsoft.Bolet.ObjetosComunes, Version=1.0.0.2, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\lib\Diginsoft.Bolet.ObjetosComunes.dll</HintPath>
-    </Reference>
-    <Reference Include="Diginsoft.Bolet.Servicios, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\lib\Diginsoft.Bolet.Servicios.dll</HintPath>
-    </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\..\..\lib\Iesi.Collections.dll</HintPath>
     </Reference>
@@ -133,13 +121,25 @@
       <Project>{15437671-F551-4B4B-9E06-283A1D241CE0}</Project>
       <Name>ObjetosComunes</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Comun\ObjetosComunes_Fac\ObjetosComunes_Fac.vbproj">
+      <Project>{802FFAF7-96CE-446C-A5ED-3DC7A16163AC}</Project>
+      <Name>ObjetosComunes_Fac</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Servicios\Servicios.csproj">
       <Project>{C62DF7FE-106D-40BA-BE19-1BEEDE960D30}</Project>
       <Name>Servicios</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Servicios_Fac\Servicios_Fac.vbproj">
+      <Project>{99E2B3CF-E0E2-4571-A4D9-F8FACEBE8CD1}</Project>
+      <Name>Servicios_Fac</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Transaccional\AccesoDatos\AccesoDatos.csproj">
       <Project>{4A1F952F-5803-4767-872E-EB1A35E0DAA6}</Project>
       <Name>AccesoDatos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Transaccional\AccesoDatos_Fac\AccesoDatos_Fac.vbproj">
+      <Project>{EC493779-A099-49A4-813E-17CB118E8D86}</Project>
+      <Name>AccesoDatos_Fac</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -685,8 +685,8 @@ Namespace Presentadores.FacReportes
                 'If Me._ventana.Fecha1 IsNot Nothing And Me._ventana.Fecha1.ToString <> "" Then
                 lp_fecha_esc_n(Date.Now, fc, operacion.Idioma.Id)
                 'End If
-                structura.Titulo1 = "STATEMENT OF ACCOUNT TO " & fc
-                structura.Titulo2 = "ESTADO DE CUENTA HASTA " & fc
+                structura.Titulo1 = "LIST OF PENDING DEBIT NOTES AS OF  " & fc
+                structura.Titulo2 = "LISTA DE NOTAS DE DEBITO PENDIENTES HASTA " & fc
 
                 'preguntar
                 'linea = "Select replace(xdomicilio,chr(10),chr(32)) from fac_asociados where casociado = %%casociado.fac_operaciones"
@@ -738,8 +738,8 @@ Namespace Presentadores.FacReportes
                 'If Me._ventana.Fecha1 IsNot Nothing And Me._ventana.Fecha1.ToString <> "" Then
                 lp_fecha_esc_n(Date.Now, fc, operacion.Idioma.Id)
                 'End If
-                structura.Titulo1 = "STATEMENT OF ACCOUNT TO " & fc
-                structura.Titulo2 = "ESTADO DE CUENTA HASTA " & fc
+                structura.Titulo1 = "LIST OF PENDING DEBIT NOTES AS OF  " & fc
+                structura.Titulo2 = "LISTA DE NOTAS DE DEBITO PENDIENTES HASTA " & fc
 
                 'preguntar
                 'linea = "Select replace(xdomicilio,chr(10),chr(32)) from fac_asociados where casociado = %%casociado.fac_operaciones"

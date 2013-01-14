@@ -348,7 +348,7 @@ Namespace Presentadores.FacReportes
         Private Function GetRutaReporte() As String
             Dim retorno As String
             If Me._ventana.MayorMenor = "ME" Then
-                retorno = "../../RptFacturacionPendienteMenor.rpt"
+                retorno = Environment.CurrentDirectory & ConfigurationManager.AppSettings("rutaFacreportes") & "RptFacturacionPendienteMenor.rpt"
             Else
                 retorno = Environment.CurrentDirectory & ConfigurationManager.AppSettings("rutaFacreportes") & "RptFacturaDigital.rpt"
             End If
@@ -568,7 +568,7 @@ Namespace Presentadores.FacReportes
                         Case "1" '  
                             If total_z.FechaSeniat IsNot Nothing Then
                                 lp_compl(total_z.FechaSeniat, total_z.Seniat, w_s)
-                                structura.Invoice = w_s
+                                structura.Invoice = "STATEMENT  N°" & w_s
                             Else
                                 structura.Invoice = ""
                             End If
@@ -592,7 +592,7 @@ Namespace Presentadores.FacReportes
                             structura.Invoice = ""
                             If total_z.FechaSeniat IsNot Nothing Then
                                 lp_compl(total_z.FechaSeniat, total_z.Seniat, w_s)
-                                structura.Invoice = w_s
+                                structura.Invoice = "STATEMENT  N°" & w_s
                                 structura.Xfactura = ""
                             End If
                             If total_z.FechaFactura IsNot Nothing Then
@@ -606,7 +606,7 @@ Namespace Presentadores.FacReportes
                             If total_z.Asociado.BPendienteStatement = True Then
                                 If total_z.FechaFactura IsNot Nothing Then
                                     lp_compl(total_z.FechaFactura, total_z.Id, w_s)
-                                    structura.Invoice = w_s
+                                    structura.Invoice = "STATEMENT  N°" & w_s
                                     structura.Seniat = w_s
                                     structura.Xfactura = ""
                                     lp_fecha_esc_n(total_z.FechaFactura, structura.Fecha, total_z.Idioma.Id)
@@ -617,7 +617,7 @@ Namespace Presentadores.FacReportes
                             Else
                                 If total_z.FechaSeniat IsNot Nothing Then
                                     lp_compl(total_z.FechaSeniat, total_z.Seniat, w_s)
-                                    structura.Invoice = w_s
+                                    structura.Invoice = "STATEMENT  N°" & w_s
                                     structura.Seniat = w_s
                                     structura.Xfactura = ""
                                     lp_fecha_esc_n(total_z.FechaSeniat, structura.Fecha, total_z.Idioma.Id)
@@ -631,7 +631,7 @@ Namespace Presentadores.FacReportes
                             If total_z.FechaFactura IsNot Nothing Then
                                 lp_compl(total_z.FechaFactura, total_z.Id, w_s)
                                 structura.Xfactura = ""
-                                structura.Invoice = w_s
+                                structura.Invoice = "STATEMENT  N°" & w_s
                                 lp_fecha_esc_n(total_z.FechaFactura, structura.Fecha, total_z.Idioma.Id)
                             Else
                                 structura.Fecha = ""

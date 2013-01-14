@@ -301,52 +301,7 @@ Namespace Presentadores.FacReportes
 
         End Function
 
-        Public Function datosenc_colum() As DataTable
-            Dim datosEnc2 As New DataTable("DataTable1")
-            datosEnc2.Columns.Add("Id")
-            datosEnc2.Columns.Add("Cliente")
-            datosEnc2.Columns.Add("Invoice")
-            datosEnc2.Columns.Add("Fecha")
-            datosEnc2.Columns.Add("Rif")
-            datosEnc2.Columns.Add("Nit")
-            datosEnc2.Columns.Add("Caso")
-            datosEnc2.Columns.Add("TituloPago")
-            datosEnc2.Columns.Add("TipoPago")
-            datosEnc2.Columns.Add("Texto1")
-            datosEnc2.Columns.Add("Texto2")
-            datosEnc2.Columns.Add("Msubtimpo")
-            datosEnc2.Columns.Add("Mdescuento")
-            datosEnc2.Columns.Add("Mtbimp")
-            datosEnc2.Columns.Add("Mtbexc")
-            datosEnc2.Columns.Add("Msubtotal")
-            datosEnc2.Columns.Add("Mtimp")
-            datosEnc2.Columns.Add("Moneda")
-            datosEnc2.Columns.Add("Mttotal")
-            datosEnc2.Columns.Add("Piva")
-            datosEnc2.Columns.Add("TituloNa")
-            datosEnc2.Columns.Add("TituloCantidad")
-            datosEnc2.Columns.Add("TituloPub")
-            datosEnc2.Columns.Add("TituloNDesc")
-            datosEnc2.Columns.Add("TituloMMonto")
-            datosEnc2.Columns.Add("Xfactura")
-            datosEnc2.Columns.Add("Control")
-            datosEnc2.Columns.Add("Xour")
-            datosEnc2.Columns.Add("Xourref")
-            datosEnc2.Columns.Add("Seniat")
-            Return datosEnc2
-        End Function
 
-        Public Function datosdeta_colum() As DataTable
-            Dim datosdeta2 As New DataTable("DataTable2")
-            datosdeta2.Columns.Add("Id")
-            datosdeta2.Columns.Add("Servicio")
-            datosdeta2.Columns.Add("Na")
-            datosdeta2.Columns.Add("Cantidad")
-            datosdeta2.Columns.Add("Npub")
-            datosdeta2.Columns.Add("Ndesc")
-            datosdeta2.Columns.Add("MMonto")
-            Return datosdeta2
-        End Function
 
 
         Public Sub lp_fecha_esc_n(ByVal dfecha As Date, ByRef cfecha As String)
@@ -455,42 +410,6 @@ Namespace Presentadores.FacReportes
         End Function
 
 
-        Public Function inicializar_enc() As StructReporteFActuraEnc
-            Dim structura As New StructReporteFActuraEnc()
-            structura.Id = ""
-            structura.Fecha = ""
-            structura.Cliente = ""
-            structura.Invoice = ""
-            structura.Rif = ""
-            structura.Nit = ""
-            structura.Caso = ""
-            structura.TituloPago = ""
-            structura.TipoPago = ""
-            structura.Texto1 = ""
-            structura.Texto2 = ""
-            structura.Msubtimpo = ""
-            structura.Mdescuento = ""
-            structura.Mtbimp = ""
-            structura.Mtbexc = ""
-            structura.Msubtotal = ""
-            structura.Mttotal = ""
-            structura.Mtimp = ""
-            structura.Moneda = ""
-            structura.Piva = ""
-            structura.TituloNa = ""
-            structura.TituloCantidad = ""
-            structura.TituloPub = ""
-            structura.TituloNDesc = ""
-            structura.TituloMMonto = ""
-            structura.Xfactura = ""
-            structura.Control = ""
-            structura.Seniat = ""
-            structura.Xour = ""
-            structura.Xourref = ""
-            Return (structura)
-        End Function
-
-
         Public Sub lp_compl(ByVal dfecha As DateTime, ByVal nfac As Integer, ByRef csalida As String)
             Dim w_par, w_camp, w_cero As String
             Dim w_fal As Integer
@@ -520,7 +439,7 @@ Namespace Presentadores.FacReportes
                     structura.Caso = ""
                 End If
                 If _FacFactura.Status = 1 Then 'if ($ifp$ = 1)
-                    structura.TituloPago = "Condicion de Pago : Credito"
+                    structura.TituloPago = "Condicion de Pago : Contado"
                 Else
                     structura.TituloPago = "Condicion de Pago : Contado"
                 End If
@@ -571,19 +490,27 @@ Namespace Presentadores.FacReportes
                                 structura.Invoice = ""
                                 If _FacFactura.FechaSeniat IsNot Nothing Then
                                     lp_compl(_FacFactura.FechaSeniat, _FacFactura.Seniat, w_s)
-                                    structura.Xfactura = w_s
+                                    If _FacFactura.Status <> 2 Then
+                                        structura.Xfactura = "FACTURA  N° " & w_s
+                                    Else
+                                        structura.Xfactura = w_s
+                                    End If
 
                                     lp_fecha_esc_n(_FacFactura.FechaSeniat, structura.Fecha)
                                 Else
                                     structura.Fecha = ""
                                 End If
                             Case 2 'Caso Est
-                                'Call lp_compl(ffactura.fac_facturas, cfactura.fac_facturas, w_s)
-                                'xinvoice.encabezado = w_s
-                                structura.Invoice = ""
-                                If _FacFactura.FechaFactura IsNot Nothing Then
+                                    'Call lp_compl(ffactura.fac_facturas, cfactura.fac_facturas, w_s)
+                                    'xinvoice.encabezado = w_s
+                                    structura.Invoice = ""
+                                    If _FacFactura.FechaFactura IsNot Nothing Then
                                     lp_compl(_FacFactura.FechaFactura, _FacFactura.Id, w_s)
-                                    structura.Invoice = w_s
+                                    If _FacFactura.Status <> 2 Then
+                                        structura.Invoice = "STATEMENT  N° " & w_s
+                                    Else
+                                        structura.Invoice = w_s
+                                    End If
                                     structura.Xfactura = ""
 
                                     lp_fecha_esc_n(_FacFactura.FechaFactura, structura.Fecha)
@@ -591,12 +518,16 @@ Namespace Presentadores.FacReportes
                                     structura.Fecha = ""
                                 End If
                             Case 3 'Caso Factura
-                                'call lp_compl(fseniat.fac_facturas,cseniat.fac_facturas,w_s) 
-                                'xfactura.encabezado   = w_s                            
-                                structura.Invoice = ""
-                                If _FacFactura.FechaSeniat IsNot Nothing Then
+                                    'call lp_compl(fseniat.fac_facturas,cseniat.fac_facturas,w_s) 
+                                    'xfactura.encabezado   = w_s                            
+                                    structura.Invoice = ""
+                                    If _FacFactura.FechaSeniat IsNot Nothing Then
                                     lp_compl(_FacFactura.FechaSeniat, _FacFactura.Seniat, w_s)
-                                    structura.Xfactura = w_s
+                                    If _FacFactura.Status <> 2 Then
+                                        structura.Xfactura = "FACTURA  N° " & w_s
+                                    Else
+                                        structura.Xfactura = w_s
+                                    End If
                                     structura.Invoice = ""
                                     lp_fecha_esc_n(_FacFactura.FechaSeniat, structura.Fecha)
                                 Else
@@ -606,11 +537,15 @@ Namespace Presentadores.FacReportes
                                     lp_compl(_FacFactura.FechaFactura, _FacFactura.Id, w_s)
                                 End If
                             Case 4 ' Est
-                                'Call lp_compl(ffactura.fac_facturas, cfactura.fac_facturas, w_s)
-                                'xinvoice.encabezado = w_s
-                                If _FacFactura.FechaFactura IsNot Nothing Then
+                                    'Call lp_compl(ffactura.fac_facturas, cfactura.fac_facturas, w_s)
+                                    'xinvoice.encabezado = w_s
+                                    If _FacFactura.FechaFactura IsNot Nothing Then
                                     lp_compl(_FacFactura.FechaFactura, _FacFactura.Id, w_s)
-                                    structura.Invoice = w_s
+                                    If _FacFactura.Status <> 2 Then
+                                        structura.Invoice = "STATEMENT  N° " & w_s
+                                    Else
+                                        structura.Invoice = w_s
+                                    End If
                                     structura.Xfactura = ""
 
                                     lp_fecha_esc_n(_FacFactura.FechaFactura, structura.Fecha)
@@ -645,13 +580,13 @@ Namespace Presentadores.FacReportes
                     structura.Texto2 = textos(1)
                 End If
                 '''NOTA :Agregar campo a a la structura verificar donde se imprime
-                If _FacFactura.Idioma.Id = "ES" Then
-                    structura.Xour = "Nuestra Referencia"
-                    structura.Xourref = _FacFactura.Ourref
-                Else
-                    structura.Xour = "Our Reference"
-                    structura.Xourref = _FacFactura.Ourref
-                End If
+                'If _FacFactura.Idioma.Id = "ES" Then
+                '    structura.Xour = "Nuestra Referencia"
+                '    structura.Xourref = _FacFactura.Ourref
+                'Else
+                structura.Xour = "Our Reference"
+                structura.Xourref = _FacFactura.Ourref
+                'End If
 
                 structura.Msubtimpo = _FacFactura.MSubtimpo
                 structura.Mdescuento = _FacFactura.MDescuento
@@ -682,11 +617,11 @@ Namespace Presentadores.FacReportes
                 Else
                     structura.Piva = _FacFactura.Impuesto
                 End If
-                structura.TituloNa = "tax"
-                structura.TituloCantidad = "Quanti"
-                structura.TituloPub = "Price/Unt"
-                structura.TituloNDesc = "Discount"
-                structura.TituloMMonto = "Amount"
+                structura.TituloNa = "Iva Tax "
+                structura.TituloCantidad = "Cant Quanti"
+                structura.TituloPub = "Precio/Unt Price/Unt"
+                structura.TituloNDesc = "Descuento Discount"
+                structura.TituloMMonto = "Monto Amount"
 
 
             Catch ex As Exception
@@ -708,7 +643,7 @@ Namespace Presentadores.FacReportes
                     structura.Caso = ""
                 End If
                 If _FacFactura.Status = 1 Then 'if ($ifp$ = 1)
-                    structura.TituloPago = "Condicion de Pago : Credito"
+                    structura.TituloPago = "Condicion de Pago : Contado"
                 Else
                     structura.TituloPago = "Condicion de Pago : Contado"
                 End If
@@ -839,13 +774,13 @@ Namespace Presentadores.FacReportes
                     structura.Texto2 = textos(1)
                 End If
                 '''NOTA :Agregar campo a a la structura verificar donde se imprime
-                If _FacFactura.Idioma.Id = "ES" Then
-                    structura.Xour = "Nuestra Referencia"
-                    structura.Xourref = _FacFactura.Ourref
-                Else
-                    structura.Xour = "Our Reference"
-                    structura.Xourref = _FacFactura.Ourref
-                End If
+                'If _FacFactura.Idioma.Id = "ES" Then
+                structura.Xour = "Nuestra Referencia"
+                structura.Xourref = _FacFactura.Ourref
+                'Else
+                '    structura.Xour = "Our Reference"
+                '    structura.Xourref = _FacFactura.Ourref
+                'End If
 
                 structura.Msubtimpo = _FacFactura.MSubtimpoBf
                 structura.Mdescuento = _FacFactura.MDescuentoBf
@@ -914,7 +849,13 @@ Namespace Presentadores.FacReportes
                     End Select
                 Else
                     If _FacFactura.Status = 2 Then
-                        ObtenerEstructuraDeta("NBF", "1", det)
+                        Select Case _FacFactura.Terrero.ToString
+                            Case "1"
+                                ObtenerEstructuraDeta("NBF", "1", det)
+                            Case "2"
+                                ObtenerEstructuraDeta("N", "1", det)
+                        End Select
+
                     Else
                         If _FacFactura.Status = 3 Then
                             ObtenerEstructuraDeta("N", "1", det)
@@ -984,12 +925,33 @@ Namespace Presentadores.FacReportes
                         End Select
                     Else
                         If _FacFactura.Status = 2 Then
-                            _FacFactura.P_mip = 3
-                            _FacFactura.Bst = 1
-                            _FacFactura.Terrero = "3"
-                            structura = BT_FACT00_N_BF() 'deveria ser el BT_FACT00_N_BF_p                        
-                            structura.Id = "1"
-                            retorno.Add(structura)
+                            Select Case _FacFactura.Terrero.ToString
+                                Case "1"
+                                    _FacFactura.P_mip = 3
+                                    _FacFactura.Bst = 1
+                                    _FacFactura.Terrero = "3"
+                                    structura = BT_FACT00_N_BF() 'deveria ser el BT_FACT00_N_BF_p                        
+                                    structura.Id = "1"
+                                    retorno.Add(structura)
+
+                                    '_FacFactura.P_mip = 1
+                                    '_FacFactura.Bst = 0
+                                    'structura = BT_FACT00_N_BF()
+                                    'structura.Id = "1"
+                                    'retorno.Add(structura)
+                                Case "2"
+                                    _FacFactura.P_mip = 3
+                                    _FacFactura.Bst = 0
+                                    structura = BT_FACT00_N()
+                                    structura.Id = "1"
+                                    retorno.Add(structura)
+                                    'Case "3"
+                                    '    _FacFactura.P_mip = 1
+                                    '    _FacFactura.Bst = 0
+                                    '    structura = BT_FACT00_N()
+                                    '    structura.Id = "1"
+                                    '    retorno.Add(structura)
+                            End Select
                         Else
                             If _FacFactura.Status = 3 Then
                                 Select Case _FacFactura.Terrero.ToString
@@ -1074,6 +1036,41 @@ Namespace Presentadores.FacReportes
             detalle = retorno
         End Sub
 
+        Public Function inicializar_enc() As StructReporteFActuraEnc
+            Dim structura As New StructReporteFActuraEnc()
+            structura.Id = ""
+            structura.Fecha = ""
+            structura.Cliente = ""
+            structura.Invoice = ""
+            structura.Rif = ""
+            structura.Nit = ""
+            structura.Caso = ""
+            structura.TituloPago = ""
+            structura.TipoPago = ""
+            structura.Texto1 = ""
+            structura.Texto2 = ""
+            structura.Msubtimpo = ""
+            structura.Mdescuento = ""
+            structura.Mtbimp = ""
+            structura.Mtbexc = ""
+            structura.Msubtotal = ""
+            structura.Mttotal = ""
+            structura.Mtimp = ""
+            structura.Moneda = ""
+            structura.Piva = ""
+            structura.TituloNa = ""
+            structura.TituloCantidad = ""
+            structura.TituloPub = ""
+            structura.TituloNDesc = ""
+            structura.TituloMMonto = ""
+            structura.Xfactura = ""
+            structura.Control = ""
+            structura.Seniat = ""
+            structura.Xour = ""
+            structura.Xourref = ""
+            Return (structura)
+        End Function
+
         Private Function ArmarReporteEnc(ByVal datos As DataTable, ByVal estructurasDeDatos As IList(Of StructReporteFActuraEnc)) As DataTable
             Try
                 For Each structura As StructReporteFActuraEnc In estructurasDeDatos
@@ -1135,6 +1132,53 @@ Namespace Presentadores.FacReportes
 
             End Try
             Return datos
+        End Function
+
+        Public Function datosenc_colum() As DataTable
+            Dim datosEnc2 As New DataTable("DataTable1")
+            datosEnc2.Columns.Add("Id")
+            datosEnc2.Columns.Add("Cliente")
+            datosEnc2.Columns.Add("Invoice")
+            datosEnc2.Columns.Add("Fecha")
+            datosEnc2.Columns.Add("Rif")
+            datosEnc2.Columns.Add("Nit")
+            datosEnc2.Columns.Add("Caso")
+            datosEnc2.Columns.Add("TituloPago")
+            datosEnc2.Columns.Add("TipoPago")
+            datosEnc2.Columns.Add("Texto1")
+            datosEnc2.Columns.Add("Texto2")
+            datosEnc2.Columns.Add("Msubtimpo")
+            datosEnc2.Columns.Add("Mdescuento")
+            datosEnc2.Columns.Add("Mtbimp")
+            datosEnc2.Columns.Add("Mtbexc")
+            datosEnc2.Columns.Add("Msubtotal")
+            datosEnc2.Columns.Add("Mtimp")
+            datosEnc2.Columns.Add("Moneda")
+            datosEnc2.Columns.Add("Mttotal")
+            datosEnc2.Columns.Add("Piva")
+            datosEnc2.Columns.Add("TituloNa")
+            datosEnc2.Columns.Add("TituloCantidad")
+            datosEnc2.Columns.Add("TituloPub")
+            datosEnc2.Columns.Add("TituloNDesc")
+            datosEnc2.Columns.Add("TituloMMonto")
+            datosEnc2.Columns.Add("Xfactura")
+            datosEnc2.Columns.Add("Control")
+            datosEnc2.Columns.Add("Xour")
+            datosEnc2.Columns.Add("Xourref")
+            datosEnc2.Columns.Add("Seniat")
+            Return datosEnc2
+        End Function
+
+        Public Function datosdeta_colum() As DataTable
+            Dim datosdeta2 As New DataTable("DataTable2")
+            datosdeta2.Columns.Add("Id")
+            datosdeta2.Columns.Add("Servicio")
+            datosdeta2.Columns.Add("Na")
+            datosdeta2.Columns.Add("Cantidad")
+            datosdeta2.Columns.Add("Npub")
+            datosdeta2.Columns.Add("Ndesc")
+            datosdeta2.Columns.Add("MMonto")
+            Return datosdeta2
         End Function
 
         Structure StructReporteFActuraEnc

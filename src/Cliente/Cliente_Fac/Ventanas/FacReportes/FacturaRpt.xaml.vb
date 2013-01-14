@@ -71,6 +71,7 @@ Namespace Ventanas.FacReportes
         Public WriteOnly Property CrystalViewer() As Object Implements Contratos.FacReportes.IFacturaRpt.CrystalViewer
             Set(ByVal value As Object)
                 'Me._crystalReportsViewer1.
+
                 Me._crystalReportsViewer1.ViewerCore.ReportSource = value
             End Set
         End Property

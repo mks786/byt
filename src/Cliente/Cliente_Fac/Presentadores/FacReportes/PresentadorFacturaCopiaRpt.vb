@@ -496,7 +496,7 @@ Namespace Presentadores.FacReportes
                     structura.Caso = ""
                 End If
                 If _FacFactura.Status = 1 Then 'if ($ifp$ = 1)
-                    structura.TituloPago = "Condicion de Pago : Credito"
+                    structura.TituloPago = "Condicion de Pago : Contado"
                 Else
                     structura.TituloPago = "Condicion de Pago : Contado"
                 End If
@@ -547,7 +547,7 @@ Namespace Presentadores.FacReportes
                                 structura.Invoice = ""
                                 If _FacFactura.FechaSeniat IsNot Nothing Then
                                     lp_compl(_FacFactura.FechaSeniat, _FacFactura.Seniat, w_s)
-                                    structura.Xfactura = "FACTURA  N°" & w_s
+                                    structura.Xfactura = "FACTURA  N° " & w_s
 
                                     lp_fecha_esc_n(_FacFactura.FechaSeniat, structura.Fecha)
                                 Else
@@ -559,7 +559,7 @@ Namespace Presentadores.FacReportes
                                 structura.Invoice = ""
                                 If _FacFactura.FechaFactura IsNot Nothing Then
                                     lp_compl(_FacFactura.FechaFactura, _FacFactura.Id, w_s)
-                                    structura.Invoice = "STATEMENT  N°" & w_s
+                                    structura.Invoice = "STATEMENT  N° " & w_s
                                     structura.Xfactura = ""
 
                                     lp_fecha_esc_n(_FacFactura.FechaFactura, structura.Fecha)
@@ -572,7 +572,7 @@ Namespace Presentadores.FacReportes
                                 structura.Invoice = ""
                                 If _FacFactura.FechaSeniat IsNot Nothing Then
                                     lp_compl(_FacFactura.FechaSeniat, _FacFactura.Seniat, w_s)
-                                    structura.Xfactura = "FACTURA  N°" & w_s
+                                    structura.Xfactura = "FACTURA  N° " & w_s
                                     structura.Invoice = ""
                                     lp_fecha_esc_n(_FacFactura.FechaSeniat, structura.Fecha)
                                 Else
@@ -586,7 +586,7 @@ Namespace Presentadores.FacReportes
                                 'xinvoice.encabezado = w_s
                                 If _FacFactura.FechaFactura IsNot Nothing Then
                                     lp_compl(_FacFactura.FechaFactura, _FacFactura.Id, w_s)
-                                    structura.Invoice = "STATEMENT  N°" & w_s
+                                    structura.Invoice = "STATEMENT  N° " & w_s
                                     structura.Xfactura = ""
 
                                     lp_fecha_esc_n(_FacFactura.FechaFactura, structura.Fecha)
@@ -621,13 +621,13 @@ Namespace Presentadores.FacReportes
                     structura.Texto2 = textos(1)
                 End If
                 '''NOTA :Agregar campo a a la structura verificar donde se imprime
-                If _FacFactura.Idioma.Id = "ES" Then
-                    structura.Xour = "Nuestra Referencia"
-                    structura.Xourref = _FacFactura.Ourref
-                Else
-                    structura.Xour = "Our Reference"
-                    structura.Xourref = _FacFactura.Ourref
-                End If
+                'If _FacFactura.Idioma.Id = "ES" Then
+                '    structura.Xour = "Nuestra Referencia"
+                '    structura.Xourref = _FacFactura.Ourref
+                'Else
+                structura.Xour = "Our Reference"
+                structura.Xourref = _FacFactura.Ourref
+                'End If
 
                 structura.Msubtimpo = _FacFactura.MSubtimpo
                 structura.Mdescuento = _FacFactura.MDescuento
@@ -658,11 +658,11 @@ Namespace Presentadores.FacReportes
                 Else
                     structura.Piva = _FacFactura.Impuesto
                 End If
-                structura.TituloNa = "tax"
-                structura.TituloCantidad = "Quanti"
-                structura.TituloPub = "Price/Unt"
-                structura.TituloNDesc = "Discount"
-                structura.TituloMMonto = "Amount"
+                structura.TituloNa = "Iva"
+                structura.TituloCantidad = "Cant Quanti"
+                structura.TituloPub = "Precio/Unt Price/Unt"
+                structura.TituloNDesc = "Descuento Discount"
+                structura.TituloMMonto = "Monto Amount"
                 structura.TituloCopia = "Copia/Copy"
 
             Catch ex As Exception
@@ -684,7 +684,7 @@ Namespace Presentadores.FacReportes
                     structura.Caso = ""
                 End If
                 If _FacFactura.Status = 1 Then 'if ($ifp$ = 1)
-                    structura.TituloPago = "Condicion de Pago : Credito"
+                    structura.TituloPago = "Condicion de Pago : Contado"
                 Else
                     structura.TituloPago = "Condicion de Pago : Contado"
                 End If
@@ -748,7 +748,7 @@ Namespace Presentadores.FacReportes
                                 If _FacFactura.FechaFactura IsNot Nothing Then
                                     lp_compl(_FacFactura.FechaFactura, _FacFactura.Id, w_s)
                                     structura.Xfactura = ""
-                                    structura.Invoice = "STATEMENT  N°" & w_s
+                                    structura.Invoice = "STATEMENT  N° " & w_s
 
                                     lp_fecha_esc_n_bf(_FacFactura.FechaFactura, structura.Fecha)
                                 Else
@@ -777,7 +777,7 @@ Namespace Presentadores.FacReportes
                                 If _FacFactura.FechaFactura IsNot Nothing Then
                                     lp_compl(_FacFactura.FechaFactura, _FacFactura.Id, w_s)
                                     structura.Xfactura = ""
-                                    structura.Invoice = "STATEMENT  N°" & w_s
+                                    structura.Invoice = "STATEMENT  N° " & w_s
 
                                     lp_fecha_esc_n_bf(_FacFactura.FechaFactura, structura.Fecha)
                                 Else
@@ -822,7 +822,7 @@ Namespace Presentadores.FacReportes
                     structura.Xour = "Our Reference"
                     structura.Xourref = _FacFactura.Ourref
                 End If
-                structura.Xour = "Nuestra Referencia"
+                'structura.Xour = "Nuestra Referencia"
 
                 structura.Msubtimpo = _FacFactura.MSubtimpoBf
                 structura.Mdescuento = _FacFactura.MDescuentoBf
@@ -843,23 +843,40 @@ Namespace Presentadores.FacReportes
                         structura.Seniat = w_s
                 End Select
 
-                'If _FacFactura.Moneda.Id <> "BF" Then
-                '    structura.Moneda = _FacFactura.Moneda.Id
-                'Else
-                structura.Moneda = "BSF"
-                'End If
+                If _FacFactura.Moneda.Id <> "BF" Then
+                    structura.Moneda = _FacFactura.Moneda.Id
+                Else
+                    structura.Moneda = "BSF"
+                End If
                 If _FacFactura.Bst = 1 Then
                     structura.Piva = _FacFactura.PSeniat
                 Else
                     structura.Piva = _FacFactura.Impuesto
                 End If
 
+                structura.TituloNa = "tax"
+                structura.TituloCantidad = "Quanti"
+                structura.TituloPub = "Price/Unt"
+                structura.TituloNDesc = "Discount"
+                structura.TituloMMonto = "Amount"
+                structura.TituloCopia = "Copia/Copy"
+
                 structura.TituloNa = "Iva"
-                structura.TituloCantidad = "Cant"
-                structura.TituloPub = "Precio/Unt"
-                structura.TituloNDesc = "Descuento"
-                structura.TituloMMonto = "Monto"
-                structura.TituloCopia = "Copia"
+                structura.TituloCantidad = "Cant Quanti"
+                structura.TituloPub = "Precio/Unt Price/Unt"
+                structura.TituloNDesc = "Descuento Discount"
+                structura.TituloMMonto = "Monto Amount"
+                structura.TituloCopia = "Copia/Copy"
+
+                If _FacFactura.Status = 4 Then
+                    structura.Moneda = "BSF"
+                    structura.TituloNa = "Iva"
+                    structura.TituloCantidad = "Cant"
+                    structura.TituloPub = "Precio/Unt"
+                    structura.TituloNDesc = "Descuento"
+                    structura.TituloMMonto = "Monto"
+                    structura.TituloCopia = "Copia"
+                End If
 
             Catch ex As Exception
                 'logger.Error(ex.Message)
@@ -891,9 +908,17 @@ Namespace Presentadores.FacReportes
                 If _FacFactura.Status = 1 Then
                     Select Case _FacFactura.Terrero.ToString
                         Case "1"
-                            ObtenerEstructuraDeta("NBF", "1", det)
+                            If _FacFactura.Moneda.Id <> "US" Then
+                                ObtenerEstructuraDeta("NBF", "1", det)
+                            Else
+                                ObtenerEstructuraDeta("N", "1", det)
+                            End If
                         Case "2"
-                            ObtenerEstructuraDeta("NBF", "1", det)
+                            If _FacFactura.Moneda.Id <> "US" Then
+                                ObtenerEstructuraDeta("NBF", "1", det)
+                            Else
+                                ObtenerEstructuraDeta("N", "1", det)
+                            End If
                         Case "3"
                             ObtenerEstructuraDeta("N", "1", det)
                     End Select

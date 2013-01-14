@@ -6,7 +6,7 @@
       xmlns:rpt="clr-namespace:SAPBusinessObjects.WPF.Viewer;assembly=SAPBusinessObjects.WPF.Viewer"
       xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"      
       mc:Ignorable="d" 
-      d:DesignHeight="550" d:DesignWidth="800"
+      d:DesignHeight="2000" d:DesignWidth="2000"      
       xmlns:recurso="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Recursos" Loaded="Page_Loaded"
       Title="Reporte Factura">
 
@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
 
         <WrapPanel Name="_Wp_cry"  Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Margin="20" VerticalAlignment="Center">
-            <rpt:CrystalReportsViewer  HorizontalAlignment="Left" Name="_crystalReportsViewer1"
+            <rpt:CrystalReportsViewer HorizontalAlignment="Left" Name="_crystalReportsViewer1"
                                  VerticalAlignment="Center" Height="600" Width="900" IsEnabled="True" ToggleSidePanel="None" />
         <!--</WrapPanel>
 
