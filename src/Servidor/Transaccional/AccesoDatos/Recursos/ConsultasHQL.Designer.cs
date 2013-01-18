@@ -691,7 +691,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to upper(c.Anexo)Tracking like &apos;%{0}%&apos;.
+        ///   Looks up a localized string similar to upper(c.AnexoTracking) like &apos;%{0}%&apos;.
         /// </summary>
         public static string FiltroObtenerCartaAnexoTracking {
             get {

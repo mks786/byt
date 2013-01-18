@@ -18,6 +18,9 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
         private StreamReader _reader;
         private Font _fuente;
         private string _ruta;
+        private int _tamanoFuente = 10;
+        private int _anchoPagina;
+        private int _altoPagina;
 
         //public bool ClickImprimir
         //{
@@ -53,11 +56,13 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
                 //Genero el .txt utilizado para ejecutar el .bat
                 System.IO.File.WriteAllText(_ruta, this._folio.Text);
                 //System.IO.File.WriteAllText(@"C:\Users\KRUSTY\Documents\print.txt", this._folio.Text);
+                //System.IO.File.WriteAllText(@"C:\Users\KRUSTY\Documents\print.txt", this._folio.Text);
 
 
                 _reader = new StreamReader(_ruta);
-                //reader = new StreamReader(@"C:\Users\KRUSTY\Documents\print.txt");
-                _fuente = new Font("Verdana", 10);
+                //_reader = new StreamReader(@"C:\Users\KRUSTY\Documents\print.txt");
+                //_fuente = new Font("Courier New, Western, 9, regular", 10);
+                _fuente = new Font("Courier New", _tamanoFuente, FontStyle.Regular);
 
 
                 PrintDialog printDlg = new PrintDialog();
@@ -66,13 +71,29 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
                 //Llamamos al dialogo de impresión
                 if (printDlg.ShowDialog() == DialogResult.OK)
                 {
-                    PrintDocument pd = new PrintDocument();
+                    PrintDocument documentoAImprimir = new PrintDocument();
                     //Agregamos el manejador de impresion
-                    pd.PrintPage += new PrintPageEventHandler(this.ManejadorDeArchivoDeTexto);
-                    pd.PrinterSettings = printDlg.PrinterSettings;
-                    //Mandamos a imprimir 
-                    pd.Print();
+                    documentoAImprimir.PrintPage += new PrintPageEventHandler(this.ManejadorDeArchivoDeTexto);
+                    documentoAImprimir.PrinterSettings = printDlg.PrinterSettings;
+                    
+                    
+                    //Calculo de proporciones de la hoja "Oficio Vzla"
+                    //foreach (PaperSize size in documentoAImprimir.PrinterSettings.PaperSizes)
+                    //{
+                    //    if (size.PaperName.Equals ("Oficio Vzla"))
+                    //    {
+                    //        string a = size.PaperName;
+                    //        _anchoPagina = size.Width;
+                    //        _altoPagina = size.Height;
+                    //    }
+                    //}
 
+                    //Tamaño customizado (NO DESCOMENTAR)
+                    //documentoAImprimir.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Oficio Vzla", _ancho, _alto);
+                    
+                    
+                    //Mandamos a imprimir 
+                    documentoAImprimir.Print();
 
                     this.Close();
                 }
@@ -91,10 +112,8 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
                 if (null != _reader)
                 {
                     _reader.Close();
-                    System.IO.File.Delete(@"C:\print.txt");
+                    System.IO.File.Delete(_ruta);
                 }
-
-
             }
 
         }
@@ -107,14 +126,11 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
         /// <param name="ppeArgs">Argumentos del evento para imprimir</param>
         private void ManejadorDeArchivoDeTexto(object sender, PrintPageEventArgs ppeArgs)
         {
-            //Get the Graphics object  
+            //Obtiene el objeto de graficos
             Graphics g = ppeArgs.Graphics;
             float lineasPorPagina = 0;
             float posicionY = 0;
             int count = 0;
-            //Read margins from PrintPageEventArgs  
-            //float margenIzquierdo = ppeArgs.MarginBounds.Left;
-            //float margenDerecho = ppeArgs.MarginBounds.Top;
             float margenIzquierdo = 0;
             float margenDerecho = 0;
             string linea = null;

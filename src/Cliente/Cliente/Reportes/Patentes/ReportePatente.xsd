@@ -38,6 +38,7 @@
               <xs:element name="IdPatente" msprop:Generator_ColumnVarNameInTable="columnIdPatente" msprop:Generator_ColumnPropNameInRow="IdPatente" msprop:Generator_ColumnPropNameInTable="IdPatenteColumn" msprop:Generator_UserColumnName="IdPatente" type="xs:string" minOccurs="0" />
               <xs:element name="FechaInscripcion" msprop:Generator_ColumnVarNameInTable="columnFechaInscripcion" msprop:Generator_ColumnPropNameInRow="FechaInscripcion" msprop:Generator_ColumnPropNameInTable="FechaInscripcionColumn" msprop:Generator_UserColumnName="FechaInscripcion" type="xs:string" minOccurs="0" />
               <xs:element name="CamposVienen" msprop:Generator_ColumnVarNameInTable="columnCamposVienen" msprop:Generator_ColumnPropNameInRow="CamposVienen" msprop:Generator_ColumnPropNameInTable="CamposVienenColumn" msprop:Generator_UserColumnName="CamposVienen" type="xs:string" minOccurs="0" />
+              <xs:element name="CodigoPrioridad" msprop:Generator_ColumnVarNameInTable="columnCodigoPrioridad" msprop:Generator_ColumnPropNameInRow="CodigoPrioridad" msprop:Generator_ColumnPropNameInTable="CodigoPrioridadColumn" msprop:Generator_UserColumnName="CodigoPrioridad" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

@@ -240,7 +240,7 @@
             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
 
                 <Button Grid.Row="0" Grid.Column="1" Name="_btnCancelar" Width="100" Click="_btnCancelar_Click">
-                    <TextBlock Text="{x:Static recurso:Etiquetas.btnCancelar}"/>
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
                 </Button>
                 <Button Grid.Row="0" Grid.Column="1" Name="_btnSeleccionar" Width="100" Click="_btnSeleccionar_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnSeleccionar}"/>

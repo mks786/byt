@@ -2744,6 +2744,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                         break;
                 }
             }
+            catch (UnauthorizedAccessException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(string.Format(Recursos.MensajesConElUsuario.ExcepcionRutaNoAutorizada, ConfigurationManager.AppSettings["txtPrint"]), true);
+            }
             catch (ApplicationException ex)
             {
                 logger.Error(ex.Message);

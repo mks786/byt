@@ -1309,4 +1309,7 @@
   <data name="fac_TarifaServicioModificado" xml:space="preserve">
     <value>Tarifa Servicio modificado con éxito</value>
   </data>
+  <data name="ExcepcionRutaNoAutorizada" xml:space="preserve">
+    <value>Disculpe no puede escribir en la carpeta: {0}</value>
+  </data>
 </root>

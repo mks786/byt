@@ -267,6 +267,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
                 datos.Columns.Add("Resumen2");
                 datos.Columns.Add("Agente");
                 datos.Columns.Add("CodigoPropiedad");
+                datos.Columns.Add("CodigoPrioridad");
                 datos.Columns.Add("CodigoFomento");
                 datos.Columns.Add("CodigoRegistro");
                 datos.Columns.Add("Anexo");
@@ -423,6 +424,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
             filaDatos["Resumen2"] = estructurasDeDatos.Resumen2;
             filaDatos["Agente"] = estructurasDeDatos.Agente;
             filaDatos["CodigoPropiedad"] = estructurasDeDatos.CodigoPropiedad;
+            filaDatos["CodigoPrioridad"] = estructurasDeDatos.CodigoPrioridad;
             filaDatos["CodigoFomento"] = estructurasDeDatos.CodigoFomento;
             filaDatos["CodigoRegistro"] = estructurasDeDatos.CodigoRegistro;
             filaDatos["Anexo"] = estructurasDeDatos.Anexo;
@@ -528,10 +530,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
 
 
             //CodigoPropiedad
-            //if (!string.IsNullOrEmpty(_patente.CodigoPropiedad))
-            //{
+            if (!string.IsNullOrEmpty(_patente.CPrioridad))
+            {
+                retorno.CodigoPrioridad = _patente.CPrioridad;
 
-            //}
+            }
 
             if ((null != _patente.Pais) && !string.IsNullOrEmpty(_patente.Pais.NombreEspanol))
             {
@@ -642,6 +645,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
             private string _resumen2;
             private string _agente;
             private string _codigoPropiedad;
+            private string _codigoPrioridad;
             private string _codigoFomento;
             private string _codigoRegistro;
             private string _anexo;
@@ -719,6 +723,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
             {
                 get { return _codigoPropiedad; }
                 set { _codigoPropiedad = value; }
+            }
+
+            public string CodigoPrioridad
+            {
+                get { return _codigoPrioridad; }
+                set { _codigoPrioridad = value; }
             }
 
             public string CodigoFomento

@@ -1788,6 +1788,10 @@ namespace Trascend.Bolet.Cliente.Presentadores
                     planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
                 }
             }
+            catch (UnauthorizedAccessException ex)
+            {
+                throw new UnauthorizedAccessException();
+            }
             catch (Exception ex)
             {
                 throw new ApplicationException();

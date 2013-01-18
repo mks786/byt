@@ -1003,7 +1003,7 @@
     <value>c.Id = '{0}'</value>
   </data>
   <data name="FiltroObtenerCartaAnexoTracking" xml:space="preserve">
-    <value>upper(c.Anexo)Tracking like '%{0}%'</value>
+    <value>upper(c.AnexoTracking) like '%{0}%'</value>
   </data>
   <data name="FiltroObtenerCartaIdDepartamento" xml:space="preserve">
     <value>c.Departamento.Id = '{0}'</value>

@@ -420,8 +420,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            if (((Contacto)this._ventana.ContactoSeleccionado).Asociado != null)
-                this.Navegar(new ConsultarAsociado(((Contacto)this._ventana.ContactoSeleccionado).Asociado, this._ventana, true));
+            if (((Contacto)this._ventana.ContactoSeleccionado) != null)
+                if (((Contacto)this._ventana.ContactoSeleccionado).Asociado != null)
+                    this.Navegar(new ConsultarAsociado(((Contacto)this._ventana.ContactoSeleccionado).Asociado, this._ventana, true));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -631,9 +632,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
         public void SeleccionarContacto()
         {
-            IList<Asociado> asociados = this._asociadoServicios.ObtenerAsociadosFiltro(new Asociado(((Contacto)this._ventana.ContactoSeleccionado).Asociado.Id));
-            ((ConsultarCarta)this._ventanaPadre).SeleccionarContactoYAsociado(asociados[0], this._ventana.ContactoSeleccionado);
-            RegresarVentanaPadre();
+            if (null != ((Contacto)this._ventana.ContactoSeleccionado))
+            {
+                IList<Asociado> asociados = this._asociadoServicios.ObtenerAsociadosFiltro(new Asociado(((Contacto)this._ventana.ContactoSeleccionado).Asociado.Id));
+                ((ConsultarCarta)this._ventanaPadre).SeleccionarContactoYAsociado(asociados[0], this._ventana.ContactoSeleccionado);
+                RegresarVentanaPadre();
+            }
         }
     }
 }
