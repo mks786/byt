@@ -1775,7 +1775,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
                 if (planilla != null)
                 {
                     Impresion _ventana =
-                        new Impresion("Imprimir " + tituloVentana, planilla.Folio.Replace("\n", Environment.NewLine),ConfigurationManager.AppSettings["txtPrint"]);
+                        new Impresion("Imprimir " + tituloVentana, planilla.Folio.Replace("\n", Environment.NewLine), ConfigurationManager.AppSettings["txtPrint"], int.Parse(ConfigurationManager.AppSettings["tamanoFuente"]), ConfigurationManager.AppSettings["tipografia"]);
 
                     _ventana.ShowDialog();
 

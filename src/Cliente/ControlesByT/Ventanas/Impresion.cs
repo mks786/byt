@@ -18,7 +18,8 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
         private StreamReader _reader;
         private Font _fuente;
         private string _ruta;
-        private int _tamanoFuente = 10;
+        private int _tamanoFuente = 11;
+        private string _tipografia;
         private int _anchoPagina;
         private int _altoPagina;
 
@@ -28,19 +29,21 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
         //    set { _clickImprimir = value; }
         //}
 
-        public Impresion(string titulo, string folio, string ruta)
+        public Impresion(string titulo, string folio, string ruta, int tamanoFuente, string tipografia)
         {
             InitializeComponent();
 
-            this._folio.ScrollBars = ScrollBars.Vertical;
             this.Text = titulo;
-            this._folio.Text = folio;
 
+            this._folio.ScrollBars = ScrollBars.Vertical;
+            this._folio.Text = folio;
             this._folio.SelectionStart = this._folio.Text.Length;
             this._folio.SelectionLength = 0;
+            this._folio.AcceptsReturn = true;
 
             this._ruta = ruta;
-            this._folio.AcceptsReturn = true;
+            this._tamanoFuente = tamanoFuente;
+            this._tipografia = tipografia;
 
         }
 
@@ -62,7 +65,7 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
                 _reader = new StreamReader(_ruta);
                 //_reader = new StreamReader(@"C:\Users\KRUSTY\Documents\print.txt");
                 //_fuente = new Font("Courier New, Western, 9, regular", 10);
-                _fuente = new Font("Courier New", _tamanoFuente, FontStyle.Regular);
+                _fuente = new Font(_tipografia, _tamanoFuente, FontStyle.Regular);
 
 
                 PrintDialog printDlg = new PrintDialog();
@@ -75,8 +78,8 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
                     //Agregamos el manejador de impresion
                     documentoAImprimir.PrintPage += new PrintPageEventHandler(this.ManejadorDeArchivoDeTexto);
                     documentoAImprimir.PrinterSettings = printDlg.PrinterSettings;
-                    
-                    
+
+
                     //Calculo de proporciones de la hoja "Oficio Vzla"
                     //foreach (PaperSize size in documentoAImprimir.PrinterSettings.PaperSizes)
                     //{
@@ -90,8 +93,8 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
 
                     //Tamaño customizado (NO DESCOMENTAR)
                     //documentoAImprimir.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Oficio Vzla", _ancho, _alto);
-                    
-                    
+
+
                     //Mandamos a imprimir 
                     documentoAImprimir.Print();
 
