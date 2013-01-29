@@ -74,6 +74,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaReferencia, carta.Referencia.ToUpper());
+                    variosFiltros = true;
                 }
 
                 //Por departamento
@@ -86,11 +87,12 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 }
 
                 //Por resumen
-                if ((null != carta.Resumen) && (!carta.Resumen.Descripcion.Equals("")))
+                if ((null != carta.DescripcionResumen) && (!carta.DescripcionResumen.Equals("")))
                 {
                     if (variosFiltros)
                         filtro += " and ";
-                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaResumen, carta.Resumen.Descripcion);
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaDescripcionResumen, carta.DescripcionResumen);
+                    variosFiltros = true;
                 }
 
                 //Por fecha
@@ -101,6 +103,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     string fecha = String.Format("{0:dd/MM/yy}", carta.Fecha);
                     string fecha2 = String.Format("{0:dd/MM/yy}", carta.Fecha.AddDays(1));
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaFecha, fecha, fecha2);
+                    variosFiltros = true;
                 }
 
                 //Por fecha
@@ -111,6 +114,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     string fecha = String.Format("{0:dd/MM/yy}", carta.AnexoFecha);
                     string fecha2 = String.Format("{0:dd/MM/yy}", carta.AnexoFecha.Value.AddDays(1));
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaFechaAnexo, fecha, fecha2);
+                    variosFiltros = true;
                 }
 
                 //Por tracking
@@ -119,6 +123,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaTracking, carta.Tracking.ToUpper());
+                    variosFiltros = true;
                 }
 
                 //Por tracking anexo
@@ -127,6 +132,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaAnexoTracking, carta.AnexoTracking.ToUpper());
+                    variosFiltros = true;
                 }
 
                 filtro += " order by c.Id ASC";

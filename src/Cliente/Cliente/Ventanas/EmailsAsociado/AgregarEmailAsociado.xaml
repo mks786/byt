@@ -42,8 +42,8 @@
         <GroupBox Grid.Column="1" Grid.Row="1">
             <Grid Name="_gridDatos" DataContext="{Binding}">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="107*" />
+                    <ColumnDefinition Width="481*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -89,7 +89,7 @@
                     </custom:ByTTextBox.Text>
                 </custom:ByTTextBox>
 
-                <ListView Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="5" Name="_lstTiposEmail" ItemsSource="{Binding}" Width="300" HorizontalAlignment="Left"
+                <ListView Grid.Column="1" Grid.Row="2" Grid.RowSpan="5" Name="_lstTiposEmail" ItemsSource="{Binding}" Width="481" HorizontalAlignment="Left"
                       SelectionMode="Single" MouseDoubleClick="_lstTiposEmail_MouseDoubleClick"
                       Style="{DynamicResource EstiloListView}" Visibility="Collapsed" >
                     <ListView.View>

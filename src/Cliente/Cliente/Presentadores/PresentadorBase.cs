@@ -16,6 +16,7 @@ using System.IO;
 
 //facturacion
 using Diginsoft.Bolet.ObjetosComunes.Entidades;
+using System.ComponentModel;
 
 namespace Trascend.Bolet.Cliente.Presentadores
 {
@@ -1311,26 +1312,19 @@ namespace Trascend.Bolet.Cliente.Presentadores
         /// <summary>
         /// Método que busca un id en el texto que va en el Combobox
         /// </summary>
-        public string BuscarDepartamentoContacto(string departamentoBuscado)
+        public ListaDatosValores BuscarDepartamentoContacto(IList<ListaDatosValores> departamentos, ListaDatosValores departamentoBuscado)
         {
-            string retorno = "NGN";
-            switch (departamentoBuscado)
-            {
-                case "LEG":
-                    retorno = Recursos.Etiquetas.cbiLegal;
-                    break;
-                case "MAR":
-                    retorno = Recursos.Etiquetas.cbiMarcas;
-                    break;
-                case "PAT":
-                    retorno = Recursos.Etiquetas.cbiPatentes;
-                    break;
-                case "ADM":
-                    retorno = Recursos.Etiquetas.cbiAdministracion;
-                    break;
-                default:
-                    break;
-            }
+            ListaDatosValores retorno = null;
+
+            if (departamentoBuscado != null)
+                foreach (ListaDatosValores item in departamentos)
+                {
+                    if (item.Valor == departamentoBuscado.Valor)
+                    {
+                        retorno = item;
+                        break;
+                    }
+                }
 
             return retorno;
         }
@@ -1471,6 +1465,31 @@ namespace Trascend.Bolet.Cliente.Presentadores
             }
 
             return trackingCorrecto;
+        }
+
+        /// <summary>
+        /// Método que surge a raiz de "VerificarFormato". Se cambia debido a que el formato no es utilizado
+        /// </summary>
+        /// <param name="p"></param>
+        /// <param name="p_2"></param>
+        /// <returns></returns>
+        public bool VerificarFormatoProduccion(string formato, string tracking)
+        {
+            bool trackingCorrecto = false;
+
+            if (CalcularNumeroDeCaracteres(formato) == CalcularNumeroDeCaracteres(tracking))
+                trackingCorrecto = true;
+
+            return trackingCorrecto;
+        }
+
+        private int CalcularNumeroDeCaracteres(string formato)
+        {
+            int retorno = 0;
+
+            retorno = formato.Replace("-",string.Empty).Length;
+
+            return retorno;
         }
 
 
@@ -2327,13 +2346,15 @@ namespace Trascend.Bolet.Cliente.Presentadores
             {
                 IList<int> posiciones = new List<int>();
                 int i = 0;
-                foreach (TipoEmailAsociado tipoEmail in listaTipoEmailAsociado)
-                {
-                    if (tipoEmail.Departamento.Id != departamentoBuscado.Id)
-                        posiciones.Insert(0, i);
 
-                    i++;
-                }
+                if (UsuarioLogeado.Rol.Id != "ADMINISTRADOR")
+                    foreach (TipoEmailAsociado tipoEmail in listaTipoEmailAsociado)
+                    {
+                        if (tipoEmail.Departamento.Id != departamentoBuscado.Id)
+                            posiciones.Insert(0, i);
+
+                        i++;
+                    }
 
                 foreach (int posicion in posiciones)
                 {

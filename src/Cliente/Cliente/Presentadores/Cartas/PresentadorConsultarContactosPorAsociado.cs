@@ -39,6 +39,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private IPaisServicios _paisServicios;
         private IListaDatosDominioServicios _listaDatosDominioServicios;
         private IDepartamentoServicios _departamentoServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
 
 
         private Asociado _asociadoPrecargado;
@@ -98,6 +99,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
                 this._departamentoServicios = (IDepartamentoServicios)Activator.GetObject(typeof(IDepartamentoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["DepartamentoServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -148,8 +151,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                 this._ventana.TotalHits = "0";
 
-                IList<Departamento> departamentos = this._departamentoServicios.ConsultarTodos();
-                Departamento primerDepartamento = new Departamento();
+                IList<ListaDatosValores> departamentos = this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiDepartamentoDeContactos));
+                ListaDatosValores primerDepartamento = new ListaDatosValores();
                 primerDepartamento.Id = "NGN";
                 departamentos.Insert(0, primerDepartamento);
                 this._ventana.Departamentos = departamentos;
@@ -210,6 +213,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                Mouse.OverrideCursor = Cursors.Wait;
+
                 this._filtroValido = 0;
 
                 CargarDatosFiltro();
@@ -242,6 +247,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                         this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
 
+                Mouse.OverrideCursor = null;
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -318,10 +324,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     contacto.Fax = this._ventana.FaxContacto;
                 }
 
-                if (((Departamento)this._ventana.Departamento).Id != "NGN")
+                if (((ListaDatosValores)this._ventana.Departamento).Id != "NGN")
                 {
                     _filtroContacto = 2;
-                    contacto.Departamento = ((Departamento)this._ventana.Departamento).Id;
+                    contacto.Departamento = ((ListaDatosValores)this._ventana.Departamento).Valor;
                 }
 
                 #region trace

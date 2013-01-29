@@ -3624,4 +3624,10 @@ en Prensa:</value>
   <data name="FaccbiPatenteSolicitud" xml:space="preserve">
     <value>Patente Solicitud</value>
   </data>
+  <data name="cbiDepartamentoDeContactos" xml:space="preserve">
+    <value>DEPARTAMENTOCONTACTO</value>
+  </data>
+  <data name="lblAsociadoNoRegistrado" xml:space="preserve">
+    <value>Asoc. No Registrado:</value>
+  </data>
 </root>

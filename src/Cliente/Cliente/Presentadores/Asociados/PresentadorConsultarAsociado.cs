@@ -256,10 +256,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     if ((DetallePago)this._ventana.DetallePago != null)
                         asociado.DetallePago = !((DetallePago)this._ventana.DetallePago).Id.Equals("NGN") ? (DetallePago)this._ventana.DetallePago : null;
 
-                    bool exitoso = this._asociadoServicios.InsertarOModificar(asociado, UsuarioLogeado.Hash);
+                    int? exitoso = this._asociadoServicios.InsertarOModificarAsociado(asociado, UsuarioLogeado.Hash);
 
-                    if (exitoso)
-                        this.Navegar(Recursos.MensajesConElUsuario.AsociadoModificado, false);
+                    if (exitoso != null)
+                    {
+                        //this.Navegar(Recursos.MensajesConElUsuario.AsociadoModificado, false);
+                        this._ventana.HabilitarCampos = false;
+                        this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                    }
                 }
 
                 #region trace

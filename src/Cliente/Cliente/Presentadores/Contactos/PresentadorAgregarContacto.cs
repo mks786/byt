@@ -8,6 +8,7 @@ using Trascend.Bolet.Cliente.Contratos.Contactos;
 using Trascend.Bolet.Cliente.Ventanas.Asociados;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using System.Collections.Generic;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Contactos
 {
@@ -18,6 +19,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
         private IContactoServicios _contactoServicios;
         private IAsociadoServicios _asociadoServicios;
         private ICartaServicios _cartaServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
         private Asociado _asociado;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -43,6 +45,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
                 this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
             }
             catch (Exception ex)
             {
@@ -65,6 +69,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                 #endregion
 
                 Mouse.OverrideCursor = Cursors.Wait;
+
+                IList<ListaDatosValores> departamentos = this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiDepartamentoDeContactos));
+                ListaDatosValores primerDepartamento = new ListaDatosValores();
+                primerDepartamento.Id = "NGN";
+                departamentos.Insert(0, primerDepartamento);
+                this._ventana.Departamentos = departamentos;
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarContacto,
                         Recursos.Ids.Contacto);
@@ -117,7 +127,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
 
                 bool exitoso = false;
                 Contacto contacto = (Contacto)this._ventana.Contacto;
-                contacto.Departamento = this.transformarDepartamento(this._ventana.getDepartamento);
+                contacto.Departamento = ((ListaDatosValores)this._ventana.Departamento).Valor;
                 contacto.Funcion = this.transformarFuncion(this._ventana.getFuncion);
                 if (!string.IsNullOrEmpty(contacto.Email))
                 {

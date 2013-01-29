@@ -132,8 +132,8 @@
     <value>asociado.Id = {0}</value>
     <comment>Filtro por Asociado</comment>
   </data>
-  <data name="FiltroObtenerCartaResumen" xml:space="preserve">
-    <value>upper(resumen.Descripcion) like '%{0}%'</value>
+  <data name="FiltroObtenerCartaDescripcionResumen" xml:space="preserve">
+    <value>upper(c.DescripcionResumen) like '%{0}%'</value>
   </data>
   <data name="ObtenerAgentesYPoderes" xml:space="preserve">
     <value>Select distinct(a) from Agente a left join fetch a.Poderes order by a.Id</value>

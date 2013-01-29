@@ -9,6 +9,7 @@ using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Asociados;
+using System.Collections.Generic;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Contactos
 {
@@ -19,6 +20,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
         private IAsociadoServicios _asociadoServicios;
         private ICartaServicios _cartaServicios;
         private IContactoServicios _contactoServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -35,9 +37,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                 this._ventana = ventana;
                 this._ventana.Contacto = contacto;
                 this._ventanaPadre = ventanaPadre;
-                this._ventana.setDepartamento = this.BuscarDepartamentoContacto(((Contacto)this._ventana.Contacto).Departamento);
-                this._ventana.setFuncion = this.BuscarFuncionContacto(((Contacto)this._ventana.Contacto).Funcion);
-                this._ventana.setCorrespondencia = ((Contacto)this._ventana.Contacto).Carta == null ? "" : ((Contacto)this._ventana.Contacto).Carta.Id.ToString();
 
                 this._contactoServicios = (IContactoServicios)Activator.GetObject(typeof(IContactoServicios),
                      ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ContactoServicios"]);
@@ -45,6 +44,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
                 this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
+
+                ListaDatosValores valorBuscado = new ListaDatosValores();
+                valorBuscado.Valor = ((Contacto)this._ventana.Contacto).Departamento;
+                this._ventana.Departamento = this.BuscarDepartamentoContacto(this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiDepartamentoDeContactos)), valorBuscado);
+                this._ventana.setFuncion = this.BuscarFuncionContacto(((Contacto)this._ventana.Contacto).Funcion);
+                this._ventana.setCorrespondencia = ((Contacto)this._ventana.Contacto).Carta == null ? "" : ((Contacto)this._ventana.Contacto).Carta.Id.ToString();
+
+
             }
             catch (Exception ex)
             {
@@ -67,6 +76,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
+
+
+                IList<ListaDatosValores> departamentos = this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiDepartamentoDeContactos));
+                ListaDatosValores primerDepartamento = new ListaDatosValores();
+                primerDepartamento.Id = "NGN";
+                departamentos.Insert(0, primerDepartamento);
+                this._ventana.Departamentos = departamentos;
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarContacto,
                     Recursos.Ids.ConsultarContacto);
@@ -113,7 +129,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                 {
                     bool exitoso = false;
                     Contacto contacto = (Contacto)this._ventana.Contacto;
-                    contacto.Departamento = this.transformarDepartamento(this._ventana.getDepartamento);
+                    contacto.Departamento = ((ListaDatosValores)this._ventana.Departamento).Valor;
                     contacto.Funcion = this.transformarFuncion(this._ventana.getFuncion);
 
                     if (!string.IsNullOrEmpty(this._ventana.getCorrespondencia))

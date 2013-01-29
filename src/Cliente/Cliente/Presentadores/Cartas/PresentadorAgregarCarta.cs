@@ -81,6 +81,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             }
         }
 
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -202,9 +203,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 bool tracking = true;
 
                 if (null != (((Medio)this._ventana.Medio).Formato) && (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).Tracking)))
-                    tracking = this.VerificarFormato(((Medio)this._ventana.Medio).Formato, ((Carta)this._ventana.Carta).Tracking);
+                    tracking = this.VerificarFormatoProduccion(((Medio)this._ventana.Medio).Formato, ((Carta)this._ventana.Carta).Tracking);
                 if (null != (((Medio)this._ventana.MedioTrackingConfirmacion)) && (null != (((Medio)this._ventana.MedioTrackingConfirmacion).Formato)) && (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).AnexoTracking)))
-                    tracking = this.VerificarFormato(((Medio)this._ventana.MedioTrackingConfirmacion).Formato, ((Carta)this._ventana.Carta).AnexoTracking);
+                    tracking = this.VerificarFormatoProduccion(((Medio)this._ventana.MedioTrackingConfirmacion).Formato, ((Carta)this._ventana.Carta).AnexoTracking);
 
                 if (tracking)
                 {
@@ -275,6 +276,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             }
         }
 
+
         /// <summary>
         /// Método que se encarga de cambiar el asociado de la ventana
         /// </summary>
@@ -311,6 +313,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que se encarga de buscar un asociado con filtros
@@ -370,6 +373,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             #endregion
         }
 
+
         /// <summary>
         /// Método que se encarga de agregar un anexo carta
         /// </summary>
@@ -406,6 +410,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             return retorno;
         }
 
+
         /// <summary>
         /// Método que se encarga de agregar un anexo carta confirmación
         /// </summary>
@@ -441,6 +446,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
             return retorno;
         }
+
 
         /// <summary>
         /// Metodo que deshabilita los anexos de carta
@@ -482,6 +488,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             return respuesta;
         }
 
+
         /// <summary>
         /// Método que deshabilita los anexos confirmación de carta
         /// </summary>
@@ -522,6 +529,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             return respuesta;
         }
 
+
         /// <summary>
         /// Método que cambia el formato de la pantalla entre vacío a
         /// contenido
@@ -541,6 +549,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             #endregion
         }
 
+
         /// <summary>
         /// Método que cambia el formato confirmación de la pantalla entre vacío       
         /// a contenido
@@ -559,6 +568,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que se encarga de agregar un responsable a la carta
@@ -607,6 +617,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
         }
 
+
         /// <summary>
         /// Metodo que convierte una lista de asignaciones a usuarios
         /// </summary>
@@ -632,6 +643,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
             return usuarios;
         }
+
 
         /// <summary>
         /// Método que deshabilita un responsable de la carta
@@ -673,6 +685,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que elimina un responsable de la carta

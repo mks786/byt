@@ -38,6 +38,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private IAsignacionServicios _asignacionServicios;
         private IMedioServicios _medioServicios;
         private IDepartamentoServicios _departamentoServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
         private IContactoServicios _contactoServicios;
         private IList<Carta> _cartas;
         private IList<Carta> _cartasDeUnResponsable;
@@ -82,6 +83,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["DepartamentoServicios"]);
                 this._contactoServicios = (IContactoServicios)Activator.GetObject(typeof(IContactoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ContactoServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -133,6 +136,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["DepartamentoServicios"]);
                 this._contactoServicios = (IContactoServicios)Activator.GetObject(typeof(IContactoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ContactoServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -336,9 +341,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 {
                     filtroValido++;
                     consultaResumen = true;
-                    Resumen resumenAux = new Resumen();
-                    resumenAux.Descripcion = this._ventana.ResumenFiltrar;
-                    cartaAuxiliar.Resumen = resumenAux;
+                    //Resumen resumenAux = new Resumen();
+                    //resumenAux.Descripcion = this._ventana.ResumenFiltrar;
+                    //cartaAuxiliar.Resumen = resumenAux;
+                    cartaAuxiliar.DescripcionResumen = this._ventana.ResumenFiltrar; ;
 
                 }
 

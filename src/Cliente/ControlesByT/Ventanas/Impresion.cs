@@ -45,6 +45,10 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
             this._tamanoFuente = tamanoFuente;
             this._tipografia = tipografia;
 
+            _fuente = new Font(_tipografia, _tamanoFuente, FontStyle.Regular);
+
+            this._folio.Font = _fuente;
+
         }
 
         private void _btnCerrar_Click(object sender, EventArgs e)
@@ -65,7 +69,6 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
                 _reader = new StreamReader(_ruta);
                 //_reader = new StreamReader(@"C:\Users\KRUSTY\Documents\print.txt");
                 //_fuente = new Font("Courier New, Western, 9, regular", 10);
-                _fuente = new Font(_tipografia, _tamanoFuente, FontStyle.Regular);
 
 
                 PrintDialog printDlg = new PrintDialog();

@@ -27,24 +27,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
             set{this._gridDatos.DataContext = value;}
         }
 
-        public string getDepartamento
+        public object Departamento
         {
-            get
-            {
-                if (!string.Equals("", this._cbxDepartamento.Text))
-                {
-                    return ((string)this._cbxDepartamento.Text);
-                }
-                return "";
-            }
+            get { return this._cbxDepartamento.SelectedItem; }
+            set { this._cbxDepartamento.SelectedItem = value; }
         }
 
-        public string setDepartamento
+        public object Departamentos
         {
-            set
-            {
-                this._cbxDepartamento.Text = value;
-            }
+            get { return this._cbxDepartamento.DataContext; }
+            set { this._cbxDepartamento.DataContext = value; }
         }
 
         public string setFuncion

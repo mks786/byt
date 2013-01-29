@@ -57,5 +57,14 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// <param name="asociado"></param>
         /// <returns></returns>
         IList<EmailAsociado> ConsultarEmailsDelAsociado(Asociado asociado);
+
+
+        /// <summary>
+        /// Servicio que se encarga de insertar el asociado
+        /// </summary>
+        /// <param name="marca">asociado a insertar</param>
+        /// <param name="hash">hash del usuario que ejecuta la insercion</param>
+        /// <returns>Id del asociado insertado</returns>
+        int? InsertarOModificarAsociado(Asociado asociado, int hash);
     }
 }

@@ -700,6 +700,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to upper(c.DescripcionResumen) like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroObtenerCartaDescripcionResumen {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCartaDescripcionResumen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to c.Fecha between &apos;{0}&apos; and &apos;{1}&apos;.
         /// </summary>
         public static string FiltroObtenerCartaFecha {
@@ -795,15 +804,6 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerCartaReferencia {
             get {
                 return ResourceManager.GetString("FiltroObtenerCartaReferencia", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to upper(resumen.Descripcion) like &apos;%{0}%&apos;.
-        /// </summary>
-        public static string FiltroObtenerCartaResumen {
-            get {
-                return ResourceManager.GetString("FiltroObtenerCartaResumen", resourceCulture);
             }
         }
         

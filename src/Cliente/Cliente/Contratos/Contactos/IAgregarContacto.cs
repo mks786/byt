@@ -6,9 +6,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Contactos
     {
         object Contacto { get; set; }
 
-        string getDepartamento { get; }
+        object Departamento { get; set; }
 
-        string setDepartamento { set; }
+        object Departamentos { get; set; }
 
         string setFuncion { set; }
 

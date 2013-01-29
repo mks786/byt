@@ -304,7 +304,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         {
             this._btnConsultar.Focus();
             this._presentador.Consultar();
-            this._dpkFecha.Text = string.Empty;
+            //this._dpkFecha.Text = string.Empty;
             ValidarCamposVacios();
         }
 

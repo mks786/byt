@@ -183,10 +183,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 asociado.Etiqueta = !((Etiqueta)this._ventana.Etiqueta).Id.Equals("NGN") ? (Etiqueta)this._ventana.Etiqueta : null;
                 asociado.DetallePago = !((DetallePago)this._ventana.DetallePago).Id.Equals("NGN") ? (DetallePago)this._ventana.DetallePago : null;
 
-                bool exitoso = this._asociadoServicios.InsertarOModificar(asociado, UsuarioLogeado.Hash);
+                int? exitoso = this._asociadoServicios.InsertarOModificarAsociado(asociado, UsuarioLogeado.Hash);
 
-                if (exitoso)
-                    this.Navegar(Recursos.MensajesConElUsuario.AsociadoInsertado, false);
+                if (exitoso != null)
+                {
+                    asociado.Id = exitoso.Value;
+                    this.Navegar(new ConsultarAsociado(asociado, null, false));
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

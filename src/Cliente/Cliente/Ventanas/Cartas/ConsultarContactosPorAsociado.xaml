@@ -130,7 +130,7 @@
                         <Label>
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblEmail}"/>
                         </Label>
-                        <custom:ByTTextBox Name="_txtEmailContacto" Width="150" MaxLength="6" Filtro="True"></custom:ByTTextBox>
+                        <custom:ByTTextBox Name="_txtEmailContacto" Width="150" MaxLength="2000" Filtro="True"></custom:ByTTextBox>
                     </WrapPanel>
                     <WrapPanel Name="_NombreContacto" Visibility="Visible" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,50,0">
                         <Label>

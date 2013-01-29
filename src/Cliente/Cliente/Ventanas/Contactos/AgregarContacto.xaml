@@ -69,24 +69,9 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDepartamento}"/>
                     </Label>
-                    <ComboBox Name="_cbxDepartamento" Width="150" SelectedIndex="0" >
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiNinguno}" Tag="NGN"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiLegal}"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiMarcas}"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiPatentes}"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAdministracion}"/>
-                        </ComboBoxItem>
+                    <ComboBox Name="_cbxDepartamento" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
                     </ComboBox>
-                    
+
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
@@ -159,7 +144,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCorrespondencia}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtCorrespondencia" Width="150" MaxLength="255"  Text="" />
+                    <custom:ByTTextBox Name="_txtCorrespondencia" Width="150" MaxLength="255"  Text="" SoloNumero="True" />
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0"></WrapPanel>
             </StackPanel>

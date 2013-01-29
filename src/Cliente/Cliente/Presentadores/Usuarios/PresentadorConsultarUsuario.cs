@@ -136,6 +136,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Usuarios
                         Departamento departamento = (Departamento)this._ventana.Departamento;
                         usuario.Departamento = departamento;
                     }
+                    if (usuario.Id == UsuarioLogeado.Id) 
+                    {
+                        UsuarioLogeado = usuario;
+                    }
                     bool exitoso = this._usuarioServicios.InsertarOModificar(usuario, UsuarioLogeado.Hash);
 
                     if (exitoso)
