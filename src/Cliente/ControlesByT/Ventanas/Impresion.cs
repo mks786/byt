@@ -74,13 +74,14 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
                 PrintDialog printDlg = new PrintDialog();
                 printDlg.AllowSelection = true;
                 printDlg.AllowSomePages = true;
+
                 //Llamamos al dialogo de impresión
                 if (printDlg.ShowDialog() == DialogResult.OK)
                 {
                     PrintDocument documentoAImprimir = new PrintDocument();
                     //Agregamos el manejador de impresion
                     documentoAImprimir.PrintPage += new PrintPageEventHandler(this.ManejadorDeArchivoDeTexto);
-                    documentoAImprimir.PrinterSettings = printDlg.PrinterSettings;
+                    documentoAImprimir.PrinterSettings.PrinterName = printDlg.PrinterSettings.PrinterName;
 
 
                     //Calculo de proporciones de la hoja "Oficio Vzla"
