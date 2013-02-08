@@ -1353,7 +1353,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void ocultarLstInteresadoSolicutud()
         {
-            this._presentador.CambiarInteresadoSolicitud();
+            //this._presentador.CambiarInteresadoSolicitud();
             this._lstInteresadosSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._btnConsultarInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdInteresadoSolicitudFiltrar.Visibility = System.Windows.Visibility.Collapsed;
@@ -1806,7 +1806,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _lstPoderesSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            this._presentador.CambiarCorresponsalSolicitud();
+            this._presentador.CambiarPoderSolicitud();
             ocultarLstPoderSolicutud();
             ocultarLstPoderDatos();
         }

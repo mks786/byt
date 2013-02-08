@@ -1900,23 +1900,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             Marca marca = null != this._ventana.Marca ? (Marca)this._ventana.Marca : new Marca();
 
-            Poder poder = null;
-            //Poder poder = _marca.Poder;
-            if (!this._ventana.IdPoderDatos.Equals(""))
-                poder = new Poder(int.Parse(this._ventana.IdPoderDatos));
+            //Poder poder = null;
+            ////Poder poder = _marca.Poder;
+            //if (!this._ventana.IdPoderDatos.Equals(""))
+            //    poder = new Poder(int.Parse(this._ventana.IdPoderDatos));
 
-            this._ventana.PoderSolicitud = poder != null ? poder.Id.ToString() : "";
-            //this._ventana.PoderSolicitud = poder.Id.ToString();
-            this._ventana.IdPoderSolicitud = poder != null ? poder.Id.ToString() : "";
+            //this._ventana.PoderSolicitud = poder != null ? poder.Id.ToString() : "";
+            ////this._ventana.PoderSolicitud = poder.Id.ToString();
+            //this._ventana.IdPoderSolicitud = poder != null ? poder.Id.ToString() : "";
 
-            this._ventana.PoderDatos = poder != null ? poder.Id.ToString() : "";
+            //this._ventana.PoderDatos = poder != null ? poder.Id.ToString() : "";
 
-            this._ventana.PoderesSolicitud = this._poderesInterseccion;
-            this._ventana.PoderesDatos = this._poderesInterseccion;
+            //this._ventana.PoderesSolicitud = this._poderesInterseccion;
+            //this._ventana.PoderesDatos = this._poderesInterseccion;
 
-            this._ventana.PoderSolicitud = poder;
-            this._ventana.PoderDatos = poder;
+            //this._ventana.PoderSolicitud = poder;
+            //this._ventana.PoderDatos = poder;
+            if (_marca.Poder != null)
+            {
+                this._ventana.PoderesSolicitud = this._poderesInterseccion;
+                this._ventana.PoderesDatos = this._poderesInterseccion;
 
+                this._ventana.PoderSolicitud = this.BuscarPoder(_poderesInterseccion, this._marca.Poder);
+                this._ventana.PoderDatos = this.BuscarPoder(_poderesInterseccion, this._marca.Poder);
+            }
             Mouse.OverrideCursor = null;
 
 
