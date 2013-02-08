@@ -69,7 +69,7 @@ namespace Trascend.Bolet.ControlesByT
 
         public ByTTextBox()
         {
-            if (_dobleClickDespliegaLista) 
+            if (_dobleClickDespliegaLista)
             {
                 this.BorderBrush = Brushes.LightGreen;
             }
@@ -89,10 +89,10 @@ namespace Trascend.Bolet.ControlesByT
             }
             if (SoloNumero)
             {
-                if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "\\d+") 
-                    && (e.Key != System.Windows.Input.Key.Tab) 
+                if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "\\d+")
+                    && (e.Key != System.Windows.Input.Key.Tab)
                     && (e.Key != System.Windows.Input.Key.Return))
-                        e.Handled = true;
+                    e.Handled = true;
             }
             if (SoloPorcentaje)
             {
@@ -106,6 +106,16 @@ namespace Trascend.Bolet.ControlesByT
                     e.Handled = true;
             }
             base.OnKeyDown(e);
+        }
+
+        protected override void OnKeyUp(System.Windows.Input.KeyEventArgs e)
+        {
+            if (_soloNumero)
+                if (!System.Text.RegularExpressions.Regex.IsMatch(this.Text, "\\d+")) {
+                    this.Text = string.Empty;
+                    e.Handled = true;
+                }
+            base.OnKeyUp(e);
         }
     }
 }

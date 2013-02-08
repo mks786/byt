@@ -1016,7 +1016,7 @@
     <value>upper(c.Tracking) like '%{0}%'</value>
   </data>
   <data name="FiltroObtenerCartaNombreContacto" xml:space="preserve">
-    <value>c.NombreContacto like '%{0}%'</value>
+    <value>c.Persona like '%{0}%'</value>
   </data>
   <data name="FiltroObtenerCartaFechaAnexo" xml:space="preserve">
     <value>c.AnexoFecha between '{0}' and '{1}'</value>

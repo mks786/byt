@@ -763,7 +763,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to c.NombreContacto like &apos;%{0}%&apos;.
+        ///   Looks up a localized string similar to c.Persona like &apos;%{0}%&apos;.
         /// </summary>
         public static string FiltroObtenerCartaNombreContacto {
             get {

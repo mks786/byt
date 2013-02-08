@@ -232,14 +232,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     else
                         this._ventana.EsMarcaNacional(true);
 
-                    if (null != fusion.FusionMarcaTercero.Estado)
-                        this._ventana.Corporacion = this.BuscarEstado(estados, fusion.FusionMarcaTercero.Estado);
+                    if (null != fusion.FusionMarcaTercero)
+                    {
+                        if (null != fusion.FusionMarcaTercero.Estado)
+                            this._ventana.Corporacion = this.BuscarEstado(estados, fusion.FusionMarcaTercero.Estado);
 
-                    if (null != fusion.FusionMarcaTercero.Pais)
-                        this._ventana.PaisMarcaTercero = this.BuscarPais(paisesMT, fusion.FusionMarcaTercero.Pais);
+                        if (null != fusion.FusionMarcaTercero.Pais)
+                            this._ventana.PaisMarcaTercero = this.BuscarPais(paisesMT, fusion.FusionMarcaTercero.Pais);
 
-                    if (null != fusion.FusionMarcaTercero.Nacionalidad)
-                        this._ventana.NacionalidadMarcaTercero = this.BuscarPais(nacionalidadesMT, fusion.FusionMarcaTercero.Nacionalidad);
+                        if (null != fusion.FusionMarcaTercero.Nacionalidad)
+                            this._ventana.NacionalidadMarcaTercero = this.BuscarPais(nacionalidadesMT, fusion.FusionMarcaTercero.Nacionalidad);
+                    }
 
                     CargarMarca();
 
