@@ -1938,7 +1938,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             if (ValidarMarcaAntesDeImprimirCarpeta())
             {
                 string paqueteProcedimiento = "PCK_MYP_RENOVACIONES";
-                string procedimiento = "P3";
+                string procedimiento = "P4";
                 ParametroProcedimiento parametro =
                     new ParametroProcedimiento(((Renovacion)this._ventana.Renovacion).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
@@ -1951,7 +1951,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             if (ValidarMarcaAntesDeImprimirCarpeta())
             {
                 string paqueteProcedimiento = "PCK_MYP_RENOVACIONES";
-                string procedimiento = "P4";
+                string procedimiento = "P3";
                 ParametroProcedimiento parametro =
                     new ParametroProcedimiento(((Renovacion)this._ventana.Renovacion).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
