@@ -528,7 +528,7 @@
     <query-param name="way" type="int" />
     <query-param name="cod" type="int" />
 
-    begin PCK_MYP_PCESIONES.P3(:usr, :way, :cod); end;
+    begin PCK_MYP_PCESIONES.P2(:usr, :way, :cod); end;
 
   </sql-query>
 
