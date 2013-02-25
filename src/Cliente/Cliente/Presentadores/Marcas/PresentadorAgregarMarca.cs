@@ -20,6 +20,9 @@ using Trascend.Bolet.Cliente.Ventanas.Asociados;
 using Trascend.Bolet.Cliente.Ventanas.Interesados;
 using Trascend.Bolet.Cliente.Ventanas.Poderes;
 
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacReportes;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacAsociadoMarcaPatentes;
+
 namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
     class PresentadorAgregarMarca : PresentadorBase
@@ -29,7 +32,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private IAgregarMarca _ventana;
         private bool _esMarcaDuplicada = false;
-
 
         private IMarcaServicios _marcaServicios;
         private IAsociadoServicios _asociadoServicios;
@@ -1854,5 +1856,65 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             this._ventana.AsociadosInternacionalesDatos = asociados;
             this._ventana.AsociadosInternacionales = asociados;
         }
+
+
+        public void IrVentanaImprimirEdoCuenta()
+        {
+            if ((Asociado)this._ventana.AsociadoSolicitud != null)
+            {
+                Asociado Asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
+                Navegar(new EstadoCuentas("2", Asociado));
+                
+            }
+        }
+
+        public void IrVentanaFacturacionDatos()
+        {
+            if ((Marca)this._ventana.Marca != null)
+            {
+                Marca Marca = ((Marca)this._ventana.Marca).Id != int.MinValue ? (Marca)this._ventana.Marca : null;
+                string Id = System.Convert.ToString(Marca.Id);
+                Navegar(new ConsultarFacVistaFacturaServicios(Id, "M"));
+
+            }
+        }
+
+        public void CalcularSaldos()
+        {
+            if ((Asociado)this._ventana.AsociadoSolicitud != null)
+            {
+                Asociado Asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
+
+                double? w_1, w_2, w_3, w_4, w_5, w_6, msaldope;
+                w_1 = 0;
+                w_2 = 0;
+                w_3 = 0;
+                w_4 = 0;
+                w_5 = 0;
+                w_6 = 0;
+                msaldope = 0;
+                string moneda = "";
+                int casociado = Asociado.Id;
+                int? dias = 30;
+                CalcularSaldosAsociado(casociado, dias, ref w_1, ref w_2, ref w_3, ref w_4, ref w_5, ref w_6, ref msaldope, ref  moneda);
+
+                if (moneda == "US")
+                {
+
+                    this._ventana.SaldoVencidoSolicitud = System.Convert.ToString(w_2);
+                    this._ventana.SaldoPorVencerSolicitud = System.Convert.ToString(w_4);
+                    this._ventana.TotalSolicitud = System.Convert.ToString(w_2 + w_4);
+
+                }
+                else
+                {
+                    this._ventana.SaldoVencidoSolicitud = System.Convert.ToString(w_1);
+                    this._ventana.SaldoPorVencerSolicitud = System.Convert.ToString(w_3);
+                    this._ventana.TotalSolicitud = System.Convert.ToString(w_1 + w_3);
+                }
+            }
+
+        }
+
     }
 }

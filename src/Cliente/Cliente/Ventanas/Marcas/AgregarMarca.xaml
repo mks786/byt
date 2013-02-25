@@ -649,7 +649,7 @@
 
                         <Separator Grid.Column="0" Grid.Row="17" Grid.ColumnSpan="7" Margin="10 0" VerticalAlignment="Center" />
                         <!--Modulo de saldos-->
-                        <Button  Name="_btnImprimirEdoCuenta" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="18"
+                        <Button  Name="_btnImprimirEdoCuenta" Click="_btnImprimirEdoCuenta_Click"  VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="18"
                             Grid.ColumnSpan="2" Grid.RowSpan="2" Height="50" Width="90">
                             <TextBlock VerticalAlignment="Center">
                             Imprmir <LineBreak/>
@@ -668,7 +668,7 @@
                         <custom:ByTTextBox  MaxLength="255" Grid.Column="4" Grid.Row="19" Name="_txtSaldoPorVencer" VerticalAlignment="Center" 
                          Grid.ColumnSpan="2"></custom:ByTTextBox>
 
-                        <Button Name="_btnSaldo" VerticalAlignment="Top" Grid.Column="1" Grid.Row="20" Grid.ColumnSpan="2" 
+                        <Button Name="_btnSaldo" VerticalAlignment="Top" Click="_btnSaldo_Click" Grid.Column="1" Grid.Row="20" Grid.ColumnSpan="2" 
                             Height="22" Width="90">Saldo</Button>
                         <Label Grid.Column="3" Grid.Row="20" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblTotalDeuda}"/>
@@ -1647,7 +1647,7 @@
                             <TextBlock Name="_txbOperaciones" Text="{x:Static recurso:Etiquetas.btnOperaciones}"/>
                         </Button>
 
-                        <Button Visibility="Hidden" Grid.Column="11" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnFacturacionDatos" Margin="3"
+                        <Button Visibility="Hidden" Grid.Column="11" Grid.Row="24" Click="_btnFacturacionDatos_Click" Grid.ColumnSpan="1" Name="_btnFacturacionDatos" Margin="3"
                             Height="25">
                             <TextBlock Name="_txbFacturacion" Text="{x:Static recurso:Etiquetas.btnFacturacion}"/>
                         </Button>

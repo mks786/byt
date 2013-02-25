@@ -1612,4 +1612,10 @@
   <data name="fac_menuItemVentasTotalesRpt" xml:space="preserve">
     <value>Ventas Totales</value>
   </data>
+  <data name="fac_titleConsultarFacVistaFacturacionCxpInternas" xml:space="preserve">
+    <value>Detalle de Cuentas por pagar Internacionales</value>
+  </data>
+  <data name="fac_titleConsultarFacVistaFacturaServicio" xml:space="preserve">
+    <value>Servicios Facturados</value>
+  </data>
 </root>

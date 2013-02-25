@@ -254,6 +254,12 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         void MarcarRadioPatenteNacional(bool esNacional);
 
+        string SaldoVencidoSolicitud { set; }
+
+        string SaldoPorVencerSolicitud { set; }
+
+        string TotalSolicitud { set; }
+
         void BorrarCeros();
 
         void CambiarLabelsPorBotones();

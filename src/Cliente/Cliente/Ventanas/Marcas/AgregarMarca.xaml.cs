@@ -1698,5 +1698,38 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             this._presentador.IrVentanaCorresponsal();
         }
+
+
+        private void _btnImprimirEdoCuenta_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVentanaImprimirEdoCuenta();
+        }
+
+        private void _btnFacturacionDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVentanaFacturacionDatos();
+        }
+
+        private void _btnSaldo_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.CalcularSaldos();
+                                                
+        }
+
+        public string SaldoVencidoSolicitud
+        {
+            set { this._txtSaldoVencido.Text = value; }
+        }
+
+        public string SaldoPorVencerSolicitud
+        {
+            set { this._txtSaldoPorVencer.Text = value; }
+        }
+
+        public string TotalSolicitud
+        {
+            set { this._txtTotalDeuda.Text = value; }
+        }
+
     }
 }

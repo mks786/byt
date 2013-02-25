@@ -33,10 +33,10 @@ Namespace Ventanas.FacReportes
         End Sub
 #End Region
 
-        Public Sub New()
+        Public Sub New(ByVal Tipo As String, ByVal Asociado As Object)
             InitializeComponent()
             Me._cargada = False
-            Me._presentador = New PresentadorEstadoCuentas(Me)
+            Me._presentador = New PresentadorEstadoCuentas(Me, Tipo, Asociado)
         End Sub
 
         Private Sub _btnImprimir_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)

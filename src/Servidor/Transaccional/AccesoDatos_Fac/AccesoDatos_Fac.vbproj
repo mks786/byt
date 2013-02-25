@@ -93,6 +93,9 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato\IDaoFacFacturaPendienteConGru.vb" />
+    <Compile Include="Contrato\IDaoFacVistaFacturacionCxpInterna.vb" />
+    <Compile Include="Contrato\IDaoFacVistaFacturaServicio.vb" />
     <Compile Include="Contrato\IDaoFacGestion.vb" />
     <Compile Include="Contrato\IDaoBaseFac.vb" />
     <Compile Include="Contrato\IDaoFacDesgloseCole.vb" />
@@ -155,6 +158,9 @@
     <Compile Include="Contrato\IDaoTipoPatente.vb" />
     <Compile Include="Contrato\IDaoViGestionAsociado.vb" />
     <Compile Include="Contrato\IFabricaDaoBaseFac.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacFacturaPendienteConGruNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacVistaFacturacionCxpInternaNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacVistaFacturaServicioNHibernate.vb" />
     <Compile Include="Dao\NHibernate\DaoFacGestionNHibernate.vb" />
     <Compile Include="Dao\NHibernate\DaoFacDesgloseColeNHibernate.vb" />
     <Compile Include="Dao\NHibernate\DaoFacStatementProcesarNHibernate.vb" />
@@ -461,6 +467,9 @@
     <EmbeddedResource Include="Mapeado\FacGestion.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Mapeado\FacFacturaPendienteConGru.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\FacVistaFacturaServicio.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\FacVistaFacturacionCxpInterna.hbm.xml" />
     <Content Include="Mapeado\FacFacturaTotal.xml" />
     <EmbeddedResource Include="Mapeado\FacFacturaTotalZ.hbm.xml" />
   </ItemGroup>

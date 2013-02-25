@@ -1423,7 +1423,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
 
         public void FacEstadoCuenta()
         {
-            this._ventana.Contenedor.Navigate(new EstadoCuentas());
+            this._ventana.Contenedor.Navigate(new EstadoCuentas("1",null));
         }
 
         public void FacPendientesRpt()

@@ -140,5 +140,11 @@ Namespace Fabrica
         Public MustOverride Function ObtenerDaoFacDesgloseCole() As Contrato.IDaoFacDesgloseCole Implements Contrato.IFabricaDaoBaseFac.ObtenerDaoFacDesgloseCole
 
         Public MustOverride Function ObtenerDaoFacGestion() As Contrato.IDaoFacGestion Implements Contrato.IFabricaDaoBaseFac.ObtenerDaoFacGestion
+
+        Public MustOverride Function ObtenerDaoFacFacturaPendienteConGru() As Contrato.IDaoFacFacturaPendienteConGru Implements Contrato.IFabricaDaoBaseFac.ObtenerDaoFacFacturaPendienteConGru
+
+        Public MustOverride Function ObtenerDaoFacVistaFacturacionCxpInterna() As Contrato.IDaoFacVistaFacturacionCxpInterna Implements Contrato.IFabricaDaoBaseFac.ObtenerDaoFacVistaFacturacionCxpInterna
+
+        Public MustOverride Function ObtenerDaoFacVistaFacturaServicio() As Contrato.IDaoFacVistaFacturaServicio Implements Contrato.IFabricaDaoBaseFac.ObtenerDaoFacVistaFacturaServicio
     End Class
 End Namespace

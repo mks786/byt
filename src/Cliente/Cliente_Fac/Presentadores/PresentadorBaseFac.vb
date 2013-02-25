@@ -871,6 +871,63 @@ Namespace Trascend.Bolet.Cliente.Presentadores
             Return retorno
         End Function
 
+        Public Sub CalcularSaldoAsociado(ByVal casociado As asociado, ByVal p_dias As Integer, ByVal p_venmay_B As Double, ByVal p_venmay_D As Double, ByVal p_venmen_B As Double, ByVal p_venmen_D As Double, ByVal p_total_B As Double, ByVal p_total_D As Double)
+            Mouse.OverrideCursor = Cursors.Wait
+
+            Dim _asociadosServicios As IAsociadoServicios
+            Me._asociadosServicios = DirectCast(Activator.GetObject(GetType(IAsociadoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("AsociadoServicios")), IAsociadoServicios)
+
+            Dim asociadoaux As New Asociado
+            Dim asociado As Asociado = Nothing
+            Dim i As Boolean = False
+
+            'Dim p_venmay_B, p_venmay_D, p_venmen_B, p_venmen_D, p_total_B, p_total_D
+            p_venmay_B = 0
+            p_venmay_D = 0
+            p_venmen_B = 0
+            p_venmen_D = 0
+            p_total_B = 0
+            p_total_D = 0
+
+            Mouse.OverrideCursor = Cursors.Wait
+            asociadoaux.Id = casociado
+            asociados = Me._asociadosServicios.ObtenerAsociadosFiltro(asociadoaux)
+            If asociados IsNot Nothing Then
+
+                Dim _FacFacturaPendienteConGruServicios As IFacFacturaPendienteConGruServicios
+                Me._FacFacturaPendienteConGruServicios = DirectCast(Activator.GetObject(GetType(IFacFacturaPendienteConGruServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFacturaPendienteConGruServicios")), IFacFacturaPendienteConGruServicios)
+                Dim FacFacturaPendienteConGru As list(Of FacFacturaPendienteConGru) = Nothing
+                FacFacturaPendienteConGru = Me._FacFacturaPendienteConGruServicios.ObtenerFacFacturaPendienteConGruFiltro(asociadoaux)
+                If FacFacturaPendienteConGru IsNot Nothing Then
+                    If FacFacturaPendienteConGru.count > 0 Then
+                        For i As Integer = 1 To FacFacturaPendienteConGru
+                            If FacFacturaPendienteConGru(i).dias > p_dias Then
+                                p_venmay_D = p_venmay_D + FacFacturaPendienteConGru(i).saldo '2
+                                p_total_D = p_total_D + p_venmay_D
+
+                                p_venmay_B = p_venmay_B + FacFacturaPendienteConGru(i).saldo_bf '1
+                                p_total_B = p_total_B + p_venmay_B
+                            Else
+                                p_venmen_D = p_venmen_D + FacFacturaPendienteConGru(i).saldo '4
+                                p_total_D = p_total_D + p_venmen_D
+
+                                p_venmen_B = p_venmen_B + FacFacturaPendienteConGru(i).saldo_bf '3
+                                p_total_B = p_total_B + p_venmen_B
+                            End If
+                        Next
+                    End If
+
+                    Dim _FacVistaFacturacionCxpInternaServicios As IFacVistaFacturacionCxpInternaServicios
+                    Me._FacVistaFacturacionCxpInternaServicios = DirectCast(Activator.GetObject(GetType(IFacVistaFacturacionCxpInternaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacVistaFacturacionCxpInternaServicios")), IFacVistaFacturacionCxpInternaServicios)
+                    Dim FacVistaFacturacionCxpInterna As list(Of FacVistaFacturacionCxpInterna) = Nothing
+                    FacVistaFacturacionCxpInterna = Me._FacVistaFacturacionCxpInternaServicios.ObtenerFacVistaFacturacionCxpInternaFiltro(asociadoaux)
+
+                End If
+
+            End If
+
+            Mouse.OverrideCursor = Nothing
+        End Sub
 
     End Class
 End Namespace

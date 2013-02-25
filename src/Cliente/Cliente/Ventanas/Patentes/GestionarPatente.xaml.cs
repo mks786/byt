@@ -1585,7 +1585,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void _btnImprimirEdoCuentaSolicitud_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.IrVentanaImprimirEdoCuenta();
         }
 
         private void _btnDisenoSolicitud_Click(object sender, RoutedEventArgs e)
@@ -1595,7 +1595,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void _btnSaldoSolicitud_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.CalcularSaldos();
         }
 
         private void _btnInfoAdicionalSolicitud_Click(object sender, RoutedEventArgs e)
@@ -1807,7 +1807,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void _btnFacturacionDatos_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.IrVentanaFacturacionDatos();
         }
 
         //private void _btnVerMemoriaDatos_Click(object sender, RoutedEventArgs e)
@@ -2020,6 +2020,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
             this._lblPoderDatos.Visibility = Visibility.Visible;
             this._btnIrPoderDatos.Visibility = Visibility.Collapsed;
+        }
+
+        public string SaldoVencidoSolicitud
+        {            
+            set { this._txtSaldoVencidoSolicitud.Text  = value; }
+        }
+
+        public string SaldoPorVencerSolicitud
+        {
+            set { this._txtSaldoPorVencerSolicitud.Text = value; }
+        }
+
+        public string TotalSolicitud
+        {
+            set { this._txtTotalSolicitud.Text = value; }
         }
 
     }

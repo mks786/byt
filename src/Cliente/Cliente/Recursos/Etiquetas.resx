@@ -3630,4 +3630,10 @@ en Prensa:</value>
   <data name="lblAsociadoNoRegistrado" xml:space="preserve">
     <value>Asoc. No Registrado:</value>
   </data>
+  <data name="fac_titleConsultarFacVistaFacturacionCxpInternas" xml:space="preserve">
+    <value>Detalle de Cuentas por pagar Internacionales</value>
+  </data>
+  <data name="fac_titleConsultarFacVistaFacturaServicio" xml:space="preserve">
+    <value>Servicios Facturados</value>
+  </data>
 </root>

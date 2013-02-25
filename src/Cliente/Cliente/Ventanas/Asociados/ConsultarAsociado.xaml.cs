@@ -450,6 +450,44 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             this._presentador.VerContacto();
         }
 
+
+        private void _btnImprimirEdoCuenta_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVentanaImprimirEdoCuenta();
+        }
+
+        private void _btnSaldo_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.CalcularSaldos();
+
+        }
+
+        private void _btnCXPINTDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVentanaCXPINTDatos();
+
+        }        
+
+        public string SaldoVencidoSolicitud
+        {
+            set { this._txtVencidoADatos.Text = value; }
+        }
+
+        public string SaldoPorVencerSolicitud
+        {
+            set { this._txtPorVencerDatos.Text = value; }
+        }
+
+        public string TotalSolicitud
+        {
+            set { this._txtTotalDatos.Text = value; }
+        }
+
+        public string MSaldoPendiente
+        {
+            set { this._txtSaldoPendienteDatos.Text = value; }
+        }
+
     }
 }
 

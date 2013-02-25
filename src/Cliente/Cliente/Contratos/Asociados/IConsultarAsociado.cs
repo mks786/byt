@@ -61,6 +61,15 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
 
         void ArchivoNoEncontrado();
 
+        string SaldoVencidoSolicitud { set; }
+
+        string SaldoPorVencerSolicitud { set; }
+
+        string TotalSolicitud { set; }
+
+        string MSaldoPendiente { set; }
+
+
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }

@@ -326,6 +326,15 @@
     <Compile Include="Comandos\ComandosFacGestion\ComandoEliminarFacGestion.vb" />
     <Compile Include="Comandos\ComandosFacGestion\ComandoInsertarOModificarFacGestion.vb" />
     <Compile Include="Comandos\ComandosFacGestion\ComandoVerificarExistenciaFacGestion.vb" />
+    <Compile Include="Comandos\ComandosFacFacturaPendienteConGru\ComandoConsultarFacFacturaPendienteConGrusFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacFacturaPendienteConGru\ComandoConsultarTodosFacFacturaPendienteConGrus.vb" />
+    <Compile Include="Comandos\ComandosFacVistaFacturacionCxpInterna\ComandoConsultarFacVistaFacturacionCxpInternasFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacVistaFacturacionCxpInterna\ComandoConsultarTodosFacVistaFacturacionCxpInternas.vb" />
+    <Compile Include="Comandos\ComandosFacVistaFacturaServicio\ComandoConsultarFacVistaFacturaServiciosFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacVistaFacturaServicio\ComandoConsultarTodosFacVistaFacturaServicios.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacFacturaPendienteConGru.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacVistaFacturacionCxpInterna.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacVistaFacturaServicio.vb" />
     <Compile Include="Fabrica\FabricaComandosFacGestion.vb" />
     <Compile Include="Fabrica\FabricaComandosFacDesgloseCole.vb" />
     <Compile Include="Fabrica\FabricaComandosFacStatementProcesar.vb" />

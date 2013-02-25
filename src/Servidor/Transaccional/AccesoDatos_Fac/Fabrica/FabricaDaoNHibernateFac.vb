@@ -267,5 +267,17 @@ Namespace Fabrica
         Public Overrides Function ObtenerDaoFacGestion() As IDaoFacGestion
             Return New DaoFacGestionNHibernate()
         End Function
+
+        Public Overrides Function ObtenerDaoFacFacturaPendienteConGru() As IDaoFacFacturaPendienteConGru
+            Return New DaoFacFacturaPendienteConGruNHibernate()
+        End Function
+
+        Public Overrides Function ObtenerDaoFacVistaFacturacionCxpInterna() As IDaoFacVistaFacturacionCxpInterna
+            Return New DaoFacVistaFacturacionCxpInternaNHibernate()
+        End Function
+
+        Public Overrides Function ObtenerDaoFacVistaFacturaServicio() As IDaoFacVistaFacturaServicio
+            Return New DaoFacVistaFacturaServicioNHibernate()
+        End Function
     End Class
 End Namespace

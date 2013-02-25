@@ -16,6 +16,7 @@ using System.IO;
 
 //facturacion
 using Diginsoft.Bolet.ObjetosComunes.Entidades;
+using Diginsoft.Bolet.ObjetosComunes.ContratosServicios;
 using System.ComponentModel;
 
 namespace Trascend.Bolet.Cliente.Presentadores
@@ -35,6 +36,10 @@ namespace Trascend.Bolet.Cliente.Presentadores
         private IInteresadoServicios _interesadoServicios;
         private IPoderServicios _poderServicios;
 
+        private  IAsociadoServicios _asociadosServicios;
+        private IFacFacturaPendienteConGruServicios _FacFacturaPendienteConGruServicios;
+        private IFacVistaFacturaServicioServicios _FacVistaFacturaServicioservicios;
+        private  IFacVistaFacturacionCxpInternaServicios _FacVistaFacturacionCxpInternaServicios;
 
         public object _ventanaPadre = null;
 
@@ -55,8 +60,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
                 ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
             this._poderServicios = (IPoderServicios)Activator.GetObject(typeof(IPoderServicios),
-                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PoderServicios"]);
-
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PoderServicios"]);            
         }
 
 
@@ -2721,6 +2725,92 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorna;
         }
+
+        public void CalcularSaldosAsociado(int casociado, int? p_dias, ref double? p_venmay_B, ref double? p_venmay_D, ref double? p_venmen_B, ref double? p_venmen_D, ref double? p_total_B, ref double? p_total_D, ref double? msaldope, ref string moneda)
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+                      
+
+            Asociado asociadoaux = new Asociado();
+            Asociado asociado = null;
+            bool i = false;
+
+            //Dim p_venmay_B, p_venmay_D, p_venmen_B, p_venmen_D, p_total_B, p_total_D
+            p_venmay_B = 0;
+            p_venmay_D = 0;
+            p_venmen_B = 0;
+            p_venmen_D = 0;
+            p_total_B = 0;
+            p_total_D = 0;
+            moneda = "";
+            Mouse.OverrideCursor = Cursors.Wait;
+            asociadoaux.Id = casociado;
+            this._asociadosServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios), ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
+            asociado = this._asociadosServicios.ObtenerAsociadosFiltro(asociadoaux)[0];
+            if (asociado != null)
+            {
+                moneda = asociado.Moneda.Id;
+
+                this._FacFacturaPendienteConGruServicios = (IFacFacturaPendienteConGruServicios)Activator.GetObject(typeof(IFacFacturaPendienteConGruServicios), ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FacFacturaPendienteConGruServicios"]);
+                IList<FacFacturaPendienteConGru> FacFacturaPendienteConGru;
+                FacFacturaPendienteConGru FacFacturaPendienteConGruaux = new FacFacturaPendienteConGru();
+                FacFacturaPendienteConGruaux.Id = asociado.Id;
+                FacFacturaPendienteConGru = this._FacFacturaPendienteConGruServicios.ObtenerFacFacturaPendienteConGrusFiltro(FacFacturaPendienteConGruaux);
+                if (FacFacturaPendienteConGru != null)
+                {
+                    if (FacFacturaPendienteConGru.Count > 0)
+                    {
+                        for (int j = 1; j <= FacFacturaPendienteConGru.Count - 1; j++)
+                        {
+                            if (FacFacturaPendienteConGru[j].Dias > p_dias)
+                            {
+                                p_venmay_D = p_venmay_D + FacFacturaPendienteConGru[j].Saldo;
+                                //2
+                                p_total_D = p_total_D + p_venmay_D;
+
+                                p_venmay_B = p_venmay_B + FacFacturaPendienteConGru[j].SaldoBf;
+                                //1
+                                p_total_B = p_total_B + p_venmay_B;
+                            }
+                            else
+                            {
+                                p_venmen_D = p_venmen_D + FacFacturaPendienteConGru[j].Saldo;
+                                //4
+                                p_total_D = p_total_D + p_venmen_D;
+
+                                p_venmen_B = p_venmen_B + FacFacturaPendienteConGru[j].SaldoBf;
+                                //3
+                                p_total_B = p_total_B + p_venmen_B;
+                            }
+                        }
+                    }
+
+
+                    this._FacVistaFacturacionCxpInternaServicios = (IFacVistaFacturacionCxpInternaServicios)Activator.GetObject(typeof(IFacVistaFacturacionCxpInternaServicios), ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FacVistaFacturacionCxpInternaServicios"]);
+                    IList<FacVistaFacturacionCxpInterna> FacVistaFacturacionCxpInterna = null;
+                    FacVistaFacturacionCxpInterna FacVistaFacturacionCxpInternaaux = new FacVistaFacturacionCxpInterna();
+                    FacVistaFacturacionCxpInternaaux.Asociado_o = asociado;
+                    FacVistaFacturacionCxpInternaaux.Cobrada = "NO";
+                    FacVistaFacturacionCxpInterna = this._FacVistaFacturacionCxpInternaServicios.ObtenerFacVistaFacturacionCxpInternasFiltro(FacVistaFacturacionCxpInternaaux);
+
+                    double? monto = 0;
+                    if (FacVistaFacturacionCxpInterna.Count > 0)
+                    {
+                        for (int j = 1; j <= FacVistaFacturacionCxpInterna.Count - 1; j++)
+                        {
+                            monto = monto + FacVistaFacturacionCxpInterna[j].Monto;
+                        }
+                    }
+
+                    msaldope = monto;
+                }
+
+            }
+
+            Mouse.OverrideCursor = null;
+        }
+
 
     }
 }

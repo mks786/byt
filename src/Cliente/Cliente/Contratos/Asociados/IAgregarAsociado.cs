@@ -41,6 +41,15 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
 
         object TipoPersonas { get; set; }
 
+        string SaldoVencidoSolicitud { set; }
+
+        string SaldoPorVencerSolicitud { set; }
+
+        string TotalSolicitud { set; }
+
+        string MSaldoPendiente { set; }
+
+
         void Mensaje(string mensaje);
     }
 }

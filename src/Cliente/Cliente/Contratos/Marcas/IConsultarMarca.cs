@@ -261,6 +261,13 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string ClaseInternacionalMarca { get; }
 
+        string SaldoVencidoSolicitud { set; }
+
+        string SaldoPorVencerSolicitud { set; }
+
+        string TotalSolicitud { set; }
+        
+
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }

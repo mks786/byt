@@ -179,6 +179,8 @@
     <Compile Include="Contratos\Consultas\IConsultaFacturacionAsociado.vb" />
     <Compile Include="Contratos\Consultas\IConsultaFacturacionAnuladas.vb" />
     <Compile Include="Contratos\Consultas\IConsultarFacStatementProcesar.vb" />
+    <Compile Include="Contratos\FacAsociadoMarcaPatente\IFacVistaFacturaServicios.vb" />
+    <Compile Include="Contratos\FacAsociadoMarcaPatente\IConsultarFacVistaFacturacionCxpInternas.vb" />
     <Compile Include="Contratos\FacInternacionales\FacInternacionalPago.vb" />
     <Compile Include="Contratos\FacInternacionales\IConsultarFacInternacionalesProforma.vb" />
     <Compile Include="Contratos\FacGestiones\IAgregarFacGestion.vb" />
@@ -343,6 +345,9 @@
     <Compile Include="Presentadores\Consultas\PresentadorConsultaConsultaFacturacionAsociado.vb" />
     <Compile Include="Presentadores\Consultas\PresentadorConsultaFacturacionAnuladas.vb" />
     <Compile Include="Presentadores\Consultas\PresentadorConsultarFacStatementProcesar.vb" />
+    <Compile Include="Presentadores\FacAsociadoMarcaPatentes\PresentadorSaldoAsociado.vb" />
+    <Compile Include="Presentadores\FacAsociadoMarcaPatentes\PresentadorConsultarFacVistaFacturaServicios.vb" />
+    <Compile Include="Presentadores\FacAsociadoMarcaPatentes\PresentadorConsultarFacVistaFacturacionCxpInternas.vb" />
     <Compile Include="Presentadores\FacInternacionales\PresentadorFacInternacionalPago.vb" />
     <Compile Include="Presentadores\FacInternacionales\PresentadorConsultarFacInternacionalesProforma.vb" />
     <Compile Include="Presentadores\FacGestiones\PresentadorAgregarFacGestion.vb" />
@@ -543,6 +548,12 @@
     </Compile>
     <Compile Include="Ventanas\Consultas\ConsultaOperacionesAsociado.xaml.vb">
       <DependentUpon>ConsultaOperacionesAsociado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacAsociadoMarcaPatentes\FacVistaFacturaServicios.xaml.vb">
+      <DependentUpon>FacVistaFacturaServicios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacAsociadoMarcaPatentes\FacVistaFacturacionCxpInternas.xaml.vb">
+      <DependentUpon>FacVistaFacturacionCxpInternas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\FacFacturaProformas\Mostrar_Detalle.xaml.vb">
       <DependentUpon>Mostrar_Detalle.xaml</DependentUpon>
@@ -1020,6 +1031,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Consultas\ConsultaOperacionesAsociado.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacAsociadoMarcaPatentes\FacVistaFacturaServicios.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacAsociadoMarcaPatentes\FacVistaFacturacionCxpInternas.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

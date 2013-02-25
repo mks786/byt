@@ -122,5 +122,11 @@
 
         Function ObtenerDaoFacGestion() As IDaoFacGestion
 
+        Function ObtenerDaoFacFacturaPendienteConGru() As IDaoFacFacturaPendienteConGru
+
+        Function ObtenerDaoFacVistaFacturacionCxpInterna() As IDaoFacVistaFacturacionCxpInterna
+
+        Function ObtenerDaoFacVistaFacturaServicio() As IDaoFacVistaFacturaServicio
+
     End Interface
 End Namespace

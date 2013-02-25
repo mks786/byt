@@ -13,12 +13,14 @@ using Trascend.Bolet.Cliente.Ventanas.Asociados;
 using System.Text.RegularExpressions;
 using Trascend.Bolet.ControlesByT.Ventanas;
 
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacReportes;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacAsociadoMarcaPatentes;
+
 namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 {
     class PresentadorAgregarAsociado : PresentadorBase
     {
-
-        private IAgregarAsociado _ventana;
+                private IAgregarAsociado _ventana;
         private IAsociadoServicios _asociadoServicios;
         private IDetallePagoServicios _detallePagoServicios;
         private IEtiquetaServicios _etiquetaServicios;
@@ -246,6 +248,63 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
                 ChildWindow detalle = new ChildWindow(stringAMostrar);
                 detalle.ShowDialog();
+            }
+
+        }
+
+        public void IrVentanaImprimirEdoCuenta()
+        {
+            if ((Asociado)this._ventana.Asociado != null)
+            {
+                Asociado Asociado = ((Asociado)this._ventana.Asociado).Id != int.MinValue ? (Asociado)this._ventana.Asociado : null;
+                Navegar(new EstadoCuentas("2", Asociado));
+
+            }
+        }
+
+        public void IrVentanaCXPINTDatos()
+        {
+            if ((Asociado)this._ventana.Asociado != null)
+            {
+                Asociado Asociado = ((Asociado)this._ventana.Asociado).Id != int.MinValue ? (Asociado)this._ventana.Asociado : null;
+                Navegar(new ConsultarFacVistaFacturacionCxpInternas(Asociado));
+
+            }
+        }
+
+        public void CalcularSaldos()
+        {
+            if ((Asociado)this._ventana.Asociado != null)
+            {
+                Asociado Asociado = ((Asociado)this._ventana.Asociado).Id != int.MinValue ? (Asociado)this._ventana.Asociado : null;
+
+                double? w_1, w_2, w_3, w_4, w_5, w_6, msaldope;
+                w_1 = 0;
+                w_2 = 0;
+                w_3 = 0;
+                w_4 = 0;
+                w_5 = 0;
+                w_6 = 0;
+                msaldope = 0;
+                string moneda = "";
+                int casociado = Asociado.Id;
+                int? dias = 30;
+                CalcularSaldosAsociado(casociado, dias, ref w_1, ref w_2, ref w_3, ref w_4, ref w_5, ref w_6, ref msaldope, ref  moneda);
+
+                if (moneda == "US")
+                {
+
+                    this._ventana.SaldoVencidoSolicitud = System.Convert.ToString(w_2);
+                    this._ventana.SaldoPorVencerSolicitud = System.Convert.ToString(w_4);
+                    this._ventana.TotalSolicitud = System.Convert.ToString(w_2 + w_4);
+
+                }
+                else
+                {
+                    this._ventana.SaldoVencidoSolicitud = System.Convert.ToString(w_1);
+                    this._ventana.SaldoPorVencerSolicitud = System.Convert.ToString(w_3);
+                    this._ventana.TotalSolicitud = System.Convert.ToString(w_1 + w_3);
+                }
             }
 
         }

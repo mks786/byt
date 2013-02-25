@@ -675,4 +675,34 @@
   <data name="FiltroObtenerFacFacturaSeniatDesdeHasta" xml:space="preserve">
     <value>fp.Seniat&gt;= {0} and fp.Seniat&lt;={1}</value>
   </data>
+  <data name="CabeceraObtenerFacFacturaPendienteConGru" xml:space="preserve">
+    <value>Select f from FacFacturaPendienteConGru f</value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="CabeceraObtenerFacVistaFacturacionCxpInterna" xml:space="preserve">
+    <value>Select v from FacVistaFacturacionCxpInterna v left join fetch v.Asociado as asociado left join fetch v.Asociado_o as asociado_o</value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="CabeceraObtenerFacVistaFacturaServicio" xml:space="preserve">
+    <value>Select v from FacVistaFacturaServicio v</value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="FiltroObtenerFacFacturaPendienteConGruId" xml:space="preserve">
+    <value>f.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacVistaFacturacionCxpInternaAsociado" xml:space="preserve">
+    <value>asociado.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacVistaFacturaServicioId" xml:space="preserve">
+    <value>Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacVistaFacturacionCxpInternaCobrada" xml:space="preserve">
+    <value>Cobrada = '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacVistaFacturaServicioTipo" xml:space="preserve">
+    <value>Tipo = '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacVistaFacturacionCxpInternaAsociado_o" xml:space="preserve">
+    <value>asociado_o.Id = {0}</value>
+  </data>
 </root>

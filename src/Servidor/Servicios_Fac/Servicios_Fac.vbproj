@@ -69,6 +69,9 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementacion\FacFacturaPendienteConGruServicios.vb" />
+    <Compile Include="Implementacion\FacVistaFacturacionCxpInternaServicios.vb" />
+    <Compile Include="Implementacion\FacVistaFacturaServicioServicios.vb" />
     <Compile Include="Implementacion\FacGestionServicios.vb" />
     <Compile Include="Implementacion\FacDesgloseColeServicios.vb" />
     <Compile Include="Implementacion\FacStatementProcesarServicios.vb" />

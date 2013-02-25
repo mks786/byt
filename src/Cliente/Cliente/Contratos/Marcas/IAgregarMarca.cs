@@ -219,6 +219,12 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         object TipoClaseInternacionalDatos { get; set; }
 
+        string SaldoVencidoSolicitud { set; }
+
+        string SaldoPorVencerSolicitud { set; }
+
+        string TotalSolicitud { set; }
+
         bool EsMarcaNacional { get; }
 
         string ClaseInternacional { get; }
