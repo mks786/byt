@@ -174,5 +174,7 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.LicenciasPatentes
         void PintarAsociado(string tipo);
 
         void EsPatenteNacional(bool marcaNacional);
+
+        void BorrarCerosInternacional();
     }
 }

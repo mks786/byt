@@ -15,6 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarca
         private DateTime?[] _fechas;
         private string _ano;
         private string _mes;
+        private string _localidad;
         
 
 
@@ -25,12 +26,13 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarca
         /// <param name="ano">Ano de fecha renovacion a filtrar</param>
         /// <param name="mes">mes de fecha renovación a filtrar</param>
         /// <param name="fechas">fecha desde y hasta de renovación a filtrar</param>
-        public ComandoConsultarRecordatoriosVistaNoAutomatico(RecordatorioVista recordatorio, string ano, string mes, DateTime?[] fechas)
+        public ComandoConsultarRecordatoriosVistaNoAutomatico(RecordatorioVista recordatorio, string ano, string mes, DateTime?[] fechas, string localidad)
         {
             this._recordatorio = recordatorio;
             this._fechas = fechas;
             this._ano = ano;
             this._mes = mes;
+            this._localidad = localidad;
         }
 
         /// <summary>
@@ -46,7 +48,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarca
                 #endregion
 
                 IDaoMarca dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoMarca();
-                this.Receptor = new Receptor<IList<RecordatorioVista>>(dao.ObtenerRecordatoriosVistaNoAutomatico(this._recordatorio, this._ano, this._mes, this._fechas));
+                this.Receptor = new Receptor<IList<RecordatorioVista>>(dao.ObtenerRecordatoriosVistaNoAutomatico(this._recordatorio, this._ano, this._mes, this._fechas, this._localidad));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

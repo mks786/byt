@@ -7,6 +7,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDePeticionario
     {
         object CambioPeticionario { get; set; }
 
+        void BorrarCerosInternacional();
+
         //ListView Marcas
 
         string IdMarcaFiltrar { get; }

@@ -239,6 +239,10 @@
         <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
 
+                <Button Grid.Row="0" Grid.Column="1" Name="_btnNuevoContacto" Width="100" Click="_btnNuevoContacto_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnNuevoContacto}"/>
+                </Button>
+                
                 <Button Grid.Row="0" Grid.Column="1" Name="_btnCancelar" Width="100" Click="_btnCancelar_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
                 </Button>

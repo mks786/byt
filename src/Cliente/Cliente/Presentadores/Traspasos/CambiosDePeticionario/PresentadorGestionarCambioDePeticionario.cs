@@ -201,9 +201,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                                 ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiLocalidadMarca));
                             this._ventana.TipoClase = this.BuscarListaDeDatosValores(items, itemBuscado).Descripcion;
                         }
+                        else
+                        {
+                            this._ventana.EsMarcaNacional(true);
+                            this._ventana.BorrarCerosInternacional();
+                        }
                     }
                     else
+                    {
                         this._ventana.EsMarcaNacional(true);
+                        this._ventana.BorrarCerosInternacional();
+                    }
 
                     this._ventana.ApoderadoAnterior = cesion.AgenteAnterior;
                     this._ventana.ApoderadoActual = cesion.AgenteActual;

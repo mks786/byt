@@ -7,6 +7,8 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.FusionesPatentes
     {
         object FusionPatente { get; set; }
 
+        void BorrarCerosInternacional();
+
         string IdAsociadoFiltrar { get; }
 
         string Expediente { get; set; }

@@ -34,6 +34,9 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
+        
+        <RadioButton IsEnabled="False" Grid.Column="1" Name="_radioNacional" IsChecked="True" GroupName="GrupoTipoMarca" VerticalAlignment="Center" Margin="350,0,0,0">Marca Nacional</RadioButton>
+        <RadioButton IsEnabled="False" Grid.Column="1" Name="_radioExtranjero" GroupName="GrupoTipoMarca" Margin="460,0,0,0" VerticalAlignment="Center">Marca Extranjero</RadioButton>
 
         <GroupBox Grid.Column="1" Grid.Row="1">
             <StackPanel Name="_gridDatos"  VerticalAlignment="Center"  HorizontalAlignment="Center"
@@ -42,7 +45,7 @@
                     <Label>
                         <TextBlock Name="_lblIdRenovacion" Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtIdRenovacion" Width="150" MaxLength="40"  Text="{Binding Path=Id}" IsEnabled="False" IsReadOnly="True"/>                    
+                    <custom:ByTTextBox Name="_txtIdRenovacion" Width="150" MaxLength="40"  Text="{Binding Path=Id}" IsEnabled="False" IsReadOnly="True"/>
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipo}"/>
                     </Label>
@@ -60,7 +63,7 @@
                         </DatePicker.SelectedDate>
                     </DatePicker>
                 </WrapPanel>
-                <Separator Margin="5,5,0,0"/>
+                <!--<Separator Margin="5,5,0,0"/>-->
                 <WrapPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="8"  Orientation="Horizontal" 
                            Margin="0,5,0,0">
                     <Grid Width="640" DataContext="{Binding}" Name="_gridDatosMarca">
@@ -79,6 +82,8 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
                         <Label Grid.Column="0" Grid.Row="0">
@@ -87,11 +92,11 @@
                         <custom:ByTTextBox Name="_txtIdMarca" MaxLength="40"  Text="" IsEnabled="False" IsReadOnly="True"
                              VerticalContentAlignment="Center" Margin="0,0,6,0" Grid.ColumnSpan="1" Grid.Column="1"
                              Grid.Row="0" BorderBrush="LightGreen" MouseDoubleClick="_txtNombreMarca_MouseDoubleClick"/>
-                        
+
                         <custom:ByTTextBox Name="_txtNombreMarca" MaxLength="40"  Text="" IsEnabled="False" IsReadOnly="True"
                              VerticalContentAlignment="Center" Margin="0,0,0,0" Grid.ColumnSpan="5" Grid.Column="2"                               
                              Grid.Row="0" MouseDoubleClick="_txtNombreMarca_MouseDoubleClick" BorderBrush="LightGreen"/>
-                     
+
                         <!--Datos de carga de Marca-->
                         <Label Name="_lblIdMarca" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
@@ -143,8 +148,8 @@
                         </Label>
                         <custom:ByTTextBox IsReadOnly="True"   IsEnabled="False"  Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Name="_txtTipo" VerticalAlignment="Center"
                          MaxLength="255" Text="{Binding Path=Tipo}"  ></custom:ByTTextBox>
-                        
-                        
+
+
                         <CheckBox IsEnabled="False" Grid.Column="2" Grid.Row="1" Content="{x:Static recurso:Etiquetas.chkEtiqueta2}" 
                                   Height="16" HorizontalAlignment="Left" Margin="5,0,0,0" Name="_chkEtiqueta"
                                   VerticalAlignment="Center" IsChecked="{Binding Path=BEtiqueta}"/>
@@ -186,7 +191,7 @@
                                 <Binding Path="FechaRegistro" UpdateSourceTrigger="PropertyChanged"  StringFormat="{}{0:dd/MM/yyyy}"/>
                             </DatePicker.SelectedDate>
                         </DatePicker>
-                    
+
                         <!--Fin Campo-->
 
                         <!--Campo-->
@@ -199,7 +204,7 @@
                             </DatePicker.SelectedDate>
                         </DatePicker>
 
-                        <!--Fin Campo-->                                                                      
+                        <!--Fin Campo-->
 
                         <!--Campo-->
                         <Label Name="_lblAsociado" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" >
@@ -218,10 +223,37 @@
                         <custom:ByTTextBox IsReadOnly="True"   IsEnabled="False"  Grid.Column="7" Grid.Row="3" Name="_txtEstatus" VerticalAlignment="Center"  Grid.ColumnSpan="1"
                          MaxLength="255" Text="{Binding Path=Servicio.Id}" ></custom:ByTTextBox>
                         <!--Fin Campo-->
-
+                        <!--<Separator Margin="5,5,0,0"/>-->
                         <!--Fin datos de la Marca-->
+
+
+                        <!--Datos de Marca Internacional-->
+                        <Separator Grid.Row="3" Grid.ColumnSpan="7" VerticalAlignment="Bottom"/>
+
+                        <Label Name="_lblMarcaIntId" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigoInt}"/>
+                        </Label>
+                        <custom:ByTTextBox IsReadOnly="True" IsTabStop="False" IsEnabled="False"  Grid.Column="1" Grid.Row="4" Name="_txtIdMarcaInt" VerticalAlignment="Center" Width="40" HorizontalAlignment="Left"
+                         MaxLength="255" Text="{Binding Path=CodigoMarcaInternacional}" ></custom:ByTTextBox>
+                        <custom:ByTTextBox IsReadOnly="True" IsTabStop="False" IsEnabled="False"  Grid.Column="1" Grid.Row="4" Name="_txtIdMarcaIntCor" VerticalAlignment="Center"  Grid.ColumnSpan="1" Margin="40,0,0,0"
+                         MaxLength="255" Text="{Binding Path=CorrelativoExpediente}" ></custom:ByTTextBox>
+
+                        <Label Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPais}"/>
+                        </Label>
+                        <custom:ByTTextBox IsReadOnly="True"  IsTabStop="False" IsEnabled="False" Grid.Column="3" Grid.Row="4" Name="_txtPaisInt" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="1" Text="{Binding Path=PaisInternacional.NombreEspanol}"></custom:ByTTextBox>
+                        <Label Grid.Column="4" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblClase}"/>
+                        </Label>
+                        <custom:ByTTextBox IsReadOnly="True" IsTabStop="False" IsEnabled="False"  Grid.Column="5" Grid.Row="4" Name="_txtClasificacionInt" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="1" Text=""></custom:ByTTextBox>
+                        <custom:ByTTextBox IsReadOnly="True" IsTabStop="False" IsEnabled="False"  Grid.Column="6" Grid.Row="4" Name="_txtClaseInternacionalSolicitud" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="1" Text="{Binding Path=ClasesInternacionales}"></custom:ByTTextBox>
+
+                        <!--Fin Datos de Marca Internacional-->
                     </Grid>
-                </WrapPanel>                               
+                </WrapPanel>
                 <Separator Margin="5,5,0,0"/>
                 <WrapPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="8"  Orientation="Horizontal" 
                            Margin="0,5,0,0">
@@ -271,10 +303,10 @@
 
                         <custom:ByTTextBox Text="{Binding Path=Ciudad}" IsReadOnly="True" IsEnabled="False" MaxLength="40" Grid.Column="4" Grid.Row="1" Name="_txtPaisInteresado" VerticalAlignment="Top" 
                          Grid.ColumnSpan="1"  Margin="3,3,0,0"></custom:ByTTextBox>
-                        
+
                         <custom:ByTTextBox Text="{Binding Path=Estado}" IsReadOnly="True" IsEnabled="False" MaxLength="40" Grid.Column="5" Grid.Row="1" Name="_txtCiudadInteresado" VerticalAlignment="Top" 
-                         Grid.ColumnSpan="2" Margin="3,3,0,0"></custom:ByTTextBox>                                                
-                        
+                         Grid.ColumnSpan="2" Margin="3,3,0,0"></custom:ByTTextBox>
+
                         <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="2" Name="_lstInteresados" ItemsSource="{Binding}" 
                       SelectionMode="Single" MouseDoubleClick="_lstInteresados_MouseDoubleClick"
                       Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top" Width="640">
@@ -410,8 +442,8 @@
                     </Grid>
                 </WrapPanel>
                 <!--Fin de Poder-->
-                
-                
+
+
                 <WrapPanel>
                     <Grid Width="640" DataContext="{Binding}" Name="_gridDatosAgente">
                         <Grid.ColumnDefinitions>
@@ -520,7 +552,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>                      
+                        </Grid.RowDefinitions>
 
                         <Button IsEnabled="True" Name="_btnCopiarDistingue" Width="75" IsDefault="False" Grid.Row="0" Grid.Column="0" Height="45" 
                     HorizontalAlignment="Right" Click="_btnCopiarDistingue_Click">
@@ -584,13 +616,13 @@
 
                     </Grid>
                 </WrapPanel>
-                
+
             </StackPanel>
         </GroupBox>
-        
+
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
             <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" Visibility="Collapsed"
-                    Click="_btnAceptar_Click">                
+                    Click="_btnAceptar_Click">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>

@@ -5,8 +5,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones
 {
     interface IGestionarCesion : IPaginaBase
     {
-        
+
         object Cesion { get; set; }
+
+        void BorrarCerosInternacional();
 
         string Tipo { set; get; }
 

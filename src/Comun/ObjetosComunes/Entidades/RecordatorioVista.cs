@@ -32,6 +32,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _fechaRenovacionIn;
         private string _fechaGraciaIn;
         private string _clase;
+        private string _localidad;
         private DateTime? _fechaRenovacion1;
 
 
@@ -270,6 +271,12 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         //    get { return _pais; }
         //    set { _pais = value; }
         //}
+
+        public virtual string Localidad
+        {
+            get { return _localidad; }
+            set { _localidad = value; }
+        }
 
         #endregion
 

@@ -359,5 +359,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             this._presentador.SeleccionarContacto();
         }
 
+        private void _btnNuevoContacto_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.CrearNuevoContacto();
+        }
+
     }
 }

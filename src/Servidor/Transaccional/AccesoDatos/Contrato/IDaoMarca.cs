@@ -36,7 +36,7 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
         /// <param name="recordatorio">recordatorio a filtrar</param>
         /// /// <param name="fechas">fechas de renovación de marca a filtrar</param>
         /// <returns>lista de recordatorios filtrados</returns>
-        IList<RecordatorioVista> ObtenerRecordatoriosVista(RecordatorioVista recordatorio, DateTime[] fechas);
+        IList<RecordatorioVista> ObtenerRecordatoriosVista(RecordatorioVista recordatorio, DateTime[] fechas, string localidad);
 
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
         /// <param name="mes">mes de fecha renovación a filtrar</param>
         /// <param name="fechas">fecha desde y hasta de renovación a filtrar</param>
         /// <returns>Lista de marcas para recordatorio filtradas</returns>
-        IList<RecordatorioVista> ObtenerRecordatoriosVistaNoAutomatico(RecordatorioVista recordatorio, string ano, string mes, DateTime?[] fechas);
+        IList<RecordatorioVista> ObtenerRecordatoriosVistaNoAutomatico(RecordatorioVista recordatorio, string ano, string mes, DateTime?[] fechas, string localidad);
 
     }
 }

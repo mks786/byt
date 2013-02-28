@@ -197,9 +197,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
                     this._ventana.PoderLicenciatario = licencia.PoderLicenciatario;
 
                     if (((Patente)this._ventana.Patente).LocalidadPatente != null)
-                        this._ventana.EsPatenteNacional(!((Patente)this._ventana.Patente).LocalidadPatente.Equals("I"));
+                    {
+                        if (((Patente)this._ventana.Patente).LocalidadPatente.Equals("I"))
+                        {
+                            this._ventana.EsPatenteNacional(false);
+                        }
+                        else
+                        {
+                            this._ventana.BorrarCerosInternacional();
+                            this._ventana.EsPatenteNacional(true);
+                        }
+                    }
                     else
+                    {
+                        this._ventana.BorrarCerosInternacional();
                         this._ventana.EsPatenteNacional(true);
+                    }
 
 
 

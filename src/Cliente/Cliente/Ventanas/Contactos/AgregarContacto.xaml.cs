@@ -13,6 +13,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
 
         private PresentadorAgregarContacto _presentador;
         private bool _cargada;
+        private bool _regresarRefresca;
 
         #region IAgregarContacto
 
@@ -87,17 +88,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
 
         #endregion
 
-        public AgregarContacto(object asociado, object ventanaPadre)
+        public AgregarContacto(object asociado, object ventanaPadre, bool regresarRefresca)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorAgregarContacto(this, asociado,ventanaPadre);
+            this._regresarRefresca = regresarRefresca;
+            this._presentador = new PresentadorAgregarContacto(this, asociado, ventanaPadre, regresarRefresca);
             
         }
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.RegresarVentanaPadre();
+            this._presentador.RegresarVentanaPadreContacto();
         }
 
         private void _btnEliminar_Click(object sender, RoutedEventArgs e)

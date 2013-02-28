@@ -196,6 +196,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disculpe, para poder crear un nuevo contacto debe seleccionar un asociado.
+        /// </summary>
+        internal static string AlertaDebeSeleccionarUnAsociado {
+            get {
+                return ResourceManager.GetString("AlertaDebeSeleccionarUnAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disculpe debe llenar algun filtro para poder realizar la consulta.
+        /// </summary>
+        internal static string AlertaDebeSeleccionarUnFiltro {
+            get {
+                return ResourceManager.GetString("AlertaDebeSeleccionarUnFiltro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disculpe el Escrito debe tener un agente seleccionado.
         /// </summary>
         internal static string AlertaEscritoSinAgente {

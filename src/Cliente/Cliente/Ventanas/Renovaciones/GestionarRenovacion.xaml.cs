@@ -19,7 +19,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
 
-        #region IConsultarFusion
+        #region IGestionarRenovacion
 
         public bool EstaCargada
         {
@@ -94,6 +94,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         public void BorrarCeros()
         {
             this._txtIdRenovacion.Text = ""; // cambio el texto del textbox para que no aparezca el "0"
+        }
+
+        public void BorrarCerosInternacional()
+        {
+            this._txtIdMarcaInt.Text = ""; // cambio el texto del textbox para que no aparezca el "0"
+            this._txtIdMarcaIntCor.Text = ""; // cambio el texto del textbox para que no aparezca el "0"
         }
 
         public string IdInteresado
@@ -358,6 +364,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
                 MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             else
                 MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
+
+        public void EsMarcaNacional(bool marcaNacional)
+        {
+            if (marcaNacional)
+            {
+                this._radioExtranjero.IsChecked = !marcaNacional;
+                this._radioNacional.IsChecked = marcaNacional;
+            }
+            else
+            {
+                this._radioExtranjero.IsChecked = !marcaNacional;
+                this._radioNacional.IsChecked = marcaNacional;
+            }
+        }
+
+        public string TipoClase
+        {
+            set { this._txtClasificacionInt.Text = value; }
         }
 
         #endregion

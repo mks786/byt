@@ -33,6 +33,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
         private IList<Marca> _marcas;
         private IList<RecordatorioVista> _recordatorios;
 
+
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
@@ -58,11 +59,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
             }
         }
 
+
         public void ActualizarTitulo()
         {
             this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarRecordatorios,
                 Recursos.Ids.ConsultarRecordatorios);
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -88,7 +91,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
 
                 //this._marcas = this._marcaServicios.ObtenerMarcasFiltro(MarcaAuxiliar);
 
+
+                IList<ListaDatosValores> tiposBusqueda = this._listaDatosValoresServicios.
+                                ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiLocalidadMarca));
+                this._ventana.TiposBusqueda = tiposBusqueda;
+                this._ventana.TipoBusqueda = this.BuscarTipoDeBusqueda(tiposBusqueda);
+
+
                 this._ventana.TotalHits = "0";
+
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -122,6 +134,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
             }
         }
 
+
         /// <summary>
         /// Método que carga los datos iniciales de TipoRecordatorio a mostrar en la página
         /// </summary>
@@ -136,6 +149,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
             this._ventana.Recordatorio = this.BuscarRecordatorio(this._listaRecordatorios, this._listaRecordatorios.ElementAt(0));
         }
 
+
         public void ActualizarMarcasRecordatorio()
         {
             this._ventana.LimpiarFiltros();
@@ -143,13 +157,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
             Marca MarcaAuxiliar = new Marca();
             ListaDatosValores listaAuxiliar = this.BuscarRecordatorio(this._listaRecordatorios, (ListaDatosValores)this._ventana.Recordatorio);
             MarcaAuxiliar.Recordatorio = int.Parse(listaAuxiliar.Valor);
-            
+
             DateTime[] fechas = this.ObtenerFechaFinRecordatorio();
             RecordatorioVista recordatorio = new RecordatorioVista();
 
             if (this._ventana.AutomaticoFiltro.Value)
             {
-                this._recordatorios = this._marcaServicios.ConsultarRecordatoriosVistaMarca(recordatorio, fechas);
+                this._recordatorios = this._marcaServicios.ConsultarRecordatoriosVistaMarca(recordatorio, fechas, ((ListaDatosValores)this._ventana.TipoBusqueda).Valor);
 
                 IEnumerable<RecordatorioVista> recordatorios = this._recordatorios;
 
@@ -178,6 +192,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
             }
 
         }
+
 
         /// <summary>
         /// Método que devuelve la fecha fin dependiendo de la configuración
@@ -212,6 +227,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
             return fechas;
         }
 
+
         /// <summary>
         /// Método que realiza una consulta al servicio, con el fin de filtrar los datos que se muestran 
         /// por pantalla
@@ -227,10 +243,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
 
                 Mouse.OverrideCursor = Cursors.Wait;
 
-               
-
-                
-
                 //Hacemos la Consulta Si Automatico es False
                 if (!this._ventana.AutomaticoFiltro.Value)
                 {
@@ -238,8 +250,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
                 }
                 else
                     ConsultarAutomatico();
-              
-
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -256,6 +266,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -291,6 +302,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
             #endregion
         }
 
+
         /// <summary>
         /// Método que se invoca al GenerarInformacio, crea el archivo renmarca.txt
         /// </summary>
@@ -323,7 +335,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
 
                     this.ActualizarMarcasRecordatorio();
                 }
-                
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -335,7 +347,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
                 logger.Debug(ex.Message);
                 this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorGenerandoInformacionRecordatorio, rutaArchivo), 0);
             }
+            catch (Exception ex)
+            {
+                logger.Debug(ex.Message);
+            }
         }
+
 
         /// <summary>
         /// Método que se encarga de actualizar el nrecordatorio luego de que se generara la información
@@ -343,19 +360,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
         private void ActualizarNRecordatorio()
         {
             for (int i = 0; i < this._recordatorios.Count; i++)
-			{
+            {
                 Marca marcaAux = new Marca();
 
                 marcaAux = this._recordatorios[i].Marca;
                 marcaAux.Operacion = "MODIFY";
-                
+
                 marcaAux.Recordatorio = this._recordatorios[i].Marca.Recordatorio.Equals((int?)null) ? 0 : this._recordatorios[i].Marca.Recordatorio;
                 marcaAux.Recordatorio = marcaAux.Recordatorio + 1;
 
                 this._marcaServicios.InsertarOModificar(marcaAux, UsuarioLogeado.Hash);
-			 
-			}
-            
+
+            }
+
             //foreach (Marca marcaRecordatorio in this._marcas)
             //{
             //    marcaRecordatorio.Operacion = "MODIFY";
@@ -367,6 +384,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
             //}
 
         }
+
 
         /// <summary>
         /// Método que crea la cadena para generar información
@@ -414,7 +432,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
                     recordatorioAux = recordatorio.Asociado.Idioma.Id.Equals("IN") ? tipoRecordatorio[1] : tipoRecordatorio[0];
 
                     string claseAux = "";
-                    if(recordatorio.Marca != null)
+                    if (recordatorio.Marca != null)
                         claseAux = recordatorio.Marca.Nacional != null ? recordatorio.Marca.Nacional.Descripcion : string.Empty;
 
                     if (recordatorio.Asociado != null)
@@ -446,6 +464,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
 
             return cabecera + cadena;
         }
+
 
         /// <summary>
         /// Método que guarda los valores en español e ingles del tiporecordatorio
@@ -489,6 +508,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
             return tipoRecordatorio;
         }
 
+
         /// <summary>
         /// Método que limpia los campos de búsqueda
         /// </summary>
@@ -517,11 +537,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
             #endregion
         }
 
+
         /// <summary>
         /// Método que se encarga de hacer el filtrado cuando es automatico
         /// </summary>
         public void ConsultarAutomatico()
         {
+            Mouse.OverrideCursor = Cursors.Wait;
 
             IEnumerable<RecordatorioVista> recordatoriossDesinflados = this._recordatorios;
 
@@ -605,91 +627,114 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
                 filtroValido = 1;
             }
 
+            recordatoriossDesinflados = from m in recordatoriossDesinflados
+                                        where m.Localidad.Equals(((ListaDatosValores)this._ventana.TipoBusqueda).Valor)
+                                        select m;
+
             this._ventana.Resultados = recordatoriossDesinflados;
             this._ventana.TotalHits = recordatoriossDesinflados.ToList<RecordatorioVista>().Count.ToString();
+            Mouse.OverrideCursor = null;
         }
+
+        private bool HayCamposVacios()
+        {
+            return this._ventana.HayCamposVacios();
+        }
+
 
         /// <summary>
         /// Método que se encarga de mostrar los resultados de una consulta cuando el filtrado no es automatico
         /// </summary>
         public void ConsultarNoAutomatico()
         {
-            string mes = null;
-            string ano = null;
-            DateTime?[] fechas = new DateTime?[2];
 
-            RecordatorioVista recordatorio = new RecordatorioVista();
-            
-            Marca MarcaAuxiliar = new Marca();
-            ListaDatosValores listaAuxiliar = this.BuscarRecordatorio(this._listaRecordatorios, (ListaDatosValores)this._ventana.Recordatorio);
-            MarcaAuxiliar.Recordatorio = int.Parse(listaAuxiliar.Valor);
-
-            recordatorio.Marca = MarcaAuxiliar;
-
-            if (!this._ventana.AnoFiltro.Equals(""))
+            Mouse.OverrideCursor = Cursors.Wait;
+            if (!HayCamposVacios())
             {
-                ano = this._ventana.AnoFiltro;
-            }
+                string mes = null;
+                string ano = null;
+                DateTime?[] fechas = new DateTime?[2];
 
-            if (!this._ventana.MesFiltro.Equals(""))
-            {
-                mes = this._ventana.MesFiltro;
-            }
+                RecordatorioVista recordatorio = new RecordatorioVista();
 
-            if (this._ventana.FechaDesdeFiltro.HasValue)
-            {
-                fechas[0] = this._ventana.FechaDesdeFiltro;
-            }
+                Marca MarcaAuxiliar = new Marca();
+                ListaDatosValores listaAuxiliar = this.BuscarRecordatorio(this._listaRecordatorios, (ListaDatosValores)this._ventana.Recordatorio);
+                MarcaAuxiliar.Recordatorio = int.Parse(listaAuxiliar.Valor);
 
-            if (this._ventana.FechaHastaFiltro.HasValue)
-            {
-                fechas[1] = this._ventana.FechaHastaFiltro;
-            }
+                recordatorio.Marca = MarcaAuxiliar;
 
-            IList<RecordatorioVista> recordatorios = this._marcaServicios.ConsultarRecordatoriosVistaMarca(recordatorio, ano, mes, fechas);
-    
-            IEnumerable<RecordatorioVista> recordatoriosDesinflados = recordatorios;
+                if (!this._ventana.AnoFiltro.Equals(""))
+                {
+                    ano = this._ventana.AnoFiltro;
+                }
 
-            if (this._ventana.TodosFiltro.Value)
-            {
-                recordatoriosDesinflados = from m in recordatoriosDesinflados
-                                            select m;
+                if (!this._ventana.MesFiltro.Equals(""))
+                {
+                    mes = this._ventana.MesFiltro;
+                }
+
+                if (this._ventana.FechaDesdeFiltro.HasValue)
+                {
+                    fechas[0] = this._ventana.FechaDesdeFiltro;
+                }
+
+                if (this._ventana.FechaHastaFiltro.HasValue)
+                {
+                    fechas[1] = this._ventana.FechaHastaFiltro;
+                }
+
+                IList<RecordatorioVista> recordatorios = this._marcaServicios.ConsultarRecordatoriosVistaMarca(recordatorio, ano, mes, fechas, ((ListaDatosValores)this._ventana.TipoBusqueda).Valor);
+
+                IEnumerable<RecordatorioVista> recordatoriosDesinflados = recordatorios;
+
+                if (this._ventana.TodosFiltro.Value)
+                {
+                    recordatoriosDesinflados = from m in recordatoriosDesinflados
+                                               select m;
+                }
+                else
+                {
+                    if (this._ventana.EmailFiltro.Value)
+                    {
+                        //marcasDesinfladas = from m in marcasDesinfladas
+                        //                    where m.Asociado.Email != null &&
+                        //                    m.Asociado.Fax1 == null
+                        //                    select m;
+
+                        recordatoriosDesinflados = from m in recordatoriosDesinflados
+                                                   where m.Asociado.Email != null
+                                                   select m;
+                    }
+
+                    if (this._ventana.FaxFiltro.Value)
+                    {
+                        recordatoriosDesinflados = from m in recordatoriosDesinflados
+                                                   where m.Asociado.Fax1 != null &&
+                                                   m.Asociado.Email == null
+                                                   select m;
+                    }
+
+                    if ((!this._ventana.FaxFiltro.Value) && (!this._ventana.EmailFiltro.Value))
+                    {
+                        recordatoriosDesinflados = from m in recordatoriosDesinflados
+                                                   where m.Asociado.Fax1 == null &&
+                                                   m.Asociado.Email == null
+                                                   select m;
+                    }
+                }
+
+                this._ventana.Resultados = recordatoriosDesinflados;
+                this._ventana.TotalHits = recordatoriosDesinflados.ToList<RecordatorioVista>().Count.ToString();
             }
             else
-            {
-                if (this._ventana.EmailFiltro.Value)
-                {
-                    //marcasDesinfladas = from m in marcasDesinfladas
-                    //                    where m.Asociado.Email != null &&
-                    //                    m.Asociado.Fax1 == null
-                    //                    select m;
+                this._ventana.Mensaje(Recursos.MensajesConElUsuario.AlertaDebeSeleccionarUnFiltro, 1);
 
-                    recordatoriosDesinflados = from m in recordatoriosDesinflados
-                                                where m.Asociado.Email != null
-                                                select m;
-                }
+            Mouse.OverrideCursor = null;
+        }
 
-                if (this._ventana.FaxFiltro.Value)
-                {
-                    recordatoriosDesinflados = from m in recordatoriosDesinflados
-                                                where m.Asociado.Fax1 != null &&
-                                                m.Asociado.Email == null
-                                                select m;
-                }
-
-                if ((!this._ventana.FaxFiltro.Value) && (!this._ventana.EmailFiltro.Value))
-                {
-                    recordatoriosDesinflados = from m in recordatoriosDesinflados
-                                                where m.Asociado.Fax1 == null &&
-                                                m.Asociado.Email == null
-                                                select m;
-                }
-            }
-
-
-
-            this._ventana.Resultados = recordatoriosDesinflados;
-            this._ventana.TotalHits = recordatoriosDesinflados.ToList<RecordatorioVista>().Count.ToString();
+        public bool RecordatoriosCargados()
+        {
+            return this._recordatorios != null;
         }
     }
 }

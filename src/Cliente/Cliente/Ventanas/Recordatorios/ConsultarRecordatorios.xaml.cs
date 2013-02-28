@@ -19,7 +19,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Recordatorios
         private PresentadorConsultarRecordatorios _presentador;
         private bool _cargada;
 
-        #region IConsultarMarcas
+        #region IConsultarRecordatorios
 
         public object Resultados
         {
@@ -38,7 +38,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Recordatorios
             get { return this._txtMes.Text; }
             set { this._txtMes.Text = value; }
         }
-        
+
         public string AnoFiltro
         {
             get { return this._txtAno.Text; }
@@ -64,14 +64,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Recordatorios
         public bool? TodosFiltro
         {
             get { return this._chkTodos.IsChecked; }
-        }              
+        }
 
         public DateTime? FechaDesdeFiltro
         {
             get { return this._dpkFechaDesde.SelectedDate; }
             set { this._dpkFechaDesde.SelectedDate = value; }
         }
-        
+
         public DateTime? FechaHastaFiltro
         {
             get { return this._dpkFechaHasta.SelectedDate; }
@@ -117,7 +117,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Recordatorios
         {
             get { return this._lstResultados; }
             set { this._lstResultados = value; }
-        }       
+        }
 
         public void Mensaje(string mensaje, int opcion)
         {
@@ -145,6 +145,24 @@ namespace Trascend.Bolet.Cliente.Ventanas.Recordatorios
             set { this._lblHits.Text = value; }
         }
 
+
+        public object TiposBusqueda
+        {
+            get { return this._cbxTipoBusqueda.DataContext; }
+            set
+            {
+                this._cbxTipoBusqueda.DataContext = value;
+                //this._cbxTipoBusqueda.SelectedIndex = 1;
+            }
+        }
+
+
+        public object TipoBusqueda
+        {
+            get { return this._cbxTipoBusqueda.SelectedItem; }
+            set { this._cbxTipoBusqueda.SelectedItem = value; }
+        }
+
         #endregion
 
         /// <summary>
@@ -168,7 +186,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Recordatorios
             this._txtAno.Text = string.Empty;
             this._txtMes.Text = string.Empty;
         }
-      
+
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.Cancelar();
@@ -177,8 +195,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Recordatorios
         private void _btnConsultar_Click(object sender, RoutedEventArgs e)
         {
             this._btnConsultar.Focus();
-            this._presentador.Consultar();           
-        }       
+            this._presentador.Consultar();
+        }
 
         private void _Ordenar_Click(object sender, RoutedEventArgs e)
         {
@@ -195,25 +213,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.Recordatorios
             else
                 this._presentador.ActualizarTitulo();
         }
-       
+
         private void _btnConsultarFocus(object sender, RoutedEventArgs e)
         {
-            this._btnConsultar.IsDefault = true;           
-        }            
+            this._btnConsultar.IsDefault = true;
+        }
 
         private void _cbxRecordatorio_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (EstaCargada)
             {
-               this._presentador.ActualizarMarcasRecordatorio();
+                this._presentador.ActualizarMarcasRecordatorio();
             }
-
-            
         }
 
         public void GestionarEnableChecksFiltro(bool value)
-        {            
-            this._chkEmailPorEnviar.IsEnabled = value;         
+        {
+            this._chkEmailPorEnviar.IsEnabled = value;
             this._chkFaxPorEnviar.IsEnabled = value;
             this._chkTodos.IsChecked = !value;
         }
@@ -258,6 +274,32 @@ namespace Trascend.Bolet.Cliente.Ventanas.Recordatorios
             ////}
             //this._lstResultados = ((ListView)this._lstResultados.DataContext).SelectAll();
 
+        }
+
+        private void _cbxTipoBusqueda_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this._presentador.RecordatoriosCargados())
+                this._presentador.Consultar();
+        }
+
+
+        public bool HayCamposVacios()
+        {
+            bool retorno = true;
+
+            if (!this._txtAno.Text.Equals(string.Empty))
+                retorno = false;
+
+            if (!this._txtMes.Text.Equals(string.Empty))
+                retorno = false;
+
+            if (!this._dpkFechaDesde.Text.Equals(string.Empty))
+                retorno = false;
+
+            if (!this._dpkFechaHasta.Text.Equals(string.Empty))
+                retorno = false;
+
+            return retorno;
         }
     }
 }

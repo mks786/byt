@@ -446,7 +446,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         /// </summary>
         /// <param name="RecordatorioVista">recordatorio con parametros</param>
         /// <returns>la lista de recordatorios</returns>
-        public IList<RecordatorioVista> ObtenerRecordatoriosVista(RecordatorioVista recordatorio, DateTime[] fechas)
+        public IList<RecordatorioVista> ObtenerRecordatoriosVista(RecordatorioVista recordatorio, DateTime[] fechas, string localidad)
         {
             IList<RecordatorioVista> recordatorios = null;
 
@@ -478,7 +478,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                 bool variosFiltros = true;
                 string filtro = "";
-                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerRecordatorioVista);
+                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerRecordatorioVista, localidad);
 
                 //string fechaMesI = String.Format("{0:MM}", fechas[0]);
                 string fechaMesF = String.Format("{0:MM}", fechas[1]);
@@ -535,7 +535,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         /// <param name="mes">mes de fecha renovación a filtrar</param>
         /// <param name="fechas">fecha desde y hasta de renovación a filtrar</param>
         /// <returns>Lista de marcas para recordatorio filtradas</returns>
-        public IList<RecordatorioVista> ObtenerRecordatoriosVistaNoAutomatico(RecordatorioVista recordatorio, string ano, string mes, DateTime?[] fechas)
+        public IList<RecordatorioVista> ObtenerRecordatoriosVistaNoAutomatico(RecordatorioVista recordatorio, string ano, string mes, DateTime?[] fechas, string localidad)
         {
 
             IList<RecordatorioVista> recordatorios = null;
@@ -549,7 +549,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                 bool variosFiltros = true;
                 string filtro = "";
-                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerRecordatorioVista);
+                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerRecordatorioVista, localidad);
 
 
                 filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerRecordatorioVistaMarcaRecordatorio, recordatorio.Marca.Recordatorio);

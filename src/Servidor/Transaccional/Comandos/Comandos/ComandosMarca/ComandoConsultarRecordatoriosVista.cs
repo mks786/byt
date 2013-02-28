@@ -13,7 +13,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarca
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private RecordatorioVista _recordatorio;
         private DateTime[] _fechas;
-        
+        private string _localidad;
 
 
         /// <summary>
@@ -21,10 +21,11 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarca
         /// </summary>
         /// <param name="RecordatorioVista">recordatorio con parametros</param>
         /// /// <param name="Fechas">fecha de renovación de marcas a filtrar</param>
-        public ComandoConsultarRecordatoriosVista(RecordatorioVista recordatorio, DateTime[] fechas)
+        public ComandoConsultarRecordatoriosVista(RecordatorioVista recordatorio, DateTime[] fechas, string localidad)
         {
             this._recordatorio = recordatorio;
             this._fechas = fechas;
+            this._localidad = localidad;
         }
 
         /// <summary>
@@ -40,7 +41,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarca
                 #endregion
 
                 IDaoMarca dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoMarca();
-                this.Receptor = new Receptor<IList<RecordatorioVista>>(dao.ObtenerRecordatoriosVista(this._recordatorio, this._fechas));
+                this.Receptor = new Receptor<IList<RecordatorioVista>>(dao.ObtenerRecordatoriosVista(this._recordatorio, this._fechas, this._localidad));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

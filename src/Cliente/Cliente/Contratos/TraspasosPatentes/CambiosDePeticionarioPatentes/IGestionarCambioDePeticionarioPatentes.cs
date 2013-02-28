@@ -5,8 +5,10 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDePeticionar
 {
     interface IGestionarCambioDePeticionarioPatentes : IPaginaBase
     {
-        object CambioPeticionarioPatente { get; set; }               
-        
+        object CambioPeticionarioPatente { get; set; }
+
+        void BorrarCerosInternacional();
+
         //ListView Patentes
 
         string IdPatenteFiltrar { get; }
@@ -18,7 +20,7 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDePeticionar
         object PatenteFiltrada { get; set; }
 
         //-----------
-        
+
         //ListView Anterior
         string IdAnteriorFiltrar { get; }
 
@@ -27,7 +29,7 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDePeticionar
         object AnteriorsFiltrados { get; set; }
 
         object AnteriorFiltrado { get; set; }
-       
+
         //----------------
 
         //ListView Actual
@@ -47,7 +49,7 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDePeticionar
         string IdApoderadoAnteriorFiltrar { get; }
 
         string NombreApoderadoAnteriorFiltrar { get; }
-        
+
         object ApoderadosAnteriorFiltrados { get; set; }
 
         object ApoderadoAnteriorFiltrado { get; set; }
@@ -100,7 +102,7 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDePeticionar
         string Region { get; set; }
 
         string TextoBotonModificar { get; set; }
-        
+
         string TextoBotonRegresar { get; set; }
 
         string NombrePatente { set; }
@@ -133,7 +135,7 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDePeticionar
 
         string NacionalidadAnterior { set; }
 
-        string NacionalidadActual { set; }        
+        string NacionalidadActual { set; }
 
         object Patente { get; set; }
 
@@ -158,10 +160,10 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDePeticionar
         void ConvertirEnteroMinimoABlanco(string tipo);
 
         void GestionarBotonConsultarInteresados(string tipo, bool value);
-        
+
         void GestionarBotonConsultarApoderados(string tipo, bool value);
-        
-        void GestionarBotonConsultarPoderes(string tipo, bool value);       
+
+        void GestionarBotonConsultarPoderes(string tipo, bool value);
 
         void ActivarControlesAlAgregar();
 

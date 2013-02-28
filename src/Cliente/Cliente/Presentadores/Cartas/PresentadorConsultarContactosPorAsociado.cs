@@ -16,6 +16,7 @@ using Trascend.Bolet.Cliente.Ventanas.Cartas;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Asociados;
+using Trascend.Bolet.Cliente.Ventanas.Contactos;
 
 
 namespace Trascend.Bolet.Cliente.Presentadores.Cartas
@@ -643,6 +644,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 IList<Asociado> asociados = this._asociadoServicios.ObtenerAsociadosFiltro(new Asociado(((Contacto)this._ventana.ContactoSeleccionado).Asociado.Id));
                 ((ConsultarCarta)this._ventanaPadre).SeleccionarContactoYAsociado(asociados[0], this._ventana.ContactoSeleccionado);
                 RegresarVentanaPadre();
+            }
+        }
+
+        public void CrearNuevoContacto()
+        {
+            if (null != ((Contacto)this._ventana.ContactoSeleccionado))
+            {
+                IList<Asociado> asociados = this._asociadoServicios.ObtenerAsociadosFiltro(new Asociado(((Contacto)this._ventana.ContactoSeleccionado).Asociado.Id));
+                Asociado asociado = asociados[0];
+
+                asociado.Contactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
+                Navegar(new AgregarContacto(asociado, this._ventana, true));
+            }
+            else
+            {
+                this._ventana.Mensaje(Recursos.MensajesConElUsuario.AlertaDebeSeleccionarUnAsociado, 1);
             }
         }
     }

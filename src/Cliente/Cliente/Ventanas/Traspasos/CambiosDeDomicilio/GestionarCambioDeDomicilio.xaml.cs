@@ -28,6 +28,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
             set { this._cargada = value; }
         }
 
+        public void BorrarCerosInternacional()
+        {
+            this._txtIdMarcaInt.Text = ""; // cambio el texto del textbox para que no aparezca el "0"
+            this._txtIdMarcaIntCor.Text = ""; // cambio el texto del textbox para que no aparezca el "0"
+        }
+
         public string TipoClase
         {
             set { this._txtClasificacionInt.Text = value; }

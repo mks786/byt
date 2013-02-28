@@ -5,13 +5,13 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
 {
     interface IGestionarRenovacion : IPaginaBase
     {
-        object Renovacion { get; set; }        
+        object Renovacion { get; set; }
 
         string IdAsociadoFiltrar { get; }
 
         string NombreAsociadoFiltrar { get; }
 
-        string IdMarca{ set; get; }
+        string IdMarca { set; get; }
 
         string IdInteresado { set; get; }
 
@@ -20,6 +20,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
         string PeriodoDeGracia { set; get; }
 
         void BorrarCeros();
+
+        void EsMarcaNacional(bool valor);
+        string TipoClase { set; }
 
         #region Marcas
 
@@ -35,7 +38,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
 
         object MarcaFiltrada { get; set; }
 
-        #endregion       
+        #endregion
 
         #region Interesado
 
@@ -97,7 +100,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
 
         string TextoBotonRegresar { get; set; }
 
-        string Otros { get; set; }        
+        string Otros { get; set; }
 
         object TiposRenovaciones { get; set; }
 
@@ -122,6 +125,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
         void ActivarControlesAlAgregar();
 
         void PintarAsociado(string tipo);
+
+        void BorrarCerosInternacional();
 
 
     }

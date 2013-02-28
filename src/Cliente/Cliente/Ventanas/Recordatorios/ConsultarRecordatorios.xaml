@@ -48,6 +48,13 @@
         <!--<ScrollViewer HorizontalScrollBarVisibility="Auto">-->
             <!--Área de Filtrado-->
 
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,50,35,0">
+            <Label  Name="_lblTipoBusqueda" >
+                <TextBlock Text="{x:Static recurso:Etiquetas.lblLocalidad}"/>
+            </Label>
+            <ComboBox SelectionChanged="_cbxTipoBusqueda_SelectionChanged" Name="_cbxTipoBusqueda" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+            </ComboBox>
+        </WrapPanel>
         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left"  Grid.ColumnSpan="2"
                    Grid.Row="1" Grid.RowSpan="3">
             <Grid>

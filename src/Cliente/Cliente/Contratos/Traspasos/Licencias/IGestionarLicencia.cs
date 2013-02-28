@@ -7,6 +7,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Licencias
     {
         object Licencia { get; set; }
 
+        void BorrarCerosInternacional();
+
         string Tipo { get; set; }
 
         string Expediente { get; set; }

@@ -7,6 +7,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
     {
         object Fusion { get; set; }
 
+        void BorrarCerosInternacional();
+
         string Tipo { get; set; }
 
         string Expediente { get; set; }

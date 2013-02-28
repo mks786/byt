@@ -1312,4 +1312,10 @@
   <data name="ExcepcionRutaNoAutorizada" xml:space="preserve">
     <value>Disculpe no puede escribir en la carpeta: {0}</value>
   </data>
+  <data name="AlertaDebeSeleccionarUnAsociado" xml:space="preserve">
+    <value>Disculpe, para poder crear un nuevo contacto debe seleccionar un asociado</value>
+  </data>
+  <data name="AlertaDebeSeleccionarUnFiltro" xml:space="preserve">
+    <value>Disculpe debe llenar algun filtro para poder realizar la consulta</value>
+  </data>
 </root>

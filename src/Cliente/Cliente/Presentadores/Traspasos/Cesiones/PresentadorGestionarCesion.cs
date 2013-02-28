@@ -210,9 +210,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                                 ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiLocalidadMarca));
                             this._ventana.TipoClase = this.BuscarListaDeDatosValores(items, itemBuscado).Descripcion;
                         }
+                        else
+                        {
+                            this._ventana.EsMarcaNacional(true);
+                            this._ventana.BorrarCerosInternacional();
+                        }
                     }
                     else
+                    {
                         this._ventana.EsMarcaNacional(true);
+                        this._ventana.BorrarCerosInternacional();
+                    }
 
                     CargaBoletines();
 

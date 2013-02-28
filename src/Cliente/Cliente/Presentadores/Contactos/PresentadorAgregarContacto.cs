@@ -9,6 +9,7 @@ using Trascend.Bolet.Cliente.Ventanas.Asociados;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using System.Collections.Generic;
+using Trascend.Bolet.Cliente.Ventanas.Cartas;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Contactos
 {
@@ -23,12 +24,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
         private Asociado _asociado;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+        private bool _regresarRefresca = false;
+
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorAgregarContacto(IAgregarContacto ventana, object asociado, object ventanaPadre)
+        public PresentadorAgregarContacto(IAgregarContacto ventana, object asociado, object ventanaPadre, bool regresarRefresca)
         {
             try
             {
@@ -36,6 +39,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                 this._ventanaPadre = ventanaPadre;
                 this._asociado = (Asociado)asociado;
                 this._ventana.Contacto = new Contacto();
+                this._regresarRefresca = regresarRefresca;
                 //((Contacto)this._ventana.Contacto).Carta = this._carta;
                 ((Contacto)this._ventana.Contacto).Asociado = this._asociado;
 
@@ -155,7 +159,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                     if (exitoso)
                     {
                         this._asociado.Contactos.Insert(0, contacto);
-                        this.Navegar(new ListaContactos(this._asociado, this._ventanaPadre));
+
+                        if (_regresarRefresca)
+                            RegresarVentanaPadreContacto();
+                        else
+                            this.Navegar(new ListaContactos(this._asociado, this._ventanaPadre));
                     }
                 }
                 else
@@ -192,5 +200,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
             }
         }
 
+
+        private void RefrescarVentanaPadre()
+        {
+            ((ConsultarContactosPorAsociado)this._ventanaPadre).Refrescar();
+        }
+
+        public void RegresarVentanaPadreContacto()
+        {
+            if (_regresarRefresca)
+                RefrescarVentanaPadre();
+            this.RegresarVentanaPadre();
+
+        }
     }
 }

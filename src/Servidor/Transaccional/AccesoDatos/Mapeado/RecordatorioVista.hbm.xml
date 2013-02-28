@@ -6,8 +6,9 @@
   <class name="RecordatorioVista" table="VI_REN_MARCAS" mutable="false">
     
     <id name="Id" column="CMARCA" type ="int"/>
-    
+
     <property name="NombreInteresado" column="XINTERESADO" type="string"/>
+    <property name="Localidad" column="LOCALIDAD" type="string"/>
     <property name="FechaRenovacion" column="FRENOVACION" type="string"/>
     <property name="Ano" column="ANO" type="string"/>
     <property name="Mes" column="MES" type="string"/>

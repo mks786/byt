@@ -5,8 +5,10 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CesionesPatentes
 {
     interface IGestionarCesionPatentes : IPaginaBase
     {
-        
+
         object CesionPatente { get; set; }
+
+        void BorrarCerosInternacional();
 
         string Tipo { set; get; }
 

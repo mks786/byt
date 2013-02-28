@@ -7,6 +7,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeDomicilio
     {
         object CambioDeDomicilio { get; set; }
 
+        void BorrarCerosInternacional();
+
         string Fecha { get; }
 
         string IdAsociadoFiltrar { get; }

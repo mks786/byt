@@ -7,6 +7,8 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDeDomicilioP
     {
         object CambioDeDomicilioPatente { get; set; }
 
+        void BorrarCerosInternacional();
+
         string IdAsociadoFiltrar { get; }
 
         string NombreAsociadoFiltrar { get; }

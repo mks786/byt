@@ -195,10 +195,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                     this._ventana.PoderCedente = cesion.PoderCedente;
                     this._ventana.PoderCesionario = cesion.PoderCesionario;
 
+
                     if (((Patente)this._ventana.Patente).LocalidadPatente != null)
-                        this._ventana.EsPatenteNacional(!((Patente)this._ventana.Patente).LocalidadPatente.Equals("I"));
+                    {
+                        if (((Patente)this._ventana.Patente).LocalidadPatente.Equals("I"))
+                        {
+                            this._ventana.EsPatenteNacional(false);
+                        }
+                        else
+                        {
+                            this._ventana.BorrarCerosInternacional();
+                            this._ventana.EsPatenteNacional(true);
+                        }
+                    }
                     else
+                    {
+                        this._ventana.BorrarCerosInternacional();
                         this._ventana.EsPatenteNacional(true);
+                    }
 
                     CargaBoletines();
 

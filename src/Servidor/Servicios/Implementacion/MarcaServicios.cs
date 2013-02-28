@@ -365,7 +365,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <param name="RecordatorioVista">recordatorio a consultar</param>
         /// <param name="fechas">fechas de renovacion de marca a filtrar</param>
         /// <returns>la lista de recordatorios</returns>
-        public IList<RecordatorioVista> ConsultarRecordatoriosVistaMarca(RecordatorioVista recordatorio, DateTime[] fechas)
+        public IList<RecordatorioVista> ConsultarRecordatoriosVistaMarca(RecordatorioVista recordatorio, DateTime[] fechas, string localidad)
         {
             try
             {
@@ -374,7 +374,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                IList<RecordatorioVista> retorno = ControladorMarca.ConsultarRecordatoriosVista(recordatorio, fechas);
+                IList<RecordatorioVista> retorno = ControladorMarca.ConsultarRecordatoriosVista(recordatorio, fechas, localidad);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -405,7 +405,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <param name="mes">mes de fecha renovación a filtrar</param>
         /// <param name="fechas">fecha desde y hasta de renovación a filtrar</param>
         /// <returns>Lista de marcas para recordatorio filtradas</returns>
-        public IList<RecordatorioVista> ConsultarRecordatoriosVistaMarca(RecordatorioVista recordatorio, string ano, string mes, DateTime?[] fechas)
+        public IList<RecordatorioVista> ConsultarRecordatoriosVistaMarca(RecordatorioVista recordatorio, string ano, string mes, DateTime?[] fechas, string localidad)
         {
             try
             {
@@ -414,7 +414,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                IList<RecordatorioVista> retorno = ControladorMarca.ConsultarRecordatoriosVista(recordatorio, ano, mes, fechas);
+                IList<RecordatorioVista> retorno = ControladorMarca.ConsultarRecordatoriosVista(recordatorio, ano, mes, fechas, localidad);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

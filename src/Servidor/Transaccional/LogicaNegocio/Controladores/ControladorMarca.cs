@@ -309,7 +309,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         /// <param name="recordatorio">recordatorio a filtrar</param>
         /// <param name="fechas">fechas de renovación de marca a filtrar</param>
         /// <returns>Lista de recordatorios fitlrados</returns>
-        public static IList<RecordatorioVista> ConsultarRecordatoriosVista(RecordatorioVista recordatorio, DateTime[] fechas)
+        public static IList<RecordatorioVista> ConsultarRecordatoriosVista(RecordatorioVista recordatorio, DateTime[] fechas, string localidad)
         {
             IList<RecordatorioVista> retorno;
 
@@ -320,7 +320,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<IList<RecordatorioVista>> comando = FabricaComandosMarca.ObtenerComandoConsultarRecordatoriosVista(recordatorio, fechas);
+                ComandoBase<IList<RecordatorioVista>> comando = FabricaComandosMarca.ObtenerComandoConsultarRecordatoriosVista(recordatorio, fechas, localidad);
                 comando.Ejecutar();
                 retorno = comando.Receptor.ObjetoAlmacenado;
 
@@ -347,7 +347,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         /// <param name="mes">mes de fecha renovación a filtrar</param>
         /// <param name="fechas">fecha desde y hasta de renovación a filtrar</param>
         /// <returns>Lista de marcas para recordatorio filtradas</returns>
-        public static IList<RecordatorioVista> ConsultarRecordatoriosVista(RecordatorioVista recordatorio, string ano, string mes, DateTime?[] fechas)
+        public static IList<RecordatorioVista> ConsultarRecordatoriosVista(RecordatorioVista recordatorio, string ano, string mes, DateTime?[] fechas, string localidad)
         {
             IList<RecordatorioVista> retorno;
 
@@ -358,7 +358,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<IList<RecordatorioVista>> comando = FabricaComandosMarca.ObtenerComandoConsultarRecordatoriosVista(recordatorio, ano, mes, fechas);
+                ComandoBase<IList<RecordatorioVista>> comando = FabricaComandosMarca.ObtenerComandoConsultarRecordatoriosVista(recordatorio, ano, mes, fechas, localidad);
                 comando.Ejecutar();
                 retorno = comando.Receptor.ObjetoAlmacenado;
 

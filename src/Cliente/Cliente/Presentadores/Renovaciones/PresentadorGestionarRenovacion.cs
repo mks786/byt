@@ -170,6 +170,32 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
 
                     CargarId();
 
+
+                    if (((Marca)this._ventana.Marca).LocalidadMarca != null)
+                    {
+                        this._ventana.EsMarcaNacional(!((Marca)this._ventana.Marca).LocalidadMarca.Equals("I"));
+
+                        if (((Marca)this._ventana.Marca).LocalidadMarca.Equals("I"))
+                        {
+                            ListaDatosValores itemBuscado = new ListaDatosValores();
+                            itemBuscado.Valor = ((Marca)this._ventana.Marca).ClasificacionInternacional;
+                            IList<ListaDatosValores> items = this._listaDatosValoresServicios.
+                                ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiLocalidadMarca));
+                            this._ventana.TipoClase = this.BuscarListaDeDatosValores(items, itemBuscado).Descripcion;
+                        }
+                        else
+                        {
+                            this._ventana.EsMarcaNacional(true);
+                            this._ventana.BorrarCerosInternacional();
+                        }
+                    }
+                    else
+                    {
+                        this._ventana.EsMarcaNacional(true);
+                        this._ventana.BorrarCerosInternacional();
+                    }
+
+
                 }
                 else
                 {

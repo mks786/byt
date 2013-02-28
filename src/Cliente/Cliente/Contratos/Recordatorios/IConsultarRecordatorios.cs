@@ -48,5 +48,11 @@ namespace Trascend.Bolet.Cliente.Contratos.Recordatorios
         void GestionarEnableChecksFiltro(bool value);
 
         string TotalHits { set; }
+
+        object TiposBusqueda { get; set; }
+
+        object TipoBusqueda { get; set; }
+
+        bool HayCamposVacios();
     }
 }

@@ -54,8 +54,9 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// </summary>
         /// <param name="RecordatorioVista">Recordatorio con parámetros a filtrar</param>
         /// <param name="fechas">fechas de renovacion marca a filtrar</param>
+        /// <param name="localidad"> tipo de localidad de la marca</param>
         /// <returns>Lista de marcas por fecha de renovacion</returns>
-        IList<RecordatorioVista> ConsultarRecordatoriosVistaMarca(RecordatorioVista recordatorio, DateTime[] fechas);
+        IList<RecordatorioVista> ConsultarRecordatoriosVistaMarca(RecordatorioVista recordatorio, DateTime[] fechas, string localidad);
 
 
         /// <summary>
@@ -65,7 +66,8 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// <param name="ano">Ano de fecha renovacion a filtrar</param>
         /// <param name="mes">mes de fecha renovación a filtrar</param>
         /// <param name="fechas">fecha desde y hasta de renovación a filtrar</param>
+        /// <param name="localidad"> tipo de localidad de la marca</param>
         /// <returns>Lista de marcas para recordatorio filtradas</returns>
-        IList<RecordatorioVista> ConsultarRecordatoriosVistaMarca(RecordatorioVista recordatorio, string ano, string mes, DateTime?[] fechas);
+        IList<RecordatorioVista> ConsultarRecordatoriosVistaMarca(RecordatorioVista recordatorio, string ano, string mes, DateTime?[] fechas, string localidad);
     }
 }

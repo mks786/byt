@@ -25,6 +25,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
             set { this._cargada = value; }
         }
 
+        public void BorrarCerosInternacional()
+        {
+            this._txtIdMarcaInt.Text = ""; // cambio el texto del textbox para que no aparezca el "0"
+            this._txtIdMarcaIntCor.Text = ""; // cambio el texto del textbox para que no aparezca el "0"
+        }
+
         public void EsPatenteNacional(bool patenteNacional)
         {
             if (patenteNacional)
