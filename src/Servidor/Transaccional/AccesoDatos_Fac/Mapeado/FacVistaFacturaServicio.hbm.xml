@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+  
+  <class name="FacVistaFacturaServicio" table="VI_FAC_SERV">
+    <id name="Id" column="CODIGO" />
+    <property name="Inicial" column="XINICIAL" type="string"/>
+    <property name="CodigoServicio" column="COD_SER" type="string"/>
+    <property name="Referencia" column="XREFERENCIA" type="string"/>
+    <property name="Factura" column="CFACTURA" type="int"/>
+    <property name="FechaFactura" column="FFACTURA" type="DateTime"/>
+    <property name="Proforma" column="PROFORMA" type="int"/>
+    <property name="Tipo" column="ITIPO" type="string"/>
+  </class>
+</hibernate-mapping>

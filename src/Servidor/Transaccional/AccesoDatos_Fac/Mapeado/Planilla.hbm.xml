@@ -1,0 +1,581 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="Planilla" table="PLANILLAS">
+
+    <id name="Id" column="CODIGO" type="int"/>
+    <property name="Folio" column="FOLIO" type="string"/>
+
+  </class>
+
+  <!--Procedimientos PCK_MYP_MARCAS-->
+
+  <sql-query name="PCK_MYP_MARCASP1">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MARCAS.P1(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MARCASP2">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MARCAS.P2(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MARCASP12">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MARCAS.P12(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MARCASP22">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MARCAS.P22(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MARCASP3">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MARCAS.P3(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MARCASP23">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MARCAS.P23(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MARCASP31">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MARCAS.P31(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MARCASP32">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MARCAS.P32(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MARCASP33">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MARCAS.P33(:usr, :way, :cod); end;
+
+  </sql-query>
+
+
+  <!-- Fin Procedimientos PCK_MYP_MARCAS-->
+
+  <!--Procedimientos PCK_MYP_MMFUSIONES-->
+
+  <sql-query name="PCK_MYP_MFUSIONESP1">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MFUSIONES.P1(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MFUSIONESP2">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MFUSIONES.P2(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MFUSIONESP4">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MFUSIONES.P4(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <!-- Fin Procedimientos PCK_MYP_MMFUSIONES-->
+
+  <!--Procedimientos PCK_MYP_MCESIONES-->
+
+  <sql-query name="PCK_MYP_MCESIONESP1">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MCESIONES.P1(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MCESIONESP2">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MCESIONES.P2(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MCESIONESP3">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MCESIONES.P3(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MCESIONESP4">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MCESIONES.P4(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MCESIONESP5">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MCESIONES.P5(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <!-- Fin Procedimientos PCK_MYP_MCESIONES-->
+
+
+  <!--Procedimientos PCK_MYP_MNOMBRES-->
+
+  <sql-query name="PCK_MYP_MNOMBRESP1">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MNOMBRES.P1(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MNOMBRESP2">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MNOMBRES.P2(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MNOMBRESP3">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MNOMBRES.P3(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MNOMBRESP4">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MNOMBRES.P4(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MNOMBRESP5">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MNOMBRES.P5(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <!-- Fin Procedimientos PCK_MYP_MNOMBRES-->
+
+  <!--Procedimientos PCK_MYP_MDOMICILIOS-->
+
+  <sql-query name="PCK_MYP_MDOMICILIOSP1">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MDOMICILIOS.P1(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MDOMICILIOSP2">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MDOMICILIOS.P2(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MDOMICILIOSP3">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MDOMICILIOS.P3(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MDOMICILIOSP4">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MDOMICILIOS.P4(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MDOMICILIOSP5">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MDOMICILIOS.P5(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MDOMICILIOSP6">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MDOMICILIOS.P6(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <!-- Fin Procedimientos PCK_MYP_MDOMICILIOS-->
+
+  <!--Procedimientos PCK_MYP_MLICENCIAS-->
+
+  <sql-query name="PCK_MYP_MLICENCIASP1">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MLICENCIAS.P1(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MLICENCIASP2">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MLICENCIAS.P2(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MLICENCIASP3">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MLICENCIAS.P3(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MLICENCIASP4">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MLICENCIAS.P4(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MLICENCIASP5">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MLICENCIAS.P5(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <!-- Fin Procedimientos PCK_MYP_MLICENCIAS-->
+
+  <sql-query name="ProcedimientoPID">
+    <return-scalar column="p" type="int"/>
+    <query-param name="s" type="string" />
+    {  begin ? :=Pck_General.PID(:s); end; }
+
+  </sql-query>
+
+  <!-- Procedimientos PCK_MYP_RENOVACIONES-->
+
+  <!--Solicitud-->
+  <sql-query name="PCK_MYP_RENOVACIONESP1">
+
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_RENOVACIONES.P1(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <!--Solicitud(van)-->
+  <sql-query name="PCK_MYP_RENOVACIONESP2">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_RENOVACIONES.P2(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <!--Carpeta-->
+  <sql-query name="PCK_MYP_RENOVACIONESP3">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_RENOVACIONES.P3(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <!--Anexo-->
+  <sql-query name="PCK_MYP_RENOVACIONESP4">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_RENOVACIONES.P4(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <!-- Fin procedimientos PCK_MYP_RENOVACIONES-->
+
+  <!-- Procedimientos Traspasos Patentes-->
+
+  <!--Procedimientos Cambio de Domicilio Patente-->
+
+  <sql-query name="PCK_MYP_PDOMICILIOSP1">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PDOMICILIOS.P1(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_PDOMICILIOSP2">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PDOMICILIOS.P2(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_PDOMICILIOSP3">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PDOMICILIOS.P3(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_PDOMICILIOSP4">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PDOMICILIOS.P4(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <!--Fin Procedimientos Cambio de Domicilio Patente-->
+
+  <!--Procedimientos Cambio de Nombre Patente-->
+
+  <sql-query name="PCK_MYP_PNOMBRESP1">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PNOMBRES.P1(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_PNOMBRESP2">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PNOMBRES.P2(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_PNOMBRESP3">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PNOMBRES.P3(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_PNOMBRESP4">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PNOMBRES.P4(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <!--Procedimientos PCK_MYP_PCESIONES-->
+
+  <sql-query name="PCK_MYP_PCESIONESP1">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PCESIONES.P1(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_PCESIONESP2">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PCESIONES.P2(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_PCESIONESP3">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PCESIONES.P3(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_PCESIONESP4">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PCESIONES.P4(:usr, :way, :cod); end;
+
+  </sql-query>
+  <!--Fin Procedimientos PCK_MYP_PCESIONES-->
+
+  <!--Procedimientos PCK_MYP_PFUSIONES-->
+
+  <sql-query name="PCK_MYP_PFUSIONESP1">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PFUSIONES.P1(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_PFUSIONESP2">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PFUSIONES.P2(:usr, :way, :cod); end;
+
+  </sql-query>
+  <!--FIn Procedimientos PCK_MYP_PFUSIONES-->
+  <!--Fin Procedimientos Cambio de nombre Patente-->
+
+  <!-- Fin Procedimientos Traspasos Patentes-->
+</hibernate-mapping>
