@@ -132,6 +132,9 @@ Namespace Presentadores.DetalleEnvios
                 End If
 
                 Me._ventana.Count = DetalleEnviosFiltrados.ToList().Count
+                If DetalleEnviosFiltrados.ToList().Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = DetalleEnviosFiltrados.ToList()
                 'Me._ventana.Resultados = DetalleEnviosFiltrados.ToList(IEnumerable(Of DetalleEnvio))
 

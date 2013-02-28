@@ -133,6 +133,9 @@ Namespace Presentadores.Motivos
                 End If
 
                 Me._ventana.Count = MotivosFiltrados.ToList().Count
+                If MotivosFiltrados.ToList().Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = MotivosFiltrados.ToList()
                 'Me._ventana.Resultados = MotivosFiltrados.ToList(IEnumerable(Of Motivo))
 

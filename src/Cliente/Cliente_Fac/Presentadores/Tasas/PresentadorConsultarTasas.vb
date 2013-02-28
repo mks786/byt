@@ -155,6 +155,9 @@ Namespace Presentadores.Tasas
                 Me._Tasas = Me._TasaServicios.ObtenerTasasFiltro(tasasaux)
 
                 Me._ventana.Count = Me._Tasas.Count
+                If Me._Tasas.Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = Me._Tasas
                 'Me._ventana.Resultados = tasasFiltrados.ToList(IEnumerable(Of Tasa))
 

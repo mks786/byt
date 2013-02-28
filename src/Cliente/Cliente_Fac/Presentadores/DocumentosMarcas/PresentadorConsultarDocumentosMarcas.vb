@@ -136,6 +136,9 @@ Namespace Presentadores.DocumentosMarcas
                 End If
 
                 Me._ventana.Count = DocumentosMarcasFiltrados.ToList().Count
+                If DocumentosMarcasFiltrados.ToList().Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = DocumentosMarcasFiltrados.ToList()
                 'Me._ventana.Resultados = DocumentosMarcasFiltrados.ToList(IEnumerable(Of DocumentosMarca))
 

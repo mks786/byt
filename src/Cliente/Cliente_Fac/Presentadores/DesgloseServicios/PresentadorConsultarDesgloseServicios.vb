@@ -152,6 +152,9 @@ Namespace Presentadores.DesgloseServicios
                 End If
 
                 Me._ventana.Count = DesgloseServiciosFiltrados.ToList().Count
+                If DesgloseServiciosFiltrados.ToList().Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = DesgloseServiciosFiltrados.ToList()
                 'Me._ventana.Resultados = DesgloseServiciosFiltrados.ToList(IEnumerable(Of DesgloseServicio))
 

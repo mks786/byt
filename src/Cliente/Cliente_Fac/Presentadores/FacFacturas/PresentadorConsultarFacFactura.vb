@@ -355,10 +355,12 @@ Namespace Presentadores.FacFacturas
                     'ag.Owner = Me
                     ag.ShowDialog()
                 Else
+                    Mouse.OverrideCursor = Nothing
                     MessageBox.Show("Debe especificar una Carta ", "Error", MessageBoxButton.OK)
                     Exit Sub
                 End If
             Else
+                Mouse.OverrideCursor = Nothing
                 MessageBox.Show("Debe especificar una Carta ", "Error", MessageBoxButton.OK)
                 Exit Sub
             End If
@@ -644,10 +646,12 @@ Namespace Presentadores.FacFacturas
                         If Me._ventana.Carta.id <> Integer.MinValue Then
                             FacFactura.Carta = DirectCast(Me._ventana.Carta, Carta)
                         Else
+                            Mouse.OverrideCursor = Nothing
                             Me._ventana.MensajeError = "Debe especificar Carta Orden"
                             Exit Sub
                         End If
                     Else
+                        Mouse.OverrideCursor = Nothing
                         Me._ventana.MensajeError = "Debe especificar Carta Orden"
                         Exit Sub
                     End If
@@ -681,16 +685,19 @@ Namespace Presentadores.FacFacturas
 
 
                     If FacFactura.Caso = "" Or FacFactura.Caso = Nothing Then
+                        Mouse.OverrideCursor = Nothing
                         Me._ventana.MensajeError = "Debe especificar Caso/Referencia"
                         Exit Sub
                     End If
 
                     If Me._ventana.GetXterrero = "" Then
+                        Mouse.OverrideCursor = Nothing
                         Me._ventana.MensajeError = "Tipo no ha sido seleccionado"
                         Exit Sub
                     End If
 
                     If Me._ventana.Impuesto = "" Or Me._ventana.Impuesto = Nothing Or Not IsNumeric(Me._ventana.Impuesto) Then
+                        Mouse.OverrideCursor = Nothing
                         Me._ventana.MensajeError = "Debe especificar Impuesto"
                         Exit Sub
                     End If
@@ -698,6 +705,7 @@ Namespace Presentadores.FacFacturas
                     FacFactura.XAsociado = xasociado
 
                     If FacFactura.FechaFactura Is Nothing Then
+                        Mouse.OverrideCursor = Nothing
                         Me._ventana.MensajeError = "Debe especificar Fecha Factura"
                         Exit Sub
                     Else
@@ -827,6 +835,7 @@ Namespace Presentadores.FacFacturas
                         Dim w_ret As Integer = 0
                         lp_verifica(FacFactura, w_ret)
                         If (w_ret <> 0) Then
+                            Mouse.OverrideCursor = Nothing
                             MessageBox.Show("Factura No " & FacFactura.Id & " posee un error de integridad, Error " & w_ret & " Notificar a sistemas")
                             'MessageBox.Show("Factura No %%cfactura.fac_facturas posee un error de integridad, Error %%w_ret  Notificar a sistemas")
                             Exit Sub
@@ -886,6 +895,7 @@ Namespace Presentadores.FacFacturas
         Public Sub procesar_statement()
             Dim FacFactura As FacFactura = DirectCast(_ventana.FacFactura, FacFactura)
             If FacFactura.Terrero.ToString = "1" Or FacFactura.Terrero.ToString = "2" Then
+                Mouse.OverrideCursor = Nothing
                 MessageBox.Show("Se trata de una F o de una S-F", "Error", MessageBoxButton.OK)
                 Exit Sub
             End If
@@ -895,6 +905,7 @@ Namespace Presentadores.FacFacturas
             ' End If
 
             If FacFactura.FechaSeniat IsNot Nothing Or FacFactura.PSeniat <> 0 Or FacFactura.Seniat IsNot Nothing Then
+                Mouse.OverrideCursor = Nothing
                 MessageBox.Show("El statement ya fue procesado con Número " & FacFactura.Seniat & " en fecha " & FacFactura.FechaSeniat & " con impuesto " & FacFactura.PSeniat, "Error", MessageBoxButton.OK)
                 Exit Sub
             End If
@@ -1027,6 +1038,7 @@ Namespace Presentadores.FacFacturas
 
             If proformadetalle.Count <= 0 Then
                 r_val = 1
+                Mouse.OverrideCursor = Nothing
                 Exit Sub
             End If
 
@@ -1035,7 +1047,9 @@ Namespace Presentadores.FacFacturas
             Dim operacionproforma As List(Of FacOperacion) = Me._FacOperacionServicios.ObtenerFacOperacionesFiltro(operacionproformaaux)
             If operacionproforma.Count <= 0 Then
                 r_val = 1
+                Mouse.OverrideCursor = Nothing
                 Exit Sub
+
             End If
 
             Dim operacionproformadetalleaux As New FacOperacionDetalle
@@ -1048,6 +1062,7 @@ Namespace Presentadores.FacFacturas
                     operacionproformadetalle = Me._FacOperacionDetaServicios.ObtenerFacOperacionDetallesFiltro(operacionproformadetalleaux)
                     If operacionproformadetalle.Count <= 0 Then
                         r_val = 1
+                        Mouse.OverrideCursor = Nothing
                         Exit Sub
                     Else
                         If proformadetalle.Count <> operacionproformadetalle.Count Then ' verificar si el detalle e con el count o con la i
@@ -1178,7 +1193,9 @@ Namespace Presentadores.FacFacturas
                 asociados = Me._asociadosServicios.ObtenerAsociadosFiltro(asociadoaux)
             Else
                 Me._ventana.Asociados = Nothing
+                Mouse.OverrideCursor = Nothing
                 MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
+                Exit Sub
             End If
 
             Dim primerasociado As New Asociado()
@@ -1261,7 +1278,9 @@ Namespace Presentadores.FacFacturas
                 asociados = Me._asociadosServicios.ObtenerAsociadosFiltro(asociadoaux)
             Else
                 Me._ventana.AsociadosImp = Nothing
+                Mouse.OverrideCursor = Nothing
                 MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
+                Exit Sub
             End If
 
             Dim primerasociado As New Asociado()
@@ -1520,6 +1539,7 @@ Namespace Presentadores.FacFacturas
                         Me._ventana.VerTipo = "7" ' Multiples Marcas
                     Else
                         Me._ventana.VerTipo = "13"
+                        Mouse.OverrideCursor = Nothing
                         Me._ventana.MensajeError = "Este Servicios no Acepta Multiregistro"
                         Exit Sub
                     End If
@@ -1543,6 +1563,7 @@ Namespace Presentadores.FacFacturas
                         Me._ventana.VerTipo = "9" ' Multiples Patentes
                     Else
                         Me._ventana.VerTipo = "13"
+                        Mouse.OverrideCursor = Nothing
                         Me._ventana.MensajeError = "Este Servicios no Acepta Multiregistro"
                         Exit Sub
                     End If
@@ -2433,6 +2454,7 @@ Namespace Presentadores.FacFacturas
                             Else
                                 w_paso = 0
                                 Me._ventana.VerTipo = "13"
+                                Mouse.OverrideCursor = Nothing
                                 Me._ventana.MensajeError = "Este Servicios no Acepta Multiregistro"
                                 Exit Sub
                             End If
@@ -2458,6 +2480,7 @@ Namespace Presentadores.FacFacturas
                                 Else
                                     w_paso = 0
                                     Me._ventana.VerTipo = "13"
+                                    Mouse.OverrideCursor = Nothing
                                     Me._ventana.MensajeError = "Este Servicios no Acepta Multiregistro"
                                     Exit Sub
                                 End If
@@ -2849,6 +2872,7 @@ Namespace Presentadores.FacFacturas
                     facfactudeta.Descuento = 0
                     facfactudeta.Bsel = "True"
                     Me._ventana.Seleccion = True
+                    Mouse.OverrideCursor = Nothing
                     Exit Sub
                 End If
                 If facfactudeta.Impuesto = "T" Then

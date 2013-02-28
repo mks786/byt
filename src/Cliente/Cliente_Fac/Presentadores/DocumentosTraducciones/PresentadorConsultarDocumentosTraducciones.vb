@@ -137,6 +137,9 @@ Namespace Presentadores.DocumentosTraducciones
                 End If
 
                 Me._ventana.Count = DocumentosTraduccionsFiltrados.ToList().Count
+                If DocumentosTraduccionsFiltrados.ToList().Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = DocumentosTraduccionsFiltrados.ToList()
                 'Me._ventana.Resultados = DocumentosTraduccionsFiltrados.ToList(IEnumerable(Of DocumentosTraduccion))
 

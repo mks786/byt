@@ -167,6 +167,11 @@ Namespace Presentadores.ViGestionAsociados
                 End If
 
                 Me._ventana.Count = ViGestionAsociadosFiltrados.ToList().Count
+
+                If ViGestionAsociadosFiltrados.ToList().Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
+
                 Me._ventana.Resultados = ViGestionAsociadosFiltrados.ToList()
                 'Me._ventana.Resultados = ViGestionAsociadosFiltrados.ToList(IEnumerable(Of ViGestionAsociado))
 
@@ -262,7 +267,9 @@ Namespace Presentadores.ViGestionAsociados
                 asociados = Me._asociadosServicios.ObtenerAsociadosFiltro(asociadoaux)
             Else
                 Me._ventana.Asociados = Nothing
-                MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
+                Mouse.OverrideCursor = Nothing
+                MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")                
+                Exit Sub
             End If
 
             Dim primerasociado As New Asociado()

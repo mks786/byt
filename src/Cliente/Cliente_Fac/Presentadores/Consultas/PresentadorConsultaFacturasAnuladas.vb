@@ -173,6 +173,9 @@ Namespace Presentadores.Consultas
                 FacFacturaAnuladas = Me._FacFacturaAnuladaServicios.ObtenerFacFacturaAnuladasFiltro(FacFacturaAnuladaAuxiliar)
                 Me._ventana.Resultados = Nothing                
                 Me._ventana.Count = FacFacturaAnuladas.Count
+                If FacFacturaAnuladas.Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = FacFacturaAnuladas
 
                 If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
@@ -286,7 +289,9 @@ Namespace Presentadores.Consultas
                 asociados = Me._asociadosServicios.ObtenerAsociadosFiltro(asociadoaux)
             Else
                 Me._ventana.Asociados = Nothing
+                Mouse.OverrideCursor = Nothing
                 MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
+                Exit Sub
             End If
 
             Dim primerasociado As New Asociado()

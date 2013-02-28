@@ -421,6 +421,7 @@ Namespace Presentadores.FacCobros
                 FacOperacionAuxiliar.ValorQuery = FacOperacionAuxiliar.ValorQuery & " Asociado.Id= " & asociado.Id
                 valor = True            
             Else
+                Mouse.OverrideCursor = Nothing
                 MessageBox.Show("Ingrese Asociado", "Error", MessageBoxButton.OK)
                 Exit Sub
             End If
@@ -618,6 +619,7 @@ Namespace Presentadores.FacCobros
             Dim FacCobro As FacCobro = DirectCast(_ventana.FacCobro, FacCobro)
             Dim moneda As Moneda
             If AdvertenciaTasa() = False Then
+                Mouse.OverrideCursor = Nothing
                 Exit Sub
             End If
 
@@ -744,6 +746,7 @@ Namespace Presentadores.FacCobros
             Dim FacCobro As FacCobro = DirectCast(_ventana.FacCobro, FacCobro)
             Dim moneda As Moneda
             If AdvertenciaTasa() = False Then
+                Mouse.OverrideCursor = Nothing
                 Exit Sub
             End If
 
@@ -889,7 +892,9 @@ Namespace Presentadores.FacCobros
                 asociados = Me._asociadosServicios.ObtenerAsociadosFiltro(asociadoaux)
             Else
                 Me._ventana.Asociados = Nothing
+                Mouse.OverrideCursor = Nothing
                 MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
+                Exit Sub
             End If
 
             Dim primerasociado As New Asociado()

@@ -145,6 +145,9 @@ Namespace Presentadores.TipoMarcas
                 End If
 
                 Me._ventana.Count = TipoMarcasFiltrados.ToList().Count
+                If TipoMarcasFiltrados.ToList().Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = TipoMarcasFiltrados.ToList()
                 'Me._ventana.Resultados = TipoMarcasFiltrados.ToList(IEnumerable(Of TipoMarca))
 

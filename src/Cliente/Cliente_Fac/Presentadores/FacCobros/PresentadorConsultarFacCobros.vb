@@ -193,6 +193,9 @@ Namespace Presentadores.FacCobros
                 'If (filtroValido = True) Then
                 Me._FacCobros = Me._FacCobroServicios.ObtenerFacCobrosFiltro(FacCobroAuxiliar)
                 Me._ventana.Count = Me._FacCobros.Count
+                If Me._FacCobros.Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = Me._FacCobros
                 'Else
                 '    Me._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto)
@@ -329,7 +332,9 @@ Namespace Presentadores.FacCobros
                 asociados = Me._asociadosServicios.ObtenerAsociadosFiltro(asociadoaux)
             Else
                 Me._ventana.Asociados = Nothing
+                Mouse.OverrideCursor = Nothing
                 MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
+                Exit Sub
             End If
 
             Dim primerasociado As New Asociado()

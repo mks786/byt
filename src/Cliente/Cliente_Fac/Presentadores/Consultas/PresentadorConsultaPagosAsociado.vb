@@ -195,6 +195,9 @@ Namespace Presentadores.Consultas
             Next
             Me._ventana.Resultados = Nothing
             Me._ventana.Count = Facoperaciones.Count
+            If Facoperaciones.Count <= 0 Then
+                MessageBox.Show("Mensaje: No se encontraron registros")
+            End If
             Me._ventana.Resultados = Facoperaciones
         End Sub
 
@@ -281,7 +284,9 @@ Namespace Presentadores.Consultas
                 asociados = Me._asociadosServicios.ObtenerAsociadosFiltro(asociadoaux)
             Else
                 Me._ventana.Asociados = Nothing
+                Mouse.OverrideCursor = Nothing
                 MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
+                Exit Sub
             End If
 
             Dim primerasociado As New Asociado()

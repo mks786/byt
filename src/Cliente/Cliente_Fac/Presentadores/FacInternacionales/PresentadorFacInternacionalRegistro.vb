@@ -189,6 +189,7 @@ Namespace Presentadores.FacInternacionales
                     Facinternacional.Asociado = If(Not DirectCast(Me._ventana.Asociado, Asociado).Id.Equals("NGN"), DirectCast(Me._ventana.Asociado, Asociado), Nothing)                    
                 Else
                     MessageBox.Show("Ingrese Asociado", "Error", MessageBoxButton.OK)
+                    Mouse.OverrideCursor = Nothing
                     Exit Sub
                 End If
 
@@ -295,7 +296,9 @@ Namespace Presentadores.FacInternacionales
                 asociados = Me._asociadosServicios.ObtenerAsociadosFiltro(asociadoaux)
             Else
                 Me._ventana.Asociados = Nothing
-                MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
+                Mouse.OverrideCursor = Nothing
+                MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")                
+                Exit Sub
             End If
 
             Dim primerasociado As New Asociado()
@@ -352,7 +355,9 @@ Namespace Presentadores.FacInternacionales
                 asociados = Me._asociadosServicios.ObtenerAsociadosFiltro(asociadoaux)
             Else
                 Me._ventana.Asociados2 = Nothing
-                MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
+                Mouse.OverrideCursor = Nothing
+                MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")                
+                Exit Sub
             End If
 
             Dim primerasociado As New Asociado()

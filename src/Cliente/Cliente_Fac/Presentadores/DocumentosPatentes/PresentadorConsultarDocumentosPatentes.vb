@@ -138,6 +138,9 @@ Namespace Presentadores.DocumentosPatentes
                 End If
 
                 Me._ventana.Count = DocumentosPatentesFiltrados.ToList().Count
+                If DocumentosPatentesFiltrados.ToList().Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = DocumentosPatentesFiltrados.ToList()
                 'Me._ventana.Resultados = DocumentosPatentesFiltrados.ToList(IEnumerable(Of DocumentosPatente))
 

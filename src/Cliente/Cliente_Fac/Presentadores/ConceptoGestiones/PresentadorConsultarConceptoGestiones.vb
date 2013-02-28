@@ -133,6 +133,9 @@ Namespace Presentadores.ConceptoGestiones
                 End If
 
                 Me._ventana.Count = ConceptoGestionsFiltrados.ToList().Count
+                If ConceptoGestionsFiltrados.ToList().Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = ConceptoGestionsFiltrados.ToList()
                 'Me._ventana.Resultados = ConceptoGestionsFiltrados.ToList(IEnumerable(Of ConceptoGestion))
 

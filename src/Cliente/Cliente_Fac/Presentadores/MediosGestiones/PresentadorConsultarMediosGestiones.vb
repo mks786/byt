@@ -133,6 +133,9 @@ Namespace Presentadores.MediosGestiones
                 End If
 
                 Me._ventana.Count = MediosGestionsFiltrados.ToList().Count
+                If MediosGestionsFiltrados.ToList().Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = MediosGestionsFiltrados.ToList()
                 'Me._ventana.Resultados = MediosGestionsFiltrados.ToList(IEnumerable(Of MediosGestion))
 

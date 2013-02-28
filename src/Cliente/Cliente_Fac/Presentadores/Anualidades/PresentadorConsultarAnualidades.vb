@@ -136,6 +136,9 @@ Namespace Presentadores.FacAnualidades
                 End If
 
                 Me._ventana.Count = FacAnualidadsFiltrados.ToList().Count
+                If FacAnualidadsFiltrados.ToList().Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = FacAnualidadsFiltrados.ToList()
                 'Me._ventana.Resultados = FacAnualidadsFiltrados.ToList(IEnumerable(Of FacAnualidad))
 

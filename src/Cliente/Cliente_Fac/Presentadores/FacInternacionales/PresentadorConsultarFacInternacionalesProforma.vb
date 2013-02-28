@@ -358,6 +358,7 @@ Namespace Presentadores.FacInternacionales
                     Me.Navegar(New FacInternacionalPago(proforma))
                 Else
                     MessageBox.Show("Debe realizar registro", "", MessageBoxButton.OK)
+                    Mouse.OverrideCursor = Nothing
                     Exit Sub
                 End If
             Else
@@ -468,7 +469,9 @@ Namespace Presentadores.FacInternacionales
                 asociados = Me._asociadosServicios.ObtenerAsociadosFiltro(asociadoaux)
             Else
                 Me._ventana.Asociados = Nothing
-                MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
+                Mouse.OverrideCursor = Nothing
+                MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")                
+                Exit Sub
             End If
 
             Dim primerasociado As New Asociado()

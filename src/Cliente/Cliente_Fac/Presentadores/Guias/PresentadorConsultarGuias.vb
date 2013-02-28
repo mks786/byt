@@ -137,6 +137,9 @@ Namespace Presentadores.Guias
                 End If
 
                 Me._ventana.Count = GuiasFiltrados.ToList().Count
+                If GuiasFiltrados.ToList().Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = GuiasFiltrados.ToList()
                 'Me._ventana.Resultados = GuiasFiltrados.ToList(IEnumerable(Of Guia))
 

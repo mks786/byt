@@ -194,6 +194,9 @@ Namespace Presentadores.FacCreditos
                 'If (filtroValido = True) Then
                 Me._FacCreditos = Me._FacCreditoServicios.ObtenerFacCreditosFiltro(FacCreditoAuxiliar)
                 Me._ventana.Count = Me._FacCreditos.Count
+                If Me._FacCreditos.Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = Me._FacCreditos
                 'Else
                 '    Me._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto)
@@ -290,7 +293,9 @@ Namespace Presentadores.FacCreditos
                 asociados = Me._asociadosServicios.ObtenerAsociadosFiltro(asociadoaux)
             Else
                 Me._ventana.Asociados = Nothing
+                Mouse.OverrideCursor = Nothing
                 MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
+                Exit Sub
             End If
 
             Dim primerasociado As New Asociado()

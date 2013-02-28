@@ -134,6 +134,9 @@ Namespace Presentadores.Sociedades
                 End If
 
                 Me._ventana.Count = SociedadsFiltrados.ToList().Count
+                If SociedadsFiltrados.ToList().Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = SociedadsFiltrados.ToList()
                 'Me._ventana.Resultados = SociedadsFiltrados.ToList(IEnumerable(Of Sociedad))
 

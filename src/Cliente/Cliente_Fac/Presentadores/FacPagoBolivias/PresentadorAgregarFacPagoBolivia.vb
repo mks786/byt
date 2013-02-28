@@ -172,10 +172,12 @@ Namespace Presentadores.FacPagoBolivias
                     ag.ShowDialog()
                 Else
                     MessageBox.Show("Debe especificar una gestion ", "Error", MessageBoxButton.OK)
+                    Mouse.OverrideCursor = Nothing
                     Exit Sub
                 End If
             Else
                 MessageBox.Show("Debe especificar una gestion ", "Error", MessageBoxButton.OK)
+                Mouse.OverrideCursor = Nothing
                 Exit Sub
             End If
         End Sub
@@ -205,7 +207,9 @@ Namespace Presentadores.FacPagoBolivias
                 asociados = Me._asociadosServicios.ObtenerAsociadosFiltro(asociadoaux)
             Else
                 Me._ventana.Asociados = Nothing
-                MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
+                Mouse.OverrideCursor = Nothing
+                MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")                
+                Exit Sub
             End If
 
             Dim primerasociado As New Asociado()

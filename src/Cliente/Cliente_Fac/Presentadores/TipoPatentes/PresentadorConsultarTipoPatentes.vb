@@ -80,6 +80,9 @@ Namespace Presentadores.TipoPatentes
 
                 Me._TipoPatentes = Me._TipoPatenteServicios.ConsultarTodos()
                 Me._ventana.Count = Me._TipoPatentes.Count
+                If Me._TipoPatentes.Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = Me._TipoPatentes
                 Me._ventana.TipoPatenteFiltrar = New TipoPatente()
                 Me._ventana.FocoPredeterminado()
@@ -145,6 +148,9 @@ Namespace Presentadores.TipoPatentes
                 End If
 
                 Me._ventana.Count = TipoPatentesFiltrados.ToList().Count
+                If TipoPatentesFiltrados.ToList().Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = TipoPatentesFiltrados.ToList()
                 'Me._ventana.Resultados = TipoPatentesFiltrados.ToList(IEnumerable(Of TipoPatente))
 

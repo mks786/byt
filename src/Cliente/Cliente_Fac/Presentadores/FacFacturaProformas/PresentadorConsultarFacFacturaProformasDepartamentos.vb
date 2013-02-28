@@ -254,6 +254,9 @@ Namespace Presentadores.FacFacturaProformas
                 FacFacturaProformas = Me._FacFacturaProformaServicios.ObtenerFacFacturaProformasFiltro(FacFacturaProformaAuxiliar)
                 Me._ventana.Resultados = Nothing
                 Me._ventana.Count = FacFacturaProformas.Count
+                If FacFacturaProformas.Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = FacFacturaProformas
                 sumar(FacFacturaProformas)
                 'Else
@@ -351,7 +354,9 @@ Namespace Presentadores.FacFacturaProformas
                 asociados = Me._asociadosServicios.ObtenerAsociadosFiltro(asociadoaux)
             Else
                 Me._ventana.Asociados = Nothing
+                Mouse.OverrideCursor = Nothing
                 MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
+                Exit Sub
             End If
 
             Dim primerasociado As New Asociado()

@@ -152,6 +152,9 @@ Namespace Presentadores.DepartamentoServicios
                 End If
 
                 Me._ventana.Count = DepartamentoServiciosFiltrados.ToList().Count
+                If DepartamentoServiciosFiltrados.ToList().Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = DepartamentoServiciosFiltrados.ToList()
                 'Me._ventana.Resultados = DepartamentoServiciosFiltrados.ToList(IEnumerable(Of DepartamentoServicio))
 

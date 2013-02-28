@@ -121,6 +121,9 @@ Namespace Presentadores.Correspondencias
                 'End If
 
                 Me._ventana.Count = CorrespondenciasFiltrados.ToList().Count()
+                If CorrespondenciasFiltrados.ToList().Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = CorrespondenciasFiltrados.ToList()
                 'Me._ventana.Resultados = CorrespondenciasFiltrados.ToList(IEnumerable(Of Correspondencia))
 

@@ -137,6 +137,9 @@ Namespace Presentadores.FacRecursos
                 End If
 
                 Me._ventana.Count = FacRecursosFiltrados.ToList().Count
+                If FacRecursosFiltrados.ToList().Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = FacRecursosFiltrados.ToList()
                 'Me._ventana.Resultados = FacRecursosFiltrados.ToList(IEnumerable(Of FacRecurso))
 

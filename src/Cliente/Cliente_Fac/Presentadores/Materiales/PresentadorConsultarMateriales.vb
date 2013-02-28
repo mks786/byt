@@ -137,6 +137,9 @@ Namespace Presentadores.Materiales
                 End If
 
                 Me._ventana.Count = MaterialsFiltrados.ToList().Count
+                If MaterialsFiltrados.ToList().Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = MaterialsFiltrados.ToList()
                 'Me._ventana.Resultados = MaterialsFiltrados.ToList(IEnumerable(Of Material))
 

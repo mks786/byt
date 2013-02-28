@@ -123,6 +123,9 @@ Namespace Presentadores.Consultas
                 FacStatementProcesars = Me._FacStatementProcesarServicios.ObtenerFacStatementProcesarsFiltro(FacStatementProcesarAuxiliar)
                 Me._ventana.Resultados = Nothing
                 Me._ventana.Count = FacStatementProcesars.Count
+                If FacStatementProcesars.Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = FacStatementProcesars
                 'sumar(FacStatementProcesars)
                 'Else

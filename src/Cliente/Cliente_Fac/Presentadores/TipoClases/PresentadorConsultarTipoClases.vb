@@ -145,6 +145,9 @@ Namespace Presentadores.TipoClases
                 End If
 
                 Me._ventana.Count = TipoClasesFiltrados.ToList().Count
+                If TipoClasesFiltrados.ToList().Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = TipoClasesFiltrados.ToList()
                 'Me._ventana.Resultados = TipoClasesFiltrados.ToList(IEnumerable(Of TipoClase))
 

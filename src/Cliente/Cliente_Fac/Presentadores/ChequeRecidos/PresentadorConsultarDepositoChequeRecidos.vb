@@ -172,6 +172,9 @@ Namespace Presentadores.ChequeRecidos
                 Me._ChequeRecidos = Me._ChequeRecidoServicios.ObtenerChequeRecidosFiltro(ChequeRecidoAuxiliar)
                 ChequeRecidoselect = convertir_ChequeRecidoSelec(Me._ChequeRecidos)
                 Me._ventana.Count = ChequeRecidoselect.Count
+                If ChequeRecidoselect.Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = ChequeRecidoselect
 
                 If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then

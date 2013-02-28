@@ -169,6 +169,9 @@ Namespace Presentadores.FacPagoBolivias
             Me._FacPagoBolivias = Me._FacPagoBoliviaServicios.ObtenerFacPagoBoliviasFiltro(FacPagoBoliviaAuxiliar)
             FacPagoBoliviaselect = convertir_FacPagoBoliviaSelec(Me._FacPagoBolivias)
             Me._ventana.Count = FacPagoBoliviaselect.Count
+            If FacPagoBoliviaselect.Count <= 0 Then
+                MessageBox.Show("Mensaje: No se encontraron registros")
+            End If
             Me._ventana.Resultados = FacPagoBoliviaselect
         End Sub
 
@@ -395,7 +398,9 @@ Namespace Presentadores.FacPagoBolivias
                 asociados = Me._asociadosServicios.ObtenerAsociadosFiltro(asociadoaux)
             Else
                 Me._ventana.Asociados = Nothing
-                MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
+                Mouse.OverrideCursor = Nothing
+                MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")                
+                Exit Sub
             End If
 
             Dim primerasociado As New Asociado()

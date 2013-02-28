@@ -234,10 +234,12 @@ Namespace Presentadores.FacFacturaProformas
                     'ag.Owner = Me
                     ag.ShowDialog()
                 Else
+                    Mouse.OverrideCursor = Nothing
                     MessageBox.Show("Debe especificar una Carta ", "Error", MessageBoxButton.OK)
                     Exit Sub
                 End If
             Else
+                Mouse.OverrideCursor = Nothing
                 MessageBox.Show("Debe especificar una Carta ", "Error", MessageBoxButton.OK)
                 Exit Sub
             End If
@@ -268,6 +270,7 @@ Namespace Presentadores.FacFacturaProformas
 
                 If MessageBoxResult.Yes = MessageBox.Show("Esta seguro de guadar la proforma ", "GUARDAR PROFORMA", MessageBoxButton.YesNo, MessageBoxImage.Question) Then
                 Else
+                    Mouse.OverrideCursor = Nothing
                     Exit Sub
                 End If
 
@@ -310,10 +313,12 @@ Namespace Presentadores.FacFacturaProformas
                     If Me._ventana.Carta.id <> Integer.MinValue Then
                         FacFacturaProforma.Carta = DirectCast(Me._ventana.Carta, Carta)
                     Else
+                        Mouse.OverrideCursor = Nothing
                         Me._ventana.MensajeError = "Debe especificar Carta Orden"
                         Exit Sub
                     End If
                 Else
+                    Mouse.OverrideCursor = Nothing
                     Me._ventana.MensajeError = "Debe especificar Carta Orden"
                     Exit Sub
                 End If
@@ -342,11 +347,13 @@ Namespace Presentadores.FacFacturaProformas
                 'FacFacturaProforma.IdiomaImp = If(Not DirectCast(Me._ventana.Idiomaimp, Idioma).Id.Equals("NGN"), DirectCast(Me._ventana.Idioma, Idioma), Nothing)
 
                 If FacFacturaProforma.Caso = "" Or FacFacturaProforma.Caso = Nothing Then
+                    Mouse.OverrideCursor = Nothing
                     Me._ventana.MensajeError = "Debe especificar Caso/Referencia"
                     Exit Sub
                 End If
 
                 If Me._ventana.Impuesto = "" Or Me._ventana.Impuesto = Nothing Or Not IsNumeric(Me._ventana.Impuesto) Then
+                    Mouse.OverrideCursor = Nothing
                     Me._ventana.MensajeError = "Debe especificar Impuesto"
                     Exit Sub
                 End If
@@ -354,6 +361,7 @@ Namespace Presentadores.FacFacturaProformas
                 FacFacturaProforma.XAsociado = xasociado
 
                 If FacFacturaProforma.FechaFactura Is Nothing Then
+                    Mouse.OverrideCursor = Nothing
                     Me._ventana.MensajeError = "Debe especificar Fecha Factura"
                     Exit Sub
                 Else
@@ -545,7 +553,9 @@ Namespace Presentadores.FacFacturaProformas
                 asociados = Me._asociadosServicios.ObtenerAsociadosFiltro(asociadoaux)
             Else
                 Me._ventana.Asociados = Nothing
+                Mouse.OverrideCursor = Nothing
                 MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
+                Exit Sub                
             End If
 
             Dim primerasociado As New Asociado()
@@ -630,7 +640,9 @@ Namespace Presentadores.FacFacturaProformas
                 asociados = Me._asociadosServicios.ObtenerAsociadosFiltro(asociadoaux)
             Else
                 Me._ventana.AsociadosImp = Nothing
+                Mouse.OverrideCursor = Nothing
                 MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
+                Exit Sub
             End If
 
             Dim primerasociado As New Asociado()
@@ -923,6 +935,7 @@ Namespace Presentadores.FacFacturaProformas
                         Me._ventana.VerTipo = "7" ' Multiples Marcas
                     Else
                         Me._ventana.VerTipo = "13"
+                        Mouse.OverrideCursor = Nothing
                         Me._ventana.MensajeError = "Este Servicios no Acepta Multiregistro"
                         Exit Sub
                     End If
@@ -946,6 +959,7 @@ Namespace Presentadores.FacFacturaProformas
                         Me._ventana.VerTipo = "9" ' Multiples Patentes
                     Else
                         Me._ventana.VerTipo = "13"
+                        Mouse.OverrideCursor = Nothing
                         Me._ventana.MensajeError = "Este Servicios no Acepta Multiregistro"
                         Exit Sub
                     End If
@@ -1631,6 +1645,7 @@ Namespace Presentadores.FacFacturaProformas
                             Else
                                 w_paso = 0
                                 Me._ventana.VerTipo = "13"
+                                Mouse.OverrideCursor = Nothing
                                 Me._ventana.MensajeError = "Este Servicios no Acepta Multiregistro"
                                 Exit Sub
                             End If
@@ -1656,6 +1671,7 @@ Namespace Presentadores.FacFacturaProformas
                                 Else
                                     w_paso = 0
                                     Me._ventana.VerTipo = "13"
+                                    Mouse.OverrideCursor = Nothing
                                     Me._ventana.MensajeError = "Este Servicios no Acepta Multiregistro"
                                     Exit Sub
                                 End If
@@ -2047,6 +2063,7 @@ Namespace Presentadores.FacFacturaProformas
                     facfactudetaproforma.Descuento = 0
                     facfactudetaproforma.Bsel = "True"
                     Me._ventana.Seleccion = True
+                    Mouse.OverrideCursor = Nothing
                     Exit Sub
                 End If
                 If facfactudetaproforma.Impuesto = "T" Then

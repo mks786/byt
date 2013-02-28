@@ -65,6 +65,9 @@ Namespace Presentadores.Etiquetas
 
                 Me._Etiquetas = Me._EtiquetaServicios.ConsultarTodos()
                 Me._ventana.Count = Me._Etiquetas.Count
+                If Me._Etiquetas.Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = Me._Etiquetas
                 Me._ventana.EtiquetaFiltrar = New Etiqueta()
                 Me._ventana.FocoPredeterminado()

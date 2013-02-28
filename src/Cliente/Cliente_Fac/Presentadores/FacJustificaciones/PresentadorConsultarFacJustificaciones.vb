@@ -133,6 +133,9 @@ Namespace Presentadores.FacJustificaciones
                 End If
 
                 Me._ventana.Count = FacJustificacionsFiltrados.ToList().Count
+                If FacJustificacionsFiltrados.ToList().Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = FacJustificacionsFiltrados.ToList()
                 'Me._ventana.Resultados = FacJustificacionsFiltrados.ToList(IEnumerable(Of FacJustificacion))
 

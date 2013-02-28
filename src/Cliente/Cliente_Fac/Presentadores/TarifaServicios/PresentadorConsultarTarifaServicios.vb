@@ -169,6 +169,9 @@ Namespace Presentadores.TarifaServicios
 
 
                 Me._ventana.Count = TarifaServiciosFiltrados.ToList().Count
+                If TarifaServiciosFiltrados.ToList().Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = TarifaServiciosFiltrados.ToList()
                 'Me._ventana.Resultados = TarifaServiciosFiltrados.ToList(IEnumerable(Of TarifaServicio))
 

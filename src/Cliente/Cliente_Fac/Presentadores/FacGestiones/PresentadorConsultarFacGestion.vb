@@ -259,6 +259,7 @@ Namespace Presentadores.FacGestiones
                         FacGestion.TipoAsociado = DirectCast(Me._ventana.Asociado, Asociado).TipoCliente
                     Else
                         MessageBox.Show("Ingrese Asociado", "Error", MessageBoxButton.OK)
+                        Mouse.OverrideCursor = Nothing
                         Exit Sub
                     End If
 
@@ -359,10 +360,12 @@ Namespace Presentadores.FacGestiones
                     ag.ShowDialog()
                 Else
                     MessageBox.Show("Debe especificar una gestion ", "Error", MessageBoxButton.OK)
+                    Mouse.OverrideCursor = Nothing
                     Exit Sub
                 End If
             Else
                 MessageBox.Show("Debe especificar una gestion ", "Error", MessageBoxButton.OK)
+                Mouse.OverrideCursor = Nothing
                 Exit Sub
             End If
         End Sub
@@ -375,10 +378,12 @@ Namespace Presentadores.FacGestiones
                     ag.ShowDialog()
                 Else
                     MessageBox.Show("Debe especificar una Respuesta ", "Error", MessageBoxButton.OK)
+                    Mouse.OverrideCursor = Nothing
                     Exit Sub
                 End If
             Else
                 MessageBox.Show("Debe especificar una Respuesta ", "Error", MessageBoxButton.OK)
+                Mouse.OverrideCursor = Nothing
                 Exit Sub
             End If
         End Sub
@@ -472,16 +477,22 @@ Namespace Presentadores.FacGestiones
                 asociados = Me._asociadosServicios.ObtenerAsociadosFiltro(asociadoaux)
                 If asociados Is Nothing Then
                     Me._ventana.Asociados = Nothing
-                    MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
+                    Mouse.OverrideCursor = Nothing
+                    MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")                    
+                    Exit Sub
                 Else
                     If asociados.Count < 1 Then
                         Me._ventana.Asociados = Nothing
-                        MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
+                        Mouse.OverrideCursor = Nothing
+                        MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")                        
+                        Exit Sub
                     End If
                 End If
             Else
                 Me._ventana.Asociados = Nothing
-                MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
+                Mouse.OverrideCursor = Nothing
+                MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")                
+                Exit Sub
             End If
 
             Dim primerasociado As New Asociado()

@@ -136,6 +136,9 @@ Namespace Presentadores.Impuestos
                 End If
 
                 Me._ventana.Count = ImpuestosFiltrados.ToList().Count
+                If ImpuestosFiltrados.ToList().Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = ImpuestosFiltrados.ToList()
                 'Me._ventana.Resultados = ImpuestosFiltrados.ToList(IEnumerable(Of Impuesto))
 

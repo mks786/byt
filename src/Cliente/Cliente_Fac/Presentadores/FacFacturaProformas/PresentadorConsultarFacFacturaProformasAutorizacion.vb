@@ -305,6 +305,7 @@ Namespace Presentadores.FacFacturaProformas
 
             If proformadetalle.Count <= 0 Then
                 r_val = 1
+                Mouse.OverrideCursor = Nothing
                 Exit Sub
             End If
 
@@ -313,6 +314,7 @@ Namespace Presentadores.FacFacturaProformas
             Dim operacionproforma As List(Of FacOperacionProforma) = Me._FacOperacionProformasServicios.ObtenerFacOperacionProformasFiltro(operacionproformaaux)
             If operacionproforma.Count <= 0 Then
                 r_val = 1
+                Mouse.OverrideCursor = Nothing
                 Exit Sub
             End If
 
@@ -326,10 +328,12 @@ Namespace Presentadores.FacFacturaProformas
                     operacionproformadetalle = Me._FacOperacionDetaProformasServicios.ObtenerFacOperacionDetaProformasFiltro(operacionproformadetalleaux)
                     If operacionproformadetalle.Count <= 0 Then
                         r_val = 1
+                        Mouse.OverrideCursor = Nothing
                         Exit Sub
                     Else
                         If proformadetalle.Count <> operacionproformadetalle.Count Then ' verificar si el detalle e con el count o con la i
                             r_val = 1
+                            Mouse.OverrideCursor = Nothing
                             Exit Sub
                         End If
                     End If
@@ -351,6 +355,7 @@ Namespace Presentadores.FacFacturaProformas
                 w_resta = w_calculo_1 - w_calculo_2
                 If w_resta > 0.05 Then
                     r_val = 2
+                    Mouse.OverrideCursor = Nothing
                     Exit Sub
                 End If
 
@@ -363,6 +368,7 @@ Namespace Presentadores.FacFacturaProformas
                 w_resta = w_calculo_1 - w_calculo_2
                 If w_resta > 0.05 Then
                     r_val = 2
+                    Mouse.OverrideCursor = Nothing
                     Exit Sub
                 End If
 
@@ -376,6 +382,7 @@ Namespace Presentadores.FacFacturaProformas
                     w_resta = w_calculo_1 - w_calculo_2
                     If w_resta > 0.05 Then
                         r_val = 2
+                        Mouse.OverrideCursor = Nothing
                         Exit Sub
                     End If
                 Next
@@ -438,6 +445,9 @@ Namespace Presentadores.FacFacturaProformas
                 FacFacturaProformas = Me._FacFacturaProformaServicios.ObtenerFacFacturaProformasFiltro(FacFacturaProformaAuxiliar)
                 Me._ventana.Resultados = Nothing
                 Me._ventana.Count = FacFacturaProformas.Count
+                If FacFacturaProformas.Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = FacFacturaProformas
                 sumar(FacFacturaProformas)
                 'Else
@@ -535,7 +545,9 @@ Namespace Presentadores.FacFacturaProformas
                 asociados = Me._asociadosServicios.ObtenerAsociadosFiltro(asociadoaux)
             Else
                 Me._ventana.Asociados = Nothing
+                Mouse.OverrideCursor = Nothing
                 MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
+                Exit Sub
             End If
 
             Dim primerasociado As New Asociado()

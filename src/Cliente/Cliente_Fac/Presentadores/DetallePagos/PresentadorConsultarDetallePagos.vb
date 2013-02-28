@@ -134,6 +134,9 @@ Namespace Presentadores.DetallePagos
                 End If
 
                 Me._ventana.Count = DetallePagosFiltrados.ToList().Count
+                If DetallePagosFiltrados.ToList().Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = DetallePagosFiltrados.ToList()
                 'Me._ventana.Resultados = DetallePagosFiltrados.ToList(IEnumerable(Of DetallePago))
 

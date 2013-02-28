@@ -192,6 +192,9 @@ Namespace Presentadores.FacPagoBolivias
                 'If (filtroValido = True) Then
                 Me._FacPagoBolivias = Me._FacPagoBoliviaServicios.ObtenerFacPagoBoliviasFiltro(FacPagoBoliviaAuxiliar)
                 Me._ventana.Count = Me._FacPagoBolivias.Count
+                If Me._FacPagoBolivias.Count <= 0 Then
+                    MessageBox.Show("Mensaje: No se encontraron registros")
+                End If
                 Me._ventana.Resultados = Me._FacPagoBolivias
                 'Else
                 '    Me._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto)
@@ -290,7 +293,9 @@ Namespace Presentadores.FacPagoBolivias
                 asociados = Me._asociadosServicios.ObtenerAsociadosFiltro(asociadoaux)
             Else
                 Me._ventana.Asociados = Nothing
-                MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
+                Mouse.OverrideCursor = Nothing
+                MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")                
+                Exit Sub
             End If
 
             Dim primerasociado As New Asociado()

@@ -299,11 +299,13 @@ Namespace Presentadores.ViGestionAsociados
                     Dim ag As New Mostrar_Detalle_Carta(carta)
                     ag.ShowDialog()
                 Else
+                    Mouse.OverrideCursor = Nothing
                     MessageBox.Show("Debe especificar una gestion ", "Error", MessageBoxButton.OK)
                     Exit Sub
                 End If
 
             Else
+                Mouse.OverrideCursor = Nothing
                 MessageBox.Show("Debe especificar una gestion ", "Error", MessageBoxButton.OK)
                 Exit Sub
             End If
@@ -450,6 +452,7 @@ Namespace Presentadores.ViGestionAsociados
         '    Else
         '        Me._ventana.Asociados = Nothing
         '        MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
+        'Exit Sub 
         '    End If
 
         '    Dim primerasociado As New Asociado()
