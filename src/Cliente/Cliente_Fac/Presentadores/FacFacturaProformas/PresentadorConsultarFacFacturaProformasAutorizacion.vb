@@ -258,6 +258,7 @@ Namespace Presentadores.FacFacturaProformas
             Mouse.OverrideCursor = Cursors.Wait
             Dim w_ret, w_pas As Integer
             Dim proforma As List(Of FacFacturaProforma) = Me._ventana.Resultados
+            Dim autorizo As Boolean = False
             For i As Integer = 0 To proforma.Count - 1
                 If proforma(i).Seleccion = True Then
                     w_pas = 0
@@ -285,10 +286,13 @@ Namespace Presentadores.FacFacturaProformas
                         proforma(i).Auto = "1"
                         proforma(i).FechaEcuota = FormatDateTime(Date.Now, DateFormat.ShortDate)
                         Dim exitoso As Boolean = _FacFacturaProformaServicios.InsertarOModificar(proforma(i), UsuarioLogeado.Hash)
+                        autorizo = True
                     End If
                 End If
             Next
-            MessageBox.Show("Autorizacion Satisfactoria")
+            If autorizo = True Then
+                MessageBox.Show("Autorizacion Satisfactoria")               
+            End If
             Consultar()
             Mouse.OverrideCursor = Nothing
             'Else

@@ -239,7 +239,7 @@
             </ListView>
         </GroupBox>
 
-        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
+        <!--<GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" Height="20">
                     <Label>
@@ -295,7 +295,7 @@
                     </custom:ByTTextBox>
                 </WrapPanel>
             </StackPanel>
-        </GroupBox>
+        </GroupBox>-->
 
         <!--Botones Regresar-->
         <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">

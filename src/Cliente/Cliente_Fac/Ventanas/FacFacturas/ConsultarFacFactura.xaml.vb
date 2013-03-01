@@ -37,16 +37,16 @@ Namespace Ventanas.FacFacturas
             Set(ByVal value As Integer?)
                 Select Case value
                     Case 1 'modificar sin el boton regresar
-                        _btnModificar.Visibility = Windows.Visibility.Visible
-                        _btnEliminar.Visibility = Windows.Visibility.Visible
+                        '_btnModificar.Visibility = Windows.Visibility.Visible
+                        '_btnEliminar.Visibility = Windows.Visibility.Visible
                         _btnRegresar.Visibility = Windows.Visibility.Collapsed
                     Case 2 'no modificar
-                        _btnModificar.Visibility = Windows.Visibility.Collapsed
-                        _btnEliminar.Visibility = Windows.Visibility.Collapsed
+                        '_btnModificar.Visibility = Windows.Visibility.Collapsed
+                        '_btnEliminar.Visibility = Windows.Visibility.Collapsed
                         _btnRegresar.Visibility = Windows.Visibility.Visible
                     Case 3 'modificar con el boton regresar                   
-                        _btnModificar.Visibility = Windows.Visibility.Visible
-                        _btnEliminar.Visibility = Windows.Visibility.Visible
+                        '_btnModificar.Visibility = Windows.Visibility.Visible
+                        '_btnEliminar.Visibility = Windows.Visibility.Visible
                         _btnRegresar.Visibility = Windows.Visibility.Visible
                 End Select
             End Set
@@ -88,8 +88,8 @@ Namespace Ventanas.FacFacturas
                 _chkBIMulmon.IsEnabled = value
                 _txtCarta.IsEnabled = value
                 _cbxLocal.IsEnabled = value
-                _btnConsultarDepartamentoServicio2.IsEnabled = value
-                _btnEliminarDepartamentoServicio2.IsEnabled = value
+                _btnConsultarDepartamentoServicio2.IsEnabled = False
+                _btnEliminarDepartamentoServicio2.IsEnabled = False
                 _lstDetalle.IsEnabled = value
             End Set
         End Property
@@ -116,6 +116,11 @@ Namespace Ventanas.FacFacturas
             InitializeComponent()
             Me._cargada = False
             Me._presentador = New PresentadorConsultarFacFactura(Me, FacFactura)
+            _btnConsultarDepartamentoServicio2.Visibility = Windows.Visibility.Collapsed
+            _btnEliminarDepartamentoServicio2.Visibility = Windows.Visibility.Collapsed
+            _btnrecalcular.Visibility = Windows.Visibility.Collapsed
+            _btnagregarServicio2.Visibility = Windows.Visibility.Collapsed
+
         End Sub
 
         Private Sub _btnCancelar_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)

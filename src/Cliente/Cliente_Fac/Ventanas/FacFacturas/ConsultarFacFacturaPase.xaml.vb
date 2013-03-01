@@ -38,15 +38,15 @@ Namespace Ventanas.FacFacturas
                 Select Case value
                     Case 1 'modificar sin el boton regresar
                         _btnModificar.Visibility = Windows.Visibility.Visible
-                        _btnEliminar.Visibility = Windows.Visibility.Visible
+                        '_btnEliminar.Visibility = Windows.Visibility.Visible
                         _btnRegresar.Visibility = Windows.Visibility.Collapsed
                     Case 2 'no modificar
-                        _btnModificar.Visibility = Windows.Visibility.Collapsed
-                        _btnEliminar.Visibility = Windows.Visibility.Collapsed
+                        '_btnModificar.Visibility = Windows.Visibility.Collapsed
+                        '_btnEliminar.Visibility = Windows.Visibility.Collapsed
                         _btnRegresar.Visibility = Windows.Visibility.Visible
                     Case 3 'modificar con el boton regresar                   
                         _btnModificar.Visibility = Windows.Visibility.Visible
-                        _btnEliminar.Visibility = Windows.Visibility.Visible
+                        '_btnEliminar.Visibility = Windows.Visibility.Visible
                         _btnRegresar.Visibility = Windows.Visibility.Visible
                 End Select
             End Set
@@ -87,8 +87,8 @@ Namespace Ventanas.FacFacturas
                 _chkBIMulmon.IsEnabled = value
                 _txtCarta.IsEnabled = value
                 _cbxLocal.IsEnabled = value
-                _btnConsultarDepartamentoServicio2.IsEnabled = value
-                _btnEliminarDepartamentoServicio2.IsEnabled = value
+                _btnConsultarDepartamentoServicio2.IsEnabled = False
+                _btnEliminarDepartamentoServicio2.IsEnabled = False
                 _lstDetalle.IsEnabled = value
             End Set
         End Property

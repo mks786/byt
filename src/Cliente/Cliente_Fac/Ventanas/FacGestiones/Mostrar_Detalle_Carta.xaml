@@ -12,14 +12,14 @@
             <Label Width="100">
                 <TextBlock Text="Código"/>
             </Label>
-            <TextBox Name="_txtId" Width="80" MaxLength="7" Focusable="True" 
+            <custom:ByTTextBox Name="_txtId" Width="80" MaxLength="7" Focusable="True" 
                     ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True" IsReadOnly="True">
                 <TextBox.Text>
                     <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">
 
                     </Binding>
                 </TextBox.Text>
-            </TextBox>
+             </custom:ByTTextBox>
             <Label>
                 <TextBlock Text="  "/>
             </Label>
@@ -42,72 +42,72 @@
             <Label Width="100">
                 <TextBlock Text="Asociado"/>
             </Label>
-            <TextBox Name="_txtAsociadoId" Width="80" MaxLength="7" Focusable="True" 
+            <custom:ByTTextBox Name="_txtAsociadoId" Width="80" MaxLength="7" Focusable="True" 
                     ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True" IsReadOnly="True">
                 <TextBox.Text>
                     <Binding Path="Asociado.Id" UpdateSourceTrigger="PropertyChanged">
 
                     </Binding>
                 </TextBox.Text>
-            </TextBox>
-            <TextBox Name="_txtAsociadoNombre" Width="250" MaxLength="7" Focusable="True" 
+            </custom:ByTTextBox>
+            <custom:ByTTextBox Name="_txtAsociadoNombre" Width="250" MaxLength="7" Focusable="True" 
                     ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True" IsReadOnly="True">
                 <TextBox.Text>
                     <Binding Path="Asociado.Nombre" UpdateSourceTrigger="PropertyChanged">
 
                     </Binding>
                 </TextBox.Text>
-            </TextBox>            
+          </custom:ByTTextBox>            
         </WrapPanel>
 
         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Center">
             <Label Width="100">
                 <TextBlock Text="Departamento"/>
             </Label>
-            <TextBox Name="_txtDepartamento" Width="80" MaxLength="7" Focusable="True" 
+            <custom:ByTTextBox Name="_txtDepartamento" Width="80" MaxLength="7" Focusable="True" 
                     ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True" IsReadOnly="True">
                 <TextBox.Text>
                     <Binding Path="Departamento.Id" UpdateSourceTrigger="PropertyChanged">
 
                     </Binding>
                 </TextBox.Text>
-            </TextBox>
-            <TextBox Name="_txtDepartamentoNombre" Width="250" MaxLength="7" Focusable="True" 
+             </custom:ByTTextBox>
+            <custom:ByTTextBox Name="_txtDepartamentoNombre" Width="250" MaxLength="7" Focusable="True" 
                     ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True" IsReadOnly="True">
                 <TextBox.Text>
                     <Binding Path="Departamento.Descripcion" UpdateSourceTrigger="PropertyChanged">
 
                     </Binding>
                 </TextBox.Text>
-            </TextBox>
+            </custom:ByTTextBox>
         </WrapPanel>
         
         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Center">
             <Label Width="100">
                 <TextBlock Text="Referencia"/>
             </Label>
-            <TextBox Name="_txtReferencia" Width="330" MaxLength="7" Focusable="True" 
+            <custom:ByTTextBox Name="_txtReferencia" Width="330" MaxLength="7" Focusable="True" 
                     ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True" IsReadOnly="True">
                 <TextBox.Text>
                     <Binding Path="Referencia" UpdateSourceTrigger="PropertyChanged">
 
                     </Binding>
                 </TextBox.Text>
-            </TextBox>
+            </custom:ByTTextBox>
         </WrapPanel>
 
         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Center">
             <Label Width="100">
                 <TextBlock Text="Tracking"/>
             </Label>
-            <TextBox Name="_txtTracking" Width="330" MaxLength="7" Focusable="True" 
+            <custom:ByTTextBox Name="_txtTracking" Width="330" MaxLength="7" Focusable="True" 
                     ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True" IsReadOnly="True">
                 <TextBox.Text>
                     <Binding Path="Tracking" UpdateSourceTrigger="PropertyChanged">
 
                     </Binding>
                 </TextBox.Text>
-            </TextBox>
+            </custom:ByTTextBox>
         </WrapPanel>
         
         <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15" Orientation="Horizontal">

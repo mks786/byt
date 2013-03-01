@@ -1798,7 +1798,7 @@
         </WrapPanel>
 
         <WrapPanel Name="_Wp_Btn"  Grid.Column="1" Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Bottom">
-            <Button Name="_btnModificar"  VerticalAlignment="Bottom" Height="25" Width="80"
+            <Button Name="_btnModificar"  Visibility="Hidden" VerticalAlignment="Bottom" Height="25" Width="80"
                     Click="_btnModificar_Click">
                 <Button.Style>
                     <Style TargetType="Button">
@@ -1811,11 +1811,11 @@
                 </Button.Style>
                 <TextBlock Name="_txbModificar" Text="{x:Static recurso:Etiquetas.btnModificar}"/>
             </Button>
-            <Button Name="_btnEliminar" VerticalAlignment="Bottom" Height="25" Width="80"
+            <Button Name="_btnEliminar" Visibility="Hidden" VerticalAlignment="Bottom" Height="25" Width="80"
                     Click="_btnEliminar_Click">
                 <TextBlock Name="_txbEliminar" Text="{x:Static recurso:Etiquetas.btnEliminar}"/>
             </Button>
-            <Button Name="_btnLimpiar" VerticalAlignment="Bottom" Height="25" Width="80" Click="_btnLimpiar_Click">Limpiar</Button>
+            <Button Name="_btnLimpiar" Visibility="Hidden" VerticalAlignment="Bottom" Height="25" Width="80" Click="_btnLimpiar_Click">Limpiar</Button>
             <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="80"
                     Click="_btnRegresar_Click">
                 <TextBlock Name="_txbCancelar" Text="{x:Static recurso:Etiquetas.btnRegresar}"/>

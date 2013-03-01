@@ -1232,6 +1232,7 @@ Namespace Presentadores.FacFacturaProformas
                         j = j + 1
 
                     Else
+                        eliminar_operacion_detalle_tm_cdetalle(FacFactuDetaProformas.Item(i).Id)
                         'aqui va lo de eliminar los operacion detale prof
                     End If
                 Next
@@ -1246,6 +1247,19 @@ Namespace Presentadores.FacFacturaProformas
                     recalcular("")
                 End If
                 Me._ventana.MensajeError = ""
+            End If
+        End Sub
+
+        Public Sub eliminar_operacion_detalle_tm_cdetalle(ByVal cdetalle As Integer)
+            Dim FacOperacionDetalleTm As List(Of FacOperacionDetalleTm)
+            Dim FacOperacionDetalleTmaux As New FacOperacionDetalleTm
+            Dim elim As Boolean = False
+            FacOperacionDetalleTmaux.Detalle = cdetalle
+            FacOperacionDetalleTm = _FacOperacionDetalleTmsServicios.ObtenerFacOperacionDetalleTmsFiltro(FacOperacionDetalleTmaux)
+            If FacOperacionDetalleTm IsNot Nothing Then
+                For i As Integer = 0 To FacOperacionDetalleTm.Count - 1
+                    elim = _FacOperacionDetalleTmsServicios.Eliminar(FacOperacionDetalleTm(i), UsuarioLogeado.Hash)
+                Next
             End If
         End Sub
 
@@ -2110,7 +2124,7 @@ Namespace Presentadores.FacFacturaProformas
                 If Me._ventana.Desglose = True Then
                     Dim desglose_servicio As FacDesgloseServicio = DirectCast(Me._ventana.DesgloseServicio_Seleccionado, FacDesgloseServicio)
                     If desglose_servicio IsNot Nothing Then
-                        If desglose_servicio.Id = "G" Then
+                        If desglose_servicio.Id = "H" Then
                             facfactudetaproforma.Desactivar_Desglose = False
                         End If
                         If desglose_servicio.Servicio IsNot Nothing Then
@@ -2238,8 +2252,6 @@ Namespace Presentadores.FacFacturaProformas
             Me._ventana.VerTipo = "13"
         End Sub
 
-
-
         Public Sub eliminar_operacion_detalle_tm(ByVal valor As String, ByVal contador As Integer, ByVal servicio As FacServicio)
             Dim FacOperacionDetalleTm As List(Of FacOperacionDetalleTm)
             Dim FacOperacionDetalleTmaux As New FacOperacionDetalleTm
@@ -2273,6 +2285,7 @@ Namespace Presentadores.FacFacturaProformas
                 Next
             End If
         End Sub
+
         Public Sub operacion_detalle_proforma(ByVal idfactura As String)
             elim_operacion_detalle_proforma(idfactura)
             agregar_modificar_operacion_detalle_proforma(idfactura)
@@ -2327,7 +2340,7 @@ Namespace Presentadores.FacFacturaProformas
         End Sub
 
         Public Sub agregar_modificar_operacion_detalle_proforma(ByVal idfactura As String)
-            Dim FacOperacionDetaproforma As List(Of FacOperacionDetaProforma)
+            'Dim FacOperacionDetaproforma As List(Of FacOperacionDetaProforma)
             Dim FacOperacionDetaproformaaux As New FacOperacionDetaProforma
             Dim facturaproforma As New FacFacturaProforma
             facturaproforma.Id = idfactura
@@ -2339,17 +2352,17 @@ Namespace Presentadores.FacFacturaProformas
             For i As Integer = 0 To FacFactuDetaProformas.Count - 1
                 'if (itiposerv.fac_detalles_pro != "C" & itiposerv.fac_detalles_pro != "E") & (bsel.fac_detalles_pro = 1 | bsel.fac_detalles_pro = "T")
                 If (FacFactuDetaProformas(i).TipoServicio <> "C" And FacFactuDetaProformas(i).TipoServicio <> "E") And (FacFactuDetaProformas(i).BBsel = True) Then
-                    FacOperacionDetaproformaaux.Factura = facturaproforma
-                    FacOperacionDetaproforma = _FacOperacionDetaProformasServicios.ObtenerFacOperacionDetaProformasFiltro(FacOperacionDetaproformaaux)
-                    If FacOperacionDetaproforma Is Nothing Or FacOperacionDetaproforma.Count <= 0 Then
-                        Dim FacOperacionDetaproformaaux2 As New FacOperacionDetaProforma
-                        FacOperacionDetaproformaaux2.Codigo = FacFactuDetaProformas(i).Codigo
-                        FacOperacionDetaproformaaux2.Factura = FacFactuDetaProformas(i).Factura
-                        FacOperacionDetaproformaaux2.Detalle = FacFactuDetaProformas(i).Id
-                        FacOperacionDetaproformaaux2.Id = "ND"
-                        FacOperacionDetaproformaaux2.Servicio = FacFactuDetaProformas(i).Servicio
-                        guardar = _FacOperacionDetaProformasServicios.InsertarOModificar(FacOperacionDetaproformaaux2, UsuarioLogeado.Hash)
-                    End If
+                    'FacOperacionDetaproformaaux.Factura = facturaproforma
+                    'FacOperacionDetaproforma = _FacOperacionDetaProformasServicios.ObtenerFacOperacionDetaProformasFiltro(FacOperacionDetaproformaaux)
+                    'If FacOperacionDetaproforma Is Nothing Or FacOperacionDetaproforma.Count <= 0 Then
+                    Dim FacOperacionDetaproformaaux2 As New FacOperacionDetaProforma
+                    FacOperacionDetaproformaaux2.Codigo = FacFactuDetaProformas(i).Codigo
+                    FacOperacionDetaproformaaux2.Factura = FacFactuDetaProformas(i).Factura
+                    FacOperacionDetaproformaaux2.Detalle = FacFactuDetaProformas(i).Id
+                    FacOperacionDetaproformaaux2.Id = "ND"
+                    FacOperacionDetaproformaaux2.Servicio = FacFactuDetaProformas(i).Servicio
+                    guardar = _FacOperacionDetaProformasServicios.InsertarOModificar(FacOperacionDetaproformaaux2, UsuarioLogeado.Hash)
+                    'End If
                 End If
             Next
         End Sub

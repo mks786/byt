@@ -333,49 +333,49 @@ Namespace Ventanas.FacFacturas
 
         Public WriteOnly Property Cba As Double Implements Contratos.FacFacturas.IConsultarFacFacturas.Cba
             Set(ByVal value As Double)
-                Me._txtCba.Text = value
+                'Me._txtCba.Text = value
             End Set
         End Property
 
         Public WriteOnly Property Cbf As Double Implements Contratos.FacFacturas.IConsultarFacFacturas.Cbf
             Set(ByVal value As Double)
-                Me._txtCbf.Text = value
+                'Me._txtCbf.Text = value
             End Set
         End Property
 
         Public WriteOnly Property Cbp As Double Implements Contratos.FacFacturas.IConsultarFacFacturas.Cbp
             Set(ByVal value As Double)
-                Me._txtCbp.Text = value
+                'Me._txtCbp.Text = value
             End Set
         End Property
 
         Public WriteOnly Property Cbr As Double Implements Contratos.FacFacturas.IConsultarFacFacturas.Cbr
             Set(ByVal value As Double)
-                Me._txtCbr.Text = value
+                ' Me._txtCbr.Text = value
             End Set
         End Property
 
         Public WriteOnly Property Cda As Double Implements Contratos.FacFacturas.IConsultarFacFacturas.Cda
             Set(ByVal value As Double)
-                Me._txtCda.Text = value
+                'Me._txtCda.Text = value
             End Set
         End Property
 
         Public WriteOnly Property Cdf As Double Implements Contratos.FacFacturas.IConsultarFacFacturas.Cdf
             Set(ByVal value As Double)
-                Me._txtCdf.Text = value
+                ' Me._txtCdf.Text = value
             End Set
         End Property
 
         Public WriteOnly Property Cdp As Double Implements Contratos.FacFacturas.IConsultarFacFacturas.Cdp
             Set(ByVal value As Double)
-                Me._txtCdp.Text = value
+                ' Me._txtCdp.Text = value
             End Set
         End Property
 
         Public WriteOnly Property Cdr As Double Implements Contratos.FacFacturas.IConsultarFacFacturas.Cdr
             Set(ByVal value As Double)
-                Me._txtCdr.Text = value
+                'Me._txtCdr.Text = value
             End Set
         End Property
 

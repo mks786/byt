@@ -402,7 +402,7 @@ Namespace Presentadores.FacFacturas
                     If (FacFactuDeta.Item(i).Id = iddetalle) Then
                         'MessageBox.Show(FacFactuDetaProformas.Item(i).XDetalleEs, "", MessageBoxButton.OK)
 
-                        Dim ag As New Mostrar_Detalle(FacFactuDeta.Item(i))
+                        Dim ag As New Mostrar_Detalle(FacFactuDeta.Item(i), Me, 1)
                         'ag.Owner = Me
                         ag.ShowDialog()
 
@@ -411,6 +411,28 @@ Namespace Presentadores.FacFacturas
                     i = i + 1
                 End While
             End If
+        End Sub
+
+        Public Sub buscar_departamento_servicio_cambiar_español_ingles(ByVal detalle As FacFactuDetalle)
+            Dim FacFactuDetalles As List(Of FacFactuDetalle) = DirectCast(Me._ventana.ResultadosFacFactuDeta, List(Of FacFactuDetalle))
+            If FacFactuDetalles IsNot Nothing Then
+                Dim i As Integer = 0
+                While (i < (FacFactuDetalles.Count))
+                    If (FacFactuDetalles.Item(i).Id = detalle.Id) Then
+                        FacFactuDetalles.Item(i) = detalle
+                        Dim guardar As Boolean
+                        guardar = _FacFactuDetaServicios.InsertarOModificar(FacFactuDetalles.Item(i), UsuarioLogeado.Hash)
+
+                        i = FacFactuDetalles.Count
+
+                        'FacFactuDetalles.Item(i) = detalle
+                        'guarda los cambios en el detalle
+                    End If
+                    i = i + 1
+                End While
+            End If
+            Me._ventana.ResultadosFacFactuDeta = Nothing
+            Me._ventana.ResultadosFacFactuDeta = FacFactuDetalles
         End Sub
 
         'Public Sub pasar_profora_a_factura(ByVal proforma As FacFacturaProforma)
