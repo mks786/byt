@@ -119,7 +119,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 contactoAConsultar.Asociado = this._asociado;
                 Contacto contacto = this._contactoServicios.ConsultarPorId(contactoAConsultar);
                 contacto.Asociado = this._asociado;
-                this.Navegar(new ConsultarContacto(contacto,null));
+                this.Navegar(new ConsultarContacto(contacto,this._ventana));
             }
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

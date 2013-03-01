@@ -216,6 +216,21 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Email}" Width="160">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Email" Content="{x:Static recurso:Etiquetas.lsvEmail}"/>
                         </GridViewColumn>
+                        <GridViewColumn Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Carta.Id" Content="{x:Static recurso:Etiquetas.lsvCartaCreacion}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <Binding Path="Carta.Id" Converter="{StaticResource convertir}"/>
+                                                    </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Carta.Fecha}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Carta.Fecha" Content="{x:Static recurso:Etiquetas.lsvFechaCreacion}"/>
+                        </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Departamento}" Width="40">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Departamento" Content="{x:Static recurso:Etiquetas.lsvDepartamento}"/>
                         </GridViewColumn>
@@ -242,12 +257,12 @@
                 <Button Grid.Row="0" Grid.Column="1" Name="_btnNuevoContacto" Width="100" Click="_btnNuevoContacto_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnNuevoContacto}"/>
                 </Button>
+                <Button Grid.Row="0" Grid.Column="1" Name="_btnSeleccionar" Width="100" Click="_btnSeleccionar_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnSeleccionar}"/>
+                </Button>
                 
                 <Button Grid.Row="0" Grid.Column="1" Name="_btnCancelar" Width="100" Click="_btnCancelar_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
-                </Button>
-                <Button Grid.Row="0" Grid.Column="1" Name="_btnSeleccionar" Width="100" Click="_btnSeleccionar_Click">
-                    <TextBlock Text="{x:Static recurso:Etiquetas.btnSeleccionar}"/>
                 </Button>
 
 

@@ -10,19 +10,19 @@
     <property name="OtrosC2" column="IOTROS2" type="char"/>
     <property name="OtrosC3" column="IOTROS3" type="char"/>
     <property name="OtrosC4" column="IOTROS4" type="char"/>
-    <property name="OtrosC5" column="IOTROS5" type="char"/>   
+    <property name="OtrosC5" column="IOTROS5" type="char"/>
     <property name="PoderC" column="IPODER" type="char"/>
     <property name="Rif" column="IRIF" type="char"/>
     <property name="Acta" column="IACTA" type="char"/>
     <property name="Timbre" column="ITIMBRES" type="char"/>
     <property name="TipoR" column="TIPOR" type="char"/>
-    <property name="Expediente" column="CEXPEDIENTE" type="string"/>        
+    <property name="Expediente" column="CEXPEDIENTE" type="string"/>
     <property name="OtrosS1" column="XOTROS1" type="string"/>
     <property name="OtrosS2" column="XOTROS2" type="string"/>
     <property name="OtrosS3" column="XOTROS3" type="string"/>
     <property name="OtrosS4" column="XOTROS4" type="string"/>
     <property name="OtrosS5" column="XOTROS5" type="string"/>
-    <property name="Ubicacion" column="XUBICACION" type="string"/>    
+    <property name="Ubicacion" column="XUBICACION" type="string"/>
     <property name="Observacion" column="XOBSERVACION" type="string"/>
     <property name="Fecha" column="FRENOVACION" type="DateTime"/>
     <property name="FechaProxima" column="FRENOVACION_PROXIMA" type="DateTime"/>
@@ -34,11 +34,11 @@
 
     <many-to-one name="Agente" class="Agente">
       <column name="CAGENTE"/>
-    </many-to-one>   
+    </many-to-one>
 
     <many-to-one name="Poder" class="Poder">
       <column name="CPODER"/>
-    </many-to-one>    
+    </many-to-one>
 
     <many-to-one name="BoletinPublicacion" class="Boletin">
       <column name="CBOLETIN_PUBLICACION"/>
@@ -51,7 +51,7 @@
     <many-to-one name="Interesado" class="Interesado">
       <column name="CINTERESADO"/>
     </many-to-one>
-    
+
   </class>
 </hibernate-mapping>
 

@@ -28,11 +28,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Remitentes
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
         /// <param name="poder">Poder a mostrar</param>
-        public PresentadorConsultarRemitente(IConsultarRemitente ventana, object remitente)
+        public PresentadorConsultarRemitente(IConsultarRemitente ventana, object remitente, object ventanaPadre)
         {
             try
             {
                 this._ventana = ventana;
+                this._ventanaPadre = ventanaPadre;
                 this._ventana.Remitente = remitente;
                 this._remitenteServicios = (IRemitenteServicios)Activator.GetObject(typeof(IRemitenteServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["RemitenteServicios"]);

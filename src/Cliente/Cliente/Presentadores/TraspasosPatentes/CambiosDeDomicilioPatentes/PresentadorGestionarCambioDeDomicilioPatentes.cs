@@ -857,6 +857,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
                     retorno = true;
                 }
 
+                this._ventana.BorrarCerosInternacional();
 
 
                 #region trace

@@ -1648,7 +1648,7 @@
 
                         </ComboBox>
                         <custom:ByTTextBox  Grid.Column="8" Grid.Row="17" Grid.ColumnSpan="3" Margin="3" Name="_txtSituacionDescripcion" VerticalAlignment="Center"  
-                          Text=""></custom:ByTTextBox>
+                          Text="" IsReadOnly="True" IsEnabled="False" ></custom:ByTTextBox>
 
                         <!--Fin Undécima Fila-->
 

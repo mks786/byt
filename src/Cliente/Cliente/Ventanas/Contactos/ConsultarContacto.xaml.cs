@@ -101,6 +101,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
             MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
+        public void AsignarAsociado(int id, string nombre)
+        {
+            this._txtIdAsociado.Text = id.ToString();
+            this._txtNombreAsociado.Text = nombre;
+        }
+
 
         #endregion
 
@@ -119,7 +125,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Regresar();
+            this._presentador.RegresarVentanaPadre();
         }
 
         private void _btnEliminar_Click(object sender, RoutedEventArgs e)
@@ -137,6 +143,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
             {
                 this._presentador.CargarPagina();
                 EstaCargada = true;
+            }
+        }
+
+        private void _btnIrCorrespondencia_Click(object sender, RoutedEventArgs e)
+        {
+            if (!this._txtCorrespondencia.Text.Equals(string.Empty))
+            {
+                this._presentador.ConsultarCarta();
             }
         }
     }

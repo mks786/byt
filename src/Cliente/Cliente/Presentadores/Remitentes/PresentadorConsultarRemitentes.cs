@@ -230,7 +230,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Remitentes
             #endregion
 
             if (this._ventana.RemitenteSeleccionado != null)
-                this.Navegar(new ConsultarRemitente(this._ventana.RemitenteSeleccionado));
+                this.Navegar(new ConsultarRemitente(this._ventana.RemitenteSeleccionado, null));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

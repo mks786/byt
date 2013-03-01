@@ -152,7 +152,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                 this._ventana.TotalHits = "0";
 
-                IList<ListaDatosValores> departamentos = this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiDepartamentoDeContactos));
+                IList<ListaDatosValores> departamentos = this._listaDatosValoresServicios.
+                    ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiDepartamentoDeContactos));
+
                 ListaDatosValores primerDepartamento = new ListaDatosValores();
                 primerDepartamento.Id = "NGN";
                 departamentos.Insert(0, primerDepartamento);

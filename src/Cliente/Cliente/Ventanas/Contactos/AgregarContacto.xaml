@@ -35,11 +35,19 @@
         <GroupBox Grid.Column="1" Grid.Row="1">
             <StackPanel Name="_gridDatos"  VerticalAlignment="Center"  HorizontalAlignment="Center"
                         DataContext="{Binding}">
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtIdAsociado" Width="40" MaxLength="400"  Text="" IsReadOnly="True" />
+                    <custom:ByTTextBox Name="_txtNombreAsociado" Width="160" MaxLength="30"  Text="" IsReadOnly="True" />
+                </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNumero}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtNumero" Width="150" MaxLength="25" 
+                    <custom:ByTTextBox Name="_txtNumero" Width="200" MaxLength="25" 
                              ToolTip="{Binding ElementName=_txtNumero, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">
@@ -54,8 +62,8 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtNombre" Width="150" MaxLength="25" 
-                             ToolTip="{Binding ElementName=_txtNumero, Path=(Validation.Errors)[0].ErrorContent}">
+                    <custom:ByTTextBox Name="_txtNombre" Width="200" MaxLength="25" 
+                             ToolTip="{Binding ElementName=_txtNombre, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="Nombre" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
@@ -69,7 +77,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDepartamento}"/>
                     </Label>
-                    <ComboBox Name="_cbxDepartamento" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                    <ComboBox Name="_cbxDepartamento" Width="200" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
                     </ComboBox>
 
                 </WrapPanel>
@@ -77,19 +85,19 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTelefono}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtTelefono" Width="150" MaxLength="30"  Text="{Binding Path=Telefono}" />
+                    <custom:ByTTextBox Name="_txtTelefono" Width="200" MaxLength="30"  Text="{Binding Path=Telefono}" />
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFax}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtFax" Width="150" MaxLength="255"  Text="{Binding Path=Fax}" />
+                    <custom:ByTTextBox Name="_txtFax" Width="200" MaxLength="255"  Text="{Binding Path=Fax}" />
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblEmail}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtEmail" Width="150" MaxLength="255" ToolTip="{Binding ElementName=_txtEmail, Path=(Validation.Errors)[0].ErrorContent}">
+                    <custom:ByTTextBox Name="_txtEmail" Width="200" MaxLength="255" ToolTip="{Binding ElementName=_txtEmail, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="Email" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
@@ -104,7 +112,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblUso}"/>
                     </Label>
-                    <ComboBox Name="_cbxUso" Width="150" SelectedIndex="0" >
+                    <ComboBox Name="_cbxUso" Width="200" SelectedIndex="0" >
                         <ComboBoxItem>
                             <TextBlock Text="{x:Static recurso:Etiquetas.cbiNinguno}" Tag="NGN"/>
                         </ComboBoxItem>
@@ -138,13 +146,19 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCargo}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtCargo" Width="150" MaxLength="255"  Text="{Binding Path=Cargo}" />
+                    <custom:ByTTextBox Name="_txtCargo" Width="200" MaxLength="255"  Text="{Binding Path=Cargo}" />
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCorrespondencia}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtCorrespondencia" Width="150" MaxLength="255"  Text="" SoloNumero="True" />
+
+                    <custom:ByTTextBox Name="_txtCorrespondencia" Width="200" MaxLength="25">
+                    </custom:ByTTextBox>
+                    <Button Name="_btnIrCorrespondencia" VerticalAlignment="Bottom" Height="25" Width="25"
+                    Click="_btnIrCorrespondencia_Click">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.btnAgregar}"/>
+                    </Button>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0"></WrapPanel>
             </StackPanel>
@@ -163,6 +177,9 @@
                                 <Setter Property="IsEnabled" Value="False" />
                             </DataTrigger>
                             <DataTrigger Binding="{Binding ElementName=_txtEmail,Path=(Validation.HasError)}" Value="True">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=_txtCorrespondencia,Path=(Validation.HasError)}" Value="True">
                                 <Setter Property="IsEnabled" Value="False" />
                             </DataTrigger>
                         </Style.Triggers>

@@ -942,6 +942,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     retorno = true;
                 }
 
+                this._ventana.BorrarCerosInternacional();
                 this._ventana.ConvertirEnteroMinimoABlanco();
 
                 #region trace

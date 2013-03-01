@@ -101,11 +101,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Remitentes
         #endregion
 
 
-        public ConsultarRemitente(object remitente)
+        public ConsultarRemitente(object remitente, object ventanaPadre)
         {
 
             InitializeComponent();
-            this._presentador = new PresentadorConsultarRemitente(this, remitente);
+            this._presentador = new PresentadorConsultarRemitente(this, remitente, ventanaPadre);
             this._cargada = false;
         }
 

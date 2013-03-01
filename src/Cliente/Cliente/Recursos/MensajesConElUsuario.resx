@@ -1318,4 +1318,10 @@
   <data name="AlertaDebeSeleccionarUnFiltro" xml:space="preserve">
     <value>Disculpe debe llenar algun filtro para poder realizar la consulta</value>
   </data>
+  <data name="AlertaDebeAgregarUnaCorrespondencia" xml:space="preserve">
+    <value>Disculpe, para poder agregar un Contacto debe agregarle su correspondencia</value>
+  </data>
+  <data name="AlertaDebeSeleccionarPaisMonedaIdioma" xml:space="preserve">
+    <value>Disculpe, para agregar un Asociado es necesario que elija un País, Moneda e Idioma.</value>
+  </data>
 </root>

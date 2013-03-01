@@ -228,5 +228,26 @@ namespace Trascend.Bolet.Cliente.Ventanas.EntradasAlternas
                 }
             }
         }
+
+        private void _btnRemitente_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVentanaRemitente();
+        }
+
+        private void _btnMedio_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVentanaMedio();
+
+        }
+
+        public void RefrescarMedio(object medio)
+        {
+            this._presentador.RefrescarMedio(medio);
+        }
+
+        public void RefrescarRemitente(object remitente)
+        {
+            this._presentador.RefrescarRemitente(remitente);
+        }
     }
 }

@@ -8,6 +8,7 @@ using Trascend.Bolet.Cliente.Contratos.Medios;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using Trascend.Bolet.Cliente.Ventanas.EntradasAlternas;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Medios
 {
@@ -22,11 +23,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Medios
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorAgregarMedio(IAgregarMedio ventana)
+        public PresentadorAgregarMedio(IAgregarMedio ventana, object ventanaPadre)
         {
             try
             {
                 this._ventana = ventana;
+                this._ventanaPadre = ventanaPadre;
                 this._medioServicios = (IMedioServicios)Activator.GetObject(typeof(IMedioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MedioServicios"]);
                 this._ventana.Medio = new Medio();
@@ -82,13 +84,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Medios
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-
                 if (!this._medioServicios.VerificarExistencia((Medio)this._ventana.Medio))
                 {
 
                     if (this._medioServicios.InsertarOModificar((Medio)this._ventana.Medio, UsuarioLogeado.Hash))
                     {
-                        this.Navegar(Recursos.MensajesConElUsuario.MedioInsertado, false);
+                        if (null == this._ventanaPadre)
+                            this.Navegar(Recursos.MensajesConElUsuario.MedioInsertado, false);
+                        else
+                            ((AgregarEntradaAlterna)_ventanaPadre).RefrescarMedio((Medio)this._ventana.Medio);
+                            RegresarVentanaPadre();
                     }
                 }
                 else

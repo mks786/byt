@@ -669,7 +669,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void AgregarRemitente()
         {
-            this._ventana.Contenedor.Navigate(new AgregarRemitente());
+            this._ventana.Contenedor.Navigate(new AgregarRemitente(null));
         }
 
         /// <summary>
@@ -693,7 +693,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void AgregarMedio()
         {
-            this._ventana.Contenedor.Navigate(new AgregarMedio());
+            this._ventana.Contenedor.Navigate(new AgregarMedio(null));
         }
 
         /// <summary>

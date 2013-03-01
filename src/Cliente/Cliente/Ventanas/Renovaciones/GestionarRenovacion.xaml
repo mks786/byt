@@ -583,7 +583,7 @@
                         <Label Name="_lblProximaRenovacion" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblProximaRenovacion}"/>
                         </Label>
-                        <DatePicker IsEnabled="False" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,5,15,0" Name="_txtProximaRenovacion"  BorderBrush="{x:Null}"
+                        <DatePicker IsEnabled="False" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,5,15,0" Name="_dpkProximaRenovacion"  BorderBrush="{x:Null}"
                                     HorizontalAlignment="Left">
                             <DatePicker.SelectedDate>
                                 <Binding Path="FechaProxima" UpdateSourceTrigger="PropertyChanged" StringFormat="{}{0:dd/MM/yyyy}"/>

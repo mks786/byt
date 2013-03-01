@@ -19,6 +19,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
 
+
         #region IGestionarRenovacion
 
         public bool EstaCargada
@@ -98,8 +99,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
 
         public void BorrarCerosInternacional()
         {
-            this._txtIdMarcaInt.Text = ""; // cambio el texto del textbox para que no aparezca el "0"
-            this._txtIdMarcaIntCor.Text = ""; // cambio el texto del textbox para que no aparezca el "0"
+            if (this._txtIdMarcaInt.Text.Equals("0"))
+                this._txtIdMarcaInt.Text = "";
+
+            if (this._txtIdMarcaIntCor.Text.Equals("0"))
+                this._txtIdMarcaIntCor.Text = ""; // cambio el texto del textbox para que no aparezca el "0"
         }
 
         public string IdInteresado
@@ -210,7 +214,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
 
                 this._txtObservacion.IsEnabled = value;
                 this._txtOtros.IsEnabled = value;
-                this._txtProximaRenovacion.IsEnabled = value;
             }
         }
 
@@ -330,8 +333,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
 
         public string ProximaRenovacion
         {
-            get { return this._txtProximaRenovacion.Text; }
-            set { this._txtProximaRenovacion.Text = value; }
+            get { return this._dpkProximaRenovacion.Text; }
+            set { this._dpkProximaRenovacion.Text = value; }
         }
 
         public object PoderesFiltrados
@@ -372,11 +375,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             {
                 this._radioExtranjero.IsChecked = !marcaNacional;
                 this._radioNacional.IsChecked = marcaNacional;
+                this._dpkProximaRenovacion.IsEnabled = !marcaNacional;
             }
             else
             {
                 this._radioExtranjero.IsChecked = !marcaNacional;
                 this._radioNacional.IsChecked = marcaNacional;
+                this._dpkProximaRenovacion.IsEnabled = !marcaNacional;
             }
         }
 
@@ -387,12 +392,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
 
         #endregion
 
+
         public GestionarRenovacion(object renovacion, Page ventanaPadre)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorGestionarRenovacion(this, renovacion,ventanaPadre);
+            this._presentador = new PresentadorGestionarRenovacion(this, renovacion, ventanaPadre);
         }
+
 
         /// <summary>
         /// Constructor para la consulta desde operaciones
@@ -404,8 +411,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             InitializeComponent();
             this._cargada = false;
             this._btnEliminar.Visibility = (System.Windows.Visibility)visibilidad;
-            this._presentador = new PresentadorGestionarRenovacion(this, renovacion,null);
+            this._presentador = new PresentadorGestionarRenovacion(this, renovacion, null);
         }
+
 
         public void ActivarControlesAlAgregar()
         {
@@ -426,10 +434,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
 
         }
 
+
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.Agregar();
         }
+
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
@@ -438,6 +448,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             else if (this.TextoBotonRegresar == Recursos.Etiquetas.btnCancelar)
                 this._presentador.Cancelar();
         }
+
 
         private void _btnEliminar_Click(object sender, RoutedEventArgs e)
         {
@@ -448,35 +459,42 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             }
         }
 
+
         private void _btnAnexo_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrImprimir(((Button)sender).Name);
         }
+
 
         private void _btnSolicitud_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrImprimir(((Button)sender).Name);
         }
 
+
         private void _btnSolicitudVan_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrImprimir(((Button)sender).Name);
         }
+
 
         private void _btnCarpeta_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrImprimir(((Button)sender).Name);
         }
 
+
         private void _btnCopiarDistingue_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.CopiarDistingue();
         }
 
+
         private void _btnPeriodoDeGracia_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.EscribirPeriodoDeGracia();
         }
+
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -486,6 +504,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
                 EstaCargada = true;
             }
         }
+
 
         public void ConvertirEnteroMinimoABlanco()
         {
@@ -508,6 +527,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             }
 
         }
+
 
         public void PintarAsociado(string tipo)
         {
@@ -535,12 +555,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             this._txtAsociado.Background = color;
         }
 
+
         #region Eventos Marcas
+
 
         private void _btnConsultarMarca_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.ConsultarMarcas();
         }
+
 
         private void _lstMarcas_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -554,10 +577,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             }
         }
 
+
         private void _OrdenarMarcas_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstMarcas);
         }
+
 
         private void _txtNombreMarca_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -580,6 +605,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             this._btnAceptar.IsDefault = true;
         }
 
+
         private void GestionarVisibilidadFiltroMarca(object value)
         {
             this._lblNombreMarca.Visibility = (System.Windows.Visibility)value;
@@ -589,6 +615,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             this._lstMarcas.Visibility = (System.Windows.Visibility)value;
             this._btnConsultarMarca.Visibility = (System.Windows.Visibility)value;
         }
+
 
         private void GestionarVisibilidadDatosDeMarca(object value)
         {
@@ -615,20 +642,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             this._txtFechaRegistro.Visibility = (System.Windows.Visibility)value;
         }
 
+
         private void _txtMarcaFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultarMarca.IsDefault = true;
             this._btnAceptar.IsDefault = false;
         }
 
+
         #endregion
 
+
         #region Eventos Interesado
+
 
         private void _btnConsultarInteresado_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.ConsultarInteresados();
         }
+
 
         private void _lstInteresados_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -649,10 +681,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             }
         }
 
+
         private void _OrdenarInteresados_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstInteresados);
         }
+
 
         private void _txtInteresado_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -676,6 +710,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             this._btnAceptar.IsDefault = false;
         }
 
+
         private void GestionarVisibilidadFiltroInteresado(object value)
         {
             this._lblIdInteresado.Visibility = (System.Windows.Visibility)value;
@@ -686,6 +721,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             this._btnConsultarInteresado.Visibility = (System.Windows.Visibility)value;
         }
 
+
         private void GestionarVisibilidadDatosDeInteresado(object value)
         {
             this._txtNombreInteresado.Visibility = (System.Windows.Visibility)value;
@@ -694,19 +730,24 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             this._txtCiudadInteresado.Visibility = (System.Windows.Visibility)value;
         }
 
+
         public void GestionarBotonConsultarInteresado(bool value)
         {
             this._btnConsultarInteresado.IsEnabled = value;
         }
 
+
         #endregion
 
+
         #region Eventos Agente
+
 
         private void _btnConsultarAgente_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.ConsultarAgentes();
         }
+
 
         private void _lstAgentes_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -727,16 +768,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             }
         }
 
+
         private void _OrdenarAgentes_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstAgentes);
         }
+
 
         private void _txtAgenteFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultarAgente.IsDefault = true;
             this._btnAceptar.IsDefault = false;
         }
+
 
         private void _txtNombreAgente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -759,6 +803,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             this._btnAceptar.IsDefault = false;
         }
 
+
         private void GestionarVisibilidadFiltroAgente(object value)
         {
             this._lblIdAgenteFiltrar.Visibility = (System.Windows.Visibility)value;
@@ -769,20 +814,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             this._btnConsultarAgente.Visibility = (System.Windows.Visibility)value;
         }
 
+
         private void GestionarVisibilidadDatosDeAgente(object value)
         {
             this._txtNombreAgente.Visibility = (System.Windows.Visibility)value;
             this._txtIdAgente.Visibility = (System.Windows.Visibility)value;
         }
 
+
         public void GestionarBotonConsultarAgente(bool value)
         {
             this._btnConsultarAgente.IsEnabled = value;
         }
 
+
         #endregion
 
+
         #region Poderes
+
 
         private void _btnConsultar(object sender, RoutedEventArgs e)
         {
@@ -796,11 +846,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
                 this._presentador.ConsultarPoderes();
         }
 
+
         private void _txtPoderFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultarPoder.IsDefault = true;
             this._btnAceptar.IsDefault = false;
         }
+
 
         private void _txtIdPoder_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -823,10 +875,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
 
         }
 
+
         private void _OrdenarPoderes_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstPoderes);
         }
+
 
         private void _lstPoderes_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -849,10 +903,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             }
         }
 
+
         public void GestionarBotonConsultarPoder(bool value)
         {
             this._btnConsultarPoder.IsEnabled = value;
         }
+
 
         private void GestionarVisibilidadFiltroPoder(object value)
         {
@@ -865,6 +921,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
 
         }
 
+
         private void GestionarVisibilidadDatosDePoder(object value)
         {
             this._lblIdPoder.Visibility = (System.Windows.Visibility)value;
@@ -873,7 +930,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             this._txtNumPoder.Visibility = (System.Windows.Visibility)value; ;
         }
 
+
         #endregion
+
 
         private void _dpkFechaRenovacion_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {

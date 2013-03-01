@@ -182,7 +182,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Medios
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new ConsultarMedio(this._ventana.MedioSeleccionado));
+            this.Navegar(new ConsultarMedio(this._ventana.MedioSeleccionado,null));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

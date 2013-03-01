@@ -639,7 +639,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
 
         private void _btnIrPersona_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Navegar(new ConsultarContactosPorAsociado(this,null));
+            this._presentador.ConsultarContacto();
         }
 
 

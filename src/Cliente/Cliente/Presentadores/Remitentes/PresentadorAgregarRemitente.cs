@@ -9,6 +9,7 @@ using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using System.Collections.Generic;
+using Trascend.Bolet.Cliente.Ventanas.EntradasAlternas;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Remitentes
 {
@@ -24,11 +25,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Remitentes
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorAgregarRemitente(IAgregarRemitente ventana)
+        public PresentadorAgregarRemitente(IAgregarRemitente ventana, object ventanaPadre)
         {
             try
             {
                 this._ventana = ventana;
+                this._ventanaPadre = ventanaPadre;
                 this._ventana.Remitente = new Remitente();
                 this._remitenteServicios = (IRemitenteServicios)Activator.GetObject(typeof(IRemitenteServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["RemitenteServicios"]);
@@ -38,7 +40,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Remitentes
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
 
@@ -100,7 +102,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Remitentes
                 bool exitoso = this._remitenteServicios.InsertarOModificar(remitente, UsuarioLogeado.Hash);
 
                 if (exitoso)
-                    this.Navegar(Recursos.MensajesConElUsuario.RemitenteInsertado,false);
+                    if (_ventanaPadre == null)
+                        this.Navegar(Recursos.MensajesConElUsuario.RemitenteInsertado, false);
+                    else
+                    {
+                        ((AgregarEntradaAlterna)this._ventanaPadre).RefrescarRemitente(remitente);
+                        RegresarVentanaPadre();
+                    }
             }
             catch (ApplicationException ex)
             {

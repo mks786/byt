@@ -52,11 +52,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Medios
 
         #endregion
 
-        public ConsultarMedio(object medio)
+        public ConsultarMedio(object medio, object ventanaPadre)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorConsultarMedio(this, medio);
+            this._presentador = new PresentadorConsultarMedio(this, medio, ventanaPadre);
 
         }
 

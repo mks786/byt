@@ -171,7 +171,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
 
         public string SituacionDescripcion
         {
-            set { this._txtNombreSituacion.Text = value; }
+            set { this._txtSituacionDescripcion.Text = value; }
         }
 
         public string CNacional

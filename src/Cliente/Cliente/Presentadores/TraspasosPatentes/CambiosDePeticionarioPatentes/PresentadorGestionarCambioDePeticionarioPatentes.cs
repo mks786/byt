@@ -1153,6 +1153,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
                     retorno = true;
                 }
 
+                this._ventana.BorrarCerosInternacional();
 
 
                 #region trace

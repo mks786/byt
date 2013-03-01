@@ -54,11 +54,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Medios
         }
         #endregion
 
-        public AgregarMedio()
+        public AgregarMedio(object ventanaPadre)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorAgregarMedio(this);
+            this._presentador = new PresentadorAgregarMedio(this, ventanaPadre);
         }
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)

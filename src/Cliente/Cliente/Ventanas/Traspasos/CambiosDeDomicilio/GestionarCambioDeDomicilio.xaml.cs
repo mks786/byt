@@ -30,7 +30,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
 
         public void BorrarCerosInternacional()
         {
-            this._txtIdMarcaInt.Text = ""; // cambio el texto del textbox para que no aparezca el "0"
+            if (this._txtIdMarcaInt.Text.Equals("0"))
+                this._txtIdMarcaInt.Text = ""; // cambio el texto del textbox para que no aparezca el "0"
+            if (this._txtIdMarcaIntCor.Text.Equals("0"))
             this._txtIdMarcaIntCor.Text = ""; // cambio el texto del textbox para que no aparezca el "0"
         }
 

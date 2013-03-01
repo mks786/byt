@@ -10,6 +10,7 @@ using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Asociados;
 using System.Collections.Generic;
+using Trascend.Bolet.Cliente.Ventanas.Cartas;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Contactos
 {
@@ -24,6 +25,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+        private Contacto _contacto;
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -37,7 +40,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                 this._ventana = ventana;
                 this._ventana.Contacto = contacto;
                 this._ventanaPadre = ventanaPadre;
-
+                this._contacto = (Contacto)contacto;
                 this._contactoServicios = (IContactoServicios)Activator.GetObject(typeof(IContactoServicios),
                      ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ContactoServicios"]);
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
@@ -84,6 +87,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                 departamentos.Insert(0, primerDepartamento);
                 this._ventana.Departamentos = departamentos;
 
+
+                this._ventana.AsignarAsociado(this._contacto.Asociado.Id, this._contacto.Asociado.Nombre);
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarContacto,
                     Recursos.Ids.ConsultarContacto);
                 this._ventana.FocoPredeterminado();
@@ -230,6 +235,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
             {
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+        public void ConsultarCarta()
+        {
+            if (!this._ventana.getCorrespondencia.Equals(string.Empty))
+            {
+                Carta carta = new Carta(int.Parse(this._ventana.getCorrespondencia));
+                if (this._cartaServicios.VerificarExistencia(carta))
+                {
+                    this.Navegar(new ConsultarCarta(this._cartaServicios.ObtenerCartasFiltro(carta)[0], this._ventana));
+                }
+                else
+                    this._ventana.mensaje(Recursos.MensajesConElUsuario.ErrorCorrespondenciaNoEncontrada);
             }
         }
 

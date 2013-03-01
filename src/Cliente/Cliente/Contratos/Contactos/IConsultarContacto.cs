@@ -21,7 +21,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Contactos
         string getCorrespondencia { get; }
 
         string setCorrespondencia { set; }
-        
+
         void mensaje(string mensaje);
+
+        void AsignarAsociado(int id, string nombre);
     }
 }

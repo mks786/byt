@@ -83,6 +83,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarContacto,
                         Recursos.Ids.Contacto);
                 this._ventana.borrarId();
+                this._ventana.AsignarAsociado(this._asociado.Id, this._asociado.Nombre);
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -152,8 +153,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                     }
                     else
                     {
-                        contacto.Carta = null;
-                        exitoso = this._contactoServicios.InsertarOModificar(contacto, UsuarioLogeado.Hash);
+                        this._ventana.mensaje(Recursos.MensajesConElUsuario.AlertaDebeAgregarUnaCorrespondencia);
                     }
 
                     if (exitoso)
@@ -212,6 +212,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                 RefrescarVentanaPadre();
             this.RegresarVentanaPadre();
 
+        }
+
+        public void ConsultarCarta()
+        {
+            if (!this._ventana.getCorrespondencia.Equals(string.Empty))
+            {
+                Carta carta = new Carta(int.Parse(this._ventana.getCorrespondencia));
+                if (this._cartaServicios.VerificarExistencia(carta))
+                {
+                    this.Navegar(new ConsultarCarta(this._cartaServicios.ObtenerCartasFiltro(carta)[0], this._ventana));
+                }
+                else
+                    this._ventana.mensaje(Recursos.MensajesConElUsuario.ErrorCorrespondenciaNoEncontrada);
+            }
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 {
     class PresentadorAgregarAsociado : PresentadorBase
     {
-                private IAgregarAsociado _ventana;
+        private IAgregarAsociado _ventana;
         private IAsociadoServicios _asociadoServicios;
         private IDetallePagoServicios _detallePagoServicios;
         private IEtiquetaServicios _etiquetaServicios;
@@ -119,11 +119,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 IList<ListaDatosDominio> tiposPersona = this._listaDatosDominioServicios.ConsultarListaDatosDominioPorParametro(new ListaDatosDominio("PERSONA"));
                 this._ventana.TipoPersonas = tiposPersona;
 
-                this._ventana.Idiomas = this._idiomaServicios.ConsultarTodos();
+                IList<Moneda> monedas = this._monedaServicios.ConsultarTodos();
+                Moneda primerMoneda = new Moneda();
+                primerMoneda.Id = "NGN";
+                monedas.Insert(0, primerMoneda);
+                this._ventana.Monedas = monedas;
 
-                this._ventana.Monedas = this._monedaServicios.ConsultarTodos();
+                IList<Idioma> idiomas = this._idiomaServicios.ConsultarTodos();
+                Idioma primerIdioma = new Idioma();
+                primerIdioma.Id = "NGN";
+                idiomas.Insert(0, primerIdioma);
+                this._ventana.Idiomas = idiomas;
 
-                this._ventana.Paises = this._paisServicios.ConsultarTodos();
+
+                IList<Pais> paises = this._paisServicios.ConsultarTodos();
+                Pais primerPais = new Pais();
+                primerPais.Id = int.MinValue;
+                paises.Insert(0, primerPais);
+                this._ventana.Paises = paises;
 
                 this._ventana.TiposClientes = this._tipoClienteServicios.ConsultarTodos();
 
@@ -175,24 +188,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
                 Asociado asociado = (Asociado)this._ventana.Asociado;
 
-                asociado.Operacion = "CREATE";
-                asociado.TipoPersona = ((ListaDatosDominio)this._ventana.TipoPersona).Id[0];
-                asociado.Pais = (Pais)this._ventana.Pais;
-                asociado.Idioma = (Idioma)this._ventana.Idioma;
-                asociado.Moneda = (Moneda)this._ventana.Moneda;
-                asociado.TipoCliente = (TipoCliente)this._ventana.TipoCliente;
-                asociado.Tarifa = !((Tarifa)this._ventana.Tarifa).Id.Equals("NGN") ? (Tarifa)this._ventana.Tarifa : null;
-                asociado.Etiqueta = !((Etiqueta)this._ventana.Etiqueta).Id.Equals("NGN") ? (Etiqueta)this._ventana.Etiqueta : null;
-                asociado.DetallePago = !((DetallePago)this._ventana.DetallePago).Id.Equals("NGN") ? (DetallePago)this._ventana.DetallePago : null;
-
-                int? exitoso = this._asociadoServicios.InsertarOModificarAsociado(asociado, UsuarioLogeado.Hash);
-
-                if (exitoso != null)
+                if (ValidarCamposObligatorios())
                 {
-                    asociado.Id = exitoso.Value;
-                    this.Navegar(new ConsultarAsociado(asociado, null, false));
-                }
+                    asociado.Operacion = "CREATE";
+                    asociado.TipoPersona = ((ListaDatosDominio)this._ventana.TipoPersona).Id[0];
+                    asociado.Pais = (Pais)this._ventana.Pais;
+                    asociado.Idioma = (Idioma)this._ventana.Idioma;
+                    asociado.Moneda = (Moneda)this._ventana.Moneda;
+                    asociado.TipoCliente = (TipoCliente)this._ventana.TipoCliente;
+                    asociado.Tarifa = !((Tarifa)this._ventana.Tarifa).Id.Equals("NGN") ? (Tarifa)this._ventana.Tarifa : null;
+                    asociado.Etiqueta = !((Etiqueta)this._ventana.Etiqueta).Id.Equals("NGN") ? (Etiqueta)this._ventana.Etiqueta : null;
+                    asociado.DetallePago = !((DetallePago)this._ventana.DetallePago).Id.Equals("NGN") ? (DetallePago)this._ventana.DetallePago : null;
 
+                    int? exitoso = this._asociadoServicios.InsertarOModificarAsociado(asociado, UsuarioLogeado.Hash);
+
+                    if (exitoso != null)
+                    {
+                        asociado.Id = exitoso.Value;
+                        this.Navegar(new ConsultarAsociado(asociado, null, false));
+                    }
+                }
+                else
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.AlertaDebeSeleccionarPaisMonedaIdioma);
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -218,6 +235,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+        }
+
+        private bool ValidarCamposObligatorios()
+        {
+            bool retorno = true;
+
+            if (((Pais)this._ventana.Pais).Id == int.MinValue)
+                retorno = false;
+            if (((Moneda)this._ventana.Moneda).Id == "NGN")
+                retorno = false;
+            if (((Idioma)this._ventana.Idioma).Id == "NGN")
+                retorno = false;
+
+            return retorno;
         }
 
 

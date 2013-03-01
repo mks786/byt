@@ -214,7 +214,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select c from Contacto c left outer join fetch c.Asociado where .
+        ///   Looks up a localized string similar to Select c from Contacto c left outer join fetch c.Asociado as asociado left outer join fetch c.Carta as carta where .
         /// </summary>
         public static string CabeceraObtenerContacto {
             get {

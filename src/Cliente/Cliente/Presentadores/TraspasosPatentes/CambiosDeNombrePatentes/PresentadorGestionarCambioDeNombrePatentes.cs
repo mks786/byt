@@ -854,6 +854,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
 
                     retorno = true;
                 }
+                this._ventana.BorrarCerosInternacional();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

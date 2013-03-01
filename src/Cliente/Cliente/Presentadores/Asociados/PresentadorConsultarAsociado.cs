@@ -195,9 +195,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 if (this._asociadoServicios.VerificarCartasPorAsociado(asociado))
                     this._ventana.pintarCorrespondencia();
 
+
+                /*******************************Esta es la consulta que tarda mas en el modulo de asociado*******************************/
                 IList<ContactosDelAsociadoVista> listaContactos = this._asociadoServicios.ConsultarContactosDelAsociado(asociado, false);
                 this._ventana.ListaContactos = listaContactos;
-
+                /*******************************Esta es la consulta que tarda mas en el modulo de asociado*******************************/
                 this._ventana.FocoPredeterminado();
 
                 #region trace

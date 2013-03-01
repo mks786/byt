@@ -188,6 +188,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             }
         }
 
+
         /// <summary>
         /// Método que realiza toda la lógica para agregar al Usuario dentro de la base de datos
         /// </summary>
@@ -298,7 +299,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     this._ventana.NombreAsociado = ((Asociado)this._ventana.Asociado).Nombre;
                     this._ventana.CodigoAsociado = ((Asociado)this._ventana.Asociado).Id.ToString();
                     if (asociado.Contactos.Count != 0)
-                        this._ventana.Personas = asociado.Contactos;
+                    {
+                        Contacto primerContacto = new Contacto();
+                        Asociado primerAsociadoC = new Asociado();
+                        primerAsociadoC.Id = int.MinValue;
+                        primerContacto.Nombre = string.Empty;
+                        primerContacto.Asociado = primerAsociadoC;
+                        IList<Contacto> listaContactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
+                        listaContactos.Insert(0, primerContacto);
+                        this._ventana.Personas = listaContactos;
+                    }
                 }
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

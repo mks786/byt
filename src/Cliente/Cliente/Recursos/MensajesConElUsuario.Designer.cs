@@ -196,6 +196,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disculpe, para poder agregar un Contacto debe agregarle su correspondencia.
+        /// </summary>
+        internal static string AlertaDebeAgregarUnaCorrespondencia {
+            get {
+                return ResourceManager.GetString("AlertaDebeAgregarUnaCorrespondencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disculpe, para agregar un Asociado es necesario que elija un País, Moneda e Idioma..
+        /// </summary>
+        internal static string AlertaDebeSeleccionarPaisMonedaIdioma {
+            get {
+                return ResourceManager.GetString("AlertaDebeSeleccionarPaisMonedaIdioma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disculpe, para poder crear un nuevo contacto debe seleccionar un asociado.
         /// </summary>
         internal static string AlertaDebeSeleccionarUnAsociado {

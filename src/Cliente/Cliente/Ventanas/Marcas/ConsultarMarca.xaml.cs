@@ -396,6 +396,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._txtSaldoPorVencer.IsEnabled = value;
                 this._txtSaldoVencido.IsEnabled = value;
                 this._txtTotalDeuda.IsEnabled = value;
+                this._txtSituacionDescripcion.IsEnabled = value;
 
                 this._txtClaseInternacionalIDatos.IsEnabled = value;
                 this._txtClaseInternacionalSolicitud.IsEnabled = value;

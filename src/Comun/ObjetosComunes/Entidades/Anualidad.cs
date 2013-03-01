@@ -19,6 +19,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _recibo;
         private int _factura;
         private string _iFactura;
+        private DateTime? _fechaAutoGenerada;
+        private string _situacionGenerada;
   
 
         #endregion
@@ -142,6 +144,18 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _patente; }
             set { _patente = value; }
+        }
+
+        public virtual DateTime? FechaAutoGenerada
+        {
+            get { return _fechaAutoGenerada; }
+            set { _fechaAutoGenerada = value; }
+        }
+
+        public virtual string SituacionGenerada
+        {
+            get { return _situacionGenerada; }
+            set { _situacionGenerada = value; }
         }
 
         #endregion

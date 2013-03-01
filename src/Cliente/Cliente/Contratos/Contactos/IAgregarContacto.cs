@@ -21,5 +21,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Contactos
         void borrarId();
 
         void mensaje(string mensaje);
+
+        void AsignarAsociado(int id, string nombre);
     }
 }

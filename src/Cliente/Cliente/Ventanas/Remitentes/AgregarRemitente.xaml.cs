@@ -73,11 +73,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Remitentes
 
         #endregion
 
-        public AgregarRemitente()
+        public AgregarRemitente(object ventanaPadre)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorAgregarRemitente(this);
+            this._presentador = new PresentadorAgregarRemitente(this, ventanaPadre);
         }
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)

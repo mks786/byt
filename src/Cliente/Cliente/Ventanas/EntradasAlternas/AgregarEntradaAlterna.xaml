@@ -82,17 +82,17 @@
                     </ComboBox>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                    <Button Name="_btnMedio" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnMedio_Click">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblMedio}"/>
-                    </Label>
+                    </Button>
                     <ComboBox Name="_cbxMedio" HorizontalAlignment="Left" Width="180" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Nombre" SelectedIndex="0">
                     </ComboBox>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                    <Button Name="_btnRemitente" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnRemitente_Click">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblRemitente}"/>
-                    </Label>
+                    </Button>
                     <ComboBox Name="_cbxRemitente" HorizontalAlignment="Left" Width="180" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                     </ComboBox>

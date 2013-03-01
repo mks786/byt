@@ -1254,6 +1254,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                         this._ventana.Tipo = "";
                     retorno = true;
                 }
+                this._ventana.BorrarCerosInternacional();
 
 
 

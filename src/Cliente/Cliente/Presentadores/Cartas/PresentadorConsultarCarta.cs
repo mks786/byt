@@ -14,6 +14,7 @@ using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
 using Trascend.Bolet.Cliente.Ventanas.Cartas;
 using Trascend.Bolet.Cliente.Ventanas.Asociados;
+using Trascend.Bolet.Cliente.Ventanas.Contactos;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 {
@@ -40,7 +41,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private IList<ListaDatosValores> _listaDatosValores;
         private IList<Anexo> _anexos;
         private IList<Anexo> _anexosConfirmacion;
-        private IList<Contacto> _personas;
+        private IList<Contacto> _personas = new List<Contacto>();
         private IList<Resumen> _resumenes;
         private IList<Departamento> _departamentos;
         private IList<Usuario> _responsables;
@@ -259,13 +260,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     IList<Asociado> asociados = new List<Asociado>();
                     if (null != carta.Asociado)
                     {
+                        this._ventana.Personas = null;
+                        this._ventana.Persona = null;
                         this._ventana.NombreAsociado = ((Carta)this._ventana.Carta).Asociado.Nombre;
                         this._ventana.CodigoAsociado = ((Carta)this._ventana.Carta).Asociado.Id.ToString();
                         Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo(((Carta)this._ventana.Carta).Asociado);
                         asociado.Contactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
-                        this._personas = asociado.Contactos;
-                        this._ventana.Personas = null;
-                        this._ventana.Personas = this._personas;
+                        Contacto primerContacto = new Contacto();
+                        Asociado primerAsociadoC = new Asociado();
+                        primerAsociadoC.Id = int.MinValue;
+                        primerContacto.Nombre = string.Empty;
+                        primerContacto.Asociado = primerAsociadoC;
+                        IList<Contacto> listaContactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
+                        listaContactos.Insert(0, primerContacto);
+                        this._personas = listaContactos;
+                        this._ventana.Personas = listaContactos;
                         this._ventana.Persona = BuscarContacto(this._personas, carta.Persona);
                         asociados.Add(((Carta)this._ventana.Carta).Asociado);
                     }
@@ -916,10 +925,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     asociado.Contactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
                     this._ventana.NombreAsociado = ((Asociado)this._ventana.Asociado).Nombre;
                     this._ventana.CodigoAsociado = ((Asociado)this._ventana.Asociado).Id.ToString();
-                    this._ventana.Personas = asociado.Contactos;
+                    Contacto primerContacto = new Contacto();
+                    Asociado primerAsociadoC = new Asociado();
+                    primerAsociadoC.Id = int.MinValue;
+                    primerContacto.Nombre = string.Empty;
+                    primerContacto.Asociado = primerAsociadoC;
+                    IList<Contacto> listaContactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
+                    listaContactos.Insert(0, primerContacto);
+                    this._personas = listaContactos;
+                    this._ventana.Personas = listaContactos;
 
-                    if (asociado.Contactos.Count != 0)
-                        this._ventana.Personas = asociado.Contactos;
+                    //if (asociado.Contactos.Count != 0)
+                    //    this._ventana.Personas = asociado.Contactos;
                 }
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1640,6 +1657,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             }
         }
 
+
         public void SeleccionarContactoYAsociado(object asociado, object contacto)
         {
             Asociado asociadoNuevo = (Asociado)asociado;
@@ -1653,6 +1671,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             this._ventana.Asociado = asociadoNuevo;
             this.CambiarAsociado();
             this._ventana.Persona = contacto;
+        }
+
+
+        public void ConsultarContacto()
+        {
+            if (null == ((Contacto)this._ventana.Persona) || (((Contacto)this._ventana.Persona).Nombre.Equals(string.Empty)))
+                Navegar(new ConsultarContactosPorAsociado(this._ventana, null));
+            else 
+            {
+                Contacto contactoFiltro = new Contacto();
+                contactoFiltro.Nombre = ((Contacto)this._ventana.Persona).Nombre;
+                contactoFiltro.Asociado = (Asociado)this._ventana.Asociado;
+                IList<Contacto> contactos = this._contactoServicios.ConsultarContactosFiltro(contactoFiltro);
+                Navegar(new ConsultarContacto(contactos[0], this._ventana));
+            }
         }
     }
 }

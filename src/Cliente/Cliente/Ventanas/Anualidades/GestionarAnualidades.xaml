@@ -24,13 +24,12 @@
 
     <Grid VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="40"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="40"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0"/>
@@ -124,20 +123,20 @@
 
 
                         <!--Campo-->
-                        
+
                         <!--Fin Campo-->
 
-                    
+
 
                         <!--Campo-->
                         <!--Fin Campo-->
 
                         <!--Campo-->
-                       
+
                         <!--Fin Campo-->
 
                         <!--Campo-->
-                        
+
                         <!--Fin Campo-->
 
                         <!--Fin datos de la Patente-->
@@ -145,7 +144,7 @@
                 </WrapPanel>
 
                 <!--Asociados-->
-                    
+
                 <Grid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -209,10 +208,10 @@
                         </ListView.View>
                     </ListView>
                 </Grid>
-                
+
                 <!--Fin Asociados-->
                 <!--Interesados-->
-                
+
                 <Grid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="7">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -233,7 +232,7 @@
                     <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
                     </Label>
-                    
+
                     <custom:ByTTextBox  MaxLength="255" Grid.Column="1" Grid.Row="0" Name="_txtInteresadoSolicitud" VerticalAlignment="Center" 
                          Grid.ColumnSpan="8" IsReadOnly="True"></custom:ByTTextBox>
 
@@ -329,7 +328,7 @@
                           Text=""></custom:ByTTextBox>
                     <custom:ByTTextBox  Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="1" Margin="3" Name="_txtFechaRegistro" VerticalAlignment="Center"  
                           Text=""></custom:ByTTextBox>
-                    
+
                     <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblBolPublicacion}"/>
                     </Label>
@@ -372,19 +371,19 @@
                     </Label>
                     <DatePicker  Grid.Column="4" Grid.Row="3" HorizontalAlignment="Left"  Name="_dpkFecha" Focusable="False" BorderBrush="{x:Null}" >
                         <DatePicker.SelectedDate>
-                            <Binding Path="FechaInscripcion" UpdateSourceTrigger="PropertyChanged"/>
+                            <Binding Path="FechaBase" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
                     </DatePicker>
 
                     <Separator Grid.Row="4" Grid.ColumnSpan="7" Margin="5,5,0,0"/>
-                    
+
                     <Button  Grid.Column="0" Grid.Row="5" Name="_btnNuevaAnualidad"  HorizontalAlignment="Left" Click="_btnNuevaAnualidad_Click">
                         <TextBlock Text="{x:Static recurso:Etiquetas.btnNuevaAnualidad}"></TextBlock>
                     </Button>
                 </Grid>
 
                 <!--Final Modulo de Boletin-->
-                
+
 
                 <!--Modulo de Campos De Anualidad-->
 
@@ -441,8 +440,25 @@
                     <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblSituacion}"/>
                     </Label>
-                    <ComboBox  Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Name="_cbxISituacion" Height="20" 
+                    <!--<ComboBox  Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Name="_cbxISituacion" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
+                    </ComboBox>-->
+                    <ComboBox  Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Name="_cbxISituacion" Height="20" 
+                              ItemsSource="{Binding}" SelectedIndex="0" >
+
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource convertirADosValores}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="Descripcion" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+
                     </ComboBox>
 
                     <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
@@ -490,17 +506,35 @@
                     <Button  Grid.Column="0" Grid.Row="0" Name="_btnModificarSeleccionado" HorizontalAlignment="Left" Click="_btnModificarSeleccionado_Click">
                         <TextBlock Text="{x:Static recurso:Etiquetas.btnModificar}"></TextBlock>
                     </Button>
-                    
+
                 </Grid>
 
                 <ListView  Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="9" Margin="0,-20,0,0" Grid.RowSpan="1" Name="_lstAnualidades" ItemsSource="{Binding}" 
                       SelectionMode="Single" VerticalAlignment="Top" MouseLeftButtonUp="_lstAnualidades_MouseDoubleClick"
-                      Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="300" >
+                      Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="300" Width="800" >
                     <ListView.View>
                         <GridView>
                             <GridViewColumn DisplayMemberBinding="{Binding Path=QAnualidad}" Width="50">
                                 <GridViewColumnHeader  Tag="QAnualidad" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                             </GridViewColumn>
+
+
+
+
+                            <GridViewColumn Width="100">
+                                <GridViewColumnHeader Tag="FechaAutoGenerada" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                        <TextBlock.Text>
+                                            <Binding Path="FechaAutoGenerada" StringFormat="{}{0:dd/MM/yyyy}"/>
+                                        </TextBlock.Text>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+
                             <GridViewColumn DisplayMemberBinding="{Binding Path=Recibo}" Width="80">
                                 <GridViewColumnHeader  Tag="Recibo" Content="{x:Static recurso:Etiquetas.lsvRecibo}"/>
                             </GridViewColumn>
@@ -539,8 +573,8 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Situacion}" Width="80">
-                                <GridViewColumnHeader  Tag="Situacion" Content="{x:Static recurso:Etiquetas.lsvSituacion}"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=SituacionGenerada}" Width="120">
+                                <GridViewColumnHeader  Tag="SituacionGenerada" Content="{x:Static recurso:Etiquetas.lsvSituacion}"/>
                             </GridViewColumn>
                             <GridViewColumn DisplayMemberBinding="{Binding Path=Factura}" Width="80">
                                 <GridViewColumnHeader  Tag="Factura" Content="{x:Static recurso:Etiquetas.lsvFactura}"/>
@@ -559,27 +593,27 @@
 
 
             </StackPanel>
-    </GroupBox>
+        </GroupBox>
 
-    <WrapPanel Grid.Row="8" Grid.ColumnSpan="3" Grid.Column="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
-        <Button Name="_btnModificar"  VerticalAlignment="Bottom" Height="25" Width="90"
+        <WrapPanel Grid.Row="8" Grid.ColumnSpan="3" Grid.Column="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5,5,50,5" Orientation="Horizontal">
+            <Button Name="_btnModificar"  VerticalAlignment="Bottom" Height="25" Width="90"
                     Click="_btnModificar_Click">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding ElementName=_txtDescripcion,Path=(Validation.HasError)}" Value="True">
-                            <Setter Property="IsEnabled" Value="False" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-            <TextBlock Name="_txbModificar" Text="{x:Static recurso:Etiquetas.btnModificar}"/>
-        </Button>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=_txtDescripcion,Path=(Validation.HasError)}" Value="True">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <TextBlock Name="_txbModificar" Text="{x:Static recurso:Etiquetas.btnModificar}"/>
+            </Button>
 
-        <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="90"
+            <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="90"
                     Click="_btnRegresar_Click">
-            <TextBlock Name="_txbRegresar" Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
-        </Button>
-    </WrapPanel>
+                <TextBlock Name="_txbRegresar" Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
+            </Button>
+        </WrapPanel>
     </Grid>
 </Page>

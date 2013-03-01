@@ -1405,7 +1405,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
                     retorno = true;
                 }
 
-
+                this._ventana.BorrarCerosInternacional();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

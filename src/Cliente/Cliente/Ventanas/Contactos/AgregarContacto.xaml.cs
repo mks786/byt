@@ -24,8 +24,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
 
         public object Contacto
         {
-            get{return this._gridDatos.DataContext;}
-            set{this._gridDatos.DataContext = value;}
+            get { return this._gridDatos.DataContext; }
+            set { this._gridDatos.DataContext = value; }
         }
 
         public object Departamento
@@ -86,6 +86,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
             MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
+        public void AsignarAsociado(int id, string nombre)
+        {
+            this._txtIdAsociado.Text = id.ToString();
+            this._txtNombreAsociado.Text = nombre;
+        }
+
         #endregion
 
         public AgregarContacto(object asociado, object ventanaPadre, bool regresarRefresca)
@@ -94,7 +100,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
             this._cargada = false;
             this._regresarRefresca = regresarRefresca;
             this._presentador = new PresentadorAgregarContacto(this, asociado, ventanaPadre, regresarRefresca);
-            
+
         }
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
@@ -124,6 +130,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
         {
             this._btnAceptar.Focus();
             this._presentador.Aceptar();
+        }
+
+        private void _btnIrCorrespondencia_Click(object sender, RoutedEventArgs e)
+        {
+            if (!this._txtCorrespondencia.Text.Equals(string.Empty))
+            {
+                this._presentador.ConsultarCarta();
+            }
         }
 
 

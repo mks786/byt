@@ -48,6 +48,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
         private IList<Poder> _poderesInteresado;
         private IList<Poder> _poderesAgente;
 
+        private bool _esMarcaNacional = true;
+
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
@@ -117,6 +119,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             }
         }
 
+
         public void ActualizarTitulo()
         {
             if (_agregar == true)
@@ -126,6 +129,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarRenovacion,
                 Recursos.Ids.GestionarRenovacion);
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -171,29 +175,35 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                     CargarId();
 
 
-                    if (((Marca)this._ventana.Marca).LocalidadMarca != null)
-                    {
-                        this._ventana.EsMarcaNacional(!((Marca)this._ventana.Marca).LocalidadMarca.Equals("I"));
+                    ValidarSiEsMarcaNacional();
 
-                        if (((Marca)this._ventana.Marca).LocalidadMarca.Equals("I"))
-                        {
-                            ListaDatosValores itemBuscado = new ListaDatosValores();
-                            itemBuscado.Valor = ((Marca)this._ventana.Marca).ClasificacionInternacional;
-                            IList<ListaDatosValores> items = this._listaDatosValoresServicios.
-                                ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiLocalidadMarca));
-                            this._ventana.TipoClase = this.BuscarListaDeDatosValores(items, itemBuscado).Descripcion;
-                        }
-                        else
-                        {
-                            this._ventana.EsMarcaNacional(true);
-                            this._ventana.BorrarCerosInternacional();
-                        }
-                    }
-                    else
-                    {
-                        this._ventana.EsMarcaNacional(true);
-                        this._ventana.BorrarCerosInternacional();
-                    }
+                    //if (((Marca)this._ventana.Marca).LocalidadMarca != null)
+                    //{
+                    //    this._ventana.EsMarcaNacional(!((Marca)this._ventana.Marca).LocalidadMarca.Equals("I"));
+
+                    //    if (((Marca)this._ventana.Marca).LocalidadMarca.Equals("I"))
+                    //    {
+                    //        _esMarcaNacional = false;
+                    //        this._ventana.EsMarcaNacional(_esMarcaNacional);
+                    //        ListaDatosValores itemBuscado = new ListaDatosValores();
+                    //        itemBuscado.Valor = ((Marca)this._ventana.Marca).ClasificacionInternacional;
+                    //        IList<ListaDatosValores> items = this._listaDatosValoresServicios.
+                    //            ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiLocalidadMarca));
+                    //        this._ventana.TipoClase = this.BuscarListaDeDatosValores(items, itemBuscado).Descripcion;
+                    //    }
+                    //    else
+                    //    {
+                    //        _esMarcaNacional = true;
+                    //        this._ventana.EsMarcaNacional(_esMarcaNacional);
+                    //        this._ventana.BorrarCerosInternacional();
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    _esMarcaNacional = true;
+                    //    this._ventana.EsMarcaNacional(_esMarcaNacional);
+                    //    this._ventana.BorrarCerosInternacional();
+                    //}
 
 
                 }
@@ -233,6 +243,40 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             }
         }
 
+
+        private void ValidarSiEsMarcaNacional()
+        {
+
+            if (((Marca)this._ventana.Marca).LocalidadMarca != null)
+            {
+                this._ventana.EsMarcaNacional(!((Marca)this._ventana.Marca).LocalidadMarca.Equals("I"));
+
+                if (((Marca)this._ventana.Marca).LocalidadMarca.Equals("I"))
+                {
+                    _esMarcaNacional = false;
+                    this._ventana.EsMarcaNacional(_esMarcaNacional);
+                    ListaDatosValores itemBuscado = new ListaDatosValores();
+                    itemBuscado.Valor = ((Marca)this._ventana.Marca).ClasificacionInternacional;
+                    IList<ListaDatosValores> items = this._listaDatosValoresServicios.
+                        ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiLocalidadMarca));
+                    this._ventana.TipoClase = this.BuscarListaDeDatosValores(items, itemBuscado).Descripcion;
+                }
+                else
+                {
+                    _esMarcaNacional = true;
+                    this._ventana.EsMarcaNacional(_esMarcaNacional);
+                    this._ventana.BorrarCerosInternacional();
+                }
+            }
+            else
+            {
+                _esMarcaNacional = true;
+                this._ventana.EsMarcaNacional(_esMarcaNacional);
+                this._ventana.BorrarCerosInternacional();
+            }
+        }
+
+
         /// <summary>
         /// Método que carga los datos iniciales de TipoRenovación a mostrar en la página
         /// </summary>
@@ -262,6 +306,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             this.Navegar(new ConsultarRenovaciones());
         }
 
+
         /// <summary>
         /// Método que carga los datos de Renovación para agregar en la Base de Datos
         /// </summary>
@@ -286,10 +331,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
 
                 /*3*/
                 if (null != (((Marca)this._ventana.Marca).FechaRenovacion))
-                    renovacion.FechaProxima = ((Marca)this._ventana.Marca).FechaRenovacion.Value.AddYears(int.Parse(ConfigurationManager.AppSettings["PeriodoRenovacion"]));
+                {
+                    if (_esMarcaNacional)
+                        renovacion.FechaProxima = ((Marca)this._ventana.Marca).FechaRenovacion.Value.AddYears(int.Parse(ConfigurationManager.AppSettings["PeriodoRenovacion"]));
+                    else
+                    {
+                        if (!this._ventana.ProximaRenovacion.Equals(string.Empty))
+                            renovacion.Fecha = Convert.ToDateTime(FormatearFecha(this._ventana.ProximaRenovacion)).Date;
+                        else
+                            renovacion.FechaProxima = null;
+                    }
+                }
                 else
                     renovacion.FechaProxima = null;
             }
+
+            if ((null != this._ventana.Marca) && (null != ((Marca)this._ventana.Marca).Asociado))
+                renovacion.Asociado = ((Marca)this._ventana.Marca).Asociado;
 
             if (null != this._ventana.Interesado)
                 renovacion.Interesado = ((Interesado)this._ventana.Interesado).Id != int.MinValue ? (Interesado)this._ventana.Interesado : null;
@@ -309,6 +367,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             return renovacion;
         }
 
+
         /// <summary>
         /// Método que agrega a la ventana el distingue de la Marca
         /// </summary>
@@ -319,6 +378,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             if (this._ventana.Marca != null)
                 this._ventana.Otros = ((Marca)this._ventana.Marca).Fichas;
         }
+
 
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
@@ -338,7 +398,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                 Renovacion renovacion = CargarRenovacionDeLaPantalla();
                 bool marcaExitoso = false;
                 bool exitoso = false;
-                if (renovacion.FechaProxima != null) 
+                if (renovacion.FechaProxima != null)
                 {
                     if (null != renovacion.Marca)
                     {
@@ -372,7 +432,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                         this._ventana.Mensaje(Recursos.MensajesConElUsuario.AlertaRenovacionSinMarcas, 0);
                 }
                 else
-                    this._ventana.Mensaje(String.Format(Recursos.MensajesConElUsuario.AlertaMarcaSinFechaRenovacion,renovacion.Marca.Id), 0);
+                    this._ventana.Mensaje(String.Format(Recursos.MensajesConElUsuario.AlertaMarcaSinFechaRenovacion, renovacion.Marca.Id), 0);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -404,6 +464,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Metodo que se encarga de eliminar una Renovacion
@@ -473,6 +534,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             }
         }
 
+
         /// <summary>
         /// Método que ordena una columna
         /// </summary>
@@ -506,6 +568,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que Llena la lista de Agente y de Interesado asociados a un poder
@@ -609,6 +672,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
 
         }
 
+
         /// <summary>
         /// Metodo que llena la lista de Agentes filtrados por un Poder
         /// </summary>
@@ -622,6 +686,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             this._ventana.AgentesFiltrados = this._agentes;
             this._ventana.AgenteFiltrado = primerAgente;
         }
+
 
         /// <summary>
         /// Método que carga los Id de la cesion
@@ -936,9 +1001,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
 
                     }
 
+                    ValidarSiEsMarcaNacional();
+
                 }
 
                 this._ventana.ConvertirEnteroMinimoABlanco();
+                this._ventana.BorrarCerosInternacional();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -975,6 +1043,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
         }
 
         #endregion
+
 
         #region Interesado
 
@@ -1351,6 +1420,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
 
         #endregion
 
+
         #region Agente
 
         /// <summary>
@@ -1586,6 +1656,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
         }
 
         #endregion
+
 
         #region Poder
 
@@ -1933,6 +2004,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             }
         }
 
+
         private void ImprimirSolicitud()
         {
             if (ValidarMarcaAntesDeImprimirCarpeta())
@@ -1945,6 +2017,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                 this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnSolicitud);
             }
         }
+
 
         private void ImprimirSolicitudVan()
         {
@@ -1959,6 +2032,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             }
         }
 
+
         private void ImprimirCarpeta()
         {
             if (ValidarMarcaAntesDeImprimirCarpeta())
@@ -1971,6 +2045,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                 this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnCarpeta);
             }
         }
+
 
         private void ImprimirAnexo()
         {
@@ -1985,11 +2060,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             }
         }
 
+
         private bool ValidarMarcaAntesDeImprimirCarpeta()
         {
             return true;
         }
-
 
 
         internal void ActualizarFechaProxima()
@@ -1998,6 +2073,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             this._ventana.ProximaRenovacion = ((Marca)this._ventana.Marca).FechaRenovacion.Value.AddYears(tiempoConfiguracion).ToString();
 
         }
+
 
         public void EscribirPeriodoDeGracia()
         {

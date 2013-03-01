@@ -10,6 +10,8 @@ using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using System.Collections.Generic;
 using System.Windows.Controls;
+using Trascend.Bolet.Cliente.Ventanas.Medios;
+using Trascend.Bolet.Cliente.Ventanas.Remitentes;
 
 namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
 {
@@ -225,6 +227,53 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+        }
+
+        public void IrVentanaMedio()
+        {
+            if (((Medio)this._ventana.Medio).Id != "NGN")
+            {
+                Navegar(new ConsultarMedio(((Medio)this._ventana.Medio), this._ventana));
+            }
+            else
+            {
+                Navegar(new AgregarMedio(this._ventana));
+            }
+        }
+
+        public void IrVentanaRemitente()
+        {
+            if (((Remitente)this._ventana.Remitente).Id != "NGN")
+            {
+                Navegar(new ConsultarRemitente(((Remitente)this._ventana.Remitente), this._ventana));
+            }
+            else
+            {
+                Navegar(new AgregarRemitente(this._ventana));
+            }
+        }
+
+        public void RefrescarMedio(object medio)
+        {
+            IList<Medio> medios = this._medioServicios.ConsultarTodos();
+            Medio primerMedio = new Medio();
+            primerMedio.Id = "NGN";
+            medios.Insert(0, primerMedio);
+            this._ventana.Medios = medios;
+
+            this._ventana.Medio = this.BuscarMedio(medios, (Medio)medio);
+        }
+
+        public void RefrescarRemitente(object remitente)
+        {
+
+            IList<Remitente> remitentes = this._remitenteServicios.ConsultarTodos();
+            Remitente primerRemitente = new Remitente();
+            primerRemitente.Id = "NGN";
+            remitentes.Insert(0, primerRemitente);
+            this._ventana.Remitentes = remitentes;
+
+            this._ventana.Remitente = this.BuscarRemitente(remitentes, (Remitente)remitente);
         }
     }
 }

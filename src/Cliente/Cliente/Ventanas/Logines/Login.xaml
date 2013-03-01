@@ -4,7 +4,8 @@
         xmlns:resx="clr-namespace:Trascend.Bolet.Cliente.Recursos"
       xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
         Title="{x:Static resx:Etiquetas.titleLogin}" Height="300" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
-        Background="Transparent" WindowStyle="None" SizeToContent="WidthAndHeight" AllowsTransparency="True">
+        Background="Transparent" WindowStyle="None" SizeToContent="WidthAndHeight" AllowsTransparency="True" 
+        Icon="/Trascend.Bolet.Cliente;component/images/bolet.ico">
     <Border CornerRadius="10"
         BorderBrush="Gray"
         BorderThickness="2"

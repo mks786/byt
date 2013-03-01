@@ -1193,6 +1193,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     retorno = true;
                 }
 
+                this._ventana.BorrarCerosInternacional();
+
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);

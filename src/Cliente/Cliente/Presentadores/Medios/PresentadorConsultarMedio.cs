@@ -23,12 +23,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Medios
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
         /// <param name="medio">Medio a mostrar</param>
-        public PresentadorConsultarMedio(IConsultarMedio ventana, object medio)
+        public PresentadorConsultarMedio(IConsultarMedio ventana, object medio, object ventanaPadre)
         {
             try
             {
                 this._ventana = ventana;
                 this._ventana.Medio = medio;
+                this._ventanaPadre = ventanaPadre;
 
                 this._medioServicios = (IMedioServicios)Activator.GetObject(typeof(IMedioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MedioServicios"]);

@@ -918,6 +918,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     retorno = true;
                 }
 
+                this._ventana.BorrarCerosInternacional();
                 this._ventana.ConvertirEnteroMinimoABlanco();
 
                 #region trace

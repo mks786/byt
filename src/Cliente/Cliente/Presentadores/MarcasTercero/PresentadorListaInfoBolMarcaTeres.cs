@@ -126,7 +126,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            //this.Navegar(new ConsultarMarcasTercero(this._marca));//,Recursos.Etiquetas.tabDatos));
+            this.Navegar(new GestionarMarcaTercero(this._marca));//,Recursos.Etiquetas.tabDatos));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

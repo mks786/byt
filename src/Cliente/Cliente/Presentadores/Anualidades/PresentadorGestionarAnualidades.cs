@@ -179,6 +179,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                     this._ventana.NombrePatente = ((Patente)this._ventana.Patente).Descripcion;
                     this._ventana.NombreAsociadoSolicitud = patente.Asociado != null ? patente.Asociado.Nombre : string.Empty;
                     this._ventana.NombreInteresadoSolicitud = patente.Interesado != null ? patente.Interesado.Nombre : string.Empty;
+                    patente = LlenarFechasAutogeneradas(patente);
+                    patente = LlenarSituacionesAutogeneradas(patente);
                     this._ventana.Anualidades = patente.Anualidades;
                     this._ventana.Referencia = patente.PrimeraReferencia != null ? patente.PrimeraReferencia : string.Empty;
                     this._ventana.RegistroCodigo = patente.CodigoRegistro != null ? patente.CodigoRegistro : string.Empty;
@@ -213,6 +215,45 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             {
                 Mouse.OverrideCursor = null;
             }
+        }
+
+        private Patente LlenarSituacionesAutogeneradas(Patente patente)
+        {
+            ListaDatosDominio Dominio = new ListaDatosDominio();
+            Dominio.Filtro = "SITUACION_ANUALIDAD";
+            IList<ListaDatosDominio> dominios = this._listaDatosDominioServicios.ConsultarListaDatosDominioPorParametro(Dominio);
+            Dominio = new ListaDatosDominio();
+            Dominio.Id = "NGN";
+            dominios.Insert(0, Dominio);
+            this._ventana.ISituaciones = dominios;
+
+            foreach (Anualidad anualidad in patente.Anualidades)
+            {
+                if (!anualidad.Situacion.Equals(string.Empty))
+                {
+                    ListaDatosDominio itemBuscado = new ListaDatosDominio(anualidad.Situacion);
+                    itemBuscado.Id = anualidad.Situacion;
+                    ListaDatosDominio item = this.BuscarListaDeDominio(dominios, itemBuscado);
+                    anualidad.SituacionGenerada = item.Id + "-" + item.Descripcion;
+                }
+            }
+
+            return patente;
+        }
+
+        private Patente LlenarFechasAutogeneradas(Patente patente)
+        {
+            if (null != patente.FechaBase)
+            {
+                int i = 1;
+                foreach (Anualidad anualidad in patente.Anualidades)
+                {
+                    anualidad.FechaAutoGenerada = patente.FechaBase.Value.AddYears(i);
+                    i++;
+                }
+            }
+
+            return patente;
         }
 
 
@@ -932,7 +973,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             if (this._ventana.FechaVoucher != "")
                 aux.FechaVoucher = DateTime.Parse(this._ventana.FechaVoucher);
             if (this._ventana.ISituacion != null)
+            {
                 aux.Situacion = ((ListaDatosDominio)this._ventana.ISituacion).Id;
+                aux = LlenarSituacionAutogenerada(aux);
+            }
             if (this._ventana.Factura != "")
                 aux.Factura = int.Parse(this._ventana.Factura);
             aux.IFactura = "T";
@@ -955,6 +999,27 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             return retorno;
         }
 
+        private Anualidad LlenarSituacionAutogenerada(Anualidad anualidad)
+        {
+            ListaDatosDominio Dominio = new ListaDatosDominio();
+            Dominio.Filtro = "SITUACION_ANUALIDAD";
+            IList<ListaDatosDominio> dominios = this._listaDatosDominioServicios.ConsultarListaDatosDominioPorParametro(Dominio);
+            Dominio = new ListaDatosDominio();
+            Dominio.Id = "NGN";
+            dominios.Insert(0, Dominio);
+            this._ventana.ISituaciones = dominios;
+
+            if (!anualidad.Situacion.Equals(string.Empty))
+            {
+                ListaDatosDominio itemBuscado = new ListaDatosDominio(anualidad.Situacion);
+                itemBuscado.Id = anualidad.Situacion;
+                ListaDatosDominio item = this.BuscarListaDeDominio(dominios, itemBuscado);
+                anualidad.SituacionGenerada = item.Id + "-" + item.Descripcion;
+            }
+
+            return anualidad;
+        }
+
 
         /// Método que Modifica lista de Anualidad
         /// </summary>
@@ -969,47 +1034,47 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
 
             IList<Anualidad> anulidades;
             Anualidad anuSelect = ((Anualidad)this._ventana.Anualidad);
-
-            if (anuSelect != null)
+            try
             {
-                bool retorno = false;
-
-                if (null == ((Patente)this._ventana.Patente).Anualidades)
-                    anulidades = new List<Anualidad>();
-                else
-                    anulidades = ((Patente)this._ventana.Patente).Anualidades;
-
-                int contador = 0;
-
-                foreach (Anualidad aux1 in anulidades)
+                if (anuSelect != null)
                 {
-                    if ((aux1.Id == anuSelect.Id))
+                    bool retorno = false;
+
+                    if (null == ((Patente)this._ventana.Patente).Anualidades)
+                        anulidades = new List<Anualidad>();
+                    else
+                        anulidades = ((Patente)this._ventana.Patente).Anualidades;
+
+                    int contador = 0;
+
+                    foreach (Anualidad aux1 in anulidades)
                     {
+                        if ((aux1.Id == anuSelect.Id))
+                        {
 
-                        anulidades[contador].Id = anuSelect.Id;
-                        if (this._ventana.Recibo != "")
-                            anulidades[contador].Recibo = this._ventana.Recibo;
-                        if (this._ventana.FechaAnualidad != "")
-                            anulidades[contador].FechaAnualidad = DateTime.Parse(this._ventana.FechaAnualidad);
-                        if (this._ventana.FechaVoucher != "")
-                            anulidades[contador].FechaVoucher = DateTime.Parse(this._ventana.FechaVoucher);
-                        if (this._ventana.Voucher != "")
-                            anulidades[contador].Voucher = this._ventana.Voucher;
-                        if (this._ventana.Factura != "")
-                            anulidades[contador].Factura = int.Parse(this._ventana.Factura);
-                        if (this._ventana.ISituaciones != "")
-                            anulidades[contador].Situacion = ((ListaDatosDominio)this._ventana.ISituacion).Id;
+                            anulidades[contador].Id = anuSelect.Id;
+                            if (this._ventana.Recibo != "")
+                                anulidades[contador].Recibo = this._ventana.Recibo;
+                            if (this._ventana.FechaAnualidad != "")
+                                anulidades[contador].FechaAnualidad = DateTime.Parse(this._ventana.FechaAnualidad);
+                            if (this._ventana.FechaVoucher != "")
+                                anulidades[contador].FechaVoucher = DateTime.Parse(this._ventana.FechaVoucher);
+                            if (this._ventana.Voucher != "")
+                                anulidades[contador].Voucher = this._ventana.Voucher;
+                            if (this._ventana.Factura != "")
+                                anulidades[contador].Factura = int.Parse(this._ventana.Factura);
+                            if (this._ventana.ISituaciones != "")
+                                if (null != this._ventana.ISituacion)
+                                    anulidades[contador].Situacion = ((ListaDatosDominio)this._ventana.ISituacion).Id;
 
-
-
+                        }
+                        contador++;
                     }
-                    contador++;
+
+                    ((Patente)this._ventana.Patente).Anualidades = anulidades;
+                    this._ventana.Anualidades = anulidades.ToList<Anualidad>();
                 }
 
-
-
-                ((Patente)this._ventana.Patente).Anualidades = anulidades;
-                this._ventana.Anualidades = anulidades.ToList<Anualidad>();
 
                 #region trace
 
@@ -1018,6 +1083,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
 
                 #endregion
 
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
             }
             return true;
         }
