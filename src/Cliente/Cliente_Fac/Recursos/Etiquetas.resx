@@ -233,7 +233,7 @@
     <value>Viudo(a)</value>
   </data>
   <data name="dpkText" xml:space="preserve">
-    <value>Seleccionar una fecha</value>
+    <value> </value>
   </data>
   <data name="lblActivo" xml:space="preserve">
     <value>Activo:</value>
@@ -1205,7 +1205,7 @@
     <value>Transferencia</value>
   </data>
   <data name="fac_cbiCheque" xml:space="preserve">
-    <value>Cheque</value>
+    <value>Cheques</value>
   </data>
   <data name="fac_menuItemFacCobro" xml:space="preserve">
     <value>Registro Cobros</value>
@@ -1617,5 +1617,8 @@
   </data>
   <data name="fac_titleConsultarFacVistaFacturaServicio" xml:space="preserve">
     <value>Servicios Facturados</value>
+  </data>
+  <data name="facdpkText" xml:space="preserve">
+    <value> </value>
   </data>
 </root>
