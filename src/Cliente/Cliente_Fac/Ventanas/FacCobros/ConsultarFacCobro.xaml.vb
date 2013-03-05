@@ -641,5 +641,10 @@ Namespace Ventanas.FacCobros
                 Return _txtCbanco.Text
             End Get
         End Property
+
+        Private Sub _dpkFecha_SelectedDateChanged(sender As Object, e As SelectionChangedEventArgs)
+
+        End Sub
+
     End Class
 End Namespace

@@ -161,11 +161,28 @@
                         <Label VerticalAlignment="Center" HorizontalContentAlignment="Left">
                             <TextBlock Text="Fecha"/>
                         </Label>
-                        <DatePicker Name="_dpkFechaB" Width="150" Focusable="False" BorderBrush="{x:Null}" IsEnabled="False">
+                        <DatePicker Name="_dpkFechaB" Width="100" Focusable="False" BorderBrush="{x:Null}" IsEnabled="False">
                             <DatePicker.SelectedDate>
                                 <Binding Path="FechaB" UpdateSourceTrigger="PropertyChanged"/>
                             </DatePicker.SelectedDate>
                         </DatePicker>
+
+                        <Label Width="30">
+                            <TextBlock Text=""/>
+                        </Label>
+                        <Label>
+                            <TextBlock Text="Detalle"/>
+                        </Label>
+                        <TextBox Name="_txtDetalle" Width="150" MaxLength="100" Focusable="True" 
+                    ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" IsReadOnly="True">
+                            <TextBox.Text>
+                                <Binding Path="Detalle" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
                     </WrapPanel>
 
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Center">
@@ -185,7 +202,7 @@
                         </ComboBox>
                     </WrapPanel>
 
-                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
+                    <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
                         <Label>
                             <TextBlock Text="Detalle"/>
                         </Label>
@@ -194,12 +211,12 @@
                             <TextBox.Text>
                                 <Binding Path="Detalle" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
-                                        <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
+                                      
                                     </Binding.ValidationRules>
                                 </Binding>
                             </TextBox.Text>
                         </TextBox>
-                    </WrapPanel>
+                    </WrapPanel>-->
 
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
                         <Label>
@@ -359,7 +376,7 @@
                 <Label>
                     <TextBlock Text=" "/>
                 </Label>
-                <Button Name="_btnsaliragregarfactura2" Width="90" IsDefault="True"  Height="25" HorizontalAlignment="Left" Click="_btnsalirAgregarFacturas2_Click" Visibility="Collapsed">
+                <Button Name="_btnsaliragregarfactura2"  IsEnabled="False"  Width="90" IsDefault="True"  Height="25" HorizontalAlignment="Left" Click="_btnsalirAgregarFacturas2_Click" Visibility="Collapsed">
                     <TextBlock Text="Cerrar Facturas"/>
                 </Button>                
             </WrapPanel>
@@ -464,12 +481,12 @@
             </WrapPanel>
 
             <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
-                <Button Name="_btnConsultarfactura" Width="90" IsDefault="True"  Height="25" HorizontalAlignment="Left" Click="_btnVerCreditos_Click">
+                <Button Name="_btnConsultarfactura" IsEnabled="False" Width="90" IsDefault="True"  Height="25" HorizontalAlignment="Left" Click="_btnVerCreditos_Click">
                     <TextBlock Text="Creditos"/>
                 </Button>
             </WrapPanel>                   
             <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
-                <Button Name="_btnFormaManual" Width="90" IsDefault="True"  Height="25" HorizontalAlignment="Left" Click="_btnFormaManual_Click">
+                <Button Name="_btnFormaManual" IsEnabled="False" Width="90" IsDefault="True"  Height="25" HorizontalAlignment="Left" Click="_btnFormaManual_Click">
                     <TextBlock Text="Pagos"/>
                 </Button>
             </WrapPanel>                   
@@ -486,13 +503,13 @@
 
 
             <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0" >
-                <Button Name="_btnagregarforma" Width="90" IsDefault="True"  Visibility="Collapsed"  Height="25" HorizontalAlignment="Left" Click="_btnAgregarForma_Click">
+                <Button Name="_btnagregarforma" Width="90" IsDefault="True" IsEnabled="False"  Visibility="Collapsed"  Height="25" HorizontalAlignment="Left" Click="_btnAgregarForma_Click">
                     <TextBlock Text="Agregar Creditos"/>
                 </Button>
                 <Label>
                     <TextBlock Text=" "/>
                 </Label>
-                <Button Name="_btnsaliragregarforma" Width="90" IsDefault="True"  Height="25" HorizontalAlignment="Left" Click="_btnsaliragregarforma_Click" Visibility="Collapsed">
+                <Button Name="_btnsaliragregarforma" Width="90" IsDefault="True" IsEnabled="False"  Height="25" HorizontalAlignment="Left" Click="_btnsaliragregarforma_Click" Visibility="Collapsed">
                     <TextBlock Text="Cerrar Creditos"/>
                 </Button>                
             </WrapPanel>
@@ -511,13 +528,13 @@
                 <TextBox Name="_txtBFormaBf" Width="100" MaxLength="100" Focusable="True" HorizontalAlignment="Right" Visibility="Collapsed"
                                                                ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True">
                 </TextBox>
-                <Button Name="_btnmodificarforma" Width="90" IsDefault="True"  Visibility="Collapsed"  Height="25" HorizontalAlignment="Left" Click="_btnModificarForma_Click" IsEnabled="False">
+                <Button Name="_btnmodificarforma" Width="90" IsEnabled="False" IsDefault="True"  Visibility="Collapsed"  Height="25" HorizontalAlignment="Left" Click="_btnModificarForma_Click">
                     <TextBlock Text="Modificar Credito"/>
                 </Button>
                 <Label>
                     <TextBlock Text=" "/>
                 </Label>
-                <Button Name="_btnsalirmodificarforma" Width="90" IsDefault="True"  Height="25" HorizontalAlignment="Left" Click="_btnsaliragregarforma_Click" Visibility="Collapsed">
+                <Button Name="_btnsalirmodificarforma" Width="90" IsEnabled="False" IsDefault="True"  Height="25" HorizontalAlignment="Left" Click="_btnsaliragregarforma_Click" Visibility="Collapsed">
                     <TextBlock Text="Cerrar Modificar"/>
                 </Button>
             </WrapPanel>
@@ -555,13 +572,13 @@
                 <TextBox Name="_txtBFormaBfMan" Width="100"  IsEnabled="False" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
                                                                ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" >
                 </TextBox>
-                <Button Name="_btnAgregarFormaManual" Width="100" IsDefault="True" Height="25" HorizontalAlignment="Left" Click="_btnAgregarFormaManual_Click">
+                <Button Name="_btnAgregarFormaManual" Width="100" IsEnabled="False" IsDefault="True" Height="25" HorizontalAlignment="Left" Click="_btnAgregarFormaManual_Click">
                     <TextBlock Text="Agregar"/>
                 </Button>
                 <Label>
                     <TextBlock Text=" "/>
                 </Label>
-                <Button Name="_btnsaliragregarformamanual" Width="90" IsDefault="True"  Height="25" HorizontalAlignment="Left" Click="_btnsaliragregarforma_Click">
+                <Button Name="_btnsaliragregarformamanual" Width="90" IsEnabled="False" IsDefault="True"  Height="25" HorizontalAlignment="Left" Click="_btnsaliragregarforma_Click">
                     <TextBlock Text="Cerrar pago"/>
                 </Button>
             </WrapPanel>
@@ -574,7 +591,7 @@
 
 
         <WrapPanel Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5" Orientation="Horizontal">
-            <Button Name="_btnModificar"  VerticalAlignment="Bottom" Height="25" Width="90"
+            <Button Name="_btnModificar" IsEnabled="False"  VerticalAlignment="Bottom" Height="25" Width="90"
                     Click="_btnModificar_Click">
                 <Button.Style>
                     <Style TargetType="Button">
@@ -587,7 +604,7 @@
                 </Button.Style>
                 <TextBlock Name="_txbModificar" Text="{x:Static recurso:Etiquetas.btnModificar}"/>
             </Button>
-            <Button Name="_btnEliminar" VerticalAlignment="Bottom" Height="25" Width="90"
+            <Button Name="_btnEliminar" Visibility="Collapsed" IsEnabled="False" VerticalAlignment="Bottom" Height="25" Width="90"
                     Click="_btnEliminar_Click">
                 <TextBlock Name="_txbEliminar" Text="{x:Static recurso:Etiquetas.btnEliminar}"/>
             </Button>

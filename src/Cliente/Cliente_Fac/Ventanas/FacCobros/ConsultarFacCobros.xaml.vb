@@ -354,5 +354,10 @@ Namespace Ventanas.FacCobros
                 _lblHits.Text = value
             End Set
         End Property
+
+
+        Private Sub _dpkFecha_SelectedDateChanged(sender As Object, e As SelectionChangedEventArgs)
+
+        End Sub
     End Class
 End Namespace

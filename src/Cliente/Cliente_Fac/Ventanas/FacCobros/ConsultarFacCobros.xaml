@@ -8,11 +8,15 @@
       xmlns:conv="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Transformadores"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="800"
-      xmlns:recurso="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Recursos" Loaded="Page_Loaded">
+      xmlns:recurso="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Recursos"
+      Title="" Loaded="Page_Loaded">
     <Page.Resources>
         <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
         <conv:DosValresAUno x:Key="convertirADosValores"></conv:DosValresAUno>
         <conv:DosValresAUno_2 x:Key="convertirADosValores_2"></conv:DosValresAUno_2>
+        <Style TargetType="{x:Type DatePickerTextBox}">
+            <Setter Property="Text" Value="{x:Static recurso:Etiquetas.facdpkText}" />
+        </Style>        
     </Page.Resources>
     
     <Grid>
@@ -199,7 +203,7 @@
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="Fecha Credito"/>
                     </Label>
-                    <DatePicker Name="_dpkFechaCobro" Width="150" Focusable="False" BorderBrush="{x:Null}">
+                    <DatePicker Name="_dpkFechaCobro" Width="150" Focusable="False" BorderBrush="{x:Null}"  SelectedDateChanged="_dpkFecha_SelectedDateChanged" >
                         <DatePicker.SelectedDate>
                             <Binding Path="FechaCobro" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>

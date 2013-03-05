@@ -214,11 +214,27 @@
                         <Label VerticalAlignment="Center" HorizontalContentAlignment="Left">
                             <TextBlock Text="Fecha"/>
                         </Label>
-                        <DatePicker Name="_dpkFechaB" Width="150" Focusable="False" BorderBrush="{x:Null}">
+                        <DatePicker Name="_dpkFechaB" Width="100" Text="" Focusable="False" BorderBrush="{x:Null}" IsEnabled="False">
                             <DatePicker.SelectedDate>
                                 <Binding Path="FechaB" UpdateSourceTrigger="PropertyChanged"/>
                             </DatePicker.SelectedDate>
                         </DatePicker>
+                        <Label Width="30">
+                            <TextBlock Text=""/>
+                        </Label>
+                        <Label>
+                            <TextBlock Text="Detalle"/>
+                        </Label>
+                        <TextBox Name="_txtDetalle" Width="150" MaxLength="100" Focusable="True" 
+                    ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" IsReadOnly="True">
+                            <TextBox.Text>
+                                <Binding Path="Detalle" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
                     </WrapPanel>
 
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Center">
@@ -238,7 +254,7 @@
                     </ComboBox>
                 </WrapPanel>
 
-                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
+                    <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="Detalle"/>
                     </Label>
@@ -247,12 +263,12 @@
                         <TextBox.Text>
                             <Binding Path="Detalle" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
-                                    <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
+                                   
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
-                </WrapPanel>
+                </WrapPanel>-->
 
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
                     <Label>
