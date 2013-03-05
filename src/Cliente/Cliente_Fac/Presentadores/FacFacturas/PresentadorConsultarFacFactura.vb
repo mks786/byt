@@ -1339,6 +1339,8 @@ Namespace Presentadores.FacFacturas
             Else
                 Me._ventana.Cartas = Nothing
                 MessageBox.Show("Error: No Existe Carta Relacionado a la Búsqueda")
+                Mouse.OverrideCursor = Nothing
+                Exit Sub
             End If
 
             Dim primercarta As New Carta()

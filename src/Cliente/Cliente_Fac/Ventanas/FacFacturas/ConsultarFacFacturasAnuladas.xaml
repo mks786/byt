@@ -10,11 +10,14 @@
       xmlns:recurso="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Recursos" Loaded="Page_Loaded">
     <Page.Resources>
         <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
+        <Style TargetType="{x:Type DatePickerTextBox}">
+            <Setter Property="Text" Value="{x:Static recurso:Etiquetas.facdpkText}" />
+        </Style>
     </Page.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -90,10 +93,10 @@
                         </Label>
                         
                         <custom:ByTTextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3"  Name="_txtAsociado" VerticalAlignment="Center"                                     
-                         HorizontalAlignment="Left" Width="200" Text="" MaxLength="255" MouseDoubleClick="_txtAsociado_MouseDoubleClick" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
+                         HorizontalAlignment="Left" Width="250" Text="" MaxLength="255" MouseDoubleClick="_txtAsociado_MouseDoubleClick" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
 
                         <custom:ByTTextBox Grid.Column="1" KeyDown="_Consultar_Enter" Grid.Row="0" Grid.ColumnSpan="4" Name="_txtIdAsociado" VerticalAlignment="Center" 
-                         HorizontalAlignment="Left" Width="40" MaxLength="8" SoloNumero="True" Visibility="Collapsed"  ></custom:ByTTextBox>
+                         HorizontalAlignment="Left" Width="80" MaxLength="8" SoloNumero="True" Visibility="Collapsed"  ></custom:ByTTextBox>
 
                         <custom:ByTTextBox Grid.Column="3" Grid.Row="0" KeyDown="_Consultar_Enter" Grid.ColumnSpan="4" Name="_txtNombreAsociado" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="140" MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
@@ -115,7 +118,7 @@
                                     <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="45">
                                             <GridViewColumnHeader  Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                                         </GridViewColumn>-->
-                                    <GridViewColumn Width="45">
+                                    <GridViewColumn Width="70">
                                         <GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
@@ -127,7 +130,7 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="260">
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="350">
                                         <GridViewColumnHeader  Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                                     </GridViewColumn>
                                 </GridView>
@@ -221,6 +224,18 @@
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Nombre}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Asociado.Nombre" Content="{x:Static recurso:Etiquetas.lsvAsociado}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Proforma.Id}" Width="80">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Proforma.Id" Content="Proforma"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Seniat}" Width="80">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Seniat" Content="Seniat"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaSeniat, StringFormat={}{0:dd/MM/yyyy}}" Width="70">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaSeniat" Content="Fecha Seniat"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Inicial}" Width="80">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Inicial" Content="Inicial"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Caso}" Width="250">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Caso" Content="Caso"/>

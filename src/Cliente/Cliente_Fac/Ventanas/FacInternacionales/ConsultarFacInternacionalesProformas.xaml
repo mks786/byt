@@ -11,18 +11,21 @@
       xmlns:recurso="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Recursos" Loaded="Page_Loaded">
     <Page.Resources>
         <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
+        <Style TargetType="{x:Type DatePickerTextBox}">
+            <Setter Property="Text" Value="{x:Static recurso:Etiquetas.dpkText}" />
+        </Style>
     </Page.Resources>
     <Page.CommandBindings>        
         <!--<CommandBinding Command="desactivar_item" Executed="al_desactivar_item" />-->
         <CommandBinding Command="local:ConsultarFacInternacionalesProforma.Registrar_Item"  Executed="al_Registrar_Item" ></CommandBinding>
         <CommandBinding Command="local:ConsultarFacInternacionalesProforma.Pagar_Item"  Executed="al_Pagar_Item" ></CommandBinding>
-        <CommandBinding Command="local:ConsultarFacInternacionalesProforma.VerProforma_Item"  Executed="al_VerProforma_Item" ></CommandBinding>
+        <CommandBinding Command="local:ConsultarFacInternacionalesProforma.VerProforma_Item"  Executed="al_VerProforma_Item" ></CommandBinding>        
     </Page.CommandBindings>
 
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -40,7 +43,7 @@
 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="Factura"/>
+                        <TextBlock Text="Proforma"/>
                     </Label>
                     <TextBox Name="_txtId" Width="130" MaxLength="12" Focusable="True" 
                     ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True">
@@ -89,7 +92,7 @@
                          HorizontalAlignment="Left" Width="200" Text="" MaxLength="255" MouseDoubleClick="_txtAsociado_MouseDoubleClick" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
 
                         <custom:ByTTextBox Grid.Column="1" KeyDown="_Consultar_Enter" Grid.Row="0" Grid.ColumnSpan="4" Name="_txtIdAsociado" VerticalAlignment="Center" 
-                         HorizontalAlignment="Left" Width="40" MaxLength="8" SoloNumero="True" Visibility="Collapsed"  ></custom:ByTTextBox>
+                         HorizontalAlignment="Left" Width="80" MaxLength="8" SoloNumero="True" Visibility="Collapsed"  ></custom:ByTTextBox>
 
                         <custom:ByTTextBox Grid.Column="3" Grid.Row="0" KeyDown="_Consultar_Enter" Grid.ColumnSpan="4" Name="_txtNombreAsociado" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="140" MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
@@ -111,7 +114,7 @@
                                     <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="45">
                                             <GridViewColumnHeader  Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                                         </GridViewColumn>-->
-                                    <GridViewColumn Width="45">
+                                    <GridViewColumn Width="70">
                                         <GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
@@ -123,7 +126,7 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="260">
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="350">
                                         <GridViewColumnHeader  Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                                     </GridViewColumn>
                                 </GridView>

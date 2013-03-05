@@ -331,15 +331,21 @@ Namespace Presentadores.FacPagoBolivias
                 If cartas Is Nothing Then
                     Me._ventana.Cartas = Nothing
                     MessageBox.Show("Error: No Existe Carta Relacionado a la Búsqueda")
+                    Mouse.OverrideCursor = Nothing
+                    Exit Sub
                 Else
                     If cartas.Count < 1 Then
                         Me._ventana.Cartas = Nothing
                         MessageBox.Show("Error: No Existe Carta Relacionado a la Búsqueda")
+                        Mouse.OverrideCursor = Nothing
+                        Exit Sub
                     End If
                 End If
             Else
                 Me._ventana.Cartas = Nothing
                 MessageBox.Show("Error: No Existe Carta Relacionado a la Búsqueda")
+                Mouse.OverrideCursor = Nothing
+                Exit Sub
             End If
             'End If
 

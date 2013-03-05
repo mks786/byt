@@ -14,6 +14,9 @@
         <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
         <conv:DosValresAUno x:Key="convertirADosValores"></conv:DosValresAUno>
         <conv:DosValresAUno_2 x:Key="convertirADosValores_2"></conv:DosValresAUno_2>
+        <Style TargetType="{x:Type DatePickerTextBox}">
+            <Setter Property="Text" Value="{x:Static recurso:Etiquetas.dpkText}" />
+        </Style>
     </Page.Resources>
 
 
@@ -92,7 +95,7 @@
                          HorizontalAlignment="Left" Width="200" Text="" MaxLength="255" MouseDoubleClick="_txtAsociado_MouseDoubleClick" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
 
                             <custom:ByTTextBox Grid.Column="1" KeyDown="_Consultar_Enter" Grid.Row="0" Grid.ColumnSpan="4" Name="_txtIdAsociado" VerticalAlignment="Center" 
-                         HorizontalAlignment="Left" Width="40" MaxLength="8" SoloNumero="True" Visibility="Collapsed"  ></custom:ByTTextBox>
+                         HorizontalAlignment="Left" Width="80" MaxLength="8" SoloNumero="True" Visibility="Collapsed"  ></custom:ByTTextBox>
 
                             <custom:ByTTextBox Grid.Column="3" Grid.Row="0" KeyDown="_Consultar_Enter" Grid.ColumnSpan="4" Name="_txtNombreAsociado" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="140" MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
@@ -114,7 +117,7 @@
                                         <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="45">
                                             <GridViewColumnHeader  Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                                         </GridViewColumn>-->
-                                        <GridViewColumn Width="45">
+                                        <GridViewColumn Width="70">
                                             <GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
@@ -126,7 +129,7 @@
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
-                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="260">
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="350">
                                             <GridViewColumnHeader  Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                                         </GridViewColumn>
                                     </GridView>
@@ -158,7 +161,7 @@
                             <TextBlock Width="110" Text="Pais"/>
                         </Label>
 
-                        <ComboBox Grid.Row="5" Grid.Column="1"  Grid.ColumnSpan="2" Height="20" Name="_CbxPais" HorizontalAlignment="Left" Width="100" 
+                        <ComboBox Grid.Row="5" Grid.Column="1"  Grid.ColumnSpan="2" Height="20" Name="_CbxPais" HorizontalAlignment="Left" Width="250" 
                               ItemsSource="{Binding}" SelectedIndex="0" FontSize="9">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
@@ -240,7 +243,7 @@
                          HorizontalAlignment="Left" Width="200" Text="" MaxLength="255" MouseDoubleClick="_txtAsociado2_MouseDoubleClick" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
 
                             <custom:ByTTextBox Grid.Column="1" KeyDown="_Consultar_Enter" Grid.Row="0" Grid.ColumnSpan="4" Name="_txtIdAsociado2" VerticalAlignment="Center" 
-                         HorizontalAlignment="Left" Width="40" MaxLength="8" SoloNumero="True" Visibility="Collapsed"  ></custom:ByTTextBox>
+                         HorizontalAlignment="Left" Width="80" MaxLength="8" SoloNumero="True" Visibility="Collapsed"  ></custom:ByTTextBox>
 
                             <custom:ByTTextBox Grid.Column="3" Grid.Row="0" KeyDown="_Consultar_Enter" Grid.ColumnSpan="4" Name="_txtNombreAsociado2" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="140" MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
@@ -259,10 +262,19 @@
                       Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150" MouseDoubleClick="_lstAsociados2_MouseDoubleClick" VerticalAlignment="Top">
                                 <ListView.View>
                                     <GridView>
-                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="45">
-                                            <GridViewColumnHeader  Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                        <GridViewColumn Width="70">
+                                            <GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <Binding Path="Id" Converter="{StaticResource convertir}"/>
+                                                    </TextBlock.Text>
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
-                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="260">
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="350">
                                             <GridViewColumnHeader  Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                                         </GridViewColumn>
                                     </GridView>
@@ -274,7 +286,7 @@
 
                     <WrapPanel HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Center">
                         <Label VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Right">
-                            <TextBlock Width="110" Text="Feche"/>
+                            <TextBlock Width="110" Text="Fecha"/>
                         </Label>
 
                         <DatePicker Name="_dpkFecha" Width="100"  Height="20" Focusable="False" BorderBrush="{x:Null}" HorizontalAlignment="Left">

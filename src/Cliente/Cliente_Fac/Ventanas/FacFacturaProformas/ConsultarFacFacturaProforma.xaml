@@ -668,11 +668,11 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn DisplayMemberBinding="{Binding Path=Medio}" Width="100">
-                                                <GridViewColumnHeader  Tag="Medio" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path=Medio}" Width="150">
+                                                <GridViewColumnHeader Tag="Medio" Content="Medio"/>
                                             </GridViewColumn>
-                                            <GridViewColumn DisplayMemberBinding="{Binding Path=Fecha, StringFormat={}{0:dd/MM/yyyy}}" Width="70">
-                                                <GridViewColumnHeader  Tag="Fecha" Content="{x:Static recurso:Etiquetas.faclblFecha}"/>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path=Referencia}" Width="250">
+                                                <GridViewColumnHeader Tag="Referencia" Content="Referencia"/>
                                             </GridViewColumn>
                                         </GridView>
                                     </ListView.View>

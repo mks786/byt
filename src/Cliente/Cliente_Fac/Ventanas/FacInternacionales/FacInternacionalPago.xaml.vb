@@ -282,7 +282,7 @@ Namespace Ventanas.FacInternacionales
         End Sub
 
         Public Sub PintarAsociado2()
-            Me._txtAsociado.BorderBrush = New SolidColorBrush(Colors.LightGreen)
+            Me._txtAsociado2.BorderBrush = New SolidColorBrush(Colors.LightGreen)
         End Sub
 
         Public Property NombreAsociado2() As String Implements Contratos.FacInternacionales.IFacInternacionalPago.NombreAsociado2

@@ -102,28 +102,30 @@
 
                         <WrapPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
                             <Label  HorizontalContentAlignment="Left" VerticalAlignment="Top" Width="60">
-                                <TextBlock Text="Estatus" VerticalAlignment="Center"/>
+                                <TextBlock Text="Proforma" VerticalAlignment="Center"/>
                             </Label>
-                            <custom:ByTTextBox  Name="_txtXiauto" Width="100"  Height="20" MaxLength="100" Focusable="True" 
+                            <custom:ByTTextBox  Name="_txtProforma" Width="100"  Height="20" MaxLength="100" Focusable="True" 
                        HorizontalAlignment="Left" IsReadOnly="True">
-                            </custom:ByTTextBox>
-                        </WrapPanel>
-
-
-                        <WrapPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
-                            <Label VerticalAlignment="Top" HorizontalContentAlignment="Left">
-                                <TextBlock Text="{x:Static recurso:Etiquetas.faclblCausaRechazo}" VerticalAlignment="Center" />
-                            </Label>
-                            <custom:ByTTextBox  Name="_txtXCausaRec" Width="100"  Height="20" MaxLength="100" Focusable="True" 
-                    ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left">
                                 <custom:ByTTextBox.Text>
-                                    <Binding Path="XCausaRec" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding Path="Proforma.Id" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
                                             <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
                                         </Binding.ValidationRules>
                                     </Binding>
                                 </custom:ByTTextBox.Text>
                             </custom:ByTTextBox>
+                        </WrapPanel>
+
+
+                        <WrapPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
+                            <Label VerticalAlignment="Top" HorizontalContentAlignment="Left">
+                                <TextBlock Text="Fecha Seniat" VerticalAlignment="Center" />
+                            </Label>
+                            <DatePicker  Name="_dpkFechaSeniat" Width="100"  Height="20"  IsEnabled="True" Focusable="False" BorderBrush="{x:Null}" HorizontalAlignment="Left">
+                                <DatePicker.SelectedDate>
+                                    <Binding Path="FechaSeniat" UpdateSourceTrigger="PropertyChanged"/>
+                                </DatePicker.SelectedDate>
+                            </DatePicker>
                         </WrapPanel>
 
                         <WrapPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
@@ -1023,20 +1025,6 @@
                             </custom:ByTTextBox>
                         </WrapPanel>
 
-                        <WrapPanel Name="_Wp_Btn2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5" VerticalAlignment="Bottom">
-                            <Button Name="_btnImprimirFacturaCopia" VerticalAlignment="Bottom" Height="20" Width="80"
-                    Click="_btnImprimir" FontSize="8">
-                                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Name="_txtImprimirFacturaCopia" Text="Copia Factura"/>
-                            </Button>
-                            <Button Name="_btnImprimirStatementCopia" VerticalAlignment="Bottom" Height="20" Width="80"
-                    Click="_btnImprimir" FontSize="8">
-                                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Name="_ImprimirStatementCopia" Text="Copia Statement"/>
-                            </Button>
-                            <Button Name="_btnImprimirFacturaBfCopia" VerticalAlignment="Bottom" Height="20" Width="80"
-                    Click="_btnImprimir" FontSize="8">
-                                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Name="_txtImprimirFacturaBfCopia" Text="Copia Factura (Bsf)"/>
-                            </Button>
-                        </WrapPanel>
                     </StackPanel>
                 </GroupBox>
 
@@ -1795,6 +1783,21 @@
 
         <WrapPanel Name="_Wp_Salir"  Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Margin="5" Visibility="Collapsed" VerticalAlignment="Bottom">
             <Button Name="_btnSalir" VerticalAlignment="Center" Height="23" Width="80" Click="_btnSalir_Click" HorizontalAlignment="Right">Salir</Button>
+        </WrapPanel>
+
+        <WrapPanel Name="_Wp_Btn2" Grid.Column="1" Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Center">
+            <Button Name="_btnImprimirFacturaCopia" VerticalAlignment="Bottom" Height="40" Width="80"
+                    Click="_btnImprimir" FontSize="10">
+                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Name="_txtImprimirFacturaCopia" Text="Copia Factura"/>
+            </Button>
+            <Button Name="_btnImprimirStatementCopia" VerticalAlignment="Bottom" Height="40" Width="80"
+                    Click="_btnImprimir" FontSize="10">
+                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Name="_ImprimirStatementCopia" Text="Copia Statement"/>
+            </Button>
+            <Button Name="_btnImprimirFacturaBfCopia" VerticalAlignment="Bottom" Height="40" Width="80"
+                    Click="_btnImprimir" FontSize="10">
+                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Name="_txtImprimirFacturaBfCopia" Text="Copia Factura (Bsf)"/>
+            </Button>
         </WrapPanel>
 
         <WrapPanel Name="_Wp_Btn"  Grid.Column="1" Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Bottom">

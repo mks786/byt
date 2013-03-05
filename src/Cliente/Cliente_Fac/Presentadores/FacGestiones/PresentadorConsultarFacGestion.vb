@@ -567,15 +567,21 @@ Namespace Presentadores.FacGestiones
                 If cartas Is Nothing Then
                     Me._ventana.Cartas = Nothing
                     MessageBox.Show("Error: No Existe Carta Relacionado a la Búsqueda")
+                    Mouse.OverrideCursor = Nothing
+                    Exit Sub
                 Else
                     If cartas.Count < 1 Then
                         Me._ventana.Cartas = Nothing
                         MessageBox.Show("Error: No Existe Carta Relacionado a la Búsqueda")
+                        Mouse.OverrideCursor = Nothing
+                        Exit Sub
                     End If
                 End If
             Else
                 Me._ventana.Cartas = Nothing
                 MessageBox.Show("Error: No Existe Carta Relacionado a la Búsqueda")
+                Mouse.OverrideCursor = Nothing
+                Exit Sub
             End If
             'End If
 
@@ -639,15 +645,21 @@ Namespace Presentadores.FacGestiones
                 If Cartas_2 Is Nothing Then
                     Me._ventana.Cartas_2 = Nothing
                     MessageBox.Show("Error: No Existe Carta_2 Relacionado a la Búsqueda")
+                    Mouse.OverrideCursor = Nothing
+                    Exit Sub
                 Else
                     If Cartas_2.Count < 1 Then
                         Me._ventana.Cartas_2 = Nothing
                         MessageBox.Show("Error: No Existe Carta_2 Relacionado a la Búsqueda")
+                        Mouse.OverrideCursor = Nothing
+                        Exit Sub
                     End If
                 End If
             Else
                 Me._ventana.Cartas_2 = Nothing
                 MessageBox.Show("Error: No Existe Carta_2 Relacionado a la Búsqueda")
+                Mouse.OverrideCursor = Nothing
+                Exit Sub
             End If
             'End If
 

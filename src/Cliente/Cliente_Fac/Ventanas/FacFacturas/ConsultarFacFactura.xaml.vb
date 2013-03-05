@@ -62,7 +62,7 @@ Namespace Ventanas.FacFacturas
             Set(ByVal value As Boolean)
                 'Me._txtDetalle.IsEnabled = value
                 '_txtXiauto.IsEnabled = value
-                _txtXCausaRec.IsEnabled = value
+                '_txtXCausaRec.IsEnabled = value
                 _txtdesc.IsEnabled = value
                 _txtCaso.IsEnabled = value
                 '_txtId.IsEnabled = value

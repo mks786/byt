@@ -151,7 +151,7 @@
                          HorizontalAlignment="Right" Width="200" Text="" MaxLength="255" MouseDoubleClick="_txtAsociado_MouseDoubleClick" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
 
                             <custom:ByTTextBox Grid.Column="1" KeyDown="_Consultar_Enter" Grid.Row="0" Grid.ColumnSpan="4" Name="_txtIdAsociado" VerticalAlignment="Center" 
-                         HorizontalAlignment="Left" Width="40" MaxLength="8" SoloNumero="True" Visibility="Collapsed"  ></custom:ByTTextBox>
+                         HorizontalAlignment="Left" Width="80" MaxLength="8" SoloNumero="True" Visibility="Collapsed"  ></custom:ByTTextBox>
 
                             <custom:ByTTextBox Grid.Column="3" Grid.Row="0" KeyDown="_Consultar_Enter" Grid.ColumnSpan="4" Name="_txtNombreAsociado" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="140" MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
@@ -173,7 +173,7 @@
                                         <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="45">
                                             <GridViewColumnHeader  Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                                         </GridViewColumn>-->
-                                        <GridViewColumn Width="45">
+                                        <GridViewColumn Width="70">
                                             <GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
@@ -185,7 +185,7 @@
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
-                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="260">
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="350">
                                             <GridViewColumnHeader  Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                                         </GridViewColumn>
                                     </GridView>
@@ -306,11 +306,11 @@
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
-                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Medio}" Width="260">
-                                            <GridViewColumnHeader  Tag="Medio" Content="Medio"/>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Medio}" Width="150">
+                                            <GridViewColumnHeader Tag="Medio" Content="Medio"/>
                                         </GridViewColumn>
-                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Fecha, StringFormat={}{0:dd/MM/yyyy}}" Width="100">
-                                            <GridViewColumnHeader  Tag="Fecha" Content="Fecha"/>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Referencia}" Width="250">
+                                            <GridViewColumnHeader Tag="Referencia" Content="Referencia"/>
                                         </GridViewColumn>
                                     </GridView>
                                 </ListView.View>
@@ -515,7 +515,7 @@
                 </Button.Style>
                 <TextBlock Name="_txbModificar" Text="{x:Static recurso:Etiquetas.btnModificar}"/>
             </Button>
-            <Button Name="_btnEliminar" VerticalAlignment="Bottom" Height="25" Width="60"
+            <Button Name="_btnEliminar" Visibility="Collapsed" VerticalAlignment="Bottom" Height="25" Width="60"
                     Click="_btnEliminar_Click">
                 <TextBlock Name="_txbEliminar" Text="{x:Static recurso:Etiquetas.btnEliminar}"/>
             </Button>
