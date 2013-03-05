@@ -526,9 +526,9 @@
                         <MenuItem Name="_fac_menuItemChequeRecidoAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemChequeRecidoAgregar_Click"/>
                     </MenuItem>
                     <MenuItem Name="_fac_menuItemFacPagoBolivia" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemFacPagoBolivia}">
-                        <MenuItem Name="_fac_menuItemFacPagoBoliviaConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemFacPagoBoliviaConsultar_Click"/>
-                        <MenuItem Name="_fac_menuItemFacPagoBoliviaConsultarPago" Header="Consultar Pago" Click="_fac_menuItemFacPagoBoliviaConsultarPago_Click"/>
                         <MenuItem Name="_fac_menuItemFacPagoBoliviaAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemFacPagoBoliviaAgregar_Click"/>
+                        <MenuItem Name="_fac_menuItemFacPagoBoliviaConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemFacPagoBoliviaConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemFacPagoBoliviaConsultarPago" Header="Consultar Pago" Click="_fac_menuItemFacPagoBoliviaConsultarPago_Click"/>                        
                     </MenuItem>
                     <MenuItem Name="_fac_menuItemFacCobro" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemFacCobro}">
                         <MenuItem Name="_fac_menuItemFacCobroConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemFacCobroConsultar_Click"/>
