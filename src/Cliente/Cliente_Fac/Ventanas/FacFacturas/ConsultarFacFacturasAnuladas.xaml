@@ -240,8 +240,17 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Caso}" Width="250">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Caso" Content="Caso"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Mttotal}" Width="80">
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Mttotal}" Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Mttotal" Content="Monto"/>
+                        </GridViewColumn>-->
+                        <GridViewColumn Width="120" Header="Monto">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content ="{Binding Path=Mttotal}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+
+                                    </Label>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Auto}" Width="20">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Auto" Content=""/>

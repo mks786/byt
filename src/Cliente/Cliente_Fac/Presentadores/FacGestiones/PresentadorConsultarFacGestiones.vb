@@ -119,7 +119,7 @@ Namespace Presentadores.FacGestiones
                 'Me._asociados = Me._asociadosServicios.ConsultarTodos()
                 'Me._ventana.Asociados = Me._asociados
 
-                'Dim facbancos As IList(Of FacBanco) = Me._facbancosServicios.ConsultarTodos()
+                'Dim facbancos As IList(Of FacBanco) = Me._facbancosServicios.ObtenerFacBancosFiltro(Nothing)()
                 'Dim primerafacbanco As New FacBanco()
                 'primerafacbanco.Id = Integer.MinValue
                 'facbancos.Insert(0, primerafacbanco)
@@ -214,6 +214,14 @@ Namespace Presentadores.FacGestiones
 
                 If (Me._ventana.Concepto IsNot Nothing) AndAlso (DirectCast(Me._ventana.Concepto, ConceptoGestion).Id <> "") Then
                     FacGestionAuxiliar.ConceptoGestion = DirectCast(Me._ventana.Concepto, ConceptoGestion).Id
+                End If
+
+                If Me._ventana.Inicial <> "" Then
+                    FacGestionAuxiliar.Inicial = Me._ventana.Inicial
+                End If
+
+                If Me._ventana.Observacion <> "" Then
+                    FacGestionAuxiliar.Observacion = Me._ventana.Observacion
                 End If
 
                 'If (Me._ventana.Idioma IsNot Nothing) AndAlso (DirectCast(Me._ventana.Idioma, Idioma).Id <> "") Then

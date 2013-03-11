@@ -69,6 +69,11 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Errores\MensajesAlServidor.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MensajesAlServidor.resx</DependentUpon>
+    </Compile>
     <Compile Include="Implementacion\FacFacturaPendienteConGruServicios.vb" />
     <Compile Include="Implementacion\FacVistaFacturacionCxpInternaServicios.vb" />
     <Compile Include="Implementacion\FacVistaFacturaServicioServicios.vb" />
@@ -148,6 +153,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Errores\MensajesAlServidor.resx">
+      <CustomToolNamespace>Errores</CustomToolNamespace>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MensajesAlServidor.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -179,11 +189,16 @@
       <Project>{C62DF7FE-106D-40BA-BE19-1BEEDE960D30}</Project>
       <Name>Servicios</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Transaccional\LogicaNegocio\LogicaNegocio.csproj">
+      <Project>{909389CB-11DE-41FB-B24F-D9AE6B10B82C}</Project>
+      <Name>LogicaNegocio</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Transaccional\LogicaNegocio_Fac\LogicaNegocio_Fac.vbproj">
       <Project>{C107C131-97C6-4FB9-8DEE-8A9557F99108}</Project>
       <Name>LogicaNegocio_Fac</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

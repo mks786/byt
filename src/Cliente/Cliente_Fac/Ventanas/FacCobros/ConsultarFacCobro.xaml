@@ -62,7 +62,7 @@
                             <TextBlock Text="Cobro #"/>
                         </Label>
                         <TextBox Name="_txtId" Width="100" MaxLength="12" Focusable="True" 
-                    ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}" IsReadOnly="True" IsEnabled="True">
+                    ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}" IsReadOnly="True" IsEnabled="True" HorizontalAlignment="Right">
                             <TextBox.Text>
                                 <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>

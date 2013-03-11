@@ -89,7 +89,8 @@ Namespace Presentadores.ChequeRecidos
                 'asociados.Insert(0, primeraasociado)
                 'Me._ventana.Asociados = asociados
 
-                Dim facbancos As IList(Of FacBanco) = Me._facbancosServicios.ConsultarTodos()
+                '                Dim facbancos As IList(Of FacBanco) = Me._facbancosServicios.ObtenerFacBancosFiltro(Nothing)()
+                Dim facbancos As IList(Of FacBanco) = Me._facbancosServicios.ObtenerFacBancosFiltro(Nothing)
                 Dim primerafacbanco As New FacBanco()
                 primerafacbanco.Id = Integer.MinValue
                 facbancos.Insert(0, primerafacbanco)
@@ -197,7 +198,7 @@ Namespace Presentadores.ChequeRecidos
             End If
             '#End Region
 
-            'Me.Navegar(New ConsultarChequeRecido(Me._ventana.ChequeRecidoSeleccionado))
+            Me.Navegar(New ConsultarChequeRecido(Me._ventana.ChequeRecidoSeleccionado))
             'Me.Navegar(New ConsultarChequeRecido())
             '#Region "trace"
             If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then

@@ -46,6 +46,10 @@ Namespace Contratos.FacGestiones
 
         Property Id() As String
 
+        Property Inicial() As String
+
+        Property Observacion() As String
+
         'Property ConceptoRespuesta() As Object
 
         'Property ConceptoRespuestas() As Object

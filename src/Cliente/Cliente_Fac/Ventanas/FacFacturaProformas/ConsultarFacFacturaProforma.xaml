@@ -326,7 +326,7 @@
                          HorizontalAlignment="Left" Width="290" Text="" MaxLength="255" MouseDoubleClick="_txtAsociado_MouseDoubleClick" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
 
                                 <custom:ByTTextBox Grid.Column="2" KeyDown="_Consultar_Enter" Grid.Row="0" Grid.ColumnSpan="4" Name="_txtIdAsociado" VerticalAlignment="Center" 
-                         HorizontalAlignment="Left" Width="40" MaxLength="8" SoloNumero="True" Visibility="Collapsed"  ></custom:ByTTextBox>
+                         HorizontalAlignment="Left" Width="80" MaxLength="8" SoloNumero="True" Visibility="Collapsed"  ></custom:ByTTextBox>
 
                                 <custom:ByTTextBox Grid.Column="4" Grid.Row="0" KeyDown="_Consultar_Enter" Grid.ColumnSpan="4" Name="_txtNombreAsociado" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="140" MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
@@ -348,7 +348,7 @@
                                             <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="45">
                                             <GridViewColumnHeader  Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                                         </GridViewColumn>-->
-                                            <GridViewColumn Width="45">
+                                            <GridViewColumn Width="75">
                                                 <GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
@@ -360,7 +360,7 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="260">
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="350">
                                                 <GridViewColumnHeader  Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                                             </GridViewColumn>
                                         </GridView>
@@ -460,7 +460,7 @@
                                 <custom:ByTTextBox Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="4"  Name="_txtAsociadoImp" VerticalAlignment="Center"
                          HorizontalAlignment="Left" Width="290" Text="" MaxLength="255"  MouseDoubleClick="_txtAsociadoImp_MouseDoubleClick" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
                                 <custom:ByTTextBox Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="4" SoloNumero="True" Name="_txtIdAsociadoImp" VerticalAlignment="Center" 
-                         HorizontalAlignment="Left" Width="40" MaxLength="8"  Visibility="Collapsed" KeyDown="_Consultar_Enter"  ></custom:ByTTextBox>
+                         HorizontalAlignment="Left" Width="80" MaxLength="8"  Visibility="Collapsed" KeyDown="_Consultar_Enter"  ></custom:ByTTextBox>
                                 <custom:ByTTextBox Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="4" Name="_txtNombreAsociadoImp" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="140" MaxLength="255" Visibility="Collapsed" KeyDown="_Consultar_Enter"></custom:ByTTextBox>
 
@@ -478,7 +478,7 @@
                       Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150" MouseDoubleClick="_lstAsociadosImp_MouseDoubleClick" VerticalAlignment="Top">
                                     <ListView.View>
                                         <GridView>
-                                            <GridViewColumn Width="45">
+                                            <GridViewColumn Width="75">
                                                 <GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
@@ -490,7 +490,7 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="260">
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="350">
                                                 <GridViewColumnHeader  Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                                             </GridViewColumn>
                                         </GridView>
@@ -886,82 +886,82 @@
                             </Label>
                         </WrapPanel>
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"  Height="20"  Width="270" VerticalAlignment="Center"  Margin="0,0,0,0">
-                            <custom:ByTTextBox Name="_txtMSubtimpoBf"  Height="20" Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
+                            <custom:ByTTextBox HorizontalContentAlignment="Right"  Name="_txtMSubtimpoBf"  Height="20" Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
                                                 ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True" IsReadOnly="True">
                             </custom:ByTTextBox>
                             <Label Width="110">
                                 <TextBlock Text="Sub Total Imponible" VerticalAlignment="Center"/>
                             </Label>
-                            <custom:ByTTextBox Name="_txtMSubtimpo"  Height="20" Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
+                            <custom:ByTTextBox HorizontalContentAlignment="Right"  Name="_txtMSubtimpo"  Height="20" Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
                                                 ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True" IsReadOnly="True" >
                             </custom:ByTTextBox>
 
                         </WrapPanel>
                         <WrapPanel Orientation="Horizontal"  Width="270"  HorizontalAlignment="Center" Height="20" Margin="0,0,0,0">
-                            <custom:ByTTextBox Name="_txtMDescuentoBf"  Height="20" IsEnabled="True" IsReadOnly="True" Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Left" 
+                            <custom:ByTTextBox HorizontalContentAlignment="Right"  Name="_txtMDescuentoBf"  Height="20" IsEnabled="True" IsReadOnly="True" Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Left" 
                                                 ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" >
                             </custom:ByTTextBox>
 
                             <Label Width="65">
                                 <TextBlock Text="Descuento" VerticalAlignment="Center"/>
                             </Label>
-                            <custom:ByTTextBox Name="_txtPDescuento"  Height="20" IsEnabled="True" IsReadOnly="True" Width="30" MaxLength="100" Focusable="True" HorizontalAlignment="Left" 
+                            <custom:ByTTextBox HorizontalContentAlignment="Right"  Name="_txtPDescuento"  Height="20" IsEnabled="True" IsReadOnly="True" Width="30" MaxLength="100" Focusable="True" HorizontalAlignment="Left" 
                                                 ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" >
                             </custom:ByTTextBox>
                             <Label Width="15">
                                 <TextBlock Text="" VerticalAlignment="Center"/>
                             </Label>
-                            <custom:ByTTextBox Name="_txtMDescuento" Height="20" IsEnabled="True" IsReadOnly="True"  Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
+                            <custom:ByTTextBox HorizontalContentAlignment="Right"  Name="_txtMDescuento" Height="20" IsEnabled="True" IsReadOnly="True"  Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
                                                 ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" >
                             </custom:ByTTextBox>
                         </WrapPanel>
                         <WrapPanel Orientation="Horizontal"  Width="270"  HorizontalAlignment="Center"  Height="20"  VerticalAlignment="Center"  Margin="0,0,0,0">
-                            <custom:ByTTextBox Name="_txtMTbimpBf"  Height="20" IsEnabled="True" IsReadOnly="True"  Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
+                            <custom:ByTTextBox HorizontalContentAlignment="Right"  Name="_txtMTbimpBf"  Height="20" IsEnabled="True" IsReadOnly="True"  Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
                                                 ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" >
                             </custom:ByTTextBox>
                             <Label  Width="110" >
                                 <TextBlock Text="Base Imponible" VerticalAlignment="Center"/>
                             </Label>
-                            <custom:ByTTextBox Name="_txtMTbimp"  Height="20" IsEnabled="True" IsReadOnly="True"  Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
+                            <custom:ByTTextBox HorizontalContentAlignment="Right"  Name="_txtMTbimp"  Height="20" IsEnabled="True" IsReadOnly="True"  Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
                                                 ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" >
                             </custom:ByTTextBox>
                         </WrapPanel>
                         <WrapPanel Orientation="Horizontal"  Height="20"  Width="270"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0">
-                            <custom:ByTTextBox Name="_txtMtbexcBf" Height="20"  IsEnabled="True" IsReadOnly="True"  Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
+                            <custom:ByTTextBox HorizontalContentAlignment="Right"  Name="_txtMtbexcBf" Height="20"  IsEnabled="True" IsReadOnly="True"  Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
                                                 ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" >
                             </custom:ByTTextBox>
                             <Label Width="110">
                                 <TextBlock Text="Base Excenta" VerticalAlignment="Center"/>
                             </Label>
-                            <custom:ByTTextBox Name="_txtMtbexc"  Height="20" IsEnabled="True" IsReadOnly="True"  Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
+                            <custom:ByTTextBox HorizontalContentAlignment="Right"  Name="_txtMtbexc"  Height="20" IsEnabled="True" IsReadOnly="True"  Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
                                                 ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" >
                             </custom:ByTTextBox>
                         </WrapPanel>
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"  Height="20"   Width="270"  VerticalAlignment="Center"  Margin="0,0,0,0">
-                            <custom:ByTTextBox Name="_txtMsubtotalBf" Height="20"  IsEnabled="True" IsReadOnly="True"  Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
+                            <custom:ByTTextBox HorizontalContentAlignment="Right"  Name="_txtMsubtotalBf" Height="20"  IsEnabled="True" IsReadOnly="True"  Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
                                                 ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" >
                             </custom:ByTTextBox>
                             <Label  Width="110">
                                 <TextBlock Text="Sub Total" VerticalAlignment="Center"/>
                             </Label>
-                            <custom:ByTTextBox Name="_txtMsubtotal"  Height="20" IsEnabled="True" IsReadOnly="True"  Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
+                            <custom:ByTTextBox HorizontalContentAlignment="Right"  Name="_txtMsubtotal"  Height="20" IsEnabled="True" IsReadOnly="True"  Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
                                                 ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" >
                             </custom:ByTTextBox>
                         </WrapPanel>
                         <WrapPanel Orientation="Horizontal"  Height="20"  Width="270"  HorizontalAlignment="Center" VerticalAlignment="Center"  >
-                            <custom:ByTTextBox Name="_txtMtimpBf"  Height="20" IsEnabled="True" IsReadOnly="True"  Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
+                            <custom:ByTTextBox HorizontalContentAlignment="Right"  Name="_txtMtimpBf"  Height="20" IsEnabled="True" IsReadOnly="True"  Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
                                                 ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" >
                             </custom:ByTTextBox>
                             <Label Width="65" >
                                 <TextBlock Text="Impuesto:" VerticalAlignment="Center" />
                             </Label>
-                            <custom:ByTTextBox Name="_txtImpuesto"  Height="20"  Width="30" MaxLength="100" Focusable="True" HorizontalAlignment="Left" LostFocus="_modificar_valor_LostFocus"
+                            <custom:ByTTextBox HorizontalContentAlignment="Right"  Name="_txtImpuesto"  Height="20"  Width="30" MaxLength="100" Focusable="True" HorizontalAlignment="Left" LostFocus="_modificar_valor_LostFocus"
                                                 ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True" IsReadOnly="True">
                             </custom:ByTTextBox>
                             <Label Width="15">
                                 <TextBlock Text="" VerticalAlignment="Center"/>
                             </Label>
-                            <custom:ByTTextBox Name="_txtMtimp" Height="20"  IsEnabled="True" IsReadOnly="True" Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
+                            <custom:ByTTextBox HorizontalContentAlignment="Right"  Name="_txtMtimp" Height="20"  IsEnabled="True" IsReadOnly="True" Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
                                               ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" >
                             </custom:ByTTextBox>
                         </WrapPanel>
@@ -969,19 +969,19 @@
                             <Label HorizontalAlignment="Left" >
                                 <TextBlock Text="Saldo Pendiente:" VerticalAlignment="Center"/>
                             </Label>
-                            <custom:ByTTextBox Name="_txtSaldoPendiente"  Height="20" IsEnabled="True" IsReadOnly="True"  Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Left" 
+                            <custom:ByTTextBox HorizontalContentAlignment="Right"  Name="_txtSaldoPendiente"  Height="20" IsEnabled="True" IsReadOnly="True"  Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Left" 
                                                 ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" >
                             </custom:ByTTextBox>
                             <Label Width="32" HorizontalAlignment="Left" >
                                 <TextBlock Text=" "/>
                             </Label>
-                            <custom:ByTTextBox Name="_txtMttotalBf"  Height="20" IsEnabled="True" IsReadOnly="True"  Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
+                            <custom:ByTTextBox HorizontalContentAlignment="Right"  Name="_txtMttotalBf"  Height="20" IsEnabled="True" IsReadOnly="True"  Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
                                                 ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" >
                             </custom:ByTTextBox>
                             <Label Width="110">
                                 <TextBlock Text="Total:" VerticalAlignment="Center"/>
                             </Label>
-                            <custom:ByTTextBox Name="_txtMttotal" Height="20" IsEnabled="True" IsReadOnly="True"  Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
+                            <custom:ByTTextBox HorizontalContentAlignment="Right"  Name="_txtMttotal" Height="20" IsEnabled="True" IsReadOnly="True"  Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
                                                 ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" >
                             </custom:ByTTextBox>
                         </WrapPanel>

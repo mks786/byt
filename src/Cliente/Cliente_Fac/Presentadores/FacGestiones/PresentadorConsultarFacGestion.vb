@@ -11,6 +11,7 @@ Imports Trascend.Bolet.ObjetosComunes.Entidades
 Imports Trascend.Bolet.ObjetosComunes.ContratosServicios
 Imports Trascend.Bolet.Cliente.Presentadores
 Imports Trascend.Bolet.Cliente.Ventanas.Principales
+Imports Trascend.Bolet.Cliente.Ventanas.Auditorias
 
 Namespace Presentadores.FacGestiones
     Class PresentadorConsultarFacGestion
@@ -317,7 +318,7 @@ Namespace Presentadores.FacGestiones
                     'contador.ProximoValor = System.Math.Max(System.Threading.Interlocked.Increment(contador.ProximoValor), contador.ProximoValor - 1)
                     'Dim exitocontador As Boolean = _contadorfacServicios.InsertarOModificar(contador, UsuarioLogeado.Hash)
                     'fin contador                   
-
+                    FacGestion.Operacion = "MODIFY"
                     'FacGestion.Inicial = UsuarioLogeado.Iniciales
                     FacGestion.FechaModificacion = FormatDateTime(Date.Now, DateFormat.ShortDate)
                     Dim exitoso As Boolean = _FacGestioneservicios.InsertarOModificar(FacGestion, UsuarioLogeado.Hash)
@@ -688,6 +689,42 @@ Namespace Presentadores.FacGestiones
                 End If
             Catch e As ApplicationException
                 'Me._ventana.Personas = Nothing
+            End Try
+        End Sub
+
+        Public Sub Auditoria()
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                Dim _auditorias As IList(Of Auditoria)
+
+                Dim auditoria As New Auditoria()
+                auditoria.Fk = (DirectCast(Me._ventana.FacGestion, FacGestion).Id * 10) + DirectCast(Me._ventana.Asociado, Asociado).Id
+                auditoria.Tabla = "FAC_GESTIONES"
+                _auditorias = Me._FacGestioneservicios.AuditoriaPorFkyTabla(auditoria)
+                Me.Navegar(New ListaAuditorias(_auditorias))
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                    '#End Region
+                End If
+            Catch ex As ApplicationException
+                logger.[Error](ex.Message)
+                Me.Navegar(ex.Message, True)
+            Catch ex As RemotingException
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, True)
+            Catch ex As SocketException
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, True)
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
             End Try
         End Sub
     End Class

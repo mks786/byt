@@ -1397,6 +1397,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         {
             this._ventana.Contenedor.Navigate(new ConsultarFacFacturaProformasAutorizacion());
         }
+        public void ConsultarFacFacturaProformasTodas()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarFacFacturaProformasTodas());
+        }
         public void ProformaaFactura()
         {
             this._ventana.Contenedor.Navigate(new ProformaaFactura());
@@ -2159,6 +2163,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
 
                                     case "_fac_menuItemProformaaFactura":
                                         if (objeto.Id.Equals(Recursos.Ids.fac_proformaafactura))
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        break;
+
+                                    case "_fac_menuItemFacFacturaProformaConsultarTodas":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_ProformaConsultarTodas))
                                             itemNivel3.Visibility = System.Windows.Visibility.Visible;
                                         break;
 

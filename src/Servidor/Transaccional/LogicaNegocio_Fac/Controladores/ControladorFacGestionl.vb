@@ -6,6 +6,8 @@ Imports Diginsoft.Bolet.Comandos.Fabrica
 Imports Trascend.Bolet.ObjetosComunes.Entidades
 Imports Trascend.Bolet.Comandos.Comandos
 Imports Trascend.Bolet.LogicaNegocio.Controladores
+Imports Trascend.Bolet.Comandos.Fabrica
+
 Namespace Controladores
     Public Class ControladorFacGestion
         Inherits ControladorBase
@@ -58,6 +60,27 @@ Namespace Controladores
                 Dim comando As ComandoBase(Of Boolean) = FabricaComandosFacGestion.ObtenerComandoInsertarOModificar(FacGestion)
                 comando.Ejecutar()
                 exitoso = comando.Receptor.ObjetoAlmacenado
+                If exitoso = True Then
+                    Dim auditoria As New Auditoria()
+                    Dim comandoContadorAuditoriaPoximoValor As ComandoBase(Of ContadorAuditoria) = FabricaComandosContadorAuditoria.ObtenerComandoConsultarPorId("SEG_AUDITORIA")
+
+                    comandoContadorAuditoriaPoximoValor.Ejecutar()
+                    Dim contadorAuditoria As ContadorAuditoria = comandoContadorAuditoriaPoximoValor.Receptor.ObjetoAlmacenado
+
+                    auditoria.Id = System.Math.Max(System.Threading.Interlocked.Increment(contadorAuditoria.ProximoValor), contadorAuditoria.ProximoValor - 1)
+                    auditoria.Usuario = ObtenerUsuarioPorHash(hash).Id
+                    auditoria.Fecha = System.DateTime.Now
+                    auditoria.Operacion = FacGestion.Operacion
+                    auditoria.Tabla = "FAC_GESTIONES"
+                    auditoria.Fk = (FacGestion.Id * 10) + FacGestion.Asociado.Id
+
+                    Dim comandoAuditoria As ComandoBase(Of Boolean) = FabricaComandosAuditoria.ObtenerComandoInsertarOModificar(auditoria)
+                    Dim comandoAuditoriaContador As ComandoBase(Of Boolean) = FabricaComandosContadorAuditoria.ObtenerComandoInsertarOModificar(contadorAuditoria)
+
+                    comandoAuditoria.Ejecutar()
+                    comandoAuditoriaContador.Ejecutar()
+
+                End If
 
                 '#Region "trace"
                 If ConfigurationManager.AppSettings("Ambiente").ToString().Equals("Desarrollo") Then

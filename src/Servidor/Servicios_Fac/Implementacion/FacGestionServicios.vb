@@ -128,6 +128,32 @@ Namespace Implementacion
             '#End Region
         End Function
 
+        Public Function AuditoriaPorFkyTabla(auditoria As Trascend.Bolet.ObjetosComunes.Entidades.Auditoria) As System.Collections.Generic.IList(Of Trascend.Bolet.ObjetosComunes.Entidades.Auditoria) Implements ObjetosComunes.ContratosServicios.IFacGestionServicios.AuditoriaPorFkyTabla
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("Ambiente").ToString().Equals("Desarrollo") Then
+                    logger.Debug("Entrando al Método {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                Dim auditorias As IList(Of Auditoria) = ControladorFacGestion.AuditoriaPorFkyTabla(auditoria)
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("Ambiente").ToString().Equals("Desarrollo") Then
+                    logger.Debug("Saliendo del Método {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                Return auditorias
+            Catch ex As ApplicationException
+                logger.[Error](ex.Message)
+                Throw ex
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Throw New ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor)
+            End Try
+        End Function
+
         'Public Function ConsultarPorId(ByVal entidad As ObjetosComunes.Entidades.FacGestion) As ObjetosComunes.Entidades.FacGestion Implements ObjetosComunes.ContratosServicios.IServicioBase(Of ObjetosComunes.Entidades.FacGestion).ConsultarPorId
         '    Throw New NotImplementedException()
         'End Function

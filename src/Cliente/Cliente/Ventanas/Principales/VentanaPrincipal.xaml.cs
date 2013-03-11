@@ -973,6 +973,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         {
             this._presentador.ConsultarFacFacturaProformasAutorizacion();
         }
+        private void _fac_menuItemFacFacturaProformaConsultarTodas_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarFacFacturaProformasTodas();
+        }
         private void _fac_menuItemProformaaFactura_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.ProformaaFactura();

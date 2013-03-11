@@ -1000,6 +1000,27 @@ Namespace Presentadores.FacFacturas
             '#End Region
         End Sub
 
+        Public Sub ImprimirAnulada()
+            Dim FacFactura As FacFactura = DirectCast(Me._ventana.FacFactura, FacFactura)
+            IrConsultarFacFacturaAnuladaReporte(FacFactura)
+        End Sub
+
+        Public Sub IrConsultarFacFacturaAnuladaReporte(ByVal factura As FacFactura)
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+            'Me._ventana.FacFacturaSeleccionado.Accion = 2 'no modificar
+            Me.Navegar(New FacturaAnuladaRpt(factura))
+            'Me.Navegar(New ConsultarFacFactura())
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+        End Sub
+
         Public Sub agregar_operacion(ByVal facfactura As FacFactura)
             Dim operacion As New FacOperacion
             operacion.Id = "ND"

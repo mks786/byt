@@ -103,6 +103,16 @@ Namespace Dao.NHibernate
                 filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacFacturaProformaFechaFactura, fecha, fecha2)
                 variosFiltros = True
             End If
+
+            If (FacFacturaProforma.FechaDesde IsNot Nothing) And (FacFacturaProforma.FechaHasta IsNot Nothing) Then
+                If variosFiltros Then
+                    filtro += " and "
+                End If
+                Dim fecha As String = [String].Format("{0:dd/MM/yy}", FacFacturaProforma.FechaDesde)
+                Dim fecha2 As String = [String].Format("{0:dd/MM/yy}", FacFacturaProforma.FechaHasta)
+                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacFacturaProformaFechaFactura, fecha, fecha2)
+                variosFiltros = True
+            End If
             'If (FacFacturaProforma.FechaReg IsNot Nothing) AndAlso (Not FacFacturaProforma.FechaReg.Equals(DateTime.MinValue)) Then
             '    If variosFiltros Then
             '        filtro += " and "
@@ -124,6 +134,8 @@ Namespace Dao.NHibernate
                     valor = "1','2"
                 ElseIf FacFacturaProforma.Status = 4 Then ' para las proformas Autorizadas
                     valor = "1"
+                ElseIf FacFacturaProforma.Status = 5 Then ' para la proforma dependiendo de la busqueda
+                    valor = FacFacturaProforma.Auto
                 End If
                 If FacFacturaProforma.Status <> 3 Then
                     filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacFacturaProformaAuto, valor)
@@ -136,10 +148,10 @@ Namespace Dao.NHibernate
 
             Dim query As IQuery
             If (filtro = "") Then
-                query = Session.CreateQuery(cabecera)
+                query = Session.CreateQuery(cabecera & " order by fp.Id desc")
             Else
                 cabecera = cabecera & " Where "
-                cabecera = cabecera & filtro
+                cabecera = cabecera & filtro & " order by fp.Id desc"
                 query = Session.CreateQuery(cabecera)
             End If
             FacFacturaProformas = query.List(Of FacFacturaProforma)()

@@ -39,7 +39,7 @@ Namespace Presentadores.FacGestiones
         Private _cartasServicios As ICartaServicios
         Private _MediosGestionServicios As IMediosGestionServicios
         Private _ConceptoGestionServicios As IConceptoGestionServicios
-        Private _TipoClienteServicios As ITipoClienteServicios
+        Private _TipoClienteServicios As ITipoClienteServicios        
         ''' <summary>
         ''' Constructor predeterminado
         ''' </summary>
@@ -215,7 +215,7 @@ Namespace Presentadores.FacGestiones
                 'contador.ProximoValor = System.Math.Max(System.Threading.Interlocked.Increment(contador.ProximoValor), contador.ProximoValor - 1)
                 'Dim exitocontador As Boolean = _contadorfacServicios.InsertarOModificar(contador, UsuarioLogeado.Hash)
                     'fin contador                   
-
+                FacGestion.Operacion = "CREATE"
                 FacGestion.Inicial = UsuarioLogeado.Iniciales
                     Dim exitoso As Boolean = _FacGestioneservicios.InsertarOModificar(FacGestion, UsuarioLogeado.Hash)
 

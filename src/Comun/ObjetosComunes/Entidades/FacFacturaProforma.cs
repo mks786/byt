@@ -68,6 +68,9 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             private bool _selecpag;
             private int? _status;
             private int? _accion;
+            private DateTime? _fechadesde;
+            private DateTime? _fechahasta;
+
 
         #endregion
 
@@ -876,6 +879,30 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set
             {
                 this._accion = value;
+            }
+        }
+
+        public virtual DateTime? FechaDesde
+        {
+            get
+            {
+                return this._fechadesde;
+            }
+            set
+            {
+                this._fechadesde = value;
+            }
+        }
+
+        public virtual DateTime? FechaHasta
+        {
+            get
+            {
+                return this._fechahasta;
+            }
+            set
+            {
+                this._fechahasta = value;
             }
         }
 

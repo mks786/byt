@@ -287,8 +287,6 @@ Namespace Presentadores.FacReportes
                 'fin para generar el factura totz
 
 
-
-                Dim reporte As New ReportDocument()
                 Dim estructuraDeDatosEnc As IList(Of StructReporteFActuraEnc) = New List(Of StructReporteFActuraEnc)()
 
                 Dim estructuraDeDatosDeta As IList(Of StructReporteFActuraDeta) = New List(Of StructReporteFActuraDeta)()
@@ -314,6 +312,7 @@ Namespace Presentadores.FacReportes
                 Dim ds As New DataSet()
                 ds.Tables.Add(datosEnc)
                 ds.Tables.Add(datosDeta)
+                Dim reporte As New ReportDocument()
                 reporte.Load(GetRutaReporte())
                 reporte.SetDataSource(ds)
                 'reporte.SetDataSource(datosDeta)

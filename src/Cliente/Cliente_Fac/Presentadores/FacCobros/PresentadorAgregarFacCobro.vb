@@ -88,7 +88,8 @@ Namespace Presentadores.FacCobros
                 'Me._asociados = Me._asociadosServicios.ConsultarTodos()
                 'Me._ventana.Asociados = Me._asociados
 
-                Dim bancos As IList(Of FacBanco) = Me._bancosServicios.ConsultarTodos()
+                'Dim bancos As IList(Of FacBanco) = Me._bancosServicios.ObtenerFacBancosFiltro(Nothing)()
+                Dim bancos As IList(Of FacBanco) = Me._bancosServicios.ObtenerFacBancosFiltro(Nothing)
                 Dim primerabanco As New FacBanco()
                 primerabanco.Id = Integer.MinValue
                 bancos.Insert(0, primerabanco)
@@ -135,7 +136,7 @@ Namespace Presentadores.FacCobros
                 If DirectCast(Me._ventana.Asociado, Asociado) IsNot Nothing And DirectCast(Me._ventana.Asociado, Asociado).Id > Integer.MinValue Then
                     FacCobro.Asociado = If(Not DirectCast(Me._ventana.Asociado, Asociado).Id.Equals("NGN"), DirectCast(Me._ventana.Asociado, Asociado), Nothing)
                 Else
-                    Mouse.OverrideCursor = Nothing                    
+                    Mouse.OverrideCursor = Nothing
                     MessageBox.Show("Ingrese Asociado", "Error", MessageBoxButton.OK)
                     Exit Sub
                 End If
@@ -874,11 +875,11 @@ Namespace Presentadores.FacCobros
         Public Sub ConsultarBanco()
             Dim cbanco As String = Me._ventana.Cbanco
             If IsNumeric(cbanco) Then
-                'Dim bancos As IList(Of FacBanco) = Me._bancosServicios.ConsultarTodos()
+                'Dim bancos As IList(Of FacBanco) = Me._bancosServicios.ObtenerFacBancosFiltro(Nothing)()
                 'Me._ventana.Bancos = bancos
                 'Me._ventana.Banco = FacCredito.Banco
                 Dim banco As New FacBanco
-                banco.Id = cbanco                                
+                banco.Id = cbanco
                 Me._ventana.Banco = Me.BuscarFacBanco(DirectCast(Me._ventana.Bancos, List(Of FacBanco)), banco)
             End If
         End Sub

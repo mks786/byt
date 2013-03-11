@@ -63,8 +63,8 @@ Namespace Presentadores.FacFacturaProformas
         Private _FacDesgloseColesServicios As IFacDesgloseColeServicios
         Private _DepartamentoServicios As IDepartamentoServicios
 
-        Private _facfacturaproforma As FacFacturaProforma
-        Private _facfacturaproformaentrada As FacFacturaProforma
+        'Private _facfacturaproforma As FacFacturaProforma
+        'Private _facfacturaproformaentrada As FacFacturaProforma
         'FacOperacionDetaProforma
         ''Private _FacFormaServicios As IFacFormaServicios
         Dim xoperacion As String
@@ -81,9 +81,11 @@ Namespace Presentadores.FacFacturaProformas
         Public Sub New(ByVal ventana As IConsultarFacFacturaProforma, ByVal FacFacturaProforma As Object)
             Try
                 Me._ventana = ventana
+                Dim facturavacia As New FacFacturaProforma
+                Me._ventana.FacFacturaProforma = facturavacia
                 Me._ventana.FacFacturaProforma = FacFacturaProforma
-                _facfacturaproforma = FacFacturaProforma
-                _facfacturaproformaentrada = FacFacturaProforma
+                ' _facfacturaproforma = FacFacturaProforma
+                '_facfacturaproformaentrada = FacFacturaProforma
 
                 'Me._ventana.FacFacturaProforma = New FacFacturaProforma()
                 Me._FacFacturaProformaServicios = DirectCast(Activator.GetObject(GetType(IFacFacturaProformaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFacturaProformaServicios")), IFacFacturaProformaServicios)
@@ -146,6 +148,7 @@ Namespace Presentadores.FacFacturaProformas
                     Me.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.fac_titleConsultarFacFacturaProforma, Recursos.Ids.fac_ConsultarFacFacturaProforma)
 
                     Dim FacFacturaProforma As FacFacturaProforma = DirectCast(Me._ventana.FacFacturaProforma, FacFacturaProforma)
+
 
                     'Me._detalleenvios = Me._detalleenviosServicios.ConsultarTodos()
                     'Me._ventana.DetalleEnvios = Me._detalleenvios
@@ -365,8 +368,12 @@ Namespace Presentadores.FacFacturaProformas
                 logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
             End If
             '#End Region            
+            Dim FacFacturaProforma As FacFacturaProforma = DirectCast(Me._ventana.FacFacturaProforma, FacFacturaProforma)
+            Dim proformaaux As New FacFacturaProforma
+            proformaaux.Id = FacFacturaProforma.id
 
-            Me.Navegar(New ConsultarFacFacturaProforma(_facfacturaproformaentrada))
+            Dim proforma As FacFacturaProforma = _FacFacturaProformaServicios.ObtenerFacFacturaProformasFiltro(proformaaux)(0)
+            Me.Navegar(New ConsultarFacFacturaProforma(proforma))
             'Me.Navegar(New ConsultarFacCobro())
             '#Region "trace"
             If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then

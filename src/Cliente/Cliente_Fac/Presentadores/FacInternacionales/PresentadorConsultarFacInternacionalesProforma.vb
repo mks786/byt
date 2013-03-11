@@ -111,7 +111,7 @@ Namespace Presentadores.FacInternacionales
                 'Me._asociados = Me._asociadosServicios.ConsultarTodos()
                 'Me._ventana.Asociados = Me._asociados
 
-                'Dim facbancos As IList(Of FacBanco) = Me._facbancosServicios.ConsultarTodos()
+                'Dim facbancos As IList(Of FacBanco) = Me._facbancosServicios.ObtenerFacBancosFiltro(Nothing)()
                 'Dim primerafacbanco As New FacBanco()
                 'primerafacbanco.Id = Integer.MinValue
                 'facbancos.Insert(0, primerafacbanco)
@@ -195,13 +195,13 @@ Namespace Presentadores.FacInternacionales
 
         Public Sub Asignar_proforma(ByRef proforma As IList(Of FacFacturaProforma))
             Try
-                Dim operacion As FacOperacionProforma
+                'Dim operacion As FacOperacionProforma
                 Dim internacional As FacInternacional
                 For i As Integer = 0 To proforma.Count - 1
-                    operacion = consultar_OperacionProformas(proforma(i).Id)
-                    If operacion IsNot Nothing Then
-                        proforma(i).Mttotal = operacion.Saldo
-                    End If
+                    'operacion = consultar_OperacionProformas(proforma(i).Id)
+                    'If operacion IsNot Nothing Then
+                    '    proforma(i).Mttotal = operacion.Saldo
+                    'End If
                     internacional = buscar_facinternacional(proforma(i).Id)
                     If internacional IsNot Nothing Then
                         proforma(i).SelecReg = True
@@ -211,7 +211,7 @@ Namespace Presentadores.FacInternacionales
                             proforma(i).Selecpag = False
                         End If
                     Else
-                        proforma(i).Selecpag = False
+                        proforma(i).SelecReg = False
                         proforma(i).Selecpag = False
                     End If
                 Next
@@ -238,7 +238,7 @@ Namespace Presentadores.FacInternacionales
                 'Variable utilizada para limitar a que el filtro se ejecute solo cuando 
                 'dos filtros sean utilizados
                 Dim FacFacturaProformaAuxiliar As New FacFacturaProforma()
-                'Dim FacFacturaProformas As FacFacturaProforma = DirectCast(_ventana.FacFacturaProformaFiltrar, FacFacturaProforma)
+                Dim FacFacturaProformasfiltro As FacFacturaProforma = DirectCast(_ventana.FacFacturaProformaFiltrar, FacFacturaProforma)
 
                 If Not Me._ventana.Id.Equals("") Then
                     FacFacturaProformaAuxiliar.Id = Integer.Parse(Me._ventana.Id)
@@ -273,6 +273,14 @@ Namespace Presentadores.FacInternacionales
 
                 'FacFacturaProformaAuxiliar.Inicial = UsuarioLogeado.Iniciales
                 'FacFacturaProformaAuxiliar.Status = 1 ' esto es para el campo auto porque es in
+                If FacFacturaProformasfiltro IsNot Nothing Then
+                    If FacFacturaProformasfiltro.FechaDesde IsNot Nothing And FacFacturaProformasfiltro.FechaHasta IsNot Nothing Then
+                        If FacFacturaProformasfiltro.FechaDesde < FacFacturaProformasfiltro.FechaHasta Then
+                            FacFacturaProformaAuxiliar.FechaDesde = FacFacturaProformasfiltro.FechaDesde
+                            FacFacturaProformaAuxiliar.FechaHasta = FacFacturaProformasfiltro.FechaHasta
+                        End If
+                    End If
+                End If
                 FacFacturaProformaAuxiliar.Local = "I"
 
                 Dim FacFacturaProformas As IList(Of FacFacturaProforma)

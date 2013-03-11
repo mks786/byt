@@ -108,7 +108,7 @@ Namespace Presentadores.FacAsociadoMarcaPatentes
                 'Me._asociados = Me._asociadosServicios.ConsultarTodos()
                 'Me._ventana.Asociados = Me._asociados
 
-                'Dim facbancos As IList(Of FacBanco) = Me._facbancosServicios.ConsultarTodos()
+                'Dim facbancos As IList(Of FacBanco) = Me._facbancosServicios.ObtenerFacBancosFiltro(Nothing)()
                 'Dim primerafacbanco As New FacBanco()
                 'primerafacbanco.Id = Integer.MinValue
                 'facbancos.Insert(0, primerafacbanco)

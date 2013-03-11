@@ -24,6 +24,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _Xdestalleres;
         private string _Ruta;
         private DateTime? _FechaModificacion;
+        private string _operacion;
 
         private bool _seleccion;
 
@@ -283,6 +284,12 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             {
                 this._Status = value;
             }
+        }
+
+        public virtual string Operacion
+        {
+            get { return _operacion; }
+            set { _operacion = value; }
         }
 
         #endregion

@@ -51,11 +51,18 @@ Namespace Dao.NHibernate
                 filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacFacturaAsociado, FacFactura.Asociado.Id)
                 variosFiltros = True
             End If
-            If (FacFactura.DetalleEnvio IsNot Nothing) AndAlso (Not FacFactura.DetalleEnvio.Id <> "") Then
+            If (FacFactura.DetalleEnvio IsNot Nothing) AndAlso (FacFactura.DetalleEnvio.Id <> "") Then
                 If variosFiltros Then
                     filtro += " and "
                 End If
                 filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacFacturaDetalleEnvio, FacFactura.DetalleEnvio.Id)
+                variosFiltros = True
+            End If
+            If (FacFactura.DetalleEnvio IsNot Nothing) AndAlso (FacFactura.CodGuia <> "") Then
+                If variosFiltros Then
+                    filtro += " and "
+                End If
+                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacFacturaGuia, FacFactura.CodGuia)
                 variosFiltros = True
             End If
             If (FacFactura IsNot Nothing) AndAlso (FacFactura.Inicial <> "") Then
@@ -81,6 +88,32 @@ Namespace Dao.NHibernate
                 variosFiltros = True
             End If
 
+            If (FacFactura IsNot Nothing) AndAlso (FacFactura.Ourref <> "") Then
+                If variosFiltros Then
+                    filtro += " and "
+                End If
+                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacFacturaOurref, FacFactura.Ourref)
+                variosFiltros = True
+            End If
+
+            If (FacFactura IsNot Nothing) AndAlso (FacFactura.Caso <> "") Then
+                If variosFiltros Then
+                    filtro += " and "
+                End If
+                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacFacturaCaso, FacFactura.Caso)
+                variosFiltros = True
+            End If
+
+            If (FacFactura.Proforma IsNot Nothing) AndAlso (FacFactura.Proforma.Id IsNot Nothing) Then
+                filtro = String.Format(Recursos.ConsultasHQL.FiltroObtenerFacFacturaProforma, FacFactura.Proforma.Id)
+                variosFiltros = True
+            End If
+
+            If (FacFactura IsNot Nothing) AndAlso (FacFactura.Seniat IsNot Nothing) Then
+                filtro = String.Format(Recursos.ConsultasHQL.FiltroObtenerFacFacturaSeniat, FacFactura.Seniat)
+                variosFiltros = True
+            End If
+
             If (FacFactura.FechaFactura IsNot Nothing) AndAlso (Not FacFactura.FechaFactura.Equals(DateTime.MinValue)) Then
                 If variosFiltros Then
                     filtro += " and "
@@ -88,6 +121,16 @@ Namespace Dao.NHibernate
                 Dim fecha As String = [String].Format("{0:dd/MM/yy}", FacFactura.FechaFactura)
                 Dim fecha2 As String = [String].Format("{0:dd/MM/yy}", FacFactura.FechaFactura)
                 filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacFacturaFechaFactura, fecha, fecha2)
+                variosFiltros = True
+            End If
+
+            If (FacFactura.FechaFactura IsNot Nothing) AndAlso (Not FacFactura.FechaSeniat.Equals(DateTime.MinValue)) Then
+                If variosFiltros Then
+                    filtro += " and "
+                End If
+                Dim fecha As String = [String].Format("{0:dd/MM/yy}", FacFactura.FechaSeniat)
+                Dim fecha2 As String = [String].Format("{0:dd/MM/yy}", FacFactura.FechaSeniat)
+                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacFacturaFechaSeniat, fecha, fecha2)
                 variosFiltros = True
             End If
 
@@ -164,15 +207,19 @@ Namespace Dao.NHibernate
 
             Dim query As IQuery
             If (filtro = "") Then
-                query = Session.CreateQuery(cabecera)
+                query = Session.CreateQuery(cabecera & "  order by fp.Id desc")
             Else
                 cabecera = cabecera & " Where "
-                cabecera = cabecera & filtro
+                If FacFactura.Status Is Nothing Then
+                    cabecera = cabecera & filtro & "  order by fp.Id desc"
+                Else
+                    cabecera = cabecera & filtro
+                End If
                 query = Session.CreateQuery(cabecera)
-            End If
-            FacFacturas = query.List(Of FacFactura)()
+                End If
+                FacFacturas = query.List(Of FacFactura)()
 
-            Return FacFacturas
+                Return FacFacturas
 
         End Function
 

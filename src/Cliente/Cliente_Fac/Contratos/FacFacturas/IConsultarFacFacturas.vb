@@ -52,6 +52,28 @@ Namespace Contratos.FacFacturas
 
         WriteOnly Property Cdf() As Double
 
+        Property Carta() As Object
+
+        Property Cartas() As Object
+
+        Property DetalleEnvio() As Object
+
+        Property DetalleEnvios() As Object
+
+        Property idCartaFiltrar() As String
+
+        Property NombreCarta() As String
+
+        Property Guia() As Object
+
+        Property Guias() As Object
+
+        Property Proforma As String
+
+        ' Property NombreCartaFiltrar() As String
+
+        Property FechaCartaFiltrar() As String
+
 
         'ReadOnly Property Region() As String
 

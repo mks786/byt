@@ -106,5 +106,27 @@ Namespace Implementacion
 
             Return exitoso
         End Function
+
+        Public Function ObteneBancoGsFiltro(ByVal BancoG As BancoG) As System.Collections.Generic.IList(Of Trascend.Bolet.ObjetosComunes.Entidades.BancoG) Implements ObjetosComunes.ContratosServicios.IBancoGServicios.ObtenerBancoGsFiltro
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("Ambiente").ToString().Equals("Desarrollo") Then
+                logger.Debug("Entrando al Método {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+
+            Dim BancoGs As IList(Of BancoG)
+
+            BancoGs = ControladorBancoG.ConsultarBancoGsFiltro(BancoG)
+
+            Return BancoGs
+
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("Ambiente").ToString().Equals("Desarrollo") Then
+                logger.Debug("Saliendo del Método {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+        End Function
+
+
     End Class
 End Namespace

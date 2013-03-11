@@ -81,7 +81,7 @@ Namespace Presentadores.FacPagoBolivias
                 'Me._asociados = Me._asociadosServicios.ConsultarTodos()
                 'Me._ventana.Asociados = Me._asociados
 
-                Dim facbancos As IList(Of FacBanco) = Me._facbancosServicios.ConsultarTodos()
+                Dim facbancos As IList(Of FacBanco) = Me._facbancosServicios.ObtenerFacBancosFiltro(Nothing)
                 Dim primerfacbanco As New FacBanco()
                 primerfacbanco.Id = Integer.MinValue
                 facbancos.Insert(0, primerfacbanco)
@@ -124,7 +124,7 @@ Namespace Presentadores.FacPagoBolivias
                 'FacPagoBolivia.FechaDeposito = Date.Now
                 FacPagoBolivia.IPagado = "0"
                 FacPagoBolivia.PagoPag = ""
-                FacPagoBolivia.FechaReg = Date.Now
+                FacPagoBolivia.FechaReg = FormatDateTime(Date.Now, DateFormat.ShortDate)
                 FacPagoBolivia.FechaPago = CDate("01-01-1900")
                 FacPagoBolivia.NumeroPag = ""
 
@@ -141,6 +141,14 @@ Namespace Presentadores.FacPagoBolivias
                 End If
 
                 Dim exitoso As Boolean = _FacPagoBoliviaServicios.InsertarOModificar(FacPagoBolivia, UsuarioLogeado.Hash)
+                If exitoso Then
+                    Mouse.OverrideCursor = Nothing
+                    If MessageBoxResult.Yes = MessageBox.Show(Recursos.MensajesConElUsuario.fac_FacPagoBoliviaInsertado, "GUARDAR PAGO BOLIVIA", MessageBoxButton.YesNo, MessageBoxImage.Question) Then
+                        IrConsultarFacPagoBolivia(FacPagoBolivia)
+                    Else
+                        Limpiar()
+                    End If
+                End If
 
                 If exitoso Then
                     Me.Navegar(Recursos.MensajesConElUsuario.fac_FacPagoBoliviaInsertado, False)
@@ -161,6 +169,22 @@ Namespace Presentadores.FacPagoBolivias
                 logger.[Error](ex.Message)
                 Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
             End Try
+        End Sub
+
+        Public Sub IrConsultarFacPagoBolivia(ByVal FacPagoBolivia As FacPagoBolivia)
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+
+            Me.Navegar(New ConsultarFacPagoBolivia(FacPagoBolivia))
+            'Me.Navegar(New ConsultarFacFacturaProforma())
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
         End Sub
 
         Public Sub Ver_Carta()

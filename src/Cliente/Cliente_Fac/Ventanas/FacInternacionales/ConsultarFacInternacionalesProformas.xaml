@@ -178,13 +178,40 @@
                     </ComboBox>
                 </WrapPanel>-->
 
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                        <TextBlock Text="Fecha"/>
+                <WrapPanel HorizontalAlignment="Left"  VerticalAlignment="Center">
+                    <Label VerticalAlignment="Top"  Width="110" HorizontalContentAlignment="Right">
+                        <TextBlock  Width="110" Text="Fecha"/>
                     </Label>
-                    <DatePicker Name="_dpkFechaFactura" Width="150" Focusable="False" BorderBrush="{x:Null}">
+                    <DatePicker Name="_dpkFechaFactura" Width="150" Focusable="False" BorderBrush="{x:Null}" HorizontalAlignment="Left">
                         <DatePicker.SelectedDate>
                             <Binding Path="FechaFactura" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                </WrapPanel>
+
+                <WrapPanel HorizontalAlignment="Left"  VerticalAlignment="Center">
+
+                    <Label VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Right">
+                        <TextBlock Width="110" Text="Fecha Inic."/>
+                    </Label>
+
+                    <DatePicker Name="_dpkFecha1"  Width="150" Focusable="False" BorderBrush="{x:Null}" HorizontalAlignment="Left">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="FechaDesde" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+
+                </WrapPanel>
+
+                <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                    <Label VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Right">
+                        <TextBlock Width="110" Text="Fecha Fin"/>
+                    </Label>
+
+                    <DatePicker Name="_dpkFecha2"  Width="150" Focusable="False" BorderBrush="{x:Null}" HorizontalAlignment="Left">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="FechaHasta" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
                     </DatePicker>
                 </WrapPanel>
@@ -228,7 +255,7 @@
                         <GridViewColumn Header="Pag" Width="30" >
                             <GridViewColumn.CellTemplate >
                                 <DataTemplate>
-                                    <CheckBox Tag="SelecPag"   IsChecked="{Binding Path=SelecPag}" />
+                                    <CheckBox Tag="Selecpag"   IsChecked="{Binding Path=Selecpag}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

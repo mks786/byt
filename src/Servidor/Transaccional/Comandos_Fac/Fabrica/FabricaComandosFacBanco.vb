@@ -49,5 +49,9 @@ Namespace Fabrica
         Public Shared Function ObtenerComandoVerificarExistenciaFacBanco(ByVal FacBanco As FacBanco) As ComandoBase(Of Boolean)
             Throw New NotImplementedException()
         End Function
+
+        Public Shared Function ObtenerComandoConsultarFacBancosFiltro(ByVal FacBanco As FacBanco) As ComandoBase(Of IList(Of FacBanco))
+            Return New ComandoConsultarFacBancosFiltro(FacBanco)
+        End Function
     End Class
 End Namespace

@@ -348,6 +348,7 @@ Namespace Ventanas.FacFacturaProformas
             End Set
         End Property
 
+
         Public WriteOnly Property Cbr As Double Implements Contratos.FacFacturaProformas.IConsultarFacFacturaProformas.Cbr
             Set(ByVal value As Double)
                 Me._txtCbr.Text = value
@@ -383,5 +384,6 @@ Namespace Ventanas.FacFacturaProformas
                 _lblHits.Text = value
             End Set
         End Property
+
     End Class
 End Namespace

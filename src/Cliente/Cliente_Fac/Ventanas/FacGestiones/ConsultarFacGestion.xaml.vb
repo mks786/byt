@@ -558,5 +558,9 @@ Namespace Ventanas.FacGestiones
                 _txtpermisos.Text = value
             End Set
         End Property
+
+        Private Sub _btnAuditoria_Click(sender As Object, e As RoutedEventArgs)
+            Me._presentador.Auditoria()
+        End Sub
     End Class
 End Namespace

@@ -2293,6 +2293,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a FAC_PRO_AUTOGT.
+        /// </summary>
+        public static string fac_ProformaConsultarTodas {
+            get {
+                return ResourceManager.GetString("fac_ProformaConsultarTodas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a FAC_SERVICIOS.
         /// </summary>
         public static string fac_Servicio {

@@ -101,7 +101,7 @@ Namespace Presentadores.FacPagoBolivias
                 'asociados.Insert(0, primeraasociado)
                 'Me._ventana.Asociados = asociados
 
-                    Dim facbancos As IList(Of FacBanco) = Me._facbancosServicios.ConsultarTodos()
+                Dim facbancos As IList(Of FacBanco) = Me._facbancosServicios.ObtenerFacBancosFiltro(Nothing)
                     Dim primerafacbanco As New FacBanco()
                     primerafacbanco.Id = Integer.MinValue
                     facbancos.Insert(0, primerafacbanco)

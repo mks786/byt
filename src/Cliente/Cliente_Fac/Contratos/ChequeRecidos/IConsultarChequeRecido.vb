@@ -10,15 +10,19 @@ Namespace Contratos.ChequeRecidos
 
         Property Asociados() As Object
 
-        Property Banco() As Object
-
-        Property Bancos() As Object
-
         Property idAsociadoFiltrar() As String
 
         Property NombreAsociado() As String
 
         Property NombreAsociadoFiltrar() As String
+
+        'Property Persona() As Object
+
+        'Property Personas() As Object
+
+        Property BancoG() As Object
+
+        Property BancoGs() As Object
         'Property Region() As String 
 
         Property TextoBotonModificar() As String

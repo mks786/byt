@@ -69,6 +69,7 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comandos\ComandosBancoG\ComandoConsultarFacBancosFiltro.vb" />
     <Compile Include="Comandos\ComandosDesgloseServicio\ComandoConsultarFacDesgloseServiciosFiltro.vb" />
     <Compile Include="Comandos\ComandosFacAnualidad\ComandoConsultarTodosFacAnualidades.vb" />
     <Compile Include="Comandos\ComandosFacAnualidad\ComandoEliminarFacAnualidad.vb" />
@@ -124,6 +125,7 @@
     <Compile Include="Comandos\ComandosEtiqueta\ComandoEliminarEtiqueta.vb" />
     <Compile Include="Comandos\ComandosEtiqueta\ComandoInsertarOModificarEtiqueta.vb" />
     <Compile Include="Comandos\ComandosEtiqueta\ComandoVerificarExistenciaEtiqueta.vb" />
+    <Compile Include="Comandos\ComandosFacBanco\ComandoConsultarFacBancosFiltro.vb" />
     <Compile Include="Comandos\ComandosFacBanco\ComandoConsultarTodosFacBancos.vb" />
     <Compile Include="Comandos\ComandosFacBanco\ComandoEliminarFacBanco.vb" />
     <Compile Include="Comandos\ComandosFacBanco\ComandoInsertarOModificarFacBanco.vb" />

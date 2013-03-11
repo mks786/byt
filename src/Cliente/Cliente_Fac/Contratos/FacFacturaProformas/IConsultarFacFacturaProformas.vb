@@ -36,21 +36,21 @@ Namespace Contratos.FacFacturaProformas
 
         Property NombreAsociadoFiltrar() As String
 
-        WriteOnly Property Cbp() As Double
+        WriteOnly Property Cbp() As Double       
 
-        WriteOnly Property Cba() As Double
+        WriteOnly Property Cba() As Double        
 
-        WriteOnly Property Cdp() As Double
+        WriteOnly Property Cdp() As Double        
 
-        WriteOnly Property Cda() As Double
+        WriteOnly Property Cda() As Double        
 
-        WriteOnly Property Cbr() As Double
+        WriteOnly Property Cbr() As Double        
 
-        WriteOnly Property Cbf() As Double
+        WriteOnly Property Cbf() As Double        
 
-        WriteOnly Property Cdr() As Double
+        WriteOnly Property Cdr() As Double        
 
-        WriteOnly Property Cdf() As Double
+        WriteOnly Property Cdf() As Double        
 
 
         'ReadOnly Property Region() As String

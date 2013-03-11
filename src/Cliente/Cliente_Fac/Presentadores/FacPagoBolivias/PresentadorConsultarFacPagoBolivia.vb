@@ -19,12 +19,12 @@ Namespace Presentadores.FacPagoBolivias
         Private _ventana As IConsultarFacPagoBolivia
         Private _FacPagoBoliviaServicios As IFacPagoBoliviaServicios
         'Private _AsociadoServicios As IAsociadoServicios
-        'Private _BancoGServicios As IBancoGServicios
+        Private _BancoGServicios As IBancoGServicios
         Private _asociadosServicios As IAsociadoServicios
         Private _facbancosServicios As IFacBancoServicios
         Private Shared _paginaPrincipal As PaginaPrincipal = PaginaPrincipal.ObtenerInstancia
         Private Shared logger As Logger = LogManager.GetCurrentClassLogger()
-        Private _FacPagoBolivia As FacPagoBolivia
+        Private _FacPagoBolivia As FacPagoBolivia        
         Private _cartasServicios As ICartaServicios
         ''' <summary>
         ''' Constructor predeterminado
@@ -42,6 +42,7 @@ Namespace Presentadores.FacPagoBolivias
                 Me._asociadosServicios = DirectCast(Activator.GetObject(GetType(IAsociadoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("AsociadoServicios")), IAsociadoServicios)
                 Me._facbancosServicios = DirectCast(Activator.GetObject(GetType(IFacBancoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacBancoServicios")), IFacBancoServicios)
                 Me._cartasServicios = DirectCast(Activator.GetObject(GetType(ICartaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("CartaServicios")), ICartaServicios)
+                Me._BancoGServicios = DirectCast(Activator.GetObject(GetType(IBancoGServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("bancogServicios")), IBancoGServicios)
             Catch ex As Exception
                 logger.[Error](ex.Message)
                 Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
@@ -76,7 +77,7 @@ Namespace Presentadores.FacPagoBolivias
                     logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
                 End If
                 '#End Region
-
+                Me._ventana.HabilitarCampos = False                
                 Me.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.fac_titleConsultarFacPagoBolivia, Recursos.Ids.fac_ConsultarFacPagoBolivia)
 
                 Dim FacPagoBolivia As FacPagoBolivia = DirectCast(Me._ventana.FacPagoBolivia, FacPagoBolivia)
@@ -101,11 +102,18 @@ Namespace Presentadores.FacPagoBolivias
                     Me._ventana.NombreCarta = carta(0).Id & " - " & carta(0).Medio & " - " & FormatDateTime(carta(0).Fecha, DateFormat.ShortDate)
                 End If
 
-                Dim bancos As IList(Of FacBanco) = Me._facbancosServicios.ConsultarTodos()
+                Dim bancos As IList(Of FacBanco) = Me._facbancosServicios.ObtenerFacBancosFiltro(Nothing)
                 Me._ventana.BancosRec = bancos
-                'Me._ventana.Banco = FacCredito.Banco
+                'Me._ventana.Banco = FacCredito.Banco                
                 Me._ventana.BancoRec = Me.BuscarFacBanco(bancos, FacPagoBolivia.BancoRec)
                 'Me._ventana.Banco = Me.BuscarBancoG(bancos, FacPagoBolivia.Banco)
+
+                Dim bancospag As IList(Of BancoG) = Me._BancoGServicios.ConsultarTodos()
+                Me._ventana.Bancos = bancospag
+                'Me._ventana.Banco = FacCredito.Banco
+                Me._ventana.Banco = Me.BuscarBancoG(bancospag, FacPagoBolivia.BancoPag)
+
+                Me._ventana.SetFormaPago = BuscarFormaPago(FacPagoBolivia.PagoPag)
 
                 Me._ventana.FocoPredeterminado()
 
@@ -149,6 +157,7 @@ Namespace Presentadores.FacPagoBolivias
                     'If Not Me._FacPagoBoliviaServicios.VerificarExistencia(FacPagoBolivia) Then
                     FacPagoBolivia.BancoRec = If(Not DirectCast(Me._ventana.BancoRec, FacBanco).Id.Equals("NGN"), DirectCast(Me._ventana.BancoRec, FacBanco), Nothing)
                     FacPagoBolivia.PagoRec = _ventana.TipoPago
+                    FacPagoBolivia.BancoPag = If(Not DirectCast(Me._ventana.Banco, BancoG).Id.Equals("NGN"), DirectCast(Me._ventana.Banco, BancoG), Nothing)
 
                     If DirectCast(Me._ventana.Carta, Carta) IsNot Nothing Then
                         If Me._ventana.Carta.id <> Integer.MinValue Then

@@ -201,6 +201,26 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             }
         }
 
+        public virtual String BPagoPag
+        {
+            get
+            {
+                if (this.PagoPag.Equals('D'))
+                    return "Deposito";
+                else
+                    if (this.PagoPag.Equals('T'))
+                        return "Transferencia";
+                    else
+                        if (this.PagoPag.Equals('C'))
+                            return "Cheque";
+                        else
+                            if (this.PagoPag.Equals('O'))
+                                return "Otros";
+                            else
+                                return "";
+            }
+        }
+
         // ''' <summary>
         // ''' Propiedad que asigna u obtiene
         // ''' </summary>

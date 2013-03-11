@@ -200,6 +200,23 @@
                 </WrapPanel>
                 <!--***************Fin Asociado-->
 
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
+                    <Label Width="100">
+                        <TextBlock Text="Inicial"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtInicial" Width="80" MaxLength="7" Focusable="True" CharacterCasing="Upper">
+                    </custom:ByTTextBox>
+                </WrapPanel>
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
+                    <Label Width="100">
+                        <TextBlock Text="Observacion"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtObservacion" Width="230" MaxLength="7" Focusable="True" CharacterCasing="Upper">
+                    </custom:ByTTextBox>
+
+                </WrapPanel>
+
                 <Separator Margin="0,5,0,5"/>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,5">
                     <Button Name="_btnConsultar" Width="100" Click="_btnConsultar_Click" >

@@ -77,7 +77,7 @@ Namespace Presentadores.FacCreditos
                 'Me._asociados = Me._asociadosServicios.ConsultarTodos()
                 'Me._ventana.Asociados = Me._asociados
 
-                Dim bancos As IList(Of FacBanco) = Me._bancosServicios.ConsultarTodos()
+                Dim bancos As IList(Of FacBanco) = Me._bancosServicios.ObtenerFacBancosFiltro(Nothing)
                 Dim primerabanco As New FacBanco()
                 primerabanco.Id = Integer.MinValue
                 bancos.Insert(0, primerabanco)

@@ -103,7 +103,7 @@ Namespace Presentadores.FacCobros
                     Me._ventana.NombreAsociado = asociado(0).Id & " - " & asociado(0).Nombre
                 End If
 
-                Dim bancos As IList(Of FacBanco) = Me._bancosServicios.ConsultarTodos()
+                Dim bancos As IList(Of FacBanco) = Me._bancosServicios.ObtenerFacBancosFiltro(Nothing)
                 Me._ventana.Bancos = bancos
                 'Me._ventana.Banco = FacCredito.Banco
                 Me._ventana.Banco = Me.BuscarFacBanco(bancos, FacCobro.Banco)
@@ -419,7 +419,7 @@ Namespace Presentadores.FacCobros
                     FacOperacionAuxiliar.ValorQuery = FacOperacionAuxiliar.ValorQuery & " and "
                 End If
                 FacOperacionAuxiliar.ValorQuery = FacOperacionAuxiliar.ValorQuery & " Asociado.Id= " & asociado.Id
-                valor = True            
+                valor = True
             Else
                 Mouse.OverrideCursor = Nothing
                 MessageBox.Show("Ingrese Asociado", "Error", MessageBoxButton.OK)
@@ -940,7 +940,7 @@ Namespace Presentadores.FacCobros
         Public Sub ConsultarBanco()
             Dim cbanco As String = Me._ventana.Cbanco
             If IsNumeric(cbanco) Then
-                'Dim bancos As IList(Of FacBanco) = Me._bancosServicios.ConsultarTodos()
+                'Dim bancos As IList(Of FacBanco) = Me._bancosServicios.ObtenerFacBancosFiltro(Nothing)()
                 'Me._ventana.Bancos = bancos
                 'Me._ventana.Banco = FacCredito.Banco
                 Dim banco As New FacBanco

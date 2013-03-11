@@ -93,7 +93,7 @@ Namespace Presentadores.FacCreditos
                 Me._FacFormas = Me._formasServicios.ObtenerFacFormasFiltro(FacFormaAuxiliar)
                 Me._ventana.Resultados = Me._FacFormas
 
-                Dim bancos As IList(Of FacBanco) = Me._bancosServicios.ConsultarTodos()
+                Dim bancos As IList(Of FacBanco) = Me._bancosServicios.ObtenerFacBancosFiltro(Nothing)
                 Me._ventana.Bancos = bancos
                 'Me._ventana.Banco = FacCredito.Banco
                 Me._ventana.Banco = Me.BuscarFacBanco(bancos, FacCredito.Banco)

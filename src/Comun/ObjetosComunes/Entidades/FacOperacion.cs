@@ -22,8 +22,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             private  double _saldobf;
             private  string _st_sel;
             private  string _st_pro;
-            private  int _relacion;
-            private DateTime _fechaingreso;
+            private  int? _relacion;
+            private DateTime? _fechaingreso;
             private bool _seleccion;
             private string _valorquery;
 
@@ -248,7 +248,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             }
         }
 
-        public virtual int Relacion
+        public virtual int? Relacion
         {
             get
             {
@@ -260,7 +260,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             }
         }
 
-        public virtual DateTime FechaIngreso
+        public virtual DateTime? FechaIngreso
         {
             get
             {

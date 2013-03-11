@@ -99,6 +99,23 @@ Namespace Dao.NHibernate
             '    variosFiltros = True
             'End If
 
+            If (FacGestion IsNot Nothing) AndAlso (FacGestion.Inicial <> "") Then
+                If variosFiltros Then
+                    filtro += " and "
+                End If
+                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacGestionInicial, FacGestion.Inicial)
+                variosFiltros = True
+            End If
+
+            If (FacGestion IsNot Nothing) AndAlso (FacGestion.Observacion <> "") Then
+                If variosFiltros Then
+                    filtro += " and "
+                End If
+                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacGestionObservacion, FacGestion.Observacion)
+                variosFiltros = True
+            End If
+
+
             If (FacGestion IsNot Nothing) AndAlso (FacGestion.Status IsNot Nothing) Then
                 If FacGestion.Status = 1 Then
                     cabecera = String.Format(Recursos.ConsultasHQL.CabeceraObtenerFacGestiontoMax) & " " & filtro & " order by fg.Id desc"
@@ -108,10 +125,15 @@ Namespace Dao.NHibernate
 
             Dim query As IQuery
             If (filtro = "") Then
-                query = Session.CreateQuery(cabecera)
+                query = Session.CreateQuery(cabecera & "  order by fg.FechaGestion desc")
             Else
                 cabecera = cabecera & " Where "
-                cabecera = cabecera & filtro
+
+                If FacGestion.Status Is Nothing Then
+                    cabecera = cabecera & filtro & "  order by fg.FechaGestion desc"
+                Else
+                    cabecera = cabecera & filtro
+                End If
                 query = Session.CreateQuery(cabecera)
             End If
             FacGestiones = query.List(Of FacGestion)()

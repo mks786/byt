@@ -196,7 +196,7 @@ Namespace Presentadores.FacFacturaProformas
 
 
 
-                    'Dim bancos As IList(Of FacBanco) = Me._bancosServicios.ConsultarTodos()
+                    'Dim bancos As IList(Of FacBanco) = Me._bancosServicios.ObtenerFacBancosFiltro(Nothing)()
                     'Dim primerabanco As New FacBanco()
                     'primerabanco.Id = Integer.MinValue
                     'bancos.Insert(0, primerabanco)

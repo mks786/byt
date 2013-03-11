@@ -32,6 +32,20 @@ Namespace Ventanas.FacPagoBolivias
 
         Public WriteOnly Property HabilitarCampos() As Boolean Implements Contratos.FacPagoBolivias.IConsultarFacPagoBolivia.HabilitarCampos
             Set(ByVal value As Boolean)
+                _dpkFechaBanco.IsEnabled = value
+                _cbxBancoRec.IsEnabled = value
+                _cbxPagoRec.IsEnabled = value
+                _cbxBancoPag.IsEnabled = value
+
+                Dim valor As Boolean
+                If value = True Then
+                    valor = False
+                Else
+                    valor = True
+                End If
+                _txtMontoRec.IsReadOnly = valor
+                _txtMontoBol.IsReadOnly = valor
+                _txtDescripcionRec.IsReadOnly = valor
                 'Me._txtDetalle.IsEnabled = value
                 'Me._txtId.IsEnabled = value
             End Set
@@ -358,5 +372,39 @@ Namespace Ventanas.FacPagoBolivias
             End Set
         End Property
 
+        Public Property Banco As Object Implements Contratos.FacPagoBolivias.IConsultarFacPagoBolivia.Banco
+            Get
+                Return Me._cbxBancoPag.SelectedItem
+            End Get
+            Set(ByVal value As Object)
+                Me._cbxBancoPag.SelectedItem = value
+            End Set
+        End Property
+
+        Public Property Bancos As Object Implements Contratos.FacPagoBolivias.IConsultarFacPagoBolivia.Bancos
+            Get
+                Return Me._cbxBancoPag.DataContext
+            End Get
+            Set(ByVal value As Object)
+                Me._cbxBancoPag.DataContext = value
+            End Set
+        End Property
+
+
+        Public ReadOnly Property GetFormaPago() As Char Implements IConsultarFacPagoBolivia.GetFormaPago
+            Get
+                If Not String.IsNullOrEmpty(Me._cbxPagoPag.Text) Then
+                    Return (Me._cbxPagoPag.Text)(0)
+                Else
+                    Return " "c
+                End If
+            End Get
+        End Property
+
+        Public WriteOnly Property SetFormaPago() As String Implements IConsultarFacPagoBolivia.SetFormaPago
+            Set(ByVal value As String)
+                Me._cbxPagoPag.Text = value
+            End Set
+        End Property
     End Class
 End Namespace

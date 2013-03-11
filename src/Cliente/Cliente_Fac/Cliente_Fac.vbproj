@@ -181,6 +181,7 @@
     <Compile Include="Contratos\Consultas\IConsultarFacStatementProcesar.vb" />
     <Compile Include="Contratos\FacAsociadoMarcaPatente\IFacVistaFacturaServicios.vb" />
     <Compile Include="Contratos\FacAsociadoMarcaPatente\IConsultarFacVistaFacturacionCxpInternas.vb" />
+    <Compile Include="Contratos\FacFacturaProformas\IConsultarFacFacturaProformasTodas.vb" />
     <Compile Include="Contratos\FacInternacionales\FacInternacionalPago.vb" />
     <Compile Include="Contratos\FacInternacionales\IConsultarFacInternacionalesProforma.vb" />
     <Compile Include="Contratos\FacGestiones\IAgregarFacGestion.vb" />
@@ -330,6 +331,7 @@
     <Compile Include="Presentadores\Anualidades\PresentadorAgregarAnualidad.vb" />
     <Compile Include="Presentadores\Anualidades\PresentadorConsultarAnualidad.vb" />
     <Compile Include="Presentadores\Anualidades\PresentadorConsultarAnualidades.vb" />
+    <Compile Include="Presentadores\ChequeRecidos\PresentadorConsultarChequeRecido.vb" />
     <Compile Include="Presentadores\ChequeRecidos\PresentadorAgregarChequeRecido.vb" />
     <Compile Include="Presentadores\ChequeRecidos\PresentadorConsultarChequeRecidos.vb" />
     <Compile Include="Presentadores\ChequeRecidos\PresentadorConsultarDepositoChequeRecidos.vb" />
@@ -348,6 +350,7 @@
     <Compile Include="Presentadores\FacAsociadoMarcaPatentes\PresentadorSaldoAsociado.vb" />
     <Compile Include="Presentadores\FacAsociadoMarcaPatentes\PresentadorConsultarFacVistaFacturaServicios.vb" />
     <Compile Include="Presentadores\FacAsociadoMarcaPatentes\PresentadorConsultarFacVistaFacturacionCxpInternas.vb" />
+    <Compile Include="Presentadores\FacFacturaProformas\PresentadorConsultarFacFacturaProformasTodas.vb" />
     <Compile Include="Presentadores\FacInternacionales\PresentadorFacInternacionalPago.vb" />
     <Compile Include="Presentadores\FacInternacionales\PresentadorConsultarFacInternacionalesProforma.vb" />
     <Compile Include="Presentadores\FacGestiones\PresentadorAgregarFacGestion.vb" />
@@ -513,6 +516,9 @@
     <Compile Include="Ventanas\ChequeRecidos\ConsultarDepositoChequeRecidos.xaml.vb">
       <DependentUpon>ConsultarDepositoChequeRecidos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\ChequeRecidos\ConsultarChequeRecido.xaml.vb">
+      <DependentUpon>ConsultarChequeRecido.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\ConceptoGestiones\AgregarConceptoGestion.xaml.vb">
       <DependentUpon>AgregarConceptoGestion.xaml</DependentUpon>
     </Compile>
@@ -554,6 +560,9 @@
     </Compile>
     <Compile Include="Ventanas\FacAsociadoMarcaPatentes\FacVistaFacturacionCxpInternas.xaml.vb">
       <DependentUpon>FacVistaFacturacionCxpInternas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacFacturaProformas\ConsultarFacFacturaProformasTodas.xaml.vb">
+      <DependentUpon>ConsultarFacFacturaProformasTodas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\FacFacturaProformas\Mostrar_Detalle.xaml.vb">
       <DependentUpon>Mostrar_Detalle.xaml</DependentUpon>
@@ -986,6 +995,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Ventanas\ChequeRecidos\ConsultarChequeRecido.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Ventanas\ConceptoGestiones\AgregarConceptoGestion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1039,6 +1052,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\FacAsociadoMarcaPatentes\FacVistaFacturacionCxpInternas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacFacturaProformas\ConsultarFacFacturaProformasTodas.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

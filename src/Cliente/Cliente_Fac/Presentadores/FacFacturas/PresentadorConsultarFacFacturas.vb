@@ -38,6 +38,10 @@ Namespace Presentadores.FacFacturas
         Private _idiomasServicios As IIdiomaServicios
         Private _monedasServicios As IMonedaServicios
 
+        Private _Cartas As IList(Of Carta)
+        Private _cartasServicios As ICartaServicios
+        Private _guiasServicios As IGuiaServicios
+        Private _detalleenviosServicios As IFacDetalleEnvioServicios
         ''' <summary>
         ''' Constructor Predeterminado
         ''' </summary>
@@ -50,6 +54,9 @@ Namespace Presentadores.FacFacturas
                 Me._facbancosServicios = DirectCast(Activator.GetObject(GetType(IFacBancoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacBancoServicios")), IFacBancoServicios)
                 Me._idiomasServicios = DirectCast(Activator.GetObject(GetType(IIdiomaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("IdiomaServicios")), IIdiomaServicios)
                 Me._monedasServicios = DirectCast(Activator.GetObject(GetType(IMonedaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("MonedaServicios")), IMonedaServicios)
+                Me._guiasServicios = DirectCast(Activator.GetObject(GetType(IGuiaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("guiaServicios")), IGuiaServicios)
+                Me._detalleenviosServicios = DirectCast(Activator.GetObject(GetType(IFacDetalleEnvioServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("DetalleEnvioServicios")), IFacDetalleEnvioServicios)
+                Me._cartasServicios = DirectCast(Activator.GetObject(GetType(ICartaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("CartaServicios")), ICartaServicios)
             Catch ex As Exception
                 logger.[Error](ex.Message)
                 Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
@@ -86,12 +93,25 @@ Namespace Presentadores.FacFacturas
                 'Me._ventana.Resultados = FacFacturas
                 'Consultar()
                 Me._ventana.FacFacturaFiltrar = New FacFactura
+
+                Dim _detalleenvios As IList(Of FacDetalleEnvio)
+                _detalleenvios = Me._detalleenviosServicios.ConsultarTodos()
+                Dim primerdetalleenvio As New FacDetalleEnvio()
+                primerdetalleenvio.Id = ""
+                _detalleenvios.Insert(0, primerdetalleenvio)
+                Me._ventana.DetalleEnvios = _detalleenvios
+
+                Dim guias As List(Of Guia) = Me._guiasServicios.ConsultarTodos()
+                Dim primerguias As New Guia()
+                primerguias.Id = ""
+                guias.Insert(0, primerguias)
+                Me._ventana.Guias = guias
                 'sumar(FacFacturas)
 
                 'Me._asociados = Me._asociadosServicios.ConsultarTodos()
                 'Me._ventana.Asociados = Me._asociados
 
-                'Dim facbancos As IList(Of FacBanco) = Me._facbancosServicios.ConsultarTodos()
+                'Dim facbancos As IList(Of FacBanco) = Me._facbancosServicios.ObtenerFacBancosFiltro(Nothing)()
                 'Dim primerafacbanco As New FacBanco()
                 'primerafacbanco.Id = Integer.MinValue
                 'facbancos.Insert(0, primerafacbanco)
@@ -216,7 +236,7 @@ Namespace Presentadores.FacFacturas
                 'Variable utilizada para limitar a que el filtro se ejecute solo cuando 
                 'dos filtros sean utilizados
                 Dim FacFacturaAuxiliar As New FacFactura()
-                'Dim FacFacturas As FacFactura = DirectCast(_ventana.FacFacturaFiltrar, FacFactura)
+                Dim facfactutafiltro As FacFactura = DirectCast(_ventana.FacFacturaFiltrar, FacFactura)
 
                 If Not Me._ventana.Id.Equals("") Then
                     FacFacturaAuxiliar.Id = Integer.Parse(Me._ventana.Id)
@@ -229,6 +249,37 @@ Namespace Presentadores.FacFacturas
                 If (Me._ventana.Asociado IsNot Nothing) AndAlso (DirectCast(Me._ventana.Asociado, Asociado).Id <> Integer.MinValue) Then
                     FacFacturaAuxiliar.Asociado = DirectCast(Me._ventana.Asociado, Asociado)
                 End If
+
+                If (Me._ventana.Carta IsNot Nothing) AndAlso (DirectCast(Me._ventana.Carta, Carta).Id <> Integer.MinValue) Then
+                    FacFacturaAuxiliar.Carta = DirectCast(Me._ventana.Carta, Carta)
+                End If
+
+                If (Me._ventana.DetalleEnvio IsNot Nothing) AndAlso (DirectCast(Me._ventana.DetalleEnvio, FacDetalleEnvio).Id <> "") Then
+                    FacFacturaAuxiliar.DetalleEnvio = DirectCast(Me._ventana.DetalleEnvio, FacDetalleEnvio)
+                End If
+
+                If (Me._ventana.Guia IsNot Nothing) AndAlso (DirectCast(Me._ventana.Guia, Guia).Id <> "") Then
+                    FacFacturaAuxiliar.CodGuia = DirectCast(Me._ventana.Guia, Guia).Id
+                End If
+
+                If Me._ventana.Proforma <> "" Then
+                    If IsNumeric(Me._ventana.Proforma) Then
+                        Dim proforma As New FacFacturaProforma
+                        proforma.Id = Me._ventana.Proforma
+                        FacFacturaAuxiliar.Proforma = proforma
+                    End If
+                End If
+
+                If facfactutafiltro.Seniat IsNot Nothing Then
+                    FacFacturaAuxiliar.Seniat = facfactutafiltro.Seniat
+                End If
+
+                If facfactutafiltro.FechaSeniat IsNot Nothing Then
+                    FacFacturaAuxiliar.FechaSeniat = facfactutafiltro.FechaSeniat
+                End If
+                FacFacturaAuxiliar.Caso = facfactutafiltro.Caso
+                FacFacturaAuxiliar.Ourref = facfactutafiltro.Ourref
+
 
                 'If (Me._ventana.Banco IsNot Nothing) AndAlso (DirectCast(Me._ventana.Banco, FacBanco).Id <> Integer.MinValue) Then
                 '    'FacFacturaAuxiliar.Banco = DirectCast(Me._ventana.Banco, FacBanco)
@@ -381,6 +432,66 @@ Namespace Presentadores.FacFacturas
                 'asociado.Contactos = Me._contactoServicios.ConsultarContactosPorAsociado(asociado)
                 Me._ventana.NombreAsociado = DirectCast(Me._ventana.Asociado, Asociado).Id & " - " & DirectCast(Me._ventana.Asociado, Asociado).Nombre
                 'Me._ventana.Personas = asociado.Contactos
+            Catch e As ApplicationException
+                'Me._ventana.Personas = Nothing
+            End Try
+        End Sub
+
+        Public Sub BuscarCarta()
+            Dim cartas As List(Of Carta) = Nothing
+            'If DirectCast(Me._ventana.Asociado, Asociado) IsNot Nothing Then
+            Dim cartaaux As New Carta
+
+            'Dim CartasFiltrados As IEnumerable(Of Carta) = Me._Cartas
+
+            If Not String.IsNullOrEmpty(Me._ventana.idCartaFiltrar) Then
+                cartaaux.Id = Integer.Parse(Me._ventana.idCartaFiltrar)
+                'CartasFiltrados = From p In CartasFiltrados Where p.Id = Integer.Parse(Me._ventana.idCartaFiltrar)
+            End If
+
+            'If Not String.IsNullOrEmpty(Me._ventana.NombreCartaFiltrar) Then
+            '    cartaaux.Medio = UCase(Me._ventana.NombreCartaFiltrar)
+            '    'CartasFiltrados = From p In CartasFiltrados Where p.Medio IsNot Nothing AndAlso p.Medio.ToLower().Contains(Me._ventana.NombreCartaFiltrar.ToLower())
+            'End If
+
+            If Not String.IsNullOrEmpty(Me._ventana.FechaCartaFiltrar) Then
+                cartaaux.Fecha = Me._ventana.FechaCartaFiltrar
+            End If
+
+            If (Me._ventana.Asociado IsNot Nothing) AndAlso (DirectCast(Me._ventana.Asociado, Asociado).Id <> Integer.MinValue) Then
+                cartaaux.Asociado = DirectCast(Me._ventana.Asociado, Asociado)
+            End If
+
+            cartas = Me._cartasServicios.ObtenerCartasFiltro(cartaaux)
+            If cartas.Count <= 0 Then                
+                Me._ventana.Cartas = Nothing
+                MessageBox.Show("Error: No Existe Carta Relacionado a la Búsqueda")
+                Mouse.OverrideCursor = Nothing
+                Exit Sub
+            End If
+
+            Dim primercarta As New Carta()
+            primercarta.Id = Integer.MinValue
+            cartas.Insert(0, primercarta)
+
+            Me._ventana.Cartas = cartas
+            'If CartasFiltrados.ToList.Count <> 0 Then
+            '    Me._ventana.Cartas = CartasFiltrados
+            'Else
+            '    Me._ventana.Cartas = Me._Cartas
+            'End If
+        End Sub
+
+        Public Sub CambiarCarta()
+            Try
+                If DirectCast(Me._ventana.Carta, Carta) IsNot Nothing Then
+                    If Me._ventana.Carta.id <> Integer.MinValue Then
+                        'Dim carta As List(Of Carta) = Me._cartasServicios.ObtenerCartasFiltro(DirectCast(Me._ventana.Carta, Carta))
+                        Me._ventana.NombreCarta = DirectCast(Me._ventana.Carta, Carta).Id & " - " & DirectCast(Me._ventana.Carta, Carta).Medio
+                    End If
+                Else
+                    Me._ventana.NombreCarta = Nothing
+                End If
             Catch e As ApplicationException
                 'Me._ventana.Personas = Nothing
             End Try

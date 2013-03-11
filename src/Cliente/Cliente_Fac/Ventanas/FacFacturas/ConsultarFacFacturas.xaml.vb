@@ -113,6 +113,7 @@ Namespace Ventanas.FacFacturas
                 Me._presentador.ActualizarTitulo()
             End If
             PintarAsociado()
+            PintarCarta()
         End Sub
 
         Public Sub _btnLimpiar_Click()
@@ -168,6 +169,8 @@ Namespace Ventanas.FacFacturas
             Dim nom As String = DirectCast(sender, Button).Name.ToString
             If nom = "_btnConsultarAsociado" Then
                 Me._presentador.BuscarAsociado2()
+            ElseIf nom = "_btnConsultarCarta" Then
+                Me._presentador.BuscarCarta()
             ElseIf nom = "_btnCancelar" Then
                 Me._presentador.Cancelar()
                 'Me._presentador.reporte()
@@ -237,6 +240,8 @@ Namespace Ventanas.FacFacturas
                 Dim nom As String = DirectCast(sender, ByTTextBox).Name.ToString
                 If nom = "_txtIdAsociado" Or nom = "_txtNombreAsociado" Then
                     Me._presentador.BuscarAsociado2()
+                ElseIf nom = "_txtIdCarta" Or nom = "_txtNombreCarta" Or nom = "_dpkFechaCarta" Then
+                    Me._presentador.BuscarCarta()
                 ElseIf nom = "_txtId" Then
                     Me._presentador.Consultar()
                 End If
@@ -259,6 +264,7 @@ Namespace Ventanas.FacFacturas
             Me._lblIdAsociado.Visibility = System.Windows.Visibility.Visible
             Me._lblNombreAsociado.Visibility = System.Windows.Visibility.Visible
             Me._lblasociado.Visibility = System.Windows.Visibility.Visible
+            ControlesOcultarCarta()
         End Sub
 
         Private Sub _lstAsociados_MouseDoubleClick(ByVal sender As Object, ByVal e As MouseButtonEventArgs)
@@ -379,9 +385,139 @@ Namespace Ventanas.FacFacturas
             End Set
         End Property
 
+
+        Public Property Carta As Object Implements Contratos.FacFacturas.IConsultarFacFacturas.Carta
+
+            Get
+                Return Me._lstCartas.SelectedItem
+            End Get
+            Set(ByVal value As Object)
+                Me._lstCartas.SelectedItem = value
+                Me._lstCartas.ScrollIntoView(value)
+            End Set
+        End Property
+
+        Public Property Cartas As Object Implements Contratos.FacFacturas.IConsultarFacFacturas.Cartas
+            Get
+                Return Me._lstCartas.DataContext
+            End Get
+            Set(ByVal value As Object)
+                Me._lstCartas.DataContext = value
+            End Set
+        End Property
+
+        Public Property DetalleEnvio As Object Implements Contratos.FacFacturas.IConsultarFacFacturas.DetalleEnvio
+            Get
+                Return Me._cbxDetalleEnvio.SelectedItem
+            End Get
+            Set(ByVal value As Object)
+                Me._cbxDetalleEnvio.SelectedItem = value
+            End Set
+        End Property
+
+        Public Property DetalleEnvios As Object Implements Contratos.FacFacturas.IConsultarFacFacturas.DetalleEnvios
+            Get
+                Return Me._cbxDetalleEnvio.DataContext
+            End Get
+            Set(ByVal value As Object)
+                Me._cbxDetalleEnvio.DataContext = value
+            End Set
+        End Property
+
+        Public Property Guia As Object Implements Contratos.FacFacturas.IConsultarFacFacturas.Guia
+            Get
+                Return Me._cbxguia.SelectedItem
+            End Get
+            Set(ByVal value As Object)
+                Me._cbxguia.SelectedItem = value
+            End Set
+        End Property
+
+        Public Property Guias As Object Implements Contratos.FacFacturas.IConsultarFacFacturas.Guias
+            Get
+                Return Me._cbxguia.DataContext
+            End Get
+            Set(ByVal value As Object)
+                Me._cbxguia.DataContext = value
+            End Set
+        End Property
+
+        Private Sub _txtCarta_MouseDoubleClick(ByVal sender As Object, ByVal e As RoutedEventArgs)
+            ControlesMostrarCarta()
+        End Sub
+
+        Private Sub ControlesMostrarCarta()
+            Me._txtCarta.Visibility = System.Windows.Visibility.Collapsed
+            Me._lstCartas.Visibility = System.Windows.Visibility.Visible
+            Me._lstCartas.IsEnabled = True
+            Me._btnConsultarCarta.Visibility = System.Windows.Visibility.Visible
+            Me._txtIdCarta.Visibility = System.Windows.Visibility.Visible
+            'Me._txtNombreCarta.Visibility = System.Windows.Visibility.Visible
+            Me._lblIdCarta.Visibility = System.Windows.Visibility.Visible
+            Me._dpkFechaCarta.Visibility = System.Windows.Visibility.Visible
+            'Me._lblNombreCarta.Visibility = System.Windows.Visibility.Visible            
+            ControlesOcultarAsociado()
+        End Sub
+
+        Public Sub PintarCarta()
+            Me._txtCarta.BorderBrush = New SolidColorBrush(Colors.LightGreen)
+        End Sub
+
+        Private Sub _lstCartas_MouseDoubleClick(ByVal sender As Object, ByVal e As MouseButtonEventArgs)
+            Me._presentador.CambiarCarta()
+            ControlesOcultarCarta()
+        End Sub
+
+        Private Sub ControlesOcultarCarta()
+            Me._lstCartas.Visibility = System.Windows.Visibility.Collapsed
+            Me._btnConsultarCarta.Visibility = System.Windows.Visibility.Collapsed
+            Me._txtIdCarta.Visibility = System.Windows.Visibility.Collapsed
+            'Me._txtNombreCarta.Visibility = System.Windows.Visibility.Collapsed
+            Me._txtCarta.Visibility = System.Windows.Visibility.Visible
+            Me._lblIdCarta.Visibility = System.Windows.Visibility.Collapsed
+            Me._dpkFechaCarta.Visibility = System.Windows.Visibility.Collapsed
+            'Me._lblNombreCarta.Visibility = System.Windows.Visibility.Collapsed
+        End Sub
+
+        Public Property NombreCarta() As String Implements Contratos.FacFacturas.IConsultarFacFacturas.NombreCarta
+            Get
+                Return Me._txtCarta.Text
+            End Get
+            Set(ByVal value As String)
+                Me._txtCarta.Text = value
+            End Set
+        End Property
+
+        Public Property idCartaFiltrar() As String Implements Contratos.FacFacturas.IConsultarFacFacturas.idCartaFiltrar
+            Get
+                Return Me._txtIdCarta.Text
+            End Get
+            Set(ByVal value As String)
+                Me._txtIdCarta.Text = value
+            End Set
+        End Property
+
+        Public Property FechaCartaFiltrar() As String Implements Contratos.FacFacturas.IConsultarFacFacturas.FechaCartaFiltrar
+            Get
+                Return Me._dpkFechaCarta.Text
+            End Get
+            Set(ByVal value As String)
+                Me._dpkFechaCarta.Text = value
+            End Set
+        End Property
+
         Public WriteOnly Property Count As Integer Implements Contratos.FacFacturas.IConsultarFacFacturas.Count
             Set(value As Integer)
                 _lblHits.Text = value
+            End Set
+        End Property
+
+        Public Property Proforma As String Implements Contratos.FacFacturas.IConsultarFacFacturas.Proforma
+            Get
+                Return _txtProforma.Text
+            End Get
+            Set(value As String)
+                _txtProforma.Text = value
             End Set
         End Property
     End Class

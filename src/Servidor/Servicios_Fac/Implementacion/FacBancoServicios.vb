@@ -106,5 +106,26 @@ Namespace Implementacion
 
             Return exitoso
         End Function
+
+        Public Function ObteneFacBancosFiltro(ByVal FacBanco As FacBanco) As System.Collections.Generic.IList(Of Trascend.Bolet.ObjetosComunes.Entidades.FacBanco) Implements ObjetosComunes.ContratosServicios.IFacBancoServicios.ObtenerFacBancosFiltro
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("Ambiente").ToString().Equals("Desarrollo") Then
+                logger.Debug("Entrando al Método {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+
+            Dim FacBancos As IList(Of FacBanco)
+
+            FacBancos = ControladorFacBanco.ConsultarFacBancosFiltro(FacBanco)
+
+            Return FacBancos
+
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("Ambiente").ToString().Equals("Desarrollo") Then
+                logger.Debug("Saliendo del Método {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+        End Function
+
     End Class
 End Namespace

@@ -96,7 +96,7 @@
                          HorizontalAlignment="Left" Width="200" Text="" MaxLength="255" MouseDoubleClick="_txtAsociado_MouseDoubleClick" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
 
                         <custom:ByTTextBox Grid.Column="1" KeyDown="_Consultar_Enter" Grid.Row="0" Grid.ColumnSpan="4" Name="_txtIdAsociado" VerticalAlignment="Center" 
-                         HorizontalAlignment="Left" Width="40" MaxLength="8" SoloNumero="True" Visibility="Collapsed"  ></custom:ByTTextBox>
+                         HorizontalAlignment="Left" Width="80" MaxLength="8" SoloNumero="True" Visibility="Collapsed"  ></custom:ByTTextBox>
 
                         <custom:ByTTextBox Grid.Column="3" Grid.Row="0" KeyDown="_Consultar_Enter" Grid.ColumnSpan="4" Name="_txtNombreAsociado" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="140" MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
@@ -118,7 +118,7 @@
                                     <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="45">
                                             <GridViewColumnHeader  Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                                         </GridViewColumn>-->
-                                    <GridViewColumn Width="45">
+                                    <GridViewColumn Width="75">
                                         <GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
@@ -130,7 +130,7 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="260">
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="350">
                                         <GridViewColumnHeader  Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                                     </GridViewColumn>
                                 </GridView>
@@ -228,8 +228,17 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Caso}" Width="250">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Caso" Content="Caso"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Mttotal}" Width="80">
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Mttotal}" Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Mttotal" Content="Monto"/>
+                        </GridViewColumn>-->
+                        <GridViewColumn Width="120" Header="Monto">                            
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content ="{Binding Path=Mttotal}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+
+                                    </Label>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Auto}" Width="20">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Auto" Content=""/>
@@ -246,11 +255,13 @@
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" Height="20">
                     <Label>
-                        <TextBlock  Width="70" Text=" "/>
+                        <TextBlock  Width="75" Text=" "/>
                     </Label>
+
                     <Label Width="50">
                         <TextBlock Text="Bolivares" FontSize="10" />
                     </Label>
+                 
                     <Label Width="50">
                         <TextBlock Text="Dolares" FontSize="9" />
                     </Label>
@@ -283,12 +294,12 @@
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock  Width="70" Text="Total Autorizado:" FontSize="9" />
+                        <TextBlock  Width="70" Text="Total Autorizada:" FontSize="9" />
                     </Label>
                     <custom:ByTTextBox Name="_txtCba" Width="50" MaxLength="12" IsEnabled="True" FontSize="9">
                     </custom:ByTTextBox>
                     <custom:ByTTextBox Name="_txtCda" Width="50" MaxLength="12" IsEnabled="True" FontSize="9">
-                    </custom:ByTTextBox>
+                    </custom:ByTTextBox>                   
                     <Label>
                         <TextBlock HorizontalAlignment="Right" Width="75" Text="Total Facturada:" FontSize="9" />
                     </Label>

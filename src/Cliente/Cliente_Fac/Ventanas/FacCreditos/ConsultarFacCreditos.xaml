@@ -315,12 +315,30 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Banco.Id}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Banco.Id" Content="Banco"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=BCredito}" Width="120">
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=BCredito}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="BCredito" Content="Monto"/>
+                        </GridViewColumn>-->
+                        <GridViewColumn Width="120" Header="Monto">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content ="{Binding Path=BCredito}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+
+                                    </Label>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=BCreditoBf}" Width="120">
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=BCreditoBf}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="BCreditoBf" Content="Monto Bf"/>
-                        </GridViewColumn>
+                        </GridViewColumn>-->
+                        <GridViewColumn Width="120" Header="Monto Bf">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content ="{Binding Path=BCreditoBf}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+
+                                    </Label>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>                        
 
                     </GridView>
                 </ListView.View>

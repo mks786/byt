@@ -132,6 +132,12 @@ Namespace Ventanas.ChequeRecidos
         '    Me._presentador.IrConsultarChequeRecido()
         'End Sub
 
+        Private Sub _lstResultados_MouseDoubleClick(ByVal sender As Object, ByVal e As MouseButtonEventArgs)
+            If Me._lstResultados.SelectedItem IsNot Nothing Then
+                Me._presentador.IrConsultarChequeRecido()
+            End If
+        End Sub
+
         Private Sub _Ordenar_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
             Me._presentador.OrdenarColumna(TryCast(sender, GridViewColumnHeader))
         End Sub

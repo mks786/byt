@@ -10,6 +10,8 @@
       xmlns:recurso="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Recursos" Loaded="Page_Loaded">
     <Page.Resources>
         <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
+        <conv:DosValresAUno x:Key="convertirADosValores"></conv:DosValresAUno>
+        <conv:DosValresAUno_2 x:Key="convertirADosValores_2"></conv:DosValresAUno_2>
         <Style TargetType="{x:Type DatePickerTextBox}">
             <Setter Property="Text" Value="{x:Static recurso:Etiquetas.facdpkText}" />
         </Style>
@@ -193,6 +195,199 @@
                     </DatePicker>
                 </WrapPanel>
 
+                <WrapPanel Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
+                    <Label  HorizontalContentAlignment="Left" VerticalAlignment="Top" Width="60">
+                        <TextBlock Text="Proforma" VerticalAlignment="Center"/>
+                    </Label>
+                    <custom:ByTTextBox  Name="_txtProforma" Width="100"  Height="20" MaxLength="100" Focusable="True" 
+                       HorizontalAlignment="Left">
+                        <custom:ByTTextBox.Text>
+                            <Binding Path="Proforma.Id" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </custom:ByTTextBox.Text>
+                    </custom:ByTTextBox>
+                </WrapPanel>
+
+                <WrapPanel Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
+                    <Label VerticalAlignment="Top" HorizontalContentAlignment="Left" Width="60">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.faclblSeniat}" VerticalAlignment="Center"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtSeniat"  Height="20" Width="100" MaxLength="100" Focusable="True" 
+                    ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left" >
+                        <custom:ByTTextBox.Text>
+                            <Binding Path="Seniat" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </custom:ByTTextBox.Text>
+                    </custom:ByTTextBox>
+                </WrapPanel>
+                
+                <WrapPanel Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
+                    <Label VerticalAlignment="Top" HorizontalContentAlignment="Left">
+                        <TextBlock Text="Fecha Seniat" VerticalAlignment="Center" />
+                    </Label>
+                    <DatePicker  Name="_dpkFechaSeniat" Width="100"  Height="20"  IsEnabled="True" Focusable="False" BorderBrush="{x:Null}" HorizontalAlignment="Left">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="FechaSeniat" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                </WrapPanel>
+                
+                <WrapPanel Grid.ColumnSpan="3" Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
+                    <Label VerticalAlignment="Top" HorizontalContentAlignment="Left" Width="110" >
+                        <TextBlock Text="{x:Static recurso:Etiquetas.faclblNuestraReferencia}" VerticalAlignment="Center" />
+                    </Label>
+                    <custom:ByTTextBox VerticalAlignment="Top" HorizontalContentAlignment="Left" Width="150" Height="20" Name="_txtOurref" MaxLength="100" Focusable="True" 
+                    ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left" IsReadOnly="False">
+                        <custom:ByTTextBox.Text>
+                            <Binding Path="Ourref" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </custom:ByTTextBox.Text>
+                    </custom:ByTTextBox>
+                </WrapPanel>
+
+                <WrapPanel  Orientation="Horizontal" Height="40" HorizontalAlignment="Left" Margin="0,0,0,0">
+                    <Label VerticalAlignment="Top" Width="75" HorizontalContentAlignment="Left">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.faclblCasoReferencia}" TextWrapping="Wrap" />
+                    </Label>
+                    <custom:ByTTextBox Name="_txtCaso" Width="200"  Height="40" MaxLength="100" TextWrapping="Wrap"  Focusable="True" 
+                    ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left" >
+                        <custom:ByTTextBox.Text>
+                            <Binding Path="Caso" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </custom:ByTTextBox.Text>
+                    </custom:ByTTextBox>
+                </WrapPanel>
+
+                <WrapPanel Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
+                    <Label  VerticalAlignment="Top" HorizontalContentAlignment="Right" Margin="0,0,0,0">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.faclblMedioEnvio}" VerticalAlignment="Center"/>
+                    </Label>
+                    <ComboBox Grid.Row="6" Grid.Column="2" Name="_cbxDetalleEnvio" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200" Height="20" 
+                              ItemsSource="{Binding}" SelectedIndex="0" FontSize="9">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource convertirADosValores_2}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="Descripcion" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </WrapPanel>
+
+                <WrapPanel Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
+                    <Label Width="70"  HorizontalContentAlignment="left" VerticalAlignment="Top">
+                        <TextBlock Text="Guias"  VerticalAlignment="Center"/>
+                    </Label>
+                    <ComboBox  VerticalAlignment="Top" IsEnabled="True"  Height="20" Name="_cbxguia" HorizontalAlignment="Left" Width="200" 
+                              ItemsSource="{Binding}" SelectedIndex="0" FontSize="9">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource convertirADosValores_2}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="Des_guia" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </WrapPanel>
+
+                <!---****************Carta-->
+                <WrapPanel Grid.Column="0" Grid.Row="12"  Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,0">
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <!--<ColumnDefinition Width="Auto"/>-->
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Column="1" Width="70" HorizontalAlignment="Right" Height="25">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblCarta}"  HorizontalAlignment="Right" />
+                        </Label>
+
+                        <WrapPanel Orientation="Horizontal"  Width="290"  Grid.Column="2" Height="20" Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Left">
+
+                            <custom:ByTTextBox Grid.ColumnSpan="3" Width="230"  Name="_txtCarta" VerticalAlignment="Center"                                     
+                         HorizontalAlignment="Right" Text="" MaxLength="255" MouseDoubleClick="_txtCarta_MouseDoubleClick" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
+                            
+                        </WrapPanel>
+
+                        <custom:ByTTextBox Grid.Column="3" Grid.Row="0" SoloNumero="True" Name="_txtIdCarta" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="40" MaxLength="8"  Visibility="Collapsed" KeyDown="_Consultar_Enter" FontSize="9"></custom:ByTTextBox>
+
+                        <DatePicker Grid.Row="0" Grid.Column="5" Visibility="Collapsed" KeyDown="_Consultar_Enter" Name="_dpkFechaCarta" Width="90"  Height="20" Focusable="False" BorderBrush="{x:Null}" HorizontalAlignment="Left" FontSize="9">
+                        </DatePicker>
+                        <!--<custom:ByTTextBox Grid.Column="2" Grid.Row="0" Name="_txtNombreCarta" VerticalAlignment="Center" 
+                         HorizontalAlignment="Right" Width="50" MaxLength="255" Visibility="Collapsed" KeyDown="_Consultar_Enter" FontSize="9"></custom:ByTTextBox>-->
+
+                        <Label Name="_lblIdCarta" Grid.Column="2" Width="20" Grid.Row="0" HorizontalAlignment="Left"  VerticalAlignment="Center" Visibility="Collapsed" FontSize="9">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblId}" Width="20"/>
+                        </Label>
+                        <!--<Label Name="_lblNombreCarta" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed" FontSize="9">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
+                            </Label>-->
+                        <Button Name="_btnConsultarCarta" Width="55" IsDefault="False" Grid.Row="0" Grid.Column="6" Height="20" HorizontalAlignment="Right" Click="_btnConsultar" Visibility="Collapsed" FontSize="9">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                        </Button>
+                        <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="5" Name="_lstCartas" ItemsSource="{Binding}" 
+                      SelectionMode="Single" IsEnabled="False"
+                      Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150" MouseDoubleClick="_lstCartas_MouseDoubleClick" VerticalAlignment="Top">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="45">
+                                        <GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <Binding Path="Id" Converter="{StaticResource convertir}"/>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Medio}" Width="150">
+                                        <GridViewColumnHeader Tag="Medio" Content="Medio"/>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Referencia}" Width="250">
+                                        <GridViewColumnHeader Tag="Referencia" Content="Referencia"/>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                </WrapPanel>
+                <!--***************Fin Carta-->
+
                 <Separator Margin="0,5,0,5"/>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,5">
                     <Button Name="_btnConsulta" Width="100" Click="_btnConsultar" >
@@ -240,8 +435,17 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Caso}" Width="250">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Caso" Content="Caso"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Mttotal}" Width="80">
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Mttotal}" Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Mttotal" Content="Monto"/>
+                        </GridViewColumn>-->
+                        <GridViewColumn Width="120" Header="Monto">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content ="{Binding Path=Mttotal}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+
+                                    </Label>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Auto}" Width="20">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Auto" Content=""/>

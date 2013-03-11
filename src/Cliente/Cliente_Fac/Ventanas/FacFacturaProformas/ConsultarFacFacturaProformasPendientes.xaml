@@ -97,7 +97,7 @@
                          HorizontalAlignment="Left" Width="200" Text="" MaxLength="255" MouseDoubleClick="_txtAsociado_MouseDoubleClick" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
 
                         <custom:ByTTextBox Grid.Column="1" KeyDown="_Consultar_Enter" Grid.Row="0" Grid.ColumnSpan="4" Name="_txtIdAsociado" VerticalAlignment="Center" 
-                         HorizontalAlignment="Left" Width="40" MaxLength="8" SoloNumero="True" Visibility="Collapsed"  ></custom:ByTTextBox>
+                         HorizontalAlignment="Left" Width="80" MaxLength="8" SoloNumero="True" Visibility="Collapsed"  ></custom:ByTTextBox>
 
                         <custom:ByTTextBox Grid.Column="3" Grid.Row="0" KeyDown="_Consultar_Enter" Grid.ColumnSpan="4" Name="_txtNombreAsociado" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="140" MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
@@ -119,7 +119,7 @@
                                     <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="45">
                                             <GridViewColumnHeader  Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                                         </GridViewColumn>-->
-                                    <GridViewColumn Width="45">
+                                    <GridViewColumn Width="75">
                                         <GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
@@ -131,7 +131,7 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="260">
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="350">
                                         <GridViewColumnHeader  Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                                     </GridViewColumn>
                                 </GridView>
@@ -237,10 +237,19 @@
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=XCausaRec}" Width="100">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="XCausaRec" Content="Causa"/>
-                        </GridViewColumn>                        
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Mttotal}" Width="80">
+                        </GridViewColumn>
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Mttotal}" Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Mttotal" Content="Monto"/>
-                        </GridViewColumn>                        
+                        </GridViewColumn>-->
+                        <GridViewColumn Width="120" Header="Monto">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content ="{Binding Path=Mttotal}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+
+                                    </Label>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

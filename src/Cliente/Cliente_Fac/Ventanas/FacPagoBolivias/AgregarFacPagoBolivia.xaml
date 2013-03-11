@@ -43,6 +43,39 @@
         <GroupBox Grid.Column="1" Grid.Row="1">
             <StackPanel Name="_gridDatos"  VerticalAlignment="Center"  HorizontalAlignment="Center"
                         DataContext="{Binding}">
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="Fecha Banco"/>
+                    </Label>
+                    <DatePicker Name="_dpkFechaBanco" Width="230" Focusable="False" BorderBrush="{x:Null}">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="FechaBanco" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                </WrapPanel>
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="Banco"/>
+                    </Label>
+                    <ComboBox Grid.ColumnSpan="2" Name="_cbxBancoRec" HorizontalAlignment="Left" Width="230" Height="20" 
+                              ItemsSource="{Binding}" SelectedIndex="0">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource convertirADosValores_2}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="XBanco" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </WrapPanel>
+
                 <!--***************Asociado-->
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
                     <Label  Name ="_lblasociado" Visibility="Collapsed"  HorizontalAlignment="Right" VerticalAlignment="Top">
@@ -208,39 +241,7 @@
                     </Grid>
                 </WrapPanel>
                 <!--***************Fin Carta-->
-
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                        <TextBlock Text="Fecha Banco"/>
-                    </Label>
-                    <DatePicker Name="_dpkFechaBanco" Width="230" Focusable="False" BorderBrush="{x:Null}">
-                        <DatePicker.SelectedDate>
-                            <Binding Path="FechaBanco" UpdateSourceTrigger="PropertyChanged"/>
-                        </DatePicker.SelectedDate>
-                    </DatePicker>
-                </WrapPanel>
                 
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                        <TextBlock Text="Banco"/>
-                    </Label>
-                    <ComboBox Grid.ColumnSpan="2" Name="_cbxBancoRec" HorizontalAlignment="Left" Width="230" Height="20" 
-                              ItemsSource="{Binding}" SelectedIndex="0">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock>
-                                <TextBlock.Text>
-                                    <MultiBinding Converter="{StaticResource convertirADosValores_2}">
-                                        <Binding Path="Id" />
-                                        <Binding Path="XBanco" />
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                                </TextBlock>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                </WrapPanel>
-
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="Tipo Pago"/>

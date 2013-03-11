@@ -593,17 +593,19 @@ Namespace Ventanas.FacCobros
         End Property
 
         Public Function GetFormatoDouble(ByVal texto As String) As String
-            Dim valor As String = Replace(texto, ",", "")
-            valor = Replace(texto, ".", ",")
-            'Convert.ToDecimal(_txtBFormaMan.Text).ToString("N2")
-            Return valor
+            'Dim valor As String = Replace(texto, ",", "")
+            'valor = Replace(valor, ".", ",")
+
+            'Return valor
+            Return _presentador.GetFormatoDouble2(texto)
         End Function
 
         Public Function SetFormatoDouble(ByVal value As Double) As String
 
             'Console.WriteLine("{0,-6} {1}", Name + ":", value.ToString("N3", System.Globalization.CultureInfo.CreateSpecificCulture("en-US").NumberFormat))
 
-            Return Replace(value.ToString("N2", System.Globalization.CultureInfo.CreateSpecificCulture("en-US").NumberFormat), ",", "")
+            'Return value.ToString("N2", System.Globalization.CultureInfo.CreateSpecificCulture("en-US").NumberFormat)
+            Return _presentador.SetFormatoDouble2(value)
             'Return Replace(value.ToString("C2", New System.Globalization.CultureInfo("en-us")).Remove(0, 1), ",", "")
         End Function
 

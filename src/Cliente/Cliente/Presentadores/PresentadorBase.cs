@@ -2726,6 +2726,24 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorna;
         }
 
+        public string SetFormatoDouble2(double value)
+        {
+
+            //Console.WriteLine("{0,-6} {1}", Name + ":", value.ToString("N3", System.Globalization.CultureInfo.CreateSpecificCulture("en-US").NumberFormat))
+            string retorna =value.ToString("N2", System.Globalization.CultureInfo.CreateSpecificCulture("en-US").NumberFormat) ;
+            return retorna;
+            //return retorna.Replace(",", "");
+            //Return Replace(value.ToString("C2", New System.Globalization.CultureInfo("en-us")).Remove(0, 1), ",", "")
+        }
+
+        public string GetFormatoDouble2(string texto)
+        {
+            string valor = texto.Replace( ",", "");
+            valor = valor.Replace(".", ",");
+            //Convert.ToDecimal(_txtBFormaMan.Text).ToString("N2")
+            return valor;
+        }
+
         public void CalcularSaldosAsociado(int casociado, int? p_dias, ref double? p_venmay_B, ref double? p_venmay_D, ref double? p_venmen_B, ref double? p_venmen_D, ref double? p_total_B, ref double? p_total_D, ref double? msaldope, ref string moneda)
         {
             Mouse.OverrideCursor = Cursors.Wait;

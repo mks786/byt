@@ -126,7 +126,7 @@
                         <TextBlock Text="Total a Depositar"/>
                     </Label>
                     <TextBox Name="_txtTMonto" Width="150" MaxLength="250" Focusable="True" 
-                    ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="False">
+                    ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="False" HorizontalContentAlignment="Right">
                         <!--<TextBox.Text>
                             <Binding Path="TMonto" UpdateSourceTrigger="PropertyChanged">
 
@@ -156,7 +156,7 @@
         <!--Resultados-->
         <GroupBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Margin="5">
             <ListView Name="_lstResultados" ItemsSource="{Binding}" SelectionMode="Single" 
-                       Style="{DynamicResource EstiloListView}">
+                    MouseDoubleClick="_lstResultados_MouseDoubleClick" Style="{DynamicResource EstiloListView}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header=">>" Width="140" >
@@ -175,8 +175,18 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=NCheque}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="NCheque" Content="Cheque"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Monto}" Width="120">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Monto" Content="Monto"/>
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Monto,  StringFormat={}{0:N2}}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Monto" Content="Monto" HorizontalContentAlignment="Right" />
+                        </GridViewColumn>-->
+                        <GridViewColumn Width="120" Header="Monto">
+                            <!--<GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>-->
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content ="{Binding Path=Monto}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+
+                                    </Label>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=BancoG.Id}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="BancoG.Id" Content="Banco"/>

@@ -320,5 +320,23 @@ Namespace Ventanas.FacGestiones
                 _lblHits.Text = value
             End Set
         End Property
+
+        Public Property Inicial As String Implements Contratos.FacGestiones.IConsultarFacGestiones.Inicial
+            Get
+                Return _txtInicial.Text
+            End Get
+            Set(value As String)
+                _txtInicial.Text = value
+            End Set
+        End Property
+
+        Public Property Observacion As String Implements Contratos.FacGestiones.IConsultarFacGestiones.Observacion
+            Get
+                Return _txtObservacion.Text
+            End Get
+            Set(value As String)
+                _txtObservacion.Text = value
+            End Set
+        End Property
     End Class
 End Namespace

@@ -164,5 +164,32 @@ Namespace Controladores
 
             Return existe
         End Function
+
+        Public Shared Function ConsultarFacBancosFiltro(ByVal FacBanco As FacBanco) As IList(Of FacBanco)
+            Dim retorno As IList(Of FacBanco)
+
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("Ambiente").ToString().Equals("Desarrollo") Then
+                    logger.Debug("Entrando al Método {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                Dim comando As ComandoBase(Of IList(Of FacBanco)) = FabricaComandosFacBanco.ObtenerComandoConsultarFacBancosFiltro(FacBanco)
+                comando.Ejecutar()
+                retorno = comando.Receptor.ObjetoAlmacenado
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("Ambiente").ToString().Equals("Desarrollo") Then
+                    logger.Debug("Saliendo del Método {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                    '#End Region
+                End If
+            Catch ex As ApplicationException
+                logger.[Error](ex.Message)
+                Throw ex
+            End Try
+
+            Return retorno
+        End Function
     End Class
 End Namespace

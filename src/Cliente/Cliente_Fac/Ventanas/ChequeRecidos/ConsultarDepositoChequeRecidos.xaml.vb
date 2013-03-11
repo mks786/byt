@@ -118,6 +118,12 @@ Namespace Ventanas.ChequeRecidos
             Me._presentador.Limpiar()
         End Sub
 
+        Private Sub _lstResultados_MouseDoubleClick(ByVal sender As Object, ByVal e As MouseButtonEventArgs)
+            If Me._lstResultados.SelectedItem IsNot Nothing Then
+                Me._presentador.IrConsultarChequeRecido()
+            End If
+        End Sub
+
         Private Sub _btnCancelar_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
             Me._presentador.Cancelar()
         End Sub
@@ -179,10 +185,10 @@ Namespace Ventanas.ChequeRecidos
 
         Public Property Tmonto As Double Implements Contratos.ChequeRecidos.IConsultarDepositoChequeRecidos.Tmonto
             Get
-                Return Me._txtTMonto.Text
+                Return _presentador.GetFormatoDouble2(Me._txtTMonto.Text)
             End Get
             Set(ByVal value As Double)
-                Me._txtTMonto.Text = value
+                Me._txtTMonto.Text = _presentador.SetFormatoDouble2(value)
             End Set
         End Property
 

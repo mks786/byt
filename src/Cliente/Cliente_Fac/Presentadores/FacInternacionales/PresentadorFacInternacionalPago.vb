@@ -144,7 +144,7 @@ Namespace Presentadores.FacInternacionales
                     'Me._ventana.Pais = FacCredito.Pais
                     Me._ventana.Pais = Me.BuscarPais(Paises, internacional.Pais)
 
-                    Dim bancos As IList(Of FacBanco) = Me._bancosServicios.ConsultarTodos()
+                    Dim bancos As IList(Of FacBanco) = Me._bancosServicios.ObtenerFacBancosFiltro(Nothing)
                     Me._ventana.Bancos = bancos
                     'Me._ventana.Banco = FacCredito.Banco
                     Me._ventana.Banco = Me.BuscarFacBanco(bancos, internacional.Banco)

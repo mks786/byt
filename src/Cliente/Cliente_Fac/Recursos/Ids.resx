@@ -876,4 +876,7 @@
   <data name="fac_menuItemVentasTotalesRpt" xml:space="preserve">
     <value>FACVENR_TD</value>
   </data>
+  <data name="fac_ProformaConsultarTodas" xml:space="preserve">
+    <value>FAC_PRO_AUTOGT</value>
+  </data>
 </root>

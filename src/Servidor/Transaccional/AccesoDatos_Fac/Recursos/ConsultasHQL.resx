@@ -705,4 +705,33 @@
   <data name="FiltroObtenerFacVistaFacturacionCxpInternaAsociado_o" xml:space="preserve">
     <value>asociado_o.Id = {0}</value>
   </data>
+  <data name="FiltroObtenerFacFacturaCaso" xml:space="preserve">
+    <value>fp.Caso= '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaGuia" xml:space="preserve">
+    <value>fp.CodGuia= '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaOurref" xml:space="preserve">
+    <value>fp.Ourref= '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaProforma" xml:space="preserve">
+    <value>facfacturaproforma.Id= {0}</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaSeniat" xml:space="preserve">
+    <value>fp.Seniat= {0}</value>
+  </data>
+  <data name="FiltroObtenerFacGestionInicial" xml:space="preserve">
+    <value>fg.Inicial= '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacGestionObservacion" xml:space="preserve">
+    <value>fg.Observacion like '%{0}%'</value>
+  </data>
+  <data name="CabeceraObtenerBancoG" xml:space="preserve">
+    <value>Select b from BancoG b</value>
+    <comment>Cabecera del query para el filtro de FacImpuesto</comment>
+  </data>
+  <data name="CabeceraObtenerFacBanco" xml:space="preserve">
+    <value>Select b from FacBanco b</value>
+    <comment>Cabecera del query para el filtro de FacImpuesto</comment>
+  </data>
 </root>

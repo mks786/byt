@@ -486,6 +486,7 @@
                         <MenuItem Name="_fac_menuItemFacFacturaConsultar" Header="Consultar Facturas" Click="_fac_menuItemFacFacturaConsultar_Click"/>
                         <MenuItem Name="_fac_menuItemFacFacturaConsultarAnuladas" Header="Consultar Facturas Anuladas" Click="_fac_menuItemFacFacturaConsultarAnuladas_Click"/>
                     </MenuItem>
+                    <MenuItem Name="_fac_menuItemFacFacturaProformaConsultarTodas"  Visibility="Collapsed" Header="Consulta de Proformas" Click="_fac_menuItemFacFacturaProformaConsultarTodas_Click"/>
                     <MenuItem Name="_fac_menuItemProformaaFactura"  Visibility="Collapsed" Header="Proforma a Factura" Click="_fac_menuItemProformaaFactura_Click"/>
 
                     <MenuItem Name="_fac_menuItemFacFacturaAnulacion" Visibility="Collapsed"  Header="Anular Facturas" Click="_fac_menuItemFacFacturaAnulacion_Click"/>
@@ -502,6 +503,11 @@
                 </MenuItem>
 
                 <MenuItem Name="_menuItemFacturacionCobranzas" Header="Cobranzas">
+
+                    <MenuItem Name="_fac_menuItemFacCobro" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemFacCobro}">
+                        <MenuItem Name="_fac_menuItemFacCobroConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemFacCobroConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemFacCobroAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemFacCobroAgregar_Click"/>
+                    </MenuItem>
                     <MenuItem Name="_menuItemFacturacionGestiones" Header="Gestiones">
                         <MenuItem Name="_fac_menuItemConceptoGestion" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemConceptoGestion}">
                             <MenuItem Name="_fac_menuItemConceptoGestionConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemConceptoGestionConsultar_Click"/>
@@ -529,10 +535,6 @@
                         <MenuItem Name="_fac_menuItemFacPagoBoliviaAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemFacPagoBoliviaAgregar_Click"/>
                         <MenuItem Name="_fac_menuItemFacPagoBoliviaConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemFacPagoBoliviaConsultar_Click"/>
                         <MenuItem Name="_fac_menuItemFacPagoBoliviaConsultarPago" Header="Consultar Pago" Click="_fac_menuItemFacPagoBoliviaConsultarPago_Click"/>                        
-                    </MenuItem>
-                    <MenuItem Name="_fac_menuItemFacCobro" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemFacCobro}">
-                        <MenuItem Name="_fac_menuItemFacCobroConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemFacCobroConsultar_Click"/>
-                        <MenuItem Name="_fac_menuItemFacCobroAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemFacCobroAgregar_Click"/>
                     </MenuItem>
                     <MenuItem Name="_fac_menuItemFacCredito" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemFacCredito}">
                         <MenuItem Name="_fac_menuItemFacCreditoConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemFacCreditoConsultar_Click"/>

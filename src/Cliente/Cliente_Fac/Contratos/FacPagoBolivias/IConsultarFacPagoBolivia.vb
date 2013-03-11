@@ -26,6 +26,11 @@ Namespace Contratos.FacPagoBolivias
 
         Property Carta() As Object
 
+
+        Property Banco() As Object
+
+        Property Bancos() As Object
+
         Property idCartaFiltrar() As String
 
         Property NombreCarta() As String
@@ -33,6 +38,9 @@ Namespace Contratos.FacPagoBolivias
         Property NombreCartaFiltrar() As String
 
         Property FechaCartaFiltrar() As String
+
+        WriteOnly Property SetFormaPago() As String
+        ReadOnly Property GetFormaPago() As Char
 
         Property TextoBotonModificar() As String
     End Interface
