@@ -122,7 +122,7 @@ Namespace Presentadores.ChequeRecidos
                 ChequeRecido.Banco = Nothing
                 'ChequeRecido.FechaDeposito = Date.Now
                 ChequeRecido.Deposito = "1"
-                ChequeRecido.FechaDeposito = CDate("01-01-1900")
+                ' ChequeRecido.FechaDeposito = CDate("01-01-1900")
                 Dim exitoso As Boolean = _ChequeRecidoServicios.InsertarOModificar(ChequeRecido, UsuarioLogeado.Hash)
 
                 If exitoso Then

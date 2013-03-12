@@ -13,7 +13,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private BancoG _bancog;
         private double _monto;
         private string _deposito;
-        private DateTime _fechadeposito;
+        private DateTime? _fechadeposito;
         private string _ndeposito;
         private FacBanco _banco;
         private DateTime? _fechareg;
@@ -150,7 +150,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             }
         }
 
-        public virtual DateTime FechaDeposito
+        public virtual DateTime? FechaDeposito
         {
             get
             {

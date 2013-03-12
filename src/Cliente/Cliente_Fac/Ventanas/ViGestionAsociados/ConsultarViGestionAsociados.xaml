@@ -72,7 +72,7 @@
                          HorizontalAlignment="Left" Width="200" Text="" MaxLength="255" MouseDoubleClick="_txtAsociado_MouseDoubleClick" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
 
                         <custom:ByTTextBox Grid.Column="1" KeyDown="_Consultar_Enter" Grid.Row="0" Grid.ColumnSpan="4" Name="_txtIdAsociado" VerticalAlignment="Center" 
-                         HorizontalAlignment="Left" Width="40" MaxLength="8" SoloNumero="True" Visibility="Collapsed"  ></custom:ByTTextBox>
+                         HorizontalAlignment="Left" Width="80" MaxLength="8" SoloNumero="True" Visibility="Collapsed"  ></custom:ByTTextBox>
 
                         <custom:ByTTextBox Grid.Column="3" Grid.Row="0" KeyDown="_Consultar_Enter" Grid.ColumnSpan="4" Name="_txtNombreAsociado" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="140" MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
@@ -94,7 +94,7 @@
                                     <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="45">
                                             <GridViewColumnHeader  Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                                         </GridViewColumn>-->
-                                    <GridViewColumn Width="45">
+                                    <GridViewColumn Width="75">
                                         <GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
@@ -106,7 +106,7 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="260">
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="350">
                                         <GridViewColumnHeader  Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                                     </GridViewColumn>
                                 </GridView>
@@ -247,16 +247,16 @@
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaUltima" Content="Fecha Ultima"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Moneda}" Width="120">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Moneda" Content="Moneda"/>
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Moneda" Content="Moneda" HorizontalContentAlignment="Right" VerticalContentAlignment="Top" />
                         </GridViewColumn>
                         <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Saldo,  StringFormat={}{0:N2}}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Saldo" Content="Saldo" HorizontalContentAlignment="Right" />
                         </GridViewColumn>-->
-                        <GridViewColumn Width="120" Header="Saldo">
-                            <!--<GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>-->
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Label Content ="{Binding Path=Saldo}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+                        <GridViewColumn Width="120" Header="Saldo" >
+                            <!--<GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>-->                            
+                            <GridViewColumn.CellTemplate>                                
+                                <DataTemplate >
+                                    <Label  Content ="{Binding Path=Saldo}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
                                         
                                     </Label>
                                 </DataTemplate>

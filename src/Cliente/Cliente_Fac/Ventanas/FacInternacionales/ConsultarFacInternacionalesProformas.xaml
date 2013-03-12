@@ -192,7 +192,7 @@
                 <WrapPanel HorizontalAlignment="Left"  VerticalAlignment="Center">
 
                     <Label VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Right">
-                        <TextBlock Width="110" Text="Fecha Inic."/>
+                        <TextBlock Width="110" Text="F/Factura Inic."/>
                     </Label>
 
                     <DatePicker Name="_dpkFecha1"  Width="150" Focusable="False" BorderBrush="{x:Null}" HorizontalAlignment="Left">
@@ -206,7 +206,7 @@
                 <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Center">
 
                     <Label VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Right">
-                        <TextBlock Width="110" Text="Fecha Fin"/>
+                        <TextBlock Width="110" Text="F/Factura Fin"/>
                     </Label>
 
                     <DatePicker Name="_dpkFecha2"  Width="150" Focusable="False" BorderBrush="{x:Null}" HorizontalAlignment="Left">

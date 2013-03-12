@@ -306,6 +306,16 @@
                         </TextBox.Text>
                     </TextBox>
                 </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
+                    <Label Width="100">
+                        <TextBlock Text="Fecha Ingreso"/>
+                    </Label>
+                    <DatePicker Name="_dpkFechaReg" Width="100" Focusable="False" BorderBrush="{x:Null}" IsEnabled="False">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="FechaReg" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                </WrapPanel>
             </StackPanel>
         </GroupBox>
 

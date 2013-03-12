@@ -41,6 +41,7 @@ Namespace Presentadores.FacPagoBolivias
 
                 Dim FacPagoBolivia As New FacPagoBolivia()
                 FacPagoBolivia.FechaBanco = Date.Now
+                FacPagoBolivia.FechaReg = FormatDateTime(Date.Now, DateFormat.ShortDate)
                 Me._ventana.FacPagoBolivia = FacPagoBolivia
 
             Catch ex As Exception
@@ -150,9 +151,9 @@ Namespace Presentadores.FacPagoBolivias
                     End If
                 End If
 
-                If exitoso Then
-                    Me.Navegar(Recursos.MensajesConElUsuario.fac_FacPagoBoliviaInsertado, False)
-                End If
+                'If exitoso Then
+                '    Me.Navegar(Recursos.MensajesConElUsuario.fac_FacPagoBoliviaInsertado, False)
+                'End If
                 'Else
                 'Me._ventana.Mensaje(Recursos.MensajesConElUsuario.fac_ErrorFacPagoBoliviaRepetido)
                 ' End If
