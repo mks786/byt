@@ -1343,6 +1343,15 @@ Namespace Recursos
         End Property
         
         '''<summary>
+        '''  Busca una cadena traducida similar a dp.Detalle = {0}.
+        '''</summary>
+        Public Shared ReadOnly Property FiltroObtenerFacOperacionDetaTmProformaDetalle() As String
+            Get
+                Return ResourceManager.GetString("FiltroObtenerFacOperacionDetaTmProformaDetalle", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Busca una cadena traducida similar a factura.Id = {0}.
         '''</summary>
         Public Shared ReadOnly Property FiltroObtenerFacOperacionDetaTmProformaFactura() As String

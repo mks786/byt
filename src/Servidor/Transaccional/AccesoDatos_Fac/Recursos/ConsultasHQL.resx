@@ -734,4 +734,7 @@
     <value>Select b from FacBanco b</value>
     <comment>Cabecera del query para el filtro de FacImpuesto</comment>
   </data>
+  <data name="FiltroObtenerFacOperacionDetaTmProformaDetalle" xml:space="preserve">
+    <value>dp.Detalle = {0}</value>
+  </data>
 </root>

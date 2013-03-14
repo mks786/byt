@@ -43,6 +43,13 @@ Namespace Dao.NHibernate
                 filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacOperacionDetaTmProformaUsuario, FacOperacionDetaTmProforma.Usuario.Id)
             End If
 
+            If (FacOperacionDetaTmProforma IsNot Nothing) AndAlso (Not FacOperacionDetaTmProforma.Detalle IsNot Nothing) Then
+                If variosFiltros Then
+                    filtro += " and "
+                End If
+                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacOperacionDetaTmProformaDetalle, FacOperacionDetaTmProforma.Detalle)
+            End If
+
             'If (FacOperacionDetaTmProforma IsNot Nothing) AndAlso (FacOperacionDetaTmProforma.NCheque <> "") Then
             '    If variosFiltros Then
             '        filtro += " and "
