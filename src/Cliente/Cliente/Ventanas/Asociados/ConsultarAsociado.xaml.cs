@@ -466,26 +466,42 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         {
             this._presentador.IrVentanaCXPINTDatos();
 
-        }        
+        }
 
         public string SaldoVencidoSolicitud
         {
-            set { this._txtVencidoADatos.Text = value; }
+            set
+            {
+                this._txtVencidoADatos.Text = value;
+                this._txtVencidoAAdministracion.Text = value;
+            }
         }
 
         public string SaldoPorVencerSolicitud
         {
-            set { this._txtPorVencerDatos.Text = value; }
+            set
+            {
+                this._txtPorVencerDatos.Text = value;
+                this._txtPorVencerAdministracion.Text = value;
+            }
         }
 
         public string TotalSolicitud
         {
-            set { this._txtTotalDatos.Text = value; }
+            set
+            {
+                this._txtTotalDatos.Text = value;
+                this._txtTotalAdministracion.Text = value;
+            }
         }
 
         public string MSaldoPendiente
         {
-            set { this._txtSaldoPendienteDatos.Text = value; }
+            set
+            {
+                this._txtSaldoPendienteDatos.Text = value;
+                this._txtSaldoPendienteAdministracion.Text = value;
+            }
         }
 
     }

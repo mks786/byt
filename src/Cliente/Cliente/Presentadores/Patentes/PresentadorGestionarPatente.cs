@@ -343,6 +343,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.BoletinPublicacionDatos = this.BuscarBoletin(boletines, _patente.BoletinPublicacion);
                     this._ventana.BoletinOrdenPublicacionDatos = this.BuscarBoletin(boletines, _patente.BoletinOrdenPublicacion);
 
+                    CalcularSaldos();
+
                     if (File.Exists(ConfigurationManager.AppSettings["RutaImagenesDePatentes"] + _patente.Id + ".jpg"))
                     {
                         ((Patente)this._ventana.Patente).BDibujo = true;
@@ -1361,6 +1363,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                         this._ventana.PintarAsociado("5");
 
                     this._ventana.ConvertirEnteroMinimoABlanco();
+                    CalcularSaldos();
                 }
 
                 #region trace

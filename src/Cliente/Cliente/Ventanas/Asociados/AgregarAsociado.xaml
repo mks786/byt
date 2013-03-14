@@ -415,13 +415,13 @@
 
 
                         <!--control de facturacion-->
-                        <Button  Grid.Column="1" Grid.Row="12" Name="_btnCXPINTAdministracion" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="90">
+                        <Button  Grid.Column="1" Grid.Row="12" Name="_btnCXPINTAdministracion"  Click="_btnCXPINTDatos_Click"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="90">
                             <TextBlock Name="_txbCXPINTAdministracion" Text="{x:Static recurso:Etiquetas.btnCXPINT}"/>
                         </Button>
                         <custom:ByTTextBox  Grid.Column="2" Grid.Row="12" Name="_txtSaldoPendienteAdministracion" VerticalAlignment="Center" 
                          Grid.ColumnSpan="1" Text="{Binding Path=SaldoPendiente}" Margin="20,0,20,0"></custom:ByTTextBox>
 
-                        <Button  Grid.Column="1" Grid.Row="13" Name="_btnSaldosAdministracion" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="90">
+                        <Button  Grid.Column="1" Grid.Row="13" Name="_btnSaldosAdministracion" Click="_btnSaldo_Click"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="90">
                             <TextBlock Name="_txbSaldosAdministracion" Text="{x:Static recurso:Etiquetas.btnSaldos}"/>
                         </Button>
 

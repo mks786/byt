@@ -351,6 +351,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.PoderesSolicitud = poderes;
                 CargarAsociadoInternacionalVacio();
 
+                CalcularSaldos();
+
                 #region Internacional
 
                 IList<Pais> paisesInternacionales = this._paisServicios.ConsultarTodos();
@@ -702,6 +704,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         this._ventana.PintarAsociado("5");
 
                     this._ventana.ConvertirEnteroMinimoABlanco();
+
+                    CalcularSaldos();
                 }
 
                 #region trace

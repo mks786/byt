@@ -131,7 +131,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 asociado.Emails = this._asociadoServicios.ConsultarEmailsDelAsociado(asociado);
                 asociado.DatosTransferencias = this._datosTransferenciaServicios.ConsultarDatosTransferenciaPorAsociado(asociado);
 
-
+                CalcularSaldos();
 
                 IList<Pais> paises = this._paisServicios.ConsultarTodos();
 

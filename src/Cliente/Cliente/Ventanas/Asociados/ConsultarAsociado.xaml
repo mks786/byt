@@ -557,7 +557,7 @@
                         <custom:ByTTextBox Grid.Column="2" Grid.Row="12" Name="_txtSaldoPendienteAdministracion" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="100" Text="{Binding Path=SaldoPendiente}" Margin="20,0,0,0" IsEnabled="True"></custom:ByTTextBox>
 
-                        <Button  Grid.Column="1" Grid.Row="13" Name="_btnSaldosAdministracion" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                        <Button  Grid.Column="1" Grid.Row="13"  Click="_btnSaldo_Click"  Name="_btnSaldosAdministracion" HorizontalAlignment="Center" VerticalAlignment="Center" 
                              Height="25" Width="90" IsEnabled="True">
                             <TextBlock Name="_txbSaldosAdministracion" Text="{x:Static recurso:Etiquetas.btnSaldos}"/>
                         </Button>

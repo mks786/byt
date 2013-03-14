@@ -411,6 +411,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 renovacion.Marca = marca;
                 IList<Renovacion> renovaciones = this._renovacionServicios.ObtenerRenovacionFiltro(renovacion);
 
+                CalcularSaldos();
+
                 if (renovaciones.Count > 0)
                     this._ventana.PintarRenovacion();
 
@@ -1141,6 +1143,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         this._ventana.PintarAsociado("5");
 
                     this._ventana.ConvertirEnteroMinimoABlanco();
+
+                    CalcularSaldos();
                 }
 
                 #region trace
