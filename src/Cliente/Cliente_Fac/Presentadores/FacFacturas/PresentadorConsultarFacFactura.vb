@@ -326,9 +326,9 @@ Namespace Presentadores.FacFacturas
                 Mouse.OverrideCursor = Nothing
             End Try
 
-            If DirectCast(_ventana.FacFactura, FacFactura).Status = -1 Then
-                Imprimir(-1)
-            End If
+            'If DirectCast(_ventana.FacFactura, FacFactura).Status = -1 Then
+            '    Imprimir(-1)
+            'End If
         End Sub
 
         Public Sub Limpiar()
@@ -965,9 +965,30 @@ Namespace Presentadores.FacFacturas
             End If
             '#End Region
             'Me._ventana.FacFacturaSeleccionado.Accion = 2 'no modificar
-
             Dim FacFactura As FacFactura = DirectCast(Me._ventana.FacFactura, FacFactura)
             FacFactura.Status = tipo
+
+            If tipo = 1 Then
+                If _ventana.GetXterrero = "3" Then
+                    MessageBox.Show("Se trata de un Statement NO de una Factura", "ERROR", MessageBoxButton.OK)
+                    Mouse.OverrideCursor = Nothing
+                    Exit Sub
+                End If
+                If MessageBoxResult.Yes = MessageBox.Show("Posible Error: Se trata de un statement NO procesado ¿desea imprimir la factura de todas maneras?", "PREGUNTA", MessageBoxButton.YesNo, MessageBoxImage.Question) Then
+                Else
+                    Mouse.OverrideCursor = Nothing
+                    Exit Sub
+                End If
+            End If
+
+            If tipo = 3 Then
+                If _ventana.GetXterrero = "1" Then
+                    MessageBox.Show("Se trata de una factura NO de un statement", "ERROR", MessageBoxButton.OK)
+                    Mouse.OverrideCursor = Nothing
+                    Exit Sub
+                End If
+            End If
+
             Me.Navegar(New FacturaRpt((FacFactura)))
             'Me.Navegar(New FacturaRpt2())
             'Me.Navegar(New ConsultarFacFactura())
@@ -990,6 +1011,28 @@ Namespace Presentadores.FacFacturas
                 tipo = 1                
             End If
             FacFactura.Status = tipo
+
+            If tipo = 1 Or tipo = 4 Then
+                If _ventana.GetXterrero = "3" Then
+                    MessageBox.Show("Se trata de un Statement NO de una Factura", "ERROR", MessageBoxButton.OK)
+                    Mouse.OverrideCursor = Nothing
+                    Exit Sub
+                End If
+                If MessageBoxResult.Yes = MessageBox.Show("Posible Error: Se trata de un statement NO procesado ¿desea imprimir la factura de todas maneras?", "PREGUNTA", MessageBoxButton.YesNo, MessageBoxImage.Question) Then
+                Else
+                    Mouse.OverrideCursor = Nothing
+                    Exit Sub
+                End If
+            End If
+
+            If tipo = 3 Then
+                If _ventana.GetXterrero = "1" Then
+                    MessageBox.Show("Se trata de una factura NO de un statement", "ERROR", MessageBoxButton.OK)
+                    Mouse.OverrideCursor = Nothing
+                    Exit Sub
+                End If
+            End If
+
             Me.Navegar(New FacturaCopiaRpt((FacFactura)))
             'Me.Navegar(New FacturaRpt2())
             'Me.Navegar(New ConsultarFacFactura())

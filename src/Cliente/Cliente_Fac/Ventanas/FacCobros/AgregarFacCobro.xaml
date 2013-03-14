@@ -29,8 +29,8 @@
     </Page.Resources>
     <Page.CommandBindings>
         <CommandBinding Command="local:AgregarFacCobro.Eliminar_Pago"  Executed="Al_Eliminar_Pago" ></CommandBinding>
-    </Page.CommandBindings>    
-    
+    </Page.CommandBindings>
+
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -47,44 +47,44 @@
 
 
         <Grid Grid.Column="1" Grid.Row="1">
-               <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <GroupBox Grid.Column="0" Grid.Row="0">
-               <StackPanel Name="_gridDatos"  VerticalAlignment="Center"  HorizontalAlignment="Left"
+                <StackPanel Name="_gridDatos"  VerticalAlignment="Center"  HorizontalAlignment="Left"
                         DataContext="{Binding}">
 
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
-                    <Label>
-                        <TextBlock Text="Cobro #"/>
-                    </Label>
-                    <TextBox Name="_txtId" Width="100" MaxLength="12" Focusable="True" 
+                        <Label>
+                            <TextBlock Text="Cobro #"/>
+                        </Label>
+                        <TextBox Name="_txtId" Width="100" MaxLength="12" Focusable="True" 
                     ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="False">
-                        <TextBox.Text>
-                            <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">
-                                <Binding.ValidationRules>
-                                    <!--<reglas:SoloNumeros ValidatesOnTargetUpdated="True" />-->
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </TextBox.Text>
-                    </TextBox>
-                    <Label>
-                        <TextBlock Text="  "/>
-                    </Label>
+                            <TextBox.Text>
+                                <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <!--<reglas:SoloNumeros ValidatesOnTargetUpdated="True" />-->
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Label>
+                            <TextBlock Text="  "/>
+                        </Label>
                         <Label VerticalAlignment="Center" HorizontalContentAlignment="Left">
-                       <TextBlock Text="Fecha"/>
-                    </Label>
-                    <DatePicker Name="_dpkFechaCobro" Width="140" Focusable="False" BorderBrush="{x:Null}">
-                       <DatePicker.SelectedDate>
+                            <TextBlock Text="Fecha"/>
+                        </Label>
+                        <DatePicker Name="_dpkFechaCobro" Width="140" Focusable="False" BorderBrush="{x:Null}">
+                            <DatePicker.SelectedDate>
                                 <Binding Path="FechaCobro" UpdateSourceTrigger="PropertyChanged"/>
-                       </DatePicker.SelectedDate>
-                    </DatePicker>                    
-                </WrapPanel>
+                            </DatePicker.SelectedDate>
+                        </DatePicker>
+                    </WrapPanel>
 
                     <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
                         <Label VerticalAlignment="Center" HorizontalContentAlignment="Left">
@@ -238,21 +238,21 @@
                     </WrapPanel>
 
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Center">
-                    <Label>
-                        <TextBlock Text="Idioma"/>
-                    </Label>
-                    <ComboBox Grid.ColumnSpan="2" Name="_cbxIdioma" HorizontalAlignment="Left" Width="230" Height="20" 
+                        <Label>
+                            <TextBlock Text="Idioma"/>
+                        </Label>
+                        <ComboBox Grid.ColumnSpan="2" Name="_cbxIdioma" HorizontalAlignment="Left" Width="230" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
-                    </ComboBox>
-                </WrapPanel>
+                        </ComboBox>
+                    </WrapPanel>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
-                    <Label>
-                        <TextBlock Text="Moneda"/>
-                    </Label>
-                    <ComboBox Grid.ColumnSpan="2" Name="_cbxMoneda" HorizontalAlignment="Left" Width="230" Height="20" 
+                        <Label>
+                            <TextBlock Text="Moneda"/>
+                        </Label>
+                        <ComboBox Grid.ColumnSpan="2" Name="_cbxMoneda" HorizontalAlignment="Left" Width="230" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
-                    </ComboBox>
-                </WrapPanel>
+                        </ComboBox>
+                    </WrapPanel>
 
                     <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
                     <Label>
@@ -271,10 +271,10 @@
                 </WrapPanel>-->
 
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
-                    <Label>
-                        <TextBlock Text="Banco"/>
-                    </Label>
-                        <custom:ByTTextBox Name="_txtCbanco" KeyDown="_Consultar_Enter" SoloNumero="True" Height="20"  Width="40" MaxLength="4" Focusable="True"/>                                            
+                        <Label>
+                            <TextBlock Text="Banco"/>
+                        </Label>
+                        <custom:ByTTextBox Name="_txtCbanco" KeyDown="_Consultar_Enter" SoloNumero="True" Height="20"  Width="40" MaxLength="4" Focusable="True"/>
                         <ComboBox Grid.ColumnSpan="2" Name="_cbxBanco" HorizontalAlignment="Left" Width="230" Height="20" 
                               ItemsSource="{Binding}" SelectedIndex="0">
                             <ComboBox.ItemTemplate>
@@ -290,24 +290,24 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        
-                </WrapPanel>
+
+                    </WrapPanel>
 
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
-                    <Label>
-                        <TextBlock Text="Estado Cuenta"/>
-                    </Label>
-                    <TextBox Name="_txtEstadoCuenta" Width="150" MaxLength="12" Focusable="True" 
+                        <Label>
+                            <TextBlock Text="Estado Cuenta"/>
+                        </Label>
+                        <TextBox Name="_txtEstadoCuenta" Width="150" MaxLength="12" Focusable="True" 
                     ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}">
-                        <TextBox.Text>
-                            <Binding Path="EstadoCuenta" UpdateSourceTrigger="PropertyChanged">
-                                <Binding.ValidationRules>
-                                    <reglas:SoloNumeros ValidatesOnTargetUpdated="True" />
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </TextBox.Text>
-                    </TextBox>
-                </WrapPanel>
+                            <TextBox.Text>
+                                <Binding Path="EstadoCuenta" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <reglas:SoloNumeros ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </WrapPanel>
 
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
                         <Label VerticalAlignment="Center" HorizontalContentAlignment="Left">
@@ -357,13 +357,29 @@
                                     <GridViewColumn DisplayMemberBinding="{Binding Path=FechaOperacion, StringFormat={}{0:dd/MM/yyyy}}" Width="90">
                                         <GridViewColumnHeader  Tag="FechaOperacion" Content="Fecha"/>
                                     </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Saldo}" Width="90">
+                                    <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Saldo}" Width="90">
                                         <GridViewColumnHeader  Tag="Saldo" Content="Saldo"/>
-                                    </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=SaldoBf}" Width="90">
+                                    </GridViewColumn>-->
+                                    <GridViewColumn Width="125" Header="Saldo">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                 <Label Content ="{Binding Path=Saldo}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+                                                </Label>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>                                    
+                                    <!--<GridViewColumn DisplayMemberBinding="{Binding Path=SaldoBf}" Width="90">
                                         <GridViewColumnHeader  Tag="SaldoBf" Content="Saldo Bf"/>
+                                    </GridViewColumn>-->
+                                    <GridViewColumn Width="125" Header="Saldo Bf">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                   <Label Content ="{Binding Path=SaldoBf}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+                                                </Label>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                </GridView>
+                              </GridView>
                             </ListView.View>
                         </ListView>  
                        
@@ -375,36 +391,54 @@
                                     <GridViewColumn DisplayMemberBinding="{Binding Path=Factura}" Width="95">
                                         <GridViewColumnHeader  Tag="Factura" Content="Factura"/>
                                     </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Bono}" Width="125">
+                                    <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Bono}" Width="125">
                                         <GridViewColumnHeader  Tag="Bono" Content="Monto Original"/>
-                                    </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=BonoBf}" Width="125">
-                                        <GridViewColumnHeader  Tag="BonoBf" Content="Monto Bsf"/>
-                                    </GridViewColumn>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>                         
+                                    </GridViewColumn>-->
+                            <GridViewColumn Width="125" Header="Monto Original">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Content ="{Binding Path=Bono}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
 
-                   </WrapPanel>
+                                        </Label>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <!--<GridViewColumn DisplayMemberBinding="{Binding Path=BonoBf}" Width="125">
+                                <GridViewColumnHeader  Tag="BonoBf" Content="Monto Bsf"/>
+                            </GridViewColumn>-->
+                            <GridViewColumn Width="125" Header="Monto Bsf">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Content ="{Binding Path=BonoBf}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
 
-                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                        <TextBox Name="_txtSumaBono" Width="100" MaxLength="100" Focusable="True" HorizontalAlignment="Right"
+                                        </Label>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+            </GridView>
+            </ListView.View>
+            </ListView>
+
+            </WrapPanel>
+
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                <TextBox Name="_txtSumaBono" Width="100" MaxLength="100" Focusable="True" HorizontalAlignment="Right"
                         ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="False">
-                            <!--<TextBox.Text>
+                    <!--<TextBox.Text>
                                 <Binding Path="TMonto" UpdateSourceTrigger="PropertyChanged">
 
                                 </Binding>
                             </TextBox.Text>-->
-                        </TextBox>
-                        <TextBox Name="_txtSumaBonoBf" Width="100" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
+                </TextBox>
+                <TextBox Name="_txtSumaBonoBf" Width="100" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
                                                 ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="False">
-                            <!--<TextBox.Text>
+                    <!--<TextBox.Text>
                                                         <Binding Path="TMonto" UpdateSourceTrigger="PropertyChanged">
 
                                                         </Binding>
                                                     </TextBox.Text>-->
-                        </TextBox>
-                    </WrapPanel>
+                </TextBox>
+            </WrapPanel>
 
             <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
                 <Button Name="_btnagregarfactura2" Width="90" IsDefault="True"  Height="25" HorizontalAlignment="Left" Click="_btnAgregarFacturas2_Click" Visibility="Collapsed">
@@ -421,40 +455,56 @@
 
 
             <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
-                        <Label>
-                            <TextBlock Text="Cobros Por Creditos"/>
-                        </Label>
-                   </WrapPanel>
-                   
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">             
+                <Label>
+                    <TextBlock Text="Cobros Por Creditos"/>
+                </Label>
+            </WrapPanel>
+
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
                 <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="2" Name="_lstfactura" ItemsSource="{Binding}" 
                                       SelectionMode="Single" IsEnabled="True" HorizontalAlignment="Left"
                                       Style="{DynamicResource EstiloListView}" Height="150" VerticalAlignment="Top" Visibility="Collapsed">
-                                <ListView.View>
-                                    <GridView>
-                                        <GridViewColumn Header="X" Width="45" >
-                                            <GridViewColumn.CellTemplate >
-                                                <DataTemplate>
-                                                    <CheckBox Tag="Seleccion"   IsChecked="{Binding Path=Seleccion}" />
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>  
-                                    
-                                        <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoOperacion}" Width="60">
-                                            <GridViewColumnHeader  Tag="CodigoOperacion" Content="Numero"/>
-                                        </GridViewColumn>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="X" Width="45" >
+                                <GridViewColumn.CellTemplate >
+                                    <DataTemplate>
+                                        <CheckBox Tag="Seleccion"   IsChecked="{Binding Path=Seleccion}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoOperacion}" Width="60">
+                                <GridViewColumnHeader  Tag="CodigoOperacion" Content="Numero"/>
+                            </GridViewColumn>
                             <GridViewColumn DisplayMemberBinding="{Binding Path=FechaOperacion, StringFormat={}{0:dd/MM/yyyy}}" Width="90">
-                                            <GridViewColumnHeader  Tag="FechaOperacion" Content="Fecha"/>
-                                        </GridViewColumn>
-                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Saldo}" Width="90">
-                                            <GridViewColumnHeader  Tag="Saldo" Content="Saldo"/>
-                                        </GridViewColumn>
-                                        <GridViewColumn DisplayMemberBinding="{Binding Path=SaldoBf}" Width="90">
-                                            <GridViewColumnHeader  Tag="SaldoBf" Content="Saldo Bf"/>
-                                        </GridViewColumn>
-                                    </GridView>
-                                </ListView.View>
-                            </ListView>
+                                <GridViewColumnHeader  Tag="FechaOperacion" Content="Fecha"/>
+                            </GridViewColumn>
+                            <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Saldo}" Width="90">
+                                <GridViewColumnHeader  Tag="Saldo" Content="Saldo"/>
+                            </GridViewColumn>-->
+                            <GridViewColumn Width="125" Header="Saldo">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Content ="{Binding Path=Saldo}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+                                        </Label>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>                            
+                            <!--<GridViewColumn DisplayMemberBinding="{Binding Path=SaldoBf}" Width="90">
+                                <GridViewColumnHeader  Tag="SaldoBf" Content="Saldo Bf"/>
+                            </GridViewColumn>-->
+                            <GridViewColumn Width="125" Header="Saldo Bf">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Content ="{Binding Path=SaldoBf}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+                                        </Label>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>                            
+                        </GridView>
+                    </ListView.View>
+                </ListView>
 
                 <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="2" Name="_lstForma" ItemsSource="{Binding}" 
                                               SelectionMode="Single" IsEnabled="True" HorizontalAlignment="Left" MouseDoubleClick="_lstForma_MouseDoubleClick"
@@ -478,15 +528,39 @@
                             <GridViewColumn DisplayMemberBinding="{Binding Path=XForma}" Width="100">
                                 <GridViewColumnHeader  Tag="XForma" Content="Descrip"/>
                             </GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Tasa}" Width="100">
+                            <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Tasa}" Width="100">
                                 <GridViewColumnHeader  Tag="Tasa" Content="Tasa"/>
-                            </GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=BForma}" Width="100">
+                            </GridViewColumn>-->
+                            <GridViewColumn Width="125" Header="Tasa">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Content ="{Binding Path=Tasa}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+                                        </Label>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>                            
+                            <!--<GridViewColumn DisplayMemberBinding="{Binding Path=BForma}" Width="100">
                                 <GridViewColumnHeader  Tag="BForma" Content="Monto"/>
-                            </GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=BFormaBf}" Width="100">
+                            </GridViewColumn>-->
+                            <GridViewColumn Width="125" Header="Monto">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Content ="{Binding Path=BForma}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+                                        </Label>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>                            
+                            <!--<GridViewColumn DisplayMemberBinding="{Binding Path=BFormaBf}" Width="100">
                                 <GridViewColumnHeader  Tag="BFormaBf" Content="Monto Bf"/>
-                            </GridViewColumn>
+                            </GridViewColumn>-->
+                            <GridViewColumn Width="125" Header="Monto Bf">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Content ="{Binding Path=BFormaBf}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+                                        </Label>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>                            
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -497,7 +571,7 @@
                     <TextBlock Text="Creditos"/>
                 </Button>
             </WrapPanel>
-                   
+
             <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
                 <Button Name="_btnFormaManual" Width="90" IsDefault="True"  Height="25" HorizontalAlignment="Left" Click="_btnFormaManual_Click">
                     <TextBlock Text="Pagos"/>
@@ -505,14 +579,14 @@
             </WrapPanel>
 
             <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <TextBox Name="_txtSumaBForma" Width="100" MaxLength="100" Focusable="True" HorizontalAlignment="Right"
+                <TextBox Name="_txtSumaBForma" Width="100" MaxLength="100" Focusable="True" HorizontalAlignment="Right"
                             ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="False">
 
-                    </TextBox>
-                   <TextBox Name="_txtSumaBFormaBf" Width="100" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
+                </TextBox>
+                <TextBox Name="_txtSumaBFormaBf" Width="100" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
                                                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="False">
-                    </TextBox>
-                </WrapPanel>
+                </TextBox>
+            </WrapPanel>
 
 
             <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0" >
@@ -528,28 +602,28 @@
             </WrapPanel>
 
             <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <TextBox Name="_txtCredito" Width="1" MaxLength="100" Focusable="True" HorizontalAlignment="Right" Visibility="Collapsed"
+                <TextBox Name="_txtCredito" Width="1" MaxLength="100" Focusable="True" HorizontalAlignment="Right" Visibility="Collapsed"
                                 ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="False">
 
-                    </TextBox>
-                    <TextBox Name="_txtXForma" Width="100" MaxLength="100" Focusable="True" HorizontalAlignment="Right" Visibility="Collapsed"
+                </TextBox>
+                <TextBox Name="_txtXForma" Width="100" MaxLength="100" Focusable="True" HorizontalAlignment="Right" Visibility="Collapsed"
                                                         ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True">
-                    </TextBox>
-                    <TextBox Name="_txtBForma" Width="100" MaxLength="100" Focusable="True" HorizontalAlignment="Right" Visibility="Collapsed"
+                </TextBox>
+                <TextBox Name="_txtBForma" Width="100" MaxLength="100" Focusable="True" HorizontalAlignment="Right" Visibility="Collapsed"
                                                             ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True">
-                    </TextBox>
-                    <TextBox Name="_txtBFormaBf" Width="100" MaxLength="100" Focusable="True" HorizontalAlignment="Right" Visibility="Collapsed"
+                </TextBox>
+                <TextBox Name="_txtBFormaBf" Width="100" MaxLength="100" Focusable="True" HorizontalAlignment="Right" Visibility="Collapsed"
                                                                ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True">
-                    </TextBox>
-                    <Button Name="_btnmodificarforma" Width="90" IsDefault="True"  Visibility="Collapsed"  Height="25" HorizontalAlignment="Left" Click="_btnModificarForma_Click">
-                        <TextBlock Text="Modificar Credito"/>
-                    </Button>
+                </TextBox>
+                <Button Name="_btnmodificarforma" Width="90" IsDefault="True"  Visibility="Collapsed"  Height="25" HorizontalAlignment="Left" Click="_btnModificarForma_Click">
+                    <TextBlock Text="Modificar Credito"/>
+                </Button>
                 <Label>
                     <TextBlock Text=" "/>
                 </Label>
                 <Button Name="_btnsalirmodificarforma" Width="90" IsDefault="True"  Height="25" HorizontalAlignment="Left" Click="_btnsaliragregarforma_Click" Visibility="Collapsed">
                     <TextBlock Text="Cerrar Modificar"/>
-                </Button>                
+                </Button>
             </WrapPanel>
 
 
@@ -568,11 +642,11 @@
                 </Label>
                 <Label Width="100" HorizontalAlignment="Left">
                     <TextBlock Text=" "/>
-                </Label>                
+                </Label>
             </WrapPanel>
 
             <WrapPanel Name="WPFormaManual" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0" Visibility="Collapsed">
-                
+
                 <ComboBox  Name="_cbxValoresPago" HorizontalAlignment="Left" Width="100" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                 </ComboBox>
@@ -594,15 +668,15 @@
                 </Label>
                 <Button Name="_btnsaliragregarformamanual" Width="90" IsDefault="True"  Height="25" HorizontalAlignment="Left" Click="_btnsaliragregarforma_Click">
                     <TextBlock Text="Cerrar pago"/>
-                </Button>                
+                </Button>
             </WrapPanel>
 
             </StackPanel>
             </GroupBox>
-            
+
         </Grid>
-        
-        
+
+
         <WrapPanel Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5" Orientation="Horizontal">
             <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="80" 
                     Click="_btnAceptar_Click" IsDefault="True">
@@ -628,6 +702,6 @@
             <Label VerticalAlignment="Bottom">
                 <TextBlock Name="_txtMensajeError" Text="" Foreground="Red"/>
             </Label>
-        </WrapPanel>        
+        </WrapPanel>
     </Grid>
 </Page>

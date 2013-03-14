@@ -433,5 +433,14 @@ Namespace Ventanas.FacFacturaProformas
                 _cbxAuto.Text = value
             End Set
         End Property
+
+        Public Property Inicial As String Implements Contratos.FacFacturaProformas.IConsultarFacFacturaProformasTodas.Inicial
+            Get
+                Return _txtInicial.Text
+            End Get
+            Set(value As String)
+                _txtInicial.Text = value
+            End Set
+        End Property
     End Class
 End Namespace

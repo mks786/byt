@@ -36,7 +36,7 @@ Namespace Ventanas.FacPagoBolivias
                 _cbxBancoRec.IsEnabled = value
                 _cbxPagoRec.IsEnabled = value
                 _cbxBancoPag.IsEnabled = value
-
+                _cbxPagoPag.IsEnabled = value
                 Dim valor As Boolean
                 If value = True Then
                     valor = False

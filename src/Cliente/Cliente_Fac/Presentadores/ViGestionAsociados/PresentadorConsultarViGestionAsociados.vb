@@ -292,7 +292,17 @@ Namespace Presentadores.ViGestionAsociados
             Try
                 ' Dim asociado As Asociado = Me._asociadosServicios.ConsultarAsociadoConTodo(DirectCast(Me._ventana.Asociado, Asociado))
                 'asociado.Contactos = Me._contactoServicios.ConsultarContactosPorAsociado(asociado)
-                Me._ventana.NombreAsociado = DirectCast(Me._ventana.Asociado, Asociado).Id & " - " & DirectCast(Me._ventana.Asociado, Asociado).Nombre
+                If DirectCast(Me._ventana.Asociado, Asociado) IsNot Nothing Then
+                    If Me._ventana.Asociado.id <> Integer.MinValue Then
+                        ' Dim asociado As Asociado = Me._asociadosServicios.ConsultarAsociadoConTodo(DirectCast(Me._ventana.Asociado, Asociado))
+                        Me._ventana.NombreAsociado = DirectCast(Me._ventana.Asociado, Asociado).Id & " - " & DirectCast(Me._ventana.Asociado, Asociado).Nombre
+                    Else
+                        Me._ventana.NombreAsociado = Nothing
+                        Exit Sub
+                    End If
+                Else
+                    Exit Sub
+                End If
                 'Me._ventana.Personas = asociado.Contactos
             Catch e As ApplicationException
                 'Me._ventana.Personas = Nothing

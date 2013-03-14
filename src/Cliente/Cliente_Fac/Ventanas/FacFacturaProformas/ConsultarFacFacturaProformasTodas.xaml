@@ -213,7 +213,15 @@
                             <TextBlock Text="Rechazado"/>
                         </ComboBoxItem>
                     </ComboBox>
-                </WrapPanel>                
+                </WrapPanel>
+                
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
+                    <Label Width="60">
+                        <TextBlock Text="Inicial"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtInicial" Width="80" MaxLength="7" Focusable="True" CharacterCasing="Upper">
+                    </custom:ByTTextBox>
+                </WrapPanel>
 
                 <Separator Margin="0,5,0,5"/>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,5">

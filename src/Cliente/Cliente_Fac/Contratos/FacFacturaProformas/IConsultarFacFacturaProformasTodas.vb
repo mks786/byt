@@ -62,6 +62,8 @@ Namespace Contratos.FacFacturaProformas
 
         Property Auto() As String
 
+        Property Inicial() As String
+
 
         'ReadOnly Property Region() As String
 

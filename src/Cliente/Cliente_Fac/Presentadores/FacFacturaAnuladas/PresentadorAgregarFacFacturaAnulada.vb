@@ -949,7 +949,10 @@ Namespace Presentadores.FacFacturaAnuladas
                         Me._ventana.NombreAsociado = DirectCast(Me._ventana.Asociado, Asociado).Id & " - " & DirectCast(Me._ventana.Asociado, Asociado).Nombre
                     Else
                         Me._ventana.NombreAsociado = Nothing
+                        Exit Sub
                     End If
+                Else
+                    Exit Sub
                 End If
             Catch e As ApplicationException
                 'Me._ventana.Personas = Nothingo

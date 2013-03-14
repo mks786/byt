@@ -181,7 +181,7 @@
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="Fecha Ingreso"/>
                     </Label>
-                    <DatePicker Name="_dpkFechaReg" Width="150" Focusable="False" BorderBrush="{x:Null}">
+                    <DatePicker Name="_dpkFechaReg" Width="150" IsEnabled="False" Focusable="False" BorderBrush="{x:Null}">
                         <DatePicker.SelectedDate>
                             <Binding Path="FechaReg" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>

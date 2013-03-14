@@ -268,12 +268,30 @@
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=BPagoRec}" Width="90">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="BPagoRec" Content="Tipo Pago"/>
-                        </GridViewColumn>                        
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=MontoRec}" Width="90">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="MontoRec" Content="Monto Rec"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=MontoBol}" Width="90">
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=MontoRec}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="MontoRec" Content="Monto Rec"/>
+                        </GridViewColumn>-->
+                        <GridViewColumn Width="120" Header="Monto Rec">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content ="{Binding Path=MontoRec}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+
+                                    </Label>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=MontoBol}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="MontoBol" Content="Monto Bol"/>
+                        </GridViewColumn>-->
+                        <GridViewColumn Width="120" Header="Monto Bol">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content ="{Binding Path=MontoBol}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+
+                                    </Label>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=NumeroPag}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="NumeroPag" Content="Numero Deposito"/>

@@ -249,11 +249,10 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Moneda}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Moneda" Content="Moneda" HorizontalContentAlignment="Right" VerticalContentAlignment="Top" />
                         </GridViewColumn>
-                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Saldo,  StringFormat={}{0:N2}}" Width="120">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Saldo,  StringFormat={}{0:N2}}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Saldo" Content="Saldo" HorizontalContentAlignment="Right" />
-                        </GridViewColumn>-->
-                        <GridViewColumn Width="120" Header="Saldo" >
-                            <!--<GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>-->                            
+                        </GridViewColumn>
+                        <!--<GridViewColumn Width="120" Header="Saldo" >
                             <GridViewColumn.CellTemplate>                                
                                 <DataTemplate >
                                     <Label  Content ="{Binding Path=Saldo}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
@@ -261,7 +260,7 @@
                                     </Label>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
+                        </GridViewColumn>-->
                         
                     </GridView>
                 </ListView.View>

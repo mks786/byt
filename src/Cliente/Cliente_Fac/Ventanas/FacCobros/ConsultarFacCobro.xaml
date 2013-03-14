@@ -320,13 +320,29 @@
                                     <GridViewColumn DisplayMemberBinding="{Binding Path=FechaOperacion, StringFormat={}{0:dd/MM/yyyy}}" Width="90">
                                         <GridViewColumnHeader  Tag="FechaOperacion" Content="Fecha"/>
                                     </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Saldo}" Width="90">
+                                    <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Saldo}" Width="90">
                                         <GridViewColumnHeader  Tag="Saldo" Content="Saldo"/>
+                                    </GridViewColumn>-->
+                                    <GridViewColumn Width="125" Header="Saldo">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Label Content ="{Binding Path=Saldo}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+                                                </Label>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=SaldoBf}" Width="90">
+            <!--<GridViewColumn DisplayMemberBinding="{Binding Path=SaldoBf}" Width="90">
                                         <GridViewColumnHeader  Tag="SaldoBf" Content="Saldo Bf"/>
+                                    </GridViewColumn>-->
+                                    <GridViewColumn Width="125" Header="Saldo Bf">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Label Content ="{Binding Path=SaldoBf}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+                                                </Label>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                </GridView>
+            </GridView>
                             </ListView.View>
                         </ListView>  
                        
@@ -338,12 +354,30 @@
                                     <GridViewColumn DisplayMemberBinding="{Binding Path=Factura}" Width="95">
                                         <GridViewColumnHeader  Tag="Factura" Content="Factura"/>
                                     </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Bono}" Width="125">
+                                    <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Bono}" Width="125">
                                         <GridViewColumnHeader  Tag="Bono" Content="Monto Original"/>
-                                    </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=BonoBf}" Width="125">
-                                        <GridViewColumnHeader  Tag="BonoBf" Content="Monto Bsf"/>
-                                    </GridViewColumn>
+                                    </GridViewColumn>-->
+            <GridViewColumn Width="125" Header="Monto Original">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <Label Content ="{Binding Path=Bono}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+
+                        </Label>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <!--<GridViewColumn DisplayMemberBinding="{Binding Path=BonoBf}" Width="125">
+                <GridViewColumnHeader  Tag="BonoBf" Content="Monto Bsf"/>
+            </GridViewColumn>-->
+            <GridViewColumn Width="125" Header="Monto Bsf">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <Label Content ="{Binding Path=BonoBf}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+
+                        </Label>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
                                 </GridView>
                             </ListView.View>
                         </ListView>                         
@@ -434,11 +468,27 @@
                             <GridViewColumn DisplayMemberBinding="{Binding Path=FechaOperacion, StringFormat={}{0:dd/MM/yyyy}}" Width="90">
                                 <GridViewColumnHeader  Tag="FechaOperacion" Content="Fecha"/>
                             </GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Saldo}" Width="90">
-                                <GridViewColumnHeader  Tag="Saldo" Content="Saldo"/>
+                            <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Saldo}" Width="90">
+                                        <GridViewColumnHeader  Tag="Saldo" Content="Saldo"/>
+                                    </GridViewColumn>-->
+                            <GridViewColumn Width="125" Header="Saldo">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Content ="{Binding Path=Saldo}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+                                        </Label>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=SaldoBf}" Width="90">
-                                <GridViewColumnHeader  Tag="SaldoBf" Content="Saldo Bf"/>
+                            <!--<GridViewColumn DisplayMemberBinding="{Binding Path=SaldoBf}" Width="90">
+                                        <GridViewColumnHeader  Tag="SaldoBf" Content="Saldo Bf"/>
+                                    </GridViewColumn>-->
+                            <GridViewColumn Width="125" Header="Saldo Bf">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Content ="{Binding Path=SaldoBf}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+                                        </Label>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
                             </GridViewColumn>
                         </GridView>
                     </ListView.View>
@@ -466,15 +516,39 @@
                             <GridViewColumn DisplayMemberBinding="{Binding Path=XForma}" Width="100">
                                 <GridViewColumnHeader  Tag="XForma" Content="Descrip"/>
                             </GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Tasa}" Width="100">
+                            <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Tasa}" Width="100">
                                 <GridViewColumnHeader  Tag="Tasa" Content="Tasa"/>
-                            </GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=BForma}" Width="100">
+                            </GridViewColumn>-->
+                            <GridViewColumn Width="125" Header="Tasa">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Content ="{Binding Path=Tasa}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+                                        </Label>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>                            
+                            <!--<GridViewColumn DisplayMemberBinding="{Binding Path=BForma}" Width="100">
                                 <GridViewColumnHeader  Tag="BForma" Content="Monto"/>
-                            </GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=BFormaBf}" Width="100">
+                            </GridViewColumn>-->
+                            <GridViewColumn Width="125" Header="Monto">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Content ="{Binding Path=BForma}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+                                        </Label>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>                            
+                            <!--<GridViewColumn DisplayMemberBinding="{Binding Path=BFormaBf}" Width="100">
                                 <GridViewColumnHeader  Tag="BFormaBf" Content="Monto Bf"/>
-                            </GridViewColumn>
+                            </GridViewColumn>-->
+                            <GridViewColumn Width="125" Header="Monto Bf">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Content ="{Binding Path=BFormaBf}" ContentStringFormat="N2"   HorizontalContentAlignment="Right">
+                                        </Label>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>                            
                         </GridView>
                     </ListView.View>
                 </ListView>

@@ -38,6 +38,7 @@ Namespace Presentadores.ChequeRecidos
                 Me._bancogsServicios = DirectCast(Activator.GetObject(GetType(IBancoGServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("bancogServicios")), IBancoGServicios)
 
                 Dim ChequeRecido As New ChequeRecido()
+                ChequeRecido.FechaReg = FormatDateTime(Date.Now, DateFormat.ShortDate)
                 Me._ventana.ChequeRecido = ChequeRecido
 
             Catch ex As Exception
@@ -126,8 +127,17 @@ Namespace Presentadores.ChequeRecidos
                 Dim exitoso As Boolean = _ChequeRecidoServicios.InsertarOModificar(ChequeRecido, UsuarioLogeado.Hash)
 
                 If exitoso Then
-                    Me.Navegar(Recursos.MensajesConElUsuario.fac_ChequeRecidoInsertado, False)
+                    Mouse.OverrideCursor = Nothing
+                    If MessageBoxResult.Yes = MessageBox.Show(Recursos.MensajesConElUsuario.fac_ChequeRecidoInsertado, "GUARDAR CHEQUE RECIBIDO", MessageBoxButton.YesNo, MessageBoxImage.Question) Then
+                        IrConsultarChequeRecido(ChequeRecido)
+                    Else
+                        Limpiar()
+                    End If
                 End If
+
+                'If exitoso Then
+                '    Me.Navegar(Recursos.MensajesConElUsuario.fac_ChequeRecidoInsertado, False)
+                'End If
                 'Else
                 'Me._ventana.Mensaje(Recursos.MensajesConElUsuario.fac_ErrorChequeRecidoRepetido)
                 ' End If
@@ -144,6 +154,22 @@ Namespace Presentadores.ChequeRecidos
                 logger.[Error](ex.Message)
                 Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
             End Try
+        End Sub
+
+        Public Sub IrConsultarChequeRecido(ByVal ChequeRecido As ChequeRecido)
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+
+            Me.Navegar(New ConsultarChequeRecido(ChequeRecido))
+            'Me.Navegar(New ConsultarFacFacturaProforma())
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
         End Sub
 
         Public Sub BuscarAsociado2()
@@ -196,7 +222,17 @@ Namespace Presentadores.ChequeRecidos
             Try
                 'Dim asociado As Asociado = Me._asociadosServicios.ConsultarAsociadoConTodo(DirectCast(Me._ventana.Asociado, Asociado))
                 'asociado.Contactos = Me._contactoServicios.ConsultarContactosPorAsociado(asociado)
-                Me._ventana.NombreAsociado = DirectCast(Me._ventana.Asociado, Asociado).Id & " - " & DirectCast(Me._ventana.Asociado, Asociado).Nombre
+                If DirectCast(Me._ventana.Asociado, Asociado) IsNot Nothing Then
+                    If Me._ventana.Asociado.id <> Integer.MinValue Then
+                        ' Dim asociado As Asociado = Me._asociadosServicios.ConsultarAsociadoConTodo(DirectCast(Me._ventana.Asociado, Asociado))
+                        Me._ventana.NombreAsociado = DirectCast(Me._ventana.Asociado, Asociado).Id & " - " & DirectCast(Me._ventana.Asociado, Asociado).Nombre
+                    Else
+                        Me._ventana.NombreAsociado = Nothing
+                        Exit Sub
+                    End If
+                Else
+                    Exit Sub
+                End If
                 'Me._ventana.Personas = asociado.Contactos
             Catch e As ApplicationException
                 'Me._ventana.Personas = Nothing

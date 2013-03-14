@@ -31,29 +31,29 @@ Namespace Ventanas.FacCobros
         Public WriteOnly Property HabilitarCampos() As Boolean Implements Contratos.FacCobros.IConsultarFacCobro.HabilitarCampos
             Set(ByVal value As Boolean)
                 Dim valor As Integer = _txtpermisos.Text
-                If valor = 1 Then
-                    Me._txtDetalle.IsEnabled = value
-                    ' Me._txtId.IsReadOnly = value
-                    _dpkFechaCobro.IsEnabled = value
-                    _dpkFechaB.IsEnabled = value
-                    _cbxIdioma.IsEnabled = value
-                    _cbxMoneda.IsEnabled = value
-                    If value = True Then
-                        _txtDetalle.IsReadOnly = False
-                        _txtEstadoCuenta.IsReadOnly = False
-                    Else
-                        _txtDetalle.IsReadOnly = True
-                        _txtEstadoCuenta.IsReadOnly = True
-                    End If
-                    _cbxBanco.IsEnabled = value
+                'If valor = 1 Then
+                Me._txtDetalle.IsEnabled = False
+                ' Me._txtId.IsReadOnly = value
+                _dpkFechaCobro.IsEnabled = False
+                _dpkFechaB.IsEnabled = False
+                _cbxIdioma.IsEnabled = False
+                _cbxMoneda.IsEnabled = False
+                'If value = True Then
+                '    _txtDetalle.IsReadOnly = False
+                '    _txtEstadoCuenta.IsReadOnly = False
+                'Else
+                _txtDetalle.IsReadOnly = True
+                _txtEstadoCuenta.IsReadOnly = True
+                'End If
+                _cbxBanco.IsEnabled = False
 
-                    _btnConsultarfactura2.IsEnabled = value
-                    _btnConsultarfactura.IsEnabled = value
-                    _btnagregarfactura2.IsEnabled = value
-                    _btnmodificarforma.IsEnabled = value
-                Else
-                    _cbxBanco.IsEnabled = value
-                End If
+                _btnConsultarfactura2.IsEnabled = False
+                _btnConsultarfactura.IsEnabled = False
+                _btnagregarfactura2.IsEnabled = False
+                _btnmodificarforma.IsEnabled = False
+                'Else
+                _cbxBanco.IsEnabled = value
+                'End If
                 '_btnModificar.IsEnabled = value
                 '_btnEliminar.IsEnabled = value
             End Set

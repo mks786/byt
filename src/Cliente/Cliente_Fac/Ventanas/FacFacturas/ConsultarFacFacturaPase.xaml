@@ -100,11 +100,11 @@
                             </custom:ByTTextBox.Text>
                         </custom:ByTTextBox>
 
-                        <WrapPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
+                        <WrapPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
                             <Label  HorizontalContentAlignment="Left" VerticalAlignment="Top" Width="60">
                                 <TextBlock Text="Proforma" VerticalAlignment="Center"/>
                             </Label>
-                            <custom:ByTTextBox  Name="_txtProforma" Width="100"  Height="20" MaxLength="100" Focusable="True" 
+                            <custom:ByTTextBox  Name="_txtProforma" Width="90"  Height="20" MaxLength="100" Focusable="True" 
                        HorizontalAlignment="Left" IsReadOnly="True">
                                 <custom:ByTTextBox.Text>
                                     <Binding Path="Proforma.Id" UpdateSourceTrigger="PropertyChanged">
@@ -117,8 +117,8 @@
                         </WrapPanel>
 
 
-                        <WrapPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
-                            <Label VerticalAlignment="Top" HorizontalContentAlignment="Left">
+                        <WrapPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
+                            <Label VerticalAlignment="Top" HorizontalContentAlignment="Left" Width="75">
                                 <TextBlock Text="Fecha Seniat" VerticalAlignment="Center" />
                             </Label>
                             <DatePicker  Name="_dpkFechaSeniat" Width="100"  Height="20" Focusable="False" BorderBrush="{x:Null}" HorizontalAlignment="Left" IsEnabled="True">
@@ -128,8 +128,8 @@
                             </DatePicker>
                         </WrapPanel>
 
-                        <WrapPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
-                            <Label  VerticalAlignment="Top" HorizontalContentAlignment="Left">
+                        <WrapPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
+                            <Label  VerticalAlignment="Top" HorizontalContentAlignment="Left" Width="75">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.faclblFecha}" VerticalAlignment="Center" />
                             </Label>
                             <DatePicker  Name="_dpkFechaFactura" Width="100"  Height="20" Focusable="False" BorderBrush="{x:Null}" HorizontalAlignment="Left">
@@ -139,8 +139,8 @@
                             </DatePicker>
                         </WrapPanel>
 
-                        <WrapPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
-                            <Label VerticalAlignment="Top" HorizontalContentAlignment="Left">
+                        <WrapPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
+                            <Label VerticalAlignment="Top" HorizontalContentAlignment="Left" Width="60">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.faclblEtiqueta}" VerticalAlignment="Center"/>
                             </Label>
                             <custom:ByTTextBox Name="_txtCodeti"  Height="20" Width="100" MaxLength="100" Focusable="True" 
@@ -267,7 +267,7 @@
                       HorizontalAlignment="Left" Visibility="Collapsed" IsReadOnly="True" Grid.ColumnSpan="2">
                         </custom:ByTTextBox>
 
-                        <WrapPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" Height="20"  HorizontalAlignment="Left" Margin="0,0,0,0">
+                        <WrapPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Height="20"  HorizontalAlignment="Left" Margin="0,0,0,0">
                             <Label VerticalAlignment="Top" HorizontalContentAlignment="Left" Width="60">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.faclblInterno}" VerticalAlignment="Center" />
                             </Label>
@@ -286,7 +286,7 @@
 
 
 
-                        <WrapPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
+                        <WrapPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
                             <Label VerticalAlignment="Top" HorizontalContentAlignment="Left" Width="60">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.faclblSeniat}" VerticalAlignment="Center"/>
                             </Label>
