@@ -70,6 +70,9 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             private int? _accion;
             private DateTime? _fechadesde;
             private DateTime? _fechahasta;
+                    
+            private int? _p_mip;
+            private int? _bst;
 
 
         #endregion
@@ -903,6 +906,29 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set
             {
                 this._fechahasta = value;
+            }
+        }
+
+        public virtual int? P_mip
+        {
+            get
+            {
+                return this._p_mip;
+            }
+            set
+            {
+                this._p_mip = value;
+            }
+        }
+        public virtual int? Bst
+        {
+            get
+            {
+                return this._bst;
+            }
+            set
+            {
+                this._bst = value;
             }
         }
 
