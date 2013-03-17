@@ -366,6 +366,15 @@ Namespace Ventanas.FacFacturaProformas
         'Private Sub _btnConsultarAsociado_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
         '    Me._presentador.BuscarAsociado2()
         'End Sub
+        Private Sub _btnImprimir(ByVal sender As Object, ByVal e As RoutedEventArgs)
+            Dim nom As String = DirectCast(sender, Button).Name.ToString
+            If nom = "_btnImprimirMonedaOriginal" Then
+                Me._presentador.Imprimir(1)
+            ElseIf nom = "_btnImprimirBsf" Then
+                Me._presentador.Imprimir(2)            
+            End If
+        End Sub
+
         Private Sub _btnConsultar(ByVal sender As Object, ByVal e As RoutedEventArgs)
             Dim nom As String = DirectCast(sender, Button).Name.ToString
             If nom = "_btnConsultarAsociado" Then

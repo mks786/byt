@@ -622,7 +622,7 @@ Namespace Presentadores.FacReportes
             Dim retorno As IList(Of StructReporteFActuraEnc) = New List(Of StructReporteFActuraEnc)
             Dim structura As New StructReporteFActuraEnc()
             Dim j As Integer = 0
-            Dim montototal = 0
+            Dim montototal As Double = 0
             Dim crea As Boolean = False
             Try
                 Dim facOperacion As List(Of FacOperacion) = Buscar_Operacion()
@@ -662,7 +662,7 @@ Namespace Presentadores.FacReportes
                     End If
                 Next
                 If j = 1 And retorno.Count = 0 Then
-                    structura.Mttotal = montototal
+                    structura.Mttotal = SetFormatoDouble2(montototal)
                     retorno.Add(structura)
                 End If
                 enc = retorno
@@ -701,7 +701,7 @@ Namespace Presentadores.FacReportes
                 If operacion.Id = "NP" Then
                     monto = operacion.Monto * -1
                 End If
-                structura.MMonto = monto
+                structura.MMonto = SetFormatoDouble2(monto)
                 montototal = montototal + monto
                 If montototal < 1 And montototal > -1 Then
                     montototal = 0
@@ -803,7 +803,7 @@ Namespace Presentadores.FacReportes
                     filaDatos("Id") = structura.Id
                     filaDatos("Fecha") = structura.Fecha
                     filaDatos("Nota") = structura.Nota
-                    filaDatos("Desc") = poner_decimal(structura.Desc)
+                    filaDatos("Desc") = structura.Desc
                     filaDatos("Moneda") = structura.Moneda
                     filaDatos("MMonto") = poner_decimal(structura.MMonto)
                     datos.Rows.Add(filaDatos)

@@ -371,9 +371,9 @@ Namespace Presentadores.FacReportes
                                 If facOperacion(i).Asociado.Id <> facOperacion(i - 1).Asociado.Id Then
                                     structuradet.Ccliente = facOperacion(i - 1).Asociado.Id
                                     structuradet.Xcliente = facOperacion(i - 1).Asociado.Nombre
-                                    structuradet.Mcob = FormatNumber(acmonto_cob, 2)
-                                    structuradet.Mfac = FormatNumber(acmonto_pend, 2)
-                                    structuradet.Mcr = FormatNumber(acmonto_cred, 2)
+                                    structuradet.Mcob = SetFormatoDouble2(acmonto_cob)
+                                    structuradet.Mfac = SetFormatoDouble2(acmonto_pend)
+                                    structuradet.Mcr = SetFormatoDouble2(acmonto_cred)
                                     acmonto_cob_t = acmonto_cob_t + acmonto_cob
                                     acmonto_pend_t = acmonto_pend_t + acmonto_pend
                                     acmonto_cred_t = acmonto_cred_t + acmonto_cred
@@ -418,9 +418,9 @@ Namespace Presentadores.FacReportes
 
                                 structuradet.Ccliente = facOperacion(i).Asociado.Id
                                 structuradet.Xcliente = facOperacion(i).Asociado.Nombre
-                                structuradet.Mcob = FormatNumber(acmonto_cob, 2)
-                                structuradet.Mfac = FormatNumber(acmonto_pend, 2)
-                                structuradet.Mcr = FormatNumber(acmonto_cred, 2)
+                                structuradet.Mcob = SetFormatoDouble2(acmonto_cob)
+                                structuradet.Mfac = SetFormatoDouble2(acmonto_pend)
+                                structuradet.Mcr = SetFormatoDouble2(acmonto_cred)
                                 acmonto_cob_t = acmonto_cob_t + acmonto_cob
                                 acmonto_pend_t = acmonto_pend_t + acmonto_pend
                                 acmonto_cred_t = acmonto_cred_t + acmonto_cred
@@ -438,12 +438,12 @@ Namespace Presentadores.FacReportes
                     End If
                 End If
                 ' Next
-                structura.Mcob = FormatNumber(acmonto_cob_t, 2)
-                structura.Mfac = FormatNumber(acmonto_pend_t, 2)
-                structura.Mcr = FormatNumber(acmonto_cred_t, 2)
-                structura.Mcob_t = FormatNumber(acmonto_cob_t, 2)
-                structura.Mfac_t = FormatNumber(acmonto_pend_t, 2)
-                structura.Mcr_t = FormatNumber(acmonto_cred_t, 2)
+                structura.Mcob = SetFormatoDouble2(acmonto_cob_t)
+                structura.Mfac = SetFormatoDouble2(acmonto_pend_t)
+                structura.Mcr = SetFormatoDouble2(acmonto_cred_t)
+                structura.Mcob_t = SetFormatoDouble2(acmonto_cob_t)
+                structura.Mfac_t = SetFormatoDouble2(acmonto_pend_t)
+                structura.Mcr_t = SetFormatoDouble2(acmonto_cred_t)
                 'If asociado IsNot Nothing Then
                 '    If asociado.Id > Integer.MinValue Then
                 '        structura.Ccliente = asociado.Id

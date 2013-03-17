@@ -672,22 +672,22 @@ Namespace Presentadores.FacReportes
                     Dim factura As FacFactura = consultar_factura(total_z.Id)
                     If factura IsNot Nothing Then
                         If Me._ventana.TipoMoneda = "Moneda Original" Then
-                            structura.Msubtimpo = factura.MSubtimpo
-                            structura.Mdescuento = factura.MDescuento
-                            structura.Mtbimp = factura.MTbimp
-                            structura.Mtbexc = factura.Mtbexc
-                            structura.Msubtotal = factura.MSubtotal
-                            structura.Mttotal = factura.Mttotal
-                            structura.Mtimp = factura.Mtimp
+                            structura.Msubtimpo = SetFormatoDouble2(factura.MSubtimpo)
+                            structura.Mdescuento = SetFormatoDouble2(factura.MDescuento)
+                            structura.Mtbimp = SetFormatoDouble2(factura.MTbimp)
+                            structura.Mtbexc = SetFormatoDouble2(factura.Mtbexc)
+                            structura.Msubtotal = SetFormatoDouble2(factura.MSubtotal)
+                            structura.Mttotal = SetFormatoDouble2(factura.Mttotal)
+                            structura.Mtimp = SetFormatoDouble2(factura.Mtimp)
                         End If
                         If Me._ventana.TipoMoneda = "Bolivar Fuerte" Then
-                            structura.Msubtimpo = factura.MSubtimpoBf
-                            structura.Mdescuento = factura.MDescuentoBf
-                            structura.Mtbimp = factura.MTbimpBf
-                            structura.Mtbexc = factura.MTbexcBf
-                            structura.Msubtotal = factura.MSubtotalBf
-                            structura.Mttotal = factura.MTtotalBf
-                            structura.Mtimp = factura.MTimpBf
+                            structura.Msubtimpo = SetFormatoDouble2(factura.MSubtimpoBf)
+                            structura.Mdescuento = SetFormatoDouble2(factura.MDescuentoBf)
+                            structura.Mtbimp = SetFormatoDouble2(factura.MTbimpBf)
+                            structura.Mtbexc = SetFormatoDouble2(factura.MTbexcBf)
+                            structura.Msubtotal = SetFormatoDouble2(factura.MSubtotalBf)
+                            structura.Mttotal = SetFormatoDouble2(factura.MTtotalBf)
+                            structura.Mtimp = SetFormatoDouble2(factura.MTimpBf)
                         End If
                     End If
                 End If
@@ -752,9 +752,9 @@ Namespace Presentadores.FacReportes
                     structura.Cantidad = _FacFacturaDetalle(i).NCantidad
                     structura.Id = id
                     If Me._ventana.TipoMoneda = "Moneda Original" Then
-                        structura.Npub = _FacFacturaDetalle(i).Pu
-                        structura.Ndesc = _FacFacturaDetalle(i).MDescuento
-                        structura.MMonto = _FacFacturaDetalle(i).BDetalle
+                        structura.Npub = SetFormatoDouble2(_FacFacturaDetalle(i).Pu)
+                        structura.Ndesc = SetFormatoDouble2(_FacFacturaDetalle(i).MDescuento)
+                        structura.MMonto = SetFormatoDouble2(_FacFacturaDetalle(i).BDetalle)
                     End If
                     If Me._ventana.TipoMoneda = "Bolivar Fuerte" Then
                         If _FacFacturaDetalle(i).NCantidad <> 0 Then
@@ -766,12 +766,12 @@ Namespace Presentadores.FacReportes
                             Dim w_cuadre As Double
                             w_cuadre = _FacFacturaDetalle(i).PuBf / _FacFacturaDetalle(i).NCantidad
                             If (w_cuadre <> _FacFacturaDetalle(i).PuBf) Then
-                                structura.Npub = w_cuadre
+                                structura.Npub = SetFormatoDouble2(w_cuadre)
                             Else
-                                structura.Npub = _FacFacturaDetalle(i).PuBf
+                                structura.Npub = SetFormatoDouble2(_FacFacturaDetalle(i).PuBf)
                             End If
                         Else
-                            structura.Npub = _FacFacturaDetalle(i).PuBf
+                            structura.Npub = SetFormatoDouble2(_FacFacturaDetalle(i).PuBf)
                         End If
                     End If
 

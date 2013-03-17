@@ -873,12 +873,12 @@ Namespace Presentadores.FacReportes
                             End If
                     End Select
                     structura.Moneda = fac_pendiente.Moneda.Id
-                    structura.Mbruto = monto
+                    structura.Mbruto = SetFormatoDouble2(monto)
                     Dim descuento As Double
                     descuento = (monto * fac_pendiente.Descuento) / 100
-                    structura.Mdescuento = descuento
+                    structura.Mdescuento = SetFormatoDouble2(descuento)
                     '((w_monto -mdescuento.Trailer) * pimpuesto.fac_pend) / 100
-                    structura.Miva = ((monto - descuento) * fac_pendiente.Impuesto) / 100
+                    structura.Miva = SetFormatoDouble2(((monto - descuento) * fac_pendiente.Impuesto) / 100)
 
                     If encontrar_OperacionPendiente(fac_pendiente.Id) = True Then
                         Select Case fac_pendiente.P_mip
@@ -960,7 +960,7 @@ Namespace Presentadores.FacReportes
                     'If Me._ventana.TipoMoneda = "Moneda Original" Then
                     '    structura.Npub = _FacFacturaDetalle(i).Pu
                     '    structura.Ndesc = _FacFacturaDetalle(i).MDescuento
-                    structura.MMonto = _FacFacturaDetalle(i).BDetalle
+                    structura.MMonto = SetFormatoDouble2(_FacFacturaDetalle(i).BDetalle)
                     monto = monto + _FacFacturaDetalle(i).BDetalle
                     'End If
                     'If Me._ventana.TipoMoneda = "Bolivar Fuerte" Then

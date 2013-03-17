@@ -191,6 +191,8 @@
     <Compile Include="Contratos\FacFacturas\IConsultarFacFacturasAnuladas.vb" />
     <Compile Include="Contratos\FacInternacionales\FacInternacionalRegistro.vb" />
     <Compile Include="Contratos\FacPagoBolivias\IConsultarFacPagoBolivia.vb" />
+    <Compile Include="Contratos\FacReportes\IFacturaCopiaAnuladaRpt.vb" />
+    <Compile Include="Contratos\FacReportes\IFacturaProformaRpt.vb" />
     <Compile Include="Contratos\FacReportes\IFacturaCopiaRpt.vb" />
     <Compile Include="Contratos\FacReportes\IVentasTotalesRpt.vb" />
     <Compile Include="Contratos\FacReportes\IFacFacturacionLoteVieja.vb" />
@@ -360,6 +362,8 @@
     <Compile Include="Presentadores\FacFacturas\PresentadorConsultarFacFacturasAnuladas.vb" />
     <Compile Include="Presentadores\FacInternacionales\PresentadorFacInternacionalRegistro.vb" />
     <Compile Include="Presentadores\FacPagoBolivias\PresentadorConsultarFacPagoBolivia.vb" />
+    <Compile Include="Presentadores\FacReportes\PresentadorFacturaCopiaAnuladaRpt.vb" />
+    <Compile Include="Presentadores\FacReportes\PresentadorFacturaProformaRpt.vb" />
     <Compile Include="Presentadores\FacReportes\PresentadorFacturaCopiaRpt.vb" />
     <Compile Include="Presentadores\FacReportes\PresentadorVentasTotalesRpt.vb" />
     <Compile Include="Presentadores\FacReportes\PresentadorFacFacturacionLoteVieja.vb" />
@@ -755,6 +759,12 @@
     </Compile>
     <Compile Include="Ventanas\FacRecursos\ConsultarFacRecursos.xaml.vb">
       <DependentUpon>ConsultarFacRecursos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacReportes\FacturaCopiaAnuladaRpt.xaml.vb">
+      <DependentUpon>FacturaCopiaAnuladaRpt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacReportes\FacturaProformaRpt.xaml.vb">
+      <DependentUpon>FacturaProformaRpt.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\FacReportes\FacturaCopiaRpt.xaml.vb">
       <DependentUpon>FacturaCopiaRpt.xaml</DependentUpon>
@@ -1312,6 +1322,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\FacRecursos\ConsultarFacRecursos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacReportes\FacturaCopiaAnuladaRpt.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacReportes\FacturaProformaRpt.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

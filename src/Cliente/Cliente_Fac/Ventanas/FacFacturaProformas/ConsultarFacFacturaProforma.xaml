@@ -1768,6 +1768,15 @@
         </WrapPanel>
 
         <WrapPanel Name="_Wp_Btn"  Grid.Column="1" Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Bottom">
+            <Button Name="_btnImprimirMonedaOriginal" VerticalAlignment="Bottom" Height="60" Width="80"
+                    Click="_btnImprimir">
+                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Name="_txbImprimirMonedaOriginal" Text="Imprimir Moneda Original"/>
+            </Button>
+            <Button Name="_btnImprimirBsf" VerticalAlignment="Bottom" Height="40" Width="80"
+                    Click="_btnImprimir">
+                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"  Name="_txtImprimirBsf" Text="Imprimir BsF"/>
+            </Button>
+            
             <Button Name="_btnModificar"  VerticalAlignment="Bottom" Height="25" Width="80"
                     Click="_btnModificar_Click">
                 <Button.Style>

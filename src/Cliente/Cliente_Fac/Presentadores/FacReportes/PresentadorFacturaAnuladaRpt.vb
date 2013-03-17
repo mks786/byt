@@ -566,22 +566,22 @@ Namespace Presentadores.FacReportes
                     End If
                     Dim facoperacionanulada As FacOperacionAnulada = consultar_operaciones_anuladas(_FacFacturaAnulada.Id)
                     If facoperacionanulada IsNot Nothing Then
-                        structura.Monto = facoperacionanulada.Monto
+                        structura.Monto = SetFormatoDouble2(facoperacionanulada.Monto)
                     End If
                 Else
                     Dim facoperacionanulada As FacOperacionAnulada = consultar_operaciones_anuladas(_FacFacturaAnulada.Id)
                     If facoperacionanulada IsNot Nothing Then
                         If _FacFacturaAnulada.Xter = 1 Then
                             structura.TituloMonto = "MONTO BsF"
-                            structura.Monto = facoperacionanulada.SaldoBf
+                            structura.Monto = SetFormatoDouble2(facoperacionanulada.SaldoBf)
                         End If
                         If _FacFacturaAnulada.Xter = 2 Then
                             structura.TituloMonto = "MONTO US"
-                            structura.Monto = facoperacionanulada.Saldo
+                            structura.Monto = SetFormatoDouble2(facoperacionanulada.Saldo)
                         End If
                         If _FacFacturaAnulada.Xter = 3 Then
                             structura.TituloMonto = "MONTO US"
-                            structura.Monto = facoperacionanulada.Saldo
+                            structura.Monto = SetFormatoDouble2(facoperacionanulada.Saldo)
                         End If
                     End If
                 End If

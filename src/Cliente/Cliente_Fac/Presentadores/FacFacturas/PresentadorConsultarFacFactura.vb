@@ -1045,6 +1045,7 @@ Namespace Presentadores.FacFacturas
 
         Public Sub ImprimirAnulada()
             Dim FacFactura As FacFactura = DirectCast(Me._ventana.FacFactura, FacFactura)
+            FacFactura.Status = 4
             IrConsultarFacFacturaAnuladaReporte(FacFactura)
         End Sub
 
@@ -1055,7 +1056,7 @@ Namespace Presentadores.FacFacturas
             End If
             '#End Region
             'Me._ventana.FacFacturaSeleccionado.Accion = 2 'no modificar
-            Me.Navegar(New FacturaAnuladaRpt(factura))
+            Me.Navegar(New FacturaCopiaAnuladaRpt(factura))
             'Me.Navegar(New ConsultarFacFactura())
             '#Region "trace"
             If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then

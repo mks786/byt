@@ -6,6 +6,7 @@ Imports NLog
 Imports Diginsoft.Bolet.Cliente.Fac.Contratos.FacFacturaProformas
 Imports Diginsoft.Bolet.ObjetosComunes.ContratosServicios
 Imports Diginsoft.Bolet.Cliente.Fac.Ventanas.FacFacturaProformas
+Imports Diginsoft.Bolet.Cliente.Fac.Ventanas.FacReportes
 Imports Diginsoft.Bolet.ObjetosComunes.Entidades
 Imports Trascend.Bolet.ObjetosComunes.Entidades
 Imports Trascend.Bolet.ObjetosComunes.ContratosServicios
@@ -130,6 +131,27 @@ Namespace Presentadores.FacFacturaProformas
                 logger.[Error](ex.Message)
                 Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
             End Try
+        End Sub
+
+
+        Public Sub Imprimir(ByVal tipo As Integer)
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+            'Me._ventana.FacFacturaSeleccionado.Accion = 2 'no modificar
+            Dim FacFacturaProforma As FacFacturaProforma = DirectCast(Me._ventana.FacFacturaProforma, FacFacturaProforma)
+            FacFacturaProforma.Status = tipo
+
+            Me.Navegar(New FacturaProformaRpt((FacFacturaProforma)))
+            'Me.Navegar(New FacturaRpt2())
+            'Me.Navegar(New ConsultarFacFactura())
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
         End Sub
 
         ''' <summary>

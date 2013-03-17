@@ -295,7 +295,7 @@ Namespace Presentadores.FacReportes
             Dim w_fal As Integer
             w_cero = "0"
             w_par = dfecha.Year
-            w_par = w_par.Substring(2, 2)
+            w_par = w_par.Substring(2)
             w_camp = nfac
             If w_camp.Length < 7 Then
                 w_fal = 7 - w_camp.Length
@@ -443,39 +443,39 @@ Namespace Presentadores.FacReportes
                                     structuradetalle.Mtasa = tasa.Tasabf
                                     mtasa_t = mtasa_t + tasa.Tasabf
                                 End If
-                                structuradetalle.Mmontoext = FormatNumber(factura(i).MSubtotal, 2)
+                                structuradetalle.Mmontoext = SetFormatoDouble2(factura(i).MSubtotal)
                                 mmontoext_t = mmontoext_t + factura(i).MSubtotal
                                 cantidad = cantidad + 1
-                                structuradetalle.Mmonto = FormatNumber(factura(i).MSubtotalBf, 2)
+                                structuradetalle.Mmonto = SetFormatoDouble2(factura(i).MSubtotalBf)
                                 mmonto_t = mmonto_t + factura(i).MSubtotalBf
-                                structuradetalle.Mbase = FormatNumber(factura(i).MTbexcBf, 2)
+                                structuradetalle.Mbase = SetFormatoDouble2(factura(i).MTbexcBf)
                                 mbase_t = mbase_t + factura(i).MTbexcBf
-                                structuradetalle.Mbase_imp = FormatNumber(factura(i).MTbimpBf, 2)
+                                structuradetalle.Mbase_imp = SetFormatoDouble2(factura(i).MTbimpBf)
                                 mbase_timp = mbase_timp + factura(i).MTbimpBf
-                                structuradetalle.Mimp = FormatNumber(factura(i).MTimpBf, 2)
+                                structuradetalle.Mimp = SetFormatoDouble2(factura(i).MTimpBf)
                                 mimp_t = mimp_t + factura(i).MTimpBf
-                                structuradetalle.Mventa = FormatNumber(factura(i).MTtotalBf, 2)
+                                structuradetalle.Mventa = SetFormatoDouble2(factura(i).MTtotalBf)
                                 mventa_t = mventa_t + factura(i).MTtotalBf
                                 structuradetalle.imp = factura(i).PSeniat
                             Else
                                 structuradetalle.Mmontoext = ""
                                 structuradetalle.Mtasa = ""
-                                structuradetalle.Mmonto = FormatNumber(factura(i).MSubtotalBf, 2)
+                                structuradetalle.Mmonto = SetFormatoDouble2(factura(i).MSubtotalBf)
                                 mmonto_t = mmonto_t + factura(i).MSubtotalBf
-                                structuradetalle.Mbase = FormatNumber(factura(i).MTbexcBf, 2)
+                                structuradetalle.Mbase = SetFormatoDouble2(factura(i).MTbexcBf)
                                 mbase_t = mbase_t + factura(i).MTbexcBf
-                                structuradetalle.Mbase_imp = FormatNumber(factura(i).MTbimpBf, 2)
+                                structuradetalle.Mbase_imp = SetFormatoDouble2(factura(i).MTbimpBf)
                                 mbase_timp = mbase_timp + factura(i).MTbimpBf
-                                structuradetalle.Mimp = FormatNumber(factura(i).MTimpBf, 2)
+                                structuradetalle.Mimp = SetFormatoDouble2(factura(i).MTimpBf)
                                 mimp_t = mimp_t + factura(i).MTimpBf
-                                structuradetalle.Mventa = FormatNumber(factura(i).MTtotalBf, 2)
+                                structuradetalle.Mventa = SetFormatoDouble2(factura(i).MTtotalBf)
                                 mventa_t = mventa_t + factura(i).MTtotalBf
                                 structuradetalle.imp = factura(i).PSeniat
                             End If
                         End If
-                        structuradetalle.Msubtimpo_bf = FormatNumber(factura(i).MSubtimpoBf, 2)
+                        structuradetalle.Msubtimpo_bf = SetFormatoDouble2(factura(i).MSubtimpoBf)
                         msubtimpo_bf_t = msubtimpo_bf_t + factura(i).MSubtimpoBf
-                        structuradetalle.Mdescuento_bf = FormatNumber(factura(i).MDescuentoBf, 2)
+                        structuradetalle.Mdescuento_bf = SetFormatoDouble2(factura(i).MDescuentoBf)
                         mdescuento_bf_t = mdescuento_bf_t + factura(i).MDescuentoBf
                     End If
 
@@ -491,15 +491,15 @@ Namespace Presentadores.FacReportes
                         structura.Xtitu2 = "Entre las fechas " & Me._ventana.FechaInicio & " y " & Me._ventana.FechaFin
                     End If
                 End If
-                structura.Promedio = FormatNumber(mtasa_t / cantidad, 2)
-                structura.Mmontoext_t = FormatNumber(mmontoext_t, 2)
-                structura.Mmonto_t = FormatNumber(mmonto_t, 2)
-                structura.Mbase_t = FormatNumber(mbase_t, 2)
-                structura.Mbase_imp_t = FormatNumber(mbase_timp, 2)
-                structura.Mimp_t = FormatNumber(mimp_t, 2)
-                structura.Mventa_t = FormatNumber(mventa_t, 2)
-                structura.Msubtimpo_bf_t = FormatNumber(msubtimpo_bf_t, 2)
-                structura.Mdescuento_bf_t = FormatNumber(mdescuento_bf_t, 2)
+                structura.Promedio = SetFormatoDouble2(mtasa_t / cantidad)
+                structura.Mmontoext_t = SetFormatoDouble2(mmontoext_t)
+                structura.Mmonto_t = SetFormatoDouble2(mmonto_t)
+                structura.Mbase_t = SetFormatoDouble2(mbase_t)
+                structura.Mbase_imp_t = SetFormatoDouble2(mbase_timp)
+                structura.Mimp_t = SetFormatoDouble2(mimp_t)
+                structura.Mventa_t = SetFormatoDouble2(mventa_t)
+                structura.Msubtimpo_bf_t = SetFormatoDouble2(msubtimpo_bf_t)
+                structura.Mdescuento_bf_t = SetFormatoDouble2(mdescuento_bf_t)
                 structura.Id = "1"
                 retorna.Add(structura)
 

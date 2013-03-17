@@ -179,8 +179,8 @@ Namespace Presentadores.FacReportes
                                     linea = factura(i).Seniat & vbTab
                                     linea = linea & detalle(j).XDetalleEs & vbTab
                                     linea = linea & detalle(j).NCantidad & vbTab
-                                    linea = linea & poner_decimal(detalle(j).PuBf) & vbTab
-                                    linea = linea & poner_decimal(detalle(j).Descuento) & vbTab
+                                    linea = linea & SetFormatoDouble2(detalle(j).PuBf) & vbTab
+                                    linea = linea & SetFormatoDouble2(detalle(j).Descuento) & vbTab
                                     If detalle(j).Impuesto.ToString = "T" Or detalle(j).Impuesto.ToString = "1" Then
                                         linea = linea & "0"
                                     Else

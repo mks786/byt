@@ -1788,7 +1788,7 @@
         <WrapPanel Name="_Wp_Btn2" Grid.Column="1" Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Center">
             <Button Name="_btnImprimirFacturaAnulada" VerticalAlignment="Bottom" Height="40" Width="80"
                     Click="_btnImprimir" FontSize="10">
-                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Name="_txtImprimirFacturaAnulada" Text="Factura Anulada"/>
+                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Name="_txtImprimirFacturaAnulada" Text="Copia Factura Anulada"/>
             </Button>
             
             <Button Name="_btnImprimirFacturaCopia" VerticalAlignment="Bottom" Height="40" Width="80"

@@ -629,13 +629,13 @@ Namespace Presentadores.FacReportes
                 structura.Xourref = _FacFactura.Ourref
                 'End If
 
-                structura.Msubtimpo = _FacFactura.MSubtimpo
-                structura.Mdescuento = _FacFactura.MDescuento
-                structura.Mtbimp = _FacFactura.MTbimp
-                structura.Mtbexc = _FacFactura.Mtbexc
-                structura.Msubtotal = _FacFactura.MSubtotal
-                structura.Mttotal = _FacFactura.Mttotal
-                structura.Mtimp = _FacFactura.Mtimp
+                structura.Msubtimpo = SetFormatoDouble2(_FacFactura.MSubtimpo)
+                structura.Mdescuento = SetFormatoDouble2(_FacFactura.MDescuento)
+                structura.Mtbimp = SetFormatoDouble2(_FacFactura.MTbimp)
+                structura.Mtbexc = SetFormatoDouble2(_FacFactura.Mtbexc)
+                structura.Msubtotal = SetFormatoDouble2(_FacFactura.MSubtotal)
+                structura.Mttotal = SetFormatoDouble2(_FacFactura.Mttotal)
+                structura.Mtimp = SetFormatoDouble2(_FacFactura.Mtimp)
 
                 Select Case _FacFactura.P_mip
                     Case 1 ' Factura 
@@ -654,9 +654,9 @@ Namespace Presentadores.FacReportes
                     structura.Moneda = "BSF"
                 End If
                 If _FacFactura.Bst = 1 Then
-                    structura.Piva = _FacFactura.PSeniat
+                    structura.Piva = SetFormatoDouble2(_FacFactura.PSeniat)
                 Else
-                    structura.Piva = _FacFactura.Impuesto
+                    structura.Piva = SetFormatoDouble2(_FacFactura.Impuesto)
                 End If
                 structura.TituloNa = "Iva"
                 structura.TituloCantidad = "Cant Quanti"
@@ -824,13 +824,13 @@ Namespace Presentadores.FacReportes
                 End If
                 'structura.Xour = "Nuestra Referencia"
 
-                structura.Msubtimpo = _FacFactura.MSubtimpoBf
-                structura.Mdescuento = _FacFactura.MDescuentoBf
-                structura.Mtbimp = _FacFactura.MTbimpBf
-                structura.Mtbexc = _FacFactura.MTbexcBf
-                structura.Msubtotal = _FacFactura.MSubtotalBf
-                structura.Mttotal = _FacFactura.MTtotalBf
-                structura.Mtimp = _FacFactura.MTimpBf
+                structura.Msubtimpo = SetFormatoDouble2(_FacFactura.MSubtimpoBf)
+                structura.Mdescuento = SetFormatoDouble2(_FacFactura.MDescuentoBf)
+                structura.Mtbimp = SetFormatoDouble2(_FacFactura.MTbimpBf)
+                structura.Mtbexc = SetFormatoDouble2(_FacFactura.MTbexcBf)
+                structura.Msubtotal = SetFormatoDouble2(_FacFactura.MSubtotalBf)
+                structura.Mttotal = SetFormatoDouble2(_FacFactura.MTtotalBf)
+                structura.Mtimp = SetFormatoDouble2(_FacFactura.MTimpBf)
 
                 Select Case _FacFactura.P_mip
                     Case 1 ' Factura 
@@ -849,9 +849,9 @@ Namespace Presentadores.FacReportes
                     structura.Moneda = "BSF"
                 End If
                 If _FacFactura.Bst = 1 Then
-                    structura.Piva = _FacFactura.PSeniat
+                    structura.Piva = SetFormatoDouble2(_FacFactura.PSeniat)
                 Else
-                    structura.Piva = _FacFactura.Impuesto
+                    structura.Piva = SetFormatoDouble2(_FacFactura.Impuesto)
                 End If
 
                 structura.TituloNa = "tax"
@@ -1051,24 +1051,24 @@ Namespace Presentadores.FacReportes
                     structura.Id = id
                     If tipo = "N" Then
                         structura.Servicio = _FacFacturaDetalle(i).XDetalle
-                        structura.Npub = _FacFacturaDetalle(i).Pu
-                        structura.Ndesc = _FacFacturaDetalle(i).MDescuento
-                        structura.MMonto = _FacFacturaDetalle(i).BDetalle
+                        structura.Npub = SetFormatoDouble2(_FacFacturaDetalle(i).Pu)
+                        structura.Ndesc = SetFormatoDouble2(_FacFacturaDetalle(i).MDescuento)
+                        structura.MMonto = SetFormatoDouble2(_FacFacturaDetalle(i).BDetalle)
                     Else
                         structura.Servicio = _FacFacturaDetalle(i).XDetalleEs
-                        structura.MMonto = _FacFacturaDetalle(i).BDetalleBf
-                        structura.Ndesc = _FacFacturaDetalle(i).MDescuento
+                        structura.MMonto = SetFormatoDouble2(_FacFacturaDetalle(i).BDetalleBf)
+                        structura.Ndesc = SetFormatoDouble2(_FacFacturaDetalle(i).MDescuento)
 
                         If _FacFacturaDetalle(i).NCantidad <> 0 Then
                             Dim w_cuadre As Double
                             w_cuadre = _FacFacturaDetalle(i).PuBf / _FacFacturaDetalle(i).NCantidad
                             If (w_cuadre <> _FacFacturaDetalle(i).PuBf) Then
-                                structura.Npub = w_cuadre
+                                structura.Npub = SetFormatoDouble2(w_cuadre)
                             Else
-                                structura.Npub = _FacFacturaDetalle(i).PuBf
+                                structura.Npub = SetFormatoDouble2(_FacFacturaDetalle(i).PuBf)
                             End If
                         Else
-                            structura.Npub = _FacFacturaDetalle(i).PuBf
+                            structura.Npub = SetFormatoDouble2(_FacFacturaDetalle(i).PuBf)
                         End If
 
                     End If
