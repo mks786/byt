@@ -737,4 +737,14 @@
   <data name="FiltroObtenerFacOperacionDetaTmProformaDetalle" xml:space="preserve">
     <value>dp.Detalle = {0}</value>
   </data>
+  <data name="CabeceraObtenerFacFactuDetaAnulada" xml:space="preserve">
+    <value>Select dp from FacFactuDetaAnulada dp left join fetch dp.Factura as factura  left join fetch dp.Servicio as servicio</value>
+    <comment>Cabecera del query para el filtro de ChequeRecido</comment>
+  </data>
+  <data name="FiltroObtenerFacFactuDetaAnuladaFactura" xml:space="preserve">
+    <value>factura.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacFactuDetaAnuladaServicio" xml:space="preserve">
+    <value>Servicio.Id = {0}</value>
+  </data>
 </root>
