@@ -2709,21 +2709,38 @@ namespace Trascend.Bolet.Cliente.Presentadores
         {
             string retorna = null;
             int posicion = 0;
-            retorna = valor.Replace(".", "-");
-            retorna = retorna.Replace(",", ".");
-            retorna = retorna.Replace("-", ",");
-            posicion = retorna.IndexOf(".");
-            if (posicion < 1)
+            if (valor != null)
             {
-                retorna = retorna + ".00";
-            }
+                if (valor != "")
+                {
+                    retorna = valor;
+                    //retorna = retorna.Replace("-", "(");
+                    //retorna = retorna.Replace(".", "-");
+                    //retorna = retorna.Replace(",", ".");
+                    //retorna = retorna.Replace("-", ",");
+                    //retorna = retorna.Replace("(", "-");
+                    posicion = retorna.IndexOf(".");
+                    if (posicion < 1)
+                    {
+                        retorna = retorna + ".00";
+                    }
 
-            if (retorna == ".00")
+                    if (retorna == ".00")
+                    {
+                        retorna = "0" + retorna;
+                    }
+
+                }
+                else
+                {
+                    retorna = "0.00";
+                }
+            }
+            else
             {
-                retorna = "0" + retorna;
+                retorna = "0.00";
             }
-
-            return retorna;
+            return retorna;            
         }
 
         public string SetFormatoDouble2(double value)

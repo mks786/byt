@@ -67,7 +67,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\lib\CrystalDecisions.Shared.dll</HintPath>
     </Reference>
-    <Reference Include="Diginsoft.Bolet.Cliente.Fac">
+    <Reference Include="Diginsoft.Bolet.Cliente.Fac, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\lib\Diginsoft.Bolet.Cliente.Fac.dll</HintPath>
     </Reference>
     <Reference Include="LinFu.DynamicProxy">
@@ -356,6 +357,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DsFacturaDigital.xsd</DependentUpon>
     </Compile>
+    <Compile Include="FacReportes\DsFacturaProforma.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsFacturaProforma.xsd</DependentUpon>
+    </Compile>
     <Compile Include="FacReportes\DsFacturasPendientesAsociados.cs">
       <DependentUpon>DsFacturasPendientesAsociados.xsd</DependentUpon>
     </Compile>
@@ -503,6 +509,12 @@
       <DependentUpon>RptFacturaPendienteDetaTotales.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFacturaProforma.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturaProforma.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="FacReportes\VentasTotalesRevRpt.cs">
       <AutoGen>True</AutoGen>
@@ -2479,6 +2491,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="FacReportes\RptFacturaProforma.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <LastGenOutput>RptFacturaProforma.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="FacReportes\FacFacturacionLoteVieja.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>FacFacturacionLoteVieja.cs</LastGenOutput>
@@ -2743,6 +2760,17 @@
     </None>
     <None Include="FacReportes\DsFacturaDigital.xss">
       <DependentUpon>DsFacturaDigital.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFacturaProforma.xsc">
+      <DependentUpon>DsFacturaProforma.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFacturaProforma.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsFacturaProforma.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="FacReportes\DsFacturaProforma.xss">
+      <DependentUpon>DsFacturaProforma.xsd</DependentUpon>
     </None>
     <None Include="FacReportes\DsFacturasPendientesAsociados.xsc">
       <DependentUpon>DsFacturasPendientesAsociados.xsd</DependentUpon>
