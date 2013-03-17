@@ -34,6 +34,7 @@ Namespace Dao.NHibernate
                     filtro += " and "
                 End If
                 filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacOperacionDetaTmProformaFactura, FacOperacionDetaTmProforma.Factura.Id)
+                variosFiltros = True
             End If
 
             If (FacOperacionDetaTmProforma.Usuario IsNot Nothing) AndAlso (Not FacOperacionDetaTmProforma.Usuario.Id <> "") Then
@@ -41,13 +42,15 @@ Namespace Dao.NHibernate
                     filtro += " and "
                 End If
                 filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacOperacionDetaTmProformaUsuario, FacOperacionDetaTmProforma.Usuario.Id)
+                variosFiltros = True
             End If
 
-            If (FacOperacionDetaTmProforma IsNot Nothing) AndAlso (Not FacOperacionDetaTmProforma.Detalle IsNot Nothing) Then
+            If (FacOperacionDetaTmProforma IsNot Nothing) AndAlso (FacOperacionDetaTmProforma.Detalle IsNot Nothing) Then
                 If variosFiltros Then
                     filtro += " and "
                 End If
                 filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacOperacionDetaTmProformaDetalle, FacOperacionDetaTmProforma.Detalle)
+                variosFiltros = True
             End If
 
             'If (FacOperacionDetaTmProforma IsNot Nothing) AndAlso (FacOperacionDetaTmProforma.NCheque <> "") Then

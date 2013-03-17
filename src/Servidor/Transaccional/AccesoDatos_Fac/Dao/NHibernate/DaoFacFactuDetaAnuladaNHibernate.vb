@@ -15,20 +15,20 @@ Namespace Dao.NHibernate
 
         Public Function ObtenerFacFactuDetaAnuladasFiltro(ByVal FacFactuDetaAnulada As FacFactuDetaAnulada) As System.Collections.Generic.IList(Of FacFactuDetaAnulada) Implements Contrato.IDaoFacFactuDetaAnulada.ObtenerFacFactuDetaAnuladasFiltro
             Dim FacFactuDetaAnuladas As IList(Of FacFactuDetaAnulada) = Nothing
-            'Dim variosFiltros As Boolean = False
-            'Dim filtro As String = ""
-            'Dim cabecera As String = String.Format(Recursos.ConsultasHQL.CabeceraObtenerFacFactuDetaAnulada)
+            Dim variosFiltros As Boolean = False
+            Dim filtro As String = ""
+            Dim cabecera As String = String.Format(Recursos.ConsultasHQL.CabeceraObtenerFacFactuDetaAnulada)
             ''If (FacFactuDetaAnulada IsNot Nothing) AndAlso (FacFactuDetaAnulada.Id <> 0) Then
             ''    filtro = String.Format(Recursos.ConsultasHQL.FiltroObtenerFacFactuDetaAnuladaId, FacFactuDetaAnulada.Id)
             ''    variosFiltros = True
             ''End If
-            'If (FacFactuDetaAnulada.Id IsNot Nothing) AndAlso (Not FacFactuDetaAnulada.Id.Id.Equals("")) Then
-            '    If variosFiltros Then
-            '        filtro += " and "
-            '    End If
-            '    filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacFactuDetaAnuladaId, FacFactuDetaAnulada.Id.Id)
-            '    variosFiltros = True
-            'End If
+            If (FacFactuDetaAnulada.Factura IsNot Nothing) AndAlso (FacFactuDetaAnulada.Factura.Id IsNot Nothing) Then
+                If variosFiltros Then
+                    filtro += " and "
+                End If
+                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacFactuDetaAnuladaFactura, FacFactuDetaAnulada.Factura.Id)
+                variosFiltros = True
+            End If
             'If (FacFactuDetaAnulada.Banco IsNot Nothing) AndAlso (Not FacFactuDetaAnulada.Banco.Id.Equals("")) Then
             '    If variosFiltros Then
             '        filtro += " and "
@@ -67,15 +67,15 @@ Namespace Dao.NHibernate
             '    filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacFactuDetaAnuladaFechaReg, fecha, fecha2)
             'End If
 
-            'Dim query As IQuery
-            'If (filtro = "") Then
-            '    query = Session.CreateQuery(cabecera)
-            'Else
-            '    cabecera = cabecera & " Where "
-            '    cabecera = cabecera & filtro
-            '    query = Session.CreateQuery(cabecera)
-            'End If
-            'FacFactuDetaAnuladas = query.List(Of FacFactuDetaAnulada)()
+            Dim query As IQuery
+            If (filtro = "") Then
+                query = Session.CreateQuery(cabecera)
+            Else
+                cabecera = cabecera & " Where "
+                cabecera = cabecera & filtro
+                query = Session.CreateQuery(cabecera)
+            End If
+            FacFactuDetaAnuladas = query.List(Of FacFactuDetaAnulada)()
 
             Return FacFactuDetaAnuladas
 
