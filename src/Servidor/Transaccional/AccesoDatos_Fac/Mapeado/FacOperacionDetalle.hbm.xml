@@ -3,7 +3,7 @@
                    assembly="Trascend.Bolet.ObjetosComunes"
                    namespace="Trascend.Bolet.ObjetosComunes.Entidades">
 
-  <class name="FacOperacionDetalle" table="FAC_OPERACION_DET ">
+  <class name="FacOperacionDetalle" table="FAC_OPERACION_DET">
     <composite-id>
       <key-property name="Id" column="IOPERACION" type="String" />
       <key-many-to-one name="Factura" column="CFACTURA" class="FacFactura" />
