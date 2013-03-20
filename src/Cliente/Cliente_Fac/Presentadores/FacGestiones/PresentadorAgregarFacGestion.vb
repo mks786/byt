@@ -200,6 +200,12 @@ Namespace Presentadores.FacGestiones
                 If DirectCast(Me._ventana.ConceptoRespuesta, ConceptoGestion) IsNot Nothing Then
                     FacGestion.ConceptoGestion2 = DirectCast(Me._ventana.ConceptoRespuesta, ConceptoGestion).Id
                 End If
+
+                If FacGestion.FechaGestion Is Nothing Then
+                    MessageBox.Show("Ingrese Fecha Gestion", "Error", MessageBoxButton.OK)
+                    Mouse.OverrideCursor = Nothing
+                    Exit Sub
+                End If
                 'If DirectCast(Me._ventana.Idioma, Idioma) IsNot Nothing Then
                 '    FacGestion.Idioma = If(Not DirectCast(Me._ventana.Idioma, Idioma).Id.Equals("NGN"), DirectCast(Me._ventana.Idioma, Idioma), Nothing)
                 'End If

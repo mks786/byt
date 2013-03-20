@@ -595,6 +595,7 @@ Namespace Presentadores.FacFacturaProformas
 
                         '_paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.fac_FacFacturaProformaModificado
                         If MessageBoxResult.Yes = MessageBox.Show(Recursos.MensajesConElUsuario.fac_FacFacturaProformaModificado & " Desea ir a la Pantalla Principal?", "", MessageBoxButton.YesNo, MessageBoxImage.Question) Then
+                            _paginaPrincipal.MensajeUsuario = ""
                             Me.Navegar(_paginaPrincipal)
                         End If
                     End If
@@ -815,6 +816,10 @@ Namespace Presentadores.FacFacturaProformas
 
                 If Not String.IsNullOrEmpty(Me._ventana.FechaCartaFiltrar) Then
                     cartaaux.Fecha = Me._ventana.FechaCartaFiltrar
+                End If
+
+                If Not String.IsNullOrEmpty(Me._ventana.ReferenciaCartaFiltrar) Then
+                    cartaaux.Referencia = Me._ventana.ReferenciaCartaFiltrar
                 End If
 
                 cartaaux.Asociado = DirectCast(Me._ventana.Asociado, Asociado)
@@ -1373,11 +1378,14 @@ Namespace Presentadores.FacFacturaProformas
                         FacFactuDetaProformasaux.Add(New FacFactuDetaProforma)
                         FacFactuDetaProformasaux(j) = FacFactuDetaProformas.Item(i)
                         j = j + 1
-
                     Else
-                        eliminar_operacion_detalle_tm_cdetalle(FacFactuDetaProformas.Item(i).Id)
-                        eliminar_operacion_detalle_proforma_cdetalle(FacFactuDetaProformas.Item(i).Id)
-                        eliminar_operacion_detalle_proforma_tm_cdetalle(FacFactuDetaProformas.Item(i).Id)
+                        Dim eliminar As Boolean
+                        eliminar = _FacFactuDetaProformasServicios.Eliminar(FacFactuDetaProformas.Item(i), UsuarioLogeado.Hash)
+                        If eliminar = True Then
+                            eliminar_operacion_detalle_tm_cdetalle(FacFactuDetaProformas.Item(i).Id)
+                            eliminar_operacion_detalle_proforma_cdetalle(FacFactuDetaProformas.Item(i).Id)
+                            eliminar_operacion_detalle_proforma_tm_cdetalle(FacFactuDetaProformas.Item(i).Id)
+                        End If
                         'aqui va lo de eliminar los operacion detale prof
                     End If
                 Next

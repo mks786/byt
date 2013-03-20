@@ -675,9 +675,15 @@ Namespace Presentadores.FacFacturaProformas
                     cartaaux.Fecha = Me._ventana.FechaCartaFiltrar
                 End If
 
+                If Not String.IsNullOrEmpty(Me._ventana.ReferenciaCartaFiltrar) Then
+                    cartaaux.Referencia = Me._ventana.ReferenciaCartaFiltrar
+                End If
+
                 cartaaux.Asociado = DirectCast(Me._ventana.Asociado, Asociado)
 
                 cartas = Me._cartasServicios.ObtenerCartasFiltro(cartaaux)
+
+                Me._ventana.FechaCartaFiltrar = Nothing
             Else
                 Me._ventana.Cartas = Nothing
                 MessageBox.Show("Error: No Existe Carta Relacionado a la Búsqueda")

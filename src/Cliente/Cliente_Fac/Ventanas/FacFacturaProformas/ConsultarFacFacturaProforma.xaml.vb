@@ -142,7 +142,7 @@ Namespace Ventanas.FacFacturaProformas
         End Sub
 
         Public Sub _btnLimpiar_Click()
-            Me._presentador.limpiar()
+            Me._presentador.Limpiar()
         End Sub
 
         Private Sub _btnRegresar_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
@@ -371,7 +371,7 @@ Namespace Ventanas.FacFacturaProformas
             If nom = "_btnImprimirMonedaOriginal" Then
                 Me._presentador.Imprimir(1)
             ElseIf nom = "_btnImprimirBsf" Then
-                Me._presentador.Imprimir(2)            
+                Me._presentador.Imprimir(2)
             End If
         End Sub
 
@@ -403,7 +403,7 @@ Namespace Ventanas.FacFacturaProformas
                     Me._presentador.BuscarAsociadoImp()
                 ElseIf nom = "_txtIdInteresado" Or nom = "_txtNombreInteresado" Then
                     Me._presentador.BuscarInteresado2()
-                ElseIf nom = "_txtIdCarta" Or nom = "_txtNombreCarta" Or nom = "_dpkFechaCarta" Then
+                ElseIf nom = "_txtIdCarta" Or nom = "_txtNombreCarta" Or nom = "_dpkFechaCarta" Or "_txtReferencia" Then
                     Me._presentador.BuscarCarta()
                 ElseIf nom = "_txtServicioId" Or nom = "_txtServicioCod_Cont" Or nom = "_txtServicioXreferencia" Then
                     Me._presentador.VerDepartamentoServicios()
@@ -653,8 +653,28 @@ Namespace Ventanas.FacFacturaProformas
             ControlesMostrarCarta()
         End Sub
 
+        'Private Sub ControlesMostrarCarta()
+        '    Me._txtCarta.Visibility = System.Windows.Visibility.Collapsed
+        '    Me._btnVerCarta.Visibility = System.Windows.Visibility.Collapsed
+        '    Me._lstCartas.Visibility = System.Windows.Visibility.Visible
+        '    Me._lstCartas.IsEnabled = True
+        '    Me._btnConsultarCarta.Visibility = System.Windows.Visibility.Visible
+        '    Me._txtIdCarta.Visibility = System.Windows.Visibility.Visible
+        '    'Me._txtNombreCarta.Visibility = System.Windows.Visibility.Visible
+        '    Me._lblIdCarta.Visibility = System.Windows.Visibility.Visible
+        '    Me._dpkFechaCarta.Visibility = System.Windows.Visibility.Visible
+        '    'Me._lblNombreCarta.Visibility = System.Windows.Visibility.Visible
+        '    ControlesOcultarInteresado()
+        '    ControlesOcultarAsociado()
+        '    ControlesOcultarAsociadoImp()
+        'End Sub
+
         Private Sub ControlesMostrarCarta()
             Me._txtCarta.Visibility = System.Windows.Visibility.Collapsed
+
+            Me.labelcarta.Visibility = System.Windows.Visibility.Collapsed
+            Me.titulocarta2.Visibility = System.Windows.Visibility.Collapsed
+
             Me._btnVerCarta.Visibility = System.Windows.Visibility.Collapsed
             Me._lstCartas.Visibility = System.Windows.Visibility.Visible
             Me._lstCartas.IsEnabled = True
@@ -664,9 +684,36 @@ Namespace Ventanas.FacFacturaProformas
             Me._lblIdCarta.Visibility = System.Windows.Visibility.Visible
             Me._dpkFechaCarta.Visibility = System.Windows.Visibility.Visible
             'Me._lblNombreCarta.Visibility = System.Windows.Visibility.Visible
+
+            Me._lblCartaRefencia.Visibility = System.Windows.Visibility.Visible
+            Me._txtReferencia.Visibility = System.Windows.Visibility.Visible
+            Me._lblFechaCarta.Visibility = System.Windows.Visibility.Visible
+            titulocarta.Visibility = System.Windows.Visibility.Visible
+
             ControlesOcultarInteresado()
             ControlesOcultarAsociado()
             ControlesOcultarAsociadoImp()
+        End Sub
+
+        Private Sub ControlesOcultarCarta()
+            Me._lstCartas.Visibility = System.Windows.Visibility.Collapsed
+            Me._btnConsultarCarta.Visibility = System.Windows.Visibility.Collapsed
+            Me._txtIdCarta.Visibility = System.Windows.Visibility.Collapsed
+            ' Me._txtNombreCarta.Visibility = System.Windows.Visibility.Collapsed
+            Me._txtCarta.Visibility = System.Windows.Visibility.Visible
+            Me.labelcarta.Visibility = System.Windows.Visibility.Visible
+            Me.titulocarta2.Visibility = System.Windows.Visibility.Visible
+            Me._btnVerCarta.Visibility = System.Windows.Visibility.Visible
+            Me._lblIdCarta.Visibility = System.Windows.Visibility.Collapsed
+            Me._dpkFechaCarta.Visibility = System.Windows.Visibility.Collapsed
+
+
+            Me._lblCartaRefencia.Visibility = System.Windows.Visibility.Collapsed
+            Me._txtReferencia.Visibility = System.Windows.Visibility.Collapsed
+            Me._lblFechaCarta.Visibility = System.Windows.Visibility.Collapsed
+            titulocarta.Visibility = System.Windows.Visibility.Collapsed
+
+            'Me._lblNombreCarta.Visibility = System.Windows.Visibility.Collapsed
         End Sub
 
         Public Sub PintarInteresado()
@@ -740,17 +787,17 @@ Namespace Ventanas.FacFacturaProformas
             ControlesOcultarCarta()
         End Sub
 
-        Private Sub ControlesOcultarCarta()
-            Me._lstCartas.Visibility = System.Windows.Visibility.Collapsed
-            Me._btnConsultarCarta.Visibility = System.Windows.Visibility.Collapsed
-            Me._txtIdCarta.Visibility = System.Windows.Visibility.Collapsed
-            'Me._txtNombreCarta.Visibility = System.Windows.Visibility.Collapsed
-            Me._txtCarta.Visibility = System.Windows.Visibility.Visible
-            Me._btnVerCarta.Visibility = System.Windows.Visibility.Visible
-            Me._lblIdCarta.Visibility = System.Windows.Visibility.Collapsed
-            Me._dpkFechaCarta.Visibility = System.Windows.Visibility.Collapsed
-            'Me._lblNombreCarta.Visibility = System.Windows.Visibility.Collapsed
-        End Sub
+        'Private Sub ControlesOcultarCarta()
+        '    Me._lstCartas.Visibility = System.Windows.Visibility.Collapsed
+        '    Me._btnConsultarCarta.Visibility = System.Windows.Visibility.Collapsed
+        '    Me._txtIdCarta.Visibility = System.Windows.Visibility.Collapsed
+        '    'Me._txtNombreCarta.Visibility = System.Windows.Visibility.Collapsed
+        '    Me._txtCarta.Visibility = System.Windows.Visibility.Visible
+        '    Me._btnVerCarta.Visibility = System.Windows.Visibility.Visible
+        '    Me._lblIdCarta.Visibility = System.Windows.Visibility.Collapsed
+        '    Me._dpkFechaCarta.Visibility = System.Windows.Visibility.Collapsed
+        '    'Me._lblNombreCarta.Visibility = System.Windows.Visibility.Collapsed
+        'End Sub
 
 
         Public Property NombreAsociado() As String Implements Contratos.FacFacturaProformas.IConsultarFacFacturaProforma.NombreAsociado
@@ -1327,7 +1374,7 @@ Namespace Ventanas.FacFacturaProformas
                         Me._GbMultiplesMarcas.Visibility = Windows.Visibility.Visible
                         Me._GbMultiplesPatentes.Visibility = Windows.Visibility.Collapsed
                         Me._GbAnualidades.Visibility = Windows.Visibility.Collapsed
-                        Me._GbDesgloseServicio.Visibility = Windows.Visibility.Collapsed                        
+                        Me._GbDesgloseServicio.Visibility = Windows.Visibility.Collapsed
                         ocultar_mostrar_marcas(1)
                         Me._Wp_Salir.Visibility = Windows.Visibility.Visible
 
@@ -1343,7 +1390,7 @@ Namespace Ventanas.FacFacturaProformas
                         Me._GbMultiplesMarcas.Visibility = Windows.Visibility.Visible
                         Me._GbMultiplesPatentes.Visibility = Windows.Visibility.Collapsed
                         Me._GbAnualidades.Visibility = Windows.Visibility.Collapsed
-                        Me._GbDesgloseServicio.Visibility = Windows.Visibility.Collapsed                        
+                        Me._GbDesgloseServicio.Visibility = Windows.Visibility.Collapsed
                         ocultar_mostrar_marcas(2)
                         Me._Wp_Salir.Visibility = Windows.Visibility.Visible
 
@@ -1359,7 +1406,7 @@ Namespace Ventanas.FacFacturaProformas
                         Me._GbMultiplesMarcas.Visibility = Windows.Visibility.Collapsed
                         Me._GbMultiplesPatentes.Visibility = Windows.Visibility.Visible
                         Me._GbAnualidades.Visibility = Windows.Visibility.Collapsed
-                        Me._GbDesgloseServicio.Visibility = Windows.Visibility.Collapsed                        
+                        Me._GbDesgloseServicio.Visibility = Windows.Visibility.Collapsed
                         ocultar_mostrar_Patentes(1)
                         Me._Wp_Salir.Visibility = Windows.Visibility.Visible
 
@@ -1375,7 +1422,7 @@ Namespace Ventanas.FacFacturaProformas
                         Me._GbMultiplesMarcas.Visibility = Windows.Visibility.Collapsed
                         Me._GbMultiplesPatentes.Visibility = Windows.Visibility.Visible
                         Me._GbAnualidades.Visibility = Windows.Visibility.Collapsed
-                        Me._GbDesgloseServicio.Visibility = Windows.Visibility.Collapsed                        
+                        Me._GbDesgloseServicio.Visibility = Windows.Visibility.Collapsed
                         ocultar_mostrar_Patentes(2)
                         Me._Wp_Salir.Visibility = Windows.Visibility.Visible
 
@@ -1615,7 +1662,7 @@ Namespace Ventanas.FacFacturaProformas
 
         Public Property pu As Double Implements Contratos.FacFacturaProformas.IConsultarFacFacturaProforma.Pu
             Get
-                Return getformatodouble(Me._txtPu.Text)
+                Return GetFormatoDouble(Me._txtPu.Text)
             End Get
             Set(ByVal value As Double)
                 Me._txtPu.Text = SetFormatoDouble(value)
@@ -1895,6 +1942,15 @@ Namespace Ventanas.FacFacturaProformas
             End Set
         End Property
 
+        Public Property ReferenciaCartaFiltrar As String Implements Contratos.FacFacturaProformas.IConsultarFacFacturaProforma.ReferenciaCartaFiltrar
+            Get
+                Return Me._txtReferencia.Text
+            End Get
+            Set(ByVal value As String)
+                Me._txtReferencia.Text = value
+            End Set
+        End Property
+
         Public Property BAuto As String Implements Contratos.FacFacturaProformas.IConsultarFacFacturaProforma.BAuto
             Get
                 Return _txtXiauto.Text
@@ -1923,7 +1979,7 @@ Namespace Ventanas.FacFacturaProformas
             Get
                 Return _txtSolicitud.Text
             End Get
-            Set(value As String)
+            Set(ByVal value As String)
                 _txtSolicitud.Text = value
             End Set
         End Property
@@ -1932,7 +1988,7 @@ Namespace Ventanas.FacFacturaProformas
             Get
                 Return _txtRegistro.Text
             End Get
-            Set(value As String)
+            Set(ByVal value As String)
                 _txtRegistro.Text = value
             End Set
         End Property
@@ -1959,5 +2015,6 @@ Namespace Ventanas.FacFacturaProformas
             Me._presentador.buscar_departamento_servicio_esp(cproformadetalle)
         End Sub
         Public Shared Mostrar_Detalle_Servicio As New RoutedCommand("Mostrar_Detalle_Servicio", GetType(ConsultarFacFacturaProforma))
+
     End Class
 End Namespace

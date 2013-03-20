@@ -28,7 +28,7 @@ Namespace Presentadores.Servicios
         Public Sub New(ByVal ventana As IConsultarServicio, ByVal servicio As Object)
             Try
                 Me._ventana = ventana
-                Me._ventana.Servicio = servicio.
+                Me._ventana.Servicio = servicio
                 Me._ventana.SetTipo = BuscarTipo(DirectCast(servicio, FacServicio).Itipo)
                 Me._ventana.SetLocalidad = BuscarLocalidad(DirectCast(servicio, FacServicio).Local)
                 Me._ventana.SetEstructurasMultiples = BuscarEstructurasMultiples(DirectCast(servicio, FacServicio).Codmult)

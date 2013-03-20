@@ -335,7 +335,7 @@ Namespace Presentadores.FacFacturaProformas
                         Mouse.OverrideCursor = Nothing
                         Exit Sub
                     Else
-                        If proformadetalle.Count <> operacionproformadetalle.Count Then ' verificar si el detalle e con el count o con la i
+                        If proformadetalle(i).NCantidad <> operacionproformadetalle.Count Then ' verificar si el detalle e con el count o con la i
                             r_val = 1
                             Mouse.OverrideCursor = Nothing
                             Exit Sub

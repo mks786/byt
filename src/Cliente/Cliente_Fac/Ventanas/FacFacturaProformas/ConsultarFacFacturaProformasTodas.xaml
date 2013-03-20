@@ -248,7 +248,10 @@
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Ourref}" Width="200">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Ourref" Content="Nuestra Referencia"/>
-                        </GridViewColumn>                        
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Inicial}" Width="200">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Inicial" Content="Inicial"/>
+                        </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Id}" Width="60">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Asociado.Id" Content="Id Asociado"/>
                         </GridViewColumn>

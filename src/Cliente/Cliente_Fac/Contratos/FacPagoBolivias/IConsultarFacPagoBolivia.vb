@@ -40,6 +40,9 @@ Namespace Contratos.FacPagoBolivias
         Property FechaCartaFiltrar() As String
 
         WriteOnly Property SetFormaPago() As String
+
+        WriteOnly Property SetTipoPago() As String
+
         ReadOnly Property GetFormaPago() As Char
 
         Property TextoBotonModificar() As String

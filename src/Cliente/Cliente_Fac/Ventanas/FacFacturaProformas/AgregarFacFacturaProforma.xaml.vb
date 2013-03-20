@@ -298,7 +298,7 @@ Namespace Ventanas.FacFacturaProformas
                     Me._presentador.BuscarAsociadoImp()
                 ElseIf nom = "_txtIdInteresado" Or nom = "_txtNombreInteresado" Then
                     Me._presentador.BuscarInteresado2()
-                ElseIf nom = "_txtIdCarta" Or nom = "_txtNombreCarta" Or nom = "_dpkFechaCarta" Then
+                ElseIf nom = "_txtIdCarta" Or nom = "_txtNombreCarta" Or nom = "_dpkFechaCarta" Or "_txtReferencia" Then
                     Me._presentador.BuscarCarta()
                 ElseIf nom = "_txtServicioId" Or nom = "_txtServicioCod_Cont" Or nom = "_txtServicioXreferencia" Then
                     Me._presentador.VerDepartamentoServicios()
@@ -549,15 +549,25 @@ Namespace Ventanas.FacFacturaProformas
 
         Private Sub ControlesMostrarCarta()
             Me._txtCarta.Visibility = System.Windows.Visibility.Collapsed
+
+            Me.labelcarta.Visibility = System.Windows.Visibility.Collapsed
+            Me.titulocarta2.Visibility = System.Windows.Visibility.Collapsed
+
             Me._btnVerCarta.Visibility = System.Windows.Visibility.Collapsed
             Me._lstCartas.Visibility = System.Windows.Visibility.Visible
             Me._lstCartas.IsEnabled = True
             Me._btnConsultarCarta.Visibility = System.Windows.Visibility.Visible
             Me._txtIdCarta.Visibility = System.Windows.Visibility.Visible
             'Me._txtNombreCarta.Visibility = System.Windows.Visibility.Visible
-            Me._lblIdCarta.Visibility = System.Windows.Visibility.Visible
+            Me._lblIdCarta.Visibility = System.Windows.Visibility.Visible            
             Me._dpkFechaCarta.Visibility = System.Windows.Visibility.Visible
             'Me._lblNombreCarta.Visibility = System.Windows.Visibility.Visible
+
+            Me._lblCartaRefencia.Visibility = System.Windows.Visibility.Visible
+            Me._txtReferencia.Visibility = System.Windows.Visibility.Visible
+            Me._lblFechaCarta.Visibility = System.Windows.Visibility.Visible
+            titulocarta.Visibility = System.Windows.Visibility.Visible
+
             ControlesOcultarInteresado()
             ControlesOcultarAsociado()
             ControlesOcultarAsociadoImp()
@@ -568,10 +578,19 @@ Namespace Ventanas.FacFacturaProformas
             Me._btnConsultarCarta.Visibility = System.Windows.Visibility.Collapsed
             Me._txtIdCarta.Visibility = System.Windows.Visibility.Collapsed
             ' Me._txtNombreCarta.Visibility = System.Windows.Visibility.Collapsed
-            Me._txtCarta.Visibility = System.Windows.Visibility.Visible
+            Me._txtCarta.Visibility = System.Windows.Visibility.Visible            
+            Me.labelcarta.Visibility = System.Windows.Visibility.Visible
+            Me.titulocarta2.Visibility = System.Windows.Visibility.Visible
             Me._btnVerCarta.Visibility = System.Windows.Visibility.Visible
             Me._lblIdCarta.Visibility = System.Windows.Visibility.Collapsed
             Me._dpkFechaCarta.Visibility = System.Windows.Visibility.Collapsed
+
+
+            Me._lblCartaRefencia.Visibility = System.Windows.Visibility.Collapsed
+            Me._txtReferencia.Visibility = System.Windows.Visibility.Collapsed
+            Me._lblFechaCarta.Visibility = System.Windows.Visibility.Collapsed
+            titulocarta.Visibility = System.Windows.Visibility.Collapsed
+
             'Me._lblNombreCarta.Visibility = System.Windows.Visibility.Collapsed
         End Sub
 
@@ -797,6 +816,15 @@ Namespace Ventanas.FacFacturaProformas
             End Get
             Set(ByVal value As String)
                 Me._dpkFechaCarta.Text = value
+            End Set
+        End Property
+
+        Public Property ReferenciaCartaFiltrar() As String Implements Contratos.FacFacturaProformas.IAgregarFacFacturaProforma.ReferenciaCartaFiltrar
+            Get
+                Return Me._txtReferencia.Text
+            End Get
+            Set(ByVal value As String)
+                Me._txtReferencia.Text = value
             End Set
         End Property
 

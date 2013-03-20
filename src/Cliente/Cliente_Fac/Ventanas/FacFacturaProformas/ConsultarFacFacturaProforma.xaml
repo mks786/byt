@@ -14,6 +14,9 @@
         <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
         <conv:DosValresAUno x:Key="convertirADosValores"></conv:DosValresAUno>
         <conv:DosValresAUno_2 x:Key="convertirADosValores_2"></conv:DosValresAUno_2>
+        <Style TargetType="{x:Type DatePickerTextBox}">
+            <Setter Property="Text" Value="{x:Static recurso:Etiquetas.facdpkText}" />
+        </Style>
         <Style x:Key="ElementInError" TargetType="{x:Type FrameworkElement}">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="True">
@@ -618,11 +621,11 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
 
-                                <Label>
+                                <Label Name="labelcarta">
                                     <TextBlock  Grid.Column="0" Width="60"  Grid.Row="0" Text="" />
                                 </Label>
 
-                                <Label Grid.Column="1" Width="70" HorizontalAlignment="Right" Height="25">
+                                <Label Name="titulocarta2" Grid.Column="1" Grid.Row="0"  Width="70" HorizontalAlignment="Right" Height="25">
                                     <TextBlock Text="{x:Static recurso:Etiquetas.lblCarta}"  HorizontalAlignment="Right" />
                                 </Label>
 
@@ -634,29 +637,50 @@
                                     <Button Name="_btnVerCarta" VerticalAlignment="Bottom" Width="60" Click="_btnVerCarta_Click">Ver Carta</Button>
                                 </WrapPanel>
 
-                                <custom:ByTTextBox Grid.Column="3" Grid.Row="0" SoloNumero="True" Name="_txtIdCarta" VerticalAlignment="Center" 
-                         HorizontalAlignment="Left" Width="40" MaxLength="8"  Visibility="Collapsed" KeyDown="_Consultar_Enter" FontSize="9"></custom:ByTTextBox>
+                                <WrapPanel Orientation="Horizontal" Grid.Column="0" Height="20" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Left">
+                                    <Label Name="titulocarta"  Visibility="Collapsed" Grid.Column="0" Width="50" HorizontalAlignment="Right" Height="25">
+                                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCarta}"  HorizontalAlignment="Left" />
+                                    </Label>
+                                    <Label Name="_lblIdCarta" Width="20" Grid.Row="0" HorizontalAlignment="Left"  VerticalAlignment="Center" Visibility="Collapsed" FontSize="9">
+                                        <TextBlock Text="{x:Static recurso:Etiquetas.lblId}" Width="20"/>
+                                    </Label>
+                                    <custom:ByTTextBox  SoloNumero="True" Name="_txtIdCarta" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="70" MaxLength="8"  Visibility="Collapsed" KeyDown="_Consultar_Enter" FontSize="9"></custom:ByTTextBox>
+                                </WrapPanel>
 
-                                <DatePicker Grid.Row="0" Grid.Column="5" Visibility="Collapsed" KeyDown="_Consultar_Enter" Name="_dpkFechaCarta" Width="90"  Height="20" Focusable="False" BorderBrush="{x:Null}" HorizontalAlignment="Left" FontSize="9">
-                                </DatePicker>
+                                <WrapPanel Orientation="Horizontal" Grid.Column="2" Height="20" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Left">
+                                    <Label Name="_lblCartaRefencia" Grid.Row="0" HorizontalAlignment="Left"  VerticalAlignment="Center" Visibility="Collapsed" FontSize="9">
+                                        <TextBlock Text="Referen" />
+                                    </Label>
+                                    <custom:ByTTextBox Name="_txtReferencia" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="70" MaxLength="8"  Visibility="Collapsed" KeyDown="_Consultar_Enter" FontSize="9"></custom:ByTTextBox>
+                                </WrapPanel>
+
+                                <WrapPanel Orientation="Horizontal" Grid.Column="4" Height="20" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Left">
+                                    <Label Name="_lblFechaCarta" Grid.Row="0" HorizontalAlignment="Left"  VerticalAlignment="Center" Visibility="Collapsed" FontSize="9">
+                                        <TextBlock Text="Fecha" />
+                                    </Label>
+                                    <DatePicker Grid.Row="0" Grid.Column="5" Visibility="Collapsed" KeyDown="_Consultar_Enter" Name="_dpkFechaCarta" Width="90"  Height="20" Focusable="False" BorderBrush="{x:Null}" HorizontalAlignment="Left" FontSize="9">
+                                    </DatePicker>
+
+                                    <Button Name="_btnConsultarCarta" Width="55" IsDefault="False" Grid.Row="0" Grid.Column="6" Height="20" HorizontalAlignment="Right" Click="_btnConsultar" Visibility="Collapsed" FontSize="9">
+                                        <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                                    </Button>
+                                </WrapPanel>
+
                                 <!--<custom:ByTTextBox Grid.Column="2" Grid.Row="0" Name="_txtNombreCarta" VerticalAlignment="Center" 
                          HorizontalAlignment="Right" Width="50" MaxLength="255" Visibility="Collapsed" KeyDown="_Consultar_Enter" FontSize="9"></custom:ByTTextBox>-->
 
-                                <Label Name="_lblIdCarta" Grid.Column="2" Width="20" Grid.Row="0" HorizontalAlignment="Left"  VerticalAlignment="Center" Visibility="Collapsed" FontSize="9">
-                                    <TextBlock Text="{x:Static recurso:Etiquetas.lblId}" Width="20"/>
-                                </Label>
+
                                 <!--<Label Name="_lblNombreCarta" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed" FontSize="9">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                             </Label>-->
-                                <Button Name="_btnConsultarCarta" Width="55" IsDefault="False" Grid.Row="0" Grid.Column="6" Height="20" HorizontalAlignment="Right" Click="_btnConsultar" Visibility="Collapsed" FontSize="9">
-                                    <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
-                                </Button>
                                 <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="5" Name="_lstCartas" ItemsSource="{Binding}" 
                       SelectionMode="Single" IsEnabled="False"
                       Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150" MouseDoubleClick="_lstCartas_MouseDoubleClick" VerticalAlignment="Top">
                                     <ListView.View>
                                         <GridView>
-                                            <GridViewColumn Width="45">
+                                            <GridViewColumn Width="75">
                                                 <GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
@@ -668,11 +692,14 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn DisplayMemberBinding="{Binding Path=Medio}" Width="150">
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path=Medio}" Width="200">
                                                 <GridViewColumnHeader Tag="Medio" Content="Medio"/>
                                             </GridViewColumn>
-                                            <GridViewColumn DisplayMemberBinding="{Binding Path=Referencia}" Width="250">
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path=Referencia}" Width="300">
                                                 <GridViewColumnHeader Tag="Referencia" Content="Referencia"/>
+                                            </GridViewColumn>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path=Fecha, StringFormat={}{0:dd/MM/yyyy}}" Width="70">
+                                                <GridViewColumnHeader  Tag="Fecha" Content="Fecha"/>
                                             </GridViewColumn>
                                         </GridView>
                                     </ListView.View>

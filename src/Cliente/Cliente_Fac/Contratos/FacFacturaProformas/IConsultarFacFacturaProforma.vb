@@ -83,6 +83,8 @@ Namespace Contratos.FacFacturaProformas
 
         Property NombrePatenteFiltrar() As String
 
+        Property ReferenciaCartaFiltrar() As String
+
         Property idCartaFiltrar() As String
 
         Property NombreCarta() As String

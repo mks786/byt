@@ -406,5 +406,11 @@ Namespace Ventanas.FacPagoBolivias
                 Me._cbxPagoPag.Text = value
             End Set
         End Property
+
+        Public WriteOnly Property SetTipoPago() As String Implements IConsultarFacPagoBolivia.SetTipoPago
+            Set(ByVal value As String)
+                Me._cbxPagoRec.Text = value
+            End Set
+        End Property
     End Class
 End Namespace

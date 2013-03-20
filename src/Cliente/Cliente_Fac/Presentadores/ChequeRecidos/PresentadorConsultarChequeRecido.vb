@@ -69,10 +69,11 @@ Namespace Presentadores.ChequeRecidos
 
                 'Dim bancogs As IList(Of BancoG) = Me._bancogsServicios.ConsultarTodos()
                 Dim bancogs As IList(Of BancoG) = Me._bancogsServicios.ObtenerBancoGsFiltro(Nothing)
-                'Dim primerabancog As New BancoG()
-                'primerabancog.Id = Integer.MinValue
-                'bancogs.Insert(0, primerabancog)
-                Me._ventana.BancoGs = BuscarBancoG(bancogs, ChequeRecido.BancoG)
+                Dim primerabancog As New BancoG()
+                primerabancog.Id = Integer.MinValue
+                bancogs.Insert(0, primerabancog)
+                Me._ventana.BancoGs = bancogs
+                Me._ventana.BancoG = BuscarBancoG(bancogs, ChequeRecido.BancoG)
 
 
                 Dim asociadoaux As New Asociado

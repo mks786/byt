@@ -966,7 +966,7 @@ Namespace Presentadores.FacFacturas
                         Mouse.OverrideCursor = Nothing
                         Exit Sub
                     Else
-                        If proformadetalle.Count <> operacionproformadetalle.Count Then ' verificar si el detalle e con el count o con la i
+                        If proformadetalle(i).NCantidad <> operacionproformadetalle.Count Then ' verificar si el detalle e con el count o con la i
                             r_val = 1
                             Mouse.OverrideCursor = Nothing
                             Exit Sub
@@ -2999,7 +2999,7 @@ Namespace Presentadores.FacFacturas
         End Sub
 
         Public Sub agregar_modificar_operacion_detalle_(ByVal idfactura As String)
-            Dim FacOperacionDeta As List(Of FacOperacionDetalle)
+            'Dim FacOperacionDeta As List(Of FacOperacionDetalle)
             Dim FacOperacionDetaaux As New FacOperacionDetalle
             Dim factura As New FacFactura
             factura.Id = idfactura
@@ -3011,17 +3011,17 @@ Namespace Presentadores.FacFacturas
             For i As Integer = 0 To FacFactuDetas.Count - 1
                 'if (itiposerv.fac_detalles_pro != "C" & itiposerv.fac_detalles_pro != "E") & (bsel.fac_detalles_pro = 1 | bsel.fac_detalles_pro = "T")
                 If (FacFactuDetas(i).TipoServicio <> "C" And FacFactuDetas(i).TipoServicio <> "E") And (FacFactuDetas(i).BBsel = True) Then
-                    FacOperacionDetaaux.Factura = factura
-                    FacOperacionDeta = _FacOperacionDetaServicios.ObtenerFacOperacionDetallesFiltro(FacOperacionDetaaux)
-                    If FacOperacionDeta.Count <= 0 Then
-                        Dim FacOperacionDetaaux2 As New FacOperacionDetalle
-                        FacOperacionDetaaux2.Codigo = FacFactuDetas(i).Codigo
-                        FacOperacionDetaaux2.Factura = FacFactuDetas(i).Factura
-                        FacOperacionDetaaux2.Detalle = FacFactuDetas(i).Id
-                        FacOperacionDetaaux2.Id = "ND"
-                        FacOperacionDetaaux2.Servicio = FacFactuDetas(i).Servicio
-                        guardar = _FacOperacionDetaServicios.InsertarOModificar(FacOperacionDetaaux2, UsuarioLogeado.Hash)
-                    End If
+                    'FacOperacionDetaaux.Factura = factura
+                    'FacOperacionDeta = _FacOperacionDetaServicios.ObtenerFacOperacionDetallesFiltro(FacOperacionDetaaux)
+                    'If FacOperacionDeta.Count <= 0 Then
+                    Dim FacOperacionDetaaux2 As New FacOperacionDetalle
+                    FacOperacionDetaaux2.Codigo = FacFactuDetas(i).Codigo
+                    FacOperacionDetaaux2.Factura = FacFactuDetas(i).Factura
+                    FacOperacionDetaaux2.Detalle = FacFactuDetas(i).Id
+                    FacOperacionDetaaux2.Id = "ND"
+                    FacOperacionDetaaux2.Servicio = FacFactuDetas(i).Servicio
+                    guardar = _FacOperacionDetaServicios.InsertarOModificar(FacOperacionDetaaux2, UsuarioLogeado.Hash)
+                    'End If
                 End If
             Next
         End Sub

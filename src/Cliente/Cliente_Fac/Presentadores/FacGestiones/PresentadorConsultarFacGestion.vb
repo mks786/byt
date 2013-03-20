@@ -120,13 +120,15 @@ Namespace Presentadores.FacGestiones
                 If FacGestion.Asociado IsNot Nothing Then
                     asociadoaux.Id = FacGestion.Asociado.Id
                     asociado = Me._asociadosServicios.ObtenerAsociadosFiltro(asociadoaux)
-                    Me._ventana.Asociados = asociado
-                    Me._ventana.Asociado = asociado(0)
-                    Me._ventana.NombreAsociado = asociado(0).Id & " - " & asociado(0).Nombre
+                    If asociado.Count > 0 Then
+                        Me._ventana.Asociados = asociado
+                        Me._ventana.Asociado = asociado(0)
+                        Me._ventana.NombreAsociado = asociado(0).Id & " - " & asociado(0).Nombre
+                    End If
                 End If
 
                 Dim TipoClientes As IList(Of TipoCliente) = Me._TipoClienteServicios.ConsultarTodos()
-                Me._ventana.TipoClientes = TipoClientes                
+                Me._ventana.TipoClientes = TipoClientes
                 Me._ventana.TipoCliente = Me.BuscarTipoCliente(TipoClientes, FacGestion.TipoAsociado)
 
 
@@ -135,17 +137,21 @@ Namespace Presentadores.FacGestiones
                 If FacGestion.CodigoResp IsNot Nothing Then
                     Cartaaux.Id = FacGestion.CodigoResp
                     Carta = Me._cartasServicios.ObtenerCartasFiltro(Cartaaux)
-                    Me._ventana.Cartas = Carta
-                    Me._ventana.Carta = Carta(0)
-                    Me._ventana.NombreCarta = Carta(0).Id & " - " & Carta(0).Medio & " - " & FormatDateTime(Carta(0).Fecha, DateFormat.ShortDate)
+                    If Carta.Count > 0 Then
+                        Me._ventana.Cartas = Carta
+                        Me._ventana.Carta = Carta(0)
+                        Me._ventana.NombreCarta = Carta(0).Id & " - " & Carta(0).Medio & " - " & FormatDateTime(Carta(0).Fecha, DateFormat.ShortDate)
+                    End If
                 End If
 
                 If FacGestion.Respuesta IsNot Nothing Then
                     Cartaaux.Id = FacGestion.Respuesta
                     Carta = Me._cartasServicios.ObtenerCartasFiltro(Cartaaux)
-                    Me._ventana.Cartas_2 = Carta
-                    Me._ventana.Carta_2 = Carta(0)
-                    Me._ventana.NombreCarta_2 = Carta(0).Id & " - " & Carta(0).Medio & " - " & FormatDateTime(Carta(0).Fecha, DateFormat.ShortDate)
+                    If Carta.Count > 0 Then
+                        Me._ventana.Cartas_2 = Carta
+                        Me._ventana.Carta_2 = Carta(0)
+                        Me._ventana.NombreCarta_2 = Carta(0).Id & " - " & Carta(0).Medio & " - " & FormatDateTime(Carta(0).Fecha, DateFormat.ShortDate)
+                    End If
                 End If
 
 
@@ -302,6 +308,12 @@ Namespace Presentadores.FacGestiones
                     End If
                     If DirectCast(Me._ventana.ConceptoRespuesta, ConceptoGestion) IsNot Nothing Then
                         FacGestion.ConceptoGestion2 = DirectCast(Me._ventana.ConceptoRespuesta, ConceptoGestion).Id
+                    End If
+
+                    If FacGestion.FechaGestion Is Nothing Then
+                        MessageBox.Show("Ingrese Fecha Gestion", "Error", MessageBoxButton.OK)
+                        Mouse.OverrideCursor = Nothing
+                        Exit Sub
                     End If
                     'If DirectCast(Me._ventana.Idioma, Idioma) IsNot Nothing Then
                     '    FacGestion.Idioma = If(Not DirectCast(Me._ventana.Idioma, Idioma).Id.Equals("NGN"), DirectCast(Me._ventana.Idioma, Idioma), Nothing)

@@ -35,6 +35,15 @@ Namespace Presentadores.FacPagoBolivias
             Try
                 Me._ventana = ventana
                 Me._ventana.FacPagoBolivia = FacPagoBolivia
+                Me._ventana.SetFormaPago = ""
+                Me._ventana.SetFormaPago = BuscarFormaPago(FacPagoBolivia.PagoPag)
+
+                Me._ventana.SetFormaPago = ""
+                Me._ventana.SetFormaPago = BuscarFormaPago(FacPagoBolivia.PagoPag)
+
+                Me._ventana.SetTipoPago = ""
+                Me._ventana.SetTipoPago = BuscarTipoPago(FacPagoBolivia.PagoRec)
+
                 _FacPagoBolivia = DirectCast(FacPagoBolivia, FacPagoBolivia)
                 'Me._ventana.Region = DirectCast(Me._ventana.FacPagoBolivia, FacPagoBolivia).Region
                 Me._FacPagoBoliviaServicios = DirectCast(Activator.GetObject(GetType(IFacPagoBoliviaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacPagoBoliviaServicios")), IFacPagoBoliviaServicios)
@@ -76,8 +85,7 @@ Namespace Presentadores.FacPagoBolivias
                 If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
                     logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
                 End If
-                '#End Region
-                Me._ventana.HabilitarCampos = False                
+                '#End Region                
                 Me.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.fac_titleConsultarFacPagoBolivia, Recursos.Ids.fac_ConsultarFacPagoBolivia)
 
                 Dim FacPagoBolivia As FacPagoBolivia = DirectCast(Me._ventana.FacPagoBolivia, FacPagoBolivia)
@@ -113,10 +121,8 @@ Namespace Presentadores.FacPagoBolivias
                 'Me._ventana.Banco = FacCredito.Banco
                 Me._ventana.Banco = Me.BuscarBancoG(bancospag, FacPagoBolivia.BancoPag)
 
-                Me._ventana.SetFormaPago = BuscarFormaPago(FacPagoBolivia.PagoPag)
-
                 Me._ventana.FocoPredeterminado()
-
+                Me._ventana.HabilitarCampos = False
                 '#Region "trace"
                 If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
                     logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
