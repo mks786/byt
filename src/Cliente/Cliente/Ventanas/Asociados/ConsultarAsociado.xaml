@@ -223,7 +223,7 @@
                         <Button  Grid.Column="1" Grid.Row="12" Name="_btnCXPINTDatos" Click="_btnCXPINTDatos_Click"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="90" IsEnabled="True">
                             <TextBlock Name="_txbCXPINTDatos" Text="{x:Static recurso:Etiquetas.btnCXPINT}"/>
                         </Button>
-                        <custom:ByTTextBox Grid.Column="2" Grid.Row="12" Name="_txtSaldoPendienteDatos" VerticalAlignment="Center" 
+                        <custom:ByTTextBox Grid.Column="2" Grid.Row="12" Name="_txtSaldoPendienteDatos" HorizontalContentAlignment="Right"  VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="100" Text="{Binding Path=SaldoPendiente}" Margin="20,0,0,0" IsEnabled="True"></custom:ByTTextBox>
 
                         <Button  Grid.Column="1" Grid.Row="13" Click="_btnSaldo_Click"  Name="_btnSaldosDatos" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="90" IsEnabled="True">
@@ -249,19 +249,19 @@
                         <Label Grid.Column="1" Grid.Row="14" VerticalAlignment="Top" HorizontalContentAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblVencidoA}"/>
                         </Label>
-                        <custom:ByTTextBox Grid.Column="1" Grid.Row="14" Name="_txtVencidoADatos" VerticalAlignment="Bottom" 
+                        <custom:ByTTextBox Grid.Column="1" Width="120" Grid.Row="14" Name="_txtVencidoADatos" HorizontalContentAlignment="Right"  VerticalAlignment="Bottom" 
                           Grid.ColumnSpan="1" Margin="15,0,15,18" Text="{Binding Path=VencidoA}" IsEnabled="True"></custom:ByTTextBox>
 
-                        <Label Grid.Column="2" Grid.Row="14" VerticalAlignment="Top" HorizontalContentAlignment="Left" Margin="40,0,0,0">
+                        <Label Grid.Column="2" Grid.Row="14" VerticalAlignment="Top" HorizontalContentAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPorVencer}"/>
                         </Label>
-                        <custom:ByTTextBox Grid.Column="2" Grid.Row="14" Name="_txtPorVencerDatos" VerticalAlignment="Bottom" 
+                        <custom:ByTTextBox Grid.Column="2" Width="120"  Grid.Row="14" Name="_txtPorVencerDatos" HorizontalContentAlignment="Right" HorizontalAlignment="Center"  VerticalAlignment="Bottom" 
                          Grid.ColumnSpan="1" Margin="15,0,15,18" Text="{Binding Path=PorVencer}" IsEnabled="True"></custom:ByTTextBox>
 
-                        <Label Grid.Column="3" Grid.Row="14" VerticalAlignment="Top" HorizontalContentAlignment="Left" Margin="40,0,0,0">
+                        <Label Grid.Column="3" Grid.Row="14" VerticalAlignment="Top" HorizontalContentAlignment="center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblTotal}"/>
                         </Label>
-                        <custom:ByTTextBox Grid.Column="3" Grid.Row="14" Name="_txtTotalDatos" VerticalAlignment="Bottom" 
+                        <custom:ByTTextBox Grid.Column="3"  Width="120"  Grid.Row="14" Name="_txtTotalDatos" HorizontalContentAlignment="Right" HorizontalAlignment="Center"  VerticalAlignment="Bottom" 
                          Grid.ColumnSpan="1" Margin="15,0,15,18" Text="{Binding Path=Total}" IsEnabled="True"></custom:ByTTextBox>
 
                         <!--fin control de facturacion-->
@@ -554,7 +554,7 @@
                              Height="25" Width="90" IsEnabled="True">
                             <TextBlock Name="_txbCXPINTAdministracion" Text="{x:Static recurso:Etiquetas.btnCXPINT}"/>
                         </Button>
-                        <custom:ByTTextBox Grid.Column="2" Grid.Row="12" Name="_txtSaldoPendienteAdministracion" VerticalAlignment="Center" 
+                        <custom:ByTTextBox Grid.Column="2" Grid.Row="12" Name="_txtSaldoPendienteAdministracion" HorizontalContentAlignment="Right"  VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="100" Text="{Binding Path=SaldoPendiente}" Margin="20,0,0,0" IsEnabled="True"></custom:ByTTextBox>
 
                         <Button  Grid.Column="1" Grid.Row="13"  Click="_btnSaldo_Click"  Name="_btnSaldosAdministracion" HorizontalAlignment="Center" VerticalAlignment="Center" 
@@ -580,19 +580,19 @@
                         <Label Grid.Column="1" Grid.Row="14" VerticalAlignment="Top" HorizontalContentAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblVencidoA}"/>
                         </Label>
-                        <custom:ByTTextBox Grid.Column="1" Grid.Row="14" Name="_txtVencidoAAdministracion" VerticalAlignment="Bottom" 
+                        <custom:ByTTextBox Grid.Column="1"  Width="120" Grid.Row="14" Name="_txtVencidoAAdministracion" HorizontalContentAlignment="Right"  VerticalAlignment="Bottom" 
                           Margin="15,0,15,18" Text="{Binding Path=VencidoA}" IsEnabled="True"></custom:ByTTextBox>
 
-                        <Label Grid.Column="2" Grid.Row="14" VerticalAlignment="Top" HorizontalContentAlignment="Left">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPorVencer}" Margin="40,0,0,0"/>
+                        <Label Grid.Column="2" Grid.Row="14" VerticalAlignment="Top" HorizontalContentAlignment="center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPorVencer}" />
                         </Label>
-                        <custom:ByTTextBox Grid.Column="2" Grid.Row="14" Name="_txtPorVencerAdministracion" VerticalAlignment="Bottom" 
+                        <custom:ByTTextBox Grid.Column="2" Width="120"  Grid.Row="14" Name="_txtPorVencerAdministracion" HorizontalContentAlignment="Right"  VerticalAlignment="Bottom" 
                            Text="{Binding Path=PorVencer}" Margin="15,0,15,18" IsEnabled="True"></custom:ByTTextBox>
 
-                        <Label Grid.Column="3" Grid.Row="14" VerticalAlignment="Top" HorizontalContentAlignment="Left" Margin="40,0,0,0">
+                        <Label Grid.Column="3" Grid.Row="14" VerticalAlignment="Top" HorizontalContentAlignment="center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblTotal}"/>
                         </Label>
-                        <custom:ByTTextBox Grid.Column="3" Grid.Row="14" Name="_txtTotalAdministracion" VerticalAlignment="Bottom" 
+                        <custom:ByTTextBox Width="120"  Grid.Column="3" Grid.Row="14" Name="_txtTotalAdministracion" HorizontalContentAlignment="Right"  VerticalAlignment="Bottom" 
                           Margin="15,0,15,18" Text="{Binding Path=Total}" IsEnabled="True"></custom:ByTTextBox>
                         <!--fin control de facturacion-->
 

@@ -472,8 +472,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         {
             set
             {
-                this._txtVencidoADatos.Text = value;
-                this._txtVencidoAAdministracion.Text = value;
+                this._txtVencidoADatos.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value));
+                this._txtVencidoAAdministracion.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value));
             }
         }
 
@@ -481,8 +481,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         {
             set
             {
-                this._txtPorVencerDatos.Text = value;
-                this._txtPorVencerAdministracion.Text = value;
+                this._txtPorVencerDatos.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value));
+                this._txtPorVencerAdministracion.Text =_presentador.SetFormatoDouble2(System.Convert.ToDouble( value));
             }
         }
 
@@ -490,8 +490,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         {
             set
             {
-                this._txtTotalDatos.Text = value;
-                this._txtTotalAdministracion.Text = value;
+                this._txtTotalDatos.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value));
+                this._txtTotalAdministracion.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value));
             }
         }
 

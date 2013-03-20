@@ -2023,18 +2023,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         }
 
         public string SaldoVencidoSolicitud
-        {            
-            set { this._txtSaldoVencidoSolicitud.Text  = value; }
+        {
+            set { this._txtSaldoVencidoSolicitud.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value)); }
         }
 
         public string SaldoPorVencerSolicitud
         {
-            set { this._txtSaldoPorVencerSolicitud.Text = value; }
+
+            set { this._txtSaldoPorVencerSolicitud.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value)); }
         }
 
         public string TotalSolicitud
         {
-            set { this._txtTotalSolicitud.Text = value; }
+            set { this._txtTotalSolicitud.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value)); }
         }
 
     }

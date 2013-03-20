@@ -2258,17 +2258,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         
         public string SaldoVencidoSolicitud
         {
-            set { this._txtSaldoVencido.Text = value; }
+            set { this._txtSaldoVencido.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value)); }
         }
 
         public string SaldoPorVencerSolicitud
         {
-            set { this._txtSaldoPorVencer.Text = value; }
+            set { this._txtSaldoPorVencer.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value)); }
         }
 
         public string TotalSolicitud
         {
-            set { this._txtTotalDeuda.Text = value; }
+            set { this._txtTotalDeuda.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value)); }
         }
 
     }

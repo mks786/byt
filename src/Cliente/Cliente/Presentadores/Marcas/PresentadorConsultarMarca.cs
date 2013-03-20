@@ -409,9 +409,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 Renovacion renovacion = new Renovacion();
                 renovacion.Marca = marca;
-                IList<Renovacion> renovaciones = this._renovacionServicios.ObtenerRenovacionFiltro(renovacion);
-
-                CalcularSaldos();
+                IList<Renovacion> renovaciones = this._renovacionServicios.ObtenerRenovacionFiltro(renovacion);                
 
                 if (renovaciones.Count > 0)
                     this._ventana.PintarRenovacion();
@@ -494,6 +492,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.BorrarCeros();
 
                 this._ventana.FocoPredeterminado();
+
+                CalcularSaldos();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

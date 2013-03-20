@@ -676,19 +676,19 @@
                             <Label Name="_lblSaldoVencidoSolicitud" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblSaldoVencido}"/>
                             </Label>
-                            <custom:ByTTextBox   Grid.Column="3" Grid.Row="0" Name="_txtSaldoVencidoSolicitud" VerticalAlignment="Center" 
+                            <custom:ByTTextBox   Grid.Column="3" Grid.Row="0" Name="_txtSaldoVencidoSolicitud" HorizontalContentAlignment="Right" VerticalAlignment="Center" 
                                             MaxLength="255"></custom:ByTTextBox>
 
                             <Label Name="_lblSaldoPorVencerSolicitud" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblSaldoPorVencer}"/>
                             </Label>
-                            <custom:ByTTextBox   Grid.Column="3" Grid.Row="1" Name="_txtSaldoPorVencerSolicitud" VerticalAlignment="Center" 
+                            <custom:ByTTextBox   Grid.Column="3" Grid.Row="1" Name="_txtSaldoPorVencerSolicitud" HorizontalContentAlignment="Right" VerticalAlignment="Center" 
                                             MaxLength="255"></custom:ByTTextBox>
 
                             <Label Name="_lblTotalSolicitud" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblTotal}"/>
                             </Label>
-                            <custom:ByTTextBox   Grid.Column="3" Grid.Row="2" Name="_txtTotalSolicitud" VerticalAlignment="Center" 
+                            <custom:ByTTextBox   Grid.Column="3" Grid.Row="2" Name="_txtTotalSolicitud" HorizontalContentAlignment="Right" VerticalAlignment="Center" 
                                             MaxLength="255"></custom:ByTTextBox>
 
                         </Grid>

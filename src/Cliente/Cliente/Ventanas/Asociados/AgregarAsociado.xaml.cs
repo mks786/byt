@@ -218,29 +218,29 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
 
         public string SaldoVencidoSolicitud
         {
-            set { this._txtVencidoADatos.Text = value;
-            this._txtVencidoAAdministracion.Text = value;
+            set { this._txtVencidoADatos.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value));
+            this._txtVencidoAAdministracion.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value));
             }
         }
 
         public string SaldoPorVencerSolicitud
         {
-            set { this._txtPorVencerDatos.Text = value;
-            this._txtPorVencerAdministracion.Text = value;
+            set { this._txtPorVencerDatos.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value));
+            this._txtPorVencerAdministracion.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value));
             }
         }
 
         public string TotalSolicitud
         {
-            set { this._txtTotalDatos.Text = value;
-            this._txtTotalAdministracion.Text = value;
+            set { this._txtTotalDatos.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value));
+            this._txtTotalAdministracion.Text =_presentador.SetFormatoDouble2(System.Convert.ToDouble( value));
             }
         }
 
         public string MSaldoPendiente
         {
-            set { this._txtSaldoPendienteDatos.Text = value;
-            this._txtSaldoPendienteAdministracion.Text = value;
+            set { this._txtSaldoPendienteDatos.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value));
+            this._txtSaldoPendienteAdministracion.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value));
             }
         }
 

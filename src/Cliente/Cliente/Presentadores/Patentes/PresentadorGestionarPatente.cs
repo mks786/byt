@@ -341,9 +341,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.BoletinesConcesionDatos = boletines;
                     this._ventana.BoletinConcesionDatos = this.BuscarBoletin(boletines, _patente.BoletinConcesion);
                     this._ventana.BoletinPublicacionDatos = this.BuscarBoletin(boletines, _patente.BoletinPublicacion);
-                    this._ventana.BoletinOrdenPublicacionDatos = this.BuscarBoletin(boletines, _patente.BoletinOrdenPublicacion);
-
-                    CalcularSaldos();
+                    this._ventana.BoletinOrdenPublicacionDatos = this.BuscarBoletin(boletines, _patente.BoletinOrdenPublicacion);                    
 
                     if (File.Exists(ConfigurationManager.AppSettings["RutaImagenesDePatentes"] + _patente.Id + ".jpg"))
                     {
@@ -477,6 +475,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                 this._ventana.BorrarCeros();
                 this._ventana.FocoPredeterminado();
+
+                CalcularSaldos();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
