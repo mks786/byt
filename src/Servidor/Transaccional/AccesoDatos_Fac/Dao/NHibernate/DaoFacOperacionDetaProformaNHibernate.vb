@@ -29,11 +29,12 @@ Namespace Dao.NHibernate
             '    filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacOperacionDetaProformaId, FacOperacionDetaProforma.Id.Id)
             '    variosFiltros = True
             'End If
-            If (FacOperacionDetaProforma.Factura IsNot Nothing) AndAlso (Not FacOperacionDetaProforma.Factura.Id.Equals("")) Then
+            If (FacOperacionDetaProforma.Factura IsNot Nothing) AndAlso (FacOperacionDetaProforma.Factura.Id IsNot Nothing) Then
                 If variosFiltros Then
                     filtro += " and "
                 End If
                 filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacOperacionDetaProformaFactura, FacOperacionDetaProforma.Factura.Id)
+                variosFiltros = True
             End If
 
             If (FacOperacionDetaProforma IsNot Nothing) AndAlso (FacOperacionDetaProforma.Detalle IsNot Nothing) Then

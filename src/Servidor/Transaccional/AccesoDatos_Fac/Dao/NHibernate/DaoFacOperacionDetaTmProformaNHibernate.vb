@@ -29,7 +29,7 @@ Namespace Dao.NHibernate
             '    filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacOperacionDetaTmProformaId, FacOperacionDetaTmProforma.Id.Id)
             '    variosFiltros = True
             'End If
-            If (FacOperacionDetaTmProforma.Factura IsNot Nothing) AndAlso (Not FacOperacionDetaTmProforma.Factura.Id.Equals("")) Then
+            If (FacOperacionDetaTmProforma.Factura IsNot Nothing) AndAlso (FacOperacionDetaTmProforma.Factura.Id IsNot Nothing) Then
                 If variosFiltros Then
                     filtro += " and "
                 End If

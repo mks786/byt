@@ -35,7 +35,7 @@ Namespace Dao.NHibernate
             '    End If
             '    filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacOperacionProformaBanco, FacOperacionProforma.Banco.Id)
             'End If
-            If (FacOperacionProforma IsNot Nothing) AndAlso (Not FacOperacionProforma.CodigoOperacion.Equals("")) Then
+            If (FacOperacionProforma IsNot Nothing) AndAlso (FacOperacionProforma.CodigoOperacion IsNot Nothing) Then
                 If variosFiltros Then
                     filtro += " and "
                 End If
