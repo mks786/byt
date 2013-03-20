@@ -298,7 +298,7 @@ Namespace Ventanas.FacFacturaProformas
                     Me._presentador.BuscarAsociadoImp()
                 ElseIf nom = "_txtIdInteresado" Or nom = "_txtNombreInteresado" Then
                     Me._presentador.BuscarInteresado2()
-                ElseIf nom = "_txtIdCarta" Or nom = "_txtNombreCarta" Or nom = "_dpkFechaCarta" Or "_txtReferencia" Then
+                ElseIf nom = "_txtIdCarta" Or nom = "_txtNombreCarta" Or nom = "_dpkFechaCarta" Or nom = "_txtReferencia" Then
                     Me._presentador.BuscarCarta()
                 ElseIf nom = "_txtServicioId" Or nom = "_txtServicioCod_Cont" Or nom = "_txtServicioXreferencia" Then
                     Me._presentador.VerDepartamentoServicios()
