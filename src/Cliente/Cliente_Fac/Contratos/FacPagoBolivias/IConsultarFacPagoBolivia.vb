@@ -45,6 +45,10 @@ Namespace Contratos.FacPagoBolivias
 
         ReadOnly Property GetFormaPago() As Char
 
+        Property MontoBol As Double
+
+        Property MontoRec As Double
+
         Property TextoBotonModificar() As String
     End Interface
 End Namespace

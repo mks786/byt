@@ -146,7 +146,7 @@ Namespace Ventanas.FacFacturaProformas
         End Sub
 
         Private Sub _btnRegresar_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
-            Me._presentador.Regresar()
+            Me._presentador.Regresar2()
         End Sub
 
         Private Sub _btnVerCarta_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)

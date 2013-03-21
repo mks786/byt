@@ -249,7 +249,7 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=FechaReg, StringFormat={}{0:dd/MM/yyyy}}" Width="120">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaReg" Content="Fecha Deposito"/>
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaReg" Content="Fecha Registro"/>
                         </GridViewColumn>                        
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Id.Id}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id.Id" Content="Codigo Asociado"/>

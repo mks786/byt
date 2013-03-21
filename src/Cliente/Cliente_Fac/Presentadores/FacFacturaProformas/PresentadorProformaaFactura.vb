@@ -286,15 +286,17 @@ Namespace Presentadores.FacFacturaProformas
             'If UsuarioLogeado.BAutorizar = True Then
             Mouse.OverrideCursor = Cursors.Wait
             Dim proforma As List(Of FacFacturaProforma) = Me._ventana.Resultados
-            For i As Integer = 0 To proforma.Count - 1
-                If proforma(i).Seleccion = True Then
-                    '--> aqui llama a la pantalla de factura para pasar toda la informacion y el usuario decide si lo guarda y crea el nuevo numero de factura
-                    ' Activate("fac_facturas_nx")
-                    IrConsultarFacFactura(proforma(i))
-                End If
-            Next
-            'MessageBox.Show("Autorizacion Satisfactoria")
-            Consultar()
+            If proforma.Count > 0 Then
+                For i As Integer = 0 To proforma.Count - 1
+                    If proforma(i).Seleccion = True Then
+                        '--> aqui llama a la pantalla de factura para pasar toda la informacion y el usuario decide si lo guarda y crea el nuevo numero de factura
+                        ' Activate("fac_facturas_nx")
+                        IrConsultarFacFactura(proforma(i))
+                    End If
+                Next
+                Consultar()
+            End If
+            'MessageBox.Show("Autorizacion Satisfactoria")            
             Mouse.OverrideCursor = Nothing
             'Else
             'MessageBox.Show("No posee Privilegios para Autorizar")

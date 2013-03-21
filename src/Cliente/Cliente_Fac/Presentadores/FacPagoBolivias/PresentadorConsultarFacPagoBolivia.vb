@@ -34,6 +34,9 @@ Namespace Presentadores.FacPagoBolivias
         Public Sub New(ByVal ventana As IConsultarFacPagoBolivia, ByVal FacPagoBolivia As Object)
             Try
                 Me._ventana = ventana
+
+                _FacPagoBolivia = DirectCast(FacPagoBolivia, FacPagoBolivia)
+
                 Me._ventana.FacPagoBolivia = FacPagoBolivia
                 Me._ventana.SetFormaPago = ""
                 Me._ventana.SetFormaPago = BuscarFormaPago(FacPagoBolivia.PagoPag)
@@ -44,7 +47,7 @@ Namespace Presentadores.FacPagoBolivias
                 Me._ventana.SetTipoPago = ""
                 Me._ventana.SetTipoPago = BuscarTipoPago(FacPagoBolivia.PagoRec)
 
-                _FacPagoBolivia = DirectCast(FacPagoBolivia, FacPagoBolivia)
+
                 'Me._ventana.Region = DirectCast(Me._ventana.FacPagoBolivia, FacPagoBolivia).Region
                 Me._FacPagoBoliviaServicios = DirectCast(Activator.GetObject(GetType(IFacPagoBoliviaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacPagoBoliviaServicios")), IFacPagoBoliviaServicios)
                 'Me._AsociadoServicios = DirectCast(Activator.GetObject(GetType(IAsociadoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("AsociadoServicios")), IAsociadoServicios)
@@ -89,6 +92,9 @@ Namespace Presentadores.FacPagoBolivias
                 Me.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.fac_titleConsultarFacPagoBolivia, Recursos.Ids.fac_ConsultarFacPagoBolivia)
 
                 Dim FacPagoBolivia As FacPagoBolivia = DirectCast(Me._ventana.FacPagoBolivia, FacPagoBolivia)
+
+                Me._ventana.MontoBol = FacPagoBolivia.MontoBol
+                Me._ventana.MontoRec = FacPagoBolivia.MontoRec
 
                 Dim asociadoaux As New Asociado
                 Dim asociado As List(Of Asociado)
@@ -158,12 +164,22 @@ Namespace Presentadores.FacPagoBolivias
                     Dim FacPagoBolivia As FacPagoBolivia = DirectCast(Me._ventana.FacPagoBolivia, FacPagoBolivia)
                     'FacPagoBolivia.Region = If(Not Me._ventana.Region.Equals(""), Me._ventana.Region, Nothing)
 
-                    FacPagoBolivia.Id = If(Not DirectCast(Me._ventana.Asociado, Asociado).Id.Equals("NGN"), DirectCast(Me._ventana.Asociado, Asociado), Nothing)
+                    FacPagoBolivia.MontoRec = Me._ventana.MontoRec
+                    FacPagoBolivia.MontoBol = Me._ventana.MontoBol
+
+                    If DirectCast(Me._ventana.Asociado, Asociado) IsNot Nothing And DirectCast(Me._ventana.Asociado, Asociado).Id > Integer.MinValue Then
+                        FacPagoBolivia.Id = If(Not DirectCast(Me._ventana.Asociado, Asociado).Id.Equals("NGN"), DirectCast(Me._ventana.Asociado, Asociado), Nothing)
+                    End If
+
 
                     'If Not Me._FacPagoBoliviaServicios.VerificarExistencia(FacPagoBolivia) Then
-                    FacPagoBolivia.BancoRec = If(Not DirectCast(Me._ventana.BancoRec, FacBanco).Id.Equals("NGN"), DirectCast(Me._ventana.BancoRec, FacBanco), Nothing)
+                    If DirectCast(Me._ventana.BancoRec, FacBanco) IsNot Nothing Then
+                        FacPagoBolivia.BancoRec = If(Not DirectCast(Me._ventana.BancoRec, FacBanco).Id.Equals("NGN"), DirectCast(Me._ventana.BancoRec, FacBanco), Nothing)
+                    End If
                     FacPagoBolivia.PagoRec = _ventana.TipoPago
-                    FacPagoBolivia.BancoPag = If(Not DirectCast(Me._ventana.Banco, BancoG).Id.Equals("NGN"), DirectCast(Me._ventana.Banco, BancoG), Nothing)
+                    If DirectCast(Me._ventana.Banco, BancoG) IsNot Nothing Then
+                        FacPagoBolivia.BancoPag = If(Not DirectCast(Me._ventana.Banco, BancoG).Id.Equals("NGN"), DirectCast(Me._ventana.Banco, BancoG), Nothing)
+                    End If
                     FacPagoBolivia.PagoPag = _ventana.GetFormaPago
                     If DirectCast(Me._ventana.Carta, Carta) IsNot Nothing Then
                         If Me._ventana.Carta.id <> Integer.MinValue Then
@@ -183,13 +199,13 @@ Namespace Presentadores.FacPagoBolivias
                         'Me.Navegar(_paginaPrincipal)
                         MessageBox.Show(Recursos.MensajesConElUsuario.fac_FacPagoBoliviaModificado, "Modificado")
                     End If
-                End If
+                    End If
 
-                '#Region "trace"
-                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
-                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
-                    '#End Region
-                End If
+                    '#Region "trace"
+                    If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                        logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                        '#End Region
+                    End If
             Catch ex As ApplicationException
                 logger.[Error](ex.Message)
                 Me.Navegar(ex.Message, True)
@@ -203,6 +219,11 @@ Namespace Presentadores.FacPagoBolivias
                 logger.[Error](ex.Message)
                 Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
             End Try
+        End Sub
+
+        Public Sub MontoRec_LostFocus()
+            Me._ventana.MontoRec = Me._ventana.MontoRec
+            Me._ventana.MontoBol = Me._ventana.MontoRec
         End Sub
 
         Public Sub Ver_Carta()

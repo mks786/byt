@@ -141,6 +141,8 @@ Namespace Presentadores.FacGestiones
                         Me._ventana.Cartas = Carta
                         Me._ventana.Carta = Carta(0)
                         Me._ventana.NombreCarta = Carta(0).Id & " - " & Carta(0).Medio & " - " & FormatDateTime(Carta(0).Fecha, DateFormat.ShortDate)
+                    Else
+                        Me._ventana.NombreCarta = FacGestion.CodigoResp & " Carta Eliminada"
                     End If
                 End If
 
@@ -151,6 +153,8 @@ Namespace Presentadores.FacGestiones
                         Me._ventana.Cartas_2 = Carta
                         Me._ventana.Carta_2 = Carta(0)
                         Me._ventana.NombreCarta_2 = Carta(0).Id & " - " & Carta(0).Medio & " - " & FormatDateTime(Carta(0).Fecha, DateFormat.ShortDate)
+                    Else
+                        Me._ventana.NombreCarta_2 = FacGestion.Respuesta & " Carta Eliminada"
                     End If
                 End If
 

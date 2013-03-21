@@ -792,7 +792,7 @@
                                         <GridViewColumn Header="X" Width="25" >
                                             <GridViewColumn.CellTemplate >
                                                 <DataTemplate>
-                                                    <CheckBox Tag="BBsel"   IsChecked="{Binding Path=BBsel}" />
+                                                    <CheckBox Tag="BBsel"   IsEnabled="False"  IsChecked="{Binding Path=BBsel}" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
@@ -819,7 +819,7 @@
                                         <GridViewColumn Header="Desg" Width="30" >
                                             <GridViewColumn.CellTemplate >
                                                 <DataTemplate>
-                                                    <CheckBox Tag="BDesglose"   IsChecked="{Binding Path=BDesglose}" />
+                                                    <CheckBox Tag="BDesglose"  IsEnabled="False"   IsChecked="{Binding Path=BDesglose}" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>

@@ -132,8 +132,9 @@ Namespace Ventanas.FacPagoBolivias
             End Get
         End Property
 
-        Private Sub _txtMontoRec_LostFocus(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles _txtMontoRec.LostFocus
-            _txtMontoBol.Text = _txtMontoRec.Text
+        Private Sub _txtMontoRec_LostFocus(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles _txtMontoRec.LostFocus            
+            '_txtMontoBol.Text = _txtMontoRec.Text
+            _presentador.MontoRec_LostFocus()
         End Sub
         'Contratos.FacPagoBolivias.IConsultarFacPagoBolivia
 
@@ -410,6 +411,24 @@ Namespace Ventanas.FacPagoBolivias
         Public WriteOnly Property SetTipoPago() As String Implements IConsultarFacPagoBolivia.SetTipoPago
             Set(ByVal value As String)
                 Me._cbxPagoRec.Text = value
+            End Set
+        End Property
+
+        Public Property MontoBol As Double Implements Contratos.FacPagoBolivias.IConsultarFacPagoBolivia.MontoBol
+            Get
+                Return _presentador.GetFormatoDouble2(_txtMontoBol.Text)
+            End Get
+            Set(value As Double)
+                _txtMontoBol.Text = _presentador.SetFormatoDouble2(value)
+            End Set
+        End Property
+
+        Public Property MontoRec As Double Implements Contratos.FacPagoBolivias.IConsultarFacPagoBolivia.MontoRec
+            Get
+                Return _presentador.GetFormatoDouble2(_txtMontoRec.Text)
+            End Get
+            Set(value As Double)
+                _txtMontoRec.Text = _presentador.SetFormatoDouble2(value)
             End Set
         End Property
     End Class

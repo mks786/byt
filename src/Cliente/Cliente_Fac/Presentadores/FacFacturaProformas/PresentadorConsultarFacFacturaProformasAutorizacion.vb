@@ -254,6 +254,12 @@ Namespace Presentadores.FacFacturaProformas
         End Sub
 
         Public Sub autorizacion()
+            Dim autoriza As String = UsuarioLogeado.Autorizar.ToString
+            If autoriza = "T" Or autoriza = "1" Then
+            Else
+                MessageBox.Show("No posee Privilegios para Autorizar")
+                Exit Sub
+            End If
             'If UsuarioLogeado.BAutorizar = True Then
             Mouse.OverrideCursor = Cursors.Wait
             Dim w_ret, w_pas As Integer
@@ -291,9 +297,9 @@ Namespace Presentadores.FacFacturaProformas
                 End If
             Next
             If autorizo = True Then
-                MessageBox.Show("Autorizacion Satisfactoria")               
+                MessageBox.Show("Autorizacion Satisfactoria")
             End If
-            Consultar()
+            Consultar("2")
             Mouse.OverrideCursor = Nothing
             'Else
             'MessageBox.Show("No posee Privilegios para Autorizar")
@@ -397,7 +403,7 @@ Namespace Presentadores.FacFacturaProformas
         ''' Método que realiza una consulta al servicio, con el fin de filtrar los datos que se muestran 
         ''' por pantalla
         ''' </summary>
-        Public Sub Consultar()
+        Public Sub Consultar(valor As String)
             Try
                 '#Region "trace"
                 If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
@@ -449,8 +455,10 @@ Namespace Presentadores.FacFacturaProformas
                 FacFacturaProformas = Me._FacFacturaProformaServicios.ObtenerFacFacturaProformasFiltro(FacFacturaProformaAuxiliar)
                 Me._ventana.Resultados = Nothing
                 Me._ventana.Count = FacFacturaProformas.Count
-                If FacFacturaProformas.Count <= 0 Then
-                    MessageBox.Show("Mensaje: No se encontraron registros")
+                If valor = "1" Then
+                    If FacFacturaProformas.Count <= 0 Then
+                        MessageBox.Show("Mensaje: No se encontraron registros")
+                    End If
                 End If
                 Me._ventana.Resultados = FacFacturaProformas
                 sumar(FacFacturaProformas)

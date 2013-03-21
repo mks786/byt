@@ -106,7 +106,24 @@ Namespace Presentadores.Tasas
                 Dim exitoso As Boolean = _tasaServicios.InsertarOModificar(tasa, UsuarioLogeado.Hash)
 
                 If exitoso Then
-                    Me.Navegar(Recursos.MensajesConElUsuario.fac_TipoClaseInsertado, False)
+                    tasa.Id = tasa.Id.AddDays(1)
+
+                    If (tasa.Moneda = "BS") Then
+                        Me._ventana.Moneda = "Bolivares"
+                    End If
+                    If (tasa.Moneda = "BF") Then
+                        Me._ventana.Moneda = "Bolivares Fuertes"
+                    End If
+                    If (tasa.Moneda = "US") Then
+                        Me._ventana.Moneda = "US Dolares"
+                    End If
+
+
+
+                    Me._ventana.Tasa = Nothing
+                    Me._ventana.Tasa = tasa
+
+                    ' Me.Navegar(Recursos.MensajesConElUsuario.fac_TipoClaseInsertado, False)
                 End If
                 'Else
                 'Me._ventana.Mensaje(Recursos.MensajesConElUsuario.fac_ErrorTasaRepetida)

@@ -263,32 +263,32 @@
                     <Label>
                         <TextBlock Text="Monto Recibido"/>
                     </Label>
-                    <TextBox Name="_txtMontoRec" Width="230" MaxLength="15" Focusable="True" 
+                    <custom:ByTTextBox Name="_txtMontoRec" Width="230"  HorizontalContentAlignment="Right"  SoloNumero="True" MaxLength="15" Focusable="True" 
                     ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}">
-                        <TextBox.Text>
+                        <!--<TextBox.Text>
                             <Binding Path="MontoRec" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
                                     <reglas:SoloNumeros ValidatesOnTargetUpdated="True" />
                                 </Binding.ValidationRules>
                             </Binding>
-                        </TextBox.Text>
-                    </TextBox>
+                        </TextBox.Text>-->
+                    </custom:ByTTextBox>
                 </WrapPanel>
 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="Monto Bolivia"/>
                     </Label>
-                    <TextBox Name="_txtMontoBol" Width="230" MaxLength="15" Focusable="True" 
+                    <custom:ByTTextBox Name="_txtMontoBol" Width="230" SoloNumero="True" HorizontalContentAlignment="Right"   MaxLength="15" Focusable="True" 
                     ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}">
-                        <TextBox.Text>
+                        <!--<TextBox.Text>
                             <Binding Path="MontoBol" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
                                     <reglas:SoloNumeros ValidatesOnTargetUpdated="True" />
                                 </Binding.ValidationRules>
                             </Binding>
-                        </TextBox.Text>
-                    </TextBox>
+                        </TextBox.Text>-->
+                    </custom:ByTTextBox>
                 </WrapPanel>
 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">

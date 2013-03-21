@@ -133,6 +133,18 @@ Namespace Presentadores.FacFacturaProformas
             End Try
         End Sub
 
+        Public Sub regresar2()
+            Dim FacFacturaProforma As FacFacturaProforma = DirectCast(Me._ventana.FacFacturaProforma, FacFacturaProforma)
+            If FacFacturaProforma.Accion IsNot Nothing Then
+                If FacFacturaProforma.Accion = 1 Then
+                    Me.Navegar("", False)
+                Else
+                    Regresar()
+                End If
+            Else
+                Regresar()
+            End If
+        End Sub
 
         Public Sub Imprimir(ByVal tipo As Integer)
             '#Region "trace"
@@ -302,6 +314,10 @@ Namespace Presentadores.FacFacturaProformas
 
                     'esto es para determinar si la pantalla esta en formato de modificar o solo lectura
                     'Me._ventana.AccionRealizar = FacFacturaProforma.Accion
+
+                    'If FacFacturaProforma.Accion = 1 Then
+                    '    Me._ventana.AccionRealizar = FacFacturaProforma.Accion
+                    'End If
 
                     Me._ventana.FocoPredeterminado()
 
@@ -632,6 +648,35 @@ Namespace Presentadores.FacFacturaProformas
                 '#End Region
 
                 If Me._FacFacturaProformaServicios.Eliminar(DirectCast(Me._ventana.FacFacturaProforma, FacFacturaProforma), UsuarioLogeado.Hash) Then
+
+                    Dim facfacturaproforma As FacFacturaProforma = DirectCast(Me._ventana.FacFacturaProforma, FacFacturaProforma)
+                    'eliminar facoperaciones
+                    Dim operacionaux As New FacOperacionProforma
+                    operacionaux.Id = "ND"
+                    operacionaux.CodigoOperacion = facfacturaproforma.Id
+                    Dim operacion As FacOperacionProforma = _FacOperacionProformasServicios.ObtenerFacOperacionProformasFiltro(operacionaux)(0)
+                    If operacion IsNot Nothing Then
+                        _FacOperacionProformasServicios.Eliminar(operacion, UsuarioLogeado.Hash)
+                    End If
+                    'eliminar facoperaciones
+
+                    'eliminar detalle proforma
+                    Dim FacFactuDetaProformas As List(Of FacFactuDetaProforma) = DirectCast(Me._ventana.ResultadosFacFactuDetaProforma, List(Of FacFactuDetaProforma))
+                    If FacFactuDetaProformas IsNot Nothing Then
+                        For i As Integer = 0 To FacFactuDetaProformas.Count - 1
+                            Dim eliminar As Boolean
+                            eliminar = _FacFactuDetaProformasServicios.Eliminar(FacFactuDetaProformas.Item(i), UsuarioLogeado.Hash)
+                            If eliminar = True Then
+                                eliminar_operacion_detalle_tm_cdetalle(FacFactuDetaProformas.Item(i).Id)
+                                eliminar_operacion_detalle_proforma_cdetalle(FacFactuDetaProformas.Item(i).Id)
+                                eliminar_operacion_detalle_proforma_tm_cdetalle(FacFactuDetaProformas.Item(i).Id)
+                            End If
+                        Next
+                    End If
+                    'eliminar detalle proforma
+
+                    elim_operacion_detalle_proforma(facfacturaproforma.Id)
+
                     _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.fac_FacFacturaProformaEliminado
                     Me.Navegar(_paginaPrincipal)
                 End If

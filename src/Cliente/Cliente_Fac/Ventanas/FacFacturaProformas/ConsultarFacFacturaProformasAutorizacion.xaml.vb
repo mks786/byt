@@ -172,7 +172,7 @@ Namespace Ventanas.FacFacturaProformas
             ElseIf nom = "_btnCancelar" Then
                 Me._presentador.Cancelar()
             ElseIf nom = "_btnConsulta" Then
-                Me._presentador.Consultar()
+                Me._presentador.Consultar("1")
             ElseIf nom = "_btnAutorizacion" Then
                 Me._presentador.autorizacion()
             End If
@@ -250,7 +250,7 @@ Namespace Ventanas.FacFacturaProformas
                 If nom = "_txtIdAsociado" Or nom = "_txtNombreAsociado" Then
                     Me._presentador.BuscarAsociado2()
                 ElseIf nom = "_txtId" Then
-                    Me._presentador.Consultar()
+                    Me._presentador.Consultar("1")
                 End If
             End If
         End Sub

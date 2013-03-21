@@ -36,6 +36,10 @@ Namespace Contratos.FacPagoBolivias
 
         Property FechaCartaFiltrar() As String
 
+        Property MontoBol As Double
+
+        Property MontoRec As Double
+
         Sub Mensaje(ByVal mensaje__1 As String)
     End Interface
 End Namespace

@@ -300,7 +300,7 @@ Namespace Presentadores.ViGestionAsociados
                     ag.ShowDialog()
                 Else
                     Mouse.OverrideCursor = Nothing
-                    MessageBox.Show("Debe especificar una gestion ", "Error", MessageBoxButton.OK)
+                    MessageBox.Show("Carta Eliminada Verificar con Sistemas", "Error", MessageBoxButton.OK)
                     Exit Sub
                 End If
 

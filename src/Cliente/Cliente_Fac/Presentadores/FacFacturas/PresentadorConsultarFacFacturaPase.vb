@@ -344,8 +344,8 @@ Namespace Presentadores.FacFacturas
                 While (i < (FacFactuDetalles.Count))
                     If (FacFactuDetalles.Item(i).Id = detalle.Id) Then
                         FacFactuDetalles.Item(i) = detalle
-                        Dim guardar As Boolean
-                        guardar = _FacFactuDetaServicios.InsertarOModificar(FacFactuDetalles.Item(i), UsuarioLogeado.Hash)
+                        'Dim guardar As Boolean
+                        'guardar = _FacFactuDetaServicios.InsertarOModificar(FacFactuDetalles.Item(i), UsuarioLogeado.Hash)
 
                         i = FacFactuDetalles.Count
 
@@ -760,8 +760,8 @@ Namespace Presentadores.FacFacturas
                         Dim exitoso As Boolean = _FacFacturaProformaServicios.InsertarOModificar(FacFactura.Proforma, UsuarioLogeado.Hash)
 
                         actualizar_detalle_(FacFactura.Id)
-                        operacion_detalle_(FacFactura.Id)
-                        operacion_detalle_tm_(FacFactura.Id)
+                        'operacion_detalle_(FacFactura.Id)
+                        operacion_detalle_tm_(FacFactura.Proforma.Id, FacFactura)
 
                         Dim operacionaux As New FacOperacion
                         operacionaux.Id = "ND"
@@ -805,6 +805,9 @@ Namespace Presentadores.FacFacturas
                         If (w_ret <> 0) Then
                             MessageBox.Show("Factura No " & FacFactura.Id & " posee un error de integridad, Error " & w_ret & " Notificar a sistemas")
                             'MessageBox.Show("Factura No %%cfactura.fac_facturas posee un error de integridad, Error %%w_ret  Notificar a sistemas")
+                            Me._ventana.FacFactura = Nothing
+                            Me._ventana.FacFactura = FacFactura
+                            IrConsultarFacFactura()
                             Mouse.OverrideCursor = Nothing
                             Exit Sub
                         End If
@@ -3026,45 +3029,61 @@ Namespace Presentadores.FacFacturas
             Next
         End Sub
 
-        Public Sub operacion_detalle_tm_(ByVal idfactura As String)
-            Dim FacOperacionDetaTm As List(Of FacOperacionDetalleTm)
-            Dim FacOperacionDetaTmaux As New FacOperacionDetalleTm
-            Dim factura As New FacFactura
-            factura.Id = idfactura
-            Dim elim As Boolean = False
+        Public Sub operacion_detalle_tm_(ByVal idfactura As String, facfacturas As FacFactura)
+            'Dim factura As New FacFactura
+            'factura.Id = idfactura
 
-            'FacOperacionDetaTmaux.Factura = factura
-            FacOperacionDetaTmaux.Usuario = UsuarioLogeado
-            FacOperacionDetaTm = _FacOperacionDetaTmServicios.ObtenerFacOperacionDetalleTmsFiltro(FacOperacionDetaTmaux)
-            If FacOperacionDetaTm IsNot Nothing Then
-                For i As Integer = 0 To FacOperacionDetaTm.Count - 1
-                    elim = _FacOperacionDetaTmServicios.Eliminar(FacOperacionDetaTm(i), UsuarioLogeado.Hash)
-                Next
-            End If
+            ''FacOperacionDetaTmaux.Factura = factura
+            'FacOperacionDetaTmaux.Usuario = UsuarioLogeado
+            'FacOperacionDetaTm = _FacOperacionDetaTmServicios.ObtenerFacOperacionDetalleTmsFiltro(FacOperacionDetaTmaux)
+            'If FacOperacionDetaTm IsNot Nothing Then
+            '    For i As Integer = 0 To FacOperacionDetaTm.Count - 1
+            '        elim = _FacOperacionDetaTmServicios.Eliminar(FacOperacionDetaTm(i), UsuarioLogeado.Hash)
+            '    Next
+            'End If
 
-            Dim FacOperacionDetalleTm As List(Of FacOperacionDetalleTm)
-            Dim FacOperacionDetalleTmaux As New FacOperacionDetalleTm
-            FacOperacionDetalleTmaux.Usuario = UsuarioLogeado
-            FacOperacionDetalleTm = _FacOperacionDetalleTmsServicios.ObtenerFacOperacionDetalleTmsFiltro(FacOperacionDetalleTmaux)
-            If FacOperacionDetalleTm IsNot Nothing Then
-                Dim guardar As Boolean
-                For i As Integer = 0 To FacOperacionDetalleTm.Count - 1
+            'Dim FacOperacionDetalleTm As List(Of FacOperacionDetalleTm)
+            'Dim FacOperacionDetalleTmaux As New FacOperacionDetalleTm
+            'FacOperacionDetalleTmaux.Usuario = UsuarioLogeado
+            'FacOperacionDetalleTm = _FacOperacionDetalleTmsServicios.ObtenerFacOperacionDetalleTmsFiltro(FacOperacionDetalleTmaux)
+            'If FacOperacionDetalleTm IsNot Nothing Then
+            '    Dim guardar As Boolean
+            '    For i As Integer = 0 To FacOperacionDetalleTm.Count - 1
+            '        Dim FacOperacionDeta As New FacOperacionDetalle
+            '        FacOperacionDeta.Codigo = FacOperacionDetalleTm(i).Codigo
+            '        FacOperacionDeta.Factura = factura
+            '        FacOperacionDeta.Detalle = FacOperacionDetalleTm(i).Detalle
+            '        FacOperacionDeta.Id = "ND"
+            '        FacOperacionDeta.Servicio = FacOperacionDetalleTm(i).Servicio
+            '        guardar = _FacOperacionDetaServicios.InsertarOModificar(FacOperacionDeta, UsuarioLogeado.Hash)
+
+            '        Dim FacOperacionDetaTmaux2 As New FacOperacionDetalleTm
+            '        FacOperacionDetaTmaux2.Id = FacOperacionDetalleTm(i).Id
+            '        FacOperacionDetaTmaux2.Codigo = FacOperacionDetalleTm(i).Codigo
+            '        FacOperacionDetaTmaux2.Detalle = FacOperacionDetalleTm(i).Detalle
+            '        'FacOperacionDetaTmaux2.Factura = factura
+            '        FacOperacionDetaTmaux2.Usuario = FacOperacionDetalleTm(i).Usuario
+            '        FacOperacionDetaTmaux2.Servicio = FacOperacionDetalleTm(i).Servicio
+            '        guardar = _FacOperacionDetaTmServicios.InsertarOModificar(FacOperacionDetaTmaux2, UsuarioLogeado.Hash)
+            '    Next
+            'End If
+            Dim FacOperacionDetaproforma As List(Of FacOperacionDetaProforma)
+            Dim FacOperacionDetaproformaaux As New FacOperacionDetaProforma
+            Dim facturaproforma As New FacFacturaProforma
+            facturaproforma.Id = idfactura
+
+            FacOperacionDetaproformaaux.Factura = facturaproforma
+            FacOperacionDetaproforma = _FacOperacionDetaProformasServicios.ObtenerFacOperacionDetaProformasFiltro(FacOperacionDetaproformaaux)
+            Dim guardar As Boolean = False
+            If FacOperacionDetaproforma IsNot Nothing Then
+                For i As Integer = 0 To FacOperacionDetaproforma.Count - 1
                     Dim FacOperacionDeta As New FacOperacionDetalle
-                    FacOperacionDeta.Codigo = FacOperacionDetalleTm(i).Codigo
-                    FacOperacionDeta.Factura = factura
-                    FacOperacionDeta.Detalle = FacOperacionDetalleTm(i).Detalle
+                    FacOperacionDeta.Codigo = FacOperacionDetaproforma(i).Codigo
+                    FacOperacionDeta.Factura = facfacturas
+                    FacOperacionDeta.Detalle = FacOperacionDetaproforma(i).Detalle
                     FacOperacionDeta.Id = "ND"
-                    FacOperacionDeta.Servicio = FacOperacionDetalleTm(i).Servicio
+                    FacOperacionDeta.Servicio = FacOperacionDetaproforma(i).Servicio
                     guardar = _FacOperacionDetaServicios.InsertarOModificar(FacOperacionDeta, UsuarioLogeado.Hash)
-
-                    Dim FacOperacionDetaTmaux2 As New FacOperacionDetalleTm
-                    FacOperacionDetaTmaux2.Id = FacOperacionDetalleTm(i).Id
-                    FacOperacionDetaTmaux2.Codigo = FacOperacionDetalleTm(i).Codigo
-                    FacOperacionDetaTmaux2.Detalle = FacOperacionDetalleTm(i).Detalle
-                    'FacOperacionDetaTmaux2.Factura = factura
-                    FacOperacionDetaTmaux2.Usuario = FacOperacionDetalleTm(i).Usuario
-                    FacOperacionDetaTmaux2.Servicio = FacOperacionDetalleTm(i).Servicio
-                    guardar = _FacOperacionDetaTmServicios.InsertarOModificar(FacOperacionDetaTmaux2, UsuarioLogeado.Hash)
                 Next
             End If
         End Sub

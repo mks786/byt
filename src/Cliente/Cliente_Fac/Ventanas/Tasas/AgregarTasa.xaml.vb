@@ -67,5 +67,13 @@ Namespace Ventanas.Tasas
             Me._presentador.Limpiar()
         End Sub
 
+        Public Property Moneda As String Implements Contratos.Tasas.IAgregarTasa.Moneda
+            Get
+                Return _cbxMoneda.Text
+            End Get
+            Set(value As String)
+                _cbxMoneda.Text = value
+            End Set
+        End Property
     End Class
 End Namespace

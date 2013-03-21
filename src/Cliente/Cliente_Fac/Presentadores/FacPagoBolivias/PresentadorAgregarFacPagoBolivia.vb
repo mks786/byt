@@ -114,10 +114,19 @@ Namespace Presentadores.FacPagoBolivias
             Try
                 Dim FacPagoBolivia As FacPagoBolivia = DirectCast(_ventana.FacPagoBolivia, FacPagoBolivia)
 
-                FacPagoBolivia.Id = If(Not DirectCast(Me._ventana.Asociado, Asociado).Id.Equals("NGN"), DirectCast(Me._ventana.Asociado, Asociado), Nothing)
+                FacPagoBolivia.MontoRec = Me._ventana.MontoRec
+                FacPagoBolivia.MontoBol = Me._ventana.MontoBol
+
+                If DirectCast(Me._ventana.Asociado, Asociado) IsNot Nothing And DirectCast(Me._ventana.Asociado, Asociado).Id > Integer.MinValue Then
+                    FacPagoBolivia.Id = If(Not DirectCast(Me._ventana.Asociado, Asociado).Id.Equals("NGN"), DirectCast(Me._ventana.Asociado, Asociado), Nothing)
+                End If
+
 
                 'If Not Me._FacPagoBoliviaServicios.VerificarExistencia(FacPagoBolivia) Then
-                FacPagoBolivia.BancoRec = If(Not DirectCast(Me._ventana.BancoRec, FacBanco).Id.Equals("NGN"), DirectCast(Me._ventana.BancoRec, FacBanco), Nothing)
+                If DirectCast(Me._ventana.BancoRec, FacBanco) IsNot Nothing Then
+                    FacPagoBolivia.BancoRec = If(Not DirectCast(Me._ventana.BancoRec, FacBanco).Id.Equals("NGN"), DirectCast(Me._ventana.BancoRec, FacBanco), Nothing)
+                End If
+
                 FacPagoBolivia.PagoRec = _ventana.TipoPago
                 Dim primerbancog As New BancoG()
                 primerbancog.Id = -2
@@ -170,6 +179,11 @@ Namespace Presentadores.FacPagoBolivias
                 logger.[Error](ex.Message)
                 Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
             End Try
+        End Sub
+
+        Public Sub MontoRec_LostFocus()
+            Me._ventana.MontoRec = Me._ventana.MontoRec
+            Me._ventana.MontoBol = Me._ventana.MontoRec
         End Sub
 
         Public Sub IrConsultarFacPagoBolivia(ByVal FacPagoBolivia As FacPagoBolivia)
