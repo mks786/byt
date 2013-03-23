@@ -234,7 +234,6 @@ Namespace Presentadores.FacReportes
             Mouse.OverrideCursor = Cursors.Wait
             Try
 
-                Dim reporte As New ReportDocument()
                 Dim estructuraDeDatosEnc As IList(Of StructReporteFActuraEnc) = New List(Of StructReporteFActuraEnc)()
 
                 Dim estructuraDeDatosDeta As IList(Of StructReporteFActuraDeta) = New List(Of StructReporteFActuraDeta)()
@@ -260,6 +259,7 @@ Namespace Presentadores.FacReportes
                 Dim ds As New DataSet()
                 ds.Tables.Add(datosEnc)
                 ds.Tables.Add(datosDeta)
+                Dim reporte As New ReportDocument()
                 reporte.Load(GetRutaReporte())
                 reporte.SetDataSource(ds)
                 'reporte.SetDataSource(datosDeta)
@@ -507,7 +507,7 @@ Namespace Presentadores.FacReportes
                                     If _FacFactura.FechaFactura IsNot Nothing Then
                                     lp_compl(_FacFactura.FechaFactura, _FacFactura.Id, w_s)
                                     If _FacFactura.Status <> 2 Then
-                                        structura.Invoice = "STATEMENT  N° " & w_s
+                                        structura.Invoice = w_s
                                     Else
                                         structura.Invoice = w_s
                                     End If
@@ -542,7 +542,7 @@ Namespace Presentadores.FacReportes
                                     If _FacFactura.FechaFactura IsNot Nothing Then
                                     lp_compl(_FacFactura.FechaFactura, _FacFactura.Id, w_s)
                                     If _FacFactura.Status <> 2 Then
-                                        structura.Invoice = "STATEMENT  N° " & w_s
+                                        structura.Invoice = w_s
                                     Else
                                         structura.Invoice = w_s
                                     End If
