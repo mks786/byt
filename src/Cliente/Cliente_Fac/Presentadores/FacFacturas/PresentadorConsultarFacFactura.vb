@@ -974,13 +974,14 @@ Namespace Presentadores.FacFacturas
                     Mouse.OverrideCursor = Nothing
                     Exit Sub
                 End If
-                If MessageBoxResult.Yes = MessageBox.Show("Posible Error: Se trata de un statement NO procesado ¿desea imprimir la factura de todas maneras?", "PREGUNTA", MessageBoxButton.YesNo, MessageBoxImage.Question) Then
-                Else
-                    Mouse.OverrideCursor = Nothing
-                    Exit Sub
+                If FacFactura.Seniat Is Nothing Then
+                    If MessageBoxResult.Yes = MessageBox.Show("Posible Error: Se trata de un statement NO procesado ¿desea imprimir la factura de todas maneras?", "PREGUNTA", MessageBoxButton.YesNo, MessageBoxImage.Question) Then
+                    Else
+                        Mouse.OverrideCursor = Nothing
+                        Exit Sub
+                    End If
                 End If
             End If
-
             If tipo = 3 Then
                 If _ventana.GetXterrero = "1" Then
                     MessageBox.Show("Se trata de una factura NO de un statement", "ERROR", MessageBoxButton.OK)
