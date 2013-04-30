@@ -631,21 +631,22 @@
                 <Label Width="100" HorizontalAlignment="Left">
                     <TextBlock Text="Pago"/>
                 </Label>
+                
                 <Label Width="100" HorizontalAlignment="Left">
                     <TextBlock Text="Descripción"/>
                 </Label>
+                
                 <Label Width="100" HorizontalAlignment="Left">
                     <TextBlock Text="Monto"/>
                 </Label>
+                
                 <Label Width="100" HorizontalAlignment="Left">
                     <TextBlock Text="Monto Bf"/>
                 </Label>
-                <Label Width="100" HorizontalAlignment="Left">
-                    <TextBlock Text=" "/>
-                </Label>
+                
             </WrapPanel>
 
-            <WrapPanel Name="WPFormaManual" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0" Visibility="Collapsed">
+            <WrapPanel Name="WPFormaManual" Orientation="Horizontal" HorizontalAlignment="left" Margin="0,5,0,0" Visibility="Collapsed">
 
                 <ComboBox  Name="_cbxValoresPago" HorizontalAlignment="Left" Width="100" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
@@ -654,18 +655,23 @@
                 <TextBox Name="_txtXFormaMan" Width="100"  MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
                                                         ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True">
                 </TextBox>
+                
                 <TextBox Name="_txtBFormaMan" Width="100" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
                                                             ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True">
                 </TextBox>
+                
                 <TextBox Name="_txtBFormaBfMan" Width="100"  IsEnabled="False" MaxLength="100" Focusable="True" HorizontalAlignment="Right" 
                                                                ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" >
                 </TextBox>
+                
                 <Button Name="_btnAgregarFormaManual" Width="100" IsDefault="True" Height="25" HorizontalAlignment="Left" Click="_btnAgregarFormaManual_Click">
                     <TextBlock Text="Agregar"/>
                 </Button>
+                
                 <Label>
                     <TextBlock Text=" "/>
                 </Label>
+                
                 <Button Name="_btnsaliragregarformamanual" Width="90" IsDefault="True"  Height="25" HorizontalAlignment="Left" Click="_btnsaliragregarforma_Click">
                     <TextBlock Text="Cerrar pago"/>
                 </Button>

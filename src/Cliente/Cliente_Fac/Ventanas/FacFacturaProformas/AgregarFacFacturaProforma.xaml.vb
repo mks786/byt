@@ -394,6 +394,7 @@ Namespace Ventanas.FacFacturaProformas
             _Wp_Btn.Visibility = Windows.Visibility.Collapsed
             Me._Wp_Salir.Visibility = Windows.Visibility.Visible
 
+            _txtServicioId.Focus()
             Me._presentador.VerDepartamentoServicios()
         End Sub
 
@@ -880,10 +881,10 @@ Namespace Ventanas.FacFacturaProformas
                 Me._GbMultiplesMarcas.Visibility = Windows.Visibility.Collapsed
                 Me._GbMultiplesPatentes.Visibility = Windows.Visibility.Collapsed
                 Me._GbAnualidades.Visibility = Windows.Visibility.Collapsed
-                Me._gridDatos.Visibility = Windows.Visibility.Collapsed
-                Me._presentador.VerTipoMarcaPatente()
+                Me._gridDatos.Visibility = Windows.Visibility.Collapsed                
                 _Wp_Btn.Visibility = Windows.Visibility.Collapsed
                 Me._Wp_Salir.Visibility = Windows.Visibility.Visible
+                Me._presentador.VerTipoMarcaPatente()
             End If
         End Sub
 
@@ -1195,6 +1196,7 @@ Namespace Ventanas.FacFacturaProformas
                         Me._GbAnualidades.Visibility = Windows.Visibility.Collapsed
                         Me._GbDesgloseServicio.Visibility = Windows.Visibility.Collapsed
                         Me._Wp_Salir.Visibility = Windows.Visibility.Visible
+                        _txtCantidad.Text = ""
                     Case "4" 'Traduccion
                         Me._presentador.VerDocumentoTraducciones()
 

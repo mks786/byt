@@ -89,7 +89,7 @@
                         <Label Grid.Column="1" VerticalAlignment="Top" HorizontalContentAlignment="Right" Margin="0,0,0,0">
                             <TextBlock Text="¿Anulada?" VerticalAlignment="Center" />
                         </Label>
-                        <custom:ByTTextBox Grid.Column="2"  Name="_txtAnulada" Width="20"  Height="20" MaxLength="2" Focusable="True" 
+                        <custom:ByTTextBox Grid.Column="2" Grid.Row="0"  Name="_txtAnulada" Width="50"  Height="20" MaxLength="2" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left">
                             <custom:ByTTextBox.Text>
                                 <Binding Path="Anulada" UpdateSourceTrigger="PropertyChanged">
@@ -147,6 +147,22 @@
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left" IsReadOnly="True">
                                 <custom:ByTTextBox.Text>
                                     <Binding Path="Codeti" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </custom:ByTTextBox.Text>
+                            </custom:ByTTextBox>
+                        </WrapPanel>
+
+                        <WrapPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
+                            <Label VerticalAlignment="Top" HorizontalContentAlignment="Left" Width="60">
+                                <TextBlock Text="Control" VerticalAlignment="Center"/>
+                            </Label>
+                            <custom:ByTTextBox Name="_txtControl"  Height="20" Width="100" MaxLength="100" Focusable="True" 
+                    ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left" IsReadOnly="True">
+                                <custom:ByTTextBox.Text>
+                                    <Binding Path="Control" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
                                             <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
                                         </Binding.ValidationRules>

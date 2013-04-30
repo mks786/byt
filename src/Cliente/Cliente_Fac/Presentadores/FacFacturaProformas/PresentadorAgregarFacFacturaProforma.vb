@@ -656,6 +656,7 @@ Namespace Presentadores.FacFacturaProformas
         Public Sub BuscarCarta()
             Mouse.OverrideCursor = Cursors.Wait
             Dim cartas As List(Of Carta) = Nothing
+            Dim valor As Boolean = False
             If DirectCast(Me._ventana.Asociado, Asociado) IsNot Nothing Then
                 Dim cartaaux As New Carta
 
@@ -679,7 +680,20 @@ Namespace Presentadores.FacFacturaProformas
                     cartaaux.Referencia = Me._ventana.ReferenciaCartaFiltrar
                 End If
 
-                cartaaux.Asociado = DirectCast(Me._ventana.Asociado, Asociado)
+                If DirectCast(Me._ventana.Asociado, Asociado) IsNot Nothing Then
+                    If Me._ventana.Asociado.id <> Integer.MinValue Then
+                        cartaaux.Asociado = DirectCast(Me._ventana.Asociado, Asociado)
+                        valor = True
+                    End If
+                End If
+
+
+                If valor = True Then
+                    cartas = Me._cartasServicios.ObtenerCartasFiltro(cartaaux)
+                Else
+                    MessageBox.Show("Error: Indique Asocicado")
+                    Exit Sub
+                End If
 
                 cartas = Me._cartasServicios.ObtenerCartasFiltro(cartaaux)
 
@@ -899,7 +913,7 @@ Namespace Presentadores.FacFacturaProformas
                 If (departamento_servicio.Servicio.Itipo = "C") Then
                     Me._ventana.VerTipo = "3" ' Cantidad                    
                 Else
-                    VerTipoTraduccion()
+                    VerTipoTraduccion()                    
                 End If
             End If
 
@@ -2126,13 +2140,20 @@ Namespace Presentadores.FacFacturaProformas
                     Me._ventana.Activar_Desactivar = True
                 End If
 
-                facfactudetaproforma.Desactivar_Desglose = True 'para activarlo por defecto
+                If departamento_servicio.Servicio.BAimpuesto = True Then
+                    facfactudetaproforma.Desactivar_Desglose = False
+                Else
+                    facfactudetaproforma.Desactivar_Desglose = True
+                End If
 
                 If Me._ventana.Desglose = True Then
                     Dim desglose_servicio As FacDesgloseServicio = DirectCast(Me._ventana.DesgloseServicio_Seleccionado, FacDesgloseServicio)
                     If desglose_servicio IsNot Nothing Then
                         If desglose_servicio.Id = "H" Then
                             facfactudetaproforma.Desactivar_Desglose = False
+                        Else
+                            facfactudetaproforma.Desactivar_Desglose = True
+                            facfactudetaproforma.Descuento = 0
                         End If
                         If desglose_servicio.Servicio IsNot Nothing Then
                             If facfactudetaproforma.Pu.ToString <> "" And desglose_servicio.Pporc.ToString <> "" Then
@@ -3468,7 +3489,7 @@ Namespace Presentadores.FacFacturaProformas
                         Me._ventana.Monedas = Monedas
                         Me._ventana.Moneda = Me.BuscarMoneda(Monedas, asociado.Moneda)
                         'busca el resto de los datos
-                        BuscarCarta()
+                        'BuscarCarta()
 
                         adivinar(asociado, DirectCast(Me._ventana.Moneda, Moneda))
 
