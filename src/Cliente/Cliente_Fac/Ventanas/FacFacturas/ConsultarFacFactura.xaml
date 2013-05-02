@@ -8,7 +8,7 @@
       mc:Ignorable="d" 
       xmlns:reglas="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Validaciones"    
       xmlns:conv="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Transformadores"
-      d:DesignHeight="550" d:DesignWidth="800"
+      d:DesignHeight="5000" d:DesignWidth="5000"
       xmlns:recurso="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Recursos" Loaded="Page_Loaded">
     <Page.Resources>
         <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
@@ -341,7 +341,7 @@
                          HorizontalAlignment="Left" Width="50" Text="" MaxLength="255" GotFocus="_txtAsociado_GotFocus" GotKeyboardFocus="_txtAsociado_GotFocus" Height="20" FontSize="10"></custom:ByTTextBox>-->
 
                                 <custom:ByTTextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4"  Name="_txtAsociado" VerticalAlignment="Center"                                     
-                         HorizontalAlignment="Left" Width="290" Text="" MaxLength="255" MouseDoubleClick="_txtAsociado_MouseDoubleClick" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
+                         HorizontalAlignment="Left" Width="290" Text="" MaxLength="255" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
 
                                 <custom:ByTTextBox Grid.Column="2" KeyDown="_Consultar_Enter" Grid.Row="0" Grid.ColumnSpan="4" Name="_txtIdAsociado" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="40" MaxLength="8" SoloNumero="True" Visibility="Collapsed"  ></custom:ByTTextBox>
@@ -476,7 +476,7 @@
                                 </Label>
 
                                 <custom:ByTTextBox Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="4"  Name="_txtAsociadoImp" VerticalAlignment="Center"
-                         HorizontalAlignment="Left" Width="290" Text="" MaxLength="255"  MouseDoubleClick="_txtAsociadoImp_MouseDoubleClick" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
+                         HorizontalAlignment="Left" Width="290" Text="" MaxLength="255" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
                                 <custom:ByTTextBox Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="4" SoloNumero="True" Name="_txtIdAsociadoImp" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="40" MaxLength="8"  Visibility="Collapsed" KeyDown="_Consultar_Enter"  ></custom:ByTTextBox>
                                 <custom:ByTTextBox Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="4" Name="_txtNombreAsociadoImp" VerticalAlignment="Center" 
@@ -544,7 +544,7 @@
                                 </Label>
 
                                 <custom:ByTTextBox Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="4"  Name="_txtInteresado" VerticalAlignment="Center"                                     
-                         HorizontalAlignment="Left" Width="290" Text="" MaxLength="255" MouseDoubleClick="_txtInteresado_MouseDoubleClick" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
+                         HorizontalAlignment="Left" Width="290" Text="" MaxLength="255" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
 
                                 <custom:ByTTextBox Grid.Column="3" Grid.Row="0" SoloNumero="True" Grid.ColumnSpan="4" Name="_txtIdInteresado" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="40" MaxLength="8"  Visibility="Collapsed" KeyDown="_Consultar_Enter" ></custom:ByTTextBox>
@@ -647,7 +647,7 @@
                                 <WrapPanel Orientation="Horizontal"  Width="290"  Grid.Column="2" Height="20" Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Left">
 
                                     <custom:ByTTextBox Grid.ColumnSpan="3" Width="230"  Name="_txtCarta" VerticalAlignment="Center"                                     
-                         HorizontalAlignment="Right" Text="" MaxLength="255" MouseDoubleClick="_txtCarta_MouseDoubleClick" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
+                         HorizontalAlignment="Right" Text="" MaxLength="255" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
 
                                     <Button Name="_btnVerCarta" VerticalAlignment="Bottom" Width="60" Click="_btnVerCarta_Click">Ver Carta</Button>
                                 </WrapPanel>
@@ -745,15 +745,15 @@
                         DataContext="{Binding}">
 
                         <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Height="20" Margin="0,0,0,0">
-                            <Button Name="_btnConsultarDepartamentoServicio2" VerticalAlignment="Center" Width="90" IsDefault="True"  Height="18" HorizontalAlignment="Left" Click="_btnVerDepartamentoServicios_Click">
+                            <!--<Button Name="_btnConsultarDepartamentoServicio2" VerticalAlignment="Center" Width="90" IsDefault="True"  Height="18" HorizontalAlignment="Left" Click="_btnVerDepartamentoServicios_Click">
                                 <TextBlock Text="Ver Servicios"/>
-                            </Button>
+                            </Button>-->
                             <Label>
                                 <TextBlock Text="   "/>
                             </Label>
-                            <Button Name="_btnEliminarDepartamentoServicio2" VerticalAlignment="Center" Width="90" IsDefault="True"  Height="18" HorizontalAlignment="Left" Click="_btnElimDepartamentoServicios_Click">
+                            <!--<Button Name="_btnEliminarDepartamentoServicio2" VerticalAlignment="Center" Width="90" IsDefault="True"  Height="18" HorizontalAlignment="Left" Click="_btnElimDepartamentoServicios_Click">
                                 <TextBlock Text="Eliminar"/>
-                            </Button>
+                            </Button>-->
                             <Label>
                                 <TextBlock Text="   "/>
                             </Label>
@@ -783,7 +783,7 @@
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left"  Margin="0,0,0,0">
 
                             <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Width="675" Grid.RowSpan="2" Name="_lstDetalle" ItemsSource="{Binding}" 
-                                  SelectionMode="Single" HorizontalAlignment="Left"  MouseDoubleClick="_lstDetalle_MouseDoubleClick"
+                                  SelectionMode="Single" HorizontalAlignment="Left"
                                   Style="{DynamicResource EstiloListView}" Height="150" VerticalAlignment="Top" Visibility="Visible" FontSize="10">
                                 <ListView.View>
                                     <GridView>
@@ -1822,7 +1822,7 @@
         </WrapPanel>
 
         <WrapPanel Name="_Wp_Btn"  Grid.Column="1" Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Bottom">
-            <Button Name="_btnModificar"  Visibility="Hidden" VerticalAlignment="Bottom" Height="25" Width="80"
+            <!--<Button Name="_btnModificar"  Visibility="Hidden" VerticalAlignment="Bottom" Height="25" Width="80"
                     Click="_btnModificar_Click">
                 <Button.Style>
                     <Style TargetType="Button">
@@ -1834,7 +1834,7 @@
                     </Style>
                 </Button.Style>
                 <TextBlock Name="_txbModificar" Text="{x:Static recurso:Etiquetas.btnModificar}"/>
-            </Button>
+            </Button>-->
             <Button Name="_btnEliminar" Visibility="Hidden" VerticalAlignment="Bottom" Height="25" Width="80"
                     Click="_btnEliminar_Click">
                 <TextBlock Name="_txbEliminar" Text="{x:Static recurso:Etiquetas.btnEliminar}"/>

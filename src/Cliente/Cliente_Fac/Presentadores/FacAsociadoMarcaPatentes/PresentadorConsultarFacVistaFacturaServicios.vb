@@ -88,7 +88,7 @@ Namespace Presentadores.FacAsociadoMarcaPatentes
                 'Me._FacVistaFacturaServicios = Me._FacVistaFacturaServicioservicios.ConsultarTodos()
                 'Me._FacVistaFacturaServicios = Me._FacVistaFacturaServicioservicios.ObtenerFacVistaFacturaServiciosFiltro(FacGestion Auxiliar)
 
-                Me._ventana.Resultados = Nothing
+                'Me._ventana.Resultados = Nothing
                 'Me._ventana.FacGestionFiltrar = New FacVistaFacturaServicio
 
                 'Dim Medios As IList(Of MediosGestion) = Me._MediosGestionServicios.ConsultarTodos()
@@ -202,8 +202,8 @@ Namespace Presentadores.FacAsociadoMarcaPatentes
 
                 Dim FacFactura As FacFactura
                 FacFactura = Me._FacFacturaServicios.ObtenerFacFacturasFiltro(FacFacturaAuxiliar)(0)
-                If FacFactura IsNot Nothing Then
-                    IrConsultarFacFactura(FacFactura)
+                If FacFactura IsNot Nothing Then                    
+                        IrConsultarFacFactura(FacFactura)                    
                 End If
                 If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
                     logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)

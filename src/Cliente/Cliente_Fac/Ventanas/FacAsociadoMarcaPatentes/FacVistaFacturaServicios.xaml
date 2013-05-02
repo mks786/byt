@@ -84,7 +84,7 @@
                             <!--<GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>-->
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Name="Btn_Factura" Content="Factura"  Command="local:ConsultarFacVistaFacturaServicios.Mostrar_Factura" CommandParameter="{Binding CFACTURA}" />
+                                    <Button Name="Btn_Factura" Content="Factura"  Command="local:ConsultarFacVistaFacturaServicios.Mostrar_Factura" CommandParameter="{Binding Factura}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

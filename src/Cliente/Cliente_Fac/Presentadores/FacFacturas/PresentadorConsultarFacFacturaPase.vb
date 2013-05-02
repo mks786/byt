@@ -794,9 +794,9 @@ Namespace Presentadores.FacFacturas
                         '    Proceso de Recalculo por cambio de tasa o cambio de impuesto 
                         '
                         If FacFactura.FechaFactura >= CDate("01-01-2008") Then
-                            Recalculo_x_imp_nueva()
+                            'Recalculo_x_imp_nueva()
                         Else
-                            Recalculo_x_imp_nueva()
+                            'Recalculo_x_imp_nueva()
                         End If
 
                         'verificar integridad

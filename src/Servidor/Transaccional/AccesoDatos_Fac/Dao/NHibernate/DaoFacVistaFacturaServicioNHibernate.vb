@@ -25,7 +25,10 @@ Namespace Dao.NHibernate
             End If
 
             If (FacVistaFacturaServicio IsNot Nothing) AndAlso (FacVistaFacturaServicio.Tipo <> "") Then
-                filtro = String.Format(Recursos.ConsultasHQL.FiltroObtenerFacVistaFacturaServicioTipo, FacVistaFacturaServicio.Id)
+                If variosFiltros Then
+                    filtro += " and "
+                End If
+                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacVistaFacturaServicioTipo, FacVistaFacturaServicio.Tipo)
                 variosFiltros = True
             End If
 

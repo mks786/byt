@@ -87,8 +87,8 @@ Namespace Ventanas.FacFacturas
                 _chkBIMulmon.IsEnabled = value
                 _txtCarta.IsEnabled = value
                 _cbxLocal.IsEnabled = value
-                _btnConsultarDepartamentoServicio2.IsEnabled = False
-                _btnEliminarDepartamentoServicio2.IsEnabled = False
+                '_btnConsultarDepartamentoServicio2.IsEnabled = False
+                '_btnEliminarDepartamentoServicio2.IsEnabled = False
                 _lstDetalle.IsEnabled = value
             End Set
         End Property
@@ -531,7 +531,7 @@ Namespace Ventanas.FacFacturas
             'Me._lstDepartamentoServicio_2.Visibility = Windows.Visibility.Collapsed
             Me._btnagregarServicio2.Visibility = Windows.Visibility.Collapsed
             Me._lstDetalle.Visibility = Windows.Visibility.Visible
-            Me._btnConsultarDepartamentoServicio2.Visibility = Windows.Visibility.Visible
+            ' Me._btnConsultarDepartamentoServicio2.Visibility = Windows.Visibility.Visible
             'Me._txtSumaBono.Visibility = Windows.Visibility.Visible
             'Me._txtSumaBonoBf.Visibility = Windows.Visibility.Visible
             'Me._presentador.AgregarFacturas2()

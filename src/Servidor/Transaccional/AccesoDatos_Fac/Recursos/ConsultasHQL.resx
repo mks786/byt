@@ -694,13 +694,13 @@
     <value>asociado.Id = {0}</value>
   </data>
   <data name="FiltroObtenerFacVistaFacturaServicioId" xml:space="preserve">
-    <value>Id = {0}</value>
+    <value>v.Id = {0}</value>
   </data>
   <data name="FiltroObtenerFacVistaFacturacionCxpInternaCobrada" xml:space="preserve">
     <value>Cobrada = '{0}'</value>
   </data>
   <data name="FiltroObtenerFacVistaFacturaServicioTipo" xml:space="preserve">
-    <value>Tipo = '{0}'</value>
+    <value>v.Tipo = '{0}'</value>
   </data>
   <data name="FiltroObtenerFacVistaFacturacionCxpInternaAsociado_o" xml:space="preserve">
     <value>asociado_o.Id = {0}</value>

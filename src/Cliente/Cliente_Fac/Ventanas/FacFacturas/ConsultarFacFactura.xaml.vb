@@ -14,6 +14,7 @@ Namespace Ventanas.FacFacturas
         Private _cargada As Boolean
 
 #Region "IConsultarFacFactura"
+        'Dim _btnConsultarDepartamentoServicio2 As Object
 
         Public Property EstaCargada() As Boolean Implements IPaginaBaseFac.EstaCargada
             Get
@@ -26,10 +27,11 @@ Namespace Ventanas.FacFacturas
 
         Public Property TextoBotonModificar() As String Implements Contratos.FacFacturas.IConsultarFacFactura.TextoBotonModificar
             Get
-                Return Me._txbModificar.Text
+                'Return Me._txbModificar.Text
+                Return ""
             End Get
             Set(ByVal value As String)
-                Me._txbModificar.Text = value
+                'Me._txbModificar.Text = value
             End Set
         End Property
 
@@ -88,8 +90,8 @@ Namespace Ventanas.FacFacturas
                 _chkBIMulmon.IsEnabled = value
                 _txtCarta.IsEnabled = value
                 _cbxLocal.IsEnabled = value
-                _btnConsultarDepartamentoServicio2.IsEnabled = False
-                _btnEliminarDepartamentoServicio2.IsEnabled = False
+                '_btnConsultarDepartamentoServicio2.IsEnabled = False
+                '_btnEliminarDepartamentoServicio2.IsEnabled = False
                 _lstDetalle.IsEnabled = value
             End Set
         End Property
@@ -116,8 +118,8 @@ Namespace Ventanas.FacFacturas
             InitializeComponent()
             Me._cargada = False
             Me._presentador = New PresentadorConsultarFacFactura(Me, FacFactura)
-            _btnConsultarDepartamentoServicio2.Visibility = Windows.Visibility.Collapsed
-            _btnEliminarDepartamentoServicio2.Visibility = Windows.Visibility.Collapsed
+            '_btnConsultarDepartamentoServicio2.Visibility = Windows.Visibility.Collapsed
+            ' _btnEliminarDepartamentoServicio2.Visibility = Windows.Visibility.Collapsed
             _btnrecalcular.Visibility = Windows.Visibility.Collapsed
             _btnagregarServicio2.Visibility = Windows.Visibility.Collapsed
 
@@ -563,7 +565,7 @@ Namespace Ventanas.FacFacturas
             'Me._lstDepartamentoServicio_2.Visibility = Windows.Visibility.Collapsed
             Me._btnagregarServicio2.Visibility = Windows.Visibility.Collapsed
             Me._lstDetalle.Visibility = Windows.Visibility.Visible
-            Me._btnConsultarDepartamentoServicio2.Visibility = Windows.Visibility.Visible
+            'Me._btnConsultarDepartamentoServicio2.Visibility = Windows.Visibility.Visible
             'Me._txtSumaBono.Visibility = Windows.Visibility.Visible
             'Me._txtSumaBonoBf.Visibility = Windows.Visibility.Visible
             'Me._presentador.AgregarFacturas2()
