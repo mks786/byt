@@ -845,49 +845,53 @@ Namespace Presentadores.FacFacturaProformas
             Mouse.OverrideCursor = Cursors.Wait
             Dim cartas As List(Of Carta) = Nothing
             Dim valor As Boolean = False
-            If DirectCast(Me._ventana.Asociado, Asociado) IsNot Nothing Then
-                Dim cartaaux As New Carta
+            'If DirectCast(Me._ventana.Asociado, Asociado) IsNot Nothing Then
+            Dim cartaaux As New Carta
 
-                'Dim CartasFiltrados As IEnumerable(Of Carta) = Me._Cartas
+            'Dim CartasFiltrados As IEnumerable(Of Carta) = Me._Cartas
 
-                If Not String.IsNullOrEmpty(Me._ventana.idCartaFiltrar) Then
-                    cartaaux.Id = Integer.Parse(Me._ventana.idCartaFiltrar)
-                    'CartasFiltrados = From p In CartasFiltrados Where p.Id = Integer.Parse(Me._ventana.idCartaFiltrar)
-                End If
+            If Not String.IsNullOrEmpty(Me._ventana.idCartaFiltrar) Then
+                cartaaux.Id = Integer.Parse(Me._ventana.idCartaFiltrar)
+                'CartasFiltrados = From p In CartasFiltrados Where p.Id = Integer.Parse(Me._ventana.idCartaFiltrar)
+                valor = True
+            End If
 
-                'If Not String.IsNullOrEmpty(Me._ventana.NombreCartaFiltrar) Then
-                '    cartaaux.Medio = UCase(Me._ventana.NombreCartaFiltrar)
-                '    'CartasFiltrados = From p In CartasFiltrados Where p.Medio IsNot Nothing AndAlso p.Medio.ToLower().Contains(Me._ventana.NombreCartaFiltrar.ToLower())
-                'End If
+            'If Not String.IsNullOrEmpty(Me._ventana.NombreCartaFiltrar) Then
+            '    cartaaux.Medio = UCase(Me._ventana.NombreCartaFiltrar)
+            '    'CartasFiltrados = From p In CartasFiltrados Where p.Medio IsNot Nothing AndAlso p.Medio.ToLower().Contains(Me._ventana.NombreCartaFiltrar.ToLower())
+            'End If
 
-                If Not String.IsNullOrEmpty(Me._ventana.FechaCartaFiltrar) Then
-                    cartaaux.Fecha = Me._ventana.FechaCartaFiltrar
-                End If
+            If Not String.IsNullOrEmpty(Me._ventana.FechaCartaFiltrar) Then
+                cartaaux.Fecha = Me._ventana.FechaCartaFiltrar
+                valor = True
+            End If
 
-                If Not String.IsNullOrEmpty(Me._ventana.ReferenciaCartaFiltrar) Then
-                    cartaaux.Referencia = Me._ventana.ReferenciaCartaFiltrar
-                End If
-
-
-                If DirectCast(Me._ventana.Asociado, Asociado) IsNot Nothing Then
-                    If Me._ventana.Asociado.id <> Integer.MinValue Then
-                        cartaaux.Asociado = DirectCast(Me._ventana.Asociado, Asociado)
-                        valor = True
-                    End If
-                End If
+            If Not String.IsNullOrEmpty(Me._ventana.ReferenciaCartaFiltrar) Then
+                cartaaux.Referencia = Me._ventana.ReferenciaCartaFiltrar
+                valor = True
+            End If
 
 
-                If valor = True Then
-                    cartas = Me._cartasServicios.ObtenerCartasFiltro(cartaaux)
-                Else
-                    MessageBox.Show("Error: Indique Asocicado")
-                    Exit Sub
-                End If
+            'If DirectCast(Me._ventana.Asociado, Asociado) IsNot Nothing Then
+            '    If Me._ventana.Asociado.id <> Integer.MinValue Then
+            '        cartaaux.Asociado = DirectCast(Me._ventana.Asociado, Asociado)
+            '        valor = True
+            '    End If
+            'End If
+
+
+            If valor = True Then
+                cartas = Me._cartasServicios.ObtenerCartasFiltro(cartaaux)
             Else
-                Me._ventana.Cartas = Nothing
-                MessageBox.Show("Error: No Existe Carta Relacionado a la Búsqueda")
+                MessageBox.Show("Error: Indique algun parametro de busqueda")
+                Mouse.OverrideCursor = Nothing
                 Exit Sub
             End If
+            'Else
+            '    Me._ventana.Cartas = Nothing
+            '    MessageBox.Show("Error: No Existe Carta Relacionado a la Búsqueda")
+            '    Exit Sub
+            'End If
 
             Dim primercarta As New Carta()
             primercarta.Id = Integer.MinValue
