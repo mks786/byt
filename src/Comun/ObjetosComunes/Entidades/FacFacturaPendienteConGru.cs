@@ -27,10 +27,46 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         // ''' Constructor que inicializa el Id de la FacFacturaPendienteConGru
         // ''' </summary>
         // ''' <param name="id">Id de la tasa</param>
-        public FacFacturaPendienteConGru(int id)
+        public FacFacturaPendienteConGru(int id, Moneda Moneda,int Dias )
         {
             this._id = id;
+            this._Moneda = Moneda;
+            this._Dias = Dias;
         }
+
+
+        // para llave compuesta
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            // var t = ((FacCobroFactura)obj);
+            var t = obj as FacFacturaPendienteConGru;
+            if (t == null)
+            {
+                return false;
+            }
+            if ( (Id == t.Id) && (Moneda.Id == t.Moneda.Id) && (Dias == t.Dias) )
+            {
+                //If (Doc_servicio = t.Doc_servicio) Then
+                return true;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+
+
 
         public virtual int Id
         {
@@ -43,6 +79,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
                 this._id = value;
             }
         }
+
 
  
         // ''' <summary>
