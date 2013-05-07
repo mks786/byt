@@ -848,7 +848,7 @@ Namespace Recursos
         End Property
         
         '''<summary>
-        '''  Busca una cadena traducida similar a fp.Caso= &apos;{0}&apos;.
+        '''  Busca una cadena traducida similar a fp.Caso like &apos;%{0}%&apos;.
         '''</summary>
         Public Shared ReadOnly Property FiltroObtenerFacFacturaCaso() As String
             Get
@@ -929,6 +929,15 @@ Namespace Recursos
         End Property
         
         '''<summary>
+        '''  Busca una cadena traducida similar a fp.Instruc= &apos;{0}&apos;.
+        '''</summary>
+        Public Shared ReadOnly Property FiltroObtenerFacFacturaInstruc() As String
+            Get
+                Return ResourceManager.GetString("FiltroObtenerFacFacturaInstruc", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Busca una cadena traducida similar a interesadoimp.Id = {0}.
         '''</summary>
         Public Shared ReadOnly Property FiltroObtenerFacFacturaInteresadoImp() As String
@@ -938,7 +947,16 @@ Namespace Recursos
         End Property
         
         '''<summary>
-        '''  Busca una cadena traducida similar a fp.Ourref= &apos;{0}&apos;.
+        '''  Busca una cadena traducida similar a fp.NumeroControl= {0}.
+        '''</summary>
+        Public Shared ReadOnly Property FiltroObtenerFacFacturaNumeroControl() As String
+            Get
+                Return ResourceManager.GetString("FiltroObtenerFacFacturaNumeroControl", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca una cadena traducida similar a fp.Ourref like &apos;%{0}%&apos;.
         '''</summary>
         Public Shared ReadOnly Property FiltroObtenerFacFacturaOurref() As String
             Get

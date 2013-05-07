@@ -72,6 +72,21 @@ Namespace Dao.NHibernate
                 filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacFacturaInicial, FacFactura.Inicial)
                 variosFiltros = True
             End If
+            If (FacFactura IsNot Nothing) AndAlso (FacFactura.NumeroControl IsNot Nothing) Then
+                If variosFiltros Then
+                    filtro += " and "
+                End If
+                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacFacturaNumeroControl, FacFactura.NumeroControl)
+                variosFiltros = True
+            End If
+            If (FacFactura IsNot Nothing) AndAlso (FacFactura.Instruc <> "") Then
+                If variosFiltros Then
+                    filtro += " and "
+                End If
+                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacFacturaInstruc, FacFactura.Instruc)
+                variosFiltros = True
+            End If
+
             If (FacFactura IsNot Nothing) AndAlso (FacFactura.CodigoDepartamento <> "") Then
                 If variosFiltros Then
                     filtro += " and "

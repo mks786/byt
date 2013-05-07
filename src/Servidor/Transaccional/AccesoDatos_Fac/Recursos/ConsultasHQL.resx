@@ -706,13 +706,13 @@
     <value>asociado_o.Id = {0}</value>
   </data>
   <data name="FiltroObtenerFacFacturaCaso" xml:space="preserve">
-    <value>fp.Caso= '{0}'</value>
+    <value>fp.Caso like '%{0}%'</value>
   </data>
   <data name="FiltroObtenerFacFacturaGuia" xml:space="preserve">
     <value>fp.CodGuia= '{0}'</value>
   </data>
   <data name="FiltroObtenerFacFacturaOurref" xml:space="preserve">
-    <value>fp.Ourref= '{0}'</value>
+    <value>fp.Ourref like '%{0}%'</value>
   </data>
   <data name="FiltroObtenerFacFacturaProforma" xml:space="preserve">
     <value>facfacturaproforma.Id= {0}</value>
@@ -746,5 +746,11 @@
   </data>
   <data name="FiltroObtenerFacFactuDetaAnuladaServicio" xml:space="preserve">
     <value>Servicio.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaInstruc" xml:space="preserve">
+    <value>fp.Instruc= '{0}'</value>
+  </data>
+  <data name="FiltroObtenerFacFacturaNumeroControl" xml:space="preserve">
+    <value>fp.NumeroControl= {0}</value>
   </data>
 </root>
