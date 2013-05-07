@@ -86,6 +86,7 @@ Namespace Presentadores.ChequeRecidos
                     Me._ventana.NombreAsociado = asociado(0).Id & " - " & asociado(0).Nombre
                 End If
 
+                Me._ventana.Monto = ChequeRecido.Monto
 
                 Me._ventana.FocoPredeterminado()
             Catch ex As ApplicationException
@@ -141,6 +142,7 @@ Namespace Presentadores.ChequeRecidos
                     'If Not Me._ChequeRecidoServicios.VerificarExistencia(ChequeRecido) Then
                     ChequeRecido.BancoG = If(Not DirectCast(Me._ventana.BancoG, BancoG).Id.Equals("NGN"), DirectCast(Me._ventana.BancoG, BancoG), Nothing)
 
+                    ChequeRecido.Monto = Me._ventana.Monto
                     'Dim primerafacbanco As New FacBanco()
                     'primerafacbanco.Id = -2
                     'ChequeRecido.Banco = Nothing

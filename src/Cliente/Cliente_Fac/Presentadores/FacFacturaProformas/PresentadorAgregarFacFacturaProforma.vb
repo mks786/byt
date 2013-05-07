@@ -1105,24 +1105,36 @@ Namespace Presentadores.FacFacturaProformas
 
 
                     ' esto tengo que verificarlo con el desglose servicio
-                    'If desglose_servicio.Id = "G" Then
+                    'If desglose_servicio.Id = "G" The
                     '    detalle_proforma.Impuesto = "F"
                     '    detalle_proforma.Descuento = 0
                     '    Me._ventana.Desactivar_Descuento = False
                     'End If
+
+
+                    Dim asociado As Asociado
+                    If DirectCast(Me._ventana.Asociado, Asociado) IsNot Nothing Then
+                        If Me._ventana.Asociado.id <> Integer.MinValue Then
+                            asociado = Me._asociadosServicios.ConsultarAsociadoConTodo(DirectCast(Me._ventana.Asociado, Asociado))
+                        End If
+                    End If
 
                     If detalle_proforma.Servicio.BAimpuesto = False Then
                         detalle_proforma.Descuento = 0
                         Me._ventana.Desactivar_Descuento = True
                     End If
 
+                    'If detalle_proforma.Servicio.BAimpuesto = False And DirectCast(Me._ventana.Moneda, Moneda).Id = "BF" Then
+                    '    detalle_proforma.Descuento = 0
+                    '    Me._ventana.Desactivar_Descuento = False
+                    'End If
 
-                        If detalle_proforma.NCantidad.ToString <> "" And detalle_proforma.NCantidad.ToString <> Nothing Then
-                            Me._ventana.NCantidad = detalle_proforma.NCantidad
-                        Else
-                            Me._ventana.NCantidad = 0
-                        End If
-                        If detalle_proforma.Pu.ToString <> "" And detalle_proforma.Pu.ToString <> Nothing Then
+                    If detalle_proforma.NCantidad.ToString <> "" And detalle_proforma.NCantidad.ToString <> Nothing Then
+                        Me._ventana.NCantidad = detalle_proforma.NCantidad
+                    Else
+                        Me._ventana.NCantidad = 0
+                    End If
+                    If detalle_proforma.Pu.ToString <> "" And detalle_proforma.Pu.ToString <> Nothing Then
                         Me._ventana.Pu = detalle_proforma.Pu
                     Else
                         Me._ventana.Pu = 0
@@ -2256,8 +2268,9 @@ Namespace Presentadores.FacFacturaProformas
                 End If
             End If
 
+            Dim asociado As Asociado
             If detalle_proforma.Servicio.BAimpuesto <> False Then
-                Dim asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
+                asociado = DirectCast(Me._ventana.Asociado, Asociado)
                 detalle_proforma.Descuento = asociado.Descuento
                 If asociado.Descuento < 25 And DirectCast(Me._ventana.Moneda, Moneda).Id = "BF" Then
                     detalle_proforma.Descuento = 25
@@ -2265,6 +2278,12 @@ Namespace Presentadores.FacFacturaProformas
             Else
                 detalle_proforma.Descuento = 0
             End If
+
+            'asociado = DirectCast(Me._ventana.Asociado, Asociado)
+            'If detalle_proforma.Servicio.BAimpuesto <> False And asociado.Then Then
+
+            'End If
+
 
             detalle_proforma.BDetalle = (detalle_proforma.Pu * detalle_proforma.NCantidad) * (1 - (detalle_proforma.Descuento / 100))
             detalle_proforma.BDetalle = detalle_proforma.BDetalle
@@ -3679,6 +3698,7 @@ Namespace Presentadores.FacFacturaProformas
                 xasociado(asociado)
                 If asociado.Descuento < 25 And moneda.Id = "BF" Then
                     Me._ventana.MensajeError = "Se aplicara un descuento de 25%"
+                    MessageBox.Show("Se aplicara un descuento de 25%")
                 End If
             Else
                 Me._ventana.Idiomas = Nothing

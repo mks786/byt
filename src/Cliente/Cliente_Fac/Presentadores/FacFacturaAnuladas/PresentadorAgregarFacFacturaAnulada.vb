@@ -265,11 +265,12 @@ Namespace Presentadores.FacFacturaAnuladas
                 End If 'Proceso 1/4 Culminado
 
 
-
-                If Me._ventana.Control = "" Or Me._ventana.Control = Nothing Then
-                    Mouse.OverrideCursor = Nothing
-                    Me._ventana.MensajeErrorCobro = "Debe Cargar el Control "
-                    Exit Sub
+                If factura.Terrero <> "3" Then
+                    If Me._ventana.Control = "" Or Me._ventana.Control = Nothing Then
+                        Mouse.OverrideCursor = Nothing
+                        Me._ventana.MensajeErrorCobro = "Debe Cargar el Control "
+                        Exit Sub
+                    End If
                 End If
 
                 w_fac = factura.Proforma.Id

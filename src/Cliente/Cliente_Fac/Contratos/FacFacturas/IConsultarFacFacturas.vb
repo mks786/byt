@@ -74,6 +74,8 @@ Namespace Contratos.FacFacturas
 
         Property FechaCartaFiltrar() As String
 
+        Property NumeroControl() As String
+
 
         'ReadOnly Property Region() As String
 

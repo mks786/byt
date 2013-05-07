@@ -1803,6 +1803,8 @@
                     Click="_btnImprimir">
                 <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"  Name="_txtImprimirBsf" Text="Imprimir BsF"/>
             </Button>
+
+            <Button Name="_btnNuevaProforma" VerticalAlignment="Bottom" Height="25" Width="80" Click="_btnNuevaProforma_Click">Nueva Proforma</Button>
             
             <Button Name="_btnModificar"  VerticalAlignment="Bottom" Height="25" Width="80"
                     Click="_btnModificar_Click">

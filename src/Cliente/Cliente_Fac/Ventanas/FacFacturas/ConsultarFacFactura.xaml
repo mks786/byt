@@ -8,7 +8,7 @@
       mc:Ignorable="d" 
       xmlns:reglas="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Validaciones"    
       xmlns:conv="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Transformadores"
-      d:DesignHeight="5000" d:DesignWidth="5000"
+      d:DesignHeight="550" d:DesignWidth="800"
       xmlns:recurso="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Recursos" Loaded="Page_Loaded">
     <Page.Resources>
         <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
@@ -162,7 +162,7 @@
                             <custom:ByTTextBox Name="_txtControl"  Height="20" Width="100" MaxLength="100" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left" IsReadOnly="True">
                                 <custom:ByTTextBox.Text>
-                                    <Binding Path="Control" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding Path="NumeroControl" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
                                             <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
                                         </Binding.ValidationRules>
@@ -1839,7 +1839,7 @@
                     Click="_btnEliminar_Click">
                 <TextBlock Name="_txbEliminar" Text="{x:Static recurso:Etiquetas.btnEliminar}"/>
             </Button>
-            <Button Name="_btnLimpiar" Visibility="Hidden" VerticalAlignment="Bottom" Height="25" Width="80" Click="_btnLimpiar_Click">Limpiar</Button>
+            <Button Name="_btnLimpiar" Visibility="Hidden" VerticalAlignment="Bottom" Height="25" Width="80" Click="_btnLimpiar_Click">Limpiar</Button>            
             <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="80"
                     Click="_btnRegresar_Click">
                 <TextBlock Name="_txbCancelar" Text="{x:Static recurso:Etiquetas.btnRegresar}"/>

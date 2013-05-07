@@ -106,6 +106,9 @@ Namespace Presentadores.FacCreditos
                 Me._ventana.Monedas = monedas
                 Me._ventana.Moneda = Me.BuscarMoneda(monedas, FacCredito.Moneda)
 
+
+                Me._ventana.BCredito = FacCredito.BCredito
+
                 Me._ventana.BCreditoBf = FacCredito.BCreditoBf
 
                 Me._ventana.FocoPredeterminado()
@@ -201,8 +204,24 @@ Namespace Presentadores.FacCreditos
 
                     FacCredito.Operacion = "UPDATE"
                     FacCredito.BCreditoBf = Me._ventana.BCreditoBf
+                    FacCredito.BCredito = Me._ventana.BCredito
 
                     If Me._FacCreditoServicios.InsertarOModificar(FacCredito, UsuarioLogeado.Hash) Then
+
+
+                        Dim operacion As New FacOperacion
+                        operacion.Id = "NC"
+                        operacion.CodigoOperacion = FacCredito.Id
+                        operacion.FechaOperacion = FacCredito.FechaCredito
+                        operacion.Asociado = FacCredito.Asociado
+                        operacion.Idioma = FacCredito.Idioma
+                        operacion.Moneda = FacCredito.Moneda
+                        operacion.Monto = FacCredito.BCredito
+                        operacion.Saldo = FacCredito.BCredito
+                        operacion.MontoBf = FacCredito.BCreditoBf
+                        operacion.SaldoBf = FacCredito.BCreditoBf
+                        operacion.XOperacion = FacCredito.Concepto
+                        _facoperacionesServicios.InsertarOModificar(operacion, UsuarioLogeado.Hash)
 
                         'Dim operacion As New FacOperacion                        
                         'operacion.CodigoOperacion = FacCredito.Id
@@ -266,8 +285,8 @@ Namespace Presentadores.FacCreditos
                 tasa.Moneda = moneda.Id
 
                 Dim tasas As IList(Of Tasa) = _tasasServicios.ObtenerTasasFiltro(tasa)
-                Me._ventana.BSaldo = FacCredito.BCredito
-                Dim bcredito As Double = FacCredito.BCredito
+                Me._ventana.BSaldo = Me._ventana.BCredito
+                Dim bcredito As Double = Me._ventana.BCredito
                 If tasas.Count > 0 Then
                     Dim valortasa As Double = tasas(0).Tasabf
                     Dim BCreditoBf = bcredito * valortasa

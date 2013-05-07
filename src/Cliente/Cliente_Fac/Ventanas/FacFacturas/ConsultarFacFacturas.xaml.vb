@@ -520,5 +520,14 @@ Namespace Ventanas.FacFacturas
                 _txtProforma.Text = value
             End Set
         End Property
+
+        Public Property NumeroControl As String Implements Contratos.FacFacturas.IConsultarFacFacturas.NumeroControl
+            Get
+                Return _txtNumeroControl.Text
+            End Get
+            Set(value As String)
+                _txtNumeroControl.Text = value
+            End Set
+        End Property
     End Class
 End Namespace

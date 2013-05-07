@@ -89,6 +89,8 @@ Namespace Presentadores.FacFacturaProformas
                 Me._ventana.FacFacturaProformaFiltrar = New FacFacturaProforma
                 'sumar(FacFacturaProformas)
 
+                Consultar()
+
                 'Me._asociados = Me._asociadosServicios.ConsultarTodos()
                 'Me._ventana.Asociados = Me._asociados
 

@@ -22,6 +22,8 @@ Namespace Contratos.ChequeRecidos
 
         Property BancoG() As Object
 
+        Property Monto() As Double
+
         Property BancoGs() As Object
         'Property Region() As String 
 

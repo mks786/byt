@@ -13,7 +13,6 @@ Namespace Ventanas.FacCreditos
         Implements IConsultarFacCredito
 
 
-
         Private _presentador As PresentadorConsultarFacCredito
         Private _cargada As Boolean
 
@@ -161,6 +160,15 @@ Namespace Ventanas.FacCreditos
             End Get
             Set(ByVal value As Double)
                 Me._txtBCreditoBf.Text = SetFormatoDouble(value)
+            End Set
+        End Property
+
+        Public Property BCredito() As Double Implements Contratos.FacCreditos.IConsultarFacCredito.BCredito
+            Get
+                Return GetFormatoDouble(Me._txtBCredito.Text)
+            End Get
+            Set(ByVal value As Double)
+                Me._txtBCredito.Text = SetFormatoDouble(value)
             End Set
         End Property
 

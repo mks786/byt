@@ -145,6 +145,10 @@ Namespace Ventanas.FacFacturaProformas
             Me._presentador.Limpiar()
         End Sub
 
+        Public Sub _btnNuevaProforma_Click()
+            Me._presentador.NuevaProforma()
+        End Sub
+
         Private Sub _btnRegresar_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
             Me._presentador.Regresar2()
         End Sub
@@ -501,6 +505,7 @@ Namespace Ventanas.FacFacturaProformas
 
             _txtServicioId.Focus()
             Me._presentador.VerDepartamentoServicios()
+            _txtServicioId.Focus()
         End Sub
 
         Private Sub _btnElimDepartamentoServicios_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)

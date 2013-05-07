@@ -184,7 +184,7 @@
                     </ComboBox>
                 </WrapPanel>-->
 
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="left" Margin="0,5,0,0">
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="Fecha"/>
                     </Label>
@@ -193,6 +193,54 @@
                             <Binding Path="FechaFactura" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
                     </DatePicker>
+                </WrapPanel>
+
+                <WrapPanel Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
+                    <Label  HorizontalContentAlignment="Left" VerticalAlignment="Top" Width="60">
+                        <TextBlock Text="Inicial" VerticalAlignment="Center"/>
+                    </Label>
+                    <custom:ByTTextBox  Name="_txtInicial" Width="100"  Height="20" MaxLength="100" Focusable="True" 
+                       HorizontalAlignment="Left">
+                        <custom:ByTTextBox.Text>
+                            <Binding Path="Inicial" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </custom:ByTTextBox.Text>
+                    </custom:ByTTextBox>
+                </WrapPanel>
+
+                <WrapPanel Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
+                    <Label  HorizontalContentAlignment="Left" VerticalAlignment="Top" Width="60">
+                        <TextBlock Text="Instruccion" VerticalAlignment="Center"/>
+                    </Label>
+                    <custom:ByTTextBox  Name="_txtInstruc" Width="100"  Height="20" MaxLength="100" Focusable="True" 
+                       HorizontalAlignment="Left">
+                        <custom:ByTTextBox.Text>
+                            <Binding Path="Instruc" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </custom:ByTTextBox.Text>
+                    </custom:ByTTextBox>
+                </WrapPanel>
+
+                <WrapPanel Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
+                    <Label  HorizontalContentAlignment="Left" VerticalAlignment="Top" Width="60">
+                        <TextBlock Text="Control" VerticalAlignment="Center"/>
+                    </Label>
+                    <custom:ByTTextBox  Name="_txtNumeroControl" Width="100"  Height="20" MaxLength="100" Focusable="True" 
+                       HorizontalAlignment="Left">
+                        <custom:ByTTextBox.Text>
+                            <Binding Path="NumeroControl" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </custom:ByTTextBox.Text>
+                    </custom:ByTTextBox>
                 </WrapPanel>
 
                 <WrapPanel Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
@@ -352,6 +400,7 @@
                         <Label Name="_lblIdCarta" Grid.Column="2" Width="20" Grid.Row="0" HorizontalAlignment="Left"  VerticalAlignment="Center" Visibility="Collapsed" FontSize="9">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}" Width="20"/>
                         </Label>
+
                         <!--<Label Name="_lblNombreCarta" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed" FontSize="9">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                             </Label>-->
@@ -405,6 +454,9 @@
                        Style="{DynamicResource EstiloListView}">
                 <ListView.View>
                     <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Anulada}" Width="80">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Anulada" Content="Anulada"/>
+                        </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="Factura"/>
                         </GridViewColumn>
@@ -435,6 +487,11 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Caso}" Width="250">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Caso" Content="Caso"/>
                         </GridViewColumn>
+
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=NumeroControl}" Width="80">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="NumeroControl" Content="Control"/>
+                        </GridViewColumn>
+                        
                         <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Mttotal}" Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Mttotal" Content="Monto"/>
                         </GridViewColumn>-->

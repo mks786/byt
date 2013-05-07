@@ -193,16 +193,22 @@
                     <Label>
                         <TextBlock Text="Monto"/>
                     </Label>
-                    <TextBox Name="_txtValor" Width="150" MaxLength="15" Focusable="True" 
+                    <custom:ByTTextBox Name="_txtValor" Width="150" MaxLength="15" Focusable="True" 
                     ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}">
-                        <TextBox.Text>
+                        
+                        <!--<TextBox.Text>
                             <Binding Path="Monto" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
                                     <reglas:SoloNumeros ValidatesOnTargetUpdated="True" />
                                 </Binding.ValidationRules>
                             </Binding>
-                        </TextBox.Text>
-                    </TextBox>
+                        </TextBox.Text>-->
+
+                        <custom:ByTTextBox.Text>
+                            <Binding Path="Monto" UpdateSourceTrigger="PropertyChanged">
+                            </Binding>
+                        </custom:ByTTextBox.Text>
+                    </custom:ByTTextBox>
                 </WrapPanel>
 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">

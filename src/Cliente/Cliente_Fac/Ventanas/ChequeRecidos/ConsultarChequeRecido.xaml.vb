@@ -230,6 +230,16 @@ Namespace Ventanas.ChequeRecidos
                 Me._txbModificar.Text = value
             End Set
         End Property
+
+        Public Property Monto As Double Implements Contratos.ChequeRecidos.IConsultarChequeRecido.Monto
+            Get
+                Return _presentador.GetFormatoDouble2(Me._txtValor.Text)
+            End Get
+            Set(ByVal value As Double)
+                Dim a As String = _presentador.SetFormatoDouble2(value)
+                Me._txtValor.Text = _presentador.SetFormatoDouble2(value)
+            End Set
+        End Property
     End Class
 
 

@@ -138,6 +138,12 @@ Namespace Presentadores.FacFacturas
 
                 Dim proforma As FacFacturaProforma = FacFacturaOProforma
                 If proforma.Status = 1 Then
+
+                    If FacFacturaOProforma.Asociado.BAlerta = True Then
+                        Dim mensaje As String = "ALERTA: " & FacFacturaOProforma.Asociado.AlarmaDescripcion
+                        MessageBox.Show(mensaje)
+                    End If
+
                     pasar_profora_a_factura(FacFacturaOProforma)
                 Else
                     'Me._ventana.FacFactura = FacFacturaOProforma

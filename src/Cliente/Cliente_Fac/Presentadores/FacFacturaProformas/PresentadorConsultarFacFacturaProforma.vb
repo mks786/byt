@@ -420,6 +420,22 @@ Namespace Presentadores.FacFacturaProformas
             '#End Region
         End Sub
 
+        Public Sub NuevaProforma()
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region            
+
+            Me.Navegar(New AgregarFacFacturaProforma())
+            'Me.Navegar(New ConsultarFacCobro())
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+        End Sub
+
         Public Sub SaldoPendiente(ByVal id As Integer)
             Dim operacionaux As New FacOperacionProforma
             operacionaux.CodigoOperacion = id
@@ -1303,6 +1319,11 @@ Namespace Presentadores.FacFacturaProformas
                         detalle_proforma.Descuento = 0
                         Me._ventana.Desactivar_Descuento = True
                     End If
+
+                    'If detalle_proforma.Servicio.BAimpuesto = False And DirectCast(Me._ventana.Moneda, Moneda).Id = "BF" Then
+                    '    detalle_proforma.Descuento = 0
+                    '    Me._ventana.Desactivar_Descuento = False
+                    'End If
 
 
                     If detalle_proforma.NCantidad.ToString <> "" And detalle_proforma.NCantidad.ToString <> Nothing Then
@@ -3897,6 +3918,7 @@ Namespace Presentadores.FacFacturaProformas
                 xasociado(asociado)
                 If asociado.Descuento < 25 And moneda.Id = "BF" Then
                     Me._ventana.MensajeError = "Se aplicara un descuento de 25%"
+                    MessageBox.Show("Se aplicara un descuento de 25%")
                 End If
             Else
                 Me._ventana.Idiomas = Nothing

@@ -279,6 +279,17 @@ Namespace Presentadores.FacFacturas
                 End If
                 FacFacturaAuxiliar.Caso = facfactutafiltro.Caso
                 FacFacturaAuxiliar.Ourref = facfactutafiltro.Ourref
+                FacFacturaAuxiliar.Inicial = facfactutafiltro.Inicial
+                FacFacturaAuxiliar.Instruc = facfactutafiltro.Instruc
+
+                If Me._ventana.NumeroControl <> "" Then
+                    If IsNumeric(Me._ventana.NumeroControl) Then
+                        FacFacturaAuxiliar.NumeroControl = Me._ventana.NumeroControl
+                    End If
+                End If                
+
+
+
 
 
                 'If (Me._ventana.Banco IsNot Nothing) AndAlso (DirectCast(Me._ventana.Banco, FacBanco).Id <> Integer.MinValue) Then

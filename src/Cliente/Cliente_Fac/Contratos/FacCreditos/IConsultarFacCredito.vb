@@ -28,6 +28,8 @@ Namespace Contratos.FacCreditos
 
         Property Monedas() As Object
 
+        Property BCredito() As Double
+
         Property BCreditoBf() As Double
 
         Property BSaldo() As Double

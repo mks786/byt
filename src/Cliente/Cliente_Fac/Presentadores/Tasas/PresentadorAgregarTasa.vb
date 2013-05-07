@@ -86,6 +86,19 @@ Namespace Presentadores.Tasas
             End Try
         End Sub
 
+        Function existe_tasa_dia(ByVal fecha As DateTime, ByVal moneda As String) As Boolean
+            Dim existe As Boolean = True
+
+            Dim tasa As New Tasa()
+            tasa.Id = fecha
+            tasa.Moneda = moneda
+            Dim tasas As IList(Of Tasa) = _tasaServicios.ObtenerTasasFiltro(tasa)
+            If tasas.Count <= 0 Then
+                existe = False
+            End If
+            Return (existe)
+        End Function
+
         ''' <summary>
         ''' Método que realiza toda la lógica para agregar al Usuario dentro de la base de datos
         ''' </summary>
@@ -102,9 +115,15 @@ Namespace Presentadores.Tasas
                     tasa.Moneda = "US"
                 End If
 
-                'If Not _tasaServicios.VerificarExistencia(tasa) Then
-                Dim exitoso As Boolean = _tasaServicios.InsertarOModificar(tasa, UsuarioLogeado.Hash)
+                If existe_tasa_dia(tasa.Id, tasa.Moneda) = True Then
+                    'If Not _tasaServicios.VerificarExistencia(tasa) Then
 
+                    'Else
+                    MessageBox.Show("Imposible crear, tasa existente", "Error", MessageBoxButton.OK)
+                    Exit Sub
+                End If
+
+                Dim exitoso As Boolean = _tasaServicios.InsertarOModificar(tasa, UsuarioLogeado.Hash)
                 If exitoso Then
                     tasa.Id = tasa.Id.AddDays(1)
 

@@ -78,14 +78,17 @@ Namespace Presentadores.Tasas
 
                 ActualizarTitulo()
 
+                Consultar()
                 'Dim tasa As New Tasa()
                 'tasa.moneda = Me._TasaServicios.ConsultarTodos(0).moneda
-                Dim tasasaux As New Tasa
-                tasasaux.Id = FormatDateTime(Date.Now, DateFormat.ShortDate)
-                Me._Tasas = Me._TasaServicios.ObtenerTasasFiltro(tasasaux)
-                'Me._Tasas = Me._TasaServicios.ConsultarTodos()
-                Me._ventana.Count = Me._Tasas.Count
-                Me._ventana.Resultados = Me._Tasas
+
+                'Dim tasasaux As New Tasa
+                'tasasaux.Id = FormatDateTime(Date.Now, DateFormat.ShortDate)
+                'Me._Tasas = Me._TasaServicios.ObtenerTasasFiltro(tasasaux)
+                'Me._ventana.Count = Me._Tasas.Count
+                'Me._ventana.Resultados = Me._Tasas
+
+
                 Me._ventana.TasaFiltrar = New Tasa()
                 Me._ventana.FocoPredeterminado()
 
@@ -128,29 +131,29 @@ Namespace Presentadores.Tasas
                 'Tasa.Region = If(Not Me._ventana.Region.Equals(""), Me._ventana.Region, Nothing)
                 'tasa.Id = Nothing
                 ' Dim tasasFiltrados As IEnumerable(Of Tasa) = Me._Tasas
-
                 If Not String.IsNullOrEmpty(Me._ventana.Id) Then
                     'tasasFiltrados = From a In tasasFiltrados Where a.Id.ToString().Contains(Me._ventana.Id)
                     tasasaux.Id = CDate(Me._ventana.Id)
                 End If
 
-                If Not String.IsNullOrEmpty(tasa.Moneda) Then
-                    'tasasFiltrados = From p In tasasFiltrados Where p.Moneda IsNot Nothing AndAlso p.Moneda.ToLower().Contains(tasa.Moneda.ToLower())
-                    tasasaux.Moneda = tasa.Moneda
-                End If
+                If tasa IsNot Nothing Then
+                    If Not String.IsNullOrEmpty(tasa.Moneda) Then
+                        'tasasFiltrados = From p In tasasFiltrados Where p.Moneda IsNot Nothing AndAlso p.Moneda.ToLower().Contains(tasa.Moneda.ToLower())
+                        tasasaux.Moneda = tasa.Moneda
+                    End If
 
-                If Not String.IsNullOrEmpty(tasa.Tasabf) Then
-                    'tasasFiltrados = From p In tasasFiltrados Where p.Tasabf = Double.Parse(tasa.Tasabf)
-                    'ImpuestosFiltrados = From p In ImpuestosFiltrados Where p.Valor = Double.Parse(Impuesto.Valor)
-                    tasasaux.Tasabf = tasa.Tasabf
-                End If
+                    If Not String.IsNullOrEmpty(tasa.Tasabf) Then
+                        'tasasFiltrados = From p In tasasFiltrados Where p.Tasabf = Double.Parse(tasa.Tasabf)
+                        'ImpuestosFiltrados = From p In ImpuestosFiltrados Where p.Valor = Double.Parse(Impuesto.Valor)
+                        tasasaux.Tasabf = tasa.Tasabf
+                    End If
 
-                If Not String.IsNullOrEmpty(tasa.Tasabs) Then
-                    'tasasFiltrados = From p In tasasFiltrados Where p.Tasabs = Double.Parse(tasa.Tasabs)
-                    'ImpuestosFiltrados = From p In ImpuestosFiltrados Where p.Valor = Double.Parse(Impuesto.Valor)
-                    tasasaux.Tasabs = tasa.Tasabs
+                    If Not String.IsNullOrEmpty(tasa.Tasabs) Then
+                        'tasasFiltrados = From p In tasasFiltrados Where p.Tasabs = Double.Parse(tasa.Tasabs)
+                        'ImpuestosFiltrados = From p In ImpuestosFiltrados Where p.Valor = Double.Parse(Impuesto.Valor)
+                        tasasaux.Tasabs = tasa.Tasabs
+                    End If
                 End If
-
                 'tasasaux.Id = FormatDateTime(Date.Now, DateFormat.ShortDate)
                 Me._Tasas = Me._TasaServicios.ObtenerTasasFiltro(tasasaux)
 
