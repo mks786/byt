@@ -189,8 +189,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     if (this._cesiones.Count == 0)
                         this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
+                //Cuando no hay criterios de consulta 
                 else
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto, 0);
+                {
+                    this._cesiones = this._cesionServicios.ConsultarTodos();
+                    this._ventana.Resultados = this._cesiones;
+                    this._ventana.TotalHits = _cesiones.Count.ToString();
+                    if (this._cesiones.Count == 0)
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.TablaVacia, 1);
+
+                    //this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto, 0);
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

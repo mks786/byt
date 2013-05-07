@@ -28,6 +28,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private bool _corresponsalesCargados;
         private bool _poderesCargados;
         private bool _camposHabilitados = true;
+        //---
+        private bool _marcaOrigenCargada;
 
 
         #region IConsultarMarca
@@ -39,6 +41,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._tbcPestanas.DataContext = value; }
         }
 
+        public bool MarcaOrigenCargada
+        {
+            get { return this._marcaOrigenCargada; }
+            set { this._marcaOrigenCargada = value; }
+        }
 
         public void MarcarRadioMarcaNacional(bool esNacional)
         {
@@ -402,6 +409,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._txtClaseInternacionalSolicitud.IsEnabled = value;
                 this._txtReferenciaInteresado.IsEnabled = value;
                 this._txtReferenciaInteresadoDatos.IsEnabled = value;
+                this._txtMarcaOrigenSolicitud.IsEnabled = value;
+                this._txtIdMarcaOrigenDatos.IsEnabled = value;
+                this._lblIdentMarcaOrigenSolicitud.IsEnabled = value;
+                this._txtIdExpedienteTraspasoRenovacionDatos.IsEnabled = value;
+                this._txtIdExpedienteTraspasoRenovacionSolicitud.IsEnabled = value;
 
                 #endregion
 
@@ -418,8 +430,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._cbxDetalleDatos.IsEnabled = value;
                 this._cbxEstadoDatos.IsEnabled = value;
                 this._cbxIdiomaDatos.IsEnabled = value;
-                this._cbxMarcaOrigen.IsEnabled = value;
-                this._cbxMarcaOrigenSolicitud.IsEnabled = value;
+                //this._cbxMarcaOrigen.IsEnabled = value;
+                //this._cbxMarcaOrigenSolicitud.IsEnabled = value; COMENTADO PARA PRUEBAS
                 this._cbxOrdenPublicacion.IsEnabled = value;
                 this._cbxPaisIntSolicitud.IsEnabled = value;
                 this._cbxPaisIntSolicitud.IsEnabled = value;
@@ -675,6 +687,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             get { return this._txtIdAsociadoSolicitudFiltrar.Text; }
         }
+
+
+        
 
 
         public string IdAsociadoSolicitud
@@ -1024,6 +1039,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
 
+
+        
+
+
         public void PintarInfoAdicional()
         {
             this._btnInfoAdicional.Background = Brushes.LightGreen;
@@ -1065,6 +1084,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public void PintarRenovacion()
         {
             this._btnRenovacion.Background = Brushes.LightGreen;
+        }
+
+
+        public void PintarLblMarcaOrigen(bool confirmacion)
+        {
+            if(confirmacion)
+            {
+                this._lblIdentMarcaOrigenSolicitud.Visibility = System.Windows.Visibility.Visible;
+                this._lblIdentMarcaOrigenDatos.Visibility = System.Windows.Visibility.Visible;
+            }
         }
 
 
@@ -1188,6 +1217,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public ConsultarMarca(object marcaSeleccionada, object ventanaPadre)
         {
+            
+            InitializeComponent();
+            this._cargada = false;
+            this._asociadosCargados = false;
+            this._interesadosCargados = false;
+            this._corresponsalesCargados = false;
+            this._poderesCargados = false;
+            
+            this._presentador = new PresentadorConsultarMarca(this, marcaSeleccionada, ventanaPadre);
+        }
+
+
+        public ConsultarMarca(object marcaSeleccionada, object ventanaPadre, bool cargarMarcaOrigen)
+        {
             InitializeComponent();
 
             this._cargada = false;
@@ -1195,6 +1238,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._interesadosCargados = false;
             this._corresponsalesCargados = false;
             this._poderesCargados = false;
+            this._marcaOrigenCargada = cargarMarcaOrigen;
             this._presentador = new PresentadorConsultarMarca(this, marcaSeleccionada, ventanaPadre);
         }
 
@@ -1304,6 +1348,37 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             }
             #endregion
 
+
+            #region Marca de Origen
+
+            if (null != this.MarcasOrigenSolicitud)
+            {
+                if (!this.IdMarcaOrigenSolicitud.Equals(""))
+                {
+                    if((int.Parse(this.IdMarcaOrigenSolicitud).Equals(int.MinValue)))
+                    {
+                        this.IdMarcaOrigenSolicitud = String.Empty;
+                        this.IdMarcaOrigenDatos = String.Empty;
+                    }
+                }
+            }
+
+
+            if (null != this.MarcasOrigenDatos)
+            {
+                if (!this.IdMarcaOrigenDatos.Equals(""))
+                {
+                    if ((int.Parse(this.IdMarcaOrigenDatos).Equals(int.MinValue)))
+                    {
+                        this.IdMarcaOrigenSolicitud = String.Empty;
+                        this.IdMarcaOrigenDatos = String.Empty;
+                    }
+                }
+            }
+                
+
+            #endregion
+
         }
 
 
@@ -1322,6 +1397,35 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
 
+        private void mostrarLstMarcaOrigenSolicitud()
+        {
+            this._lstMarcaOrigenSolicitud.ScrollIntoView(this.IdMarcaOrigenSolicitud);
+            this._txtMarcaOrigenSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._lstMarcaOrigenSolicitud.Visibility = System.Windows.Visibility.Visible;
+            this._lstMarcaOrigenSolicitud.IsEnabled = true;
+            this._btnConsultarMarcaOrigenSolicitud.Visibility = System.Windows.Visibility.Visible;
+            this._lblIdMarcaOrigenSolicitud.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdMarcaOrigenFiltrar.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdMarcaOrigenFiltrar.Text = null;
+            //this._lblNombreMarcaOrigenSolicitud.Visibility = System.Windows.Visibility.Visible;
+            //this._txtNombreMarcaOrigenSolicitud.Visibility = System.Windows.Visibility.Visible;
+        }
+
+
+        private void mostrarLstMarcaOrigenDatos()
+        {
+            this._lstMarcaOrigenDatos.ScrollIntoView(this.IdMarcaOrigenDatos);
+            this._txtIdMarcaOrigenDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._lstMarcaOrigenDatos.Visibility = System.Windows.Visibility.Visible;
+            this._lstMarcaOrigenDatos.IsEnabled = true;
+            this._btnConsultarMarcaOrigenDatos.Visibility = System.Windows.Visibility.Visible;
+            this._lblIdMarcaOrigenDatos.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdMarcaOrigenDatosFiltrar.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdMarcaOrigenDatosFiltrar.Text = null;
+
+        }
+
+
         private void ocultarLstAsociadoSolicitud()
         {
             this._lstAsociadosSolicitud.Visibility = System.Windows.Visibility.Collapsed;
@@ -1334,6 +1438,27 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._lblNombreAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdAsociadoSolicitudFiltrar.Visibility = System.Windows.Visibility.Collapsed;
 
+        }
+
+
+        private void ocultarLstMarcaOrigenSolicitud()
+        {
+            this._lstMarcaOrigenSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnConsultarMarcaOrigenSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._lblIdMarcaOrigenSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdMarcaOrigenFiltrar.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtMarcaOrigenSolicitud.Visibility = System.Windows.Visibility.Visible;
+            
+        }
+
+
+        private void ocultarLstMarcaOrigenDatos()
+        {
+            this._lstMarcaOrigenDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnConsultarMarcaOrigenDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._lblIdMarcaOrigenDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdMarcaOrigenDatosFiltrar.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdMarcaOrigenDatos.Visibility = System.Windows.Visibility.Visible;
         }
 
 
@@ -1423,7 +1548,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
 
-        private void mostrarLstInteresadoDatos()
+       private void mostrarLstInteresadoDatos()
         {
             this._lstInteresadosDatos.ScrollIntoView(this.InteresadoDatos);
             this._txtInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
@@ -1493,6 +1618,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._presentador.CargarPagina();
                 EstaCargada = true;
             }
+            
         }
 
 
@@ -1581,6 +1707,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
 
+        private void _txtMarcaOrigenSolicitud_GotFocus(object sender, RoutedEventArgs e)
+        {
+            String cadenaPrueba = String.Empty;
+            cadenaPrueba = "nada";
+
+            this._btnAceptar.IsDefault = false;
+            this._btnConsultarMarcaOrigenSolicitud.IsDefault = true;
+
+            mostrarLstMarcaOrigenSolicitud();
+            
+        }
+
+
+
         private void _lstAsociadosSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             this._presentador.CambiarAsociadoSolicitud();
@@ -1589,6 +1729,27 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._btnConsultarAsociadoSolicitud.IsDefault = false;
             this._btnAceptar.IsDefault = true;
         }
+
+
+        private void _lstMarcaOrigenSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this._presentador.CambiarMarcaOrigenSolicitud();
+            ocultarLstMarcaOrigenSolicitud();
+            this._btnConsultarMarcaOrigenSolicitud.IsDefault = false;
+            this._btnAceptar.IsDefault = true;
+
+        }
+
+
+        private void _lstMarcaOrigenDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this._presentador.CambiarMarcaOrigenDatos();
+            ocultarLstMarcaOrigenDatos();
+            this._btnConsultarMarcaOrigenDatos.IsDefault = false;
+            this._btnAceptar.IsDefault = true;
+        }
+
+
 
 
         private void _OrdenarAsociadoSolicitud_Click(object sender, RoutedEventArgs e)
@@ -1600,6 +1761,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private void _btnConsultarAsociadoSolicitud_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.BuscarAsociado(0);
+        }
+
+
+        private void _btnConsultarMarcaOrigen_Click(object sender, RoutedEventArgs e)
+        {
+            Button botonPresionado = new Button();
+            botonPresionado = (Button)sender;
+            String filtrarEnTab = botonPresionado.Name;
+            this._presentador.BuscarMarcaOrigen(filtrarEnTab);
         }
 
 
@@ -1713,6 +1883,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _txtIdCartaOrden_MouseDoubleClick(object sender, RoutedEventArgs e)
         {
+
+
             if (!this._corresponsalesCargados)
             {
                 this._presentador.CargarCorresponsales();
@@ -1858,6 +2030,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             mostrarLstAsocaidoDatos();
         }
 
+        private void _txtIdMarcaOrigenDatos_GotFocus(object sender, RoutedEventArgs e)
+        {
+
+            this._btnAceptar.IsDefault = false;
+            this._btnConsultarMarcaOrigenDatos.IsDefault = true;
+
+            mostrarLstMarcaOrigenDatos();
+
+        }
+
 
         private void _lstAsociadosDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -1868,6 +2050,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._btnConsultarAsociadoDatos.IsDefault = false;
             this._btnAceptar.IsDefault = true;
         }
+
+
+        
+
+
+
 
 
         private void _OrdenarAsociadoDatos_Click(object sender, RoutedEventArgs e)
@@ -2024,12 +2212,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
 
+        /*
+         * Evento del boton No. Registro comentado por los momentos pues se debe esperar por modificaciones en la
+         * pagina web del sitio SAPI
+         * 
+         * */
         private void _btnIrExplorador_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.IrSAPI();
+            //this._presentador.IrSAPI();   **** COMENTADO HASTA RECIBIR NUEVAS INSTRUCCIONES
         }
 
-
+        
         #endregion
 
 
@@ -2111,6 +2304,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             this._presentador.IrVentanaAsociado();
         }
+
+
+        // Nuevo boton de Marca de Origen -- DIRIMO QUINTERO
+        private void _btnIrMarcaOrigen_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVentanaMarcaOrigen();
+        }
+
 
 
         private void _lstAsociadosInternacionalesSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -2270,6 +2471,122 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             set { this._txtTotalDeuda.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value)); }
         }
+
+
+        #region Propiedades de Marca de Origen
+
+
+        public string IdMarcaOrigenSolicitud
+        {
+            get { return this._txtMarcaOrigenSolicitud.Text; }
+            set { this._txtMarcaOrigenSolicitud.Text = value; }
+        }
+
+        public string IdMarcaOrigenDatos
+        {
+            get { return this._txtIdMarcaOrigenDatos.Text; }
+            set { this._txtIdMarcaOrigenDatos.Text = value; }
+        }
+
+
+
+        public string IdMarcaOrigenSolicitudFiltrar
+        {
+            get { return this._txtIdMarcaOrigenFiltrar.Text; }
+            set { this._txtIdMarcaOrigenFiltrar.Text = value; }
+        }
+
+
+        public string IdMarcaOrigenDatosFiltrar
+        {
+            get { return this._txtIdMarcaOrigenDatosFiltrar.Text; }
+            set { this._txtIdMarcaOrigenDatosFiltrar.Text = value; }
+        }
+
+
+
+        public object MarcaOrigenSolicitud
+        {
+            get { return this._lstMarcaOrigenSolicitud.DataContext; }
+            set { this._lstMarcaOrigenSolicitud.DataContext = value; }
+
+        }
+
+
+        public object MarcasOrigenSolicitud
+        {
+            get { return this._lstMarcaOrigenSolicitud.SelectedItem; }
+            set
+            {
+                this._lstMarcaOrigenSolicitud.SelectedItem = value;
+            }
+        }
+
+        
+        public object MarcaOrigenDatos
+        {
+            get { return this._lstMarcaOrigenDatos.DataContext; }
+            set { this._lstMarcaOrigenDatos.DataContext = value; }
+
+        }
+
+        
+        public object MarcasOrigenDatos
+        {
+            get { return this._lstMarcaOrigenDatos.SelectedItem; }
+            set
+            {
+                this._lstMarcaOrigenDatos.SelectedItem = value;
+            }
+        }
+
+
+
+        #endregion
+
+
+        #region Propiedades para Expediente Traspaso Renovacion
+
+        public string IdExpTraspasoRenovacionDatos
+        {
+            get { return this._txtIdExpedienteTraspasoRenovacionDatos.Text; }
+            set { this._txtIdExpedienteTraspasoRenovacionDatos.Text = value; }
+        }
+
+
+        public string IdExpTraspasoRenovacionSolicitud
+        {
+            get { return this._txtIdExpedienteTraspasoRenovacionSolicitud.Text; }
+            set { this._txtIdExpedienteTraspasoRenovacionSolicitud.Text = value; }
+        }
+
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }

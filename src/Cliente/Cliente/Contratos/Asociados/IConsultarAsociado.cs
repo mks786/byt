@@ -78,7 +78,11 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
 
         object ContactoSeleccionado { get; }
 
+        bool? ChkVerContactos { get; }
+
         void Mensaje(string mensaje);
+
+        void DesactivarVerListaContactos();
 
     }
 }

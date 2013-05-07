@@ -60,5 +60,13 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
             { 
             }
         }
+
+        private void _btnCopiar_Click(object sender, EventArgs e)
+        {
+            Image imagen = this._foto.Image;
+            Clipboard.SetDataObject(imagen);
+        }
+
+
     }
 }

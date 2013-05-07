@@ -168,27 +168,56 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
 
         private IList<Agente> LimpiarListaDeAgentes()
         {
-
+            //int longitudLista, iteraciones;
             IList<Agente> agentesADevolver = this._agentesServicios.ConsultarTodos();
+            //IList<Agente> agentesAux = new List<Agente>();
 
-            IList<int> posicionesABorrar = new List<int>();
-            foreach (Agente apoderado in _apoderados)
+            try
             {
-                int i = 0;
-                foreach (Agente agente in agentesADevolver)
+                IList<int> posicionesABorrar = new List<int>();
+                foreach (Agente apoderado in _apoderados)
                 {
-                    if (apoderado.Id == agente.Id)
-                    {
-                        posicionesABorrar.Insert(0, i);
-                        //agentesADevolver.Remove(agente);
-                    }
-                    i++;
-                }
-            }
 
-            foreach (int posicion in posicionesABorrar)
+                    //----
+
+                     for (int i = 0; i < agentesADevolver.Count; i++)
+                    {
+                        if (agentesADevolver[i].Id.Contains(apoderado.Id))
+                        {
+                            agentesADevolver.RemoveAt(i);
+                            break;
+                        }
+                        
+                    }
+
+                    //----
+                    //int i = 0;
+                    //foreach (Agente agente in agentesADevolver)
+                    //{
+                    //    if (apoderado.Id == agente.Id)
+                    //    {
+                    //       posicionesABorrar.Insert(0, i);
+                    //        //agentesADevolver.Remove(agente);
+                           
+                    //    }
+                    //    i++;
+                    //}
+                }
+
+
+               
+
+
+                
+                //foreach (int posicion in posicionesABorrar)
+                //{
+                //   agentesADevolver.RemoveAt(posicion);
+                //}
+            }
+            catch (Exception e)
             {
-                agentesADevolver.RemoveAt(posicion);
+                    
+                throw;
             }
             return agentesADevolver;
         }

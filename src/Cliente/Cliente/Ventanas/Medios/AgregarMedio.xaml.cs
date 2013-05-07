@@ -80,6 +80,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Medios
             }
         }
 
+        private void _btnRegresar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.Regresar();
+        }
+
         
 
     }

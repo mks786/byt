@@ -861,7 +861,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     + ((ListaDatosValores)this._ventana.TipoDeCaso).Valor + "." + ((MarcaTercero)this._ventana.MarcaTercero).Id
                     + ".PDF";
 
-                this.EjecutarComandoDeConsola(Cadena, "Ejecuta el expediente de MarcaTercero");
+                //this.EjecutarComandoDeConsola(Cadena, "Ejecuta el expediente de MarcaTercero");
+
+                //Para iniciar el proceso y ver el documento PDF - Se comento el codigo original porque emitia errores
+                System.Diagnostics.Process.Start(Cadena);
             }
         }
 

@@ -196,10 +196,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     this._ventana.pintarCorrespondencia();
 
 
-                /*******************************Esta es la consulta que tarda mas en el modulo de asociado*******************************/
-                IList<ContactosDelAsociadoVista> listaContactos = this._asociadoServicios.ConsultarContactosDelAsociado(asociado, false);
-                this._ventana.ListaContactos = listaContactos;
-                /*******************************Esta es la consulta que tarda mas en el modulo de asociado*******************************/
+                //codigo de prueba 
+
+                if (this._ventana.ChkVerContactos.Value)
+                {
+
+                    cargarListaDeContactos(asociado);
+
+                    /*******************************Esta es la consulta que tarda mas en el modulo de asociado*******************************/
+                    //IList<ContactosDelAsociadoVista> listaContactos = this._asociadoServicios.ConsultarContactosDelAsociado(asociado, false);
+                    //this._ventana.ListaContactos = listaContactos;
+                    /*******************************Esta es la consulta que tarda mas en el modulo de asociado*******************************/
+                }
+
+                else
+                {
+                    this._ventana.DesactivarVerListaContactos();
+                }
+
+
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -216,6 +232,45 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             {
                 Mouse.OverrideCursor = null;
             }
+        }
+
+
+        public void cargarListaDeContactos(Asociado asociado)
+        {
+
+
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            try
+            {
+                IList<ContactosDelAsociadoVista> listaContactos = this._asociadoServicios.ConsultarContactosDelAsociado(asociado, false);
+                this._ventana.ListaContactos = listaContactos;
+            }
+            catch (Exception ex)
+            {
+
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+
+
+
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
         }
 
 
@@ -684,12 +739,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             }
         }
 
-        public void IrVentanaImprimirEdoCuenta()
+        /*public void IrVentanaImprimirEdoCuenta()
         {
             if ((Asociado)this._ventana.Asociado != null)
             {
                 Asociado Asociado = ((Asociado)this._ventana.Asociado).Id != int.MinValue ? (Asociado)this._ventana.Asociado : null;
                 Navegar(new EstadoCuentas("2", Asociado));
+
+            }
+        }*/
+
+
+        public void IrVentanaImprimirEdoCuenta()
+        {
+            if ((Asociado)this._ventana.Asociado != null)
+            {
+                Asociado Asociado = ((Asociado)this._ventana.Asociado).Id != int.MinValue ? (Asociado)this._ventana.Asociado : null;
+                Navegar(new PendientesRpt("2", Asociado));
 
             }
         }
@@ -702,6 +768,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 Navegar(new ConsultarFacVistaFacturacionCxpInternas(Asociado));
 
             }
+        }
+
+        public void VerCargarListaContactosAsociados()
+        {
+            Asociado asociado = ((Asociado)this._ventana.Asociado);
+            cargarListaDeContactos(asociado);
         }
 
         public void CalcularSaldos()

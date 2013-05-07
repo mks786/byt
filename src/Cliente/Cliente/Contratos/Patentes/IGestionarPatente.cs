@@ -8,6 +8,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
     {
         object Patente { get; set; }
 
+        bool PatenteMadreCargada { get; set; }
+
         #region Solicitud
 
         string IdAsociadoSolicitudFiltrar { get; }
@@ -81,6 +83,12 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
         void PintarImprimirEdoDeCuenta();
 
         void PintarSaldos();
+
+        void PintarLblPatenteMadre(bool confirmacion);
+
+        string IdAgenteSolicitudFiltrar { get; set; }
+
+        string NombreAgenteSolicitudFiltrar { get; set; }
 
         #endregion
 
@@ -169,6 +177,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
         void PintarDisenoDatos();
 
         void PintarInventoresDatos();
+
+        void PintarAnualidadesDatos();
 
         void PintarInfoBolDatos();
 
@@ -263,5 +273,21 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
         void BorrarCeros();
 
         void CambiarLabelsPorBotones();
+
+        string IdPatenteMadreSolicitud { get; set; }
+
+        string IdPatenteMadreDatos { get; set; }
+
+        object PatenteMadreSolicitud { get; set; }
+
+        object PatentesMadreSolicitud { get; set; }
+
+        string IdPatenteMadreSolicitudFiltrar { get; set; }
+
+        object PatenteMadreDatos { get; set; }
+
+        object PatentesMadreDatos { get; set; }
+
+        string IdPatenteMadreDatosFiltrar { get; set; }
     }
 }

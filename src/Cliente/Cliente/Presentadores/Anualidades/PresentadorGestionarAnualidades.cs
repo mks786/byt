@@ -245,11 +245,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
         {
             if (null != patente.FechaBase)
             {
-                int i = 1;
+                //int i = 1;
+                int i = 0;
                 foreach (Anualidad anualidad in patente.Anualidades)
                 {
                     anualidad.FechaAutoGenerada = patente.FechaBase.Value.AddYears(i);
-                    i++;
+                    i++;                    
                 }
             }
 

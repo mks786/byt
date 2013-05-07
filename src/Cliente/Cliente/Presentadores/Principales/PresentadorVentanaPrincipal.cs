@@ -61,6 +61,7 @@ using Trascend.Bolet.Cliente.Ventanas.Anualidades;
 using Trascend.Bolet.Cliente.Ventanas.Reportes;
 using Trascend.Bolet.Cliente.Ventanas.Corresponsales;
 using Trascend.Bolet.Cliente.Ventanas.TiposEmailAsociado;
+using Trascend.Bolet.Cliente.Ventanas.Inventores;
 using System.Diagnostics;
 using System.Collections.Generic;
 
@@ -130,6 +131,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
 
         #region Métodos de eventos del menú
 
+        
+        /// <summary>
+        /// Metodo que coloca la pagina "QueryInventor" en el Frame principal
+        /// ESTE ES UN EJEMPLO DE COMO HACER UNA PANTALLA DESDE EL INICIO
+        /// </summary>
+        public void ConsultarInventores()
+        {
+            this._ventana.Contenedor.Navigate(new QueryInventor(null));
+        }
+        
         /// <summary>
         /// Método que coloca la página "AgregarAgente" en el Frame principal
         /// </summary>
@@ -1430,9 +1441,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
             this._ventana.Contenedor.Navigate(new EstadoCuentas("1",null));
         }
 
-        public void FacPendientesRpt()
+        /*public void FacPendientesRpt()
         {
             this._ventana.Contenedor.Navigate(new PendientesRpt());
+        }*/
+
+
+        public void FacPendientesRpt()
+        {
+            this._ventana.Contenedor.Navigate(new PendientesRpt("1", null));
         }
 
         public void FacEnvioAsociado()
@@ -1709,6 +1726,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                     if (objeto.Id.Equals(Recursos.Ids.Asociado))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
+
+                                case "_menuItemInventores":
+                                    if (objeto.Id.Equals(Recursos.Ids.Inventor))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                
+
 
                                 #endregion
 

@@ -9,6 +9,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
     {
         object Marca { get; set; }
 
+        bool MarcaOrigenCargada { get; set; }
+
         string IdAsociadoSolicitudFiltrar { get; }
 
         string IdAsociadoSolicitud { get;  set; }
@@ -68,6 +70,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         string DescripcionCorresponsalSolicitud { get; set; }
 
         string DescripcionCorresponsalDatos { get; set; }
+
+
 
         object AsociadosSolicitud { get; set; }
 
@@ -195,6 +199,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         void PintarRenovacion();
 
+        void PintarLblMarcaOrigen(bool confirmacion);
+
         void BorrarCeros();
 
         void PintarEtiqueta();
@@ -271,5 +277,26 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }
+
+        string IdMarcaOrigenSolicitud { get; set; }
+
+        string IdMarcaOrigenDatos { get; set; }
+
+        string IdMarcaOrigenSolicitudFiltrar { get; set; }
+
+        string IdMarcaOrigenDatosFiltrar { get; set; }
+
+        object MarcaOrigenSolicitud { get; set; }
+
+        object MarcasOrigenSolicitud { get; set; }
+
+        object MarcaOrigenDatos { get; set; }
+
+        object MarcasOrigenDatos { get; set; }
+
+        string IdExpTraspasoRenovacionDatos { get; set; }
+
+        string IdExpTraspasoRenovacionSolicitud { get; set; }
+
     }
 }

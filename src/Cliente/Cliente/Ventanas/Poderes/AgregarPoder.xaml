@@ -60,7 +60,7 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                 </Label>
                 <custom:ByTTextBox  Grid.Column="1" Grid.Row="1" Name="_txtIdPoder" SoloNumero="True" Text="{Binding Path=Id}"
-                                    VerticalAlignment="Top" MaxLength="255" Width="100" HorizontalAlignment="Left"></custom:ByTTextBox>
+                                    VerticalAlignment="Top" MaxLength="255" Width="100" HorizontalAlignment="Left" IsEnabled="False"></custom:ByTTextBox>
                 
                 <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblNoSapi}"/>
@@ -101,7 +101,7 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
                 </Label>
                 <custom:ByTTextBox Grid.Column="1" Grid.Row="4" Name="_txtNombreInteresado" VerticalAlignment="Center" 
-                         HorizontalAlignment="Left" Width="180" Text="" MaxLength="255" BorderBrush="LightGreen"
+                         HorizontalAlignment="Left" Width="180" Text="" MaxLength="255" BorderBrush="LightGreen" 
                          MouseDoubleClick="_txtNombreInteresado_MouseDoubleClick" ></custom:ByTTextBox>
 
                 <Label Name="_lblIdInteresadoFiltrar"  Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top" 

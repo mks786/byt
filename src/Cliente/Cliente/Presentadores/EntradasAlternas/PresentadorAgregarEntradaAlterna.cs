@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Ventanas.Medios;
 using Trascend.Bolet.Cliente.Ventanas.Remitentes;
+using Trascend.Bolet.Cliente.Ventanas.Categorias;
 
 namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
 {
@@ -253,6 +254,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
             }
         }
 
+        public void IrVentanaTipoDeEntrada_Categoria()
+        {
+            //Esto va a cambiar
+            if (!((Categoria)this._ventana.Categoria).Id.Equals("NGN"))
+            {
+                Navegar(new ConsultarCategoria((Categoria)this._ventana.Categoria));
+            }
+            else
+            {
+                Navegar(new AgregarCategoria(this._ventana));
+            }
+        }
+
         public void RefrescarMedio(object medio)
         {
             IList<Medio> medios = this._medioServicios.ConsultarTodos();
@@ -274,6 +288,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
             this._ventana.Remitentes = remitentes;
 
             this._ventana.Remitente = this.BuscarRemitente(remitentes, (Remitente)remitente);
+        }
+
+        public void RefrescarTipoEntradaCategoria(object tipoEntradaCategoria)
+        {
+            IList<Categoria> tiposEntradaCategorias = this._categoriaServicios.ConsultarTodos();
+            Categoria primerTipoEntradaCategoria = new Categoria();
+            primerTipoEntradaCategoria.Id = "NGN";
+            tiposEntradaCategorias.Insert(0, primerTipoEntradaCategoria);
+            this._ventana.Categorias = tiposEntradaCategorias;
+
+            this._ventana.Categoria = this.BuscarCategoria(tiposEntradaCategorias, (Categoria)tipoEntradaCategoria);
         }
     }
 }

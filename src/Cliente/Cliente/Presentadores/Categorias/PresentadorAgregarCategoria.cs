@@ -6,6 +6,7 @@ using System.Windows.Input;
 using NLog;
 using Trascend.Bolet.Cliente.Contratos.Categorias;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
+using Trascend.Bolet.Cliente.Ventanas.EntradasAlternas;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 
@@ -38,6 +39,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.Categorias
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
             }
         }
+
+
+        /// <summary>
+        /// Constructor predeterminado que recibe una ventana padre
+        /// </summary>
+        /// <param name="ventana">Página que satisface el contrato</param>
+        public PresentadorAgregarCategoria(IAgregarCategoria ventana, object ventanaPadre)
+        {
+            try
+            {
+
+                this._ventana = ventana;
+                this._ventanaPadre = ventanaPadre;
+                this._categoriaServicios = (ICategoriaServicios)Activator.GetObject(typeof(ICategoriaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CategoriaServicios"]);
+                this._ventana.Categoria = new Categoria();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -88,7 +113,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Categorias
 
                     if (this._categoriaServicios.InsertarOModificar((Categoria)this._ventana.Categoria, UsuarioLogeado.Hash))
                     {
-                        this.Navegar(Recursos.MensajesConElUsuario.CategoriaInsertado, false);
+                        //this.Navegar(Recursos.MensajesConElUsuario.CategoriaInsertado, false);
+                        if (null == this._ventanaPadre)
+                            this.Navegar(Recursos.MensajesConElUsuario.CategoriaInsertado, false);
+                        else
+                        {
+                            ((AgregarEntradaAlterna)_ventanaPadre).RefrescarTipoDeEntradaCategoria((Categoria)this._ventana.Categoria);
+                            RegresarVentanaPadre();
+                        }
                     }
                 }
                 else
@@ -122,5 +154,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Categorias
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
+
+       
+
     }
 }

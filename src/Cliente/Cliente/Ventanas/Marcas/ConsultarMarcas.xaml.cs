@@ -498,12 +498,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public string IdInternacional
         {
             get { return this._txtCodigoInternacional.Text; }
+            set { this._txtCodigoInternacional.Text = value; }
         }
 
 
         public string IdCorrelativoInternacional
         {
             get { return this._txtCodigoInternacional2.Text; }
+            set { this._txtCodigoInternacional2.Text = value; }
         }
 
 

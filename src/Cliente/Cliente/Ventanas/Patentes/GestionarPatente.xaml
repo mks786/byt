@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
-      d:DesignHeight="550" d:DesignWidth="800"
+      d:DesignHeight="1710" d:DesignWidth="800"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
 	Title="{x:Static recurso:Etiquetas.titleAgregarAgente}" Loaded="Page_Loaded"
       KeepAlive="True">
@@ -69,7 +69,6 @@
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="0"/>
-                            <RowDefinition Height="25"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -80,12 +79,13 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="30"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="26"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -113,8 +113,8 @@
                         </custom:ByTTextBox>
 
                         <custom:ByTTextBox  Grid.Column="2" Grid.Row="1" Name="_txtDescripcionSolicitud" VerticalAlignment="Center"  
-                            Grid.ColumnSpan="9" MaxLength="255" IsReadOnly="True"
-                             ToolTip="{Binding ElementName=_txtDescripcionDatos, Path=(Validation.Errors)[0].ErrorContent}">
+                            Grid.ColumnSpan="6" MaxLength="255" IsReadOnly="True"
+                             ToolTip="{Binding ElementName=_txtDescripcionDatos, Path=(Validation.Errors)[0].ErrorContent}" MouseDoubleClick="_txtDescripcionSolicitud_MouseDoubleClick">
                             <custom:ByTTextBox.Text>
                                 <Binding Path="Descripcion" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
@@ -123,6 +123,79 @@
                                 </Binding>
                             </custom:ByTTextBox.Text>
                         </custom:ByTTextBox>
+
+                        <Button Grid.Column="9" Grid.Row="1" Name="_btnConsultarPatenteMadre" IsDefault="False" Height="25" HorizontalAlignment="Right" Click="_btnIrPatenteMadre_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPatenteMadre}"/>
+                        </Button>
+
+                        
+                        <Grid Grid.Column="10" Grid.Row="1" Grid.ColumnSpan="4">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!--Campo que se muestra la Patente Madre al visualizar la ventana -->
+                            <custom:ByTTextBox Grid.Column="0"   Grid.Row="1" Name="_txtIdPatenteMadreSolicitud" VerticalAlignment="Center" HorizontalAlignment="Left" MaxLength="255" SoloNumero="True" Margin="0,0,5,0" Width="65" BorderBrush="LightGreen" Text="{Binding Path=Patente.PatenteMadre}" MouseDoubleClick="_txtPatenteMadreSolicitud_MouseDoubleClick"> 
+                            </custom:ByTTextBox>
+
+                            <Label Name="_lblPatenteMadreIndicatorSolicitud" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2">
+                                <TextBlock Text="Patente Madre" FontStyle="Italic" Foreground="DarkGreen"/>
+                            </Label>
+
+
+                            <!-- Label CODIGO-->
+                            <Label Name="_lblIdPatenteMadreSolicitud" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                            </Label>
+                            <!-- TextBox donde se ve el codigo -->
+                            <custom:ByTTextBox IsEnabled="True" SoloNumero="True"  Grid.Column="1" Grid.Row="0" Name="_txtIdPatenteMadreFiltrar" VerticalAlignment="Center" Grid.ColumnSpan="2"
+                         MaxLength="255" Visibility="Collapsed" TamanoMaximo="8"></custom:ByTTextBox>
+                            <!-- Boton CONSULTAR -->
+                            <Button  Name="_btnConsultarPatenteMadreSolicitud"  Grid.Column="3" Grid.Row="0" Width="65" IsDefault="False" Height="25" HorizontalAlignment="Right"  Visibility="Collapsed" Click="_btnConsultarPatenteMadre_Click">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                            </Button>
+
+                            <!--Lista que se utiliza para mostrar el resultado de la consulta de la marca de origen-->
+                            <ListView Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="3" Name="_lstPatenteMadreSolicitud" ItemsSource="{Binding}" 
+                      SelectionMode="Single" Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top" MouseDoubleClick="_lstPatenteMadreSolicitud_MouseDoubleClick">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Width="65">
+                                            <GridViewColumnHeader Click="_OrdenarAsociadoSolicitud_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock HorizontalAlignment="Center">
+                                                    <TextBlock.Text>
+                                                        <Binding Path="Id" Converter="{StaticResource convertir}"/>
+                                                    </TextBlock.Text>
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="250">
+                                            <GridViewColumnHeader Click="_OrdenarAsociadoSolicitud_Click" Tag="Descripción" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+
+
+                        </Grid>
+                        
+                        
+
+                                               
 
                         <Label Visibility="Collapsed" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right" Name="_lblAsociado">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
@@ -387,7 +460,7 @@
 
                         <custom:ByTTextBox Grid.Column="9" Grid.Row="5" Name="_txtObservacionSolicitud" VerticalAlignment="Center"
                                            Text="{Binding Path=Observacion}" Grid.ColumnSpan="4" Grid.RowSpan="12" Margin="0,5,0,0" 
-                                           MaxLength="2000" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
+                                           MaxLength="4000" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
                                            Height="250" SpellCheck.IsEnabled="True"></custom:ByTTextBox>
 
 
@@ -488,8 +561,9 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblObservacion}"/>
                         </Label>
 
-                        <custom:ByTTextBox Grid.Column="1" Grid.ColumnSpan="7" Grid.Row="11" Name="_txtObservacion1Solicitud" VerticalAlignment="Center"
-                         MaxLength="255" Margin="0,0,5,0"  Text="{Binding Path=Observacion1}"></custom:ByTTextBox>
+                        <!--<custom:ByTTextBox Grid.Column="1" Grid.ColumnSpan="7" Grid.Row="11" Name="_txtObservacion1Solicitud" VerticalAlignment="Center" Text="{Binding Path=Observacion1}"></custom:ByTTextBox>-->
+
+                        <custom:ByTTextBox  Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="7" Margin="3" Name="_txtObservacion1Solicitud" VerticalAlignment="Center" Text="{Binding Path=Observacion1}" MaxLength="4000"></custom:ByTTextBox>
                         <!--Fin Novena Fila-->
 
                         <!--Décima Fila-->
@@ -558,16 +632,52 @@
                         <!--fin undécima fila-->
 
                         <!--Fila duodecima-->
+
                         <Label Name="_lblIdAgenteSolicitud" Grid.Column="0" Grid.Row="15" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAgente}"/>
                         </Label>
-                        <custom:ByTTextBox IsReadOnly="True" Grid.Column="1" Grid.Row="15" Name="_txtIdAgenteSolicitud" VerticalAlignment="Center" BorderBrush="LightGreen"
+                        
+                        <!-- Consulta nueva de Agentes-->
+
+                        <Grid Grid.Column="1" Grid.Row="15" Grid.ColumnSpan="7">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- Campo Id y Nombre del Agente a mostrar -->
+                            <custom:ByTTextBox IsReadOnly="True" Grid.Column="0" Grid.Row="1" Name="_txtIdAgenteSolicitud" VerticalAlignment="Center" BorderBrush="LightGreen"
                          MaxLength="255" Margin="0,0,5,0"  MouseDoubleClick="_txtAgenteSolicitud_MouseDoubleClick" Text="{Binding Path=Agente.Id}"></custom:ByTTextBox>
 
-                        <custom:ByTTextBox  MaxLength="255" Grid.Column="2" Grid.Row="15" Name="_txtAgenteSolicitud" VerticalAlignment="Center" BorderBrush="LightGreen"
+                            <custom:ByTTextBox  MaxLength="255" Grid.Column="1" Grid.Row="1" Name="_txtAgenteSolicitud" VerticalAlignment="Center" BorderBrush="LightGreen"
                          Grid.ColumnSpan="6" MouseDoubleClick="_txtAgenteSolicitud_MouseDoubleClick" IsReadOnly="True" Text="{Binding Path=Agente.Nombre}"></custom:ByTTextBox>
+                            
+                            <!-- Campos Id y Nombre del Agente a buscar -->
+                            <Label Name="_lblIdAgenteSolicitudFiltrar" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                            </Label>
+                            <custom:ByTTextBox IsEnabled="True"  Grid.Column="1" Grid.Row="0" Name="_txtIdAgenteSolicitudFiltrar" VerticalAlignment="Center" MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed"  TamanoMaximo="8">
+                            </custom:ByTTextBox>
+                            <Label Name="_lblNombreAgenteSolicitudFiltrar" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
+                            </Label>
+                            <custom:ByTTextBox     Grid.Column="4" Grid.Row="0" Name="_txtNombreAgenteSolicitudFiltrar" VerticalAlignment="Center"  Grid.ColumnSpan="2" MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
+                            <Button  Name="_btnConsultarAgenteSolicitud" Width="65" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" HorizontalAlignment="Right" Visibility="Collapsed" Click="_btnConsultarAgenteSolicitud_Click">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                            </Button>
 
-                        <ListView Grid.Column="1" Grid.Row="15" Grid.ColumnSpan="7" Grid.RowSpan="2" Name="_lstAgentesSolicitud" ItemsSource="{Binding}" 
+                            <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="2" Name="_lstAgentesSolicitud" ItemsSource="{Binding}" 
                       SelectionMode="Single" MouseDoubleClick="_lstAgentesSolicitud_MouseDoubleClick" Margin="0,5,0,0"
                       Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top">
                             <ListView.View>
@@ -590,13 +700,16 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
+
+                        </Grid>
+
                         <!--Fin duodecima fila-->
 
 
                         <Label Grid.Column="0" Grid.Row="17" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblResumen}"/>
                         </Label>
-                        <custom:ByTTextBox  MaxLength="2000" Grid.Column="1" Grid.Row="17" Name="_txtResumenSolicitud" VerticalAlignment="Center"
+                        <custom:ByTTextBox  MaxLength="4000" Grid.Column="1" Grid.Row="17" Name="_txtResumenSolicitud" VerticalAlignment="Center"
                                            Grid.ColumnSpan="7" Text="{Binding Path=Resumen}"></custom:ByTTextBox>
 
                         <Separator Name="_spdrBotones" Margin="10,5,0,0" Grid.Column="0" Grid.Row="19" Grid.ColumnSpan="12" VerticalAlignment="Center"/>
@@ -692,7 +805,6 @@
                                             MaxLength="255"></custom:ByTTextBox>
 
                         </Grid>
-
                     </Grid>
                 </TabItem>
 
@@ -725,7 +837,7 @@
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="0"/>
-                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -767,8 +879,8 @@
                         </custom:ByTTextBox>
 
                         <custom:ByTTextBox  Grid.Column="2" Grid.Row="1" Name="_txtDescripcionDatos" VerticalAlignment="Center"  
-                            Grid.ColumnSpan="9" MaxLength="255" IsReadOnly="True"
-                             ToolTip="{Binding ElementName=_txtDescripcionDatos, Path=(Validation.Errors)[0].ErrorContent}">
+                            Grid.ColumnSpan="6" MaxLength="255" IsReadOnly="True"
+                             ToolTip="{Binding ElementName=_txtDescripcionDatos, Path=(Validation.Errors)[0].ErrorContent}" MouseDoubleClick="_txtDescripcionDatos_MouseDoubleClick">
                             <custom:ByTTextBox.Text>
                                 <Binding Path="Descripcion" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
@@ -777,6 +889,83 @@
                                 </Binding>
                             </custom:ByTTextBox.Text>
                         </custom:ByTTextBox>
+
+                        <Button Grid.Column="8" Grid.Row="1" Name="_btnConsultarPatenteMadreDatos" IsDefault="False" Height="25" HorizontalAlignment="Right" Click="_btnIrPatenteMadre_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPatenteMadre}"/>
+                        </Button>
+
+                        <Grid Grid.Column="9" Grid.Row="1" Grid.ColumnSpan="4">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!--Campo que se muestra la Patente Madre al visualizar la ventana -->
+                            <custom:ByTTextBox IsReadOnly="False" Grid.Column="0"   Grid.Row="1" Name="_txtIdPatenteMadreDatos" VerticalAlignment="Center" HorizontalAlignment="Left" MaxLength="255" Margin="0,0,5,0" SoloNumero="True" Width="65" Text="{Binding Path=Patente.PatenteMadre}" MouseDoubleClick="_txtPatenteMadreDatos_MouseDoubleClick">
+                            </custom:ByTTextBox>
+
+                            <Label Name="_lblPatenteMadreIndicatorDatos" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2">
+                                <TextBlock Text="Patente Madre" FontStyle="Italic" Foreground="DarkGreen"/>
+                            </Label>
+
+                            <!-- Label CODIGO-->
+                            <Label Name="_lblIdPatenteMadreDatos" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                            </Label>
+                            <!-- TextBox donde se ve el codigo -->
+                            <custom:ByTTextBox IsEnabled="True" SoloNumero="True"  Grid.Column="1" Grid.Row="0" Name="_txtIdPatenteMadreFiltrarDatos" VerticalAlignment="Center" Grid.ColumnSpan="2"
+                         MaxLength="255" Visibility="Collapsed" TamanoMaximo="8"></custom:ByTTextBox>
+                            <!-- Boton CONSULTAR -->
+                            <Button  Name="_btnConsultarPatenteMadre_Datos"  Grid.Column="3" Grid.Row="0" Width="65" IsDefault="False" Height="25" HorizontalAlignment="Right" Click="_btnConsultarPatenteMadre_Click" Visibility="Collapsed">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                            </Button>
+
+
+                            <!--Lista que se utiliza para mostrar el resultado de la consulta de la marca de origen-->
+                            <ListView Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="3" Name="_lstPatenteMadreDatos" ItemsSource="{Binding}" 
+                      SelectionMode="Single" Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top" MouseDoubleClick="_lstPatenteMadreDatos_MouseDoubleClick">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Width="65">
+                                            <GridViewColumnHeader Click="_OrdenarAsociadoSolicitud_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock HorizontalAlignment="Center">
+                                                    <TextBlock.Text>
+                                                        <Binding Path="Id" Converter="{StaticResource convertir}"/>
+                                                    </TextBlock.Text>
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="250">
+                                            <GridViewColumnHeader Click="_OrdenarAsociadoSolicitud_Click" Tag="Descripción" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+
+
+                        </Grid>
+
+                        <!--<Label Grid.Column="8" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPatenteMadre}" />
+                        </Label>
+                        <custom:ByTTextBox Grid.Column="10" Grid.Row="1" Name="_txtPatenteMadreDatos" VerticalAlignment="Center" MaxLength="255" Margin="0,0,5,0">
+                            <custom:ByTTextBox.Text>
+                                <Binding Path="PatenteMadre" UpdateSourceTrigger="PropertyChanged"/>
+                            </custom:ByTTextBox.Text>
+                        </custom:ByTTextBox>-->
 
                         <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right" Name="_lblAsociadoDatos">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
@@ -1470,6 +1659,10 @@
                             <Button  Name="_btnVerTituloDatos" IsDefault="False" Width="70" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="6" Height="25" 
                                         HorizontalAlignment="Center" Click="_btnVerTituloDatos_Click" Margin="5,5,0,0">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.btnVerTitulo}"/>
+                            </Button>
+                            
+                            <Button Name="_btnAnualidadDatos" IsDefault="False" Width="75" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="7" Height="25" HorizontalAlignment="Center" Margin="5,5,0,0" Click="_btnAnualidadDatos_Click">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.btnAnualidadPatente}"/>
                             </Button>
 
                         </Grid>

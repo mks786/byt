@@ -151,9 +151,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         #region Filtro Internacional
 
-        string IdInternacional { get; }
+        string IdInternacional { get; set; }
 
-        string IdCorrelativoInternacional { get; }
+        string IdCorrelativoInternacional { get; set; }
 
         string ReferenciaInteresado { get; }
 

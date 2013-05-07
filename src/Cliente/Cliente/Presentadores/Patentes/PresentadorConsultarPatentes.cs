@@ -567,9 +567,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                 if (!this._ventana.Fecha.Equals(""))
                 {
-                    DateTime fechaPublicacion = DateTime.Parse(this._ventana.Fecha);
+
+                    DateTime fechaInscripcion = DateTime.Parse(this._ventana.Fecha);
                     _filtroValido = 2;
-                    patenteAuxiliar.FechaPublicacion = fechaPublicacion;
+                    patenteAuxiliar.FechaInscripcion = fechaInscripcion;
+                    
+                    //DateTime fechaPublicacion = DateTime.Parse(this._ventana.Fecha);
+                    //_filtroValido = 2;
+                    //patenteAuxiliar.FechaPublicacion = fechaPublicacion;
+
+                    
                 }
 
                 if (!this._ventana.Solicitud.Equals(""))

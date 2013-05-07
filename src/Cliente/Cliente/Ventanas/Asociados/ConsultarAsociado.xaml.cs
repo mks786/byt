@@ -191,12 +191,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
 
                 this._chkContribuyenteDatos.IsEnabled = value;
                 this._chkActivoAdministracion.IsEnabled = value;
+                this._chkActivoDatos.IsEnabled = value;
                 this._chkAlertaAdministracion.IsEnabled = value;
                 this._chkEdoCuentaAdministracion.IsEnabled = value;
                 this._chkEdoCuentaDigitalAdministracion.IsEnabled = value;
                 this._chkIsfAdministracion.IsEnabled = value;
                 this._chkPendienteStatementAdministracion.IsEnabled = value;
                 this._chkContribuyenteDatos.IsEnabled = value;
+                this._chkVerContactos.IsEnabled = value;
+                this._txtObservacionesDatos.IsEnabled = value;
+
 
             }
         }
@@ -291,6 +295,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             get { return this._lstContactos.SelectedItem; }
         }
 
+        //-----
+        public bool? ChkVerContactos
+        {
+            get { return this._chkVerContactos.IsChecked.Value; }
+            //set { this._chkVerContactos = value; }
+        }
+        //-----
         public void Mensaje(string mensaje)
         {
             MessageBox.Show(mensaje, "Alerta", MessageBoxButton.OK, MessageBoxImage.Exclamation);
@@ -503,6 +514,70 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
                 this._txtSaldoPendienteAdministracion.Text = value;
             }
         }
+
+        //private void _chkVerContactos_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    bool checkSeleccionado = false;
+        //    CheckBox chkBox = new CheckBox();
+        //    chkBox = (CheckBox)sender;
+        //    checkSeleccionado = chkBox.IsChecked.Value;
+        //    if (checkSeleccionado)
+        //    {
+                
+        //        if (!this._lstContactos.IsEnabled)
+        //            this._lstContactos.IsEnabled = true;
+        //        this._presentador.VerCargarListaContactosAsociados();
+                
+        //    }
+        //    else
+        //    {
+        //        DesactivarVerListaContactos();
+                
+        //    }
+        //}
+
+
+        public void DesactivarVerListaContactos()
+        {
+
+            this._lstContactos.IsEnabled = false;
+            if (_lstContactos.Items.Count > 0)
+            {
+                this._lstContactos.DataContext = null;
+                //this._lstContactos.Items.Clear();
+            }
+
+            
+        }
+
+        
+
+        private void _chkVerContactos_Click(object sender, RoutedEventArgs e)
+        {
+            bool checkSeleccionado = false;
+            CheckBox chkBox = new CheckBox();
+            chkBox = (CheckBox)sender;
+            checkSeleccionado = chkBox.IsChecked.Value;
+            if (checkSeleccionado)
+            {
+
+                if (!this._lstContactos.IsEnabled)
+                    this._lstContactos.IsEnabled = true;
+                this._presentador.VerCargarListaContactosAsociados();
+
+            }
+            else
+            {
+                DesactivarVerListaContactos();
+
+            }
+        }
+
+
+
+
+
+        
 
     }
 }

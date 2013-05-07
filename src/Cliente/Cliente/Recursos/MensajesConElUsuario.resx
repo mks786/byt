@@ -1324,4 +1324,25 @@
   <data name="AlertaDebeSeleccionarPaisMonedaIdioma" xml:space="preserve">
     <value>Disculpe, para agregar un Asociado es necesario que elija un País, Moneda e Idioma.</value>
   </data>
+  <data name="AlertaCartaAcuse" xml:space="preserve">
+    <value>Seleccione un Acuse para agregar la nueva carta</value>
+  </data>
+  <data name="AlertaCartaDepartamento" xml:space="preserve">
+    <value>Seleccione un Departamento para agregar la nueva carta</value>
+  </data>
+  <data name="AlertaCartaTipoResumen" xml:space="preserve">
+    <value>Seleccione un Tipo de Resumen para agregar la nueva carta</value>
+  </data>
+  <data name="TablaVacia" xml:space="preserve">
+    <value>Disculpe no hay registros en la Tabla</value>
+  </data>
+  <data name="ClaseInternacionalNoExiste" xml:space="preserve">
+    <value>Revise el Codigo de la Clase Internacional puede que no exista</value>
+  </data>
+  <data name="MarcaLocalidadMarcaNulo" xml:space="preserve">
+    <value>Comuniquese con soporte tecnico. El campo LocalidadMarca está vacio</value>
+  </data>
+  <data name="ErrorExpedienteNoEncontradoPatente" xml:space="preserve">
+    <value>El expediente de la Patente consultada no existe</value>
+  </data>
 </root>

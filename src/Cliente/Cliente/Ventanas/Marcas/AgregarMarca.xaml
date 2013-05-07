@@ -7,7 +7,7 @@
       mc:Ignorable="d"
       xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
-      d:DesignHeight="550" d:DesignWidth="800"
+      d:DesignHeight="1545" d:DesignWidth="966"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
 	Title="{x:Static recurso:Etiquetas.titleAgregarAgente}" Loaded="Page_Loaded">
     <Page.Resources>
@@ -73,7 +73,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="5"/>
                             <RowDefinition Height="25"/>
-                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="25"/>
                             <RowDefinition Height="25"/>
                             <RowDefinition Height="25"/>
@@ -481,12 +481,77 @@
                         </CheckBox>
                         <custom:ByTTextBox  MaxLength="2000" Grid.Column="2" Grid.Row="9" Name="_txtEtiquetaSolicitud" VerticalAlignment="Center" 
                          Grid.ColumnSpan="6" Text="{Binding Path=EtiquetaDescripcion}"></custom:ByTTextBox>
+                        
+                        <!--Marca de Origen para la solicitud-->
+                        <Button Grid.Column="8" Grid.Row="9" Name="_btnIrMarcaOrigenSolicitud" IsDefault="False" Height="25" HorizontalAlignment="Right" Click="_btnIrMarcaOrigen_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnMarcaOrigen}"/>
+                        </Button>
+
+                        <Grid Grid.Column="9" Grid.Row="9" Grid.ColumnSpan="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!--Campo que se muestra al visualizar la ventana -->
+                            <custom:ByTTextBox IsReadOnly="False" Grid.Column="0"   Grid.Row="1" Name="_txtIdMarcaOrigenSolicitud" VerticalAlignment="Center" MaxLength="255" Margin="0,0,5,0" Text="{Binding Path=Marca.MarcaOrigen}" BorderBrush="LightGreen" MouseDoubleClick="_txtIdMarcaOrigenSolicitud_MouseDoubleClick" GotFocus="_txtMarcaOrigen_GotFocus">
+                            </custom:ByTTextBox>
+
+                            <!-- Label CODIGO-->
+                            <Label Name="_lblIdMarcaOrigenSolicitud" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Collapsed">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                            </Label>
+                            
+                            <!-- TextBox donde se ve el codigo -->
+                            <custom:ByTTextBox IsEnabled="True" SoloNumero="True"  Grid.Column="1" Grid.Row="0" Name="_txtIdMarcaOrigenSolicitudFiltrar" VerticalAlignment="Center" MaxLength="255" Visibility="Collapsed" TamanoMaximo="8" HorizontalAlignment="Left" Width="100">
+                            </custom:ByTTextBox>
+
+                            <!-- Boton CONSULTAR -->
+                            <Button  Name="_btnConsultarMarcaOrigenSolicitud"  Grid.Column="3" Grid.Row="0" Width="65" IsDefault="False" Height="25" Visibility="Collapsed" HorizontalAlignment="Left" Click="_btnConsultarMarcaOrigen_Click">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                            </Button>
+
+                            <!--Lista que se utiliza para mostrar el resultado de la consulta de la marca de origen-->
+                            <ListView Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Name="_lstMarcaOrigenSolicitud" ItemsSource="{Binding}" SelectionMode="Single" Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top" MouseDoubleClick="_lstMarcaOrigenSolicitud_MouseDoubleClick">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Width="45">
+                                            <GridViewColumnHeader Click="_OrdenarAsociadoSolicitud_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <Binding Path="Id" Converter="{StaticResource convertir}"/>
+                                                    </TextBlock.Text>
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="150">
+                                            <GridViewColumnHeader Tag="Descripción" Content="{x:Static recurso:Etiquetas.lsvDescripcion}"/>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                            
+
+                        </Grid>
+
+
+                        <!-- Fin de Marca de Origen para la solicitud-->
 
                         <Label Grid.Column="0" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseInt}"/>
                         </Label>
-                        <custom:ByTTextBox  MaxLength="255" Grid.Column="1" Grid.Row="10" Name="_txtClaseInternacionalSolicitud" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="1" Text="{Binding Path=Internacional.Id}" SoloNumero="True"></custom:ByTTextBox>
+                        <custom:ByTTextBox  MaxLength="2" Grid.Column="1" Grid.Row="10" Name="_txtClaseInternacionalSolicitud" VerticalAlignment="Center" Grid.ColumnSpan="1" Text="{Binding Path=Internacional.Id}" SoloNumero="True" Width="65" HorizontalAlignment="Left"></custom:ByTTextBox>
 
                         <Button Name="_btnClaseCompletaSolicitud" VerticalAlignment="Bottom" Grid.Column="2" Grid.Row="10" Grid.ColumnSpan="2" 
                             Height="25" Width="160" Click="_btnClaseCompletaSolicitud_Click">
@@ -514,12 +579,12 @@
                         </Label>
                         <Button Visibility="Hidden"  Name="_btnIrReclasificar" VerticalAlignment="Bottom" Grid.Column="9" Grid.Row="10"  Height="25" Width="40">Ir</Button>
 
-                        <Label Grid.Column="10" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <!--<Label Grid.Column="10" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblMarcaOrigen}"/>
                         </Label>
                         <ComboBox  Grid.Column="11" Grid.Row="10"  Name="_cbxMarcaOrigenSolicitud" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Nombre" SelectedIndex="0">
-                        </ComboBox>
+                        </ComboBox>-->
 
                         <Label Grid.Column="0" Grid.Row="11" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblDistingue}"/>
@@ -847,7 +912,8 @@
                             <!--14-->
                             <RowDefinition Height="25"/>
                             <!--15-->
-                            <RowDefinition Height="25"/>
+                            <!--<RowDefinition Height="25"/>-->
+                            <RowDefinition Height="Auto"/>
                             <!--16-->
                             <RowDefinition Height="5"/>
                             <!--17-->
@@ -1334,11 +1400,11 @@
                         <custom:ByTTextBox  Grid.Column="8" Grid.Row="12" Grid.ColumnSpan="1" Margin="3" Name="_txtReclasificacionDatos" VerticalAlignment="Center"  
                           Text=""></custom:ByTTextBox>
 
-                        <Label Grid.Column="9" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <!--<Label Grid.Column="9" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblMarcaOrigen}"/>
                         </Label>
                         <ComboBox  Grid.Column="10" Grid.Row="12" Grid.ColumnSpan="2" Name="_cbxMarcaOrigen" Height="20" ItemsSource="{Binding}" >
-                        </ComboBox>
+                        </ComboBox>-->
                         <!--Fin Octava Fila-->
 
                         <!--Novena Fila-->
@@ -1371,7 +1437,7 @@
                         <!--Nuevo-->
                         <!--Undécima Fila-->
 
-                        <Grid Grid.Column="0" Grid.Row="15" Grid.ColumnSpan="10">
+                        <Grid Grid.Column="0" Grid.Row="15" Grid.ColumnSpan="8">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="95"/>
                                 <ColumnDefinition Width="105"/>
@@ -1418,6 +1484,75 @@
                          HorizontalAlignment="Left" Margin="0,0,0,0">
                             </CheckBox>
                         </Grid>
+                        
+                        
+                        <!-- Inicio Marca Origen Datos-->
+
+                        <Button Grid.Column="8" Grid.Row="15" Name="_btnIrMarcaOrigenDatos" IsDefault="False" Height="25" HorizontalAlignment="Right" Click="_btnIrMarcaOrigen_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnMarcaOrigen}"/>
+                        </Button>
+
+                        <Grid Grid.Column="9" Grid.Row="15" Grid.ColumnSpan="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- Campo donde se muestra el ID de la marca de origen -->
+                            <custom:ByTTextBox IsReadOnly="False" Grid.Column="0"   Grid.Row="1" Name="_txtIdMarcaOrigenDatos" VerticalAlignment="Center" MaxLength="255" Margin="0,0,5,0" Text="{Binding Path=Marca.MarcaOrigen}" BorderBrush="LightGreen" MouseDoubleClick="_txtIdMarcaOrigenDatos_MouseDoubleClick" GotFocus="_txtMarcaOrigen_GotFocus">
+                            </custom:ByTTextBox>
+
+                            <!-- Label CODIGO de marca de origen a buscar -->
+                            <Label Name="_lblIdMarcaOrigenDatos" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                            </Label>
+                            
+                            <!-- TextBox donde se ve el codigo -->
+                            <custom:ByTTextBox IsEnabled="True" SoloNumero="True"  Grid.Column="1" Grid.Row="0" Name="_txtIdMarcaOrigenDatosFiltrar" VerticalAlignment="Center" MaxLength="255" Visibility="Collapsed" TamanoMaximo="8"></custom:ByTTextBox>
+                            
+                            <!-- Boton CONSULTAR -->
+                            <Button  Name="_btnConsultarMarcaOrigenDatos"  Grid.Column="3" Grid.Row="0" Width="65" IsDefault="False" Height="25" HorizontalAlignment="Right" Visibility="Collapsed" Click="_btnConsultarMarcaOrigen_Click">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                            </Button>
+
+                            <!--Lista que se utiliza para mostrar el resultado de la consulta de la marca de origen-->
+                            <ListView Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Name="_lstMarcaOrigenDatos" ItemsSource="{Binding}" SelectionMode="Single" Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top" MouseDoubleClick="_lstMarcaOrigenDatos_MouseDoubleClick">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Width="45">
+                                            <GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <Binding Path="Id" Converter="{StaticResource convertir}"/>
+                                                    </TextBlock.Text>
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="150">
+                                            <GridViewColumnHeader Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvDescripcion}"/>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+
+                        </Grid>
+
+
+
+                        <!-- Fin Marca Origen Datos-->
+
 
                         <!--Fin Undécima Fila-->
                         <!--Fin Nuevo-->
@@ -1447,8 +1582,14 @@
                             </Button>
                             <custom:ByTTextBox  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1"  Name="_txtCodigoInscripcion" VerticalAlignment="Center"  
                           Text="{Binding Path=CodigoInscripcion}"></custom:ByTTextBox>
-                            <custom:ByTTextBox  Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="1"  Name="_txtFechaInscripcion" VerticalAlignment="Center"  
-                          Text="{Binding Path=FechaInscripcion}"></custom:ByTTextBox>
+                            <!--<custom:ByTTextBox  Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="1"  Name="_txtFechaInscripcion" VerticalAlignment="Center"  
+                          Text="{Binding Path=FechaInscripcion}"></custom:ByTTextBox>-->
+
+                            <DatePicker  Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="1" Name="_txtFechaInscripcion" Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" >
+                                <DatePicker.SelectedDate>
+                                    <Binding Path="FechaInscripcion" UpdateSourceTrigger="PropertyChanged" StringFormat="{}{0:dd/MM/yyyy}"/>
+                                </DatePicker.SelectedDate>
+                            </DatePicker>
 
                             <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblOrdPublicacion}"/>
@@ -1509,8 +1650,14 @@
                             </Button>
                             <custom:ByTTextBox  Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="1" Name="_txtCodigoRegistro" VerticalAlignment="Center"  
                           Text=""></custom:ByTTextBox>
-                            <custom:ByTTextBox  Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1" Name="_txtFechaRegistro" VerticalAlignment="Center"  
-                          Text=""></custom:ByTTextBox>
+                            <!--<custom:ByTTextBox  Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1" Name="_txtFechaRegistro" VerticalAlignment="Center"  
+                          Text=""></custom:ByTTextBox>-->
+                            <DatePicker  Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1" Name="_txtFechaRegistro" Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" >
+                                <DatePicker.SelectedDate>
+                                    <Binding Path="FechaRegistro" UpdateSourceTrigger="PropertyChanged" StringFormat="{}{0:dd/MM/yyyy}"/>
+                                </DatePicker.SelectedDate>
+                            </DatePicker>
+
                             <Label Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblRenovarAntesDe}"/>
                             </Label>

@@ -94,9 +94,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
 
                 ActualizarTitulo();
 
-                this._entradasAlternas = this._entradaAlternaServicios.ConsultarTodos();
-                this._ventana.Resultados = this._entradasAlternas;
-                this._ventana.TotalHits = this._entradasAlternas.Count.ToString();
+               // this._entradasAlternas = this._entradaAlternaServicios.ConsultarTodos();
+               // this._ventana.Resultados = this._entradasAlternas;
+               // this._ventana.TotalHits = this._entradasAlternas.Count.ToString();
+
+                this._ventana.TotalHits = "0";
 
                 IList<Medio> medios = this._medioServicios.ConsultarTodos();
                 Medio primerMedio = new Medio();
@@ -167,6 +169,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
+
+                 this._entradasAlternas = this._entradaAlternaServicios.ConsultarTodos();
+                 this._ventana.Resultados = this._entradasAlternas;
 
                 IEnumerable<EntradaAlterna> entradasAlternasFiltrados = this._entradasAlternas;
 
@@ -315,8 +320,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
             this._ventana.Categoria = ((IList<Categoria>)this._ventana.Categorias)[0];
             this._ventana.Descripcion = null;
 
-            this._ventana.Resultados = this._entradasAlternas.ToList<EntradaAlterna>();
-            this._ventana.TotalHits = this._entradasAlternas.ToList<EntradaAlterna>().Count.ToString();
+            //this._ventana.Resultados = this._entradasAlternas.ToList<EntradaAlterna>();
+            this._ventana.Resultados = null;
+            //this._ventana.TotalHits = this._entradasAlternas.ToList<EntradaAlterna>().Count.ToString();
+            this._ventana.TotalHits = "0";
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

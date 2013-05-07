@@ -100,7 +100,7 @@
                 <custom:ByTTextBox    Name="_txtIdCarta" Text="{Binding Path=Id}" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="0" 
                                       Width="50" Height="20"></custom:ByTTextBox>
                 <ComboBox IsEnabled="True"  Grid.Column="2" Grid.Row="0" Name="_cbxAcuse" Grid.ColumnSpan="2" Height="20" 
-                          ItemsSource="{Binding}" SelectedIndex="0" SelectionChanged="_cbxAcuse_SelectionChanged" DisplayMemberPath="Descripcion"
+                          ItemsSource="{Binding}" SelectedIndex="0" DisplayMemberPath="Descripcion"
                           Margin="55,0,40,0">
                          
                 </ComboBox>

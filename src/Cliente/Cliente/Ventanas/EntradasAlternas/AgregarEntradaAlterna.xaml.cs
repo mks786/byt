@@ -240,6 +240,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.EntradasAlternas
 
         }
 
+        private void _btnTipoEntrada_Categoria_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVentanaTipoDeEntrada_Categoria();
+        }
+
         public void RefrescarMedio(object medio)
         {
             this._presentador.RefrescarMedio(medio);
@@ -249,5 +254,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.EntradasAlternas
         {
             this._presentador.RefrescarRemitente(remitente);
         }
+
+
+        public void RefrescarTipoDeEntradaCategoria(object tipoEntradaCategoria)
+        {
+            this._presentador.RefrescarTipoEntradaCategoria(tipoEntradaCategoria);
+        }
+
+        
     }
 }

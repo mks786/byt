@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       mc:Ignorable="d" 
-      d:DesignHeight="550" d:DesignWidth="800"
+      d:DesignHeight="1518" d:DesignWidth="800"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
       xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
       xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
@@ -88,7 +88,7 @@
                             <custom:ByTTextBox Name="_txtSolicitud" Width="75" MaxLength="40" Filtro="True" 
                                        GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" Text="{Binding Path=CodigoInscripcion}"/>
 
-                            <custom:ByTDatePicker Editable="True" Name="_dpkFecha" Width="75"  Focusable="False" BorderBrush="{x:Null}" 
+                            <custom:ByTDatePicker Editable="True" Name="_dpkFecha" Width="105"  Focusable="False" BorderBrush="{x:Null}" 
                                                   SelectedDateChanged="_dpkFecha_SelectedDateChanged">
                                 <DatePicker.SelectedDate>
                                     <Binding Path="FechaInscripcion" UpdateSourceTrigger="PropertyChanged"/>
@@ -405,10 +405,9 @@
                             <Label  Name="_lblCodigoInternacional">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigoInt}"/>
                             </Label>
-                            <custom:ByTTextBox  IsEnabled="false"  Name="_txtCodigoInternacional" Width="75" MaxLength="8"
-                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                            <custom:ByTTextBox  IsEnabled="false" SoloNumero="True" Name="_txtCodigoInternacional" Width="75" MaxLength="8" GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
                             <custom:ByTTextBox  IsEnabled="false"  Name="_txtCodigoInternacional2" Width="75" MaxLength="8"
-                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" SoloNumero="True"/>
                         </WrapPanel>
 
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,60,0">

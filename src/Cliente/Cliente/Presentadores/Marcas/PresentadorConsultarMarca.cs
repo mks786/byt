@@ -36,7 +36,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
         
-        private IConsultarMarca _ventana;
+        private IConsultarMarca _ventana, _ventanaPadreAux;
 
 
         private IMarcaServicios _marcaServicios;
@@ -79,6 +79,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         private object _ventanaPadre = null;
 
+        private bool _cargaMarcaOrigen = false;
+
 
         /// <summary>
         /// Constructor Predeterminado
@@ -95,7 +97,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 this._ventana = ventana;
                 this._ventanaPadre = ventanaPadre;
-
+                                
                 if (((Marca)marca).Internacional == null)
                     ((Marca)marca).Internacional = new Internacional();
                 else
@@ -203,7 +205,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                bool marcaOrigenCargada = this._ventana.MarcaOrigenCargada;
+
+                
+
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarMarca, "");
+                
+
 
                 if (!PoseePermisologia(UsuarioLogeado.Rol.Objetos, Recursos.Ids.SolicitudMarca))
                 {
@@ -212,6 +220,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 Marca marca = (Marca)this._ventana.Marca;
                 _marca = marca;
+
+                IList<Marca> listaDeMarcas;
+
+                // En el caso de la Marca de Origen que solamente trae de la ventana el Id
+                if (null == marca.Descripcion)
+                {
+                    listaDeMarcas = _marcaServicios.ObtenerMarcasFiltro(marca);
+                    marca = listaDeMarcas[0];
+                    this._ventana.Marca = marca;
+                    _marca = marca;
+                }
+                 
+               
 
                 if ((!string.IsNullOrEmpty(marca.LocalidadMarca)) && (marca.LocalidadMarca.Equals("I")))
                     this._ventana.MarcarRadioMarcaNacional(false);
@@ -382,8 +403,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 primerTipoReproduccion.Id = "NGN";
                 tipoReproducciones.Insert(0, primerTipoReproduccion);
                 this._ventana.TipoReproducciones = tipoReproducciones;
-                this._ventana.TipoReproduccion = this.BuscarTipoReproduccion(tipoReproducciones, marca.Tipo);
-
+                //this._ventana.TipoReproduccion = this.BuscarTipoReproduccion(tipoReproducciones, marca.Tipo);
+                this._ventana.TipoReproduccion = this.BuscarTipoReproduccion(tipoReproducciones,marca.TipoRps.ToString());
+                
                 IList<ListaDatosDominio> tipoClasesNacional = this._listaDatosDominioServicios.
                     ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaTipoClaseNacional));
                 ListaDatosDominio primerTipoClase = new ListaDatosDominio();
@@ -437,6 +459,53 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 //{
                 //    this._ventana.DeshabilitarBotonModificar();
                 //}
+
+                
+                #region Marca de Origen
+
+                //Pintando el label para indicar que la marca cargada en pantalla es la Marca Origen
+                if (marcaOrigenCargada)
+                    this._ventana.PintarLblMarcaOrigen(marcaOrigenCargada);
+
+                //Pintando el codigo de la marca origen en el textbox de la pestana Solicitud
+                this._ventana.IdMarcaOrigenSolicitud = this._marca.MarcaOrigen.ToString();
+                this._ventana.IdMarcaOrigenDatos = this._marca.MarcaOrigen.ToString();
+                //Generando una lista de Marcas Origen para la lista de marca origen en pestana Solicitud
+                int? idMarcaOrigen = marca.MarcaOrigen;
+                
+                //if (idMarcaOrigen != 0)
+                if(null != idMarcaOrigen)
+                {
+                    Marca marcaOrigen = new Marca(idMarcaOrigen.Value);
+
+                    marcaOrigen = this._marcaServicios.ConsultarMarcaConTodo(marcaOrigen);
+                    IList<Marca> listaMarcas = new List<Marca>();
+                    Marca primeraMarca = new Marca(int.MinValue);
+                    //listaMarcas.Insert(0, primeraMarca);
+                    listaMarcas.Add(primeraMarca);
+                    listaMarcas.Add(marcaOrigen);
+                    //Asociamos la lista de Marcas de Origen con la lista en la ventana
+                    this._ventana.MarcaOrigenSolicitud = listaMarcas;
+                    this._ventana.MarcaOrigenDatos = listaMarcas;
+                    this._ventana.MarcasOrigenSolicitud = this.BuscarMarca((IList<Marca>)this._ventana.MarcaOrigenSolicitud, listaMarcas[1]);
+                    this._ventana.MarcasOrigenDatos = this.BuscarMarca((IList<Marca>)this._ventana.MarcaOrigenDatos, listaMarcas[1]);
+                }
+                else
+                {
+                    this._ventana.IdMarcaOrigenSolicitud = null;
+                    this._ventana.IdMarcaOrigenDatos = null;
+                }
+                
+                #endregion
+
+
+                #region Expediente Traspaso Renovacion
+
+                //Pintando el Id del Expediente de Traspaso de Renovacion
+                this._ventana.IdExpTraspasoRenovacionDatos = marca.ExpTraspasoRenovacion;
+                this._ventana.IdExpTraspasoRenovacionSolicitud = marca.ExpTraspasoRenovacion;
+
+                #endregion
 
                 #region Internacional
 
@@ -524,7 +593,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
 
             if (this._ventanaPadre != null)
+            {
                 this.Navegar((Page)_ventanaPadre);
+            }
             else
                 this.Navegar(new ConsultarMarcas());
 
@@ -616,6 +687,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     marca.NumeroCondiciones = ((Condicion)this._ventana.Condicion).Id;
             }
 
+            //if (null != ((Marca)this._ventana.Marca).MarcaOrigen)
+            //    marca.MarcaOrigen = ((Marca)this._ventana.Marca).MarcaOrigen;
+
             return marca;
 
             #region trace
@@ -683,8 +757,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                             if (marca.Interesado != null)
                             {
-                                if (marca.Poder != null)
-                                {
+                                //if (marca.Poder != null)
+                                //{
                                     bool exitoso = this._marcaServicios.InsertarOModificar(marca, UsuarioLogeado.Hash);
 
                                     if (exitoso)
@@ -697,9 +771,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                                         //    this._ventana.DeshabilitarBotonModificar();
                                         //}
                                     }
-                                }
-                                else
-                                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinPoder, 0);
+                                //}
+                                //else
+                                //    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinPoder, 0);
                             }
                             else
                                 this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinInteresado, 0);
@@ -1157,6 +1231,158 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.NombreAsociadoSolicitud = "";
                 this._ventana.NombreAsociadoDatos = "";
             }
+        }
+
+
+        /// <summary>
+        /// Metodo para cambiar la marca de origen cuando se selecciona la lista de marcas de origen en 
+        /// la pestana Solicitud de la ventana ConsultarMarca
+        /// </summary>
+        public void CambiarMarcaOrigenSolicitud()
+        {
+
+           Marca marcaOrigen;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (((Marca)this._ventana.MarcasOrigenSolicitud) != null &&
+                        ((Marca)this._ventana.MarcasOrigenSolicitud).Id != int.MinValue)
+                {
+                    marcaOrigen = this._marcaServicios.ConsultarMarcaConTodo(((Marca)this._ventana.MarcasOrigenSolicitud));
+                    this._ventana.IdMarcaOrigenSolicitud = marcaOrigen.Id.ToString();
+                    ((Marca)this._ventana.Marca).MarcaOrigen = marcaOrigen.Id;
+                    this._ventana.IdMarcaOrigenDatos = marcaOrigen.Id.ToString();
+                    
+                }
+                else
+                {
+                    marcaOrigen = ((Marca)this._ventana.MarcasOrigenSolicitud);
+                    this._ventana.IdMarcaOrigenSolicitud = null;
+                    this._ventana.IdMarcaOrigenDatos = null;
+                    //this._ventana.IdMarcaOrigenSolicitud = marcaOrigen.Id.ToString();
+                    //this._ventana.IdMarcaOrigenDatos = marcaOrigen.Id.ToString();
+                    ((Marca)this._ventana.Marca).MarcaOrigen = null;
+                    //this._ventana.ConvertirEnteroMinimoABlanco();
+                }
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (ApplicationException e)
+            {
+                this._ventana.IdMarcaOrigenSolicitud = String.Empty;
+                this._ventana.IdMarcaOrigenDatos = String.Empty;
+            }
+
+        }
+
+
+        /// <summary>
+        /// Metodo para cambiar la marca de origen cuando se selecciona de la lista de marcas de origen
+        /// en la pestaña Datos de la ventana ConsultarMarca
+        /// </summary>
+        public void CambiarMarcaOrigenDatos()
+        {
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Marca marcaOrigen;
+
+                if (((Marca)this._ventana.MarcasOrigenDatos) != null &&
+                   ((Marca)this._ventana.MarcasOrigenDatos).Id != int.MinValue)
+                {
+                    marcaOrigen = this._marcaServicios.ConsultarMarcaConTodo(((Marca)this._ventana.MarcasOrigenDatos));
+                    this._ventana.IdMarcaOrigenDatos = marcaOrigen.Id.ToString();
+                    ((Marca)this._ventana.Marca).MarcaOrigen = marcaOrigen.Id;
+                    this._ventana.IdMarcaOrigenSolicitud = marcaOrigen.Id.ToString();
+                }
+                else
+                {
+                    marcaOrigen = ((Marca)this._ventana.MarcasOrigenDatos);
+                    this._ventana.IdMarcaOrigenDatos = null;
+                    this._ventana.IdMarcaOrigenSolicitud = null;
+                    //this._ventana.IdMarcaOrigenDatos = marcaOrigen.Id.ToString();
+                    //this._ventana.IdMarcaOrigenSolicitud = marcaOrigen.Id.ToString();
+                    ((Marca)this._ventana.Marca).MarcaOrigen = null;
+                    //this._ventana.ConvertirEnteroMinimoABlanco();
+                }
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException e)
+            {
+                this._ventana.IdMarcaOrigenSolicitud = String.Empty;
+                this._ventana.IdMarcaOrigenDatos = String.Empty;
+            }
+
+        }
+
+
+        public void BuscarMarcaOrigen(String filtrarEnTab)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            Marca marcaABuscar = new Marca();
+
+            switch (filtrarEnTab)
+            {
+                case "_btnConsultarMarcaOrigenSolicitud":
+                    marcaABuscar.Id = this._ventana.IdMarcaOrigenSolicitudFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdMarcaOrigenSolicitudFiltrar);
+                    break;
+
+                case "_btnConsultarMarcaOrigenDatos":
+                    //patenteABuscar.Id = this._ventana.IdPatenteMadreDatosFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdPatenteMadreDatosFiltrar);
+                    marcaABuscar.Id = this._ventana.IdMarcaOrigenDatosFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdMarcaOrigenDatosFiltrar);
+                    break;
+            }
+
+            IList<Marca> marcasFiltradas = this._marcaServicios.ObtenerMarcasFiltro(marcaABuscar);
+
+            if (marcasFiltradas.Count != 0)
+            {
+                Marca primeraMarca = new Marca();
+                primeraMarca.Id = int.MinValue;
+                marcasFiltradas.Insert(0, primeraMarca);
+                this._ventana.MarcaOrigenSolicitud = marcasFiltradas;
+                this._ventana.MarcaOrigenDatos = marcasFiltradas;
+                //this._ventana.PatenteMadreDatos = patentesFiltradas;
+            }
+            else
+            {
+                switch (filtrarEnTab)
+                {
+                    case "_btnConsultarMarcaOrigenSolicitud":
+                        this._ventana.IdMarcaOrigenSolicitudFiltrar = null;
+                        break;
+
+                    case "_btnConsultarMarcaOrigenDatos":
+                        this._ventana.IdMarcaOrigenDatosFiltrar = null;
+                        break;
+                }
+
+            }
+
         }
 
 
@@ -1820,7 +2046,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.IdPoderDatos = ((Poder)this._ventana.PoderSolicitud).Id.ToString();
                     this._ventana.PoderDatos = (Poder)this._ventana.PoderSolicitud;
                     this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderSolicitud).NumPoder;
-
+                    //---
+                    ((Marca)this._ventana.Marca).Poder = (Poder)this._ventana.PoderSolicitud;
+                    //---
                     this._ventana.ConvertirEnteroMinimoABlanco();
                 }
 
@@ -1855,7 +2083,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.PoderSolicitud = (Poder)this._ventana.PoderDatos;
                     this._ventana.IdPoderSolicitud = ((Poder)this._ventana.PoderDatos).Id.ToString();
                     this._ventana.IdPoderDatos = ((Poder)this._ventana.PoderDatos).Id.ToString();
-
+                    //---
+                    ((Marca)this._ventana.Marca).Poder = (Poder)this._ventana.PoderDatos;
+                    //---
                     this._ventana.ConvertirEnteroMinimoABlanco();
                 }
 
@@ -2484,7 +2714,33 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                System.Diagnostics.Process.Start(ConfigurationManager.AppSettings["rutaExpedientes"].ToString() + ((Marca)this._ventana.Marca).Id + ".pdf");
+               
+
+                if (((Marca)this._ventana.Marca).LocalidadMarca != null)
+                {
+                    if (((Marca)this._ventana.Marca).LocalidadMarca.Equals("N"))
+                    {
+                        System.Diagnostics.Process.Start(ConfigurationManager.AppSettings["rutaExpedientes"].ToString() + ((Marca)this._ventana.Marca).Id + ".pdf");
+                    }
+                    else if (((Marca)this._ventana.Marca).LocalidadMarca.Equals("I"))
+                    {
+                        if (((Marca)this._ventana.Marca).CodigoMarcaInternacional != 0 && ((Marca)this._ventana.Marca).CorrelativoExpediente != 0)
+
+                            //prueba = ConfigurationManager.AppSettings["rutaExpedientesMarcasInternacionales"].ToString() + ((Marca)this._ventana.Marca).CodigoMarcaInternacional.ToString() + "-" + ((Marca)this._ventana.Marca).CorrelativoExpediente.ToString() + ".pdf";
+                            System.Diagnostics.Process.Start(ConfigurationManager.AppSettings["rutaExpedientesMarcasInternacionales"].ToString() + ((Marca)this._ventana.Marca).CodigoMarcaInternacional.ToString() + "-" + ((Marca)this._ventana.Marca).CorrelativoExpediente.ToString() + ".pdf");
+                        else
+                            System.Diagnostics.Process.Start(ConfigurationManager.AppSettings["rutaExpedientesMarcasInternacionales"].ToString() + ((Marca)this._ventana.Marca).Id + ".pdf");
+
+                    } 
+                 }
+
+                else
+                {
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.MarcaLocalidadMarcaNulo, 1);
+                }
+
+  
+                //System.Diagnostics.Process.Start(ConfigurationManager.AppSettings["rutaExpedientes"].ToString() + ((Marca)this._ventana.Marca).Id + ".pdf");
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -2586,13 +2842,95 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
 
+        public void IrVentanaMarcaOrigen()
+        {
+            int? _idMarcaOrigen = ((Marca)this._ventana.Marca).MarcaOrigen;
+            
+            if (_idMarcaOrigen != null)
+            {
+                int idMarcaOrigen = _idMarcaOrigen.Value;
+                Marca marca = new Marca(idMarcaOrigen);
+                this._ventana.MarcaOrigenCargada = true;
+                //Navegar(new ConsultarMarca(marca, this._ventana));
+                //this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarMarcaOrigen, "");
+                Navegar(new ConsultarMarca(marca, this._ventana, this._ventana.MarcaOrigenCargada));
+            }
+        }
+
+
         public void IrVentanaPoder()
         {
-            if ((Poder)this._ventana.PoderSolicitud != null)
+            try
             {
-                Poder poder = ((Marca)this._ventana.Marca).Poder.Id != int.MinValue ? ((Marca)this._ventana.Marca).Poder : null;
-                Navegar(new ConsultarPoder(poder, this._ventana));
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if ((Poder)this._ventana.PoderSolicitud != null)
+                {
+
+                    Poder poder = ((Marca)this._ventana.Marca).Poder.Id != int.MinValue ? ((Marca)this._ventana.Marca).Poder : null;
+                    //--
+                    object obj = this._ventana.PoderSolicitud;
+                    //--
+                    Interesado interesadoPoder = ((Marca)this._ventana.Marca).Interesado;
+                    IList<Poder> listaPoderes = new List<Poder>();
+                    listaPoderes = this._poderServicios.ConsultarPoderesPorInteresado(interesadoPoder);
+
+                    if ((listaPoderes.Count != 0) && (poder != null))
+                    {
+                        if (EncontrarPoder(listaPoderes, poder))
+                            Navegar(new ConsultarPoder(poder, this._ventana));
+
+                        else
+                            this._ventana.Mensaje("El Poder no corresponde con el Interesado. Cambielo", 0);
+                    }
+                    else
+                        this._ventana.Mensaje("La Marca no tiene un poder válido. Asignele uno", 0);
+
+                    //Navegar(new ConsultarPoder(poder, this._ventana));
+                }
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
             }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+
+
+        }
+
+
+
+        /// <summary>
+        /// Metodo para encontrar un poder en una lista de poderes de un interesado especifico
+        /// </summary>
+        /// <param name="listaPoderes">Lista de poderes del Interesado</param>
+        /// <param name="poder">Poder a buscar en la lista de poderes</param>
+        /// <returns>Retorna true si encuentra el poder en la lista</returns>
+        public bool EncontrarPoder(IList<Poder> listaPoderes, Poder poder)
+        {
+            bool poderEncontrado = false;
+
+            foreach (Poder item in listaPoderes)
+            {
+                if (item.Id == poder.Id)
+                {
+                    poderEncontrado = true;
+                    break;
+                }
+            }
+
+            return poderEncontrado;
         }
 
 

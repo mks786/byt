@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -212,7 +213,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     responsables.Insert(0, primerUsuario);
                     this._ventana.Responsables = responsables;
 
-                    IList<Medio> medios = this._medioServicios.ConsultarTodos();
+                    //IList<Medio> medios = this._medioServicios.ConsultarTodos();
+                    IList<Medio> medios = this._medioServicios.ConsultarPorOtroCampo("Nombre", "Asc");
                     Medio primerMedio = new Medio();
                     primerMedio.Nombre = string.Empty;
                     primerMedio.Id = string.Empty;
@@ -232,7 +234,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     contactos.Add(contacto);
                     this._ventana.Contactos = contactos;
 
-                    IList<Departamento> departamentos = this._departamentoServicios.ConsultarTodos();
+                   // IList<Departamento> departamentos = this._departamentoServicios.ConsultarTodos();
+                    IList<Departamento> departamentos = this._departamentoServicios.ConsultarPorOtroCampo("Descripcion", "Asc");
                     Departamento primerDepartamento = new Departamento();
                     primerDepartamento.Descripcion = string.Empty;
                     primerDepartamento.Id = string.Empty;

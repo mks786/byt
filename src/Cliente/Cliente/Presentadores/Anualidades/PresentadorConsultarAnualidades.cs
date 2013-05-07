@@ -279,6 +279,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
 
                 ((Patente)this._ventana.AnualidadSeleccionada).Anualidades =
                         this._anualidadServicios.ConsultarAnualidadesPorPatente((Patente)this._ventana.AnualidadSeleccionada);
+
+                //IList<Anualidad> listaDeAnualidades = ((Patente)this._ventana.AnualidadSeleccionada).Anualidades;
+
+                //Anualidad anualidadFechaBase = new Anualidad();
+                //Patente patenteAux = (Patente)this._ventana.AnualidadSeleccionada;
+                //anualidadFechaBase.Patente = patenteAux;
+                //anualidadFechaBase.Situacion = "PB";
+                //listaDeAnualidades.Insert(0, anualidadFechaBase);
+                //((Patente)this._ventana.AnualidadSeleccionada).Anualidades = listaDeAnualidades;
+
                 this.Navegar(new GestionarAnualidades(this._ventana.AnualidadSeleccionada));
 
 

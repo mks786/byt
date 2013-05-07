@@ -83,5 +83,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
 
         string FormatoTrackingConfirmacion { get; set; }
 
+        
+
     }
 }

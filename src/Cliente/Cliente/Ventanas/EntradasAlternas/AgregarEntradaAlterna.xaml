@@ -125,9 +125,12 @@
                     </ComboBox>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCategoria}"/>
-                    </Label>
+                    <!--<Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoEntrada}"/>
+                    </Label>-->
+                    <Button Name="_btnTipoEntrada_Categoria" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnTipoEntrada_Categoria_Click">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.btnTipoEntrada}"/>
+                    </Button>
                     <ComboBox Name="_cbxCategoria" HorizontalAlignment="Left" Width="180" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                     </ComboBox>

@@ -202,7 +202,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                         this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
                 else
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto, 0);
+                {
+                    this._fusiones = this._fusionServicios.ConsultarTodos();
+                    this._ventana.Resultados = this._fusiones;
+                    this._ventana.TotalHits = _fusiones.Count.ToString();
+                    if (this._fusiones.Count == 0)
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.TablaVacia, 1);
+                    //this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto, 0);
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

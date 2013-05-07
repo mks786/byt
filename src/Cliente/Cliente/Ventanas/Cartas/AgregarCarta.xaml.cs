@@ -14,6 +14,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
     {
         private PresentadorAgregarCarta _presentador;
         private bool _cargada;
+        private bool _acuseSeleccionado;
 
         #region IAgregarCarta
 
@@ -276,6 +277,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             set { this._lsbFormatoConfirmacion.Text = value; }
         }
 
+
+        //------
+
+        //public bool AcuseSeleccionado
+        //{
+        //    get { return this._acuseSeleccionado; }
+        //    set { this._acuseSeleccionado = value; }
+        //}
+
+        //------
+
         public bool HabilitarCampos
         {
             set
@@ -447,10 +459,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             }
         }
 
-        private void _cbxAcuse_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
-        }
 
         private void _btnPersona_Click(object sender, RoutedEventArgs e)
         {
@@ -503,6 +512,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         //{
         //    this._presentador.IrListaJustificaciones();
         //}
+
+
 
 
 

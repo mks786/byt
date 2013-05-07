@@ -250,13 +250,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 _filtroValido = 0;
 
                 Marca MarcaAuxiliar = new Marca();
+                IList<Marca> marcasDesinfladas = new List<Marca>();
                 MarcaAuxiliar = ObtenerMarcaFiltro();
 
                 if (_filtroValido >= 2)
                 {
                     this._marcas = this._marcaServicios.ObtenerMarcasFiltro(MarcaAuxiliar);
 
-                    IList<Marca> marcasDesinfladas = new List<Marca>();
+                    //IList<Marca> marcasDesinfladas = new List<Marca>();
 
                     foreach (var marca in this._marcas)
                     {
@@ -303,8 +304,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 }
                 else
                 {
+
                     this._ventana.Resultados = null;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto, 0);
+
+
                 }
 
                 #region trace
@@ -444,9 +448,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     _filtroValido = 2;
                 }
 
-                if (!this._ventana.ExpCambioPendiente.Equals(""))
+                if (!this._ventana.ExpCambioPendiente.Equals("") || !this._ventana.ExpCambioPendiente.Equals(String.Empty))
                 {
                     _filtroValido = 2;
+                    //---
+                    marcaAuxiliar.ExpTraspasoRenovacion = this._ventana.ExpCambioPendiente;
                 }
 
                 #region trace
@@ -988,6 +994,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #region Internacional
 
             this._ventana.InternacionalEstaSeleccionado = false;
+            this._ventana.IdInternacional = null;
+            this._ventana.IdCorrelativoInternacional = null;
 
             #endregion
 

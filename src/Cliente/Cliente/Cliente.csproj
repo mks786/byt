@@ -136,6 +136,7 @@
     <Compile Include="Contratos\AbandonosPatente\IGestionarAbandonoPatente.cs" />
     <Compile Include="Contratos\EmailsAsociado\IConsultarEmailAsociado.cs" />
     <Compile Include="Contratos\EmailsAsociado\IAgregarEmailAsociado.cs" />
+    <Compile Include="Contratos\Inventores\IQueryInventor.cs" />
     <Compile Include="Contratos\TiposEmailAsociado\IGestionarTipoEmailAsociado.cs" />
     <Compile Include="Contratos\TiposEmailAsociado\IConsultarTiposEmailAsociado.cs" />
     <Compile Include="Contratos\Corresponsales\IAgregarCorresponsal.cs" />
@@ -564,6 +565,7 @@
     <Compile Include="Presentadores\AbandonosPatente\PresentadorGestionarAbandonoPatente.cs" />
     <Compile Include="Presentadores\EmailsAsociado\PresentadorConsultarEmailAsociado.cs" />
     <Compile Include="Presentadores\EmailsAsociado\PresentadorAgregarEmailAsociado.cs" />
+    <Compile Include="Presentadores\Inventores\PresentadorQueryInventor.cs" />
     <Compile Include="Presentadores\TiposEmailAsociado\PresentadorGestionarTipoEmailAsociado.cs" />
     <Compile Include="Presentadores\TiposEmailAsociado\PresentadorConsultarTiposEmailAsociado.cs" />
     <Compile Include="Presentadores\Corresponsales\PresentadorAgregarCorresponsal.cs" />
@@ -1029,6 +1031,9 @@
     </Compile>
     <Compile Include="Ventanas\EmailsAsociado\ConsultarEmailAsociado.xaml.cs">
       <DependentUpon>ConsultarEmailAsociado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Inventores\QueryInventor.xaml.cs">
+      <DependentUpon>QueryInventor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\TiposEmailAsociado\ConsultarTiposEmailAsociado.xaml.cs">
       <DependentUpon>ConsultarTiposEmailAsociado.xaml</DependentUpon>
@@ -1732,6 +1737,10 @@
     <Page Include="Ventanas\EmailsAsociado\ConsultarEmailAsociado.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Inventores\QueryInventor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\TiposEmailAsociado\ConsultarTiposEmailAsociado.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -121,6 +121,14 @@
                          HorizontalAlignment="Left" IsChecked="{Binding Path=BContribuyente}" IsEnabled="True">
                         </CheckBox>
 
+                        <Label Grid.Column="4" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblActivo}"/>
+                        </Label>
+                        <CheckBox Grid.Column="5" Grid.Row="3" Name="_chkActivoDatos" VerticalAlignment="Center"
+                         HorizontalAlignment="Left" IsChecked="{Binding Path=BActivo}" IsEnabled="True">
+                        </CheckBox>
+                        
+
                         <Label Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblRif}"/>
                         </Label>
@@ -200,22 +208,30 @@
                              Text="{Binding Path=Web}" Grid.ColumnSpan="2" Margin="0,0,20,0"
                              IsEnabled="True" MaxLength="60">
                         </custom:ByTTextBox>
-
+                        
+                        <!-- Campo de Observaciones-->
                         <Label Grid.Column="1" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblObservaciones}"/>
+                        </Label>
+                        <custom:ByTTextBox Grid.Column="2" Grid.Row="10" Name="_txtObservacionesDatos" VerticalAlignment="Center" 
+                             Text="{Binding Path=Observaciones}" Grid.ColumnSpan="4" Margin="0,0,20,0" IsEnabled="True" MaxLength="255">
+                        </custom:ByTTextBox>
+
+                        <Label Grid.Column="1" Grid.Row="11" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblInstrucciones}"/>
                         </Label>
 
-                        <Label Grid.Column="2" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <Label Grid.Column="2" Grid.Row="11" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblCorrespondencia}"/>
                         </Label>
-                        <CheckBox  Name="_cbxCorrespondenciaDatos" Grid.Column="3" Grid.Row="10" VerticalAlignment="Center"
+                        <CheckBox  Name="_cbxCorrespondenciaDatos" Grid.Column="3" Grid.Row="11" VerticalAlignment="Center"
                          HorizontalAlignment="Left" IsChecked="{Binding Path=Correspondencia}" IsEnabled="True">
                         </CheckBox>
 
-                        <Label Grid.Column="3" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <Label Grid.Column="3" Grid.Row="11" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFacturacion}"/>
                         </Label>
-                        <CheckBox  Name="_cbxFacturacionDatos" Grid.Column="4" Grid.Row="10" VerticalAlignment="Center"
+                        <CheckBox  Name="_cbxFacturacionDatos" Grid.Column="4" Grid.Row="11" VerticalAlignment="Center"
                          HorizontalAlignment="Left" IsChecked="{Binding Path=Facturacion}" IsEnabled="True">
                         </CheckBox>
 
@@ -445,6 +461,25 @@
                              VerticalAlignment="Center" Height="25" Width="90" Click="_btnTrasferenciaAdministracion_Click">
                             <TextBlock Name="_txbTrasferenciaAdministracion" Text="{x:Static recurso:Etiquetas.btnTrasferencia}"/>
                         </Button>
+                        
+                        <Grid Grid.Column="5" Grid.Row="8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="65"/>
+                                <ColumnDefinition Width="25"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            
+                            <Label Grid.Column="0" Grid.Row="0">
+                                <TextBlock Text="Contactos"/>
+                            </Label>
+                            
+                            <CheckBox Grid.Column="1" Grid.Row="0" Name="_chkVerContactos" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="True" IsChecked="False" Click="_chkVerContactos_Click"></CheckBox>
+                            
+                        </Grid>
+                        
 
 
                         <!--Vista de contactos del asociado-->

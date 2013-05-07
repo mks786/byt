@@ -39,11 +39,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Categorias
 
         #endregion
 
+        /// <summary>
+        /// Constructor predeterminado 
+        /// </summary>
         public AgregarCategoria()
         {
             InitializeComponent();
             this._cargada = false;
             this._presentador = new PresentadorAgregarCategoria(this);
+        }
+
+        public AgregarCategoria(object ventanaPadre)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorAgregarCategoria(this, ventanaPadre);
         }
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)

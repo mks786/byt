@@ -203,6 +203,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                 bool tracking = true;
 
+                bool camposLlenos = true;
+
                 if (null != (((Medio)this._ventana.Medio).Formato) && (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).Tracking)))
                     tracking = this.VerificarFormatoProduccion(((Medio)this._ventana.Medio).Formato, ((Carta)this._ventana.Carta).Tracking);
                 if (null != (((Medio)this._ventana.MedioTrackingConfirmacion)) && (null != (((Medio)this._ventana.MedioTrackingConfirmacion).Formato)) && (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).AnexoTracking)))
@@ -212,37 +214,66 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 {
                     Carta carta = (Carta)this._ventana.Carta;
                     carta.Operacion = "CREATE";
+                    //Departamento 
                     if (null != this._ventana.Departamento)
                         carta.Departamento = !((Departamento)this._ventana.Departamento).Id.Equals("NGN") ? (Departamento)this._ventana.Departamento : null;
+                    //Asociado
                     if (null != this._ventana.Asociado)
                         carta.Asociado = !((Asociado)this._ventana.Asociado).Id.Equals("NGN") ? (Asociado)this._ventana.Asociado : null;
+                    //Persona
                     if (null != this._ventana.Persona)
                         carta.Persona = !((Contacto)this._ventana.Persona).Id.Equals("NGN") ? ((Contacto)this._ventana.Persona).Nombre : null;
+                    //Resumen
                     if (null != this._ventana.Resumen)
                         carta.Resumen = !((Resumen)this._ventana.Resumen).Id.Equals("NGN") ? ((Resumen)this._ventana.Resumen) : null;
+                    //Acuse
                     if ((null != this._ventana.Acuse) && ((ListaDatosValores)this._ventana.Acuse).Id != "NGN")
                         carta.Acuse = ((ListaDatosValores)this._ventana.Acuse).Valor[0];
-                    else
-                        carta.Acuse = ' ';
+                    
                     carta.Medio = ((Medio)this._ventana.Medio).Id;
                     carta.AnexoMedio = ((Medio)this._ventana.MedioTrackingConfirmacion) == null ? "" : ((Medio)this._ventana.MedioTrackingConfirmacion).Id;
                     carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
 
-                    if (!this._cartaServicios.VerificarExistencia(carta))
-                    {
-                        bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
+                    
+                    
+                    //Parte donde se validan los campos combo obligatorios para poder agregar una carta nueva
 
-                        if (exitoso)
+                    if(null == carta.Departamento || (((ListaDatosValores)this._ventana.Acuse).Id.Equals("NGN")) || null == carta.Resumen)
+                        camposLlenos = false;
+
+                    if (camposLlenos)
+                    {
+                        if (!this._cartaServicios.VerificarExistencia(carta))
                         {
-                            this._ventana.HabilitarCampos = false;
-                            this.Navegar(new ConsultarCarta(carta, this._ventana));
-                            //  this.Navegar(Recursos.MensajesConElUsuario.CartaInsertada, false);
+                            bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
+
+                            if (exitoso)
+                            {
+                                this._ventana.HabilitarCampos = false;
+                                this.Navegar(new ConsultarCarta(carta, this._ventana));
+                                //  this.Navegar(Recursos.MensajesConElUsuario.CartaInsertada, false);
+                            }
+                        }
+                        else
+                        {
+                            this._ventana.Mensaje(String.Format(Recursos.MensajesConElUsuario.ErrorCartaRepetida, carta.Id));
                         }
                     }
+
                     else
-                    {
-                        this._ventana.Mensaje(String.Format(Recursos.MensajesConElUsuario.ErrorCartaRepetida, carta.Id));
+                    { 
+                        if(((ListaDatosValores)this._ventana.Acuse).Id.Equals("NGN"))
+                            this._ventana.Mensaje(String.Format(Recursos.MensajesConElUsuario.AlertaCartaAcuse, 0));
+
+                        if (carta.Departamento == null)
+                            this._ventana.Mensaje(String.Format(Recursos.MensajesConElUsuario.AlertaCartaDepartamento, 0));
+
+                        if(carta.Resumen == null)
+                            this._ventana.Mensaje(String.Format(Recursos.MensajesConElUsuario.AlertaCartaTipoResumen, 0));
+
                     }
+
+                   
                 }
                 else
                 {

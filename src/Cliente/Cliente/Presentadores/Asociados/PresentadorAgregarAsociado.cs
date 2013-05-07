@@ -283,12 +283,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
         }
 
-        public void IrVentanaImprimirEdoCuenta()
+        /*public void IrVentanaImprimirEdoCuenta()
         {
             if ((Asociado)this._ventana.Asociado != null)
             {
                 Asociado Asociado = ((Asociado)this._ventana.Asociado).Id != int.MinValue ? (Asociado)this._ventana.Asociado : null;
                 Navegar(new EstadoCuentas("2", Asociado));
+
+            }
+        }*/
+
+
+        public void IrVentanaImprimirEdoCuenta()
+        {
+            if ((Asociado)this._ventana.Asociado != null)
+            {
+                Asociado Asociado = ((Asociado)this._ventana.Asociado).Id != int.MinValue ? (Asociado)this._ventana.Asociado : null;
+                Navegar(new PendientesRpt("2", Asociado));
 
             }
         }

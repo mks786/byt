@@ -117,11 +117,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
 
                 this._ventana.Apoderados = new List<Agente>();
 
+                //En caso de que la ventana padre es la ventana de Interesados
                 if (this._ventana.ConInteresado)
                 {
+                   
                     //this._ventana.Interesado = this.BuscarInteresado(interesados, poder.Interesado);
                     //this._ventana.InteresadoEsEditable = false;
                     //this._ventana.TextoBotonCancelar = Recursos.Etiquetas.btnRegresar;
+                }
+
+                if (poder.Interesado != null)
+                {
+                    this._ventana.NombreInteresado = ((Interesado)poder.Interesado).Nombre;
+
                 }
 
                 #region trace
@@ -170,7 +178,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                 Poder poder = (Poder)this._ventana.Poder;
 
                 poder.Boletin = (Boletin)this._ventana.Boletin;
-                poder.Interesado = (Interesado)this._ventana.Interesado;
+                
+                if(this._ventana.Interesado != null)
+                    poder.Interesado = (Interesado)this._ventana.Interesado;
+
                 poder.Operacion = "CREATE";
 
                 poder.Agentes = this._apoderados;

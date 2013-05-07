@@ -40,6 +40,31 @@ namespace Trascend.Bolet.Cliente.Presentadores.Categorias
             }
         }
 
+
+        /// <summary>
+        /// Constructor predeterminado que recibe una ventana padre
+        /// </summary>
+        /// <param name="ventana">Página que satisface el contrato</param>
+        /// <param name="categoria">Categoria a mostrar</param>
+        /// <param name="ventanaPadre">Ventana padre desde donde se llamo a esta ventana</param>
+        public PresentadorConsultarCategoria(IConsultarCategoria ventana, object categoria, object ventanaPadre)
+        {
+            try
+            {
+                this._ventana = ventana;
+                this._ventana.Categoria = categoria;
+                this._ventanaPadre = ventanaPadre;
+
+                this._categoriaServicios = (ICategoriaServicios)Activator.GetObject(typeof(ICategoriaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CategoriaServicios"]);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>

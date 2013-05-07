@@ -109,7 +109,7 @@ namespace Trascend.Bolet.ControlesByT
         }
 
         protected override void OnKeyUp(System.Windows.Input.KeyEventArgs e)
-        {
+      {
             if (_soloNumero)
                 if (!System.Text.RegularExpressions.Regex.IsMatch(this.Text, "\\d+")) {
                     this.Text = string.Empty;

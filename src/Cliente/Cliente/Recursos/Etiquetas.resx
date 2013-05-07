@@ -3636,4 +3636,19 @@ en Prensa:</value>
   <data name="fac_titleConsultarFacVistaFacturaServicio" xml:space="preserve">
     <value>Servicios Facturados</value>
   </data>
+  <data name="btnAnualidadPatente" xml:space="preserve">
+    <value>Anualidades</value>
+  </data>
+  <data name="lblPatenteMadre" xml:space="preserve">
+    <value>Patente Madre:</value>
+  </data>
+  <data name="btnMarcaOrigen" xml:space="preserve">
+    <value>Marca Origen</value>
+  </data>
+  <data name="titleConsultarMarcaOrigen" xml:space="preserve">
+    <value>Consultar Marca de Origen</value>
+  </data>
+  <data name="lblMarcaExpTraspasoRenovacion" xml:space="preserve">
+    <value>Exp.Trasp.Renov:</value>
+  </data>
 </root>

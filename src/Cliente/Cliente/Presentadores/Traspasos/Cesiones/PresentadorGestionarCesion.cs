@@ -737,7 +737,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             if (cesion.Cesionario != null)
                 this._poderesCesionario = this._poderServicios.ConsultarPoderesPorInteresado(cesion.Cesionario);
 
-            if (cesion.AgenteCedente != null)
+            if (cesion.AgenteCedente != null)   //Modificar consulta para que solamente traiga el poder del agente con el interesado (CEDENTE)
                 this._poderesApoderadosCedente = this._poderServicios.ConsultarPoderesPorAgente(cesion.AgenteCedente);
 
             if (cesion.AgenteCesionario != null)
@@ -750,58 +750,123 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
         public bool ValidarListaDePoderes(IList<Poder> listaPoderesA, IList<Poder> listaPoderesB, string tipo)
         {
             bool retorno = false;
-            IList<Poder> listaIntereseccionCedente = new List<Poder>();
-            IList<Poder> listaIntereseccionCesionario = new List<Poder>();
-            Poder primerPoder = new Poder(int.MinValue);
+            IList<Poder> listaPoderesCedente = new List<Poder>();
+            IList<Poder> listaPoderesCesionario = new List<Poder>();
+            Poder primerPoderCedente = new Poder();
+            Poder primerPoderCesionario = new Poder();
+            Poder poderDeBusqueda = null;
 
-            Poder poderActual = new Poder();
-
-            listaIntereseccionCedente.Add(primerPoder);
-            listaIntereseccionCesionario.Add(primerPoder);
-
-            if ((listaPoderesA.Count != 0) && (listaPoderesB.Count != 0))
+            try
             {
-                foreach (Poder poderA in listaPoderesA)
-                {
-                    foreach (Poder poderB in listaPoderesB)
-                    {
-                        if ((poderA.Id == poderB.Id) && (tipo.Equals("Cedente")))
-                        {
-                            listaIntereseccionCedente.Add(poderA);
-                            retorno = true;
-                        }
+               
 
-                        else if ((poderA.Id == poderB.Id) && (tipo.Equals("Cesionario")))
+                //Para los poderes Cedentes
+                if (tipo.Equals("Cedente"))
+                {
+                    //if ((listaPoderesA.Count != 0) && (listaPoderesB.Count != 0))
+                    //{
+                    //    foreach (Poder poderA in listaPoderesA)
+                    //    {
+                    //        foreach (Poder poderB in listaPoderesB)
+                    //        {
+                    //            if (poderA.Id == poderB.Id)
+                    //            {
+                    //                poderDeBusqueda = poderA;
+                    //                //listaIntereseccionCedente.Add(poderA);
+                    //                retorno = true;
+                    //                break;
+                    //            }
+
+                    //        }
+
+                    //    }
+
+
+                    //}
+
+                    
+                    //primerPoderCedente.Id = int.MinValue;
+                    //listaPoderesCedente.Add(primerPoderCedente);
+                    //if(poderDeBusqueda != null)
+                    //    listaPoderesCedente.Add(poderDeBusqueda);
+
+                    listaPoderesCedente = listaPoderesA;
+
+                    if (listaPoderesCedente != null)
+                    {
+                        if (listaPoderesCedente.Count != 0)
                         {
-                            listaIntereseccionCesionario.Add(poderA);
-                            retorno = true;
-                        }
+                            primerPoderCedente.Id = int.MinValue;
+                            listaPoderesCedente.Insert(0,primerPoderCedente);
+                            Poder poderActual = (Poder)this._ventana.PoderCedenteFiltrado;
+                            this._poderesInterseccionCedente = listaPoderesCedente;
+                            this._ventana.PoderesCedenteFiltrados = listaPoderesCedente;
+                            this._ventana.PoderCedenteFiltrado = BuscarPoder((IList<Poder>)this._ventana.PoderesCedenteFiltrados, poderActual);
+                        } 
+                    }
+
+
+
+                }
+
+                //Para los poderes Cesionarios
+                else if (tipo.Equals("Cesionario"))
+                    {
+
+                    //if ((listaPoderesA.Count != 0) && (listaPoderesB.Count != 0))
+                    //{
+                    //    foreach (Poder poderA in listaPoderesA)
+                    //    {
+                    //        foreach (Poder poderB in listaPoderesB)
+                    //        {
+                    //            if (poderA.Id == poderB.Id)
+                    //            {
+                    //                poderDeBusqueda = poderA;
+                    //                retorno = true;
+                    //                break;
+                    //            }
+
+                    //        }
+
+                    //    }
+                    //}
+
+                    //primerPoderCesionario.Id = int.MinValue;
+                    //listaPoderesCesionario.Add(primerPoderCesionario);
+                    //if (poderDeBusqueda != null)
+                    //    listaPoderesCesionario.Add(poderDeBusqueda);
+
+                    listaPoderesCesionario = listaPoderesA;
+
+                    if (listaPoderesCesionario != null)
+                    {
+                        if (listaPoderesCesionario.Count != 0)
+                        {
+                            primerPoderCesionario.Id = int.MinValue;
+                            listaPoderesCedente.Insert(0, primerPoderCesionario);
+                            Poder poderActual = (Poder)this._ventana.PoderCesionarioFiltrado;
+                            this._poderesInterseccionCesionario = listaPoderesCesionario;
+                            this._ventana.PoderesCesionarioFiltrados = listaPoderesCesionario;
+                            this._ventana.PoderCesionarioFiltrado = BuscarPoder((IList<Poder>)this._ventana.PoderesCesionarioFiltrados, poderActual);
+                        } 
                     }
 
                 }
 
-                if ((listaIntereseccionCedente.Count != 0) && (tipo.Equals("Cedente")))
-                {
-                    poderActual = (Poder)this._ventana.PoderCedenteFiltrado;
-                    this._poderesInterseccionCedente = listaIntereseccionCedente;
-                    this._ventana.PoderesCedenteFiltrados = listaIntereseccionCedente;
-                    this._ventana.PoderCedenteFiltrado = BuscarPoder((IList<Poder>)this._ventana.PoderesCedenteFiltrados, poderActual);
-                }
-
-
-                else if ((listaIntereseccionCesionario.Count != 0) && (tipo.Equals("Cesionario")))
-                {
-                    poderActual = (Poder)this._ventana.PoderCesionarioFiltrado;
-                    this._poderesInterseccionCesionario = listaIntereseccionCesionario;
-                    this._ventana.PoderesCesionarioFiltrados = listaIntereseccionCesionario;
-                    this._ventana.PoderCesionarioFiltrado = BuscarPoder((IList<Poder>)this._ventana.PoderesCesionarioFiltrados, poderActual);
-                }
-
                 else
                     retorno = false;
+
+ 
+                return retorno;
+
+            }
+            catch (Exception ex)
+            {
+                String mensaje = ex.Message;
+                throw;
             }
 
-            return retorno;
+            
         }
 
         /// <summary>
@@ -837,8 +902,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
                     if (poderFiltrar.Id != 0)
                     {
-                        interesado = this._interesadoServicios.ObtenerInteresadosDeUnPoder((Poder)this._ventana.PoderCedenteFiltrado);
-                        agentesInteresadoFiltrados = this._agenteServicios.ObtenerAgentesDeUnPoder((Poder)this._ventana.PoderCedenteFiltrado);
+                        //interesado = this._interesadoServicios.ObtenerInteresadosDeUnPoder((Poder)this._ventana.PoderCedenteFiltrado);
+                        interesado = ((Poder)this._ventana.PoderCedenteFiltrado).Interesado;
+                        //agentesInteresadoFiltrados = this._agenteServicios.ObtenerAgentesDeUnPoder((Poder)this._ventana.PoderCedenteFiltrado);
+                        agentesInteresadoFiltrados = ((Poder)this._ventana.PoderCedenteFiltrado).Agentes;
+
                     }
 
                     if (interesado != null)
@@ -883,8 +951,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
                     if (poderFiltrar.Id != 0)
                     {
-                        interesado = this._interesadoServicios.ObtenerInteresadosDeUnPoder((Poder)this._ventana.PoderCesionarioFiltrado);
-                        agentesInteresadoFiltrados = this._agenteServicios.ObtenerAgentesDeUnPoder((Poder)this._ventana.PoderCesionarioFiltrado);
+                        //interesado = this._interesadoServicios.ObtenerInteresadosDeUnPoder((Poder)this._ventana.PoderCesionarioFiltrado);
+                        interesado = ((Poder)this._ventana.PoderCesionarioFiltrado).Interesado;
+
+                        //agentesInteresadoFiltrados = this._agenteServicios.ObtenerAgentesDeUnPoder((Poder)this._ventana.PoderCesionarioFiltrado);
+                        agentesInteresadoFiltrados = ((Poder)this._ventana.PoderCesionarioFiltrado).Agentes;
                     }
 
                     if (interesado != null)

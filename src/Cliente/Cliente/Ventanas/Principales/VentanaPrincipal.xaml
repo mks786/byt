@@ -15,7 +15,7 @@
             <RowDefinition Height="20" />
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Menu Name="_menuPrincipal" Height="20" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="0">
+        <Menu Name="_menuPrincipal" Height="50" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="0">
             <Menu.Background>
                 <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                     <GradientStop Color="#F4F4F4" Offset="0.528"/>
@@ -243,7 +243,14 @@
                     <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
                 </MenuItem>
             </MenuItem>
+            
+            
             <MenuItem Name="_menuItemHistoria" Header="{x:Static resx:Etiquetas.menuItemHistoria}">
+                <!--Opcion de menu de prueba NO COLOCAR EN EL CODIGO-->
+                <MenuItem Header="{x:Static resx:Etiquetas.menuItemInventores}" Name="_mnuItemInventores">
+                    <MenuItem Header="{x:Static resx:Etiquetas.menuItemConsultar}" Name="_menuItemInventoresConsultar" />
+                </MenuItem>
+                
                 <MenuItem Name="_menuItemAgente" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemAgente}">
                     <MenuItem Name="_menuItemAgenteConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemAgenteConsultar_Click"/>
                     <MenuItem Name="_menuItemAgenteAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemAgenteAgregar_Click"/>
@@ -336,6 +343,7 @@
                     <MenuItem Name="_menuItemTipoEmailAsociadoAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemTipoEmailAsociadoAgregar_Click"/>
                     <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
                 </MenuItem>
+                
             </MenuItem>
             
             <!--Facturacion-->

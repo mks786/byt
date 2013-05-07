@@ -229,6 +229,22 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string ClaseInternacional { get; }
 
+        string IdMarcaOrigenSolicitud { get; set; }
+
+        string IdMarcaOrigenDatos { get; set; }
+
+        string IdMarcaOrigenSolicitudFiltrar { get; set; }
+
+        string IdMarcaOrigenDatosFiltrar { get; set; }
+
+        object MarcaOrigenSolicitudLst { get; set; }
+
+        object MarcaOrigenDatosLst { get; set; }
+
+        object MarcaOrigenSolicitudSelec { get; set; }
+
+        object MarcaOrigenDatosSelec { get; set; }
+
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }

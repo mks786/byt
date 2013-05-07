@@ -145,6 +145,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         #region Tablas
 
+        //Metodo de prueba para consultar Inventores - CODIGO DE EJEMPLO -----------------
+        private void _menuItemInventoresConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarInventores();
+            //this._presentador.IrConsultarInventores();
+        }
+        //--------------------------------------------------------------------------------
+
         private void _menuItemAgenteAgregar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.AgregarAgente();
@@ -308,7 +316,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         private void _menuItemAsociadoConsultar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.ConsultarAsociados();
+             this._presentador.ConsultarAsociados();
         }
 
         private void _menuItemAsociadoAgregar_Click(object sender, RoutedEventArgs e)
@@ -1163,5 +1171,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         {
             this._presentador.IrConsultarInventores();
         }
+
+       
     }
 }

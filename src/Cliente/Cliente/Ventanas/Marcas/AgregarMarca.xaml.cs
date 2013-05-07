@@ -914,6 +914,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             }
             #endregion
 
+            //if (!this.IdMarcaOrigenSolicitud.Equals(""))
+            //{
+            //    if(int.Parse(this.IdMarcaOrigenSolicitud) == int.MinValue)
+            //    {
+            //        this.IdMarcaOrigenSolicitud = string.Empty;
+            //    }
+            //}
+
         }
 
 
@@ -1308,11 +1316,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _btnClaseCompletaSolicitud_Click(object sender, RoutedEventArgs e)
         {
+            
             if (!this._txtClaseInternacionalSolicitud.Text.Equals(""))
             {
                 if (this._txtDistingue.Text.Equals(""))
                 {
-                    this._presentador.TomarClaseInternacional();
+                   this._presentador.TomarClaseInternacional();
+                   
                 }
                 else
                 {
@@ -1730,6 +1740,290 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             set { this._txtTotalDeuda.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value)); }
         }
+
+
+        #region Propiedades de la Marca de Origen
+
+        //campo de texto que se muestra en la ventana para ingresar la marca de origen en la pestaña Solicitud
+        public string IdMarcaOrigenSolicitud
+        {
+            get
+            {
+                if (this._txtIdMarcaOrigenSolicitud.Text.Equals(string.Empty))
+                    return null;
+                else if (this._txtIdMarcaOrigenSolicitud.Text.Equals(""))
+                    return null;
+                else
+                    return this._txtIdMarcaOrigenSolicitud.Text;
+            }
+                
+            //return this._txtIdMarcaOrigenSolicitud.Text; }
+            set { this._txtIdMarcaOrigenSolicitud.Text = value; }
+        }
+
+        //campo de texto que se muestra en la ventana para ingresar la marca de origen en la pestaña Datos
+        public string IdMarcaOrigenDatos
+        {
+            get
+            {
+                if (this._txtIdMarcaOrigenDatos.Text.Equals(string.Empty))
+                    return null;
+                else if (this._txtIdMarcaOrigenDatos.Text.Equals(""))
+                    return null;
+                else
+                    return this._txtIdMarcaOrigenDatos.Text;
+            }
+
+            set { this._txtIdMarcaOrigenDatos.Text = value; }
+        }
+
+
+        //campo de texto que se muestra cuando se necesita filtrar un codigo de marca de origen en la pestaña Solicitud
+        public string IdMarcaOrigenSolicitudFiltrar
+        {
+            get { return this._txtIdMarcaOrigenSolicitudFiltrar.Text; }
+            set { this._txtIdMarcaOrigenSolicitudFiltrar.Text = value; }
+        }
+
+
+        //campo de texto que se muestra cuando se necesita filtrar un codigo de marca de origen en la pestaña Datos
+        public string IdMarcaOrigenDatosFiltrar
+        {
+            get { return this._txtIdMarcaOrigenDatosFiltrar.Text; }
+            set { this._txtIdMarcaOrigenDatosFiltrar.Text = value; }
+        }
+
+
+        //lista que se muestra cuando se necesita buscar la marca de origen de una marca en la pestaña Solicitud
+        public object MarcaOrigenSolicitudLst
+        {
+            get { return this._lstMarcaOrigenSolicitud.DataContext; }
+            set { this._lstMarcaOrigenSolicitud.DataContext = value; }
+
+        }
+
+
+        //lista que se muestra cuando se necesita buscar la marca de origen de una marca en la pestaña Datos
+        public object MarcaOrigenDatosLst
+        {
+            get { return this._lstMarcaOrigenDatos.DataContext; }
+            set { this._lstMarcaOrigenDatos.DataContext = value; }
+
+        }
+
+        //item de la lista que se selecciono con Doble click para la marca de origen en la pestaña Solicitud
+        public object MarcaOrigenSolicitudSelec
+        {
+            get { return this._lstMarcaOrigenSolicitud.SelectedItem; }
+            set
+            {
+                this._lstMarcaOrigenSolicitud.SelectedItem = value;
+            }
+        }
+
+
+        //item de la lista que se selecciono con Doble click para la marca de origen en la pestaña Datos
+        public object MarcaOrigenDatosSelec
+        {
+            get { return this._lstMarcaOrigenDatos.SelectedItem; }
+            set
+            {
+                this._lstMarcaOrigenDatos.SelectedItem = value;
+            }
+        }
+
+
+        #endregion
+
+        #region Eventos de la Marca de Origen
+
+        private void _txtMarcaOrigen_GotFocus(object sender, RoutedEventArgs e)
+        {
+            string tabFiltrar = string.Empty;
+            TextBox campoTexto = new TextBox();
+            campoTexto = (TextBox)sender;
+            tabFiltrar = campoTexto.Name;
+
+            this._presentador.VerificarMarcaOrigenEscrita(tabFiltrar);
+
+            
+
+            
+        }
+
+
+        private void _txtIdMarcaOrigenSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this._btnAceptar.IsDefault = false;
+            this._btnConsultarMarcaOrigenSolicitud.IsDefault = true;
+
+            mostrarLstMarcaOrigenSolicitud();
+        }
+
+
+        private void _txtIdMarcaOrigenDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this._btnAceptar.IsDefault = false;
+            this._btnConsultarMarcaOrigenDatos.IsDefault = true;
+
+            mostrarLstMarcaOrigenDatos();
+        }
+
+
+        //private void _txtMarcaOrigenDatos_GotFocus(object sender, RoutedEventArgs e)
+        //{
+        //    //this._btnAceptar.IsDefault = false;
+        //    //this._btnConsultarMarcaOrigenDatos.IsDefault = true;
+
+        //    //mostrarLstMarcaOrigenDatos();
+
+        //}
+
+
+        private void _btnConsultarMarcaOrigen_Click(object sender, RoutedEventArgs e)
+        {
+            Button botonPresionado = new Button();
+            botonPresionado = (Button)sender;
+            string filtrarEnTab = botonPresionado.Name;
+            this._presentador.BuscarMarcaOrigen(filtrarEnTab);
+        }
+
+
+        private void _lstMarcaOrigenSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            string tabFiltrar = "Solicitud";
+            this._presentador.CambiarMarcaOrigen(tabFiltrar);
+            ocultarLstMarcaOrigenSolicitud();
+            this._btnConsultarMarcaOrigenSolicitud.IsDefault = false;
+            this._btnAceptar.IsDefault = true;
+
+        }
+
+        private void _lstMarcaOrigenDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            string tabFiltrar = "Datos";
+            this._presentador.CambiarMarcaOrigen(tabFiltrar);
+            ocultarLstMarcaOrigenDatos();
+            this._btnConsultarMarcaOrigenDatos.IsDefault = false;
+            this._btnAceptar.IsDefault = true;
+
+        }
+
+
+        private void _btnIrMarcaOrigen_Click(object sender, RoutedEventArgs e)
+        {
+
+            Button botonPresionado = new Button();
+            botonPresionado = (Button)sender;
+            string filtrarEnTab = botonPresionado.Name;
+            string idAgregado = string.Empty;
+
+
+
+            if (botonPresionado.Name.Equals("_btnIrMarcaOrigenSolicitud"))
+            {   
+                if (this.IdMarcaOrigenSolicitud == null)
+                {
+                    //Esto se hace en caso de que el usuario oprima el boton para consultar y no haya nada en el campo de texto
+                    if (this._txtIdMarcaOrigenSolicitud.Text != null && !this._txtIdMarcaOrigenSolicitud.Text.Equals(string.Empty))
+                    {
+                        idAgregado = this._txtIdMarcaOrigenSolicitud.Text;
+                        this.IdMarcaOrigenSolicitud = idAgregado;
+                        this._presentador.IrVentanaConsultarMarca(filtrarEnTab);
+
+                    }
+                }
+
+                else
+                {
+                    this._presentador.IrVentanaConsultarMarca(filtrarEnTab);
+                } 
+            }
+
+            else if (botonPresionado.Name.Equals("_btnIrMarcaOrigenDatos"))
+            {
+                if (this.IdMarcaOrigenDatos == null)
+                {
+                    //Esto se hace en caso de que el usuario oprima el boton para consultar y no haya nada en el campo de texto
+                    if (this._txtIdMarcaOrigenDatos.Text != null && !this._txtIdMarcaOrigenDatos.Text.Equals(string.Empty))
+                    {
+                        idAgregado = this._txtIdMarcaOrigenDatos.Text;
+                        this.IdMarcaOrigenDatos = idAgregado;
+                        this._presentador.IrVentanaConsultarMarca(filtrarEnTab);
+
+                    }
+                }
+
+                else
+                {
+                    this._presentador.IrVentanaConsultarMarca(filtrarEnTab);
+                }
+            }
+        }
+
+
+        #endregion
+
+        #region Metodos de la Marca de Origen
+
+        private void mostrarLstMarcaOrigenSolicitud()
+        {
+            //this._lstMarcaOrigenDatos.ScrollIntoView(this.IdMarcaOrigenDatos);
+            this._txtIdMarcaOrigenSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._lstMarcaOrigenSolicitud.Visibility = System.Windows.Visibility.Visible;
+            this._lstMarcaOrigenSolicitud.IsEnabled = true;
+            this._btnConsultarMarcaOrigenSolicitud.Visibility = System.Windows.Visibility.Visible;
+            this._lblIdMarcaOrigenSolicitud.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdMarcaOrigenSolicitudFiltrar.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdMarcaOrigenSolicitudFiltrar.Text = null;
+
+        }
+
+
+        private void mostrarLstMarcaOrigenDatos()
+        {
+            //this._lstMarcaOrigenDatos.ScrollIntoView(this.IdMarcaOrigenDatos);
+            this._txtIdMarcaOrigenDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._lstMarcaOrigenDatos.Visibility = System.Windows.Visibility.Visible;
+            this._lstMarcaOrigenDatos.IsEnabled = true;
+            this._btnConsultarMarcaOrigenDatos.Visibility = System.Windows.Visibility.Visible;
+            this._lblIdMarcaOrigenDatos.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdMarcaOrigenDatosFiltrar.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdMarcaOrigenDatosFiltrar.Text = null;
+
+        }
+
+
+        private void ocultarLstMarcaOrigenSolicitud()
+        {
+            this._lstMarcaOrigenSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnConsultarMarcaOrigenSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._lblIdMarcaOrigenSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdMarcaOrigenSolicitudFiltrar.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdMarcaOrigenSolicitud.Visibility = System.Windows.Visibility.Visible;
+
+        }
+
+
+        private void ocultarLstMarcaOrigenDatos()
+        {
+            this._lstMarcaOrigenDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnConsultarMarcaOrigenDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._lblIdMarcaOrigenDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdMarcaOrigenDatosFiltrar.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdMarcaOrigenDatos.Visibility = System.Windows.Visibility.Visible;
+
+        }
+
+
+
+        #endregion
+
+
+
+        
+
+        
 
     }
 }
