@@ -36,13 +36,22 @@ Namespace Presentadores.FacReportes
         Private _FacCobroFacturas As IFacCobroFacturaServicios
         Private _PaisServicios As IPaisServicios
 
+        Private _Tipo As String
+        Private _Asociado As Asociado
+
         Private Shared _paginaPrincipal As PaginaPrincipal = PaginaPrincipal.ObtenerInstancia
         Private Shared logger As Logger = LogManager.GetCurrentClassLogger()
         Private _asociadosServicios As IAsociadoServicios
 
-        Public Sub New(ByVal ventana As IPendientesRpt)
+        Public Sub New(ByVal ventana As IPendientesRpt, ByVal Tipo As String, ByVal Asociado As Asociado)
             Try
                 Me._ventana = ventana
+                _Tipo = Tipo
+                If Tipo = "2" Then ' esto quiere decir que lo llamo desde las Pantallas de Asociados_Marcas_Patentes
+                    _Asociado = Asociado
+
+                End If
+
                 Me._asociadosServicios = DirectCast(Activator.GetObject(GetType(IAsociadoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("AsociadoServicios")), IAsociadoServicios)
                 Me._FacOperacionServicios = DirectCast(Activator.GetObject(GetType(IFacOperacionServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacOperacionServicios")), IFacOperacionServicios)
                 Me._FacOperacionpaisServicios = DirectCast(Activator.GetObject(GetType(IFacOperacionPaisServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacOperacionPaisServicios")), IFacOperacionPaisServicios)
@@ -65,7 +74,7 @@ Namespace Presentadores.FacReportes
             End If
             '#End Region
 
-            Me.Navegar(New Diginsoft.Bolet.Cliente.Fac.Ventanas.FacReportes.PendientesRpt())
+            Me.Navegar(New Diginsoft.Bolet.Cliente.Fac.Ventanas.FacReportes.PendientesRpt(_Tipo, _Asociado))
             'Me.Navegar(New ConsultarFacCobro())
             '#Region "trace"
             If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
@@ -97,6 +106,22 @@ Namespace Presentadores.FacReportes
                 Me._ventana.Paises = paises
 
                 Me._ventana.FocoPredeterminado()
+
+                If _Tipo = "2" Then  ' esto quiere decir que lo llamo desde las Pantallas de Asociados_Marcas_Patentes
+                    Dim asociadoaux As New Asociado
+                    Dim asociado As List(Of Asociado)
+                    If _Asociado IsNot Nothing Then
+                        asociadoaux.Id = _Asociado.Id
+                        asociado = Me._asociadosServicios.ObtenerAsociadosFiltro(asociadoaux)
+                        Me._ventana.Asociados = asociado
+                        Me._ventana.Asociado = asociado(0)
+                        Me._ventana.NombreAsociado = asociado(0).Id & " - " & asociado(0).Nombre
+
+                        Me._ventana.Asociados2 = asociado
+                        Me._ventana.Asociado2 = asociado(0)
+                        Me._ventana.NombreAsociado2 = asociado(0).Id & " - " & asociado(0).Nombre
+                    End If
+                End If
 
                 Me._ventana.Fecha1 = CDate("01-01-1900")
                 Me._ventana.Fecha2 = FormatDateTime(Date.Now, DateFormat.ShortDate)
