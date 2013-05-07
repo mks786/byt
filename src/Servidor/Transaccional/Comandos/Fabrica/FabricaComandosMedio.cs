@@ -27,6 +27,18 @@ namespace Trascend.Bolet.Comandos.Fabrica
             return new ComandoConsultarTodosMedios();
         }
 
+
+        /// <summary>
+        /// Método que devuelve el Comando para consultar todos los medios 
+        /// utilizando un campo en especifico y un orden determinado
+        /// </summary>
+        /// <returns>El Comando para consultar todos los medios</returns>
+        public static ComandoBase<IList<Medio>> ObtenerComandoConsultarPorOtroCampo(String campoConsultar, String tipoOrdenamiento)
+        {
+           // return new ComandoConsultarTodosMedios();
+            return new ComandoConsultarMedioPorOtroCampo(campoConsultar, tipoOrdenamiento);
+        }
+
         /// <summary>
         /// Método que devuelve el Comando para elimnar un medio
         /// </summary>

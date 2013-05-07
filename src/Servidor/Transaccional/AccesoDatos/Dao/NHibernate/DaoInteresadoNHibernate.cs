@@ -80,6 +80,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoNombre, interesado.Nombre.ToUpper());
+                    variosFiltros = true;
                 }
 
                 if ((null != interesado.TipoPersona) && (!interesado.TipoPersona.Equals(char.MinValue)))
@@ -87,6 +88,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoTipoPersona, interesado.TipoPersona);
+                    variosFiltros = true;
                 }
 
                 if ((null != interesado.Ciudad) && (!interesado.Ciudad.Equals("")))
@@ -94,6 +96,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoCiudad, interesado.Ciudad);
+                    variosFiltros = true;
                 }
 
                 if ((null != interesado.Estado) && (!interesado.Estado.Equals("")))
@@ -101,6 +104,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoEstado, interesado.Estado);
+                    variosFiltros = true;
                 }
 
                 if ((null != interesado.Pais) && (!interesado.Pais.Id.Equals("")))
@@ -108,6 +112,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoPais, ((Pais)interesado.Pais).Id);
+                    variosFiltros = true;
                 }
 
                 if ((null != interesado.Nacionalidad) && (!((Pais)interesado.Nacionalidad).Nacionalidad.Equals("")))
@@ -115,6 +120,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoNacionalidad, ((Pais)interesado.Nacionalidad).Nacionalidad);
+                    variosFiltros = true;
                 }
 
                 if ((null != interesado.Corporacion) && (!((Estado)interesado.Corporacion).Id.Equals("")))
@@ -122,6 +128,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoCorporacion, ((Estado)interesado.Corporacion).Id);
+                    variosFiltros = true;
                 }
 
                 if ((null != interesado.Ci) && (!interesado.Ci.Equals("")))
@@ -129,6 +136,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoCi, interesado.Ci);
+                    variosFiltros = true;
                 }
 
                 if ((null != interesado.RegMercantil) && (!interesado.RegMercantil.Equals("")))
@@ -136,6 +144,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoRegMercantil, interesado.RegMercantil);
+                    variosFiltros = true;
                 }
 
                 if ((null != interesado.Domicilio) && (!interesado.Domicilio.Equals("")))
@@ -143,6 +152,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoDomicilio, interesado.Domicilio);
+                    variosFiltros = true;
                 }
 
 
@@ -151,6 +161,14 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoAlerta, interesado.Alerta);
+                    variosFiltros = true;
+                }
+
+
+                //Validacion que se realiza cuando el codigo del Interesado = 0 
+                if ((filtro.Equals(String.Empty) || filtro.Equals("")) && (interesado.Id == 0))
+                {
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoId, interesado.Id);
                 }
 
                 IQuery query = Session.CreateQuery(cabecera + filtro);

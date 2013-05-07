@@ -8,7 +8,7 @@ using Trascend.Bolet.ObjetosComunes.Entidades;
 
 namespace Trascend.Bolet.Servicios.Implementacion
 {
-    class PatenteServicios : MarshalByRefObject, IPatenteServicios
+    public class PatenteServicios : MarshalByRefObject, IPatenteServicios
     {
 
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -58,6 +58,20 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             throw new NotImplementedException();
         }
+
+        //-------------------------------------------------------------
+        /// <summary>
+        /// Servicio que consultar por un campo determinado y 
+        /// ordena en forma Ascendente o Descendente
+        /// </summary>
+        /// <param name="campo">Campo a filtrar</param>
+        /// <param name="tipoOrdenamiento">Si el ordenamiento es Ascende o Descendente</param>
+        /// <returns>Lista de Entidades</returns>
+        public IList<Patente> ConsultarPorOtroCampo(String campo, String tipoOrdenamiento)
+        {
+            throw new NotImplementedException();
+        }
+        //-------------------------------------------------------------
 
 
         /// <summary>

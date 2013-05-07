@@ -68,6 +68,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<Busqueda> _busquedas;
         private IList<InstruccionDeRenovacion> _instruccionesDeRenovacion;
         private int? _recordatorio;
+        
 
         #region Internacional
 
@@ -82,6 +83,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _referenciaInteresadoInternacional;
 
         #endregion
+
+        private int? _marcaOrigen;
+        private string _expTraspasoRenovacion;
+
 
         #endregion
 
@@ -721,6 +726,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
 
+        
+
 
         #region Internacional
 
@@ -778,6 +785,26 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _referenciaInteresadoInternacional = value; }
         }
         #endregion
+
+
+        /// <summary>
+        /// Propiedad que guarda la Marca de Origen de una Marca
+        /// </summary>
+        public virtual int? MarcaOrigen
+        {
+            get { return _marcaOrigen; }
+            set { _marcaOrigen = value; }
+        }
+
+
+        /// <summary>
+        /// Propiedad que guarda el Expediente de Traspaso de Renovacion
+        /// </summary>
+        public virtual string ExpTraspasoRenovacion
+        {
+            get { return _expTraspasoRenovacion; }
+            set { _expTraspasoRenovacion = value; }
+        }
 
         #endregion
 

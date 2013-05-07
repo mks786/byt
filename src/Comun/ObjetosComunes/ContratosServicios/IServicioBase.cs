@@ -21,6 +21,19 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// <returns></returns>
         Entidad ConsultarPorId(Entidad entidad);
 
+        //-----------------------------------------------------------------------------------
+
+        /// <summary>
+        /// Servicio que consulta una entidad por un campo especifico y se 
+        /// indica el tipo de ordenamiento
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <param name="tipoOrdenamiento"></param>
+        /// <returns></returns>
+        IList<Entidad> ConsultarPorOtroCampo(String campoEntidad, String tipoOrdenamiento);
+
+        //-----------------------------------------------------------------------------------
+
 
         /// <summary>
         /// Servicio que inserta o modifica a una Entidad

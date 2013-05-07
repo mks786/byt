@@ -529,7 +529,7 @@
     <comment>Filtro por Descripción de Patente</comment>
   </data>
   <data name="FiltroObtenerPatenteFecha" xml:space="preserve">
-    <value>p.FechaPublicacion between '{0}' and '{1}'</value>
+    <value>p.FechaInscripcion = '{0}'</value>
     <comment>Filro por fecha Publicación</comment>
   </data>
   <data name="FiltroObtenerPatenteId" xml:space="preserve">
@@ -1038,5 +1038,13 @@
   </data>
   <data name="ObtenerEmailsPorAsociado" xml:space="preserve">
     <value>Select e from EmailAsociado e left outer join fetch e.Asociado left join fetch e.TipoEmailAsociado where e.Asociado.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerMarcaExpTraspasoRenovacion" xml:space="preserve">
+    <value>m.ExpTraspasoRenovacion = '{0}'</value>
+    <comment>Filtro para obtener la marca segun el numero de Expediente de Traspaso Renovacion</comment>
+  </data>
+  <data name="FiltroObtenerMarcaFechaInscripcion" xml:space="preserve">
+    <value>m.FechaInscripcion = '{0}'</value>
+    <comment>Obtiene las marcas cuya fecha de inscripcion sea la fecha dada</comment>
   </data>
 </root>

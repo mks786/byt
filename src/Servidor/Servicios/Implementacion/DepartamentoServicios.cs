@@ -48,6 +48,44 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        //----- CODIGO DE PRUEBA
+        /// <summary>
+        /// Servicio que consulta todos los elementos de una entidad
+        /// </summary>
+        /// <returns>Lista de Entidades</returns>
+        public IList<Departamento> ConsultarPorOtroCampo(String campoConsultar, String tipoOrdenamiento)
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                //IList<Departamento> departamentos = ControladorDepartamento.ConsultarTodos();
+                IList<Departamento> departamentos = ControladorDepartamento.ConsultarPorOtroCampo(campoConsultar, tipoOrdenamiento);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                return departamentos;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
+        }
+
+        //--------------------------------------------------------------------------------
+
         /// <summary>
         /// Servicio que consulta una entidad por su Id
         /// </summary>

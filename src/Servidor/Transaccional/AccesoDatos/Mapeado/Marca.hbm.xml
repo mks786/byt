@@ -124,11 +124,11 @@
     </many-to-one>
 
     <!--Fin Internacional-->
-
+    <property name="MarcaOrigen" column="CMARCAO" type="int"/>
+    <property name="ExpTraspasoRenovacion" column="EXPTYR" type="string"/>
+    
+    
   </class>
-
-
-
 
 </hibernate-mapping>
 

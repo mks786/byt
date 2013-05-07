@@ -46,6 +46,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<Carta> _cartas;
         private IList<EmailAsociado> _emails;
         private IList<DatosTransferencia> _datosTransferencias;
+        private string _observaciones;
 
         //Facturacion
         private string _valorquery;
@@ -201,6 +202,18 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             get { return _descuento; }
             set { _descuento = value; }
         }
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene las observaciones un Asociado
+        /// FAC_ASOCIADOS
+        /// </summary>
+        public virtual String Observaciones
+        {
+            get { return _observaciones; }
+            set { _observaciones = value; }
+        }
+
 
         /// <summary>
         /// Propiedad que asigna u obtiene el telefono1 del asociado
@@ -564,6 +577,11 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
                 this._valorquery = value;
             }
         }
+
+        
+        
+
+
         #endregion
 
     }

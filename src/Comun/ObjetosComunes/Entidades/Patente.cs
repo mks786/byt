@@ -62,6 +62,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<Operacion> _operaciones;
         private IList<InfoBolPatente> _infoBoles;
         private IList<Memoria> _memorias;
+        private int _patenteMadre;
 
 
         #region Internacional
@@ -646,6 +647,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             get { return _memorias; }
             set { _memorias = value; }
         }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la Patente Madre de una Patente
+        /// </summary>
+        public virtual int PatenteMadre
+        {
+            get { return _patenteMadre; }
+            set { _patenteMadre = value; }
+        }
+
 
         #region Internacional
 

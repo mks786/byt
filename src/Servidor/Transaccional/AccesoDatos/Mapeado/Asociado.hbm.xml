@@ -12,6 +12,7 @@
     <property name="Rif" column="XRIF" type="string"/>
     <property name="Nit" column="XNIT" type="string"/>
     <property name="Descuento" column="PDESCUENTO" type="float"/>
+    <property name="Observaciones" column="XOBSERVACION" type="string"/>
     <property name="Telefono1" column="XTELEFONO1" type="string"/>
     <property name="Telefono2" column="XTELEFONO2" type="string"/>
     <property name="Telefono3" column="XTELEFONO3" type="string"/>
@@ -102,6 +103,8 @@
         </many-to-one>
       </composite-element>
     </bag>
+
+    
 
   </class>
 </hibernate-mapping>

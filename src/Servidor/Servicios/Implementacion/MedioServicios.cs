@@ -59,6 +59,48 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        //-------------------------------------------------------------
+        /// <summary>
+        /// Servicio que consulta por un campo determinado y 
+        /// ordena en forma Ascendente o Descendente
+        /// </summary>
+        /// <param name="campo">Campo a filtrar</param>
+        /// <param name="tipoOrdenamiento">Si el ordenamiento es Ascende o Descendente</param>
+        /// <returns>Lista de Entidades</returns>
+        public IList<Medio> ConsultarPorOtroCampo(String campo, String tipoOrdenamiento)
+        {
+            //throw new NotImplementedException();
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                IList<Medio> anexos = ControladorMedio.ConsultarPorOtroCampo(campo, tipoOrdenamiento);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                return anexos;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
+        }
+        
+        //-------------------------------------------------------------
+
+
         /// <summary>
         /// Servicio que inserta o modifica a una Entidad
         /// </summary>

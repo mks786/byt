@@ -3,6 +3,7 @@ using System.Runtime.Remoting;
 using Trascend.Bolet.Servicios;
 using Trascend.Bolet.Servicios.Implementacion;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using System.Collections.Generic;
 
 namespace Trascend.Bolet.Servidor
 {

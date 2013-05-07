@@ -23,6 +23,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         /// <returns>Lista de marcas solicitadas</returns>
         public IList<Marca> ObtenerMarcasFiltro(Marca marca)
         {
+            String flag = String.Empty;
             IList<Marca> Marcas = null;
             try
             {
@@ -38,6 +39,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 #region Filtros de MarcaNacional
 
                 if ((null != marca) && (marca.Id != 0))
+                //if ((null != marca))
                 {
                     filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaId, marca.Id);
                     variosFiltros = true;
@@ -86,13 +88,25 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
-                if ((null != marca.FechaPublicacion) && (!marca.FechaPublicacion.Equals(DateTime.MinValue)))
+                //if ((null != marca.FechaPublicacion) && (!marca.FechaPublicacion.Equals(DateTime.MinValue)))
+                //{
+                //    if (variosFiltros)
+                //        filtro += " and ";
+                //    string fecha = String.Format("{0:dd/MM/yy}", marca.FechaPublicacion);
+                //    string fecha2 = String.Format("{0:dd/MM/yy}", marca.FechaPublicacion.Value.AddDays(1));
+                //    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaFecha, fecha, fecha2);
+                //    variosFiltros = true;
+                //}
+
+
+                if ((null != marca.FechaInscripcion) && (!marca.FechaInscripcion.Equals(DateTime.MinValue)))
                 {
                     if (variosFiltros)
                         filtro += " and ";
-                    string fecha = String.Format("{0:dd/MM/yy}", marca.FechaPublicacion);
-                    string fecha2 = String.Format("{0:dd/MM/yy}", marca.FechaPublicacion.Value.AddDays(1));
-                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaFecha, fecha, fecha2);
+                    string fecha = String.Format("{0:dd/MM/yy}", marca.FechaInscripcion);
+                    //string fecha2 = String.Format("{0:dd/MM/yy}", marca.FechaInscripcion.Value.AddDays(1));
+                    //filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaFechaInscripcion, fecha, fecha2);
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaFechaInscripcion, fecha);
                     variosFiltros = true;
                 }
 
@@ -214,6 +228,14 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
+                if (null != marca.ExpTraspasoRenovacion && !marca.ExpTraspasoRenovacion.Equals("") && !marca.ExpTraspasoRenovacion.Equals(String.Empty))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaExpTraspasoRenovacion, marca.ExpTraspasoRenovacion);
+                    variosFiltros = true;
+                }
+
                 #endregion
 
 
@@ -326,6 +348,13 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 #endregion
 
 
+                //Validacion que se realiza cuando el codigo de la Marca = 0
+                if ((filtro.Equals(String.Empty) || filtro.Equals("")) && (marca.Id == 0))
+                {
+                    flag = "el filtro viene vacio";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaId, marca.Id);
+                }
+
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 Marcas = query.List<Marca>();
 
@@ -337,7 +366,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.exObtenerMarcasFiltro);
+                throw new ApplicationException(Recursos.Errores.exObtenerMarcasFiltro + flag);
             }
             finally
             {
@@ -345,6 +374,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             }
             return Marcas;
         }
+
+
+
+
+       
 
 
         /// <summary>

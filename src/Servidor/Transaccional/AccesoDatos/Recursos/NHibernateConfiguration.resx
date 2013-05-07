@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="NHibernateClaveBD" xml:space="preserve">
-    <value>bolet</value>
+    <value>BOLET</value>
   </data>
   <data name="NHibernateDialect" xml:space="preserve">
     <value>NHibernate.Dialect.Oracle10gDialect</value>
@@ -127,9 +127,9 @@
     <value>NHibernate.Driver.OracleClientDriver</value>
   </data>
   <data name="NHibernateRutaBDDataSource" xml:space="preserve">
-    <value>(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.2.4)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=xe)))</value>
+    <value>(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.1.164)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=PROD)))</value>
   </data>
   <data name="NHibernateUsuarioBD" xml:space="preserve">
-    <value>bolet</value>
+    <value>BOLET</value>
   </data>
 </root>

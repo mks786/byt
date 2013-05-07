@@ -105,6 +105,7 @@
     <Compile Include="Comandos\ComandosCorresponsal\ComandoEliminarCorresponsal.cs" />
     <Compile Include="Comandos\ComandosCorresponsal\ComandoInsertarOModificarCorresponsal.cs" />
     <Compile Include="Comandos\ComandosCorresponsal\ComandoVerificarExistenciaCorresponsal.cs" />
+    <Compile Include="Comandos\ComandosDepartamento\ComandoConsultarDepartamentoPorOtroCampo.cs" />
     <Compile Include="Comandos\ComandosEstadoMarca\ComandoConsultarTodosEstadoMarca.cs" />
     <Compile Include="Comandos\ComandosEstadoMarca\ComandoEliminarEstadoMarca.cs" />
     <Compile Include="Comandos\ComandosEstadoMarca\ComandoInsertarOModificarEstadoMarca.cs" />
@@ -139,6 +140,7 @@
     <Compile Include="Comandos\ComandosMarca\ComandoConsultarMarcasPorFechaRenovacion.cs" />
     <Compile Include="Comandos\ComandosMarca\ComandoConsultarRecordatoriosVista.cs" />
     <Compile Include="Comandos\ComandosMarca\ComandoConsultarRecordatoriosVistaAutomatico.cs" />
+    <Compile Include="Comandos\ComandosMedio\ComandoConsultarMedioPorOtroCampo.cs" />
     <Compile Include="Comandos\ComandosMemoria\ComandoVerificarExistenciaMemoria.cs" />
     <Compile Include="Comandos\ComandosOperacion\ComandoConsultarOperacionesFiltro.cs" />
     <Compile Include="Comandos\ComandosOperacion\ComandoConsultarOperacionesPorPatente.cs" />

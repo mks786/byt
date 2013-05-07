@@ -81,6 +81,21 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        //-------------------------------------------------------------
+        /// <summary>
+        /// Servicio que consulta por un campo determinado y 
+        /// ordena en forma Ascendente o Descendente
+        /// </summary>
+        /// <param name="campo">Campo a filtrar</param>
+        /// <param name="tipoOrdenamiento">Si el ordenamiento es Ascende o Descendente</param>
+        /// <returns>Lista de Entidades</returns>
+        public IList<Carta> ConsultarPorOtroCampo(String campo, String tipoOrdenamiento)
+        {
+            throw new NotImplementedException();
+        }
+        //-------------------------------------------------------------
+
+
         /// <summary>
         /// Servicio que inserta o modifica a una Entidad
         /// </summary>

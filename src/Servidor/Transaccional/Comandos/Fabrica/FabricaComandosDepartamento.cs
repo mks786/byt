@@ -35,5 +35,18 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarDepartamentoPorId(departamento);
         }
+
+        //--------------------------------------------------------------------
+        /// <summary>
+        /// Método que devuelve el Comando para consultar un Departamento por 
+        /// un campo especifico y en orden Ascendente o Descendente
+        /// </summary>
+        /// <returns></returns>
+        public static ComandoBase<IList<Departamento>> ObtenerComandoConsultarPorOtroCampo(String campoConsultar, String tipoOrdenamiento)
+        {
+            //return new ComandoConsultarDepartamentoPorId(departamento);
+            return new ComandoConsultarDepartamentoPorOtroCampo(campoConsultar,tipoOrdenamiento);
+        }
+        //--------------------------------------------------------------------
     }
 }
