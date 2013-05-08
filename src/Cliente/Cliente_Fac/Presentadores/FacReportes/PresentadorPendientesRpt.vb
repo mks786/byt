@@ -815,7 +815,7 @@ Namespace Presentadores.FacReportes
                             If facOperacion(i).Asociado.Id <> facOperacion(i - 1).Asociado.Id Then
                                 'llamar encabezado                           
                                 structura.Mttotal = SetFormatoDouble2(montototal)
-                                Dim abono As Double = structura.Mabono
+                                Dim abono As Double = GetFormatoDouble2(structura.Mabono)
                                 structura.MttotalG = SetFormatoDouble2(montototal + abono)
                                 retorno.Add(structura)
 
@@ -844,13 +844,13 @@ Namespace Presentadores.FacReportes
                     Next
                     If j = 1 And retorno.Count = 0 Then
                         structura.Mttotal = SetFormatoDouble2(montototal)
-                        Dim abono As Double = structura.Mabono
+                        Dim abono As Double = GetFormatoDouble2(structura.Mabono)
                         structura.MttotalG = SetFormatoDouble2(montototal + abono)
                         retorno.Add(structura)
                     Else
                         If j > retorno.Count Then
                             structura.Mttotal = SetFormatoDouble2(montototal)
-                            Dim abono As Double = structura.Mabono
+                            Dim abono As Double = GetFormatoDouble2(structura.Mabono)
                             structura.MttotalG = SetFormatoDouble2(montototal + abono)
                             retorno.Add(structura)
                         End If
@@ -871,7 +871,7 @@ Namespace Presentadores.FacReportes
                             If facOperacionPais(i).Asociado.Id <> facOperacionPais(i - 1).Asociado.Id Then
                                 'llamar encabezado                           
                                 structura.Mttotal = SetFormatoDouble2(montototal)
-                                Dim abono As Double = structura.Mabono
+                                Dim abono As Double = GetFormatoDouble2(structura.Mabono)
                                 structura.MttotalG = SetFormatoDouble2(montototal + abono)
                                 retorno.Add(structura)
 
@@ -899,13 +899,13 @@ Namespace Presentadores.FacReportes
                     Next
                     If j = 1 And retorno.Count = 0 Then
                         structura.Mttotal = SetFormatoDouble2(montototal)
-                        Dim abono As Double = structura.Mabono
+                        Dim abono As Double = GetFormatoDouble2(structura.Mabono)
                         structura.MttotalG = SetFormatoDouble2(montototal + abono)
                         retorno.Add(structura)
                     Else
                         If j > retorno.Count Then
                             structura.Mttotal = SetFormatoDouble2(montototal)
-                            Dim abono As Double = structura.Mabono
+                            Dim abono As Double = GetFormatoDouble2(structura.Mabono)
                             structura.MttotalG = SetFormatoDouble2(montototal + abono)
                             retorno.Add(structura)
                         End If
