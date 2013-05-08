@@ -380,75 +380,75 @@ Namespace Presentadores.FacReportes
             Select Case mes
                 Case 1
                     If idioma = "ES" Then
-                        retorna = "Caracas, Enero " & dia & ", " & anio
+                        retorna = " Enero " & dia & ", " & anio
                     Else
-                        retorna = "Caracas, January " & dia & ", " & anio
+                        retorna = " January " & dia & ", " & anio
                     End If
                 Case 2
                     If idioma = "ES" Then
-                        retorna = "Caracas, Febrero " & dia & ", " & anio
+                        retorna = " Febrero " & dia & ", " & anio
                     Else
-                        retorna = "Caracas, February " & dia & ", " & anio
+                        retorna = " February " & dia & ", " & anio
                     End If
                 Case 3
                     If idioma = "ES" Then
-                        retorna = "Caracas, Marzo " & dia & ", " & anio
+                        retorna = " Marzo " & dia & ", " & anio
                     Else
-                        retorna = "Caracas, March " & dia & ", " & anio
+                        retorna = " March " & dia & ", " & anio
                     End If
                 Case 4
                     If idioma = "ES" Then
-                        retorna = "Caracas, Abril " & dia & ", " & anio
+                        retorna = " Abril " & dia & ", " & anio
                     Else
-                        retorna = "Caracas, April " & dia & ", " & anio
+                        retorna = " April " & dia & ", " & anio
                     End If
                 Case 5
                     If idioma = "ES" Then
-                        retorna = "Caracas, Mayo " & dia & ", " & anio
+                        retorna = " Mayo " & dia & ", " & anio
                     Else
-                        retorna = "Caracas, May " & dia & ", " & anio
+                        retorna = " May " & dia & ", " & anio
                     End If
                 Case 6
                     If idioma = "ES" Then
-                        retorna = "Caracas, Junio " & dia & ", " & anio
+                        retorna = " Junio " & dia & ", " & anio
                     Else
-                        retorna = "Caracas, June " & dia & ", " & anio
+                        retorna = " June " & dia & ", " & anio
                     End If
                 Case 7
                     If idioma = "ES" Then
-                        retorna = "Caracas, Julio " & dia & ", " & anio
+                        retorna = " Julio " & dia & ", " & anio
                     Else
-                        retorna = "Caracas, July " & dia & ", " & anio
+                        retorna = " July " & dia & ", " & anio
                     End If
                 Case 8
                     If idioma = "ES" Then
-                        retorna = "Caracas, Agosto " & dia & ", " & anio
+                        retorna = " Agosto " & dia & ", " & anio
                     Else
-                        retorna = "Caracas, August " & dia & ", " & anio
+                        retorna = " August " & dia & ", " & anio
                     End If
                 Case 9
                     If idioma = "ES" Then
-                        retorna = "Caracas, Septiembre " & dia & ", " & anio
+                        retorna = " Septiembre " & dia & ", " & anio
                     Else
-                        retorna = "Caracas, September " & dia & ", " & anio
+                        retorna = " September " & dia & ", " & anio
                     End If
                 Case 10
                     If idioma = "ES" Then
-                        retorna = "Caracas, Octubre " & dia & ", " & anio
+                        retorna = " Octubre " & dia & ", " & anio
                     Else
-                        retorna = "Caracas, October " & dia & ", " & anio
+                        retorna = " October " & dia & ", " & anio
                     End If
                 Case 11
                     If idioma = "ES" Then
-                        retorna = "Caracas, Noviembre " & dia & ", " & anio
+                        retorna = " Noviembre " & dia & ", " & anio
                     Else
-                        retorna = "Caracas, November " & dia & ", " & anio
+                        retorna = " November " & dia & ", " & anio
                     End If
                 Case 12
                     If idioma = "ES" Then
-                        retorna = "Caracas, Diciembre " & dia & ", " & anio
+                        retorna = " Diciembre " & dia & ", " & anio
                     Else
-                        retorna = "Caracas, December " & dia & ", " & anio
+                        retorna = " December " & dia & ", " & anio
                     End If
 
             End Select
@@ -843,7 +843,7 @@ Namespace Presentadores.FacReportes
                         End If
                     Next
                     If j = 1 And retorno.Count = 0 Then
-                        structura.Mttotal = montototal
+                        structura.Mttotal = SetFormatoDouble2(montototal)
                         Dim abono As Double = structura.Mabono
                         structura.MttotalG = SetFormatoDouble2(montototal + abono)
                         retorno.Add(structura)

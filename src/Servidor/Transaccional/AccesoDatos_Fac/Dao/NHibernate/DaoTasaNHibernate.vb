@@ -53,10 +53,11 @@ Namespace Dao.NHibernate
                 If variosFiltros Then
                     filtro += " and "
                 End If
-                'Dim fecha As String = [String].Format("{0:dd/MM/yy}", Tasa.Id)
-                'Dim fecha2 As String = [String].Format("{0:dd/MM/yy}", Tasa.Id)
-                Dim fecha As String = FormatDateTime(Tasa.Id)
-                Dim fecha2 As String = FormatDateTime(Tasa.Id)
+                Dim fecha As String = [String].Format("{0:dd/MM/yy}", Tasa.Id)
+                Dim fecha2 As String = [String].Format("{0:dd/MM/yy}", Tasa.Id)
+
+                'Dim fecha As String = FormatDateTime(Tasa.Id)
+                'Dim fecha2 As String = FormatDateTime(Tasa.Id)
                 filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerTasaId, fecha, fecha2)
             End If
             'If (Tasa.FechaReg IsNot Nothing) AndAlso (Not Tasa.FechaReg.Equals(DateTime.MinValue)) Then
@@ -72,8 +73,8 @@ Namespace Dao.NHibernate
             If (filtro = "") Then
                 query = Session.CreateQuery(cabecera)
             Else
-                cabecera = cabecera & " Where  order by t.Id desc"
-                cabecera = cabecera & filtro
+                cabecera = cabecera & " Where "
+                cabecera = cabecera & filtro & " order by t.Id desc"
                 query = Session.CreateQuery(cabecera)
             End If
             Tasas = query.List(Of Tasa)()
