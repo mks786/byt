@@ -182,20 +182,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 #endregion
 
                 this._filtroValido = 0;
-
+                IList<Interesado> _interesadosResultantes = new List<Interesado>();
+                Interesado interesadoAuxiliar;
+                
+                
                 Interesado interesado = this.CargarDatosFiltro();
-
+                
                 Mouse.OverrideCursor = Cursors.Wait;
 
                 if (this._filtroValido >= 2)
                 {
                     IEnumerable<Interesado> interesadosFiltrados = this._interesadoServicios.ObtenerInteresadosFiltro(interesado);
 
+
                     this._ventana.Resultados = interesadosFiltrados.ToList<Interesado>();
                     this._ventana.TotalHits = interesadosFiltrados.ToList<Interesado>().Count.ToString();
+                    //this._ventana.TotalHits = _interesadosResultantes.Count.ToString();
 
                     if (interesadosFiltrados.ToList().Count == 0)
                         this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+
+                    //if (_interesadosResultantes.Count == 0)
+                    //    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
 
                 }
                 else

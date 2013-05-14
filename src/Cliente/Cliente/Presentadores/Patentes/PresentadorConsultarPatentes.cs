@@ -196,7 +196,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 _filtroValido = 0;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
                 //dos filtros sean utilizados
 
-                Patente patenteAuxiliar = ObtenerPatenteFiltro();
+                Patente patenteAuxiliar = new Patente();
+                
+
+                patenteAuxiliar = (Patente)this._ventana.PatenteParaFiltrar;
+
+                patenteAuxiliar.Id = int.MinValue;
+
+
+                               
+               
+                this._ventana.PatenteParaFiltrar = patenteAuxiliar;
+                patenteAuxiliar = ObtenerPatenteFiltro();
 
                 if (_filtroValido >= 2)
                 {
@@ -241,6 +252,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                         patenteAuxiliar.CodigoInscripcion = patente.CodigoInscripcion;
 
                         patenteAuxiliar.FechaPublicacion = patente.FechaPublicacion != null ? patente.FechaPublicacion : null;
+
+                        patenteAuxiliar.CodigoPatenteInternacional = patente.CodigoPatenteInternacional;
+
+                        patenteAuxiliar.CorrelativoExpediente = patente.CorrelativoExpediente;
 
                         patentesDesinfladas.Add(patenteAuxiliar);
 
@@ -380,7 +395,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         /// <returns>Patente cargada con el filtro</returns>
         private Patente ObtenerPatenteFiltro()
         {
-            Patente patenteAuxiliar = new Patente();
+            //Patente patenteAuxiliar = new Patente();
+
+            
+
+            Patente patenteAuxiliar = ((Patente)this._ventana.PatenteParaFiltrar);
+            
+
             patenteAuxiliar.PrimeraReferencia = ((Patente)this._ventana.PatenteParaFiltrar).PrimeraReferencia;
             //Patente patenteAuxiliar = new Patente();
             //patenteAuxiliar.PrimeraReferencia = null != ((Patente)this._ventana.PatenteParaFiltrar).PrimeraReferencia ? ((Patente)this._ventana.PatenteParaFiltrar).PrimeraReferencia : null;
@@ -404,6 +425,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 if (this._ventana.PrioridadesEstaSeleccionado)
                 {
                     patenteAuxiliar = TomarDatosPatenteFiltroPrioridades(patenteAuxiliar);
+                }
+
+                if (this._ventana.TYREstaSeleccionado)
+                {
+                    patenteAuxiliar = TomarDatosMarcaFiltroTYR(patenteAuxiliar);
                 }
 
 
@@ -609,6 +635,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     _filtroValido = 2;
                 }
 
+
+
                 if (patenteAuxiliar.LocalidadPatente.Equals("I"))
                 {
                     if (!this._ventana.IdInternacional.Equals(string.Empty))
@@ -644,7 +672,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                         _filtroValido = 2;
                         patenteAuxiliar.ReferenciaInteresadoInternacional = this._ventana.ReferenciaInteresado;
                     }
+
+                    else
+                    {
+                        _filtroValido = 2;
+                    }
                 }
+
+                else
+                {
+                    _filtroValido = 2;
+                }
+
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -662,6 +702,59 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
             return patenteAuxiliar;
         }
+
+
+        #region TYR
+
+        /// <summary>
+        /// Método que devuelve la patente con los datos del check TYR
+        /// </summary>
+        /// <param name="marcaAuxiliar">Patente a cargar</param>
+        /// <returns>Patente cargada con los datos de TYR</returns>
+        private Patente TomarDatosMarcaFiltroTYR(Patente patenteAuxiliar)
+        {
+            try
+            {
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                //if (!this._ventana.CodigoRegistro.Equals(""))
+                if(!this._ventana.NumeroCodigoRegistro.Equals(""))
+                {
+                    //patenteAuxiliar.CodigoRegistro = this._ventana.CodigoRegistro.ToUpper();
+                    patenteAuxiliar.CodigoRegistro = this._ventana.NumeroCodigoRegistro.ToUpper();
+                    _filtroValido = 2;
+                }
+                //else
+                //    this._ventana.CodigoRegistro = string.Empty;
+
+
+                if (!this._ventana.FechaRegistro.Equals(""))
+                {
+                    DateTime fechaRegistro = DateTime.Parse(this._ventana.FechaRegistro);
+                    _filtroValido = 2;
+                    patenteAuxiliar.FechaRegistro = fechaRegistro;
+                }
+
+                
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Debug(ex.Message);
+            }
+
+            return patenteAuxiliar;
+        }
+
+        #endregion
 
 
         #region Interesado

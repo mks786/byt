@@ -130,5 +130,13 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
 
         void LimpiarCampos();
+
+        bool TYREstaSeleccionado { get; set; }
+
+        string NumeroCodigoRegistro { get; set; }
+
+        string FechaRegistro { get; set; }
+
+        
     }
 }

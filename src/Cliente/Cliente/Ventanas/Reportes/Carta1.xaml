@@ -76,6 +76,7 @@
                     <DatePicker   Grid.Column="7" Grid.Row="0" 
                         Name="_dpkFecha" Grid.ColumnSpan="1" Focusable="False" 
                         BorderBrush="{x:Null}" VerticalAlignment="Center" >
+                        
                         <!--<DatePicker.SelectedDate>
                             <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>-->

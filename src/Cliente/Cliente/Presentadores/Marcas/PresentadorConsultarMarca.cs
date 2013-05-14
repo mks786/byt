@@ -2192,13 +2192,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderesConAgente, 0);
                 else
                 {
+                    _poderesInterseccion.Insert(0, new Poder(int.MinValue));
+                    this._ventana.PoderesSolicitud = _poderesInterseccion;
+                    this._ventana.PoderesDatos = _poderesInterseccion;
                     this._ventana.mostrarLstPoderSolicitud();
                 }
 
-                _poderesInterseccion.Insert(0, new Poder(int.MinValue));
+                //_poderesInterseccion.Insert(0, new Poder(int.MinValue));
             }
             else
             {
+                this._ventana.Mensaje("La Marca no posee Apoderado", 0);
+
+                if (((Marca)this._ventana.Marca).Poder != null)
+                {
+                    Poder primerPoder = new Poder();
+                    primerPoder.Id = int.MinValue;
+                    Poder poderActualDeMarca = ((Marca)this._ventana.Marca).Poder;
+                    _poderesInterseccion = new List<Poder>();
+                    _poderesInterseccion.Add(poderActualDeMarca);
+                    _poderesInterseccion.Insert(0, primerPoder);
+                }
+                
                 //MENSAJE DE ERROR
             }
 
@@ -2231,18 +2246,27 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                     Interesado interesadoAux = new Interesado(int.Parse(this._ventana.IdInteresadoSolicitud));
 
-                    poderesAux = this._poderServicios
+                    if(this._ventana.Agente != null)
+                        poderesAux = this._poderServicios
                             .ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.Agente, interesadoAux);
 
 
-                    foreach (Poder poder in poderesAux)
+
+                    if (poderesAux.Count != 0)
                     {
-                        if (poder.Id == int.Parse(this._ventana.IdPoderSolicitud))
+                        foreach (Poder poder in poderesAux)
                         {
-                            retorno = true;
-                            break;
+                            if (poder.Id == int.Parse(this._ventana.IdPoderSolicitud))
+                            {
+                                retorno = true;
+                                break;
+                            }
                         }
                     }
+                    else
+                        retorno = true;
+
+
                 }
                 else
                     retorno = true;

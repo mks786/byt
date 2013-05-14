@@ -6,7 +6,7 @@
       xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       mc:Ignorable="d" 
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
-      d:DesignHeight="550" d:DesignWidth="800"
+      d:DesignHeight="1117" d:DesignWidth="800"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
       xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
       Title="{x:Static recurso:Etiquetas.titleAgregarAgente}" Loaded="Page_Loaded" KeyDown="Page_KeyDown" PreviewKeyDown="Page_KeyDown">
@@ -358,7 +358,7 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblModificado}"/>
                 </Label>
 
-                <DatePicker   Grid.Column="2" Grid.Row="20" Grid.ColumnSpan="1"  Name="_dpkFechaConfirmacion" Focusable="False" BorderBrush="{x:Null}" >
+                <DatePicker   Grid.Column="2" Grid.Row="20" Grid.ColumnSpan="1"  Name="_dpkFechaConfirmacion" Focusable="False" BorderBrush="{x:Null}" IsEnabled="False">
                     <DatePicker.SelectedDate>
                         <Binding Path="FechaConfirmacion" UpdateSourceTrigger="PropertyChanged"/>
                     </DatePicker.SelectedDate>

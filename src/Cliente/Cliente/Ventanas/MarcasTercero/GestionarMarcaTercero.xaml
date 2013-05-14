@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
-      d:DesignHeight="550" d:DesignWidth="800"
+      d:DesignHeight="1195" d:DesignWidth="800"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
 	Title="{x:Static recurso:Etiquetas.titleAgregarAgente}" Loaded="Page_Loaded"
       KeepAlive="True">
@@ -560,8 +560,14 @@
                         </Button>
                         <custom:ByTTextBox IsEnabled="False" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1" Margin="3" Name="_txtCodigoInscripcion" VerticalAlignment="Center"  
                           Text="{Binding Path=CodigoInscripcion}"></custom:ByTTextBox>
-                        <custom:ByTTextBox IsEnabled="False" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="1" Margin="3" Name="_txtFechaInscripcion" VerticalAlignment="Center"  
-                          Text="{Binding Path=FechaInscripcion}"></custom:ByTTextBox>
+                        <!--<custom:ByTTextBox IsEnabled="False" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="1" Margin="3" Name="_txtFechaInscripcion" VerticalAlignment="Center"  
+                          Text="{Binding Path=FechaInscripcion}"></custom:ByTTextBox>-->
+
+                        <DatePicker  Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="1" Name="_txtFechaInscripcion" Focusable="False" BorderBrush="{x:Null}" Margin="3" >
+                            <DatePicker.SelectedDate>
+                                <Binding Path="FechaInscripcion" UpdateSourceTrigger="PropertyChanged" StringFormat="{}{0:dd/MM/yyyy}"/>
+                            </DatePicker.SelectedDate>
+                        </DatePicker>
 
                         <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblOrdPublicacion}"/>
@@ -624,9 +630,16 @@
                             <TextBlock Name="_txbNoRegistro" Text="{x:Static recurso:Etiquetas.btnNoRegistro}"/>
                         </Button>
                         <custom:ByTTextBox IsEnabled="False" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="1" Margin="3" Name="_txtCodigoRegistro" VerticalAlignment="Center"  
-                          Text=""></custom:ByTTextBox>
-                        <custom:ByTTextBox IsEnabled="False" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1" Margin="3" Name="_txtFechaRegistro" VerticalAlignment="Center"  
-                          Text=""></custom:ByTTextBox>
+                          Text="{Binding Path=CodigoRegistro}"></custom:ByTTextBox>
+                        <!--<custom:ByTTextBox IsEnabled="False" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1" Margin="3" Name="_txtFechaRegistro" VerticalAlignment="Center"  
+                          Text=""></custom:ByTTextBox>-->
+
+                        <DatePicker  Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1" Margin="3" Name="_txtFechaRegistro" Focusable="False" BorderBrush="{x:Null}" >
+                            <DatePicker.SelectedDate>
+                                <Binding Path="FechaRegistro" UpdateSourceTrigger="PropertyChanged" StringFormat="{}{0:dd/MM/yyyy}"/>
+                            </DatePicker.SelectedDate>
+                        </DatePicker>
+                        
                         <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblRenovarAntesDe}"/>
                         </Label>

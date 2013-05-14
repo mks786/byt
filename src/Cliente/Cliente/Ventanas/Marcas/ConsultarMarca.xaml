@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
-      d:DesignHeight="1430" d:DesignWidth="955"
+      d:DesignHeight="1745" d:DesignWidth="955"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
 	Title="{x:Static recurso:Etiquetas.titleAgregarAgente}" Loaded="Page_Loaded"
       KeepAlive="True">
@@ -1713,6 +1713,7 @@
                           Text="{Binding Path=FechaInscripcion, StringFormat={}{0:dd/MM/yyyy}}" >
 
                             </custom:ByTTextBox>-->
+
 
                             <DatePicker  Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="1" Name="_txtFechaInscripcion" Focusable="False" BorderBrush="{x:Null}" Margin="3" >
                                 <DatePicker.SelectedDate>

@@ -156,6 +156,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                 if (_filtroValido)
                 {
                     poderes = _poderServicios.ObtenerPoderesFiltro(poder);
+                    
                 
                 }
                 this._ventana.Resultados = poderes;
@@ -369,7 +370,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
             this._ventana.Interesado = null;
 
             this._ventana.Resultados = this._poderes;
-            this._ventana.TotalHits = this._poderes.Count().ToString();
+
+            //this._ventana.TotalHits = this._poderes.Count().ToString();
+            this._ventana.TotalHits = "0";
         }
     }
 }

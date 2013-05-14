@@ -44,7 +44,7 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
             this._btnCerrar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this._btnCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this._btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this._btnCerrar.Location = new System.Drawing.Point(697, 431);
+            this._btnCerrar.Location = new System.Drawing.Point(897, 427);
             this._btnCerrar.Name = "_btnCerrar";
             this._btnCerrar.Size = new System.Drawing.Size(75, 23);
             this._btnCerrar.TabIndex = 1;
@@ -55,7 +55,7 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
             // _imprimir
             // 
             this._imprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._imprimir.Location = new System.Drawing.Point(616, 431);
+            this._imprimir.Location = new System.Drawing.Point(816, 427);
             this._imprimir.Name = "_imprimir";
             this._imprimir.Size = new System.Drawing.Size(75, 23);
             this._imprimir.TabIndex = 2;
@@ -66,7 +66,7 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.Location = new System.Drawing.Point(12, 431);
+            this.button2.Location = new System.Drawing.Point(12, 427);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 3;
@@ -82,7 +82,7 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
             this._folio.Location = new System.Drawing.Point(12, 12);
             this._folio.Multiline = true;
             this._folio.Name = "_folio";
-            this._folio.Size = new System.Drawing.Size(760, 413);
+            this._folio.Size = new System.Drawing.Size(960, 409);
             this._folio.TabIndex = 4;
             // 
             // Impresion
@@ -91,14 +91,14 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(784, 466);
+            this.ClientSize = new System.Drawing.Size(984, 462);
             this.Controls.Add(this._folio);
             this.Controls.Add(this.button2);
             this.Controls.Add(this._imprimir);
             this.Controls.Add(this._btnCerrar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(800, 800);
-            this.MinimumSize = new System.Drawing.Size(800, 500);
+            this.MaximumSize = new System.Drawing.Size(1000, 900);
+            this.MinimumSize = new System.Drawing.Size(900, 500);
             this.Name = "Impresion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.ResumeLayout(false);

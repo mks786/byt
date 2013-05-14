@@ -489,7 +489,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
 
                     if (null != _patente.Asociado)
-                        this._ventana.PintarAsociado(_patente.Asociado.TipoCliente.Id);
+                    {
+                        if (this._patente.Asociado.TipoCliente != null)
+                            this._ventana.PintarAsociado(_patente.Asociado.TipoCliente.Id);
+                        else
+                            this._ventana.PintarAsociado(String.Empty);
+                    }
 
 
                     if ((null != _patente.Interesado) && (null != _patente.Agente))
@@ -2844,11 +2849,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         {
             if (this._ventana.PoderSolicitud != null)
             {
-                Poder poder = ((Patente)this._ventana.Patente).Poder.Id != int.MinValue ? ((Patente)this._ventana.Patente).Poder : null;
-                if (poder != null)
+                if (((Patente)this._ventana.Patente).Poder != null)
                 {
-                    this._ventana.AgenteSolicitudFiltrar = ((Patente)this._ventana.Patente).Agente;
-                    Navegar(new ConsultarPoder(poder, this._ventana));
+                    Poder poder = ((Patente)this._ventana.Patente).Poder.Id != int.MinValue ? ((Patente)this._ventana.Patente).Poder : null;
+                    if (poder != null)
+                    {
+                        this._ventana.AgenteSolicitudFiltrar = ((Patente)this._ventana.Patente).Agente;
+                        Navegar(new ConsultarPoder(poder, this._ventana));
+                    }
                 }
             }
         }
@@ -2896,7 +2904,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
         public void CalcularSaldos()
         {
-                        if ((Asociado)this._ventana.AsociadoSolicitud != null)
+
+            //if ((Asociado)this._ventana.AsociadoSolicitud != null)
+            if ((Asociado)this._ventana.AsociadoSolicitud != null && ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue)
             {
                 Asociado Asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
                            

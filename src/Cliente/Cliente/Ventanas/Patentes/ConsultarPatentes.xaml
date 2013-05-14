@@ -467,6 +467,38 @@
                         </WrapPanel>
                     </StackPanel>
                     <Separator Margin="0,5,0,5"/>
+                    <!-- Nueva parte para hacer la consulta por traspasos y renovaciones de patentes -->
+                    
+                    <CheckBox IsEnabled="True" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="7" Content="{x:Static recurso:Etiquetas.chkTYR}" Height="16" HorizontalAlignment="Left" Margin="5,0,0,0" Name="_chkTYR" VerticalAlignment="Center" Click="_chkTYR_Click"/>
+                    
+                    <StackPanel Name="_TYR" Visibility="Collapsed">
+
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label Name="_lblRegistroTYR">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblRegistro}"/>
+                            </Label>
+                            <custom:ByTTextBox Name="_txtRegistroTYR" Width="150" MaxLength="40" Filtro="True" 
+                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" Text="{Binding Path=CodigoRegistro}" />
+                        </WrapPanel>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+
+                            <Label Name="_lblFechaTYR">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
+                            </Label>
+
+                            <custom:ByTDatePicker Editable="True" Name="_dpkFechaTYR" Width="150"  Focusable="False" BorderBrush="{x:Null}" 
+                                                  SelectedDateChanged="_dpkFecha_SelectedDateChanged">
+                                <DatePicker.SelectedDate>
+                                    <Binding Path="FechaRegistro" UpdateSourceTrigger="PropertyChanged"/>
+                                </DatePicker.SelectedDate>
+                            </custom:ByTDatePicker>
+                            
+                        </WrapPanel>
+
+                    </StackPanel>
+
+                    <Separator Margin="0,5,0,5"/>
+                    <!-- Fin de Nueva parte para hacer la consulta por traspasos y renovaciones de patentes -->
                     <Button Name="_btnConsultar" Width="100" IsDefault="True" Click="_btnConsultar_Click">
                         <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                     </Button>
@@ -493,6 +525,7 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                         </GridViewColumn>
+                        
 
                         <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoInscripcion}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="CodigoInscripcion" Content="{x:Static recurso:Etiquetas.lsvSolicitud}"/>
@@ -524,6 +557,13 @@
 
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaInscripcion" Content="{x:Static recurso:Etiquetas.lsvFechaInscripcion}"/>
                         </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoPatenteInternacional}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="CodigoPatenteInternacional" Content="{x:Static recurso:Etiquetas.lsvCodigoInternacional}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=CorrelativoExpediente}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="CorrelativoExpediente" Content="{x:Static recurso:Etiquetas.lsvCorrelativoExpediente}"/>
+                        </GridViewColumn>
+                        
                     </GridView>
                 </ListView.View>
             </ListView>

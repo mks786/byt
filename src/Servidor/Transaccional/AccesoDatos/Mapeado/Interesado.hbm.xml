@@ -15,7 +15,7 @@
     <property name="Domicilio" column="XDOMICILIO" type="string"/>
     <property name="Alerta" column="XALERTA" type="string"/>
 
-    <many-to-one name="Pais" class="Pais">
+    <many-to-one name="Pais" class="Pais" lazy="false">
       <column name="CPAIS"/>
     </many-to-one>
 

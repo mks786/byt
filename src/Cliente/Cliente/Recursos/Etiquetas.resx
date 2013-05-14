@@ -2809,22 +2809,22 @@ en Prensa:</value>
     <value>Para:</value>
   </data>
   <data name="menuItemCarta1" xml:space="preserve">
-    <value>Carta 1</value>
+    <value>Renovacion de Marca</value>
   </data>
   <data name="menuItemCarta14" xml:space="preserve">
-    <value>Carta 14</value>
+    <value>Impuestos Finales de Marca</value>
   </data>
   <data name="menuItemCarta16" xml:space="preserve">
-    <value>Carta 16</value>
+    <value>General Asociado</value>
   </data>
   <data name="menuItemCarta16M" xml:space="preserve">
-    <value>Carta 16 Marcas</value>
+    <value>General Marcas</value>
   </data>
   <data name="menuItemCarta16P" xml:space="preserve">
-    <value>Carta 16 Patentes</value>
+    <value>General Patente</value>
   </data>
   <data name="menuItemCarta2" xml:space="preserve">
-    <value>Carta 2</value>
+    <value>Solicitud de Marca</value>
   </data>
   <data name="radioAsociado" xml:space="preserve">
     <value>Asociado</value>
@@ -3650,5 +3650,14 @@ en Prensa:</value>
   </data>
   <data name="lblMarcaExpTraspasoRenovacion" xml:space="preserve">
     <value>Exp.Trasp.Renov:</value>
+  </data>
+  <data name="lsvCodigoInternacional" xml:space="preserve">
+    <value>Cod. Internacional</value>
+  </data>
+  <data name="lsvCorrelativoExpediente" xml:space="preserve">
+    <value>Cod. Corr. Expediente</value>
+  </data>
+  <data name="lsvFechaRegistro" xml:space="preserve">
+    <value>Fecha Registro</value>
   </data>
 </root>

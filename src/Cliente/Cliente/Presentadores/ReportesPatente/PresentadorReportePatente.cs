@@ -523,10 +523,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
             }
 
             //CodigoFomento
-            //if (!string.IsNullOrEmpty(_patente.CodigoFomento))
-            //{
-
-            //}
+            if (!string.IsNullOrEmpty(((Poder)_patente.Poder).NumPoder))
+            {
+                retorno.CodigoFomento = ((Poder)_patente.Poder).NumPoder;
+            }
 
 
             //CodigoPropiedad
@@ -567,7 +567,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
 
             retorno.IdPatente = _patente.Id.ToString();
 
-            retorno.FechaInscripcion = _patente.FechaInscripcion.Value.Day + "          " + _patente.FechaInscripcion.Value.ToString("MMMM") + "           " + _patente.FechaInscripcion.Value.Year.ToString().Substring(2, 2);
+            //retorno.FechaInscripcion = _patente.FechaInscripcion.Value.Day + "          " + _patente.FechaInscripcion.Value.ToString("MMMM") + "           " + _patente.FechaInscripcion.Value.Year.ToString().Substring(2, 2);
+            retorno.FechaInscripcion = _patente.FechaInscripcion.Value.Day + "          " + _patente.FechaInscripcion.Value.ToString("MMMM") + "           " + _patente.FechaInscripcion.Value.Year.ToString();
 
             if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Inventores2)))
                 retorno.CamposVienen += reportePatente.Inventores2;
@@ -577,6 +578,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
 
             if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Resumen2)))
                 retorno.CamposVienen += Environment.NewLine + Environment.NewLine + reportePatente.Resumen2;
+
+            //if ((null!= _patente.Poder) && (int.MinValue != ((Poder)_patente.Poder).Id))
+            //{
+            //    retorno.CodigoFomento = ((Poder)_patente.Poder).NumPoder;
+            //}
 
 
             return retorno;

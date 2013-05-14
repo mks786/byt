@@ -394,7 +394,7 @@
                                         <GridViewColumnHeader Tag="Fecha" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock>
+                                                <TextBlock HorizontalAlignment="Center">
                                         <TextBlock.Text>
                                             <Binding Path="Fecha" StringFormat="{}{0:dd/MM/yyyy}"/>
                                         </TextBlock.Text>
@@ -402,6 +402,11 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
+                                    
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Facultad}" Width="100">
+                                        <GridViewColumnHeader Tag="Facultad" Content="{x:Static recurso:Etiquetas.lsvFacultad}"/>
+                                    </GridViewColumn>
+                                    
                                     <GridViewColumn DisplayMemberBinding="{Binding Path=MostrarAgentes}" Width="200">
                                         <GridViewColumnHeader  Tag="MostrarAgentes" Content="{x:Static recurso:Etiquetas.lsvAgentes}"/>
                                     </GridViewColumn>

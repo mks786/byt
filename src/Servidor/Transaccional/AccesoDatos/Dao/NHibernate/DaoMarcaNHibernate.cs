@@ -38,7 +38,8 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                 #region Filtros de MarcaNacional
 
-                if ((null != marca) && (marca.Id != 0))
+                //if ((null != marca) && (marca.Id != 0))
+                if ((null != marca) && (marca.Id != int.MinValue))
                 //if ((null != marca))
                 {
                     filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaId, marca.Id);
@@ -47,13 +48,14 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                 if ((null != marca) && (marca.LocalidadMarca != null) && (!marca.LocalidadMarca.Equals(string.Empty)))
                 {
-                    if (!marca.LocalidadMarca.Equals("N"))
-                    {
+                    //if (!marca.LocalidadMarca.Equals("N"))
+                    //{
                         if (variosFiltros)
                             filtro += " and ";
                         filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaLocalidad, marca.LocalidadMarca);
                         variosFiltros = true;
-                    }
+                    //}
+                   
                 }
 
                 if ((null != marca.Asociado) && (!marca.Asociado.Id.Equals("")))
@@ -349,11 +351,12 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
 
                 //Validacion que se realiza cuando el codigo de la Marca = 0
-                if ((filtro.Equals(String.Empty) || filtro.Equals("")) && (marca.Id == 0))
-                {
-                    flag = "el filtro viene vacio";
-                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaId, marca.Id);
-                }
+                //if ((filtro.Equals(String.Empty) || filtro.Equals("")) && (marca.Id == 0))
+                //{
+                //    flag = "el filtro viene vacio";
+                //    //filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaId, marca.Id);
+                //    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaLocalidad, marca.LocalidadMarca);
+                //}
 
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 Marcas = query.List<Marca>();

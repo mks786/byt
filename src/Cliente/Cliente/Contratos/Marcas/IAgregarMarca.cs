@@ -248,5 +248,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }
+
+        void BorrarLista();
     }
 }

@@ -160,19 +160,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 this._ventana.StatusWeb = this.BuscarStatusWeb((IList<StatusWeb>)this._ventana.StatusWebs, marca.StatusWeb);
 
-                //Falta buscar Condiciones
+               
                 IList<Condicion> condiciones = this._condicionServicios.ConsultarTodos();
                 Condicion primeraCondicion = new Condicion();
                 primeraCondicion.Id = int.MinValue;
                 condiciones.Insert(0, primeraCondicion);
                 this._ventana.Condiciones = condiciones;
+                Condicion condicionBuscada = new Condicion();
+                condicionBuscada.Id = ((Marca)this._ventana.Marca).NumeroCondiciones;
+                this._ventana.Condicion = this.BuscarCondicion(condiciones, condicionBuscada);
+                
 
                 ///Falta buscar TipoEstados
-                IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
-                TipoEstado primerDetalle = new TipoEstado();
-                primerDetalle.Id = "NGN";
-                tipoEstados.Insert(0, primerDetalle);
-                this._ventana.Detalles = tipoEstados;
+                //IList<TipoEstado> tipoEstados = new List<TipoEstado>();
+                //tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
+                //TipoEstado primerDetalle = new TipoEstado();
+                //primerDetalle.Id = "NGN";
+                //tipoEstados.Insert(0, primerDetalle);
+                //this._ventana.Detalles = tipoEstados;
 
                 this._ventana.Servicio = this.BuscarServicio((IList<Servicio>)this._ventana.Servicios, marca.Servicio);
 
@@ -184,19 +189,59 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.NombreInteresadoSolicitud = interesado.Nombre;
                 this._ventana.InteresadoPaisSolicitud = interesado.Pais.NombreEspanol;
                 this._ventana.InteresadoCiudadSolicitud = interesado.Ciudad;
+                this._ventana.IdInteresadoDatos = interesado.Id != int.MinValue ? interesado.Id.ToString() : "";
+                this._ventana.IdInteresadoSolicitud = interesado.Id != 0 ? interesado.Id.ToString() : "";
+                IList<Interesado> lstInteresadosMarcaDuplicada = new List<Interesado>();
+                Interesado primerInteresado = new Interesado();
+                interesado.Id = int.MinValue;
+                lstInteresadosMarcaDuplicada.Add(primerInteresado);
+                lstInteresadosMarcaDuplicada.Add(marca.Interesado);
+                this._ventana.InteresadosSolicitud = lstInteresadosMarcaDuplicada;
+                this._ventana.InteresadoSolicitud = this.BuscarInteresado(lstInteresadosMarcaDuplicada, marca.Interesado);
+                this._ventana.InteresadosDatos = lstInteresadosMarcaDuplicada;
+                this._ventana.InteresadoDatos = this.BuscarInteresado(lstInteresadosMarcaDuplicada, marca.Interesado);
 
+
+                Asociado asociado = (this._asociadoServicios.ConsultarAsociadoConTodo(marca.Asociado));
+                IList<Asociado> lstAsociadosMarcaDuplicada = new List<Asociado>();
+                Asociado primerAsociado = new Asociado();
+                primerAsociado.Id = int.MinValue;
+                lstAsociadosMarcaDuplicada.Add(primerAsociado);
+                lstAsociadosMarcaDuplicada.Add(asociado);
+                this._ventana.AsociadosSolicitud = lstAsociadosMarcaDuplicada;
+                this._ventana.AsociadoSolicitud = this.BuscarAsociado(lstAsociadosMarcaDuplicada, marca.Asociado);
+                this._ventana.AsociadosDatos = lstAsociadosMarcaDuplicada;
+                this._ventana.AsociadoDatos = this.BuscarAsociado(lstAsociadosMarcaDuplicada, marca.Asociado);
+
+                //Corresponsal corresponsal = marca.Corresponsal;
+                IList<Corresponsal> lstCorresponsalMarcaDuplicada = new List<Corresponsal>();
+                Corresponsal primerCorresponsal = new Corresponsal();
+                primerCorresponsal.Id = int.MinValue;
+                lstCorresponsalMarcaDuplicada.Add(primerCorresponsal);
+                lstCorresponsalMarcaDuplicada.Add(marca.Corresponsal);
+                this._ventana.CorresponsalesSolicitud = lstCorresponsalMarcaDuplicada;
+                this._ventana.CorresponsalesDatos = lstCorresponsalMarcaDuplicada;
+                this._ventana.CorresponsalSolicitud = this._ventana.CorresponsalDatos = this.BuscarCorresponsal(lstCorresponsalMarcaDuplicada, marca.Corresponsal);
+               
+                
                 this._ventana.NombreAsociadoDatos = marca.Asociado != null ? marca.Asociado.Nombre : "";
                 this._ventana.NombreAsociadoSolicitud = marca.Asociado != null ? marca.Asociado.Nombre : "";
+                this._ventana.IdAsociadoDatos = marca.Asociado != null && ((Asociado)marca.Asociado).Id != int.MinValue ? ((Asociado)marca.Asociado).Id.ToString() : "";
+                this._ventana.IdAsociadoSolicitud = marca.Asociado != null && ((Asociado)marca.Asociado).Id != int.MinValue ? ((Asociado)marca.Asociado).Id.ToString() : "";
 
                 this._ventana.DescripcionCorresponsalSolicitud = marca.Corresponsal != null ? marca.Corresponsal.Descripcion : "";
                 this._ventana.DescripcionCorresponsalDatos = marca.Corresponsal != null ? marca.Corresponsal.Descripcion : "";
+                this._ventana.IdCorresponsalDatos = marca.Corresponsal != null && ((Corresponsal)marca.Corresponsal).Id != int.MinValue ? ((Corresponsal)marca.Corresponsal).Id.ToString() : "";
+                this._ventana.IdCorresponsalSolicitud = marca.Corresponsal != null && ((Corresponsal)marca.Corresponsal).Id != int.MinValue ? ((Corresponsal)marca.Corresponsal).Id.ToString() : "";
 
-                this._ventana.NumPoderDatos = marca.Poder != null ? marca.Poder.NumPoder : "";
+               // this._ventana.NumPoderDatos = marca.Poder != null ? marca.Poder.NumPoder : "";
+                this._ventana.NumPoderDatos = marca.Poder != null ? marca.Poder.Id.ToString() : "";
                 this._ventana.NumPoderSolicitud = marca.Poder != null ? marca.Poder.Id.ToString() : "";
                 this._ventana.Sapi = marca.Poder != null ? marca.Poder.NumPoder : "";
 
                 this._ventana.Sector = this.BuscarSector((IList<ListaDatosDominio>)this._ventana.Sectores, marca.Sector);
                 this._ventana.TipoReproduccion = this.BuscarTipoReproduccion((IList<ListaDatosDominio>)this._ventana.TipoReproducciones, marca.Tipo);
+                
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -380,7 +425,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 #endregion
 
                 if (_esMarcaDuplicada)
-                    CargarDatosDeMarcaDuplicada();
+                {
+                   CargarDatosDeMarcaDuplicada();
+                }
 
                 this._ventana.BorrarCeros();
 
@@ -1429,6 +1476,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.PoderDatos = (Poder)this._ventana.PoderSolicitud;
                     this._ventana.Sapi = ((Poder)this._ventana.PoderSolicitud).NumPoder;
                     this._ventana.ConvertirEnteroMinimoABlanco();
+                    ((Marca)this._ventana.Marca).Poder = (Poder)this._ventana.PoderSolicitud;
                 }
 
                 #region trace

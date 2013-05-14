@@ -63,7 +63,7 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                    <TextBlock Text="{x:Static recurso:Etiquetas.lblCiudad}"/>
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigo}"/>
                 </Label>
                 <custom:ByTTextBox Grid.Column="1" Grid.Row="1" Name="_txtId" VerticalAlignment="Center"  
                          HorizontalAlignment="Left" Width="180" Text="{Binding Path=Id}" IsReadOnly="True"></custom:ByTTextBox>

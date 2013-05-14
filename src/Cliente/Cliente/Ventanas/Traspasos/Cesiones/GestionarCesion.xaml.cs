@@ -820,7 +820,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
                 if (this._presentador.VerificarCambioInteresado("Cedente"))
                 {
-                    this._btnConsultarPoderCedente.IsEnabled = false;
+                    this._btnConsultarPoderCedente.IsEnabled = true;
                 }
                 else
                 {
@@ -840,8 +840,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
                 if (this._presentador.VerificarCambioPoder("Cedente"))
                 {
-                    this._btnConsultarApoderadoCedente.IsEnabled = false;
-                    this._btnConsultarCedente.IsEnabled = false;
+                    this._btnConsultarApoderadoCedente.IsEnabled = true;
+                    this._btnConsultarCedente.IsEnabled = true;
                 }
                 else
                 {
@@ -860,7 +860,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
                 if (this._presentador.VerificarCambioAgente("Cedente"))
                 {
-                    this._btnConsultarPoderCedente.IsEnabled = false;
+                    this._btnConsultarPoderCedente.IsEnabled = true;
                 }
                 else
                 {
@@ -913,6 +913,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             GestionarVisibilidadDatosDePoderCedente(Visibility.Visible);
 
             GestionarVisibilidadDatosDePoderCesionario(Visibility.Visible);
+
+           // this._presentador.CambiarCedente();
         }
 
         private void _txtNombreApoderadoCedente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -975,6 +977,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             GestionarVisibilidadDatosDeApoderadoCesionario(Visibility.Visible);
 
             GestionarVisibilidadDatosDePoderCesionario(Visibility.Visible);
+
+            //this._presentador.ConsultarPoderesCedente();
         }
 
         private void _txtCedenteFiltrar_GotFocus(object sender, RoutedEventArgs e)
@@ -1077,7 +1081,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
                 if (this._presentador.VerificarCambioInteresado("Cesionario"))
                 {
-                    this._btnConsultarPoderCesionario.IsEnabled = false;
+                    this._btnConsultarPoderCesionario.IsEnabled = true;
                 }
                 else
                 {
@@ -1095,7 +1099,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
                 if (this._presentador.VerificarCambioAgente("Cesionario"))
                 {
-                    this._btnConsultarPoderCesionario.IsEnabled = false;
+                    this._btnConsultarPoderCesionario.IsEnabled = true;
                 }
                 else
                 {
@@ -1113,8 +1117,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
                 if (this._presentador.VerificarCambioPoder("Cesionario"))
                 {
-                    this._btnConsultarApoderadoCesionario.IsEnabled = false;
-                    this._btnConsultarCesionario.IsEnabled = false;
+                    this._btnConsultarApoderadoCesionario.IsEnabled = true;
+                    this._btnConsultarCesionario.IsEnabled = true;
                 }
                 else
                 {

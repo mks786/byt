@@ -86,6 +86,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._chkBoletines.IsChecked = value; }
         }
 
+
         #endregion
 
         #region Asociado
@@ -667,5 +668,42 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         }
 
 
+
+        #region TYR
+
+
+
+        public string NumeroCodigoRegistro
+        {
+            get { return this._txtRegistroTYR.Text; }
+            set { this._txtRegistroTYR.Text = value; }
+        }
+        
+        
+        public bool TYREstaSeleccionado
+        {
+            get { return this._chkTYR.IsChecked.Value; }
+            set { this._chkTYR.IsChecked = value; }
+        }
+
+        
+
+        
+
+        public string FechaRegistro
+        {
+            get { return this._dpkFechaTYR.Text; }
+            set { this._dpkFechaTYR.Text = value; }
+        }
+
+        public void _chkTYR_Click(object sender, RoutedEventArgs e)
+        {
+            if (this._chkTYR.IsChecked.Value)
+                this._TYR.Visibility = Visibility.Visible;
+            else
+                this._TYR.Visibility = Visibility.Collapsed;
+        }
+
+        #endregion
     }
 }

@@ -925,6 +925,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
 
+        public void BorrarLista()
+        {
+            ComboBox lista = new ComboBox();
+            lista = this._cbxDetalleDatos;
+            //lista.ItemsSource = null;
+            //lista.Items.Clear();
+            //lista.Items.Clear();
+            //lista.DataContext = null;
+
+           // ((ComboBox)this._cbxDetalleDatos).ItemsSource = null;
+           //// this._cbxDetalleDatos.Items.Clear();
+           // this._cbxDetalleDatos.DataContext = null;
+
+            this._cbxDetalleDatos.SelectedItem = null;
+        }
+
+
         private void mostrarLstAsociadoSolicitud()
         {
             this._lstAsociadosSolicitud.ScrollIntoView(this.AsociadoSolicitud);
@@ -1022,7 +1039,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public void ocultarLstPoderSolicutud()
         {
-            this._presentador.CambiarPoderSolicitud();
+            //this._presentador.CambiarPoderSolicitud();
             this._lstPoderesSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtPoderSolicitud.Visibility = System.Windows.Visibility.Visible;
         }
@@ -1302,7 +1319,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _lstPoderesSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            this._presentador.CambiarCorresponsalSolicitud();
+            //this._presentador.CambiarCorresponsalSolicitud();
+            this._presentador.CambiarPoderSolicitud();
             ocultarLstPoderSolicutud();
             ocultarLstPoderDatos();
         }

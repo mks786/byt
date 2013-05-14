@@ -34,7 +34,8 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 string filtro = "";
                 string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerPatente);
 
-                if ((null != Patente) && (Patente.Id != 0))
+                //if ((null != Patente) && (Patente.Id != 0))
+                if ((null != Patente) && (Patente.Id != int.MinValue))
                 {
                     filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteId, Patente.Id);
                     variosFiltros = true;
@@ -42,13 +43,13 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                 if ((null != Patente) && (Patente.LocalidadPatente != null) && (!Patente.LocalidadPatente.Equals(string.Empty)))
                 {
-                    if (!Patente.LocalidadPatente.Equals("N"))
-                    {
+                    //if (!Patente.LocalidadPatente.Equals("N"))
+                    //{
                         if (variosFiltros)
                             filtro += " and ";
                         filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteLocalidad, Patente.LocalidadPatente);
                         variosFiltros = true;
-                    }
+                    //}
                 }
 
                 if (!string.IsNullOrEmpty(Patente.Descripcion))
@@ -176,6 +177,26 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 }
 
 
+                #region TYR
+
+                if ((null != Patente.CodigoRegistro) && (!Patente.CodigoRegistro.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteRegistro, Patente.CodigoRegistro);
+                    variosFiltros = true;
+                }
+
+                if ((null != Patente.FechaRegistro) && (!Patente.FechaRegistro.Equals(DateTime.MinValue)))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    string fecha = String.Format("{0:dd/MM/yy}", Patente.FechaRegistro);
+                    //string fecha2 = String.Format("{0:dd/MM/yy}", Patente.FechaPublicacion.Value.AddDays(1));
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteFechaRegistro, fecha);
+                }
+
+                #endregion
 
 
                 #region Filtro de Marca Internacional
@@ -229,10 +250,10 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
 
                 //Validacion que se realiza cuando el codigo de la Patente = 0
-                if ((filtro.Equals(String.Empty) || filtro.Equals("")) && (Patente.Id == 0))
-                {
-                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteId, Patente.Id);
-                }
+                //if ((filtro.Equals(String.Empty) || filtro.Equals("")) && (Patente.Id == 0))
+                //{
+                //    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteId, Patente.Id);
+                //}
 
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 Patentes = query.List<Patente>();

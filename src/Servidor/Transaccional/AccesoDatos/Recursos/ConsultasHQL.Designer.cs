@@ -1546,6 +1546,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a p.FechaRegistro = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerPatenteFechaRegistro {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPatenteFechaRegistro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a p.Id = {0}.
         /// </summary>
         public static string FiltroObtenerPatenteId {
@@ -1641,6 +1650,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerPatenteReferenciaInteresadoInternacional {
             get {
                 return ResourceManager.GetString("FiltroObtenerPatenteReferenciaInteresadoInternacional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a upper(p.CodigoRegistro) like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroObtenerPatenteRegistro {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPatenteRegistro", resourceCulture);
             }
         }
         

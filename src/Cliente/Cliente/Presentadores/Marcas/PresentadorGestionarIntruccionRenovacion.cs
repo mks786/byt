@@ -173,6 +173,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         public bool Aceptar()
         {
             bool exitoso = false;
+            Carta carta = null;
+            bool flag = false; // Bandera para indicar si la carta existe
             try
             {
                 #region trace
@@ -190,9 +192,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 //Agregar o modificar datos
                 else
                 {
-                    Carta carta = new Carta(int.Parse(this._ventana.IdCorrespondencia));
+                    if((null != this._ventana.IdCorrespondencia) && (!this._ventana.IdCorrespondencia.Equals("")))
+                        carta = new Carta(int.Parse(this._ventana.IdCorrespondencia));
 
-                    if (this._cartaServicios.VerificarExistencia(carta))
+                    if (null != carta)
+                        flag = this._cartaServicios.VerificarExistencia(carta);
+
+                    if(flag)
+                    //if (this._cartaServicios.VerificarExistencia(carta))
                     {
                         InstruccionDeRenovacion instruccion = (InstruccionDeRenovacion)this._ventana.InstruccionDeRenovacion;
 
@@ -205,7 +212,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     }
                     else
                     {
-                        this._ventana.Alerta();
+                        InstruccionDeRenovacion instruccion = (InstruccionDeRenovacion)this._ventana.InstruccionDeRenovacion;
+                        exitoso = this._instruccionDeRenovacionServicios.InsertarOModificar(instruccion, UsuarioLogeado.Hash);
+                        if (this._nuevaBusqueda)
+                            ((InstruccionDeRenovacion)this._ventana.InstruccionDeRenovacion).Marca.InstruccionesDeRenovacion.Add(instruccion);
+                        //this._ventana.Alerta();
                     }
                 }
 

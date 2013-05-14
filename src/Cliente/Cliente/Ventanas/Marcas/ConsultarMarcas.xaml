@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       mc:Ignorable="d" 
-      d:DesignHeight="1518" d:DesignWidth="800"
+      d:DesignHeight="1918" d:DesignWidth="800"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
       xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
       xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
@@ -745,8 +745,14 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Servicio.Descripcion}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Servicio.Descripcion" Content="{x:Static recurso:Etiquetas.lsvSituacion}"/>
                         </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Id}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Asociado.Id" Content="{x:Static recurso:Etiquetas.lsvCodigoAsociado}"/>
+                        </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Nombre}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Asociado.Nombre" Content="{x:Static recurso:Etiquetas.lsvAsociado}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Interesado.Id}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Interesado.Id" Content="{x:Static recurso:Etiquetas.lsvCodigoInteresado}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Interesado.Nombre}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Interesado.Nombre" Content="{x:Static recurso:Etiquetas.lsvInteresado}"/>
@@ -771,6 +777,40 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Internacional.Id}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Internacional.Id" Content="{x:Static recurso:Etiquetas.lsvClaseInternacional}"/>
                         </GridViewColumn>
+
+                        <GridViewColumn Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaRenovacion" Content="{x:Static recurso:Etiquetas.lsvFechaRenovacion}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <Binding Path="FechaRenovacion" StringFormat="{}{0:dd/MM/yyyy}"/>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaRegistro" Content="{x:Static recurso:Etiquetas.lsvFechaRegistro}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <Binding Path="FechaRegistro" StringFormat="{}{0:dd/MM/yyyy}"/>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoMarcaInternacional}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="CodigoMarcaInternacional" Content="{x:Static recurso:Etiquetas.lsvCodigoInternacional}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=CorrelativoExpediente}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="CorrelativoExpediente" Content="{x:Static recurso:Etiquetas.lsvCorrelativoExpediente}"/>
+                        </GridViewColumn>
+
                     </GridView>
                 </ListView.View>
             </ListView>

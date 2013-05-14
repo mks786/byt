@@ -475,6 +475,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
 
                 this._ventana.Interesados = interesados;
                 this._ventana.Interesado = ((Patente)this._ventana.Patente).Interesado;
+
+                Idioma idiomaAux = ((Asociado)this._ventana.Asociado).Idioma;
+                IList<Idioma> listaIdiomas = (IList<Idioma>)this._ventana.Idiomas;
+                this._ventana.Idioma = this.BuscarIdioma(listaIdiomas, idiomaAux);
+
                 retorno = true;
             }
 
@@ -589,6 +594,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             retorno.DomicilioAsociado = ((Asociado)this._ventana.Asociado) != null ?
                 ((Asociado)this._ventana.Asociado).Domicilio : string.Empty;
 
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("es-ES");
+
             return retorno;
         }
 
@@ -657,6 +664,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                         retorno.Add(estructura);
                     }
                 }
+
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("es-ES");
+
             }
             catch (Exception ex)
             {

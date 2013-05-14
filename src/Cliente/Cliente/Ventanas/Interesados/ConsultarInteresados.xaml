@@ -140,6 +140,11 @@
             <ListView Name="_lstResultados" ItemsSource="{Binding}" 
                       MouseDoubleClick="_lstResultados_MouseDoubleClick" SelectionMode="Single"
                       Style="{DynamicResource EstiloListView}">
+                <!--<ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </ListView.ItemContainerStyle>-->
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
@@ -147,6 +152,15 @@
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="200">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Ciudad}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Ciudad" Content="{x:Static recurso:Etiquetas.lsvCiudad}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Estado}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Estado" Content="{x:Static recurso:Etiquetas.lsvEstado}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Pais.NombreEspanol}" Width="180" >
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Pais" Content="{x:Static recurso:Etiquetas.lsvPais}"/>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>

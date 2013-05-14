@@ -58,6 +58,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             string contadorStr;
             int contador;
             int indice;
+            IList<MarcaBaseTercero> listaMarcaBaseTer = null;
 
 
             try
@@ -118,13 +119,18 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                         marcaTercero.Id = idBuscado.Receptor.ObjetoAlmacenado.Substring(0, 2) + contador.ToString();
                         marcaTercero.Anexo = 1;
                     }
-                    if (marcaTercero.Internacional.Id == 0)
-                        marcaTercero.Internacional = null;
-                    if (marcaTercero.Nacional.Id == 0)
-                        marcaTercero.Nacional = null;
+                    
+                    if (marcaTercero.Internacional != null)
+                        if (marcaTercero.Internacional.Id == 0) 
+                            marcaTercero.Internacional = null;
 
-                    IList<MarcaBaseTercero> listaMarcaBaseTer = marcaTercero.MarcasBaseTercero;
-                    marcaTercero.MarcasBaseTercero = null;
+                    if(marcaTercero.Nacional != null)
+                        if (marcaTercero.Nacional.Id == 0)
+                            marcaTercero.Nacional = null;
+
+                    if(marcaTercero.MarcasBaseTercero != null)
+                        listaMarcaBaseTer = marcaTercero.MarcasBaseTercero;
+                    //marcaTercero.MarcasBaseTercero = null;
 
                     ComandoBase<bool> comando = FabricaComandosMarcaTercero.ObtenerComandoInsertarOModificar(marcaTercero);
                     comando.Ejecutar();
@@ -132,36 +138,39 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                     if (exitoso)
                     {
-                        if (listaMarcaBaseTer.Count() != 0)
+                        if (listaMarcaBaseTer != null)
                         {
-                            ContadorFac contadorSecuencia = new ContadorFac();
-                            ComandoBase<ContadorFac> maxSecuencia =
-                                FabricaComandosContadorFac.ObtenerComandoConsultarPorId("MYP_MARCAS_BASE_TER");
-                            foreach (MarcaBaseTercero aux in listaMarcaBaseTer)
+                            if (listaMarcaBaseTer.Count() != 0)
                             {
-                                aux.MarcaTercero = marcaTercero;
-                                maxSecuencia.Ejecutar();
-                                int secuencia = maxSecuencia.Receptor.ObjetoAlmacenado.ProximoValor;
-                                secuencia++;
-                                contadorSecuencia.Id = "MYP_MARCAS_BASE_TER";
-                                contadorSecuencia.ProximoValor = secuencia;
-                                aux.Id = secuencia;
-
-                                ComandoBase<bool> comandoMTB =
-                                    FabricaComandosMarcaBaseTercero.ObtenerComandoInsertarOModificar(aux);
-                                comandoMTB.Ejecutar();
-                                exitoso = comandoMTB.Receptor.ObjetoAlmacenado;
-
-                                if ((exitoso))
+                                ContadorFac contadorSecuencia = new ContadorFac();
+                                ComandoBase<ContadorFac> maxSecuencia =
+                                    FabricaComandosContadorFac.ObtenerComandoConsultarPorId("MYP_MARCAS_BASE_TER");
+                                foreach (MarcaBaseTercero aux in listaMarcaBaseTer)
                                 {
-                                    ComandoBase<bool> comandoSec =
-                                        FabricaComandosContadorFac.ObtenerComandoInsertarOModificar(contadorSecuencia);
-                                    comandoSec.Ejecutar();
+                                    aux.MarcaTercero = marcaTercero;
+                                    maxSecuencia.Ejecutar();
+                                    int secuencia = maxSecuencia.Receptor.ObjetoAlmacenado.ProximoValor;
+                                    secuencia++;
+                                    contadorSecuencia.Id = "MYP_MARCAS_BASE_TER";
+                                    contadorSecuencia.ProximoValor = secuencia;
+                                    aux.Id = secuencia;
+
+                                    ComandoBase<bool> comandoMTB =
+                                        FabricaComandosMarcaBaseTercero.ObtenerComandoInsertarOModificar(aux);
+                                    comandoMTB.Ejecutar();
+                                    exitoso = comandoMTB.Receptor.ObjetoAlmacenado;
+
+                                    if ((exitoso))
+                                    {
+                                        ComandoBase<bool> comandoSec =
+                                            FabricaComandosContadorFac.ObtenerComandoInsertarOModificar(contadorSecuencia);
+                                        comandoSec.Ejecutar();
+                                    }
+
                                 }
 
+
                             }
-
-
                         }
                     }
 

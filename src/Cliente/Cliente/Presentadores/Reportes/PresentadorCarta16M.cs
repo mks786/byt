@@ -473,6 +473,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
 
                 this._ventana.Interesados = interesados;
                 this._ventana.Interesado = ((Marca)this._ventana.Marca).Interesado;
+
+                Idioma idiomaAux = ((Asociado)this._ventana.Asociado).Idioma;
+                IList<Idioma> listaIdiomas = (IList<Idioma>)this._ventana.Idiomas;
+                this._ventana.Idioma = this.BuscarIdioma(listaIdiomas, idiomaAux);
                 retorno = true;
             }
 
@@ -591,6 +595,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             retorno.DomicilioAsociado = ((Asociado)this._ventana.Asociado) != null ?
                 ((Asociado)this._ventana.Asociado).Domicilio : string.Empty;
 
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("es-ES");
+
             return retorno;
         }
 
@@ -655,12 +661,31 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
 
                         estructura.Referencia = marca.PrimeraReferencia;
 
-                        estructura.DomicilioAsociado = marca.Asociado != null ?
-                            marca.Asociado.Domicilio : string.Empty;
+                        //estructura.DomicilioAsociado = marca.Asociado != null ?
+                        //    marca.Asociado.Domicilio : string.Empty;
+
+                        if ((Asociado)this._ventana.Asociado != null)
+                        {
+                            Asociado asociadoAux = (Asociado)this._ventana.Asociado;
+                            if ((Pais)asociadoAux.Pais != null)
+                            {
+                                if ((((Idioma)this._ventana.Idioma).Id.Equals("ES")))
+                                    estructura.DomicilioAsociado = asociadoAux.Domicilio + "\n" + ((Pais)asociadoAux.Pais).NombreEspanol;
+                                else
+                                    estructura.DomicilioAsociado = asociadoAux.Domicilio + "\n" + ((Pais)asociadoAux.Pais).NombreIngles;
+                            }
+                            else
+                            {
+                                estructura.DomicilioAsociado = asociadoAux.Domicilio;
+                            }
+                        }
 
                         retorno.Add(estructura);
                     }
                 }
+
+
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("es-ES");
             }
             catch (Exception ex)
             {

@@ -250,8 +250,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 _filtroValido = 0;
 
                 Marca MarcaAuxiliar = new Marca();
+                MarcaAuxiliar.Id = int.MinValue;
                 IList<Marca> marcasDesinfladas = new List<Marca>();
-                MarcaAuxiliar = ObtenerMarcaFiltro();
+                 MarcaAuxiliar = ObtenerMarcaFiltro();
 
                 if (_filtroValido >= 2)
                 {
@@ -272,12 +273,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         if ((marca.Asociado != null) && (!string.IsNullOrEmpty(marca.Asociado.Nombre)))
                         {
                             asociadoAuxiliar.Nombre = marca.Asociado.Nombre;
+                            asociadoAuxiliar.Id = marca.Asociado.Id;
                             MarcaAuxiliar.Asociado = asociadoAuxiliar;
                         }
 
                         if ((marca.Interesado != null) && (!string.IsNullOrEmpty(marca.Interesado.Nombre)))
                         {
                             interesadoAuxiliar.Nombre = marca.Interesado.Nombre;
+                            interesadoAuxiliar.Id = marca.Interesado.Id;
                             MarcaAuxiliar.Interesado = interesadoAuxiliar;
                         }
 
@@ -290,6 +293,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         MarcaAuxiliar.Nacional = marca.Nacional;
                         MarcaAuxiliar.Internacional = marca.Internacional;
                         MarcaAuxiliar.CodigoInscripcion = marca.CodigoInscripcion;
+                        //---
+                        MarcaAuxiliar.FechaInscripcion = marca.FechaInscripcion;
+                        MarcaAuxiliar.CodigoMarcaInternacional = marca.CodigoMarcaInternacional;
+                        MarcaAuxiliar.CorrelativoExpediente = marca.CorrelativoExpediente;
+                        MarcaAuxiliar.FechaRenovacion = marca.FechaRenovacion;
+                        MarcaAuxiliar.FechaRegistro = marca.FechaRegistro;
+                        //--
 
                         MarcaAuxiliar.FechaPublicacion = marca.FechaPublicacion != null ? marca.FechaPublicacion : null;
 
@@ -608,7 +618,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     marcaAuxiliar.Id = int.Parse(this._ventana.Id);
                 }
                 else
-                    marcaAuxiliar.Id = 0;
+                    //marcaAuxiliar.Id = 0;
+                    marcaAuxiliar.Id = int.MinValue;
 
                 if ((null != this._ventana.Asociado) && (((Asociado)this._ventana.Asociado).Id != int.MinValue))
                 {
@@ -711,6 +722,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 {
                     _filtroValido = 2;
                 }
+                else
+                {
+                    _filtroValido = 2;
+                }
 
                 if (marcaAuxiliar.LocalidadMarca.Equals("I"))
                 {
@@ -747,7 +762,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         _filtroValido = 2;
                         marcaAuxiliar.ReferenciaInteresadoInternacional = this._ventana.ReferenciaInteresado;
                     }
+                    else
+                    {
+                        _filtroValido = 2;
+                    }
+
                 }
+
+                
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

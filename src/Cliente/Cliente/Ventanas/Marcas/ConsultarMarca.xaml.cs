@@ -1958,7 +1958,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void ocultarLstPoderSolicutud()
         {
-            this._presentador.CambiarPoderSolicitud();
+            //this._presentador.CambiarPoderSolicitud();
             this._lstPoderesSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtPoderSolicitud.Visibility = System.Windows.Visibility.Visible;
         }
@@ -2161,7 +2161,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void ocultarLstPoderDatos()
         {
-            this._presentador.CambiarPoderDatos();
+            //this._presentador.CambiarPoderDatos();
             this._lstPoderesDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._txtPoderDatos.Visibility = System.Windows.Visibility.Visible;
         }

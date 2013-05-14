@@ -1047,4 +1047,12 @@
     <value>m.FechaInscripcion = '{0}'</value>
     <comment>Obtiene las marcas cuya fecha de inscripcion sea la fecha dada</comment>
   </data>
+  <data name="FiltroObtenerPatenteFechaRegistro" xml:space="preserve">
+    <value>p.FechaRegistro = '{0}'</value>
+    <comment>Filtra una patente por la Fecha de Registro</comment>
+  </data>
+  <data name="FiltroObtenerPatenteRegistro" xml:space="preserve">
+    <value>upper(p.CodigoRegistro) like '%{0}%'</value>
+    <comment>Filtra una patente por el Codigo de Registro</comment>
+  </data>
 </root>
