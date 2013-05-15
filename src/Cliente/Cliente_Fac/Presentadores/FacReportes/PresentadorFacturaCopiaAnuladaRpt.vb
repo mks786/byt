@@ -955,12 +955,12 @@ Namespace Presentadores.FacReportes
                     If tipo = "N" Then
                         structura.Servicio = _FacFacturaDetalle(i).XDetalle
                         structura.Npub = _FacFacturaDetalle(i).Pu
-                        structura.Ndesc = _FacFacturaDetalle(i).MDescuento
+                        structura.Ndesc = _FacFacturaDetalle(i).Descuento
                         structura.MMonto = _FacFacturaDetalle(i).BDetalle
                     Else
                         structura.Servicio = _FacFacturaDetalle(i).XDetalleEs
                         structura.MMonto = _FacFacturaDetalle(i).BDetalleBf
-                        structura.Ndesc = _FacFacturaDetalle(i).MDescuento
+                        structura.Ndesc = _FacFacturaDetalle(i).Descuento
 
                         If _FacFacturaDetalle(i).NCantidad <> 0 Then
                             Dim w_cuadre As Double

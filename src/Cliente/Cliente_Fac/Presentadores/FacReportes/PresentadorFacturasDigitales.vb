@@ -591,7 +591,7 @@ Namespace Presentadores.FacReportes
                     structura.Id = id
                     If Me._ventana.TipoMoneda = "Moneda Original" Then
                         structura.Npub = SetFormatoDouble2(_FacFacturaDetalle(i).Pu)
-                        structura.Ndesc = SetFormatoDouble2(_FacFacturaDetalle(i).MDescuento)
+                        structura.Ndesc = SetFormatoDouble2(_FacFacturaDetalle(i).Descuento)
                         structura.MMonto = SetFormatoDouble2(_FacFacturaDetalle(i).BDetalle)
                     End If
                     If Me._ventana.TipoMoneda = "Bolivar Fuerte" Then
@@ -599,7 +599,7 @@ Namespace Presentadores.FacReportes
 
                         End If
                         structura.MMonto = SetFormatoDouble2(_FacFacturaDetalle(i).BDetalleBf)
-                        structura.Ndesc = SetFormatoDouble2(_FacFacturaDetalle(i).MDescuento)
+                        structura.Ndesc = SetFormatoDouble2(_FacFacturaDetalle(i).Descuento)
                         If _FacFacturaDetalle(i).NCantidad <> 0 Then
                             Dim w_cuadre As Double
                             w_cuadre = _FacFacturaDetalle(i).PuBf / _FacFacturaDetalle(i).NCantidad

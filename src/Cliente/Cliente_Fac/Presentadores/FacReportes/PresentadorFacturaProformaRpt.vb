@@ -724,12 +724,12 @@ Namespace Presentadores.FacReportes
                     If tipo = "N" Then
                         structura.Servicio = _FacFacturaProformaDetalle(i).XDetalle
                         structura.Npub = SetFormatoDouble2(_FacFacturaProformaDetalle(i).Pu)
-                        structura.Ndesc = SetFormatoDouble2(_FacFacturaProformaDetalle(i).MDescuento)
+                        structura.Ndesc = SetFormatoDouble2(_FacFacturaProformaDetalle(i).Descuento)
                         structura.MMonto = SetFormatoDouble2(_FacFacturaProformaDetalle(i).BDetalle)
                     Else
                         structura.Servicio = _FacFacturaProformaDetalle(i).XDetalleEs
                         structura.MMonto = SetFormatoDouble2(_FacFacturaProformaDetalle(i).BDetalleBf)
-                        structura.Ndesc = SetFormatoDouble2(_FacFacturaProformaDetalle(i).MDescuento)
+                        structura.Ndesc = SetFormatoDouble2(_FacFacturaProformaDetalle(i).Descuento)
 
                         If _FacFacturaProformaDetalle(i).NCantidad <> 0 Then
                             Dim w_cuadre As Double
