@@ -725,11 +725,6 @@ Namespace Presentadores.FacFacturas
                         FacFactura.CodigoDepartamento = UsuarioLogeado.Departamento.Id
                     End If
 
-                    'para internacional
-                    If FacFactura.Local = "I" Then
-                        internacional(FacFactura.Proforma.Id, FacFactura.Id)
-                    End If
-                    'fin para internacional
 
                     If FacFactura.Status = 1 Then
                         '-para los contadores
@@ -757,6 +752,12 @@ Namespace Presentadores.FacFacturas
                         End If
                         '- fin para los contadores
                         FacFactura.Status = 2
+
+                        'para internacional
+                        If FacFactura.Local = "I" Then
+                            internacional(FacFactura.Proforma.Id, FacFactura.Id)
+                        End If
+                        'fin para internacional
                     End If
 
                     If Me._FacFacturaServicios.InsertarOModificar(FacFactura, UsuarioLogeado.Hash) Then
