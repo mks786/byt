@@ -247,7 +247,12 @@ Namespace Presentadores.FacFacturaProformas
                 End If
 
                 'If (filtroValido = True) Then
-                FacFacturaProformaAuxiliar.Inicial = UsuarioLogeado.Iniciales
+
+                If FacFacturaProformaAuxiliar.Id Is Nothing Then
+                    'FacFacturaProformaAuxiliar.CodigoDepartamento = UsuarioLogeado.Departamento.Id
+                    FacFacturaProformaAuxiliar.Inicial = UsuarioLogeado.Iniciales
+                End If
+
                 Dim FacFacturaProformas As IList(Of FacFacturaProforma)
                 FacFacturaProformas = Me._FacFacturaProformaServicios.ObtenerFacFacturaProformasFiltro(FacFacturaProformaAuxiliar)
                 Me._ventana.Resultados = Nothing

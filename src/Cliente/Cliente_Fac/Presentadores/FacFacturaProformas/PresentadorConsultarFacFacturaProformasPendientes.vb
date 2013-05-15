@@ -248,7 +248,11 @@ Namespace Presentadores.FacFacturaProformas
 
                 'If (filtroValido = True) Then
 
-                FacFacturaProformaAuxiliar.Inicial = UsuarioLogeado.Iniciales
+                If FacFacturaProformaAuxiliar.Id Is Nothing Then
+                    'FacFacturaProformaAuxiliar.CodigoDepartamento = UsuarioLogeado.Departamento.Id
+                    FacFacturaProformaAuxiliar.Inicial = UsuarioLogeado.Iniciales
+                End If
+
                 FacFacturaProformaAuxiliar.Status = 1 ' esto es para el campo auto porque es in
 
                 Dim FacFacturaProformas As IList(Of FacFacturaProforma)

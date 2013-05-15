@@ -5,12 +5,14 @@ Imports Diginsoft.Bolet.Cliente.Fac.Contratos.FacFacturaProformas
 Imports Diginsoft.Bolet.Cliente.Fac.Presentadores.FacFacturaProformas
 Imports Diginsoft.Bolet.Cliente.Fac.Contratos
 Imports Trascend.Bolet.ControlesByT
+Imports Trascend.Bolet.Cliente.Ayuda
 Namespace Ventanas.FacFacturaProformas
     Partial Public Class ConsultarFacFacturaProforma
         Inherits Page
         Implements IConsultarFacFacturaProforma
 
-
+        Private _CurSortCol As GridViewColumnHeader = Nothing
+        Private _CurAdorner As SortAdorner = Nothing
         Private _presentador As PresentadorConsultarFacFacturaProforma
         Private _cargada As Boolean
 
@@ -150,7 +152,7 @@ Namespace Ventanas.FacFacturaProformas
         End Sub
 
         Private Sub _btnRegresar_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
-            Me._presentador.Regresar2()
+            Me._presentador.regresar2()
         End Sub
 
         Private Sub _btnVerCarta_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
@@ -2023,5 +2025,35 @@ Namespace Ventanas.FacFacturaProformas
         End Sub
         Public Shared Mostrar_Detalle_Servicio As New RoutedCommand("Mostrar_Detalle_Servicio", GetType(ConsultarFacFacturaProforma))
 
+        Public Property CurAdorner As Trascend.Bolet.Cliente.Ayuda.SortAdorner Implements Contratos.FacFacturaProformas.IConsultarFacFacturaProforma.CurAdorner
+            Get
+                Return _CurAdorner
+            End Get
+            Set(ByVal value As SortAdorner)
+                _CurAdorner = value
+            End Set
+        End Property
+
+        Public Property CurSortCol As System.Windows.Controls.GridViewColumnHeader Implements Contratos.FacFacturaProformas.IConsultarFacFacturaProforma.CurSortCol
+            Get
+                Return _CurSortCol
+            End Get
+            Set(ByVal value As GridViewColumnHeader)
+                _CurSortCol = value
+            End Set
+        End Property
+
+        Private Sub _Ordenar_asociado_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
+            Me._presentador.OrdenarColumna_asociado(TryCast(sender, GridViewColumnHeader))
+        End Sub
+
+        Public Property ListaResultados As System.Windows.Controls.ListView Implements Contratos.FacFacturaProformas.IConsultarFacFacturaProforma.ListaResultados
+            Get
+                Return Me._lstAsociados
+            End Get
+            Set(ByVal value As ListView)
+                Me._lstAsociados = value
+            End Set
+        End Property
     End Class
 End Namespace

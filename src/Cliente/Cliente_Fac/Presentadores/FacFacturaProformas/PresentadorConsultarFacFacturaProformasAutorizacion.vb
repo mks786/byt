@@ -306,7 +306,7 @@ Namespace Presentadores.FacFacturaProformas
             'End If
         End Sub
         Public Sub lp_verifica(ByVal proforma As FacFacturaProforma, ByRef r_val As Integer)
-            Dim w_calculo_1, w_calculo_2, w_resta As Integer
+            Dim w_calculo_1, w_calculo_2, w_resta As Double
             r_val = 0
 
             Dim proformadetalleaux As New FacFactuDetaProforma
@@ -359,9 +359,9 @@ Namespace Presentadores.FacFacturaProformas
                 'w_calculo_1 = (mtbexc.fac_facturas_pro * btasa.fac_tasas)
                 w_calculo_1 = proforma.MTbimp * tasas(0).Tasabf
                 'w_calculo_1 = w_calculo_1[round,2]
-                w_calculo_1 = FormatNumber(w_calculo_1, 2)
+                w_calculo_1 = w_calculo_1
                 'w_calculo_2 = mtbexc_bf.fac_facturas_pro[round,2]
-                w_calculo_2 = FormatNumber(proforma.MTbimpBf, 2)
+                w_calculo_2 = proforma.MTbimpBf
                 w_resta = w_calculo_1 - w_calculo_2
                 If w_resta > 0.05 Then
                     r_val = 2
@@ -372,9 +372,9 @@ Namespace Presentadores.FacFacturaProformas
                 'w_calculo_1 = (mtbexc.fac_facturas_pro * btasa.fac_tasas)
                 w_calculo_1 = proforma.Mtbexc * tasas(0).Tasabf
                 'w_calculo_1 = w_calculo_1[round,2]
-                w_calculo_1 = FormatNumber(w_calculo_1, 2)
+                w_calculo_1 = w_calculo_1
                 'w_calculo_2 = mtbexc_bf.fac_facturas_pro[round,2]
-                w_calculo_2 = FormatNumber(proforma.MTbexcBf, 2)
+                w_calculo_2 = proforma.MTbexcBf
                 w_resta = w_calculo_1 - w_calculo_2
                 If w_resta > 0.05 Then
                     r_val = 2
@@ -386,9 +386,9 @@ Namespace Presentadores.FacFacturaProformas
                     'w_calculo_1 = (mtbexc.fac_facturas_pro * btasa.fac_tasas)
                     w_calculo_2 = proformadetalle(i).BDetalle * tasas(0).Tasabf
                     'w_calculo_1 = w_calculo_1[round,2]
-                    w_calculo_2 = FormatNumber(w_calculo_2, 2)
+                    w_calculo_2 = w_calculo_2
                     'w_calculo_2 = mtbexc_bf.fac_facturas_pro[round,2]
-                    w_calculo_1 = FormatNumber(proformadetalle(i).BDetalleBf, 2)
+                    w_calculo_1 = proformadetalle(i).BDetalleBf
                     w_resta = w_calculo_1 - w_calculo_2
                     If w_resta > 0.05 Then
                         r_val = 2
@@ -447,7 +447,10 @@ Namespace Presentadores.FacFacturaProformas
                     FacFacturaProformaAuxiliar.FechaFactura = FechaFacFacturaProforma
                 End If
 
-                FacFacturaProformaAuxiliar.CodigoDepartamento = UsuarioLogeado.Departamento.Id
+                If FacFacturaProformaAuxiliar.Id Is Nothing Then
+                    FacFacturaProformaAuxiliar.CodigoDepartamento = UsuarioLogeado.Departamento.Id
+                End If
+
                 FacFacturaProformaAuxiliar.Status = 1 ' esto es para el campo auto porque es in
                 'If (filtroValido = True) Then
                 'FacFacturaProformaAuxiliar.Inicial = UsuarioLogeado.Iniciales

@@ -18,6 +18,7 @@ Imports Trascend.Bolet.ObjetosComunes.ContratosServicios
 Imports Trascend.Bolet.Cliente.Presentadores
 Imports Trascend.Bolet.Cliente.Ventanas.Principales
 Imports Diginsoft.Bolet.Cliente.Fac.Ventanas.FacGestiones
+Imports Trascend.Bolet.Cliente.Ayuda
 
 Namespace Presentadores.FacFacturaProformas
     Class PresentadorAgregarFacFacturaProforma
@@ -527,6 +528,43 @@ Namespace Presentadores.FacFacturaProformas
             observacion = observacion & "; " & caso
             Return observacion
         End Function
+
+        ''' <summary>
+        ''' Método que ordena una columna
+        ''' </summary>
+        Public Sub OrdenarColumna_asociado(ByVal column As GridViewColumnHeader)
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+
+            Dim field As [String] = TryCast(column.Tag, [String])
+
+            If Me._ventana.CurSortCol IsNot Nothing Then
+                AdornerLayer.GetAdornerLayer(Me._ventana.CurSortCol).Remove(Me._ventana.CurAdorner)
+                Me._ventana.ListaResultados.Items.SortDescriptions.Clear()
+            End If
+
+            Dim newDir As ListSortDirection = ListSortDirection.Ascending
+            'If Me._ventana.CurSortCol = column AndAlso Me._ventana.CurAdorner.Direction = newDir Then
+            If Me._ventana.CurAdorner IsNot Nothing Then
+                If Me._ventana.CurSortCol.Equals(column) AndAlso Me._ventana.CurAdorner.Direction = newDir Then
+                    newDir = ListSortDirection.Descending
+                End If
+            End If
+
+            Me._ventana.CurSortCol = column
+            Me._ventana.CurAdorner = New SortAdorner(Me._ventana.CurSortCol, newDir)
+            AdornerLayer.GetAdornerLayer(Me._ventana.CurSortCol).Add(Me._ventana.CurAdorner)
+            Me._ventana.ListaResultados.Items.SortDescriptions.Add(New SortDescription(field, newDir))
+
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+        End Sub
 
         Public Sub BuscarAsociado2()
             Mouse.OverrideCursor = Cursors.Wait

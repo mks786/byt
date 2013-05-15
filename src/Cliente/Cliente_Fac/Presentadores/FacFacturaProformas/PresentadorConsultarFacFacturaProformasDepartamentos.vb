@@ -248,7 +248,9 @@ Namespace Presentadores.FacFacturaProformas
                 End If
 
                 'If (filtroValido = True) Then
-                FacFacturaProformaAuxiliar.CodigoDepartamento = UsuarioLogeado.Departamento.Id
+                If FacFacturaProformaAuxiliar.Id Is Nothing Then
+                    FacFacturaProformaAuxiliar.CodigoDepartamento = UsuarioLogeado.Departamento.Id
+                End If
                 FacFacturaProformaAuxiliar.Status = 3 ' esto es para el campo auto porque es <>2
                 Dim FacFacturaProformas As IList(Of FacFacturaProforma)
                 FacFacturaProformas = Me._FacFacturaProformaServicios.ObtenerFacFacturaProformasFiltro(FacFacturaProformaAuxiliar)

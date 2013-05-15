@@ -352,7 +352,7 @@
                                             <GridViewColumnHeader  Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                                         </GridViewColumn>-->
                                             <GridViewColumn Width="75">
-                                                <GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                                <GridViewColumnHeader  Click="_Ordenar_asociado_Click"  Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <TextBlock>
@@ -364,7 +364,7 @@
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
                                             <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="350">
-                                            <GridViewColumnHeader  Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                                <GridViewColumnHeader  Click="_Ordenar_asociado_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                                         </GridViewColumn>
                                     </GridView>
                                 </ListView.View>

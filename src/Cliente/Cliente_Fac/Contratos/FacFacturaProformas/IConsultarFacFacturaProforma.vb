@@ -1,5 +1,6 @@
 ﻿Imports System.Windows.Controls
 Imports Diginsoft.Bolet.Cliente.Fac.Contratos
+Imports Trascend.Bolet.Cliente.Ayuda
 Namespace Contratos.FacFacturaProformas
     Interface IConsultarFacFacturaProforma
         Inherits IPaginaBaseFac
@@ -267,6 +268,12 @@ Namespace Contratos.FacFacturaProformas
         WriteOnly Property SaldoPendiente As Double
 
         WriteOnly Property DescripcionServicio() As String
+
+        Property CurSortCol() As GridViewColumnHeader
+
+        Property CurAdorner() As SortAdorner
+
+        Property ListaResultados() As ListView
 
         Property TextoBotonModificar() As String
         Sub Mensaje(ByVal mensaje__1 As String)

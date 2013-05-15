@@ -5,11 +5,14 @@ Imports Diginsoft.Bolet.Cliente.Fac.Contratos.FacFacturaProformas
 Imports Diginsoft.Bolet.Cliente.Fac.Presentadores.FacFacturaProformas
 Imports Diginsoft.Bolet.Cliente.Fac.Contratos
 Imports Trascend.Bolet.ControlesByT
+Imports Trascend.Bolet.Cliente.Ayuda
 Namespace Ventanas.FacFacturaProformas
     Partial Public Class AgregarFacFacturaProforma
         Inherits Page
         Implements IAgregarFacFacturaProforma
 
+        Private _CurSortCol As GridViewColumnHeader = Nothing
+        Private _CurAdorner As SortAdorner = Nothing
         Private _presentador As PresentadorAgregarFacFacturaProforma
         Private _cargada As Boolean
 
@@ -560,7 +563,7 @@ Namespace Ventanas.FacFacturaProformas
             Me._btnConsultarCarta.Visibility = System.Windows.Visibility.Visible
             Me._txtIdCarta.Visibility = System.Windows.Visibility.Visible
             'Me._txtNombreCarta.Visibility = System.Windows.Visibility.Visible
-            Me._lblIdCarta.Visibility = System.Windows.Visibility.Visible            
+            Me._lblIdCarta.Visibility = System.Windows.Visibility.Visible
             Me._dpkFechaCarta.Visibility = System.Windows.Visibility.Visible
             'Me._lblNombreCarta.Visibility = System.Windows.Visibility.Visible
 
@@ -579,7 +582,7 @@ Namespace Ventanas.FacFacturaProformas
             Me._btnConsultarCarta.Visibility = System.Windows.Visibility.Collapsed
             Me._txtIdCarta.Visibility = System.Windows.Visibility.Collapsed
             ' Me._txtNombreCarta.Visibility = System.Windows.Visibility.Collapsed
-            Me._txtCarta.Visibility = System.Windows.Visibility.Visible            
+            Me._txtCarta.Visibility = System.Windows.Visibility.Visible
             Me.labelcarta.Visibility = System.Windows.Visibility.Visible
             Me.titulocarta2.Visibility = System.Windows.Visibility.Visible
             Me._btnVerCarta.Visibility = System.Windows.Visibility.Visible
@@ -881,7 +884,7 @@ Namespace Ventanas.FacFacturaProformas
                 Me._GbMultiplesMarcas.Visibility = Windows.Visibility.Collapsed
                 Me._GbMultiplesPatentes.Visibility = Windows.Visibility.Collapsed
                 Me._GbAnualidades.Visibility = Windows.Visibility.Collapsed
-                Me._gridDatos.Visibility = Windows.Visibility.Collapsed                
+                Me._gridDatos.Visibility = Windows.Visibility.Collapsed
                 _Wp_Btn.Visibility = Windows.Visibility.Collapsed
                 Me._Wp_Salir.Visibility = Windows.Visibility.Visible
                 Me._presentador.VerTipoMarcaPatente()
@@ -1540,7 +1543,7 @@ Namespace Ventanas.FacFacturaProformas
 
         Public Property pu As Double Implements Contratos.FacFacturaProformas.IAgregarFacFacturaProforma.Pu
             Get
-                Return getformatodouble(Me._txtPu.Text)
+                Return GetFormatoDouble(Me._txtPu.Text)
             End Get
             Set(ByVal value As Double)
                 Me._txtPu.Text = SetFormatoDouble(value)
@@ -1821,7 +1824,7 @@ Namespace Ventanas.FacFacturaProformas
             Get
                 Return _txtSolicitud.Text
             End Get
-            Set(value As String)
+            Set(ByVal value As String)
                 _txtSolicitud.Text = value
             End Set
         End Property
@@ -1830,7 +1833,7 @@ Namespace Ventanas.FacFacturaProformas
             Get
                 Return _txtRegistro.Text
             End Get
-            Set(value As String)
+            Set(ByVal value As String)
                 _txtRegistro.Text = value
             End Set
         End Property
@@ -1859,5 +1862,35 @@ Namespace Ventanas.FacFacturaProformas
 
         Public Shared Mostrar_Detalle_Servicio As New RoutedCommand("Mostrar_Detalle_Servicio", GetType(AgregarFacFacturaProforma))
 
+        Public Property CurAdorner As Trascend.Bolet.Cliente.Ayuda.SortAdorner Implements Contratos.FacFacturaProformas.IAgregarFacFacturaProforma.CurAdorner
+            Get
+                Return _CurAdorner
+            End Get
+            Set(ByVal value As SortAdorner)
+                _CurAdorner = value
+            End Set
+        End Property
+
+        Public Property CurSortCol As System.Windows.Controls.GridViewColumnHeader Implements Contratos.FacFacturaProformas.IAgregarFacFacturaProforma.CurSortCol
+            Get
+                Return _CurSortCol
+            End Get
+            Set(ByVal value As GridViewColumnHeader)
+                _CurSortCol = value
+            End Set
+        End Property
+
+        Private Sub _Ordenar_asociado_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
+            Me._presentador.OrdenarColumna_asociado(TryCast(sender, GridViewColumnHeader))
+        End Sub
+
+        Public Property ListaResultados As System.Windows.Controls.ListView Implements Contratos.FacFacturaProformas.IAgregarFacFacturaProforma.ListaResultados
+            Get
+                Return Me._lstAsociados
+            End Get
+            Set(ByVal value As ListView)
+                Me._lstAsociados = value
+            End Set
+        End Property
     End Class
 End Namespace

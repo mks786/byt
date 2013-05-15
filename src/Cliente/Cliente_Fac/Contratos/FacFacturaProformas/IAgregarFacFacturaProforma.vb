@@ -1,4 +1,5 @@
 ﻿Imports Diginsoft.Bolet.Cliente.Fac.Contratos
+Imports Trascend.Bolet.Cliente.Ayuda
 Namespace Contratos.FacFacturaProformas
     Interface IAgregarFacFacturaProforma
         Inherits IPaginaBaseFac
@@ -255,6 +256,12 @@ Namespace Contratos.FacFacturaProformas
         WriteOnly Property Departamento() As String
 
         WriteOnly Property DescripcionServicio() As String
+
+        Property CurSortCol() As GridViewColumnHeader
+
+        Property CurAdorner() As SortAdorner
+
+        Property ListaResultados() As ListView
 
         Sub Mensaje(ByVal mensaje__1 As String)
     End Interface
