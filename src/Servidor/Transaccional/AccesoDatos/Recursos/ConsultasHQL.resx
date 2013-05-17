@@ -925,7 +925,7 @@
     <value>p.Interesado.Id={0}</value>
   </data>
   <data name="FiltroObtenerPoderPorNumPoder" xml:space="preserve">
-    <value>p.NumPoder = '{0}'</value>
+    <value>p.NumPoder like '%{0}%'</value>
   </data>
   <data name="FiltroObtenerPoderPorObservacion" xml:space="preserve">
     <value>p.Observacion='{0}'</value>

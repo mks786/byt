@@ -326,7 +326,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCaso}"/>
                     </Label>
                     <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="1" Grid.Row="10" Name="_txtCaso" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="9" Text="{Binding Path=CasoT}"></custom:ByTTextBox>
+                         Grid.ColumnSpan="9" Text="{Binding Path=PrimeraReferencia}"></custom:ByTTextBox>
                     
                     <!--Fin Del row 10 del grid-->
 

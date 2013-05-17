@@ -789,8 +789,12 @@
                                     </TextBlock>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
+                        
                         </GridViewColumn>
-
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoRegistro}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="CodigoRegistro" Content="{x:Static recurso:Etiquetas.lsvCodigoRegistro}"/>
+                        </GridViewColumn>
+                        
                         <GridViewColumn Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaRegistro" Content="{x:Static recurso:Etiquetas.lsvFechaRegistro}"/>
                             <GridViewColumn.CellTemplate>

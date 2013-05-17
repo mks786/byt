@@ -135,7 +135,9 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
-                filtro += " order by c.Id ASC";
+                //filtro += " order by c.Id ASC";
+
+                filtro += " order by c.Id desc";
 
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 cartas = query.List<Carta>();

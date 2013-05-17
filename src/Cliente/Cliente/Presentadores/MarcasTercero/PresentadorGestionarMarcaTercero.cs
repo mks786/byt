@@ -427,6 +427,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             primerDetalle.Id = "NGN";
             tipoEstados.Insert(0, primerDetalle);
             this._ventana.Estados = tipoEstados;
+            if((null != marcaTercero.EstadoMarca) &&(!marcaTercero.EstadoMarca.Equals("")))
+                this._ventana.Estado = tipoEstados[int.Parse(marcaTercero.EstadoMarca)];
 
             IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
             Servicio primerServicio = new Servicio();
@@ -545,7 +547,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 marcaTercero.CasoT = !((ListaDatosValores)this._ventana.TipoDeCaso).Id.Equals("NGN") ? ((ListaDatosValores)this._ventana.TipoDeCaso).Valor : null;
 
             if (null != this._ventana.Estado)
+            {
                 marcaTercero.EstadoT = !((EstadoMarca)this._ventana.Estado).Id.Equals("NGN") ? ((EstadoMarca)this._ventana.Estado).Id : null;
+                marcaTercero.EstadoMarca = !((EstadoMarca)this._ventana.Estado).Id.Equals("NGN") ? ((EstadoMarca)this._ventana.Estado).Id : null;
+            }
 
 
             marcaTercero.ComentarioEsp = this._ventana.ComentarioClienteEspanol;
@@ -566,7 +571,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             //if (null != this._ventana.TipoMarcaTerceroDatos)
             //    marcaTercero.Tipo = !((ListaDatosDominio)this._ventana.TipoMarcaTerceroDatos).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoMarcaTerceroDatos).Id : null;
 
-
+           
 
 
             //if (string.IsNullOrEmpty(this._ventana.IdNacional
@@ -1863,10 +1868,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
                     if (null != ((Marca)this._ventana.MarcaFiltrada).Pais)
                         this._ventana.PaisSolicitud = ((Marca)this._ventana.MarcaFiltrada).Pais.NombreEspanol;
-                    //if (null != ((Marca)this._ventana.MarcaFiltrada).Internacional)
-                    //     this._ventana.IdInternacionalByt = ((Marca)this._ventana.MarcaFiltrada).Internacional.Descripcion;
-                    //if (null != ((Marca)this._ventana.MarcaFiltrada).Nacional)
-                    //      this._ventana.IdNacionalByt = ((Marca)this._ventana.MarcaFiltrada).Nacional.Descripcion;
+                    if (null != ((Marca)this._ventana.MarcaFiltrada).Internacional)
+                        this._ventana.IdInternacionalByt = ((Marca)this._ventana.MarcaFiltrada).Internacional.Id.ToString();
+                    if (null != ((Marca)this._ventana.MarcaFiltrada).Nacional)
+                        this._ventana.IdNacionalByt = ((Marca)this._ventana.MarcaFiltrada).Nacional.Id.ToString();
                     retorno = true;
 
                 }

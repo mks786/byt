@@ -21,6 +21,17 @@ namespace Trascend.Bolet.Servidor
             usuarioPrueba.Password = "PRUEBA";
             usuarioPrueba.Id = "PRUEBA";
             servicio.Autenticar(usuarioPrueba);
+
+            //---
+            //Marca marcaPrueba = new Marca();
+            //marcaPrueba.Id = 878217;
+            //MarcaServicios _marcaServicios = new MarcaServicios();
+            //marcaPrueba = _marcaServicios.ConsultarPorId(marcaPrueba);
+
+
+            //---
+
+
             Console.WriteLine("Se han cargado " + ConfiguracionServicios.CargarUsuarios() + " sesiones de archivo XML");
             Console.WriteLine("Configuracion cargada...");
             Console.ReadLine();

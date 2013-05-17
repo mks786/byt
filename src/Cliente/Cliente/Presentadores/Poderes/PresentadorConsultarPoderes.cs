@@ -151,16 +151,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                Mouse.OverrideCursor = Cursors.Wait;
+
                 Poder poder = ObtenerPoderDeFiltro();
 
                 if (_filtroValido)
                 {
                     poderes = _poderServicios.ObtenerPoderesFiltro(poder);
-                    
-                
+
+
                 }
                 this._ventana.Resultados = poderes;
                 this._ventana.TotalHits = poderes.Count.ToString();
+                if(poderes.Count == 0)
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -171,6 +175,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
             {
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
             }
         }
 
@@ -352,6 +360,40 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
             return retorno;
         }
 
+
+
+        /// <summary>
+        /// Metodo que cambia el texto del interesado en la interfaz
+        /// </summary>
+        /// <returns>true en caso de que el interesado haya sido valido, false en caso contrario</returns>
+        public bool CambiarInteresado()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            bool retorno = false;
+
+            if (this._ventana.Interesado != null)
+            {
+                //this._ventana.InteresadoFiltro = ((Interesado)this._ventana.Interesado).Nombre;
+                this._ventana.NombreInteresadoBuscar = ((Interesado)this._ventana.Interesado).Nombre;
+                retorno = true;
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return retorno;
+
+        }
+
+
+
+
         /// <summary>
         /// Método que limpia los campos de búsqueda
         /// </summary>
@@ -367,8 +409,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
             //this._ventana.Facultad = null;
 
             this._ventana.Boletin = ((IList<Boletin>)this._ventana.Boletines)[0];
+            this._ventana.NombreInteresadoBuscar = null;
+            this._ventana.Interesados = null;
             this._ventana.Interesado = null;
-
+            
             this._ventana.Resultados = this._poderes;
 
             //this._ventana.TotalHits = this._poderes.Count().ToString();

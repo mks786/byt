@@ -1035,6 +1035,12 @@
     <Compile Include="Ventanas\Inventores\QueryInventor.xaml.cs">
       <DependentUpon>QueryInventor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\MarcasTercero\GestionarInfoAdicionalMarcaTercero.xaml.cs">
+      <DependentUpon>GestionarInfoAdicionalMarcaTercero.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\MarcasTercero\GestionarInfoAdicionalTerceros.xaml.cs">
+      <DependentUpon>GestionarInfoAdicionalTerceros.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\TiposEmailAsociado\ConsultarTiposEmailAsociado.xaml.cs">
       <DependentUpon>ConsultarTiposEmailAsociado.xaml</DependentUpon>
     </Compile>
@@ -1049,9 +1055,6 @@
     </Compile>
     <Compile Include="Ventanas\MarcasTercero\ConsultaMarcasTercero.xaml.cs">
       <DependentUpon>ConsultaMarcasTercero.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Ventanas\MarcasTercero\GestionarInfoAdicionalMarcaTercero.xaml.cs">
-      <DependentUpon>GestionarInfoAdicionalMarcaTercero.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\MarcasTercero\GestionarInfoBolMarcaTer.xaml.cs">
       <DependentUpon>GestionarInfoBolMarcaTer.xaml</DependentUpon>
@@ -1742,6 +1745,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Ventanas\MarcasTercero\GestionarInfoAdicionalMarcaTercero.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\MarcasTercero\GestionarInfoAdicionalTerceros.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Ventanas\TiposEmailAsociado\ConsultarTiposEmailAsociado.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1759,10 +1770,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\MarcasTercero\ConsultaMarcasTercero.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Ventanas\MarcasTercero\GestionarInfoAdicionalMarcaTercero.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

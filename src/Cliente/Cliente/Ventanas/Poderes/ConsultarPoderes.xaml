@@ -94,26 +94,24 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Label VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}" Name="_lblInteresadoBuscar"/>
                         </Label>
-                        <Label VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                        <custom:ByTTextBox Name="_txtNombreInteresadoBuscar" Text="" Width="300" MaxLength="15" Grid.Row="0" Grid.Column="1" Height="25" HorizontalAlignment="Left" BorderBrush="LightGreen" MouseDoubleClick="_txtNombreInteresadoBuscar_MouseDoubleClick" />
+                        <Label VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Name="_lblIdInteresado" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblId}" />
                         </Label>
-                        <custom:ByTTextBox Name="_txtIdInteresado" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left"
-                                 GotFocus="_btnConsultarInteresadoFocus" GotKeyboardFocus="_btnConsultarInteresadoFocus"/>
-                        <Label VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
+                        <custom:ByTTextBox Name="_txtIdInteresado" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left" GotFocus="_btnConsultarInteresadoFocus" GotKeyboardFocus="_btnConsultarInteresadoFocus" Visibility="Collapsed"/>
+                        <Label VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Visibility="Collapsed" Name="_lblNombreInteresado">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}" />
                         </Label>
-                        <custom:ByTTextBox Name="_txtNombreInteresado" Text="" Width="150" MaxLength="15" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left"
-                                 GotFocus="_btnConsultarInteresadoFocus" GotKeyboardFocus="_btnConsultarInteresadoFocus"/>
+                        <custom:ByTTextBox Name="_txtNombreInteresado" Text="" Width="150" MaxLength="15" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left" GotFocus="_btnConsultarInteresadoFocus" GotKeyboardFocus="_btnConsultarInteresadoFocus" Visibility="Collapsed"/>
 
-                        <Button Name="_btnConsultarInteresado" Width="100" IsDefault="False" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Right" Click="_btnConsultarInteresado_Click">
+                        <Button Name="_btnConsultarInteresado" Width="100" IsDefault="False" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Right" Click="_btnConsultarInteresado_Click" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                         </Button>
                         <!--Path=Id, Converter={StaticResource convertir}-->
                         <ListView Height="198" Name="_lstInteresados" ItemsSource="{Binding}" 
-                      SelectionMode="Single"
-                      Style="{DynamicResource EstiloListView}" Grid.Row="3" Grid.ColumnSpan="2">
+                      SelectionMode="Single" Style="{DynamicResource EstiloListView}" Grid.Row="3" Grid.ColumnSpan="2" MouseDoubleClick="_lstInteresados_MouseDoubleClick" Visibility="Collapsed">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Width="45">
@@ -137,7 +135,7 @@
                     </Grid>
                 </WrapPanel>
 
-                <Separator Margin="0,5,0,5"/>
+                <!--<Separator Margin="0,5,0,5"/>-->
                 <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFacultad}"/>

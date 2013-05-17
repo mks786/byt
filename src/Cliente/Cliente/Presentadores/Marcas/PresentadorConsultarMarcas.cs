@@ -298,6 +298,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         MarcaAuxiliar.CodigoMarcaInternacional = marca.CodigoMarcaInternacional;
                         MarcaAuxiliar.CorrelativoExpediente = marca.CorrelativoExpediente;
                         MarcaAuxiliar.FechaRenovacion = marca.FechaRenovacion;
+                        MarcaAuxiliar.CodigoRegistro = marca.CodigoRegistro;
                         MarcaAuxiliar.FechaRegistro = marca.FechaRegistro;
                         //--
 

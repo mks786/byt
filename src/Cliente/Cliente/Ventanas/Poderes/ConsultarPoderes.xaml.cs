@@ -127,6 +127,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
             set { this._txtNombreInteresado.Text = value; }
         }
 
+        public string NombreInteresadoBuscar
+        {
+            get { return this._txtNombreInteresadoBuscar.Text; }
+            set { this._txtNombreInteresadoBuscar.Text = value; }
+        }
+
         public string TotalHits
         {
             set { this._lblHits.Text = value; }
@@ -237,6 +243,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
             //    this._txtObservaciones.Focus();
             //}
 
+            if (!this._txtNombreInteresadoBuscar.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtNombreInteresadoBuscar.Focus();
+            }
+
             if (todosCamposVacios)
                 this._txtId.Focus();
         }
@@ -245,6 +257,57 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
         {
             this._presentador.LimpiarCampos();
         }
+
+        private void _lstInteresados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            string prueba = string.Empty;
+            prueba = "prueba";
+            if (this._presentador.CambiarInteresado())
+                ocultarCamposBusquedaInteresado();
+
+        }
+
+        private void _txtNombreInteresadoBuscar_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            //ocultarCampoInteresadoABuscar();
+            mostarCamposBusquedaInteresado();
+        }
+
+        //private void ocultarCampoInteresadoABuscar()
+        //{
+        //    this._lblInteresadoBuscar.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._txtNombreInteresadoBuscar.Visibility = System.Windows.Visibility.Collapsed;
+        //}
+
+        private void mostarCamposBusquedaInteresado()
+        {
+            this._lblIdInteresado.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdInteresado.Visibility = System.Windows.Visibility.Visible;
+            this._lblNombreInteresado.Visibility = System.Windows.Visibility.Visible;
+            this._txtNombreInteresado.Visibility = System.Windows.Visibility.Visible;
+            this._btnConsultarInteresado.Visibility = System.Windows.Visibility.Visible;
+            this._lstInteresados.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void ocultarCamposBusquedaInteresado()
+        {
+            this._lblIdInteresado.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdInteresado.Visibility = System.Windows.Visibility.Collapsed;
+            this._lblNombreInteresado.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtNombreInteresado.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnConsultarInteresado.Visibility = System.Windows.Visibility.Collapsed;
+            this._lstInteresados.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+
+        public void Mensaje(string mensaje, int opcion)
+        {
+            if (opcion == 0)
+                MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
+
 
     }
 }

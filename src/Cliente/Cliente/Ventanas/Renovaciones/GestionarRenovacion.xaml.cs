@@ -758,13 +758,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
 
                 if (this._presentador.VerificarCambioAgente())
                 {
-                    this._btnConsultarPoder.IsEnabled = false;
+                    //this._btnConsultarPoder.IsEnabled = false;
+                    this._btnConsultarPoder.IsEnabled = true;
                     this._btnAceptar.IsDefault = true;
                 }
-                else
-                {
-                    this._btnConsultarPoder.IsEnabled = true;
-                }
+                //else
+                //{
+                //    this._btnConsultarPoder.IsEnabled = true;
+                //}
             }
         }
 
@@ -891,8 +892,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
 
                 if (this._presentador.VerificarCambioPoder())
                 {
-                    this._btnConsultarAgente.IsEnabled = false;
-                    this._btnConsultarInteresado.IsEnabled = false;
+                    //this._btnConsultarAgente.IsEnabled = false;
+                    //this._btnConsultarInteresado.IsEnabled = false;
+                    this._btnConsultarAgente.IsEnabled = true;
+                    this._btnConsultarInteresado.IsEnabled = true;
                     this._btnAceptar.IsDefault = true;
                 }
                 else

@@ -333,7 +333,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                 if (null != (((Marca)this._ventana.Marca).FechaRenovacion))
                 {
                     if (_esMarcaNacional)
-                        renovacion.FechaProxima = ((Marca)this._ventana.Marca).FechaRenovacion.Value.AddYears(int.Parse(ConfigurationManager.AppSettings["PeriodoRenovacion"]));
+                    {
+                        if (_agregar)
+                        {
+                            renovacion.FechaProxima = ((Marca)this._ventana.Marca).FechaRenovacion.Value.AddYears(int.Parse(ConfigurationManager.AppSettings["PeriodoRenovacion"]));
+                        }
+                    }
                     else
                     {
                         if (!this._ventana.ProximaRenovacion.Equals(string.Empty))
@@ -398,6 +403,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                 Renovacion renovacion = CargarRenovacionDeLaPantalla();
                 bool marcaExitoso = false;
                 bool exitoso = false;
+
                 if (renovacion.FechaProxima != null)
                 {
                     if (null != renovacion.Marca)
@@ -405,28 +411,31 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                         int? exitosoIdRenovacion = this._renovacionServicios.InsertarOModificarRenovacion(renovacion, UsuarioLogeado.Hash);
 
 
-                        if (exitosoIdRenovacion != null)
+                        if (_agregar)
                         {
-                            renovacion.Id = exitosoIdRenovacion.Value;
-                            Marca marcaAuxiliar = new Marca();
-                            marcaAuxiliar = ((Renovacion)this._ventana.Renovacion).Marca;
+                            if (exitosoIdRenovacion != null)
+                            {
+                                renovacion.Id = exitosoIdRenovacion.Value;
+                                Marca marcaAuxiliar = new Marca();
+                                marcaAuxiliar = ((Renovacion)this._ventana.Renovacion).Marca;
 
-                            int tiempoConfiguracion = int.Parse(ConfigurationManager.AppSettings["PeriodoRenovacion"].ToString());
+                                int tiempoConfiguracion = int.Parse(ConfigurationManager.AppSettings["PeriodoRenovacion"].ToString());
 
-                            marcaAuxiliar.FechaRenovacion = marcaAuxiliar.FechaRenovacion != null ? ((DateTime)marcaAuxiliar.FechaRenovacion).AddYears(tiempoConfiguracion) : System.DateTime.Now;
-                            marcaAuxiliar.Operacion = "MODIFY";
-                            marcaAuxiliar.Recordatorio = 0;
+                                marcaAuxiliar.FechaRenovacion = marcaAuxiliar.FechaRenovacion != null ? ((DateTime)marcaAuxiliar.FechaRenovacion).AddYears(tiempoConfiguracion) : System.DateTime.Now;
+                                marcaAuxiliar.Operacion = "MODIFY";
+                                marcaAuxiliar.Recordatorio = 0;
 
-                            marcaExitoso = this._marcaServicios.InsertarOModificar(marcaAuxiliar, UsuarioLogeado.Hash);
+                                marcaExitoso = this._marcaServicios.InsertarOModificar(marcaAuxiliar, UsuarioLogeado.Hash);
+                            }
+
+                            if (marcaExitoso)
+                            {
+                                this.Navegar(new GestionarRenovacion(renovacion, null));
+                                //this._ventana.HabilitarCampos = false;
+                            }
+                            else
+                                this.Navegar(Recursos.MensajesConElUsuario.RenovacionInsertada, true); 
                         }
-
-                        if (marcaExitoso)
-                        {
-                            this.Navegar(new GestionarRenovacion(renovacion, null));
-                            //this._ventana.HabilitarCampos = false;
-                        }
-                        else
-                            this.Navegar(Recursos.MensajesConElUsuario.RenovacionInsertada, true);
                     }
                     else
                         this._ventana.Mensaje(Recursos.MensajesConElUsuario.AlertaRenovacionSinMarcas, 0);
@@ -1549,21 +1558,48 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                         }
                         else
                         {
-                            this._poderes = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.AgenteFiltrado));
+                            //this._poderes = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.AgenteFiltrado));
 
-                            LimpiarListaPoder();
+                            this._poderes = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.AgenteFiltrado, (Interesado)this._ventana.Interesado);
+                                                                
 
-                            if ((this.ValidarListaDePoderes(this._poderesInteresado, this._poderes)))
+                            //LimpiarListaPoder();
+
+                            if (this._poderes.Count != 0)
                             {
+                                this._ventana.Agente = this._ventana.AgenteFiltrado;
+                                this._ventana.NombreAgente = ((Agente)this._ventana.AgenteFiltrado).Nombre;
+                                this._ventana.PoderesFiltrados = this._poderes;
+                                this._poderes.Insert(0, new Poder(int.MinValue));
+                                retorno = true;
+                            }
+
+
+
+                            //if (null != this._poderesInteresado)
+                            //{
+
+                            //    if ((this.ValidarListaDePoderes(this._poderesInteresado, this._poderes)))
+                            //    {
+                            //        this._ventana.Agente = this._ventana.AgenteFiltrado;
+                            //        this._ventana.NombreAgente = ((Agente)this._ventana.AgenteFiltrado).Nombre;
+                            //        retorno = true;
+                            //    }
+                            //    else if (!this.ValidarListaDePoderes(this._poderesInteresado, this._poderes))
+                            //    {
+                            //        this._ventana.ConvertirEnteroMinimoABlanco();
+                            //        this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorAgenteNoPoseePoderConInteresado, "Cedente"), 0);
+                            //    }
+                            //}
+
+                            else
+                            {
+                                this._ventana.Mensaje("El Apoderado no tiene poderes con el Interesado", 1);
                                 this._ventana.Agente = this._ventana.AgenteFiltrado;
                                 this._ventana.NombreAgente = ((Agente)this._ventana.AgenteFiltrado).Nombre;
                                 retorno = true;
                             }
-                            else if (!this.ValidarListaDePoderes(this._poderesInteresado, this._poderes))
-                            {
-                                this._ventana.ConvertirEnteroMinimoABlanco();
-                                this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorAgenteNoPoseePoderConInteresado, "Cedente"), 0);
-                            }
+
                         }
                     }
                     else
@@ -1587,6 +1623,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                 {
                     this._ventana.Agente = this._ventana.AgenteFiltrado;
                     this._ventana.NombreAgente = ((Agente)this._ventana.AgenteFiltrado).Nombre;
+                    this._ventana.PoderesFiltrados = null;
+                    this._ventana.PoderFiltrado = null;
                     retorno = true;
                 }
 
@@ -1790,6 +1828,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
 
             bool retorno = false;
 
+            IList<Poder> poderesObtenidos = new List<Poder>();
+
             try
             {
                 #region trace
@@ -1827,7 +1867,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                     }
                     else
                     {
-                        this._ventana.Poder = this._ventana.PoderFiltrado;
+                        poderesObtenidos = (IList<Poder>)this._ventana.PoderesFiltrados;
+                        Poder poderFiltrado = this.BuscarPoder(poderesObtenidos, (Poder)this._ventana.PoderFiltrado);
+                        if (poderFiltrado != null)
+                            this._ventana.Poder = this._ventana.PoderFiltrado;
+                        else
+                        {
+                            this._ventana.Mensaje("El Poder no pertenece al Interesado", 1);
+                            this._ventana.Poder = this._ventana.PoderFiltrado;
+                        }
+
                         this._ventana.IdPoder = ((Poder)this._ventana.PoderFiltrado).Id.ToString();
                         retorno = true;
                     }

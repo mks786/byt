@@ -19,18 +19,23 @@
     <property name="FechaRenovacionIn" column="FRENOVACION_IN" type="string"/>
     <property name="FechaGraciaIn" column="FECHAGRA_IN" type="string"/>
     <property name="FechaRenovacion1" column="FRENO" type="DateTime"/>
+    <property name="NumRecordatorio" column="NRECORDATORIO" type="int"/>
     <property name="Direccion" column="DIR" type="String"/>
 
     <property name="Idioma" column="IDIOMA" type="string"/>
     <property name="Clase" column="CLASE" type="string"/>
 
-    <many-to-one name="Marca" class="Marca">
+    <many-to-one name="Marca" class="Marca" lazy="false">
       <column name="CMARCA"/>
     </many-to-one>
 
     <many-to-one name="Asociado" class="Asociado">
       <column name="CASOCIADO"/>
     </many-to-one>
+
+    <!--<property name="NumRecordatorio" column="NRECORDATORIO" type="int"/>-->
+    
+    
     
   </class>
 

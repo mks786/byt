@@ -358,6 +358,9 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 //    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaLocalidad, marca.LocalidadMarca);
                 //}
 
+
+                filtro += " order by m.Id desc";
+
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 Marcas = query.List<Marca>();
 
@@ -485,7 +488,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         /// <returns>la lista de recordatorios</returns>
         public IList<RecordatorioVista> ObtenerRecordatoriosVista(RecordatorioVista recordatorio, DateTime[] fechas, string localidad)
         {
-            IList<RecordatorioVista> recordatorios = null;
+            IList<RecordatorioVista> recordatorios = new List<RecordatorioVista>();
+
+            
+
+            //IEnumerable<RecordatorioVista> recordatorios = null;
 
             try
             {
@@ -542,6 +549,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 recordatorios = query.List<RecordatorioVista>();
 
+                //recordatorios = query.Enumerable<RecordatorioVista>();
 
 
                 //}
@@ -581,7 +589,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             {
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                    logger.Debug("Entrando al Método1 {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
                 bool variosFiltros = true;
@@ -724,7 +732,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                    logger.Debug("Saliendo del Método1 {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
             }
             catch (Exception ex)

@@ -294,6 +294,12 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Fecha, StringFormat={}{0:dd/MM/yyyy}}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Fecha" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
                         </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Referencia, StringFormat={}{0:dd/MM/yyyy}}" Width="210">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Referencia" Content="{x:Static recurso:Etiquetas.lsvReferencia}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Departamento.Descripcion, StringFormat={}{0:dd/MM/yyyy}}" Width="210">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Departamento.Descripcion" Content="{x:Static recurso:Etiquetas.lsvDepartamento}"/>
+                        </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=AnexoFecha, StringFormat={}{0:dd/MM/yyyy}}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="AnexoFecha" Content="{x:Static recurso:Etiquetas.lsvFechaAnexo}"/>
                         </GridViewColumn>
@@ -306,15 +312,11 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Persona}" Width="240">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Persona" Content="{x:Static recurso:Etiquetas.lsvPersona}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Referencia, StringFormat={}{0:dd/MM/yyyy}}" Width="210">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Referencia" Content="{x:Static recurso:Etiquetas.lsvReferencia}"/>
-                        </GridViewColumn>
+                        
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Medio, StringFormat={}{0:dd/MM/yyyy}}" Width="210">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Medio" Content="{x:Static recurso:Etiquetas.lsvMedio}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Departamento.Descripcion, StringFormat={}{0:dd/MM/yyyy}}" Width="210">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Departamento.Descripcion" Content="{x:Static recurso:Etiquetas.lsvDepartamento}"/>
-                        </GridViewColumn>
+                        
                     </GridView>
                 </ListView.View>
             </ListView>

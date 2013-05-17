@@ -1744,7 +1744,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a p.NumPoder = &apos;{0}&apos;.
+        ///   Busca una cadena traducida similar a p.NumPoder like &apos;%{0}%&apos;.
         /// </summary>
         public static string FiltroObtenerPoderPorNumPoder {
             get {

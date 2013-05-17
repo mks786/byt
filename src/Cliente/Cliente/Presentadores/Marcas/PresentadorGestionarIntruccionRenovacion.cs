@@ -198,7 +198,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     if (null != carta)
                         flag = this._cartaServicios.VerificarExistencia(carta);
 
-                    if(flag)
+                    if ((null != carta) && flag)
                     //if (this._cartaServicios.VerificarExistencia(carta))
                     {
                         InstruccionDeRenovacion instruccion = (InstruccionDeRenovacion)this._ventana.InstruccionDeRenovacion;
@@ -210,7 +210,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         if (this._nuevaBusqueda)
                             ((InstruccionDeRenovacion)this._ventana.InstruccionDeRenovacion).Marca.InstruccionesDeRenovacion.Add(instruccion);
                     }
-                    else
+                    else if ((null == carta) && !flag)
                     {
                         InstruccionDeRenovacion instruccion = (InstruccionDeRenovacion)this._ventana.InstruccionDeRenovacion;
                         exitoso = this._instruccionDeRenovacionServicios.InsertarOModificar(instruccion, UsuarioLogeado.Hash);
@@ -218,6 +218,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                             ((InstruccionDeRenovacion)this._ventana.InstruccionDeRenovacion).Marca.InstruccionesDeRenovacion.Add(instruccion);
                         //this._ventana.Alerta();
                     }
+                    else
+                    {
+                        this._ventana.Alerta();
+                    }
+                    
                 }
 
                 #region trace

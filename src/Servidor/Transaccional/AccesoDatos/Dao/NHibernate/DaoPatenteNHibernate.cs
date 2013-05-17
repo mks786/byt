@@ -255,6 +255,8 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 //    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteId, Patente.Id);
                 //}
 
+                filtro += " order by p.Id desc";
+
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 Patentes = query.List<Patente>();
 

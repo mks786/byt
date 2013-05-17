@@ -40,6 +40,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Asociado _asociado;
         //private Interesado _interesado;
         //private Pais _pais;
+        private int _numRecordatorio;
 
         #endregion
 
@@ -276,6 +277,12 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _localidad; }
             set { _localidad = value; }
+        }
+
+        public virtual int NumRecordatorio
+        {
+            get { return _numRecordatorio; }
+            set { _numRecordatorio = value; }
         }
 
         #endregion
