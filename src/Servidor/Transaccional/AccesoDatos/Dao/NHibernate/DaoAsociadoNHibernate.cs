@@ -96,6 +96,14 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
+                if (!string.IsNullOrEmpty(asociado.Email))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerAsociadoEmail, asociado.Email);
+                    variosFiltros = true;
+                }
+
                 if (!asociado.TipoPersona.Equals(char.MinValue))
                 {
                     if (variosFiltros)

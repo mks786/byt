@@ -192,6 +192,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
                     this._ventana.AgenteApoderado = ((CambioDeDomicilio)cambioDeDomicilio).Agente;
                     this._ventana.Poder = cambioDeDomicilio.Poder;
+                    if (cambioDeDomicilio.Acta != null)
+                        this._ventana.CambiarCheckAsientoLibro(true);
 
 
 
@@ -774,7 +776,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
                 //this._ventana.TiposClaseNacional = tipoClasesNacional;
                 ListaDatosDominio listaDatoAux = this.BuscarClaseNacional(tipoClasesNacional, ((Marca)this._ventana.Marca).Tipo);
-                this._ventana.TipoClaseNacional = listaDatoAux.Descripcion;
+                if(listaDatoAux != null)
+                    this._ventana.TipoClaseNacional = listaDatoAux.Descripcion;
 
                 this._marcas.Add((Marca)this._ventana.Marca);
                 this._ventana.MarcasFiltradas = this._marcas;

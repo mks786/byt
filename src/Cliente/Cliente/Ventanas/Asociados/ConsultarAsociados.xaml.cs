@@ -211,6 +211,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             set { this._lblHits.Text = value; }
         }
 
+
+        public string EmailAsociado
+        {
+            get { return this._txtEmail.Text; }
+            set { this._txtEmail.Text = value; }
+        }
+
         #endregion
 
         public ConsultarAsociados(object ventanaPadre, object asociado)
@@ -276,6 +283,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             {
                 todosCamposVacios = false;
                 this._txtDomicilio.Focus();
+            }
+
+            if (!this._txtEmail.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtEmail.Focus();
             }
 
             if ((this._cbxTipoPersona.SelectedIndex != 0) && (this._cbxTipoPersona.SelectedIndex != -1))

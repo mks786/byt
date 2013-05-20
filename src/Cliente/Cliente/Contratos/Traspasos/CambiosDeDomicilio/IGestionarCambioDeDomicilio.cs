@@ -142,5 +142,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeDomicilio
         void EsMarcaNacional(bool marcaNacional);
 
         string TipoClase { set; }
+
+        bool AsientoLibro { get; set; }
+
+        void CambiarCheckAsientoLibro(bool valor);
     }
 }

@@ -466,6 +466,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a a.Email like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroObtenerAsociadoEmail {
+            get {
+                return ResourceManager.GetString("FiltroObtenerAsociadoEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a etiqueta.Id = {0}.
         /// </summary>
         public static string FiltroObtenerAsociadoEtiqueta {

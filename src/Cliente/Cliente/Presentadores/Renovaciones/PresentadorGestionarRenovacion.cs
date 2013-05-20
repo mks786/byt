@@ -1623,8 +1623,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                 {
                     this._ventana.Agente = this._ventana.AgenteFiltrado;
                     this._ventana.NombreAgente = ((Agente)this._ventana.AgenteFiltrado).Nombre;
-                    this._ventana.PoderesFiltrados = null;
-                    this._ventana.PoderFiltrado = null;
+                    //this._ventana.PoderesFiltrados = null;
+                    //this._ventana.PoderFiltrado = null;
                     retorno = true;
                 }
 
@@ -1760,24 +1760,38 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                     poder.Fecha = DateTime.Parse(this._ventana.FechaPoderFiltrar);
 
                 if ((!poder.Fecha.Equals("")) || (poder.Id != 0))
-                    poderesFiltrados = this._poderServicios.ObtenerPoderesFiltro(poder);
+                    //poderesFiltrados = this._poderServicios.ObtenerPoderesFiltro(poder);
+                    poderesFiltrados = this._poderServicios.ConsultarPoderesPorInteresado((Interesado)this._ventana.Interesado);
+
                 else
                     poderesFiltrados = new List<Poder>();
 
                 if (poderesFiltrados.ToList<Poder>().Count != 0)
                 {
-                    foreach (Poder aux in poderesFiltrados)
+                    Poder poderBuscado = this.BuscarPoder(poderesFiltrados, poder);
+                    if (poderBuscado != null)
                     {
-                        IList<Agente> ListaAgentes = this._agenteServicios.ObtenerAgentesDeUnPoder(aux);
-                        foreach (Agente agente in ListaAgentes)
+
+                        foreach (Poder aux in poderesFiltrados)
                         {
-                            aux.MostrarAgentes += agente.Id + "-" + agente.Nombre + "\n";
+                            IList<Agente> ListaAgentes = this._agenteServicios.ObtenerAgentesDeUnPoder(aux);
+                            foreach (Agente agente in ListaAgentes)
+                            {
+                                aux.MostrarAgentes += agente.Id + "-" + agente.Nombre + "\n";
+                            }
+
                         }
+                        poderesFiltrados.Insert(0, pimerPoder);
+                        this._ventana.PoderesFiltrados = poderesFiltrados;
+                        this._ventana.PoderFiltrado = pimerPoder;
+                    }
+
+                    else
+                    {
+                        this._ventana.Mensaje("El Poder no corresponde al Interesado", 1);
+                        this._ventana.IdPoderFiltrar = null;
 
                     }
-                    poderesFiltrados.Insert(0, pimerPoder);
-                    this._ventana.PoderesFiltrados = poderesFiltrados;
-                    this._ventana.PoderFiltrado = pimerPoder;
                 }
                 else
                 {

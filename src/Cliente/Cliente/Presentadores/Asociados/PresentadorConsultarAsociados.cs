@@ -396,6 +396,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 this._filtroValido = 2;
             }
 
+            if (!this._ventana.EmailAsociado.Equals(""))
+            {
+                asociado.Email = this._ventana.EmailAsociado;
+                this._filtroValido = 2;
+            }
+
             if ((null != this._ventana.TipoPersona) && !((ListaDatosDominio)this._ventana.TipoPersona).Id.Equals("NGN"))
             {
                 asociado.TipoPersona = ((ListaDatosDominio)this._ventana.TipoPersona).Id.ToCharArray()[0];
@@ -525,6 +531,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             this._ventana.Id = null;
             this._ventana.NombreAsociado = null;
             this._ventana.DomicilioAsociado = null;
+            this._ventana.EmailAsociado = null;
 
             this._ventana.Moneda = this.BuscarMoneda((IList<Moneda>)this._ventana.Monedas, new Moneda("NGN"));
             this._ventana.Pais = this.BuscarPais((IList<Pais>)this._ventana.Paises, new Pais(int.MinValue));

@@ -82,7 +82,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
 
         string Tipo { set; get; }
 
-        string IdPoderFiltrar { get; }
+        string IdPoderFiltrar { get; set; }
 
         string FechaPoderFiltrar { get; }
 

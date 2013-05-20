@@ -1015,5 +1015,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
         }
 
         #endregion
+
+        //-----
+        public bool AsientoLibro
+        {
+            get { return this._cbxAsientoLibros.IsChecked.Value; }
+            set { this._cbxAsientoLibros.IsChecked = value; }
+        }
+        //-----
+
+        public void CambiarCheckAsientoLibro(bool valor)
+        {
+            this._cbxAsientoLibros.IsChecked = valor;
+        }
+
     }
 }

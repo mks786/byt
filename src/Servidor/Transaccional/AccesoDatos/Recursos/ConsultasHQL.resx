@@ -1055,4 +1055,8 @@
     <value>upper(p.CodigoRegistro) like '%{0}%'</value>
     <comment>Filtra una patente por el Codigo de Registro</comment>
   </data>
+  <data name="FiltroObtenerAsociadoEmail" xml:space="preserve">
+    <value>a.Email like '%{0}%'</value>
+    <comment>Filtro para obtener un Asociado por el campo XEMAIL</comment>
+  </data>
 </root>

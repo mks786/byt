@@ -7,7 +7,7 @@
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
       xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
       mc:Ignorable="d" 
-      d:DesignHeight="550" d:DesignWidth="800"
+      d:DesignHeight="1230" d:DesignWidth="800"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos" Loaded="Page_Loaded">
     <Page.Resources>
         <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
@@ -622,7 +622,75 @@
                         <!--Fin datos de Poder-->
                     </Grid>
                 </WrapPanel>
+                
+
                 <!--Fin de Poder-->
+
+                <WrapPanel>
+                    <Grid Width="640">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="78"/>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="79"/>
+                            <ColumnDefinition Width="250"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblOtros}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="True"  Grid.Column="1" Grid.Row="0" Name="_txtOtros" IsTabStop="False" VerticalAlignment="Center" MaxLength="255" Text="{Binding Path=OtrosS1}">
+                        </custom:ByTTextBox>
+                        <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblReferencia}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="True"  Grid.Column="3" Grid.Row="0" Name="_txtReferencia" IsTabStop="False" VerticalAlignment="Center" MaxLength="255" Text="{Binding Path=Referencia}">
+                        </custom:ByTTextBox>
+
+                        <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblAnexo}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="True"  Grid.Column="1" Grid.Row="1" Name="_txtAnexo" IsTabStop="False" VerticalAlignment="Center" MaxLength="255" Text="{Binding Path=Anexo}">
+                        </custom:ByTTextBox>
+                        <Label Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblObservacion}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="True"  Grid.Column="3" Grid.Row="1" Name="_txtObservacion" IsTabStop="False" VerticalAlignment="Center" MaxLength="255" Text="{Binding Path=Observacion}">
+                        </custom:ByTTextBox>
+
+                        <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblComentario}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="True"  Grid.Column="1" Grid.Row="2" Name="_txtComentario" IsTabStop="False" VerticalAlignment="Center" MaxLength="255" Text="{Binding Path=Comentario}">
+                        </custom:ByTTextBox>
+                        <Label Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock Text="Boletin Pub:"/>
+                        </Label>
+                        <Grid Grid.Column="3" Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="80"/>
+                            </Grid.ColumnDefinitions>
+
+                            <custom:ByTTextBox  IsEnabled="True"  Grid.Column="0" Grid.Row="0" Name="_txtBoletinPub" IsTabStop="False" VerticalAlignment="Center" MaxLength="4" Text="{Binding Path=BoletinPublicacion}">
+                            </custom:ByTTextBox>
+                            <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                <TextBlock Text="Asiento en libro:"/>
+                            </Label>
+                            <CheckBox  Name="_cbxAsientoLibros" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center"
+                         HorizontalAlignment="Left" IsChecked="{Binding Path=Acta}" IsEnabled="True">
+                            </CheckBox>
+                        </Grid>
+
+                        
+
+                    </Grid>
+                </WrapPanel>
 
                 <WrapPanel>
                     <Grid Width="640">

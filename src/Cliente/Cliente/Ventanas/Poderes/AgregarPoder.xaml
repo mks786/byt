@@ -101,8 +101,8 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
                 </Label>
                 <custom:ByTTextBox Grid.Column="1" Grid.Row="4" Name="_txtNombreInteresado" VerticalAlignment="Center" 
-                         HorizontalAlignment="Left" Width="180" Text="" MaxLength="255" BorderBrush="LightGreen" 
-                         MouseDoubleClick="_txtNombreInteresado_MouseDoubleClick" ></custom:ByTTextBox>
+                         HorizontalAlignment="Left" Width="180" Text="" MaxLength="255" BorderBrush="LightGreen" IsReadOnly="True"
+                         MouseDoubleClick="_txtNombreInteresado_MouseDoubleClick"  ></custom:ByTTextBox>
 
                 <Label Name="_lblIdInteresadoFiltrar"  Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top" 
                                Visibility="Collapsed" Margin="0,0,0,0">
