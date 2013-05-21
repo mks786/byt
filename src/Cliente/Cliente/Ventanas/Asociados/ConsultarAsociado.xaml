@@ -82,7 +82,7 @@
                         </Label>
                         <custom:ByTTextBox Grid.Column="2" Grid.Row="1" Name="_txtNombreDatos" VerticalAlignment="Center"
                          SpellCheck.IsEnabled="True" MaxLength="255" Grid.ColumnSpan="4" Margin="0,0,20,0"
-                         ToolTip="{Binding ElementName=_txtNombreDatos, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True">
+                         ToolTip="{Binding ElementName=_txtNombreDatos, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True" CharacterCasing="Upper">
                             <custom:ByTTextBox.Text>
                                 <Binding Path="Nombre" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
@@ -256,7 +256,7 @@
                             <Button Name="_btnEdoCtaDatos" Click="_btnImprimirEdoCuenta_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="60" IsEnabled="True">
                                 <TextBlock Name="_txbEdoCtaDatos" Text="{x:Static recurso:Etiquetas.btnEdoCta}"/>
                             </Button>
-                            <Button Name="_btnNDPDatos" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="60" IsEnabled="True">
+                            <Button Name="_btnNDPDatos" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="60" IsEnabled="True" Click="_btnNDPDatos_Click">
                                 <TextBlock Name="_txbNDPDatos" Text="{x:Static recurso:Etiquetas.btnNdp}"/>
                             </Button>
                         </WrapPanel>
@@ -354,7 +354,7 @@
                         </Label>
                         <custom:ByTTextBox  Grid.Column="4" Grid.Row="0" Name="_txtNombreAdministracion" VerticalAlignment="Center"
                          SpellCheck.IsEnabled="True" MaxLength="255" Grid.ColumnSpan="1"
-                         ToolTip="{Binding ElementName=_txtNombreDatos, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True">
+                         ToolTip="{Binding ElementName=_txtNombreDatos, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True" CharacterCasing="Upper">
                             <custom:ByTTextBox.Text>
                                 <Binding Path="Nombre" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>

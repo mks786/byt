@@ -5988,7 +5988,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a R. Mercantil:.
+        ///   Busca una cadena traducida similar a RIF Mercantil:.
         /// </summary>
         public static string lblRMercantil {
             get {

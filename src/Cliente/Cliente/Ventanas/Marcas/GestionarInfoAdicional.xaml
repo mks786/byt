@@ -78,7 +78,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblMarcasDistingueEnIngles}"/>
                     </Label>
                     <custom:ByTTextBox Name="_txtInfo" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
-                             HorizontalAlignment="Left" Width="200" Height="75" IsEnabled="False"
+                             HorizontalAlignment="Left" Width="200" Height="75" IsEnabled="False" CharacterCasing="Upper"
                              SpellCheck.IsEnabled="True" ToolTip="{Binding ElementName=_txtEmail, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="Info" UpdateSourceTrigger="PropertyChanged">

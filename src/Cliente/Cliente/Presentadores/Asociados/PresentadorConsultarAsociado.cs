@@ -776,6 +776,37 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             cargarListaDeContactos(asociado);
         }
 
+        /// <summary>
+        /// Metodo que recoge el URL del archivo NDP y lo ejecuta desde el boton NDP
+        /// </summary>
+        public void AbrirArchivoNDP()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                System.Diagnostics.Process.Start(ConfigurationManager.AppSettings["RutaArchivoNDP"].ToString());
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Win32Exception ex)
+            {
+                logger.Error(ex.Message);
+                this._ventana.ArchivoNoEncontrado(string.Format(Recursos.MensajesConElUsuario.ErrorAsociadoArchivoNDP + ": ") + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
         public void CalcularSaldos()
         {
             if ((Asociado)this._ventana.Asociado != null)

@@ -1313,6 +1313,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Hubo un problema al intentar abrir el archivo NDP.
+        /// </summary>
+        internal static string ErrorAsociadoArchivoNDP {
+            get {
+                return ResourceManager.GetString("ErrorAsociadoArchivoNDP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Archivo del asociado no encontrado..
         /// </summary>
         internal static string ErrorAsociadoNoEncontrado {

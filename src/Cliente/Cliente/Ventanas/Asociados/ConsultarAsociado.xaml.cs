@@ -575,6 +575,26 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
 
 
 
+        /// <summary>
+        /// Evento para activar el boton NDP de la ventana de los Asociados
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void _btnNDPDatos_Click(object sender, RoutedEventArgs e)
+        {
+            string prueba = string.Empty;
+            prueba = "prueba";
+            this._presentador.AbrirArchivoNDP();
+        }
+
+
+        public void ArchivoNoEncontrado(string mensaje)
+        {
+            MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+
+
 
 
         

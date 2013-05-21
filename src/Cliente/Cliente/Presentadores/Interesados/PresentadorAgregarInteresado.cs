@@ -137,15 +137,37 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 interesado.Corporacion = (Estado)this._ventana.Corporacion;
                 interesado.TipoPersona = ((ListaDatosDominio)this._ventana.TipoPersona).Id[0];
                 interesado.Operacion = "CREATE";
-                int? exitoso = this._interesadoServicios.InsertarOModificarInteresado(interesado,UsuarioLogeado.Hash);
 
-                if (null != exitoso)
+                if ((interesado.Estado != null) && (!interesado.Estado.Equals("")))
                 {
-                    interesado.Id = exitoso.Value;
-                    this.Navegar(new ConsultarInteresado(interesado, null));
+                    if ((interesado.Pais != null) && (interesado.Pais.Id != 0))
+                    {
+                        if ((interesado.Nacionalidad != null) && (!interesado.Nacionalidad.Equals("")))
+                        {
+                            int? exitoso = this._interesadoServicios.InsertarOModificarInteresado(interesado, UsuarioLogeado.Hash);
+
+                            if (null != exitoso)
+                            {
+                                interesado.Id = exitoso.Value;
+                                this.Navegar(new ConsultarInteresado(interesado, null));
+                            }
+                            else
+                                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                        }
+                        else
+                        {
+                            this._ventana.Mensaje(Recursos.MensajesValidaciones.InteresadoNacionalidad, 1);
+                        }
+                    }
+                    else
+                    {
+                        this._ventana.Mensaje(Recursos.MensajesValidaciones.InteresadoPais, 1);
+                    }
                 }
                 else
-                    this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                {
+                    this._ventana.Mensaje(Recursos.MensajesValidaciones.InteresadoEstado, 1);
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

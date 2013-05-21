@@ -108,6 +108,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Interesados
             set { this._cbxCorporacion.SelectedItem = value; }
         }
 
+        public string Ciudad
+        {
+            get { return this._txtCiudad.Text; }
+            set { this._txtCiudad.Text = value; }
+        }
+
+        public string Estado
+        {
+            get { return this._txtEstado.Text; }
+            set { this._txtEstado.Text = value; }
+        }
+
         #endregion
 
         public ConsultarInteresado(object interesado, object ventanaPadre)
@@ -152,6 +164,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Interesados
         private void _btnPoderes_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.VerPoderes();
+        }
+
+        public void Mensaje(string mensaje, int opcion)
+        {
+            if (opcion == 0)
+                MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
     }
 }

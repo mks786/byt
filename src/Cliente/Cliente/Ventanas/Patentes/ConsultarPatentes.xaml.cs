@@ -53,6 +53,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._txtSolicitud.Text = value; }
         }
 
+        public string Observacion
+        {
+            get { return this._txtObservaciones.Text; }
+            set { this._txtObservaciones.Text = value; }
+        }
+
         public object Patente
         {
             get { return this._lstResultados.SelectedItem; }
@@ -470,6 +476,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 todosCamposVacios = false;
                 this._dpkFecha.Focus();
             }
+
+            if (!this._txtObservaciones.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtObservaciones.Focus();
+            }
+
 
             if (todosCamposVacios)
                 this._txtId.Focus();

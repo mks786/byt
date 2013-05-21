@@ -606,7 +606,7 @@
                         <Label Grid.Column="0" Grid.Row="11" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblDistingue}"/>
                         </Label>
-                        <custom:ByTTextBox  MaxLength="10000" Grid.Column="1" Grid.Row="11" Name="_txtDistingue" VerticalAlignment="Center" 
+                        <custom:ByTTextBox  MaxLength="10000" Grid.Column="1" Grid.Row="11" Name="_txtDistingue" VerticalAlignment="Center" CharacterCasing="Upper"
                          Grid.ColumnSpan="6" Text="{Binding Path=Distingue}"></custom:ByTTextBox>
 
                         <Button  Name="_btnIngles" VerticalAlignment="Bottom" Grid.Column="7" Grid.Row="11" Height="25" Width="90"
@@ -1540,7 +1540,7 @@
                         <Label Grid.Column="0" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblDistingue}"/>
                         </Label>
-                        <custom:ByTTextBox  Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="9" Margin="3" Name="_txtDistingueDatos" VerticalAlignment="Center" Text="{Binding Path=Distingue}" MaxLength="10000">                           
+                        <custom:ByTTextBox  Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="9" Margin="3" Name="_txtDistingueDatos" VerticalAlignment="Center" Text="{Binding Path=Distingue}" MaxLength="10000" CharacterCasing="Upper">                           
                         </custom:ByTTextBox>
                         <custom:ByTTextBox  Grid.Column="10" Grid.Row="13" Grid.ColumnSpan="2" Margin="3" Name="_txtDistingueInglesDatos" VerticalAlignment="Center"  
                           Text=""></custom:ByTTextBox>

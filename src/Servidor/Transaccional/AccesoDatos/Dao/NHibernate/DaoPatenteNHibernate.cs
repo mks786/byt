@@ -176,6 +176,14 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
+                if ((null != Patente.Observacion) && (!Patente.Observacion.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteObservacion, Patente.Observacion);
+                    variosFiltros = true;
+                }
+
 
                 #region TYR
 
@@ -298,7 +306,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 retorno = query.UniqueResult<Patente>();
 
                 string CabeceraBase = string.Format(Recursos.ConsultasHQL.CabeceraObtenerAnualidadPorIdPatente, retorno.Id);
-                IQuery query2 = Session.CreateQuery(CabeceraBase);
+                IQuery query2 = Session.CreateQuery(CabeceraBase + " order by a.QAnualidad asc");
                 retorno.Anualidades = query2.List<Anualidad>();
 
 

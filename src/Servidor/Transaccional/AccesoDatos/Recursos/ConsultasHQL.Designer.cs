@@ -1618,6 +1618,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a p.Observacion like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroObtenerPatenteObservacion {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPatenteObservacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a p.PaisInternacional.Id ={0}.
         /// </summary>
         public static string FiltroObtenerPatentePaisInternacional {

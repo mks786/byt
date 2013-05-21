@@ -121,7 +121,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerAnualidadesPorPatente, idpatente);
 
 
-                IQuery query = Session.CreateQuery(cabecera + filtro);
+                IQuery query = Session.CreateQuery(cabecera + filtro + " order by a.QAnualidad asc");
                 Anualidads = query.List<Anualidad>();
 
                 #region trace

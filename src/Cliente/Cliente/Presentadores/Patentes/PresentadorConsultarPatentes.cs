@@ -590,6 +590,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     patenteAuxiliar.Descripcion = this._ventana.NombrePatente.ToUpper();
                 }
 
+                if (!this._ventana.Observacion.Equals(""))
+                {
+                    _filtroValido = 2;
+                    patenteAuxiliar.Observacion = this._ventana.Observacion;
+                }
+
 
                 if (!this._ventana.Fecha.Equals(""))
                 {

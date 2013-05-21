@@ -20,5 +20,11 @@ namespace Trascend.Bolet.Cliente.Contratos.Interesados
         object Corporaciones { get; set; }
 
         object Corporacion { get; set; }
+
+        string Ciudad { get; set; }
+
+        string Estado { get; set; }
+
+        void Mensaje(string mensaje, int opcion);
     }
 }

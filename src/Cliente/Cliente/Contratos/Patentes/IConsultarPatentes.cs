@@ -31,6 +31,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         string AsociadoFiltro { set; }
 
+        string Observacion { get; set; }
+
         #endregion
 
         #region Interesado

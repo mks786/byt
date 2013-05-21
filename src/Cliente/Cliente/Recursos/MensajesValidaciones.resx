@@ -120,6 +120,22 @@
   <data name="CorreoElectronico" xml:space="preserve">
     <value>El campo debe tener un correo electrónico válido</value>
   </data>
+  <data name="InteresadoCiudad" xml:space="preserve">
+    <value>Debe ingresar una Ciudad para el Interesado</value>
+    <comment>Mensaje de validacion cuando se esta ingresando o modificando un Interesado, para validar que se esta ingresando una ciudad</comment>
+  </data>
+  <data name="InteresadoCorporacion" xml:space="preserve">
+    <value>Debe seleccionar una Corporacion para el Interesado</value>
+  </data>
+  <data name="InteresadoEstado" xml:space="preserve">
+    <value>Debe ingresar un Estado para el Interesado</value>
+  </data>
+  <data name="InteresadoNacionalidad" xml:space="preserve">
+    <value>Debe seleccionar una Nacionalidad para el Interesado</value>
+  </data>
+  <data name="InteresadoPais" xml:space="preserve">
+    <value>Debe seleccionar un Pais para el Interesado</value>
+  </data>
   <data name="LongitudMaxima" xml:space="preserve">
     <value>Este campo debe ser de longitud menor o igual a {0}</value>
   </data>

@@ -84,5 +84,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
 
         void DesactivarVerListaContactos();
 
+        void ArchivoNoEncontrado(string mensaje);
+
     }
 }

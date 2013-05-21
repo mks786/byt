@@ -145,7 +145,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                     this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
                 }
 
-                //Modifica los datos del Poder
+                //Modifica los datos del Interesado
                 else
                 {
                     Interesado interesado = (Interesado)this._ventana.Interesado;
@@ -156,11 +156,33 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                     interesado.Operacion = "MODIFY";
                     interesado.TipoPersona = ((ListaDatosDominio)this._ventana.TipoPersona).Id[0];
 
-                    bool exitoso = this._interesadoServicios.InsertarOModificar(interesado, UsuarioLogeado.Hash);
-                    if (exitoso)
+                    if ((interesado.Estado != null) && (!interesado.Estado.Equals("")))
                     {
-                        _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.InteresadoModificado;
-                        this.Navegar(_paginaPrincipal);
+                        if ((interesado.Pais != null) && (interesado.Pais.Id != 0))
+                        {
+                            if ((interesado.Nacionalidad != null) && (!interesado.Nacionalidad.Equals("")))
+                            {
+                                bool exitoso = this._interesadoServicios.InsertarOModificar(interesado, UsuarioLogeado.Hash);
+                                if (exitoso)
+                                {
+                                    _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.InteresadoModificado;
+                                    this.Navegar(_paginaPrincipal);
+                                }
+                            }
+                            else
+                            {
+                                this._ventana.Mensaje(Recursos.MensajesValidaciones.InteresadoNacionalidad, 1);
+                            }
+                        }
+                        else
+                        {
+                            this._ventana.Mensaje(Recursos.MensajesValidaciones.InteresadoPais, 1);
+
+                        }
+                    }
+                    else
+                    {
+                        this._ventana.Mensaje(Recursos.MensajesValidaciones.InteresadoEstado, 1);
                     }
                 }
 
