@@ -234,7 +234,6 @@ Namespace Presentadores.FacReportes
             Mouse.OverrideCursor = Cursors.Wait
             Try
 
-                Dim reporte As New ReportDocument()
                 Dim estructuraDeDatosEnc As IList(Of StructReporteFActuraEnc) = New List(Of StructReporteFActuraEnc)()
 
                 Dim estructuraDeDatosDeta As IList(Of StructReporteFActuraDeta) = New List(Of StructReporteFActuraDeta)()
@@ -311,7 +310,7 @@ Namespace Presentadores.FacReportes
                         End If
                     End If
                 End If
-
+                Dim reporte As New ReportDocument()
                 reporte.Load(ruta)
                 reporte.SetDataSource(ds)
                 'reporte.SetDataSource(datosDeta)

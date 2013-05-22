@@ -4488,6 +4488,18 @@ Namespace Presentadores.FacFacturas
         End Function
 
 
+        Public Sub ConsultarGuia(ByVal Cguia As String)
+            'Dim cbanco As String = Me._ventana.Cbanco
+            If IsNumeric(Cguia) Then
+                'Dim bancos As IList(Of FacBanco) = Me._bancosServicios.ObtenerFacBancosFiltro(Nothing)()
+                'Me._ventana.Bancos = bancos
+                'Me._ventana.Banco = FacCredito.Banco
+                Dim Guia As New Guia
+                Guia.Id = Cguia
+                Me._ventana.Guia = Me.BuscarGuia(DirectCast(Me._ventana.Guias, List(Of Guia)), Guia)
+                ' Me._ventana.Banco = Me.BuscarFacBanco(DirectCast(Me._ventana.Guias, List(Of FacBanco)), banco)
+            End If
+        End Sub
 
         'este es para agregar el check para seleccionar las que se van a eliminar
         Public Class MarcaSelec
@@ -4560,7 +4572,6 @@ Namespace Presentadores.FacFacturas
                     Me.p_primerareferencia = Value
                 End Set
             End Property
-
         End Class
 
     End Class

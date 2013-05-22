@@ -3136,7 +3136,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             if ((Asociado)this._ventana.AsociadoSolicitud != null)
             {
                 Asociado Asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
-                Navegar(new EstadoCuentas("2", Asociado));
+                Navegar(new PendientesRpt("2", Asociado));
 
             }
         }

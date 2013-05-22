@@ -700,12 +700,13 @@
                         <!--***************Fin Carta-->
 
                         <WrapPanel Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
-                            <Label>
+                            <!--<Label>
                                 <TextBlock Width="60"  Text="" />
-                            </Label>
+                            </Label>-->
                             <Label Width="70"  HorizontalContentAlignment="left" VerticalAlignment="Top">
                                 <TextBlock Text="Guias"  VerticalAlignment="Center"/>
                             </Label>
+                            <custom:ByTTextBox Name="_txtCguia" KeyDown="_Consultar_Enter" SoloNumero="True" Height="20"  Width="40" MaxLength="4" Focusable="True"/>
                             <ComboBox  VerticalAlignment="Top" IsEnabled="True"  Height="20" Name="_cbxguia" HorizontalAlignment="Left" Width="200" 
                               ItemsSource="{Binding}" SelectedIndex="0" FontSize="9">
                                 <ComboBox.ItemTemplate>

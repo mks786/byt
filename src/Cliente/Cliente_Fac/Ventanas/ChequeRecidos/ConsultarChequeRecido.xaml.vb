@@ -240,7 +240,11 @@ Namespace Ventanas.ChequeRecidos
                 Me._txtValor.Text = _presentador.SetFormatoDouble2(value)
             End Set
         End Property
-    End Class
 
+        Public Sub _btnNuevoCheque_Click()
+            Me._presentador.NuevaProforma()
+        End Sub
+
+    End Class
 
 End Namespace

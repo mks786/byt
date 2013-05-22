@@ -277,10 +277,10 @@ Namespace Presentadores.FacFacturas
                 If facfactutafiltro.FechaSeniat IsNot Nothing Then
                     FacFacturaAuxiliar.FechaSeniat = facfactutafiltro.FechaSeniat
                 End If
-                FacFacturaAuxiliar.Caso = facfactutafiltro.Caso
-                FacFacturaAuxiliar.Ourref = facfactutafiltro.Ourref
-                FacFacturaAuxiliar.Inicial = facfactutafiltro.Inicial
-                FacFacturaAuxiliar.Instruc = facfactutafiltro.Instruc
+                FacFacturaAuxiliar.Caso = UCase(facfactutafiltro.Caso)
+                FacFacturaAuxiliar.Ourref = UCase(facfactutafiltro.Ourref)
+                FacFacturaAuxiliar.Inicial = UCase(facfactutafiltro.Inicial)
+                FacFacturaAuxiliar.Instruc = UCase(facfactutafiltro.Instruc)
 
                 If Me._ventana.NumeroControl <> "" Then
                     If IsNumeric(Me._ventana.NumeroControl) Then

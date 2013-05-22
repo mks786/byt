@@ -971,14 +971,21 @@ Namespace Presentadores.FacFacturaProformas
                 End If
                 Me._ventana.idMarcaFiltrar = ""
             End If
-            marca.Descripcion = UCase(Me._ventana.NombreMarcaFiltrar)
-            Me._ventana.NombreMarcaFiltrar = ""
 
-            marca.CodigoInscripcion = UCase(Me._ventana.CodigoInscripcion)
-            Me._ventana.CodigoInscripcion = ""
+            If Me._ventana.NombreMarcaFiltrar <> "" Then
+                marca.Descripcion = UCase(Me._ventana.NombreMarcaFiltrar)
+                Me._ventana.NombreMarcaFiltrar = ""
+            End If
 
-            marca.CodigoRegistro = UCase(Me._ventana.Registro)
-            Me._ventana.Registro = ""
+            If Me._ventana.CodigoInscripcion <> "" Then
+                marca.CodigoInscripcion = UCase(Me._ventana.CodigoInscripcion)
+                Me._ventana.CodigoInscripcion = ""
+            End If
+
+            If Me._ventana.Registro <> "" Then
+                marca.CodigoRegistro = UCase(Me._ventana.Registro)
+                Me._ventana.Registro = ""
+            End If
 
 
             '876228
@@ -1037,14 +1044,18 @@ Namespace Presentadores.FacFacturaProformas
         Public Sub BuscarPatente()
             Dim Patentes As IList(Of Patente)
             Dim Patente As New Patente
+
             If Me._ventana.idPatenteFiltrar <> "" Then
                 If (IsNumeric(Me._ventana.idPatenteFiltrar)) Then
                     Patente.Id = Me._ventana.idPatenteFiltrar
                 End If
                 Me._ventana.idPatenteFiltrar = ""
             End If
-            Patente.Descripcion = UCase(Me._ventana.NombrePatenteFiltrar)
-            Patente.Descripcion = ""
+
+            If Me._ventana.NombrePatenteFiltrar <> "" Then
+                Patente.Descripcion = UCase(Me._ventana.NombrePatenteFiltrar)
+                Patente.Descripcion = ""
+            End If
             '876228
 
             Patentes = Me._PatentesServicios.ObtenerPatentesFiltro(Patente)
@@ -3770,12 +3781,13 @@ Namespace Presentadores.FacFacturaProformas
                         'busca el resto de los datos
                         'BuscarCarta()
 
-                        adivinar(asociado, DirectCast(Me._ventana.Moneda, Moneda))
 
                         If (Me._ventana.AsociadoImp Is Nothing) Then
                             Me._ventana.NombreAsociadoImp = DirectCast(Me._ventana.Asociado, Asociado).Id & " - " & DirectCast(Me._ventana.Asociado, Asociado).Nombre
                             'Me._ventana.AsociadoImp = asociado
                         End If
+
+                        adivinar(asociado, DirectCast(Me._ventana.Moneda, Moneda))
                     Else
                         Me._ventana.NombreAsociado = Nothing
                     End If
@@ -3975,6 +3987,7 @@ Namespace Presentadores.FacFacturaProformas
                 Me._ventana.Cartas = Nothing
                 MessageBox.Show("Error: Asociado no Activo")
                 Me._ventana.MensajeError = "Error: Asociado no Activo"
+                Exit Sub
             End If
         End Sub
 

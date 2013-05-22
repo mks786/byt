@@ -549,7 +549,8 @@ Namespace Presentadores.FacReportes
                 End If
             End If
             If valor = True Then
-                operacionaux.ValorQuery = operacionaux.ValorQuery & "and o.Saldo > 0 and o.Id='" & nc & "'  order by Asociado.Id, o.FechaOperacion "
+                operacionaux.ValorQuery = operacionaux.ValorQuery & "and o.Saldo > 0 and o.Id='" & nc & "'  order by Asociado.Id, o.FechaOperacion, o.CodigoOperacion desc "
+                'operacionaux.ValorQuery = operacionaux.ValorQuery & " and o.Saldo > 0 and o.Id='" & nc & "'  order by o.FechaOperacion, o.CodigoOperacion desc "
                 operacionaux.Seleccion = True
             End If
 
@@ -641,7 +642,8 @@ Namespace Presentadores.FacReportes
             If valor = True Then
                 Dim query_pais As String = ""
                 query_pais = "' and Pais.Id<>" & (DirectCast(Me._ventana.Pais, Pais)).Id
-                operacionaux.ValorQuery = operacionaux.ValorQuery & " and o.Saldo > 0 and o.Id='" & nc & query_pais & "   order by Asociado.Id, o.FechaOperacion "
+                operacionaux.ValorQuery = operacionaux.ValorQuery & " and o.Saldo > 0 and o.Id='" & nc & query_pais & "   order by Asociado.Id, o.FechaOperacion,o.CodigoOperacion desc "
+                'operacionaux.ValorQuery = operacionaux.ValorQuery & " and o.Saldo > 0 and o.Id='" & nc & "'  order by o.FechaOperacion, o.CodigoOperacion desc "
                 operacionaux.Seleccion = True
             End If
 
@@ -698,10 +700,13 @@ Namespace Presentadores.FacReportes
                         structura.CodigoCliente1 = operacion.Asociado.Id
                         structura.Cliente1 = operacion.Asociado.Nombre
                         structura.Domicilio1 = operacion.Asociado.Domicilio
-                        structura.Mail1 = operacion.Asociado.Email
+                        structura.Cliente1 = structura.Cliente1 & ControlChars.NewLine & structura.Domicilio1
                         If operacion.Asociado.Pais IsNot Nothing Then
-                            structura.Pais1 = BuscarPais(Me._ventana.Paises, operacion.Asociado.Pais).NombreIngles
+                        structura.Pais1 = BuscarPais(Me._ventana.Paises, operacion.Asociado.Pais).NombreIngles
+                            structura.Cliente1 = structura.Cliente1 & ControlChars.NewLine & structura.Pais1
                         End If
+                    structura.Mail1 = operacion.Asociado.Email
+                        structura.Cliente1 = structura.Cliente1 & ControlChars.NewLine & structura.Mail1
                     End If
                 End If
                 If Me._ventana.TipoMoneda = "Moneda Original" Then
@@ -753,8 +758,13 @@ Namespace Presentadores.FacReportes
                         structura.CodigoCliente1 = operacion.Asociado.Id
                         structura.Cliente1 = operacion.Asociado.Nombre
                         structura.Domicilio1 = operacion.Asociado.Domicilio
+                        structura.Cliente1 = structura.Cliente1 & ControlChars.NewLine & structura.Domicilio1
+                        If operacion.Asociado.Pais IsNot Nothing Then
+                            structura.Pais1 = BuscarPais(Me._ventana.Paises, operacion.Asociado.Pais).NombreIngles
+                            structura.Cliente1 = structura.Cliente1 & ControlChars.NewLine & structura.Pais1
+                        End If
                         structura.Mail1 = operacion.Asociado.Email
-                        structura.Pais1 = operacion.Asociado.Pais.NombreIngles
+                        structura.Cliente1 = structura.Cliente1 & ControlChars.NewLine & structura.Mail1
                     End If
                 End If
                 If Me._ventana.TipoMoneda = "Moneda Original" Then

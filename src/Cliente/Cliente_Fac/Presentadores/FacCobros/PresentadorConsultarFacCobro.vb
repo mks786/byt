@@ -727,17 +727,21 @@ Namespace Presentadores.FacCobros
                 MessageBox.Show("Error Elija Moneda", "Error", MessageBoxButton.OK)
                 Return (False)
             End If
-            If existe_tasa_dia(FacCobro.FechaCobro, moneda.Id) = False Then
-                If MessageBoxResult.Yes = MessageBox.Show("Advertencia Tasa para la fecha de cobro no existe, Desae Continuer de todos Modos?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Question) Then
-                    respuesta = True
-                Else
-                    Me._ventana.BformaMan = Nothing
-                    Dim primervalor As New ListaDatosValores()
-                    primervalor.Id = ""
-                    primervalor.Descripcion = " "
-                    Me._ventana.Valor = primervalor
-                    respuesta = False
+            If moneda.Id = "US" Then
+                If existe_tasa_dia(FacCobro.FechaCobro, moneda.Id) = False Then
+                    If MessageBoxResult.Yes = MessageBox.Show("Advertencia Tasa para la fecha de cobro no existe, Desae Continuer de todos Modos?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Question) Then
+                        respuesta = True
+                    Else
+                        Me._ventana.BformaMan = Nothing
+                        Dim primervalor As New ListaDatosValores()
+                        primervalor.Id = ""
+                        primervalor.Descripcion = " "
+                        Me._ventana.Valor = primervalor
+                        respuesta = False
+                    End If
                 End If
+            Else
+                respuesta = True
             End If
             Return (respuesta)
         End Function
@@ -821,6 +825,7 @@ Namespace Presentadores.FacCobros
                     'End If
 
                     FacForma.XForma = Me._ventana.XformaMan
+                    Me._ventana.XformaMan = ""
                     FacForma.TipoPago = DirectCast(Me._ventana.Valor, ListaDatosValores).Descripcion
 
                     Dim primervalor As New ListaDatosValores()

@@ -272,5 +272,22 @@ Namespace Presentadores.ChequeRecidos
                 'Me._ventana.Personas = Nothing
             End Try
         End Sub
+
+        Public Sub NuevaProforma()
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region            
+
+            Me.Navegar(New AgregarChequeRecido())
+            'Me.Navegar(New ConsultarFacCobro())
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+        End Sub
+
     End Class
 End Namespace

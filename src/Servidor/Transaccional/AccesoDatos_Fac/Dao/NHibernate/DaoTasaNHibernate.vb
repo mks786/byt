@@ -71,7 +71,7 @@ Namespace Dao.NHibernate
 
             Dim query As IQuery
             If (filtro = "") Then
-                query = Session.CreateQuery(cabecera)
+                query = Session.CreateQuery(cabecera & " order by t.Id desc")
             Else
                 cabecera = cabecera & " Where "
                 cabecera = cabecera & filtro & " order by t.Id desc"

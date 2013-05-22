@@ -10,7 +10,7 @@
             </Label>
         </WrapPanel>
         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="0" Margin="0,0,0,20">
-            <custom:ByTTextBox Name="_txtDetalle_Ing" MaxLength="255" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
+            <custom:ByTTextBox Name="_txtDetalle_Ing" MaxLength="1024" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
                               Height="90" SpellCheck.IsEnabled="True" Width="330" />
         </WrapPanel>
         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="0">
@@ -22,7 +22,7 @@
             <!--<Label Width="90" HorizontalContentAlignment="Left">
                 <TextBlock Text="Texto Español:"/>
             </Label>-->
-            <custom:ByTTextBox Name="_txtDetalle_Esp" MaxLength="255" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
+            <custom:ByTTextBox Name="_txtDetalle_Esp" MaxLength="1024" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
                               Height="90" SpellCheck.IsEnabled="True" Width="330"  />
         </WrapPanel>
         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" >

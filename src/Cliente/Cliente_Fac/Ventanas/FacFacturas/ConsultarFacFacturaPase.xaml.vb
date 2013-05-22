@@ -434,8 +434,19 @@ Namespace Ventanas.FacFacturas
                     Me._presentador.BuscarMarca()
                 ElseIf nom = "_txtNombrePatente" Or nom = "_txtIdPatente" Then
                     Me._presentador.BuscarPatente()
+                ElseIf nom = "_txtCguia" Then
+                    Me._presentador.ConsultarGuia(DirectCast(sender, ByTTextBox).Text)
                 End If
-            End If
+            Else
+                If e.Key = Key.Tab Then
+                    Dim nom As String = DirectCast(sender, ByTTextBox).Name.ToString
+                    If nom = "_txtCguia" Then
+
+                        Me._presentador.ConsultarGuia(DirectCast(sender, ByTTextBox).Text)
+                    End If
+                End If
+            End If            
+
         End Sub
 
         'Private Sub _ConsultarInteresado_Enter(ByVal sender As Object, ByVal e As KeyEventArgs)

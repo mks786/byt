@@ -249,7 +249,7 @@ Namespace Presentadores.FacFacturas
                 End If
 
                 'If (filtroValido = True) Then
-                FacFacturaAuxiliar.Inicial = UsuarioLogeado.Iniciales
+                'FacFacturaAuxiliar.Inicial = UsuarioLogeado.Iniciales
                 FacFacturaAuxiliar.Anulada = "SI"
                 Dim FacFacturas As IList(Of FacFactura)
                 FacFacturas = Me._FacFacturaServicios.ObtenerFacFacturasFiltro(FacFacturaAuxiliar)

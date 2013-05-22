@@ -499,25 +499,40 @@ Namespace Presentadores.FacFacturaAnuladas
                 facfacturaanulada.MTtotalBf = factura.MTtotalBf
                 facfacturaanulada.XAsociado_O = factura.XAsociado_O
                 'facfacturaanulada.Status = factura.Status
-                facfacturaanulada.Motivo = Me._ventana.Motivo                
-                facfacturaanulada.Control = Me._ventana.Control
-                facfacturaanulada.Detalle = Me._ventana.Detalle                
+                If Me._ventana.Motivo IsNot Nothing Then
+                    If DirectCast(Me._ventana.Motivo, FacMotivo).Id <> Integer.MinValue Then
+                        facfacturaanulada.Motivo = Me._ventana.Motivo
+                    End If
+                End If
+                If IsNumeric(Me._ventana.Control) Then
+                    facfacturaanulada.Control = Me._ventana.Control
+                End If
+                facfacturaanulada.Detalle = Me._ventana.Detalle
                 facfacturaanulada.Anulada = "SI"
 
                 If factura.Terrero = "1" Then
-                    facfacturaanulada.Secanula = Me._ventana.Secuencia
+                    If IsNumeric(Me._ventana.Secuencia) Then
+                        facfacturaanulada.Secanula = Me._ventana.Secuencia
+                    End If
                 End If
                 If factura.Terrero = "2" Then
-                    facfacturaanulada.Secanula = Me._ventana.Secuencia
-                    facfacturaanulada.Secanula2 = Me._ventana.Secuencia2
-
-                    If DirectCast(Me._ventana.Motivo2, FacMotivo).Id <> Integer.MinValue Then
-                        facfacturaanulada.Motivo2 = Me._ventana.Motivo2
-                    End If                    
+                    If IsNumeric(Me._ventana.Secuencia) Then
+                        facfacturaanulada.Secanula = Me._ventana.Secuencia
+                    End If
+                    If IsNumeric(Me._ventana.Secuencia2) Then
+                        facfacturaanulada.Secanula2 = Me._ventana.Secuencia2
+                    End If
+                    If Me._ventana.Motivo2 IsNot Nothing Then
+                        If DirectCast(Me._ventana.Motivo2, FacMotivo).Id <> Integer.MinValue Then
+                            facfacturaanulada.Motivo2 = Me._ventana.Motivo2
+                        End If
+                    End If
                     facfacturaanulada.Detalle2 = Me._ventana.Detalle2
                 End If
                 If factura.Terrero = "3" Then
-                    facfacturaanulada.Secanula2 = Me._ventana.Secuencia2
+                    If IsNumeric(Me._ventana.Secuencia2) Then
+                        facfacturaanulada.Secanula2 = Me._ventana.Secuencia2
+                    End If
                 End If
                 facfacturaanulada.FechaAnulacion = FormatDateTime(Date.Now, DateFormat.ShortDate)
 
