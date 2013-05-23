@@ -2208,6 +2208,7 @@ Namespace Presentadores.FacFacturaProformas
                     facfactudetaproforma.Desactivar_Desglose = True
                 End If
 
+                Dim tipo_desg As String = ""
                 If Me._ventana.Desglose = True Then
                     Dim desglose_servicio As FacDesgloseServicio = DirectCast(Me._ventana.DesgloseServicio_Seleccionado, FacDesgloseServicio)
                     If desglose_servicio IsNot Nothing Then
@@ -2225,9 +2226,11 @@ Namespace Presentadores.FacFacturaProformas
                                 facfactudetaproforma.PuBf = 0
                             End If
                             If facfactudetaproforma.Descuento.ToString <> "" And facfactudetaproforma.NCantidad.ToString <> "" Then
-                                facfactudetaproforma.BDetalle = (facfactudetaproforma.Pu * facfactudetaproforma.NCantidad) * (1 - (facfactudetaproforma.Descuento / 100))
+                                'facfactudetaproforma.BDetalle = (facfactudetaproforma.Pu * facfactudetaproforma.NCantidad) * (1 - (facfactudetaproforma.Descuento / 100))
+                                facfactudetaproforma.BDetalle = (facfactudetaproforma.Pu * facfactudetaproforma.NCantidad)
                                 facfactudetaproforma.BDetalle = facfactudetaproforma.BDetalle
-                                facfactudetaproforma.BDetalleBf = (facfactudetaproforma.PuBf * facfactudetaproforma.NCantidad) * (1 - (facfactudetaproforma.Descuento / 100))
+                                'facfactudetaproforma.BDetalleBf = (facfactudetaproforma.PuBf * facfactudetaproforma.NCantidad) * (1 - (facfactudetaproforma.Descuento / 100))
+                                facfactudetaproforma.BDetalleBf = (facfactudetaproforma.PuBf * facfactudetaproforma.NCantidad)
                                 facfactudetaproforma.BDetalleBf = facfactudetaproforma.BDetalleBf
                             Else
                                 facfactudetaproforma.BDetalle = 0
@@ -2279,6 +2282,7 @@ Namespace Presentadores.FacFacturaProformas
                     End If
 
                     Me._ventana.Desactivar_Descuento = facfactudetaproforma.Desactivar_Desglose
+                    tipo_desg = desglose_servicio.Id
                 End If 'If Me._ventana.Desglose = True Then
 
                 facfactudetaproforma.BBsel = Me._ventana.Seleccion
@@ -2290,7 +2294,7 @@ Namespace Presentadores.FacFacturaProformas
                 facfactudetaproforma.Factura = factura_proforma
                 'guardar = _FacFactuDetaProformasServicios.InsertarOModificar(facfactudetaproforma, UsuarioLogeado.Hash)
                 'If guardar = True Then
-                agrega_detalle(facfactudetaproforma)
+                agrega_detalle(facfactudetaproforma, tipo_desg)
                 recalcular(moneda.Id)
                 ' End If
             Catch ex As Exception
@@ -2298,7 +2302,7 @@ Namespace Presentadores.FacFacturaProformas
             End Try
         End Sub
 
-        Public Sub agrega_detalle(ByVal detalle_proforma As FacFactuDetaProforma)
+        Public Sub agrega_detalle(ByVal detalle_proforma As FacFactuDetaProforma, ByVal tipo_desg As String)
             Dim detallesaux As List(Of FacFactuDetaProforma) = DirectCast(Me._ventana.ResultadosFacFactuDetaProforma, List(Of FacFactuDetaProforma))
             Dim detalles As New List(Of FacFactuDetaProforma)
             Dim i As Integer = 0
@@ -2317,12 +2321,16 @@ Namespace Presentadores.FacFacturaProformas
                 End If
             End If
 
-            Dim asociado As Asociado
-            If detalle_proforma.Servicio.BAimpuesto <> False Then
-                asociado = DirectCast(Me._ventana.Asociado, Asociado)
-                detalle_proforma.Descuento = asociado.Descuento
-                If asociado.Descuento < 25 And DirectCast(Me._ventana.Moneda, Moneda).Id = "BF" Then
-                    detalle_proforma.Descuento = 25
+            If tipo_desg <> "G" Then
+                Dim asociado As Asociado
+                If detalle_proforma.Servicio.BAimpuesto <> False Then
+                    asociado = DirectCast(Me._ventana.Asociado, Asociado)
+                    detalle_proforma.Descuento = asociado.Descuento
+                    If asociado.Descuento < 25 And DirectCast(Me._ventana.Moneda, Moneda).Id = "BF" Then
+                        detalle_proforma.Descuento = 25
+                    End If
+                Else
+                    detalle_proforma.Descuento = 0
                 End If
             Else
                 detalle_proforma.Descuento = 0
@@ -2334,9 +2342,11 @@ Namespace Presentadores.FacFacturaProformas
             'End If
 
 
-            detalle_proforma.BDetalle = (detalle_proforma.Pu * detalle_proforma.NCantidad) * (1 - (detalle_proforma.Descuento / 100))
+            'detalle_proforma.BDetalle = (detalle_proforma.Pu * detalle_proforma.NCantidad) * (1 - (detalle_proforma.Descuento / 100))
+            detalle_proforma.BDetalle = (detalle_proforma.Pu * detalle_proforma.NCantidad)
             detalle_proforma.BDetalle = detalle_proforma.BDetalle
-            detalle_proforma.BDetalleBf = (detalle_proforma.PuBf * detalle_proforma.NCantidad) * (1 - (detalle_proforma.Descuento / 100))
+            'detalle_proforma.BDetalleBf = (detalle_proforma.PuBf * detalle_proforma.NCantidad) * (1 - (detalle_proforma.Descuento / 100))
+            detalle_proforma.BDetalleBf = (detalle_proforma.PuBf * detalle_proforma.NCantidad)
             detalle_proforma.BDetalleBf = detalle_proforma.BDetalleBf
 
             detalles(i) = detalle_proforma
