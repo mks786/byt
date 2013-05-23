@@ -527,6 +527,33 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
             }
         }
 
+
+
+        /// <summary>
+        /// Constructor para la consulta desde operaciones que admite una ventana Padre
+        /// </summary>
+        /// <param name="Licencia">la Licencia a mostrar</param>
+        /// <param name="visibilidad">parametro que indica la visibilidad de los botones</param>
+        public GestionarLicencia(object Licencia, object parametro, object ventanaPadre)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            //this._presentador = new PresentadorGestionarLicencia(this, Licencia);
+            this._presentador = new PresentadorGestionarLicencia(this, Licencia, ventanaPadre);
+
+            if (parametro.GetType() == typeof(System.Windows.Visibility))
+            {
+                this._btnModificar.Visibility = (System.Windows.Visibility)parametro;
+                this._btnEliminar.Visibility = (System.Windows.Visibility)parametro;
+            }
+            else if (parametro.GetType() == typeof(ConsultarLicencias))
+            {
+                _presentador._ventanaPadre = parametro;
+            }
+        }
+
+
+
         public void PintarAsociado(string tipo)
         {
             SolidColorBrush color;

@@ -738,7 +738,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 MarcaABuscar.MarcaTercero.Anexo = marcaTerceroParaNavegar.Anexo;
                 marcaTerceroParaNavegar.MarcasBaseTercero = _marcaBaseTerceroServicios.ConsultarMarcasBasePorId(MarcaABuscar);
 
-                this.Navegar(new GestionarMarcaTercero(marcaTerceroParaNavegar));
+                //Constructor sin la ventana padre
+                //this.Navegar(new GestionarMarcaTercero(marcaTerceroParaNavegar));
+
+                //Constructor que carga la ventana padre para regresarme a ella
+                this.Navegar(new GestionarMarcaTercero(marcaTerceroParaNavegar, this._ventana));
             }
 
             #region trace

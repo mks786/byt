@@ -153,6 +153,102 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             }
         }
 
+
+
+        /// <summary>
+        /// Constructor Predeterminado sobrecargado que contiene una ventana Padre
+        /// </summary>
+        /// <param name="ventana">página que satisface el contrato</param>
+        public PresentadorGestionarCambioDeDomicilio(IGestionarCambioDeDomicilio ventana, object cambioDeDomicilio, object ventanaPadre)
+        {
+            try
+            {
+
+                this._ventana = ventana;
+
+                this._ventanaPadre = ventanaPadre;
+
+                if (cambioDeDomicilio != null)
+                {
+                    this._ventana.CambioDeDomicilio = cambioDeDomicilio;
+                    _agregar = false;
+                    CambiarAModificar();
+                }
+                else
+                {
+                    CambioDeDomicilio cambioDeDomicilioAgregar = new CambioDeDomicilio();
+                    this._ventana.CambioDeDomicilio = cambioDeDomicilioAgregar;
+
+                    ((CambioDeDomicilio)this._ventana.CambioDeDomicilio).FechaDomicilio = DateTime.Now;
+                    this._ventana.Marca = null;
+                    this._ventana.Poder = null;
+                    this._ventana.InteresadoAnterior = null;
+                    this._ventana.InteresadoActual = null;
+                    this._ventana.AgenteApoderado = null;
+
+                    CambiarAModificar();
+
+                    this._ventana.TextoBotonRegresar = Recursos.Etiquetas.btnCancelar;
+
+                    this._ventana.ActivarControlesAlAgregar();
+
+                }
+
+                #region Servicios
+
+                this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
+                this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
+                this._agenteServicios = (IAgenteServicios)Activator.GetObject(typeof(IAgenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
+                this._poderServicios = (IPoderServicios)Activator.GetObject(typeof(IPoderServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PoderServicios"]);
+                this._boletinServicios = (IBoletinServicios)Activator.GetObject(typeof(IBoletinServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
+                this._paisServicios = (IPaisServicios)Activator.GetObject(typeof(IPaisServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
+                this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
+                this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
+                this._servicioServicios = (IServicioServicios)Activator.GetObject(typeof(IServicioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ServicioServicios"]);
+                this._tipoEstadoServicios = (ITipoEstadoServicios)Activator.GetObject(typeof(ITipoEstadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoEstadoServicios"]);
+                this._corresponsalServicios = (ICorresponsalServicios)Activator.GetObject(typeof(ICorresponsalServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CorresponsalServicios"]);
+                this._condicionServicios = (ICondicionServicios)Activator.GetObject(typeof(ICondicionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CondicionServicios"]);
+                this._anaquaServicios = (IAnaquaServicios)Activator.GetObject(typeof(IAnaquaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AnaquaServicios"]);
+                this._infoAdicionalServicios = (IInfoAdicionalServicios)Activator.GetObject(typeof(IInfoAdicionalServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoAdicionalServicios"]);
+                this._infoBolServicios = (IInfoBolServicios)Activator.GetObject(typeof(IInfoBolServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoBolServicios"]);
+                this._operacionServicios = (IOperacionServicios)Activator.GetObject(typeof(IOperacionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["OperacionServicios"]);
+                this._busquedaServicios = (IBusquedaServicios)Activator.GetObject(typeof(IBusquedaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BusquedaServicios"]);
+                this._statusWebServicios = (IStatusWebServicios)Activator.GetObject(typeof(IStatusWebServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["StatusWebServicios"]);
+                this._cambioDeDomicilioServicios = (ICambioDeDomicilioServicios)Activator.GetObject(typeof(ICambioDeDomicilioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioDeDomicilioServicios"]);
+
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+
+
+
         public void ActualizarTitulo()
         {
             if (_agregar == true)

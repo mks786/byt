@@ -512,6 +512,34 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         }
 
 
+
+        /// <summary>
+        /// Constructor para la consulta desde operaciones que admite una ventana Padre
+        /// </summary>
+        /// <param name="fusion">la fusion a mostrar</param>
+        /// <param name="visibilidad">parametro que indica la visibilidad de los botones</param>
+        public GestionarFusion(object fusion, object parametro, object ventanaPadre)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            //this._presentador = new PresentadorGestionarFusion(this, fusion);
+            this._presentador = new PresentadorGestionarFusion(this, fusion, ventanaPadre);
+
+            if (parametro.GetType() == typeof(System.Windows.Visibility))
+            {
+                this._btnModificar.Visibility = (System.Windows.Visibility)parametro;
+                this._btnEliminar.Visibility = (System.Windows.Visibility)parametro;
+            }
+            else if (parametro.GetType() == typeof(ConsultarFusiones))
+            {
+                _presentador._ventanaPadre = parametro;
+            }
+        }
+
+
+
+
+
         public void PintarAsociado(string tipo)
         {
             SolidColorBrush color;

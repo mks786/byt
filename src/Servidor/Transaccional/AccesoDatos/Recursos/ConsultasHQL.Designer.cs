@@ -2032,7 +2032,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select i from InfoBol i left outer join fetch i.TipoInfobol where i.Marca.Id = &apos;{0}&apos;.
+        ///   Busca una cadena traducida similar a Select i from InfoBol i left outer join fetch i.TipoInfobol where i.Marca.Id = {0}.
         /// </summary>
         public static string ObtenerInfoBolesPorMarcas {
             get {

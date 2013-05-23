@@ -2038,7 +2038,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         #endregion
 
 
+        public void LimpiarDatosVentanaMarcaDuplicada()
+        {
+            this._txtCodigoInscripcion.Text = null;
+            this._txtFechaInscripcion.Text = null;
+            this._txtCodigoRegistro.Text = null;
+            this._txtFechaRegistro.Text = null;
+            this._txtCodigoInscripcionSolicitud.Text = null;
+            this._txtOtrosImp.Text = null;
+            this._txtComentarioDatos.Text = null;
 
+        }
         
 
         

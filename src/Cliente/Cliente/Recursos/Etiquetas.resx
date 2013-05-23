@@ -3660,4 +3660,16 @@ en Prensa:</value>
   <data name="lsvFechaRegistro" xml:space="preserve">
     <value>Fecha Registro</value>
   </data>
+  <data name="lsvPagina" xml:space="preserve">
+    <value>Pagina</value>
+  </data>
+  <data name="lsvResolucion" xml:space="preserve">
+    <value>Resolucion</value>
+  </data>
+  <data name="lsvTomo" xml:space="preserve">
+    <value>Tomo</value>
+  </data>
+  <data name="lsvCodigoInternoOperaciones" xml:space="preserve">
+    <value>Cod. Interno</value>
+  </data>
 </root>

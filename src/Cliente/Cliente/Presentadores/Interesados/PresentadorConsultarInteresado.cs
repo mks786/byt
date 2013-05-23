@@ -156,34 +156,34 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                     interesado.Operacion = "MODIFY";
                     interesado.TipoPersona = ((ListaDatosDominio)this._ventana.TipoPersona).Id[0];
 
-                    if ((interesado.Estado != null) && (!interesado.Estado.Equals("")))
-                    {
+                    //if ((interesado.Estado != null) && (!interesado.Estado.Equals("")))
+                    //{
                         if ((interesado.Pais != null) && (interesado.Pais.Id != 0))
                         {
-                            if ((interesado.Nacionalidad != null) && (!interesado.Nacionalidad.Equals("")))
-                            {
+                            //if ((interesado.Nacionalidad != null) && (!interesado.Nacionalidad.Equals("")))
+                            //{
                                 bool exitoso = this._interesadoServicios.InsertarOModificar(interesado, UsuarioLogeado.Hash);
                                 if (exitoso)
                                 {
                                     _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.InteresadoModificado;
                                     this.Navegar(_paginaPrincipal);
                                 }
-                            }
-                            else
-                            {
-                                this._ventana.Mensaje(Recursos.MensajesValidaciones.InteresadoNacionalidad, 1);
-                            }
+                            //}
+                            //else
+                            //{
+                            //    this._ventana.Mensaje(Recursos.MensajesValidaciones.InteresadoNacionalidad, 1);
+                            //}
                         }
                         else
                         {
                             this._ventana.Mensaje(Recursos.MensajesValidaciones.InteresadoPais, 1);
 
                         }
-                    }
-                    else
-                    {
-                        this._ventana.Mensaje(Recursos.MensajesValidaciones.InteresadoEstado, 1);
-                    }
+                    //}
+                    //else
+                    //{
+                    //    this._ventana.Mensaje(Recursos.MensajesValidaciones.InteresadoEstado, 1);
+                    //}
                 }
 
                 #region trace

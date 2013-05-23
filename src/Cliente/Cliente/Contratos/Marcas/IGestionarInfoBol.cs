@@ -38,5 +38,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         SortAdorner CurAdorner { get; set; }
 
+        void ActivarBotonRevisar(bool estado);
+
     }
 }

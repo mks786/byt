@@ -67,17 +67,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         private IList<Marca> _marcas;
         private IList<MarcaBaseTercero> _marcasBaseTercero;
 
+        //private object _ventanaPadre = null; 
+
 
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorGestionarMarcaTercero(IGestionarMarcaTercero ventana, object marcaTercero)
+        public PresentadorGestionarMarcaTercero(IGestionarMarcaTercero ventana, object marcaTercero, object ventanaPadre)
         {
             try
             {
 
                 this._ventana = ventana;
+                this._ventanaPadre = ventanaPadre;
+
                 if (marcaTercero != null)
                 {
                     this._ventana.MarcaTercero = marcaTercero;
@@ -346,7 +350,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         /// </summary>
         public void IrConsultarMarcasTercero()
         {
-            this.Navegar(new ConsultaMarcasTercero());
+            //this.Navegar(new ConsultaMarcasTercero());
+            if (this._ventanaPadre != null)
+            {
+                this.Navegar((Page)_ventanaPadre);
+            }
+            else
+                this.Navegar(new ConsultaMarcasTercero());
+
         }
 
 

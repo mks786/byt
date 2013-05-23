@@ -99,7 +99,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             if (!nuevo)
             {
                 ((InfoBol)this._ventana.InfoBolSeleccionado).Marca = this._marca;
-                this.Navegar(new GestionarInfoBol(this._ventana.InfoBolSeleccionado));
+                //this.Navegar(new GestionarInfoBol(this._ventana.InfoBolSeleccionado));
+
+                this.Navegar(new GestionarInfoBol(this._ventana.InfoBolSeleccionado, this._ventana));
             }
             else
             {

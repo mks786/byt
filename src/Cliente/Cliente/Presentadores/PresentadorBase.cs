@@ -127,8 +127,16 @@ namespace Trascend.Bolet.Cliente.Presentadores
         /// </summary>
         public void Regresar()
         {
-            if (_ventanaPrincipal.Contenedor.CanGoBack)
-                _ventanaPrincipal.Contenedor.GoBack();
+            //if (_ventanaPrincipal.Contenedor.CanGoBack)
+            //    _ventanaPrincipal.Contenedor.GoBack();
+            //else
+            //    this.Navegar();
+
+
+            if (this._ventanaPadre != null)
+            {
+                this.Navegar((Page)_ventanaPadre);
+            }
             else
                 this.Navegar();
 

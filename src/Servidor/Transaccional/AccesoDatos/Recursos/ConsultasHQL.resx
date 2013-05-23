@@ -234,7 +234,7 @@
     <comment>Obtiene una info adicional dado su id</comment>
   </data>
   <data name="ObtenerInfoBolesPorMarcas" xml:space="preserve">
-    <value>Select i from InfoBol i left outer join fetch i.TipoInfobol where i.Marca.Id = '{0}'</value>
+    <value>Select i from InfoBol i left outer join fetch i.TipoInfobol where i.Marca.Id = {0}</value>
     <comment>Obtener todos los infoboles de una marca</comment>
   </data>
   <data name="ObtenerOperacionesPorMarcas" xml:space="preserve">

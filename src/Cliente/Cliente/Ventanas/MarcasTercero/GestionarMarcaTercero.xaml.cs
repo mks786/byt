@@ -752,7 +752,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
 
         #endregion
 
-
+        /// <summary>
+        /// Constructor de la clase GestionarMarcaTercero que solamente recibe la marca seleccionada en la lista 
+        /// pero no pasa la ventana padre
+        /// </summary>
+        /// <param name="marcaTerceroSeleccionada"></param>
         public GestionarMarcaTercero(object marcaTerceroSeleccionada)
         {
             InitializeComponent();
@@ -771,8 +775,38 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 this._btnInfoAdicional.Visibility = System.Windows.Visibility.Collapsed;
                 this._btnInfobol.Visibility= System.Windows.Visibility.Collapsed;
             }
-            this._presentador = new PresentadorGestionarMarcaTercero(this, marcaTerceroSeleccionada);
+            //this._presentador = new PresentadorGestionarMarcaTercero(this, marcaTerceroSeleccionada );
+
+            this._presentador = new PresentadorGestionarMarcaTercero(this, marcaTerceroSeleccionada, null);
         }
+
+        //---
+
+        public GestionarMarcaTercero(object marcaTerceroSeleccionada, object ventanaPadre)
+        {
+            InitializeComponent();
+
+            this._cargada = false;
+            this._asociadosCargados = false;
+            this._interesadosCargados = false;
+            this._corresponsalesCargados = false;
+            this._poderesCargados = false;
+            this._byt = false;
+            if (null == marcaTerceroSeleccionada)
+            {
+                this._btnNuevoAnexo.Visibility = System.Windows.Visibility.Collapsed;
+                this._btnAuditoriaDatos.Visibility = System.Windows.Visibility.Collapsed;
+                this._btnExpediente.Visibility = System.Windows.Visibility.Collapsed;
+                this._btnInfoAdicional.Visibility = System.Windows.Visibility.Collapsed;
+                this._btnInfobol.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            //this._presentador = new PresentadorGestionarMarcaTercero(this, marcaTerceroSeleccionada);
+
+            this._presentador = new PresentadorGestionarMarcaTercero(this, marcaTerceroSeleccionada, ventanaPadre);
+        }
+
+        //---
+
 
         public GestionarMarcaTercero(object marcaTerceroSeleccionada, string tab)
             : this(marcaTerceroSeleccionada)
@@ -1455,6 +1489,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             this._txtClaseInternacionalByt.IsEnabled = false;
             this._txtClaseNacionalByt.IsEnabled = false;
             this._txtTipoBase.IsEnabled = false;
+            this._txtNombreMarca.IsReadOnly = true;
 
             if ((bool)!this._chkByt.IsChecked)
             {
@@ -1462,6 +1497,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 GestionarVisibilidadDatosDeMarca(Visibility.Visible);
                 this._txtClaseInternacionalByt.IsEnabled = false;
                 this._txtClaseNacionalByt.IsEnabled = false;
+                this._txtNombreMarca.IsReadOnly = false;
 
                 GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
                 this._txtClaseInternacionalByt.IsEnabled = true;

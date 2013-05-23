@@ -250,5 +250,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         SortAdorner CurAdorner { get; set; }
 
         void BorrarLista();
+
+        void LimpiarDatosVentanaMarcaDuplicada();
     }
 }

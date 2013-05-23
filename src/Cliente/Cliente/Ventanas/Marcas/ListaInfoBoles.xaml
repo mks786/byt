@@ -46,6 +46,19 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=TipoInfobol.Id}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="TipoInfobol.Id" Content="{x:Static recurso:Etiquetas.lsvTipo}"/>
                         </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Boletin.Id}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Boletin.Id" Content="{x:Static recurso:Etiquetas.lsvBoletin}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Tomo}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Tomo" Content="{x:Static recurso:Etiquetas.lsvTomo}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Pagina}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Pagina" Content="{x:Static recurso:Etiquetas.lsvPagina}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Resolucion}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Resolucion" Content="{x:Static recurso:Etiquetas.lsvResolucion}"/>
+                        </GridViewColumn>
+                        
                         <GridViewColumn Width="100">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Fecha" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
                             <GridViewColumn.CellTemplate>

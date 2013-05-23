@@ -268,6 +268,9 @@
                                         <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="300">
                                             <GridViewColumnHeader Click="_OrdenarInteresadoSolicitud_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                                         </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Domicilio}" Width="300">
+                                            <GridViewColumnHeader Click="_OrdenarInteresadoSolicitud_Click" Tag="Domicilio" Content="{x:Static recurso:Etiquetas.lsvDomicilio}"/>
+                                        </GridViewColumn>
                                     </GridView>
                                 </ListView.View>
                             </ListView>
@@ -1230,6 +1233,9 @@
                                         </GridViewColumn>
                                         <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="300">
                                             <GridViewColumnHeader Click="_OrdenarInteresadoDatos_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                        </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Domicilio}" Width="300">
+                                            <GridViewColumnHeader Click="_OrdenarInteresadoDatos_Click" Tag="Domicilio" Content="{x:Static recurso:Etiquetas.lsvDomicilio}"/>
                                         </GridViewColumn>
                                     </GridView>
                                 </ListView.View>

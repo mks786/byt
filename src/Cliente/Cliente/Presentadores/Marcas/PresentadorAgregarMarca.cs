@@ -151,6 +151,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 marca.CodigoInscripcion = "";
                 marca.CodigoRegistro = "";
+                marca.FechaInscripcion = null;
+                marca.FechaPublicacion = null;
+                marca.FechaRegistro = null;
+                marca.FechaRenovacion = null;
+                marca.BInstruccionesRenovacion = false;
+                marca.BoletinConcesion = null;
+                marca.BoletinOrdenPublicacion = null;
+                marca.BoletinPublicacion = null;
+                marca.Observacion = null;
+                marca.NumeroCondiciones = null;
 
                 this._ventana.TipoMarcaDatos = this.BuscarTipoMarca((IList<ListaDatosDominio>)this._ventana.TipoMarcasDatos, marca.Tipo);
 
@@ -166,9 +176,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 primeraCondicion.Id = int.MinValue;
                 condiciones.Insert(0, primeraCondicion);
                 this._ventana.Condiciones = condiciones;
-                Condicion condicionBuscada = new Condicion();
-                condicionBuscada.Id = ((Marca)this._ventana.Marca).NumeroCondiciones;
-                this._ventana.Condicion = this.BuscarCondicion(condiciones, condicionBuscada);
+                //Condicion condicionBuscada = new Condicion();
+                //condicionBuscada.Id = ((Marca)this._ventana.Marca).NumeroCondiciones;
+                //this._ventana.Condicion = this.BuscarCondicion(condiciones, condicionBuscada);
                 
 
                 ///Falta buscar TipoEstados
@@ -179,10 +189,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 //tipoEstados.Insert(0, primerDetalle);
                 //this._ventana.Detalles = tipoEstados;
 
-                this._ventana.Servicio = this.BuscarServicio((IList<Servicio>)this._ventana.Servicios, marca.Servicio);
+                Servicio marcaServicio = new Servicio();
+                marcaServicio.Id = "MS";
+
+                //this._ventana.Servicio = this.BuscarServicio((IList<Servicio>)this._ventana.Servicios, marca.Servicio);
+                this._ventana.Servicio = this.BuscarServicio((IList<Servicio>)this._ventana.Servicios, marcaServicio);
 
                 //this._ventana.BoletinConcesion = this.BuscarBoletin((IList<Boletin>)this._ventana.BoletinesConcesion, marca.BoletinConcesion);
-                this._ventana.BoletinPublicacion = this.BuscarBoletin((IList<Boletin>)this._ventana.BoletinesPublicacion, marca.BoletinPublicacion);
+                //this._ventana.BoletinPublicacion = this.BuscarBoletin((IList<Boletin>)this._ventana.BoletinesPublicacion, marca.BoletinPublicacion);
 
                 Interesado interesado = (this._interesadoServicios.ConsultarInteresadoConTodo(marca.Interesado));
                 this._ventana.NombreInteresadoDatos = interesado.Nombre;
@@ -242,6 +256,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.Sector = this.BuscarSector((IList<ListaDatosDominio>)this._ventana.Sectores, marca.Sector);
                 this._ventana.TipoReproduccion = this.BuscarTipoReproduccion((IList<ListaDatosDominio>)this._ventana.TipoReproducciones, marca.Tipo);
                 
+                this._ventana.LimpiarDatosVentanaMarcaDuplicada();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -760,7 +775,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.IdAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Id.ToString();
 
                     if (asociado != null)
-                        this._ventana.PintarAsociado(asociado.TipoCliente.Id);
+                        if (asociado.TipoCliente != null)
+                            this._ventana.PintarAsociado(asociado.TipoCliente.Id);
+                        else
+                            this._ventana.PintarAsociado("1");
                     else
                         this._ventana.PintarAsociado("5");
 
@@ -805,7 +823,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.IdAsociadoSolicitud = ((Asociado)this._ventana.AsociadoDatos).Id.ToString();
 
                     if (asociado != null)
-                        this._ventana.PintarAsociado(asociado.TipoCliente.Id);
+                        if (asociado.TipoCliente != null)
+                            this._ventana.PintarAsociado(asociado.TipoCliente.Id);
+                        else
+                            this._ventana.PintarAsociado("1");
                     else
                         this._ventana.PintarAsociado("5");
 

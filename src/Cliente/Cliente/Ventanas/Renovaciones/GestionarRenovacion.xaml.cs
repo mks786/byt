@@ -416,6 +416,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         }
 
 
+        /// <summary>
+        /// Constructor para la consulta desde operaciones que admite una ventana Padre
+        /// </summary>
+        /// <param name="renovacion">la renovacion a mostrar</param>
+        /// <param name="visibilidad">parametro que indica la visibilidad de los botones</param>
+        public GestionarRenovacion(object renovacion, object visibilidad, object ventanaPadre)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._btnEliminar.Visibility = (System.Windows.Visibility)visibilidad;
+            //this._presentador = new PresentadorGestionarRenovacion(this, renovacion, null);
+            this._presentador = new PresentadorGestionarRenovacion(this, renovacion, ventanaPadre);
+        }
+
+
         public void ActivarControlesAlAgregar()
         {
             this.HabilitarCampos = true;

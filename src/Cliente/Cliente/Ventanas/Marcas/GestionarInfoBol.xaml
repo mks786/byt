@@ -96,13 +96,17 @@
                         </Grid.RowDefinitions>
 
                         <custom:ByTTextBox IsEnabled="False" MaxLength="2000" Grid.Column="0" Grid.Row="0" Width="350" Name="_txtCambio" VerticalAlignment="Center"
-                         Grid.ColumnSpan="7" MouseDoubleClick="_txtCambio_MouseDoubleClick" IsReadOnly="True"></custom:ByTTextBox>
+                         Grid.ColumnSpan="7" MouseDoubleClick="_txtCambio_MouseDoubleClick" IsReadOnly="True" BorderBrush="LightGreen"></custom:ByTTextBox>
 
                         <ListView Name="_lstCambios" ItemsSource="{Binding}" Grid.ColumnSpan="3"
                       MouseDoubleClick="_lstCambios_MouseDoubleClick" SelectionMode="Single" Width="350"
                       Style="{DynamicResource EstiloListView}" Visibility="Collapsed">
                             <ListView.View>
                                 <GridView>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Interno}" Width="70">
+                                        <GridViewColumnHeader Click="_OrdenarCambio_Click" Tag="Interno" Content="{x:Static recurso:Etiquetas.lsvCodigoInternoOperaciones}"/>
+                                    </GridViewColumn>
+                                    
                                     <GridViewColumn Width="70">
                                         <GridViewColumnHeader Click="_OrdenarCambio_Click" Tag="Fecha" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
                                         <GridViewColumn.CellTemplate>
@@ -121,9 +125,10 @@
                                     <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="80">
                                         <GridViewColumnHeader Click="_OrdenarCambio_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvDescripcion}"/>
                                     </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="50">
+                                    <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="50">
                                         <GridViewColumnHeader Click="_OrdenarCambio_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
-                                    </GridViewColumn>
+                                    </GridViewColumn>-->
+                                    
                                 </GridView>
                             </ListView.View>
                         </ListView>
@@ -162,6 +167,7 @@
                     Click="_btnEliminar_Click">
                 <TextBlock Name="_txbEliminar" Text="{x:Static recurso:Etiquetas.btnEliminar}"/>
             </Button>
+            <Button Name="_btnVerOperacion" VerticalAlignment="Bottom" Height="25" Width="90" IsEnabled="False" Click="_btnVerOperacion_Click">Revisar</Button>
             <Button Name="_btnCancelar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnCancelar_Click">Cancelar</Button>
         </WrapPanel>
     </Grid>

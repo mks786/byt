@@ -155,6 +155,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             _bgw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(bgw_ProgressChanged);
         }
 
+
+        public GestionarInfoBol(object infoBol, object ventanaPadre)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorGestionarInfoBol(this, infoBol,ventanaPadre);
+
+            _bgw.WorkerReportsProgress = true;
+            _bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(bgw_DoWork);
+            _bgw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(bgw_RunWorkerCompleted);
+            _bgw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(bgw_ProgressChanged);
+        }
+
+
+
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
         {
             if (this._presentador.Aceptar())
@@ -222,6 +237,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private void _lstCambios_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             this._presentador.CambiarCambio();
+            
+            if(!_txtCambio.Text.Equals(string.Empty) && !_txtCambio.Text.Equals(""))
+                this._presentador.SeleccionarServicio();
+            
             ocultarLstCambio();
         }
 
@@ -247,6 +266,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             BorrarTextoCambio();
             ocultarLstCambio();
             this._presentador.CargarCambio();
+        }
+
+
+        public void ActivarBotonRevisar(bool estado)
+        {
+            if (estado)
+                this._btnVerOperacion.IsEnabled = true;
+        }
+
+        private void _btnVerOperacion_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.VerCambio();
         }
 
     }

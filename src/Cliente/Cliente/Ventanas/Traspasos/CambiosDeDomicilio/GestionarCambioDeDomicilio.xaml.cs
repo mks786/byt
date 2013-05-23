@@ -455,6 +455,33 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
             }
         }
 
+
+        /// <summary>
+        /// Constructor para la consulta desde operaciones que admite una ventana Padre
+        /// </summary>
+        /// <param name="cambioDeDomicilio">la cambioDeDomicilio a mostrar</param>
+        /// <param name="parametro">parametro que indica la visibilidad de los botones</param>
+        /// <param name="ventanaPadre">Ventana Padre de donde se llama esta ventana</param>
+        public GestionarCambioDeDomicilio(object cambioDeDomicilio, object parametro, object ventanaPadre)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            //this._presentador = new PresentadorGestionarCambioDeDomicilio(this, cambioDeDomicilio);
+            this._presentador = new PresentadorGestionarCambioDeDomicilio(this, cambioDeDomicilio,ventanaPadre);
+
+            if (parametro.GetType() == typeof(System.Windows.Visibility))
+            {
+                this._btnModificar.Visibility = (System.Windows.Visibility)parametro;
+                this._btnEliminar.Visibility = (System.Windows.Visibility)parametro;
+            }
+            else if (parametro.GetType() == typeof(ConsultarCambiosDeDomicilio))
+            {
+                _presentador._ventanaPadre = parametro;
+            }
+        }
+
+
+
         public void PintarAsociado(string tipo)
         {
             SolidColorBrush color;

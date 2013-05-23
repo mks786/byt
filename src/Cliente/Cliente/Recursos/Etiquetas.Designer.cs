@@ -6708,6 +6708,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Cod. Interno.
+        /// </summary>
+        public static string lsvCodigoInternoOperaciones {
+            get {
+                return ResourceManager.GetString("lsvCodigoInternoOperaciones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Código Marca.
         /// </summary>
         public static string lsvCodigoMarca {
@@ -7293,6 +7302,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Pagina.
+        /// </summary>
+        public static string lsvPagina {
+            get {
+                return ResourceManager.GetString("lsvPagina", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Pais.
         /// </summary>
         public static string lsvPais {
@@ -7410,6 +7428,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Resolucion.
+        /// </summary>
+        public static string lsvResolucion {
+            get {
+                return ResourceManager.GetString("lsvResolucion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Resumen.
         /// </summary>
         public static string lsvResumen {
@@ -7496,6 +7523,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvTipoDeBase {
             get {
                 return ResourceManager.GetString("lsvTipoDeBase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tomo.
+        /// </summary>
+        public static string lsvTomo {
+            get {
+                return ResourceManager.GetString("lsvTomo", resourceCulture);
             }
         }
         

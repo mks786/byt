@@ -19,6 +19,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
 
+        
+
         #region IConsultarFusion
 
         public void EsMarcaNacional(bool marcaNacional)
@@ -456,6 +458,34 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
                 _presentador._ventanaPadre = parametro;
             }
         }
+
+
+        /// <summary>
+        /// Constructor para la consulta desde operaciones que recibe la ventana padre como parametro
+        /// </summary>
+        /// <param name="cambioDeNombre">la cambioDeDomicilio a mostrar</param>
+        /// <param name="parametro">parametro que indica la visibilidad de los botones</param>
+        /// <param name="ventanaPadre">Ventana padre desde donde se llama el Cambio de Nombre</param>
+        public GestionarCambioDeNombre(object cambioDeNombre, object parametro, object ventanaPadre)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            
+
+            //this._presentador = new PresentadorGestionarCambioDeNombre(this, cambioDeNombre);
+            this._presentador = new PresentadorGestionarCambioDeNombre(this, cambioDeNombre, ventanaPadre);
+
+            if (parametro.GetType() == typeof(System.Windows.Visibility))
+            {
+                this._btnModificar.Visibility = (System.Windows.Visibility)parametro;
+                this._btnEliminar.Visibility = (System.Windows.Visibility)parametro;
+            }
+            else if (parametro.GetType() == typeof(ConsultarCambiosDeNombre))
+            {
+                _presentador._ventanaPadre = parametro;
+            }
+        }
+
 
 
         public void PintarAsociado(string tipo)

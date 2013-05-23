@@ -10,6 +10,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         private string _id;
         private string _descripcion;
+        private string _tipoOperacion;
 
         #endregion
 
@@ -49,6 +50,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return this._descripcion; }
             set { this._descripcion = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la descripción del tipo de infobol
+        /// </summary>
+        public virtual string TipoOperacion
+        {
+            get { return this._tipoOperacion; }
+            set { this._tipoOperacion = value; }
         }
 
         #endregion

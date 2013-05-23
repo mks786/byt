@@ -521,6 +521,34 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
         }
 
 
+        /// <summary>
+        /// Constructor para la consulta desde operaciones que admite una ventana Padre
+        /// </summary>
+        /// <param name="cambioPeticionario">la cambioPeticionario a mostrar</param>
+        /// <param name="parametro">Visibilidad de los botones</param>
+        /// <param name="ventanaPadre">Ventana desde donde se llama a esta ventana</param>
+        public GestionarCambioPeticionario(object cambioPeticionario, object parametro, object ventanaPadre)
+        {
+            InitializeComponent();
+            this._cargada = false;
+        
+            //this._presentador = new PresentadorGestionarCambioDePeticionario(this, cambioPeticionario);
+            this._presentador = new PresentadorGestionarCambioDePeticionario(this, cambioPeticionario,ventanaPadre);
+
+            if (parametro.GetType() == typeof(System.Windows.Visibility))
+            {
+                this._btnModificar.Visibility = (System.Windows.Visibility)parametro;
+                this._btnEliminar.Visibility = (System.Windows.Visibility)parametro;
+            }
+            else if (parametro.GetType() == typeof(ConsultarCambiosPeticionario))
+            {
+                _presentador._ventanaPadre = parametro;
+            }
+        }
+
+
+
+
         public void PintarAsociado(string tipo)
         {
             SolidColorBrush color;

@@ -629,6 +629,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             else if (!this._ventana.IdAsociadoSolicitud.Equals(""))
                 marca.Asociado = new Asociado(int.Parse(this._ventana.IdAsociadoSolicitud));
 
+
             if (null != this._ventana.BoletinOrdenPublicacion)
                 marca.BoletinOrdenPublicacion = ((Boletin)this._ventana.BoletinOrdenPublicacion).Id != int.MinValue ? (Boletin)this._ventana.BoletinOrdenPublicacion : null;
 
@@ -1212,7 +1213,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.IdAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Id.ToString();
 
                     if (asociado != null)
-                        this._ventana.PintarAsociado(asociado.TipoCliente.Id);
+                        if (asociado.TipoCliente != null)
+                            this._ventana.PintarAsociado(asociado.TipoCliente.Id);
+                        else
+                            this._ventana.PintarAsociado("1");
                     else
                         this._ventana.PintarAsociado("5");
 
@@ -1408,7 +1412,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.IdAsociadoSolicitud = ((Asociado)this._ventana.AsociadoDatos).Id.ToString();
 
                     if (asociado != null)
-                        this._ventana.PintarAsociado(asociado.TipoCliente.Id);
+                        if (asociado.TipoCliente != null)
+                            this._ventana.PintarAsociado(asociado.TipoCliente.Id);
+                        else
+                            this._ventana.PintarAsociado("1");
                     else
                         this._ventana.PintarAsociado("5");
 

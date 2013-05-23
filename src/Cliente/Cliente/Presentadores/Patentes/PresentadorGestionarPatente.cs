@@ -1442,7 +1442,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.IdAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Id.ToString();
 
                     if (asociado != null)
-                        this._ventana.PintarAsociado(asociado.TipoCliente.Id);
+                        if (asociado.TipoCliente != null)
+                            this._ventana.PintarAsociado(asociado.TipoCliente.Id);
+                        else
+                            this._ventana.PintarAsociado("1");
                     else
                         this._ventana.PintarAsociado("5");
 
@@ -1569,7 +1572,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.IdAsociadoSolicitud = ((Asociado)this._ventana.AsociadoDatos).Id.ToString();
 
                     if (asociado != null)
-                        this._ventana.PintarAsociado(asociado.TipoCliente.Id);
+                        if (asociado.TipoCliente != null)
+                            this._ventana.PintarAsociado(asociado.TipoCliente.Id);
+                        else
+                            this._ventana.PintarAsociado("1");
                     else
                         this._ventana.PintarAsociado("5");
 

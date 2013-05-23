@@ -8,6 +8,9 @@
     <composite-id>
       <key-many-to-one name="Marca" column="CMARCA" class="Marca"/>
       <key-many-to-one name="TipoInfobol" column="TIPO" class="TipoInfobol"/>
+      <!--<key-many-to-one name="TipoInfobol" column="TIPO" class="TipoInfobol" lazy="false" />-->
+        
+     
     </composite-id>
 
     <property name="Tomo" type="String" column="TOMO"/>
@@ -18,11 +21,11 @@
     <property name="TimeStamp" type="DateTime" column="TIMESTAMP"/>
     <property name="Cambio" type="int" column="CAMBIO"/>
 
-    <many-to-one name="Boletin" class="Boletin">
+    <many-to-one name="Boletin" class="Boletin" lazy="false">
       <column name="CBOLETIN"/>
     </many-to-one>
 
-    <many-to-one name="Usuario" class="Usuario">
+    <many-to-one name="Usuario" class="Usuario" lazy="false">
       <column name="USUARIO"/>
     </many-to-one>
   </class>
