@@ -22,6 +22,15 @@ namespace Trascend.Bolet.Servidor
             usuarioPrueba.Id = "PRUEBA";
             servicio.Autenticar(usuarioPrueba);
 
+            #region Codigo de Prueba NO BORRAR - CONECTIVIDAD
+            //Asociado asociado = new Asociado();
+            //asociado.Id = 1292;
+            //AsociadoServicios asociadoServicios = new AsociadoServicios();
+            //ParametroProcedimiento parametro = new ParametroProcedimiento("nombre", "apellido");
+            //bool exito = asociadoServicios.ActualizarConectividadAsociados(parametro);
+            //asociado = asociadoServicios.ConsultarAsociadoConTodo(asociado);
+            //Console.ReadLine();
+
             //---
             //Marca marcaPrueba = new Marca();
             //marcaPrueba.Id = 878217;
@@ -30,7 +39,7 @@ namespace Trascend.Bolet.Servidor
 
 
             //---
-
+            #endregion
 
             Console.WriteLine("Se han cargado " + ConfiguracionServicios.CargarUsuarios() + " sesiones de archivo XML");
             Console.WriteLine("Configuracion cargada...");

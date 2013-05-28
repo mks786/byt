@@ -215,9 +215,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string ClaseNacional { get; }
 
-        string DistingueSolicitud { set; }
+        string DistingueSolicitud { get;  set; }
 
-        string DistingueDatos { set; }
+        string DistingueDatos { get;  set; }
         
         void ConvertirEnteroMinimoABlanco();
 

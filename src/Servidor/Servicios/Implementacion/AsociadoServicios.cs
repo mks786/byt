@@ -405,5 +405,42 @@ namespace Trascend.Bolet.Servicios.Implementacion
             }
 
         }
+
+
+        public bool ActualizarConectividadAsociados(ParametroProcedimiento parametro)
+        {
+
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                //retorno = ControladorPlanilla.EjecutarProcedimiento(parametro);
+                retorno = ControladorAsociado.EjecutarProcedimiento(parametro);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
+
+            return retorno;
+        }
+
+
     }
 }

@@ -67,8 +67,7 @@
                         <Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigo}"/>
                         </Label>
-                        <custom:ByTTextBox MaxLength="8" Grid.Column="2" Grid.Row="0" Name="_txtCodigoDatos" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="1" Text="{Binding Path=Id}" IsEnabled="True" TextChanged="_txtCodigoDatos_TextChanged"></custom:ByTTextBox>
+                        <custom:ByTTextBox MaxLength="8" Grid.Column="2" Grid.Row="0" Name="_txtCodigoDatos" VerticalAlignment="Center" IsReadOnly="True" Grid.ColumnSpan="1" Text="{Binding Path=Id}" IsEnabled="False" TextChanged="_txtCodigoDatos_TextChanged"></custom:ByTTextBox>
 
                         <Label Grid.Column="3" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoPersona}"/>
@@ -214,7 +213,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblObservaciones}"/>
                         </Label>
                         <custom:ByTTextBox Grid.Column="2" Grid.Row="10" Name="_txtObservacionesDatos" VerticalAlignment="Center" 
-                             Text="{Binding Path=Observaciones}" Grid.ColumnSpan="4" Margin="0,0,20,0" IsEnabled="True" MaxLength="255">
+                             Text="{Binding Path=Observaciones}" Grid.ColumnSpan="4" Margin="0,0,20,0" IsEnabled="True" MaxLength="4000">
                         </custom:ByTTextBox>
 
                         <Label Grid.Column="1" Grid.Row="11" VerticalAlignment="Center" HorizontalContentAlignment="Right">
@@ -346,8 +345,7 @@
                         <Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigo}"/>
                         </Label>
-                        <custom:ByTTextBox MaxLength="8" Grid.Column="2" Grid.Row="0" Name="_txtCodigoAdministracion" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="1" Text="{Binding Path=Id}" IsEnabled="True"></custom:ByTTextBox>
+                        <custom:ByTTextBox MaxLength="8" Grid.Column="2" Grid.Row="0" Name="_txtCodigoAdministracion" VerticalAlignment="Center" IsReadOnly="True" Grid.ColumnSpan="1" Text="{Binding Path=Id}" IsEnabled="False"></custom:ByTTextBox>
 
                         <Label Grid.Column="3" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>

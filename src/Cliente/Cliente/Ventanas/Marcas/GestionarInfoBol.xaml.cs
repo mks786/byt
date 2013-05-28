@@ -196,7 +196,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Regresar();
+            //this._presentador.Regresar();
+            this._presentador.RegresarVentanaPadre();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

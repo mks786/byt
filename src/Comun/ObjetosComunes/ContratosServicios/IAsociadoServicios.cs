@@ -66,5 +66,12 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// <param name="hash">hash del usuario que ejecuta la insercion</param>
         /// <returns>Id del asociado insertado</returns>
         int? InsertarOModificarAsociado(Asociado asociado, int hash);
+
+        /// <summary>
+        /// Servicio que se encarga de ejecutar un Package que actualiza la tabla de la Conectividad
+        /// </summary>
+        /// <param name="parametro">Nombre del Package</param>
+        /// <returns>Si se ejecuto con exito o no la actualizacion</returns>
+        bool ActualizarConectividadAsociados(ParametroProcedimiento parametro);
     }
 }

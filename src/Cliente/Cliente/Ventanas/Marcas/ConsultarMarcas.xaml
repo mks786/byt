@@ -814,6 +814,9 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=CorrelativoExpediente}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="CorrelativoExpediente" Content="{x:Static recurso:Etiquetas.lsvCorrelativoExpediente}"/>
                         </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Etiqueta}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Etiqueta" Content="{x:Static recurso:Etiquetas.lsvEtiqueta}"/>
+                        </GridViewColumn>
 
                     </GridView>
                 </ListView.View>

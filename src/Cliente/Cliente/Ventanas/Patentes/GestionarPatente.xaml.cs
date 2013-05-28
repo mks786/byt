@@ -1345,10 +1345,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._btnConsultarAgenteSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lstAgentesSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lstAgentesSolicitud.IsEnabled = true;
+            this._btnConsultarAgenteSolicitud.Focus();
         }
 
         private void OcultarLstAgenteSolicitud()
         {
+            this._txtIdAgenteSolicitudFiltrar.Text = null;
+            this._txtNombreAgenteSolicitudFiltrar.Text = null;
             this._txtAgenteSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._txtIdAgenteSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lblIdAgenteSolicitudFiltrar.Visibility = System.Windows.Visibility.Collapsed;
@@ -1633,6 +1636,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 }
             }
 
+          
+
             #endregion
         }
 
@@ -1800,7 +1805,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             OcultarLstAsociadoSolicitud();
             OcultarLstInteresadoSolicitud();
             OcultarLstPoderSolicitud();
+            this._btnAceptar.IsDefault = false;
+            this._btnConsultarAgenteSolicitud.IsDefault = true;
             MostrarLstAgenteSolicitud();
+            
         }
 
         private void _btnConsultarAgenteSolicitud_Click(object sender, RoutedEventArgs e)
@@ -1815,6 +1823,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         {
             this._presentador.CambiarAgenteSolicitud();
             OcultarLstAgenteSolicitud();
+            this._btnConsultarAgenteSolicitud.IsDefault = false;
+            this._btnAceptar.IsDefault = true;
         }
 
         private void _cbxTipoPatenteSolicitud_SelectionChanged(object sender, SelectionChangedEventArgs e)

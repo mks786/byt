@@ -688,6 +688,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     marca.NumeroCondiciones = ((Condicion)this._ventana.Condicion).Id;
             }
 
+            if ((this._ventana.DistingueSolicitud != null) && (!this._ventana.DistingueSolicitud.Equals(String.Empty)))
+            {
+                int len = this._ventana.DistingueSolicitud.Length;
+                if (len <= 4000)
+                    marca.Fichas = this._ventana.DistingueSolicitud;
+                else
+                {
+                    String fichasAux = this._ventana.DistingueSolicitud.Substring(0, 3999);
+                    marca.Fichas = fichasAux;
+                }
+
+            }
+
             //if (null != ((Marca)this._ventana.Marca).MarcaOrigen)
             //    marca.MarcaOrigen = ((Marca)this._ventana.Marca).MarcaOrigen;
 
@@ -992,7 +1005,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new ListaInfoBoles(CargarMarcaDeLaPantalla()));
+            //this.Navegar(new ListaInfoBoles(CargarMarcaDeLaPantalla()));
+
+            this.Navegar(new ListaInfoBoles(CargarMarcaDeLaPantalla(), this._ventana));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1637,6 +1652,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     {
                         this._ventana.InteresadoDatos = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoDatos);
                         this._ventana.NombreInteresadoDatos = ((Interesado)this._ventana.InteresadoDatos).Nombre;
+                        this._ventana.IdInteresadoDatos = ((Interesado)this._ventana.InteresadoDatos).Id.ToString();
                         this._ventana.InteresadoSolicitud = (Interesado)this._ventana.InteresadoDatos;
                         this._ventana.NombreInteresadoSolicitud = ((Interesado)this._ventana.InteresadoDatos).Nombre;
                         this._ventana.IdInteresadoSolicitud = ((Interesado)this._ventana.InteresadoDatos).Id.ToString();

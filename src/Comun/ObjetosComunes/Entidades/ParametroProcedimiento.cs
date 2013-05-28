@@ -40,6 +40,12 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             this._nombreProcedimiento = nombreProcedimiento;
         }
 
+        public ParametroProcedimiento(string paqueteProcedimiento, string nombreProcedimiento)
+        {
+            this._paqueteProcedimiento = paqueteProcedimiento;
+            this._nombreProcedimiento = nombreProcedimiento;
+        }
+
         #endregion
 
         #region Propiedades

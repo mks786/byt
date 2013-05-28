@@ -30,6 +30,10 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                //Ejecutar package antes de obtener el Asociado con todo
+                /*String nombreProcedimiento = "PCK_TALCOSA";
+                ParametroProcedimiento parametro = new ParametroProcedimiento(nombreProcedimiento);
+                */
                 IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerAsociadoConTodo, asociado.Id));
                 retorno = query.UniqueResult<Asociado>();
 
@@ -325,5 +329,42 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             }
             return emails;
         }
+
+
+        public bool EjecutarProcedimiento(ParametroProcedimiento parametro)
+        {
+            bool retorno = true;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                /*
+                IQuery query = Session.GetNamedQuery(parametro.PaqueteProcedimiento + parametro.NombreProcedimiento);
+                query.SetParameter<string>("usr", parametro.Usuario.Iniciales);
+                query.SetParameter<int>("way", parametro.Via);
+                query.SetParameter<int>("cod", parametro.Id);
+
+                query.UniqueResult();*/
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                retorno = false;
+                logger.Error(ex.Message);
+            }
+            finally
+            {
+                Session.Close();
+            }
+            return retorno;
+        }
+
     }
 }

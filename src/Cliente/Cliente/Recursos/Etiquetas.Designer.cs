@@ -6897,6 +6897,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Etiqueta.
+        /// </summary>
+        public static string lsvEtiqueta {
+            get {
+                return ResourceManager.GetString("lsvEtiqueta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Factura.
         /// </summary>
         public static string lsvFactura {

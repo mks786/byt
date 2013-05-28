@@ -49,6 +49,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
 
         /// <summary>
+        /// Constructor Predeterminado que recibe una ventana padre por parametro
+        /// </summary>
+        /// <param name="ventana">página que satisface el contrato</param>
+        public PresentadorListaInfoBoles(IListaInfoBoles ventana, object marca, object ventanaPadre)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this._ventana = ventana;
+            this._ventanaPadre = ventanaPadre;
+            this._marca = (Marca)marca;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+
+        /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
         public void CargarPagina()

@@ -335,6 +335,19 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return retorno;
         }
+
+
+        // Metodo nuevo para ejecutar un package para actualizar la conectividad
+        public static bool EjecutarProcedimiento(ParametroProcedimiento parametro)
+        {
+            bool exitoso;
+            
+            ComandoBase<bool> comando = FabricaComandosAsociado.ObtenerComandoEjecutarProcedimiento(parametro);
+            comando.Ejecutar();
+            exitoso = comando.Receptor.ObjetoAlmacenado;
+
+            return false;
+        }
     }
 }
 

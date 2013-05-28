@@ -127,20 +127,25 @@ namespace Trascend.Bolet.Cliente.Presentadores
         /// </summary>
         public void Regresar()
         {
-            //if (_ventanaPrincipal.Contenedor.CanGoBack)
-            //    _ventanaPrincipal.Contenedor.GoBack();
-            //else
-            //    this.Navegar();
-
-
-            if (this._ventanaPadre != null)
-            {
-                this.Navegar((Page)_ventanaPadre);
-            }
+            if (_ventanaPrincipal.Contenedor.CanGoBack)
+                _ventanaPrincipal.Contenedor.GoBack();
             else
                 this.Navegar();
 
+
+            //Trasladar este pedazo de codigo a otro metodo para las ventanas de la aplicacion de admon y control de marcas y patentes
+
+            //if (this._ventanaPadre != null)
+            //{
+            //    this.Navegar((Page)_ventanaPadre);
+            //}
+            //else
+            //    this.Navegar();
+
         }
+
+
+        
 
 
         /// <summary>

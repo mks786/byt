@@ -66,5 +66,10 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarEmailsDelAsociado(asociado);
         }
+
+        public static ComandoBase<bool> ObtenerComandoEjecutarProcedimiento(ParametroProcedimiento parametro)
+        {
+            return new ComandoEjecutarProcedimiento(parametro);
+        }
     }
 }

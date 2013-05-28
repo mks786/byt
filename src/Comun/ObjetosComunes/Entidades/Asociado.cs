@@ -47,6 +47,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<EmailAsociado> _emails;
         private IList<DatosTransferencia> _datosTransferencias;
         private string _observaciones;
+        //nuevo mapeo para conectividad
+        private IList<Conectividad> _conectividades;
 
         //Facturacion
         private string _valorquery;
@@ -539,6 +541,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _justificaciones; }
             set { _justificaciones = value; }
+        }
+
+        /// <summary>
+        /// NUEVA Propiedad que asigna u obtiene la lista de conectividad de un asociado
+        /// </summary>
+        public virtual IList<Conectividad> Conectividad
+        {
+            get { return _conectividades; }
+            set { _conectividades = value; }
         }
 
         public virtual IList<Contacto> Contactos

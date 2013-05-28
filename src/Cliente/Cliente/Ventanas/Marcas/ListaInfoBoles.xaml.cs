@@ -70,6 +70,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         #endregion
 
+        /// <summary>
+        /// Constructor por defecto de la ventana ListaInfoboles que no recibe una ventana padre por parametro
+        /// </summary>
+        /// <param name="marca"></param>
         public ListaInfoBoles(object marca)
         {
             InitializeComponent();
@@ -77,6 +81,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador = new PresentadorListaInfoBoles(this, marca);
 
         }
+
+
+        /// <summary>
+        /// Constructor por defecto de la ventana ListaInfoboles que recibe una ventana padre por parametro
+        /// </summary>
+        /// <param name="marca"></param>
+        public ListaInfoBoles(object marca, object ventanaPadre)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorListaInfoBoles(this, marca, ventanaPadre);
+
+        }
+
+
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -94,7 +113,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.IrConsultarMarca();
+            //this._presentador.IrConsultarMarca();
+            this._presentador.RegresarVentanaPadre();
         }
 
         private void EventoIrGestionarInfoBol(object sender, EventArgs e)

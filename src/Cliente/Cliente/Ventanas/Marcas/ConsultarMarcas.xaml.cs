@@ -655,6 +655,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._dpkFecha.Focus();
             }
 
+            if (!this._txtSolicitud.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtSolicitud.Focus();
+            }
+
+            if (!_txtRegistroTYR.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtRegistroTYR.Focus();
+            }
+
+
             if (todosCamposVacios)
                 this._txtId.Focus();
         }

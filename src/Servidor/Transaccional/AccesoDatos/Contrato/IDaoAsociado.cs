@@ -44,5 +44,13 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
         /// <returns></returns>
         IList<EmailAsociado> ObtenerEmailsDelAsociado(Asociado asociado);
 
+
+        /// <summary>
+        /// Metodo que ejecuta el procedimiento
+        /// </summary>
+        /// <param name="parametro">Parametro a ejectura</param>
+        /// <returns>true si se ejecto, de lo contrario false</returns>
+        bool EjecutarProcedimiento(ParametroProcedimiento parametro);
+
     }
 }

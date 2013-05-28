@@ -643,7 +643,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             else { patente.Operacion = "MODIFY"; }
 
             if (null != this._ventana.AgenteSolicitudFiltrar)
-                patente.Agente = !((Agente)this._ventana.AgenteSolicitudFiltrar).Id.Equals("NGN") ? (Agente)this._ventana.AgenteSolicitudFiltrar : null;
+                //patente.Agente = !((Agente)this._ventana.AgenteSolicitudFiltrar).Id.Equals("NGN") ? (Agente)this._ventana.AgenteSolicitudFiltrar : null;
+                patente.Agente = !((Agente)this._ventana.AgenteSolicitudFiltrar).Id.Equals("") ? (Agente)this._ventana.AgenteSolicitudFiltrar : null;
 
             if (null != this._ventana.AsociadoSolicitud)
                 patente.Asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
@@ -1740,12 +1741,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
     
             if (agentesFiltrados.Count != 0)
             {
+
                 Agente primerAgente = new Agente();
                 primerAgente.Id = "";
                 agentesFiltrados.Insert(0, primerAgente);
                 this._ventana.AgentesSolicitudFiltrar = agentesFiltrados;
-                this._ventana.AgenteSolicitudFiltrar = this.BuscarAgente(agentesFiltrados, agenteABuscar);
-                ((Patente)this._ventana.Patente).Agente = (Agente)this._ventana.AgenteSolicitudFiltrar;
+                //this._ventana.AgenteSolicitudFiltrar = this.BuscarAgente(agentesFiltrados, agenteABuscar);
+                //((Patente)this._ventana.Patente).Agente = (Agente)this._ventana.AgenteSolicitudFiltrar;
                
             
             }
@@ -2206,14 +2208,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     {
                         IList<Agente> agentes = this._agenteServicios.ObtenerAgentesDeUnPoder((Poder)this._ventana.PoderSolicitudFiltrar);
                         this._ventana.AgentesSolicitudFiltrar = null;
+                        agentes.Insert(0, new Agente());
                         this._ventana.AgentesSolicitudFiltrar = agentes;
                         this._ventana.AgenteSolicitudFiltrar = this.BuscarAgente(agentes, ((Patente)this._ventana.Patente).Agente);
+                        if (this._ventana.AgenteSolicitudFiltrar == null)
+                            this._ventana.Mensaje("El Poder seleccionado no tiene relacion con el Agente", 2);
                         //this._ventana.AgenteDatosFiltrar = agentes;
                     }
                     else
                     {
                         this._ventana.AgentesSolicitudFiltrar = null;
-                       // this._ventana.AgentesSolicitudFiltrar = agentes;
+                        IList<Agente> agentes = new List<Agente>();
+                        Agente agenteVacio = new Agente();
+                        agenteVacio.Id = "";
+                        agentes.Insert(0, agenteVacio);
+                        this._ventana.AgentesSolicitudFiltrar = agentes;
+                        this._ventana.AgenteSolicitudFiltrar = this.BuscarAgente(agentes,agenteVacio);
+                        this._ventana.IdAgenteSolicitud = "";
+                        this._ventana.AgenteSolicitud = "";
                        // this._ventana.AgenteSolicitudFiltrar = this.BuscarAgente(agentes, ((Patente)this._ventana.Patente).Agente);
 
                     }
@@ -2249,6 +2261,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 {
                     this._ventana.IdAgenteSolicitud = ((Agente)this._ventana.AgenteSolicitudFiltrar).Id;
                     this._ventana.AgenteSolicitud = ((Agente)this._ventana.AgenteSolicitudFiltrar).Nombre;
+                    
+                    ((Patente)this._ventana.Patente).Agente = (Agente)this._ventana.AgenteSolicitudFiltrar;
                     
                     //this._ventana.IdAgenteDatos = ((Agente)this._ventana.AgenteDatosFiltrar).Id;
                     //this._ventana.AgenteDatos = ((Agente)this._ventana.AgenteDatosFiltrar).Nombre;
@@ -2450,12 +2464,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     .ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.AgenteSolicitudFiltrar, (Interesado)this._ventana.InteresadoSolicitud);
 
                 if (_poderesInterseccion.Count() == 0)
+                {
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderesConAgente, 0);
+
+                    if (this._ventana.PoderesSolicitudFiltrar != null)
+                    {
+                        ((IList<Poder>)this._ventana.PoderesSolicitudFiltrar).Insert(0, new Poder(int.MinValue));
+                        
+                    }
+                  
+                     
+                }
                 else
                 {
                     this._ventana.PoderesSolicitudFiltrar = _poderesInterseccion;
                     this._ventana.PoderesDatosFiltrar = _poderesInterseccion;
-                    this._ventana.MostrarLstPoderSolicitud();
+                    //this._ventana.MostrarLstPoderSolicitud();
                 }
 
                 //_poderesInterseccion.Insert(0, new Poder(int.MinValue));
