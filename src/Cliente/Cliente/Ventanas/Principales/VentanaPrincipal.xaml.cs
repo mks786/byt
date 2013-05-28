@@ -880,6 +880,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.AgregarTarifaServicio();
         }
 
+        private void _fac_menuItemNumeroControl_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.NumeroControl();
+        }
+
         private void _fac_menuItemTarifaServicioConsultar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.ConsultarTarifaServicios();

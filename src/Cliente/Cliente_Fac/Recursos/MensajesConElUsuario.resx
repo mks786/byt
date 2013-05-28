@@ -984,4 +984,7 @@
   <data name="fac_FacGestionModificado" xml:space="preserve">
     <value>Registro Gestion modificado con éxito</value>
   </data>
+  <data name="fac_NumeroControl" xml:space="preserve">
+    <value>Registro Actualizado</value>
+  </data>
 </root>

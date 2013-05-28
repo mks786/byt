@@ -3672,4 +3672,7 @@ en Prensa:</value>
   <data name="lsvCodigoInternoOperaciones" xml:space="preserve">
     <value>Cod. Interno</value>
   </data>
+  <data name="fac_menuItemNumeroControl" xml:space="preserve">
+    <value>Numero Control</value>
+  </data>
 </root>

@@ -90,6 +90,7 @@ using Diginsoft.Bolet.Cliente.Fac.Ventanas.Etiquetas;
 using Diginsoft.Bolet.Cliente.Fac.Ventanas.DepartamentoServicios;
 using Diginsoft.Bolet.Cliente.Fac.Ventanas.DesgloseServicios;
 using Diginsoft.Bolet.Cliente.Fac.Ventanas.TarifaServicios;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.NumeroControl;
 using Diginsoft.Bolet.Cliente.Fac.Ventanas.ConceptoGestiones;
 using Diginsoft.Bolet.Cliente.Fac.Ventanas.MediosGestiones;
 using Diginsoft.Bolet.Cliente.Fac.Ventanas.ViGestionAsociados;
@@ -1314,6 +1315,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
             this._ventana.Contenedor.Navigate(new AgregarTarifaServicio());
         }
 
+        public void NumeroControl()
+        {
+            this._ventana.Contenedor.Navigate(new NumeroControl());
+        }
+
         public void ConsultarTarifaServicios()
         {
             this._ventana.Contenedor.Navigate(new ConsultarTarifaServicios());
@@ -2142,6 +2148,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                             itemNivel3.Visibility = System.Windows.Visibility.Visible;
                                         }
                                         break;
+
+                                    case "_fac_menuItemServicioNumeroControl":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_NumeroControl))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
 
                                     case "_fac_menuItemChequeRecido":
                                         if (objeto.Id.Equals(Recursos.Ids.fac_ChequeRecido))

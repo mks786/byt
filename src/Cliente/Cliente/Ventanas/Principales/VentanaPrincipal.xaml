@@ -441,6 +441,8 @@
                         <MenuItem Name="_fac_menuItemServicioTarifaServicioConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemTarifaServicioConsultar_Click"/>
                         <MenuItem Name="_fac_menuItemTarifaServicioAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemTarifaServicioAgregar_Click"/>
                     </MenuItem>
+
+                    <MenuItem Name="_fac_menuItemServicioNumeroControl" Header="{x:Static resx:Etiquetas.fac_menuItemNumeroControl}" Click="_fac_menuItemNumeroControl_Click"/>                                        
                 </MenuItem>
 
                 <MenuItem Name="_menuItemFacturacionFacturas" Header="Facturación">

@@ -2341,6 +2341,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Numero Control.
+        /// </summary>
+        public static string fac_menuItemNumeroControl {
+            get {
+                return ResourceManager.GetString("fac_menuItemNumeroControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Resumen Opreaciones.
         /// </summary>
         public static string fac_menuItemResumenOperacionesRpt {

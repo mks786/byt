@@ -33,6 +33,7 @@ Namespace Presentadores.FacReportes
         Private _detalleenviosServicios As IFacDetalleEnvioServicios
         Private _etiquetaServicios As IEtiquetaServicios
         Private _FacFactuDetaServicios As IFacFactuDetaAnuladaServicios
+        Private _FacFacturaAnuladaServicios As IFacFacturaAnuladaServicios
 
         ''Private _FacFormaServicios As IFacFormaServicios
         'Dim xoperacion As String
@@ -56,7 +57,7 @@ Namespace Presentadores.FacReportes
 
                 Me._FacFactuDetaServicios = DirectCast(Activator.GetObject(GetType(IFacFactuDetaAnuladaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFactuDetaAnuladaServicios")), IFacFactuDetaAnuladaServicios)
                 Me._etiquetaServicios = DirectCast(Activator.GetObject(GetType(IEtiquetaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("EtiquetaServicios")), IEtiquetaServicios)
-
+                Me._FacFacturaAnuladaServicios = DirectCast(Activator.GetObject(GetType(IFacFacturaAnuladaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFacturaAnuladaServicios")), IFacFacturaAnuladaServicios)
                 'eliminar_operacion_detalle_tm_usuario() ' para eliminar los operacion tmp de operacion_detalle_tm
 
                 'Dim proforma As FacFacturaProforma = FacFacturaOProforma
@@ -137,7 +138,6 @@ Namespace Presentadores.FacReportes
             Mouse.OverrideCursor = Cursors.Wait
             Try
 
-                Dim reporte As New ReportDocument()
                 Dim estructuraDeDatosEnc As IList(Of StructReporteFActuraEnc) = New List(Of StructReporteFActuraEnc)()
 
                 Dim estructuraDeDatosDeta As IList(Of StructReporteFActuraDeta) = New List(Of StructReporteFActuraDeta)()
@@ -214,7 +214,7 @@ Namespace Presentadores.FacReportes
                         End If
                     End If
                 End If
-
+                Dim reporte As New ReportDocument()
                 reporte.Load(ruta)
                 reporte.SetDataSource(ds)
                 'reporte.SetDataSource(datosDeta)
@@ -387,17 +387,40 @@ Namespace Presentadores.FacReportes
             csalida = w_par & "-" & w_camp
         End Sub
 
+        Public Function consultar_factura_anulada(ByVal id As Integer) As FacFacturaAnulada
+            Dim FacFacturaAuxiliar As New FacFacturaAnulada()
+            Dim FacFacturas As List(Of FacFacturaAnulada)
+            FacFacturaAuxiliar.Id = id
+            FacFacturas = Me._FacFacturaAnuladaServicios.ObtenerFacFacturaAnuladasFiltro(FacFacturaAuxiliar)
+            If FacFacturas IsNot Nothing Then
+                If FacFacturas.Count > 0 Then
+                    Return (FacFacturas(0))
+                Else
+                    Return (Nothing)
+                End If
+            Else
+                Return (Nothing)
+            End If
+        End Function
+
         Public Function BT_FACT00_N() As StructReporteFActuraEnc
             Dim structura As New StructReporteFActuraEnc()
             Dim w_s As String = ""
             structura = inicializar_enc()
             Try
                 'w_lista = "cfactura=%%cfactura.fac_facturastipo=%%xterrero.fac_facturasimp=%%dst.trailermip=2bst=0ifpago=%%ifpago.fac_facturas"
-                If _FacFactura.Caso IsNot Nothing Then
-                    structura.Caso = _FacFactura.Caso
+                'If _FacFactura.Caso IsNot Nothing Then
+                '    structura.Caso = _FacFactura.Caso
+                'Else
+                '    structura.Caso = ""
+                'End If
+                Dim facfacturaanulada As FacFacturaAnulada = consultar_factura_anulada(_FacFactura.Id)
+                If facfacturaanulada IsNot Nothing Then
+                    structura.Caso = facfacturaanulada.Caso
                 Else
                     structura.Caso = ""
                 End If
+
                 If _FacFactura.Status = 1 Then 'if ($ifp$ = 1)
                     structura.TituloPago = "Condicion de Pago : Contado"
                 Else
@@ -581,11 +604,18 @@ Namespace Presentadores.FacReportes
             structura = inicializar_enc()
             Try
                 'w_lista = "cfactura=%%cfactura.fac_facturastipo=%%xterrero.fac_facturasimp=%%dst.trailermip=3bst=0ifpago=%%ifpago.fac_facturas"
-                If _FacFactura.Caso IsNot Nothing Then
-                    structura.Caso = _FacFactura.Caso
+                'If _FacFactura.Caso IsNot Nothing Then
+                '    structura.Caso = _FacFactura.Caso
+                'Else
+                '    structura.Caso = ""
+                'End If
+                Dim facfacturaanulada As FacFacturaAnulada = consultar_factura_anulada(_FacFactura.Id)
+                If facfacturaanulada IsNot Nothing Then
+                    structura.Caso = facfacturaanulada.Caso
                 Else
                     structura.Caso = ""
                 End If
+
                 If _FacFactura.Status = 1 Then 'if ($ifp$ = 1)
                     structura.TituloPago = "Condicion de Pago : Contado"
                 Else

@@ -1095,4 +1095,7 @@
   <data name="fac_ProformaConsultarTodas" xml:space="preserve">
     <value>FAC_PRO_AUTOGT</value>
   </data>
+  <data name="fac_NumeroControl" xml:space="preserve">
+    <value>FAC_NCONTROL</value>
+  </data>
 </root>

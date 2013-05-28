@@ -294,6 +294,7 @@
     <Compile Include="Contratos\Motivos\IAgregarMotivo.vb" />
     <Compile Include="Contratos\Motivos\IConsultarMotivo.vb" />
     <Compile Include="Contratos\Motivos\IConsultarMotivos.vb" />
+    <Compile Include="Contratos\NumeroControl\INumeroControl.vb" />
     <Compile Include="Contratos\Servicios\IAgregarServicio.vb" />
     <Compile Include="Contratos\Servicios\IConsultarServicio.vb" />
     <Compile Include="Contratos\Servicios\IConsultarServicios.vb" />
@@ -449,6 +450,7 @@
     <Compile Include="Presentadores\Motivos\PresentadorAgregarMotivo.vb" />
     <Compile Include="Presentadores\Motivos\PresentadorConsultarMotivo.vb" />
     <Compile Include="Presentadores\Motivos\PresentadorConsultarMotivos.vb" />
+    <Compile Include="Presentadores\NumeroControl\PresentadorNumeroControl.vb" />
     <Compile Include="Presentadores\Servicios\PresentadorAgregarServicio.vb" />
     <Compile Include="Presentadores\Servicios\PresentadorConsultarServicio.vb" />
     <Compile Include="Presentadores\Servicios\PresentadorConsultarServicios.vb" />
@@ -867,6 +869,9 @@
     </Compile>
     <Compile Include="Ventanas\FacReportes\FacturaRpt2.xaml.vb">
       <DependentUpon>FacturaRpt2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\NumeroControl\NumeroControl.xaml.vb">
+      <DependentUpon>NumeroControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Servicios\AgregarServicio.xaml.vb">
       <DependentUpon>AgregarServicio.xaml</DependentUpon>
@@ -1468,6 +1473,10 @@
     <Page Include="Ventanas\FacReportes\FacturaRpt2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\NumeroControl\NumeroControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Servicios\AgregarServicio.xaml">
       <Generator>MSBuild:Compile</Generator>
