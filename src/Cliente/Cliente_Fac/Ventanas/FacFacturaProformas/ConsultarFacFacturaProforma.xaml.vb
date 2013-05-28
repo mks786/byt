@@ -1191,10 +1191,10 @@ Namespace Ventanas.FacFacturaProformas
 
         Public Property ResultadosAnualidad() As Object Implements Contratos.FacFacturaProformas.IConsultarFacFacturaProforma.ResultadosAnualidad
             Get
-                Return Me._lstDocumentoTraduccion.DataContext
+                Return Me._lstAnualidad.DataContext
             End Get
             Set(ByVal value As Object)
-                Me._lstDocumentoTraduccion.DataContext = value
+                Me._lstAnualidad.DataContext = value
             End Set
         End Property
 

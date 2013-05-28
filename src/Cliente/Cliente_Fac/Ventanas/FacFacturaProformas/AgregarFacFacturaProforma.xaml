@@ -1753,13 +1753,13 @@
 
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0">
                         <Label>
-                            <TextBlock Text="Recursos"/>
+                                <TextBlock Text="Anualidad"/>
                         </Label>
                     </WrapPanel>
 
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0">
                         <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="2" Name="_lstAnualidad" ItemsSource="{Binding}" 
-                                  SelectionMode="Single" IsEnabled="True" HorizontalAlignment="Left" MouseDoubleClick="_lstRecurso_MouseDoubleClick"
+                                  SelectionMode="Single" IsEnabled="True" HorizontalAlignment="Left" MouseDoubleClick="_lstAnualidad_MouseDoubleClick"
                                   Style="{DynamicResource EstiloListView}" Height="150" VerticalAlignment="Top">
                             <ListView.View>
                                 <GridView>
