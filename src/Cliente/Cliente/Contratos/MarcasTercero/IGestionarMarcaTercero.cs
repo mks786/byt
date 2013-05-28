@@ -222,5 +222,7 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         void PintarAsociado(string tipo);
 
+        void ConvertirEnteroMinimoABlanco();
+
     }
 }

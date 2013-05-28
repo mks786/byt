@@ -252,7 +252,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 Marca MarcaAuxiliar = new Marca();
                 MarcaAuxiliar.Id = int.MinValue;
                 IList<Marca> marcasDesinfladas = new List<Marca>();
-                 MarcaAuxiliar = ObtenerMarcaFiltro();
+                MarcaAuxiliar = ObtenerMarcaFiltro();
 
                 if (_filtroValido >= 2)
                 {
@@ -260,7 +260,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                     //IList<Marca> marcasDesinfladas = new List<Marca>();
 
-                    foreach (var marca in this._marcas)
+                    foreach (Marca marca in this._marcas)
                     {
                         MarcaAuxiliar = new Marca(marca.Id);
                         MarcaAuxiliar.PrimeraReferencia = marca.PrimeraReferencia;
@@ -300,6 +300,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         MarcaAuxiliar.FechaRenovacion = marca.FechaRenovacion;
                         MarcaAuxiliar.CodigoRegistro = marca.CodigoRegistro;
                         MarcaAuxiliar.FechaRegistro = marca.FechaRegistro;
+                        if (marca.Etiqueta.Equals("SI"))
+                            MarcaAuxiliar.Etiqueta = "SI";
+                        else
+                            MarcaAuxiliar.Etiqueta = "NO";
                         //--
 
                         MarcaAuxiliar.FechaPublicacion = marca.FechaPublicacion != null ? marca.FechaPublicacion : null;

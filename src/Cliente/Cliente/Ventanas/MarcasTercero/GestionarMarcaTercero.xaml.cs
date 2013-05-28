@@ -870,7 +870,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
 
         private void ocultarLstInteresadoSolicutud()
         {
-            this._presentador.CambiarInteresadoSolicitud();
+            //this._presentador.CambiarInteresadoSolicitud();
             this._lstInteresadosSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._btnConsultarInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
@@ -1596,6 +1596,134 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             this._btnExpediente.Visibility = System.Windows.Visibility.Collapsed;
             this._btnInfoAdicional.Visibility = System.Windows.Visibility.Collapsed;
             this._btnInfobol.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+        private void _btnIrAsociados_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVentanaAsociado();
+        }
+
+
+        public void ConvertirEnteroMinimoABlanco()
+        {
+            #region Corresponsal
+
+            //if (null != this.CorresponsalDatos)
+            //{
+            //    if (!this.IdCorresponsalDatos.Equals(""))
+            //    {
+            //        if ((int.Parse(this.IdCorresponsalDatos) == int.MinValue))
+            //        {
+            //            this.IdCorresponsalSolicitud = "";
+            //            this.IdCorresponsalDatos = "";
+            //        }
+            //    }
+
+            //}
+
+            //if (null != this.CorresponsalSolicitud)
+            //{
+            //    if (!this.IdCorresponsalSolicitud.Equals(""))
+            //    {
+            //        if (int.Parse(this.IdCorresponsalSolicitud) == int.MinValue)
+            //        {
+            //            this.IdCorresponsalSolicitud = "";
+            //            this.IdCorresponsalDatos = "";
+            //        }
+            //    }
+            //}
+
+            //if (null != this.PoderDatos)
+            //{
+            //    if (this.IdPoderDatos == int.MinValue.ToString())
+            //    {
+            //        this.IdPoderDatos = "";
+            //        this.IdPoderSolicitud = "";
+            //    }
+            //}
+
+            //if (null != this.PoderSolicitud)
+            //{
+            //    if (this.IdPoderSolicitud == int.MinValue.ToString())
+            //    {
+            //        this.IdPoderSolicitud = "";
+            //        this.IdPoderDatos = "";
+            //    }
+            //}
+
+            #endregion
+
+            #region Asociados
+
+            //if (null != this.AsociadoDatos)
+            //{
+            //    if (!this.IdAsociadoDatos.Equals(""))
+            //    {
+            //        if (int.Parse(this.IdAsociadoDatos) == int.MinValue)
+            //        {
+            //            this.IdAsociadoDatos = "";
+            //            this.IdAsociadoSolicitud = "";
+            //        }
+            //    }
+
+            //}
+
+            if (null != this.AsociadoSolicitud)
+            {
+                if (!this.IdAsociado.Equals(""))
+                {
+                    if (int.Parse(this.IdAsociado) == int.MinValue)
+                    {
+                        this.IdAsociado = "";                        
+                    }
+                }
+            }
+
+            if (null != this.InteresadoSolicitud)
+            {
+                if (int.Parse(this.IdInteresado) == int.MinValue)
+                {
+                    this.IdInteresado = "";
+                }
+            }
+            #endregion
+
+
+            #region Marca de Origen
+
+            //if (null != this.MarcasOrigenSolicitud)
+            //{
+            //    if (!this.IdMarcaOrigenSolicitud.Equals(""))
+            //    {
+            //        if ((int.Parse(this.IdMarcaOrigenSolicitud).Equals(int.MinValue)))
+            //        {
+            //            this.IdMarcaOrigenSolicitud = String.Empty;
+            //            this.IdMarcaOrigenDatos = String.Empty;
+            //        }
+            //    }
+            //}
+
+
+            //if (null != this.MarcasOrigenDatos)
+            //{
+            //    if (!this.IdMarcaOrigenDatos.Equals(""))
+            //    {
+            //        if ((int.Parse(this.IdMarcaOrigenDatos).Equals(int.MinValue)))
+            //        {
+            //            this.IdMarcaOrigenSolicitud = String.Empty;
+            //            this.IdMarcaOrigenDatos = String.Empty;
+            //        }
+            //    }
+            //}
+
+
+            #endregion
+
+        }
+
+        private void _btnIrInteresados_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVentanaInteresado();
         }
 
 

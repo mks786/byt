@@ -483,6 +483,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._txtObservaciones.Focus();
             }
 
+            if (!this._txtSolicitud.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtSolicitud.Focus();
+            }
+
+            if (!this._txtRegistroTYR.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtRegistroTYR.Focus();
+            }
+
 
             if (todosCamposVacios)
                 this._txtId.Focus();

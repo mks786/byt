@@ -349,7 +349,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.BoletinPublicacionDatos = this.BuscarBoletin(boletines, _patente.BoletinPublicacion);
                     this._ventana.BoletinOrdenPublicacionDatos = this.BuscarBoletin(boletines, _patente.BoletinOrdenPublicacion);                    
 
-                    if (File.Exists(ConfigurationManager.AppSettings["RutaImagenesDePatentes"] + _patente.Id + ".jpg"))
+                    //if (File.Exists(ConfigurationManager.AppSettings["RutaImagenesDePatentes"] + _patente.Id + ".jpg"))
+                    if (File.Exists(ConfigurationManager.AppSettings["RutaImagenesDePatentes"] + _patente.Id + ".bmp"))
                     {
                         ((Patente)this._ventana.Patente).BDibujo = true;
                         this._ventana.PintarDisenoDatos();
@@ -2650,7 +2651,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             Patente patenteAux = ((Patente)this._ventana.Patente);
             if (((Patente)this._ventana.Patente).BDibujo)
             {
-                EtiquetaMarca detalleEtiqueta = new EtiquetaMarca(ConfigurationManager.AppSettings["RutaImagenesDePatentes"] + patenteAux.Id + ".jpg", patenteAux.Descripcion);
+                //EtiquetaMarca detalleEtiqueta = new EtiquetaMarca(ConfigurationManager.AppSettings["RutaImagenesDePatentes"] + patenteAux.Id + ".jpg", patenteAux.Descripcion);
+                EtiquetaMarca detalleEtiqueta = new EtiquetaMarca(ConfigurationManager.AppSettings["RutaImagenesDePatentes"] + patenteAux.Id + ".bmp", patenteAux.Descripcion);
                 detalleEtiqueta.ShowDialog();
 
             }

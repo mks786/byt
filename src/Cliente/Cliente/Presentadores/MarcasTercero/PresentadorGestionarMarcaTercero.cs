@@ -18,6 +18,8 @@ using Trascend.Bolet.Cliente.Ventanas.MarcasTercero;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
+using Trascend.Bolet.Cliente.Ventanas.Asociados;
+using Trascend.Bolet.Cliente.Ventanas.Interesados;
 using Trascend.Bolet.ControlesByT.Ventanas;
 using System.Text;
 
@@ -247,6 +249,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     this._ventana.InteresadoPaisSolicitud = interesado.Pais.NombreEspanol;
                     this._ventana.InteresadoCiudadSolicitud = interesado.Ciudad;
                     this._ventana.TipoCbx = marcaTercero.Tipo;
+                    IList<Interesado> listaInteresado = new List<Interesado>();
+                    Interesado primerInteresado = new Interesado(int.MinValue);
+                    listaInteresado.Add(primerInteresado);
+                    listaInteresado.Add(marcaTercero.Interesado);
+                    this._ventana.InteresadosSolicitud = listaInteresado;
+                    this._ventana.InteresadoSolicitud = this.BuscarInteresado((IList<Interesado>)this._ventana.InteresadosSolicitud, ((MarcaTercero)this._ventana.MarcaTercero).Interesado);
+
 
                     if (((Internacional)marcaTercero.Internacional).Id == 0)
                         this._ventana.CInternacional = null;
@@ -261,6 +270,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     //this._ventana.InteresadoSolicitud = marcaTercero.Interesado;
 
                     //this._ventana.NombreAsociadoDatos = marcaTercero.Asociado != null ? marcaTercero.Asociado.Nombre : "";
+                    //this._ventana.AsociadoSolicitud = marcaTercero.Asociado;
+                    
+                    IList<Asociado> listaAsociado = new List<Asociado>();
+                    Asociado primerAsociado = new Asociado(int.MinValue);
+                    listaAsociado.Add(primerAsociado);
+                    listaAsociado.Add(marcaTercero.Asociado);
+                    this._ventana.AsociadosSolicitud = listaAsociado;
+                    this._ventana.AsociadoSolicitud = this.BuscarAsociado((IList<Asociado>)this._ventana.AsociadosSolicitud, ((MarcaTercero)this._ventana.MarcaTercero).Asociado);
+
                     this._ventana.NombreAsociadoSolicitud = marcaTercero.Asociado != null ? marcaTercero.Asociado.Nombre : "";
                     this._ventana.IdAsociado = marcaTercero.Asociado != null ? marcaTercero.Asociado.Id.ToString() : "";
 
@@ -1277,11 +1295,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.AsociadoSolicitud);
                     this._ventana.NombreAsociadoSolicitud = ((Asociado)this._ventana.AsociadoSolicitud).Nombre;
                     this._ventana.IdAsociado = ((Asociado)this._ventana.AsociadoSolicitud).Id.ToString();
-                    //this._ventana.AsociadoDatos = (Asociado)this._ventana.AsociadoSolicitud;
-                    //this._ventana.NombreAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Nombre;
+                    if (asociado != null)
+                        if (asociado.TipoCliente != null)
+                            this._ventana.PintarAsociado(asociado.TipoCliente.Id);
+                        else
+                            this._ventana.PintarAsociado("1");
+                    else
+                        this._ventana.PintarAsociado("5");
 
-
-                    this._ventana.PintarAsociado(((Asociado)this._ventana.AsociadoSolicitud).TipoCliente.Id);
+                    this._ventana.ConvertirEnteroMinimoABlanco();
+                    //this._ventana.PintarAsociado(((Asociado)this._ventana.AsociadoSolicitud).TipoCliente.Id);
 
 
                 }
@@ -1429,16 +1452,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     Interesado interesadoAux = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoSolicitud);
                     this._ventana.NombreInteresadoSolicitud = ((Interesado)this._ventana.InteresadoSolicitud).Nombre;
                     this._ventana.IdInteresado = ((Interesado)this._ventana.InteresadoSolicitud).Id.ToString();
-                    //this._ventana.InteresadoDatos = (Interesado)this._ventana.InteresadoSolicitud;
-                    //this._ventana.NombreInteresadoDatos = ((Interesado)this._ventana.InteresadoSolicitud).Nombre;
+
                     if (interesadoAux != null)
                     {
-
                         this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
                         this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
-
                     }
                 }
+
+                this._ventana.ConvertirEnteroMinimoABlanco();
+                
             }
             catch (ApplicationException e)
             {
@@ -1919,6 +1942,29 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             }
 
             return retorno;
+        }
+
+
+        public void IrVentanaAsociado()
+        {
+            if ((Asociado)this._ventana.AsociadoSolicitud != null)
+            {
+                Asociado asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
+                if(asociado != null)
+                    Navegar(new ConsultarAsociado(asociado, this._ventana, false));
+
+            }
+        }
+
+
+        public void IrVentanaInteresado()
+        {
+            if ((Interesado)this._ventana.InteresadoSolicitud != null)
+            {
+                Interesado interesado = ((Interesado)this._ventana.InteresadoSolicitud).Id != int.MinValue ? (Interesado)this._ventana.InteresadoSolicitud : null;
+                if(interesado != null)
+                    Navegar(new ConsultarInteresado(interesado, this._ventana));
+            }
         }
 
         #endregion

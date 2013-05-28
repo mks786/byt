@@ -148,6 +148,9 @@
                     <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
                     </Label>
+                    <Button Grid.Column="0" Grid.Row="4" Name="_btnIrAsociadosDatos" IsDefault="False" Height="25" HorizontalAlignment="Right" Click="_btnIrAsociados_Click">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.btnAsociado}"/>
+                    </Button>
 
                     <Grid Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="7">
                         <Grid.ColumnDefinitions>
@@ -218,6 +221,9 @@
                     <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
                     </Label>
+                    <Button Grid.Column="0" Grid.Row="5" Name="_btnIrInteresadosDatos" IsDefault="False" Height="25" HorizontalAlignment="Right" Click="_btnIrInteresados_Click">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.btnInteresado}"/>
+                    </Button>
 
                     <Grid Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="7">
                         <Grid.ColumnDefinitions>
@@ -333,7 +339,7 @@
                     <Label Grid.Column="0" Grid.Row="11" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDistingue}"/>
                     </Label>
-                    <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="1" Grid.Row="11" Name="_txtDistingue" VerticalAlignment="Center" 
+                    <custom:ByTTextBox IsEnabled="False" MaxLength="10000" Grid.Column="1" Grid.Row="11" Name="_txtDistingue" VerticalAlignment="Center" 
                          Grid.ColumnSpan="9" Text="{Binding Path=Distingue}"></custom:ByTTextBox>
 
                     <Label Grid.Column="0" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
