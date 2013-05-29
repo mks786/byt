@@ -2479,19 +2479,28 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
-        public string BuscarEstructurasMultiples(char estructurasmultiples)
+        public string BuscarEstructurasMultiples(string estructurasmultiples)
         {
-            string retorno;
-            if (Recursos.Etiquetas.FaccbiMarcaCompleta[0].Equals(estructurasmultiples))
-                retorno = Recursos.Etiquetas.FaccbiMarcaCompleta;
-            else if (Recursos.Etiquetas.FaccbiMarcaRegSolicitud[0].Equals(estructurasmultiples))
-                retorno = Recursos.Etiquetas.FaccbiMarcaRegSolicitud;
-            else if (Recursos.Etiquetas.FaccbiPatenteRegSolicitud[0].Equals(estructurasmultiples))
-                retorno = Recursos.Etiquetas.FaccbiPatenteRegSolicitud;
-            else if (Recursos.Etiquetas.FaccbiPatenteSolicitud[0].Equals(estructurasmultiples))
-                retorno = Recursos.Etiquetas.FaccbiPatenteSolicitud;
-            else
-                retorno = Recursos.Etiquetas.cbiNinguno;
+
+            string retorno = "";
+            switch (estructurasmultiples)
+            {
+                case "M1":
+                    retorno = "Marca Completa";
+                    break;
+                case "M2":
+                    retorno = "Marca Reg o Solicitud";
+                    break;
+                case "P1":
+                    retorno = "Patente Reg o Solicitud";
+                    break;
+                case "P2":
+                    retorno = "Patente Solicitud";
+                    break;
+                default:
+                    retorno = "";
+                    break;
+            }
 
             return retorno;
         }

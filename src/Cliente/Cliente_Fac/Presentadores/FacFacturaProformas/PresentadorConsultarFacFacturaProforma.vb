@@ -3408,12 +3408,12 @@ Namespace Presentadores.FacFacturaProformas
                                             v_lista_mp = v_lista_mp & " " & tipoclase.Doc_Esp
                                             '"%%v_lista_mp %%XDOC_ESPE.fac_tipo_clase"
                                             '"%%v_lista_mp_es %%XDOC_ESPE.fac_tipo_clase"
-                                            v_lista_mp_es = v_lista_mp & " " & tipoclase.Doc_Esp
+                                            v_lista_mp_es = v_lista_mp_es & " " & tipoclase.Doc_Esp
                                         Else
                                             v_lista_mp = v_lista_mp & " " & tipoclase.Doc_Ingl
                                             '"%%v_lista_mp %%XDOC_ESPE.fac_tipo_clase"
                                             '"%%v_lista_mp_es %%XDOC_ESPE.fac_tipo_clase"
-                                            v_lista_mp_es = v_lista_mp & " " & tipoclase.Doc_Esp
+                                            v_lista_mp_es = v_lista_mp_es & " " & tipoclase.Doc_Esp
                                         End If
 
                                     Else 'If marca.Tipo = "LC" Or marca.Tipo = "NC" Then
@@ -3423,25 +3423,27 @@ Namespace Presentadores.FacFacturaProformas
                                                 v_lista_mp = v_lista_mp & " " & tipoclase.Doc_Esp
                                                 '"%%v_lista_mp %%XDOC_ESPE.fac_tipo_clase"
                                                 '"%%v_lista_mp_es %%XDOC_ESPE.fac_tipo_clase"
-                                                v_lista_mp_es = v_lista_mp & " " & tipoclase.Doc_Esp
+                                                v_lista_mp_es = v_lista_mp_es & " " & tipoclase.Doc_Esp
                                             Else
                                                 v_lista_mp = v_lista_mp & " " & tipoclase.Doc_Ingl
                                                 '"%%v_lista_mp %%XDOC_ESPE.fac_tipo_clase"
                                                 '"%%v_lista_mp_es %%XDOC_ESPE.fac_tipo_clase"
-                                                v_lista_mp_es = v_lista_mp & " " & tipoclase.Doc_Esp
+                                                v_lista_mp_es = v_lista_mp_es & " " & tipoclase.Doc_Esp
                                             End If
+                                            v_lista_mp = v_lista_mp & " " & marca.Internacional.Id
+                                            v_lista_mp_es = v_lista_mp_es & " " & marca.Nacional.Id
                                         Else ' 'If ((marca.Internacional IsNot Nothing) AndAlso (Not marca.Internacional.Id.Equals(""))) Then
                                             Dim tipoclase As TipoClase = buscar_tipo_clase_id("N")
                                             If (v_idioma = "ES") Then
                                                 v_lista_mp = v_lista_mp & " " & tipoclase.Doc_Esp
                                                 '"%%v_lista_mp %%XDOC_ESPE.fac_tipo_clase"
                                                 '"%%v_lista_mp_es %%XDOC_ESPE.fac_tipo_clase"
-                                                v_lista_mp_es = v_lista_mp & " " & tipoclase.Doc_Esp
+                                                v_lista_mp_es = v_lista_mp_es & " " & tipoclase.Doc_Esp
                                             Else
                                                 v_lista_mp = v_lista_mp & " " & tipoclase.Doc_Ingl
                                                 '"%%v_lista_mp %%XDOC_ESPE.fac_tipo_clase"
                                                 '"%%v_lista_mp_es %%XDOC_ESPE.fac_tipo_clase"
-                                                v_lista_mp_es = v_lista_mp & " " & tipoclase.Doc_Esp
+                                                v_lista_mp_es = v_lista_mp_es & " " & tipoclase.Doc_Esp
                                             End If
                                             v_lista_mp = v_lista_mp & " " & marca.Nacional.Id
                                             v_lista_mp_es = v_lista_mp_es & " " & marca.Nacional.Id
@@ -3502,17 +3504,17 @@ Namespace Presentadores.FacFacturaProformas
                                     sustituye(v_cadtmp_es, v_envia, v_lista_1_es(7), v_cadtmp_es)
 
                                     Dim tipomarca As TipoMarca = buscar_tipo_marca_id(marca.Tipo)
-                                    If (v_idioma = "ES") Then
-                                        v_lista_mp = v_lista_mp & " " & tipomarca.Doc_Esp
-                                        '"%%v_lista_mp %%XDOC_ESPE.fac_tipo_clase"
-                                        '"%%v_lista_mp_es %%XDOC_ESPE.fac_tipo_clase"
-                                        v_lista_mp_es = v_lista_mp & " " & tipomarca.Doc_Esp
-                                    Else
-                                        v_lista_mp = v_lista_mp & " " & tipomarca.Doc_Ingl
-                                        '"%%v_lista_mp %%XDOC_ESPE.fac_tipo_clase"
-                                        '"%%v_lista_mp_es %%XDOC_ESPE.fac_tipo_clase"
-                                        v_lista_mp_es = v_lista_mp & " " & tipomarca.Doc_Esp
-                                    End If
+                                    'If (v_idioma = "ES") Then
+                                    '    v_lista_mp = v_lista_mp & " " & tipomarca.Doc_Esp
+                                    '    '"%%v_lista_mp %%XDOC_ESPE.fac_tipo_clase"
+                                    '    '"%%v_lista_mp_es %%XDOC_ESPE.fac_tipo_clase"
+                                    '    v_lista_mp_es = v_lista_mp & " " & tipomarca.Doc_Esp
+                                    'Else
+                                    '    v_lista_mp = v_lista_mp & " " & tipomarca.Doc_Ingl
+                                    '    '"%%v_lista_mp %%XDOC_ESPE.fac_tipo_clase"
+                                    '    '"%%v_lista_mp_es %%XDOC_ESPE.fac_tipo_clase"
+                                    '    v_lista_mp_es = v_lista_mp & " " & tipomarca.Doc_Esp
+                                    'End If
                                     v_cadena = v_cadtmp
                                     v_cadena_es = v_cadtmp_es
 
@@ -3520,6 +3522,15 @@ Namespace Presentadores.FacFacturaProformas
                                     v_cadtmp_es = v_cadena_es
                                     v_envia = "|Tipo_Marca|"
                                     ''''''''''''''''''''''''''''''''(Tipo_Marca)
+                                    If tipomarca IsNot Nothing Then
+                                        If (v_idioma = "ES") Then
+                                            v_lista_1(8) = tipomarca.Doc_Esp 'Tipo_Marca
+                                            v_lista_1_es(8) = tipomarca.Doc_Esp 'Tipo_Marca
+                                        Else
+                                            v_lista_1(8) = tipomarca.Doc_Ingl 'Tipo_Marca
+                                            v_lista_1_es(8) = tipomarca.Doc_Esp 'Tipo_Marca
+                                        End If
+                                    End If
                                     sustituye(v_cadtmp, v_envia, v_lista_1(8), v_cadtmp)
                                     sustituye(v_cadtmp_es, v_envia, v_lista_1_es(8), v_cadtmp_es)
 
@@ -3545,12 +3556,12 @@ Namespace Presentadores.FacFacturaProformas
                                             v_lista_mp = v_lista_mp & " " & tipoclase.Doc_Esp
                                             '"%%v_lista_mp %%XDOC_ESPE.fac_tipo_clase"
                                             '"%%v_lista_mp_es %%XDOC_ESPE.fac_tipo_clase"
-                                            v_lista_mp_es = v_lista_mp & " " & tipoclase.Doc_Esp
+                                            v_lista_mp_es = v_lista_mp_es & " " & tipoclase.Doc_Esp
                                         Else
                                             v_lista_mp = v_lista_mp & " " & tipoclase.Doc_Ingl
                                             '"%%v_lista_mp %%XDOC_ESPE.fac_tipo_clase"
                                             '"%%v_lista_mp_es %%XDOC_ESPE.fac_tipo_clase"
-                                            v_lista_mp_es = v_lista_mp & " " & tipoclase.Doc_Esp
+                                            v_lista_mp_es = v_lista_mp_es & " " & tipoclase.Doc_Esp
                                         End If
 
                                     Else 'If marca.Tipo = "LC" Or marca.Tipo = "NC" Then
@@ -3560,25 +3571,27 @@ Namespace Presentadores.FacFacturaProformas
                                                 v_lista_mp = v_lista_mp & " " & tipoclase.Doc_Esp
                                                 '"%%v_lista_mp %%XDOC_ESPE.fac_tipo_clase"
                                                 '"%%v_lista_mp_es %%XDOC_ESPE.fac_tipo_clase"
-                                                v_lista_mp_es = v_lista_mp & " " & tipoclase.Doc_Esp
+                                                v_lista_mp_es = v_lista_mp_es & " " & tipoclase.Doc_Esp
                                             Else
                                                 v_lista_mp = v_lista_mp & " " & tipoclase.Doc_Ingl
                                                 '"%%v_lista_mp %%XDOC_ESPE.fac_tipo_clase"
                                                 '"%%v_lista_mp_es %%XDOC_ESPE.fac_tipo_clase"
-                                                v_lista_mp_es = v_lista_mp & " " & tipoclase.Doc_Esp
+                                                v_lista_mp_es = v_lista_mp_es & " " & tipoclase.Doc_Esp
                                             End If
+                                            v_lista_mp = v_lista_mp & " " & marca.Internacional.Id
+                                            v_lista_mp_es = v_lista_mp_es & " " & marca.Nacional.Id
                                         Else ' 'If ((marca.Internacional IsNot Nothing) AndAlso (Not marca.Internacional.Id.Equals(""))) Then
                                             Dim tipoclase As TipoClase = buscar_tipo_clase_id("N")
                                             If (v_idioma = "ES") Then
                                                 v_lista_mp = v_lista_mp & " " & tipoclase.Doc_Esp
                                                 '"%%v_lista_mp %%XDOC_ESPE.fac_tipo_clase"
                                                 '"%%v_lista_mp_es %%XDOC_ESPE.fac_tipo_clase"
-                                                v_lista_mp_es = v_lista_mp & " " & tipoclase.Doc_Esp
+                                                v_lista_mp_es = v_lista_mp_es & " " & tipoclase.Doc_Esp
                                             Else
                                                 v_lista_mp = v_lista_mp & " " & tipoclase.Doc_Ingl
                                                 '"%%v_lista_mp %%XDOC_ESPE.fac_tipo_clase"
                                                 '"%%v_lista_mp_es %%XDOC_ESPE.fac_tipo_clase"
-                                                v_lista_mp_es = v_lista_mp & " " & tipoclase.Doc_Esp
+                                                v_lista_mp_es = v_lista_mp_es & " " & tipoclase.Doc_Esp
                                             End If
                                             v_lista_mp = v_lista_mp & " " & marca.Nacional.Id
                                             v_lista_mp_es = v_lista_mp_es & " " & marca.Nacional.Id

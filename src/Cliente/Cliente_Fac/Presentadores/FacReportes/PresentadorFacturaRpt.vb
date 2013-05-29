@@ -295,13 +295,16 @@ Namespace Presentadores.FacReportes
             Dim etiquetas As List(Of Etiqueta) = _etiquetaServicios.ConsultarTodos()
             Dim EtiquetaFiltrados As IEnumerable(Of Etiqueta) = etiquetas
             EtiquetaFiltrados = From e In EtiquetaFiltrados Where e.Id IsNot Nothing AndAlso e.Id.ToLower().Contains(codigo.ToLower())
-            valor(0) = EtiquetaFiltrados(0).Descripcion1
-            valor(1) = EtiquetaFiltrados(0).Descripcion2
+            If EtiquetaFiltrados.Count > 0 Then
+                valor(0) = EtiquetaFiltrados(0).Descripcion1
+                valor(1) = EtiquetaFiltrados(0).Descripcion2
+            Else
+                valor(0) = ""
+                valor(1) = ""
+            End If
             Return (valor)
 
         End Function
-
-
 
 
         Public Sub lp_fecha_esc_n(ByVal dfecha As Date, ByRef cfecha As String)
