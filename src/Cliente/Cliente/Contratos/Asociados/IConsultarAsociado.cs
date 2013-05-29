@@ -59,6 +59,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
 
         void pintarEmails();
 
+        void pintarConectividad();
+
         void ArchivoNoEncontrado();
 
         string SaldoVencidoSolicitud { set; }

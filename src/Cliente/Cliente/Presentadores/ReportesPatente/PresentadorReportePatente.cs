@@ -114,9 +114,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
 
             ReportePatente reportePatente = this._reportePatenteServicios.ImprimirProcedimiento(parametro);
 
-            if (reportePatente != null)
+            if (_patente.FechaInscripcion != null)
             {
-                GenerarReporte(reportePatente, "SolicitudVan");
+                if (reportePatente != null)
+                {
+                    GenerarReporte(reportePatente, "SolicitudVan");
+                }
+            }
+            else
+            {
+                this._ventana.MensajeAlerta("La patente no tiene fecha de inscripcion. No se puede imprimir la Solicitud");
             }
 
             #region trace
@@ -451,139 +458,151 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
         /// <returns></returns>
         private StructReportePatente ObtenerEstructuraReportePatente(ReportePatente reportePatente, string tipo)
         {
+
             StructReportePatente retorno = new StructReportePatente();
 
-            if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Inventores1)))
+            try
             {
-                retorno.Inventores1 = reportePatente.Inventores1;
-            }
+                
 
-            if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Inventores2)))
+                if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Inventores1)))
+                {
+                    retorno.Inventores1 = reportePatente.Inventores1;
+                }
+
+                if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Inventores2)))
+                {
+                    retorno.Inventores2 = reportePatente.Inventores2;
+                }
+
+                if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.NombrePatente1)))
+                {
+                    retorno.Patente1 = reportePatente.NombrePatente1;
+                }
+
+                if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.NombrePatente2)))
+                {
+                    retorno.Patente2 = reportePatente.NombrePatente2;
+                }
+
+                if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Omision1)))
+                {
+                    retorno.Omision1 = reportePatente.Omision1;
+                }
+                else if ((tipo.Equals("Planilla")) && (!string.IsNullOrEmpty(_patente.Omision)))
+                {
+                    retorno.Omision1 = _patente.Omision;
+                }
+
+                if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Omision2)))
+                {
+                    retorno.Omision2 = reportePatente.Omision2;
+                }
+
+                if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Resumen1)))
+                {
+                    retorno.Resumen1 = reportePatente.Resumen1;
+                    String resumen = _patente.Resumen;
+                }
+
+                if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Resumen2)))
+                {
+                    retorno.Resumen2 = reportePatente.Resumen2;
+                }
+
+                retorno.Sitio = ArmarSitio();
+
+                //Anexo
+                //if (!string.IsNullOrEmpty(_patente.an))
+                //{
+
+                //}
+
+                //Telefono
+                if ((_patente.Agente != null) && (!string.IsNullOrEmpty(_patente.Agente.Telefono)))
+                {
+                    retorno.Telefono = _patente.Agente.Telefono;
+                }
+
+                //Domicilio
+                if ((_patente.Agente != null) && (!string.IsNullOrEmpty(_patente.Agente.Domicilio)))
+                {
+                    retorno.Domicilio = _patente.Agente.Domicilio;
+                }
+
+                if (!string.IsNullOrEmpty(_patente.CodigoRegistro))
+                {
+                    retorno.CodigoRegistro = _patente.CodigoRegistro;
+                }
+
+                //CodigoFomento
+                if (!string.IsNullOrEmpty(((Poder)_patente.Poder).NumPoder))
+                {
+                    retorno.CodigoFomento = ((Poder)_patente.Poder).NumPoder;
+                }
+
+
+                //CodigoPropiedad
+                if (!string.IsNullOrEmpty(_patente.CPrioridad))
+                {
+                    retorno.CodigoPrioridad = _patente.CPrioridad;
+
+                }
+
+                if ((null != _patente.Pais) && !string.IsNullOrEmpty(_patente.Pais.NombreEspanol))
+                {
+                    retorno.Pais = _patente.Pais.NombreEspanol;
+                }
+
+                if (!string.IsNullOrEmpty(_patente.FechaPrioridad.ToString()))
+                {
+                    retorno.FechaPrioridad = _patente.FechaPrioridad.Value.ToShortDateString();
+                }
+
+                if (!string.IsNullOrEmpty(_patente.Observacion1))
+                {
+                    retorno.Observacion = _patente.Observacion1;
+                }
+
+                if ((null != _patente.Interesado) && !string.IsNullOrEmpty(_patente.Interesado.Nombre))
+                {
+                    retorno.Interesado = _patente.Interesado.Nombre;
+                }
+
+                if ((null != _patente.Agente) && !string.IsNullOrEmpty(_patente.Agente.Nombre))
+                {
+                    retorno.Agente = _patente.Agente.Nombre;
+                    if (tipo.Equals("SolicitudVan"))
+                        retorno.Agente += " " + ConfigurationManager.AppSettings["detalleAgente"];
+
+                    retorno.CodigoPropiedad = _patente.Agente.NumeroPropiedad;
+                }
+
+                retorno.IdPatente = _patente.Id.ToString();
+
+                //retorno.FechaInscripcion = _patente.FechaInscripcion.Value.Day + "          " + _patente.FechaInscripcion.Value.ToString("MMMM") + "           " + _patente.FechaInscripcion.Value.Year.ToString().Substring(2, 2);
+
+                retorno.FechaInscripcion = _patente.FechaInscripcion.Value.Day + "          " + _patente.FechaInscripcion.Value.ToString("MMMM") + "                      " + _patente.FechaInscripcion.Value.Year.ToString();
+
+                if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Inventores2)))
+                    retorno.CamposVienen += reportePatente.Inventores2;
+
+                if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.NombrePatente2)))
+                    retorno.CamposVienen += Environment.NewLine + Environment.NewLine + reportePatente.NombrePatente2;
+
+                if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Resumen2)))
+                    retorno.CamposVienen += Environment.NewLine + Environment.NewLine + reportePatente.Resumen2;
+
+                //if ((null!= _patente.Poder) && (int.MinValue != ((Poder)_patente.Poder).Id))
+                //{
+                //    retorno.CodigoFomento = ((Poder)_patente.Poder).NumPoder;
+                //}
+            }
+            catch (Exception e)
             {
-                retorno.Inventores2 = reportePatente.Inventores2;
+                
+                throw;
             }
-
-            if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.NombrePatente1)))
-            {
-                retorno.Patente1 = reportePatente.NombrePatente1;
-            }
-
-            if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.NombrePatente2)))
-            {
-                retorno.Patente2 = reportePatente.NombrePatente2;
-            }
-
-            if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Omision1)))
-            {
-                retorno.Omision1 = reportePatente.Omision1;
-            }
-            else if ((tipo.Equals("Planilla")) && (!string.IsNullOrEmpty(_patente.Omision)))
-            {
-                retorno.Omision1 = _patente.Omision;
-            }
-
-            if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Omision2)))
-            {
-                retorno.Omision2 = reportePatente.Omision2;
-            }
-
-            if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Resumen1)))
-            {
-                retorno.Resumen1 = reportePatente.Resumen1;
-                String resumen = _patente.Resumen;
-            }
-
-            if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Resumen2)))
-            {
-                retorno.Resumen2 = reportePatente.Resumen2;
-            }
-
-            retorno.Sitio = ArmarSitio();
-
-            //Anexo
-            //if (!string.IsNullOrEmpty(_patente.an))
-            //{
-
-            //}
-
-            //Telefono
-            if ((_patente.Agente != null) && (!string.IsNullOrEmpty(_patente.Agente.Telefono)))
-            {
-                retorno.Telefono = _patente.Agente.Telefono;
-            }
-
-            //Domicilio
-            if ((_patente.Agente != null) && (!string.IsNullOrEmpty(_patente.Agente.Domicilio)))
-            {
-                retorno.Domicilio = _patente.Agente.Domicilio;
-            }
-
-            if (!string.IsNullOrEmpty(_patente.CodigoRegistro))
-            {
-                retorno.CodigoRegistro = _patente.CodigoRegistro;
-            }
-
-            //CodigoFomento
-            if (!string.IsNullOrEmpty(((Poder)_patente.Poder).NumPoder))
-            {
-                retorno.CodigoFomento = ((Poder)_patente.Poder).NumPoder;
-            }
-
-
-            //CodigoPropiedad
-            if (!string.IsNullOrEmpty(_patente.CPrioridad))
-            {
-                retorno.CodigoPrioridad = _patente.CPrioridad;
-
-            }
-
-            if ((null != _patente.Pais) && !string.IsNullOrEmpty(_patente.Pais.NombreEspanol))
-            {
-                retorno.Pais = _patente.Pais.NombreEspanol;
-            }
-
-            if (!string.IsNullOrEmpty(_patente.FechaPrioridad.ToString()))
-            {
-                retorno.FechaPrioridad = _patente.FechaPrioridad.Value.ToShortDateString();
-            }
-
-            if (!string.IsNullOrEmpty(_patente.Observacion1))
-            {
-                retorno.Observacion = _patente.Observacion1;
-            }
-
-            if ((null != _patente.Interesado) && !string.IsNullOrEmpty(_patente.Interesado.Nombre))
-            {
-                retorno.Interesado = _patente.Interesado.Nombre;
-            }
-
-            if ((null != _patente.Agente) && !string.IsNullOrEmpty(_patente.Agente.Nombre))
-            {
-                retorno.Agente = _patente.Agente.Nombre;
-                if (tipo.Equals("SolicitudVan"))
-                    retorno.Agente += " " + ConfigurationManager.AppSettings["detalleAgente"];
-
-                retorno.CodigoPropiedad = _patente.Agente.NumeroPropiedad;
-            }
-
-            retorno.IdPatente = _patente.Id.ToString();
-
-            //retorno.FechaInscripcion = _patente.FechaInscripcion.Value.Day + "          " + _patente.FechaInscripcion.Value.ToString("MMMM") + "           " + _patente.FechaInscripcion.Value.Year.ToString().Substring(2, 2);
-            retorno.FechaInscripcion = _patente.FechaInscripcion.Value.Day + "          " + _patente.FechaInscripcion.Value.ToString("MMMM") + "                      " + _patente.FechaInscripcion.Value.Year.ToString();
-
-            if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Inventores2)))
-                retorno.CamposVienen += reportePatente.Inventores2;
-
-            if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.NombrePatente2)))
-                retorno.CamposVienen += Environment.NewLine + Environment.NewLine + reportePatente.NombrePatente2;
-
-            if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Resumen2)))
-                retorno.CamposVienen += Environment.NewLine + Environment.NewLine + reportePatente.Resumen2;
-
-            //if ((null!= _patente.Poder) && (int.MinValue != ((Poder)_patente.Poder).Id))
-            //{
-            //    retorno.CodigoFomento = ((Poder)_patente.Poder).NumPoder;
-            //}
 
 
             return retorno;

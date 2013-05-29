@@ -282,7 +282,7 @@
                         <!--fin control de facturacion-->
 
                         <WrapPanel Grid.Column="4" Grid.Row="13" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="4" Orientation="Horizontal">
-                            <Button Name="_btnConectividadDatos" VerticalAlignment="Bottom" Height="25" Width="105">
+                            <Button Name="_btnConectividadDatos" VerticalAlignment="Bottom" Height="25" Width="105" Click="_btnConectividadDatos_Click">
                                 <TextBlock Name="_txbConectividadDatos" Text="{x:Static recurso:Etiquetas.btnConectividad}"/>
                             </Button>
                             <Button Name="_btnAuditoriaDatos" VerticalAlignment="Bottom" Height="25" Width="105" Click="_btnAuditoria_Click">

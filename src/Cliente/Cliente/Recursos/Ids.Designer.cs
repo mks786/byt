@@ -376,6 +376,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a FAC_ASOC_CONECTIVIDAD.
+        /// </summary>
+        public static string Conectividad {
+            get {
+                return ResourceManager.GetString("Conectividad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a MYPMABAM.
         /// </summary>
         public static string ConsultarAbandonos {

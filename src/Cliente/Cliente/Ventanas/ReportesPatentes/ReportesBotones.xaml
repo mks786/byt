@@ -5,8 +5,9 @@
     <Grid Height="197">
         <Button Content="Solicitud" Height="42" Margin="45,12,158,0" Name="_btnSolicitudVan" VerticalAlignment="Top" Click="_btnSolicitudVan_Click"/>
         <Button Content="Vienen" Height="42" Margin="161,12,42,0" Name="_btnSolicitudVienen" VerticalAlignment="Top" Click="_btnSolicitudVienen_Click"/>
-        <Button Content="Datos" Height="39" Margin="45,74,158,0" Name="_btnDatosVan" VerticalAlignment="Top" Click="_btnDatosVan_Click"/>
-        <Button Content="Vienen" Height="39" Margin="161,74,42,0" Name="_btnDatosVienen" VerticalAlignment="Top" Click="_btnDatosVienen_Click"/>
-        <Button Content="Planilla" Height="45" Margin="45,128,42,0" Name="_btnPlanilla" VerticalAlignment="Top" Click="_btnPlanilla_Click"/>
+        <Button Content="Planilla" Height="45" Margin="45,70,42,0" Name="_btnPlanilla" VerticalAlignment="Top" Click="_btnPlanilla_Click"/>
+        <Button Content="Datos" Height="39" Margin="45,130,158,0" Name="_btnDatosVan" VerticalAlignment="Top" Click="_btnDatosVan_Click"/>
+        <Button Content="Vienen" Height="39" Margin="161,130,42,0" Name="_btnDatosVienen" VerticalAlignment="Top" Click="_btnDatosVienen_Click"/>
+        <!--<Button Content="Planilla" Height="45" Margin="45,128,42,0" Name="_btnPlanilla" VerticalAlignment="Top" Click="_btnPlanilla_Click"/>-->
     </Grid>
 </Window>

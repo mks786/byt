@@ -272,6 +272,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             this._btnAuditoriaDatos.Background = Brushes.LightGreen;
         }
 
+        public void pintarConectividad()
+        {
+            this._btnConectividadDatos.Background = Brushes.LightGreen;
+        }
+
         public GridViewColumnHeader CurSortCol
         {
             get { return _CurSortCol; }
@@ -592,6 +597,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         {
             MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
+        private void _btnConectividadDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrListaConectividad();
+        }
+
+        
 
 
 

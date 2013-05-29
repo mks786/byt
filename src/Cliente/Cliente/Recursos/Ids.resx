@@ -1098,4 +1098,7 @@
   <data name="fac_NumeroControl" xml:space="preserve">
     <value>FAC_NCONTROL</value>
   </data>
+  <data name="Conectividad" xml:space="preserve">
+    <value>FAC_ASOC_CONECTIVIDAD</value>
+  </data>
 </root>

@@ -3672,13 +3672,22 @@ en Prensa:</value>
   <data name="lsvCodigoInternoOperaciones" xml:space="preserve">
     <value>Cod. Interno</value>
   </data>
-
   <data name="lsvEtiqueta" xml:space="preserve">
     <value>Etiqueta</value>
   </data>
-
   <data name="fac_menuItemNumeroControl" xml:space="preserve">
     <value>Numero Control</value>
   </data>
-
+  <data name="lsvCampo" xml:space="preserve">
+    <value>Campo</value>
+  </data>
+  <data name="lsvCantidad" xml:space="preserve">
+    <value>Cantidad</value>
+  </data>
+  <data name="lsvTabla" xml:space="preserve">
+    <value>Tabla</value>
+  </data>
+  <data name="titleListaConectividad" xml:space="preserve">
+    <value>Conectividad del Asociado</value>
+  </data>
 </root>

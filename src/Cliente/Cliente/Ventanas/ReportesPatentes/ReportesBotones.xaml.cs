@@ -90,8 +90,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.ReportesPatentes
 
         private void _btnDatosVan_Click(object sender, RoutedEventArgs e)
         {
-            //_presentador.ImprimirDatosVan();
-            _presentador.ImprimirPlanilla();
+            _presentador.ImprimirDatosVan();
+            //_presentador.ImprimirPlanilla();
         }
 
 
@@ -103,8 +103,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.ReportesPatentes
 
         private void _btnPlanilla_Click(object sender, RoutedEventArgs e)
         {
-            //_presentador.ImprimirPlanilla();
-            _presentador.ImprimirDatosVan();
+            _presentador.ImprimirPlanilla();
+            //_presentador.ImprimirDatosVan();
         }
 
 

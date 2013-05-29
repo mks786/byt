@@ -106,17 +106,13 @@
     
 
     <!-- Nueva propiedad de Conectividad -->
-    <bag name="Conectividad" table="FAC_ASOC_CONECTIVIDAD">
+    <bag name="Conectividad" table="FAC_ASOC_CONECTIVIDAD" lazy="false">
       <key column="CASOCIADO"/>
       <composite-element class="Conectividad">
         <parent name="Asociado"/>
-        <!--<many-to-one name="Carta" class="Carta" column="CCARTA"/>-->
         <property name="Tabla" column="TABLA" type="String"/>
         <property name="Campo" column="CAMPO" type="String"/>
         <property name="Cantidad" column="CANTIDAD" type="int"/>
-         <!--<many-to-one name="Concepto" class="Concepto">-->
-          <!--<column name="CCONCEPTO"/>
-        </many-to-one>-->
       </composite-element>
     </bag>
 

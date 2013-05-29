@@ -24,7 +24,7 @@ namespace Trascend.Bolet.Servidor
 
             #region Codigo de Prueba NO BORRAR - CONECTIVIDAD
             //Asociado asociado = new Asociado();
-            //asociado.Id = 1292;
+            //asociado.Id = 4;
             //AsociadoServicios asociadoServicios = new AsociadoServicios();
             //ParametroProcedimiento parametro = new ParametroProcedimiento("nombre", "apellido");
             //bool exito = asociadoServicios.ActualizarConectividadAsociados(parametro);
@@ -40,6 +40,10 @@ namespace Trascend.Bolet.Servidor
 
             //---
             #endregion
+
+            MarcaServicios _marcaServicios = new MarcaServicios();
+
+
 
             Console.WriteLine("Se han cargado " + ConfiguracionServicios.CargarUsuarios() + " sesiones de archivo XML");
             Console.WriteLine("Configuracion cargada...");

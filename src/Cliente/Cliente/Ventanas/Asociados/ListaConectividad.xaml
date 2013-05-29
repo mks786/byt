@@ -1,0 +1,77 @@
+﻿<Page x:Class="Trascend.Bolet.Cliente.Ventanas.Asociados.ListaConectividad"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+      xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
+      xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos" Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
+        <Style x:Key="ElementInError" TargetType="{x:Type FrameworkElement}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip"
+                    Value="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={x:Static RelativeSource.Self}}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="600"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Grid.Column="0" Grid.Row="0" Margin="5" Height="35" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label>
+                    <TextBlock FontSize="15" Text="{x:Static recurso:Etiquetas.lblTotalHits}"/>
+                </Label>
+                <Label>
+                    <TextBlock FontSize="15" Name="_lblHits"/>
+                </Label>
+
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Grid.Row="0"  Margin="5">
+            <ListView Name="_lstResultados" ItemsSource="{Binding}" 
+                      SelectionMode="Single" Style="{DynamicResource EstiloListView}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Tabla}" Width="120">
+                            <GridViewColumnHeader Tag="Tabla" Content="{x:Static recurso:Etiquetas.lsvTabla}" Click="_Ordenar_Click"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Campo}" Width="120">
+                            <GridViewColumnHeader Tag="Campo" Content="{x:Static recurso:Etiquetas.lsvCampo}" Click="_Ordenar_Click"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Cantidad}" Width="120">
+                            <GridViewColumnHeader Tag="Cantidad" Content="{x:Static recurso:Etiquetas.lsvCantidad}" Click="_Ordenar_Click"/>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+
+        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
+
+            <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
+               <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="110" Click="_btnRegresar_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
+                </Button>
+            </WrapPanel>
+        </GroupBox>
+
+
+
+    </Grid>
+</Page>

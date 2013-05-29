@@ -501,6 +501,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                #region CODIGO COMENTADO
                 //No es automatico
                 //if ((null != recordatorio.Marca) && (null != recordatorio.Marca.Recordatorio))
                 //{
@@ -519,15 +520,14 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 //}
                 //else
                 //{
+                #endregion
 
                 bool variosFiltros = true;
                 string filtro = "";
                 string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerRecordatorioVista, localidad);
-
-                //string fechaMesI = String.Format("{0:MM}", fechas[0]);
+              
                 string fechaMesF = String.Format("{0:MM}", fechas[1]);
-
-                //string fechaAnoI = String.Format("{0:yyyy}", fechas[0]);
+               
                 string fechaAnoF = String.Format("{0:yyyy}", fechas[1]);
 
                 filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerRecordatorioVistaMes, fechaMesF);
@@ -535,7 +535,9 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 filtro += " and ";
                 filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerRecordatorioVistaAno, fechaAnoF);
 
-
+                #region CODIGO COMENTADO
+                //string fechaMesI = String.Format("{0:MM}", fechas[0]);
+                //string fechaAnoI = String.Format("{0:yyyy}", fechas[0]);
                 //recordatorios = Session.CreateCriteria(typeof(RecordatorioVista))
                 //    .SetFetchMode("Asociado", FetchMode.Join)
                 //    .SetFetchMode("Asociado.Pais", FetchMode.Join)
@@ -546,13 +548,13 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                 //        .List<RecordatorioVista>();
 
+                //IQuery query = Session.CreateQuery(cabecera + filtro + " and r.Asociado in (21962)");
+                #endregion
+
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 recordatorios = query.List<RecordatorioVista>();
 
-                //recordatorios = query.Enumerable<RecordatorioVista>();
-
-
-                //}
+               
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

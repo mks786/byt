@@ -194,6 +194,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     this._ventana.pintarEmails();
                 if (this._asociadoServicios.VerificarCartasPorAsociado(asociado))
                     this._ventana.pintarCorrespondencia();
+                if ((asociado.Conectividad != null) && (asociado.Conectividad.Count != 0))
+                    this._ventana.pintarConectividad();
 
 
                 //codigo de prueba 
@@ -774,6 +776,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         {
             Asociado asociado = ((Asociado)this._ventana.Asociado);
             cargarListaDeContactos(asociado);
+        }
+
+        public void IrListaConectividad()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this.Navegar(new ListaConectividad(this._ventana.Asociado, this._ventana));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
         }
 
         /// <summary>

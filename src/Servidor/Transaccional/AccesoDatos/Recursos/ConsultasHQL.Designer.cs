@@ -331,7 +331,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select r from RecordatorioVista r left join fetch r.Asociado as asociado left join fetch r.Marca as marca left join fetch asociado.Pais as pais left join fetch marca.Nacional as nacional where r.Localidad = &apos;{0}&apos; and .
+        ///   Busca una cadena traducida similar a Select r from RecordatorioVista r left join fetch r.Asociado as asociado left join fetch r.Marca as marca left join fetch asociado.Pais as pais where r.Localidad = &apos;{0}&apos; and .
         /// </summary>
         public static string CabeceraObtenerRecordatorioVista {
             get {

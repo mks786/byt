@@ -6609,6 +6609,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Campo.
+        /// </summary>
+        public static string lsvCampo {
+            get {
+                return ResourceManager.GetString("lsvCampo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cantidad.
+        /// </summary>
+        public static string lsvCantidad {
+            get {
+                return ResourceManager.GetString("lsvCantidad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Carta.
         /// </summary>
         public static string lsvCarta {
@@ -7505,6 +7523,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvSolicitud {
             get {
                 return ResourceManager.GetString("lsvSolicitud", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tabla.
+        /// </summary>
+        public static string lsvTabla {
+            get {
+                return ResourceManager.GetString("lsvTabla", resourceCulture);
             }
         }
         
@@ -10592,6 +10619,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleListaBusqueda {
             get {
                 return ResourceManager.GetString("titleListaBusqueda", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Conectividad del Asociado.
+        /// </summary>
+        public static string titleListaConectividad {
+            get {
+                return ResourceManager.GetString("titleListaConectividad", resourceCulture);
             }
         }
         
