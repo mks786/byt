@@ -63,6 +63,11 @@
     <property name="CasoT" column="TCASO" type="string"/>
     <property name="ComentarioEsp" column="XCOMENCLI_ESP" type="string"/>
     <property name="ComentarioIng" column="XCOMENCLI_ING" type="string"/>
+    <property name="DomicilioTerceroInteresado" column="XDOMICILIOI" type="string"/>
+    <property name="FaxTerceroInteresado" column="XFAXI" type="string"/>
+    <property name="TelefonoTerceroInteresado" column="XTLFI" type="string"/>
+    <property name="ComentarioTerceroInteresado" column="XCOMENTARIOI" type="string"/>
+    
 
     <many-to-one name="Agente" class="Agente">
       <column name="CAGENTE"/>

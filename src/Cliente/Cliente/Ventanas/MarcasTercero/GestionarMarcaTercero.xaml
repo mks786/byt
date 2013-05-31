@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
-      d:DesignHeight="1195" d:DesignWidth="800"
+      d:DesignHeight="1400" d:DesignWidth="800"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
 	Title="{x:Static recurso:Etiquetas.titleAgregarAgente}" Loaded="Page_Loaded"
       KeepAlive="True">
@@ -713,6 +713,9 @@
                     <!--Final Situacion y detalle Fila-->
 
                     <!-- Botones Fila-->
+                    <Button IsEnabled="False" Grid.Column="2" Grid.Row="26" Grid.ColumnSpan="1" Name="_btnInfoAdicionalTerceros" Margin="8,0,0,0" Height="25" Click="_btnInfoAdicionalTerceros_Click">
+                        <TextBlock Name="_txbInfoAdicionalTerceros" Text="{x:Static recurso:Etiquetas.btnInfoAdicionalTerceros}" HorizontalAlignment="Center"/>
+                    </Button>
                     <Button IsEnabled="False" Grid.Column="3" Grid.Row="26" Grid.ColumnSpan="1" Name="_btnInfoAdicional" Margin="8,0,0,0"
                             Height="25" Click="_btnInfoAdicional_Click">
                         <TextBlock Name="_txbInfoAdicional" Text="{x:Static recurso:Etiquetas.btnInfoAdicional}"/>

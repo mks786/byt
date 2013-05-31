@@ -1348,4 +1348,7 @@
   <data name="ErrorAsociadoArchivoNDP" xml:space="preserve">
     <value>Hubo un problema al intentar abrir el archivo NDP</value>
   </data>
+  <data name="ErrorPoderFiltradoNoAsociadoInteresado" xml:space="preserve">
+    <value>El Poder filtrado no esta asociado con el Interesado</value>
+  </data>
 </root>

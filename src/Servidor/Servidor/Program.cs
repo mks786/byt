@@ -37,11 +37,11 @@ namespace Trascend.Bolet.Servidor
             //MarcaServicios _marcaServicios = new MarcaServicios();
             //marcaPrueba = _marcaServicios.ConsultarPorId(marcaPrueba);
 
-
+            
             //---
             #endregion
 
-            MarcaServicios _marcaServicios = new MarcaServicios();
+            
 
 
 

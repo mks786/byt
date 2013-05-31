@@ -1,0 +1,143 @@
+﻿<Page x:Class="Trascend.Bolet.Cliente.Ventanas.MarcasTercero.InfoAdicionalInteresadosAsociadosMarcaTerceros"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
+      mc:Ignorable="d" 
+      d:DesignHeight="728" d:DesignWidth="800"
+      xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
+	Title="{x:Static recurso:Etiquetas.titleInfoAdicionalInteresadosAsociadosMarcaTercero}" Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <Style x:Key="ElementInError" TargetType="{x:Type FrameworkElement}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip"
+                    Value="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={x:Static RelativeSource.Self}}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+    
+    <Grid Height="717">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="500"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Grid.Column="1" Grid.Row="1">
+            <StackPanel Name="_gridDatos"  VerticalAlignment="Center"  HorizontalAlignment="Center">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtNombreInteresadoTercero" Width="200" MaxLength="80" Text="{Binding Path=InteresadoTercero}"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblDomicilio}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtDomicilioInteresado" Width="200" MaxLength="255" VerticalScrollBarVisibility="Auto" Text="{Binding Path=DomicilioTerceroInteresado}">
+                        
+                    </custom:ByTTextBox>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTelefono}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtTelefonoInteresado" MaxLength="30"  TextWrapping="Wrap"  AcceptsReturn="True"
+                             HorizontalAlignment="Left" Width="200" SpellCheck.IsEnabled="True" Text="{Binding Path=TelefonoTerceroInteresado}">
+                        
+                    </custom:ByTTextBox>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFax}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtFaxInteresado" MaxLength="30"  TextWrapping="Wrap"  AcceptsReturn="True"
+                             HorizontalAlignment="Left" Width="200" SpellCheck.IsEnabled="True" Text="{Binding Path=FaxTerceroInteresado}">
+                        
+                    </custom:ByTTextBox>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblComentario}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtComentarioInteresado" MaxLength="255"  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" HorizontalAlignment="Left" Width="200" Height="55"                              SpellCheck.IsEnabled="True" Text="{Binding Path=ComentarioTerceroInteresado}">
+                        
+                    </custom:ByTTextBox>
+                </WrapPanel>
+
+
+                <!-- Datos Adicionales del Asociado -->
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtNombreAsociadoTercero" Width="200" MaxLength="80" Text="{Binding Path=AsociadoTercero}"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblDomicilio}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtDomicilioAsociado" Width="200" MaxLength="255" VerticalScrollBarVisibility="Auto" Text="{Binding Path=DomicilioTercero}">
+                       
+                    </custom:ByTTextBox>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTelefono}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtTelefonoAsociado" MaxLength="255"  TextWrapping="Wrap"  AcceptsReturn="True"
+                             HorizontalAlignment="Left" Width="200" SpellCheck.IsEnabled="True" Text="{Binding Path=TelefonoTercero}">
+                        
+                    </custom:ByTTextBox>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFax}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtFaxAsociado" MaxLength="255"  TextWrapping="Wrap"  AcceptsReturn="True"
+                             HorizontalAlignment="Left" Width="200" SpellCheck.IsEnabled="True" Text="{Binding Path=FaxTercero}">
+
+                    </custom:ByTTextBox>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblComentario}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtComentarioAsociado" MaxLength="255"  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
+                             HorizontalAlignment="Left" Width="200" Height="55" SpellCheck.IsEnabled="True" Text="{Binding Path=ComentarioTercero}">
+                       
+                    </custom:ByTTextBox>
+                </WrapPanel>
+
+
+            </StackPanel>
+            
+            
+        </GroupBox>
+
+        <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
+
+            <Button Name="_btnAceptar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnAceptar_Click">
+                <TextBlock Name="_txbAuditoria" Text="{x:Static recurso:Etiquetas.btnAceptar}"/>
+            </Button>
+            <Button Name="_btnCancelar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnCancelar_Click">
+                <TextBlock Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
+            </Button>
+
+        </WrapPanel>
+        
+       
+
+    </Grid>
+</Page>

@@ -138,6 +138,7 @@
     <Compile Include="Contratos\EmailsAsociado\IConsultarEmailAsociado.cs" />
     <Compile Include="Contratos\EmailsAsociado\IAgregarEmailAsociado.cs" />
     <Compile Include="Contratos\Inventores\IQueryInventor.cs" />
+    <Compile Include="Contratos\MarcasTercero\IInfoAdicionalInteresadosAsociadosMarcaTerceros.cs" />
     <Compile Include="Contratos\TiposEmailAsociado\IGestionarTipoEmailAsociado.cs" />
     <Compile Include="Contratos\TiposEmailAsociado\IConsultarTiposEmailAsociado.cs" />
     <Compile Include="Contratos\Corresponsales\IAgregarCorresponsal.cs" />
@@ -568,6 +569,7 @@
     <Compile Include="Presentadores\EmailsAsociado\PresentadorConsultarEmailAsociado.cs" />
     <Compile Include="Presentadores\EmailsAsociado\PresentadorAgregarEmailAsociado.cs" />
     <Compile Include="Presentadores\Inventores\PresentadorQueryInventor.cs" />
+    <Compile Include="Presentadores\MarcasTercero\PresentadorInfoAdicionalInteresadosAsociadosMarcaTerceros.cs" />
     <Compile Include="Presentadores\TiposEmailAsociado\PresentadorGestionarTipoEmailAsociado.cs" />
     <Compile Include="Presentadores\TiposEmailAsociado\PresentadorConsultarTiposEmailAsociado.cs" />
     <Compile Include="Presentadores\Corresponsales\PresentadorAgregarCorresponsal.cs" />
@@ -1043,8 +1045,8 @@
     <Compile Include="Ventanas\MarcasTercero\GestionarInfoAdicionalMarcaTercero.xaml.cs">
       <DependentUpon>GestionarInfoAdicionalMarcaTercero.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Ventanas\MarcasTercero\GestionarInfoAdicionalTerceros.xaml.cs">
-      <DependentUpon>GestionarInfoAdicionalTerceros.xaml</DependentUpon>
+    <Compile Include="Ventanas\MarcasTercero\InfoAdicionalInteresadosAsociadosMarcaTerceros.xaml.cs">
+      <DependentUpon>InfoAdicionalInteresadosAsociadosMarcaTerceros.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\TiposEmailAsociado\ConsultarTiposEmailAsociado.xaml.cs">
       <DependentUpon>ConsultarTiposEmailAsociado.xaml</DependentUpon>
@@ -1758,7 +1760,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Ventanas\MarcasTercero\GestionarInfoAdicionalTerceros.xaml">
+    <Page Include="Ventanas\MarcasTercero\InfoAdicionalInteresadosAsociadosMarcaTerceros.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

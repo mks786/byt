@@ -1592,6 +1592,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a El Poder filtrado no esta asociado con el Interesado.
+        /// </summary>
+        internal static string ErrorPoderFiltradoNoAsociadoInteresado {
+            get {
+                return ResourceManager.GetString("ErrorPoderFiltradoNoAsociadoInteresado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Archivo del poder no encontrado..
         /// </summary>
         internal static string ErrorPoderNoEncontrado {

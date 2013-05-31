@@ -79,6 +79,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<Operacion> _operaciones;
         private IList<Busqueda> _busquedas;
         private IList<MarcaBaseTercero> _marcasBaseTercero;
+        private string _domiciliotercerointeresado;
+        private string _faxtercerointeresado;
+        private string _telefonotercerointeresado;
+        private string _comentariotercerointeresado;
 
         #endregion
 
@@ -790,6 +794,48 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             get { return _marcasBaseTercero; }
             set { _marcasBaseTercero = value; }
         }
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Domicilio de un Interesado en una Marca a Tercero
+        /// </summary>
+        public virtual string DomicilioTerceroInteresado
+        {
+            get { return _domiciliotercerointeresado; }
+            set { _domiciliotercerointeresado = value; }
+        }
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Fax de un Interesado en una Marca a Tercero
+        /// </summary>
+        public virtual string FaxTerceroInteresado
+        {
+            get { return _faxtercerointeresado; }
+            set { _faxtercerointeresado = value; }
+        }
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Telefono de un Interesado en una Marca a Tercero
+        /// </summary>
+        public virtual string TelefonoTerceroInteresado
+        {
+            get { return _telefonotercerointeresado; }
+            set { _telefonotercerointeresado = value; }
+        }
+
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Comentario de un Interesado en una Marca a Tercero
+        /// </summary>
+        public virtual string ComentarioTerceroInteresado
+        {
+            get { return _comentariotercerointeresado; }
+            set { _comentariotercerointeresado = value; }
+        }
+
 
         #endregion
 

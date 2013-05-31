@@ -363,6 +363,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 this._btnConsultarAsociadoSolicitud.IsEnabled = value;
                 this._btnConsultarInteresadoSolicitud.IsEnabled = value;
                 this._btnInfoAdicional.IsEnabled = value;
+                this._btnInfoAdicionalTerceros.IsEnabled = value;
                 this._btnInfobol.IsEnabled = value;
                 this._btnNoRegistro.IsEnabled = value;
                 this._btnNoSolicitud.IsEnabled = value;
@@ -773,6 +774,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 this._btnAuditoriaDatos.Visibility = System.Windows.Visibility.Collapsed;
                 this._btnExpediente.Visibility = System.Windows.Visibility.Collapsed;
                 this._btnInfoAdicional.Visibility = System.Windows.Visibility.Collapsed;
+                this._btnInfoAdicionalTerceros.Visibility = System.Windows.Visibility.Collapsed;
                 this._btnInfobol.Visibility= System.Windows.Visibility.Collapsed;
             }
             //this._presentador = new PresentadorGestionarMarcaTercero(this, marcaTerceroSeleccionada );
@@ -1052,6 +1054,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 parametro = Recursos.Etiquetas.tabDatos;
 
             this._presentador.IrInfoAdicional(parametro);
+        }
+
+
+        private void _btnInfoAdicionalTerceros_Click(object sender, RoutedEventArgs e)
+        {
+
+            string parametro = "";
+            if (((Button)sender).Name.Equals("_btnInfoAdicionalSolicitud"))
+                parametro = Recursos.Etiquetas.tabSolicitud;
+            else if (((Button)sender).Name.Equals("_btnInfoAdicionalTerceros"))
+                parametro = Recursos.Etiquetas.tabDatos;
+
+            this._presentador.IrInfoAdicionalTerceros(parametro);
+            //this._presentador.IrInfoAdicionalTerceros();
         }
 
         //private void _btnAnaqua_Click(object sender, RoutedEventArgs e)
@@ -1725,6 +1741,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         {
             this._presentador.IrVentanaInteresado();
         }
+
+        
 
 
     }

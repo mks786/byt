@@ -449,6 +449,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Info. Terceros.
+        /// </summary>
+        public static string btnInfoAdicionalTerceros {
+            get {
+                return ResourceManager.GetString("btnInfoAdicionalTerceros", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Infobol.
         /// </summary>
         public static string btnInfoBol {
@@ -10583,6 +10592,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleGestionarRenovacion {
             get {
                 return ResourceManager.GetString("titleGestionarRenovacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Datos Adicionales de Terceros.
+        /// </summary>
+        public static string titleInfoAdicionalInteresadosAsociadosMarcaTercero {
+            get {
+                return ResourceManager.GetString("titleInfoAdicionalInteresadosAsociadosMarcaTercero", resourceCulture);
             }
         }
         

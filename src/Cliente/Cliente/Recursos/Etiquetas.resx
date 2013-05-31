@@ -3690,4 +3690,10 @@ en Prensa:</value>
   <data name="titleListaConectividad" xml:space="preserve">
     <value>Conectividad del Asociado</value>
   </data>
+  <data name="btnInfoAdicionalTerceros" xml:space="preserve">
+    <value>Info. Terceros</value>
+  </data>
+  <data name="titleInfoAdicionalInteresadosAsociadosMarcaTercero" xml:space="preserve">
+    <value>Datos Adicionales de Terceros</value>
+  </data>
 </root>

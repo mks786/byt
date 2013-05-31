@@ -874,6 +874,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             this.Navegar(new GestionarInfoAdicionalMarcaTercero(CargarMarcaTerceroDeLaPantalla(), tab));
         }
 
+
+        public void IrInfoAdicionalTerceros(string tab)
+        {
+            //this.Navegar(new InfoAdicionalInteresadosAsociadosMarcaTerceros(CargarMarcaTerceroDeLaPantalla(), tab));
+            this.Navegar(new InfoAdicionalInteresadosAsociadosMarcaTerceros(CargarMarcaTerceroDeLaPantalla(), tab, this._ventana));
+        }
+
+
+
+
         /// <summary>
         /// Método que se encarga de mostrar la ventana de InfoBoles
         /// </summary>
