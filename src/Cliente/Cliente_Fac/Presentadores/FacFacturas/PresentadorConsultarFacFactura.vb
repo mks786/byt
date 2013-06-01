@@ -87,7 +87,7 @@ Namespace Presentadores.FacFacturas
         Public Sub New(ByVal ventana As IConsultarFacFactura, ByVal FacFactura As Object)
             Try
                 Me._ventana = ventana
-                Me._ventana.FacFactura = FacFactura
+                '                Me._ventana.FacFactura = FacFactura
                 _facfactura = FacFactura
 
                 'Me._ventana.FacFacturaProforma = New FacFacturaProforma()
@@ -137,6 +137,22 @@ Namespace Presentadores.FacFacturas
                 Me._DepartamentoServicios = DirectCast(Activator.GetObject(GetType(IDepartamentoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("DepartamentoServicios")), IDepartamentoServicios)
 
                 eliminar_operacion_detalle_tm_usuario() ' para eliminar los operacion tmp de operacion_detalle_tm
+
+                'para evitar  2 enter
+                Dim xasociado As String = DirectCast(FacFactura, FacFactura).XAsociado
+                Dim a As String = vbLf & vbLf
+                xasociado = xasociado.Replace(a, vbLf)
+                a = vbCrLf & vbCrLf
+                xasociado = xasociado.Replace(a, vbCrLf)
+                'xasociado = DirectCast(FacFactura, FacFactura).Proforma.XAsociado                
+                If _facfactura.XAsociado <> xasociado Then
+                    _facfactura.XAsociado = xasociado
+                    Me._FacFacturaServicios.InsertarOModificar(_facfactura, UsuarioLogeado.Hash)                    
+                End If
+                'fin para evitar  2 enter
+                Me._ventana.FacFactura = _facfactura
+
+
 
                 'Dim proforma As FacFacturaProforma = FacFacturaOProforma
                 'If proforma.Status = 1 Then

@@ -4172,7 +4172,7 @@ Namespace Presentadores.FacFacturas
                         Dim Interesado As Interesado = Me._InteresadosServicios.ConsultarInteresadoConTodo(DirectCast(Me._ventana.Interesado, Interesado))
                         Me._ventana.NombreInteresado = DirectCast(Me._ventana.Interesado, Interesado).Id & " - " & DirectCast(Me._ventana.Interesado, Interesado).Nombre
                         'Me._ventana.IdInteresado = DirectCast(Me._ventana.Interesado, Interesado).I
-                        adivinar2(Interesado)
+                        adivinar3(Interesado)
                         Me._ventana.AsociadoImp = Nothing
                         Me._ventana.AsociadosImp = Nothing
                         Me._ventana.NombreAsociadoImp = Nothing
@@ -4185,7 +4185,7 @@ Namespace Presentadores.FacFacturas
             End Try
         End Sub
 
-        Public Sub adivinar2(ByVal interesado As Interesado)
+        Public Sub adivinar3(ByVal interesado As Interesado)
             'If Interesado.BActivo = True Then
             'If Interesado.BAlerta = False Then
             'If (Interesado.Tarifa IsNot Nothing) AndAlso (Not Interesado.Tarifa.Id.Equals("")) Then
