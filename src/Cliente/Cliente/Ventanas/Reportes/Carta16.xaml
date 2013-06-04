@@ -249,11 +249,11 @@
                     </Label>
                     <custom:ByTTextBox SoloNumero="True" Filtro="True"  GotKeyboardFocus="_txtIdFiltrar_GotKeyboardFocus" GotFocus="_txtIdFiltrar_GotKeyboardFocus" Name="_txtIdFiltrar" Grid.Column="1" Grid.Row="5" 
                                 Grid.ColumnSpan="1"  Height="20"></custom:ByTTextBox>
-                    <Label Name="_lblNombreAsoIntFiltrar" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Label Name="_lblNombreAsoIntFiltrar" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Collapsed">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                     </Label>
                     <custom:ByTTextBox GotKeyboardFocus="_txtIdFiltrar_GotKeyboardFocus" GotFocus="_txtIdFiltrar_GotKeyboardFocus" Name="_txtNombreFiltrar" Grid.Column="2" Grid.Row="5" 
-                                Grid.ColumnSpan="2"  Height="20" Margin="60,0,0,0"></custom:ByTTextBox>
+                                Grid.ColumnSpan="2"  Height="20" Margin="60,0,0,0" Visibility="Collapsed" ></custom:ByTTextBox>
 
                     <Button Name="_btnConsultar" VerticalAlignment="Center" Grid.Column="4" Grid.Row="5" Height="25" Click="_btnConsultar_Click">
                         <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
@@ -274,8 +274,7 @@
 
                     <!--Fila 7-->
 
-                    <ListView Width="505" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="6" Grid.RowSpan="4" Name="_lstAsociados" ItemsSource="{Binding}" 
-                      SelectionMode="Single" MouseDoubleClick="_lstAsociados_MouseDoubleClick"
+                    <ListView Width="505" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="6" Grid.RowSpan="4" Name="_lstAsociados" ItemsSource="{Binding}" SelectionMode="Single" MouseDoubleClick="_lstAsociados_MouseDoubleClick" 
                       Style="{DynamicResource EstiloListView}">
                         <ListView.View>
                             <GridView>

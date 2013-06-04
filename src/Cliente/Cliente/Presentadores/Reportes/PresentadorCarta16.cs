@@ -603,6 +603,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             return retorno;
         }
 
+
+
+        public void SeleccionarIdiomaAsociado()
+        {
+            Asociado asociadoSeleccionado = new Asociado();
+            asociadoSeleccionado = (Asociado)this._ventana.Asociado;
+            this._ventana.Idioma = BuscarIdioma((IList<Idioma>)this._ventana.Idiomas, asociadoSeleccionado.Idioma);
+        }
+
         #region Estructuras
 
         struct StructReporteCarta16

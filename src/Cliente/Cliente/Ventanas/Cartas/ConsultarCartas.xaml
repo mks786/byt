@@ -4,11 +4,9 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
-      mc:Ignorable="d" 
-      d:DesignHeight="550" d:DesignWidth="800"
-      xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
+      mc:Ignorable="d" xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
       xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
-	Title="{x:Static recurso:Etiquetas.titleConsultarPoderes}" Loaded="Page_Loaded">
+	Title="{x:Static recurso:Etiquetas.titleConsultarPoderes}" Loaded="Page_Loaded" d:DesignHeight="1100" d:DesignWidth="800">
     <Page.Resources>
         <conv:DosValresAUno x:Key="convertirADosValores"></conv:DosValresAUno>
         <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
@@ -79,6 +77,13 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAnexoTracking}"/>
                         </Label>
                         <custom:ByTTextBox Name="_txtAnexoTracking" Text="" Width="150" MaxLength="15"
+                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,100,0">
+                        <Label>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociadoNoRegistrado}"/>
+                        </Label>
+                        <custom:ByTTextBox Name="_txtAsociadoNoRegistrado" Text="" Width="140" MaxLength="15"
                              GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
                     </WrapPanel>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,100,0">
@@ -228,11 +233,15 @@
                             </Label>
                             <custom:ByTTextBox IsReadOnly="True" Name="_txtContacto" BorderBrush="LightGreen" Text="" Width="150" MaxLength="15" Grid.Row="0" Grid.Column="1" Height="25" HorizontalAlignment="Left"
                                  GotFocus="_txtContacto_GotFocus" GotKeyboardFocus="_txtContacto_GotFocus" Filtro="True" MouseDoubleClick="_txtContacto_MouseDoubleClick"/>
-                            <Label  Visibility="Collapsed" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Name="_lblIdContacto">
+                            <!--<Label  Visibility="Collapsed" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Name="_lblIdContacto">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                            </Label>-->
+                            <Label  Visibility="Collapsed" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Name="_lblNombreContactoBuscar">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                             </Label>
-                            <custom:ByTTextBox Visibility="Collapsed" Name="_txtIdContacto" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left"
-                                 GotFocus="_txtContacto_GotFocus" GotKeyboardFocus="_txtContacto_GotFocus" SoloNumero="True" Filtro="True"/>
+                            <!--<custom:ByTTextBox Visibility="Collapsed" Name="_txtIdContacto" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                                 GotFocus="_txtContacto_GotFocus" GotKeyboardFocus="_txtContacto_GotFocus" SoloNumero="True" Filtro="True"/>-->
+                            <custom:ByTTextBox Visibility="Collapsed" Name="_txtNombreContacto" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left" GotFocus="_txtContacto_GotFocus" GotKeyboardFocus="_txtContacto_GotFocus" SoloNumero="False" Filtro="True" CharacterCasing="Upper"/>
                             <Label Name="_lblNombreContacto" Visibility="Collapsed" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblEmail}"/>
                             </Label>

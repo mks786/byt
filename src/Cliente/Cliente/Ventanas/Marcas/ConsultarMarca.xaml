@@ -1517,17 +1517,26 @@
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" SelectionChanged="_cbxTipoMarcaDatos_SelectionChanged">
                         </ComboBox>
 
-                        <Label Grid.Column="3" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <!--<Label Grid.Column="3" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseNac}"/>
-                        </Label>
-                        <custom:ByTTextBox  Grid.Column="4" Grid.Row="12" Grid.ColumnSpan="1" Margin="3" Name="_txtClaseNacionalDatos" VerticalAlignment="Center"  
-                          Text="{Binding Path=Nacional.Id}" SoloNumero="True"></custom:ByTTextBox>
-
-                        <Label Grid.Column="5" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        </Label>-->
+                        <Label Grid.Column="3" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseInt}"/>
                         </Label>
-                        <custom:ByTTextBox  Grid.Column="6" Grid.Row="12" Grid.ColumnSpan="1" Margin="3" Name="_txtClaseInternacionalDatos" VerticalAlignment="Center"  
+                        <custom:ByTTextBox  Grid.Column="4" Grid.Row="12" Grid.ColumnSpan="1" Margin="3" Name="_txtClaseInternacionalDatos" VerticalAlignment="Center"  
                           Text="{Binding Path=Internacional.Id}" SoloNumero="True"></custom:ByTTextBox>
+
+                        <!--<custom:ByTTextBox  Grid.Column="4" Grid.Row="12" Grid.ColumnSpan="1" Margin="3" Name="_txtClaseNacionalDatos" VerticalAlignment="Center"  
+                          Text="{Binding Path=Nacional.Id}" SoloNumero="True"></custom:ByTTextBox>-->
+
+                        <Label Grid.Column="5" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseNac}"/>
+                        </Label>
+                        <custom:ByTTextBox  Grid.Column="6" Grid.Row="12" Grid.ColumnSpan="1" Margin="3" Name="_txtClaseNacionalDatos" VerticalAlignment="Center"  
+                          Text="{Binding Path=Nacional.Id}" SoloNumero="True"></custom:ByTTextBox>
+                        
+                        <!--<custom:ByTTextBox  Grid.Column="6" Grid.Row="12" Grid.ColumnSpan="1" Margin="3" Name="_txtClaseInternacionalDatos" VerticalAlignment="Center"  
+                          Text="{Binding Path=Internacional.Id}" SoloNumero="True"></custom:ByTTextBox>-->
 
                         <Label Grid.Column="7" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblReclasif}"/>

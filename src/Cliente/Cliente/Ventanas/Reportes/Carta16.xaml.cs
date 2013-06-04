@@ -214,6 +214,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Reportes
         private void _btnConsultar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.ConsultarInteresadoOAsociado();
+            if(this._lstAsociados.HasItems)
+                this._lstAsociados.SelectedIndex = 0;
+            this._presentador.SeleccionarIdiomaAsociado();
             this._btnAceptar.IsDefault = true;
             this._btnConsultar.IsDefault = false;
         }
@@ -240,7 +243,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Reportes
 
         private void _lstInteresados_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-
+            this._presentador.SeleccionarIdiomaAsociado();
         }
 
         private void _txtIdFiltrar_GotKeyboardFocus(object sender, RoutedEventArgs e)

@@ -1188,7 +1188,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 marcaT.Id = ((MarcaTercero)this._ventana.MarcaTercero).Id;
                 marcaT.Anexo = ((MarcaTercero)this._ventana.MarcaTercero).Anexo;
                 aux.MarcaTercero = marcaT;
-                aux.Pais = ((Pais)this._ventana.PaisSolicitud);
+                //aux.Pais = ((Pais)this._ventana.PaisSolicitud);
+                aux.Pais = ((Pais)this._ventana.PaisSolicitud).Id != int.MinValue ? ((Pais)this._ventana.PaisSolicitud) : null;
                 if ((bool)this._ventana.Byt.IsChecked)
                 {
                     aux.Marca = ((Marca)this._ventana.MarcaFiltrada);
@@ -1371,9 +1372,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     IList<Asociado> asociados = this._asociadoServicios.ObtenerAsociadosFiltro(asociado);
                     if (asociados.Count != 0)
                     {
+                        Asociado primerAsociado = new Asociado(int.MinValue);
+                        asociados.Insert(0, primerAsociado);
                         asociadosFiltrados = asociados;
                         if (asociadosFiltrados.ToList<Asociado>().Count != 0)
+                        {
+                            //asociadosFiltrados.ToList<Asociado>().Insert(0, primerAsociado);
                             this._ventana.AsociadosSolicitud = asociadosFiltrados.ToList<Asociado>();
+                        }
                         else
                             this._ventana.AsociadosSolicitud = this._asociados;
                     }
@@ -1530,6 +1536,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     IList<Interesado> interesados = this._interesadoServicios.ObtenerInteresadosFiltro(interesado);
                     if (interesados.Count != 0)
                     {
+                        Interesado primerInteresado = new Interesado(int.MinValue);
+                        interesados.Insert(0, primerInteresado);
                         interesadosFiltrados = interesados;
                         if (interesadosFiltrados.ToList<Interesado>().Count != 0)
                             this._ventana.InteresadosSolicitud = interesadosFiltrados.ToList<Interesado>();

@@ -664,7 +664,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 #endregion
 
                 ((Asociado)this._ventana.Asociado).Emails = this._asociadoServicios.ConsultarEmailsDelAsociado((Asociado)this._ventana.Asociado);
-                Navegar(new ListaEmails(this._ventana.Asociado));
+                //Navegar(new ListaEmails(this._ventana.Asociado));
+                Navegar(new ListaEmails(this._ventana.Asociado,this._ventana));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

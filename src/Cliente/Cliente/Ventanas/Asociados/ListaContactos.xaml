@@ -147,6 +147,9 @@
                 <Button Name="_btnAgregar" VerticalAlignment="Bottom" Height="25" Width="110" Click="_btnAgregar_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnNuevoContacto}"/>
                 </Button>
+                <!--<Button Name="_btnSeleccionar" VerticalAlignment="Bottom" Height="25" Width="110" Click="_btnSeleccionar_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnSeleccionar}"/>
+                </Button>-->
                 <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="110" Click="_btnRegresar_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
                 </Button>

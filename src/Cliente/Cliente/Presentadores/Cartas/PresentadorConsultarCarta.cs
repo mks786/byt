@@ -235,8 +235,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 this._ventana.Receptores = this._receptores;
                 this._ventana.Receptor = this.BuscarReceptor(this._receptores, carta.Receptor);
 
-                if (!_otraCarta)
-                {
+                //if (!_otraCarta)
+                //{
                     this._anexos = this._anexoServicios.ConsultarTodos();
                     Anexo primerAnexo = new Anexo();
                     primerAnexo.Id = "NGN";
@@ -246,7 +246,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     this._anexosConfirmacion = this._anexoServicios.ConsultarTodos();
                     this._anexosConfirmacion.Insert(0, primerAnexo);
                     this._ventana.AnexosConfirmacion = _anexosConfirmacion;
-                }
+                //}
 
                 if (!_otraCarta)
                 {
@@ -306,14 +306,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 if (null != carta.Departamento)
                     this._ventana.Departamento = this.BuscarDepartamento(this._departamentos, carta.Departamento);
 
-                if (!_otraCarta)
-                {
+                //if (!_otraCarta)
+                //{
                     this._responsables = this._usuarioServicios.ConsultarTodos();
                     _responsables = FiltrarUsuariosRepetidos(_responsables);
                     Usuario primerResponsable = new Usuario();
                     primerResponsable.Id = "NGN";
                     _responsables.Insert(0, primerResponsable);
-                }
+                //}
                 this._ventana.Responsables = _responsables;
 
                 this._ventana.MediosTrackingConfirmacion = _listaMedioTracking;
@@ -1472,7 +1472,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             int index = 0;
             foreach (Usuario usuario in this._responsables)
             {
-                index = 0;
+                //index = 0;
                 foreach (Usuario usuarioCarta in responsables)
                 {
                     if ((usuarioCarta != null) && (usuario.Id == usuarioCarta.Id))
@@ -1577,12 +1577,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     {
                         _cartasARecorrer.RemoveAt(_posicion - 1);
 
-                        if (_posicion == _cartasARecorrer.Count())
-                            _posicion = 0;
+                        //int longitudListaCartas = _cartasARecorrer.Count;
 
-                        this._ventana.Carta = this._cartasARecorrer[_posicion - 1];
-                        _otraCarta = true;
-                        this.CargarPagina();
+                        if (_posicion >= _cartasARecorrer.Count())
+                        {
+                            _posicion = 0;
+                            this._ventana.Carta = this._cartasARecorrer[_posicion];
+                        }
+                        else
+                        {
+                            _posicion--;
+                            //this._ventana.Carta = this._cartasARecorrer[_posicion - 1];
+                            this._ventana.Carta = this._cartasARecorrer[_posicion];
+                        }
+                        //_otraCarta = true;
+                        _otraCarta = false;
+                        //this.CargarPagina();
+                        this.Navegar(new ConsultarCarta(this._cartasARecorrer[_posicion], this._cartasARecorrer, _posicion, this._ventanaPadre, false));
                     }
                     else
                         this.Navegar(Recursos.MensajesConElUsuario.CartaEliminadaConExito, false);

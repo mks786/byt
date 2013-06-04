@@ -709,6 +709,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a upper(c.DescripcionDepartamento) like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroObtenerCartaAsociadoNoRegistrado {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCartaAsociadoNoRegistrado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a upper(c.DescripcionResumen) like &apos;%{0}%&apos;.
         /// </summary>
         public static string FiltroObtenerCartaDescripcionResumen {

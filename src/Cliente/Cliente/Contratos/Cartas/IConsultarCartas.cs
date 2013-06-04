@@ -57,7 +57,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
 
         string AnexoTracking { get; set; }
 
-        string IdContactoFiltrar { get; set; }
+        //string IdContactoFiltrar { get; set; }
+
+        string NombreContactoFiltrar { get; set; }
 
         string CorreoContactoFiltrar { get; set; }
 
@@ -66,5 +68,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
         object Contacto { get; set; }
 
         string NombreContacto { set; }
+
+        string AsociadoNoRegistrado { get; set; }
     }
 }

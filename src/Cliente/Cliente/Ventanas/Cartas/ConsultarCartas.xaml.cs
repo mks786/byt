@@ -77,10 +77,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         }
 
 
-        public string IdContactoFiltrar
+        //public string IdContactoFiltrar
+        //{
+        //    get { return this._txtIdContacto.Text; }
+        //    set { this._txtIdContacto.Text = value; }
+        //}
+
+
+        public string NombreContactoFiltrar
         {
-            get { return this._txtIdContacto.Text; }
-            set { this._txtIdContacto.Text = value; }
+            get { return this._txtNombreContacto.Text; }
+            set { this._txtNombreContacto.Text = value; }
         }
 
 
@@ -255,6 +262,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             set { this._txtAnexoTracking.Text = value; }
         }
 
+        public string AsociadoNoRegistrado
+        {
+            get { return this._txtAsociadoNoRegistrado.Text; }
+            set { this._txtAsociadoNoRegistrado.Text = value; }
+        }
+
+
+
         #endregion
 
         /// <summary>
@@ -378,6 +393,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
                 this._dpkFecha.Focus();
             }
 
+            if (!this._txtAsociadoNoRegistrado.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtAsociadoNoRegistrado.Focus();
+            }
+
             if (todosCamposVacios)
                 this._txtId.Focus();
         }
@@ -484,8 +505,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
 
         private void MostrarCamposContactosFiltrar(object visibilidad)
         {
-            this._lblIdContacto.Visibility = (Visibility)visibilidad;
-            this._txtIdContacto.Visibility = (Visibility)visibilidad;
+            //this._lblIdContacto.Visibility = (Visibility)visibilidad;
+            //this._txtIdContacto.Visibility = (Visibility)visibilidad;
+            this._lblNombreContactoBuscar.Visibility = (Visibility)visibilidad;
+            this._txtNombreContacto.Visibility = (Visibility)visibilidad;
             this._lblNombreContacto.Visibility = (Visibility)visibilidad;
             this._txtCorreoContacto.Visibility = (Visibility)visibilidad;
             this._btnConsultarContacto.Visibility = (Visibility)visibilidad;

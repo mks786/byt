@@ -848,7 +848,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         {
             this._lstAsociadosSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._btnConsultarAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdAsociadoSolicitud.Text = null;
             this._txtIdAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtNombreAsociadoSolicitud.Text = null;
             this._txtNombreAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtAsociadoSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._txtIdAsociado.Visibility = System.Windows.Visibility.Visible;
@@ -875,6 +877,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             //this._presentador.CambiarInteresadoSolicitud();
             this._lstInteresadosSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._btnConsultarInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+
             this._txtIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtNombreInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtInteresadoSolicitud.Visibility = System.Windows.Visibility.Visible;

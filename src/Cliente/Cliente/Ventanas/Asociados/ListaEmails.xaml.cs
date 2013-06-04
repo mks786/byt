@@ -77,6 +77,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
 
         }
 
+
+        public ListaEmails(object asociado, object ventanaPadre)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorListaEmails(this, asociado, ventanaPadre);
+
+        }
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             if (!EstaCargada)

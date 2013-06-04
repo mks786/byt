@@ -1063,4 +1063,8 @@
     <value>p.Observacion like '%{0}%'</value>
     <comment>Filtro para obtener patentes por el campo Observacion</comment>
   </data>
+  <data name="FiltroObtenerCartaAsociadoNoRegistrado" xml:space="preserve">
+    <value>upper(c.DescripcionDepartamento) like '%{0}%'</value>
+    <comment>Se filtran las cartas por el Asociado No Registrado</comment>
+  </data>
 </root>

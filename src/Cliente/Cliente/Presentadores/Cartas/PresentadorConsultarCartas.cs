@@ -373,6 +373,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     cartaAuxiliar.Tracking = this._ventana.Tracking;
                 }
 
+                if (!this._ventana.AsociadoNoRegistrado.Equals(""))
+                {
+                    filtroValido++;
+                    cartaAuxiliar.DescripcionDepartamento = this._ventana.AsociadoNoRegistrado;
+                }
+
                 if (!this._ventana.Fecha.Equals(""))
                 {
                     DateTime fechaCarta = DateTime.Parse(this._ventana.Fecha);
@@ -619,10 +625,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             #endregion
 
             
-            if ((!this._ventana.IdContactoFiltrar.Equals("")) || (!this._ventana.CorreoContactoFiltrar.Equals("")))
+            //if ((!this._ventana.IdContactoFiltrar.Equals("")) || (!this._ventana.CorreoContactoFiltrar.Equals("")))
+            if ((!this._ventana.NombreContactoFiltrar.Equals("")) || (!this._ventana.CorreoContactoFiltrar.Equals("")))
             {
                 Contacto ContactoAFiltrar = new Contacto();
-                ContactoAFiltrar.Id = !this._ventana.IdContactoFiltrar.Equals("") ? int.Parse(this._ventana.IdContactoFiltrar) : 0;
+                ContactoAFiltrar.Id = int.MinValue;
+                //ContactoAFiltrar.Id = !this._ventana.IdContactoFiltrar.Equals("") ? int.Parse(this._ventana.IdContactoFiltrar) : 0;
+                ContactoAFiltrar.Nombre = !this._ventana.NombreContactoFiltrar.Equals("") ? this._ventana.NombreContactoFiltrar : string.Empty;
                 ContactoAFiltrar.Email = !this._ventana.CorreoContactoFiltrar.Equals("") ? this._ventana.CorreoContactoFiltrar.ToUpper() : string.Empty;
 
 

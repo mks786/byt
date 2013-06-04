@@ -47,7 +47,7 @@
                         <Label>
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
                         </Label>
-                        <custom:ByTTextBox MouseDoubleClick="_txtAsociado_MouseDoubleClick" BorderBrush="LightGreen" Name="_txtAsociado" Width="150" MaxLength="6" SoloNumero="True" Filtro="True"></custom:ByTTextBox>
+                        <custom:ByTTextBox MouseDoubleClick="_txtAsociado_MouseDoubleClick" BorderBrush="LightGreen" Name="_txtAsociado" Width="150" MaxLength="6" SoloNumero="True" Filtro="True" IsReadOnly="True"></custom:ByTTextBox>
                     </WrapPanel>
                     <WrapPanel Name="_IdAsociado" Visibility="Collapsed" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,50,0">
                         <Label>

@@ -110,7 +110,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerContacto);
 
                 //Por código
-                if ((null != contacto) && (contacto.Id != 0))
+                if ((null != contacto) && (contacto.Id != 0) && (contacto.Id != int.MinValue))
                 {
                     filtro = string.Format(Recursos.ConsultasHQL.FiltroIdContacto, contacto.Id);
                     variosFiltros = true;

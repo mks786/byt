@@ -135,6 +135,15 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
+                //Por Asociado No Registrado
+                if ((null != carta.DescripcionDepartamento) && (!carta.DescripcionDepartamento.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaAsociadoNoRegistrado, carta.DescripcionDepartamento.ToUpper());
+                    variosFiltros = true;
+                }
+            
                 //filtro += " order by c.Id ASC";
 
                 filtro += " order by c.Id desc";
