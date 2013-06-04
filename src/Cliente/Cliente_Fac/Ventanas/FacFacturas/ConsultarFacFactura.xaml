@@ -1848,18 +1848,18 @@
                     Click="_btnImprimir">
                 <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Name="_txbImprimirFactura" Text="Imprimir Factura"/>
             </Button>
+            <Button Name="_btnImprimirStatement" VerticalAlignment="Bottom" Height="40" Width="80"
+                    Click="_btnImprimir">
+                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Name="_txtImprimirStatement" Text=" Imprimir Statement"/>
+            </Button>            
+            <Button Name="_btnProcesarStatement" VerticalAlignment="Bottom" Height="40" Width="80"
+                    Click="_btnImprimir">
+                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Name="_txtProcesarStatement" Text=" Procesar Statement"/>
+            </Button>
             <Button Name="_btnReImprimirSF" VerticalAlignment="Bottom" Height="40" Width="80"
                     Click="_btnImprimir">
                 <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"  Name="_txtReImprimirSF" Text="Re Imprimir         S-F"/>
             </Button>
-            <Button Name="_btnImprimirStatement" VerticalAlignment="Bottom" Height="40" Width="80"
-                    Click="_btnImprimir">
-                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Name="_txtImprimirStatement" Text=" Imprimir Statement"/>
-            </Button>
-            <Button Name="_btnProcesarStatement" VerticalAlignment="Bottom" Height="40" Width="80"
-                    Click="_btnImprimir">
-                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Name="_txtProcesarStatement" Text=" Procesar Statement"/>
-            </Button>            
         </WrapPanel>
 
         <WrapPanel Grid.Column="0" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">

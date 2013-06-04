@@ -3431,7 +3431,7 @@ Namespace Presentadores.FacFacturaProformas
                                                 v_lista_mp_es = v_lista_mp_es & " " & tipoclase.Doc_Esp
                                             End If
                                             v_lista_mp = v_lista_mp & " " & marca.Internacional.Id
-                                            v_lista_mp_es = v_lista_mp_es & " " & marca.Nacional.Id
+                                            v_lista_mp_es = v_lista_mp_es & " " & marca.Internacional.Id
                                         Else ' 'If ((marca.Internacional IsNot Nothing) AndAlso (Not marca.Internacional.Id.Equals(""))) Then
                                             Dim tipoclase As TipoClase = buscar_tipo_clase_id("N")
                                             If (v_idioma = "ES") Then
@@ -3579,7 +3579,7 @@ Namespace Presentadores.FacFacturaProformas
                                                 v_lista_mp_es = v_lista_mp_es & " " & tipoclase.Doc_Esp
                                             End If
                                             v_lista_mp = v_lista_mp & " " & marca.Internacional.Id
-                                            v_lista_mp_es = v_lista_mp_es & " " & marca.Nacional.Id
+                                            v_lista_mp_es = v_lista_mp_es & " " & marca.Internacional.Id
                                         Else ' 'If ((marca.Internacional IsNot Nothing) AndAlso (Not marca.Internacional.Id.Equals(""))) Then
                                             Dim tipoclase As TipoClase = buscar_tipo_clase_id("N")
                                             If (v_idioma = "ES") Then
