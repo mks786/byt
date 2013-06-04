@@ -769,7 +769,7 @@ Namespace Presentadores.FacReportes
                         structura.Ndesc = _FacFacturaDetalle(i).Descuento
                         If _FacFacturaDetalle(i).NCantidad <> 0 Then
                             Dim w_cuadre As Double
-                            w_cuadre = _FacFacturaDetalle(i).PuBf / _FacFacturaDetalle(i).NCantidad
+                            w_cuadre = _FacFacturaDetalle(i).BDetalleBf / _FacFacturaDetalle(i).NCantidad
                             If (w_cuadre <> _FacFacturaDetalle(i).PuBf) Then
                                 structura.Npub = SetFormatoDouble2(w_cuadre)
                             Else
