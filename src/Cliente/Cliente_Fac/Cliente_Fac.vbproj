@@ -170,6 +170,7 @@
     <Import Include="System.Windows.Navigation" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contratos\Consultas\IConsultaFacturasAnuladasFisicas.vb" />
     <Compile Include="Contratos\Consultas\IConsultaOperacionesAsociado.vb" />
     <Compile Include="Contratos\Consultas\IConsultaPagosAsociado.vb" />
     <Compile Include="Contratos\Consultas\IConsultaCreditosVigentesAsociado.vb" />
@@ -341,6 +342,7 @@
     <Compile Include="Presentadores\ConceptoGestiones\PresentadorAgregarConceptoGestion.vb" />
     <Compile Include="Presentadores\ConceptoGestiones\PresentadorConsultarConceptoGestion.vb" />
     <Compile Include="Presentadores\ConceptoGestiones\PresentadorConsultarConceptoGestiones.vb" />
+    <Compile Include="Presentadores\Consultas\PresentadorConsultaFacturasAnuladasFisicas.vb" />
     <Compile Include="Presentadores\Consultas\PresentadorConsultaOperacionesAsociado.vb" />
     <Compile Include="Presentadores\Consultas\PresentadorConsultaPagosAsociado.vb" />
     <Compile Include="Presentadores\Consultas\PresentadorConsultaCreditosVigentesAsociado.vb" />
@@ -560,6 +562,9 @@
     </Compile>
     <Compile Include="Ventanas\Consultas\ConsultaOperacionesAsociado.xaml.vb">
       <DependentUpon>ConsultaOperacionesAsociado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Consultas\ConsultaFacturasAnuladasFisicas.xaml.vb">
+      <DependentUpon>ConsultaFacturasAnuladasFisicas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\FacAsociadoMarcaPatentes\FacVistaFacturaServicios.xaml.vb">
       <DependentUpon>FacVistaFacturaServicios.xaml</DependentUpon>
@@ -1059,6 +1064,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Consultas\ConsultaOperacionesAsociado.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Consultas\ConsultaFacturasAnuladasFisicas.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

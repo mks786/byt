@@ -162,7 +162,8 @@ Namespace Presentadores.FacReportes
             Mouse.OverrideCursor = Cursors.Wait
             Dim txt_dir As String = ConfigurationManager.AppSettings("facturadet")
             Dim factura As List(Of FacFactura) = consultar_factura()
-
+            Dim w_cuadre As Double
+            Dim unitario As Double
             If factura IsNot Nothing Then
                 If File.Exists(txt_dir) Then
                     File.Delete(txt_dir)
@@ -180,7 +181,20 @@ Namespace Presentadores.FacReportes
                                     linea = linea & detalle(j).XDetalleEs & vbTab
                                     linea = linea & detalle(j).NCantidad & vbTab
                                     'linea = linea & SetFormatoDouble2(detalle(j).PuBf) & vbTab
-                                    linea = linea & detalle(j).PuBf & vbTab
+
+                                    unitario = detalle(j).PuBf
+                                    If detalle(j).NCantidad <> 0 Then
+                                        w_cuadre = detalle(j).BDetalleBf / detalle(j).NCantidad
+                                        If (w_cuadre <> detalle(j).PuBf) Then
+                                            unitario = w_cuadre
+                                        Else
+                                            unitario = detalle(j).PuBf
+                                        End If
+                                    Else
+                                        unitario = detalle(j).PuBf
+                                    End If
+
+                                    linea = linea & unitario & vbTab
                                     'linea = linea & SetFormatoDouble2(detalle(j).Descuento) & vbTab
                                     If detalle(j).Descuento > 0 Then
                                         linea = linea & detalle(j).Descuento & vbTab
@@ -214,6 +228,7 @@ Namespace Presentadores.FacReportes
                 MessageBox.Show("Registro Creado con exito en la ruta " & txt_dir, "TXT", MessageBoxButton.OK)
             Else
                 MessageBox.Show("No existe informacion para los parametros seleccionados", "TXT", MessageBoxButton.OK)
+                Mouse.OverrideCursor = Nothing
             End If
         End Sub
 

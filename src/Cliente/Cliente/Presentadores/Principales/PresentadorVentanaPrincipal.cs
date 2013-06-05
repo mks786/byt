@@ -1503,6 +1503,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
             this._ventana.Contenedor.Navigate(new ConsultaFacturasAnuladas());
         }
 
+        public void ConsultaFacturasAnuladasFisicas()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultaFacturasAnuladasFisicas());
+        }
+
         public void ConsultaCreditosAsociado()
         {
             this._ventana.Contenedor.Navigate(new ConsultaCreditosAsociado());
@@ -2286,8 +2291,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                             }
                                             break;
 
+                                              
                                         case "_fac_menuItemConsultaFacturasAnuladas":
                                             if (objeto.Id.Equals(Recursos.Ids.fac_menuItemConsultaFacturasAnuladas))
+                                            {
+                                                itemNivel4.Visibility = System.Windows.Visibility.Visible;
+                                            }
+                                            break;
+
+                                        case "_fac_menuItemConsultaFacturasAnuladasFisicas":
+                                            if (objeto.Id.Equals(Recursos.Ids.fac_menuItemConsultaFacturasAnuladasFisicas))
                                             {
                                                 itemNivel4.Visibility = System.Windows.Visibility.Visible;
                                             }

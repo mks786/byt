@@ -508,6 +508,7 @@
                         <MenuItem Name="_fac_menuItemConsultaFacturacionVigenteAsociado"  Visibility="Collapsed" Header="Facturas Vigentes" Click="_fac_menuItemConsultaFacturacionVigenteAsociado_Click"/>
                         <MenuItem Name="_fac_menuItemConsultaStatementPorProcesar"  Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemConsultaStatementPorProcesar}" Click="_fac_menuItemConsultaStatementPorProcesar_Click"/>
                         <MenuItem Name="_fac_menuItemConsultaFacturasAnuladas"  Visibility="Collapsed" Header="Facturas Anuladas" Click="_fac_menuItemConsultaFacturasAnuladas_Click"/>
+                        <MenuItem Name="_fac_menuItemConsultaFacturasAnuladasFisicas"  Visibility="Collapsed" Header="Facturas Anuladas Fisicas" Click="_fac_menuItemConsultaFacturasAnuladasFisicas_Click"/>
                     </MenuItem>
 
                 </MenuItem>

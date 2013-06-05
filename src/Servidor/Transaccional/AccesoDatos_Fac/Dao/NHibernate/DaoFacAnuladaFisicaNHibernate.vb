@@ -17,11 +17,11 @@ Namespace Dao.NHibernate
             Dim FacAnuladaFisicas As IList(Of FacAnuladaFisica) = Nothing
             Dim variosFiltros As Boolean = False
             Dim filtro As String = ""
-            'Dim cabecera As String = String.Format(Recursos.ConsultasHQL.CabeceraObtenerFacAnuladaFisica)
-            ''If (FacAnuladaFisica IsNot Nothing) AndAlso (FacAnuladaFisica.Id <> 0) Then
-            ''    filtro = String.Format(Recursos.ConsultasHQL.FiltroObtenerFacAnuladaFisicaId, FacAnuladaFisica.Id)
-            ''    variosFiltros = True
-            ''End If
+            Dim cabecera As String = String.Format(Recursos.ConsultasHQL.CabeceraObtenerFacAnuladaFisica)
+            'If (FacAnuladaFisica IsNot Nothing) AndAlso (FacAnuladaFisica.Id <> 0) Then
+            '    filtro = String.Format(Recursos.ConsultasHQL.FiltroObtenerFacAnuladaFisicaId, FacAnuladaFisica.Id)
+            '    variosFiltros = True
+            'End If
             'If (FacAnuladaFisica IsNot Nothing) AndAlso (FacAnuladaFisica.Id <> "") Then
             '    If variosFiltros Then
             '        filtro += " and "
@@ -60,15 +60,15 @@ Namespace Dao.NHibernate
 
 
 
-            'Dim query As IQuery
-            'If (filtro = "") Then
-            '    query = Session.CreateQuery(cabecera)
-            'Else
-            '    cabecera = cabecera & " Where "
-            '    cabecera = cabecera & filtro
-            '    query = Session.CreateQuery(cabecera)
-            'End If
-            'FacAnuladaFisicas = query.List(Of FacAnuladaFisica)()
+            Dim query As IQuery
+            If (filtro = "") Then
+                query = Session.CreateQuery(cabecera & " order by fa.Id desc")
+            Else
+                cabecera = cabecera & " Where "
+                cabecera = cabecera & filtro
+                query = Session.CreateQuery(cabecera)
+            End If
+            FacAnuladaFisicas = query.List(Of FacAnuladaFisica)()
 
             Return FacAnuladaFisicas
 

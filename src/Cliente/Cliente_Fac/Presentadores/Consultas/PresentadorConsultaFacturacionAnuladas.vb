@@ -200,7 +200,7 @@ Namespace Presentadores.Consultas
             End If
             '#End Region
             'Me._ventana.FacFacturaSeleccionado.Accion = 2 'no modificar
-            Me.Navegar(New FacturaAnuladaRpt(Me._ventana.FacFacturaSeleccionado))
+            Me.Navegar(New FacturaAnuladaRpt(Me._ventana.FacFacturaSeleccionado, Nothing))
             'Me.Navegar(New ConsultarFacFactura())
             '#Region "trace"
             If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then

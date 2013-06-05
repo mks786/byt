@@ -35,10 +35,10 @@ Namespace Ventanas.FacReportes
         End Sub
 #End Region
 
-        Public Sub New(ByVal FacFactura As Object)
+        Public Sub New(ByVal FacFactura As Object, ByVal FacFacturaAnuladaFisica As Object)
             InitializeComponent()
             Me._cargada = False
-            Me._presentador = New PresentadorFacturaAnuladaRpt(Me, FacFactura)
+            Me._presentador = New PresentadorFacturaAnuladaRpt(Me, FacFactura, FacFacturaAnuladaFisica)
         End Sub
 
         Private Sub _btnCancelar_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)

@@ -753,4 +753,8 @@
   <data name="FiltroObtenerFacFacturaNumeroControl" xml:space="preserve">
     <value>fp.NumeroControl= {0}</value>
   </data>
+  <data name="CabeceraObtenerFacAnuladaFisica" xml:space="preserve">
+    <value>Select fa from FacAnuladaFisica fa</value>
+    <comment>Cabecera del query para el filtro de FacFacturaAnulada</comment>
+  </data>
 </root>

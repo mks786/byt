@@ -83,6 +83,15 @@ Namespace Recursos
         End Property
         
         '''<summary>
+        '''  Busca una cadena traducida similar a Select fa from FacAnuladaFisica fa.
+        '''</summary>
+        Public Shared ReadOnly Property CabeceraObtenerFacAnuladaFisica() As String
+            Get
+                Return ResourceManager.GetString("CabeceraObtenerFacAnuladaFisica", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Busca una cadena traducida similar a Select b from FacBanco b.
         '''</summary>
         Public Shared ReadOnly Property CabeceraObtenerFacBanco() As String

@@ -1101,4 +1101,7 @@
   <data name="Conectividad" xml:space="preserve">
     <value>FAC_ASOC_CONECTIVIDAD</value>
   </data>
+  <data name="fac_menuItemConsultaFacturasAnuladasFisicas" xml:space="preserve">
+    <value>FAC_ANUL_FISI</value>
+  </data>
 </root>

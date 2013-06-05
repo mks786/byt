@@ -200,7 +200,7 @@ Namespace Presentadores.Consultas
             'Me._ventana.FacFacturaAnuladaSeleccionado.Accion = 2 'no modificar
             Dim factura As FacFactura = consultar_factura(DirectCast(Me._ventana.FacFacturaAnuladaSeleccionado, FacFacturaAnulada).Id)
             If factura IsNot Nothing Then
-                Me.Navegar(New FacturaAnuladaRpt(factura))
+                Me.Navegar(New FacturaAnuladaRpt(factura, Nothing))
             End If
             'Me.Navegar(New ConsultarFacFacturaAnulada())
             '#Region "trace"

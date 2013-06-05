@@ -879,4 +879,7 @@
   <data name="fac_ProformaConsultarTodas" xml:space="preserve">
     <value>FAC_PRO_AUTOGT</value>
   </data>
+  <data name="fac_menuItemConsultaFacturasAnuladasFisicas" xml:space="preserve">
+    <value>FAC_ANUL_FISI</value>
+  </data>
 </root>

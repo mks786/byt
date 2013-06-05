@@ -2167,6 +2167,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a FAC_ANUL_FISI.
+        /// </summary>
+        public static string fac_menuItemConsultaFacturasAnuladasFisicas {
+            get {
+                return ResourceManager.GetString("fac_menuItemConsultaFacturasAnuladasFisicas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a FACOPASC.
         /// </summary>
         public static string fac_menuItemConsultaOperacionesAsociado {

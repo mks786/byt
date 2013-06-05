@@ -1070,6 +1070,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.ConsultaFacturasAnuladas();
         }
 
+        private void _fac_menuItemConsultaFacturasAnuladasFisicas_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultaFacturasAnuladasFisicas();
+        }
+
         private void _fac_menuItemConsultaCreditosAsociado_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.ConsultaCreditosAsociado();

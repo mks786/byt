@@ -26,7 +26,7 @@ Namespace Presentadores.FacReportes
         Private _ventana As IFacturaAnuladaRpt
         Private _FacFacturaAnulada As FacFacturaAnulada
         Private _FacFactura As FacFactura
-        Private _FacFacturaAnuladaServicios As IFacFacturaAnuladaServicios
+        Private _FacFacturaAnuladaServicios As IFacFacturaAnuladaServicios        
         ' Dim _FacFacturaDetalle As List(Of FacFactuDetalle)
         'Private _FacFacturaServicios As IFacFacturaServicios
         Private _facoperacionanuladaServicios As IFacOperacionAnuladaServicios
@@ -94,10 +94,15 @@ Namespace Presentadores.FacReportes
         ''' </summary>
         ''' <param name="ventana">Página que satisface el contrato</param>
         ''' <param name="FacFacturaProforma">FacFacturaProforma a mostrar</param>
-        Public Sub New(ByVal ventana As IFacturaAnuladaRpt, ByVal FacFactura As Object)
+        Public Sub New(ByVal ventana As IFacturaAnuladaRpt, ByVal FacFactura As Object, ByVal FacFacturaAnuladaFisica As Object)
             Try
                 Me._ventana = ventana
-                _FacFactura = FacFactura
+                If FacFactura IsNot Nothing Then
+                    _FacFactura = FacFactura
+                Else                    
+                    _FacFacturaAnulada = FacFacturaAnuladaFisica
+                    _FacFacturaAnulada.Xter = 10
+                End If
 
                 'Me._ventana.FacFacturaProforma = New FacFacturaProforma()
                 'Me._FacFacturaServicios = DirectCast(Activator.GetObject(GetType(IFacFacturaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFacturaServicios")), IFacFacturaServicios)
@@ -169,7 +174,7 @@ Namespace Presentadores.FacReportes
             End If
             '#End Region
 
-            Me.Navegar(New Diginsoft.Bolet.Cliente.Fac.Ventanas.FacReportes.FacturaAnuladaRpt(_FacFactura))
+            Me.Navegar(New Diginsoft.Bolet.Cliente.Fac.Ventanas.FacReportes.FacturaAnuladaRpt(_FacFactura, _FacFacturaAnulada))
             'Me.Navegar(New ConsultarFacCobro())
             '#Region "trace"
             If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
@@ -193,7 +198,12 @@ Namespace Presentadores.FacReportes
                 'If (existe_tasa_dia(Date.Now, "US") = True) Then
                 Me.ActualizarTituloVentanaPrincipal("Reporte Factura", "Reporte")
 
-                _FacFacturaAnulada = consultar_factura_anulada(_FacFactura.Id)
+                If _FacFactura IsNot Nothing Then
+                    _FacFacturaAnulada = consultar_factura_anulada(_FacFactura.Id)
+                    _FacFacturaAnulada.Xter = 0
+                Else
+                    '_FacFacturaAnulada.Xter = 10
+                End If
 
 
 
@@ -606,25 +616,30 @@ Namespace Presentadores.FacReportes
             Try
                 'structura = fac_repfac_anul_fisica()
                 'retorno.Add(structura)
-                Select Case _FacFacturaAnulada.Terrero.ToString
-                    Case "1"
-                        _FacFacturaAnulada.Xter = 1                        
-                        structura = fac_repfac_anul(_FacFacturaAnulada.FechaSeniat)                        
-                        retorno.Add(structura)
-                    Case "2"
-                        _FacFacturaAnulada.Xter = 1                        
-                        structura = fac_repfac_anul(_FacFacturaAnulada.FechaSeniat)
-                        retorno.Add(structura)
+                If _FacFacturaAnulada.Xter <> 10 Then
+                    Select Case _FacFacturaAnulada.Terrero.ToString
+                        Case "1"
+                            _FacFacturaAnulada.Xter = 1
+                            structura = fac_repfac_anul(_FacFacturaAnulada.FechaSeniat)
+                            retorno.Add(structura)
+                        Case "2"
+                            _FacFacturaAnulada.Xter = 1
+                            structura = fac_repfac_anul(_FacFacturaAnulada.FechaSeniat)
+                            retorno.Add(structura)
 
-                        _FacFacturaAnulada.Xter = 2
-                        structura = fac_repfac_anul(_FacFacturaAnulada.FechaFactura)
-                        retorno.Add(structura)
-                    Case "3"
-                        _FacFacturaAnulada.Xter = 3
-                        structura = fac_repfac_anul(_FacFacturaAnulada.FechaFactura)
-                        retorno.Add(structura)
-                End Select
- 
+                            _FacFacturaAnulada.Xter = 2
+                            structura = fac_repfac_anul(_FacFacturaAnulada.FechaFactura)
+                            retorno.Add(structura)
+                        Case "3"
+                            _FacFacturaAnulada.Xter = 3
+                            structura = fac_repfac_anul(_FacFacturaAnulada.FechaFactura)
+                            retorno.Add(structura)
+                    End Select
+                Else
+                    structura = fac_repfac_anul_fisica()
+                    retorno.Add(structura)
+                End If
+
             Catch ex As Exception
                 'logger.Error(ex.Message)
 
