@@ -135,6 +135,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 primerPais.Id = int.MinValue;
                 paises.Insert(0, primerPais);
                 this._ventana.Paises = paises;
+                this._ventana.PaisesInt = paises;
 
                 IList<ListaDatosValores> tiposBusqueda = this._listaDatosValoresServicios.
                                 ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiLocalidadMarca));

@@ -241,7 +241,7 @@
                             </Label>
                             <!--<custom:ByTTextBox Visibility="Collapsed" Name="_txtIdContacto" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left"
                                  GotFocus="_txtContacto_GotFocus" GotKeyboardFocus="_txtContacto_GotFocus" SoloNumero="True" Filtro="True"/>-->
-                            <custom:ByTTextBox Visibility="Collapsed" Name="_txtNombreContacto" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left" GotFocus="_txtContacto_GotFocus" GotKeyboardFocus="_txtContacto_GotFocus" SoloNumero="False" Filtro="True" CharacterCasing="Upper"/>
+                            <custom:ByTTextBox Visibility="Collapsed" Name="_txtNombreContacto" Text="" Width="150" MaxLength="500" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left" GotFocus="_txtContacto_GotFocus" GotKeyboardFocus="_txtContacto_GotFocus" SoloNumero="False" Filtro="True" CharacterCasing="Upper"/>
                             <Label Name="_lblNombreContacto" Visibility="Collapsed" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblEmail}"/>
                             </Label>
@@ -302,6 +302,9 @@
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Fecha, StringFormat={}{0:dd/MM/yyyy}}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Fecha" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=StatusAcuse}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="StatusAcuse" Content="{x:Static recurso:Etiquetas.lsvStatusAcuse}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Referencia, StringFormat={}{0:dd/MM/yyyy}}" Width="210">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Referencia" Content="{x:Static recurso:Etiquetas.lsvReferencia}"/>

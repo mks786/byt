@@ -85,6 +85,8 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         public static bool InsertarOModificar(Carta carta, int hash)
         {
             bool exitoso = false;
+            Carta cartaTemporal = null;
+            IList<Asignacion> listaAsignacionesCarta = null;
             try
             {
                 #region trace
@@ -96,6 +98,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                 if ((null != carta.Asignaciones) && (carta.Asignaciones.Count != 0))
                 {
+                    
                     ComandoBase<ContadorAsignacion> comandoContadorAsignacionPoximoValor = FabricaComandosContadorAsignacion.ObtenerComandoConsultarPorId("ASIGNACION");
 
                     comandoContadorAsignacionPoximoValor.Ejecutar();
@@ -109,6 +112,10 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                             asignacion.Carta = carta;
                         }
                     }
+
+                    //---
+                    listaAsignacionesCarta = carta.Asignaciones;
+                    //---
 
                     comandoInsertarOModificarContadorAsignacion = FabricaComandosContadorAsignacion.ObtenerComandoInsertarOModificar(contadorAsignacion);
 
@@ -132,9 +139,17 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 comandoConsultarAsignaciones.Ejecutar();
                 IList<Asignacion> listAsignaciones = comandoConsultarAsignaciones.Receptor.ObjetoAlmacenado;
 
-                if ((carta.Asignaciones != null) && (listAsignaciones.Count != carta.Asignaciones.Count))
+                //if ((carta.Asignaciones != null) && (listAsignaciones.Count != carta.Asignaciones.Count))
+                if (carta.Asignaciones != null)
+
                 {
+                    //cartaTemporal = carta;
+                    //cartaTemporal.Asignaciones = listAsignaciones;
+
+                    //String prueba = "prueba";
+
                     ComandoBase<bool> comandoEliminar = FabricaComandosAsignacion.ObtenerComandoEliminarAsignacionesPorCarta(carta);
+                    //ComandoBase<bool> comandoEliminar = FabricaComandosAsignacion.ObtenerComandoEliminarAsignacionesPorCarta(cartaTemporal);
                     comandoEliminar.Ejecutar();
                 }
 

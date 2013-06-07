@@ -773,18 +773,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                             {
                                 //if (marca.Poder != null)
                                 //{
-                                    bool exitoso = this._marcaServicios.InsertarOModificar(marca, UsuarioLogeado.Hash);
+                                bool exitoso = this._marcaServicios.InsertarOModificar(marca, UsuarioLogeado.Hash);
 
-                                    if (exitoso)
-                                    {
-                                        this._ventana.HabilitarCampos = false;
-                                        this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                                if (exitoso)
+                                {
+                                    this._ventana.HabilitarCampos = false;
+                                    this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
 
-                                        //if (marca.Servicio.Id.Equals("AB"))
-                                        //{
-                                        //    this._ventana.DeshabilitarBotonModificar();
-                                        //}
-                                    }
+                                    //if (marca.Servicio.Id.Equals("AB"))
+                                    //{
+                                    //    this._ventana.DeshabilitarBotonModificar();
+                                    //}
+                                }
                                 //}
                                 //else
                                 //    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinPoder, 0);
@@ -2568,7 +2568,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 retorno = retorno ?
                     this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinClase) == retorno : retorno;
 
-            if ((marca.EtiquetaDescripcion.Equals("")) && (retorno))
+            if((null == marca.EtiquetaDescripcion) && (retorno))
+                retorno = retorno ?
+                    this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDescripcionDelSigno) == retorno : retorno;
+            else if ((marca.EtiquetaDescripcion.Equals("")) && (retorno))
                 retorno = retorno ?
                     this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDescripcionDelSigno) == retorno : retorno;
 

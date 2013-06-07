@@ -1,11 +1,11 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
+using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.Marcas;
 using Trascend.Bolet.Cliente.Presentadores.Marcas;
-using System.Windows;
-using System.Windows.Input;
-using Trascend.Bolet.Cliente.Ayuda;
-using System.Windows.Media;
-using System;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 {

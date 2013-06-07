@@ -59,7 +59,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             int contador;
             int indice;
             IList<MarcaBaseTercero> listaMarcaBaseTer = null;
-
+            string idResultante;
 
             try
             {
@@ -116,7 +116,23 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                         indice = idBuscado.Receptor.ObjetoAlmacenado.Length - 2;
                         contadorStr = idBuscado.Receptor.ObjetoAlmacenado.Substring(2, indice);
                         contador = int.Parse(contadorStr) + 1;
-                        marcaTercero.Id = idBuscado.Receptor.ObjetoAlmacenado.Substring(0, 2) + contador.ToString();
+                        //Para el caso de que el indice sea de 1 o 2 digitos
+                        if (contadorStr.Length == 1)
+                        {
+                            //contadorStr = "00" + contadorStr;
+                            idResultante = "00" + contador.ToString();
+                            marcaTercero.Id = idBuscado.Receptor.ObjetoAlmacenado.Substring(0, 2) + idResultante;
+                        }
+                        else if (contadorStr.Length == 2)
+                        {
+                            //contadorStr = "0" + contadorStr;
+                            idResultante = "0" + contador.ToString();
+                            marcaTercero.Id = idBuscado.Receptor.ObjetoAlmacenado.Substring(0, 2) + idResultante;
+                        }
+                        else
+                        {
+                            marcaTercero.Id = idBuscado.Receptor.ObjetoAlmacenado.Substring(0, 2) + contador.ToString();
+                        }
                         marcaTercero.Anexo = 1;
                     }
                     

@@ -2809,22 +2809,22 @@ en Prensa:</value>
     <value>Para:</value>
   </data>
   <data name="menuItemCarta1" xml:space="preserve">
-    <value>Renovacion de Marca</value>
+    <value>1 - Renovacion de Marca</value>
   </data>
   <data name="menuItemCarta14" xml:space="preserve">
-    <value>Impuestos Finales de Marca</value>
+    <value>14 - Impuestos Finales de Marca</value>
   </data>
   <data name="menuItemCarta16" xml:space="preserve">
-    <value>General Asociado</value>
+    <value>16 - General Asociado</value>
   </data>
   <data name="menuItemCarta16M" xml:space="preserve">
-    <value>General Marcas</value>
+    <value>16M - General Marcas</value>
   </data>
   <data name="menuItemCarta16P" xml:space="preserve">
-    <value>General Patente</value>
+    <value>16P - General Patente</value>
   </data>
   <data name="menuItemCarta2" xml:space="preserve">
-    <value>Solicitud de Marca</value>
+    <value>2 - Solicitud de Marca</value>
   </data>
   <data name="radioAsociado" xml:space="preserve">
     <value>Asociado</value>
@@ -3695,5 +3695,8 @@ en Prensa:</value>
   </data>
   <data name="titleInfoAdicionalInteresadosAsociadosMarcaTercero" xml:space="preserve">
     <value>Datos Adicionales de Terceros</value>
+  </data>
+  <data name="lsvStatusAcuse" xml:space="preserve">
+    <value>Estatus Acuse</value>
   </data>
 </root>

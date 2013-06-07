@@ -587,8 +587,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         /// <param name="e"></param>
         private void _btnNDPDatos_Click(object sender, RoutedEventArgs e)
         {
-            string prueba = string.Empty;
-            prueba = "prueba";
             this._presentador.AbrirArchivoNDP();
         }
 

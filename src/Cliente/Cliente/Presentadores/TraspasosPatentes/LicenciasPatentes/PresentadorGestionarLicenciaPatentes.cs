@@ -156,6 +156,101 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
         }
 
 
+
+        /// <summary>
+        /// Constructor Predeterminado que recibe una ventana Padre
+        /// </summary>
+        /// <param name="ventana">página que satisface el contrato</param>
+        public PresentadorGestionarLicenciaPatentes(IGestionarLicenciaPatentes ventana, object licencia, object ventanaPadre)
+        {
+            try
+            {
+
+                this._ventana = ventana;
+                this._ventanaPadre = ventanaPadre;
+
+                if (licencia != null)
+                {
+                    this._ventana.LicenciaPatente = licencia;
+                    _agregar = false;
+                    CambiarAModificar();
+                }
+                else
+                {
+                    LicenciaPatente licenciaAgregar = new LicenciaPatente();
+                    this._ventana.LicenciaPatente = licenciaAgregar;
+
+                    ((LicenciaPatente)this._ventana.LicenciaPatente).Fecha = DateTime.Now;
+                    this._ventana.Patente = null;
+                    this._ventana.PoderLicenciante = null;
+                    this._ventana.PoderLicenciatario = null;
+                    this._ventana.InteresadoLicenciante = null;
+                    this._ventana.InteresadoLicenciatario = null;
+                    this._ventana.ApoderadoLicenciante = null;
+                    this._ventana.ApoderadoLicenciatario = null;
+                    this._ventana.Boletin = null;
+
+                    CambiarAModificar();
+
+                    this._ventana.TextoBotonRegresar = Recursos.Etiquetas.btnCancelar;
+
+                    this._ventana.ActivarControlesAlAgregar();
+                }
+
+                #region Servicios
+
+                this._patenteServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
+                this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
+                this._agenteServicios = (IAgenteServicios)Activator.GetObject(typeof(IAgenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
+                this._poderServicios = (IPoderServicios)Activator.GetObject(typeof(IPoderServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PoderServicios"]);
+                this._boletinServicios = (IBoletinServicios)Activator.GetObject(typeof(IBoletinServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
+                this._paisServicios = (IPaisServicios)Activator.GetObject(typeof(IPaisServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
+                this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+                this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
+                this._servicioServicios = (IServicioServicios)Activator.GetObject(typeof(IServicioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ServicioServicios"]);
+                this._tipoEstadoServicios = (ITipoEstadoServicios)Activator.GetObject(typeof(ITipoEstadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoEstadoServicios"]);
+                this._corresponsalServicios = (ICorresponsalServicios)Activator.GetObject(typeof(ICorresponsalServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CorresponsalServicios"]);
+                this._condicionServicios = (ICondicionServicios)Activator.GetObject(typeof(ICondicionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CondicionServicios"]);
+                this._anaquaServicios = (IAnaquaServicios)Activator.GetObject(typeof(IAnaquaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AnaquaServicios"]);
+                this._infoAdicionalServicios = (IInfoAdicionalServicios)Activator.GetObject(typeof(IInfoAdicionalServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoAdicionalServicios"]);
+                this._infoBolServicios = (IInfoBolServicios)Activator.GetObject(typeof(IInfoBolServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoBolServicios"]);
+                this._operacionServicios = (IOperacionServicios)Activator.GetObject(typeof(IOperacionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["OperacionServicios"]);
+                this._busquedaServicios = (IBusquedaServicios)Activator.GetObject(typeof(IBusquedaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BusquedaServicios"]);
+                this._statusWebServicios = (IStatusWebServicios)Activator.GetObject(typeof(IStatusWebServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["StatusWebServicios"]);
+                this._licenciaServicios = (ILicenciaPatenteServicios)Activator.GetObject(typeof(ILicenciaPatenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["LicenciaPatenteServicios"]);
+
+
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+
+
+
         public void ActualizarTitulo()
         {
             if (_agregar == true)

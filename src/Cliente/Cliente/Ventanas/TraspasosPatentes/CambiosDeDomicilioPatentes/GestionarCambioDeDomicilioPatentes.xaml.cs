@@ -424,6 +424,32 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
             }
         }
 
+
+
+        /// <summary>
+        /// Constructor para la consulta desde operaciones que recibe una ventana padre
+        /// </summary>
+        /// <param name="cambioDeDomicilio">la cambioDeDomicilio a mostrar</param>
+        /// <param name="visibilidad">parametro que indica la visibilidad de los botones</param>
+        public GestionarCambioDeDomicilioPatentes(object cambioDeDomicilio, object parametro, object ventanaPadre)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorGestionarCambioDeDomicilioPatentes(this, cambioDeDomicilio,ventanaPadre);
+            if (parametro.GetType() == typeof(System.Windows.Visibility))
+            {
+                this._btnModificar.Visibility = (System.Windows.Visibility)parametro;
+                this._btnEliminar.Visibility = (System.Windows.Visibility)parametro;
+            }
+            else if (parametro.GetType() == typeof(ConsultarCambiosDeDomicilioPatentes))
+            {
+                _presentador._ventanaPadre = parametro;
+            }
+        }
+
+
+
+
         public void ActivarControlesAlAgregar()
         {
             this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;

@@ -698,5 +698,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         {
             this._presentador.IrVentanaAsociado();
         }
+
+        //private void _cbxContacto_DropDownOpened(object sender, System.EventArgs e)
+        //{
+        //   this._presentador.RefrescarContactosCarta();
+        //}
     }
 }

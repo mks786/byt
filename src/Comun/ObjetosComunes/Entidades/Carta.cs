@@ -181,6 +181,20 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _acuse = value; }
         }
 
+        public virtual string StatusAcuse
+        {
+            get {
+                if (_acuse.Equals('E'))
+                    return "Entrada";
+                else if (_acuse.Equals('S'))
+                    return "Salida";
+                else if (_acuse.Equals('R'))
+                    return "Revision";
+                else
+                    return "";
+                }
+        }
+
         public virtual char AcuseEnvio
         {
             get { return _acuseEnvio; }

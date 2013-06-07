@@ -15,7 +15,7 @@
       <column name="CBOLETIN_PUBLICACION"/>
     </many-to-one>
     
-    <many-to-one name="Interesado" class="Interesado">
+    <many-to-one name="Interesado" class="Interesado" lazy="false">
       <column name="CINTERESADO"/>
     </many-to-one>
 

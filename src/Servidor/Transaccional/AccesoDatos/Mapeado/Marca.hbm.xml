@@ -34,7 +34,7 @@
     <property name="Representante" column="XREPRESENTANTE" type="string"/>
     <property name="Observacion" column="XOBSERVACION" type="string"/>
     <property name="Distingue" column="XDISTINGUE" type="string"/>
-    <!--<property name="Distingue" column="XDISTINGUE" type="StringClob"/>-->
+    <!--<property name="Distingue" column="XDISTINGUE" type="StringClob" sql-type="NCLOB"/>-->
     <property name="NumeroCondiciones" column="NCONDI" type="int"/>
     <property name="Sector" column="SECTOR" type="string"/>
     <property name="TipoRps" column="TIPO_RPS" type="char"/>

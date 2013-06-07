@@ -935,6 +935,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._txtComentarioDatos.IsEnabled = value;
                 this._txtCodigoRegistroDatos.IsEnabled = value;
                 this._txtCodigoInscripcionDatos.IsEnabled = value;
+                this._txtReferenciaAsocIntDatos.IsEnabled = value;
                 //this._txtUbicacionDatos.IsEnabled = value;
                 //this._txtExpedienteDatos.IsEnabled = value;
 

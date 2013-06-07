@@ -899,16 +899,55 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         {
             if (null != this._ventana.TipoDeCaso)
             {
-                //Este es un ejemplo de como debe quedar--> \\BYT2008\BIBLIO\VEN\AC3\OPO\OPO.A-155.PDF
-                string Cadena = ConfigurationManager.AppSettings["RutaVerExpedienteMarcaTercero"].ToString() +
+                String letraId, numeroId, IdMarcaTercero;
+                String[] str_array = null;
+                string Cadena = String.Empty;
+
+                str_array = ((MarcaTercero)this._ventana.MarcaTercero).Id.Split('-');
+
+
+                String idMarcaTercero = ((MarcaTercero)this._ventana.MarcaTercero).Id;
+
+                if (str_array[1].Length == 1)
+                {
+                    IdMarcaTercero = str_array[0] + "-00" + str_array[1];
+                    Cadena = ConfigurationManager.AppSettings["RutaVerExpedienteMarcaTercero"].ToString() +
+                    ((ListaDatosValores)this._ventana.TipoDeCaso).Valor + "\\"
+                    + ((ListaDatosValores)this._ventana.TipoDeCaso).Valor + "." + IdMarcaTercero + ".PDF";
+                }
+                else if (str_array[1].Length == 2)
+                {
+                    IdMarcaTercero = str_array[0] + "-0" + str_array[1];
+                    Cadena = ConfigurationManager.AppSettings["RutaVerExpedienteMarcaTercero"].ToString() +
+                    ((ListaDatosValores)this._ventana.TipoDeCaso).Valor + "\\"
+                    + ((ListaDatosValores)this._ventana.TipoDeCaso).Valor + "." + IdMarcaTercero + ".PDF";
+                }
+                else
+                {
+                    Cadena = ConfigurationManager.AppSettings["RutaVerExpedienteMarcaTercero"].ToString() +
                     ((ListaDatosValores)this._ventana.TipoDeCaso).Valor + "\\"
                     + ((ListaDatosValores)this._ventana.TipoDeCaso).Valor + "." + ((MarcaTercero)this._ventana.MarcaTercero).Id
                     + ".PDF";
+                }
+
+
+                if (System.IO.File.Exists(Cadena))
+                    System.Diagnostics.Process.Start(Cadena);
+                else
+                    this._ventana.Mensaje("La imagen de ese expediente no existe", 0);
+
+                //Este es un ejemplo de como debe quedar--> \\BYT2008\BIBLIO\VEN\AC3\OPO\OPO.A-155.PDF
+                //string Cadena = ConfigurationManager.AppSettings["RutaVerExpedienteMarcaTercero"].ToString() +
+                //    ((ListaDatosValores)this._ventana.TipoDeCaso).Valor + "\\"
+                //    + ((ListaDatosValores)this._ventana.TipoDeCaso).Valor + "." + ((MarcaTercero)this._ventana.MarcaTercero).Id
+                //    + ".PDF";
+
+
 
                 //this.EjecutarComandoDeConsola(Cadena, "Ejecuta el expediente de MarcaTercero");
 
                 //Para iniciar el proceso y ver el documento PDF - Se comento el codigo original porque emitia errores
-                System.Diagnostics.Process.Start(Cadena);
+                //System.Diagnostics.Process.Start(Cadena);
             }
         }
 

@@ -87,11 +87,14 @@ namespace Trascend.Bolet.ControlesByT
                 ChildWindow _ventana = new ChildWindow(this);
                 _ventana.ShowDialog();
             }
+            
             if (SoloNumero)
             {
                 if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "\\d+")
+                //if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "[0-9]+")    
                     && (e.Key != System.Windows.Input.Key.Tab)
-                    && (e.Key != System.Windows.Input.Key.Return))
+                    && (e.Key != System.Windows.Input.Key.Return)
+                    || (e.Key == System.Windows.Input.Key.Oem5))    //Se incluye la tecla al lado del 1 para que no deje escribir 
                     e.Handled = true;
             }
             if (SoloPorcentaje)
@@ -105,6 +108,7 @@ namespace Trascend.Bolet.ControlesByT
                 else
                     e.Handled = true;
             }
+            
             base.OnKeyDown(e);
         }
 

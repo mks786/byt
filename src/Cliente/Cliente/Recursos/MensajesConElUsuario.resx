@@ -1351,4 +1351,7 @@
   <data name="ErrorPoderFiltradoNoAsociadoInteresado" xml:space="preserve">
     <value>El Poder filtrado no esta asociado con el Interesado</value>
   </data>
+  <data name="ConfirmarConsultarMarcasPorLocalidad" xml:space="preserve">
+    <value>¿Está seguro que desea obtener todas las Marca {0}?</value>
+  </data>
 </root>

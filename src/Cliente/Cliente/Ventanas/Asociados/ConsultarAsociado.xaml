@@ -602,10 +602,10 @@
                         </Label>
 
                         <WrapPanel Grid.Column="2" Grid.Row="13" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="80,0,0,5" Orientation="Horizontal" Grid.ColumnSpan="2" >
-                            <Button Name="_btnEdoCtaAdministracion" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="60" IsEnabled="True">
+                            <Button Name="_btnEdoCtaAdministracion" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="60" IsEnabled="True" Click="_btnImprimirEdoCuenta_Click">
                                 <TextBlock Name="_txbEdoCtaAdministracion" Text="{x:Static recurso:Etiquetas.btnEdoCta}"/>
                             </Button>
-                            <Button Name="_btnNDPAdministracion" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="60" IsEnabled="True">
+                            <Button Name="_btnNDPAdministracion" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="60" IsEnabled="True" Click="_btnNDPDatos_Click">
                                 <TextBlock Name="_txbNDPAdministracion" Text="{x:Static recurso:Etiquetas.btnNdp}"/>
                             </Button>
                         </WrapPanel>

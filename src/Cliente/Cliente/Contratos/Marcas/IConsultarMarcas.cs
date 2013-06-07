@@ -167,6 +167,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         object TipoBusqueda { get; set; }
 
+        bool ConfirmarConsultaPorLocalidad(string localidadAConsultar);
+
         #endregion
     }
 }

@@ -1,6 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.Marcas;
 using Trascend.Bolet.Cliente.Presentadores.Marcas;
@@ -1177,6 +1179,28 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._cbxPaisInternacional.IsEnabled = valor;
             this._txtReferenciaInteresado.IsEnabled = valor;
             this._txtReferenciaAsociado.IsEnabled = valor;
+        }
+
+
+        public bool ConfirmarConsultaPorLocalidad(string localidadAConsultar)
+        {
+            bool retorno = false;
+            //MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmarConsultarMarcasPorLocalidad,
+            //        localidadAConsultar,
+            //        "Modificar Marca", MessageBoxButton.YesNoCancel, MessageBoxImage.Question));
+
+
+            if (MessageBoxResult.Yes == MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmarConsultarMarcasPorLocalidad, localidadAConsultar), "Consultar Marcas", MessageBoxButton.YesNo))
+            {
+                retorno = true;
+            }
+            else
+            {
+                retorno = false;
+            }
+                
+
+            return retorno;
         }
     }
 }

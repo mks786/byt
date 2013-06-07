@@ -482,6 +482,33 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
             }
         }
 
+
+
+        /// <summary>
+        /// Constructor para la consulta desde operaciones que tiene una ventana padre
+        /// </summary>
+        /// <param name="cambioPeticionario">la cambioPeticionario a mostrar</param>
+        /// <param name="visibilidad">parametro que indica la visibilidad de los botones</param>
+        /// <param name="ventanaPadre">Ventana anterior a esta</param>
+        public GestionarCambioPeticionarioPatentes(object cambioPeticionario, object parametro, object ventanaPadre)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorGestionarCambioDePeticionarioPatentes(this, cambioPeticionario, ventanaPadre);
+            if (parametro.GetType() == typeof(System.Windows.Visibility))
+            {
+                this._btnModificar.Visibility = (System.Windows.Visibility)parametro;
+                this._btnEliminar.Visibility = (System.Windows.Visibility)parametro;
+            }
+            else if (parametro.GetType() == typeof(ConsultarCambiosPeticionarioPatentes))
+            {
+                _presentador._ventanaPadre = parametro;
+            }
+        }
+
+
+
+
         public void ActivarControlesAlAgregar()
         {
             this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;

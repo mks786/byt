@@ -24,6 +24,12 @@ namespace Trascend.Bolet.Servidor
 
             #region Codigo de Prueba NO BORRAR - CONECTIVIDAD
             //Asociado asociado = new Asociado();
+            //IList<Marca> listaMarcas = new List<Marca>();
+            //Marca marcaPrueba = new Marca();
+            //marcaPrueba.Id = int.MinValue;
+            //marcaPrueba.Descripcion = "REDD''S";
+            //MarcaServicios marcaServicios = new MarcaServicios();
+            //listaMarcas = marcaServicios.ObtenerMarcasFiltro(marcaPrueba);
             //asociado.Id = 4;
             //AsociadoServicios asociadoServicios = new AsociadoServicios();
             //ParametroProcedimiento parametro = new ParametroProcedimiento("nombre", "apellido");

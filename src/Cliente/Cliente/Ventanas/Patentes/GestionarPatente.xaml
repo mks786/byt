@@ -1156,7 +1156,7 @@
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblRefInteresado}"/>
                             </Label>
                             <custom:ByTTextBox Grid.Column="7" Grid.Row="0" Name="_txtReferenciaInteresadoDatos" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="1" Text="{Binding Path=ReferenciaInteresadoInternacional}"></custom:ByTTextBox>
+                         Grid.ColumnSpan="1" Text="{Binding Path=ReferenciaInteresadoInternacional}" MaxLength="100"></custom:ByTTextBox>
 
                             <Label Grid.Column="8" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.ColumnSpan="2">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblCodIntl}"/>
@@ -1220,8 +1220,8 @@
                             <Label Grid.Column="8" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblReferencia}"/>
                             </Label>
-                            <custom:ByTTextBox  MaxLength="70" Grid.Column="9" Grid.Row="1" Name="_txtReferenciaAsocIntDatos" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="3" Text="{Binding Path=ReferenciaAsociadoInternacional}"></custom:ByTTextBox>
+                            <custom:ByTTextBox  MaxLength="100" Grid.Column="9" Grid.Row="1" Name="_txtReferenciaAsocIntDatos" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="3" Text="{Binding Path=ReferenciaAsociadoInternacional}" ></custom:ByTTextBox>
                         </Grid>
 
                         <Separator Margin="10 0" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="12" VerticalAlignment="Bottom"/>

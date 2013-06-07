@@ -7536,6 +7536,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Estatus Acuse.
+        /// </summary>
+        public static string lsvStatusAcuse {
+            get {
+                return ResourceManager.GetString("lsvStatusAcuse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Tabla.
         /// </summary>
         public static string lsvTabla {
@@ -7743,7 +7752,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Renovacion de Marca.
+        ///   Busca una cadena traducida similar a 1 - Renovacion de Marca.
         /// </summary>
         public static string menuItemCarta1 {
             get {
@@ -7752,7 +7761,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Impuestos Finales de Marca.
+        ///   Busca una cadena traducida similar a 14 - Impuestos Finales de Marca.
         /// </summary>
         public static string menuItemCarta14 {
             get {
@@ -7761,7 +7770,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a General Asociado.
+        ///   Busca una cadena traducida similar a 16 - General Asociado.
         /// </summary>
         public static string menuItemCarta16 {
             get {
@@ -7770,7 +7779,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a General Marcas.
+        ///   Busca una cadena traducida similar a 16M - General Marcas.
         /// </summary>
         public static string menuItemCarta16M {
             get {
@@ -7779,7 +7788,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a General Patente.
+        ///   Busca una cadena traducida similar a 16P - General Patente.
         /// </summary>
         public static string menuItemCarta16P {
             get {
@@ -7788,7 +7797,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Solicitud de Marca.
+        ///   Busca una cadena traducida similar a 2 - Solicitud de Marca.
         /// </summary>
         public static string menuItemCarta2 {
             get {

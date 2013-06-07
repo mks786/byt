@@ -53,6 +53,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private bool _listaCartasCargada = false;
         private bool _otraCarta = false;
         private bool _volverRefresca = false;
+        private bool _presionoBotonPersona = false;
 
 
         /// <summary>
@@ -248,11 +249,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     this._ventana.AnexosConfirmacion = _anexosConfirmacion;
                 //}
 
-                if (!_otraCarta)
-                {
-                    //this._asociados = this._asociadoServicios.ConsultarTodos();
+                //if (!_otraCarta)
+                //{
+                //    //this._asociados = this._asociadoServicios.ConsultarTodos();
 
-                }
+                //}
 
                 //this._ventana.Asociados = this._asociados;
                 try
@@ -331,6 +332,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     this._ventana.Resumen = this.BuscarResumen(this._resumenes, carta.Resumen.Id);
 
                 ((Carta)this._ventana.Carta).Asignaciones = this._asignacionServicios.ObtenerAsignacionesPorCarta((Carta)this._ventana.Carta);
+
+               
 
                 this._ventana.FocoPredeterminado();
                 if (_listaCartasCargada)
@@ -699,13 +702,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     if (null != (((Medio)this._ventana.Medio).Formato) &&
                         (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).Tracking)))
 
-                        tracking = this.VerificarFormato(((Medio)this._ventana.Medio).Formato, ((Carta)this._ventana.Carta).Tracking);
+                        //tracking = this.VerificarFormato(((Medio)this._ventana.Medio).Formato, ((Carta)this._ventana.Carta).Tracking);
+                        tracking = this.VerificarFormatoProduccion(((Medio)this._ventana.Medio).Formato, ((Carta)this._ventana.Carta).Tracking);
 
                     if (null != (((Medio)this._ventana.MedioTrackingConfirmacion)) &&
                         (null != (((Medio)this._ventana.MedioTrackingConfirmacion).Formato)) &&
                         (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).AnexoTracking)))
 
-                        tracking = this.VerificarFormato(((Medio)this._ventana.MedioTrackingConfirmacion).Formato, ((Carta)this._ventana.Carta).AnexoTracking);
+                        //tracking = this.VerificarFormato(((Medio)this._ventana.MedioTrackingConfirmacion).Formato, ((Carta)this._ventana.Carta).AnexoTracking);
+                        tracking = this.VerificarFormatoProduccion(((Medio)this._ventana.MedioTrackingConfirmacion).Formato, ((Carta)this._ventana.Carta).AnexoTracking);
 
                     if (tracking)
                     {
@@ -739,6 +744,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                             carta.Acuse = ((ListaDatosValores)this._ventana.Acuse).Valor[0];
                         carta.Medio = ((Medio)this._ventana.Medio).Id;
                         carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
+                        
                         bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
 
                         if (exitoso)
@@ -811,15 +817,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     if (null != (((Medio)this._ventana.Medio).Formato) &&
                         (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).Tracking)))
 
-                        tracking = this.VerificarFormato(((Medio)this._ventana.Medio).Formato,
-                                                         ((Carta)this._ventana.Carta).Tracking);
+                        //tracking = this.VerificarFormato(((Medio)this._ventana.Medio).Formato,
+                        //                                 ((Carta)this._ventana.Carta).Tracking);
+
+                           tracking = this.VerificarFormatoProduccion(((Medio)this._ventana.Medio).Formato,((Carta)this._ventana.Carta).Tracking);
 
                     if (null != (((Medio)this._ventana.MedioTrackingConfirmacion)) &&
                         (null != (((Medio)this._ventana.MedioTrackingConfirmacion).Formato)) &&
                         (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).AnexoTracking)))
 
-                        tracking = this.VerificarFormato(((Medio)this._ventana.MedioTrackingConfirmacion).Formato,
-                                                         ((Carta)this._ventana.Carta).AnexoTracking);
+                        //tracking = this.VerificarFormato(((Medio)this._ventana.MedioTrackingConfirmacion).Formato,
+                        //                                 ((Carta)this._ventana.Carta).AnexoTracking);
+                        tracking = this.VerificarFormatoProduccion(((Medio)this._ventana.MedioTrackingConfirmacion).Formato, ((Carta)this._ventana.Carta).AnexoTracking);
 
                     if (tracking)
                     {
@@ -1477,8 +1486,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 {
                     if ((usuarioCarta != null) && (usuario.Id == usuarioCarta.Id))
                         indice.Add(index);
-                    index++;
+                    //index++;
                 }
+                index++;
             }
 
             foreach (int posicion in indice)
@@ -1698,5 +1708,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 Navegar(new ConsultarContacto(contactos[0], this._ventana));
             }
         }
+
+        /// <summary>
+        /// Metodo que refresca la lista de contactos del asociado
+        /// NOTA: Este proceso depende de una bandera para poderse hacer
+        /// </summary>
+        //public void RefrescarContactosCarta()
+        //{
+        //    if (_presionoBotonPersona)
+        //    {
+
+        //    }
+
+        //}
     }
 }

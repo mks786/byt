@@ -625,7 +625,7 @@
                         <Label Grid.Column="0" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblOtrosImp}"/>
                         </Label>
-                        <custom:ByTTextBox  MaxLength="255" Grid.Column="1" Grid.Row="12" Name="_txtOtrosImp" VerticalAlignment="Center" Grid.ColumnSpan="6" Text="{Binding Path=PrimerOtro}"></custom:ByTTextBox>
+                        <custom:ByTTextBox  MaxLength="4000" Grid.Column="1" Grid.Row="12" Name="_txtOtrosImp" VerticalAlignment="Center" Grid.ColumnSpan="6" Text="{Binding Path=PrimerOtro}"></custom:ByTTextBox>
 
                         <!--<Label Grid.Column="9" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblConflicto}"/>
@@ -796,11 +796,17 @@
                         <Label Grid.Column="0" Grid.Row="16" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                         </Label>
-                        <DatePicker  Grid.Column="1" Grid.Row="16" HorizontalAlignment="Left"  Name="_dpkFechaPrioridad" Focusable="False" BorderBrush="{x:Null}" >
+                        <!--<DatePicker  Grid.Column="1" Grid.Row="16" HorizontalAlignment="Left"  Name="_dpkFechaPrioridad" Focusable="False" BorderBrush="{x:Null}" >
                             <DatePicker.SelectedDate>
                                 <Binding Path="FechaPrioridad" UpdateSourceTrigger="PropertyChanged"/>
                             </DatePicker.SelectedDate>
-                        </DatePicker>
+                        </DatePicker>-->
+                        <custom:ByTDatePicker Editable="True" Grid.Column="1" Grid.Row="16" Name="_dpkFechaPrioridad" Width="105"  Focusable="False" BorderBrush="{x:Null}" >
+                            <DatePicker.SelectedDate>
+                                <Binding Path="FechaPrioridad" UpdateSourceTrigger="PropertyChanged"/>
+                            </DatePicker.SelectedDate>
+                        </custom:ByTDatePicker>
+
 
                         <Label Grid.Column="2" Grid.Row="16" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPrioridad}"/>

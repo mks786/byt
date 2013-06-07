@@ -954,7 +954,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new ListaOperaciones(CargarPatenteDeLaPantalla()));
+            //this.Navegar(new ListaOperaciones(CargarPatenteDeLaPantalla()));
+            this.Navegar(new ListaOperaciones(CargarPatenteDeLaPantalla(),this._ventana));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
