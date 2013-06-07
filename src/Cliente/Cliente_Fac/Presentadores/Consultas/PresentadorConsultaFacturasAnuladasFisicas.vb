@@ -157,8 +157,15 @@ Namespace Presentadores.Consultas
             End If
             '#End Region
             'Me._ventana.FacAnuladaFisicaSeleccionado.Accion = 2 'no modificar
+            Dim facanuladaFisica As FacAnuladaFisica = DirectCast(Me._ventana.FacAnuladaFisicaSeleccionado, FacAnuladaFisica)
+            Dim FacFacturaAnulada As New FacFacturaAnulada
+            FacFacturaAnulada.Id = 0
+            FacFacturaAnulada.Secanula = facanuladaFisica.Id
+            FacFacturaAnulada.FechaAnulacion = facanuladaFisica.FechaAnulacion
+            FacFacturaAnulada.Control = facanuladaFisica.Control
+            FacFacturaAnulada.Xter = 10
 
-            Me.Navegar(New FacturaAnuladaRpt(Nothing, DirectCast(Me._ventana.FacAnuladaFisicaSeleccionado, FacAnuladaFisica)))
+            Me.Navegar(New FacturaAnuladaRpt(Nothing, FacFacturaAnulada))
 
             'Me.Navegar(New ConsultarFacAnuladaFisica())
             '#Region "trace"
