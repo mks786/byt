@@ -1067,4 +1067,8 @@
     <value>upper(c.DescripcionDepartamento) like '%{0}%'</value>
     <comment>Se filtran las cartas por el Asociado No Registrado</comment>
   </data>
+  <data name="FiltroObtenerMarcaPrimerOtro" xml:space="preserve">
+    <value>m.PrimerOtro like '%{0}%'</value>
+    <comment>Filtro de marca por PrimerOtro</comment>
+  </data>
 </root>

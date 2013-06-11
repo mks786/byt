@@ -690,6 +690,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             if ((this._ventana.DistingueSolicitud != null) && (!this._ventana.DistingueSolicitud.Equals(String.Empty)))
             {
+                marca.Distingue = this._ventana.DistingueSolicitud;
+
                 int len = this._ventana.DistingueSolicitud.Length;
                 if (len <= 4000)
                     marca.Fichas = this._ventana.DistingueSolicitud;

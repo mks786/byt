@@ -145,6 +145,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+
                 ActualizarTitulo();
 
                 if (_agregar == false)
@@ -161,6 +162,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                     this._ventana.Agente = ((Renovacion)renovacion).Agente;
                     this._ventana.Poder = renovacion.Poder;
 
+                    //IList<ListaDatosValores> tiposRenovacion = this._listaDatosValoresServicios.
+                    //    ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiTipoRenovacion));
+                    //ListaDatosValores primerTipo = new ListaDatosValores();
+                    //primerTipo.Descripcion = string.Empty;
+                    //primerTipo.Valor = "NGN";
+                    //tiposRenovacion.Insert(0, primerTipo);
+                    //this._ventana.TiposRenovaciones = tiposRenovacion;
+                    //this._ventana.TipoRenovacion = this.BuscarTipoRenovacion(tiposRenovacion,renovacion.TipoRenovacion);
 
                     CargarMarca();
 
@@ -289,6 +298,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                 this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(filtro);
             //   filtro.Valor = ((Renovacion)this._ventana.Renovacion).TipoR.ToString();
             this._ventana.TiposRenovaciones = listaTipoRenovacion;
+
             this._ventana.TipoRenovacion = this.BuscarTipoRenovacion(listaTipoRenovacion, TipoRenovacion);
 
             //ListaDatosValores tipoRenovacion = new ListaDatosValores();
@@ -499,8 +509,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                         Marca marcaAuxiliar = new Marca();
                         marcaAuxiliar = ((Renovacion)this._ventana.Renovacion).Marca;
                         int tiempoConfiguracion = int.Parse(ConfigurationManager.AppSettings["PeriodoRenovacion"].ToString());
-                        //marcaAuxiliar.FechaRenovacion = ((Renovacion)this._ventana.Renovacion).FechaProxima.Value.AddYears(-tiempoConfiguracion);
-                        marcaAuxiliar.FechaRenovacion = DateTime.Parse(this._ventana.ProximaRenovacion);
+                        marcaAuxiliar.FechaRenovacion = ((Renovacion)this._ventana.Renovacion).FechaProxima.Value.AddYears(-tiempoConfiguracion);
+                        //marcaAuxiliar.FechaRenovacion = DateTime.Parse(this._ventana.ProximaRenovacion);
                         marcaAuxiliar.Operacion = "MODIFY";
                         marcaAuxiliar.Recordatorio = 0;
 
@@ -782,6 +792,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             }
             else
             {
+                ListaDatosValores TipoDeRenovacion = new ListaDatosValores();
+                CargarTipoRenovacion(TipoDeRenovacion);
                 this._ventana.MarcasFiltradas = this._marcas;
                 this._ventana.MarcaFiltrada = primeraMarca;
             }
@@ -894,25 +906,68 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                     retorno = true;
 
                     ListaDatosValores TipoDeRenovacion = new ListaDatosValores();
-                    if (((Marca)this._ventana.MarcaFiltrada).Ter == 'T')
+                    #region CODIGO COMENTADO
+                    //if ((((Marca)this._ventana.MarcaFiltrada).Ter == 'T')&& (((ListaDatosValores)this._ventana.TipoRenovacion).Valor.Equals('T')))
+
+                    //{
+                    //    TipoDeRenovacion.Valor = "T";
+                    //    ((Marca)this._ventana.MarcaFiltrada).Ter = 'T';
+                    //}
+                    //else if ((((Marca)this._ventana.MarcaFiltrada).Ter == 'T'))
+                    //{
+                       
+                    //    this._ventana.Mensaje("Esta marca es renovada por un Tercero", 1);
+                    //    TipoDeRenovacion.Valor = "T";
+                    //    ((Marca)this._ventana.MarcaFiltrada).Ter = 'T';
+                    //}
+                    //else
+                    //{
+                    //    this._ventana.Mensaje("Esta marca no es renovada por un Tercero", 1);
+                    //    TipoDeRenovacion.Valor = "I";
+                    //    ((Marca)this._ventana.MarcaFiltrada).Ter = 'I';
+                    //}
+                    #endregion
+                    if (((Marca)this._ventana.MarcaFiltrada).Ter.Equals('T'))
                     {
-                        TipoDeRenovacion.Valor = "T";
-                        ((Marca)this._ventana.MarcaFiltrada).Ter = 'T';
+                        if (((ListaDatosValores)this._ventana.TipoRenovacion).Valor.Equals("T"))
+                        {
+                            TipoDeRenovacion.Valor = "T";
+                            ((Marca)this._ventana.MarcaFiltrada).Ter = 'T';
+                        }
+                        else if (((ListaDatosValores)this._ventana.TipoRenovacion).Valor.Equals("I"))
+                        {
+                            this._ventana.Mensaje("Esta marca es renovada por un Tercero", 1);
+                            TipoDeRenovacion.Valor = "T";
+                            ((Marca)this._ventana.MarcaFiltrada).Ter = 'T';
+                        }
+
                     }
-                    else
+                    else if (((Marca)this._ventana.MarcaFiltrada).Ter.Equals('I'))
                     {
-                        TipoDeRenovacion.Valor = "I";
-                        ((Marca)this._ventana.MarcaFiltrada).Ter = 'I';
+                        if (((ListaDatosValores)this._ventana.TipoRenovacion).Valor.Equals("T"))
+                        {
+                            this._ventana.Mensaje("Esta marca no es renovada por un Tercero", 1);
+                            TipoDeRenovacion.Valor = "I";
+                            ((Marca)this._ventana.MarcaFiltrada).Ter = 'I';
+                        }
+                        else
+                        {
+                            TipoDeRenovacion.Valor = "I";
+                            ((Marca)this._ventana.MarcaFiltrada).Ter = 'I';
+                        }
                     }
 
 
-                    CargarTipoRenovacion(TipoDeRenovacion);
+
+                    //CargarTipoRenovacion(TipoDeRenovacion);
+
+                    this._ventana.TipoRenovacion = this.BuscarTipoRenovacion((IList<ListaDatosValores>)this._ventana.TiposRenovaciones, TipoDeRenovacion);
 
 
-                    if (((Marca)this._ventana.Marca).Ter.ToString().Equals("T"))
-                    {
-                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.RenovacionTercero, 1);
-                    }
+                    //if (((Marca)this._ventana.Marca).Ter.ToString().Equals("T"))
+                    //{
+                    //    this._ventana.Mensaje(Recursos.MensajesConElUsuario.RenovacionTercero, 1);
+                    //}
 
                     if (((Marca)this._ventana.MarcaFiltrada).Id != int.MinValue)
                     {

@@ -1228,7 +1228,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 marcaT.Anexo = ((MarcaTercero)this._ventana.MarcaTercero).Anexo;
                 aux.MarcaTercero = marcaT;
                 //aux.Pais = ((Pais)this._ventana.PaisSolicitud);
-                aux.Pais = ((Pais)this._ventana.PaisSolicitud).Id != int.MinValue ? ((Pais)this._ventana.PaisSolicitud) : null;
+                aux.Pais = (null != this._ventana.PaisSolicitud) && ((Pais)this._ventana.PaisSolicitud).Id != int.MinValue ? ((Pais)this._ventana.PaisSolicitud) : null;
                 if ((bool)this._ventana.Byt.IsChecked)
                 {
                     aux.Marca = ((Marca)this._ventana.MarcaFiltrada);

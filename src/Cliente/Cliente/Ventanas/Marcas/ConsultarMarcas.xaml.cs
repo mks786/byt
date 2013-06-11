@@ -203,6 +203,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
 
+        public string Otros
+        {
+            get { return this._txtOtros.Text; }
+            set { this._txtOtros.Text = value; }
+        }
+
+
         public void Mensaje(string mensaje, int opcion)
         {
             if (opcion == 0)
@@ -667,6 +674,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             {
                 todosCamposVacios = false;
                 this._txtRegistroTYR.Focus();
+            }
+
+            if (!_txtOtros.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtOtros.Focus();
             }
 
 

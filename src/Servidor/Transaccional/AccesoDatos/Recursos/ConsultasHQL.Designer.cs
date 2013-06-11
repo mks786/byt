@@ -1294,6 +1294,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a m.PrimerOtro like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroObtenerMarcaPrimerOtro {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMarcaPrimerOtro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a m.CPrioridad = {0}.
         /// </summary>
         public static string FiltroObtenerMarcaPrioridad {

@@ -28,5 +28,7 @@
     <many-to-one name="Usuario" class="Usuario" lazy="false">
       <column name="USUARIO"/>
     </many-to-one>
+  
+    
   </class>
 </hibernate-mapping>

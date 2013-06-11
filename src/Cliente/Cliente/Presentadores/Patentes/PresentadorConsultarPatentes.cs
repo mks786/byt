@@ -779,13 +779,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
             Interesado interesadoABuscar = new Interesado();
 
+            //interesadoABuscar.Id = !this._ventana.IdInteresadoFiltrar.Equals("") ?
+            //                       int.Parse(this._ventana.IdInteresadoFiltrar) : 0;
+
             interesadoABuscar.Id = !this._ventana.IdInteresadoFiltrar.Equals("") ?
-                                   int.Parse(this._ventana.IdInteresadoFiltrar) : 0;
+                                   int.Parse(this._ventana.IdInteresadoFiltrar) : int.MinValue;
 
             interesadoABuscar.Nombre = !this._ventana.NombreInteresadoFiltrar.Equals("") ?
                                        this._ventana.NombreInteresadoFiltrar.ToUpper() : "";
 
-            if ((interesadoABuscar.Id != 0) || !(interesadoABuscar.Nombre.Equals("")))
+            //if ((interesadoABuscar.Id != 0) || !(interesadoABuscar.Nombre.Equals("")))
+            if ((interesadoABuscar.Id != int.MinValue) || !(interesadoABuscar.Nombre.Equals("")))
             {
                 IList<Interesado> interesados = this._interesadoServicios.ObtenerInteresadosFiltro(interesadoABuscar);
                 interesados.Insert(0, new Interesado(int.MinValue));
@@ -794,7 +798,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             else
             {
                 this._ventana.Interesados = this._interesados;
-                this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                //this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                this._ventana.Mensaje("Ingrese criterios validos para la busqueda del Interesado", 1);
             }
 
             #region trace
@@ -854,13 +859,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
             Asociado asociadoABuscar = new Asociado();
 
+            //asociadoABuscar.Id = !this._ventana.IdAsociadoFiltrar.Equals("") ?
+            //                     int.Parse(this._ventana.IdAsociadoFiltrar) : 0;
+
             asociadoABuscar.Id = !this._ventana.IdAsociadoFiltrar.Equals("") ?
-                                 int.Parse(this._ventana.IdAsociadoFiltrar) : 0;
+                                 int.Parse(this._ventana.IdAsociadoFiltrar) : int.MinValue;
 
             asociadoABuscar.Nombre = !this._ventana.NombreAsociadoFiltrar.Equals("") ?
                                      this._ventana.NombreAsociadoFiltrar.ToUpper() : "";
 
-            if ((asociadoABuscar.Id != 0) || !(asociadoABuscar.Nombre.Equals("")))
+            //if ((asociadoABuscar.Id != 0) || !(asociadoABuscar.Nombre.Equals("")))
+            if ((asociadoABuscar.Id != int.MinValue) || !(asociadoABuscar.Nombre.Equals("")))
             {
                 IList<Asociado> asociados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoABuscar);
                 asociados.Insert(0, new Asociado(int.MinValue));
@@ -869,7 +878,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
             else
             {
-                this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                this._ventana.Mensaje("Ingrese criterios validos para la busqueda del Asociado", 1);
+                //this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 this._ventana.Asociados = this._asociados;
             }
 

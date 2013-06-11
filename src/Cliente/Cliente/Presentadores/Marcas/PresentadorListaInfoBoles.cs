@@ -25,6 +25,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private Marca _marca;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+        private ITipoInfobolServicios _tipoInfobolServicios;
 
 
         /// <summary>
@@ -63,6 +64,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             this._ventanaPadre = ventanaPadre;
             this._marca = (Marca)marca;
 
+            this._tipoInfobolServicios = (ITipoInfobolServicios)Activator.GetObject(typeof(ITipoInfobolServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoInfobolServicios"]);
+
+
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -76,6 +81,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         public void CargarPagina()
         {
             Mouse.OverrideCursor = Cursors.Wait;
+            TipoInfobol aux = null;
+           
 
             try
             {
@@ -86,6 +93,27 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaInfoBol,
                     Recursos.Ids.InfoBol);
+
+                IList<TipoInfobol> tipoInfobol = this._tipoInfobolServicios.ConsultarTodos();
+
+                IList<InfoBol> listaInfobolesMarca = ((Marca)this._marca).InfoBoles;
+               
+                foreach (InfoBol item in listaInfobolesMarca)
+                {
+                    
+                    TipoInfobol tipoInfobolMarca = item.TipoInfobol;
+                    aux = this.BuscarTipoInfobol(tipoInfobol, tipoInfobolMarca);
+                    if (aux != null)
+                    {
+                        //tipoInfobolMarca = null;
+                        //tipoInfobolMarca = aux;
+                        item.TipoInfobol = aux;
+                    }
+
+                }
+
+                ((Marca)this._marca).InfoBoles = listaInfobolesMarca;
+
 
                 this._ventana.InfoBoles = ((Marca)this._marca).InfoBoles;
                 this._ventana.TotalHits = ((Marca)this._marca).InfoBoles.Count.ToString();

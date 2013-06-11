@@ -695,6 +695,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 else
                     marcaAuxiliar.Descripcion = null;
 
+                
+                if (!this._ventana.Otros.Equals(""))
+                {
+
+                    marcaAuxiliar.PrimerOtro = this._ventana.Otros;
+                    _filtroValido = 2;
+                }
+                else
+                    marcaAuxiliar.PrimerOtro = null;
+
+
                 if (!this._ventana.Fecha.Equals(""))
                 {
                     DateTime fechaPublicacion = DateTime.Parse(this._ventana.Fecha);
@@ -980,7 +991,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
-
+        #region Codigo Comentado NO BORRAR
         //public void BuscarAsociado()
         //{
         //    IEnumerable<Asociado> asociadosFiltrados = (IList<Asociado>)this._asociados;
@@ -1030,9 +1041,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         //    else
         //        this._ventana.Interesados = this._interesados;
         //}
+        #endregion
 
-
-
+        /// <summary>
+        /// Metodo que se utiliza para validar si se hara la consulta SOLO por localidad 
+        /// </summary>
+        /// <param name="marcaAuxiliar">Marca a consultar</param>
+        /// <returns>True si la consulta solo se hara por localidad. False si alguno de los campos de la marca a cosultar esta lleno</returns>
         public bool ConsultaSoloLocalidad(Marca marcaAuxiliar)
         {
             bool retorno = false;
@@ -1043,27 +1058,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         if ((null == this._ventana.Interesado) || (((Interesado)this._ventana.Interesado).Id == int.MinValue))
                             if ((null == this._ventana.Corresponsal) ||(((Corresponsal)this._ventana.Corresponsal).Id == int.MinValue))
                                 if (this._ventana.DescripcionFiltrar.Equals(""))
-                                    if (this._ventana.Fecha.Equals(""))
-                                        if (((TipoEstado)this._ventana.Detalle).Id.Equals("NGN"))
-                                            if (((Servicio)this._ventana.Servicio).Id.Equals("NGN"))
-                                                if (this._ventana.ClaseInternacional.Equals(""))
-                                                    if (this._ventana.ClaseNacional.Equals(""))
-                                                        if (this._ventana.Distingue.Equals(""))
-                                                            if (this._ventana.Solicitud.Equals(""))
-                                                                if (null == marcaAuxiliar.PrimeraReferencia)
-                                                                    if (this._ventana.IdInternacional.Equals(string.Empty))
-                                                                        if (this._ventana.IdCorrelativoInternacional.Equals(string.Empty))
-                                                                            if (this._ventana.Pais == null)
-                                                                                if (this._ventana.ReferenciaAsociado.Equals(string.Empty))
-                                                                                    if (this._ventana.ReferenciaInteresado.Equals(string.Empty))
-                                                                                        if(!this._ventana.BoletinesEstaSeleccionado)
-                                                                                            if(!this._ventana.IndicadoresEstaSeleccionado)
-                                                                                                if(!this._ventana.PrioridadesEstaSeleccionado)
-                                                                                                    if(!this._ventana.TYREstaSeleccionado)
-                                                                                                        {
-                                                                                                          _soloLocalidad = true;
-                                                                                                          retorno = _soloLocalidad;
-                                                                                                        }
+                                    if(this._ventana.Otros.Equals(""))
+                                        if (this._ventana.Fecha.Equals(""))
+                                            if (((TipoEstado)this._ventana.Detalle).Id.Equals("NGN"))
+                                                if (((Servicio)this._ventana.Servicio).Id.Equals("NGN"))
+                                                    if (this._ventana.ClaseInternacional.Equals(""))
+                                                        if (this._ventana.ClaseNacional.Equals(""))
+                                                            if (this._ventana.Distingue.Equals(""))
+                                                                if (this._ventana.Solicitud.Equals(""))
+                                                                    if (null == marcaAuxiliar.PrimeraReferencia)
+                                                                        if (this._ventana.IdInternacional.Equals(string.Empty))
+                                                                            if (this._ventana.IdCorrelativoInternacional.Equals(string.Empty))
+                                                                                if (this._ventana.Pais == null)
+                                                                                    if (this._ventana.ReferenciaAsociado.Equals(string.Empty))
+                                                                                        if (this._ventana.ReferenciaInteresado.Equals(string.Empty))
+                                                                                            if(!this._ventana.BoletinesEstaSeleccionado)
+                                                                                                if(!this._ventana.IndicadoresEstaSeleccionado)
+                                                                                                    if(!this._ventana.PrioridadesEstaSeleccionado)
+                                                                                                        if(!this._ventana.TYREstaSeleccionado)
+                                                                                                            {
+                                                                                                               _soloLocalidad = true;
+                                                                                                               retorno = _soloLocalidad;
+                                                                                                            }
 
                 if (marcaAuxiliar.LocalidadMarca.Equals("N"))
                     _localidadAConsultar = "Nacionales";
@@ -1202,31 +1218,55 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
+                      
 
             Interesado interesadoABuscar = new Interesado();
 
-            interesadoABuscar.Id = !this._ventana.IdInteresadoFiltrar.Equals("") ?
-                                   int.Parse(this._ventana.IdInteresadoFiltrar) : 0;
+            //interesadoABuscar.Id = !this._ventana.IdInteresadoFiltrar.Equals("") ?
+            //                       int.Parse(this._ventana.IdInteresadoFiltrar) : 0;
 
-            interesadoABuscar.Nombre = !this._ventana.NombreInteresadoFiltrar.Equals("") ?
-                                       this._ventana.NombreInteresadoFiltrar.ToUpper() : "";
-
-            if ((interesadoABuscar.Id != 0) || !(interesadoABuscar.Nombre.Equals("")))
+            try
             {
-                IList<Interesado> interesados = this._interesadoServicios.ObtenerInteresadosFiltro(interesadoABuscar);
+                Mouse.OverrideCursor = Cursors.Wait;
 
-                if (interesados.Count > 0)
+                interesadoABuscar.Id = !this._ventana.IdInteresadoFiltrar.Equals("") ?
+                                           int.Parse(this._ventana.IdInteresadoFiltrar) : int.MinValue;
+
+                interesadoABuscar.Nombre = !this._ventana.NombreInteresadoFiltrar.Equals("") ?
+                                           this._ventana.NombreInteresadoFiltrar.ToUpper() : "";
+
+                //if ((interesadoABuscar.Id != 0) || !(interesadoABuscar.Nombre.Equals("")))
+                if ((interesadoABuscar.Id != int.MinValue) || !(interesadoABuscar.Nombre.Equals("")))
                 {
-                    interesados.Insert(0, new Interesado(int.MinValue));
-                    this._ventana.Interesados = interesados;
+                    IList<Interesado> interesados = this._interesadoServicios.ObtenerInteresadosFiltro(interesadoABuscar);
+
+                    if (interesados.Count > 0)
+                    {
+                        interesados.Insert(0, new Interesado(int.MinValue));
+                        this._ventana.Interesados = interesados;
+                    }
+                    else
+                    {
+                        interesados.Insert(0, new Interesado(int.MinValue));
+                        this._ventana.Interesados = this._interesados;
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                    }
                 }
                 else
-                {
-                    interesados.Insert(0, new Interesado(int.MinValue));
-                    this._ventana.Interesados = this._interesados;
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                }
+                    this._ventana.Mensaje("Ingrese criterios validos para la busqueda del Interesado", 1);
+
             }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+
+           
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1280,33 +1320,50 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            Mouse.OverrideCursor = Cursors.Wait;
-
-            Asociado asociadoABuscar = new Asociado();
-
-            asociadoABuscar.Id = !this._ventana.IdAsociadoFiltrar.Equals("") ?
-                                 int.Parse(this._ventana.IdAsociadoFiltrar) : 0;
-
-            asociadoABuscar.Nombre = !this._ventana.NombreAsociadoFiltrar.Equals("") ?
-                                     this._ventana.NombreAsociadoFiltrar.ToUpper() : "";
-
-            if ((asociadoABuscar.Id != 0) || !(asociadoABuscar.Nombre.Equals("")))
+            try
             {
-                IList<Asociado> asociados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoABuscar);
+                Mouse.OverrideCursor = Cursors.Wait;
 
-                if (asociados.Count > 0)
+                Asociado asociadoABuscar = new Asociado();
+
+                //asociadoABuscar.Id = !this._ventana.IdAsociadoFiltrar.Equals("") ?
+                //                     int.Parse(this._ventana.IdAsociadoFiltrar) : 0;
+
+                asociadoABuscar.Id = !this._ventana.IdAsociadoFiltrar.Equals("") ?
+                                    int.Parse(this._ventana.IdAsociadoFiltrar) : int.MinValue;
+
+                asociadoABuscar.Nombre = !this._ventana.NombreAsociadoFiltrar.Equals("") ?
+                                         this._ventana.NombreAsociadoFiltrar.ToUpper() : "";
+
+                //if ((asociadoABuscar.Id != 0) || !(asociadoABuscar.Nombre.Equals("")))
+                if ((asociadoABuscar.Id != int.MinValue) || !(asociadoABuscar.Nombre.Equals("")))
                 {
-                    asociados.Insert(0, new Asociado(int.MinValue));
-                    this._ventana.Asociados = asociados;
+                    IList<Asociado> asociados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoABuscar);
+
+                    if (asociados.Count > 0)
+                    {
+                        asociados.Insert(0, new Asociado(int.MinValue));
+                        this._ventana.Asociados = asociados;
+                    }
+                    else
+                    {
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                        this._ventana.Asociados = this._asociados;
+                    }
                 }
+
                 else
-                {
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                    this._ventana.Asociados = this._asociados;
-                }
+                    this._ventana.Mensaje("Ingrese criterios validos para la busqueda del Asociado", 1);
             }
-
-            Mouse.OverrideCursor = null;
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

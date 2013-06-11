@@ -214,6 +214,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
 
                 this._txtObservacion.IsEnabled = value;
                 this._txtOtros.IsEnabled = value;
+                //this._cbxTipoR.IsEnabled = value;
             }
         }
 
@@ -440,7 +441,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             //this._lblIdRenovacion.Visibility = System.Windows.Visibility.Collapsed;
             //this._txtIdRenovacion.Visibility = System.Windows.Visibility.Collapsed;
             this._dpkFechaRenovacion.IsEnabled = true;
-            this._cbxTipoR.IsEnabled = false;
+            this._cbxTipoR.IsEnabled = true;
             this._chkAsientoEnLibro.IsEnabled = true;
             this._btnCarpeta.Visibility = System.Windows.Visibility.Collapsed;
             this._btnSolicitud.Visibility = System.Windows.Visibility.Collapsed;
@@ -956,6 +957,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         private void _dpkFechaRenovacion_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             //this._presentador.ActualizarFechaProxima();
+        }
+
+        private void _cbxTipoR_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._cbxTipoR.SelectedIndex = _cbxTipoR.SelectedIndex;
         }
 
     }

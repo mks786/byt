@@ -49,6 +49,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string DescripcionFiltrar { get; set; }
 
+        string Otros { get; set; }
+
         //string FichasFiltrar { get; }
 
         string Fecha { get; set; }

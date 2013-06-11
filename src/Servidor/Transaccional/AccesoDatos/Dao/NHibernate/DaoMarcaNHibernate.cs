@@ -90,6 +90,14 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
+
+                if (!String.IsNullOrEmpty(marca.PrimerOtro))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaPrimerOtro, marca.PrimerOtro);
+                    variosFiltros = true;
+                }
                 //if ((null != marca.FechaPublicacion) && (!marca.FechaPublicacion.Equals(DateTime.MinValue)))
                 //{
                 //    if (variosFiltros)

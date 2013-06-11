@@ -49,7 +49,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipo}"/>
                     </Label>
-                    <ComboBox Name="_cbxTipoR" Width="150" SelectedIndex="0" IsEnabled="False" ItemsSource="{Binding}" DisplayMemberPath="Descripcion">
+                    <ComboBox Name="_cbxTipoR" Width="150" SelectedIndex="0" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectionChanged="_cbxTipoR_SelectionChanged">
 
                     </ComboBox>
 

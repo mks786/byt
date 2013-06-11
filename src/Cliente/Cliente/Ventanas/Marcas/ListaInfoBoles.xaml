@@ -12,9 +12,9 @@
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="540"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="70*"/>
+            <ColumnDefinition Width="622"/>
+            <ColumnDefinition Width="48*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -34,28 +34,28 @@
 
             </StackPanel>
         </GroupBox>
-        <GroupBox Grid.Column="1" Grid.Row="0"  Margin="5">
+        <GroupBox Grid.Column="1" Margin="5,5,0,5">
             <ListView Name="_lstResultados" ItemsSource="{Binding}" 
                       MouseDoubleClick="EventoIrGestionarInfoBol" SelectionMode="Single"
                       Style="{DynamicResource EstiloListView}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Marca.Id}" Width="120">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Marca.Id}" Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Marca.Id" Content="{x:Static recurso:Etiquetas.lsvMarca}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=TipoInfobol.Id}" Width="120">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="TipoInfobol.Id" Content="{x:Static recurso:Etiquetas.lsvTipo}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=TipoInfobol.Descripcion}" Width="250">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="TipoInfobol.Descripcion" Content="{x:Static recurso:Etiquetas.lsvTipo}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Boletin.Id}" Width="120">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Boletin.Id}" Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Boletin.Id" Content="{x:Static recurso:Etiquetas.lsvBoletin}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Tomo}" Width="120">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Tomo}" Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Tomo" Content="{x:Static recurso:Etiquetas.lsvTomo}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Pagina}" Width="120">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Pagina}" Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Pagina" Content="{x:Static recurso:Etiquetas.lsvPagina}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Resolucion}" Width="120">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Resolucion}" Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Resolucion" Content="{x:Static recurso:Etiquetas.lsvResolucion}"/>
                         </GridViewColumn>
                         
@@ -80,7 +80,7 @@
         </GroupBox>
 
         <!--Botones Regresar-->
-        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
+        <GroupBox Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
             <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
                 <Button Name="_btnAgregar" VerticalAlignment="Bottom" Height="25" Width="110" Click="EventoIrGestionarInfoBol">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnNuevoInfoBol}"/>
