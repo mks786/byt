@@ -2155,7 +2155,7 @@ Namespace Presentadores.FacFacturas
                     'Me._ventana.MDescuentoBf = (factura.MSubtimpoBf * factura.Descuento) / 100
                     'Me._ventana.MDescuentoBf = Me._ventana.MDescuentoBf
 
-                    Me._ventana.MTbimp = Me._ventana.MSubtimpo - factura.Descuento
+                    Me._ventana.MTbimp = Me._ventana.MSubtimpo - Me._ventana.MDescuento
                     Me._ventana.MTbimpBf = Me._ventana.MSubtimpoBf - Me._ventana.MDescuentoBf
 
                     Me._ventana.Msubtotal = Me._ventana.MTbimp + Me._ventana.Mtbexc
@@ -2217,6 +2217,9 @@ Namespace Presentadores.FacFacturas
             Me._ventana.MtimpBf = 0
             Me._ventana.MttotalBf = 0
 
+            Dim MDescuento As Double = 0
+            Dim MDescuentoBf As Double = 0
+
             Dim w_monto, w_monto_bf As Integer
             Dim factura As FacFactura = Me._ventana.FacFactura
             Dim fecha As DateTime
@@ -2258,11 +2261,11 @@ Namespace Presentadores.FacFacturas
                         Me._ventana.Mtbexc = Me._ventana.Mtbexc + w_monto
                         Me._ventana.MtbexcBf = Me._ventana.MtbexcBf + w_monto_bf
                     End If
-                    Me._ventana.MDescuento = Me._ventana.MDescuento + ((FacFactuDetas(i).Pu * FacFactuDetas(i).NCantidad) * FacFactuDetas(i).Descuento) / 100
-                    Me._ventana.MDescuento = Me._ventana.MDescuento
+                    MDescuento = MDescuento + ((FacFactuDetas(i).Pu * FacFactuDetas(i).NCantidad) * FacFactuDetas(i).Descuento) / 100
+                    Me._ventana.MDescuento = MDescuento
 
-                    Me._ventana.MDescuentoBf = Me._ventana.MDescuentoBf + ((FacFactuDetas(i).PuBf * FacFactuDetas(i).NCantidad) * FacFactuDetas(i).Descuento) / 100
-                    Me._ventana.MDescuentoBf = Me._ventana.MDescuentoBf
+                    MDescuentoBf = MDescuentoBf + ((FacFactuDetas(i).PuBf * FacFactuDetas(i).NCantidad) * FacFactuDetas(i).Descuento) / 100
+                    Me._ventana.MDescuentoBf = MDescuentoBf
                 Next
                 'If factura.Descuento <> 0 Then
 
@@ -2272,8 +2275,8 @@ Namespace Presentadores.FacFacturas
                 'Me._ventana.MDescuentoBf = (factura.MSubtimpoBf * factura.Descuento) / 100
                 'Me._ventana.MDescuentoBf = Me._ventana.MDescuentoBf
 
-                Me._ventana.MTbimp = Me._ventana.MSubtimpo - factura.Descuento
-                Me._ventana.MTbimpBf = Me._ventana.MSubtimpoBf - Me._ventana.MDescuentoBf
+                Me._ventana.MTbimp = Me._ventana.MSubtimpo - MDescuento
+                Me._ventana.MTbimpBf = Me._ventana.MSubtimpoBf - MDescuentoBf
 
                 Me._ventana.Msubtotal = Me._ventana.MTbimp + Me._ventana.Mtbexc
                 Me._ventana.MsubtotalBf = Me._ventana.MTbimpBf + Me._ventana.MtbexcBf
