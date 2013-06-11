@@ -152,7 +152,7 @@ Namespace Ventanas.FacFacturas
             If nom = "_btnImprimirFactura" Then
                 Me._presentador.Imprimir(1)
             ElseIf nom = "_btnReImprimirSF" Then
-                Me._presentador.Imprimir(2)
+                Me._presentador.Imprimir(5)
             ElseIf nom = "_btnImprimirStatement" Then
                 Me._presentador.Imprimir(3)
             ElseIf nom = "_btnImprimirFacturaCopia" Then

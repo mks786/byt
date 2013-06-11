@@ -970,7 +970,7 @@ Namespace Presentadores.FacFacturas
             Else
                 Recalculo_x_imp_vieja()
             End If
-            Imprimir(4)
+            'Imprimir(4)
         End Sub
 
 
@@ -1005,6 +1005,15 @@ Namespace Presentadores.FacFacturas
                     Mouse.OverrideCursor = Nothing
                     Exit Sub
                 End If
+            End If
+
+            If tipo = "5" Then
+                If FacFactura.FechaSeniat Is Nothing Or FacFactura.Seniat Is Nothing Then
+                    Mouse.OverrideCursor = Nothing
+                    MessageBox.Show("Tiene que procesar el statement", "Error", MessageBoxButton.OK)
+                    Exit Sub
+                End If
+                FacFactura.Status = 4
             End If
 
             Me.Navegar(New FacturaRpt((FacFactura)))
