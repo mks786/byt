@@ -168,6 +168,10 @@ Namespace Ventanas.FacFacturas
             End If
         End Sub
 
+        Private Sub _btnRecalcular_Nuevo_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
+            Me._presentador.Recalcular_Statement()
+        End Sub
+
         Private Sub _btnImprimir_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
 
         End Sub
@@ -367,19 +371,19 @@ Namespace Ventanas.FacFacturas
 
         Public Property Guia As Object Implements Contratos.FacFacturas.IConsultarFacFactura.Guia
             Get
-                Return Me._cbxGuia.SelectedItem
+                Return Me._cbxguia.SelectedItem
             End Get
             Set(ByVal value As Object)
-                Me._cbxGuia.SelectedItem = value
+                Me._cbxguia.SelectedItem = value
             End Set
         End Property
 
         Public Property Guias As Object Implements Contratos.FacFacturas.IConsultarFacFactura.Guias
             Get
-                Return Me._cbxGuia.DataContext
+                Return Me._cbxguia.DataContext
             End Get
             Set(ByVal value As Object)
-                Me._cbxGuia.DataContext = value
+                Me._cbxguia.DataContext = value
             End Set
         End Property
 
@@ -1669,7 +1673,7 @@ Namespace Ventanas.FacFacturas
 
         Public Property pu As Double Implements Contratos.FacFacturas.IConsultarFacFactura.Pu
             Get
-                Return getformatodouble(Me._txtPu.Text)
+                Return GetFormatoDouble(Me._txtPu.Text)
             End Get
             Set(ByVal value As Double)
                 Me._txtPu.Text = SetFormatoDouble(value)
@@ -1865,7 +1869,7 @@ Namespace Ventanas.FacFacturas
         End Property
 
         Public Sub _btnLimpiar_Click()
-            Me._presentador.limpiar()
+            Me._presentador.Limpiar()
         End Sub
 
         Public ReadOnly Property Tipo As Char Implements Contratos.FacFacturas.IConsultarFacFactura.Tipo
@@ -1912,6 +1916,16 @@ Namespace Ventanas.FacFacturas
             End Set
         End Property
 
+        Public WriteOnly Property Mostrar_Recalculo As Boolean Implements Contratos.FacFacturas.IConsultarFacFactura.Mostrar_Recalculo
+            Set(ByVal value As Boolean)
+                If value = True Then
+                    _Wp_Btn3.Visibility = Windows.Visibility.Visible
+                Else
+                    _Wp_Btn3.Visibility = Windows.Visibility.Collapsed
+                End If
+            End Set
+        End Property
+
         Public Function GetFormatoDouble(ByVal texto As String) As String
             'Dim valor As String = Replace(texto, ",", "")
             'valor = Replace(valor, ".", ",")
@@ -1934,5 +1948,6 @@ Namespace Ventanas.FacFacturas
             Me._presentador.buscar_departamento_servicio_esp(cproformadetalle)
         End Sub
         Public Shared Mostrar_Detalle_Servicio As New RoutedCommand("Mostrar_Detalle_Servicio", GetType(ConsultarFacFactura))
+
     End Class
 End Namespace

@@ -325,6 +325,13 @@ Namespace Presentadores.FacFacturas
 
                     'Me._ventana.AccionRealizar = FacFactura.Accion
 
+                    If UsuarioLogeado.Iniciales = "CD" Then
+                        Me._ventana.Mostrar_Recalculo = True
+                        'MessageBox.Show("entro en el mensaje")
+                    Else
+                        Me._ventana.Mostrar_Recalculo = False
+                    End If
+
                     Me._ventana.FocoPredeterminado()
 
                     '#Region "trace"
@@ -972,6 +979,32 @@ Namespace Presentadores.FacFacturas
             End If
             'Imprimir(4)
         End Sub
+
+        Public Sub Recalcular_Statement()
+            Mouse.OverrideCursor = Cursors.Wait
+
+            Dim FacFactura As FacFactura = DirectCast(_ventana.FacFactura, FacFactura)
+            If FacFactura.Terrero.ToString = "1" Or FacFactura.Terrero.ToString = "2" Then
+                Mouse.OverrideCursor = Nothing
+                MessageBox.Show("Se trata de una F o de una S-F", "Error", MessageBoxButton.OK)
+                Exit Sub
+            End If
+
+            If MessageBoxResult.Yes = MessageBox.Show("Esta seguro de recalcular los montos del Statement ", "Recalcular", MessageBoxButton.YesNo, MessageBoxImage.Question) Then
+                If FacFactura.FechaFactura >= CDate("01-01-2008") Then
+                    ' MessageBox.Show("entro aqui")
+                    Recalculo_x_imp_nueva()
+                Else
+                    Recalculo_x_imp_vieja()
+                End If
+            Else
+                Mouse.OverrideCursor = Nothing
+                Exit Sub
+            End If
+            Mouse.OverrideCursor = Nothing
+
+        End Sub
+
 
 
         Public Sub Imprimir(ByVal tipo As Integer)
@@ -2220,10 +2253,10 @@ Namespace Presentadores.FacFacturas
             Dim MDescuento As Double = 0
             Dim MDescuentoBf As Double = 0
 
-            Dim w_monto, w_monto_bf As Integer
+            Dim w_monto, w_monto_bf As Double
             Dim factura As FacFactura = Me._ventana.FacFactura
             Dim fecha As DateTime
-            Dim w_impos As Integer = 0
+            Dim w_impos As Double = 0
             Dim w_impu As Double? = Nothing
             Dim FacFactuDetas As List(Of FacFactuDetalle) = DirectCast(Me._ventana.ResultadosFacFactuDeta, List(Of FacFactuDetalle))
             If FacFactuDetas IsNot Nothing Then
@@ -2263,10 +2296,12 @@ Namespace Presentadores.FacFacturas
                     End If
                     MDescuento = MDescuento + ((FacFactuDetas(i).Pu * FacFactuDetas(i).NCantidad) * FacFactuDetas(i).Descuento) / 100
                     Me._ventana.MDescuento = MDescuento
+                    'MessageBox.Show(MDescuento)
 
                     MDescuentoBf = MDescuentoBf + ((FacFactuDetas(i).PuBf * FacFactuDetas(i).NCantidad) * FacFactuDetas(i).Descuento) / 100
                     Me._ventana.MDescuentoBf = MDescuentoBf
                 Next
+                'MessageBox.Show(w_monto_bf.ToString)
                 'If factura.Descuento <> 0 Then
 
                 'Me._ventana.MDescuento = (factura.MSubtimpo * factura.Descuento) / 100

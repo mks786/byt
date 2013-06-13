@@ -1593,6 +1593,130 @@ Namespace Presentadores.FacFacturaProformas
             Me._ventana.ResultadosFacFactuDetaProforma = FacFactuDetaProformas
         End Sub
 
+        'Public Sub recalcular(ByVal moneda As String)
+        '    Dim MSubtimpo, MDescuento, MTbimp, Mtbexc, Msubtotal, Mtimp, Mttotal, MSubtimpoBf, MDescuentoBf, MTbimpBf, MtbexcBf, MsubtotalBf, MtimpBf, MttotalBf As Double
+
+        '    Me._ventana.MSubtimpo = 0
+        '    Me._ventana.MDescuento = 0
+        '    Me._ventana.MTbimp = 0
+        '    Me._ventana.Mtbexc = 0
+        '    Me._ventana.Msubtotal = 0
+        '    Me._ventana.Mtimp = 0
+        '    Me._ventana.Mttotal = 0
+        '    Me._ventana.MSubtimpoBf = 0
+        '    Me._ventana.MDescuentoBf = 0
+        '    Me._ventana.MTbimpBf = 0
+        '    Me._ventana.MtbexcBf = 0
+        '    Me._ventana.MsubtotalBf = 0
+        '    Me._ventana.MtimpBf = 0
+        '    Me._ventana.MttotalBf = 0
+
+        '    'trabajo con variables y despues se la asigno a los txt
+        '    MSubtimpo = 0
+        '    MDescuento = 0
+        '    MTbimp = 0
+        '    Mtbexc = 0
+        '    Msubtotal = 0
+        '    Mtimp = 0
+        '    Mttotal = 0
+        '    MSubtimpoBf = 0
+        '    MDescuentoBf = 0
+        '    MTbimpBf = 0
+        '    MtbexcBf = 0
+        '    MsubtotalBf = 0
+        '    MtimpBf = 0
+        '    MttotalBf = 0
+
+        '    Dim w_monto, w_monto_bf As Double
+
+
+        '    Dim FacFactuDetaProformas As List(Of FacFactuDetaProforma) = DirectCast(Me._ventana.ResultadosFacFactuDetaProforma, List(Of FacFactuDetaProforma))
+        '    If FacFactuDetaProformas IsNot Nothing Then
+        '        Dim tasa As Tasa = buscar_tasa(CDate(Me._ventana.FechaFactura), moneda)
+        '        'Dim guardar As Boolean
+        '        For i As Integer = 0 To FacFactuDetaProformas.Count - 1
+        '            If moneda = "US" Then
+        '                If tasa IsNot Nothing Then
+        '                    FacFactuDetaProformas(i).BDetalleBf = FormatNumber((FacFactuDetaProformas(i).BDetalle * tasa.Tasabf), 2)
+        '                    FacFactuDetaProformas(i).PuBf = FormatNumber((FacFactuDetaProformas(i).Pu * tasa.Tasabf), 2)
+        '                End If
+        '            Else
+        '                FacFactuDetaProformas(i).BDetalleBf = FormatNumber((FacFactuDetaProformas(i).BDetalle), 2)
+        '                FacFactuDetaProformas(i).PuBf = FormatNumber(FacFactuDetaProformas(i).Pu, 2)
+        '            End If
+
+        '            FacFactuDetaProformas(i).Pu = FormatNumber(FacFactuDetaProformas(i).Pu, 2)
+        '            FacFactuDetaProformas(i).BDetalle = FormatNumber(FacFactuDetaProformas(i).BDetalle, 2)
+
+        '            'guarda los cambios en el detalle
+        '            'guardar = _FacFactuDetaProformasServicios.InsertarOModificar(FacFactuDetaProformas(i), UsuarioLogeado.Hash)
+
+        '            w_monto = FacFactuDetaProformas(i).BDetalle
+        '            w_monto_bf = FacFactuDetaProformas(i).BDetalleBf
+
+        '            If FacFactuDetaProformas(i).Impuesto = "T" Or FacFactuDetaProformas(i).Impuesto = "1" Then
+        '                MSubtimpo = MSubtimpo + w_monto
+        '                MSubtimpoBf = MSubtimpoBf + w_monto_bf
+        '            Else
+        '                Mtbexc = (Mtbexc + w_monto)
+        '                MtbexcBf = (MtbexcBf + w_monto_bf)
+        '            End If
+        '            MDescuento = MDescuento + ((FacFactuDetaProformas(i).Pu * FacFactuDetaProformas(i).NCantidad) * FacFactuDetaProformas(i).Descuento) / 100
+        '            MDescuento = MDescuento
+
+        '            MDescuentoBf = MDescuentoBf + ((FacFactuDetaProformas(i).PuBf * FacFactuDetaProformas(i).NCantidad) * FacFactuDetaProformas(i).Descuento) / 100
+        '            MDescuentoBf = MDescuentoBf
+        '        Next
+
+        '        MTbimp = MSubtimpo - MDescuento
+        '        MTbimpBf = MSubtimpoBf - MDescuentoBf
+
+        '        Msubtotal = MTbimp + Mtbexc
+        '        MsubtotalBf = MTbimpBf + MtbexcBf
+        '        If Me._ventana.Impuesto = "" Or Me._ventana.Impuesto = Nothing Or Not IsNumeric(Me._ventana.Impuesto) Then
+        '            Mtimp = MTbimp * (0 / 100)
+        '            MtimpBf = MTbimpBf * (0 / 100)
+        '        Else
+        '            Mtimp = MTbimp * (Me._ventana.Impuesto / 100)
+        '            MtimpBf = MTbimpBf * (Me._ventana.Impuesto / 100)
+        '        End If
+        '        Mttotal = Msubtotal + Mtimp
+        '        MttotalBf = MsubtotalBf + MtimpBf
+
+        '        Mtimp = Mtimp
+        '        MtimpBf = MtimpBf
+
+        '        Mttotal = Mttotal
+        '        MttotalBf = MttotalBf
+
+
+
+        '        Me._ventana.MSubtimpo = MSubtimpo
+        '        Me._ventana.MDescuento = MDescuento
+        '        Me._ventana.MTbimp = MTbimp
+        '        Me._ventana.Mtbexc = Mtbexc
+        '        Me._ventana.Msubtotal = Msubtotal
+        '        Me._ventana.Mtimp = Mtimp
+        '        Me._ventana.Mttotal = Mttotal
+        '        Me._ventana.MSubtimpoBf = MSubtimpoBf
+        '        Me._ventana.MDescuentoBf = MDescuentoBf
+        '        Me._ventana.MTbimpBf = MTbimpBf
+        '        Me._ventana.MtbexcBf = MtbexcBf
+        '        Me._ventana.MsubtotalBf = MsubtotalBf
+        '        Me._ventana.MtimpBf = MtimpBf
+        '        Me._ventana.MttotalBf = MttotalBf
+
+
+        '        Me._ventana.ResultadosFacFactuDetaProforma = Nothing
+        '        Me._ventana.ResultadosFacFactuDetaProforma = FacFactuDetaProformas
+        '        Me._ventana.Activar_Desactivar = False
+        '        Me._ventana.NCantidad = 0
+        '        Me._ventana.Pu = 0
+        '        Me._ventana.BDetalle = 0
+        '        Me._ventana.Descuento = 0
+        '    End If
+        'End Sub
+
         Public Sub recalcular(ByVal moneda As String)
             Dim MSubtimpo, MDescuento, MTbimp, Mtbexc, Msubtotal, Mtimp, Mttotal, MSubtimpoBf, MDescuentoBf, MTbimpBf, MtbexcBf, MsubtotalBf, MtimpBf, MttotalBf As Double
 
@@ -1637,16 +1761,22 @@ Namespace Presentadores.FacFacturaProformas
                 For i As Integer = 0 To FacFactuDetaProformas.Count - 1
                     If moneda = "US" Then
                         If tasa IsNot Nothing Then
-                            FacFactuDetaProformas(i).BDetalleBf = FormatNumber((FacFactuDetaProformas(i).BDetalle * tasa.Tasabf), 2)
-                            FacFactuDetaProformas(i).PuBf = FormatNumber((FacFactuDetaProformas(i).Pu * tasa.Tasabf), 2)
+                            'FacFactuDetaProformas(i).BDetalleBf = FormatNumber((FacFactuDetaProformas(i).BDetalle * tasa.Tasabf), 2)
+                            FacFactuDetaProformas(i).BDetalleBf = FacFactuDetaProformas(i).BDetalle * tasa.Tasabf
+                            'FacFactuDetaProformas(i).PuBf = FormatNumber((FacFactuDetaProformas(i).Pu * tasa.Tasabf), 2)
+                            FacFactuDetaProformas(i).PuBf = FacFactuDetaProformas(i).Pu * tasa.Tasabf
                         End If
                     Else
-                        FacFactuDetaProformas(i).BDetalleBf = FormatNumber((FacFactuDetaProformas(i).BDetalle), 2)
-                        FacFactuDetaProformas(i).PuBf = FormatNumber(FacFactuDetaProformas(i).Pu, 2)
+                        'FacFactuDetaProformas(i).BDetalleBf = FormatNumber((FacFactuDetaProformas(i).BDetalle), 2)
+                        FacFactuDetaProformas(i).BDetalleBf = FacFactuDetaProformas(i).BDetalle
+                        'FacFactuDetaProformas(i).PuBf = FormatNumber(FacFactuDetaProformas(i).Pu, 2)
+                        FacFactuDetaProformas(i).PuBf = FacFactuDetaProformas(i).Pu
                     End If
 
-                    FacFactuDetaProformas(i).Pu = FormatNumber(FacFactuDetaProformas(i).Pu, 2)
-                    FacFactuDetaProformas(i).BDetalle = FormatNumber(FacFactuDetaProformas(i).BDetalle, 2)
+                    'FacFactuDetaProformas(i).Pu = FormatNumber(FacFactuDetaProformas(i).Pu, 2)
+                    FacFactuDetaProformas(i).Pu = FacFactuDetaProformas(i).Pu
+                    'FacFactuDetaProformas(i).BDetalle = FormatNumber(FacFactuDetaProformas(i).BDetalle, 2)
+                    FacFactuDetaProformas(i).BDetalle = FacFactuDetaProformas(i).BDetalle
 
                     'guarda los cambios en el detalle
                     'guardar = _FacFactuDetaProformasServicios.InsertarOModificar(FacFactuDetaProformas(i), UsuarioLogeado.Hash)

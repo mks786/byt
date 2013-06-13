@@ -269,6 +269,8 @@ Namespace Contratos.FacFacturas
 
         WriteOnly Property SaldoPendiente As Double
 
+        WriteOnly Property Mostrar_Recalculo As Boolean
+
         Property Guia() As Object
 
         Property Guias() As Object

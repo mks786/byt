@@ -1408,16 +1408,22 @@ Namespace Presentadores.FacFacturaProformas
                 For i As Integer = 0 To FacFactuDetaProformas.Count - 1
                     If moneda = "US" Then
                         If tasa IsNot Nothing Then
-                            FacFactuDetaProformas(i).BDetalleBf = FormatNumber((FacFactuDetaProformas(i).BDetalle * tasa.Tasabf), 2)
-                            FacFactuDetaProformas(i).PuBf = FormatNumber((FacFactuDetaProformas(i).Pu * tasa.Tasabf), 2)
+                            'FacFactuDetaProformas(i).BDetalleBf = FormatNumber((FacFactuDetaProformas(i).BDetalle * tasa.Tasabf), 2)
+                            FacFactuDetaProformas(i).BDetalleBf = FacFactuDetaProformas(i).BDetalle * tasa.Tasabf
+                            'FacFactuDetaProformas(i).PuBf = FormatNumber((FacFactuDetaProformas(i).Pu * tasa.Tasabf), 2)
+                            FacFactuDetaProformas(i).PuBf = FacFactuDetaProformas(i).Pu * tasa.Tasabf
                         End If
                     Else
-                        FacFactuDetaProformas(i).BDetalleBf = FormatNumber((FacFactuDetaProformas(i).BDetalle), 2)
-                        FacFactuDetaProformas(i).PuBf = FormatNumber(FacFactuDetaProformas(i).Pu, 2)
+                        'FacFactuDetaProformas(i).BDetalleBf = FormatNumber((FacFactuDetaProformas(i).BDetalle), 2)
+                        FacFactuDetaProformas(i).BDetalleBf = FacFactuDetaProformas(i).BDetalle
+                        'FacFactuDetaProformas(i).PuBf = FormatNumber(FacFactuDetaProformas(i).Pu, 2)
+                        FacFactuDetaProformas(i).PuBf = FacFactuDetaProformas(i).Pu
                     End If
 
-                    FacFactuDetaProformas(i).Pu = FormatNumber(FacFactuDetaProformas(i).Pu, 2)
-                    FacFactuDetaProformas(i).BDetalle = FormatNumber(FacFactuDetaProformas(i).BDetalle, 2)
+                    'FacFactuDetaProformas(i).Pu = FormatNumber(FacFactuDetaProformas(i).Pu, 2)
+                    FacFactuDetaProformas(i).Pu = FacFactuDetaProformas(i).Pu
+                    'FacFactuDetaProformas(i).BDetalle = FormatNumber(FacFactuDetaProformas(i).BDetalle, 2)
+                    FacFactuDetaProformas(i).BDetalle = FacFactuDetaProformas(i).BDetalle
 
                     'guarda los cambios en el detalle
                     'guardar = _FacFactuDetaProformasServicios.InsertarOModificar(FacFactuDetaProformas(i), UsuarioLogeado.Hash)
