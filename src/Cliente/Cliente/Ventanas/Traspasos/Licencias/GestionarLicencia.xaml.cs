@@ -846,11 +846,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
 
                 if (this._presentador.VerificarCambioInteresado("Licenciante"))
                 {
-                    this._btnConsultarPoderLicenciante.IsEnabled = false;
+                    //this._btnConsultarPoderLicenciante.IsEnabled = false;
+                    this._btnConsultarPoderLicenciante.IsEnabled = true;
                 }
                 else
                 {
-                    this._btnConsultarPoderLicenciante.IsEnabled = false;
+                    //this._btnConsultarPoderLicenciante.IsEnabled = false;
+                    this._btnConsultarPoderLicenciante.IsEnabled = true;
                 }
             }
 
@@ -865,8 +867,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
 
                 if (this._presentador.VerificarCambioPoder("Licenciante"))
                 {
-                    this._btnConsultarApoderadoLicenciante.IsEnabled = false;
-                    this._btnConsultarLicenciante.IsEnabled = false;
+                    //this._btnConsultarApoderadoLicenciante.IsEnabled = false;
+                    //this._btnConsultarLicenciante.IsEnabled = false;
+                    this._btnConsultarApoderadoLicenciante.IsEnabled = true;
+                    this._btnConsultarLicenciante.IsEnabled = true;
                 }
                 else
                 {
@@ -885,7 +889,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
 
                 if (this._presentador.VerificarCambioAgente("Licenciante"))
                 {
-                    this._btnConsultarPoderLicenciante.IsEnabled = false;
+                    //this._btnConsultarPoderLicenciante.IsEnabled = false;
+                    this._btnConsultarPoderLicenciante.IsEnabled = true;
                 }
                 else
                 {
@@ -1100,11 +1105,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
 
                 if (this._presentador.VerificarCambioInteresado("Licenciatario"))
                 {
-                    this._btnConsultarPoderLicenciatario.IsEnabled = false;
+                    //this._btnConsultarPoderLicenciatario.IsEnabled = false;
+                    this._btnConsultarPoderLicenciatario.IsEnabled = true;
                 }
                 else
                 {
-                    this._btnConsultarPoderLicenciatario.IsEnabled = false;
+                    //this._btnConsultarPoderLicenciatario.IsEnabled = false;
+                    this._btnConsultarPoderLicenciatario.IsEnabled = true;
                 }
             }
         }
@@ -1119,7 +1126,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
 
                 if (this._presentador.VerificarCambioAgente("Licenciatario"))
                 {
-                    this._btnConsultarPoderLicenciatario.IsEnabled = false;
+                    //this._btnConsultarPoderLicenciatario.IsEnabled = false;
+                    this._btnConsultarPoderLicenciatario.IsEnabled = true;
                 }
                 else
                 {
@@ -1134,8 +1142,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
             {
                 GestionarVisibilidadDatosDePoderLicenciatario(Visibility.Visible);
                 GestionarVisibilidadFiltroPoderLicenciatario(Visibility.Collapsed);
-                this._btnConsultarApoderadoLicenciatario.IsEnabled = false;
-                this._btnConsultarLicenciatario.IsEnabled = false;
+                //this._btnConsultarApoderadoLicenciatario.IsEnabled = false;
+                //this._btnConsultarLicenciatario.IsEnabled = false;
+                this._btnConsultarApoderadoLicenciatario.IsEnabled = true;
+                this._btnConsultarLicenciatario.IsEnabled = true;
             }
         }
 

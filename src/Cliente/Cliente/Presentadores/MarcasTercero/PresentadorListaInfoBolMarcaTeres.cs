@@ -25,6 +25,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         private MarcaTercero _marca;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+        private ITipoInfobolServicios _tipoInfobolServicios;
 
 
         /// <summary>
@@ -41,6 +42,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             this._ventana = ventana;
             this._marca = (MarcaTercero)marca;
 
+            this._tipoInfobolServicios = (ITipoInfobolServicios)Activator.GetObject(typeof(ITipoInfobolServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoInfobolServicios"]);
+
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -55,6 +59,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         {
             Mouse.OverrideCursor = Cursors.Wait;
 
+            TipoInfobol aux = null;
+
             try
             {
                 #region trace
@@ -65,8 +71,35 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaInfoBol,
                     Recursos.Ids.InfoBolMarcaTer);
 
+                IList<TipoInfobol> tipoInfobol = this._tipoInfobolServicios.ConsultarTodos();
+
+                IList<InfoBolMarcaTer> listaInfobolesMarca = ((MarcaTercero)this._marca).InfoBoles;
+
+                foreach (InfoBolMarcaTer item in listaInfobolesMarca)
+                {
+
+                    TipoInfobol tipoInfobolMarca = item.TipoInfobol;
+                    aux = this.BuscarTipoInfobol(tipoInfobol, tipoInfobolMarca);
+                    if (aux != null)
+                    {
+                        //tipoInfobolMarca = null;
+                        //tipoInfobolMarca = aux;
+                        item.TipoInfobol = aux;
+                    }
+
+                }
+
+                ((MarcaTercero)this._marca).InfoBoles = listaInfobolesMarca;
+
                 this._ventana.InfoBolMarcaTeres = ((MarcaTercero)this._marca).InfoBoles;
-                this._ventana.TotalHits = ((MarcaTercero)this._marca).InfoBoles.Count.ToString();
+
+
+                
+                if (((MarcaTercero)this._marca).InfoBoles != null)
+                    this._ventana.TotalHits = ((MarcaTercero)this._marca).InfoBoles.Count.ToString();
+                else
+                    this._ventana.TotalHits = "0";
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace

@@ -664,7 +664,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
             this._txtIdMarcaFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lstMarcas.Visibility = (System.Windows.Visibility)value;
             this._btnConsultarMarca.Visibility = (System.Windows.Visibility)value;
-            this._btnIrAsociados.Visibility = (System.Windows.Visibility)value;
+            
         }
 
         private void GestionarVisibilidadDatosDeMarca(object value)
@@ -685,6 +685,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
             this._lblAsociado.Visibility = (System.Windows.Visibility)value;
             this._txtAsociado.Visibility = (System.Windows.Visibility)value;
             this._txtIdAsociado.Visibility = (System.Windows.Visibility)value;
+            this._btnIrAsociados.Visibility = (System.Windows.Visibility)value;
         }
 
         private void _txtMarcaFiltrar_GotFocus(object sender, RoutedEventArgs e)
@@ -715,7 +716,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
                 GestionarVisibilidadDatosDeInteresadoAnterior(Visibility.Visible);
                 GestionarVisibilidadFiltroInteresadoAnterior(Visibility.Collapsed);
 
-                this._btnConsultarInteresadoAnterior.IsDefault = false;
+                //this._btnConsultarInteresadoAnterior.IsDefault = false;
+                this._btnConsultarInteresadoAnterior.IsDefault = true;
                 this._btnModificar.IsDefault = true;
             }
         }

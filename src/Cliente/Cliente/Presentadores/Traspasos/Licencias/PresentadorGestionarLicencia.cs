@@ -886,10 +886,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 this._poderesLicenciatario = this._poderServicios.ConsultarPoderesPorInteresado(licencia.InteresadoLicenciatario);
 
             if (licencia.AgenteLicenciante != null)
-                this._poderesApoderadosLicenciante = this._poderServicios.ConsultarPoderesPorAgente(licencia.AgenteLicenciante);
+                //this._poderesApoderadosLicenciante = this._poderServicios.ConsultarPoderesPorAgente(licencia.AgenteLicenciante);
+                this._poderesApoderadosLicenciante = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado(licencia.AgenteLicenciante, licencia.InteresadoLicenciante);
+            
 
             if (licencia.AgenteLicenciatario != null)
-                this._poderesApoderadosLicenciatario = this._poderServicios.ConsultarPoderesPorAgente(licencia.AgenteLicenciatario);
+                //this._poderesApoderadosLicenciatario = this._poderServicios.ConsultarPoderesPorAgente(licencia.AgenteLicenciatario);
+                this._poderesApoderadosLicenciatario = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado(licencia.AgenteLicenciatario, licencia.InteresadoLicenciatario);
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1593,22 +1596,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     {
                         LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciante, "Licenciante", true);
 
-                        this._ventana.GestionarBotonConsultarInteresados("Licenciante", false);
-                        this._ventana.GestionarBotonConsultarApoderados("Licenciante", false);
+                        //this._ventana.GestionarBotonConsultarInteresados("Licenciante", false);
+                        //this._ventana.GestionarBotonConsultarApoderados("Licenciante", false);
+                        this._ventana.GestionarBotonConsultarInteresados("Licenciante", true);
+                        this._ventana.GestionarBotonConsultarApoderados("Licenciante", true);
                     }
                 }
                 else
                 {
                     if (((Licencia)this._ventana.PoderLicencianteFiltrado).Id == int.MinValue)
-                        this._ventana.GestionarBotonConsultarInteresados("Licenciante", false);
+                        //this._ventana.GestionarBotonConsultarInteresados("Licenciante", false);
+                        this._ventana.GestionarBotonConsultarInteresados("Licenciante", true);
 
                     else
                     {
                         LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciante, "Licenciante", true);
 
-                        this._ventana.GestionarBotonConsultarInteresados("Licenciante", false);
-                        this._ventana.GestionarBotonConsultarApoderados("Licenciante", false);
-                        this._ventana.GestionarBotonConsultarPoderes("Licenciante", false);
+                        //this._ventana.GestionarBotonConsultarInteresados("Licenciante", false);
+                        //this._ventana.GestionarBotonConsultarApoderados("Licenciante", false);
+                        //this._ventana.GestionarBotonConsultarPoderes("Licenciante", false);
+                        this._ventana.GestionarBotonConsultarInteresados("Licenciante", true);
+                        this._ventana.GestionarBotonConsultarApoderados("Licenciante", true);
+                        this._ventana.GestionarBotonConsultarPoderes("Licenciante", true);
                     }
 
                 }
@@ -1618,15 +1627,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 if (((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id.Equals(""))
                 {
                     if (((Poder)this._ventana.PoderLicencianteFiltrado).Id == int.MinValue)
-                        this._ventana.GestionarBotonConsultarPoderes("Licenciante", false);
+                        //this._ventana.GestionarBotonConsultarPoderes("Licenciante", false);
+                        this._ventana.GestionarBotonConsultarPoderes("Licenciante", true);
 
                     else
                     {
                         LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciante, "Licenciante", true);
 
-                        this._ventana.GestionarBotonConsultarInteresados("Licenciante", false);
-                        this._ventana.GestionarBotonConsultarApoderados("Licenciante", false);
-                        this._ventana.GestionarBotonConsultarPoderes("Licenciante", false);
+                        //this._ventana.GestionarBotonConsultarInteresados("Licenciante", false);
+                        //this._ventana.GestionarBotonConsultarApoderados("Licenciante", false);
+                        //this._ventana.GestionarBotonConsultarPoderes("Licenciante", false);
+                        this._ventana.GestionarBotonConsultarInteresados("Licenciante", true);
+                        this._ventana.GestionarBotonConsultarApoderados("Licenciante", true);
+                        this._ventana.GestionarBotonConsultarPoderes("Licenciante", true);
 
                     }
                 }
@@ -1636,16 +1649,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     {
                         ValidarListaDePoderes(this._poderesLicenciante, this._poderesApoderadosLicenciante, "Licenciante");
 
-                        this._ventana.GestionarBotonConsultarPoderes("Licenciante", false);
+                        //this._ventana.GestionarBotonConsultarPoderes("Licenciante", false);
+                        this._ventana.GestionarBotonConsultarPoderes("Licenciante", true);
                     }
                     else
                     {
                         LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciante, "Licenciante", true);
                         ValidarListaDePoderes(this._poderesLicenciante, this._poderesApoderadosLicenciante, "Licenciante");
 
-                        this._ventana.GestionarBotonConsultarInteresados("Licenciante", false);
-                        this._ventana.GestionarBotonConsultarApoderados("Licenciante", false);
-                        this._ventana.GestionarBotonConsultarPoderes("Licenciante", false);
+                        //this._ventana.GestionarBotonConsultarInteresados("Licenciante", false);
+                        //this._ventana.GestionarBotonConsultarApoderados("Licenciante", false);
+                        //this._ventana.GestionarBotonConsultarPoderes("Licenciante", false);
+                        this._ventana.GestionarBotonConsultarInteresados("Licenciante", true);
+                        this._ventana.GestionarBotonConsultarApoderados("Licenciante", true);
+                        this._ventana.GestionarBotonConsultarPoderes("Licenciante", true);
                     }
                 }
             }
@@ -1750,7 +1767,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 apoderadoLicenciante.Id = this._ventana.IdApoderadoLicencianteFiltrar.ToUpper();
 
                 if ((!apoderadoLicenciante.Nombre.Equals("")) || (!apoderadoLicenciante.Id.Equals("")))
-                    agentesLicencianteFiltrados = this._agenteServicios.ObtenerAgentesFiltro(apoderadoLicenciante);
+                    agentesLicencianteFiltrados = this._agenteServicios.ObtenerAgentesSinPoderesFiltro(apoderadoLicenciante);
+                    //agentesLicencianteFiltrados = this._agenteServicios.ObtenerAgentesFiltro(apoderadoLicenciante);
+
                 else
                     agentesLicencianteFiltrados = new List<Agente>();
 
@@ -1897,7 +1916,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 {
                     if (!((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id.Equals(""))
                     {
-                        if (((Poder)this._ventana.PoderLicencianteFiltrado).Id != int.MinValue)
+                        if ((null!= this._ventana.PoderLicencianteFiltrado) &&(((Poder)this._ventana.PoderLicencianteFiltrado).Id != int.MinValue))
                         {
                             this._ventana.InteresadoLicenciante = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.LicencianteFiltrado);
                             this._ventana.NombreLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Nombre;
@@ -1921,6 +1940,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                             {
                                 this._ventana.ConvertirEnteroMinimoABlanco("Licenciante");
                                 this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderConAgente, "Licenciante"), 0);
+                                //-- ESTO ES PORQUE SI EL INTERESADO NO TIENE PODERES CON EL AGENTE DEBERIA DEJAR AVANZAR 
+                                this._ventana.InteresadoLicenciante = this._ventana.LicencianteFiltrado;
+                                this._ventana.NombreLicenciante = ((Interesado)this._ventana.LicencianteFiltrado).Nombre;
+                                this._ventana.IdLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Id.ToString();
+                                retorno = true;
+                                //--
                             }
                         }
                     }
@@ -2005,6 +2030,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             Mouse.OverrideCursor = Cursors.Wait;
 
             bool retorno = false;
+            IList<Poder> _poderesFiltrados = new List<Poder>();
+            Poder poderABuscar = null;
+            bool listaDePoderesValidada = false;
 
             try
             {
@@ -2017,37 +2045,86 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 {
                     if (((Interesado)this._ventana.LicencianteFiltrado).Id != int.MinValue)
                     {
-                        if (((Poder)this._ventana.PoderLicencianteFiltrado).Id != int.MinValue)
+                        if ((this._ventana.PoderLicencianteFiltrado != null) && (((Poder)this._ventana.PoderLicencianteFiltrado).Id != int.MinValue))
                         {
                             this._ventana.ApoderadoLicenciante = this._ventana.ApoderadoLicencianteFiltrado;
                             this._ventana.NombreApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Nombre;
                             this._ventana.IdApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id;
+                            
+                            //-- 
+                            //Para validar que el Agente que estoy seleccionando tenga Poderes con el Licenciante
+                            Poder primerPoder = new Poder();
+                            primerPoder.Id = int.MinValue;
+
+                            _poderesFiltrados = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.ApoderadoLicencianteFiltrado, (Interesado)this._ventana.LicencianteFiltrado);
+
+                            if (_poderesFiltrados.Count != 0)
+                            {
+                                poderABuscar = this.BuscarPoder(_poderesFiltrados, (Poder)this._ventana.PoderLicencianteFiltrado);
+
+                                if (poderABuscar != null)
+                                {
+                                    _poderesFiltrados.Insert(0, primerPoder);
+                                    this._ventana.PoderesLicencianteFiltrados = _poderesFiltrados;
+                                    this._ventana.PoderLicencianteFiltrado = poderABuscar;
+                                }
+                                else
+                                {
+                                    this._ventana.Mensaje("Seleccione un poder que relacione al Apoderado con el Licenciante", 0);
+                                    _poderesFiltrados.Insert(0, primerPoder);
+                                    this._ventana.PoderesLicencianteFiltrados = _poderesFiltrados;
+
+                                }
+                            }
+
+                            else
+                            {
+                                this._ventana.Mensaje("Apoderado no posee poderes con el Licenciante", 0);
+                                _poderesFiltrados.Insert(0, primerPoder);
+                                this._ventana.PoderesLicencianteFiltrados = _poderesFiltrados;
+                            }
+
+                            //--
                             retorno = true;
                         }
                         else
                         {
-                            this._poderesApoderadosLicenciante = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoLicencianteFiltrado));
-
+                            //this._poderesApoderadosLicenciante = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoLicencianteFiltrado));
+                            this._poderesApoderadosLicenciante = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.ApoderadoLicencianteFiltrado, (Interesado)this._ventana.LicencianteFiltrado);
+                            
                             LimpiarListaPoder("Licenciante");
 
-                            if ((this.ValidarListaDePoderes(this._poderesLicenciante, this._poderesApoderadosLicenciante, "Licenciante")))
+                            listaDePoderesValidada = this.ValidarListaDePoderes(this._poderesLicenciante, this._poderesApoderadosLicenciante, "Licenciante");
+
+                            //if ((this.ValidarListaDePoderes(this._poderesLicenciante, this._poderesApoderadosLicenciante, "Licenciante")))
+                            if(listaDePoderesValidada) 
                             {
                                 this._ventana.ApoderadoLicenciante = this._ventana.ApoderadoLicencianteFiltrado;
                                 this._ventana.NombreApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Nombre;
                                 this._ventana.IdApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id;
                                 retorno = true;
                             }
-                            else if (!this.ValidarListaDePoderes(this._poderesLicenciante, this._poderesApoderadosLicenciante, "Licenciante"))
+                            //else if (!this.ValidarListaDePoderes(this._poderesLicenciante, this._poderesApoderadosLicenciante, "Licenciante"))
+                            else
                             {
                                 this._ventana.ConvertirEnteroMinimoABlanco("Licenciante");
                                 this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorAgenteNoPoseePoderConInteresado, "Licenciante"), 0);
+                                this._ventana.ApoderadoLicenciante = this._ventana.ApoderadoLicencianteFiltrado;
+                                this._ventana.NombreApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Nombre;
+                                this._ventana.IdApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id;
+                                retorno = true;
                             }
                         }
                     }
                     else
                     {
-                        if (((Poder)this._ventana.PoderLicencianteFiltrado).Id != int.MinValue)
+                        //if (((Poder)this._ventana.PoderLicencianteFiltrado).Id != int.MinValue)
+                        if ((this._ventana.PoderLicencianteFiltrado != null) && (((Poder)this._ventana.PoderLicencianteFiltrado).Id != int.MinValue))
                         {
+                            //--
+                            this._ventana.Mensaje("Debe seleccionar un Licenciante", 0);
+                            LimpiarListaPoder("Licenciante");
+                            //--
                             this._ventana.ApoderadoLicenciante = this._ventana.ApoderadoLicencianteFiltrado;
                             this._ventana.NombreApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Nombre;
                             this._ventana.IdApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id;
@@ -2055,7 +2132,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                         }
                         else
                         {
-                            this._poderesApoderadosLicenciante = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoLicencianteFiltrado));
+                            //this._poderesApoderadosLicenciante = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoLicencianteFiltrado));
+                            //--
+                            this._ventana.Mensaje("Debe seleccionar un Licenciante", 0);
+                            
+                            //--
                             this._ventana.ApoderadoLicenciante = this._ventana.ApoderadoLicencianteFiltrado;
                             this._ventana.NombreApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Nombre;
                             this._ventana.IdApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id;
@@ -2115,6 +2196,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             Mouse.OverrideCursor = Cursors.Wait;
 
             bool retorno = false;
+            IList<Poder> _poderesFiltrados = new List<Poder>();
+            Poder poderABuscar = null;
 
             try
             {
@@ -2153,9 +2236,41 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     }
                     else
                     {
-                        this._ventana.PoderLicenciante = this._ventana.PoderLicencianteFiltrado;
-                        this._ventana.IdPoderLicenciante = ((Poder)this._ventana.PoderLicencianteFiltrado).Id.ToString();
-                        retorno = true;
+                        //El Agente es diferente a Vacio
+                        //--
+
+                        Poder primerPoder = new Poder();
+                        primerPoder.Id = int.MinValue;
+                        _poderesFiltrados = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.ApoderadoLicencianteFiltrado, (Interesado)this._ventana.LicencianteFiltrado);
+                        if (_poderesFiltrados.Count != 0)
+                        {
+                            poderABuscar = this.BuscarPoder(_poderesFiltrados, (Poder)this._ventana.PoderLicencianteFiltrado);
+
+                            if (poderABuscar != null)
+                            {
+                                _poderesFiltrados.Insert(0, primerPoder);
+                                this._ventana.PoderesLicencianteFiltrados = _poderesFiltrados;
+                                this._ventana.PoderLicencianteFiltrado = poderABuscar;
+                                this._ventana.PoderLicenciante = this._ventana.PoderLicencianteFiltrado;
+                                this._ventana.IdPoderLicenciante = ((Poder)this._ventana.PoderLicencianteFiltrado).Id.ToString();
+                                retorno = true;
+                            }
+                            else
+                            {
+                                //this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorAgenteNoPoseePoderConInteresado, "interesado"), 0);
+                                this._ventana.Mensaje("El Poder no pertenece al Licenciante", 0);
+                                this._ventana.PoderLicenciante = this._ventana.PoderLicencianteFiltrado;
+                                this._ventana.IdPoderLicenciante = ((Poder)this._ventana.PoderLicencianteFiltrado).Id.ToString();
+                                retorno = true;
+                            }
+                        }
+                        else
+                        {
+                            this._ventana.Mensaje("El poder seleccionado no relaciona al Apoderado con el Licenciante", 0);
+                            this._ventana.PoderLicenciante = this._ventana.PoderLicencianteFiltrado;
+                            this._ventana.IdPoderLicenciante = ((Poder)this._ventana.PoderLicencianteFiltrado).Id.ToString();
+                            retorno = true;
+                        }
                     }
                 }
                 else
@@ -2221,23 +2336,29 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     if (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue)
                     {
                         LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciatario, "Licenciatario", true);
-                        this._ventana.GestionarBotonConsultarInteresados("Licenciatario", false);
-                        this._ventana.GestionarBotonConsultarApoderados("Licenciatario", false);
+                        //this._ventana.GestionarBotonConsultarInteresados("Licenciatario", false);
+                        //this._ventana.GestionarBotonConsultarApoderados("Licenciatario", false);
+                        this._ventana.GestionarBotonConsultarInteresados("Licenciatario", true);
+                        this._ventana.GestionarBotonConsultarApoderados("Licenciatario", true);
                     }
                 }
                 else
                 {
                     if (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id == int.MinValue)
-                        this._ventana.GestionarBotonConsultarInteresados("Licenciatario", false);
+                        //this._ventana.GestionarBotonConsultarInteresados("Licenciatario", false);
+                        this._ventana.GestionarBotonConsultarInteresados("Licenciatario", true);
 
                     else
                     {
 
                         LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciatario, "Licenciatario", true);
 
-                        this._ventana.GestionarBotonConsultarInteresados("Licenciatario", false);
-                        this._ventana.GestionarBotonConsultarApoderados("Licenciatario", false);
-                        this._ventana.GestionarBotonConsultarPoderes("Licenciatario", false);
+                        //this._ventana.GestionarBotonConsultarInteresados("Licenciatario", false);
+                        //this._ventana.GestionarBotonConsultarApoderados("Licenciatario", false);
+                        //this._ventana.GestionarBotonConsultarPoderes("Licenciatario", false);
+                        this._ventana.GestionarBotonConsultarInteresados("Licenciatario", true);
+                        this._ventana.GestionarBotonConsultarApoderados("Licenciatario", true);
+                        this._ventana.GestionarBotonConsultarPoderes("Licenciatario", true);
                     }
 
                 }
@@ -2247,15 +2368,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 if (((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id.Equals(""))
                 {
                     if (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id == int.MinValue)
-                        this._ventana.GestionarBotonConsultarPoderes("Licenciatario", false);
+                        //this._ventana.GestionarBotonConsultarPoderes("Licenciatario", false);
+                        this._ventana.GestionarBotonConsultarPoderes("Licenciatario", true);
 
                     else
                     {
                         LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciatario, "Licenciatario", true);
 
-                        this._ventana.GestionarBotonConsultarInteresados("Licenciatario", false);
-                        this._ventana.GestionarBotonConsultarApoderados("Licenciatario", false);
-                        this._ventana.GestionarBotonConsultarPoderes("Licenciatario", false);
+                        //this._ventana.GestionarBotonConsultarInteresados("Licenciatario", false);
+                        //this._ventana.GestionarBotonConsultarApoderados("Licenciatario", false);
+                        //this._ventana.GestionarBotonConsultarPoderes("Licenciatario", false);
+                        this._ventana.GestionarBotonConsultarInteresados("Licenciatario", true);
+                        this._ventana.GestionarBotonConsultarApoderados("Licenciatario", true);
+                        this._ventana.GestionarBotonConsultarPoderes("Licenciatario", true);
 
                     }
                 }
@@ -2266,16 +2391,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
 
                         ValidarListaDePoderes(this._poderesLicenciatario, this._poderesApoderadosLicenciatario, "Licenciatario");
 
-                        this._ventana.GestionarBotonConsultarPoderes("Licenciatario", false);
+                        //this._ventana.GestionarBotonConsultarPoderes("Licenciatario", false);
+                        this._ventana.GestionarBotonConsultarPoderes("Licenciatario", true);
                     }
                     else
                     {
                         LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciatario, "Licenciatario", true);
                         ValidarListaDePoderes(this._poderesLicenciatario, this._poderesApoderadosLicenciatario, "Licenciatario");
 
-                        this._ventana.GestionarBotonConsultarInteresados("Licenciatario", false);
-                        this._ventana.GestionarBotonConsultarApoderados("Licenciatario", false);
-                        this._ventana.GestionarBotonConsultarPoderes("Licenciatario", false);
+                        //this._ventana.GestionarBotonConsultarInteresados("Licenciatario", false);
+                        //this._ventana.GestionarBotonConsultarApoderados("Licenciatario", false);
+                        //this._ventana.GestionarBotonConsultarPoderes("Licenciatario", false);
+                        this._ventana.GestionarBotonConsultarInteresados("Licenciatario", true);
+                        this._ventana.GestionarBotonConsultarApoderados("Licenciatario", true);
+                        this._ventana.GestionarBotonConsultarPoderes("Licenciatario", true);
                     }
                 }
             }
@@ -2378,7 +2507,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 apoderadoLicenciatario.Id = this._ventana.IdApoderadoLicenciatarioFiltrar.ToUpper();
 
                 if ((!apoderadoLicenciatario.Nombre.Equals("")) || (!apoderadoLicenciatario.Id.Equals("")))
-                    agentesLicenciatarioFiltrados = this._agenteServicios.ObtenerAgentesFiltro(apoderadoLicenciatario);
+                    agentesLicenciatarioFiltrados = this._agenteServicios.ObtenerAgentesSinPoderesFiltro(apoderadoLicenciatario);
+                    //agentesLicenciatarioFiltrados = this._agenteServicios.ObtenerAgentesFiltro(apoderadoLicenciatario);
                 else
                     agentesLicenciatarioFiltrados = new List<Agente>();
 
@@ -2524,7 +2654,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 {
                     if (!((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id.Equals(""))
                     {
-                        if (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue)
+                        //if (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue)
+                        if ((this._ventana.PoderLicencianteFiltrado != null) && (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue))
                         {
                             this._ventana.InteresadoLicenciatario = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.LicenciatarioFiltrado);
                             this._ventana.NombreLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Nombre;
@@ -2548,6 +2679,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                             {
                                 this._ventana.ConvertirEnteroMinimoABlanco("Licenciatario");
                                 this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderConAgente, "Licenciatario"), 0);
+                                //--
+                                this._ventana.InteresadoLicenciatario = this._ventana.LicenciatarioFiltrado;
+                                this._ventana.NombreLicenciatario = ((Interesado)this._ventana.LicenciatarioFiltrado).Nombre;
+                                this._ventana.IdLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Id.ToString();
+                                retorno = true;
+                                //--
                             }
                         }
                     }
@@ -2632,6 +2769,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             Mouse.OverrideCursor = Cursors.Wait;
 
             bool retorno = false;
+            IList<Poder> _poderesFiltrados = new List<Poder>();
+            Poder poderABuscar = null;
+            bool listaDePoderesValidada = false;
 
             try
             {
@@ -2644,37 +2784,88 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 {
                     if (((Interesado)this._ventana.LicenciatarioFiltrado).Id != int.MinValue)
                     {
-                        if (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue)
+                        //if (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue)
+                        if ((this._ventana.PoderLicenciatarioFiltrado != null) && (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue))
                         {
                             this._ventana.ApoderadoLicenciatario = this._ventana.ApoderadoLicenciatarioFiltrado;
                             this._ventana.NombreApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Nombre;
                             this._ventana.IdApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id;
+
+                            //-- 
+                            //Para validar que el Agente que estoy seleccionando tenga Poderes con el Licenciatario
+                            Poder primerPoder = new Poder();
+                            primerPoder.Id = int.MinValue;
+
+                            _poderesFiltrados = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.ApoderadoLicenciatarioFiltrado, (Interesado)this._ventana.LicenciatarioFiltrado);
+
+                            if (_poderesFiltrados.Count != 0)
+                            {
+                                poderABuscar = this.BuscarPoder(_poderesFiltrados, (Poder)this._ventana.PoderLicenciatarioFiltrado);
+
+                                if (poderABuscar != null)
+                                {
+                                    _poderesFiltrados.Insert(0, primerPoder);
+                                    this._ventana.PoderesLicenciatarioFiltrados = _poderesFiltrados;
+                                    this._ventana.PoderLicenciatarioFiltrado = poderABuscar;
+                                }
+                                else
+                                {
+                                    this._ventana.Mensaje("Seleccione un poder que relacione al Apoderado con el Licenciatario", 0);
+                                    _poderesFiltrados.Insert(0, primerPoder);
+                                    this._ventana.PoderesLicenciatarioFiltrados = _poderesFiltrados;
+
+                                }
+                            }
+
+                            else
+                            {
+                                this._ventana.Mensaje("Apoderado no posee poderes con el Licenciatario", 0);
+                                _poderesFiltrados.Insert(0, primerPoder);
+                                this._ventana.PoderesLicenciatarioFiltrados = _poderesFiltrados;
+                            }
+
+                            //--
+
                             retorno = true;
                         }
                         else
                         {
-                            this._poderesApoderadosLicenciatario = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoLicenciatarioFiltrado));
+                            //this._poderesApoderadosLicenciatario = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoLicenciatarioFiltrado));
+                            this._poderesApoderadosLicenciatario = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.ApoderadoLicenciatarioFiltrado, (Interesado)this._ventana.LicenciatarioFiltrado);
 
                             LimpiarListaPoder("Licenciatario");
 
-                            if ((this.ValidarListaDePoderes(this._poderesLicenciatario, this._poderesApoderadosLicenciatario, "Licenciatario")))
+                            listaDePoderesValidada = this.ValidarListaDePoderes(this._poderesLicenciatario, this._poderesApoderadosLicenciatario, "Licenciatario");
+
+                            //if ((this.ValidarListaDePoderes(this._poderesLicenciatario, this._poderesApoderadosLicenciatario, "Licenciatario")))
+                            if(listaDePoderesValidada)
                             {
                                 this._ventana.ApoderadoLicenciatario = this._ventana.ApoderadoLicenciatarioFiltrado;
                                 this._ventana.NombreApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Nombre;
                                 this._ventana.IdApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id;
                                 retorno = true;
                             }
-                            else if (!this.ValidarListaDePoderes(this._poderesLicenciatario, this._poderesApoderadosLicenciatario, "Licenciatario"))
+                            //else if (!this.ValidarListaDePoderes(this._poderesLicenciatario, this._poderesApoderadosLicenciatario, "Licenciatario"))
+                            else
                             {
                                 this._ventana.ConvertirEnteroMinimoABlanco("Licenciatario");
                                 this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorAgenteNoPoseePoderConInteresado, "Licenciatario"), 0);
+                                this._ventana.ApoderadoLicenciatario = this._ventana.ApoderadoLicenciatarioFiltrado;
+                                this._ventana.NombreApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Nombre;
+                                this._ventana.IdApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id;
+                                retorno = true;
                             }
                         }
                     }
                     else
                     {
-                        if (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue)
+                        //if (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue)
+                        if ((this._ventana.PoderLicenciatarioFiltrado != null) && (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue))
                         {
+                            //--
+                            this._ventana.Mensaje("Debe seleccionar un Licenciatario", 0);
+                            LimpiarListaPoder("Licenciatario");
+                            //--
                             this._ventana.ApoderadoLicenciatario = this._ventana.ApoderadoLicenciatarioFiltrado;
                             this._ventana.NombreApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Nombre;
                             this._ventana.IdApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id;
@@ -2682,7 +2873,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                         }
                         else
                         {
-                            this._poderesApoderadosLicenciatario = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoLicenciatarioFiltrado));
+                            //--
+                            this._ventana.Mensaje("Debe seleccionar un Licenciatario", 0);
+                            //LimpiarListaPoder("Licenciante");
+                            //--
+                            //this._poderesApoderadosLicenciatario = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoLicenciatarioFiltrado));
                             this._ventana.ApoderadoLicenciatario = this._ventana.ApoderadoLicenciatarioFiltrado;
                             this._ventana.NombreApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Nombre;
                             this._ventana.IdApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id;
@@ -2742,6 +2937,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             Mouse.OverrideCursor = Cursors.Wait;
 
             bool retorno = false;
+            IList<Poder> _poderesFiltrados = new List<Poder>();
+            Poder poderABuscar = null;
 
             try
             {
@@ -2780,9 +2977,41 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     }
                     else
                     {
-                        this._ventana.PoderLicenciatario = this._ventana.PoderLicenciatarioFiltrado;
-                        this._ventana.IdPoderLicenciatario = ((Poder)this._ventana.PoderLicenciatarioFiltrado).Id.ToString();
-                        retorno = true;
+                        //El Agente es diferente a Vacio
+                        //--
+
+                        Poder primerPoder = new Poder();
+                        primerPoder.Id = int.MinValue;
+                        _poderesFiltrados = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.ApoderadoLicenciatarioFiltrado, (Interesado)this._ventana.LicenciatarioFiltrado);
+                        if (_poderesFiltrados.Count != 0)
+                        {
+                            poderABuscar = this.BuscarPoder(_poderesFiltrados, (Poder)this._ventana.PoderLicenciatarioFiltrado);
+
+                            if (poderABuscar != null)
+                            {
+                                _poderesFiltrados.Insert(0, primerPoder);
+                                this._ventana.PoderesLicenciatarioFiltrados = _poderesFiltrados;
+                                this._ventana.PoderLicenciatarioFiltrado = poderABuscar;
+                                this._ventana.PoderLicenciatario = this._ventana.PoderLicenciatarioFiltrado;
+                                this._ventana.IdPoderLicenciatario = ((Poder)this._ventana.PoderLicenciatarioFiltrado).Id.ToString();
+                                retorno = true;
+                            }
+                            else
+                            {
+                                //this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorAgenteNoPoseePoderConInteresado, "interesado"), 0);
+                                this._ventana.Mensaje("El Poder no pertenece al Licenciatario", 0);
+                                this._ventana.PoderLicenciatario = this._ventana.PoderLicenciatarioFiltrado;
+                                this._ventana.IdPoderLicenciatario = ((Poder)this._ventana.PoderLicenciatarioFiltrado).Id.ToString();
+                                retorno = true;
+                            }
+                        }
+                        else
+                        {
+                            this._ventana.Mensaje("El poder seleccionado no relaciona al Apoderado con el Licenciatario", 0);
+                            this._ventana.PoderLicenciatario = this._ventana.PoderLicenciatarioFiltrado;
+                            this._ventana.IdPoderLicenciatario = ((Poder)this._ventana.PoderLicenciatarioFiltrado).Id.ToString();
+                            retorno = true;
+                        }
                     }
                 }
                 else

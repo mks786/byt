@@ -651,7 +651,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
                 GestionarVisibilidadDatosDePatente(Visibility.Visible);
                 GestionarVisibilidadFiltroPatente(Visibility.Collapsed);
 
-                this._btnConsultarPatente.IsDefault = false;
+                //this._btnConsultarPatente.IsDefault = false;
+                this._btnConsultarPatente.IsDefault = true;
                 this._btnModificar.IsDefault = true;
             }
         }
@@ -906,7 +907,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
 
                 if (this._presentador.VerificarCambioAgente())
                 {
-                    this._btnConsultarPoder.IsEnabled = false;
+                    this._btnConsultarPoder.IsEnabled = true;
+                    //this._btnConsultarPoder.IsEnabled = false;
                     this._btnModificar.IsDefault = true;
                 }
                 else
@@ -1037,8 +1039,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
 
                 if (this._presentador.VerificarCambioPoder())
                 {
-                    this._btnConsultarApoderado.IsEnabled = false;
-                    this._btnConsultarInteresadoSobreviviente.IsEnabled = false;
+                    //this._btnConsultarApoderado.IsEnabled = false;
+                    //this._btnConsultarInteresadoSobreviviente.IsEnabled = false;
+                    this._btnConsultarApoderado.IsEnabled = true;
+                    this._btnConsultarInteresadoSobreviviente.IsEnabled = true;
                     this._btnModificar.IsDefault = true;
                 }
                 else

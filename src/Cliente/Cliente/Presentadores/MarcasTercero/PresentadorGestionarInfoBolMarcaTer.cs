@@ -168,6 +168,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         public bool Aceptar()
         {
             bool exitoso = false;
+            IList<InfoBolMarcaTer> listaInfobolesMarcaTercero = null;
             try
             {
                 #region trace
@@ -192,11 +193,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     infoBol.TimeStamp = System.DateTime.Now;
                     infoBol.Usuario = UsuarioLogeado;
                     infoBol.Cambio = !string.IsNullOrEmpty(this._ventana.TextoCambio) ? int.Parse(this._ventana.TextoCambio) : 0;
+                    //((MarcaTercero)infoBol.Marca).Anexo = this._ventana.InfoBolMarcaTer
+                    //infoBol.Cambio = !string.IsNullOrEmpty(this._ventana.TextoCambio) ? int.Parse(this._ventana.TextoCambio) : 1;
 
                     if (this._nuevaInfoBolMarcaTer)
                     {
                         infoBol.TipoInfobol = (TipoInfobol)this._ventana.Tipo;
-                        ((InfoBolMarcaTer)this._ventana.InfoBolMarcaTer).Marca.InfoBoles.Add(infoBol);
+                        listaInfobolesMarcaTercero = ((InfoBolMarcaTer)this._ventana.InfoBolMarcaTer).Marca.InfoBoles;
+                        if (listaInfobolesMarcaTercero != null)
+                            ((InfoBolMarcaTer)this._ventana.InfoBolMarcaTer).Marca.InfoBoles.Add(infoBol);
+                        else
+                        {
+                            listaInfobolesMarcaTercero = new List<InfoBolMarcaTer>();
+                            listaInfobolesMarcaTercero.Add(infoBol);
+                            ((InfoBolMarcaTer)this._ventana.InfoBolMarcaTer).Marca.InfoBoles= listaInfobolesMarcaTercero;
+                        }
                     }
 
                     exitoso = this._infoBolServicios.InsertarOModificar(infoBol, UsuarioLogeado.Hash);

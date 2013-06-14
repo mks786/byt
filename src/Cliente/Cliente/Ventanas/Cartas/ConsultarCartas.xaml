@@ -328,7 +328,11 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Medio, StringFormat={}{0:dd/MM/yyyy}}" Width="210">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Medio" Content="{x:Static recurso:Etiquetas.lsvMedio}"/>
                         </GridViewColumn>
-                        
+
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=DescripcionResumen, StringFormat={}{0:dd/MM/yyyy}}" Width="210">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="DescripcionResumen" Content="{x:Static recurso:Etiquetas.lsvResumen}"/>
+                        </GridViewColumn>
+
                     </GridView>
                 </ListView.View>
             </ListView>

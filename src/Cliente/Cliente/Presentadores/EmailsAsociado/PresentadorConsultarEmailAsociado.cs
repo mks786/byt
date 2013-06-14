@@ -393,7 +393,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EmailsAsociado
 
         public void Regresar()
         {
-            Navegar(new ListaEmails(this._asociado));
+            //Navegar(new ListaEmails(this._asociado));
+            this.RegresarVentanaPadre();
         }
     }
 }

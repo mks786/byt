@@ -84,13 +84,13 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblCiudad}"/>
                 </Label>
                 <custom:ByTTextBox Grid.Column="1" Grid.Row="3" Name="_txtCiudad" VerticalAlignment="Center"  
-                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Ciudad}" MaxLength="40"></custom:ByTTextBox>
+                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Ciudad}" MaxLength="40" CharacterCasing="Upper"></custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblEstado}"/>
                 </Label>
                 <custom:ByTTextBox Grid.Column="1" Grid.Row="4" Name="_txtEstado" VerticalAlignment="Center"  
-                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Estado}" MaxLength="40"></custom:ByTTextBox>
+                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Estado}" MaxLength="40" CharacterCasing="Upper"></custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblPais}"/>
@@ -132,7 +132,7 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblDomicilio}"/>
                 </Label>
                 <custom:ByTTextBox Grid.Column="1" Grid.Row="11" Name="_txtDomicilio" VerticalAlignment="Center"  
-                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Domicilio}" MaxLength="510"></custom:ByTTextBox>
+                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Domicilio}" MaxLength="510" CharacterCasing="Upper"></custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblAlerta}"/>

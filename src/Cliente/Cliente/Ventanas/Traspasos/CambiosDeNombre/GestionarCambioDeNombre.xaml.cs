@@ -676,7 +676,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
             this._txtIdMarcaFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lstMarcas.Visibility = (System.Windows.Visibility)value;
             this._btnConsultarMarca.Visibility = (System.Windows.Visibility)value;
-            this._btnIrAsociados.Visibility = (System.Windows.Visibility)value;
+            //this._btnIrAsociados.Visibility = (System.Windows.Visibility)value;
         }
 
         private void GestionarVisibilidadDatosDeMarca(object value)
@@ -697,6 +697,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
             this._lblAsociado.Visibility = (System.Windows.Visibility)value;
             this._txtAsociado.Visibility = (System.Windows.Visibility)value;
             this._txtIdAsociado.Visibility = (System.Windows.Visibility)value;
+            this._btnIrAsociados.Visibility = (System.Windows.Visibility)value;
         }
 
         private void _txtMarcaFiltrar_GotFocus(object sender, RoutedEventArgs e)
@@ -794,7 +795,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
 
                 if (this._presentador.VerificarCambioInteresado())
                 {
-                    this._btnConsultarPoder.IsEnabled = false;
+                    //this._btnConsultarPoder.IsEnabled = false;
+                    this._btnConsultarPoder.IsEnabled = true;
                     this._btnModificar.IsDefault = true;
                 }
                 else
@@ -874,10 +876,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
             {
                 GestionarVisibilidadDatosDeAgenteApoderado(Visibility.Visible);
                 GestionarVisibilidadFiltroAgenteApoderado(Visibility.Collapsed);
+                this._txtNombreApoderadoFiltrar.Text = string.Empty;
+                this._txtIdApoderadoFiltrar.Text = string.Empty;
 
                 if (this._presentador.VerificarCambioAgente())
                 {
-                    this._btnConsultarPoder.IsEnabled = false;
+                    //this._btnConsultarPoder.IsEnabled = false;
+                    this._btnConsultarPoder.IsEnabled = true;
                     this._btnModificar.IsDefault = true;
                 }
                 else
@@ -1004,11 +1009,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
             {
                 GestionarVisibilidadDatosDePoder(Visibility.Visible);
                 GestionarVisibilidadFiltroPoder(Visibility.Collapsed);
+                this._dpkFechaPoderFiltrar.Text = string.Empty;
+                this._txtIdPoderFiltrar.Text = string.Empty;
 
                 if (this._presentador.VerificarCambioPoder())
                 {
-                    this._btnConsultarApoderado.IsEnabled = false;
-                    this._btnConsultarInteresadoActual.IsEnabled = false;
+                    //this._btnConsultarApoderado.IsEnabled = false;
+                    //this._btnConsultarInteresadoActual.IsEnabled = false;
+                    this._btnConsultarApoderado.IsEnabled = true;
+                    this._btnConsultarInteresadoActual.IsEnabled = true;
                     this._btnModificar.IsDefault = true;
                 }
                 else

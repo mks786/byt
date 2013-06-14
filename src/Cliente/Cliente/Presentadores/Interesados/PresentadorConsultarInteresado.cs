@@ -165,8 +165,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                                 bool exitoso = this._interesadoServicios.InsertarOModificar(interesado, UsuarioLogeado.Hash);
                                 if (exitoso)
                                 {
-                                    _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.InteresadoModificado;
-                                    this.Navegar(_paginaPrincipal);
+                                    //_paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.InteresadoModificado;
+                                    if (_ventanaPadre != null)
+                                        this.RegresarVentanaPadre();
+                                    else
+                                    {
+                                        _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.InteresadoModificado;
+                                        this.Navegar(_paginaPrincipal);
+                                    }
                                 }
                             //}
                             //else

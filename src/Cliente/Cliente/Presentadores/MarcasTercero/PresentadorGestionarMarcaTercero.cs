@@ -585,6 +585,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             marcaTercero.ComentarioEsp = this._ventana.ComentarioClienteEspanol;
             marcaTercero.ComentarioIng = this._ventana.ComentarioClienteIngles;
 
+            //--
+            if (!string.IsNullOrEmpty(this._ventana.Anexo))
+                marcaTercero.Anexo = int.Parse(this._ventana.Anexo);
+            
+
+            //--
+
             //if (null != this._ventana.StatusWeb)
             //    marcaTercero.StatusWeb = ((StatusWeb)this._ventana.StatusWeb).Id.Equals("NGN") ? ((StatusWeb)this._ventana.StatusWeb) : null;
 
@@ -1884,9 +1891,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 Marca marca = new Marca();
                 IList<Marca> marcasFiltradas;
                 marca.Descripcion = this._ventana.NombreMarcaFiltrar.ToUpper();
-                marca.Id = this._ventana.IdMarcaFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdMarcaFiltrar);
+                //marca.Id = this._ventana.IdMarcaFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdMarcaFiltrar);
+                marca.Id = this._ventana.IdMarcaFiltrar.Equals("") ? int.MinValue : int.Parse(this._ventana.IdMarcaFiltrar);
 
-                if ((!marca.Descripcion.Equals("")) || (marca.Id != 0))
+                //if ((!marca.Descripcion.Equals("")) || (marca.Id != 0))
+                if ((!marca.Descripcion.Equals("")) || (marca.Id != int.MinValue))
                     marcasFiltradas = this._marcaServicios.ObtenerMarcasFiltro(marca);
                 else
                     marcasFiltradas = new List<Marca>();

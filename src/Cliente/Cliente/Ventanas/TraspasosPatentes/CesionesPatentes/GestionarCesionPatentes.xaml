@@ -355,12 +355,10 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblApoderado}"/>
                         </Label>
 
-                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.Row="0" Name="_txtIdApoderadoCedente" VerticalAlignment="Center" 
-                                            MaxLength="255" Grid.ColumnSpan="1" Text="" IsReadOnly="True" IsTabStop="False" BorderBrush="LightGreen"
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.Row="0" Name="_txtIdApoderadoCedente" VerticalAlignment="Center" MaxLength="255" Grid.ColumnSpan="1" Text="{Binding Path=Id}" IsReadOnly="True" IsTabStop="False" BorderBrush="LightGreen"
                                             MouseDoubleClick="_txtNombreApoderadoCedente_MouseDoubleClick" Margin="0,0,5,0"></custom:ByTTextBox>
                         
-                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="2" Grid.Row="0" Name="_txtNombreApoderadoCedente" VerticalAlignment="Center" 
-                                            MaxLength="255" Grid.ColumnSpan="6" Text="{Binding Path=Nombre}" IsReadOnly="True" IsTabStop="False" BorderBrush="LightGreen"
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="2" Grid.Row="0" Name="_txtNombreApoderadoCedente" VerticalAlignment="Center" MaxLength="255" Grid.ColumnSpan="6" Text="{Binding Path=Nombre}" IsReadOnly="True" IsTabStop="False" BorderBrush="LightGreen"
                                             MouseDoubleClick="_txtNombreApoderadoCedente_MouseDoubleClick"></custom:ByTTextBox>                       
                         
                         <ListView Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="3" Name="_lstApoderadosCedente" ItemsSource="{Binding}" 

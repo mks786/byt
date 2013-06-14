@@ -948,10 +948,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             {
                 GestionarVisibilidadDatosDeAgenteApoderado(Visibility.Visible);
                 GestionarVisibilidadFiltroAgenteApoderado(Visibility.Collapsed);
+                this._txtIdApoderadoFiltrar.Text = string.Empty;
+                this._txtNombreApoderadoFiltrar.Text = string.Empty;
 
                 if (this._presentador.VerificarCambioAgente())
                 {
-                    this._btnConsultarPoder.IsEnabled = false;
+                    //this._btnConsultarPoder.IsEnabled = false;
+                    this._btnConsultarPoder.IsEnabled = true;
                     this._btnModificar.IsDefault = true;
                 }
                 else
@@ -1080,11 +1083,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             {
                 GestionarVisibilidadDatosDePoder(Visibility.Visible);
                 GestionarVisibilidadFiltroPoder(Visibility.Collapsed);
-
+                this._txtIdPoderFiltrar.Text = string.Empty;
+                this._dpkFechaPoderFiltrar.Text = null;
                 if (this._presentador.VerificarCambioPoder())
                 {
-                    this._btnConsultarApoderado.IsEnabled = false;
-                    this._btnConsultarInteresadoSobreviviente.IsEnabled = false;
+                    //this._btnConsultarApoderado.IsEnabled = false;
+                    //this._btnConsultarInteresadoSobreviviente.IsEnabled = false;
+                    this._btnConsultarApoderado.IsEnabled = true;
+                    this._btnConsultarInteresadoSobreviviente.IsEnabled = true;
                     this._btnModificar.IsDefault = true;
                 }
                 else
@@ -1108,6 +1114,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             this._txtIdPoderFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lstPoderes.Visibility = (System.Windows.Visibility)value;
             this._btnConsultarPoder.Visibility = (System.Windows.Visibility)value;
+            
 
         }
 
