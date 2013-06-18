@@ -180,6 +180,9 @@
     <Compile Include="Contratos\Consultas\IConsultaFacturacionAsociado.vb" />
     <Compile Include="Contratos\Consultas\IConsultaFacturacionAnuladas.vb" />
     <Compile Include="Contratos\Consultas\IConsultarFacStatementProcesar.vb" />
+    <Compile Include="Contratos\FacTarifa\IAgregarFacTarifa.vb" />
+    <Compile Include="Contratos\FacTarifa\IConsultarFacTarifa.vb" />
+    <Compile Include="Contratos\FacTarifa\IConsultarFacTarifas.vb" />
     <Compile Include="Contratos\FacAsociadoMarcaPatente\IFacVistaFacturaServicios.vb" />
     <Compile Include="Contratos\FacAsociadoMarcaPatente\IConsultarFacVistaFacturacionCxpInternas.vb" />
     <Compile Include="Contratos\FacFacturaProformas\IConsultarFacFacturaProformasTodas.vb" />
@@ -352,6 +355,9 @@
     <Compile Include="Presentadores\Consultas\PresentadorConsultaConsultaFacturacionAsociado.vb" />
     <Compile Include="Presentadores\Consultas\PresentadorConsultaFacturacionAnuladas.vb" />
     <Compile Include="Presentadores\Consultas\PresentadorConsultarFacStatementProcesar.vb" />
+    <Compile Include="Presentadores\FacTarifas\PresentadorAgregarFacTarifa.vb" />
+    <Compile Include="Presentadores\FacTarifas\PresentadorConsultarFacTarifa.vb" />
+    <Compile Include="Presentadores\FacTarifas\PresentadorConsultarFacTarifas.vb" />
     <Compile Include="Presentadores\FacAsociadoMarcaPatentes\PresentadorSaldoAsociado.vb" />
     <Compile Include="Presentadores\FacAsociadoMarcaPatentes\PresentadorConsultarFacVistaFacturaServicios.vb" />
     <Compile Include="Presentadores\FacAsociadoMarcaPatentes\PresentadorConsultarFacVistaFacturacionCxpInternas.vb" />
@@ -565,6 +571,15 @@
     </Compile>
     <Compile Include="Ventanas\Consultas\ConsultaFacturasAnuladasFisicas.xaml.vb">
       <DependentUpon>ConsultaFacturasAnuladasFisicas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacTarifas\AgregarFacTarifa.xaml.vb">
+      <DependentUpon>AgregarFacTarifa.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacTarifas\ConsultarFacTarifa.xaml.vb">
+      <DependentUpon>ConsultarFacTarifa.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacTarifas\ConsultarFacTarifas.xaml.vb">
+      <DependentUpon>ConsultarFacTarifas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\FacAsociadoMarcaPatentes\FacVistaFacturaServicios.xaml.vb">
       <DependentUpon>FacVistaFacturaServicios.xaml</DependentUpon>
@@ -1068,6 +1083,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Consultas\ConsultaFacturasAnuladasFisicas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacTarifas\AgregarFacTarifa.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacTarifas\ConsultarFacTarifa.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacTarifas\ConsultarFacTarifas.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

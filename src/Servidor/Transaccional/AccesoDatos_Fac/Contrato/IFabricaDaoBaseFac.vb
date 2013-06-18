@@ -128,5 +128,7 @@
 
         Function ObtenerDaoFacVistaFacturaServicio() As IDaoFacVistaFacturaServicio
 
+        Function ObtenerDaoFacTarifa() As IDaoFacTarifa
+
     End Interface
 End Namespace

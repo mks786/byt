@@ -1104,4 +1104,13 @@
   <data name="fac_menuItemConsultaFacturasAnuladasFisicas" xml:space="preserve">
     <value>FAC_ANUL_FISI</value>
   </data>
+  <data name="fac_AgregarFacTarifa" xml:space="preserve">
+    <value>FAC_TARIFAS</value>
+  </data>
+  <data name="fac_ConsultarFacTarifa" xml:space="preserve">
+    <value>FAC_TARIFAS</value>
+  </data>
+  <data name="fac_FacTarifa" xml:space="preserve">
+    <value>FAC_TARIFAS</value>
+  </data>
 </root>

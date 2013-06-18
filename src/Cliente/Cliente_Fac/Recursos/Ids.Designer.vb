@@ -965,6 +965,15 @@ Namespace Recursos
         End Property
         
         '''<summary>
+        '''  Busca una cadena traducida similar a FAC_TARIFAS.
+        '''</summary>
+        Public Shared ReadOnly Property fac_AgregarFacTarifa() As String
+            Get
+                Return ResourceManager.GetString("fac_AgregarFacTarifa", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Busca una cadena traducida similar a FAC_GUIAS.
         '''</summary>
         Public Shared ReadOnly Property fac_AgregarGuia() As String
@@ -1379,6 +1388,15 @@ Namespace Recursos
         End Property
         
         '''<summary>
+        '''  Busca una cadena traducida similar a FAC_TARIFAS.
+        '''</summary>
+        Public Shared ReadOnly Property fac_ConsultarFacTarifa() As String
+            Get
+                Return ResourceManager.GetString("fac_ConsultarFacTarifa", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Busca una cadena traducida similar a FAC_GUIAS.
         '''</summary>
         Public Shared ReadOnly Property fac_ConsultarGuia() As String
@@ -1753,6 +1771,15 @@ Namespace Recursos
         Public Shared ReadOnly Property fac_FacRecurso() As String
             Get
                 Return ResourceManager.GetString("fac_FacRecurso", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca una cadena traducida similar a FAC_TARIFAS.
+        '''</summary>
+        Public Shared ReadOnly Property fac_FacTarifa() As String
+            Get
+                Return ResourceManager.GetString("fac_FacTarifa", resourceCulture)
             End Get
         End Property
         

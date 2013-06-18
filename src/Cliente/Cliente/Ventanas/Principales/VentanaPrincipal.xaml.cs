@@ -778,6 +778,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         {
             this._presentador.ConsultarMotivos();
         }
+
+        private void _fac_menuItemFacTarifaConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarFacTarifas();
+        }
+
+        private void _fac_menuItemFacTarifaAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarFacTarifa();
+        }
+
         private void _fac_menuItemSociedadAgregar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.AgregarSociedad();

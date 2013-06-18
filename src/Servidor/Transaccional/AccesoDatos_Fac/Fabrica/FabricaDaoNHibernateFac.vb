@@ -279,5 +279,9 @@ Namespace Fabrica
         Public Overrides Function ObtenerDaoFacVistaFacturaServicio() As IDaoFacVistaFacturaServicio
             Return New DaoFacVistaFacturaServicioNHibernate()
         End Function
+
+        Public Overrides Function ObtenerDaoFacTarifa() As IDaoFacTarifa
+            Return New DaoFacTarifaNHibernate()
+        End Function
     End Class
 End Namespace

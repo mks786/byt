@@ -146,5 +146,7 @@ Namespace Fabrica
         Public MustOverride Function ObtenerDaoFacVistaFacturacionCxpInterna() As Contrato.IDaoFacVistaFacturacionCxpInterna Implements Contrato.IFabricaDaoBaseFac.ObtenerDaoFacVistaFacturacionCxpInterna
 
         Public MustOverride Function ObtenerDaoFacVistaFacturaServicio() As Contrato.IDaoFacVistaFacturaServicio Implements Contrato.IFabricaDaoBaseFac.ObtenerDaoFacVistaFacturaServicio
+
+        Public MustOverride Function ObtenerDaoFacTarifa() As Contrato.IDaoFacTarifa Implements Contrato.IFabricaDaoBaseFac.ObtenerDaoFacTarifa
     End Class
 End Namespace

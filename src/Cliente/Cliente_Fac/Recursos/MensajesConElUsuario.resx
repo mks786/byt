@@ -987,4 +987,19 @@
   <data name="fac_NumeroControl" xml:space="preserve">
     <value>Registro Actualizado</value>
   </data>
+  <data name="fac_FacTarifaInsertado" xml:space="preserve">
+    <value>Tarifa insertada con éxito</value>
+  </data>
+  <data name="fac_FacTarifaModificado" xml:space="preserve">
+    <value>Tarifa modificada con éxito</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacTarifa" xml:space="preserve">
+    <value>¿Seguro que desea eliminar la Tarifa?</value>
+  </data>
+  <data name="fac_ErrorFacTarifaRepetido" xml:space="preserve">
+    <value>Error Tarifa que desea guardar ya existe</value>
+  </data>
+  <data name="fac_FacTarifaEliminado" xml:space="preserve">
+    <value>Tarifa eliminado con éxito</value>
+  </data>
 </root>

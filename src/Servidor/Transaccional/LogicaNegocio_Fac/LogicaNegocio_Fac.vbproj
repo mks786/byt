@@ -133,6 +133,7 @@
     <Compile Include="Controladores\ControladorFacFacturaPendienteConGru.vb" />
     <Compile Include="Controladores\ControladorFacVistaFacturacionCxpInterna.vb" />
     <Compile Include="Controladores\ControladorFacVistaFacturaServicio.vb" />
+    <Compile Include="Controladores\ControladorFacTarifa.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

@@ -428,6 +428,10 @@
                         <MenuItem Name="_fac_menuItemServicioConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemServicioConsultar_Click"/>
                         <MenuItem Name="_fac_menuItemServicioAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemServicioAgregar_Click"/>
                     </MenuItem>
+                    <MenuItem Name="_fac_menuItemFacTarifa" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemFacTarifa}">
+                        <MenuItem Name="_fac_menuItemFacTarifaConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemFacTarifaConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemFacTarifaAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemFacTarifaAgregar_Click"/>
+                    </MenuItem>                    
                     <MenuItem Name="_fac_menuItemCorrespondencia" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemCorrespondencia}">
                         <MenuItem Name="_fac_menuItemCorrespondenciaConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemCorrespondenciaConsultar_Click"/>
                         <MenuItem Name="_fac_menuItemCorrespondenciAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemCorrespondenciaAgregar_Click"/>

@@ -1624,4 +1624,16 @@
   <data name="fac_titleNumeroControl" xml:space="preserve">
     <value>Numero Control</value>
   </data>
+  <data name="fac_menuItemFacTarifa" xml:space="preserve">
+    <value>Tarifas</value>
+  </data>
+  <data name="fac_titleAgregarFacTarifa" xml:space="preserve">
+    <value>AgregarTarifa</value>
+  </data>
+  <data name="fac_titleConsultarFacTarifa" xml:space="preserve">
+    <value>ConsultarTarifas</value>
+  </data>
+  <data name="fac_titleConsultarFacTarifas" xml:space="preserve">
+    <value>Consultar Tarifas</value>
+  </data>
 </root>

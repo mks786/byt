@@ -105,6 +105,7 @@ using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacReportes;
 using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacGestiones;
 using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacInternacionales;
 using Diginsoft.Bolet.Cliente.Fac.Ventanas.Consultas;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacTarifas;
 
 
 namespace Trascend.Bolet.Cliente.Presentadores.Principales
@@ -1213,6 +1214,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
             this._ventana.Contenedor.Navigate(new ConsultarMotivos());
         }
 
+        public void AgregarFacTarifa()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarFacTarifa());
+        }
+
+        public void ConsultarFacTarifas()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarFacTarifas());
+        }
+
         public void AgregarSociedad()
         {
             this._ventana.Contenedor.Navigate(new AgregarSociedad());
@@ -2080,6 +2091,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
 
                                     case "_fac_menuItemMotivo":
                                         if (objeto.Id.Equals(Recursos.Ids.fac_Motivo))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
+                                    case "_fac_menuItemFacTarifa":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_FacTarifa))
                                         {
                                             itemNivel3.Visibility = System.Windows.Visibility.Visible;
                                         }

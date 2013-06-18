@@ -749,6 +749,15 @@ Namespace Recursos
         End Property
         
         '''<summary>
+        '''  Busca una cadena traducida similar a ¿Seguro que desea eliminar la Tarifa?.
+        '''</summary>
+        Public Shared ReadOnly Property fac_ConfirmacionEliminarFacTarifa() As String
+            Get
+                Return ResourceManager.GetString("fac_ConfirmacionEliminarFacTarifa", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Busca una cadena traducida similar a ¿Seguro que desea eliminar el Guia?.
         '''</summary>
         Public Shared ReadOnly Property fac_ConfirmacionEliminarGuia() As String
@@ -1357,6 +1366,15 @@ Namespace Recursos
         Public Shared ReadOnly Property fac_ErrorFacRecursoRepetido() As String
             Get
                 Return ResourceManager.GetString("fac_ErrorFacRecursoRepetido", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca una cadena traducida similar a Error Tarifa que desea guardar ya existe.
+        '''</summary>
+        Public Shared ReadOnly Property fac_ErrorFacTarifaRepetido() As String
+            Get
+                Return ResourceManager.GetString("fac_ErrorFacTarifaRepetido", resourceCulture)
             End Get
         End Property
         
@@ -1987,6 +2005,33 @@ Namespace Recursos
         Public Shared ReadOnly Property fac_FacRecursoModificado() As String
             Get
                 Return ResourceManager.GetString("fac_FacRecursoModificado", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca una cadena traducida similar a Tarifa eliminado con éxito.
+        '''</summary>
+        Public Shared ReadOnly Property fac_FacTarifaEliminado() As String
+            Get
+                Return ResourceManager.GetString("fac_FacTarifaEliminado", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca una cadena traducida similar a Tarifa insertada con éxito.
+        '''</summary>
+        Public Shared ReadOnly Property fac_FacTarifaInsertado() As String
+            Get
+                Return ResourceManager.GetString("fac_FacTarifaInsertado", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca una cadena traducida similar a Tarifa modificada con éxito.
+        '''</summary>
+        Public Shared ReadOnly Property fac_FacTarifaModificado() As String
+            Get
+                Return ResourceManager.GetString("fac_FacTarifaModificado", resourceCulture)
             End Get
         End Property
         

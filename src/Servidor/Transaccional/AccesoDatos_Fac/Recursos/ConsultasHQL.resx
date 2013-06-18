@@ -757,4 +757,8 @@
     <value>Select fa from FacAnuladaFisica fa</value>
     <comment>Cabecera del query para el filtro de FacFacturaAnulada</comment>
   </data>
+  <data name="CabeceraObtenerFacTarifa" xml:space="preserve">
+    <value>Select t from FacTarifa t</value>
+    <comment>Cabecera del query para el filtro de FacImpuesto</comment>
+  </data>
 </root>

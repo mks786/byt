@@ -74,6 +74,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MensajesAlServidor.resx</DependentUpon>
     </Compile>
+    <Compile Include="Implementacion\FacTarifaServicios.vb" />
     <Compile Include="Implementacion\FacFacturaPendienteConGruServicios.vb" />
     <Compile Include="Implementacion\FacVistaFacturacionCxpInternaServicios.vb" />
     <Compile Include="Implementacion\FacVistaFacturaServicioServicios.vb" />

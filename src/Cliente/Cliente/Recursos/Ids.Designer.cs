@@ -1510,6 +1510,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a FAC_TARIFAS.
+        /// </summary>
+        public static string fac_AgregarFacTarifa {
+            get {
+                return ResourceManager.GetString("fac_AgregarFacTarifa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a FAC_MEDIO_GES.
         /// </summary>
         public static string fac_AgregarMediosGestion {
@@ -1785,6 +1794,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string fac_ConsultarFacPagoBolivia {
             get {
                 return ResourceManager.GetString("fac_ConsultarFacPagoBolivia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a FAC_TARIFAS.
+        /// </summary>
+        public static string fac_ConsultarFacTarifa {
+            get {
+                return ResourceManager.GetString("fac_ConsultarFacTarifa", resourceCulture);
             }
         }
         
@@ -2073,6 +2091,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string fac_FacRecurso {
             get {
                 return ResourceManager.GetString("fac_FacRecurso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a FAC_TARIFAS.
+        /// </summary>
+        public static string fac_FacTarifa {
+            get {
+                return ResourceManager.GetString("fac_FacTarifa", resourceCulture);
             }
         }
         

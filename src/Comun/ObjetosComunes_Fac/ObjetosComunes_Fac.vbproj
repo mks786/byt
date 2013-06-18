@@ -69,6 +69,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContratosServicios\IFacTarifaServicios.vb" />
     <Compile Include="ContratosServicios\IFacVistaFacturacionCxpInternaServicios.vb" />
     <Compile Include="ContratosServicios\IFacFacturaPendienteConGruServicios.vb" />
     <Compile Include="ContratosServicios\IFacVistaFacturaServicioServicios.vb" />

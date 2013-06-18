@@ -93,6 +93,7 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato\IDaoFacTarifa.vb" />
     <Compile Include="Contrato\IDaoFacFacturaPendienteConGru.vb" />
     <Compile Include="Contrato\IDaoFacVistaFacturacionCxpInterna.vb" />
     <Compile Include="Contrato\IDaoFacVistaFacturaServicio.vb" />
@@ -158,6 +159,7 @@
     <Compile Include="Contrato\IDaoTipoPatente.vb" />
     <Compile Include="Contrato\IDaoViGestionAsociado.vb" />
     <Compile Include="Contrato\IFabricaDaoBaseFac.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacTarifaNHibernate.vb" />
     <Compile Include="Dao\NHibernate\DaoFacFacturaPendienteConGruNHibernate.vb" />
     <Compile Include="Dao\NHibernate\DaoFacVistaFacturacionCxpInternaNHibernate.vb" />
     <Compile Include="Dao\NHibernate\DaoFacVistaFacturaServicioNHibernate.vb" />
@@ -458,6 +460,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FacTarifa.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mapeado\FacOperacionPais.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>

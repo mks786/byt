@@ -334,6 +334,12 @@
     <Compile Include="Comandos\ComandosFacVistaFacturacionCxpInterna\ComandoConsultarTodosFacVistaFacturacionCxpInternas.vb" />
     <Compile Include="Comandos\ComandosFacVistaFacturaServicio\ComandoConsultarFacVistaFacturaServiciosFiltro.vb" />
     <Compile Include="Comandos\ComandosFacVistaFacturaServicio\ComandoConsultarTodosFacVistaFacturaServicios.vb" />
+    <Compile Include="Comandos\ComandosFacTarifa\ComandoConsultarFacTarifasFiltro.vb" />
+    <Compile Include="Comandos\ComandosFacTarifa\ComandoConsultarTodosFacTarifas.vb" />
+    <Compile Include="Comandos\ComandosFacTarifa\ComandoEliminarFacTarifa.vb" />
+    <Compile Include="Comandos\ComandosFacTarifa\ComandoInsertarOModificarFacTarifa.vb" />
+    <Compile Include="Comandos\ComandosFacTarifa\ComandoVerificarExistenciaFacTarifa.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacTarifa.vb" />
     <Compile Include="Fabrica\FabricaComandosFacFacturaPendienteConGru.vb" />
     <Compile Include="Fabrica\FabricaComandosFacVistaFacturacionCxpInterna.vb" />
     <Compile Include="Fabrica\FabricaComandosFacVistaFacturaServicio.vb" />

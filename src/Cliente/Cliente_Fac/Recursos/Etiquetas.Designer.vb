@@ -983,6 +983,15 @@ Namespace Recursos
         End Property
         
         '''<summary>
+        '''  Busca una cadena traducida similar a Tarifas.
+        '''</summary>
+        Public Shared ReadOnly Property fac_menuItemFacTarifa() As String
+            Get
+                Return ResourceManager.GetString("fac_menuItemFacTarifa", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Busca una cadena traducida similar a Facturacion.
         '''</summary>
         Public Shared ReadOnly Property fac_menuItemFacturacion() As String
@@ -1420,6 +1429,15 @@ Namespace Recursos
         Public Shared ReadOnly Property fac_titleAgregarFacRecurso() As String
             Get
                 Return ResourceManager.GetString("fac_titleAgregarFacRecurso", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca una cadena traducida similar a AgregarTarifa.
+        '''</summary>
+        Public Shared ReadOnly Property fac_titleAgregarFacTarifa() As String
+            Get
+                Return ResourceManager.GetString("fac_titleAgregarFacTarifa", resourceCulture)
             End Get
         End Property
         
@@ -2122,6 +2140,24 @@ Namespace Recursos
         Public Shared ReadOnly Property fac_titleConsultarFacRecursos() As String
             Get
                 Return ResourceManager.GetString("fac_titleConsultarFacRecursos", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca una cadena traducida similar a ConsultarTarifas.
+        '''</summary>
+        Public Shared ReadOnly Property fac_titleConsultarFacTarifa() As String
+            Get
+                Return ResourceManager.GetString("fac_titleConsultarFacTarifa", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca una cadena traducida similar a Consultar Tarifas.
+        '''</summary>
+        Public Shared ReadOnly Property fac_titleConsultarFacTarifas() As String
+            Get
+                Return ResourceManager.GetString("fac_titleConsultarFacTarifas", resourceCulture)
             End Get
         End Property
         

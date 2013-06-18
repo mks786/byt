@@ -2186,6 +2186,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a ¿Seguro que desea eliminar la Tarifa?.
+        /// </summary>
+        internal static string fac_ConfirmacionEliminarFacTarifa {
+            get {
+                return ResourceManager.GetString("fac_ConfirmacionEliminarFacTarifa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a ¿Seguro que desea eliminar la Tarifa Servicio?.
         /// </summary>
         internal static string fac_ConfirmacionEliminarTarifaServicio {
@@ -2479,6 +2488,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string fac_ErrorFacPagoBoliviaRepetido {
             get {
                 return ResourceManager.GetString("fac_ErrorFacPagoBoliviaRepetido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Error Tarifa que desea guardar ya existe.
+        /// </summary>
+        internal static string fac_ErrorFacTarifaRepetido {
+            get {
+                return ResourceManager.GetString("fac_ErrorFacTarifaRepetido", resourceCulture);
             }
         }
         
@@ -2974,6 +2992,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string fac_FacPagoBoliviaModificado {
             get {
                 return ResourceManager.GetString("fac_FacPagoBoliviaModificado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tarifa eliminado con éxito.
+        /// </summary>
+        internal static string fac_FacTarifaEliminado {
+            get {
+                return ResourceManager.GetString("fac_FacTarifaEliminado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tarifa insertada con éxito.
+        /// </summary>
+        internal static string fac_FacTarifaInsertado {
+            get {
+                return ResourceManager.GetString("fac_FacTarifaInsertado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tarifa modificada con éxito.
+        /// </summary>
+        internal static string fac_FacTarifaModificado {
+            get {
+                return ResourceManager.GetString("fac_FacTarifaModificado", resourceCulture);
             }
         }
         

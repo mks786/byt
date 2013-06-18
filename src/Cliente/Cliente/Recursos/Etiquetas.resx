@@ -3699,4 +3699,16 @@ en Prensa:</value>
   <data name="lsvStatusAcuse" xml:space="preserve">
     <value>Estatus Acuse</value>
   </data>
+  <data name="fac_menuItemFacTarifa" xml:space="preserve">
+    <value>Tarifas</value>
+  </data>
+  <data name="fac_titleAgregarFacTarifa" xml:space="preserve">
+    <value>AgregarTarifa</value>
+  </data>
+  <data name="fac_titleConsultarFacTarifa" xml:space="preserve">
+    <value>ConsultarTarifas</value>
+  </data>
+  <data name="fac_titleConsultarFacTarifas" xml:space="preserve">
+    <value>Consultar Tarifas</value>
+  </data>
 </root>

@@ -2269,6 +2269,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Tarifas.
+        /// </summary>
+        public static string fac_menuItemFacTarifa {
+            get {
+                return ResourceManager.GetString("fac_menuItemFacTarifa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Facturacion.
         /// </summary>
         public static string fac_menuItemFacturacion {
@@ -2661,6 +2670,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string fac_titleAgregarFacPagoBolivia {
             get {
                 return ResourceManager.GetString("fac_titleAgregarFacPagoBolivia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a AgregarTarifa.
+        /// </summary>
+        public static string fac_titleAgregarFacTarifa {
+            get {
+                return ResourceManager.GetString("fac_titleAgregarFacTarifa", resourceCulture);
             }
         }
         
@@ -3129,6 +3147,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string fac_titleConsultarFacPagoBolivias {
             get {
                 return ResourceManager.GetString("fac_titleConsultarFacPagoBolivias", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ConsultarTarifas.
+        /// </summary>
+        public static string fac_titleConsultarFacTarifa {
+            get {
+                return ResourceManager.GetString("fac_titleConsultarFacTarifa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Consultar Tarifas.
+        /// </summary>
+        public static string fac_titleConsultarFacTarifas {
+            get {
+                return ResourceManager.GetString("fac_titleConsultarFacTarifas", resourceCulture);
             }
         }
         

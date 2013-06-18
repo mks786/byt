@@ -1354,4 +1354,19 @@
   <data name="ConfirmarConsultarMarcasPorLocalidad" xml:space="preserve">
     <value>¿Está seguro que desea obtener todas las Marca {0}?</value>
   </data>
+  <data name="fac_FacTarifaInsertado" xml:space="preserve">
+    <value>Tarifa insertada con éxito</value>
+  </data>
+  <data name="fac_FacTarifaModificado" xml:space="preserve">
+    <value>Tarifa modificada con éxito</value>
+  </data>
+  <data name="fac_ConfirmacionEliminarFacTarifa" xml:space="preserve">
+    <value>¿Seguro que desea eliminar la Tarifa?</value>
+  </data>
+  <data name="fac_ErrorFacTarifaRepetido" xml:space="preserve">
+    <value>Error Tarifa que desea guardar ya existe</value>
+  </data>
+  <data name="fac_FacTarifaEliminado" xml:space="preserve">
+    <value>Tarifa eliminado con éxito</value>
+  </data>
 </root>

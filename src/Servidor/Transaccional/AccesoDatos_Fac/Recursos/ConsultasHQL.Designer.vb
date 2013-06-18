@@ -389,6 +389,15 @@ Namespace Recursos
         End Property
         
         '''<summary>
+        '''  Busca una cadena traducida similar a Select t from FacTarifa t.
+        '''</summary>
+        Public Shared ReadOnly Property CabeceraObtenerFacTarifa() As String
+            Get
+                Return ResourceManager.GetString("CabeceraObtenerFacTarifa", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Busca una cadena traducida similar a Select v from FacVistaFacturacionCxpInterna v left join fetch v.Asociado as asociado left join fetch v.Asociado_o as asociado_o.
         '''</summary>
         Public Shared ReadOnly Property CabeceraObtenerFacVistaFacturacionCxpInterna() As String
