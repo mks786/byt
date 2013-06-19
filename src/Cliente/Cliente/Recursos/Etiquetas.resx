@@ -3196,7 +3196,7 @@ en Prensa:</value>
     <value>DocumentosTraducciones</value>
   </data>
   <data name="fac_menuItemEtiqueta" xml:space="preserve">
-    <value>Etiqueta</value>
+    <value>Etiqueta Para Facturas</value>
   </data>
   <data name="fac_menuItemFacAsociadoProfit" xml:space="preserve">
     <value>Asociado Profit</value>

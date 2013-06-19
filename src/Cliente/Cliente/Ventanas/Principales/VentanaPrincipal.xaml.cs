@@ -836,6 +836,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.ConsultarServicios();
         }
 
+
+
         private void _fac_menuItemCorrespondenciaAgregar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.AgregarCorrespondencia();

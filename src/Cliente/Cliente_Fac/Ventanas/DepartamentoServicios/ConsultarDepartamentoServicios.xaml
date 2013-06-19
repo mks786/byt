@@ -38,7 +38,7 @@
                 <Separator Margin="0,0,0,5"/>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                        <TextBlock Text="Departamento"/>
                     </Label>
                     <ComboBox Grid.ColumnSpan="2" Name="_cbxId" HorizontalAlignment="Left" Width="230" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
@@ -70,11 +70,17 @@
                       MouseDoubleClick="_lstResultados_MouseDoubleClick" Style="{DynamicResource EstiloListView}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="Departamento"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id.Id}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id.Id" Content="Cod"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Doc_Servicio}" Width="120">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Doc_Servicio" Content="Servicio"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id.Descripcion}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id.Descripcion" Content="Departamento"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Servicio.Id}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Servicio.Id" Content="Cod"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Servicio.Xreferencia}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Servicio.Xreferencia" Content="Servicio"/>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>

@@ -69,20 +69,20 @@ Namespace Presentadores.DepartamentoServicios
 
                 ActualizarTitulo()
 
-                Dim departamentoServicio As FacDepartamentoServicio = DirectCast(Me._ventana.DepartamentoServicioFiltrar, FacDepartamentoServicio)
+                Dim newdepartamentoServicio As New FacDepartamentoServicio
 
-                Me._DepartamentoServicios = Me._DepartamentoServicioServicios.ConsultarTodos()
+                Me._DepartamentoServicios = Me._DepartamentoServicioServicios.ObtenerFacDepartamentoServiciosFiltro(newdepartamentoServicio)
                 Me._ventana.Count = Me._DepartamentoServicios.Count
                 Me._ventana.Resultados = Me._DepartamentoServicios
                 Me._ventana.DepartamentoServicioFiltrar = New FacDepartamentoServicio()
 
-                Dim ids As IList(Of Departamento) = Me._ids_departamentoServicios.ConsultarTodos()
-                Me._ventana.GetSetIds = ids
-                Me._ventana.GetSetId = Me.BuscarDepartamento(ids, departamentoServicio.Id)
+                'Dim ids As IList(Of Departamento) = Me._ids_departamentoServicios.ConsultarTodos()
+                'Me._ventana.GetSetIds = ids
+                'Me._ventana.GetSetId = Me.BuscarDepartamento(ids, departamentoServicio.Id)
 
-                Dim servicios As IList(Of FacServicio) = Me._servicioServicios.ConsultarTodos()
-                Me._ventana.Servicios = servicios
-                Me._ventana.Servicio = Me.BuscarServicio(servicios, departamentoServicio.Servicio)
+                'Dim servicios As IList(Of FacServicio) = Me._servicioServicios.ConsultarTodos()
+                'Me._ventana.Servicios = servicios
+                'Me._ventana.Servicio = Me.BuscarServicio(servicios, departamentoServicio.Servicio)
 
 
                 Me._ventana.FocoPredeterminado()

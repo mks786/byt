@@ -2035,7 +2035,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Etiqueta.
+        ///   Busca una cadena traducida similar a Etiqueta Para Facturas.
         /// </summary>
         public static string fac_menuItemEtiqueta {
             get {

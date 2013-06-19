@@ -36,7 +36,7 @@
                         DataContext="{Binding}">
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                        <TextBlock Text="Departamento"/>
                     </Label>
                     <ComboBox Grid.ColumnSpan="2" Name="_cbxId" HorizontalAlignment="Left" Width="230" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
@@ -48,7 +48,7 @@
                         <TextBlock Text="Servicio"/>
                     </Label>
                     <ComboBox Grid.ColumnSpan="2" Name="_cbxDoc_Servicio" HorizontalAlignment="Left" Width="230" Height="20" 
-                              ItemsSource="{Binding}" DisplayMemberPath="Detalle_Esp" SelectedIndex="0">
+                              ItemsSource="{Binding}" DisplayMemberPath="Xreferencia" SelectedIndex="0">
                     </ComboBox>
                 </WrapPanel>
 

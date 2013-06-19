@@ -2159,6 +2159,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                         }
                                         break;
 
+                                    case "_fac_menuItemDepartamentoServicio":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_DepartamentoServicio))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
                                     case "_fac_menuItemDesgloseServicio":
                                         if (objeto.Id.Equals(Recursos.Ids.fac_DesgloseServicio))
                                         {
