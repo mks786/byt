@@ -377,7 +377,7 @@ Namespace Presentadores.FacFacturaAnuladas
                     'factura.Asociado = BuscarAsociado_cero
                     factura.Impuesto = 0
                     factura.Descuento = 0
-                    factura.AsociadoImp = Nothing
+                    'factura.AsociadoImp = Nothing
                     factura.InteresadoImp = Nothing
                     factura.Caso = "."
                     _FacFacturaServicios.InsertarOModificar(factura, UsuarioLogeado.Hash)

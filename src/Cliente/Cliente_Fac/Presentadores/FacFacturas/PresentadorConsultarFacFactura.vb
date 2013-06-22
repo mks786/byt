@@ -370,6 +370,43 @@ Namespace Presentadores.FacFacturas
             '#End Region
         End Sub
 
+        Public Sub regresar_con()
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+            If _facfactura.Status = -1 Then
+                Me.Navegar(New Diginsoft.Bolet.Cliente.Fac.Ventanas.FacFacturaProformas.ProformaaFactura())
+            Else
+                Regresar()
+            End If
+            'Me.Navegar(New ConsultarFacFactura())
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+        End Sub
+
+        Public Sub irproforma()
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+
+            Me.Navegar(New Diginsoft.Bolet.Cliente.Fac.Ventanas.FacFacturaProformas.ConsultarFacFacturaProforma(_facfactura.Proforma))
+
+            'Me.Navegar(New ConsultarFacFactura())
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+        End Sub
+
+
         Public Sub Ver_Carta()
 
             If DirectCast(Me._ventana.Carta, Carta) IsNot Nothing Then
@@ -389,7 +426,7 @@ Namespace Presentadores.FacFacturas
             End If
         End Sub
 
-        Public Function BuscarTerrero(ByVal value As String) As String            
+        Public Function BuscarTerrero(ByVal value As String) As String
             Dim valor As String = ""
             If value = "1" Then
                 valor = "F"
@@ -401,7 +438,7 @@ Namespace Presentadores.FacFacturas
                         valor = "S "
                     End If
                 End If
-            End If            
+            End If
             Return (valor)
         End Function
 
@@ -1030,7 +1067,7 @@ Namespace Presentadores.FacFacturas
                         Mouse.OverrideCursor = Nothing
                         Exit Sub
                     End If
-                End If            
+                End If
             End If
             If tipo = 3 Then
                 If _ventana.GetXterrero = "1" Then
@@ -1068,7 +1105,7 @@ Namespace Presentadores.FacFacturas
             'Me._ventana.FacFacturaSeleccionado.Accion = 2 'no modificar
             Dim FacFactura As FacFactura = DirectCast(Me._ventana.FacFactura, FacFactura)
             If tipo = 10 Then
-                tipo = 1                
+                tipo = 1
             End If
             FacFactura.Status = tipo
 

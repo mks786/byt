@@ -6,6 +6,7 @@ Imports NLog
 Imports Diginsoft.Bolet.Cliente.Fac.Contratos.FacFacturas
 'Imports Diginsoft.Bolet.Cliente.Fac.Ventanas.Principales
 Imports Diginsoft.Bolet.Cliente.Fac.Ventanas.FacFacturas
+'Imports Diginsoft.Bolet.Cliente.Fac.Ventanas.FacFacturaProformas
 Imports Diginsoft.Bolet.ObjetosComunes.ContratosServicios
 Imports Diginsoft.Bolet.ObjetosComunes.Entidades
 Imports Trascend.Bolet.ObjetosComunes.Entidades
@@ -870,6 +871,22 @@ Namespace Presentadores.FacFacturas
             Finally
                 Mouse.OverrideCursor = Nothing
             End Try
+        End Sub
+
+        Public Sub regresar_con()
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+
+            Me.Navegar(New Diginsoft.Bolet.Cliente.Fac.Ventanas.FacFacturaProformas.ProformaaFactura())
+            'Me.Navegar(New ConsultarFacFactura())
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
         End Sub
 
         Public Sub IrConsultarFacFactura()

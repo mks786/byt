@@ -2055,5 +2055,18 @@ Namespace Ventanas.FacFacturaProformas
                 Me._lstAsociados = value
             End Set
         End Property
+
+        Public Property Validar_Autorizada As Boolean Implements Contratos.FacFacturaProformas.IConsultarFacFacturaProforma.Validar_Autorizada
+            Get
+                Return True
+            End Get
+            Set(ByVal value As Boolean)
+                If value = True Then
+                    _btnConsultarDepartamentoServicio2.Visibility = Windows.Visibility.Collapsed
+                    _btnEliminarDepartamentoServicio2.Visibility = Windows.Visibility.Collapsed
+                    _btnrecalcular.Visibility = Windows.Visibility.Collapsed
+                End If
+            End Set
+        End Property
     End Class
 End Namespace

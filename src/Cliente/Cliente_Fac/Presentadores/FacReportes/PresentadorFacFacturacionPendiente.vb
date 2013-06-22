@@ -754,6 +754,9 @@ Namespace Presentadores.FacReportes
 
                 For i As Integer = 0 To _FacFacturaDetalle.Count - 1
                     structura.Servicio = _FacFacturaDetalle(i).XDetalle
+                    If _FacFacturaDetalle(i).NCantidad Is Nothing Then
+                        _FacFacturaDetalle(i).NCantidad = 0
+                    End If
                     structura.Cantidad = _FacFacturaDetalle(i).NCantidad
                     structura.Id = id
                     If Me._ventana.TipoMoneda = "Moneda Original" Then
@@ -768,7 +771,7 @@ Namespace Presentadores.FacReportes
                         structura.MMonto = _FacFacturaDetalle(i).BDetalleBf
                         structura.Ndesc = _FacFacturaDetalle(i).Descuento
                         If _FacFacturaDetalle(i).NCantidad <> 0 Then
-                            Dim w_cuadre As Double
+                            Dim w_cuadre As Double                            
                             w_cuadre = _FacFacturaDetalle(i).BDetalleBf / _FacFacturaDetalle(i).NCantidad
                             If (w_cuadre <> _FacFacturaDetalle(i).PuBf) Then
                                 structura.Npub = SetFormatoDouble2(w_cuadre)

@@ -324,6 +324,29 @@ Namespace Presentadores.FacFacturaProformas
                     Exit Sub
                 End If
 
+
+                Dim validar As Integer = 0
+                If DirectCast(Me._ventana.AsociadoImp, Asociado) Is Nothing Then
+                    validar = validar + 1
+                Else
+                    If Me._ventana.AsociadoImp.id = Integer.MinValue Then
+                        validar = validar + 1
+                    End If
+                End If
+                If DirectCast(Me._ventana.Interesado, Interesado) Is Nothing Then
+                    validar = validar + 1
+                Else
+                    If Me._ventana.Interesado.id = Integer.MinValue Then
+                        validar = validar + 1
+                    End If
+                End If
+
+                If validar = 2 Then
+                    Mouse.OverrideCursor = Nothing
+                    MessageBox.Show("Error no se puede tener Asociado Impresion y Interesado en blanco, indique uno de los 2", "Error")
+                    Exit Sub
+                End If
+
                 If DirectCast(Me._ventana.Interesado, Interesado) IsNot Nothing Then
                     If Me._ventana.Interesado.id <> Integer.MinValue Then
                         FacFacturaProforma.InteresadoImp = DirectCast(Me._ventana.Interesado, Interesado)
@@ -372,6 +395,26 @@ Namespace Presentadores.FacFacturaProformas
                 'If FacFacturaProforma.FechaSeniat IsNot Nothing Then
                 '    FacFacturaProforma.FechaSeniat = FormatDateTime(FacFacturaProforma.FechaSeniat, DateFormat.ShortDate)
                 'End If
+
+                If FacFacturaProforma.Moneda.Id <> "US" Then
+                    If FacFacturaProforma.Asociado.Id <> FacFacturaProforma.AsociadoImp.Id Then
+                        Mouse.OverrideCursor = Nothing
+                        Me._ventana.MensajeError = "El asociado de la proforma debe ser igual al asociado de impresión para clientes en Venezuela"
+                        Exit Sub
+                    End If
+
+                    If FacFacturaProforma.Rif Is Nothing Then
+                        Mouse.OverrideCursor = Nothing
+                        Me._ventana.MensajeError = "La proforma debe tener Rif para clientes en Venezuela"
+                        Exit Sub
+                    Else
+                        If Trim(FacFacturaProforma.Rif) = "" Then
+                            Mouse.OverrideCursor = Nothing
+                            Me._ventana.MensajeError = "La proforma debe tener Rif para clientes en Venezuela"
+                            Exit Sub
+                        End If
+                    End If
+                End If
 
                 FacFacturaProforma.Auto = "0"
                 FacFacturaProforma.Terrero = "3"
@@ -1303,6 +1346,12 @@ Namespace Presentadores.FacFacturaProformas
         End Sub
 
         Public Sub ElimDepartamentoServicios()
+            If MessageBoxResult.Yes = MessageBox.Show("Esta seguro de Eliminar el detalle de la proforma? ", "Eliminar Detalle", MessageBoxButton.YesNo, MessageBoxImage.Question) Then
+            Else
+                Mouse.OverrideCursor = Nothing
+                Exit Sub
+            End If
+
             Dim FacFactuDetaProformas As List(Of FacFactuDetaProforma) = DirectCast(Me._ventana.ResultadosFacFactuDetaProforma, List(Of FacFactuDetaProforma))
             If FacFactuDetaProformas IsNot Nothing Then
                 Dim FacFactuDetaProformasaux As New List(Of FacFactuDetaProforma)

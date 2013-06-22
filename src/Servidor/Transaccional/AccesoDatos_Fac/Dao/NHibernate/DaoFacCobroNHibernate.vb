@@ -27,12 +27,12 @@ Namespace Dao.NHibernate
                 filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacCobroId, FacCobro.Id)
                 variosFiltros = True
             End If
-            If (FacCobro.Banco IsNot Nothing) AndAlso (Not FacCobro.Banco.Id.Equals("")) Then
-                If variosFiltros Then
-                    filtro += " and "
-                End If
-                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacCobroBanco, FacCobro.Banco.Id)
-            End If
+            'If (FacCobro.Banco IsNot Nothing) AndAlso (Not FacCobro.Banco.Id.Equals("")) Then
+            '    If variosFiltros Then
+            '        filtro += " and "
+            '    End If
+            '    filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacCobroBanco, FacCobro.Banco.Id)
+            'End If
             If (FacCobro IsNot Nothing) AndAlso (FacCobro.EstadoCuenta IsNot Nothing) Then
                 If variosFiltros Then
                     filtro += " and "

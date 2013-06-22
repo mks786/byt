@@ -261,6 +261,8 @@ Namespace Contratos.FacFacturaProformas
 
         Property Permisos As Integer
 
+        Property Validar_Autorizada As Boolean
+
         WriteOnly Property Departamento() As String
 
         Property BAuto() As String

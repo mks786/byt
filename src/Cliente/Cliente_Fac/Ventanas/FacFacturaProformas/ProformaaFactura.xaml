@@ -264,6 +264,9 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Moneda.Id}" Width="50">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Moneda.Id" Content="Moneda"/>
+                        </GridViewColumn>
                         <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Auto}" Width="20">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Auto" Content=""/>
                         </GridViewColumn>

@@ -998,11 +998,14 @@ Namespace Presentadores.FacReportes
             Try
 
                 For i As Integer = 0 To _FacFacturaDetalle.Count - 1
+                    If _FacFacturaDetalle(i).NCantidad Is Nothing Then
+                        _FacFacturaDetalle(i).NCantidad = 0
+                    End If
                     structura.Cantidad = _FacFacturaDetalle(i).NCantidad
                     structura.Id = id
                     If tipo = "N" Then
-                        structura.Servicio = _FacFacturaDetalle(i).XDetalle
-                        structura.Npub = SetFormatoDouble2(_FacFacturaDetalle(i).Pu)
+                        structura.Servicio = _FacFacturaDetalle(i).XDetalle                        
+                            structura.Npub = SetFormatoDouble2(_FacFacturaDetalle(i).Pu)
                         structura.Ndesc = SetFormatoDouble2(_FacFacturaDetalle(i).Descuento)
                         structura.MMonto = SetFormatoDouble2(_FacFacturaDetalle(i).BDetalle)
                     Else

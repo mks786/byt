@@ -133,6 +133,11 @@ Namespace Ventanas.FacFacturas
             Me._presentador.Salir()
         End Sub
 
+        Private Sub _txtProforma_MouseDoubleClick(ByVal sender As Object, ByVal e As RoutedEventArgs)
+            Me._presentador.irproforma()
+        End Sub
+
+
         Private Sub _btnModificar_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
             Me._presentador.Modificar()
         End Sub
@@ -144,7 +149,7 @@ Namespace Ventanas.FacFacturas
         End Sub
 
         Private Sub _btnRegresar_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
-            Me._presentador.Regresar()
+            Me._presentador.regresar_con()
         End Sub
 
         Private Sub _btnImprimir(ByVal sender As Object, ByVal e As RoutedEventArgs)

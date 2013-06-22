@@ -592,6 +592,9 @@ Namespace Presentadores.FacReportes
 
                 For i As Integer = 0 To _FacFacturaDetalle.Count - 1
                     structura.Servicio = _FacFacturaDetalle(i).XDetalle
+                    If _FacFacturaDetalle(i).NCantidad Is Nothing Then
+                        _FacFacturaDetalle(i).NCantidad = 0
+                    End If
                     structura.Cantidad = _FacFacturaDetalle(i).NCantidad
                     structura.Id = id
                     If Me._ventana.TipoMoneda = "Moneda Original" Then
