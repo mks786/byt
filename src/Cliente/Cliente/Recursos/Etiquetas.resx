@@ -3711,4 +3711,28 @@ en Prensa:</value>
   <data name="fac_titleConsultarFacTarifas" xml:space="preserve">
     <value>Consultar Tarifas</value>
   </data>
+  <data name="lblAuxArchivo" xml:space="preserve">
+    <value>Aux:</value>
+  </data>
+  <data name="lblAlmacen" xml:space="preserve">
+    <value>Almacen:</value>
+  </data>
+  <data name="lblCaja" xml:space="preserve">
+    <value>Caja:</value>
+  </data>
+  <data name="lblDocumento" xml:space="preserve">
+    <value>Documento:</value>
+  </data>
+  <data name="lblTipoCaja" xml:space="preserve">
+    <value>Tipo de Caja:</value>
+  </data>
+  <data name="lblTipoDocumento" xml:space="preserve">
+    <value>Tipo de Documento:</value>
+  </data>
+  <data name="lblUsuarioArchivo" xml:space="preserve">
+    <value>Usuario:</value>
+  </data>
+  <data name="cbiTipoDocumentoArchivo" xml:space="preserve">
+    <value>ITIPODOC</value>
+  </data>
 </root>

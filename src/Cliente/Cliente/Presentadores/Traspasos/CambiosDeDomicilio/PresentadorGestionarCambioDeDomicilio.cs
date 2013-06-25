@@ -1249,9 +1249,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     {
                         LlenarListaAgenteEInteresado((Poder)this._ventana.Poder, true);
 
-                        this._ventana.GestionarBotonConsultarInteresado(false);
-                        this._ventana.GestionarBotonConsultarApoderado(false);
-                        this._ventana.GestionarBotonConsultarPoder(false);
+                        //this._ventana.GestionarBotonConsultarInteresado(false);
+                        //this._ventana.GestionarBotonConsultarApoderado(false);
+                        //this._ventana.GestionarBotonConsultarPoder(false);
+                        this._ventana.GestionarBotonConsultarInteresado(true);
+                        this._ventana.GestionarBotonConsultarApoderado(true);
+                        this._ventana.GestionarBotonConsultarPoder(true);
                     }
 
                 }
@@ -1709,7 +1712,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                         }
                         else
                         {
-                            this._poderesApoderado = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.AgenteApoderadoFiltrado));
+                            //this._poderesApoderado = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.AgenteApoderadoFiltrado));
                             this._ventana.AgenteApoderado = this._ventana.AgenteApoderadoFiltrado;
                             this._ventana.NombreAgenteApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Nombre;
                             this._ventana.IdAgenteApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Id;
@@ -1968,7 +1971,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                         //--
                         else
                         {
-                            this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorPoderFiltradoNoAsociadoInteresado), 1);
+                            this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorPoderFiltradoNoAsociadoInteresado), 0);
                             this._ventana.Poder = this._ventana.PoderFiltrado;
                             this._ventana.IdPoder = ((Poder)this._ventana.PoderFiltrado).Id.ToString();
                             retorno = true;

@@ -46,13 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controladores\ControladorAlmacen.cs" />
     <Compile Include="Controladores\ControladorAnexo.cs" />
+    <Compile Include="Controladores\ControladorArchivo.cs" />
     <Compile Include="Controladores\ControladorBusqueda.cs" />
+    <Compile Include="Controladores\ControladorCaja.cs" />
     <Compile Include="Controladores\ControladorCorresponsal.cs" />
     <Compile Include="Controladores\ControladorEstado.cs" />
     <Compile Include="Controladores\ControladorEstadoMarca.cs" />
     <Compile Include="Controladores\ControladorObjeto.cs" />
     <Compile Include="Controladores\ControladorTipoBase.cs" />
+    <Compile Include="Controladores\ControladorTipoCaja.cs" />
+    <Compile Include="Controladores\ControladorTipoDocumento.cs" />
     <Compile Include="Controladores\ControladorUsuario.cs" />
     <Compile Include="Controladores\ControladorDepartamento.cs" />
     <Compile Include="Controladores\ControladorRol.cs" />

@@ -722,7 +722,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
                 GestionarVisibilidadDatosDeInteresadoAnterior(Visibility.Visible);
                 GestionarVisibilidadFiltroInteresadoAnterior(Visibility.Collapsed);
 
-                this._btnConsultarInteresadoAnterior.IsDefault = false;
+                //this._btnConsultarInteresadoAnterior.IsDefault = false;
+                this._btnConsultarInteresadoAnterior.IsDefault = true;
                 this._btnModificar.IsDefault = true;
             }
         }

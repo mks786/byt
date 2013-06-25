@@ -108,7 +108,7 @@
                         </custom:ByTTextBox>
 
                         <custom:ByTTextBox  Grid.Column="2" Grid.Row="1" Name="_txtDescripcionSolicitud" VerticalAlignment="Center"  
-                            Grid.ColumnSpan="6" MaxLength="255" CharacterCasing="Upper"
+                            Grid.ColumnSpan="6" MaxLength="255" CharacterCasing="Normal"
                              ToolTip="{Binding ElementName=_txtDescripcionDatos, Path=(Validation.Errors)[0].ErrorContent}">
                             <custom:ByTTextBox.Text>
                                 <Binding Path="Descripcion" UpdateSourceTrigger="PropertyChanged">
@@ -1080,7 +1080,7 @@
                             </custom:ByTTextBox.Text>
                         </custom:ByTTextBox>
                         <custom:ByTTextBox  Grid.Column="2" Grid.Row="0" Name="_txtDescripcionDatos" VerticalAlignment="Bottom"  
-                         Grid.ColumnSpan="6" MaxLength="255" CharacterCasing="Upper"
+                         Grid.ColumnSpan="6" MaxLength="255" CharacterCasing="Normal"
                              ToolTip="{Binding ElementName=_txtDescripcionDatos, Path=(Validation.Errors)[0].ErrorContent}">
                             <custom:ByTTextBox.Text>
                                 <Binding Path="Descripcion" UpdateSourceTrigger="PropertyChanged">
@@ -1928,6 +1928,10 @@
                         <Button  Grid.Column="9" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnBusquedaDatos" Margin="8,0,0,0"
                             Height="25" Click="_btnBusqueda_Click">
                             <TextBlock Name="_txbBusquedas" Text="{x:Static recurso:Etiquetas.btnBusqueda}"/>
+                        </Button>
+                        <Button  Grid.Column="10" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnArchivoDatos" Margin="8,0,0,0"
+                            Height="25" Click="_btnArchivoDatos_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnArchivo}"/>
                         </Button>
                         <!--Fin Fila Quince-->
 

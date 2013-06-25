@@ -19,6 +19,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<Asignacion> _asignaciones;
         private char _autorizar;
         private int _hash;
+        private char _archivo;
 
         #endregion
 
@@ -146,6 +147,41 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
                     this.Autorizar = '0';
             }
         }
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el carácter de archivo del Usuario
+        /// </summary>
+        public virtual char ModificarArchivo
+        {
+            get { return this._archivo; }
+            set { this._archivo = value; }
+        }
+
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el booleano de modificar el archivo del Usuario
+        /// </summary>
+        public virtual bool BArchivo
+        {
+            get
+            {
+                if (this.Autorizar.Equals('T'))
+                    return true;
+                else
+                    return false;
+            }
+            set
+            {
+                if (value)
+                    this.Autorizar = '1';
+                else
+                    this.Autorizar = '0';
+            }
+        }
+
+
 
         /// <summary>
         /// Propiedad que asigna u obtiene el Hash del Usuario

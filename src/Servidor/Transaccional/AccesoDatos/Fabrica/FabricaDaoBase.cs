@@ -114,6 +114,40 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         public abstract IDaoTipoInfobol ObtenerDaoTipoInfobol();
 
         /// <summary>
+        /// Método que devuelve el DaoTipoDocumento del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoTipoDocumento</returns>
+        public abstract IDaoTipoDocumento ObtenerDaoTipoDocumento();
+
+
+        /// <summary>
+        /// Método que devuelve el DaoTipoDocumento del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoTipoDocumento</returns>
+        public abstract IDaoAlmacen ObtenerDaoAlmacen();
+
+
+        /// <summary>
+        /// Método que devuelve el DaoTipoCaja del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoTipoDocumento</returns>
+        public abstract IDaoTipoCaja ObtenerDaoTipoCaja();
+
+        /// <summary>
+        /// Método que devuelve el DaoCaja del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoCaja</returns>
+        public abstract IDaoCaja ObtenerDaoCaja();
+
+
+        /// <summary>
+        /// Método que devuelve el DaoCaja del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoArchivo</returns>
+        public abstract IDaoArchivo ObtenerDaoArchivo();
+
+        
+        /// <summary>
         /// Método que devuelve el DaoUsuario del manejador que se esté utilizando
         /// </summary>
         /// <returns>IDaoUsuario</returns>

@@ -282,7 +282,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     this._ventana.NombreAsociadoSolicitud = marcaTercero.Asociado != null ? marcaTercero.Asociado.Nombre : "";
                     this._ventana.IdAsociado = marcaTercero.Asociado != null ? marcaTercero.Asociado.Id.ToString() : "";
 
-                    if (null != marcaTercero.Asociado)
+                    if ((null != marcaTercero.Asociado) && (marcaTercero.Asociado.TipoCliente != null))
                         this._ventana.PintarAsociado(marcaTercero.Asociado.TipoCliente.Id);
                     else
                         this._ventana.PintarAsociado("5");

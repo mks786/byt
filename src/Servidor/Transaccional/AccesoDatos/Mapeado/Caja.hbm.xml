@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+  
+  <class name="Caja" table="MYP_ARC_CAJA">
+
+    <composite-id>
+      <key-property name="Id" column="CODARC"/>
+      <key-many-to-one name="TipoCaja" column="NCAJA" class="TipoCaja" lazy="false"/>
+    </composite-id>
+
+    <property name="Descripcion" column="XDESCRIP" type="string"/>
+    
+  </class>
+</hibernate-mapping>

@@ -102,6 +102,17 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
          IDaoTipoInfobol ObtenerDaoTipoInfobol();
 
 
+
+         /// <summary>
+         /// Metodo con el que se obtiene el Dao Solicitado
+         /// </summary>
+         /// <returns>Dao Solicitado</returns>
+         IDaoTipoDocumento ObtenerDaoTipoDocumento();
+
+
+
+
+
          /// <summary>
          /// Metodo con el que se obtiene el Dao Solicitado
          /// </summary>

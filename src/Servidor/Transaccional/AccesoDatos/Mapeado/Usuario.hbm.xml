@@ -11,6 +11,7 @@
     <property name="Email" column="EMAIL" type="string"/>
     <!--<property name="EmailEdo" column="EMAIL_EDO" type="string"/>-->
     <property name="Autorizar" column="AUTO" type="char"/>
+    <property name="ModificarArchivo" column="ARCHIVO" type="char"/>
 
     <many-to-one name="Rol" class="Rol" lazy="false">
       <column name="ROL_ID"/>
@@ -20,6 +21,9 @@
       <column name="CODDPTO"/>
     </many-to-one>
   </class>
+
+  
+  
 
 </hibernate-mapping>
 

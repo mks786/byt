@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="Archivo" table="MYP_ARC_DOC_RET">
+
+     <composite-id>
+      <key-property name="Id" column="CODIGO" type="string"/>
+      <key-property name="Aux" column="CODAUX" type="string"/>
+      <key-many-to-one name="Documento" column="CODDOC" class="TipoDocumento" lazy="false"/>
+      <key-property name="TipoDeDocumento" column="ITIPO" type="string"/>
+     </composite-id>
+
+    <!--<many-to-one name="TipoDeCaja" class="TipoCaja" lazy="false">
+      <column name="NCAJA"/>
+    </many-to-one>-->
+
+    <property name="TipoDeCaja" type="int" column="NCAJA"/>
+    <property name="CajaArchivo" type="int" column="CODARC"/>
+    
+
+    <!--<many-to-one name="CajaArchivo" class="Caja" lazy="false">
+      <column name="CODARC"/>
+    </many-to-one>-->
+
+    <!--<bag name="CajaArchivo" inverse="true">
+      <key column="CODARC"/>
+      <one-to-many class="Caja" not-found="ignore"/>
+    </bag>-->
+    
+    <many-to-one name="AlmacenArchivo" class="Almacen" lazy="false">
+      <column name="CODALMC"/>
+    </many-to-one>
+
+    <property name="Usuario" type="String" column="USR_IN"/>   
+    <property name="Fecha" type="DateTime" column="FINGRESO"/>
+    
+  </class>
+
+
+</hibernate-mapping>
+

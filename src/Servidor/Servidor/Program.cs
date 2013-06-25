@@ -23,33 +23,28 @@ namespace Trascend.Bolet.Servidor
             servicio.Autenticar(usuarioPrueba);
 
             #region Codigo de Prueba NO BORRAR - CONECTIVIDAD
-            //Asociado asociado = new Asociado();
-            //IList<Marca> listaMarcas = new List<Marca>();
-            //Marca marcaPrueba = new Marca();
-            //marcaPrueba.Id = int.MinValue;
-            //marcaPrueba.Descripcion = "REDD''S";
-            //MarcaServicios marcaServicios = new MarcaServicios();
-            //listaMarcas = marcaServicios.ObtenerMarcasFiltro(marcaPrueba);
-            //asociado.Id = 4;
-            //AsociadoServicios asociadoServicios = new AsociadoServicios();
-            //ParametroProcedimiento parametro = new ParametroProcedimiento("nombre", "apellido");
-            //bool exito = asociadoServicios.ActualizarConectividadAsociados(parametro);
-            //asociado = asociadoServicios.ConsultarAsociadoConTodo(asociado);
+            //IList<TipoDocumento> listaPrueba = null;
+            //TipoDocumentoServicios servicioPrueba = new TipoDocumentoServicios();
+            //listaPrueba = servicioPrueba.ConsultarTodos();
+            //IList<TipoCaja> listaPrueba = null;
+            //TipoCajaServicios servicioPrueba = new TipoCajaServicios();
+            //listaPrueba = servicioPrueba.ConsultarTodos();
+            //IList<Caja> listaPrueba = null;
+            //CajaServicios servicioPrueba = new CajaServicios();
+            //listaPrueba = servicioPrueba.ConsultarTodos();
+            //IList<Almacen> listaPrueba = null;
+            //AlmacenServicios servicioPrueba = new AlmacenServicios();
+            //listaPrueba = servicioPrueba.ConsultarTodos();
+            //IList<Archivo> listaPrueba = null;
+            //ArchivoServicios servicioPrueba = new ArchivoServicios();
+            //listaPrueba = servicioPrueba.ConsultarTodos();
+            //Archivo archivoPrueba = new Archivo("860000");
+            //Archivo resultado = new Archivo();
+            //resultado = servicioPrueba.ConsultarPorId(archivoPrueba);
             //Console.ReadLine();
-
-            //---
-            //Marca marcaPrueba = new Marca();
-            //marcaPrueba.Id = 878217;
-            //MarcaServicios _marcaServicios = new MarcaServicios();
-            //marcaPrueba = _marcaServicios.ConsultarPorId(marcaPrueba);
-
-            
-            //---
+        
+          
             #endregion
-
-            
-
-
 
             Console.WriteLine("Se han cargado " + ConfiguracionServicios.CargarUsuarios() + " sesiones de archivo XML");
             Console.WriteLine("Configuracion cargada...");

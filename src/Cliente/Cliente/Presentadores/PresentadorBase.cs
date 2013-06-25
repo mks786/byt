@@ -373,6 +373,151 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
 
         /// <summary>
+        /// Método que busca un Documento dentro de una lista de Documentos
+        /// </summary>
+        /// <param name="asociados">Lista de boletines</param>
+        /// <param name="asociadoBuscado">Boletin a buscar</param>
+        /// <returns>Boletin dentro de la lista</returns>
+        public TipoDocumento BuscarDocumento(IList<TipoDocumento> documentos, TipoDocumento documentoBuscado)
+        {
+            TipoDocumento retorno = null;
+
+            if (documentoBuscado != null)
+                foreach (TipoDocumento documento in documentos)
+                {
+                    if (documento.Id == documentoBuscado.Id)
+                    {
+                        retorno = documento;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+
+
+        /// <summary>
+        /// Método que busca un Tipo de Caja especifico dentro de una lista de tipos de cajas
+        /// </summary>
+        /// <param name="asociados">Lista de boletines</param>
+        /// <param name="asociadoBuscado">Boletin a buscar</param>
+        /// <returns>Boletin dentro de la lista</returns>
+        public TipoCaja BuscarTipoCaja(IList<TipoCaja> tiposCajas, TipoCaja tipoCajaBuscado)
+        {
+            TipoCaja retorno = null;
+
+            if (tipoCajaBuscado != null)
+                foreach (TipoCaja item in tiposCajas)
+                {
+                    if (item.Id == tipoCajaBuscado.Id)
+                    {
+                        retorno = item;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+
+
+        /// <summary>
+        /// Método que busca una Caja especifica dentro de una lista de cajas
+        /// </summary>
+        /// <param name="asociados">Lista de boletines</param>
+        /// <param name="asociadoBuscado">Boletin a buscar</param>
+        /// <returns>Boletin dentro de la lista</returns>
+        public Caja BuscarCaja(IList<Caja> cajas, Caja cajaBuscado)
+        {
+            Caja retorno = null;
+
+            if (cajaBuscado != null)
+                foreach (Caja item in cajas)
+                {
+                    if (item.Id == cajaBuscado.Id)
+                    {
+                        retorno = item;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+
+
+        /// <summary>
+        /// Método que busca un Almacen especifico dentro de una lista de almacenes
+        /// </summary>
+        /// <param name="asociados">Lista de boletines</param>
+        /// <param name="asociadoBuscado">Boletin a buscar</param>
+        /// <returns>Boletin dentro de la lista</returns>
+        public Almacen BuscarAlmacen(IList<Almacen> almacenes, Almacen almacenBuscado)
+        {
+            Almacen retorno = null;
+
+            if (almacenBuscado != null)
+                foreach (Almacen item in almacenes)
+                {
+                    if (item.Id == almacenBuscado.Id)
+                    {
+                        retorno = item;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+
+
+        /// <summary>
+        /// Método que busca un Tipo de Documento dentro de una lista de Documentos
+        /// </summary>
+        /// <param name="asociados">Lista de boletines</param>
+        /// <param name="asociadoBuscado">Boletin a buscar</param>
+        /// <returns>Boletin dentro de la lista</returns>
+        //public TipoDocumento BuscarTipoDocumento(IList<TipoDocumento> tipodocumentos, TipoDocumento tipodocumentoBuscado)
+        //{
+        //    TipoDocumento retorno = null;
+
+        //    if (tipodocumentoBuscado != null)
+        //        foreach (TipoDocumento tipodocumento in tipodocumentos)
+        //        {
+        //            if ((tipodocumento.TipoDoc == tipodocumentoBuscado.TipoDoc) 
+        //                && (tipodocumento.Descripcion == tipodocumentoBuscado.Descripcion))
+        //            {
+        //                retorno = tipodocumento;
+        //                break;
+        //            }
+        //        }
+
+        //    return retorno;
+        //}
+
+        public ListaDatosValores BuscarTipoDocumento(IList<ListaDatosValores> tipoDocumentos, ListaDatosValores tipoDocumentoBuscado)
+        {
+            ListaDatosValores retorno = null;
+
+            if (tipoDocumentos != null)
+                foreach (ListaDatosValores tipoDocumento in tipoDocumentos)
+                {
+                    if (tipoDocumento.Valor == tipoDocumentoBuscado.Id)
+                    {
+                        retorno = tipoDocumento;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+
+
+
+
+        /// <summary>
         /// Busca la el sexo (género) correspondiente a la inicial que se le esté pasando
         /// </summary>
         /// <param name="sexo">Inicial del sexo (género)</param>
@@ -491,7 +636,28 @@ namespace Trascend.Bolet.Cliente.Presentadores
         //    return retorno;
         //}
 
+        /// <summary>
+        /// Método que busca un Tipo de Documento dentro de una lista de Documentos
+        /// </summary>
+        /// <param name="asociados">Lista de boletines</param>
+        /// <param name="asociadoBuscado">Boletin a buscar</param>
+        /// <returns>Boletin dentro de la lista</returns>
+        public Usuario BuscarUsuarioPorIniciales(IList<Usuario> usuarios, Usuario usuarioBuscado)
+        {
+            Usuario retorno = null;
 
+            if (usuarioBuscado != null)
+                foreach (Usuario usuario in usuarios)
+                {
+                    if (usuario.Iniciales == usuarioBuscado.Iniciales)
+                    {
+                        retorno = usuario;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
 
 
 

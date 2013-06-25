@@ -1369,4 +1369,7 @@
   <data name="fac_FacTarifaEliminado" xml:space="preserve">
     <value>Tarifa eliminado con éxito</value>
   </data>
+  <data name="ConfirmarModificarArchivoMarca" xml:space="preserve">
+    <value>¿Está seguro que desea modificar el Archivo para la Marca {0}?</value>
+  </data>
 </root>

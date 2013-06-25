@@ -43,7 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContratosServicios\IAlmacenServicios.cs" />
+    <Compile Include="ContratosServicios\IArchivoServicios.cs" />
+    <Compile Include="ContratosServicios\ICajaServicios.cs" />
     <Compile Include="ContratosServicios\IEmailAsociadoServicios.cs" />
+    <Compile Include="ContratosServicios\ITipoCajaServicios.cs" />
+    <Compile Include="ContratosServicios\ITipoDocumentoServicios.cs" />
     <Compile Include="ContratosServicios\ITipoEmailAsociadoServicios.cs" />
     <Compile Include="ContratosServicios\IReportePatenteServicios.cs" />
     <Compile Include="ContratosServicios\IInstruccionDeRenovacionServicios.cs" />
@@ -121,9 +126,12 @@
     <Compile Include="ContratosServicios\IObjetoServicios.cs" />
     <Compile Include="ContratosServicios\IRolServicios.cs" />
     <Compile Include="ContratosServicios\IServicioBase.cs" />
+    <Compile Include="Entidades\Almacen.cs" />
+    <Compile Include="Entidades\Archivo.cs" />
     <Compile Include="Entidades\Auditoria.cs" />
     <Compile Include="Entidades\Agente.cs" />
     <Compile Include="Entidades\Busqueda.cs" />
+    <Compile Include="Entidades\Caja.cs" />
     <Compile Include="Entidades\Concepto.cs" />
     <Compile Include="Entidades\Conectividad.cs" />
     <Compile Include="Entidades\Contacto.cs" />
@@ -194,6 +202,8 @@
     <Compile Include="Entidades\FacStatementProcesar.cs" />
     <Compile Include="Entidades\FacTipoServicio.cs" />
     <Compile Include="Entidades\FacViGestionAsociado.cs" />
+    <Compile Include="Entidades\TipoCaja.cs" />
+    <Compile Include="Entidades\TipoDocumento.cs" />
     <Compile Include="Entidades\TipoEmailAsociado.cs" />
     <Compile Include="Entidades\ReportePatente.cs" />
     <Compile Include="Entidades\FusionMarcaTercero.cs" />

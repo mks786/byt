@@ -1557,6 +1557,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a ITIPODOC.
+        /// </summary>
+        public static string cbiTipoDocumentoArchivo {
+            get {
+                return ResourceManager.GetString("cbiTipoDocumentoArchivo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a PATENTE.
         /// </summary>
         public static string cbiTipoPatente {
@@ -3835,6 +3844,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Almacen:.
+        /// </summary>
+        public static string lblAlmacen {
+            get {
+                return ResourceManager.GetString("lblAlmacen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Anexo:.
         /// </summary>
         public static string lblAnexo {
@@ -3961,6 +3979,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Aux:.
+        /// </summary>
+        public static string lblAuxArchivo {
+            get {
+                return ResourceManager.GetString("lblAuxArchivo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Banco Beneficiario:.
         /// </summary>
         public static string lblBancoBeneficiario {
@@ -4066,6 +4093,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblByt {
             get {
                 return ResourceManager.GetString("lblByt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Caja:.
+        /// </summary>
+        public static string lblCaja {
+            get {
+                return ResourceManager.GetString("lblCaja", resourceCulture);
             }
         }
         
@@ -4579,6 +4615,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblDistingueIngles {
             get {
                 return ResourceManager.GetString("lblDistingueIngles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Documento:.
+        /// </summary>
+        public static string lblDocumento {
+            get {
+                return ResourceManager.GetString("lblDocumento", resourceCulture);
             }
         }
         
@@ -6267,6 +6312,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Tipo de Caja:.
+        /// </summary>
+        public static string lblTipoCaja {
+            get {
+                return ResourceManager.GetString("lblTipoCaja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a TipoClasnac:.
         /// </summary>
         public static string lblTipoClasNac {
@@ -6344,6 +6398,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblTipoDistingue {
             get {
                 return ResourceManager.GetString("lblTipoDistingue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tipo de Documento:.
+        /// </summary>
+        public static string lblTipoDocumento {
+            get {
+                return ResourceManager.GetString("lblTipoDocumento", resourceCulture);
             }
         }
         
@@ -6542,6 +6605,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblUso {
             get {
                 return ResourceManager.GetString("lblUso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Usuario:.
+        /// </summary>
+        public static string lblUsuarioArchivo {
+            get {
+                return ResourceManager.GetString("lblUsuarioArchivo", resourceCulture);
             }
         }
         

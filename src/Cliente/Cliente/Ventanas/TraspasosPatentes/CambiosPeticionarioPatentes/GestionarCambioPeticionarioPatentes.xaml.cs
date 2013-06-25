@@ -770,7 +770,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
 
                 if (this._presentador.VerificarCambioInteresado("Anterior"))
                 {
-                    this._btnConsultarPoderAnterior.IsEnabled = false;
+                    //this._btnConsultarPoderAnterior.IsEnabled = false;
+                    this._btnConsultarPoderAnterior.IsEnabled = true;
                 }
                 else
                 {
@@ -857,7 +858,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
 
                 if (this._presentador.VerificarCambioAgente("Anterior"))
                 {
-                    this._btnConsultarPoderAnterior.IsEnabled = false;
+                    //this._btnConsultarPoderAnterior.IsEnabled = false;
+                    this._btnConsultarPoderAnterior.IsEnabled = true;
                 }
                 else
                 {
@@ -940,8 +942,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
 
                 if (this._presentador.VerificarCambioPoder("Anterior"))
                 {
-                    this._btnConsultarApoderadoAnterior.IsEnabled = false;
-                    this._btnConsultarAnterior.IsEnabled = false;
+                    //this._btnConsultarApoderadoAnterior.IsEnabled = false;
+                    //this._btnConsultarAnterior.IsEnabled = false;
+                    this._btnConsultarApoderadoAnterior.IsEnabled = true;
+                    this._btnConsultarAnterior.IsEnabled = true;
                 }
                 else
                 {
@@ -1033,7 +1037,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
 
                 if (this._presentador.VerificarCambioInteresado("Actual"))
                 {
-                    this._btnConsultarPoderActual.IsEnabled = false;
+                    //this._btnConsultarPoderActual.IsEnabled = false;
+                    this._btnConsultarPoderActual.IsEnabled = true;
                 }
                 else
                 {
@@ -1117,7 +1122,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
 
                 if (this._presentador.VerificarCambioAgente("Actual"))
                 {
-                    this._btnConsultarPoderActual.IsEnabled = false;
+                    //this._btnConsultarPoderActual.IsEnabled = false;
+                    this._btnConsultarPoderActual.IsEnabled = true;
                 }
                 else
                 {
@@ -1200,8 +1206,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
 
                 if (this._presentador.VerificarCambioPoder("Actual"))
                 {
-                    this._btnConsultarApoderadoActual.IsEnabled = false;
-                    this._btnConsultarActual.IsEnabled = false;
+                    //this._btnConsultarApoderadoActual.IsEnabled = false;
+                    //this._btnConsultarActual.IsEnabled = false;
+                    this._btnConsultarApoderadoActual.IsEnabled = true;
+                    this._btnConsultarActual.IsEnabled = true;
                 }
                 else
                 {

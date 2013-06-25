@@ -998,9 +998,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                             new Interesado(int.MinValue));
                     }
 
-                    this._ventana.AgenteApoderado = ((Marca)this._ventana.Marca).Agente;
-                    this._ventana.AgenteApoderadoFiltrado = ((Marca)this._ventana.Marca).Agente;
-                    this._ventana.Poder = ((Marca)this._ventana.Marca).Poder;
+                    //this._ventana.AgenteApoderado = ((Marca)this._ventana.Marca).Agente;
+                    //this._ventana.AgenteApoderadoFiltrado = ((Marca)this._ventana.Marca).Agente;
+                    //this._ventana.Poder = ((Marca)this._ventana.Marca).Poder;
 
 
                     if (null != ((Marca)this._ventana.Marca).Asociado)
@@ -1361,7 +1361,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 
                 if (((Interesado)this._ventana.InteresadoActualFiltrado).Id != int.MinValue)
                 {
-                    if (!((Agente)this._ventana.AgenteApoderadoFiltrado).Id.Equals(""))
+                    if ((this._ventana.AgenteApoderadoFiltrado != null) &&(!((Agente)this._ventana.AgenteApoderadoFiltrado).Id.Equals("")))
                     {
                         if (((Poder)this._ventana.PoderFiltrado).Id != int.MinValue)
                         {
@@ -1392,7 +1392,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     }
                     else
                     {
-                        if (((Poder)this._ventana.PoderFiltrado).Id == int.MinValue)
+                        if ((this._ventana.PoderFiltrado != null) && (((Poder)this._ventana.PoderFiltrado).Id == int.MinValue))
                         {
                             Poder primerPoder = new Poder(int.MinValue);
 
@@ -1684,13 +1684,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                         {
                             //--
                             this._ventana.Mensaje("Debe seleccionar un Interesado Actual", 0);
+                            LimpiarListaPoder();
                             //--
                             this._ventana.AgenteApoderado = this._ventana.AgenteApoderadoFiltrado;
                             this._ventana.NombreAgenteApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Nombre;
                             this._ventana.IdAgenteApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Id.ToString();
-                            //--
-                            LimpiarListaPoder();
-                            //--
+                            
                             retorno = true;
                         }
                         else

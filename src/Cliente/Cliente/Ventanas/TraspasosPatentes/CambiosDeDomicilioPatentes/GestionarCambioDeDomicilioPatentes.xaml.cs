@@ -706,7 +706,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
 
                 if (this._presentador.VerificarCambioInteresado())
                 {
-                    this._btnConsultarPoder.IsEnabled = false;
+                    //this._btnConsultarPoder.IsEnabled = false;
+                    this._btnConsultarPoder.IsEnabled = true;
                     this._btnModificar.IsDefault = true;
                 }
                 else
@@ -789,7 +790,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
 
                 if (this._presentador.VerificarCambioAgente())
                 {
-                    this._btnConsultarPoder.IsEnabled = false;
+                    //this._btnConsultarPoder.IsEnabled = false;
+                    this._btnConsultarPoder.IsEnabled = true;
                     this._btnModificar.IsDefault = true;
                 }
                 else
@@ -919,8 +921,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
 
                 if (this._presentador.VerificarCambioPoder())
                 {
-                    this._btnConsultarApoderado.IsEnabled = false;
-                    this._btnConsultarInteresadoActual.IsEnabled = false;
+                    //this._btnConsultarApoderado.IsEnabled = false;
+                    //this._btnConsultarInteresadoActual.IsEnabled = false;
+                    this._btnConsultarApoderado.IsEnabled = true;
+                    this._btnConsultarInteresadoActual.IsEnabled = true;
                     this._btnModificar.IsDefault = true;
                 }
                 else

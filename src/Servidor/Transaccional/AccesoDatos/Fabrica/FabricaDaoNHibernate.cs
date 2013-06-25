@@ -184,6 +184,56 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
 
 
         /// <summary>
+        /// Método que devuelve el DaoTipoDocumento
+        /// </summary>
+        /// <returns>IDaoTipoInfobol</returns>
+        public override IDaoTipoDocumento ObtenerDaoTipoDocumento()
+        {
+            return new DaoTipoDocumentoNHibernate();
+        }
+
+
+        /// <summary>
+        /// Método que devuelve el DaoAlmacen
+        /// </summary>
+        /// <returns>IDaoTipoInfobol</returns>
+        public override IDaoAlmacen ObtenerDaoAlmacen()
+        {
+            return new DaoAlmacenNHibernate();
+        }
+
+
+        /// <summary>
+        /// Método que devuelve el DaoTipoCaja
+        /// </summary>
+        /// <returns>IDaoTipoInfobol</returns>
+        public override IDaoTipoCaja ObtenerDaoTipoCaja()
+        {
+            return new DaoTipoCajaNHibernate();
+        }
+
+
+        /// <summary>
+        /// Método que devuelve el DaoCaja
+        /// </summary>
+        /// <returns>IDaoTipoCaja</returns>
+        public override IDaoCaja ObtenerDaoCaja()
+        {
+            return new DaoCajaNHibernate();
+        }
+
+
+        /// <summary>
+        /// Método que devuelve el DaoArchivo
+        /// </summary>
+        /// <returns>IDaoTipoCaja</returns>
+        public override IDaoArchivo ObtenerDaoArchivo()
+        {
+            return new DaoArchivoNHibernate();
+        }
+
+
+        /// <summary>
         /// Método que devuelve el DaoUsuario
         /// </summary>
         /// <returns>IDaoUsuario</returns>

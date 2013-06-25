@@ -360,7 +360,7 @@
                         </Label>
 
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.Row="0" Name="_txtIdApoderadoLicenciante" VerticalAlignment="Center" 
-                                            MaxLength="255" Grid.ColumnSpan="1" Text="" IsReadOnly="True" IsTabStop="False"  BorderBrush="LightGreen"
+                                            MaxLength="255" Grid.ColumnSpan="1" Text="{Binding Path=Id}" IsReadOnly="True" IsTabStop="False"  BorderBrush="LightGreen"
                                             MouseDoubleClick="_txtNombreApoderadoLicenciante_MouseDoubleClick" Margin="0,0,5,0"></custom:ByTTextBox>
 
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="2" Grid.Row="0" Name="_txtNombreApoderadoLicenciante" VerticalAlignment="Center" 

@@ -1178,6 +1178,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a ¿Está seguro que desea modificar el Archivo para la Marca {0}?.
+        /// </summary>
+        internal static string ConfirmarModificarArchivoMarca {
+            get {
+                return ResourceManager.GetString("ConfirmarModificarArchivoMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a ¿Está seguro que desea modificar la Carta {0}?.
         /// </summary>
         internal static string ConfirmarModificarCarta {

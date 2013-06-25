@@ -1906,6 +1906,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Select a from Archivo a where a.Id = &apos;{0}&apos;.
+        /// </summary>
+        public static string ObtenerArchivoPorId {
+            get {
+                return ResourceManager.GetString("ObtenerArchivoPorId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Select a from Asignacion a where a.Carta = &apos;{0}&apos;.
         /// </summary>
         public static string ObtenerAsignacionesPorCarta {

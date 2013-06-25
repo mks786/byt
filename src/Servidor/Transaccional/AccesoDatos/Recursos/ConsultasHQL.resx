@@ -1071,4 +1071,8 @@
     <value>m.PrimerOtro like '%{0}%'</value>
     <comment>Filtro de marca por PrimerOtro</comment>
   </data>
+  <data name="ObtenerArchivoPorId" xml:space="preserve">
+    <value>Select a from Archivo a where a.Id = '{0}'</value>
+    <comment>Obtiene un archivo de marca o patente por Id</comment>
+  </data>
 </root>

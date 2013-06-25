@@ -67,7 +67,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato\IDaoAlmacen.cs" />
+    <Compile Include="Contrato\IDaoArchivo.cs" />
+    <Compile Include="Contrato\IDaoCaja.cs" />
     <Compile Include="Contrato\IDaoEmailAsociado.cs" />
+    <Compile Include="Contrato\IDaoTipoCaja.cs" />
+    <Compile Include="Contrato\IDaoTipoDocumento.cs" />
     <Compile Include="Contrato\IDaoTipoEmailAsociado.cs" />
     <Compile Include="Contrato\IDaoReportePatente.cs" />
     <Compile Include="Contrato\IDaoFusionPatenteTercero.cs" />
@@ -154,7 +159,12 @@
     <Compile Include="Contrato\IDaoBase.cs" />
     <Compile Include="Contrato\IDaoUsuario.cs" />
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
+    <Compile Include="Dao\NHibernate\DaoAlmacenNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoArchivoNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoCajaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoEmailAsociadoNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoTipoCajaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoTipoDocumentoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoTipoEmailAsociadoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoReportePatenteNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoFusionPatenteTerceroNHibernate.cs" />
@@ -689,6 +699,15 @@
     <EmbeddedResource Include="Mapeado\EmailAsociado.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\Almacen.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\Archivo.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mapeado\Caja.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\TipoCaja.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\TipoDocumento.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

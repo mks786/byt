@@ -557,7 +557,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
                 GestionarVisibilidadDatosDePatente(Visibility.Visible);
                 GestionarVisibilidadFiltroPatente(Visibility.Collapsed);
 
-                this._btnConsultarPatente.IsDefault = false;
+                //this._btnConsultarPatente.IsDefault = false;
+                this._btnConsultarPatente.IsDefault = true;
                 this._btnModificar.IsDefault = true;
             }
         }
@@ -637,7 +638,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
                 GestionarVisibilidadDatosDeInteresadoAnterior(Visibility.Visible);
                 GestionarVisibilidadFiltroInteresadoAnterior(Visibility.Collapsed);
 
-                this._btnConsultarInteresadoAnterior.IsDefault = false;
+                //this._btnConsultarInteresadoAnterior.IsDefault = false;
+                this._btnConsultarInteresadoAnterior.IsDefault = true;
                 this._btnModificar.IsDefault = true;
             }
         }
@@ -710,7 +712,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
 
                 if (this._presentador.VerificarCambioInteresado())
                 {
-                    this._btnConsultarPoder.IsEnabled = false;
+                    //this._btnConsultarPoder.IsEnabled = false;
+                    this._btnConsultarPoder.IsEnabled = true;
                     this._btnModificar.IsDefault = true;
                 }
                 else
@@ -793,7 +796,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
 
                 if (this._presentador.VerificarCambioAgente())
                 {
-                    this._btnConsultarPoder.IsEnabled = false;
+                    //this._btnConsultarPoder.IsEnabled = false;
+                    this._btnConsultarPoder.IsEnabled = true;
                     this._btnModificar.IsDefault = true;
                 }
                 else
@@ -923,8 +927,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
 
                 if (this._presentador.VerificarCambioPoder())
                 {
-                    this._btnConsultarApoderado.IsEnabled = false;
-                    this._btnConsultarInteresadoActual.IsEnabled = false;
+                    //this._btnConsultarApoderado.IsEnabled = false;
+                    //this._btnConsultarInteresadoActual.IsEnabled = false;
+                    this._btnConsultarApoderado.IsEnabled = true;
+                    this._btnConsultarInteresadoActual.IsEnabled = true;
                     this._btnModificar.IsDefault = true;
                 }
                 else

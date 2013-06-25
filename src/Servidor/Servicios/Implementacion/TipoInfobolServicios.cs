@@ -8,7 +8,7 @@ using Trascend.Bolet.ObjetosComunes.Entidades;
 
 namespace Trascend.Bolet.Servicios.Implementacion
 {
-    class TipoInfobolServicios : MarshalByRefObject, ITipoInfobolServicios
+    public class TipoInfobolServicios : MarshalByRefObject, ITipoInfobolServicios
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 

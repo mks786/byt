@@ -62,6 +62,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IInternacionalServicios _internacionalServicios;
         private IRenovacionServicios _renovacionServicios;
         private IInstruccionDeRenovacionServicios _instruccionDeRenovacionServicios;
+        private IArchivoServicios _archivoServicios;
 
 
         private IList<Asociado> _asociados;
@@ -156,6 +157,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["RenovacionServicios"]);
                 this._instruccionDeRenovacionServicios = (IInstruccionDeRenovacionServicios)Activator.GetObject(typeof(IInstruccionDeRenovacionServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InstruccionDeRenovacionServicios"]);
+                this._archivoServicios = (IArchivoServicios)Activator.GetObject(typeof(IArchivoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ArchivoServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1016,6 +1019,71 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
+
+
+        /// <summary>
+        /// Método que se encarga de mostrar la ventana de Archivo
+        /// </summary>
+        public void IrArchivo()
+        {
+            
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Marca marca = CargarMarcaDeLaPantalla();
+
+                Archivo archivoConsultar = new Archivo(marca.Id.ToString());
+                Archivo archivo = this._archivoServicios.ConsultarPorId(archivoConsultar);
+
+                //this.Navegar(new GestionarArchivoDeMarca(CargarMarcaDeLaPantalla(), this._ventana));
+                if (archivo != null)
+                    this.Navegar(new GestionarArchivoDeMarca(archivo, marca, this._ventana));
+                else
+                {
+                    archivoConsultar.Fecha = DateTime.Today;
+                    archivoConsultar.TipoDeDocumento = "";
+                    this.Navegar(new GestionarArchivoDeMarca(archivoConsultar, marca, this._ventana));
+                }
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+
+            
+        }
+
+
+
 
 
         /// <summary>

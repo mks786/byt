@@ -51,6 +51,7 @@
     <Compile Include="Comandos\ComandosAgente\ComandoVerificarExistenciaAgente.cs" />
     <Compile Include="Comandos\ComandosAgente\ComandoConsultarAgentesDeUnPoder.cs" />
     <Compile Include="Comandos\ComandosAgente\ComandoConsultarAgentesSinPoderesFiltro.cs" />
+    <Compile Include="Comandos\ComandosAlmacen\ComandoConsultarTodosAlmacenes.cs" />
     <Compile Include="Comandos\ComandosAnaqua\ComandoConsultarAnaquaPorID.cs" />
     <Compile Include="Comandos\ComandosAnexo\ComandoConsultarTodosAnexos.cs" />
     <Compile Include="Comandos\ComandosAnexo\ComandoEliminarAnexo.cs" />
@@ -59,6 +60,9 @@
     <Compile Include="Comandos\ComandosAnualidad\ComandoConsultarAnualidadesFiltro.cs" />
     <Compile Include="Comandos\ComandosAnualidad\ComandoConsultarUltimoIdAnualidad.cs" />
     <Compile Include="Comandos\ComandosAnualidad\ComandoConsultarAnualidadesPorPatente.cs" />
+    <Compile Include="Comandos\ComandosArchivo\ComandoConsultarArchivoPorID.cs" />
+    <Compile Include="Comandos\ComandosArchivo\ComandoConsultarTodosArchivos.cs" />
+    <Compile Include="Comandos\ComandosArchivo\ComandoInsertarOModificarArchivo.cs" />
     <Compile Include="Comandos\ComandosAsignacion\ComandoConsultarAsignacionesPorCarta.cs" />
     <Compile Include="Comandos\ComandosAsignacion\ComandoConsultarAsignacionesPorUsuario.cs" />
     <Compile Include="Comandos\ComandosAsignacion\ComandoEliminarAsignacionesPorCarta.cs" />
@@ -76,6 +80,7 @@
     <Compile Include="Comandos\ComandosBusqueda\ComandoEliminarBusqueda.cs" />
     <Compile Include="Comandos\ComandosBusqueda\ComandoInsertarOModificarBusqueda.cs" />
     <Compile Include="Comandos\ComandosBusqueda\ComandoVerificarExistenciaBusqueda.cs" />
+    <Compile Include="Comandos\ComandosCaja\ComandoConsultarTodosCajas.cs" />
     <Compile Include="Comandos\ComandosCambioDeDomicilio\ComandoConsultarCambiosDeDomicilioFiltro.cs" />
     <Compile Include="Comandos\ComandosCambioDeDomicilio\ComandoConsultarTodosCambioDeDomicilio.cs" />
     <Compile Include="Comandos\ComandosCambioDeDomicilio\ComandoEliminarCambioDeDomicilio.cs" />
@@ -205,7 +210,9 @@
     <Compile Include="Comandos\ComandosTipoBase\ComandoEliminarTipoBase.cs" />
     <Compile Include="Comandos\ComandosTipoBase\ComandoInsertarOModificarTipoBase.cs" />
     <Compile Include="Comandos\ComandosTipoBase\ComandoVerificarExistenciaTipoBase.cs" />
+    <Compile Include="Comandos\ComandosTipoCaja\ComandoConsultarTodosTipoCaja.cs" />
     <Compile Include="Comandos\ComandosTipoCliente\ComandoConsultarTodosTipoClientes.cs" />
+    <Compile Include="Comandos\ComandosTipoDocumento\ComandoConsultarTodosTipoDocumento.cs" />
     <Compile Include="Comandos\ComandosTipoEmailAsociado\ComandoConsultarTodasTipoEmailAsociado.cs" />
     <Compile Include="Comandos\ComandosTipoEmailAsociado\ComandoEliminarTipoEmailAsociado.cs" />
     <Compile Include="Comandos\ComandosTipoEmailAsociado\ComandoInsertarOModificarTipoEmailAsociado.cs" />
@@ -419,7 +426,12 @@
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosAlmacen.cs" />
+    <Compile Include="Fabrica\FabricaComandosArchivo.cs" />
+    <Compile Include="Fabrica\FabricaComandosCaja.cs" />
     <Compile Include="Fabrica\FabricaComandosEmailAsociado.cs" />
+    <Compile Include="Fabrica\FabricaComandosTipoCaja.cs" />
+    <Compile Include="Fabrica\FabricaComandosTipoDocumento.cs" />
     <Compile Include="Fabrica\FabricaComandosTipoEmailAsociado.cs" />
     <Compile Include="Fabrica\FabricaComandosReportePatente.cs" />
     <Compile Include="Fabrica\FabricaComandosFusionPatenteTercero.cs" />

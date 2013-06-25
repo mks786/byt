@@ -2564,6 +2564,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         #endregion
 
+        private void _btnArchivoDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrArchivo();
+        }
+
 
 
 
