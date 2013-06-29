@@ -70,7 +70,10 @@
     <Compile Include="Contrato\IDaoAlmacen.cs" />
     <Compile Include="Contrato\IDaoArchivo.cs" />
     <Compile Include="Contrato\IDaoCaja.cs" />
+    <Compile Include="Contrato\IDaoCertificadoMarca.cs" />
     <Compile Include="Contrato\IDaoEmailAsociado.cs" />
+    <Compile Include="Contrato\IDaoFechaMarca.cs" />
+    <Compile Include="Contrato\IDaoRegistrador.cs" />
     <Compile Include="Contrato\IDaoTipoCaja.cs" />
     <Compile Include="Contrato\IDaoTipoDocumento.cs" />
     <Compile Include="Contrato\IDaoTipoEmailAsociado.cs" />
@@ -162,7 +165,10 @@
     <Compile Include="Dao\NHibernate\DaoAlmacenNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoArchivoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCajaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoCertificadoMarcaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoEmailAsociadoNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoFechaMarcaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoRegistradorNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoTipoCajaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoTipoDocumentoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoTipoEmailAsociadoNHibernate.cs" />
@@ -708,6 +714,15 @@
     <EmbeddedResource Include="Mapeado\Caja.hbm.xml" />
     <EmbeddedResource Include="Mapeado\TipoCaja.hbm.xml" />
     <EmbeddedResource Include="Mapeado\TipoDocumento.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\CertificadoMarca.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\Registrador.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FechaMarca.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

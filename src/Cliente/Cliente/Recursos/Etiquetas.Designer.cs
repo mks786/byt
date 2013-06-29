@@ -1557,11 +1557,20 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a ITIPODOC.
+        ///   Busca una cadena traducida similar a ITIPODOCMARCA.
         /// </summary>
-        public static string cbiTipoDocumentoArchivo {
+        public static string cbiTipoDocumentoArchivoMarca {
             get {
-                return ResourceManager.GetString("cbiTipoDocumentoArchivo", resourceCulture);
+                return ResourceManager.GetString("cbiTipoDocumentoArchivoMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ITIPODOCPATENTE.
+        /// </summary>
+        public static string cbiTipoDocumentoArchivoPatente {
+            get {
+                return ResourceManager.GetString("cbiTipoDocumentoArchivoPatente", resourceCulture);
             }
         }
         
@@ -3768,6 +3777,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string faclblTotal {
             get {
                 return ResourceManager.GetString("faclblTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Marca.
+        /// </summary>
+        public static string filterArchivoTipoCajaMarcas {
+            get {
+                return ResourceManager.GetString("filterArchivoTipoCajaMarcas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Patente.
+        /// </summary>
+        public static string filterArchivoTipoCajaPatentes {
+            get {
+                return ResourceManager.GetString("filterArchivoTipoCajaPatentes", resourceCulture);
             }
         }
         

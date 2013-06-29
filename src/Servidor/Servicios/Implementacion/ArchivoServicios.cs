@@ -86,6 +86,46 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
         }
 
+
+
+        /// <summary>
+        /// Servicio que obtiene un Archivo de Marca Internacional
+        /// </summary>
+        /// <param name="archivo">Archivo a consultar</param>
+        /// <returns>Archivo de Marca Internacional</returns>
+        public Archivo ObtenerArchivoDeMarcaOPatenteInternacional(Archivo archivo)
+        {
+            Archivo retorno;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                retorno = ControladorArchivo.ObtenerArchivoDeMarcaOPatenteInternacional(archivo);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
+
+
+            return retorno;
+        }
+
         public IList<Archivo> ConsultarPorOtroCampo(string campoEntidad, string tipoOrdenamiento)
         {
             throw new NotImplementedException();

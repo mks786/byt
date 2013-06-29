@@ -63,6 +63,7 @@
     <Compile Include="Comandos\ComandosArchivo\ComandoConsultarArchivoPorID.cs" />
     <Compile Include="Comandos\ComandosArchivo\ComandoConsultarTodosArchivos.cs" />
     <Compile Include="Comandos\ComandosArchivo\ComandoInsertarOModificarArchivo.cs" />
+    <Compile Include="Comandos\ComandosArchivo\ComandoObtenerArchivoDeMarcaOPatenteInternacional.cs" />
     <Compile Include="Comandos\ComandosAsignacion\ComandoConsultarAsignacionesPorCarta.cs" />
     <Compile Include="Comandos\ComandosAsignacion\ComandoConsultarAsignacionesPorUsuario.cs" />
     <Compile Include="Comandos\ComandosAsignacion\ComandoEliminarAsignacionesPorCarta.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Comandos\ComandosCarta\ComandoConsultarTodasCarta.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoEliminarCarta.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoInsertarOModificarCarta.cs" />
+    <Compile Include="Comandos\ComandosCertificadoMarca\ComandoConsultarCertificadoMarcaPorID.cs" />
     <Compile Include="Comandos\ComandosCesion\ComandoConsultarCesionesFiltro.cs" />
     <Compile Include="Comandos\ComandosCesion\ComandoConsultarTodosCesion.cs" />
     <Compile Include="Comandos\ComandosCesion\ComandoEliminarCesion.cs" />
@@ -116,6 +118,7 @@
     <Compile Include="Comandos\ComandosEstadoMarca\ComandoEliminarEstadoMarca.cs" />
     <Compile Include="Comandos\ComandosEstadoMarca\ComandoInsertarOModificarEstadoMarca.cs" />
     <Compile Include="Comandos\ComandosEstadoMarca\ComandoVerificarExistenciaEstadoMarca.cs" />
+    <Compile Include="Comandos\ComandosFechaMarca\ComandoConsultarFechasPorMarca.cs" />
     <Compile Include="Comandos\ComandosFusionMarcaTercero\ComandoConsultarFusionMarcaTerceroPorFusion.cs" />
     <Compile Include="Comandos\ComandosFusionPatenteTercero\ComandoConsultarFusionPatenteTerceroPorFusion.cs" />
     <Compile Include="Comandos\ComandosFusion\ComandoConsultarFusionesFiltro.cs" />
@@ -158,6 +161,7 @@
     <Compile Include="Comandos\ComandosPoder\ComandoConsultarPoderesFiltro.cs" />
     <Compile Include="Comandos\ComandosPoder\ComandoConsultarPoderesPorAgente.cs" />
     <Compile Include="Comandos\ComandosPoder\ComandoConsultarPoderesEntreAgentesEInteresado.cs" />
+    <Compile Include="Comandos\ComandosRegistrador\ComandoConsultarTodosRegistradores.cs" />
     <Compile Include="Comandos\ComandosRenovacion\ComandoConsultarRenovacionesFiltro.cs" />
     <Compile Include="Comandos\ComandosRenovacion\ComandoVerificarExistenciaRenovacion.cs" />
     <Compile Include="Comandos\ComandosRenovacion\ComandoConsultarUltimaRenovacion.cs" />
@@ -211,8 +215,10 @@
     <Compile Include="Comandos\ComandosTipoBase\ComandoInsertarOModificarTipoBase.cs" />
     <Compile Include="Comandos\ComandosTipoBase\ComandoVerificarExistenciaTipoBase.cs" />
     <Compile Include="Comandos\ComandosTipoCaja\ComandoConsultarTodosTipoCaja.cs" />
+    <Compile Include="Comandos\ComandosTipoCaja\ComandoObtenerTipoCajaMarcaOPatente.cs" />
     <Compile Include="Comandos\ComandosTipoCliente\ComandoConsultarTodosTipoClientes.cs" />
     <Compile Include="Comandos\ComandosTipoDocumento\ComandoConsultarTodosTipoDocumento.cs" />
+    <Compile Include="Comandos\ComandosTipoDocumento\ComandoObtenerTipoDocumentoMarcaOPatente.cs" />
     <Compile Include="Comandos\ComandosTipoEmailAsociado\ComandoConsultarTodasTipoEmailAsociado.cs" />
     <Compile Include="Comandos\ComandosTipoEmailAsociado\ComandoEliminarTipoEmailAsociado.cs" />
     <Compile Include="Comandos\ComandosTipoEmailAsociado\ComandoInsertarOModificarTipoEmailAsociado.cs" />
@@ -429,7 +435,10 @@
     <Compile Include="Fabrica\FabricaComandosAlmacen.cs" />
     <Compile Include="Fabrica\FabricaComandosArchivo.cs" />
     <Compile Include="Fabrica\FabricaComandosCaja.cs" />
+    <Compile Include="Fabrica\FabricaComandosCertificadoMarca.cs" />
     <Compile Include="Fabrica\FabricaComandosEmailAsociado.cs" />
+    <Compile Include="Fabrica\FabricaComandosFechaMarca.cs" />
+    <Compile Include="Fabrica\FabricaComandosRegistrador.cs" />
     <Compile Include="Fabrica\FabricaComandosTipoCaja.cs" />
     <Compile Include="Fabrica\FabricaComandosTipoDocumento.cs" />
     <Compile Include="Fabrica\FabricaComandosTipoEmailAsociado.cs" />

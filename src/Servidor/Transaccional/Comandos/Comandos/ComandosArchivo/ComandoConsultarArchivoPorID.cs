@@ -35,7 +35,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosArchivo
                 #endregion
 
                 IDaoArchivo dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoArchivo();
-                this.Receptor = new Receptor<Archivo>(dao.ConsultarContactoPorId(this._archivo));
+                this.Receptor = new Receptor<Archivo>(dao.ConsultarArchivoPorId(this._archivo));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

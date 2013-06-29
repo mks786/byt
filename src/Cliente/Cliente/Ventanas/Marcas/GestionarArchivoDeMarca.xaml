@@ -67,25 +67,32 @@
                 
                 <!-- Datos de Expediente -->
                 <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
+                </Label>
+                <custom:ByTTextBox Grid.Column="1" Grid.Row="1" Name="_txtExpediente" VerticalAlignment="Center"                    HorizontalAlignment="Left" Width="180" IsReadOnly="True"></custom:ByTTextBox>
+
+                <!-- Datos de Codigo del Archivo -->
+                <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblExpediente}"/>
                 </Label>
-                <custom:ByTTextBox Grid.Column="1" Grid.Row="1" Name="_txtIdArchivo" VerticalAlignment="Center"  
+                <custom:ByTTextBox Grid.Column="2" Grid.Row="2" Name="_txtIdArchivo" VerticalAlignment="Center"  
                          HorizontalAlignment="Left" Width="180" Text="{Binding Path=Id}" IsReadOnly="True"></custom:ByTTextBox>
+                
 
                 <!-- Datos de Aux -->
-                <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblAuxArchivo}"/>
                 </Label>
-                <custom:ByTTextBox Grid.Column="2" Grid.Row="2" Name="_txtAuxArchivo" VerticalAlignment="Center"  
+                <custom:ByTTextBox Grid.Column="3" Grid.Row="3" Name="_txtAuxArchivo" VerticalAlignment="Center"  
                          HorizontalAlignment="Left" Width="180" Text="{Binding Path=Aux}" IsReadOnly="True"></custom:ByTTextBox>
 
                 <!-- Datos de Documento -->
-                <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblDocumento}"/>
                 </Label>
                 <!--<ComboBox Grid.Column="3" Grid.Row="3" Name="_cbxDocumentoArchivo" HorizontalAlignment="Left" Width="180" Height="20" SelectedIndex="0" IsEnabled="True" ItemsSource="{Binding}" DisplayMemberPath="Descripcion">
                 </ComboBox>-->
-                <ComboBox Grid.Column="3" Grid.Row="3" Name="_cbxDocumentoArchivo" HorizontalAlignment="Left" Width="180" Height="20" 
+                <ComboBox Grid.Column="4" Grid.Row="4" Name="_cbxDocumentoArchivo" HorizontalAlignment="Left" Width="180" Height="20" 
 						          SelectedIndex="0" IsEnabled="True" ItemsSource="{Binding}">
 
                     <ComboBox.ItemTemplate>
@@ -104,17 +111,17 @@
                 </ComboBox>
 
                 <!-- Datos de Tipo de Documento -->
-                <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoDocumento}"/>
                 </Label>
-                <ComboBox Grid.Column="4" Grid.Row="4" Name="_cbxTipoDocumentoArchivo" HorizontalAlignment="Left" Width="180" Height="20" DisplayMemberPath="Descripcion" SelectedIndex="0" IsEnabled="True" ItemsSource="{Binding}">
+                <ComboBox Grid.Column="5" Grid.Row="5" Name="_cbxTipoDocumentoArchivo" HorizontalAlignment="Left" Width="180" Height="20" DisplayMemberPath="Descripcion" SelectedIndex="0" IsEnabled="True" ItemsSource="{Binding}">
                 </ComboBox>
 
                 <!-- Datos de Tipo de Caja -->
-                <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoCaja}"/>
                 </Label>
-                <ComboBox Grid.Column="5" Grid.Row="5" Name="_cbxTipoCajaArchivo" HorizontalAlignment="Left" Width="180" Height="20" SelectedIndex="0" IsEnabled="True" ItemsSource="{Binding}">
+                <ComboBox Grid.Column="6" Grid.Row="6" Name="_cbxTipoCajaArchivo" HorizontalAlignment="Left" Width="180" Height="20" SelectedIndex="0" IsEnabled="True" ItemsSource="{Binding}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock>
@@ -130,10 +137,10 @@
                 </ComboBox>
 
                 <!-- Datos de Caja -->
-                <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                <Label Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblCaja}"/>
                 </Label>
-                <ComboBox Grid.Column="6" Grid.Row="6" Name="_cbxCajaArchivo" HorizontalAlignment="Left" Width="180" Height="20" SelectedIndex="0" IsEnabled="True" ItemsSource="{Binding}">
+                <ComboBox Grid.Column="7" Grid.Row="7" Name="_cbxCajaArchivo" HorizontalAlignment="Left" Width="180" Height="20" SelectedIndex="0" IsEnabled="True" ItemsSource="{Binding}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock>
@@ -149,10 +156,10 @@
                 </ComboBox>
 
                 <!-- Datos de Almacen -->
-                <Label Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                <Label Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblAlmacen}"/>
                 </Label>
-                <ComboBox Grid.Column="7" Grid.Row="7" Name="_cbxAlmacenArchivo" HorizontalAlignment="Left" Width="180" Height="20" SelectedIndex="0" IsEnabled="True" ItemsSource="{Binding}">
+                <ComboBox Grid.Column="8" Grid.Row="8" Name="_cbxAlmacenArchivo" HorizontalAlignment="Left" Width="180" Height="20" SelectedIndex="0" IsEnabled="True" ItemsSource="{Binding}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock>
@@ -169,10 +176,10 @@
 
 
                 <!-- Datos de Usuario -->
-                <Label Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                <Label Grid.Column="0" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblUsuarioArchivo}"/>
                 </Label>
-                <ComboBox Grid.Column="8" Grid.Row="8" Name="_cbxUsuarioArchivo" HorizontalAlignment="Left" Width="180" Height="20" SelectedIndex="0" IsEnabled="True" ItemsSource="{Binding}">
+                <ComboBox Grid.Column="9" Grid.Row="9" Name="_cbxUsuarioArchivo" HorizontalAlignment="Left" Width="180" Height="20" SelectedIndex="0" IsEnabled="True" ItemsSource="{Binding}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock>
@@ -188,23 +195,27 @@
                 </ComboBox>
 
 
-                <Label Grid.Column="0" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                <Label Grid.Column="0" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                 </Label>
                 <!--<custom:ByTTextBox Grid.Column="9" Grid.Row="9" Name="_txtFechaArchivo" VerticalAlignment="Center"  
                          HorizontalAlignment="Left" Width="180" Text="{Binding Path=Fecha}" ></custom:ByTTextBox>-->
-                <DatePicker  Grid.Column="9" Grid.Row="9" Name="_dpkFechaArchivo" Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" Margin="0,0,5,0"  Width="180" HorizontalAlignment="Left">
+                <DatePicker  Grid.Column="10" Grid.Row="10" Name="_dpkFechaArchivo" Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" Margin="0,0,5,0"  Width="180" HorizontalAlignment="Left">
                     <DatePicker.SelectedDate>
                         <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
                     </DatePicker.SelectedDate>
                 </DatePicker>
 
                 <!-- Datos de Aux -->
-                <Label Grid.Column="0" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                <Label Grid.Column="0" Grid.Row="11" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblUbicacion}"/>
                 </Label>
-                <custom:ByTTextBox Grid.Column="10" Grid.Row="10" Name="_txtUbicacionMarcaArchivo" VerticalAlignment="Center"  
+                <custom:ByTTextBox Grid.Column="11" Grid.Row="11" Name="_txtUbicacionMarcaArchivo" VerticalAlignment="Center"  
                          HorizontalAlignment="Left" Width="180" IsReadOnly="True"></custom:ByTTextBox>
+
+                <Label Grid.Column="12" Grid.Row="12">
+                    <TextBlock Name="_txtMensaje" Text="" Foreground="Green" />
+                </Label>
 
 
 

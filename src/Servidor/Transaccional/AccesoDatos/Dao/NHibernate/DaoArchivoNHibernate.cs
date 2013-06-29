@@ -17,7 +17,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         /// </summary>
         /// <param name="contacto"></param>
         /// <returns></returns>
-        public Archivo ConsultarContactoPorId(Archivo archivo)
+        public Archivo ConsultarArchivoPorId(Archivo archivo)
         {
             Archivo retorno;
 
@@ -39,7 +39,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.exObtenerContactosPorAsociado);
+                throw new ApplicationException(Recursos.Errores.exObtenerArchivoPorId);
             }
             finally
             {
@@ -48,5 +48,45 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
             return retorno;
         }
+
+
+        /// <summary>
+        /// Metodo que obtiene un Archivo de Marca o Patente Internacional
+        /// </summary>
+        /// <param name="archivo">Archivo a consultar</param>
+        /// <returns>Archivo de marca o patente internacional</returns>
+        public Archivo ObtenerArchivoDeMarcaOPatenteInternacional(Archivo archivo)
+        {
+            Archivo retorno;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerArchivoMarcaOPatenteInternacional, archivo.Id, archivo.Aux, archivo.TipoDeDocumento));
+                retorno = query.UniqueResult<Archivo>();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.exObtenerArchivoPorId);
+            }
+            finally
+            {
+                Session.Close();
+            }
+
+            return retorno;
+        }
+
+
     }
 }

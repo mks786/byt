@@ -197,6 +197,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         void PintarAuditoria();
 
+        void PintarArchivo();
+
         void PintarRenovacion();
 
         void PintarLblMarcaOrigen(bool confirmacion);

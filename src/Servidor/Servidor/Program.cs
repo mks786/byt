@@ -25,10 +25,10 @@ namespace Trascend.Bolet.Servidor
             #region Codigo de Prueba NO BORRAR - CONECTIVIDAD
             //IList<TipoDocumento> listaPrueba = null;
             //TipoDocumentoServicios servicioPrueba = new TipoDocumentoServicios();
-            //listaPrueba = servicioPrueba.ConsultarTodos();
+            //listaPrueba = servicioPrueba.ObtenerTipoDocumentoMarcaOPatente("M", "I");
             //IList<TipoCaja> listaPrueba = null;
             //TipoCajaServicios servicioPrueba = new TipoCajaServicios();
-            //listaPrueba = servicioPrueba.ConsultarTodos();
+            //listaPrueba = servicioPrueba.ObtenerTipoCajaMarcaOPatente("Marca");
             //IList<Caja> listaPrueba = null;
             //CajaServicios servicioPrueba = new CajaServicios();
             //listaPrueba = servicioPrueba.ConsultarTodos();
@@ -38,9 +38,29 @@ namespace Trascend.Bolet.Servidor
             //IList<Archivo> listaPrueba = null;
             //ArchivoServicios servicioPrueba = new ArchivoServicios();
             //listaPrueba = servicioPrueba.ConsultarTodos();
-            //Archivo archivoPrueba = new Archivo("860000");
+            //Archivo archivoPrueba = new Archivo("1002","2");
             //Archivo resultado = new Archivo();
             //resultado = servicioPrueba.ConsultarPorId(archivoPrueba);
+            //resultado = servicioPrueba.ObtenerArchivoDeMarcaOPatenteInternacional(archivoPrueba);
+            //IList<Registrador> listaPrueba = null;
+            //RegistradorServicios servicioPrueba = new RegistradorServicios();
+            //listaPrueba = servicioPrueba.ConsultarTodos();
+
+            //CertificadoMarca certificado = new CertificadoMarca(860000);
+            //CertificadoMarca resultado = null;
+            //CertificadoMarcaServicios servicioPrueba = new CertificadoMarcaServicios();
+            //resultado = servicioPrueba.ConsultarPorId(certificado);
+
+            //Marca marcaPrueba = new Marca();
+            //MarcaServicios marcaServicios = new MarcaServicios();
+            //FechaMarcaServicios fechaMarcaServicios = new FechaMarcaServicios();
+            //IList<FechaMarca> lista = null;
+            //marcaPrueba.Id = 860000;
+            //marcaPrueba = marcaServicios.ConsultarMarcaConTodo(marcaPrueba);
+            //lista = fechaMarcaServicios.ConsultarFechasPorMarca(marcaPrueba);
+
+
+
             //Console.ReadLine();
         
           

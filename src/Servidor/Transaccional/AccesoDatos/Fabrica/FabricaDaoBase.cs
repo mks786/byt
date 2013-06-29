@@ -126,6 +126,13 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// <returns>IDaoTipoDocumento</returns>
         public abstract IDaoAlmacen ObtenerDaoAlmacen();
 
+        /// <summary>
+        /// Metodo que devuelve el DaoRegistrador del manejador que se este utilizando
+        /// </summary>
+        /// <returns></returns>
+        public abstract IDaoRegistrador ObtenerDaoRegistrador();
+
+        
 
         /// <summary>
         /// Método que devuelve el DaoTipoCaja del manejador que se esté utilizando
@@ -145,6 +152,13 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// </summary>
         /// <returns>IDaoArchivo</returns>
         public abstract IDaoArchivo ObtenerDaoArchivo();
+
+
+        /// <summary>
+        /// Método que devuelve el DaoCertificadoMarca del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoCertificadoMArca</returns>
+        public abstract IDaoCertificadoMarca ObtenerDaoCertificadoMarca();
 
         
         /// <summary>
@@ -376,6 +390,12 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// </summary>
         /// <returns>IDaoInfoBol</returns>
         public abstract IDaoInfoBol ObtenerDaoInfoBol();
+
+        /// <summary>
+        /// Metodo que devuelve el DaoFechaMarca del manejador que se este utilizando
+        /// </summary>
+        /// <returns></returns>
+        public abstract IDaoFechaMarca ObtenerDaoFechaMarca();
 
         /// <summary>
         /// Método que devuelve el DaoInfoBol del manejador que se esté utilizando

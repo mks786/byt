@@ -64,6 +64,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventanaPadre = ventanaPadre;
                 this._marca = (Marca)marca;
                 //this._ventana.Marca = marca;
+                //this._archivo.Marca = (Marca)marca;
                 this._ventana.Archivo = archivo;
                 this._archivo = (Archivo)archivo;
 
@@ -113,30 +114,44 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 Marca marca = this._marca;
                 Archivo archivo = this._archivo;
+                
 
-                if (marca.CodigoMarcaInternacional != 0)
-                    this._ventana.AuxArchivo = marca.CodigoMarcaInternacional.ToString();
-                else
-                    this._ventana.AuxArchivo = "1";
+                //if (marca.CodigoMarcaInternacional != 0)
+                //    this._ventana.AuxArchivo = marca.CodigoMarcaInternacional.ToString();
+                //else
+                //    this._ventana.AuxArchivo = "1";
+
+                this._ventana.IdMarcaArchivo = marca.Id.ToString();
 
 
-                IList<TipoDocumento> documentos = this._tipoDocumentoServicios.ConsultarTodos();
+                //IList<TipoDocumento> documentos = this._tipoDocumentoServicios.ConsultarTodos();
+                IList<TipoDocumento> documentos = this._tipoDocumentoServicios.ObtenerTipoDocumentoMarcaOPatente("M", "I");
                 this._ventana.Documentos = documentos;
                 if (null != archivo.Documento)
+                {
+                    TipoDocumento primerDocumento = new TipoDocumento("NGN");
+                    documentos.Insert(0, primerDocumento);
                     this._ventana.Documento = this.BuscarDocumento(documentos, archivo.Documento);
+                }
                 else
                 {
-                    TipoDocumento documentoABuscar = new TipoDocumento("E1");
-                    this._ventana.Documento = this.BuscarDocumento(documentos, documentoABuscar);
-                    archivo.Documento = (TipoDocumento)this._ventana.Documento;
-                    ((Archivo)this._ventana.Archivo).Documento = archivo.Documento;
+
+                    TipoDocumento primerDocumento = new TipoDocumento("NGN");
+                    documentos.Insert(0, primerDocumento);
+                    #region Codigo Comentado
+                    //this._ventana.Documento = this.BuscarDocumento(documentos, documentoABuscar);
+                    //archivo.Documento = (TipoDocumento)this._ventana.Documento;
+                    //((Archivo)this._ventana.Archivo).Documento = archivo.Documento;
+                    #endregion
                 }
 
                 
                 IList<ListaDatosValores> tipoDocumentos = this._listaDatosValoresServicios.
-                    ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiTipoDocumentoArchivo));
+                    ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiTipoDocumentoArchivoMarca));
+                ListaDatosValores primerTipoDocumento = new ListaDatosValores("NGN");
+                tipoDocumentos.Insert(0, primerTipoDocumento);
                 this._ventana.TipoDocumentos = tipoDocumentos;
-                if ((archivo.TipoDeDocumento != null) && (archivo.TipoDeDocumento != ""))
+                if (archivo.TipoDeDocumento != null)
                 {
                     ListaDatosValores tipoDocumentoABuscar = new ListaDatosValores(archivo.TipoDeDocumento);
                     this._ventana.TipoDocumento = this.BuscarTipoDocumento(tipoDocumentos, tipoDocumentoABuscar);
@@ -144,29 +159,39 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 
 
 
-                IList<TipoCaja> tiposDeCaja = this._tipoCajaServicios.ConsultarTodos();
+                //IList<TipoCaja> tiposDeCaja = this._tipoCajaServicios.ConsultarTodos();
+                IList<TipoCaja> tiposDeCaja = this._tipoCajaServicios.ObtenerTipoCajaMarcaOPatente(Recursos.Etiquetas.filterArchivoTipoCajaMarcas);
+                TipoCaja primerTipoCaja = new TipoCaja(0);
+                tiposDeCaja.Insert(0, primerTipoCaja);
                 this._ventana.TipoCajas = tiposDeCaja;
-                if ((archivo.TipoDeCaja != null) && (archivo.TipoDeCaja != 0))
-                {
-                    TipoCaja tipoCajaBuscar = new TipoCaja(archivo.TipoDeCaja);
-                    this._ventana.TipoCaja = this.BuscarTipoCaja(tiposDeCaja, tipoCajaBuscar);
-                }
+                TipoCaja tipoCajaBuscar = new TipoCaja(archivo.TipoDeCaja);
+                this._ventana.TipoCaja = this.BuscarTipoCaja(tiposDeCaja, tipoCajaBuscar);
+                
 
                 IList<Caja> cajas = this._cajaServicios.ConsultarTodos();
+                Caja primeraCaja = new Caja(0);
+                cajas.Insert(0, primeraCaja);
                 this._ventana.Cajas = cajas;
-                if (archivo.CajaArchivo != 0)
-                {
+                //if (archivo.CajaArchivo != 0)
+                //{
                     Caja cajaBuscar = new Caja(archivo.CajaArchivo);
                     this._ventana.Caja = this.BuscarCaja(cajas, cajaBuscar);
-                }
+                //}
+                
 
                 IList<Almacen> almacenes = _almacenServicios.ConsultarTodos();
+                Almacen primerAlmacen = new Almacen("NGN");
+                almacenes.Insert(0, primerAlmacen);
                 this._ventana.Almacenes = almacenes;
                 if(archivo.AlmacenArchivo != null)
                     this._ventana.Almacen = this.BuscarAlmacen(almacenes, archivo.AlmacenArchivo);
 
                 IList<Usuario> usuarios = this._usuarioServicios.ConsultarTodos();
+                Usuario primerUsuario = new Usuario("NGN");
+                primerUsuario.Iniciales = "";
+                primerUsuario.NombreCompleto = "";
                 usuarios = this.FiltrarUsuariosRepetidos(usuarios);
+                usuarios.Insert(0, primerUsuario);
                 this._ventana.Usuarios = usuarios;
                 if (archivo.Usuario != null)
                 {
@@ -234,8 +259,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
 
-        public void Modificar()
+        public bool Modificar()
         {
+            bool exitoso = false;
+
             try
             {
                 #region trace
@@ -251,17 +278,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 {
                     if((archivo.Aux != null) && (!archivo.Aux.Equals("")))
                     {
-                        if (archivo.Documento != null)
+                        if ((archivo.Documento != null) && (!((TipoDocumento)archivo.Documento).Id.Equals("NGN")))
                         {
                             if ((archivo.TipoDeDocumento != null) && (!archivo.TipoDeDocumento.Equals("")))
                             {
-                                //Se llama al proceso de modificacion del registro en el servidor
-                                bool exitoso = this._archivoServicios.InsertarOModificar(archivo, UsuarioLogeado.Hash);
-                                if (exitoso)
-                                {
-                                    this._ventana.MostarMensajeCompletadoConExito();
-                                    RegresarVentanaPadre();
-                                }
+                                exitoso = this._archivoServicios.InsertarOModificar(archivo, UsuarioLogeado.Hash);
+                                //if (exitoso)
+                                //{
+                                //    this._ventana.MostarMensajeCompletadoConExito();
+                                //    //RegresarVentanaPadre();
+                                //}
                             }
                             else
                                 this._ventana.Mensaje("El Archivo de la marca debe tener un Tipo de Documento asignado", 0);
@@ -270,14 +296,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                             this._ventana.Mensaje("El Archivo de la marca debe tener un Documento asignado", 0);
                     }
                     else
-                        this._ventana.Mensaje("El archivo de la marca debe tener un campo Aux", 0);
+                        this._ventana.Mensaje("El archivo de la marca debe tener un Codigo Auxiliar", 0);
                 }
                 else
-                    this._ventana.Mensaje("El Archivo de la marca debe tener un Id", 0);
+                    this._ventana.Mensaje("El Archivo de la marca debe tener un Codigo de Expediente", 0);
 
 
-
-                        //if (ValidarMarcaInternacional())
+                #region Codigo Comentado
+                //if (ValidarMarcaInternacional())
                         //{
 
                         //    if (!this._ventana.EsMarcaNacional)
@@ -316,6 +342,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 //}
 
+                #endregion
+
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -341,6 +369,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+
+            return exitoso;
         }
 
 
@@ -375,7 +405,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 archivo.CajaArchivo = ((this._ventana.Caja != null) && (((Caja)this._ventana.Caja).Id != 0))
                     ? ((Caja)this._ventana.Caja).Id : 0;
 
-                archivo.AlmacenArchivo = (this._ventana.Almacen != null) ? (Almacen)this._ventana.Almacen : null;
+                //archivo.AlmacenArchivo = (this._ventana.Almacen != null) ? (Almacen)this._ventana.Almacen : null;
+                archivo.AlmacenArchivo = (this._ventana.Almacen != null) && (!((Almacen)this._ventana.Almacen).Id.Equals("NGN")) ? (Almacen)this._ventana.Almacen : null;
 
                 archivo.Usuario = (this._ventana.Usuario != null) ? ((Usuario)this._ventana.Usuario).Iniciales : null;
 

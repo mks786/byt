@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
+using System.ComponentModel;
+using System.Threading;
 using Trascend.Bolet.Cliente.Contratos.Marcas;
 using Trascend.Bolet.Cliente.Presentadores.Marcas;
 
@@ -14,6 +17,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private PresentadorGestionarArchivoDeMarca _presentador;
         private bool _cargada;
+        BackgroundWorker _bgw = new BackgroundWorker();
         private bool _camposHabilitados = true;
 
 
@@ -34,6 +38,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public void FocoPredeterminado()
         {
             this._txtIdArchivo.Focus();
+        }
+
+
+        public string IdMarcaArchivo
+        {
+            get { return this._txtExpediente.Text; }
+            set { this._txtExpediente.Text = value; }
         }
 
         public string IdArchivo
@@ -139,6 +150,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             InitializeComponent();
             this._cargada = false;
             this._presentador = new PresentadorGestionarArchivoDeMarca(this, archivo, marca, null);
+
+            _bgw.WorkerReportsProgress = true;
+            _bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(bgw_DoWork);
+            _bgw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(bgw_RunWorkerCompleted);
+            _bgw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(bgw_ProgressChanged);
         }
 
 
@@ -147,6 +163,27 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             InitializeComponent();
             this._cargada = false;
             this._presentador = new PresentadorGestionarArchivoDeMarca(this, archivo, marca, ventanaPadre);
+            _bgw.WorkerReportsProgress = true;
+            _bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(bgw_DoWork);
+            _bgw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(bgw_RunWorkerCompleted);
+            _bgw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(bgw_ProgressChanged);
+        }
+
+
+        void bgw_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            _bgw.ReportProgress(1);
+            Thread.Sleep(2000);
+        }
+
+        void bgw_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+            this._txtMensaje.Text = "Archivo de Marca modificado exitosamente.";
+        }
+
+        void bgw_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            //this._presentador.IrConsultarMarca();
         }
 
         #endregion
@@ -177,18 +214,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)
         {
-            if (_camposHabilitados)
+            
+            if (MessageBoxResult.Yes == MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmarModificarArchivoMarca,
+                _presentador.ObtenerIdMarca()),
+                "Modificar Archivo de Marca", MessageBoxButton.YesNo, MessageBoxImage.Question))
             {
-                if (MessageBoxResult.Yes == MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmarModificarArchivoMarca,
-                    _presentador.ObtenerIdMarca()),
-                    "Modificar Marca", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                if (this._presentador.Modificar())
                 {
-                    this._presentador.Modificar();
-                    _camposHabilitados = false;
+                    _bgw.RunWorkerAsync();
                 }
+
             }
-            else
-                this._presentador.Modificar();
+
+
+           
         }
 
 

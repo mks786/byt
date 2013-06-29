@@ -203,6 +203,12 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         }
 
 
+        public override IDaoRegistrador ObtenerDaoRegistrador()
+        {
+            return new DaoRegistradorNHibernate();
+        }
+
+
         /// <summary>
         /// Método que devuelve el DaoTipoCaja
         /// </summary>
@@ -231,6 +237,18 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoArchivoNHibernate();
         }
+
+
+
+        /// <summary>
+        /// Método que devuelve el DaoCertificadoMarca
+        /// </summary>
+        /// <returns>IDaoCertificadoMarca</returns>
+        public override IDaoCertificadoMarca ObtenerDaoCertificadoMarca()
+        {
+            return new DaoCertificadoMarcaNHibernate();
+        }
+
 
 
         /// <summary>
@@ -610,6 +628,16 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         public override IDaoInfoBol ObtenerDaoInfoBol()
         {
             return new DaoInfoBolNHibernate();
+        }
+
+
+        /// <summary>
+        /// Metodo que devuelve el DaoFechaMarca
+        /// </summary>
+        /// <returns></returns>
+        public override IDaoFechaMarca ObtenerDaoFechaMarca()
+        {
+            return new DaoFechaMarcaNHibernate();
         }
 
 

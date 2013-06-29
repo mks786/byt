@@ -1906,6 +1906,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Select a from Archivo a where a.Id = &apos;{0}&apos; and a.Aux = &apos;{1}&apos; and a.TipoDeDocumento = &apos;{2}&apos;.
+        /// </summary>
+        public static string ObtenerArchivoMarcaOPatenteInternacional {
+            get {
+                return ResourceManager.GetString("ObtenerArchivoMarcaOPatenteInternacional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Select a from Archivo a where a.Id = &apos;{0}&apos;.
         /// </summary>
         public static string ObtenerArchivoPorId {
@@ -1969,6 +1978,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Select cm from CertificadoMarca cm where cm.IdMarca = {0}.
+        /// </summary>
+        public static string ObtenerCertificadoMarcaPorId {
+            get {
+                return ResourceManager.GetString("ObtenerCertificadoMarcaPorId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Select c from Contacto c where c.Id = {0} and c.Asociado.Id = {1}.
         /// </summary>
         public static string ObtenerContactoPorId {
@@ -2019,6 +2037,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string ObtenerFechaPatente {
             get {
                 return ResourceManager.GetString("ObtenerFechaPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select fm from FechaMarca fm left outer join fetch fm.Tipo where fm.Marca.Id = {0}.
+        /// </summary>
+        public static string ObtenerFechasPorMarcasCertificados {
+            get {
+                return ResourceManager.GetString("ObtenerFechasPorMarcasCertificados", resourceCulture);
             }
         }
         
@@ -2280,6 +2307,24 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string ObtenerRolesYObjetos {
             get {
                 return ResourceManager.GetString("ObtenerRolesYObjetos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select tipCaja from TipoCaja tipCaja where tipCaja.Descripcion like &apos;%{0}%&apos;  or tipCaja.Id = 5.
+        /// </summary>
+        public static string ObtenerTipoCajaPorMarcaOPorPatente {
+            get {
+                return ResourceManager.GetString("ObtenerTipoCajaPorMarcaOPorPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select tipDoc from TipoDocumento tipDoc where tipDoc.TipoDoc = &apos;{0}&apos; or tipDoc.TipoDoc = &apos;{1}&apos; order by tipDoc.Id asc.
+        /// </summary>
+        public static string ObtenerTipoDocumentoPorMarcaOPorPatente {
+            get {
+                return ResourceManager.GetString("ObtenerTipoDocumentoPorMarcaOPorPatente", resourceCulture);
             }
         }
         

@@ -56,7 +56,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         private IBoletinServicios _boletinServicios;
         private IInventorServicios _inventorServicios;
         private IMemoriaServicios _memoriaServicios;
-
+        private IArchivoServicios _archivoServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
@@ -147,6 +147,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["OperacionServicios"]);
                 this._memoriaServicios = (IMemoriaServicios)Activator.GetObject(typeof(IMemoriaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MemoriaServicios"]);
+                this._archivoServicios = (IArchivoServicios)Activator.GetObject(typeof(IArchivoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ArchivoServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -195,6 +197,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         public void CargarPagina()
         {
             Mouse.OverrideCursor = Cursors.Wait;
+            Archivo archivoPatente = null;
 
             try
             {
@@ -500,6 +503,33 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                     if ((null != _patente.Interesado) && (null != _patente.Agente))
                         _cargarPoderInicial = true;
+
+
+
+                    if (_patente.LocalidadPatente.Equals("N"))
+                    {
+                        archivoPatente = new Archivo(_patente.Id.ToString());
+                        archivoPatente = this._archivoServicios.ConsultarPorId(archivoPatente);
+                    }
+                    else if (_patente.LocalidadPatente.Equals("I"))
+                    {
+                        if ((_patente.CodigoPatenteInternacional != 0) && (_patente.CorrelativoExpediente != 0))
+                        {
+                            archivoPatente = new Archivo(_patente.CodigoPatenteInternacional.ToString(), _patente.CorrelativoExpediente.ToString());
+                            archivoPatente.TipoDeDocumento = "J";
+                            archivoPatente = this._archivoServicios.ObtenerArchivoDeMarcaOPatenteInternacional(archivoPatente);
+                        }
+                        else
+                        {
+                            archivoPatente = new Archivo(_patente.Id.ToString());
+                            archivoPatente = this._archivoServicios.ConsultarPorId(archivoPatente);
+                        }
+                    }
+
+                    if (archivoPatente != null)
+                    {
+                        this._ventana.PintarArchivo();
+                    }
 
                 }
                 else
@@ -2969,6 +2999,95 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                                 this._ventana.TotalSolicitud=                     System.Convert.ToString(w_1+w_3);
                             }                                
             }         
+
+        }
+
+
+        /// <summary>
+        /// Método que se encarga de mostrar la ventana de Archivo
+        /// </summary>
+        public void IrArchivo()
+        {
+
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Patente patente = CargarPatenteDeLaPantalla();
+
+                Archivo archivoConsultar = null;
+                Archivo archivo = null;
+
+                if (patente.LocalidadPatente.Equals("N"))
+                {
+                    archivoConsultar = new Archivo(patente.Id.ToString());
+                    archivo = this._archivoServicios.ConsultarPorId(archivoConsultar);
+                }
+                else if (patente.LocalidadPatente.Equals("I"))
+                {
+                    if ((patente.CodigoPatenteInternacional != 0) && (patente.CorrelativoExpediente != 0))
+                    {
+                        archivoConsultar = new Archivo(patente.CodigoPatenteInternacional.ToString(), patente.CorrelativoExpediente.ToString());
+                        archivoConsultar.TipoDeDocumento = "J";
+                        archivo = this._archivoServicios.ObtenerArchivoDeMarcaOPatenteInternacional(archivoConsultar);
+                    }
+                    else
+                    {
+                        archivoConsultar = new Archivo(patente.Id.ToString());
+                        archivo = this._archivoServicios.ConsultarPorId(archivoConsultar);
+                    }
+
+                }
+
+                //this.Navegar(new GestionarArchivoDeMarca(CargarMarcaDeLaPantalla(), this._ventana));
+                if (archivo != null)
+                    this.Navegar(new GestionarArchivoDePatente(archivo, patente, this._ventana));
+                else
+                {
+                    archivoConsultar.Fecha = DateTime.Today;
+                    
+                    if (patente.LocalidadPatente.Equals("N"))
+                        archivoConsultar.TipoDeDocumento = "P";
+                    else if (patente.LocalidadPatente.Equals("I"))
+                        archivoConsultar.TipoDeDocumento = "J";
+
+                    archivoConsultar.Aux = "1";
+                    
+                    this.Navegar(new GestionarArchivoDePatente(archivoConsultar, patente, this._ventana));
+                }
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+
 
         }
 

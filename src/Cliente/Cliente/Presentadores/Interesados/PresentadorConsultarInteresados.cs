@@ -347,6 +347,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 interesado.Id = int.Parse(this._ventana.Id);
                 this._filtroValido = 2;
             }
+            else
+                interesado.Id = int.MinValue;
 
             if ((null != this._ventana.TipoPersona) && (!((ListaDatosDominio)this._ventana.TipoPersona).Id.Equals("NGN")))
             {

@@ -140,6 +140,7 @@
     <Compile Include="Contratos\Inventores\IQueryInventor.cs" />
     <Compile Include="Contratos\MarcasTercero\IInfoAdicionalInteresadosAsociadosMarcaTerceros.cs" />
     <Compile Include="Contratos\Marcas\IGestionarArchivoDeMarca.cs" />
+    <Compile Include="Contratos\Patentes\IGestionarArchivoDePatente.cs" />
     <Compile Include="Contratos\TiposEmailAsociado\IGestionarTipoEmailAsociado.cs" />
     <Compile Include="Contratos\TiposEmailAsociado\IConsultarTiposEmailAsociado.cs" />
     <Compile Include="Contratos\Corresponsales\IAgregarCorresponsal.cs" />
@@ -572,6 +573,7 @@
     <Compile Include="Presentadores\Inventores\PresentadorQueryInventor.cs" />
     <Compile Include="Presentadores\MarcasTercero\PresentadorInfoAdicionalInteresadosAsociadosMarcaTerceros.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorGestionarArchivoDeMarca.cs" />
+    <Compile Include="Presentadores\Patentes\PresentadorGestionarArchivoDePatente.cs" />
     <Compile Include="Presentadores\TiposEmailAsociado\PresentadorGestionarTipoEmailAsociado.cs" />
     <Compile Include="Presentadores\TiposEmailAsociado\PresentadorConsultarTiposEmailAsociado.cs" />
     <Compile Include="Presentadores\Corresponsales\PresentadorAgregarCorresponsal.cs" />
@@ -1052,6 +1054,9 @@
     </Compile>
     <Compile Include="Ventanas\Marcas\GestionarArchivoDeMarca.xaml.cs">
       <DependentUpon>GestionarArchivoDeMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Patentes\GestionarArchivoDePatente.xaml.cs">
+      <DependentUpon>GestionarArchivoDePatente.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\TiposEmailAsociado\ConsultarTiposEmailAsociado.xaml.cs">
       <DependentUpon>ConsultarTiposEmailAsociado.xaml</DependentUpon>
@@ -1770,6 +1775,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\Marcas\GestionarArchivoDeMarca.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Patentes\GestionarArchivoDePatente.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

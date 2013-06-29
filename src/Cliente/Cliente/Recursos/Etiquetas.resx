@@ -3732,7 +3732,16 @@ en Prensa:</value>
   <data name="lblUsuarioArchivo" xml:space="preserve">
     <value>Usuario:</value>
   </data>
-  <data name="cbiTipoDocumentoArchivo" xml:space="preserve">
-    <value>ITIPODOC</value>
+  <data name="cbiTipoDocumentoArchivoMarca" xml:space="preserve">
+    <value>ITIPODOCMARCA</value>
+  </data>
+  <data name="filterArchivoTipoCajaMarcas" xml:space="preserve">
+    <value>Marca</value>
+  </data>
+  <data name="cbiTipoDocumentoArchivoPatente" xml:space="preserve">
+    <value>ITIPODOCPATENTE</value>
+  </data>
+  <data name="filterArchivoTipoCajaPatentes" xml:space="preserve">
+    <value>Patente</value>
   </data>
 </root>

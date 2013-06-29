@@ -18,6 +18,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _usuarioInic;
         private DateTime _fecha;
         private string _operacion;
+        //private Marca _marca;
 
         #endregion
 
@@ -35,6 +36,25 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         public Archivo(string id)
         {
             this._id = id;
+            TipoDocumento documentoVacio = new TipoDocumento("NGN");
+            this._documento = documentoVacio;
+            this._aux = "";
+            this._tipoDeDocumento = "";
+        }
+
+        /// <summary>
+        /// Constructor por defecto que recibe el codigo de la marca y el codigo auxiliar 
+        /// Esto se usa para marcas internacionales
+        /// </summary>
+        /// <param name="id">Codigo internacional de la marca</param>
+        /// <param name="aux">Correlativo de Expediente</param>
+        public Archivo(string id, string aux)
+        {
+            this._id = id;
+            this._aux = aux;
+            TipoDocumento documentoVacio = new TipoDocumento("NGN");
+            this._documento = documentoVacio;
+            this._tipoDeDocumento = "";
         }
 
         #endregion
@@ -186,6 +206,13 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             get { return _operacion; }
             set { _operacion = value; }
         }
+
+
+        //public virtual Marca Marca
+        //{
+        //    get { return _marca; }
+        //    set { this._marca = value; }
+        //}
 
             
 

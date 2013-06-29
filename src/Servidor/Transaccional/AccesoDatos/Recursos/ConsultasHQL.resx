@@ -1075,4 +1075,24 @@
     <value>Select a from Archivo a where a.Id = '{0}'</value>
     <comment>Obtiene un archivo de marca o patente por Id</comment>
   </data>
+  <data name="ObtenerTipoDocumentoPorMarcaOPorPatente" xml:space="preserve">
+    <value>Select tipDoc from TipoDocumento tipDoc where tipDoc.TipoDoc = '{0}' or tipDoc.TipoDoc = '{1}' order by tipDoc.Id asc</value>
+    <comment>Se obtienen los tipos de documento por Marca o por Patente</comment>
+  </data>
+  <data name="ObtenerTipoCajaPorMarcaOPorPatente" xml:space="preserve">
+    <value>Select tipCaja from TipoCaja tipCaja where tipCaja.Descripcion like '%{0}%'  or tipCaja.Id = 5</value>
+    <comment>Filtra los tipos de caja de Archivos por Marcas o Patente</comment>
+  </data>
+  <data name="ObtenerCertificadoMarcaPorId" xml:space="preserve">
+    <value>Select cm from CertificadoMarca cm where cm.IdMarca = {0}</value>
+    <comment>Obtiene el certificado de marca por el Id de la marca </comment>
+  </data>
+  <data name="ObtenerArchivoMarcaOPatenteInternacional" xml:space="preserve">
+    <value>Select a from Archivo a where a.Id = '{0}' and a.Aux = '{1}' and a.TipoDeDocumento = '{2}'</value>
+    <comment>Obtiene el archivo de una Marca o una Patente Internacional. Se filtra por el Id y el codigo Aux</comment>
+  </data>
+  <data name="ObtenerFechasPorMarcasCertificados" xml:space="preserve">
+    <value>Select fm from FechaMarca fm left outer join fetch fm.Tipo where fm.Marca.Id = {0}</value>
+    <comment>Se obtienen las fechas de una marca para su certificado</comment>
+  </data>
 </root>

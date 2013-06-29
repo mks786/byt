@@ -709,6 +709,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         }
 
 
+        public void PintarArchivo()
+        {
+            this._btnArchivoPatenteDatos.Background = Brushes.LightGreen;
+        }
+
+
         public void PintarInfoBolDatos()
         {
             this._btnInfoBolDatos.Background = Brushes.LightGreen;
@@ -1025,6 +1031,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._btnFacturacionDatos.IsEnabled = value;
                 this._btnCertificadoDatos.IsEnabled = value;
                 this._btnCertificadoDatos.IsEnabled = value;
+                this._btnArchivoPatenteDatos.IsEnabled = value;
                 this._camposHabilitados = value;
                 #endregion
 
@@ -1498,6 +1505,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._btnInventoresDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._btnVerSolicitudDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._btnInfoBolDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnArchivoPatenteDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._btnFechasDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._btnVerTituloDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._btnVerMemoriaDatos.Visibility = System.Windows.Visibility.Collapsed;
@@ -2327,6 +2335,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         {
             this._txtDescripcionDatos.IsReadOnly = false;
             this._txtDescripcionDatos.SelectAll();
+        }
+
+        private void _btnArchivoPatenteDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrArchivo();
         }
 
         

@@ -167,7 +167,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get
             {
-                if (this.Autorizar.Equals('T'))
+                if (this.ModificarArchivo.Equals('T'))
                     return true;
                 else
                     return false;
@@ -175,9 +175,9 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set
             {
                 if (value)
-                    this.Autorizar = '1';
+                    this.ModificarArchivo = '1';
                 else
-                    this.Autorizar = '0';
+                    this.ModificarArchivo = '0';
             }
         }
 

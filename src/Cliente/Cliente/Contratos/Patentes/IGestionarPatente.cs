@@ -289,5 +289,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
         object PatentesMadreDatos { get; set; }
 
         string IdPatenteMadreDatosFiltrar { get; set; }
+
+        void PintarArchivo();
     }
 }

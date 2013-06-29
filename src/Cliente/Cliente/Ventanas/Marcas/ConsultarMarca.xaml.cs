@@ -560,7 +560,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             get { return this._txtIdAsociadoIntFiltrar.Text; }
             set { this._txtIdAsociadoIntFiltrar.Text = value; }
         }
-
+        
 
         public string NombreAsociadoInternacionalFiltrar
         {
@@ -1039,6 +1039,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
 
+        
+
 
         
 
@@ -1078,6 +1080,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public void PintarAuditoria()
         {
             this._btnAuditoria.Background = Brushes.LightGreen;
+        }
+
+
+        public void PintarArchivo()
+        {
+            this._btnArchivoDatos.Background = Brushes.LightGreen;
         }
 
 

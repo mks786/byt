@@ -199,6 +199,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         public void CargarPagina()
         {
             Mouse.OverrideCursor = Cursors.Wait;
+            Archivo archivoMarca = null;
 
             try
             {
@@ -303,7 +304,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.Detalle = this.BuscarDetalle(tipoEstados, marca.TipoEstado);
 
 
-                IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
+                IList<Servicio> servicios = this._servicioServicios.ConsultarTodos(); 
                 this._ventana.Servicios = servicios;
                 this._ventana.Servicio = this.BuscarServicio(servicios, marca.Servicio);
 
@@ -427,6 +428,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 else
                     marca.BEtiqueta = false;
 
+
+
                 Auditoria auditoria = new Auditoria();
                 auditoria.Fk = ((Marca)this._ventana.Marca).Id;
                 auditoria.Tabla = "MYP_MARCAS";
@@ -434,7 +437,27 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 Renovacion renovacion = new Renovacion();
                 renovacion.Marca = marca;
-                IList<Renovacion> renovaciones = this._renovacionServicios.ObtenerRenovacionFiltro(renovacion);                
+                IList<Renovacion> renovaciones = this._renovacionServicios.ObtenerRenovacionFiltro(renovacion);
+
+                if (marca.LocalidadMarca.Equals("N"))
+                {
+                    archivoMarca = new Archivo(marca.Id.ToString());
+                    archivoMarca = this._archivoServicios.ConsultarPorId(archivoMarca);
+                }
+                else if (marca.LocalidadMarca.Equals("I"))
+                {
+                    if ((marca.CodigoMarcaInternacional != 0) && (marca.CorrelativoExpediente != 0))
+                    {
+                        archivoMarca = new Archivo(marca.CodigoMarcaInternacional.ToString(), marca.CorrelativoExpediente.ToString());
+                        archivoMarca.TipoDeDocumento = "I";
+                        archivoMarca = this._archivoServicios.ObtenerArchivoDeMarcaOPatenteInternacional(archivoMarca);
+                    }
+                    else
+                    {
+                        archivoMarca = new Archivo(marca.Id.ToString());
+                        archivoMarca = this._archivoServicios.ConsultarPorId(archivoMarca);
+                    }
+                }
 
                 if (renovaciones.Count > 0)
                     this._ventana.PintarRenovacion();
@@ -456,6 +479,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 if (null != this._auditorias && this._auditorias.Count > 0)
                     this._ventana.PintarAuditoria();
+
+                if (null != archivoMarca)
+                {
+                    this._ventana.PintarArchivo();
+                }
 
 
                 //if (marca.Servicio.Id.Equals("AB"))
@@ -1036,18 +1064,46 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                Archivo archivoConsultar = null;
+                Archivo archivo = null;
+
                 Marca marca = CargarMarcaDeLaPantalla();
 
-                Archivo archivoConsultar = new Archivo(marca.Id.ToString());
-                Archivo archivo = this._archivoServicios.ConsultarPorId(archivoConsultar);
 
-                //this.Navegar(new GestionarArchivoDeMarca(CargarMarcaDeLaPantalla(), this._ventana));
+                if (marca.LocalidadMarca.Equals("N"))
+                {
+                    archivoConsultar = new Archivo(marca.Id.ToString());
+                    archivo = this._archivoServicios.ConsultarPorId(archivoConsultar);
+                }
+                else if (marca.LocalidadMarca.Equals("I"))
+                {
+                    if ((marca.CodigoMarcaInternacional != 0) && (marca.CorrelativoExpediente != 0))
+                    {
+                        archivoConsultar = new Archivo(marca.CodigoMarcaInternacional.ToString(), marca.CorrelativoExpediente.ToString());
+                        archivoConsultar.TipoDeDocumento = "I";
+                        archivo = this._archivoServicios.ObtenerArchivoDeMarcaOPatenteInternacional(archivoConsultar);
+                    }
+                    else
+                    {
+                        archivoConsultar = new Archivo(marca.Id.ToString());
+                        archivo = this._archivoServicios.ConsultarPorId(archivoConsultar);
+                    }
+                    
+                }
+
+                
                 if (archivo != null)
                     this.Navegar(new GestionarArchivoDeMarca(archivo, marca, this._ventana));
                 else
                 {
                     archivoConsultar.Fecha = DateTime.Today;
-                    archivoConsultar.TipoDeDocumento = "";
+
+                    if (marca.LocalidadMarca.Equals("N"))
+                        archivoConsultar.TipoDeDocumento = "M";
+                    else if (marca.LocalidadMarca.Equals("I"))
+                        archivoConsultar.TipoDeDocumento = "I";
+
+                    archivoConsultar.Aux = "1";
                     this.Navegar(new GestionarArchivoDeMarca(archivoConsultar, marca, this._ventana));
                 }
 

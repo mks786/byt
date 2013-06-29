@@ -33,6 +33,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         public Caja(int id)
         {
             this._id = id;
+            TipoCaja tipoCajaInicial = new TipoCaja(0);
+            this._tipoCaja = tipoCajaInicial;
         }
 
         #endregion

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="CertificadoMarca" table="MYP_MCERTIFICADOS">
+    <id name="IdMarca" column="CMARCA" type="int"/>
+
+    <property name="NumeroRecibo" column="XRECIBO" type="string" />
+    <property name="FechaRecibo" column="FRECIBO" type="DateTime"/>
+    <property name="RegistroBs" column="XREGISTRO" type="string"/>
+    <property name="EscrituraBs" column="XESCRITURA" type="string"/>
+    <property name="PapelProtocolo" column="XPAPEL" type="string"/>
+    <property name="TotalBs" column="XTOTAL" type="string"/>
+    <property name="Clases" column="XCLASES" type="string"/>
+    <property name="Comentario" column="COMENTARIO" type="string"/>
+
+    <many-to-one name="CodRegistrador" class="Registrador" lazy="false">
+      <column name="CREGISTRADOR"/>
+    </many-to-one>
+
+    
+  </class>
+</hibernate-mapping>

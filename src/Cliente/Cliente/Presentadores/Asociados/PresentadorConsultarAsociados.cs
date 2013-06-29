@@ -383,6 +383,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 asociado.Id = int.Parse(this._ventana.Id);
                 this._filtroValido = 2;
             }
+            else
+                asociado.Id = int.MinValue;
 
             if (!this._ventana.NombreAsociado.Equals(""))
             {

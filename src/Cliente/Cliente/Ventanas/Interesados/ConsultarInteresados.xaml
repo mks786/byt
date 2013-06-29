@@ -111,19 +111,19 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblRegMercantil}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtRegMercantil" Text="{Binding Path=RegMercantil}" Width="150" MaxLength="5"/>
+                    <custom:ByTTextBox Name="_txtRegMercantil" Text="{Binding Path=RegMercantil}" Width="150" MaxLength="4000"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDomicilio}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtDomicilio" Text="{Binding Path=Domicilio}" Width="150" MaxLength="5"/>
+                    <custom:ByTTextBox Name="_txtDomicilio" Text="{Binding Path=Domicilio}" Width="150" MaxLength="510"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblAlerta}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtAlerta" Text="{Binding Path=Alerta}" Width="150" MaxLength="5"/>
+                    <custom:ByTTextBox Name="_txtAlerta" Text="{Binding Path=Alerta}" Width="150" MaxLength="2000"/>
                 </WrapPanel>
                 <Separator Margin="0,5,0,5"/>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,5">

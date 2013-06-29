@@ -1672,6 +1672,10 @@
                                 <TextBlock Text="{x:Static recurso:Etiquetas.btnAnualidadPatente}"/>
                             </Button>
 
+                            <Button Name="_btnArchivoPatenteDatos" IsDefault="False" Width="75" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="8" Height="25" HorizontalAlignment="Center" Margin="5,5,0,0" Click="_btnArchivoPatenteDatos_Click">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.btnArchivo}"/>
+                            </Button>
+
                         </Grid>
 
                         <Separator Margin="10,5,0,0" Grid.Column="0" Grid.Row="16" Grid.ColumnSpan="12" VerticalAlignment="Center"/>

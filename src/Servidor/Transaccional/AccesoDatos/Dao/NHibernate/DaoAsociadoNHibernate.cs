@@ -78,7 +78,8 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 string filtro = "";
                 string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerAsociado);
 
-                if ((null != asociado) && (asociado.Id != 0))
+                //if ((null != asociado) && (asociado.Id != 0))
+                if ((null != asociado) && (asociado.Id != int.MinValue))
                 {
                     filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerAsociadoId, asociado.Id);
                     variosFiltros = true;

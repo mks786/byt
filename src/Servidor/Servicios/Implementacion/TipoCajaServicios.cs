@@ -48,6 +48,48 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+
+        /// <summary>
+        /// Servicio que obtiene los tipos de caja de Archivo de acuerdo a lo que se consulte, Marca o Patente
+        /// </summary>
+        /// <param name="parametro1">Parametro para Marca o Patente Nacional</param>
+        /// <returns></returns>
+        public IList<TipoCaja> ObtenerTipoCajaMarcaOPatente(String parametro1)
+        {
+            IList<TipoCaja> tipoCaja = null;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                tipoCaja = ControladorTipoCaja.ObtenerTipoCajaMarcaOPatente(parametro1);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
+
+            return tipoCaja;
+        }
+
+
+
+
+
         public TipoCaja ConsultarPorId(TipoCaja entidad)
         {
             throw new NotImplementedException();

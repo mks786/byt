@@ -336,4 +336,7 @@
   <data name="exTransferirPlantilla" xml:space="preserve">
     <value>Ocurrió un error Transfiriendo las Plantillas</value>
   </data>
+  <data name="exObtenerArchivoPorId" xml:space="preserve">
+    <value>Ocurrió un error consultando el Archivo de la Marca o la Patente especificada</value>
+  </data>
 </root>

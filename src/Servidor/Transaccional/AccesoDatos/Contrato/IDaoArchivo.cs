@@ -5,6 +5,8 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
 {
     public interface IDaoArchivo : IDaoBase<Archivo,string>
     {
-        Archivo ConsultarContactoPorId(Archivo archivo);
+        Archivo ConsultarArchivoPorId(Archivo archivo);
+
+        Archivo ObtenerArchivoDeMarcaOPatenteInternacional(Archivo archivo);
     }
 }

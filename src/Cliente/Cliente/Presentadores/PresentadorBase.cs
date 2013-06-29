@@ -478,24 +478,6 @@ namespace Trascend.Bolet.Cliente.Presentadores
         /// <param name="asociados">Lista de boletines</param>
         /// <param name="asociadoBuscado">Boletin a buscar</param>
         /// <returns>Boletin dentro de la lista</returns>
-        //public TipoDocumento BuscarTipoDocumento(IList<TipoDocumento> tipodocumentos, TipoDocumento tipodocumentoBuscado)
-        //{
-        //    TipoDocumento retorno = null;
-
-        //    if (tipodocumentoBuscado != null)
-        //        foreach (TipoDocumento tipodocumento in tipodocumentos)
-        //        {
-        //            if ((tipodocumento.TipoDoc == tipodocumentoBuscado.TipoDoc) 
-        //                && (tipodocumento.Descripcion == tipodocumentoBuscado.Descripcion))
-        //            {
-        //                retorno = tipodocumento;
-        //                break;
-        //            }
-        //        }
-
-        //    return retorno;
-        //}
-
         public ListaDatosValores BuscarTipoDocumento(IList<ListaDatosValores> tipoDocumentos, ListaDatosValores tipoDocumentoBuscado)
         {
             ListaDatosValores retorno = null;
