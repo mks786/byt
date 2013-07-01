@@ -327,7 +327,7 @@ Namespace Presentadores.FacFacturaProformas
 
                 Dim validar As Integer = 0
                 If DirectCast(Me._ventana.AsociadoImp, Asociado) Is Nothing Then
-                    validar = validar + 1
+                    'validar = validar + 1
                 Else
                     If Me._ventana.AsociadoImp.id = Integer.MinValue Then
                         validar = validar + 1
