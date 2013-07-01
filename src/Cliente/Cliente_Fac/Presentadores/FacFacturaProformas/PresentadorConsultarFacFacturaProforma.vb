@@ -588,7 +588,7 @@ Namespace Presentadores.FacFacturaProformas
                     '    FacFacturaProforma.FechaSeniat = FormatDateTime(FacFacturaProforma.FechaSeniat, DateFormat.ShortDate)
                     'End If
 
-                    If FacFacturaProforma.Moneda.Id <> "US" Then
+                    If FacFacturaProforma.Asociado.Pais.Id = "58" Then
                         If FacFacturaProforma.Asociado.Id <> FacFacturaProforma.AsociadoImp.Id Then
                             Mouse.OverrideCursor = Nothing
                             Me._ventana.MensajeError = "El asociado de la proforma debe ser igual al asociado de impresión para clientes en Venezuela"
