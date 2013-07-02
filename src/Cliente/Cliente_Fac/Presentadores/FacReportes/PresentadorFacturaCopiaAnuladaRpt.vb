@@ -1013,7 +1013,12 @@ Namespace Presentadores.FacReportes
                     End If
 
                     If _FacFacturaDetalle(i).Impuesto.ToString = "T" Then
-                        structura.Na = SetFormatoDouble2(_FacFactura.Impuesto)
+                        structura.Na = SetFormatoDouble2(_FacFacturaDetalle(i).Descuento)
+                        If _FacFactura.Bst = 1 Then
+                            structura.Na = _FacFactura.PSeniat
+                        Else
+                            structura.Na = _FacFactura.Impuesto
+                        End If
                     Else
                         structura.Na = ""
                     End If
