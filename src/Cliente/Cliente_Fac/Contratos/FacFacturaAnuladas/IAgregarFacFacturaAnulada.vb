@@ -44,6 +44,8 @@ Namespace Contratos.FacFacturaAnuladas
 
         Property Motivo2() As Object
 
+        WriteOnly Property SetLocalidad() As String
+
         Property MensajeErrorCobro() As String
 
         Sub Mensaje(ByVal mensaje__1 As String)

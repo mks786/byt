@@ -269,7 +269,7 @@
                          HorizontalAlignment="Right" Width="70" MaxLength="8" SoloNumero="True" ></custom:ByTTextBox>
                         
                         <Button Name="_btnProforma"  HorizontalAlignment="Right"  VerticalAlignment="Bottom" Height="25" Width="80" 
-                    Click="_btnConsultar_Click">
+                    Click="_btnProforma_MouseClick">
                             <Button.Style>
                                 <Style TargetType="Button">
                                     <Style.Triggers>
@@ -282,7 +282,7 @@
                                     </Style.Triggers>
                                 </Style>
                             </Button.Style>
-                            <TextBlock Name="_txbProforma" Text=">>"/>
+                            <TextBlock Name="_txbProforma"  Text=">>"/>
                         </Button>
                         
                     </WrapPanel>

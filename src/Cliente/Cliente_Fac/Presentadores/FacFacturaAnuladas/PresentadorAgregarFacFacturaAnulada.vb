@@ -261,13 +261,29 @@ Namespace Presentadores.FacFacturaAnuladas
                                     w_asocia = facproformastran.Asociado
                                 End If
                             End If
+
+                            'este es nuevo lo agregue yo carlos 
+                            Dim facinternacional_proforma_nueva As FacInternacional = Nothing
+                            facinternacional_proforma_nueva = buscar_facinternacional(Me._ventana.cpro)
+                            If facinternacional_proforma_nueva IsNot Nothing Then
+                                Mouse.OverrideCursor = Nothing
+                                MessageBox.Show("Proforma a transferir ya esta registrada en una Cxp internacional", "Error", MessageBoxButton.OK)
+                                Me._ventana.MensajeErrorCobro = "Proforma a transferir ya esta registrada en una Cxp internacional"
+                                Exit Sub
+                            End If
+
+
                             'fin para transferir proforma 
                             facinternacional = buscar_facinternacional(factura.Proforma.Id)
                             If facinternacional IsNot Nothing Then
-                                w_old_fecha = facinternacional.FechaPago 'fpago.lv_fac_cxp_int
+                                If facinternacional.FechaPago IsNot Nothing Then
+                                    w_old_fecha = facinternacional.FechaPago 'fpago.lv_fac_cxp_int
+                                End If
                                 w_old_mpago = facinternacional.TipoPago 'mpago.lv_fac_cxp_int
                                 w_old_desc_pago = facinternacional.DescripcionPago 'desc_pago.lv_fac_cxp_int
-                                w_old_cbanco = facinternacional.Banco  'cbanco.lv_fac_cxp_int
+                                If facinternacional.Banco IsNot Nothing Then
+                                    w_old_cbanco = facinternacional.Banco  'cbanco.lv_fac_cxp_int
+                                End If
 
                                 'pasar de internacional a internacional anulada
                                 'fin pasar de internacional a internacional anulada
@@ -286,17 +302,26 @@ Namespace Presentadores.FacFacturaAnuladas
                                 facinternacionalAnulada.Banco = facinternacional.Banco
                                 facinternacionalAnulada.Factura = facinternacional.Factura
                                 facinternacionalAnulada.FechaAnulacion = facinternacional.FechaRecepcion
-                                _FacInternacionalAnuladasServicios.InsertarOModificar(facinternacionalAnulada, UsuarioLogeado.Hash) 'agregar a internacional anulada
-                                _FacInternacionalesServicios.Eliminar(facinternacional, UsuarioLogeado.Hash) 'elimina de internacional¡
-                                Dim facinternacionaltra As FacInternacional = buscar_facinternacional(Me._ventana.cpro)
-                                If facinternacionaltra IsNot Nothing Then
-                                    Dim internacionaltra As New FacInternacional
-                                    internacionaltra.FechaPago = w_old_fecha
-                                    internacionaltra.TipoPago = w_old_mpago
-                                    internacionaltra.DescripcionPago = w_old_desc_pago
-                                    internacionaltra.Banco = w_old_cbanco
-                                    internacionaltra.Asociado = w_asocia
-                                    _FacInternacionalesServicios.InsertarOModificar(internacionaltra, UsuarioLogeado.Hash) 'elimina de internacional
+
+                                If _FacInternacionalAnuladasServicios.InsertarOModificar(facinternacionalAnulada, UsuarioLogeado.Hash) = True Then  'agregar a internacional anulada
+                                    'esto lo agregue yo para guardar la cxp internacional con la proforma nueva antes de eliminar
+                                    facinternacional_proforma_nueva = facinternacional
+                                    facinternacional_proforma_nueva.Id = Me._ventana.cpro
+                                    If _FacInternacionalesServicios.InsertarOModificar(facinternacional_proforma_nueva, UsuarioLogeado.Hash) = True Then
+                                        'hasta aqui esto lo agregue yo para guardar la cxp internacional con la proforma nueva antes de eliminar
+
+                                        _FacInternacionalesServicios.Eliminar(facinternacional, UsuarioLogeado.Hash) 'elimina de internacional¡
+                                        Dim facinternacionaltra As FacInternacional = buscar_facinternacional(Me._ventana.cpro)
+                                    End If
+                                    'If facinternacionaltra IsNot Nothing Then
+                                    '    Dim internacionaltra As New FacInternacional
+                                    '    internacionaltra.FechaPago = w_old_fecha
+                                    '    internacionaltra.TipoPago = w_old_mpago
+                                    '    internacionaltra.DescripcionPago = w_old_desc_pago
+                                    '    internacionaltra.Banco = w_old_cbanco
+                                    '    internacionaltra.Asociado = w_asocia
+                                    '    _FacInternacionalesServicios.InsertarOModificar(internacionaltra, UsuarioLogeado.Hash) 'elimina de internacional
+                                    'End If
                                 End If
                             Else
                                 Mouse.OverrideCursor = Nothing
@@ -359,7 +384,7 @@ Namespace Presentadores.FacFacturaAnuladas
                         Me._ventana.Secuencia = contador
 
                         contador = numero_contador("FAC_STATEMENT_ANUL")
-                        Me._ventana.Secuencia = contador
+                        Me._ventana.Secuencia2 = contador
                     End If
 
                     'crear factura anulada
@@ -386,7 +411,11 @@ Namespace Presentadores.FacFacturaAnuladas
                     Eliminar_Operacion(factura)
 
                     ''eliminar facdetalle
-                    Eliminar_FacDetalle(factura)
+                    If detalleanulada Is Nothing Then
+                        If detalleanulada.Count > 0 Then
+                            Eliminar_FacDetalle(factura)
+                        End If
+                    End If
 
                     ''eliminar operacion detalle
                     Eliminar_Operacion_Detalle(factura)
@@ -415,7 +444,7 @@ Namespace Presentadores.FacFacturaAnuladas
                     'If facturaanulada.Terrero = "2" Then
 
                     'End If
-                End If
+                    End If
             Catch ex As ApplicationException
                 logger.[Error](ex.Message)
                 Me.Navegar(ex.Message, True)
@@ -431,6 +460,44 @@ Namespace Presentadores.FacFacturaAnuladas
             End Try
             Mouse.OverrideCursor = Nothing
         End Sub
+
+        Public Sub irproforma()
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+            Dim facproformastran = buscar_facfacturaproforma(Me._ventana.cpro)
+            'fin verificar la proforma a transferir
+            If facproformastran Is Nothing Then
+                Mouse.OverrideCursor = Nothing
+                MessageBox.Show("No existe Proforma No. " & (Me._ventana.cpro), "Error", MessageBoxButton.OK)
+                Me._ventana.MensajeErrorCobro = "No existe Proforma No. " & (Me._ventana.cpro)
+                Exit Sub
+            End If
+            Me.Navegar(New Diginsoft.Bolet.Cliente.Fac.Ventanas.FacFacturaProformas.ConsultarFacFacturaProforma(facproformastran))
+
+            'Me.Navegar(New ConsultarFacFactura())
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+        End Sub
+
+        Public Function existe_detalle_anulada(ByVal facfacturaanul As FacFacturaAnulada) As Boolean
+            Dim existe As Boolean = False
+            Dim detalleaux As New FacFactuDetaAnulada()
+            detalleaux.Factura = facfacturaanul
+            Dim facfacturaanuldetalle As List(Of FacFactuDetaAnulada)
+            facfacturaanuldetalle = _FacFactuDetaAnuladaServicios.ObtenerFacFactuDetaAnuladasFiltro(detalleaux)
+            If facfacturaanuldetalle IsNot Nothing Then
+                If facfacturaanuldetalle.Count > 0 Then
+                    existe = True
+                End If
+            End If
+            Return existe
+        End Function
 
         Public Sub IrConsultarFacFacturaAnuladaReporte(ByVal factura As FacFactura, ByVal facfacturaanulada As FacFacturaAnulada)
             '#Region "trace"
@@ -580,6 +647,7 @@ Namespace Presentadores.FacFacturaAnuladas
             Dim detallaux As New FacFactuDetalle
             Dim detallaanulada As New List(Of FacFactuDetaAnulada)
             Dim detalles As List(Of FacFactuDetalle)
+            Dim creo_detalle As Boolean
             Try
                 detallaux.Factura = factura
                 detalles = Me._FacFactuDetaServicios.ObtenerFacFactuDetallesFiltro(detallaux)
@@ -616,6 +684,8 @@ Namespace Presentadores.FacFacturaAnuladas
                     _FacFactuDetaAnuladaServicios.InsertarOModificar(detallaanulada(i), UsuarioLogeado.Hash)
                 Next
 
+                creo_detalle = existe_detalle_anulada(facfacturaanulada)
+
             Catch ex As ApplicationException
                 logger.[Error](ex.Message)
                 Me.Navegar(ex.Message, True)
@@ -630,7 +700,11 @@ Namespace Presentadores.FacFacturaAnuladas
                 Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
             End Try
 
-            Return (detallaanulada)
+            If creo_detalle = True Then
+                Return (detallaanulada)
+            Else
+                Return Nothing
+            End If
         End Function
 
         Public Function Crea_OperacionAnulada(ByVal factura As FacFactura) As List(Of FacOperacionAnulada)
@@ -895,6 +969,8 @@ Namespace Presentadores.FacFacturaAnuladas
                             Me._ventana.MensajeErrorCobro = "La factura No. " & Me._ventana.Factura & "  ya ha sido anulada"
                             Exit Sub
                         End If
+
+                        Me._ventana.SetLocalidad = Me.BuscarLocalidad(FacFacturas(0).Local)
                         agregar_asociado_factura(FacFacturas(0))
                     Else
                         Mouse.OverrideCursor = Nothing

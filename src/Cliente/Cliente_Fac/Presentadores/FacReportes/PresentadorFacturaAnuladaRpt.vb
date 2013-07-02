@@ -93,7 +93,7 @@ Namespace Presentadores.FacReportes
         ''' Constructor predeterminado
         ''' </summary>
         ''' <param name="ventana">Página que satisface el contrato</param>
-        ''' <param name="FacFacturaProforma">FacFacturaProforma a mostrar</param>
+        ''' <param name="FacFacturaProforma">FacFacturaProforma a mostrar</param>        
         Public Sub New(ByVal ventana As IFacturaAnuladaRpt, ByVal FacFactura As Object, ByVal FacFacturaAnuladaFisica As Object)
             Try
                 Me._ventana = ventana
@@ -108,7 +108,7 @@ Namespace Presentadores.FacReportes
                 'Me._FacFacturaServicios = DirectCast(Activator.GetObject(GetType(IFacFacturaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFacturaServicios")), IFacFacturaServicios)
                 Me._facoperacionanuladaServicios = DirectCast(Activator.GetObject(GetType(IFacOperacionAnuladaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacOperacionAnuladaServicios")), IFacOperacionAnuladaServicios)
                 Me._FacFacturaAnuladaServicios = DirectCast(Activator.GetObject(GetType(IFacFacturaAnuladaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFacturaAnuladaServicios")), IFacFacturaAnuladaServicios)
-                Me._PaisServicios = DirectCast(Activator.GetObject(GetType(IPaisServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("PaisServicios")), IPaisServicios)
+                Me._PaisServicios = DirectCast(Activator.GetObject(GetType(IPaisServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("PaisServicios")), IPaisServicios)                
                 'Me._FacFacturaProformaServicios = DirectCast(Activator.GetObject(GetType(IFacFacturaProformaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFacturaProformaServicios")), IFacFacturaProformaServicios)
                 'Me._asociadosServicios = DirectCast(Activator.GetObject(GetType(IAsociadoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("AsociadoServicios")), IAsociadoServicios)
                 'Me._InteresadosServicios = DirectCast(Activator.GetObject(GetType(IInteresadoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("InteresadoServicios")), IInteresadoServicios)
@@ -243,6 +243,24 @@ Namespace Presentadores.FacReportes
                 Return (Nothing)
             End If
         End Function
+
+
+        Public Sub irproforma()
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+
+            Me.Navegar(New Diginsoft.Bolet.Cliente.Fac.Ventanas.FacFacturaProformas.ConsultarFacFacturaProforma(_facfactura.Proforma))
+
+            'Me.Navegar(New ConsultarFacFactura())
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+        End Sub
 
         'Public Sub imprimir_factura()
         '    _FacFactura.Status = 1

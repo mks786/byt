@@ -34,7 +34,7 @@ Namespace Presentadores.FacReportes
         Private _etiquetaServicios As IEtiquetaServicios
         Private _FacFactuDetaServicios As IFacFactuDetaAnuladaServicios
         Private _FacFacturaAnuladaServicios As IFacFacturaAnuladaServicios
-
+        Private _FacFactuDetaProformasServicios As IFacFactuDetaProformaServicios
         ''Private _FacFormaServicios As IFacFormaServicios
         'Dim xoperacion As String
         ''' <summary>
@@ -58,6 +58,7 @@ Namespace Presentadores.FacReportes
                 Me._FacFactuDetaServicios = DirectCast(Activator.GetObject(GetType(IFacFactuDetaAnuladaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFactuDetaAnuladaServicios")), IFacFactuDetaAnuladaServicios)
                 Me._etiquetaServicios = DirectCast(Activator.GetObject(GetType(IEtiquetaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("EtiquetaServicios")), IEtiquetaServicios)
                 Me._FacFacturaAnuladaServicios = DirectCast(Activator.GetObject(GetType(IFacFacturaAnuladaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFacturaAnuladaServicios")), IFacFacturaAnuladaServicios)
+                Me._FacFactuDetaProformasServicios = DirectCast(Activator.GetObject(GetType(IFacFactuDetaProformaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFactuDetaProformaServicios")), IFacFactuDetaProformaServicios)
                 'eliminar_operacion_detalle_tm_usuario() ' para eliminar los operacion tmp de operacion_detalle_tm
 
                 'Dim proforma As FacFacturaProforma = FacFacturaOProforma
@@ -111,6 +112,11 @@ Namespace Presentadores.FacReportes
                 facturanueva.Id = _FacFactura.Id
                 detalleaux.Factura = facturanueva
                 _FacFacturaDetalle = Me._FacFactuDetaServicios.ObtenerFacFactuDetaAnuladasFiltro(detalleaux)
+                If _FacFacturaDetalle.Count < 1 Then
+                    Crear_FacAnuladaDetalle(_FacFactura, facturanueva)
+                    _FacFacturaDetalle = Me._FacFactuDetaServicios.ObtenerFacFactuDetaAnuladasFiltro(detalleaux)
+                End If
+
 
                 Me._ventana.FocoPredeterminado()
 
@@ -133,6 +139,64 @@ Namespace Presentadores.FacReportes
             End Try
         End Sub
 
+        Public Function Crear_FacAnuladaDetalle(ByVal factura As FacFactura, ByVal facfacturaanulada As FacFacturaAnulada) As IList(Of FacFactuDetaAnulada)
+
+            ''--> para pasar de detalleproforma a detalle
+            Dim detallaux As New FacFactuDetaProforma
+            Dim detallaanulada As New List(Of FacFactuDetaAnulada)
+            Dim detalles As List(Of FacFactuDetaProforma)
+            Try
+                detallaux.Factura = factura.Proforma
+                detalles = Me._FacFactuDetaProformasServicios.ObtenerFacFactuDetaProformasFiltro(detallaux)
+
+                For i As Integer = 0 To detalles.Count - 1
+                    detallaanulada.Add(New FacFactuDetaAnulada)
+                    detallaanulada(i).Id = detalles(i).Id
+                    detallaanulada(i).Factura = facfacturaanulada
+                    detallaanulada(i).BDetalle = detalles(i).BDetalle
+                    detallaanulada(i).XDetalle = detalles(i).XDetalle
+                    detallaanulada(i).CServicio = detalles(i).CServicio
+                    detallaanulada(i).Pendiente = detalles(i).Pendiente
+                    detallaanulada(i).Servicio = detalles(i).Servicio
+                    detallaanulada(i).NCantidad = detalles(i).NCantidad
+                    detallaanulada(i).Pu = detalles(i).Pu
+                    detallaanulada(i).Descuento = detalles(i).Descuento
+                    detallaanulada(i).Bsel = detalles(i).Bsel
+                    'detallaanulada(i).TipoServicio = detalles(i).TipoServicio
+                    'detallaanulada(i).Codigo = detalles(i).Codigo
+                    'detallaanulada(i).Iimp = detalles(i).Iimp
+                    detallaanulada(i).XDetalleEs = detalles(i).XDetalleEs
+                    detallaanulada(i).BDetalleEs = detalles(i).BDetalleEs
+                    'detallaanulada(i).Tasa = detalles(i).Tasa
+                    detallaanulada(i).Impuesto = detalles(i).Impuesto
+                    detallaanulada(i).MImpuesto = detalles(i).MImpuesto
+                    detallaanulada(i).MDescuento = detalles(i).MDescuento
+                    detallaanulada(i).BDetalleBf = detalles(i).BDetalleBf
+                    detallaanulada(i).PuBf = detalles(i).PuBf
+                    detallaanulada(i).MImpuestoBf = detalles(i).MImpuestoBf
+                    detallaanulada(i).MDescuentoBf = detalles(i).MDescuentoBf
+                    detallaanulada(i).Desglose = detalles(i).Desglose
+                    'facturadetalles(i).Factura = Nothing
+
+                    _FacFactuDetaServicios.InsertarOModificar(detallaanulada(i), UsuarioLogeado.Hash)
+                Next
+
+            Catch ex As ApplicationException
+                logger.[Error](ex.Message)
+                Me.Navegar(ex.Message, True)
+            Catch ex As RemotingException
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, True)
+            Catch ex As SocketException
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, True)
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
+            End Try
+
+            Return (detallaanulada)
+        End Function
 
         Public Sub Reporte()
             Mouse.OverrideCursor = Cursors.Wait
@@ -1015,9 +1079,9 @@ Namespace Presentadores.FacReportes
                     If _FacFacturaDetalle(i).Impuesto.ToString = "T" Then
                         structura.Na = SetFormatoDouble2(_FacFacturaDetalle(i).Descuento)
                         If _FacFactura.Bst = 1 Then
-                            structura.Na = _FacFactura.PSeniat
+                            structura.Na = SetFormatoDouble2(_FacFactura.PSeniat)
                         Else
-                            structura.Na = _FacFactura.Impuesto
+                            structura.Na = SetFormatoDouble2(_FacFactura.Impuesto)
                         End If
                     Else
                         structura.Na = ""
@@ -1166,7 +1230,7 @@ Namespace Presentadores.FacReportes
                     Dim filaDatos As DataRow = datos.NewRow()
                     filaDatos("Id") = structura.Id
                     filaDatos("Servicio") = structura.Servicio
-                    filaDatos("Na") = structura.Na
+                    filaDatos("Na") = poner_decimal(structura.Na)
                     filaDatos("Npub") = poner_decimal(structura.Npub)
                     filaDatos("Cantidad") = structura.Cantidad
                     filaDatos("MMonto") = poner_decimal(structura.MMonto)

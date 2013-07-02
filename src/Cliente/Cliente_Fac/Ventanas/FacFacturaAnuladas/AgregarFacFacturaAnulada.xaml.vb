@@ -465,7 +465,7 @@ Namespace Ventanas.FacFacturaAnuladas
         'End Property
 
         Public WriteOnly Property ActivaDesactiva As Boolean Implements Contratos.FacFacturaAnuladas.IAgregarFacFacturaAnulada.ActivaDesactiva
-            Set(ByVal value As Boolean)                                
+            Set(ByVal value As Boolean)
                 _txtDetalle2.IsReadOnly = value
                 _txtSecuencia2.IsReadOnly = value
                 If value = True Then
@@ -480,6 +480,16 @@ Namespace Ventanas.FacFacturaAnuladas
             Get
                 Return _chkDesg.IsChecked
             End Get
+        End Property
+
+        Private Sub _btnProforma_MouseClick(ByVal sender As Object, ByVal e As RoutedEventArgs)
+            Me._presentador.irproforma()
+        End Sub
+
+        Public WriteOnly Property SetLocalidad As String Implements Contratos.FacFacturaAnuladas.IAgregarFacFacturaAnulada.SetLocalidad
+            Set(ByVal value As String)
+                Me._cbxLocal.Text = value
+            End Set
         End Property
     End Class
 End Namespace
