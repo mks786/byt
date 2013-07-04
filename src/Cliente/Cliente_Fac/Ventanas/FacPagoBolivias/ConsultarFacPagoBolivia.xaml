@@ -263,7 +263,7 @@
                     <Label>
                         <TextBlock Text="Monto Recibido"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtMontoRec" Width="230"  HorizontalContentAlignment="Right"  SoloNumero="True" MaxLength="15" Focusable="True" 
+                    <custom:ByTTextBox Name="_txtMontoRec" Width="230"  HorizontalContentAlignment="Right"  MaxLength="15" Focusable="True" 
                     ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}">
                         <!--<TextBox.Text>
                             <Binding Path="MontoRec" UpdateSourceTrigger="PropertyChanged">

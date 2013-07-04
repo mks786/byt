@@ -506,13 +506,21 @@ Namespace Presentadores.FacReportes
                             Case 2 'Caso Est
                                     'Call lp_compl(ffactura.fac_facturas, cfactura.fac_facturas, w_s)
                                     'xinvoice.encabezado = w_s
-                                    structura.Invoice = ""
+                                'structura.Invoice = ""
                                     If _FacFactura.FechaFactura IsNot Nothing Then
                                     lp_compl(_FacFactura.FechaFactura, _FacFactura.Id, w_s)
                                     If _FacFactura.Status <> 2 Then
-                                        structura.Invoice = w_s
+                                        If structura.Invoice <> "" Then
+                                            structura.Invoice = structura.Invoice & " " & w_s
+                                        Else
+                                            structura.Invoice = w_s
+                                        End If
                                     Else
-                                        structura.Invoice = w_s
+                                        If structura.Invoice <> "" Then
+                                            structura.Invoice = structura.Invoice & " " & w_s
+                                        Else
+                                            structura.Invoice = w_s
+                                        End If
                                     End If
                                     structura.Xfactura = ""
 
@@ -545,9 +553,17 @@ Namespace Presentadores.FacReportes
                                     If _FacFactura.FechaFactura IsNot Nothing Then
                                     lp_compl(_FacFactura.FechaFactura, _FacFactura.Id, w_s)
                                     If _FacFactura.Status <> 2 Then
-                                        structura.Invoice = w_s
+                                        If structura.Invoice <> "" Then
+                                            structura.Invoice = structura.Invoice & " " & w_s
+                                        Else
+                                            structura.Invoice = w_s
+                                        End If
                                     Else
-                                        structura.Invoice = w_s
+                                        If structura.Invoice <> "" Then
+                                            structura.Invoice = structura.Invoice & " " & w_s
+                                        Else
+                                            structura.Invoice = w_s
+                                        End If
                                     End If
                                     structura.Xfactura = ""
 
@@ -618,13 +634,17 @@ Namespace Presentadores.FacReportes
                 If _FacFactura.Bst = 1 Then
                     structura.Piva = SetFormatoDouble2(_FacFactura.PSeniat)
                 Else
-                    structura.Piva = SetFormatoDouble2(_FacFactura.Impuesto)
-                End If
-                structura.TituloNa = "Iva Tax "
-                structura.TituloCantidad = "Cant Quanti"
-                structura.TituloPub = "Precio/Unt Price/Unt"
-                structura.TituloNDesc = "Descuento Discount"
-                structura.TituloMMonto = "Monto Amount"
+                    If _FacFactura.FechaFactura >= CDate("01-01-2008") Then
+                        structura.Piva = SetFormatoDouble2(_FacFactura.Impuesto)
+                    Else
+                        structura.Piva = SetFormatoDouble2(_FacFactura.PSeniat)
+                    End If
+                    End If
+                    structura.TituloNa = "Iva Tax "
+                    structura.TituloCantidad = "Cant Quanti"
+                    structura.TituloPub = "Precio/Unt Price/Unt"
+                    structura.TituloNDesc = "Descuento Discount"
+                    structura.TituloMMonto = "Monto Amount"
 
 
             Catch ex As Exception
@@ -812,7 +832,11 @@ Namespace Presentadores.FacReportes
                 If _FacFactura.Bst = 1 Then
                     structura.Piva = SetFormatoDouble2(_FacFactura.PSeniat)
                 Else
-                    structura.Piva = SetFormatoDouble2(_FacFactura.Impuesto)
+                    If _FacFactura.FechaFactura >= CDate("01-01-2008") Then
+                        structura.Piva = SetFormatoDouble2(_FacFactura.Impuesto)
+                    Else
+                        structura.Piva = SetFormatoDouble2(_FacFactura.PSeniat)
+                    End If
                 End If
 
                 structura.TituloNa = "Iva"

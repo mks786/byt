@@ -660,7 +660,11 @@ Namespace Presentadores.FacReportes
                 If _FacFactura.Bst = 1 Then
                     structura.Piva = SetFormatoDouble2(_FacFactura.PSeniat)
                 Else
-                    structura.Piva = SetFormatoDouble2(_FacFactura.Impuesto)
+                    If _FacFactura.FechaFactura >= CDate("01-01-2008") Then
+                        structura.Piva = SetFormatoDouble2(_FacFactura.Impuesto)
+                    Else
+                        structura.Piva = SetFormatoDouble2(_FacFactura.PSeniat)
+                    End If
                 End If
                 structura.TituloNa = "Iva"
                 structura.TituloCantidad = "Cant Quanti"
@@ -855,7 +859,11 @@ Namespace Presentadores.FacReportes
                 If _FacFactura.Bst = 1 Then
                     structura.Piva = SetFormatoDouble2(_FacFactura.PSeniat)
                 Else
-                    structura.Piva = SetFormatoDouble2(_FacFactura.Impuesto)
+                    If _FacFactura.FechaFactura >= CDate("01-01-2008") Then
+                        structura.Piva = SetFormatoDouble2(_FacFactura.Impuesto)
+                    Else
+                        structura.Piva = SetFormatoDouble2(_FacFactura.PSeniat)
+                    End If
                 End If
 
                 structura.TituloNa = "tax"

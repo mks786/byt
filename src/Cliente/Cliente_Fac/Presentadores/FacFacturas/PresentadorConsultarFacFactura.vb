@@ -150,6 +150,7 @@ Namespace Presentadores.FacFacturas
                     Me._FacFacturaServicios.InsertarOModificar(_facfactura, UsuarioLogeado.Hash)                    
                 End If
                 'fin para evitar  2 enter
+                _ventana.FacFactura = Nothing
                 Me._ventana.FacFactura = _facfactura
 
 
@@ -985,6 +986,11 @@ Namespace Presentadores.FacFacturas
             '     message/error "El statement aún no ha sido cobrado"
             '     Return -1
             ' End If
+            If FacFactura.Anulada = "SI" Then
+                Mouse.OverrideCursor = Nothing
+                MessageBox.Show("Factura Anulada no se pude procesar", "Error", MessageBoxButton.OK)
+                Exit Sub
+            End If
 
             If FacFactura.FechaSeniat IsNot Nothing Or FacFactura.PSeniat <> 0 Or FacFactura.Seniat IsNot Nothing Then
                 Mouse.OverrideCursor = Nothing
@@ -1007,7 +1013,9 @@ Namespace Presentadores.FacFacturas
             FacFactura.PSeniat = facimpuestos(0).Impuesto
             FacFactura.FechaSeniat = FormatDateTime(Date.Now, DateFormat.ShortDate)
             If Me._FacFacturaServicios.InsertarOModificar(FacFactura, UsuarioLogeado.Hash) = True Then
-                MessageBox.Show("Proceso Actualizado con exito", "Actualizacion", MessageBoxButton.OK)
+                MessageBox.Show("Proceso Actualizado con exito", "Actualizacion", MessageBoxButton.OK)                
+                _ventana.FacFactura = Nothing
+                _ventana.FacFactura = FacFactura
             End If
             If FacFactura.FechaFactura >= CDate("01-01-2008") Then
                 Recalculo_x_imp_nueva()
