@@ -449,7 +449,7 @@ Namespace Presentadores.FacReportes
 
                 If _FacFactura.AsociadoImp IsNot Nothing Then
                     If _FacFactura.Asociado.BIsf = True Then
-                        structura.Invoice = "I N V O I C E   N°"
+                        structura.Invoice = "I N V O I C E  N°"
                     End If
                     'structura.Cliente = _FacFactura.Asociado.Nombre
                     'structura. = _FacFactura.Asociado.Domicilio
@@ -458,7 +458,7 @@ Namespace Presentadores.FacReportes
                     '---  '_FacFactura.Asociado.Pais.NombreEspanol 
                 Else
                     If _FacFactura.Asociado.BIsf = True Then
-                        structura.Invoice = "I N V O I C E   N°"
+                        structura.Invoice = "I N V O I C E  N°"
                     End If
                     'structura.Cliente = _FacFactura.InteresadoImp.Nombre
                     'structura. = _FacFactura.InteresadoImp.Domicilio
@@ -1052,7 +1052,12 @@ Namespace Presentadores.FacReportes
                     End If
 
                     If _FacFacturaDetalle(i).Impuesto.ToString = "T" Then
-                        structura.Na = SetFormatoDouble2(_FacFactura.Impuesto)
+                        'structura.Na = SetFormatoDouble2(_FacFactura.Impuesto)
+                        If _FacFactura.FechaFactura >= CDate("01-01-2008") Then
+                            structura.Na = SetFormatoDouble2(_FacFactura.Impuesto)
+                        Else
+                            structura.Na = SetFormatoDouble2(_FacFactura.PSeniat)
+                        End If
                     Else
                         structura.Na = ""
                     End If

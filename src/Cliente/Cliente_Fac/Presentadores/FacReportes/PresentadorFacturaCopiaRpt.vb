@@ -1086,7 +1086,12 @@ Namespace Presentadores.FacReportes
                     End If
 
                     If _FacFacturaDetalle(i).Impuesto.ToString = "T" Then
-                        structura.Na = _FacFactura.Impuesto
+                        'structura.Na = _FacFactura.Impuesto
+                        If _FacFactura.FechaFactura >= CDate("01-01-2008") Then
+                            structura.Na = SetFormatoDouble2(_FacFactura.Impuesto)
+                        Else
+                            structura.Na = SetFormatoDouble2(_FacFactura.PSeniat)
+                        End If
                     Else
                         structura.Na = ""
                     End If

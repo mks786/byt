@@ -439,7 +439,7 @@
                             <Label  VerticalAlignment="Top" HorizontalContentAlignment="Left" Width="110" >
                                 <TextBlock Text="{x:Static recurso:Etiquetas.faclblIntrucciones}" VerticalAlignment="Center" />
                             </Label>
-                            <custom:ByTTextBox Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2"   Name="_txtInstruc" Width="320" Height="20" MaxLength="100" Focusable="True" 
+                            <custom:ByTTextBox Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2"   Name="_txtInstruc" Width="320" Height="20" MaxLength="400" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left" Margin="0,0,0,0">
                                 <custom:ByTTextBox.Text>
                                     <Binding Path="Instruc" UpdateSourceTrigger="PropertyChanged">

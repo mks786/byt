@@ -391,29 +391,29 @@ Namespace Presentadores.FacReportes
             End If
             Select Case mes
                 Case 1
-                    retorna = "Caracas, " & dia & " de " & " Enero " & " de" & anio
+                    retorna = "Caracas, " & dia & " de " & " Enero " & " de " & anio
                 Case 2
-                    retorna = "Caracas, " & dia & " de " & " Febrero " & " de" & anio
+                    retorna = "Caracas, " & dia & " de " & " Febrero " & " de " & anio
                 Case 3
-                    retorna = "Caracas, " & dia & " de " & " Marzo " & " de" & anio
+                    retorna = "Caracas, " & dia & " de " & " Marzo " & " de " & anio
                 Case 4
-                    retorna = "Caracas, " & dia & " de " & " Abril " & " de" & anio
+                    retorna = "Caracas, " & dia & " de " & " Abril " & " de " & anio
                 Case 5
-                    retorna = "Caracas, " & dia & " de " & " Mayo " & " de" & anio
+                    retorna = "Caracas, " & dia & " de " & " Mayo " & " de " & anio
                 Case 6
                     retorna = "Caracas, " & dia & " de " & " Junio " & " de" & anio
                 Case 7
-                    retorna = "Caracas, " & dia & " de " & " Julio " & " de" & anio
+                    retorna = "Caracas, " & dia & " de " & " Julio " & " de " & anio
                 Case 8
-                    retorna = "Caracas, " & dia & " de " & " Agosto " & " de" & anio
+                    retorna = "Caracas, " & dia & " de " & " Agosto " & " de " & anio
                 Case 9
-                    retorna = "Caracas, " & dia & " de " & " Septiembre " & " de" & anio
+                    retorna = "Caracas, " & dia & " de " & " Septiembre " & " de " & anio
                 Case 10
-                    retorna = "Caracas, " & dia & " de " & " Octubre " & " de" & anio
+                    retorna = "Caracas, " & dia & " de " & " Octubre " & " de " & anio
                 Case 11
-                    retorna = "Caracas, " & dia & " de " & " Noviembre " & " de" & anio
+                    retorna = "Caracas, " & dia & " de " & " Noviembre " & " de " & anio
                 Case 12
-                    retorna = "Caracas, " & dia & " de " & " Diciembre " & " de" & anio
+                    retorna = "Caracas, " & dia & " de " & " Diciembre " & " de " & anio
             End Select
 
             Return (retorna)

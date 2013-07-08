@@ -218,7 +218,9 @@ Namespace Presentadores.FacFacturaAnuladas
 
                     Dim factura As FacFactura = consultar_factura(Me._ventana.Factura)
                     If factura IsNot Nothing Then
-                        factura.Proforma = buscar_facfacturaproforma(factura.Proforma.Id)
+                        If factura.Proforma IsNot Nothing Then
+                            factura.Proforma = buscar_facfacturaproforma(factura.Proforma.Id)
+                        End If
                     End If
                     Dim facinternacional As FacInternacional = Nothing
 
@@ -341,7 +343,9 @@ Namespace Presentadores.FacFacturaAnuladas
                         End If
                     End If
 
-                    w_fac = factura.Proforma.Id
+                    If factura.Proforma IsNot Nothing Then
+                        w_fac = factura.Proforma.Id
+                    End If
                     w_fac_o = factura.Id
 
                     Dim facturaanuladabuscar As FacFacturaAnulada = consultar_factura_anulada(w_fac_o)
@@ -421,12 +425,13 @@ Namespace Presentadores.FacFacturaAnuladas
                     Eliminar_Operacion_Detalle(factura)
 
                     ''anular proforma
-                    factura.Proforma.Anulada = "SI"
-                    factura.Proforma.XCausaRec = Me._ventana.Detalle
-                    _FacFacturaProformaServicios.InsertarOModificar(factura.Proforma, UsuarioLogeado.Hash)
-
-                    ''eliminar operacion detalle proforma
-                    Eliminar_Operacion_Detalle_Proforma(factura.Proforma)
+                    If factura.Proforma IsNot Nothing Then
+                        factura.Proforma.Anulada = "SI"
+                        factura.Proforma.XCausaRec = Me._ventana.Detalle
+                        _FacFacturaProformaServicios.InsertarOModificar(factura.Proforma, UsuarioLogeado.Hash)
+                        ''eliminar operacion detalle proforma
+                        Eliminar_Operacion_Detalle_Proforma(factura.Proforma)
+                    End If
 
                     MessageBox.Show("Anulación Satisfactoria", "Anulacion", MessageBoxButton.OK)
 

@@ -976,6 +976,14 @@ Namespace Presentadores.FacFacturas
         End Sub
 
         Public Sub procesar_statement()
+
+            If MessageBoxResult.Yes = MessageBox.Show("Esta seguro de procesar statement", "PROCESAR", MessageBoxButton.YesNo, MessageBoxImage.Question) Then
+
+            Else
+                Mouse.OverrideCursor = Nothing
+                Exit Sub
+            End If
+
             Dim FacFactura As FacFactura = DirectCast(_ventana.FacFactura, FacFactura)
             If FacFactura.Terrero.ToString = "1" Or FacFactura.Terrero.ToString = "2" Then
                 Mouse.OverrideCursor = Nothing
@@ -1013,7 +1021,7 @@ Namespace Presentadores.FacFacturas
             FacFactura.PSeniat = facimpuestos(0).Impuesto
             FacFactura.FechaSeniat = FormatDateTime(Date.Now, DateFormat.ShortDate)
             If Me._FacFacturaServicios.InsertarOModificar(FacFactura, UsuarioLogeado.Hash) = True Then
-                MessageBox.Show("Proceso Actualizado con exito", "Actualizacion", MessageBoxButton.OK)                
+                MessageBox.Show("Proceso Actualizado con exito", "Actualizacion", MessageBoxButton.OK)
                 _ventana.FacFactura = Nothing
                 _ventana.FacFactura = FacFactura
             End If
