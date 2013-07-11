@@ -620,5 +620,12 @@ Namespace Ventanas.FacCobros
                 Return _txtCbanco.Text
             End Get
         End Property
+
+        Public Sub Al_Mostrar_Factura(ByVal sender As Object, ByVal args As ExecutedRoutedEventArgs)
+            Dim cfactura As Integer = args.Parameter
+            Me._presentador.BuscarFactura(cfactura)
+        End Sub
+
+        Public Shared Mostrar_Factura As New RoutedCommand("Mostrar_Factura", GetType(AgregarFacCobro))
     End Class
 End Namespace

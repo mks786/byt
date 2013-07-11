@@ -603,55 +603,67 @@ Namespace Presentadores.FacReportes
             'para generar el FacOperacion
             Dim FacOperacionaux As New FacOperacion
             operacionaux.ValorQuery = ""
-            'If Me._ventana.Fecha1 IsNot Nothing And Me._ventana.Fecha1.ToString <> "" And Me._ventana.Fecha2 IsNot Nothing And Me._ventana.Fecha2.ToString <> "" Then
-            '    operacionaux.ValorQuery = "Select o from FacOperacion o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
-            '    operacionaux.ValorQuery = operacionaux.ValorQuery & " where o.FechaOperacion between '" & Me._ventana.Fecha1 & "' and '" & Me._ventana.Fecha1 & "'"
-            '    valor = True
-            'Else
-            If Me._ventana.FechaCorte IsNot Nothing And Me._ventana.FechaCorte.ToString <> "" Then
-                operacionaux.ValorQuery = "Select o from FacOperacion o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
-                operacionaux.ValorQuery = operacionaux.ValorQuery & " where o.FechaOperacion <='" & Me._ventana.FechaCorte & "'"
+            Try
+                'If Me._ventana.Fecha1 IsNot Nothing And Me._ventana.Fecha1.ToString <> "" And Me._ventana.Fecha2 IsNot Nothing And Me._ventana.Fecha2.ToString <> "" Then
+                '    operacionaux.ValorQuery = "Select o from FacOperacion o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
+                '    operacionaux.ValorQuery = operacionaux.ValorQuery & " where o.FechaOperacion between '" & Me._ventana.Fecha1 & "' and '" & Me._ventana.Fecha1 & "'"
+                '    valor = True
+                'Else
+                If Me._ventana.FechaCorte IsNot Nothing And Me._ventana.FechaCorte.ToString <> "" Then
+                    operacionaux.ValorQuery = "Select o from FacOperacion o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
+                    operacionaux.ValorQuery = operacionaux.ValorQuery & " where o.FechaOperacion <='" & Me._ventana.FechaCorte & "'"
+                    valor = True
+                End If
+                'End If
+
+                'If Me._ventana.Asociado IsNot Nothing And Me._ventana.Asociado2 IsNot Nothing Then
+                '    Dim asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
+                '    Dim asociado2 As Asociado = DirectCast(Me._ventana.Asociado2, Asociado)
+
+                '    If valor = False Then
+                '        operacionaux.ValorQuery = "Select o from FacOperacion o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
+                '        operacionaux.ValorQuery = operacionaux.ValorQuery & " where "
+                '    Else
+                '        operacionaux.ValorQuery = operacionaux.ValorQuery & " and "
+                '    End If
+                '    operacionaux.ValorQuery = operacionaux.ValorQuery & " Asociado.Id>= " & asociado.Id & " and Asociado.Id<= " & asociado2.Id
+                '    valor = True
+                'Else
+                '    If Me._ventana.Asociado IsNot Nothing Then
+                '        Dim asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
+                If valor = False Then
+                    operacionaux.ValorQuery = "Select o from FacOperacion o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
+                    operacionaux.ValorQuery = operacionaux.ValorQuery & " where "
+                Else
+                    operacionaux.ValorQuery = operacionaux.ValorQuery & " and "
+                End If
+                operacionaux.ValorQuery = operacionaux.ValorQuery & " Asociado.Id= " & idasociado
                 valor = True
-            End If
-            'End If
+                '    End If
+                'End If
 
-            'If Me._ventana.Asociado IsNot Nothing And Me._ventana.Asociado2 IsNot Nothing Then
-            '    Dim asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
-            '    Dim asociado2 As Asociado = DirectCast(Me._ventana.Asociado2, Asociado)
+                If valor = True Then
+                    operacionaux.ValorQuery = operacionaux.ValorQuery & "and o.Saldo > 0 and o.Id='" & nc & "'  order by Asociado.Id, o.FechaOperacion "
+                    operacionaux.Seleccion = True
+                End If
 
-            '    If valor = False Then
-            '        operacionaux.ValorQuery = "Select o from FacOperacion o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
-            '        operacionaux.ValorQuery = operacionaux.ValorQuery & " where "
-            '    Else
-            '        operacionaux.ValorQuery = operacionaux.ValorQuery & " and "
-            '    End If
-            '    operacionaux.ValorQuery = operacionaux.ValorQuery & " Asociado.Id>= " & asociado.Id & " and Asociado.Id<= " & asociado2.Id
-            '    valor = True
-            'Else
-            '    If Me._ventana.Asociado IsNot Nothing Then
-            '        Dim asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
-            If valor = False Then
-                operacionaux.ValorQuery = "Select o from FacOperacion o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
-                operacionaux.ValorQuery = operacionaux.ValorQuery & " where "
-            Else
-                operacionaux.ValorQuery = operacionaux.ValorQuery & " and "
-            End If
-            operacionaux.ValorQuery = operacionaux.ValorQuery & " Asociado.Id= " & idasociado
-            valor = True
-            '    End If
-            'End If
+                Dim operaciones As List(Of FacOperacion) = _FacOperacionServicios.ObtenerFacOperacionesFiltro(operacionaux)
+                If operaciones.Count >= 0 Then
+                    Return (operaciones)
+                Else
+                    Return (Nothing)
+                End If
 
-            If valor = True Then
-                operacionaux.ValorQuery = operacionaux.ValorQuery & "and o.Saldo > 0 and o.Id='" & nc & "'  order by Asociado.Id, o.FechaOperacion "
-                operacionaux.Seleccion = True
-            End If
-
-            Dim operaciones As List(Of FacOperacion) = _FacOperacionServicios.ObtenerFacOperacionesFiltro(operacionaux)
-            If operaciones.Count >= 0 Then
-                Return (operaciones)
-            Else
+            Catch ex As ApplicationException
+                'logger.Error(ex.Message)
+                'Me.Navegar(ex.Message, True)
+                Mouse.OverrideCursor = Nothing
                 Return (Nothing)
-            End If
+            Catch ex As Exception
+                Mouse.OverrideCursor = Nothing
+                '' Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
+                Return (Nothing)
+            End Try
         End Function
 
         Public Function Buscar_OperacionPais(ByVal nc As String, ByVal idasociado As Integer) As List(Of FacOperacionPais)
@@ -660,61 +672,75 @@ Namespace Presentadores.FacReportes
             'para generar el FacOperacion
             Dim FacOperacionaux As New FacOperacionPais
             operacionaux.ValorQuery = ""
-            'If Me._ventana.Fecha1 IsNot Nothing And Me._ventana.Fecha1.ToString <> "" And Me._ventana.Fecha2 IsNot Nothing And Me._ventana.Fecha2.ToString <> "" Then
-            '    operacionaux.ValorQuery = "Select o from FacOperacion o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
-            '    operacionaux.ValorQuery = operacionaux.ValorQuery & " where o.FechaOperacion between '" & Me._ventana.Fecha1 & "' and '" & Me._ventana.Fecha1 & "'"
-            '    valor = True
-            'Else
-            If Me._ventana.FechaCorte IsNot Nothing And Me._ventana.FechaCorte.ToString <> "" Then
-                operacionaux.ValorQuery = "Select o from FacOperacionPais o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
-                operacionaux.ValorQuery = operacionaux.ValorQuery & " where o.FechaOperacion <='" & Me._ventana.FechaCorte & "'"
-                valor = True
-            End If
-            'End If
 
-            'If Me._ventana.Asociado IsNot Nothing And Me._ventana.Asociado2 IsNot Nothing Then
-            '    Dim asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
-            '    Dim asociado2 As Asociado = DirectCast(Me._ventana.Asociado2, Asociado)
-
-            '    If valor = False Then
-            '        operacionaux.ValorQuery = "Select o from FacOperacionPais o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma left join fetch o.Pais as Pais"
-            '        operacionaux.ValorQuery = operacionaux.ValorQuery & " where "
-            '    Else
-            '        operacionaux.ValorQuery = operacionaux.ValorQuery & " and "
-            '    End If
-            '    operacionaux.ValorQuery = operacionaux.ValorQuery & " Asociado.Id>= " & asociado.Id & " and Asociado.Id<= " & asociado2.Id
-            '    valor = True
-            'Else
-            '    If Me._ventana.Asociado IsNot Nothing Then
-            '        Dim asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
-            If valor = False Then
-                operacionaux.ValorQuery = "Select o from FacOperacionPais o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma left join fetch o.Pais as Pais"
-                operacionaux.ValorQuery = operacionaux.ValorQuery & " where "
-            Else
-                operacionaux.ValorQuery = operacionaux.ValorQuery & " and "
-            End If
-            operacionaux.ValorQuery = operacionaux.ValorQuery & " Asociado.Id= " & idasociado
-            valor = True
-            '    End If
-            'End If
-
-            If valor = True Then
-                Dim query_pais As String = ""
-                If Me._ventana.TipoSel = "Igual a" Then
-                    query_pais = "' and Pais.Id=" & (DirectCast(Me._ventana.Pais, Pais)).Id
-                Else
-                    query_pais = "' and Pais.Id<>" & (DirectCast(Me._ventana.Pais, Pais)).Id
+            Try
+                'If Me._ventana.Fecha1 IsNot Nothing And Me._ventana.Fecha1.ToString <> "" And Me._ventana.Fecha2 IsNot Nothing And Me._ventana.Fecha2.ToString <> "" Then
+                '    operacionaux.ValorQuery = "Select o from FacOperacion o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
+                '    operacionaux.ValorQuery = operacionaux.ValorQuery & " where o.FechaOperacion between '" & Me._ventana.Fecha1 & "' and '" & Me._ventana.Fecha1 & "'"
+                '    valor = True
+                'Else
+                If Me._ventana.FechaCorte IsNot Nothing And Me._ventana.FechaCorte.ToString <> "" Then
+                    operacionaux.ValorQuery = "Select o from FacOperacionPais o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma  left join fetch o.Pais as Pais"
+                    operacionaux.ValorQuery = operacionaux.ValorQuery & " where o.FechaOperacion <='" & Me._ventana.FechaCorte & "'"
+                    valor = True
                 End If
-                operacionaux.ValorQuery = operacionaux.ValorQuery & " and o.Saldo > 0 and o.Id='" & nc & query_pais & "   order by Asociado.Id, o.FechaOperacion "
-                operacionaux.Seleccion = True
-            End If
+                'End If
 
-            Dim operaciones As List(Of FacOperacionPais) = _FacOperacionpaisServicios.ObtenerFacOperacionPaisesFiltro(operacionaux)
-            If operaciones.Count >= 0 Then
-                Return (operaciones)
-            Else
+                'If Me._ventana.Asociado IsNot Nothing And Me._ventana.Asociado2 IsNot Nothing Then
+                '    Dim asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
+                '    Dim asociado2 As Asociado = DirectCast(Me._ventana.Asociado2, Asociado)
+
+                '    If valor = False Then
+                '        operacionaux.ValorQuery = "Select o from FacOperacionPais o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma left join fetch o.Pais as Pais"
+                '        operacionaux.ValorQuery = operacionaux.ValorQuery & " where "
+                '    Else
+                '        operacionaux.ValorQuery = operacionaux.ValorQuery & " and "
+                '    End If
+                '    operacionaux.ValorQuery = operacionaux.ValorQuery & " Asociado.Id>= " & asociado.Id & " and Asociado.Id<= " & asociado2.Id
+                '    valor = True
+                'Else
+                '    If Me._ventana.Asociado IsNot Nothing Then
+                '        Dim asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
+                If valor = False Then
+                    operacionaux.ValorQuery = "Select o from FacOperacionPais o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma left join fetch o.Pais as Pais"
+                    operacionaux.ValorQuery = operacionaux.ValorQuery & " where "
+                Else
+                    operacionaux.ValorQuery = operacionaux.ValorQuery & " and "
+                End If
+                operacionaux.ValorQuery = operacionaux.ValorQuery & " Asociado.Id= " & idasociado
+                valor = True
+                '    End If
+                'End If
+
+                If valor = True Then
+                    Dim query_pais As String = ""
+                    If Me._ventana.TipoSel = "Igual a" Then
+                        query_pais = "' and Pais.Id=" & (DirectCast(Me._ventana.Pais, Pais)).Id
+                    Else
+                        query_pais = "' and Pais.Id<>" & (DirectCast(Me._ventana.Pais, Pais)).Id
+                    End If
+                    operacionaux.ValorQuery = operacionaux.ValorQuery & " and o.Saldo > 0 and o.Id='" & nc & query_pais & "   order by Asociado.Id, o.FechaOperacion "
+                    operacionaux.Seleccion = True
+                End If
+
+                Dim operaciones As List(Of FacOperacionPais) = _FacOperacionpaisServicios.ObtenerFacOperacionPaisesFiltro(operacionaux)
+                If operaciones.Count >= 0 Then
+                    Return (operaciones)
+                Else
+                    Return (Nothing)
+                End If
+
+            Catch ex As ApplicationException
+                'logger.Error(ex.Message)
+                'Me.Navegar(ex.Message, True)
+                Mouse.OverrideCursor = Nothing
                 Return (Nothing)
-            End If
+            Catch ex As Exception
+                Mouse.OverrideCursor = Nothing
+                '' Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
+                Return (Nothing)
+            End Try
+
         End Function
 
         Public Function consultar_cobro_factura(ByVal factura As Integer) As Boolean
@@ -1546,55 +1572,68 @@ Namespace Presentadores.FacReportes
             'para generar el FacFacturaPendiente
             Dim FacFacturaPendienteaux As New FacFacturaPendiente
             facturapendienteaux.ValorQuery = ""
-            'If Me._ventana.Fecha1 IsNot Nothing And Me._ventana.Fecha1.ToString <> "" And Me._ventana.Fecha2 IsNot Nothing And Me._ventana.Fecha2.ToString <> "" Then
-            '    facturapendienteaux.ValorQuery = "Select o from FacFacturaPendiente o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
-            '    facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " where o.Fechafacturapendiente between '" & Me._ventana.Fecha1 & "' and '" & Me._ventana.Fecha1 & "'"
-            '    valor = True
-            'Else
-            If Me._ventana.FechaCorte IsNot Nothing And Me._ventana.FechaCorte.ToString <> "" Then
-                'facturapendienteaux.ValorQuery = "Select o from FacFacturaPendiente o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
-                facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " fp.FechaOperacion <= '" & Me._ventana.FechaCorte & "'"
+
+            Try
+                'If Me._ventana.Fecha1 IsNot Nothing And Me._ventana.Fecha1.ToString <> "" And Me._ventana.Fecha2 IsNot Nothing And Me._ventana.Fecha2.ToString <> "" Then
+                '    facturapendienteaux.ValorQuery = "Select o from FacFacturaPendiente o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
+                '    facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " where o.Fechafacturapendiente between '" & Me._ventana.Fecha1 & "' and '" & Me._ventana.Fecha1 & "'"
+                '    valor = True
+                'Else
+                If Me._ventana.FechaCorte IsNot Nothing And Me._ventana.FechaCorte.ToString <> "" Then
+                    'facturapendienteaux.ValorQuery = "Select o from FacFacturaPendiente o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
+                    facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " fp.FechaOperacion <= '" & Me._ventana.FechaCorte & "'"
+                    valor = True
+                End If
+                'End If
+
+                'If Me._ventana.Asociado IsNot Nothing And Me._ventana.Asociado2 IsNot Nothing Then
+                '    Dim asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
+                '    Dim asociado2 As Asociado = DirectCast(Me._ventana.Asociado2, Asociado)
+
+                '    If valor = False Then
+                '        facturapendienteaux.ValorQuery = "Select o from FacFacturaPendiente o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
+                '        facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " where "
+                '    Else
+                '        facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " and "
+                '    End If
+                '    facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " Asociado.Id>= " & asociado.Id & " and Asociado.Id<= " & asociado2.Id
+                '    valor = True
+                'Else
+                '    If Me._ventana.Asociado IsNot Nothing Then
+                '        Dim asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
+                If valor = False Then
+                    'facturapendienteaux.ValorQuery = "Select o from FacFacturaPendiente o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
+                    'facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " where "
+                Else
+                    facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " and "
+                End If
+                facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " asociado.Id= " & idasociado
                 valor = True
-            End If
-            'End If
+                '    End If
+                'End If
 
-            'If Me._ventana.Asociado IsNot Nothing And Me._ventana.Asociado2 IsNot Nothing Then
-            '    Dim asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
-            '    Dim asociado2 As Asociado = DirectCast(Me._ventana.Asociado2, Asociado)
+                If valor = True Then
+                    facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " order by asociado.Id"
+                    facturapendienteaux.Seleccion = True
+                End If
 
-            '    If valor = False Then
-            '        facturapendienteaux.ValorQuery = "Select o from FacFacturaPendiente o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
-            '        facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " where "
-            '    Else
-            '        facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " and "
-            '    End If
-            '    facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " Asociado.Id>= " & asociado.Id & " and Asociado.Id<= " & asociado2.Id
-            '    valor = True
-            'Else
-            '    If Me._ventana.Asociado IsNot Nothing Then
-            '        Dim asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
-            If valor = False Then
-                'facturapendienteaux.ValorQuery = "Select o from FacFacturaPendiente o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
-                'facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " where "
-            Else
-                facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " and "
-            End If
-            facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " asociado.Id= " & idasociado
-            valor = True
-            '    End If
-            'End If
+                Dim facturapendientees As List(Of FacFacturaPendiente) = _FacFacturaPendienteServicios.ObtenerFacFacturaPendientesFiltro(facturapendienteaux)
+                If facturapendientees.Count >= 0 Then
+                    Return (facturapendientees)
+                Else
+                    Return (Nothing)
+                End If
 
-            If valor = True Then
-                facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " order by asociado.Id"
-                facturapendienteaux.Seleccion = True
-            End If
-
-            Dim facturapendientees As List(Of FacFacturaPendiente) = _FacFacturaPendienteServicios.ObtenerFacFacturaPendientesFiltro(facturapendienteaux)
-            If facturapendientees.Count >= 0 Then
-                Return (facturapendientees)
-            Else
+            Catch ex As ApplicationException
+                'logger.Error(ex.Message)
+                'Me.Navegar(ex.Message, True)
+                Mouse.OverrideCursor = Nothing
                 Return (Nothing)
-            End If
+            Catch ex As Exception
+                Mouse.OverrideCursor = Nothing
+                '' Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
+                Return (Nothing)
+            End Try
         End Function
 
         Public Function Buscar_FacturaPendientePais(ByVal idasociado As Integer) As List(Of FacFacturaPendiente)
@@ -1603,61 +1642,74 @@ Namespace Presentadores.FacReportes
             'para generar el Facfacturapendiente
             Dim Facfacturapendienteaux As New FacFacturaPendiente
             facturapendienteaux.ValorQuery = ""
-            'If Me._ventana.Fecha1 IsNot Nothing And Me._ventana.Fecha1.ToString <> "" And Me._ventana.Fecha2 IsNot Nothing And Me._ventana.Fecha2.ToString <> "" Then
-            '    facturapendienteaux.ValorQuery = "Select o from Facfacturapendiente o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
-            '    facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " where o.Fechafacturapendiente between '" & Me._ventana.Fecha1 & "' and '" & Me._ventana.Fecha1 & "'"
-            '    valor = True
-            'Else
-            If Me._ventana.FechaCorte IsNot Nothing And Me._ventana.FechaCorte.ToString <> "" Then
-                'facturapendienteaux.ValorQuery = "Select o from FacFacturaPendiente o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
-                facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " fp.FechaOperacion <='" & Me._ventana.FechaCorte & "'"
-                valor = True
-            End If
-            'End If
 
-            'If Me._ventana.Asociado IsNot Nothing And Me._ventana.Asociado2 IsNot Nothing Then
-            '    Dim asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
-            '    Dim asociado2 As Asociado = DirectCast(Me._ventana.Asociado2, Asociado)
-
-            '    If valor = False Then
-            '        facturapendienteaux.ValorQuery = "Select o from FacFacturaPendiente o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma left join fetch o.Pais as Pais"
-            '        facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " where "
-            '    Else
-            '        facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " and "
-            '    End If
-            '    facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " Asociado.Id>= " & asociado.Id & " and Asociado.Id<= " & asociado2.Id
-            '    valor = True
-            'Else
-            '    If Me._ventana.Asociado IsNot Nothing Then
-            '        Dim asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
-            If valor = False Then
-                'facturapendienteaux.ValorQuery = "Select o from FacFacturaPendiente o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma left join fetch o.Pais as Pais"
-                'facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " where "
-            Else
-                facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " and "
-            End If
-            facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " asociado.Id= " & idasociado
-            valor = True
-            '    End If
-            'End If
-
-            If valor = True Then
-                Dim query_pais As String = ""
-                If Me._ventana.TipoSel = "Igual a" Then
-                    query_pais = "' and Pais.Id=" & (DirectCast(Me._ventana.Pais, Pais)).Id
-                Else
-                    query_pais = "' and Pais.Id<>" & (DirectCast(Me._ventana.Pais, Pais)).Id
+            Try
+                'If Me._ventana.Fecha1 IsNot Nothing And Me._ventana.Fecha1.ToString <> "" And Me._ventana.Fecha2 IsNot Nothing And Me._ventana.Fecha2.ToString <> "" Then
+                '    facturapendienteaux.ValorQuery = "Select o from Facfacturapendiente o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
+                '    facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " where o.Fechafacturapendiente between '" & Me._ventana.Fecha1 & "' and '" & Me._ventana.Fecha1 & "'"
+                '    valor = True
+                'Else
+                If Me._ventana.FechaCorte IsNot Nothing And Me._ventana.FechaCorte.ToString <> "" Then
+                    'facturapendienteaux.ValorQuery = "Select o from FacFacturaPendiente o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
+                    facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " fp.FechaOperacion <='" & Me._ventana.FechaCorte & "'"
+                    valor = True
                 End If
-                facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " order by asociado.Id "
-                facturapendienteaux.Seleccion = True
-            End If
+                'End If
 
-            Dim facturapendientees As List(Of FacFacturaPendiente) = _FacFacturaPendienteServicios.ObtenerFacFacturaPendientesFiltro(facturapendienteaux)
-            If facturapendientees.Count >= 0 Then
-                Return (facturapendientees)
-            Else
+                'If Me._ventana.Asociado IsNot Nothing And Me._ventana.Asociado2 IsNot Nothing Then
+                '    Dim asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
+                '    Dim asociado2 As Asociado = DirectCast(Me._ventana.Asociado2, Asociado)
+
+                '    If valor = False Then
+                '        facturapendienteaux.ValorQuery = "Select o from FacFacturaPendiente o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma left join fetch o.Pais as Pais"
+                '        facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " where "
+                '    Else
+                '        facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " and "
+                '    End If
+                '    facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " Asociado.Id>= " & asociado.Id & " and Asociado.Id<= " & asociado2.Id
+                '    valor = True
+                'Else
+                '    If Me._ventana.Asociado IsNot Nothing Then
+                '        Dim asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
+                If valor = False Then
+                    'facturapendienteaux.ValorQuery = "Select o from FacFacturaPendiente o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma left join fetch o.Pais as Pais"
+                    'facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " where "
+                Else
+                    facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " and "
+                End If
+                facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " asociado.Id= " & idasociado
+                valor = True
+                '    End If
+                'End If
+
+                If valor = True Then
+                    Dim query_pais As String = ""
+                    If Me._ventana.TipoSel = "Igual a" Then
+                        query_pais = "' and pais.Id=" & (DirectCast(Me._ventana.Pais, Pais)).Id
+                    Else
+                        query_pais = "' and pais.Id<>" & (DirectCast(Me._ventana.Pais, Pais)).Id
+                    End If
+                    facturapendienteaux.ValorQuery = facturapendienteaux.ValorQuery & " order by asociado.Id "
+                    facturapendienteaux.Seleccion = True
+                End If
+
+                Dim facturapendientees As List(Of FacFacturaPendiente) = _FacFacturaPendienteServicios.ObtenerFacFacturaPendientesFiltro(facturapendienteaux)
+                If facturapendientees.Count >= 0 Then
+                    Return (facturapendientees)
+                Else
+                    Return (Nothing)
+                End If
+
+            Catch ex As ApplicationException
+                'logger.Error(ex.Message)
+                'Me.Navegar(ex.Message, True)
+                Mouse.OverrideCursor = Nothing
                 Return (Nothing)
-            End If
+            Catch ex As Exception
+                Mouse.OverrideCursor = Nothing
+                '' Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
+                Return (Nothing)
+            End Try
         End Function
 
         Public Function consultar_factura(ByVal id As Integer) As FacFactura
@@ -2466,55 +2518,68 @@ Namespace Presentadores.FacReportes
             'para generar el FacOperacion
             Dim FacOperacionaux As New FacOperacion
             operacionaux.ValorQuery = ""
-            'If Me._ventana.Fecha1 IsNot Nothing And Me._ventana.Fecha1.ToString <> "" And Me._ventana.Fecha2 IsNot Nothing And Me._ventana.Fecha2.ToString <> "" Then
-            '    operacionaux.ValorQuery = "Select o from FacOperacion o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
-            '    operacionaux.ValorQuery = operacionaux.ValorQuery & " where o.FechaOperacion between '" & Me._ventana.Fecha1 & "' and '" & Me._ventana.Fecha1 & "'"
-            '    valor = True
-            'Else
-            If Me._ventana.FechaCorte IsNot Nothing And Me._ventana.FechaCorte.ToString <> "" Then
-                operacionaux.ValorQuery = "Select o from FacOperacionPais o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
-                operacionaux.ValorQuery = operacionaux.ValorQuery & " where o.FechaOperacion <='" & Me._ventana.FechaCorte & "'"
+
+            Try
+                'If Me._ventana.Fecha1 IsNot Nothing And Me._ventana.Fecha1.ToString <> "" And Me._ventana.Fecha2 IsNot Nothing And Me._ventana.Fecha2.ToString <> "" Then
+                '    operacionaux.ValorQuery = "Select o from FacOperacion o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
+                '    operacionaux.ValorQuery = operacionaux.ValorQuery & " where o.FechaOperacion between '" & Me._ventana.Fecha1 & "' and '" & Me._ventana.Fecha1 & "'"
+                '    valor = True
+                'Else
+                If Me._ventana.FechaCorte IsNot Nothing And Me._ventana.FechaCorte.ToString <> "" Then
+                    operacionaux.ValorQuery = "Select o from FacOperacionPais o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
+                    operacionaux.ValorQuery = operacionaux.ValorQuery & " where o.FechaOperacion <='" & Me._ventana.FechaCorte & "'"
+                    valor = True
+                End If
+                'End If
+
+                'If Me._ventana.Asociado IsNot Nothing And Me._ventana.Asociado2 IsNot Nothing Then
+                '    Dim asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
+                '    Dim asociado2 As Asociado = DirectCast(Me._ventana.Asociado2, Asociado)
+
+                '    If valor = False Then
+                '        operacionaux.ValorQuery = "Select o from FacOperacion o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
+                '        operacionaux.ValorQuery = operacionaux.ValorQuery & " where "
+                '    Else
+                '        operacionaux.ValorQuery = operacionaux.ValorQuery & " and "
+                '    End If
+                '    operacionaux.ValorQuery = operacionaux.ValorQuery & " Asociado.Id>= " & asociado.Id & " and Asociado.Id<= " & asociado2.Id
+                '    valor = True
+                'Else
+                '    If Me._ventana.Asociado IsNot Nothing Then
+                '        Dim asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
+                If valor = False Then
+                    operacionaux.ValorQuery = "Select o from FacOperacion o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
+                    operacionaux.ValorQuery = operacionaux.ValorQuery & " where "
+                Else
+                    operacionaux.ValorQuery = operacionaux.ValorQuery & " and "
+                End If
+                operacionaux.ValorQuery = operacionaux.ValorQuery & " Asociado.Id= " & idasociado
                 valor = True
-            End If
-            'End If
+                '    End If
+                'End If
 
-            'If Me._ventana.Asociado IsNot Nothing And Me._ventana.Asociado2 IsNot Nothing Then
-            '    Dim asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
-            '    Dim asociado2 As Asociado = DirectCast(Me._ventana.Asociado2, Asociado)
+                If valor = True Then
+                    operacionaux.ValorQuery = operacionaux.ValorQuery & "and o.Saldo > 0 and o.Id='" & nc & "'  order by Asociado.Id, o.FechaOperacion "
+                    operacionaux.Seleccion = True
+                End If
 
-            '    If valor = False Then
-            '        operacionaux.ValorQuery = "Select o from FacOperacion o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
-            '        operacionaux.ValorQuery = operacionaux.ValorQuery & " where "
-            '    Else
-            '        operacionaux.ValorQuery = operacionaux.ValorQuery & " and "
-            '    End If
-            '    operacionaux.ValorQuery = operacionaux.ValorQuery & " Asociado.Id>= " & asociado.Id & " and Asociado.Id<= " & asociado2.Id
-            '    valor = True
-            'Else
-            '    If Me._ventana.Asociado IsNot Nothing Then
-            '        Dim asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
-            If valor = False Then
-                operacionaux.ValorQuery = "Select o from FacOperacion o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
-                operacionaux.ValorQuery = operacionaux.ValorQuery & " where "
-            Else
-                operacionaux.ValorQuery = operacionaux.ValorQuery & " and "
-            End If
-            operacionaux.ValorQuery = operacionaux.ValorQuery & " Asociado.Id= " & idasociado
-            valor = True
-            '    End If
-            'End If
+                Dim operaciones As List(Of FacOperacion) = _FacOperacionServicios.ObtenerFacOperacionesFiltro(operacionaux)
+                If operaciones.Count >= 0 Then
+                    Return (operaciones)
+                Else
+                    Return (Nothing)
+                End If
 
-            If valor = True Then
-                operacionaux.ValorQuery = operacionaux.ValorQuery & "and o.Saldo > 0 and o.Id='" & nc & "'  order by Asociado.Id, o.FechaOperacion "
-                operacionaux.Seleccion = True
-            End If
-
-            Dim operaciones As List(Of FacOperacion) = _FacOperacionServicios.ObtenerFacOperacionesFiltro(operacionaux)
-            If operaciones.Count >= 0 Then
-                Return (operaciones)
-            Else
+            Catch ex As ApplicationException
+                'logger.Error(ex.Message)
+                'Me.Navegar(ex.Message, True)
+                Mouse.OverrideCursor = Nothing
                 Return (Nothing)
-            End If
+            Catch ex As Exception
+                Mouse.OverrideCursor = Nothing
+                '' Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
+                Return (Nothing)
+            End Try
         End Function
 
         Public Function Buscar_OperacionCartaPais(ByVal nc As String, ByVal idasociado As Integer) As List(Of FacOperacionPais)
@@ -2523,61 +2588,74 @@ Namespace Presentadores.FacReportes
             'para generar el FacOperacion
             Dim FacOperacionaux As New FacOperacionPais
             operacionaux.ValorQuery = ""
-            'If Me._ventana.Fecha1 IsNot Nothing And Me._ventana.Fecha1.ToString <> "" And Me._ventana.Fecha2 IsNot Nothing And Me._ventana.Fecha2.ToString <> "" Then
-            '    operacionaux.ValorQuery = "Select o from FacOperacion o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
-            '    operacionaux.ValorQuery = operacionaux.ValorQuery & " where o.FechaOperacion between '" & Me._ventana.Fecha1 & "' and '" & Me._ventana.Fecha1 & "'"
-            '    valor = True
-            'Else
-            If Me._ventana.FechaCorte IsNot Nothing And Me._ventana.FechaCorte.ToString <> "" Then
-                operacionaux.ValorQuery = "Select o from FacOperacionPais o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
-                operacionaux.ValorQuery = operacionaux.ValorQuery & " where o.FechaOperacion <='" & Me._ventana.FechaCorte & "'"
-                valor = True
-            End If
-            'End If
 
-            'If Me._ventana.Asociado IsNot Nothing And Me._ventana.Asociado2 IsNot Nothing Then
-            '    Dim asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
-            '    Dim asociado2 As Asociado = DirectCast(Me._ventana.Asociado2, Asociado)
-
-            '    If valor = False Then
-            '        operacionaux.ValorQuery = "Select o from FacOperacionPais o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma left join fetch o.Pais as Pais"
-            '        operacionaux.ValorQuery = operacionaux.ValorQuery & " where "
-            '    Else
-            '        operacionaux.ValorQuery = operacionaux.ValorQuery & " and "
-            '    End If
-            '    operacionaux.ValorQuery = operacionaux.ValorQuery & " Asociado.Id>= " & asociado.Id & " and Asociado.Id<= " & asociado2.Id
-            '    valor = True
-            'Else
-            '    If Me._ventana.Asociado IsNot Nothing Then
-            '        Dim asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
-            If valor = False Then
-                operacionaux.ValorQuery = "Select o from FacOperacionPais o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma left join fetch o.Pais as Pais"
-                operacionaux.ValorQuery = operacionaux.ValorQuery & " where "
-            Else
-                operacionaux.ValorQuery = operacionaux.ValorQuery & " and "
-            End If
-            operacionaux.ValorQuery = operacionaux.ValorQuery & " Asociado.Id= " & idasociado
-            valor = True
-            '    End If
-            'End If
-
-            If valor = True Then
-                Dim query_pais As String = ""
-                If Me._ventana.TipoSel = "Igual a" Then
-                    query_pais = "' and Pais.Id=" & (DirectCast(Me._ventana.Pais, Pais)).Id
-                Else
-                    query_pais = "' and Pais.Id<>" & (DirectCast(Me._ventana.Pais, Pais)).Id
+            Try
+                'If Me._ventana.Fecha1 IsNot Nothing And Me._ventana.Fecha1.ToString <> "" And Me._ventana.Fecha2 IsNot Nothing And Me._ventana.Fecha2.ToString <> "" Then
+                '    operacionaux.ValorQuery = "Select o from FacOperacion o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
+                '    operacionaux.ValorQuery = operacionaux.ValorQuery & " where o.FechaOperacion between '" & Me._ventana.Fecha1 & "' and '" & Me._ventana.Fecha1 & "'"
+                '    valor = True
+                'Else
+                If Me._ventana.FechaCorte IsNot Nothing And Me._ventana.FechaCorte.ToString <> "" Then
+                    operacionaux.ValorQuery = "Select o from FacOperacionPais o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma  left join fetch o.Pais as Pais"
+                    operacionaux.ValorQuery = operacionaux.ValorQuery & " where o.FechaOperacion <='" & Me._ventana.FechaCorte & "'"
+                    valor = True
                 End If
-                operacionaux.ValorQuery = operacionaux.ValorQuery & " and o.Saldo > 0 and o.Id='" & nc & query_pais & "   order by Asociado.Id, o.FechaOperacion "
-                operacionaux.Seleccion = True
-            End If
+                'End If
 
-            Dim operaciones As List(Of FacOperacionPais) = _FacOperacionpaisServicios.ObtenerFacOperacionPaisesFiltro(operacionaux)
-            If operaciones.Count >= 0 Then
-                Return (operaciones)
-            Else
+                'If Me._ventana.Asociado IsNot Nothing And Me._ventana.Asociado2 IsNot Nothing Then
+                '    Dim asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
+                '    Dim asociado2 As Asociado = DirectCast(Me._ventana.Asociado2, Asociado)
+
+                '    If valor = False Then
+                '        operacionaux.ValorQuery = "Select o from FacOperacionPais o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma left join fetch o.Pais as Pais"
+                '        operacionaux.ValorQuery = operacionaux.ValorQuery & " where "
+                '    Else
+                '        operacionaux.ValorQuery = operacionaux.ValorQuery & " and "
+                '    End If
+                '    operacionaux.ValorQuery = operacionaux.ValorQuery & " Asociado.Id>= " & asociado.Id & " and Asociado.Id<= " & asociado2.Id
+                '    valor = True
+                'Else
+                '    If Me._ventana.Asociado IsNot Nothing Then
+                '        Dim asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
+                If valor = False Then
+                    operacionaux.ValorQuery = "Select o from FacOperacionPais o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma left join fetch o.Pais as Pais"
+                    operacionaux.ValorQuery = operacionaux.ValorQuery & " where "
+                Else
+                    operacionaux.ValorQuery = operacionaux.ValorQuery & " and "
+                End If
+                operacionaux.ValorQuery = operacionaux.ValorQuery & " Asociado.Id= " & idasociado
+                valor = True
+                '    End If
+                'End If
+
+                If valor = True Then
+                    Dim query_pais As String = ""
+                    If Me._ventana.TipoSel = "Igual a" Then
+                        query_pais = "' and Pais.Id=" & (DirectCast(Me._ventana.Pais, Pais)).Id
+                    Else
+                        query_pais = "' and Pais.Id<>" & (DirectCast(Me._ventana.Pais, Pais)).Id
+                    End If
+                    operacionaux.ValorQuery = operacionaux.ValorQuery & " and o.Saldo > 0 and o.Id='" & nc & query_pais & "   order by Asociado.Id, o.FechaOperacion "
+                    operacionaux.Seleccion = True
+                End If
+
+                Dim operaciones As List(Of FacOperacionPais) = _FacOperacionpaisServicios.ObtenerFacOperacionPaisesFiltro(operacionaux)
+                If operaciones.Count >= 0 Then
+                    Return (operaciones)
+                Else
+                    Return (Nothing)
+                End If
+
+            Catch ex As ApplicationException
+                'logger.Error(ex.Message)
+                'Me.Navegar(ex.Message, True)
+                Mouse.OverrideCursor = Nothing
                 Return (Nothing)
-            End If
+            Catch ex As Exception
+                Mouse.OverrideCursor = Nothing
+                '' Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
+                Return (Nothing)
+            End Try
         End Function
 
         Public Sub ObtenerEstructuraCarta(ByRef enc As IList(Of StructReporteFActuraCartaEnc), ByVal asociado As Asociado)

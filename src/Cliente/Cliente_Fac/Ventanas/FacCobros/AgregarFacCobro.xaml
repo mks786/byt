@@ -29,6 +29,7 @@
     </Page.Resources>
     <Page.CommandBindings>
         <CommandBinding Command="local:AgregarFacCobro.Eliminar_Pago"  Executed="Al_Eliminar_Pago" ></CommandBinding>
+        <CommandBinding Command="local:AgregarFacCobro.Mostrar_Factura"  Executed="Al_Mostrar_Factura" ></CommandBinding>
     </Page.CommandBindings>
 
 
@@ -351,7 +352,16 @@
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>  
                                     
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoOperacion}" Width="60">
+                                                            <GridViewColumn Width="40" Header="">
+                            <!--<GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>-->
+            <GridViewColumn.CellTemplate>
+                <DataTemplate>
+                    <Button Name="Btn_Factura" Content="Factura"  Command="local:AgregarFacCobro.Mostrar_Factura" CommandParameter="{Binding CodigoOperacion}" />
+                </DataTemplate>
+            </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+                                    
+            <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoOperacion}" Width="60">
                                         <GridViewColumnHeader  Tag="CodigoOperacion" Content="Numero"/>
                                     </GridViewColumn>
                                     <GridViewColumn DisplayMemberBinding="{Binding Path=FechaOperacion, StringFormat={}{0:dd/MM/yyyy}}" Width="90">
@@ -384,11 +394,21 @@
                         </ListView>  
                        
                         <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="2" Name="_lstFacturaCobro" ItemsSource="{Binding}" 
-                                  SelectionMode="Single" IsEnabled="False" HorizontalAlignment="Left" 
+                                  SelectionMode="Single" IsEnabled="true" HorizontalAlignment="Left" 
                                   Style="{DynamicResource EstiloListView}" Height="150" VerticalAlignment="Top" Visibility="Visible">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Factura}" Width="95">
+                                    
+                        <GridViewColumn Width="40" Header="">
+                            <!--<GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>-->
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="Btn_Factura" Content="Factura"  Command="local:AgregarFacCobro.Mostrar_Factura" CommandParameter="{Binding Factura}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                                    
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Factura}" Width="95">
                                         <GridViewColumnHeader  Tag="Factura" Content="Factura"/>
                                     </GridViewColumn>
                                     <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Bono}" Width="125">

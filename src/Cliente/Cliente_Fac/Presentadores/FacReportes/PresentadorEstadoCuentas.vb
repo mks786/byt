@@ -288,10 +288,10 @@ Namespace Presentadores.FacReportes
 
                 datosEnc = ArmarReporteEnc(datosEnc, estructuraDeDatosEnc)
 
-                datosDeta = ArmarReporteDeta(datosDeta, estructuraDeDatosDeta)
+                datosDeta = ArmarReporteDeta(datosDeta, estructuraDeDatosDeta)                
                 'reporte.PrintOptions.PrinterName = ConfigurationManager.AppSettings["ImpresoraReportes"];
                 Dim ds As New DataSet()
-                ds.Tables.Add(datosEnc)
+                ds.Tables.Add(datosEnc)                
                 ds.Tables.Add(datosDeta)
                 Dim reporte As New ReportDocument()
                 reporte.Load(GetRutaReporte())
@@ -528,7 +528,7 @@ Namespace Presentadores.FacReportes
                 End If
 
                 If valor = True Then
-                    operacionaux.ValorQuery = operacionaux.ValorQuery & " order by Asociado.Id, o.FechaOperacion, o.CodigoOperacion desc "
+                    operacionaux.ValorQuery = operacionaux.ValorQuery & " order by Asociado.Id, o.FechaOperacion desc, o.CodigoOperacion desc "
                     operacionaux.Seleccion = True
                 End If
 
@@ -718,8 +718,7 @@ Namespace Presentadores.FacReportes
             Catch ex As Exception
                 'logger.Error(ex.Message)
 
-            End Try
-
+            End Try            
             detalle = retorno
         End Sub
 
@@ -794,8 +793,7 @@ Namespace Presentadores.FacReportes
                     filaDatos("Moneda") = structura.Moneda
                     filaDatos("Mttotal") = poner_decimal(structura.Mttotal)
                     datos.Rows.Add(filaDatos)
-
-                Next
+                Next                
             Catch ex As Exception
                 'logger.Error(ex.Message)
 
@@ -815,6 +813,7 @@ Namespace Presentadores.FacReportes
                     filaDatos("MMonto") = poner_decimal(structura.MMonto)
                     datos.Rows.Add(filaDatos)
                 Next
+                'datos.DefaultView.Sort = "Id, Fecha Desc"                
             Catch ex As Exception
                 'logger.Error(ex.Message)
 

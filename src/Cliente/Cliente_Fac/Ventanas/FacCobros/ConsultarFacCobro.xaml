@@ -29,7 +29,8 @@
     </Page.Resources>
     <Page.CommandBindings>
         <CommandBinding Command="local:ConsultarFacCobro.Eliminar_Pago"  Executed="Al_Eliminar_Pago" ></CommandBinding>
-    </Page.CommandBindings>
+       <CommandBinding Command="local:ConsultarFacCobro.Mostrar_Factura"  Executed="Al_Mostrar_Factura" ></CommandBinding>
+    </Page.CommandBindings>    
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -347,11 +348,22 @@
                         </ListView>  
                        
                         <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="2" Name="_lstFacturaCobro" ItemsSource="{Binding}" 
-                                  SelectionMode="Single" IsEnabled="False" HorizontalAlignment="Left" 
+                                  SelectionMode="Single" IsEnabled="True" HorizontalAlignment="Left" 
                                   Style="{DynamicResource EstiloListView}" Height="150" VerticalAlignment="Top" Visibility="Visible">
                             <ListView.View>
+                                
                                 <GridView>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Factura}" Width="95">
+
+                            <GridViewColumn Width="40" Header="">
+                                <!--<GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>-->
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                    <Button Name="Btn_Factura" Content="Factura"  Command="local:ConsultarFacCobro.Mostrar_Factura" CommandParameter="{Binding Factura}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Factura}" Width="95">
                                         <GridViewColumnHeader  Tag="Factura" Content="Factura"/>
                                     </GridViewColumn>
                                     <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Bono}" Width="125">

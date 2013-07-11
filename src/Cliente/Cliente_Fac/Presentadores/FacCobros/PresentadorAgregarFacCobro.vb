@@ -8,11 +8,13 @@ Imports Diginsoft.Bolet.Cliente.Fac.Contratos.FacCobros
 'Imports Diginsoft.Bolet.Cliente.Fac.Ventanas.Principales
 Imports Diginsoft.Bolet.ObjetosComunes.ContratosServicios
 Imports Diginsoft.Bolet.Cliente.Fac.Ventanas.FacCobros
+
 Imports Diginsoft.Bolet.ObjetosComunes.Entidades
 Imports Trascend.Bolet.ObjetosComunes.Entidades
 Imports Trascend.Bolet.ObjetosComunes.ContratosServicios
 Imports Trascend.Bolet.Cliente.Presentadores
 Imports Trascend.Bolet.Cliente.Ventanas.Principales
+Imports Diginsoft.Bolet.Cliente.Fac.Ventanas.FacFacturas
 
 
 Namespace Presentadores.FacCobros
@@ -37,6 +39,8 @@ Namespace Presentadores.FacCobros
         Private _FacFormaServicios As IFacFormaServicios
         Private _FacCobroFacturaServicios As IFacCobroFacturaServicios
         Private _ListaDatosValoresServicios As IListaDatosValoresServicios
+        Private _FacFacturaServicios As IFacFacturaServicios
+
         Dim xoperacion As String
         ''' <summary>
         ''' Constructor predeterminado
@@ -58,6 +62,7 @@ Namespace Presentadores.FacCobros
                 Me._FacFormaServicios = DirectCast(Activator.GetObject(GetType(IFacFormaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFormaServicios")), IFacFormaServicios)
                 Me._FacCobroFacturaServicios = DirectCast(Activator.GetObject(GetType(IFacCobroFacturaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacCobroFacturaServicios")), IFacCobroFacturaServicios)
                 Me._ListaDatosValoresServicios = DirectCast(Activator.GetObject(GetType(IListaDatosValoresServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("ListaDatosValoresServicios")), IListaDatosValoresServicios)
+                Me._FacFacturaServicios = DirectCast(Activator.GetObject(GetType(IFacFacturaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFacturaServicios")), IFacFacturaServicios)
 
                 Dim FacCobro As New FacCobro()
                 FacCobro.Timestamp = FormatDateTime(Date.Now, DateFormat.ShortDate)
@@ -319,6 +324,49 @@ Namespace Presentadores.FacCobros
                     End If
                 End If
             End If
+        End Sub
+
+        Public Sub BuscarFactura(ByVal Cfactura As Integer)
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+                Dim FacFacturaAuxiliar As New FacFactura()
+                FacFacturaAuxiliar.Id = Cfactura
+
+
+                Dim FacFactura As FacFactura
+                FacFactura = Me._FacFacturaServicios.ObtenerFacFacturasFiltro(FacFacturaAuxiliar)(0)
+                If FacFactura IsNot Nothing Then
+                    IrConsultarFacFactura(FacFactura)
+                End If
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                    '#End Region
+                End If
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
+            End Try
+        End Sub
+
+
+        Public Sub IrConsultarFacFactura(ByVal Factura As FacFactura)
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+            'Me._ventana.FacFacturaSeleccionado.Accion = 2 'no modificar
+            Me.Navegar(New ConsultarFacFactura(Factura))
+            'Me.Navegar(New ConsultarFacFactura())
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
         End Sub
 
         'Public Sub verfacturas_buscar()
