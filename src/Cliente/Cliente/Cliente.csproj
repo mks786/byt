@@ -140,6 +140,9 @@
     <Compile Include="Contratos\Inventores\IQueryInventor.cs" />
     <Compile Include="Contratos\MarcasTercero\IInfoAdicionalInteresadosAsociadosMarcaTerceros.cs" />
     <Compile Include="Contratos\Marcas\IGestionarArchivoDeMarca.cs" />
+    <Compile Include="Contratos\Marcas\IGestionarCertificadoDeMarca.cs" />
+    <Compile Include="Contratos\Marcas\IGestionarFechaDeMarca.cs" />
+    <Compile Include="Contratos\Marcas\IListaFechasDeMarca.cs" />
     <Compile Include="Contratos\Patentes\IGestionarArchivoDePatente.cs" />
     <Compile Include="Contratos\TiposEmailAsociado\IGestionarTipoEmailAsociado.cs" />
     <Compile Include="Contratos\TiposEmailAsociado\IConsultarTiposEmailAsociado.cs" />
@@ -573,6 +576,9 @@
     <Compile Include="Presentadores\Inventores\PresentadorQueryInventor.cs" />
     <Compile Include="Presentadores\MarcasTercero\PresentadorInfoAdicionalInteresadosAsociadosMarcaTerceros.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorGestionarArchivoDeMarca.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorGestionarCertificadoDeMarca.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorGestionarFechaDeMarca.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorListaFechasDeMarca.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorGestionarArchivoDePatente.cs" />
     <Compile Include="Presentadores\TiposEmailAsociado\PresentadorGestionarTipoEmailAsociado.cs" />
     <Compile Include="Presentadores\TiposEmailAsociado\PresentadorConsultarTiposEmailAsociado.cs" />
@@ -1054,6 +1060,15 @@
     </Compile>
     <Compile Include="Ventanas\Marcas\GestionarArchivoDeMarca.xaml.cs">
       <DependentUpon>GestionarArchivoDeMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\GestionarCertificadoDeMarca.xaml.cs">
+      <DependentUpon>GestionarCertificadoDeMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\GestionarFechaDeMarca.xaml.cs">
+      <DependentUpon>GestionarFechaDeMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\ListaFechasDeMarca.xaml.cs">
+      <DependentUpon>ListaFechasDeMarca.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Patentes\GestionarArchivoDePatente.xaml.cs">
       <DependentUpon>GestionarArchivoDePatente.xaml</DependentUpon>
@@ -1777,6 +1792,18 @@
     <Page Include="Ventanas\Marcas\GestionarArchivoDeMarca.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Marcas\GestionarCertificadoDeMarca.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Marcas\GestionarFechaDeMarca.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Marcas\ListaFechasDeMarca.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Patentes\GestionarArchivoDePatente.xaml">
       <SubType>Designer</SubType>
