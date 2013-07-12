@@ -899,6 +899,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a ¿Desea eliminar la Fecha seleccionada?.
+        /// </summary>
+        internal static string ConfirmacionEliminarFechaMarca {
+            get {
+                return ResourceManager.GetString("ConfirmacionEliminarFechaMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a ¿Seguro que desea eliminar la fusión?.
         /// </summary>
         internal static string ConfirmacionEliminarFusion {
@@ -1178,6 +1187,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a ¿Está seguro que desea eliminar el Certificado para la Marca {0}?.
+        /// </summary>
+        internal static string ConfirmarEliminarCertificadoMarca {
+            get {
+                return ResourceManager.GetString("ConfirmarEliminarCertificadoMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Certificado de Marca modificado exitosamente.
+        /// </summary>
+        internal static string ConfirmarModificacionCertificadoMarca {
+            get {
+                return ResourceManager.GetString("ConfirmarModificacionCertificadoMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a ¿Está seguro que desea modificar el Archivo para la Marca {0}?.
         /// </summary>
         internal static string ConfirmarModificarArchivoMarca {
@@ -1201,6 +1228,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ConfirmarModificarCarta {
             get {
                 return ResourceManager.GetString("ConfirmarModificarCarta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ¿Está seguro que desea agregar o modificar el Certificado para la Marca {0}?.
+        /// </summary>
+        internal static string ConfirmarModificarCertificadoMarca {
+            get {
+                return ResourceManager.GetString("ConfirmarModificarCertificadoMarca", resourceCulture);
             }
         }
         

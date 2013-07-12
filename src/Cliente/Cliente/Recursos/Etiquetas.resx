@@ -3744,4 +3744,46 @@ en Prensa:</value>
   <data name="filterArchivoTipoCajaPatentes" xml:space="preserve">
     <value>Patente</value>
   </data>
+  <data name="btnVerCertificado" xml:space="preserve">
+    <value>Ver Certificado</value>
+  </data>
+  <data name="lblClases" xml:space="preserve">
+    <value>Clases :</value>
+  </data>
+  <data name="lblEscrituraBs" xml:space="preserve">
+    <value>Escritura Bs. :</value>
+  </data>
+  <data name="lblFechaRecibo" xml:space="preserve">
+    <value>Fecha Recibo :</value>
+  </data>
+  <data name="lblNumeroRecibo" xml:space="preserve">
+    <value>Recibo No. :</value>
+  </data>
+  <data name="lblPapelProtocolo" xml:space="preserve">
+    <value>Papel Protocolo :</value>
+  </data>
+  <data name="lblRegistrador" xml:space="preserve">
+    <value>Registrador :</value>
+  </data>
+  <data name="lblRegistroBs" xml:space="preserve">
+    <value>Registro Bs. :</value>
+  </data>
+  <data name="lblTotalBs" xml:space="preserve">
+    <value>Total Bs. :</value>
+  </data>
+  <data name="titleGestionarCertificadoMarca" xml:space="preserve">
+    <value>Gestionar Certificado de Marca</value>
+  </data>
+  <data name="btnNuevaFecha" xml:space="preserve">
+    <value>Nueva Fecha</value>
+  </data>
+  <data name="titleGestionarFechaMarca" xml:space="preserve">
+    <value>Gestionar Fecha de Marca</value>
+  </data>
+  <data name="titleListaFechasMarca" xml:space="preserve">
+    <value>Lista de Fechas de Marca</value>
+  </data>
+  <data name="lblPatentesDistingueEnIngles" xml:space="preserve">
+    <value>Patentes: Distingue en ingles:</value>
+  </data>
 </root>

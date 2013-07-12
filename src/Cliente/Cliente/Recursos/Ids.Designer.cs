@@ -2428,6 +2428,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a MYP_MFECHAS.
+        /// </summary>
+        public static string FechaMarca {
+            get {
+                return ResourceManager.GetString("FechaMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a MYP_PFECHAS.
         /// </summary>
         public static string FechasPatente {
@@ -2487,6 +2496,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string GestionarCambioPeticionario {
             get {
                 return ResourceManager.GetString("GestionarCambioPeticionario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a MYP_MCERTIFICADOS.
+        /// </summary>
+        public static string GestionarCertificadoMarca {
+            get {
+                return ResourceManager.GetString("GestionarCertificadoMarca", resourceCulture);
             }
         }
         

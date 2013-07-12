@@ -1375,4 +1375,16 @@
   <data name="ConfirmarModificarArchivoPatente" xml:space="preserve">
     <value>¿Está seguro que desea modificar el Archivo para la Patente {0}?</value>
   </data>
+  <data name="ConfirmarModificarCertificadoMarca" xml:space="preserve">
+    <value>¿Está seguro que desea agregar o modificar el Certificado para la Marca {0}?</value>
+  </data>
+  <data name="ConfirmarModificacionCertificadoMarca" xml:space="preserve">
+    <value>Certificado de Marca modificado exitosamente</value>
+  </data>
+  <data name="ConfirmarEliminarCertificadoMarca" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar el Certificado para la Marca {0}?</value>
+  </data>
+  <data name="ConfirmacionEliminarFechaMarca" xml:space="preserve">
+    <value>¿Desea eliminar la Fecha seleccionada?</value>
+  </data>
 </root>
