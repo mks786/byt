@@ -620,12 +620,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         {
             if (!string.IsNullOrEmpty(((Asociado)this._ventana.Asociado).Web))
             {
-                Match match = Regex.Match(((Asociado)this._ventana.Asociado).Web, @"^http(s)?://([\w-]+.)+[\w-]+(/[\w- ./?%&=])?$",
-        RegexOptions.IgnoreCase);
-                if (match.Success)
-                    IrURL(((Asociado)this._ventana.Asociado).Web);
-                else
-                    this._ventana.Mensaje("Disculpe, URL errónea");
+        //        Match match = Regex.Match(((Asociado)this._ventana.Asociado).Web, @"^http(s)?://([\w-]+.)+[\w-]+(/[\w- ./?%&=])?$",
+        //RegexOptions.IgnoreCase);
+        //        if (match.Success)
+        //            IrURL(((Asociado)this._ventana.Asociado).Web);
+        //        else
+        //            this._ventana.Mensaje("Disculpe, URL errónea");
+
+                IrURL(((Asociado)this._ventana.Asociado).Web);
             }
         }
 

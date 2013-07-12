@@ -986,13 +986,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
             Asociado asociadoABuscar = new Asociado();
 
+            //asociadoABuscar.Id = !this._ventana.IdAsociadoFiltrar.Equals("") ?
+            //                     int.Parse(this._ventana.IdAsociadoFiltrar) : 0;
+
             asociadoABuscar.Id = !this._ventana.IdAsociadoFiltrar.Equals("") ?
-                                 int.Parse(this._ventana.IdAsociadoFiltrar) : 0;
+                                 int.Parse(this._ventana.IdAsociadoFiltrar) : int.MinValue;
 
             asociadoABuscar.Nombre = !this._ventana.NombreAsociadoFiltrar.Equals("") ?
                                      this._ventana.NombreAsociadoFiltrar.ToUpper() : "";
 
-            if ((asociadoABuscar.Id != 0) || !(asociadoABuscar.Nombre.Equals("")))
+            //if ((asociadoABuscar.Id != 0) || !(asociadoABuscar.Nombre.Equals("")))
+            if ((asociadoABuscar.Id != int.MinValue) || !(asociadoABuscar.Nombre.Equals("")))
             {
                 IList<Asociado> asociados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoABuscar);
                 asociados.Insert(0, new Asociado(int.MinValue));

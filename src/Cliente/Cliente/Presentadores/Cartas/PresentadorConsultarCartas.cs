@@ -573,6 +573,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
+            #region Codigo Comentado
             //IEnumerable<Asociado> asociadosFiltrados = (IList<Asociado>)this._asociados;
 
             //if (!string.IsNullOrEmpty(this._ventana.IdAsociadoFiltrar))
@@ -588,24 +589,38 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             //                         where p.Nombre != null &&
             //                         p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoFiltrar.ToLower())
             //                         select p;
-            //}
+            //} 
+            #endregion
 
             if ((!this._ventana.IdAsociadoFiltrar.Equals("")) || (!this._ventana.NombreAsociadoFiltrar.Equals("")))
             {
                 Asociado asociadoAFiltrar = new Asociado();
-                asociadoAFiltrar.Id = !this._ventana.IdAsociadoFiltrar.Equals("") ? int.Parse(this._ventana.IdAsociadoFiltrar) : 0;
+                //asociadoAFiltrar.Id = !this._ventana.IdAsociadoFiltrar.Equals("") ? int.Parse(this._ventana.IdAsociadoFiltrar) : 0;
+                asociadoAFiltrar.Id = !this._ventana.IdAsociadoFiltrar.Equals("") ? int.Parse(this._ventana.IdAsociadoFiltrar) : int.MinValue;
                 asociadoAFiltrar.Nombre = !this._ventana.NombreAsociadoFiltrar.Equals("") ? this._ventana.NombreAsociadoFiltrar.ToUpper() : string.Empty;
 
                 Asociado asociado = new Asociado();
                 asociado.Id = int.MinValue;
 
-                IList<Asociado> asociadosFiltrados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoAFiltrar);
-                asociadosFiltrados.Insert(0, asociado);
+                if ((asociadoAFiltrar.Id != int.MinValue) || (!(asociadoAFiltrar.Nombre.Equals(""))))
+                {
+                    IList<Asociado> asociadosFiltrados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoAFiltrar);
 
-                if (asociadosFiltrados.Count != 0)
-                    this._ventana.Asociados = asociadosFiltrados.ToList<Asociado>();
+                    if (asociadosFiltrados.Count != 0)
+                    {
+                        asociadosFiltrados.Insert(0, asociado);
+                        this._ventana.Asociados = asociadosFiltrados.ToList<Asociado>();
+                    }
+                    else
+                    {
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                        this._ventana.Asociados = this._asociados;
+                    }
+                }
                 else
-                    this._ventana.Asociados = this._asociados;
+                {
+                    this._ventana.Mensaje("Ingrese criterios validos para la busqueda del Asociado", 1);
+                }
             }
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

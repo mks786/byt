@@ -357,7 +357,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.Servicios = servicios;
 
                 Marca marcaAux = new Marca();
-                marcaAux.Servicio = new Servicio("MS");
+                marcaAux.Servicio = new Servicio("MPS");
                 this._ventana.Servicio = this.BuscarServicio(servicios, marcaAux.Servicio);
 
                 IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
@@ -470,6 +470,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// </summary>
         public void Aceptar()
         {
+            bool realizado = false;
+            String distingueMarca = String.Empty;
+
             try
             {
                 #region trace
@@ -537,6 +540,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     if (null != this._ventana.IdMarcaOrigenSolicitud && this._ventana.IdMarcaOrigenSolicitud != "")
                         marca.MarcaOrigen = int.Parse(this._ventana.IdMarcaOrigenSolicitud);
 
+                    if (null != this._ventana.DistingueSolicitud)
+                    {
+                        marca.Distingue = this._ventana.DistingueSolicitud.ToUpper();
+                        distingueMarca = this._ventana.DistingueSolicitud.ToUpper();
+                        if (this._ventana.DistingueSolicitud.Length < 2000)
+                            marca.Fichas = this._ventana.DistingueSolicitud.ToUpper();
+                        else if (this._ventana.DistingueSolicitud.Length >= 2000)
+                        {
+                            String aux = this._ventana.DistingueSolicitud.Substring(0, 2000);
+                            marca.Fichas = aux.ToUpper();
+                        }
+                    }
+
                     //if (marca.TipoEstado.Id.Equals("NGN"))
                     //{
                     //    marca.TipoEstado.Id = string.Empty;
@@ -561,6 +577,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                             if (!exitoso.Equals(null))
                             {
                                 marca.Id = (int)exitoso;
+                                this._marcaServicios.ActualizarDistingueDeMarca(marca, distingueMarca);
                                 this.Navegar(new ConsultarMarca(marca, null));
                             }
 

@@ -751,13 +751,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 else
                     marcaAuxiliar.Nacional = new Nacional();
 
+                //if (!this._ventana.Distingue.Equals(""))
+                //{
+                //    _filtroValido = 2;
+                //    marcaAuxiliar.Distingue = this._ventana.Distingue.ToUpper();
+                //}
+                //else
+                //    marcaAuxiliar.Distingue = null;
+
                 if (!this._ventana.Distingue.Equals(""))
                 {
                     _filtroValido = 2;
-                    marcaAuxiliar.Distingue = this._ventana.Distingue.ToUpper();
+                    marcaAuxiliar.XDistingue = this._ventana.Distingue.ToUpper();
                 }
                 else
-                    marcaAuxiliar.Distingue = null;
+                    marcaAuxiliar.XDistingue = null;
 
                 if ((!this._ventana.Solicitud.Equals("")) && (this._ventana.Solicitud != "0"))
                 {

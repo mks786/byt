@@ -167,6 +167,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
 
                 IEnumerable<RecordatorioVista> recordatorios = this._recordatorios;
 
+                #region Codigo Comentado
                 //if (this._ventana.AutomaticoFiltro.Value)
                 //{
                 //    recordatorios = from m in recordatorios
@@ -175,12 +176,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
                 //                    select m;
                 //    marcasDesinfladas = from m in marcasDesinfladas
                 //                        select m;
-                //}
+                //} 
+                #endregion
 
 
                 this._ventana.GestionarEnableChecksFiltro(false);
 
                 this._ventana.Resultados = _recordatorios;
+
+                              
                 //this._ventana.SeleccionarTodos(_recordatorios.Count());
                 this._ventana.TotalHits = _recordatorios.ToList().Count.ToString();
             }
@@ -326,7 +330,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
 
                 //this.EjecutarComandoDeConsola(comando, "Generar Recordatorios con plantilla de word");
 
-                this.AbrirArchivoPorConsola(comando, "Generar Recordatorios con plantilla de word");
+                //this.AbrirArchivoPorConsola(comando, "Generar Recordatorios con plantilla de word");
+
+                this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
+                                    + "\\" + ConfigurationManager.AppSettings["ComandoRecordatorio"].ToString(),
+                                    null);
 
                 if (this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.ExitoGenerandoInformacionRecordatorio, rutaArchivo)))
                 {
@@ -359,6 +367,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
         /// </summary>
         private void ActualizarNRecordatorio()
         {
+            
+            int numeroRecordatorio;
+            ListaDatosValores listaAuxiliar = this.BuscarRecordatorio(this._listaRecordatorios, (ListaDatosValores)this._ventana.Recordatorio);
+            numeroRecordatorio = int.Parse(listaAuxiliar.Valor);
+            
             for (int i = 0; i < this._recordatorios.Count; i++)
             {
                 Marca marcaAux = new Marca();
@@ -367,7 +380,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
                 marcaAux.Operacion = "MODIFY";
 
                 marcaAux.Recordatorio = this._recordatorios[i].Marca.Recordatorio.Equals((int?)null) ? 0 : this._recordatorios[i].Marca.Recordatorio;
-                marcaAux.Recordatorio = marcaAux.Recordatorio + 1;
+                //marcaAux.Recordatorio = marcaAux.Recordatorio + 1;
+                marcaAux.Recordatorio = numeroRecordatorio;
+
+                if (numeroRecordatorio == 1)
+                    marcaAux.NumeroCondiciones = 5;
+
 
                 this._marcaServicios.InsertarOModificar(marcaAux, UsuarioLogeado.Hash);
 
@@ -411,11 +429,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
 
                 string[] tipoRecordatorio = this.ValidarTipoRecordatorio();
 
+                this._recordatorios = new List<RecordatorioVista>();
+
                 if (((IList<object>)this._ventana.Resultado).Count != 0)
+                
                 {
                     this._recordatorios = new List<RecordatorioVista>();
 
                     IList<object> resultadoAux = (IList<object>)this._ventana.Resultado;
+                    //IList<object> resultadoAux = (IList<object>)this._ventana.Resultados;
 
                     foreach (RecordatorioVista recordatorio in resultadoAux)
                     {
@@ -423,11 +445,35 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
                     }
 
                 }
+
+                else if (((IList<object>)this._ventana.Resultado).Count == 0 && this._ventana.AutomaticoFiltro.Value)
+                {
+                    this._recordatorios = new List<RecordatorioVista>();
+
+                    //IList<object> resultadoAux = (IList<object>)this._ventana.Resultados;
+                    IList<RecordatorioVista> resultadoAux = (IList<RecordatorioVista>)this._ventana.Resultados;
+                    //IList<object> resultadoAux = (IList<object>)this._ventana.Resultados;
+
+                    foreach (RecordatorioVista recordatorio in resultadoAux)
+                    {
+                        this._recordatorios.Add(recordatorio);
+                    }
+                }
+                else if (((IList<object>)this._ventana.Resultado).Count == 0 && !this._ventana.AutomaticoFiltro.Value)
+                {
+                    IList<RecordatorioVista> resultadoAux = (IList<RecordatorioVista>)this._ventana.Resultados;
+                    
+                    foreach (RecordatorioVista recordatorio in resultadoAux)
+                    {
+                        this._recordatorios.Add(recordatorio);
+                    }
+                }
                 //else
                 //  marcaAux = this._marcas;
 
                 foreach (RecordatorioVista recordatorio in this._recordatorios)
                 {
+                    fax = String.Empty;
 
                     recordatorioAux = recordatorio.Asociado.Idioma.Id.Equals("IN") ? tipoRecordatorio[1] : tipoRecordatorio[0];
 
@@ -441,6 +487,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
                         {
                             if (!recordatorio.Asociado.Pais.NombreEspanol.Equals("VENEZUELA"))
                                 fax = "00" + recordatorio.Asociado.Fax1;
+                            else
+                                fax = recordatorio.Asociado.Fax1;
                         }
                     }
 
@@ -723,8 +771,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
                     }
                 }
 
-                this._ventana.Resultados = recordatoriosDesinflados;
-                this._ventana.TotalHits = recordatoriosDesinflados.ToList<RecordatorioVista>().Count.ToString();
+                //---
+                IList<RecordatorioVista> listaRecordatoriosDesinflados = recordatoriosDesinflados.ToList<RecordatorioVista>();
+
+                this._ventana.Resultados = listaRecordatoriosDesinflados;
+                //---
+
+                //this._ventana.Resultados = recordatoriosDesinflados;
+               
+                //this._ventana.TotalHits = recordatoriosDesinflados.ToList<RecordatorioVista>().Count.ToString();
+
+                this._ventana.TotalHits = listaRecordatoriosDesinflados.Count().ToString();
             }
             else
                 this._ventana.Mensaje(Recursos.MensajesConElUsuario.AlertaDebeSeleccionarUnFiltro, 1);

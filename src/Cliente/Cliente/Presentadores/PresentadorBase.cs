@@ -1107,6 +1107,32 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
 
         /// <summary>
+        /// Metodo que busca un Registrador en una lista de Registradores
+        /// </summary>
+        /// <param name="registradores">Lista de Registradores</param>
+        /// <param name="registradorBuscado">Registrador a buscar</param>
+        /// <returns>Registrador encontrado o NULL en cado de no encontrarlo</returns>
+        public Registrador BuscarRegistrador(IList<Registrador> registradores, Registrador registradorBuscado)
+        {
+            Registrador retorno = null;
+
+            if(registradorBuscado != null)
+                foreach (Registrador registrador in registradores)
+                {
+                    if (registrador.Id.Equals(registradorBuscado.Id))
+                    {
+                        retorno = registrador;
+                        break;
+                    }
+                }
+
+            return retorno;
+
+        }
+
+
+
+        /// <summary>
         /// Método que busca un remitente dentro de una lista de remitentes
         /// </summary>
         /// <param name="remitentes">Lista de remitentes</param>

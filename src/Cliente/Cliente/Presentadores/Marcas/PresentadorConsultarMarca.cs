@@ -63,6 +63,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IRenovacionServicios _renovacionServicios;
         private IInstruccionDeRenovacionServicios _instruccionDeRenovacionServicios;
         private IArchivoServicios _archivoServicios;
+        private ICertificadoMarcaServicios _certificadoMarcaServicios;
 
 
         private IList<Asociado> _asociados;
@@ -159,6 +160,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InstruccionDeRenovacionServicios"]);
                 this._archivoServicios = (IArchivoServicios)Activator.GetObject(typeof(IArchivoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ArchivoServicios"]);
+                this._certificadoMarcaServicios = (ICertificadoMarcaServicios)Activator.GetObject(typeof(ICertificadoMarcaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CertificadoMarcaServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -251,9 +254,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 marca.Operaciones = this._operacionServicios.ConsultarOperacionesPorMarca(marca);
                 marca.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarca(marca);
                 marca.InstruccionesDeRenovacion = this._instruccionDeRenovacionServicios.ConsultarInstruccionesDeRenovacionPorMarca(marca);
-
                 marca.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(infoAdicional);
                 marca.Anaqua = this._anaquaServicios.ConsultarPorId(anaqua);
+
+                //---
+                string distingue = _marcaServicios.ObtenerDistingueDeMarca(marca);
+                this._ventana.DistingueSolicitud = distingue;
+                this._ventana.DistingueDatos = distingue;
+                marca.Distingue = distingue;
+                ((Marca)this._ventana.Marca).Distingue = distingue;
+                //---
 
                 IList<ListaDatosDominio> tiposMarcas = this._listaDatosDominioServicios.
                     ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
@@ -264,12 +274,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.TipoMarcasSolicitud = tiposMarcas;
                 this._ventana.TipoMarcaDatos = this.BuscarTipoMarca(tiposMarcas, marca.Tipo);
 
-                IList<Agente> agentes = this._agenteServicios.ConsultarTodos();
+                /*IList<Agente> agentes = this._agenteServicios.ConsultarTodos();
                 Agente primerAgente = new Agente();
                 primerAgente.Id = "NGN";
                 agentes.Insert(0, primerAgente);
                 this._ventana.Agentes = agentes;
-                this._ventana.Agente = this.BuscarAgente(agentes, marca.Agente);
+                this._ventana.Agente = this.BuscarAgente(agentes, marca.Agente);*/
 
                 IList<Pais> paises = this._paisServicios.ConsultarTodos();
                 Pais primerPais = new Pais();
@@ -366,6 +376,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     //this._ventana.DescripcionCorresponsalDatos = marca.Corresponsal.GetType().Equals(typeof(Corresponsal)) ? marca.Corresponsal.Descripcion : "";
                     CargarCorresponsales();
                 }
+
+                IList<Agente> agentes = this._agenteServicios.ConsultarTodos();
+                Agente primerAgente = new Agente();
+                primerAgente.Id = "NGN";
+                agentes.Insert(0, primerAgente);
+                this._ventana.Agentes = agentes;
+                this._ventana.Agente = this.BuscarAgente(agentes, marca.Agente);
+
 
                 this._ventana.NumPoderDatos = marca.Poder != null ? marca.Poder.NumPoder : "";
 
@@ -719,21 +737,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     marca.NumeroCondiciones = ((Condicion)this._ventana.Condicion).Id;
             }
 
-            if ((this._ventana.DistingueSolicitud != null) && (!this._ventana.DistingueSolicitud.Equals(String.Empty)))
+            if (this._ventana.DistingueSolicitud != null)
             {
                 marca.Distingue = this._ventana.DistingueSolicitud;
 
                 int len = this._ventana.DistingueSolicitud.Length;
-                if (len <= 4000)
-                    marca.Fichas = this._ventana.DistingueSolicitud;
+                if (len <= 2000)
+                    marca.Fichas = this._ventana.DistingueSolicitud.ToUpper();
                 else
                 {
-                    String fichasAux = this._ventana.DistingueSolicitud.Substring(0, 3999);
-                    marca.Fichas = fichasAux;
+                    String fichasAux = this._ventana.DistingueSolicitud.Substring(0, 1999);
+                    marca.Fichas = fichasAux.ToUpper();
+                    int longitud = marca.Fichas.Length;
                 }
 
             }
 
+            
             //if (null != ((Marca)this._ventana.Marca).MarcaOrigen)
             //    marca.MarcaOrigen = ((Marca)this._ventana.Marca).MarcaOrigen;
 
@@ -773,6 +793,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// </summary>
         public void Modificar()
         {
+            String distingueDeMarca = String.Empty;
+            bool realizado = false;
             try
             {
                 #region trace
@@ -794,6 +816,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     {
                         Marca marca = CargarMarcaDeLaPantalla();
 
+                        //---
+                        if ((this._ventana.DistingueSolicitud != null) && (!this._ventana.DistingueSolicitud.Equals("")))
+                        {
+                            distingueDeMarca = this._ventana.DistingueSolicitud;                            
+                        }
+
+                        //---
+
                         if (ValidarMarcaInternacional())
                         {
 
@@ -806,10 +836,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                             {
                                 //if (marca.Poder != null)
                                 //{
+                                marca.XDistingue = "";
                                 bool exitoso = this._marcaServicios.InsertarOModificar(marca, UsuarioLogeado.Hash);
 
                                 if (exitoso)
                                 {
+                                    if(distingueDeMarca != null)
+                                        realizado = this._marcaServicios.ActualizarDistingueDeMarca(marca,distingueDeMarca.ToUpper());
                                     this._ventana.HabilitarCampos = false;
                                     this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
 
@@ -2182,6 +2215,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// </summary>
         public void CambiarPoderSolicitud()
         {
+            IList<Poder> _poderesFiltrados = new List<Poder>();
+            IList<Interesado> _listaInteresados = new List<Interesado>();
+            Poder poderABuscar = null;
+            Interesado interesadoPoder = null;
+
             try
             {
                 #region trace
@@ -2189,17 +2227,110 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if ((Poder)this._ventana.PoderSolicitud != null)
+                if (((Poder)this._ventana.PoderSolicitud != null) && (((Poder)this._ventana.PoderSolicitud).Id != int.MinValue))
+                {
+                    if ((this._ventana.Agente == null) || (((Agente)this._ventana.Agente).Id.Equals("NGN")))
+                    {
+
+                        if (((Interesado)this._ventana.InteresadoSolicitud).Id != int.MinValue)
+                        {
+                            this._ventana.Agentes = null;
+                            IList<Agente> agentes = this._agenteServicios.ObtenerAgentesDeUnPoder((Poder)this._ventana.PoderSolicitud);
+                            this._ventana.Agentes = agentes;
+                            this._ventana.IdPoderSolicitud = ((Poder)this._ventana.PoderSolicitud).Id.ToString();
+                            this._ventana.IdPoderDatos = ((Poder)this._ventana.PoderSolicitud).Id.ToString();
+                            ((Marca)this._ventana.Marca).Poder = (Poder)this._ventana.PoderSolicitud;
+                        }
+                        else
+                        {
+                            this._ventana.InteresadosSolicitud = null;
+                            interesadoPoder = this._interesadoServicios.ObtenerInteresadosDeUnPoder((Poder)this._ventana.PoderSolicitud);
+                            _listaInteresados.Add(interesadoPoder);
+                            this._ventana.InteresadosSolicitud = _listaInteresados;
+                            this._ventana.InteresadosDatos = _listaInteresados;
+                            this._ventana.Agentes = null;
+                            IList<Agente> agentes = this._agenteServicios.ObtenerAgentesDeUnPoder((Poder)this._ventana.PoderSolicitud);
+                            this._ventana.Agentes = agentes;
+                            this._ventana.IdPoderSolicitud = ((Poder)this._ventana.PoderSolicitud).Id.ToString();
+                            this._ventana.IdPoderDatos = ((Poder)this._ventana.PoderSolicitud).Id.ToString();
+                            ((Marca)this._ventana.Marca).Poder = (Poder)this._ventana.PoderSolicitud;
+
+
+                        }
+                    }
+                    else
+                    {
+                        Poder primerPoder = new Poder();
+                        primerPoder.Id = int.MinValue;
+                        _poderesFiltrados = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.Agente, (Interesado)this._ventana.InteresadoSolicitud);
+                        if (_poderesFiltrados.Count != 0)
+                        {
+                            poderABuscar = this.BuscarPoder(_poderesFiltrados, (Poder)this._ventana.PoderSolicitud);
+
+                            if (poderABuscar != null)
+                            {
+                                _poderesFiltrados.Insert(0, primerPoder);
+                                this._ventana.PoderesSolicitud = _poderesFiltrados;
+                                this._ventana.PoderesDatos = _poderesFiltrados;
+                                this._ventana.PoderSolicitud = poderABuscar;
+                                this._ventana.PoderDatos = poderABuscar;
+                                //muestro y cargo en la marca de la ventana
+                                this._ventana.IdPoderSolicitud = ((Poder)this._ventana.PoderSolicitud).Id.ToString();
+                                this._ventana.IdPoderDatos = ((Poder)this._ventana.PoderSolicitud).Id.ToString();
+                                ((Marca)this._ventana.Marca).Poder = (Poder)this._ventana.PoderSolicitud;
+
+
+                            }
+                            else
+                            {
+                                this._ventana.Mensaje("El Poder no pertenece al Interesado", 0);
+                                _poderesFiltrados.Insert(0, primerPoder);
+                                this._ventana.PoderesSolicitud = _poderesFiltrados;
+                                this._ventana.PoderesDatos = _poderesFiltrados;
+                                this._ventana.PoderSolicitud = poderABuscar;
+                                this._ventana.PoderDatos = poderABuscar;
+                                //muestro y cargo en la marca de la ventana
+                                this._ventana.IdPoderSolicitud = ((Poder)this._ventana.PoderSolicitud).Id.ToString();
+                                this._ventana.IdPoderDatos = ((Poder)this._ventana.PoderSolicitud).Id.ToString();
+                                ((Marca)this._ventana.Marca).Poder = (Poder)this._ventana.PoderSolicitud;
+
+                            }
+                        }
+                        else
+                        {
+                            this._ventana.Mensaje("El poder seleccionado no relaciona al Agente con el Interesado", 0);
+                            //muestro y cargo en la patente de la ventana
+                            this._ventana.IdPoderSolicitud = ((Poder)this._ventana.PoderSolicitud).Id.ToString();
+                            this._ventana.IdPoderDatos = ((Poder)this._ventana.PoderSolicitud).Id.ToString();
+                            ((Marca)this._ventana.Marca).Poder = (Poder)this._ventana.PoderSolicitud;
+
+
+                        }
+                    }
+                }
+                else
                 {
                     this._ventana.IdPoderSolicitud = ((Poder)this._ventana.PoderSolicitud).Id.ToString();
                     this._ventana.IdPoderDatos = ((Poder)this._ventana.PoderSolicitud).Id.ToString();
-                    this._ventana.PoderDatos = (Poder)this._ventana.PoderSolicitud;
-                    this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderSolicitud).NumPoder;
-                    //---
                     ((Marca)this._ventana.Marca).Poder = (Poder)this._ventana.PoderSolicitud;
-                    //---
-                    this._ventana.ConvertirEnteroMinimoABlanco();
+                    this._ventana.PoderDatos = this._ventana.PoderSolicitud;
                 }
+
+                this._ventana.ConvertirEnteroMinimoABlanco();
+
+                #region Codigo original comentado NO  BORRAR
+                //if ((Poder)this._ventana.PoderSolicitud != null)
+                //{
+                //    this._ventana.IdPoderSolicitud = ((Poder)this._ventana.PoderSolicitud).Id.ToString();
+                //    this._ventana.IdPoderDatos = ((Poder)this._ventana.PoderSolicitud).Id.ToString();
+                //    this._ventana.PoderDatos = (Poder)this._ventana.PoderSolicitud;
+                //    this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderSolicitud).NumPoder;
+                //    //---
+                //    ((Marca)this._ventana.Marca).Poder = (Poder)this._ventana.PoderSolicitud;
+                //    //---
+                //    this._ventana.ConvertirEnteroMinimoABlanco();
+                //} 
+                #endregion
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -2219,6 +2350,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// </summary>
         public void CambiarPoderDatos()
         {
+            IList<Poder> _poderesFiltrados = new List<Poder>();
+            IList<Interesado> _listaInteresados = new List<Interesado>();
+            Poder poderABuscar = null;
+            Interesado interesadoPoder = null;
+
             try
             {
                 #region trace
@@ -2226,17 +2362,110 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if ((Poder)this._ventana.PoderDatos != null)
+                #region Codigo original comentado NO BORRAR
+                //if ((Poder)this._ventana.PoderDatos != null)
+                //{
+                //    this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderDatos).NumPoder;
+                //    this._ventana.PoderSolicitud = (Poder)this._ventana.PoderDatos;
+                //    this._ventana.IdPoderSolicitud = ((Poder)this._ventana.PoderDatos).Id.ToString();
+                //    this._ventana.IdPoderDatos = ((Poder)this._ventana.PoderDatos).Id.ToString();
+                //    //---
+                //    ((Marca)this._ventana.Marca).Poder = (Poder)this._ventana.PoderDatos;
+                //    //---
+                //    this._ventana.ConvertirEnteroMinimoABlanco();
+                //} 
+                #endregion
+
+                if (((Poder)this._ventana.PoderDatos != null) && (((Poder)this._ventana.PoderDatos).Id != int.MinValue))
                 {
-                    this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderDatos).NumPoder;
-                    this._ventana.PoderSolicitud = (Poder)this._ventana.PoderDatos;
+                    if ((this._ventana.Agente == null) || (((Agente)this._ventana.Agente).Id.Equals("NGN")))
+                    {
+
+                        if (((Interesado)this._ventana.InteresadoDatos).Id != int.MinValue)
+                        {
+                            this._ventana.Agentes = null;
+                            IList<Agente> agentes = this._agenteServicios.ObtenerAgentesDeUnPoder((Poder)this._ventana.PoderDatos);
+                            this._ventana.Agentes = agentes;
+                            this._ventana.IdPoderSolicitud = ((Poder)this._ventana.PoderDatos).Id.ToString();
+                            this._ventana.IdPoderDatos = ((Poder)this._ventana.PoderDatos).Id.ToString();
+                            ((Marca)this._ventana.Marca).Poder = (Poder)this._ventana.PoderDatos;
+                        }
+                        else
+                        {
+                            this._ventana.InteresadosSolicitud = null;
+                            interesadoPoder = this._interesadoServicios.ObtenerInteresadosDeUnPoder((Poder)this._ventana.PoderDatos);
+                            _listaInteresados.Add(interesadoPoder);
+                            this._ventana.InteresadosSolicitud = _listaInteresados;
+                            this._ventana.InteresadosDatos = _listaInteresados;
+                            this._ventana.Agentes = null;
+                            IList<Agente> agentes = this._agenteServicios.ObtenerAgentesDeUnPoder((Poder)this._ventana.PoderDatos);
+                            this._ventana.Agentes = agentes;
+                            this._ventana.IdPoderSolicitud = ((Poder)this._ventana.PoderDatos).Id.ToString();
+                            this._ventana.IdPoderDatos = ((Poder)this._ventana.PoderDatos).Id.ToString();
+                            ((Marca)this._ventana.Marca).Poder = (Poder)this._ventana.PoderDatos;
+                            
+                        }
+                    }
+                    else
+                    {
+                        Poder primerPoder = new Poder();
+                        primerPoder.Id = int.MinValue;
+                        _poderesFiltrados = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.Agente, (Interesado)this._ventana.InteresadoSolicitud);
+                        if (_poderesFiltrados.Count != 0)
+                        {
+                            poderABuscar = this.BuscarPoder(_poderesFiltrados, (Poder)this._ventana.PoderSolicitud);
+
+                            if (poderABuscar != null)
+                            {
+                                _poderesFiltrados.Insert(0, primerPoder);
+                                this._ventana.PoderesDatos = _poderesFiltrados;
+                                this._ventana.PoderDatos = poderABuscar;
+                                this._ventana.PoderesSolicitud = _poderesFiltrados;
+                                this._ventana.PoderSolicitud = poderABuscar;
+                                //muestro y cargo en la marca de la ventana
+                                this._ventana.IdPoderSolicitud = ((Poder)this._ventana.PoderDatos).Id.ToString();
+                                this._ventana.IdPoderDatos = ((Poder)this._ventana.PoderDatos).Id.ToString();
+                                ((Marca)this._ventana.Marca).Poder = (Poder)this._ventana.PoderDatos;
+
+
+                            }
+                            else
+                            {
+                                this._ventana.Mensaje("El Poder no pertenece al Interesado", 0);
+                                _poderesFiltrados.Insert(0, primerPoder);
+                                this._ventana.PoderesDatos = _poderesFiltrados;
+                                this._ventana.PoderesSolicitud = _poderesFiltrados;
+                                this._ventana.PoderDatos = poderABuscar;
+                                this._ventana.PoderSolicitud = poderABuscar;
+                                //muestro y cargo en la marca de la ventana
+                                this._ventana.IdPoderSolicitud = ((Poder)this._ventana.PoderDatos).Id.ToString();
+                                this._ventana.IdPoderDatos = ((Poder)this._ventana.PoderDatos).Id.ToString();
+                                ((Marca)this._ventana.Marca).Poder = (Poder)this._ventana.PoderDatos;
+
+                            }
+                        }
+                        else
+                        {
+                            this._ventana.Mensaje("El poder seleccionado no relaciona al Agente con el Interesado", 0);
+                            //muestro y cargo en la patente de la ventana
+                            this._ventana.IdPoderSolicitud = ((Poder)this._ventana.PoderDatos).Id.ToString();
+                            this._ventana.IdPoderDatos = ((Poder)this._ventana.PoderDatos).Id.ToString();
+                            ((Marca)this._ventana.Marca).Poder = (Poder)this._ventana.PoderDatos;
+
+
+                        }
+                    }
+                }
+                else
+                {
                     this._ventana.IdPoderSolicitud = ((Poder)this._ventana.PoderDatos).Id.ToString();
                     this._ventana.IdPoderDatos = ((Poder)this._ventana.PoderDatos).Id.ToString();
-                    //---
                     ((Marca)this._ventana.Marca).Poder = (Poder)this._ventana.PoderDatos;
-                    //---
-                    this._ventana.ConvertirEnteroMinimoABlanco();
+                    this._ventana.PoderSolicitud = this._ventana.PoderDatos;
                 }
+
+                this._ventana.ConvertirEnteroMinimoABlanco();
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -2261,6 +2490,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
+            #region codigo original comentado
             //Mouse.OverrideCursor = Cursors.Wait;
 
             //Marca marca = (Marca)this._ventana.Marca;
@@ -2276,7 +2506,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             //this._ventana.PoderesEstanCargados = true;
 
             //Mouse.OverrideCursor = null;
-            /////nuevooo
+            /////nuevooo 
+            #endregion
 
 
             Mouse.OverrideCursor = Cursors.Wait;
@@ -2285,6 +2516,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             Marca marca = null != this._ventana.Marca ? (Marca)this._ventana.Marca : new Marca();
 
+            #region Codigo original comentado
             //Poder poder = null;
             ////Poder poder = _marca.Poder;
             //if (!this._ventana.IdPoderDatos.Equals(""))
@@ -2300,7 +2532,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             //this._ventana.PoderesDatos = this._poderesInterseccion;
 
             //this._ventana.PoderSolicitud = poder;
-            //this._ventana.PoderDatos = poder;
+            //this._ventana.PoderDatos = poder; 
+            #endregion
+
+            
             if (_marca.Poder != null)
             {
                 this._ventana.PoderesSolicitud = this._poderesInterseccion;
@@ -2338,7 +2573,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     .ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.Agente, interesadoAux);
 
                 if (_poderesInterseccion.Count() == 0)
+                {
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderesConAgente, 0);
+                    //---
+                    Poder primerPoder = new Poder();
+                    primerPoder.Id = int.MinValue;
+                    _poderesInterseccion.Add(primerPoder);
+
+                    //--
+                }
                 else
                 {
                     _poderesInterseccion.Insert(0, new Poder(int.MinValue));
@@ -2727,7 +2970,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             bool retorno = true;
 
             Marca marca = CargarMarcaDeLaPantalla();
-
+           
             if ((null == marca.Distingue) || (marca.Distingue.Equals("")))
                 retorno = retorno ?
                     this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDistingue) == retorno : retorno;
@@ -2735,7 +2978,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             else if (marca.Distingue.Length > 1800)
                 retorno = retorno ?
                     this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDistingue) == retorno : retorno;
-
+            
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -2826,7 +3069,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                System.Diagnostics.Process.Start(ConfigurationManager.AppSettings["rutaCertificados"].ToString() + ((Marca)this._ventana.Marca).CodigoRegistro + ".pdf");
+                //System.Diagnostics.Process.Start(ConfigurationManager.AppSettings["rutaCertificados"].ToString() + ((Marca)this._ventana.Marca).CodigoRegistro + ".pdf");
+
+                CertificadoMarca certificadoConsultar = new CertificadoMarca();
+                CertificadoMarca certificado = null;
+                certificadoConsultar.IdMarca = this._marca.Id;
+
+                certificado = this._certificadoMarcaServicios.ConsultarPorId(certificadoConsultar);
+
+                if (certificado != null)
+                    this.Navegar(new GestionarCertificadoDeMarca(certificado, this._marca, this._ventana));
+                else
+                {
+                    certificado = new CertificadoMarca(this._marca.Id);
+                    certificado.FechaRecibo = DateTime.Today;
+                    certificado.Operacion = "CREATE";
+                    this.Navegar(new GestionarCertificadoDeMarca(certificado, this._marca, this._ventana));
+                }
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -3340,6 +3600,106 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
 
         }
+
+
+        /// <summary>
+        /// Metodo que sirve para cambiar el Agente que se selecciona el combo de la ventana de consulta de la marca
+        /// </summary>
+        public void CambiarAgente()
+        {
+            IList<Poder> _poderesFiltrados = null; 
+            Poder poderABuscar = null;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+
+                if ((this._ventana.Agente != null) && (!((Agente)this._ventana.Agente).Id.Equals("NGN")))
+                {
+                    if ((this._ventana.InteresadoSolicitud != null) && (((Interesado)this._ventana.InteresadoSolicitud).Id != int.MinValue))
+                    {
+                        if ((null != this._ventana.PoderSolicitud) && 
+                            (((Poder)this._ventana.PoderSolicitud).Id != int.MinValue))
+                        {
+
+                            ((Marca)this._ventana.Marca).Agente = (Agente)this._ventana.Agente;
+                                                                             
+                             
+                            //Para validar que el Agente tiene poderes con el Interesado
+                            Poder primerPoder = new Poder();
+                            primerPoder.Id = int.MinValue;
+
+                            _poderesFiltrados = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.Agente, (Interesado)this._ventana.InteresadoSolicitud);
+
+                            if (_poderesFiltrados.Count != 0)
+                            {
+                                poderABuscar = this.BuscarPoder(_poderesFiltrados, (Poder)this._ventana.PoderSolicitud);
+
+                                if (poderABuscar != null)
+                                {
+                                    _poderesFiltrados.Insert(0, primerPoder);
+                                    this._ventana.PoderesSolicitud = _poderesFiltrados;
+                                    this._ventana.PoderesDatos = _poderesFiltrados;
+                                    this._ventana.PoderSolicitud = poderABuscar;
+                                }
+                                else
+                                {
+                                    this._ventana.Mensaje("Seleccione un poder que relacione al Agente con el Interesado", 0);
+                                    _poderesFiltrados.Insert(0, primerPoder);
+                                    this._ventana.PoderesSolicitud = _poderesFiltrados;
+                                    this._ventana.PoderesDatos = _poderesFiltrados;
+
+                                }
+                            }
+
+                            else
+                            {
+                                this._ventana.Mensaje("El Agente no tiene poderes con el Interesado", 0);
+                                _poderesFiltrados.Insert(0, primerPoder);
+                                this._ventana.PoderesSolicitud = _poderesFiltrados;
+                                this._ventana.PoderesDatos = _poderesFiltrados;
+                            }
+
+                            
+
+                            
+                        }
+                        else
+                        {
+                            this._ventana.PoderesSolicitud = null;
+
+                            CargarPoderesEntreInteresadoAgente();
+
+                            ((Marca)this._ventana.Marca).Agente = (Agente)this._ventana.Agente;
+                        }
+                    }
+                    else
+                    {
+                        this._ventana.Mensaje("Debe seleccionar un Interesado para la Marca", 0);
+                        ((Marca)this._ventana.Marca).Agente = (Agente)this._ventana.Agente;
+                    }
+                }
+
+                //else
+                //{
+                //    ((Marca)this._ventana.Marca).Agente = (Agente)this._ventana.Agente;
+                //}
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException e)
+            {
+                throw;
+            }
+        }
+
 
 
     }

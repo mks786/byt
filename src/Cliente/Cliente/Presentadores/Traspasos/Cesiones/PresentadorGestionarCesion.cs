@@ -1516,22 +1516,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     {
                         LlenarListaAgenteEInteresado((Poder)this._ventana.PoderCedente, "Cedente", true);
 
-                        this._ventana.GestionarBotonConsultarInteresados("Cedente", false);
-                        this._ventana.GestionarBotonConsultarApoderados("Cedente", false);
+                        //this._ventana.GestionarBotonConsultarInteresados("Cedente", false);
+                        //this._ventana.GestionarBotonConsultarApoderados("Cedente", false);
+                        this._ventana.GestionarBotonConsultarInteresados("Cedente", true);
+                        this._ventana.GestionarBotonConsultarApoderados("Cedente", true);
                     }
                 }
                 else
                 {
                     if (((Poder)this._ventana.PoderCedenteFiltrado).Id == int.MinValue)
-                        this._ventana.GestionarBotonConsultarInteresados("Cedente", false);
+                        //this._ventana.GestionarBotonConsultarInteresados("Cedente", false);
+                        this._ventana.GestionarBotonConsultarInteresados("Cedente", true);
 
                     else
                     {
                         LlenarListaAgenteEInteresado((Poder)this._ventana.PoderCedente, "Cedente", true);
 
-                        this._ventana.GestionarBotonConsultarInteresados("Cedente", false);
-                        this._ventana.GestionarBotonConsultarApoderados("Cedente", false);
-                        this._ventana.GestionarBotonConsultarPoderes("Cedente", false);
+                        //this._ventana.GestionarBotonConsultarInteresados("Cedente", false);
+                        //this._ventana.GestionarBotonConsultarApoderados("Cedente", false);
+                        //this._ventana.GestionarBotonConsultarPoderes("Cedente", false);
+                        this._ventana.GestionarBotonConsultarInteresados("Cedente", true);
+                        this._ventana.GestionarBotonConsultarApoderados("Cedente", true);
+                        this._ventana.GestionarBotonConsultarPoderes("Cedente", true);
                     }
 
                 }
@@ -1541,15 +1547,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 if (((Agente)this._ventana.ApoderadoCedenteFiltrado).Id.Equals(""))
                 {
                     if (((Poder)this._ventana.PoderCedenteFiltrado).Id == int.MinValue)
-                        this._ventana.GestionarBotonConsultarPoderes("Cedente", false);
+                        //this._ventana.GestionarBotonConsultarPoderes("Cedente", false);
+                        this._ventana.GestionarBotonConsultarPoderes("Cedente", true);
 
                     else
                     {
                         LlenarListaAgenteEInteresado((Poder)this._ventana.PoderCedente, "Cedente", true);
 
-                        this._ventana.GestionarBotonConsultarInteresados("Cedente", false);
-                        this._ventana.GestionarBotonConsultarApoderados("Cedente", false);
-                        this._ventana.GestionarBotonConsultarPoderes("Cedente", false);
+                        //this._ventana.GestionarBotonConsultarInteresados("Cedente", false);
+                        //this._ventana.GestionarBotonConsultarApoderados("Cedente", false);
+                        //this._ventana.GestionarBotonConsultarPoderes("Cedente", false);
+                        this._ventana.GestionarBotonConsultarInteresados("Cedente", true);
+                        this._ventana.GestionarBotonConsultarApoderados("Cedente", true);
+                        this._ventana.GestionarBotonConsultarPoderes("Cedente", true);
 
                     }
                 }
@@ -1559,7 +1569,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     {
                         ValidarListaDePoderes(this._poderesCedente, this._poderesApoderadosCedente, "Cedente");
 
-                        this._ventana.GestionarBotonConsultarPoderes("Cedente", false);
+                        //this._ventana.GestionarBotonConsultarPoderes("Cedente", false);
+                        this._ventana.GestionarBotonConsultarPoderes("Cedente", true);
                     }
                     else
                     {
@@ -2251,23 +2262,29 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     if (((Poder)this._ventana.PoderCesionarioFiltrado).Id != int.MinValue)
                     {
                         LlenarListaAgenteEInteresado((Poder)this._ventana.PoderCesionario, "Cesionario", true);
-                        this._ventana.GestionarBotonConsultarInteresados("Cesionario", false);
-                        this._ventana.GestionarBotonConsultarApoderados("Cesionario", false);
+                        //this._ventana.GestionarBotonConsultarInteresados("Cesionario", false);
+                        //this._ventana.GestionarBotonConsultarApoderados("Cesionario", false);
+                        this._ventana.GestionarBotonConsultarInteresados("Cesionario", true);
+                        this._ventana.GestionarBotonConsultarApoderados("Cesionario", true);
                     }
                 }
                 else
                 {
                     if (((Poder)this._ventana.PoderCesionarioFiltrado).Id == int.MinValue)
-                        this._ventana.GestionarBotonConsultarInteresados("Cesionario", false);
+                        //this._ventana.GestionarBotonConsultarInteresados("Cesionario", false);
+                        this._ventana.GestionarBotonConsultarInteresados("Cesionario", true);
 
                     else
                     {
 
                         LlenarListaAgenteEInteresado((Poder)this._ventana.PoderCesionario, "Cesionario", true);
 
-                        this._ventana.GestionarBotonConsultarInteresados("Cesionario", false);
-                        this._ventana.GestionarBotonConsultarApoderados("Cesionario", false);
-                        this._ventana.GestionarBotonConsultarPoderes("Cesionario", false);
+                        //this._ventana.GestionarBotonConsultarInteresados("Cesionario", false);
+                        //this._ventana.GestionarBotonConsultarApoderados("Cesionario", false);
+                        //this._ventana.GestionarBotonConsultarPoderes("Cesionario", false);
+                        this._ventana.GestionarBotonConsultarInteresados("Cesionario", true);
+                        this._ventana.GestionarBotonConsultarApoderados("Cesionario", true);
+                        this._ventana.GestionarBotonConsultarPoderes("Cesionario", true);
                     }
 
                 }
@@ -2277,15 +2294,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 if (((Agente)this._ventana.ApoderadoCesionarioFiltrado).Id.Equals(""))
                 {
                     if (((Poder)this._ventana.PoderCesionarioFiltrado).Id == int.MinValue)
-                        this._ventana.GestionarBotonConsultarPoderes("Cesionario", false);
+                        //this._ventana.GestionarBotonConsultarPoderes("Cesionario", false);
+                        this._ventana.GestionarBotonConsultarPoderes("Cesionario", true);
 
                     else
                     {
                         LlenarListaAgenteEInteresado((Poder)this._ventana.PoderCesionario, "Cesionario", true);
 
-                        this._ventana.GestionarBotonConsultarInteresados("Cesionario", false);
-                        this._ventana.GestionarBotonConsultarApoderados("Cesionario", false);
-                        this._ventana.GestionarBotonConsultarPoderes("Cesionario", false);
+                        //this._ventana.GestionarBotonConsultarInteresados("Cesionario", false);
+                        //this._ventana.GestionarBotonConsultarApoderados("Cesionario", false);
+                        //this._ventana.GestionarBotonConsultarPoderes("Cesionario", false);
+                        this._ventana.GestionarBotonConsultarInteresados("Cesionario", true);
+                        this._ventana.GestionarBotonConsultarApoderados("Cesionario", true);
+                        this._ventana.GestionarBotonConsultarPoderes("Cesionario", true);
 
                     }
                 }
@@ -2296,7 +2317,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
                         ValidarListaDePoderes(this._poderesCesionario, this._poderesApoderadosCesionario, "Cesionario");
 
-                        this._ventana.GestionarBotonConsultarPoderes("Cesionario", false);
+                        //this._ventana.GestionarBotonConsultarPoderes("Cesionario", false);
+                        this._ventana.GestionarBotonConsultarPoderes("Cesionario", true);
                     }
                     else
                     {

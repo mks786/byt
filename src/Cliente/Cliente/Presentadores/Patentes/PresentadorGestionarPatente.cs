@@ -272,13 +272,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.PresentacionPatenteDatos = this.BuscarPresentacionPatente(_patente.Presentacion, presentacionPatente);
 
 
-                    //--- POR AHORA COMENTADO
+                    //--- Llenando la lista de los Agentes, incluyendo el Agente de la Patente si no es NULL
+
                     IList<Agente> agentes = this._agenteServicios.ConsultarTodos();
                     Agente primerAgente = new Agente();
                     primerAgente.Id = "";
                     agentes.Insert(0, primerAgente);
                     this._ventana.AgentesSolicitudFiltrar = agentes;
-                    this._ventana.AgenteSolicitudFiltrar = this.BuscarAgente(agentes, (Agente)_patente.Agente);
+                    if (_patente.Agente != null)
+                    {
+                        this._ventana.AgenteSolicitudFiltrar = this.BuscarAgente(agentes, (Agente)_patente.Agente);
+                    }
+
+
                     //---
 
 
@@ -301,14 +307,27 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.PaisesDatos = paises;
                     this._ventana.PaisDatos = this.BuscarPais(paises, _patente.Pais);
 
-                    IList<Poder> _poderPatente = new List<Poder>();
-                    _poderPatente.Add(_patente.Poder);
+                    if (_patente.Poder != null)
+                    {
+                        IList<Poder> _poderPatente = new List<Poder>();
+                        _poderPatente.Add(_patente.Poder);
 
-                    this._ventana.PoderesDatosFiltrar = _poderPatente;
-                    this._ventana.PoderesSolicitudFiltrar = _poderPatente;
+                        this._ventana.PoderesDatosFiltrar = _poderPatente;
+                        this._ventana.PoderesSolicitudFiltrar = _poderPatente;
 
-                    this._ventana.PoderDatosFiltrar = _patente.Poder;
-                    this._ventana.PoderSolicitudFiltrar = _patente.Poder;
+                        this._ventana.PoderDatosFiltrar = _patente.Poder;
+                        this._ventana.PoderSolicitudFiltrar = _patente.Poder;
+                    }
+                    else if(_patente.Interesado != null)
+                    {
+                        Poder primerPoder = new Poder();
+                        primerPoder.Id = int.MinValue;
+                        IList<Poder> listaPoderesInteresado = this._poderServicios.ConsultarPoderesPorInteresado(_patente.Interesado);
+                        listaPoderesInteresado.Insert(0, primerPoder);
+                        this._ventana.PoderesSolicitudFiltrar = listaPoderesInteresado;
+                        this._ventana.PoderesDatosFiltrar = listaPoderesInteresado;
+                    }
+
 
                     this._ventana.NumPoderSolicitud = _patente.Poder != null ? _patente.Poder.NumPoder : "";
 
@@ -2220,6 +2239,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         /// </summary>
         public void CambiarPoderSolicitud()
         {
+            IList<Poder> _poderesFiltrados = new List<Poder>();
+            IList<Interesado> _listaInteresados = new List<Interesado>();
+            Poder poderABuscar = null;
+            Interesado interesadoPoder = null;
             try
             {
                 #region trace
@@ -2227,41 +2250,133 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (((Poder)this._ventana.PoderSolicitudFiltrar != null) || ((Poder)this._ventana.PoderDatosFiltrar != null))
+                if (((Poder)this._ventana.PoderSolicitudFiltrar != null) && (((Poder)this._ventana.PoderSolicitudFiltrar).Id != int.MinValue)
+                    || ((Poder)this._ventana.PoderDatosFiltrar != null) && (((Poder)this._ventana.PoderDatosFiltrar).Id != int.MinValue))
+                {
+                    if ((this._ventana.AgenteSolicitudFiltrar == null ) || (((Agente)this._ventana.AgenteSolicitudFiltrar).Id.Equals("")))
+                    {
+
+                        if (((Interesado)this._ventana.InteresadoSolicitud).Id != int.MinValue)
+                        {
+                            this._ventana.AgentesSolicitudFiltrar = null;
+                            IList<Agente> agentes = this._agenteServicios.ObtenerAgentesDeUnPoder((Poder)this._ventana.PoderSolicitudFiltrar);
+                            this._ventana.AgentesSolicitudFiltrar = agentes;
+                            this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderSolicitudFiltrar).NumPoder;
+                            this._ventana.PoderSolicitud = ((Poder)this._ventana.PoderSolicitudFiltrar).Id.ToString();
+                            this._ventana.PoderDatos = ((Poder)this._ventana.PoderSolicitudFiltrar).Id.ToString();
+                            ((Patente)this._ventana.Patente).Poder = (Poder)this._ventana.PoderSolicitudFiltrar;
+                        }
+                        else
+                        {
+                            this._ventana.InteresadosSolicitud = null;
+                            interesadoPoder = this._interesadoServicios.ObtenerInteresadosDeUnPoder((Poder)this._ventana.PoderSolicitudFiltrar);
+                            _listaInteresados.Add(interesadoPoder);
+                            this._ventana.InteresadosSolicitud = _listaInteresados;
+                            this._ventana.AgentesSolicitudFiltrar = null;
+                            IList<Agente> agentes = this._agenteServicios.ObtenerAgentesDeUnPoder((Poder)this._ventana.PoderSolicitudFiltrar);
+                            this._ventana.AgentesSolicitudFiltrar = agentes;
+                            this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderSolicitudFiltrar).NumPoder;
+                            this._ventana.PoderSolicitud = ((Poder)this._ventana.PoderSolicitudFiltrar).Id.ToString();
+                            this._ventana.PoderDatos = ((Poder)this._ventana.PoderSolicitudFiltrar).Id.ToString();
+                            ((Patente)this._ventana.Patente).Poder = (Poder)this._ventana.PoderSolicitudFiltrar;
+
+                           
+                        }
+                    }
+                    else
+                    {
+                        Poder primerPoder = new Poder();
+                        primerPoder.Id = int.MinValue;
+                        _poderesFiltrados = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.AgenteSolicitudFiltrar, (Interesado)this._ventana.InteresadoSolicitud);
+                        if (_poderesFiltrados.Count != 0)
+                        {
+                            poderABuscar = this.BuscarPoder(_poderesFiltrados, (Poder)this._ventana.PoderSolicitudFiltrar);
+
+                            if (poderABuscar != null)
+                            {
+                                _poderesFiltrados.Insert(0, primerPoder);
+                                this._ventana.PoderesSolicitudFiltrar = _poderesFiltrados;
+                                this._ventana.PoderSolicitudFiltrar = poderABuscar;
+                                //muestro y cargo en la patente de la ventana
+                                this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderSolicitudFiltrar).NumPoder;
+                                this._ventana.PoderSolicitud = ((Poder)this._ventana.PoderSolicitudFiltrar).Id.ToString();
+                                this._ventana.PoderDatos = ((Poder)this._ventana.PoderSolicitudFiltrar).Id.ToString();
+                                ((Patente)this._ventana.Patente).Poder = (Poder)this._ventana.PoderSolicitudFiltrar;
+
+
+                            }
+                            else
+                            {
+                                //this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorAgenteNoPoseePoderConInteresado, "interesado"), 0);
+                                this._ventana.Mensaje("El Poder no pertenece al Interesado", 0);
+                                _poderesFiltrados.Insert(0, primerPoder);
+                                this._ventana.PoderesSolicitudFiltrar = _poderesFiltrados;
+                                this._ventana.PoderSolicitudFiltrar = poderABuscar;
+                                //muestro y cargo en la patente de la ventana
+                                this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderSolicitudFiltrar).NumPoder;
+                                this._ventana.PoderSolicitud = ((Poder)this._ventana.PoderSolicitudFiltrar).Id.ToString();
+                                this._ventana.PoderDatos = ((Poder)this._ventana.PoderSolicitudFiltrar).Id.ToString();
+                                ((Patente)this._ventana.Patente).Poder = (Poder)this._ventana.PoderSolicitudFiltrar;
+
+                            }
+                        }
+                        else
+                        {
+                            this._ventana.Mensaje("El poder seleccionado no relaciona al Agente con el Interesado", 0);
+                            //muestro y cargo en la patente de la ventana
+                            this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderSolicitudFiltrar).NumPoder;
+                            this._ventana.PoderSolicitud = ((Poder)this._ventana.PoderSolicitudFiltrar).Id.ToString();
+                            this._ventana.PoderDatos = ((Poder)this._ventana.PoderSolicitudFiltrar).Id.ToString();
+                            ((Patente)this._ventana.Patente).Poder = (Poder)this._ventana.PoderSolicitudFiltrar;
+
+
+                        }
+                    }
+                }
+                else
                 {
                     this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderSolicitudFiltrar).NumPoder;
                     this._ventana.PoderSolicitud = ((Poder)this._ventana.PoderSolicitudFiltrar).Id.ToString();
                     this._ventana.PoderDatos = ((Poder)this._ventana.PoderSolicitudFiltrar).Id.ToString();
-                    //---
                     ((Patente)this._ventana.Patente).Poder = (Poder)this._ventana.PoderSolicitudFiltrar;
-
-                    //---
-                    if (((Poder)this._ventana.PoderSolicitudFiltrar).Id != int.MinValue)
-                    {
-                        IList<Agente> agentes = this._agenteServicios.ObtenerAgentesDeUnPoder((Poder)this._ventana.PoderSolicitudFiltrar);
-                        this._ventana.AgentesSolicitudFiltrar = null;
-                        agentes.Insert(0, new Agente());
-                        this._ventana.AgentesSolicitudFiltrar = agentes;
-                        this._ventana.AgenteSolicitudFiltrar = this.BuscarAgente(agentes, ((Patente)this._ventana.Patente).Agente);
-                        if (this._ventana.AgenteSolicitudFiltrar == null)
-                            this._ventana.Mensaje("El Poder seleccionado no tiene relacion con el Agente", 2);
-                        //this._ventana.AgenteDatosFiltrar = agentes;
-                    }
-                    else
-                    {
-                        this._ventana.AgentesSolicitudFiltrar = null;
-                        IList<Agente> agentes = new List<Agente>();
-                        Agente agenteVacio = new Agente();
-                        agenteVacio.Id = "";
-                        agentes.Insert(0, agenteVacio);
-                        this._ventana.AgentesSolicitudFiltrar = agentes;
-                        this._ventana.AgenteSolicitudFiltrar = this.BuscarAgente(agentes,agenteVacio);
-                        this._ventana.IdAgenteSolicitud = "";
-                        this._ventana.AgenteSolicitud = "";
-                       // this._ventana.AgenteSolicitudFiltrar = this.BuscarAgente(agentes, ((Patente)this._ventana.Patente).Agente);
-
-                    }
                 }
+
+
+                #region Codigo Comentado
+                //    this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderSolicitudFiltrar).NumPoder;
+                //    this._ventana.PoderSolicitud = ((Poder)this._ventana.PoderSolicitudFiltrar).Id.ToString();
+                //    this._ventana.PoderDatos = ((Poder)this._ventana.PoderSolicitudFiltrar).Id.ToString();
+                //    //---
+                //    ((Patente)this._ventana.Patente).Poder = (Poder)this._ventana.PoderSolicitudFiltrar;
+
+                //    //---
+                //    if (((Poder)this._ventana.PoderSolicitudFiltrar).Id != int.MinValue)
+                //    {
+                //        IList<Agente> agentes = this._agenteServicios.ObtenerAgentesDeUnPoder((Poder)this._ventana.PoderSolicitudFiltrar);
+                //        this._ventana.AgentesSolicitudFiltrar = null;
+                //        agentes.Insert(0, new Agente());
+                //        this._ventana.AgentesSolicitudFiltrar = agentes;
+                //        this._ventana.AgenteSolicitudFiltrar = this.BuscarAgente(agentes, ((Patente)this._ventana.Patente).Agente);
+                //        if (this._ventana.AgenteSolicitudFiltrar == null)
+                //            this._ventana.Mensaje("El Poder seleccionado no tiene relacion con el Agente", 2);
+                //        //this._ventana.AgenteDatosFiltrar = agentes;
+                //    }
+                //    else
+                //    {
+                //        this._ventana.AgentesSolicitudFiltrar = null;
+                //        IList<Agente> agentes = new List<Agente>();
+                //        Agente agenteVacio = new Agente();
+                //        agenteVacio.Id = "";
+                //        agentes.Insert(0, agenteVacio);
+                //        this._ventana.AgentesSolicitudFiltrar = agentes;
+                //        this._ventana.AgenteSolicitudFiltrar = this.BuscarAgente(agentes,agenteVacio);
+                //        this._ventana.IdAgenteSolicitud = "";
+                //        this._ventana.AgenteSolicitud = "";
+                //       // this._ventana.AgenteSolicitudFiltrar = this.BuscarAgente(agentes, ((Patente)this._ventana.Patente).Agente);
+
+                //    }
+                //} 
+                #endregion
 
                 this._ventana.ConvertirEnteroMinimoABlanco();
 
@@ -2282,6 +2397,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         /// </summary>
         public void CambiarAgenteSolicitud()
         {
+            IList<Poder> _poderesFiltrados = null; 
+            IList<Poder> _poderesApoderado = null; 
+            Poder poderABuscar = null;
+
             try
             {
                 #region trace
@@ -2289,7 +2408,150 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if ((Agente)this._ventana.AgenteSolicitudFiltrar != null)
+
+                if (!((Agente)this._ventana.AgenteSolicitudFiltrar).Id.Equals(""))
+                {
+                    if ((this._ventana.InteresadoSolicitud != null) && (((Interesado)this._ventana.InteresadoSolicitud).Id != int.MinValue))
+                    {
+                        if ((null != this._ventana.PoderSolicitudFiltrar) && 
+                            (((Poder)this._ventana.PoderSolicitudFiltrar).Id != int.MinValue))
+                        {
+
+                            this._ventana.IdAgenteSolicitud = ((Agente)this._ventana.AgenteSolicitudFiltrar).Id;
+                            this._ventana.AgenteSolicitud = ((Agente)this._ventana.AgenteSolicitudFiltrar).Nombre;
+                            ((Patente)this._ventana.Patente).Agente = (Agente)this._ventana.AgenteSolicitudFiltrar;
+                                                       
+                             
+                            //Para validar que el Agente tiene poderes con el Interesado
+                            Poder primerPoder = new Poder();
+                            primerPoder.Id = int.MinValue;
+
+                            _poderesFiltrados = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.AgenteSolicitudFiltrar, (Interesado)this._ventana.InteresadoSolicitud);
+
+                            if (_poderesFiltrados.Count != 0)
+                            {
+                                poderABuscar = this.BuscarPoder(_poderesFiltrados, (Poder)this._ventana.PoderSolicitudFiltrar);
+
+                                if (poderABuscar != null)
+                                {
+                                    _poderesFiltrados.Insert(0, primerPoder);
+                                    this._ventana.PoderesSolicitudFiltrar = _poderesFiltrados;
+                                    this._ventana.PoderSolicitudFiltrar = poderABuscar;
+                                }
+                                else
+                                {
+                                    this._ventana.Mensaje("Seleccione un poder que relacione al Agente con el Interesado", 0);
+                                    _poderesFiltrados.Insert(0, primerPoder);
+                                    this._ventana.PoderesSolicitudFiltrar = _poderesFiltrados;
+
+                                }
+                            }
+
+                            else
+                            {
+                                this._ventana.Mensaje("El Agente no tiene poderes con el Interesado", 0);
+                                _poderesFiltrados.Insert(0, primerPoder);
+                                this._ventana.PoderesSolicitudFiltrar = _poderesFiltrados;
+                            }
+
+                            
+
+                            
+                        }
+                        else
+                        {
+
+                            this._ventana.PoderesSolicitudFiltrar = null;
+
+                            CargarPoderesEntreInteresadoAgente();
+
+                            this._ventana.IdAgenteSolicitud = ((Agente)this._ventana.AgenteSolicitudFiltrar).Id;
+                            this._ventana.AgenteSolicitud = ((Agente)this._ventana.AgenteSolicitudFiltrar).Nombre;
+                            ((Patente)this._ventana.Patente).Agente = (Agente)this._ventana.AgenteSolicitudFiltrar;
+
+                            #region CODIGO COMENTADO
+                            //    _poderesApoderado = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado((Agente)_ventana.AgenteSolicitudFiltrar, (Interesado)this._ventana.InteresadoSolicitud);
+
+                            //    //LimpiarListaPoder();
+
+                            //    listaDePoderesValidada = this.ValidarListaDePoderes(this._poderesSobreviviente, this._poderesApoderado);
+
+                            //    //if ((this.ValidarListaDePoderes(this._poderesSobreviviente, this._poderesApoderado)))
+                            //    if (listaDePoderesValidada)
+                            //    {
+                            //        this._ventana.AgenteApoderado = this._ventana.AgenteApoderadoFiltrado;
+                            //        this._ventana.NombreAgenteApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Nombre;
+                            //        this._ventana.IdApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Id;
+                            //        retorno = true;
+                            //    }
+                            //    //else if (!this.ValidarListaDePoderes(this._poderesSobreviviente, this._poderesApoderado))
+                            //    else
+                            //    {
+                            //        this._ventana.ConvertirEnteroMinimoABlanco();
+                            //        this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorAgenteNoPoseePoderConInteresado, "Sobreviviente"), 0);
+                            //        this._ventana.AgenteApoderado = this._ventana.AgenteApoderadoFiltrado;
+                            //        this._ventana.NombreAgenteApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Nombre;
+                            //        retorno = true;
+                            //    //} 
+                            #endregion
+                        }
+                    }
+                    else
+                    {
+                        this._ventana.Mensaje("Debe seleccionar un Interesado para la Patente", 0);
+                        this._ventana.IdAgenteSolicitud = ((Agente)this._ventana.AgenteSolicitudFiltrar).Id;
+                        this._ventana.AgenteSolicitud = ((Agente)this._ventana.AgenteSolicitudFiltrar).Nombre;
+                        ((Patente)this._ventana.Patente).Agente = (Agente)this._ventana.AgenteSolicitudFiltrar;
+
+                        #region Codigo comentado
+                        //if (((Poder)this._ventana.PoderFiltrado).Id != int.MinValue)
+                        //{
+                        //    //--
+                        //    this._ventana.Mensaje("Debe seleccionar un Sobreviviente", 0);
+                        //    //--
+                        //    this._ventana.AgenteApoderado = this._ventana.AgenteApoderadoFiltrado;
+                        //    this._ventana.NombreAgenteApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Nombre;
+                        //    this._ventana.IdApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Id;
+                        //    //--
+                        //    LimpiarListaPoder();
+                        //    //--
+                        //    retorno = true;
+                        //}
+                        //else
+                        //{
+                        //    //this._poderesApoderado = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.AgenteApoderadoFiltrado));
+                        //    this._ventana.AgenteApoderado = this._ventana.AgenteApoderadoFiltrado;
+                        //    this._ventana.NombreAgenteApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Nombre;
+                        //    this._ventana.IdApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Id;
+                        //    retorno = true;
+                        //} 
+                        #endregion
+                    }
+                }
+
+                else
+                {
+                    this._ventana.IdAgenteSolicitud = ((Agente)this._ventana.AgenteSolicitudFiltrar).Id;
+                    this._ventana.AgenteSolicitud = ((Agente)this._ventana.AgenteSolicitudFiltrar).Nombre;
+                    //blanqueo el poder
+
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                /*if ((Agente)this._ventana.AgenteSolicitudFiltrar != null)
                 {
                     this._ventana.IdAgenteSolicitud = ((Agente)this._ventana.AgenteSolicitudFiltrar).Id;
                     this._ventana.AgenteSolicitud = ((Agente)this._ventana.AgenteSolicitudFiltrar).Nombre;
@@ -2298,7 +2560,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     
                     //this._ventana.IdAgenteDatos = ((Agente)this._ventana.AgenteDatosFiltrar).Id;
                     //this._ventana.AgenteDatos = ((Agente)this._ventana.AgenteDatosFiltrar).Nombre;
-                }
+                }*/
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -2351,6 +2613,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         /// </summary>
         public void CambiarPoderDatos()
         {
+
+            IList<Poder> _poderesFiltrados = new List<Poder>();
+            IList<Interesado> _listaInteresados = new List<Interesado>();
+            Poder poderABuscar = null;
+            Interesado interesadoPoder = null;
+
             try
             {
                 #region trace
@@ -2358,12 +2626,98 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (((Poder)this._ventana.PoderSolicitudFiltrar != null) || ((Poder)this._ventana.PoderDatosFiltrar != null))
+                if (((Poder)this._ventana.PoderSolicitudFiltrar != null) && (((Poder)this._ventana.PoderSolicitudFiltrar).Id != int.MinValue)
+                    || ((Poder)this._ventana.PoderDatosFiltrar != null) && (((Poder)this._ventana.PoderDatosFiltrar).Id != int.MinValue))
+                {
+                    if (((Agente)this._ventana.AgenteSolicitudFiltrar).Id.Equals(""))
+                    {
+
+                        if (((Interesado)this._ventana.InteresadoSolicitud).Id != int.MinValue)
+                        {
+                            this._ventana.AgentesSolicitudFiltrar = null;
+                            IList<Agente> agentes = this._agenteServicios.ObtenerAgentesDeUnPoder((Poder)this._ventana.PoderDatosFiltrar);
+                            this._ventana.AgentesSolicitudFiltrar = agentes;
+                            this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderDatosFiltrar).NumPoder;
+                            this._ventana.PoderSolicitud = ((Poder)this._ventana.PoderDatosFiltrar).Id.ToString();
+                            this._ventana.PoderDatos = ((Poder)this._ventana.PoderDatosFiltrar).Id.ToString();
+                            ((Patente)this._ventana.Patente).Poder = (Poder)this._ventana.PoderDatosFiltrar;
+                        }
+                        else
+                        {
+                            this._ventana.InteresadosSolicitud = null;
+                            interesadoPoder = this._interesadoServicios.ObtenerInteresadosDeUnPoder((Poder)this._ventana.PoderDatosFiltrar);
+                            _listaInteresados.Add(interesadoPoder);
+                            this._ventana.InteresadosSolicitud = _listaInteresados;
+                            this._ventana.AgentesSolicitudFiltrar = null;
+                            IList<Agente> agentes = this._agenteServicios.ObtenerAgentesDeUnPoder((Poder)this._ventana.PoderDatosFiltrar);
+                            this._ventana.AgentesSolicitudFiltrar = agentes;
+                            this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderDatosFiltrar).NumPoder;
+                            this._ventana.PoderSolicitud = ((Poder)this._ventana.PoderDatosFiltrar).Id.ToString();
+                            this._ventana.PoderDatos = ((Poder)this._ventana.PoderDatosFiltrar).Id.ToString();
+                            ((Patente)this._ventana.Patente).Poder = (Poder)this._ventana.PoderDatosFiltrar;
+
+
+                        }
+                    }
+                    else
+                    {
+                        Poder primerPoder = new Poder();
+                        primerPoder.Id = int.MinValue;
+                        _poderesFiltrados = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.AgenteSolicitudFiltrar, (Interesado)this._ventana.InteresadoSolicitud);
+                        if (_poderesFiltrados.Count != 0)
+                        {
+                            poderABuscar = this.BuscarPoder(_poderesFiltrados, (Poder)this._ventana.PoderDatosFiltrar);
+
+                            if (poderABuscar != null)
+                            {
+                                _poderesFiltrados.Insert(0, primerPoder);
+                                this._ventana.PoderesSolicitudFiltrar = _poderesFiltrados;
+                                this._ventana.PoderSolicitudFiltrar = poderABuscar;
+                                //muestro y cargo en la patente de la ventana
+                                this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderDatosFiltrar).NumPoder;
+                                this._ventana.PoderSolicitud = ((Poder)this._ventana.PoderDatosFiltrar).Id.ToString();
+                                this._ventana.PoderDatos = ((Poder)this._ventana.PoderDatosFiltrar).Id.ToString();
+                                ((Patente)this._ventana.Patente).Poder = (Poder)this._ventana.PoderDatosFiltrar;
+
+
+                            }
+                            else
+                            {
+                                //this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorAgenteNoPoseePoderConInteresado, "interesado"), 0);
+                                this._ventana.Mensaje("El Poder no pertenece al Interesado", 0);
+                                _poderesFiltrados.Insert(0, primerPoder);
+                                this._ventana.PoderesSolicitudFiltrar = _poderesFiltrados;
+                                this._ventana.PoderSolicitudFiltrar = poderABuscar;
+                                //muestro y cargo en la patente de la ventana
+                                this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderDatosFiltrar).NumPoder;
+                                this._ventana.PoderSolicitud = ((Poder)this._ventana.PoderDatosFiltrar).Id.ToString();
+                                this._ventana.PoderDatos = ((Poder)this._ventana.PoderDatosFiltrar).Id.ToString();
+                                ((Patente)this._ventana.Patente).Poder = (Poder)this._ventana.PoderDatosFiltrar;
+
+                            }
+                        }
+                        else
+                        {
+                            this._ventana.Mensaje("El poder seleccionado no relaciona al Agente con el Interesado", 0);
+                            //muestro y cargo en la patente de la ventana
+                            this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderDatosFiltrar).NumPoder;
+                            this._ventana.PoderSolicitud = ((Poder)this._ventana.PoderDatosFiltrar).Id.ToString();
+                            this._ventana.PoderDatos = ((Poder)this._ventana.PoderDatosFiltrar).Id.ToString();
+                            ((Patente)this._ventana.Patente).Poder = (Poder)this._ventana.PoderDatosFiltrar;
+
+
+                        }
+                    }
+                }
+                else
                 {
                     this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderDatosFiltrar).NumPoder;
                     this._ventana.PoderSolicitud = ((Poder)this._ventana.PoderDatosFiltrar).Id.ToString();
                     this._ventana.PoderDatos = ((Poder)this._ventana.PoderDatosFiltrar).Id.ToString();
+                    ((Patente)this._ventana.Patente).Poder = (Poder)this._ventana.PoderDatosFiltrar;
                 }
+
+                             
 
                 this._ventana.ConvertirEnteroMinimoABlanco();
 
@@ -2488,7 +2842,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
             Mouse.OverrideCursor = Cursors.Wait;
 
-            _poderesInterseccion = new List<Poder>();
+            IList<Poder> _poderesInterseccion = new List<Poder>();
 
             if ((this._ventana.InteresadoSolicitud != null) && (this._ventana.AgenteSolicitudFiltrar != null))
             {
@@ -2502,20 +2856,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     if (this._ventana.PoderesSolicitudFiltrar != null)
                     {
                         ((IList<Poder>)this._ventana.PoderesSolicitudFiltrar).Insert(0, new Poder(int.MinValue));
-                        
+
+                    }
+                    else
+                    {
+                        IList<Poder> listaPoderes = new List<Poder>();
+                        listaPoderes.Add(new Poder(int.MinValue));
+                        this._ventana.PoderesSolicitudFiltrar = listaPoderes;
                     }
                   
                      
                 }
                 else
                 {
+                    _poderesInterseccion.Insert(0, new Poder(int.MinValue));
                     this._ventana.PoderesSolicitudFiltrar = _poderesInterseccion;
                     this._ventana.PoderesDatosFiltrar = _poderesInterseccion;
-                    //this._ventana.MostrarLstPoderSolicitud();
+                    
                 }
 
-                //_poderesInterseccion.Insert(0, new Poder(int.MinValue));
-
+                
             }
             else if (_cargarPoderInicial)
             {
@@ -2527,7 +2887,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderesConAgente, 0);
             }
 
-            _poderesInterseccion.Insert(0, new Poder(int.MinValue));
+            
 
             Mouse.OverrideCursor = null;
 
