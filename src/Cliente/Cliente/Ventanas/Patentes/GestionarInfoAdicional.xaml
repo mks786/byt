@@ -75,7 +75,7 @@
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblMarcasDistingueEnIngles}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblPatentesDistingueEnIngles}"/>
                     </Label>
                     <custom:ByTTextBox Name="_txtInfo" MaxLength="255"  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
                              HorizontalAlignment="Left" Width="400" Height="250" IsEnabled="False"

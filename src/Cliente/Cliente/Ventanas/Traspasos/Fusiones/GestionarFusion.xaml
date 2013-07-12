@@ -647,7 +647,7 @@
             <Label Name="_lblAnexoPoder" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblAnexo}"/>
             </Label>
-            <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Name="_txtAnexoPoder" VerticalAlignment="Center" MaxLength="255"  
+            <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Name="_txtAnexoPoder" VerticalAlignment="Center" MaxLength="4000"  
                                 Text="{Binding Path=Anexo}" IsReadOnly="True" IsTabStop="False"></custom:ByTTextBox>
             <!--Fin Campo-->
 

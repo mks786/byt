@@ -737,12 +737,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public string DistingueDatos
         {
+            get { return this._txtDistingueDatos.Text; }
             set { this._txtDistingueDatos.Text = value; }
         }
 
 
         public string DistingueSolicitud
         {
+            get { return this._txtDistingue.Text; }
             set { this._txtDistingue.Text = value; }
         }
 

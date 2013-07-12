@@ -609,7 +609,7 @@
                         <Label Grid.Column="0" Grid.Row="11" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblDistingue}"/>
                         </Label>
-                        <custom:ByTTextBox  MaxLength="10000" Grid.Column="1" Grid.Row="11" Name="_txtDistingue" VerticalAlignment="Center" CharacterCasing="Upper"
+                        <custom:ByTTextBox  MaxLength="25000" Grid.Column="1" Grid.Row="11" Name="_txtDistingue" VerticalAlignment="Center" CharacterCasing="Upper"
                          Grid.ColumnSpan="6" Text="{Binding Path=Distingue}"></custom:ByTTextBox>
 
                         <Button  Name="_btnIngles" VerticalAlignment="Bottom" Grid.Column="7" Grid.Row="11" Height="25" Width="90"
@@ -1561,7 +1561,7 @@
                         <Label Grid.Column="0" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblDistingue}"/>
                         </Label>
-                        <custom:ByTTextBox  Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="9" Margin="3" Name="_txtDistingueDatos" VerticalAlignment="Center" Text="{Binding Path=Distingue}" MaxLength="10000" CharacterCasing="Upper">                           
+                        <custom:ByTTextBox  Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="9" Margin="3" Name="_txtDistingueDatos" VerticalAlignment="Center" Text="{Binding Path=Distingue}" MaxLength="25000" CharacterCasing="Upper">                           
                         </custom:ByTTextBox>
                         <custom:ByTTextBox  Grid.Column="10" Grid.Row="13" Grid.ColumnSpan="2" Margin="3" Name="_txtDistingueInglesDatos" VerticalAlignment="Center"  Text="" CharacterCasing="Upper"></custom:ByTTextBox>
                         <!--Fin Novena Fila-->
@@ -1985,6 +1985,11 @@
                             <TextBlock Name="_txbFacturacion" Text="{x:Static recurso:Etiquetas.btnFacturacion}"/>
                         </Button>
 
+                        <Button  Grid.Column="10" Grid.Row="23" Grid.ColumnSpan="1" Name="_btnCertificados" Margin="8,2,0,0"
+                            Height="25" Click="_btnCertificados_Click">
+                            <TextBlock Name="_txbCertificados" Text="{x:Static recurso:Etiquetas.btnCertificado}"/>
+                        </Button>
+
                         <Button  Grid.Column="7" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnVerSolicitud" Margin="8,2,0,0"
                             Height="25" Click="_btnVerSolicitud_Click">
                             <TextBlock Name="_txbVerDoc" Text="{x:Static recurso:Etiquetas.btnVerSolicitud}"/>
@@ -1994,10 +1999,10 @@
                             <TextBlock Name="_txbVerExp" Text="{x:Static recurso:Etiquetas.btnVerExpediente}"/>
                         </Button>
 
-                        <Button  Grid.Column="9" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnCertificados" Margin="8,2,0,0"
+                        <!--<Button  Grid.Column="9" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnCertificados" Margin="8,2,0,0"
                             Height="25" Click="_btnCertificados_Click">
                             <TextBlock Name="_txbCertificados" Text="{x:Static recurso:Etiquetas.btnCertificados}"/>
-                        </Button>
+                        </Button>-->
 
                         <!--Fin Fila Dieciocho-->
                     </Grid>

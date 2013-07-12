@@ -83,7 +83,7 @@
                         <Label>
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociadoNoRegistrado}"/>
                         </Label>
-                        <custom:ByTTextBox Name="_txtAsociadoNoRegistrado" Text="" Width="140" MaxLength="15"
+                        <custom:ByTTextBox Name="_txtAsociadoNoRegistrado" Text="" Width="140" MaxLength="254"
                              GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
                     </WrapPanel>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,100,0">

@@ -913,7 +913,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblOtros}"/>
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Name="_txtOtrosLicencia" 
-                                            VerticalAlignment="Center" MaxLength="255" Text="{Binding Path=OtrosS1}"></custom:ByTTextBox>
+                                            VerticalAlignment="Center" MaxLength="4000" Text="{Binding Path=OtrosS1}"></custom:ByTTextBox>
 
 
                         <Label Name="_lblReferenciaLicencia" Grid.Row="0" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center">
@@ -934,14 +934,14 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblObservacion}"/>
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="5" Grid.ColumnSpan="3" Grid.Row="1" Name="_txtObservacionLicencia" 
-                                            VerticalAlignment="Center" MaxLength="255" Text="{Binding Path=Observacion}"></custom:ByTTextBox>
+                                            VerticalAlignment="Center" MaxLength="4000" Text="{Binding Path=Observacion}"></custom:ByTTextBox>
 
 
                         <Label Name="_lblComentarioLicencia" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblComentario}"/>
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2" Name="_txtComentarioLicencia" VerticalAlignment="Center" 
-                                            MaxLength="255" Text="{Binding Path=Comentario}"></custom:ByTTextBox>
+                                            MaxLength="4000" Text="{Binding Path=Comentario}"></custom:ByTTextBox>
 
                         <Label Name="_lblBoletinLicencia" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblBoletin}"/>

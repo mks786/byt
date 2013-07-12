@@ -922,7 +922,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblOtros}"/>
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Name="_txtOtrosCesion" 
-                                            VerticalAlignment="Center" MaxLength="255" Text="{Binding Path=OtrosS1}"></custom:ByTTextBox>
+                                            VerticalAlignment="Center" MaxLength="4000" Text="{Binding Path=OtrosS1}"></custom:ByTTextBox>
 
 
                         <Label Name="_lblReferenciaCesion" Grid.Row="0" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center">
@@ -936,21 +936,21 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAnexo}"/>
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Name="_txtAnexoCesion" VerticalAlignment="Center" 
-                                            MaxLength="255" Text="{Binding Path=Anexo}"></custom:ByTTextBox>
+                                            MaxLength="4000" Text="{Binding Path=Anexo}"></custom:ByTTextBox>
 
 
                         <Label Name="_lblObservacionCesion" Grid.Row="1" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblObservacion}"/>
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="5" Grid.ColumnSpan="3" Grid.Row="1" Name="_txtObservacionCesion" 
-                                            VerticalAlignment="Center" MaxLength="255" Text="{Binding Path=Observacion}"></custom:ByTTextBox>
+                                            VerticalAlignment="Center" MaxLength="4000" Text="{Binding Path=Observacion}"></custom:ByTTextBox>
 
 
                         <Label Name="_lblComentarioCesion" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblComentario}"/>
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2" Name="_txtComentarioCesion" VerticalAlignment="Center" 
-                                            MaxLength="255" Text="{Binding Path=Comentario}"></custom:ByTTextBox>
+                                            MaxLength="4000" Text="{Binding Path=Comentario}"></custom:ByTTextBox>
 
                         <Label Name="_lblBoletinCesion" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblBoletin}"/>

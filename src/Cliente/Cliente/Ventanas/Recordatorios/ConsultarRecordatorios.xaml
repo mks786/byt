@@ -85,7 +85,7 @@
                 </Label>
 
                 <CheckBox IsEnabled="True" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3" Content="{x:Static recurso:Etiquetas.chkAutomatico}" 
-                                  Height="16" IsChecked="True" HorizontalAlignment="Left" Margin="5,0,0,5" Name="_chkAutomatico"
+                                  Height="16" IsChecked="False" HorizontalAlignment="Left" Margin="5,0,0,5" Name="_chkAutomatico"
                                   VerticalAlignment="Center" Click="_chkAutomatico_Click"/>
 
                 <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center">
@@ -135,9 +135,10 @@
         </WrapPanel>
 
 
-        <Separator Margin="0,60,0,5" Grid.Row="2"/>
+        <!--<Separator Margin="0,60,0,5" Grid.Row="2"/>-->
         <WrapPanel Orientation="Horizontal" Grid.Row="3" Margin="0,0,0,0" HorizontalAlignment="Center">
-            
+
+                       
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -182,17 +183,8 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Marca.Descripcion}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvDescripcion}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Pais}" Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Pais" Content="{x:Static recurso:Etiquetas.lsvPais}"/>
-                        </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Idioma.Id}" Width="50">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Asociado.Idioma.Id" Content="{x:Static recurso:Etiquetas.lsvIdioma}"/>
-                        </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Interesado.Id}" Width="110">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Interesado.Id" Content="{x:Static recurso:Etiquetas.lsvIdInteresado}"/>
-                        </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=NombreInteresado}" Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="NombreInteresado" Content="{x:Static recurso:Etiquetas.lsvInteresado}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Marca.CodigoRegistro}" Width="90">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="CodigoRegistro" Content="{x:Static recurso:Etiquetas.lsvCodigoRegistro}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Marca.Recordatorio}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Marca.Recordatorio" Content="{x:Static recurso:Etiquetas.lsvRecordatorio}"/>
@@ -209,6 +201,22 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Pais}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Pais" Content="{x:Static recurso:Etiquetas.lsvPais}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Idioma.Id}" Width="50">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Asociado.Idioma.Id" Content="{x:Static recurso:Etiquetas.lsvIdioma}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Interesado.Id}" Width="110">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Interesado.Id" Content="{x:Static recurso:Etiquetas.lsvIdInteresado}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=NombreInteresado}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="NombreInteresado" Content="{x:Static recurso:Etiquetas.lsvInteresado}"/>
+                        </GridViewColumn>
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Marca.Recordatorio}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Marca.Recordatorio" Content="{x:Static recurso:Etiquetas.lsvRecordatorio}"/>
+                        </GridViewColumn>-->
+                        
                     </GridView>
                 </ListView.View>
             </ListView>

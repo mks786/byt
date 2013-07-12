@@ -535,6 +535,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._btnConflictoDatos.IsEnabled = value;
                 this._btnEtiqueta.IsEnabled = value;
                 this._btnEtiquetaSolicitud.IsEnabled = value;
+                this._btnArchivoDatos.IsEnabled = value;
                 this._camposHabilitados = value;
 
                 #endregion
@@ -2269,6 +2270,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _cbxAgente_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            this._presentador.CambiarAgente();
             ocultarLstPoderSolicutud();
         }
 

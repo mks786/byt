@@ -643,7 +643,7 @@
                         <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblOtros}"/>
                         </Label>
-                        <custom:ByTTextBox  IsEnabled="True"  Grid.Column="1" Grid.Row="0" Name="_txtOtros" IsTabStop="False" VerticalAlignment="Center" MaxLength="255" Text="{Binding Path=OtrosS1}">
+                        <custom:ByTTextBox  IsEnabled="True"  Grid.Column="1" Grid.Row="0" Name="_txtOtros" IsTabStop="False" VerticalAlignment="Center" MaxLength="4000" Text="{Binding Path=OtrosS1}">
                         </custom:ByTTextBox>
                         <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblReferencia}"/>
@@ -654,18 +654,18 @@
                         <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAnexo}"/>
                         </Label>
-                        <custom:ByTTextBox  IsEnabled="True"  Grid.Column="1" Grid.Row="1" Name="_txtAnexo" IsTabStop="False" VerticalAlignment="Center" MaxLength="255" Text="{Binding Path=Anexo}">
+                        <custom:ByTTextBox  IsEnabled="True"  Grid.Column="1" Grid.Row="1" Name="_txtAnexo" IsTabStop="False" VerticalAlignment="Center" MaxLength="4000" Text="{Binding Path=Anexo}">
                         </custom:ByTTextBox>
                         <Label Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblObservacion}"/>
                         </Label>
-                        <custom:ByTTextBox  IsEnabled="True"  Grid.Column="3" Grid.Row="1" Name="_txtObservacion" IsTabStop="False" VerticalAlignment="Center" MaxLength="255" Text="{Binding Path=Observacion}">
+                        <custom:ByTTextBox  IsEnabled="True"  Grid.Column="3" Grid.Row="1" Name="_txtObservacion" IsTabStop="False" VerticalAlignment="Center" MaxLength="4000" Text="{Binding Path=Observacion}">
                         </custom:ByTTextBox>
 
                         <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblComentario}"/>
                         </Label>
-                        <custom:ByTTextBox  IsEnabled="True"  Grid.Column="1" Grid.Row="2" Name="_txtComentario" IsTabStop="False" VerticalAlignment="Center" MaxLength="255" Text="{Binding Path=Comentario}">
+                        <custom:ByTTextBox  IsEnabled="True"  Grid.Column="1" Grid.Row="2" Name="_txtComentario" IsTabStop="False" VerticalAlignment="Center" MaxLength="4000" Text="{Binding Path=Comentario}">
                         </custom:ByTTextBox>
                         <Label Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center">
                             <TextBlock Text="Boletin Pub:"/>
