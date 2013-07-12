@@ -53,14 +53,78 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
-        public bool InsertarOModificar(FechaMarca entidad, int hash)
+        /// <summary>
+        /// Servicio para inserta o actualizar una fecha de marca
+        /// </summary>
+        /// <param name="fechaMarca">Fecha de Marca a insertar o actualizar</param>
+        /// <param name="hash">Hash del usuario logueado</param>
+        /// <returns>True si la operacion se realiza correctamente; false, en caso contrario</returns>
+        public bool InsertarOModificar(FechaMarca fechaMarca, int hash)
         {
-            throw new NotImplementedException();
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                bool exitoso = ControladorFechaMarca.InsertarOModificar(fechaMarca, hash);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                return exitoso;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
         }
 
-        public bool Eliminar(FechaMarca entidad, int hash)
+
+
+        /// <summary>
+        /// Servicio para eliminar una Fecha de Marca
+        /// </summary>
+        /// <param name="fechaMarca">Fecha de marca a eliminar</param>
+        /// <param name="hash">Hash del usuario logueado</param>
+        /// <returns>True si la operacion se realiza correctamente; false, en caso contrario</returns>
+        public bool Eliminar(FechaMarca fechaMarca, int hash)
         {
-            throw new NotImplementedException();
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                bool exitoso = ControladorFechaMarca.Eliminar(fechaMarca, hash);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                return exitoso;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
         }
 
         public bool VerificarExistencia(FechaMarca entidad)

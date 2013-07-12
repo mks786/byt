@@ -69,6 +69,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\lib\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="Oracle.DataAccess, Version=2.112.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\app\Administrator\product\11.2.0\client_2\ODP.NET\bin\2.x\Oracle.DataAccess.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Remotion.Data.Linq">
       <HintPath>..\..\..\lib\Remotion.Data.Linq.dll</HintPath>
     </Reference>
@@ -90,9 +95,27 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="bin\Debug\fileDebug2013-07-09.log" />
+    <None Include="bin\Debug\fileDebug2013-07-10.log" />
+    <None Include="bin\Debug\fileError2013-07-09.log" />
+    <None Include="bin\Debug\NLog.config" />
+    <None Include="bin\Debug\Trascend.Bolet.Servidor.exe.config" />
+    <None Include="bin\Debug\Trascend.Bolet.Servidor.vshost.exe.config" />
+    <None Include="bin\Debug\Trascend.Bolet.Servidor.vshost.exe.manifest" />
+    <None Include="bin\Release\fileDebug2013-06-27.log" />
+    <None Include="bin\Release\fileError2013-06-27.log" />
+    <None Include="bin\Release\NLog.config" />
+    <None Include="bin\Release\Trascend.Bolet.Servidor.exe.config" />
+    <None Include="bin\Release\Trascend.Bolet.Servidor.vshost.exe.config" />
+    <None Include="bin\Release\Trascend.Bolet.Servidor.vshost.exe.manifest" />
     <None Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="obj\x86\Debug\build.force" />
+    <None Include="obj\x86\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\x86\Debug\ResolveAssemblyReference.cache" />
+    <None Include="obj\x86\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\x86\Release\ResolveAssemblyReference.cache" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
@@ -141,6 +164,89 @@
       <Project>{EC493779-A099-49A4-813E-17CB118E8D86}</Project>
       <Name>AccesoDatos_Fac</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\Antlr3.Runtime.dll" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.AccesoDatos.dll" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.AccesoDatos.pdb" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.AccesoDatos.xml" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.Comandos.dll" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.Comandos.pdb" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.Comandos.xml" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.LogicaNegocio.dll" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.LogicaNegocio.pdb" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.LogicaNegocio.xml" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.ObjetosComunes.dll" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.ObjetosComunes.pdb" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.ObjetosComunes.xml" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.Servicios.dll" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.Servicios.pdb" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.Servicios.xml" />
+    <Content Include="bin\Debug\Iesi.Collections.dll" />
+    <Content Include="bin\Debug\LinFu.DynamicProxy.dll" />
+    <Content Include="bin\Debug\NHibernate.ByteCode.LinFu.dll" />
+    <Content Include="bin\Debug\NHibernate.dll" />
+    <Content Include="bin\Debug\NLog.dll" />
+    <Content Include="bin\Debug\Remotion.Data.Linq.dll" />
+    <Content Include="bin\Debug\Trascend.Bolet.AccesoDatos.dll" />
+    <Content Include="bin\Debug\Trascend.Bolet.AccesoDatos.pdb" />
+    <Content Include="bin\Debug\Trascend.Bolet.Comandos.dll" />
+    <Content Include="bin\Debug\Trascend.Bolet.Comandos.pdb" />
+    <Content Include="bin\Debug\Trascend.Bolet.LogicaNegocio.dll" />
+    <Content Include="bin\Debug\Trascend.Bolet.LogicaNegocio.pdb" />
+    <Content Include="bin\Debug\Trascend.Bolet.ObjetosComunes.dll" />
+    <Content Include="bin\Debug\Trascend.Bolet.ObjetosComunes.pdb" />
+    <Content Include="bin\Debug\Trascend.Bolet.Servicios.dll" />
+    <Content Include="bin\Debug\Trascend.Bolet.Servicios.pdb" />
+    <Content Include="bin\Debug\Trascend.Bolet.Servidor.exe" />
+    <Content Include="bin\Debug\Trascend.Bolet.Servidor.pdb" />
+    <Content Include="bin\Debug\Trascend.Bolet.Servidor.vshost.exe" />
+    <Content Include="bin\Debug\Usuarios.xml" />
+    <Content Include="bin\Release\Antlr3.Runtime.dll" />
+    <Content Include="bin\Release\Diginsoft.Bolet.AccesoDatos.dll" />
+    <Content Include="bin\Release\Diginsoft.Bolet.AccesoDatos.pdb" />
+    <Content Include="bin\Release\Diginsoft.Bolet.AccesoDatos.xml" />
+    <Content Include="bin\Release\Diginsoft.Bolet.Comandos.dll" />
+    <Content Include="bin\Release\Diginsoft.Bolet.Comandos.pdb" />
+    <Content Include="bin\Release\Diginsoft.Bolet.Comandos.xml" />
+    <Content Include="bin\Release\Diginsoft.Bolet.LogicaNegocio.dll" />
+    <Content Include="bin\Release\Diginsoft.Bolet.LogicaNegocio.pdb" />
+    <Content Include="bin\Release\Diginsoft.Bolet.LogicaNegocio.xml" />
+    <Content Include="bin\Release\Diginsoft.Bolet.ObjetosComunes.dll" />
+    <Content Include="bin\Release\Diginsoft.Bolet.ObjetosComunes.pdb" />
+    <Content Include="bin\Release\Diginsoft.Bolet.ObjetosComunes.xml" />
+    <Content Include="bin\Release\Diginsoft.Bolet.Servicios.dll" />
+    <Content Include="bin\Release\Diginsoft.Bolet.Servicios.pdb" />
+    <Content Include="bin\Release\Diginsoft.Bolet.Servicios.xml" />
+    <Content Include="bin\Release\Iesi.Collections.dll" />
+    <Content Include="bin\Release\LinFu.DynamicProxy.dll" />
+    <Content Include="bin\Release\NHibernate.ByteCode.LinFu.dll" />
+    <Content Include="bin\Release\NHibernate.dll" />
+    <Content Include="bin\Release\NLog.dll" />
+    <Content Include="bin\Release\Remotion.Data.Linq.dll" />
+    <Content Include="bin\Release\Trascend.Bolet.AccesoDatos.dll" />
+    <Content Include="bin\Release\Trascend.Bolet.AccesoDatos.pdb" />
+    <Content Include="bin\Release\Trascend.Bolet.Comandos.dll" />
+    <Content Include="bin\Release\Trascend.Bolet.Comandos.pdb" />
+    <Content Include="bin\Release\Trascend.Bolet.LogicaNegocio.dll" />
+    <Content Include="bin\Release\Trascend.Bolet.LogicaNegocio.pdb" />
+    <Content Include="bin\Release\Trascend.Bolet.ObjetosComunes.dll" />
+    <Content Include="bin\Release\Trascend.Bolet.ObjetosComunes.pdb" />
+    <Content Include="bin\Release\Trascend.Bolet.Servicios.dll" />
+    <Content Include="bin\Release\Trascend.Bolet.Servicios.pdb" />
+    <Content Include="bin\Release\Trascend.Bolet.Servidor.exe" />
+    <Content Include="bin\Release\Trascend.Bolet.Servidor.pdb" />
+    <Content Include="bin\Release\Trascend.Bolet.Servidor.vshost.exe" />
+    <Content Include="obj\x86\Debug\Servidor.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\x86\Debug\Trascend.Bolet.Servidor.exe" />
+    <Content Include="obj\x86\Debug\Trascend.Bolet.Servidor.pdb" />
+    <Content Include="obj\x86\Release\Servidor.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\x86\Release\Trascend.Bolet.Servidor.exe" />
+    <Content Include="obj\x86\Release\Trascend.Bolet.Servidor.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\x86\Debug\TempPE\" />
+    <Folder Include="obj\x86\Release\TempPE\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

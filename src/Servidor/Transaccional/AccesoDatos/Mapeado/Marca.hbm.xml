@@ -33,7 +33,16 @@
     <property name="PrimerOtro" column="XOTROS1" type="string"/>
     <property name="Representante" column="XREPRESENTANTE" type="string"/>
     <property name="Observacion" column="XOBSERVACION" type="string"/>
-    <property name="Distingue" column="XDISTINGUE" type="string"/>
+    <property name="XDistingue" column="XDISTINGUE" type="string"/>
+    
+    <!--<property name="Distingue" type="string">
+      <column name="XDISTINGUE" sql-type="BinaryBlob"/>
+    </property>-->
+    <!--<property name="Distingue" column="XDISTINGUE" type="StringClob" sqltype="NTEXT"/>-->
+    
+    <!--<property name="Distingue" column="XDISTINGUE" type="string"/>-->  
+    
+    
     <!--<property name="Distingue" column="XDISTINGUE" type="StringClob" sql-type="NCLOB"/>-->
     <property name="NumeroCondiciones" column="NCONDI" type="int"/>
     <property name="Sector" column="SECTOR" type="string"/>
@@ -61,27 +70,27 @@
       <column name="CCORRESP"/>
     </many-to-one>-->
 
-    <many-to-one name="BoletinConcesion" class="Boletin">
+    <many-to-one name="BoletinConcesion" class="Boletin" lazy="false">
       <column name="CBOLETIN_CONCESION"/>
     </many-to-one>
 
-    <many-to-one name="BoletinPublicacion" class="Boletin">
+    <many-to-one name="BoletinPublicacion" class="Boletin" lazy="false">
       <column name="CBOLETIN_PUBLICACION"/>
     </many-to-one>
 
-    <many-to-one name="BoletinOrdenPublicacion" class="Boletin">
+    <many-to-one name="BoletinOrdenPublicacion" class="Boletin" lazy="false">
       <column name="CBOLETIN_ORDENPUB"/>
     </many-to-one>
 
-    <many-to-one name="Internacional" class="Internacional">
+    <many-to-one name="Internacional" class="Internacional" lazy="false">
       <column name="CINTER"/>
     </many-to-one>
 
-    <many-to-one name="Nacional" class="Nacional">
+    <many-to-one name="Nacional" class="Nacional" lazy="false">
       <column name="CNACIONAL"/>
     </many-to-one>
 
-    <many-to-one name="Interesado" class="Interesado">
+    <many-to-one name="Interesado" class="Interesado" lazy="false">
       <column name="CINTERESADO"/>
     </many-to-one>
 
@@ -97,7 +106,7 @@
       <column name="CPODER"/>
     </many-to-one>
 
-    <many-to-one name="Servicio" class="Servicio">
+    <many-to-one name="Servicio" class="Servicio" lazy="false">
       <column name="CSERVICIO"/>
     </many-to-one>
 

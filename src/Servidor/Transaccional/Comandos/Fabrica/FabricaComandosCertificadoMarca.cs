@@ -18,5 +18,28 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarCertificadoMarcaPorID(certificado);
         }
+
+
+        /// <summary>
+        /// Metodo que devuelve el Comando para insertar o modificar un Certificado de Marca
+        /// </summary>
+        /// <param name="certificado">Certificado de Marca a insertar o modificar</param>
+        /// <returns>Comando para insertar o modificar un certificado de marca</returns>
+        public static ComandoBase<bool> ObtenerComandoInsertarOModificar(CertificadoMarca certificado)
+        {
+            return new ComandoInsertarOModificarCertificado(certificado);
+        }
+
+
+        /// <summary>
+        /// Método que devuelve el Comando para elimnar un certificado de marca
+        /// </summary>
+        /// <param name="certificado">certificado que se va a eliminar</param>
+        /// <returns>Comando para eliminar</returns>
+        public static ComandoBase<bool> ObtenerComandoEliminarCertificado(CertificadoMarca certificado)
+        {
+            return new ComandoEliminarCertificado(certificado);
+        }
+
     }
 }

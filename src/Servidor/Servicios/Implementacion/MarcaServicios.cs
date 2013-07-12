@@ -5,6 +5,8 @@ using NLog;
 using Trascend.Bolet.LogicaNegocio.Controladores;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using Oracle.DataAccess.Client;
+using Oracle.DataAccess.Types;
 
 namespace Trascend.Bolet.Servicios.Implementacion
 {
@@ -448,6 +450,192 @@ namespace Trascend.Bolet.Servicios.Implementacion
                 throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
             }
 
+        }
+
+
+        public String ObtenerDistingueDeMarca(Marca marca)
+        {
+            int idMarca = marca.Id;
+            //DATASOURCE y autenticacion a la Base de Datos
+            String dataSource = ConfigurationManager.AppSettings["DataSourceADO"].ToString();
+            String userAdoDB = ConfigurationManager.AppSettings["UserAdoDB"].ToString();
+            String passwordAdoDB = ConfigurationManager.AppSettings["PasswordAdoDB"].ToString();
+            
+            //String de conexion a la base de datos
+            String connectionString = "Data Source=" + dataSource + " User Id=" + userAdoDB + ";Password=" + passwordAdoDB + ";";
+            //Valor resultante de la consulta
+            String valor = String.Empty;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+
+                // Abrimos la conexion con la base de datos
+                OracleConnection con = new OracleConnection(connectionString);
+                con.Open();
+                //Verificamos si la conexion a la base de datos efectivamente esta abierta
+                if (con.State.ToString().Equals("Open"))
+                {
+                    //Creamos la estructura command para ejecutar la instruccion SELECT sobre la tabla
+                    OracleCommand cmd = con.CreateCommand();
+                    //Llamo al metodo que ejecuta el proceso
+                    valor = ObtenerCampoCLOB(cmd, marca);
+                    con.Close();
+                }
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
+
+            return valor;
+        }
+
+
+        public bool ActualizarDistingueDeMarca(Marca marca, String distingueMarca)
+        {
+            bool resultado = false;
+            int idMarca = marca.Id;
+            
+            String dataSource = ConfigurationManager.AppSettings["DataSourceADO"].ToString();
+            String userAdoDB = ConfigurationManager.AppSettings["UserAdoDB"].ToString();
+            String passwordAdoDB = ConfigurationManager.AppSettings["PasswordAdoDB"].ToString();
+            String connectionString = "Data Source=" + dataSource + " User Id=" + userAdoDB + ";Password=" + passwordAdoDB + ";";
+            
+            
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                
+                OracleConnection con = new OracleConnection(connectionString);
+                con.Open();
+                
+                if (con.State.ToString().Equals("Open"))
+                {
+                    OracleCommand cmd = con.CreateCommand();
+                    cmd.Connection = con;
+                    resultado = ActualizarCampoCLOB(cmd, marca,distingueMarca);
+                    con.Close();
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
+
+            return resultado;
+
+        }
+
+
+        private String ObtenerCampoCLOB(OracleCommand cmd, Marca marca)
+        {
+            //Statement que se va a ejecutar sobre la tabla 
+            String selectCommand = "SELECT CMARCA,XDISTINGUE FROM MYP_MARCAS WHERE CMARCA=" + marca.Id.ToString();
+            String resultado = String.Empty;
+
+            try
+            {
+                cmd.CommandText = selectCommand;
+                OracleDataReader reader = cmd.ExecuteReader();
+                using (reader)
+                {
+                    //Se lee el registro
+                    reader.Read();
+                    //Se obtiene el campo como un OracleLob
+                    OracleClob clobField = reader.GetOracleClob(1);
+                    if (!clobField.IsNull)
+                        resultado = clobField.Value;
+                    else
+                        resultado = null;
+                }
+                reader.Close();
+
+                
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
+
+            return resultado;
+
+        }
+
+
+        private bool ActualizarCampoCLOB(OracleCommand cmd, Marca marca, String distingueMarca)
+        {
+            String selectCommand = "UPDATE MYP_MARCAS SET XDISTINGUE = :p1 WHERE CMARCA = " + marca.Id.ToString(); 
+            
+            bool resultado = false;
+
+            try
+            {
+                //Recogiendo los parametros antes de actualizar
+                OracleParameter param = new OracleParameter();
+                param.Direction = System.Data.ParameterDirection.Input;
+                param.OracleDbType = OracleDbType.Clob;
+                param.ParameterName = "p1";
+                param.Value = distingueMarca;
+
+                //Definiendo el command
+                cmd.BindByName = true;
+                cmd.Parameters.Add(param);
+                cmd.CommandText = selectCommand;
+                cmd.ExecuteNonQuery();
+                resultado = true;
+
+
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
+
+            return resultado;
         }
         
     }

@@ -7,7 +7,7 @@
 
     <composite-id>
       <key-many-to-one name="Tipo" column="TIPO" class="TipoFecha" lazy="false"/>
-      <key-many-to-one name="Marca" column="CMARCA" class="Marca"/>
+      <key-many-to-one name="Marca" column="CMARCA" class="Marca" lazy="false"/>
     </composite-id>
 
     <property name="FechaRegistro" column="FECHA" type="DateTime"/>
@@ -15,7 +15,7 @@
     <property name="Comentario" column="COMENTARIO" type="string"/>
     <property name="Usuario" column="USUARIO" type="string"/>
 
-    <many-to-one name="Correspondencia" class="Carta">
+    <many-to-one name="Correspondencia" class="Carta" lazy="false">
       <column name="CORRESPONDENCIA"/>
     </many-to-one>
 

@@ -50,6 +50,42 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que obtiene todas las auditorias de un Certificado de Marca especifico
+        /// </summary>
+        /// <param name="auditoria">Auditoria </param>
+        /// <returns></returns>
+        public IList<Auditoria> AuditoriaPorFkyTabla(Auditoria auditoria)
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                IList<Auditoria> auditorias = ControladorCertificadoMarca.AuditoriaPorFkyTabla(auditoria);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                return auditorias;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
+        }
+
+
         public IList<CertificadoMarca> ConsultarTodos()
         {
             throw new NotImplementedException();
@@ -60,14 +96,81 @@ namespace Trascend.Bolet.Servicios.Implementacion
             throw new NotImplementedException();
         }
 
-        public bool InsertarOModificar(CertificadoMarca entidad, int hash)
+
+        /// <summary>
+        /// Servicio para Insertar o Modificar un Certificado de Marca
+        /// </summary>
+        /// <param name="certificado">Certificado a insertar o a actualizar</param>
+        /// <param name="hash">Hash del usuario logueado</param>
+        /// <returns>Confirmacion de insercion, true si se realizo; false en caso contrario</returns>
+        public bool InsertarOModificar(CertificadoMarca certificado, int hash)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                
+                bool exitoso = ControladorCertificadoMarca.InsertarOModificar(ref certificado, hash);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                return exitoso;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
         }
 
-        public bool Eliminar(CertificadoMarca entidad, int hash)
+
+        /// <summary>
+        /// Servicio para Eliminar un Certificado de Marca
+        /// </summary>
+        /// <param name="certificado">Certificado de Marca a eliminar</param>
+        /// <param name="hash">Hash del usuario logueado</param>
+        /// <returns>True si se elimino correctamente, false en caso contrario</returns>
+        public bool Eliminar(CertificadoMarca certificado, int hash)
         {
-            throw new NotImplementedException();
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                //bool exitoso = ControladorInteresado.Eliminar(certificado, hash);
+                bool exitoso = ControladorCertificadoMarca.Eliminar(certificado, hash);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                return exitoso;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
         }
 
         public bool VerificarExistencia(CertificadoMarca entidad)

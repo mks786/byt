@@ -35,9 +35,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\lib\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="Oracle.DataAccess, Version=2.112.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\app\Administrator\product\11.2.0\client_2\ODP.NET\bin\2.x\Oracle.DataAccess.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -162,6 +168,63 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MensajesAlServidor.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\Antlr3.Runtime.dll" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.AccesoDatos.dll" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.AccesoDatos.pdb" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.AccesoDatos.xml" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.Comandos.dll" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.Comandos.pdb" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.Comandos.xml" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.LogicaNegocio.dll" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.LogicaNegocio.pdb" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.LogicaNegocio.xml" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.ObjetosComunes.dll" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.ObjetosComunes.pdb" />
+    <Content Include="bin\Debug\Diginsoft.Bolet.ObjetosComunes.xml" />
+    <Content Include="bin\Debug\Iesi.Collections.dll" />
+    <Content Include="bin\Debug\NHibernate.dll" />
+    <Content Include="bin\Debug\NLog.dll" />
+    <Content Include="bin\Debug\Oracle.DataAccess.dll" />
+    <Content Include="bin\Debug\Remotion.Data.Linq.dll" />
+    <Content Include="bin\Debug\Trascend.Bolet.AccesoDatos.dll" />
+    <Content Include="bin\Debug\Trascend.Bolet.AccesoDatos.pdb" />
+    <Content Include="bin\Debug\Trascend.Bolet.Comandos.dll" />
+    <Content Include="bin\Debug\Trascend.Bolet.Comandos.pdb" />
+    <Content Include="bin\Debug\Trascend.Bolet.LogicaNegocio.dll" />
+    <Content Include="bin\Debug\Trascend.Bolet.LogicaNegocio.pdb" />
+    <Content Include="bin\Debug\Trascend.Bolet.ObjetosComunes.dll" />
+    <Content Include="bin\Debug\Trascend.Bolet.ObjetosComunes.pdb" />
+    <Content Include="bin\Debug\Trascend.Bolet.Servicios.dll" />
+    <Content Include="bin\Debug\Trascend.Bolet.Servicios.pdb" />
+    <Content Include="bin\Release\Antlr3.Runtime.dll" />
+    <Content Include="bin\Release\Diginsoft.Bolet.AccesoDatos.dll" />
+    <Content Include="bin\Release\Diginsoft.Bolet.AccesoDatos.pdb" />
+    <Content Include="bin\Release\Diginsoft.Bolet.AccesoDatos.xml" />
+    <Content Include="bin\Release\Diginsoft.Bolet.Comandos.dll" />
+    <Content Include="bin\Release\Diginsoft.Bolet.Comandos.pdb" />
+    <Content Include="bin\Release\Diginsoft.Bolet.Comandos.xml" />
+    <Content Include="bin\Release\Diginsoft.Bolet.LogicaNegocio.dll" />
+    <Content Include="bin\Release\Diginsoft.Bolet.LogicaNegocio.pdb" />
+    <Content Include="bin\Release\Diginsoft.Bolet.LogicaNegocio.xml" />
+    <Content Include="bin\Release\Diginsoft.Bolet.ObjetosComunes.dll" />
+    <Content Include="bin\Release\Diginsoft.Bolet.ObjetosComunes.pdb" />
+    <Content Include="bin\Release\Diginsoft.Bolet.ObjetosComunes.xml" />
+    <Content Include="bin\Release\Iesi.Collections.dll" />
+    <Content Include="bin\Release\NHibernate.dll" />
+    <Content Include="bin\Release\NLog.dll" />
+    <Content Include="bin\Release\Remotion.Data.Linq.dll" />
+    <Content Include="bin\Release\Trascend.Bolet.AccesoDatos.dll" />
+    <Content Include="bin\Release\Trascend.Bolet.AccesoDatos.pdb" />
+    <Content Include="bin\Release\Trascend.Bolet.Comandos.dll" />
+    <Content Include="bin\Release\Trascend.Bolet.Comandos.pdb" />
+    <Content Include="bin\Release\Trascend.Bolet.LogicaNegocio.dll" />
+    <Content Include="bin\Release\Trascend.Bolet.LogicaNegocio.pdb" />
+    <Content Include="bin\Release\Trascend.Bolet.ObjetosComunes.dll" />
+    <Content Include="bin\Release\Trascend.Bolet.ObjetosComunes.pdb" />
+    <Content Include="bin\Release\Trascend.Bolet.Servicios.dll" />
+    <Content Include="bin\Release\Trascend.Bolet.Servicios.pdb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

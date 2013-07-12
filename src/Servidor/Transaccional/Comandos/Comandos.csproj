@@ -102,6 +102,8 @@
     <Compile Include="Comandos\ComandosCarta\ComandoEliminarCarta.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoInsertarOModificarCarta.cs" />
     <Compile Include="Comandos\ComandosCertificadoMarca\ComandoConsultarCertificadoMarcaPorID.cs" />
+    <Compile Include="Comandos\ComandosCertificadoMarca\ComandoEliminarCertificado.cs" />
+    <Compile Include="Comandos\ComandosCertificadoMarca\ComandoInsertarOModificarCertificado.cs" />
     <Compile Include="Comandos\ComandosCesion\ComandoConsultarCesionesFiltro.cs" />
     <Compile Include="Comandos\ComandosCesion\ComandoConsultarTodosCesion.cs" />
     <Compile Include="Comandos\ComandosCesion\ComandoEliminarCesion.cs" />
@@ -119,6 +121,8 @@
     <Compile Include="Comandos\ComandosEstadoMarca\ComandoInsertarOModificarEstadoMarca.cs" />
     <Compile Include="Comandos\ComandosEstadoMarca\ComandoVerificarExistenciaEstadoMarca.cs" />
     <Compile Include="Comandos\ComandosFechaMarca\ComandoConsultarFechasPorMarca.cs" />
+    <Compile Include="Comandos\ComandosFechaMarca\ComandoEliminarFechaMarca.cs" />
+    <Compile Include="Comandos\ComandosFechaMarca\ComandoInsertarOModificarFechaMarca.cs" />
     <Compile Include="Comandos\ComandosFusionMarcaTercero\ComandoConsultarFusionMarcaTerceroPorFusion.cs" />
     <Compile Include="Comandos\ComandosFusionPatenteTercero\ComandoConsultarFusionPatenteTerceroPorFusion.cs" />
     <Compile Include="Comandos\ComandosFusion\ComandoConsultarFusionesFiltro.cs" />

@@ -16,5 +16,26 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarFechasPorMarca(marca);
         }
+
+        /// <summary>
+        /// Metodo estatico que genera los comandos para insertar o actualizar una fecha de marca
+        /// </summary>
+        /// <param name="fechaMarca">Fecha de Marca a insertar o actualizar</param>
+        /// <returns>True si la operacion se realiza correctamente; false, en caso contrario</returns>
+        public static ComandoBase<bool> ObtenerComandoInsertarOModificar(FechaMarca fechaMarca)
+        {
+            return new ComandoInsertarOModificarFechaMarca(fechaMarca);
+        }
+
+        /// <summary>
+        /// Metodo estatico que genera los comandos para eliminar una fecha de marca
+        /// </summary>
+        /// <param name="fechaMarca">Fecha de marca a eliminar</param>
+        /// <returns>True si la operacion se realiza correctamente; false, en caso contrario</returns>
+        public static ComandoBase<bool> ObtenerComandoEliminarFechaMarca(FechaMarca fechaMarca)
+        {
+            return new ComandoEliminarFechaMarca(fechaMarca);
+        }
+
     }
 }

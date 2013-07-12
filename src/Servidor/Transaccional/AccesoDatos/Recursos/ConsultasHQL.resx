@@ -809,8 +809,8 @@
     <comment>filtro por fecha</comment>
   </data>
   <data name="FiltroObtenerRecordatorioVistaMarcaRecordatorio" xml:space="preserve">
-    <value>marca.Recordatorio = {0}</value>
-    <comment>filtro por recordatorio</comment>
+    <value>marca.Recordatorio &lt; {0}</value>
+    <comment>filtro por recordatorio. Tomando en cuenta el seleccionado y los anteriores</comment>
   </data>
   <data name="ObtenerAuditoriaPorFKYTablaMarcaTer" xml:space="preserve">
     <value>Select a from Auditoria a where a.Fks = '{0}' and a.Tabla = '{1}' and a.Fk = '{2}' ORDER BY a.Fecha DESC</value>
@@ -1094,5 +1094,9 @@
   <data name="ObtenerFechasPorMarcasCertificados" xml:space="preserve">
     <value>Select fm from FechaMarca fm left outer join fetch fm.Tipo where fm.Marca.Id = {0}</value>
     <comment>Se obtienen las fechas de una marca para su certificado</comment>
+  </data>
+  <data name="FiltroObtenerMarcaXDistingue" xml:space="preserve">
+    <value>upper(m.XDistingue) like '%{0}%'</value>
+    <comment>Filtro para obtener la marca por el campo XDistingue SUSTITUYE AL FILTRO POR m.Distingue</comment>
   </data>
 </root>

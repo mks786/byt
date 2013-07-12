@@ -177,13 +177,17 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
-                if ((null != marca.Distingue))
+                
+                //if ((null != marca.Distingue))
+                if ((null != marca.XDistingue))
                 {
                     if (variosFiltros)
                         filtro += " and ";
-                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaDistingue, marca.Distingue);
+                    //filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaDistingue, marca.Distingue);
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaXDistingue, marca.XDistingue);
                     variosFiltros = true;
                 }
+                 
 
                 if (null != marca.PrimeraReferencia)
                 {
@@ -608,6 +612,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
 
                 filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerRecordatorioVistaMarcaRecordatorio, recordatorio.Marca.Recordatorio);
+                                                             
 
                 if ((null != ano) && (!ano.Equals("")))
                 {
