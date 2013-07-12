@@ -69,5 +69,23 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// <param name="localidad"> tipo de localidad de la marca</param>
         /// <returns>Lista de marcas para recordatorio filtradas</returns>
         IList<RecordatorioVista> ConsultarRecordatoriosVistaMarca(RecordatorioVista recordatorio, string ano, string mes, DateTime?[] fechas, string localidad);
+
+
+        /// <summary>
+        /// Servicio que se usa para obtener el campo Distingue de una Marca
+        /// </summary>
+        /// <param name="marca">Marca a consultar</param>
+        /// <returns>Valor del campo XDISTINGUE de la tabla MYP_MARCAS</returns>
+        String ObtenerDistingueDeMarca(Marca marca);
+
+        /// <summary>
+        /// Servicio que actualiza el campo Distingue de una Marca a traves de ADO.NET
+        /// NO SE USA NHibernate
+        /// </summary>
+        /// <param name="marca">Marca que se usa para actualizar el Distingue</param>
+        /// <param name="distingueMarca">Cadena que representa el distingue de una marca</param>
+        /// <returns>True si la operacion fue exitosa; false, en caso contrario</returns>
+        bool ActualizarDistingueDeMarca(Marca marca, String distingueMarca);
+
     }
 }

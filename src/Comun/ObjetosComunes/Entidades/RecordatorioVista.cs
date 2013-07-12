@@ -63,6 +63,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         public RecordatorioVista(int id) : this()
         {
             this._id = id;
+
         }
 
         #endregion
