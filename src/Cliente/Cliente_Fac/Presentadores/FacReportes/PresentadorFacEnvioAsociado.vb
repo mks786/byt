@@ -339,7 +339,7 @@ Namespace Presentadores.FacReportes
                                     reportecuenta.Load(GetRutaReportecuenta())
                                     reportecuenta.SetDataSource(ds)
 
-                                    Dim nombre As String = "\EstadoCuenta" & asociados(i).Id & ".pdf"
+                                    Dim nombre As String = "\NDP-" & asociados(i).Id & ".pdf"
                                     Dim ruta As String = ConfigurationManager.AppSettings("rutaEnvioAsociado") + nombre
                                     reportecuenta.ExportToDisk(ExportFormatType.PortableDocFormat, ruta)
                                     'Process.Start(ConfigurationManager.AppSettings("rutaEnvioAsociado") + nombre)
@@ -393,7 +393,7 @@ Namespace Presentadores.FacReportes
                                     reportePendiente.SetDataSource(ds)
 
 
-                                    Dim nombre As String = "\NDP" & asociados(i).Id & ".pdf"
+                                    Dim nombre As String = "\COPIES-" & asociados(i).Id & ".pdf"
                                     Dim ruta As String = ConfigurationManager.AppSettings("rutaEnvioAsociado") + nombre
                                     reportePendiente.ExportToDisk(ExportFormatType.PortableDocFormat, ruta)
                                     'Process.Start(ConfigurationManager.AppSettings("rutaEnvioAsociado") + nombre)
@@ -423,7 +423,7 @@ Namespace Presentadores.FacReportes
                                     reporteCarta.Load(GetRutaReportecartaIn())
                                     reporteCarta.SetDataSource(ds)
 
-                                    Dim nombre As String = "\LETTER" & asociados(i).Id & ".pdf"
+                                    Dim nombre As String = "\LETTER-" & asociados(i).Id & ".pdf"
                                     Dim ruta As String = ConfigurationManager.AppSettings("rutaEnvioAsociado") + nombre
                                     reporteCarta.ExportToDisk(ExportFormatType.PortableDocFormat, ruta)
                                     'Process.Start(ConfigurationManager.AppSettings("rutaEnvioAsociado") + nombre)
