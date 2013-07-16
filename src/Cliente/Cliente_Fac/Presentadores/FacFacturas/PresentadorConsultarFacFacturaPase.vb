@@ -761,6 +761,7 @@ Namespace Presentadores.FacFacturas
                         'fin para internacional
                     End If
 
+                    FacFactura.IP = "2"
                     If Me._FacFacturaServicios.InsertarOModificar(FacFactura, UsuarioLogeado.Hash) Then
 
                         'cambiar el estatus de la proforma

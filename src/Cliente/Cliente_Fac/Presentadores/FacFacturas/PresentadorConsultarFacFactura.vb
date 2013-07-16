@@ -147,7 +147,7 @@ Namespace Presentadores.FacFacturas
                 'xasociado = DirectCast(FacFactura, FacFactura).Proforma.XAsociado                
                 If _facfactura.XAsociado <> xasociado Then
                     _facfactura.XAsociado = xasociado
-                    Me._FacFacturaServicios.InsertarOModificar(_facfactura, UsuarioLogeado.Hash)                    
+                    Me._FacFacturaServicios.InsertarOModificar(_facfactura, UsuarioLogeado.Hash)
                 End If
                 'fin para evitar  2 enter
                 _ventana.FacFactura = Nothing
