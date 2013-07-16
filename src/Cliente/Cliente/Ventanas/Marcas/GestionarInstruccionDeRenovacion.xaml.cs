@@ -21,7 +21,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public void OcultarControlesAlAgregar()
         {
             this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
-            this._btnVerCorrespondencia.Visibility = System.Windows.Visibility.Collapsed;
+            //this._btnVerCorrespondencia.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         public void FocoPredeterminado()

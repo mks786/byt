@@ -383,7 +383,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
                 //marcaAux.Recordatorio = marcaAux.Recordatorio + 1;
                 marcaAux.Recordatorio = numeroRecordatorio;
 
-                if (numeroRecordatorio == 1)
+                if (numeroRecordatorio == 2)
                     marcaAux.NumeroCondiciones = 5;
 
 

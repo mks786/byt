@@ -59,6 +59,26 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string IdCorresponsalSolicitud { get; set; }
 
+        string IdCartaOrdenSolicitud { get; set; }
+
+        object CartasOrdenSolicitud { get; set; }
+
+        object CartaOrdenSolicitud { get; set; }
+
+        string IdCartaOrdenSolicitudFiltrar { get; set; }
+
+        string DescripcionCartaOrdenSolicitudFiltrar { get; set; }
+
+        string IdCartaOrdenDatos { get; set; }
+
+        object CartasOrdenDatos { get; set; }
+
+        object CartaOrdenDatos { get; set; }
+
+        string IdCartaOrdenDatosFiltrar { get; set; }
+
+        string DescripcionCartaOrdenDatosFiltrar { get; set; }
+
         string IdCorresponsalDatosFiltrar { get; }
 
         string IdCorresponsalDatos { get; set; }
@@ -201,6 +221,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         void PintarRenovacion();
 
+        void PintarInstRenovacion();
+
         void PintarLblMarcaOrigen(bool confirmacion);
 
         void BorrarCeros();
@@ -299,6 +321,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         string IdExpTraspasoRenovacionDatos { get; set; }
 
         string IdExpTraspasoRenovacionSolicitud { get; set; }
+
+        
 
     }
 }

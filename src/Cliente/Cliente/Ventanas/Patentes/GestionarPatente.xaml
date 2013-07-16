@@ -713,7 +713,7 @@
                         <Label Grid.Column="0" Grid.Row="17" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblResumen}"/>
                         </Label>
-                        <custom:ByTTextBox  MaxLength="4000" Grid.Column="1" Grid.Row="17" Name="_txtResumenSolicitud" VerticalAlignment="Center"
+                        <custom:ByTTextBox  MaxLength="2000" Grid.Column="1" Grid.Row="17" Name="_txtResumenSolicitud" VerticalAlignment="Center"
                                            Grid.ColumnSpan="7" Text="{Binding Path=Resumen}"></custom:ByTTextBox>
 
                         <Separator Name="_spdrBotones" Margin="10,5,0,0" Grid.Column="0" Grid.Row="19" Grid.ColumnSpan="12" VerticalAlignment="Center"/>

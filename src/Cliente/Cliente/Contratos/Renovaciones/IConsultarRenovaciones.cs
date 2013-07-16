@@ -41,6 +41,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
 
         void MostrarBotonVolverAMarca();
 
+        void MostrarBotonNuevaRenovacion();
+
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }

@@ -412,7 +412,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._txtMarcaOrigenSolicitud.IsEnabled = value;
                 this._txtIdMarcaOrigenDatos.IsEnabled = value;
                 this._lblIdentMarcaOrigenSolicitud.IsEnabled = value;
-                this._txtIdExpedienteTraspasoRenovacionDatos.IsEnabled = value;
+                //this._txtIdExpedienteTraspasoRenovacionDatos.IsEnabled = value;
                 this._txtIdExpedienteTraspasoRenovacionSolicitud.IsEnabled = value;
 
                 #endregion
@@ -429,7 +429,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._cbxCondiciones.IsEnabled = value;
                 this._cbxDetalleDatos.IsEnabled = value;
                 this._cbxEstadoDatos.IsEnabled = value;
-                this._cbxIdiomaDatos.IsEnabled = value;
+                //this._cbxIdiomaDatos.IsEnabled = value;
                 //this._cbxMarcaOrigen.IsEnabled = value;
                 //this._cbxMarcaOrigenSolicitud.IsEnabled = value; COMENTADO PARA PRUEBAS
                 this._cbxOrdenPublicacion.IsEnabled = value;
@@ -942,6 +942,75 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
 
+        public string IdCartaOrdenSolicitud
+        {
+            get { return this._txtIdCartaOrden.Text; }
+            set { this._txtIdCartaOrden.Text = value; }
+        }
+
+
+        public object CartasOrdenSolicitud
+        {
+            get { return this._lstCartas.DataContext; }
+            set { this._lstCartas.DataContext = value; }
+        }
+
+
+        public object CartaOrdenSolicitud
+        {
+            get { return this._lstCartas.SelectedItem; }
+            set { this._lstCartas.SelectedItem = value; }
+        }
+
+
+        public string IdCartaOrdenSolicitudFiltrar
+        {
+            get { return this._txtIdCarta.Text; }
+            set { this._txtIdCarta.Text = value; }
+        }
+
+
+        public string DescripcionCartaOrdenSolicitudFiltrar
+        {
+            get { return this._txtDescripcionCarta.Text; }
+            set { this._txtDescripcionCarta.Text = value; }
+        }
+
+
+        public string IdCartaOrdenDatos
+        {
+            get { return this._txtIdCartaOrdenDatos.Text; }
+            set { this._txtIdCartaOrdenDatos.Text = value; }
+        }
+
+        public object CartasOrdenDatos
+        {
+            get { return this._lstCartasDatos.DataContext; }
+            set { this._lstCartasDatos.DataContext = value; }
+        }
+
+
+        public object CartaOrdenDatos
+        {
+            get { return this._lstCartasDatos.SelectedItem; }
+            set { this._lstCartasDatos.SelectedItem = value; }
+        }
+
+
+        public string IdCartaOrdenDatosFiltrar
+        {
+            get { return this._txtIdCartaDatos.Text; }
+            set { this._txtIdCartaDatos.Text = value; }
+        }
+
+
+        public string DescripcionCartaOrdenDatosFiltrar
+        {
+            get { return this._txtDescripcionCartaDatos.Text; }
+            set { this._txtDescripcionCartaDatos.Text = value; }
+        }
+
+
         public object CorresponsalesDatos
         {
             get { return this._lstCorresponsalesDatos.DataContext; }
@@ -1093,6 +1162,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public void PintarRenovacion()
         {
             this._btnRenovacion.Background = Brushes.LightGreen;
+        }
+
+
+        public void PintarInstRenovacion()
+        {
+            this._btnIntRenovacion.Background = Brushes.LightGreen;
         }
 
 
@@ -1892,33 +1967,126 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
 
+        private void _btnConsultarCartaDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.BuscarCarta(1);
+        }
+
+
         private void _txtIdCartaOrden_MouseDoubleClick(object sender, RoutedEventArgs e)
         {
+            String nombreCampoTexto = String.Empty;
+            TextBox txtField = new TextBox();
+            txtField = (TextBox)sender;
+            nombreCampoTexto = txtField.Name;
 
-
-            if (!this._corresponsalesCargados)
-            {
-                this._presentador.CargarCorresponsales();
-            }
-
-            ocultarLstInteresadoSolicutud();
-            ocultarLstAsociadoSolicitud();
-            ocultarLstPoderSolicutud();
-
+            this._presentador.CargarCartaOrden(nombreCampoTexto);
             this._btnAceptar.IsDefault = false;
-            this._btnConsultarCorresponsalSolicitud.IsDefault = true;
-
-            mostrarLstCorresponsalSolicutud();
+            this._btnConsultarCarta.IsDefault = true;
+            
+            mostrarLstCartasSolicitud();
         }
+
+
+        private void _txtIdCartaOrdenDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            String nombreCampoTexto = String.Empty;
+            TextBox txtField = new TextBox();
+            txtField = (TextBox)sender;
+            nombreCampoTexto = txtField.Name;
+
+            this._presentador.CargarCartaOrden(nombreCampoTexto);
+            this._btnAceptar.IsDefault = false;
+            this._btnConsultarCartaDatos.IsDefault = true;
+
+            mostrarLstCartasDatos();
+        }
+
+
+        public void mostrarLstCartasSolicitud()
+        {
+            this._btnIrCorresponsal.VerticalAlignment = VerticalAlignment.Top;
+            this._lstCartas.ScrollIntoView(this.IdCartaOrdenSolicitud);
+            this._txtIdCartaOrden.Visibility = System.Windows.Visibility.Collapsed;
+            this._lblIdCarta.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdCarta.Visibility = System.Windows.Visibility.Visible;
+            this._lblDescripcionCarta.Visibility = System.Windows.Visibility.Visible;
+            this._txtDescripcionCarta.Visibility = System.Windows.Visibility.Visible;
+            this._btnConsultarCarta.Visibility = System.Windows.Visibility.Visible;
+            this._btnConsultarCarta.Focus();
+            this._lstCartas.Visibility = System.Windows.Visibility.Visible;
+         
+        }
+
+
+        public void mostrarLstCartasDatos()
+        {
+            this._btnIrCorresponsalDatos.VerticalAlignment = VerticalAlignment.Top;
+            this._lstCartasDatos.ScrollIntoView(this.IdCartaOrdenDatos);
+            this._txtIdCartaOrdenDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._lblIdCartaDatos.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdCartaDatos.Visibility = System.Windows.Visibility.Visible;
+            this._lblDescripcionCartaDatos.Visibility = System.Windows.Visibility.Visible;
+            this._txtDescripcionCartaDatos.Visibility = System.Windows.Visibility.Visible;
+            this._btnConsultarCartaDatos.Visibility = System.Windows.Visibility.Visible;
+            this._btnConsultarCartaDatos.Focus();
+            this._lstCartasDatos.Visibility = System.Windows.Visibility.Visible;
+        }
+
+
+        public void ocultarLstCartasSolicitud()
+        {
+            this._btnIrCorresponsal.VerticalAlignment = VerticalAlignment.Stretch;
+            this._txtIdCartaOrden.Visibility = System.Windows.Visibility.Visible;
+            this._lblIdCarta.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdCarta.Visibility = System.Windows.Visibility.Collapsed;
+            this._lblDescripcionCarta.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtDescripcionCarta.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnConsultarCarta.Visibility = System.Windows.Visibility.Collapsed;
+            this._lstCartas.Visibility = System.Windows.Visibility.Collapsed; 
+        }
+
+        public void ocultarLstCartasDatos()
+        {
+            this._btnIrCorresponsalDatos.VerticalAlignment = VerticalAlignment.Stretch;
+            this._txtIdCartaOrdenDatos.Visibility = System.Windows.Visibility.Visible;
+            this._lblIdCartaDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdCartaDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._lblDescripcionCartaDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtDescripcionCartaDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnConsultarCartaDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._lstCartasDatos.Visibility = System.Windows.Visibility.Collapsed;
+        }
+        
 
 
         private void _lstCartas_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            this._presentador.CambiarCorresponsalSolicitud();
-            ocultarLstCorresponsalSolicutud();
-            ocultarLstCorresponsalDatos();
+            //this._presentador.CambiarCorresponsalSolicitud();
+            int indiceCambio = 0;
+            ListView origenEvento = new ListView();
+            origenEvento = (ListView)sender;
+            String nombreControl = origenEvento.Name;
+            if (nombreControl.Equals("_lstCartas"))
+                indiceCambio = 0;
+            else if (nombreControl.Equals("_lstCartasDatos"))
+                indiceCambio = 1;
+            
 
-            this._btnConsultarCorresponsalSolicitud.IsDefault = false;
+            this._presentador.CambiarCartaOrden(indiceCambio);
+
+            if (indiceCambio == 0)
+            {
+                ocultarLstCartasSolicitud();
+                this._btnConsultarCarta.IsDefault = false;
+            }
+            else if (indiceCambio == 1)
+            {
+                ocultarLstCartasDatos();
+                this._btnConsultarCartaDatos.IsDefault = false;
+            }
+
+            
             this._btnAceptar.IsDefault = true;
         }
 
@@ -2561,8 +2729,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public string IdExpTraspasoRenovacionDatos
         {
-            get { return this._txtIdExpedienteTraspasoRenovacionDatos.Text; }
-            set { this._txtIdExpedienteTraspasoRenovacionDatos.Text = value; }
+            get { return this._txtExptyr.Text; }
+            set { this._txtExptyr.Text = value; }
         }
 
 
@@ -2578,6 +2746,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             this._presentador.IrArchivo();
         }
+
+        private void _btnVerCartaOrden_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarCartaOrden();
+        }
+
+        
+
+        
 
 
 

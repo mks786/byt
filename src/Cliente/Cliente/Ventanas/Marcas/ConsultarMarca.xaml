@@ -357,10 +357,13 @@
                             </ListView>
                         </Grid>
 
-                        <Label Grid.Column="8" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <!--<Label Grid.Column="8" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblCartaOrden}"/>
-                        </Label>
-                        <Grid Grid.Column="9" Grid.Row="4" Grid.ColumnSpan="1">
+                        </Label>-->
+                        <Button Grid.Column="8" Grid.Row="4" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" Height="25" Name="_btnVerCartaOrdenSolicitud" Click="_btnVerCartaOrden_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblCartaOrden}"/>
+                        </Button>
+                        <Grid Grid.Column="9" Grid.Row="4" Grid.ColumnSpan="3">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
@@ -369,6 +372,7 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
+                               
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -377,23 +381,20 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <custom:ByTTextBox IsReadOnly="True" Grid.Column="0" Grid.Row="1" Name="_txtIdCartaOrden" VerticalAlignment="Center"
-                         MaxLength="255" Margin="0,0,5,0"  MouseDoubleClick="_txtIdCartaOrden_MouseDoubleClick" Text="{Binding Path=Carta.Id}"></custom:ByTTextBox>
+                            <custom:ByTTextBox IsReadOnly="True" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5" Name="_txtIdCartaOrden" VerticalAlignment="Center" MaxLength="255" Margin="0,0,5,0"  MouseDoubleClick="_txtIdCartaOrden_MouseDoubleClick" Text="{Binding Path=Carta.Id}"></custom:ByTTextBox>
 
-                            <Label Name="_lblIdCarta" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                            <Label Name="_lblIdCarta" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"  Visibility="Collapsed" Width="50">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                             </Label>
                             <custom:ByTTextBox    Grid.Column="1" Grid.Row="0" Name="_txtIdCarta" VerticalAlignment="Center" 
-                         MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed"  ></custom:ByTTextBox>
+                         MaxLength="255" Grid.ColumnSpan="1" Visibility="Collapsed" Width="60"  ></custom:ByTTextBox>
 
-                            <Label Name="_lblDescripcionCarta" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                            <Label Name="_lblDescripcionCarta" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Visibility="Collapsed" Width="100" HorizontalContentAlignment="Center" Grid.ColumnSpan="2">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblDescripcion}"/>
                             </Label>
-                            <custom:ByTTextBox    Grid.Column="4" Grid.Row="0" Name="_txtDescripcionCarta" VerticalAlignment="Center"  Grid.ColumnSpan="2"
-                         MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
+                            <custom:ByTTextBox    Grid.Column="4" Grid.Row="0" Name="_txtDescripcionCarta" VerticalAlignment="Center"  Grid.ColumnSpan="1" MaxLength="255" Visibility="Collapsed" Width="60" HorizontalAlignment="Left"></custom:ByTTextBox>
 
-                            <Button Name="_btnConsultarCarta" Width="65" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" HorizontalAlignment="Right" 
-                                Click="_btnConsultarCarta_Click" Visibility="Collapsed">
+                            <Button Name="_btnConsultarCarta" Width="85" IsDefault="False" Grid.Row="0" Grid.Column="5" Height="25" HorizontalAlignment="Right" Click="_btnConsultarCarta_Click" Visibility="Collapsed" Grid.ColumnSpan="2" >
                                 <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                             </Button>
                             <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="2" Name="_lstCartas" ItemsSource="{Binding}" 
@@ -1370,12 +1371,72 @@
                             </ListView>
                         </Grid>
 
-                        <Label Grid.Column="8" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <!--<Label Grid.Column="8" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblCartaOrden}"/>
-                        </Label>
-                        <ComboBox  Grid.Column="9" Grid.Row="6" Grid.ColumnSpan="3" Name="_cbxIdiomaDatos" Height="20" 
+                        </Label>-->
+                        <Button Grid.Column="8" Grid.Row="6" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" Height="25" Name="_btnVerCartaOrdenDatos" Click="_btnVerCartaOrden_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblCartaOrden}"/>
+                        </Button>
+
+                        <Grid Grid.Column="9" Grid.Row="6" Grid.ColumnSpan="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <custom:ByTTextBox IsReadOnly="True" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5" Name="_txtIdCartaOrdenDatos" VerticalAlignment="Center" MaxLength="255" Margin="0,0,5,0" Text="{Binding Path=Carta.Id}" MouseDoubleClick="_txtIdCartaOrdenDatos_MouseDoubleClick">
+                            </custom:ByTTextBox>
+                            <Label Name="_lblIdCartaDatos" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                            </Label>
+                            <custom:ByTTextBox    Grid.Column="1" Grid.Row="0" Name="_txtIdCartaDatos" VerticalAlignment="Center" 
+	 MaxLength="255" Grid.ColumnSpan="1" Visibility="Collapsed" Width="60"></custom:ByTTextBox>
+
+                            <Label Name="_lblDescripcionCartaDatos" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Visibility="Collapsed" Width="100" HorizontalContentAlignment="Center" Grid.ColumnSpan="2">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblDescripcion}"/>
+                            </Label>
+                            <custom:ByTTextBox    Grid.Column="4" Grid.Row="0" Name="_txtDescripcionCartaDatos" VerticalAlignment="Center"  Grid.ColumnSpan="1" MaxLength="255" Visibility="Collapsed" Width="60" HorizontalAlignment="Left"></custom:ByTTextBox>
+                            <Button Name="_btnConsultarCartaDatos" Width="85" IsDefault="False" Grid.Row="0" Grid.Column="5" Height="25" HorizontalAlignment="Right" Visibility="Collapsed" Grid.ColumnSpan="2" Click="_btnConsultarCartaDatos_Click">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                            </Button>
+                            <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="2" Name="_lstCartasDatos" ItemsSource="{Binding}" SelectionMode="Single" MouseDoubleClick="_lstCartas_MouseDoubleClick" Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Width="45">
+                                            <GridViewColumnHeader Click="_OrdenarCartas_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock>
+								<TextBlock.Text>
+									<Binding Path="Id" Converter="{StaticResource convertir}"/>
+								</TextBlock.Text>
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="300">
+                                            <GridViewColumnHeader Click="_OrdenarCartas_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+
+
+                        </Grid>
+                        <!--<ComboBox  Grid.Column="9" Grid.Row="6" Grid.ColumnSpan="3" Name="_cbxIdiomaDatos" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
-                        </ComboBox>
+                        </ComboBox>-->
                         <!--Fin Cuarta Fila-->
 
                         <Separator Margin="10 0" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="12" VerticalAlignment="Center"/>
@@ -1898,9 +1959,11 @@
                         <Button  Grid.Column="10" Grid.Row="19" Grid.ColumnSpan="1" Grid.RowSpan="2" Name="_btnRenovacion" Margin="3,6,3,6" Click="_btnRenovacion_Click">
                             <TextBlock Name="_txbRenovacion" Text="{x:Static recurso:Etiquetas.btnRenovacion}"/>
                         </Button>
+                        
                         <Button  Grid.Column="8" Grid.Row="19" Grid.ColumnSpan="2" Grid.RowSpan="2" Name="_btnIntRenovacion" Margin="25,6,3,6" Click="_btnIntRenovacion_Click">
                             <TextBlock Name="_txbIntRenovacion" Text="{x:Static recurso:Etiquetas.btnInstRenovacion}"/>
                         </Button>
+                        
                         <!--Fin Fila Trece-->
 
                         <!--Fila Catorce-->
@@ -1915,8 +1978,7 @@
                         <Label Grid.Column="9" Grid.Row="21" Grid.ColumnSpan="1" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblExpCamPend}"/>
                         </Label>
-                        <custom:ByTTextBox  Grid.Column="10" Grid.Row="21" Grid.ColumnSpan="1" Margin="3" Name="_txtExptyr" VerticalAlignment="Center"  
-                          Text=""></custom:ByTTextBox>
+                        <custom:ByTTextBox  Grid.Column="10" Grid.Row="21" Grid.ColumnSpan="1" Margin="3" Name="_txtExptyr" VerticalAlignment="Center" IsReadOnly="True" Text="{Binding Path=ExpTraspasoRenovacion}"></custom:ByTTextBox>
                         <!--Fin Nuevo-->
 
                         <Separator Margin="10 0" Grid.Column="6" Grid.Row="21" Grid.ColumnSpan="5" VerticalAlignment="bottom"/>
@@ -1942,11 +2004,11 @@
                         <!--Fin Fila Quince-->
 
                         <!--Fila Dieciseis-->
-                        <Label Grid.Column="1" Grid.Row="23" HorizontalContentAlignment="Right" Name="_lblExpTraspasoRenovacionDatos">
+                        <!--<Label Grid.Column="1" Grid.Row="23" HorizontalContentAlignment="Right" Name="_lblExpTraspasoRenovacionDatos">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblMarcaExpTraspasoRenovacion}"/>
                         </Label>
                         <custom:ByTTextBox IsReadOnly="True" Grid.Column="2" Grid.Row="23" Name="_txtIdExpedienteTraspasoRenovacionDatos" VerticalAlignment="Center" Width="85" MaxLength="255" Margin="0,0,5,0">
-                        </custom:ByTTextBox>
+                        </custom:ByTTextBox>-->
                         <Button  Grid.Column="6" Grid.Row="23" Grid.ColumnSpan="1" Name="_btnGenCartel" Margin="8,0,0,0"
                             Height="25" Click="_btnGenCartel_Click">
                             <TextBlock Name="_txbGenCartel" Text="{x:Static recurso:Etiquetas.btnGenCartel}"/>

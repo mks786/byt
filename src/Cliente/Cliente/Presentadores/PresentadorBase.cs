@@ -116,7 +116,10 @@ namespace Trascend.Bolet.Cliente.Presentadores
         /// </summary>
         public void Cancelar()
         {
-            this.Navegar();
+            if (this._ventanaPadre != null)
+                this.RegresarVentanaPadre();
+            else
+                this.Navegar();
         }
 
 

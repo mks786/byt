@@ -66,9 +66,9 @@
       <column name="CCORRESP"/>
     </many-to-one>
 
-    <!--<many-to-one name="Carta" class="Carta">
-      <column name="CCORRESP"/>
-    </many-to-one>-->
+    <many-to-one name="Carta" class="Carta" lazy="false">
+      <column name="CCARTA"/>
+    </many-to-one>
 
     <many-to-one name="BoletinConcesion" class="Boletin" lazy="false">
       <column name="CBOLETIN_CONCESION"/>
@@ -136,6 +136,8 @@
     <!--Fin Internacional-->
     <property name="MarcaOrigen" column="CMARCAO" type="int"/>
     <property name="ExpTraspasoRenovacion" column="EXPTYR" type="string"/>
+    
+    
     
     
   </class>

@@ -53,13 +53,37 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 }
                 else
                 {
-                    InstruccionDeRenovacion instruccionAux = new InstruccionDeRenovacion();
-                    instruccionAux.Fecha = System.DateTime.Now;
-                    instruccionAux.Marca = ((InstruccionDeRenovacion)instruccion).Marca;
-                    this._ventana.InstruccionDeRenovacion = instruccionAux;
+                    if (((InstruccionDeRenovacion)instruccion).Fecha == DateTime.Today)
+                    {
+                        InstruccionDeRenovacion instruccionAux = new InstruccionDeRenovacion();
+                        instruccionAux.Fecha = DateTime.Today;
+                        //instruccionAux.Fecha = System.DateTime.Now;
+                        instruccionAux.Marca = ((InstruccionDeRenovacion)instruccion).Marca;
+                        this._ventana.InstruccionDeRenovacion = instruccionAux;
+                    }
+                    else
+                    {
+                        this._ventana.InstruccionDeRenovacion = (InstruccionDeRenovacion)instruccion;
+                    }
                 }
+
                 if (((InstruccionDeRenovacion)instruccion).Carta == null)
-                    this._nuevaBusqueda = true;
+                    if (((InstruccionDeRenovacion)instruccion).Fecha == DateTime.Today)
+                    {
+                        this._nuevaBusqueda = true;
+                    }
+                    else
+                    {
+                        this._nuevaBusqueda = false;
+                    }
+
+                
+
+                //---
+
+
+
+                //---
 
                 this._instruccionDeRenovacionServicios = (IInstruccionDeRenovacionServicios)Activator.GetObject(typeof(IInstruccionDeRenovacionServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InstruccionDeRenovacionServicios"]);
@@ -327,10 +351,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         public void ConsultarCarta()
         {
-            Carta carta = new Carta();
-            carta.Id = ((InstruccionDeRenovacion)this._ventana.InstruccionDeRenovacion).Carta.Id;
-            IList<Carta> cartas = this._cartaServicios.ObtenerCartasFiltro(carta);
-            Navegar(new ConsultarCarta(cartas[0], this._ventana));
+            if (null != this._ventana.IdCorrespondencia && !this._ventana.IdCorrespondencia.Equals(""))
+            {   
+                Carta carta = new Carta();
+
+                carta.Id = int.Parse(this._ventana.IdCorrespondencia);
+                //carta.Id = ((InstruccionDeRenovacion)this._ventana.InstruccionDeRenovacion).Carta.Id;
+
+                IList<Carta> cartas = this._cartaServicios.ObtenerCartasFiltro(carta);
+                Navegar(new ConsultarCarta(cartas[0], this._ventana)); 
+            }
         }
 
     }

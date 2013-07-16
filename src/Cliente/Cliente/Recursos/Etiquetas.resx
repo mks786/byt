@@ -3784,6 +3784,9 @@ en Prensa:</value>
     <value>Lista de Fechas de Marca</value>
   </data>
   <data name="lblPatentesDistingueEnIngles" xml:space="preserve">
-    <value>Patentes: Distingue en ingles:</value>
+    <value>Patentes: Titulo en ingles:</value>
+  </data>
+  <data name="btnNuevaRenovacion" xml:space="preserve">
+    <value>Crear Renovacion</value>
   </data>
 </root>

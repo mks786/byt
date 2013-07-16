@@ -68,6 +68,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             this._marcaAFiltrar = (Marca)marca;
             _filtrando = true;
             this._ventana.MostrarBotonVolverAMarca();
+            this._ventana.MostrarBotonNuevaRenovacion();
         }
 
         public void ActualizarTitulo()
@@ -292,6 +293,27 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
+
+        /// <summary>
+        /// Metodo que abre la ventana para hacer una nueva renovacion de marca a partir de la marca seleccionada desde ConsultarMarca
+        /// </summary>
+        public void IrGestionarNuevaRenovacion()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this.Navegar(new GestionarRenovacion(null, System.Windows.Visibility.Collapsed, this._marcaAFiltrar, this._ventana, this._ventanaPadre));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+
 
         /// <summary>
         /// Método que ordena una columna

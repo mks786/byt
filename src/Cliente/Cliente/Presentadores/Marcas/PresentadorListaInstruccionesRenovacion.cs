@@ -124,6 +124,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             {
                 InstruccionDeRenovacion instruccion = new InstruccionDeRenovacion();
                 instruccion.Marca = this._marca;
+                instruccion.Fecha = DateTime.Today;
                 this.Navegar(new GestionarInstruccionDeRenovacion(instruccion));
             }
 

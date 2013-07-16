@@ -130,6 +130,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             this._btnVolverMarca.Visibility = Visibility.Visible;
         }
 
+        public void MostrarBotonNuevaRenovacion()
+        {
+            this._btnNuevaRenovacion.Visibility = Visibility.Visible;
+        }
+
+
         public void Mensaje(string mensaje, int opcion)
         {
             if (opcion == 0)
@@ -218,7 +224,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         private void _lstResultados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             this._presentador.IrConsultarRenovacion();
-        }        
+        }
+
+        private void _btnNuevaRenovacion_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrGestionarNuevaRenovacion();
+        }
 
         private void _Ordenar_Click(object sender, RoutedEventArgs e)
         {
@@ -394,7 +405,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.LimpiarCampos();
-        }       
+        }
+
+              
         
     }
 }

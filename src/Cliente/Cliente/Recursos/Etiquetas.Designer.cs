@@ -638,6 +638,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Crear Renovacion.
+        /// </summary>
+        public static string btnNuevaRenovacion {
+            get {
+                return ResourceManager.GetString("btnNuevaRenovacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Nuevo Contacto.
         /// </summary>
         public static string btnNuevoContacto {
@@ -5871,7 +5880,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Patentes: Distingue en ingles:.
+        ///   Busca una cadena traducida similar a Patentes: Titulo en ingles:.
         /// </summary>
         public static string lblPatentesDistingueEnIngles {
             get {

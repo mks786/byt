@@ -10,7 +10,7 @@
       <key-many-to-one name="Marca" column="CMARCA" class="Marca"/>
     </composite-id>
 
-    <many-to-one name="Carta" class="Carta">
+    <many-to-one name="Carta" class="Carta" lazy="false">
       <column name="CCARTA"/>
     </many-to-one>
 

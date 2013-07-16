@@ -431,6 +431,43 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             this._presentador = new PresentadorGestionarRenovacion(this, renovacion, ventanaPadre);
         }
 
+        /// <summary>
+        /// Constructor sobrecargado que recibe una marca
+        /// Este constructor se usa cuando se va a crear una Renovacion de Marca a partir de la pantalla ConsultarMarca
+        /// </summary>
+        /// <param name="renovacion">Renovacion a gestionar que en este caso es nula</param>
+        /// <param name="visibilidad">Visibilidad del boton eliminar</param>
+        /// <param name="marca">Marca a cargar en la renovacion</param>
+        /// <param name="ventanaPadre">Ventana padre que llama a esta ventana</param>
+        public GestionarRenovacion(object renovacion, object visibilidad, object marca, object ventanaPadre)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._btnEliminar.Visibility = (System.Windows.Visibility)visibilidad;
+            //this._presentador = new PresentadorGestionarRenovacion(this, renovacion, null);
+            this._presentador = new PresentadorGestionarRenovacion(this, renovacion, marca, ventanaPadre, null);
+        }
+
+
+        /// <summary>
+        /// Constructor sobrecargado que recibe una marca y la ventana padre de la lista de Renovaciones
+        /// Este constructor se usa cuando se va a crear una Renovacion de Marca a partir de la pantalla ConsultarMarca
+        /// </summary>
+        /// <param name="renovacion">Renovacion a gestionar que en este caso es nula</param>
+        /// <param name="visibilidad">Visibilidad del boton eliminar</param>
+        /// <param name="marca">Marca a cargar en la renovacion</param>
+        /// <param name="ventanaPadre">Ventana padre que llama a esta ventana</param>
+        /// <param name="ventanaPadreListaRenovaciones">Ventana ConsultarMarca</param>
+        public GestionarRenovacion(object renovacion, object visibilidad, object marca, object ventanaPadre, object ventanaPadreListaRenovaciones)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._btnEliminar.Visibility = (System.Windows.Visibility)visibilidad;
+            //this._presentador = new PresentadorGestionarRenovacion(this, renovacion, null);
+            this._presentador = new PresentadorGestionarRenovacion(this, renovacion, marca, ventanaPadre,ventanaPadreListaRenovaciones);
+        }
+
+
 
         public void ActivarControlesAlAgregar()
         {

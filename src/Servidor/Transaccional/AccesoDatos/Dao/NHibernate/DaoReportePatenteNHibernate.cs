@@ -42,7 +42,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 retorno = false;
-                logger.Error(ex.Message);
+                logger.Error(ex.Message  + ex.InnerException.Message);
             }
             finally
             {

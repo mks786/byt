@@ -15,6 +15,7 @@ using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.Cliente.Ventanas.Renovaciones;
 using Trascend.Bolet.Cliente.Ventanas.Corresponsales;
+using Trascend.Bolet.Cliente.Ventanas.Cartas;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
@@ -64,6 +65,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IInstruccionDeRenovacionServicios _instruccionDeRenovacionServicios;
         private IArchivoServicios _archivoServicios;
         private ICertificadoMarcaServicios _certificadoMarcaServicios;
+        private ICartaServicios _cartaServicios;
 
 
         private IList<Asociado> _asociados;
@@ -162,6 +164,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ArchivoServicios"]);
                 this._certificadoMarcaServicios = (ICertificadoMarcaServicios)Activator.GetObject(typeof(ICertificadoMarcaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CertificadoMarcaServicios"]);
+                this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -498,6 +502,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if (null != this._auditorias && this._auditorias.Count > 0)
                     this._ventana.PintarAuditoria();
 
+                if ((null != marca.InstruccionesDeRenovacion) 
+                    && (marca.InstruccionesDeRenovacion.Count > 0))
+                    this._ventana.PintarInstRenovacion();
+
                 if (null != archivoMarca)
                 {
                     this._ventana.PintarArchivo();
@@ -753,7 +761,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             }
 
+
+          
             
+
+
+               
             //if (null != ((Marca)this._ventana.Marca).MarcaOrigen)
             //    marca.MarcaOrigen = ((Marca)this._ventana.Marca).MarcaOrigen;
 
@@ -2091,6 +2104,68 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
 
         /// <summary>
+        /// Metodo que cambia la Carta Orden en el tab de Solicitud
+        /// </summary>
+        public void CambiarCartaOrden(int tabActual)
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (tabActual == 0)
+                {
+                    if ((Carta)this._ventana.CartaOrdenSolicitud != null)
+                    {
+                        this._ventana.IdCartaOrdenSolicitud = ((Carta)this._ventana.CartaOrdenSolicitud).Id != 0 
+                            ? ((Carta)this._ventana.CartaOrdenSolicitud).Id.ToString() : "";
+                        this._ventana.IdCartaOrdenDatos = ((Carta)this._ventana.CartaOrdenSolicitud).Id != 0
+                            ? ((Carta)this._ventana.CartaOrdenSolicitud).Id.ToString() : "";
+                        this._ventana.CartaOrdenDatos = (Carta)this._ventana.CartaOrdenSolicitud;
+
+                        ((Marca)this._ventana.Marca).Carta = ((Carta)this._ventana.CartaOrdenSolicitud).Id != 0 
+                            ? (Carta)this._ventana.CartaOrdenSolicitud : null;
+
+                        
+
+                    }
+                }
+                else if (tabActual == 1)
+                {
+                    if ((Carta)this._ventana.CartaOrdenDatos != null)
+                    {
+                        this._ventana.IdCartaOrdenDatos = ((Carta)this._ventana.CartaOrdenDatos).Id != 0
+                            ? ((Carta)this._ventana.CartaOrdenDatos).Id.ToString() : "";
+                        this._ventana.IdCartaOrdenSolicitud = ((Carta)this._ventana.CartaOrdenDatos).Id != 0
+                            ? ((Carta)this._ventana.CartaOrdenDatos).Id.ToString() : "";
+                        this._ventana.CartaOrdenSolicitud = (Carta)this._ventana.CartaOrdenDatos;
+
+                        ((Marca)this._ventana.Marca).Carta = ((Carta)this._ventana.CartaOrdenDatos).Id != 0 
+                            ? (Carta)this._ventana.CartaOrdenDatos : null;
+
+                    }
+                }
+
+
+                
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception e)
+            {
+                    
+                throw;
+            }
+
+        }
+
+
+        /// <summary>
         /// Método que filtra un corresponsal
         /// </summary>
         /// <param name="filtrarEn"></param>
@@ -2205,6 +2280,41 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
         #endregion
+
+        /// <summary>
+        /// Metodo que sirve para cargar la carta orden
+        /// </summary>
+        /// <param name="nombreCampoTexto">Nombre del campo de texto</param>
+        public void CargarCartaOrden(String nombreCampoTexto)
+        {
+            Carta cartaMarca = null;
+            Carta primeraCarta = new Carta();
+            IList<Carta> cartas = new List<Carta>();
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            cartaMarca = (((Marca)this._ventana.Marca).Carta != null) ? ((Marca)this._ventana.Marca).Carta : null;
+            cartas.Add(primeraCarta);
+            if (cartaMarca != null)
+                cartas.Add(cartaMarca);
+
+            this._ventana.CartasOrdenSolicitud = cartas;
+            this._ventana.CartasOrdenDatos = cartas;
+            
+            if (cartaMarca != null)
+            {
+                this._ventana.CartaOrdenSolicitud = this.BuscarCarta(cartas, cartaMarca);
+                this._ventana.CartaOrdenDatos = this.BuscarCarta(cartas, cartaMarca);
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
 
 
         #region Metodos de la lista de poderes
@@ -3234,9 +3344,82 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
 
-        public void BuscarCarta(int p)
+        public void BuscarCarta(int filtrarEn)
         {
-            throw new NotImplementedException();
+            Carta primercaCarta = new Carta();
+            Carta carta = new Carta();
+            IList<Carta> listaCartas = null;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                
+                if (filtrarEn == 0)
+                {
+                    carta.DescripcionDepartamento = this._ventana.DescripcionCartaOrdenSolicitudFiltrar.ToUpper();
+                    carta.Id = this._ventana.IdCartaOrdenSolicitudFiltrar.Equals("") ? 0
+                        : int.Parse(this._ventana.IdCartaOrdenSolicitudFiltrar);
+
+                }
+                else if (filtrarEn == 1)
+                {
+                    carta.DescripcionDepartamento = this._ventana.DescripcionCartaOrdenDatosFiltrar.ToUpper();
+                    carta.Id = this._ventana.IdCartaOrdenDatosFiltrar.Equals("") ? 0
+                        : int.Parse(this._ventana.IdCartaOrdenDatosFiltrar);
+                }
+
+                if ((!carta.DescripcionDepartamento.Equals("")) || (carta.Id != 0))
+                    listaCartas = this._cartaServicios.ObtenerCartasFiltro(carta);
+                else
+                    listaCartas = new List<Carta>();
+
+                if (listaCartas.Count != 0)
+                {
+                    listaCartas.Insert(0, primercaCarta);
+                    this._ventana.CartasOrdenSolicitud = listaCartas;
+                    this._ventana.CartasOrdenDatos = listaCartas;
+                }
+                else
+                {
+
+                    listaCartas.Insert(0, primercaCarta);
+                    this._ventana.CartasOrdenSolicitud = listaCartas;
+                    this._ventana.CartasOrdenDatos = listaCartas;
+                    this._ventana.CartaOrdenSolicitud = primercaCarta;
+                    this._ventana.CartaOrdenDatos = primercaCarta;
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+
         }
 
 
@@ -3696,6 +3879,47 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
             catch (ApplicationException e)
             {
+                throw;
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo que sirve para consultar una carta orden de una marca
+        /// </summary>
+        public void ConsultarCartaOrden()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (this._ventana.IdCartaOrdenSolicitud != null && !this._ventana.IdCartaOrdenSolicitud.Equals(""))
+                {
+                    Carta carta = new Carta();
+                    List<Carta> listaCartas = null;
+                    carta.Id = int.Parse(this._ventana.IdCartaOrdenSolicitud);
+
+                    listaCartas = this._cartaServicios.ObtenerCartasFiltro(carta).ToList<Carta>();
+
+                    if (listaCartas.Count > 0)
+                        carta = listaCartas[0];
+
+                    this.Navegar(new ConsultarCarta(carta, this._ventana));
+
+                }
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                
                 throw;
             }
         }
