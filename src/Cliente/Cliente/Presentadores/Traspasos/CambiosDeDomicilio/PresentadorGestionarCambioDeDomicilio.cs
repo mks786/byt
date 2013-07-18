@@ -491,6 +491,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
         public void Modificar()
         {
             Mouse.OverrideCursor = Cursors.Wait;
+            String distingueMarca = String.Empty;
 
             try
             {
@@ -516,6 +517,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     {
                         //Comentar el proceso de llenado de la marca
                         //Solamente se debe verificar si existe la marca
+
+                        #region Preparando la Marca del Cambio de Domicilio para el Hibrido
+
+                        distingueMarca = cambioDeDomicilio.Marca.XDistingue;
+                        cambioDeDomicilio.Marca.Distingue = distingueMarca;
+                        cambioDeDomicilio.Marca.XDistingue = String.Empty; 
+
+                        #endregion  
+
                         cambioDeDomicilio.Marca.InfoBoles =
                             this._infoBolServicios.ConsultarInfoBolesPorMarca(cambioDeDomicilio.Marca);
                         cambioDeDomicilio.Marca.Operaciones =
@@ -538,12 +548,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                                                                                                          UsuarioLogeado.Hash);
                                 if ((!exitoso.Equals(null)) && (this._agregar == false))
                                 {
+                                    this._marcaServicios.ActualizarDistingueDeMarca(cambioDeDomicilio.Marca, distingueMarca);
                                     this._ventana.HabilitarCampos = false;
                                     this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
                                 }
                                 else if ((!exitoso.Equals(null)) && (this._agregar == true))
                                 {
                                     cambioDeDomicilio.Id = exitoso.Value;
+                                    this._marcaServicios.ActualizarDistingueDeMarca(cambioDeDomicilio.Marca, distingueMarca);
                                     this.Navegar(new GestionarCambioDeDomicilio(cambioDeDomicilio));
                                 }
                                 else

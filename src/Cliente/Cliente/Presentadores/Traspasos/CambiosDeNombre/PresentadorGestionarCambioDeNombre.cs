@@ -502,6 +502,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
         public void Modificar()
         {
             Mouse.OverrideCursor = Cursors.Wait;
+            String distingueMarca = String.Empty;
 
             try
             {
@@ -525,6 +526,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     cambioDeNombre.Marca = (Marca)this._ventana.Marca;
                     if (null != cambioDeNombre.Marca)
                     {
+
+                        #region Necesario para el Hibrido
+
+                        distingueMarca = cambioDeNombre.Marca.XDistingue;
+                        cambioDeNombre.Marca.Distingue = distingueMarca;
+                        cambioDeNombre.Marca.XDistingue = String.Empty;
+
+                        #endregion
+
                         cambioDeNombre.Marca.InfoBoles =
                             this._infoBolServicios.ConsultarInfoBolesPorMarca(cambioDeNombre.Marca);
                         cambioDeNombre.Marca.Operaciones =
@@ -546,12 +556,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                                                                                                             Hash);
                             if ((!exitoso.Equals(null)) && (this._agregar == false))
                             {
+                                this._marcaServicios.ActualizarDistingueDeMarca(cambioDeNombre.Marca, distingueMarca);
                                 this._ventana.HabilitarCampos = false;
                                 this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
                             }
                             else if ((!exitoso.Equals(null)) && (this._agregar == true))
                             {
                                 cambioDeNombre.Id = exitoso.Value;
+                                this._marcaServicios.ActualizarDistingueDeMarca(cambioDeNombre.Marca, distingueMarca);
                                 this.Navegar(new GestionarCambioDeNombre(cambioDeNombre));
                             }
                             else

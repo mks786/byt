@@ -186,7 +186,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 FechaMarca fechaMarca = new FechaMarca();
                 fechaMarca.Marca = this._marca;
                 fechaMarca.FechaRegistro = DateTime.Today;
-                this.Navegar(new GestionarFechaDeMarca(fechaMarca,this._ventana));
+                this.Navegar(new GestionarFechaDeMarca(fechaMarca,this._ventana, this._ventanaPadre));
                 
             }
 

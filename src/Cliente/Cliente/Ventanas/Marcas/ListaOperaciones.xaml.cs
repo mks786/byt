@@ -78,6 +78,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         }
 
+
+        public ListaOperaciones(object marca, object ventanaPadre)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorListaOperaciones(this, marca, ventanaPadre);
+
+        }
+
+
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             if (!EstaCargada)
@@ -94,7 +105,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Regresar();
+            //this._presentador.Regresar();
+            this._presentador.RegresarVentanaPadre();
         }
 
         private void EventoIrGestionarOperacion(object sender, EventArgs e)

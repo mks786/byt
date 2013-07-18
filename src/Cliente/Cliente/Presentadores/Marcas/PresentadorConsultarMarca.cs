@@ -511,6 +511,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.PintarArchivo();
                 }
 
+                CertificadoMarca certificadoConsultar = new CertificadoMarca();
+                CertificadoMarca certificado = null;
+                certificadoConsultar.IdMarca = this._marca.Id;
+
+                certificado = this._certificadoMarcaServicios.ConsultarPorId(certificadoConsultar);
+
+                if (certificado != null)
+                    this._ventana.PintarCertificado();
+
+
 
                 //if (marca.Servicio.Id.Equals("AB"))
                 //{
@@ -1198,7 +1208,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new ListaOperaciones(CargarMarcaDeLaPantalla()));
+            this.Navegar(new ListaOperaciones(CargarMarcaDeLaPantalla(),this._ventana));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

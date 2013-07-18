@@ -1159,6 +1159,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
 
+        public void PintarCertificado()
+        {
+            this._btnCertificados.Background = Brushes.LightGreen;
+        }
+
+
         public void PintarRenovacion()
         {
             this._btnRenovacion.Background = Brushes.LightGreen;

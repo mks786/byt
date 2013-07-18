@@ -369,6 +369,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
         {
             
             int numeroRecordatorio;
+            String distingueMarca = String.Empty;
+            bool exitoso = false;
+
             ListaDatosValores listaAuxiliar = this.BuscarRecordatorio(this._listaRecordatorios, (ListaDatosValores)this._ventana.Recordatorio);
             numeroRecordatorio = int.Parse(listaAuxiliar.Valor);
             
@@ -386,8 +389,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
                 if (numeroRecordatorio == 2)
                     marcaAux.NumeroCondiciones = 5;
 
+                distingueMarca = marcaAux.XDistingue;
+                marcaAux.Distingue = distingueMarca;
+                marcaAux.XDistingue = String.Empty;
 
-                this._marcaServicios.InsertarOModificar(marcaAux, UsuarioLogeado.Hash);
+                exitoso = this._marcaServicios.InsertarOModificar(marcaAux, UsuarioLogeado.Hash);
+
+                if (exitoso)
+                    this._marcaServicios.ActualizarDistingueDeMarca(marcaAux, marcaAux.Distingue);
 
             }
 

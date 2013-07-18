@@ -36,7 +36,7 @@
       <column name="CASOCIADO"/>
     </many-to-one>
 
-    <many-to-one name="BoletinPublicacion" class="Boletin">
+    <many-to-one name="BoletinPublicacion" class="Boletin" lazy="false">
       <column name="CBOLETIN_PUBLICACION"/>
     </many-to-one>
 

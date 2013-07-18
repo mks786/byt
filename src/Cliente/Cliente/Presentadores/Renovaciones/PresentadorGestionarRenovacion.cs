@@ -509,6 +509,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
         public void Agregar()
         {
             Mouse.OverrideCursor = Cursors.Wait;
+            String distingueMarca = String.Empty;
 
             try
             {
@@ -538,11 +539,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
 
                                 int tiempoConfiguracion = int.Parse(ConfigurationManager.AppSettings["PeriodoRenovacion"].ToString());
 
+                                distingueMarca = marcaAuxiliar.XDistingue;
+                                marcaAuxiliar.Distingue = String.Empty;
+
                                 marcaAuxiliar.FechaRenovacion = marcaAuxiliar.FechaRenovacion != null ? ((DateTime)marcaAuxiliar.FechaRenovacion).AddYears(tiempoConfiguracion) : System.DateTime.Now;
                                 marcaAuxiliar.Operacion = "MODIFY";
                                 marcaAuxiliar.Recordatorio = 0;
 
                                 marcaExitoso = this._marcaServicios.InsertarOModificar(marcaAuxiliar, UsuarioLogeado.Hash);
+                                if (marcaExitoso)
+                                    this._marcaServicios.ActualizarDistingueDeMarca(marcaAuxiliar, distingueMarca);
                             }
 
                             if (marcaExitoso)

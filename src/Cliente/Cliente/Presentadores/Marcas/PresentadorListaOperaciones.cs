@@ -93,6 +93,50 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
 
+
+        public PresentadorListaOperaciones(IListaOperaciones ventana, object marca, object ventanaPadre)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this._ventana = ventana;
+            this._ventanaPadre = ventanaPadre;
+            this._marca = (Marca)marca;
+
+            #region Servicios
+
+            this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
+            this._licenciaServicios = (ILicenciaServicios)Activator.GetObject(typeof(ILicenciaServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["LicenciaServicios"]);
+            this._cesionServicios = (ICesionServicios)Activator.GetObject(typeof(ICesionServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CesionServicios"]);
+            this._fusionServicios = (IFusionServicios)Activator.GetObject(typeof(IFusionServicios),
+                 ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FusionServicios"]);
+            this._cambioDomicilioServicios = (ICambioDeDomicilioServicios)Activator.GetObject(typeof(ICambioDeDomicilioServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioDeDomicilioServicios"]);
+            this._renovacionServicios = (IRenovacionServicios)Activator.GetObject(typeof(IRenovacionServicios),
+                  ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["RenovacionServicios"]);
+            this._cambioNombreServicios = (ICambioDeNombreServicios)Activator.GetObject(typeof(ICambioDeNombreServicios),
+                   ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioDeNombreServicios"]);
+            this._peticionarioServicios = (ICambioPeticionarioServicios)Activator.GetObject(typeof(ICambioPeticionarioServicios),
+                  ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioPeticionarioServicios"]);
+            this._operacionServicios = (IOperacionServicios)Activator.GetObject(typeof(IOperacionServicios),
+                  ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["OperacionServicios"]);
+
+            #endregion
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+
+
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -174,8 +218,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     case "CS":
                         Cesion cesion = new Cesion();
                         cesion.Id = idGenerico;
+                        //this.Navegar(new GestionarCesion(this._cesionServicios.
+                        //                        ObtenerCesionFiltro(cesion)[0], Visibility.Collapsed));
+
                         this.Navegar(new GestionarCesion(this._cesionServicios.
-                                                ObtenerCesionFiltro(cesion)[0], Visibility.Collapsed));
+                                                ObtenerCesionFiltro(cesion)[0], Visibility.Collapsed, this._ventana));
 
                         break;
 
@@ -183,48 +230,67 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     case "FU":
                         Fusion fusion = new Fusion();
                         fusion.Id = idGenerico;
+                        //this.Navegar(new GestionarFusion((this._fusionServicios.
+                        //                                ObtenerFusionFiltro(fusion)[0]), Visibility.Collapsed));
                         this.Navegar(new GestionarFusion((this._fusionServicios.
-                                                        ObtenerFusionFiltro(fusion)[0]), Visibility.Collapsed));
+                                                        ObtenerFusionFiltro(fusion)[0]), Visibility.Collapsed, this._ventana));
+
                         break;
 
                     //redirecciona a CambioDeDomicilio
                     case "CD":
                         CambioDeDomicilio cambioDeDomicilio = new CambioDeDomicilio();
                         cambioDeDomicilio.Id = idGenerico;
+                        //this.Navegar(new GestionarCambioDeDomicilio(this._cambioDomicilioServicios.
+                        //                   ObtenerCambioDeDomicilioFiltro(cambioDeDomicilio)[0], Visibility.Collapsed));
                         this.Navegar(new GestionarCambioDeDomicilio(this._cambioDomicilioServicios.
-                                           ObtenerCambioDeDomicilioFiltro(cambioDeDomicilio)[0], Visibility.Collapsed));
+                                           ObtenerCambioDeDomicilioFiltro(cambioDeDomicilio)[0], Visibility.Collapsed, this._ventana));
+
                         break;
 
                     //redirecciona a CambioDeNombre
                     case "CN":
                         CambioDeNombre cambioDeNombre = new CambioDeNombre();
                         cambioDeNombre.Id = idGenerico;
+                        //this.Navegar(new GestionarCambioDeNombre(this._cambioNombreServicios.
+                        //                       ObtenerCambioDeNombreFiltro(cambioDeNombre)[0], Visibility.Collapsed));
+
                         this.Navegar(new GestionarCambioDeNombre(this._cambioNombreServicios.
-                                               ObtenerCambioDeNombreFiltro(cambioDeNombre)[0], Visibility.Collapsed));
+                                               ObtenerCambioDeNombreFiltro(cambioDeNombre)[0], Visibility.Collapsed, this._ventana));
+
                         break;
 
                     //redirecciona a Renovacion
                     case "RN":
                         Renovacion renovacion = new Renovacion();
                         renovacion.Id = idGenerico;
+                        //this.Navegar(new GestionarRenovacion(this._renovacionServicios.
+                        //                        ObtenerRenovacionFiltro(renovacion)[0], Visibility.Collapsed));
                         this.Navegar(new GestionarRenovacion(this._renovacionServicios.
-                                                ObtenerRenovacionFiltro(renovacion)[0], Visibility.Collapsed));
+                                                ObtenerRenovacionFiltro(renovacion)[0], Visibility.Collapsed, this._ventana));
                         break;
 
                     //redirecciona a Licencia
                     case "LU":
                         Licencia licencia = new Licencia();
                         licencia.Id = idGenerico;
+                        //this.Navegar(new GestionarLicencia(this._licenciaServicios.
+                        //                                    ObtenerLicenciaFiltro(licencia)[0], Visibility.Collapsed));
                         this.Navegar(new GestionarLicencia(this._licenciaServicios.
-                                                            ObtenerLicenciaFiltro(licencia)[0], Visibility.Collapsed));
+                                                            ObtenerLicenciaFiltro(licencia)[0], Visibility.Collapsed,this._ventana));
+
                         break;
 
                     //redirecciona a CambioPeticionario
                     case "CT":
                         CambioPeticionario cambioPeticionario = new CambioPeticionario();
                         cambioPeticionario.Id = idGenerico;
+                        //this.Navegar(new GestionarCambioPeticionario(this._peticionarioServicios.
+                        //                    ObtenerCambioPeticionarioFiltro(cambioPeticionario)[0], Visibility.Collapsed));
+
                         this.Navegar(new GestionarCambioPeticionario(this._peticionarioServicios.
-                                            ObtenerCambioPeticionarioFiltro(cambioPeticionario)[0], Visibility.Collapsed));
+                                            ObtenerCambioPeticionarioFiltro(cambioPeticionario)[0], Visibility.Collapsed,this._ventana));
+
                         break;
 
                     //redirecciona a Abandono

@@ -508,6 +508,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+
+        /// <summary>
+        /// Servicio que actualiza el campo DISTINGUE de una Marca
+        /// </summary>
+        /// <param name="marca">Marca que posee el Distingue</param>
+        /// <param name="distingueMarca">Distingue de la marca</param>
+        /// <returns>True si el proceso se realiza satisfactoriamente; falso, en caso contrario</returns>
         public bool ActualizarDistingueDeMarca(Marca marca, String distingueMarca)
         {
             bool resultado = false;

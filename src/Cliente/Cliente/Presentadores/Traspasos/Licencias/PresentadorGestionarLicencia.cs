@@ -691,6 +691,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
         public void Modificar()
         {
             Mouse.OverrideCursor = Cursors.Wait;
+            String distingueMarca = String.Empty;
 
             try
             {
@@ -715,6 +716,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
 
                     if (null != licencia.Marca)
                     {
+
+                        #region Preparando la Marca del Cambio de Domicilio para el Hibrido
+
+                        distingueMarca = licencia.Marca.XDistingue;
+                        licencia.Marca.Distingue = distingueMarca;
+                        licencia.Marca.XDistingue = String.Empty;
+
+                        #endregion
+
                         licencia.Marca.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarca(licencia.Marca);
                         licencia.Marca.Operaciones =
                             this._operacionServicios.ConsultarOperacionesPorMarca(licencia.Marca);
@@ -731,12 +741,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                                                                                               UsuarioLogeado.Hash);
                             if ((!exitoso.Equals(null)) && (this._agregar == false))
                             {
+                                this._marcaServicios.ActualizarDistingueDeMarca(licencia.Marca, distingueMarca);
                                 this._ventana.HabilitarCampos = false;
                                 this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
                             }
                             else if ((!exitoso.Equals(null)) && (this._agregar == true))
                             {
                                 licencia.Id = exitoso.Value;
+                                this._marcaServicios.ActualizarDistingueDeMarca(licencia.Marca, distingueMarca);
                                 this.Navegar(new GestionarLicencia(licencia));
                             }
                             else

@@ -190,7 +190,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 //this._ventana.Detalles = tipoEstados;
 
                 Servicio marcaServicio = new Servicio();
-                marcaServicio.Id = "MS";
+                marcaServicio.Id = "MPS";
 
                 //this._ventana.Servicio = this.BuscarServicio((IList<Servicio>)this._ventana.Servicios, marca.Servicio);
                 this._ventana.Servicio = this.BuscarServicio((IList<Servicio>)this._ventana.Servicios, marcaServicio);

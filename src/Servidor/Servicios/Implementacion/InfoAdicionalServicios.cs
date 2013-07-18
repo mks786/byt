@@ -5,6 +5,8 @@ using NLog;
 using Trascend.Bolet.LogicaNegocio.Controladores;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using Oracle.DataAccess.Client;
+using Oracle.DataAccess.Types;
 
 namespace Trascend.Bolet.Servicios.Implementacion
 {
@@ -124,6 +126,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+
         /// <summary>
         /// Servicio que elimina a una entidad
         /// </summary>
@@ -231,5 +234,103 @@ namespace Trascend.Bolet.Servicios.Implementacion
                 throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
             }
         }
+
+
+        /// <summary>
+        /// Servicio para actualizar el campo Distingue de la entidad InfoAdicional
+        /// </summary>
+        /// <param name="infoAdicional">InfoAdicional a actualizar</param>
+        /// <param name="distingueInfoAdicional">Cadena con el Distingue en Ingles para InfoAdicional</param>
+        /// <returns>True si la operacion se realiza correctamente; false, en caso contrario</returns>
+        public bool ActualizarDistingueInfoAdicional(InfoAdicional infoAdicional, String distingueInfoAdicional)
+        {
+            bool resultado = false;
+            String idInfoAdicional = infoAdicional.Id;
+
+            String dataSource = ConfigurationManager.AppSettings["DataSourceADO"].ToString();
+            String userAdoDB = ConfigurationManager.AppSettings["UserAdoDB"].ToString();
+            String passwordAdoDB = ConfigurationManager.AppSettings["PasswordAdoDB"].ToString();
+            String connectionString = "Data Source=" + dataSource + " User Id=" + userAdoDB + ";Password=" + passwordAdoDB + ";";
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                OracleConnection con = new OracleConnection(connectionString);
+                con.Open();
+
+                if (con.State.ToString().Equals("Open"))
+                {
+                    OracleCommand cmd = con.CreateCommand();
+                    cmd.Connection = con;
+                    resultado = ActualizarCampoCLOB(cmd, infoAdicional, distingueInfoAdicional);
+                    con.Close();
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
+
+
+            return resultado;
+        }
+
+
+
+        private bool ActualizarCampoCLOB(OracleCommand cmd, InfoAdicional infoAdicional, String distingueInfoAdicional)
+        {
+            String selectCommand = "UPDATE MYP_ADICIONAL SET INFO = :p1 WHERE ID = '" + infoAdicional.Id + "'";
+
+            bool resultado = false;
+
+            try
+            {
+                //Recogiendo los parametros antes de actualizar
+                OracleParameter param = new OracleParameter();
+                param.Direction = System.Data.ParameterDirection.Input;
+                param.OracleDbType = OracleDbType.Clob;
+                param.ParameterName = "p1";
+                param.Value = distingueInfoAdicional;
+
+                //Definiendo el command
+                cmd.BindByName = true;
+                cmd.Parameters.Add(param);
+                cmd.CommandText = selectCommand;
+                cmd.ExecuteNonQuery();
+                resultado = true;
+
+
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
+
+            return resultado;
+        }
+
+
+
     }
 }

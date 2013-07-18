@@ -591,6 +591,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
         public void Modificar()
         {
             Mouse.OverrideCursor = Cursors.Wait;
+            String distingueMarca = String.Empty;
 
             try
             {
@@ -615,6 +616,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
 
                     if (null != cambioPeticionario.Marca)
                     {
+
+                        #region Preparando la Marca del Cambio de Domicilio para el Hibrido
+
+                        distingueMarca = cambioPeticionario.Marca.XDistingue;
+                        cambioPeticionario.Marca.Distingue = distingueMarca;
+                        cambioPeticionario.Marca.XDistingue = String.Empty;
+
+                        #endregion 
+
                         cambioPeticionario.Marca.InfoBoles =
                             this._infoBolServicios.ConsultarInfoBolesPorMarca(cambioPeticionario.Marca);
                         cambioPeticionario.Marca.Operaciones =
@@ -636,12 +646,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                                     cambioPeticionario, UsuarioLogeado.Hash);
                             if ((!exitoso.Equals(null)) && (this._agregar == false))
                             {
+                                this._marcaServicios.ActualizarDistingueDeMarca(cambioPeticionario.Marca, distingueMarca);
                                 this._ventana.HabilitarCampos = false;
                                 this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
                             }
                             else if ((!exitoso.Equals(null)) && (this._agregar == true))
                             {
                                 cambioPeticionario.Id = exitoso.Value;
+                                this._marcaServicios.ActualizarDistingueDeMarca(cambioPeticionario.Marca, distingueMarca);
                                 this.Navegar(new GestionarCambioPeticionario(cambioPeticionario));
                             }
                             else

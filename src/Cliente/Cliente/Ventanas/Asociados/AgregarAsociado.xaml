@@ -383,7 +383,7 @@
                         <CheckBox  Grid.Column="2" Grid.Row="6" Name="_chkAlertaAdministracion" VerticalAlignment="Center"
                          HorizontalAlignment="Left" IsChecked="{Binding Path=BAlerta}" Click="_chkAlertaAdministracion_Click">
                         </CheckBox>
-                        <custom:ByTTextBox MaxLength="250" Grid.Column="2" Grid.Row="6" Name="_txtAlarmaAdministracion" VerticalAlignment="Center" 
+                        <custom:ByTTextBox MaxLength="500" Grid.Column="2" Grid.Row="6" Name="_txtAlarmaAdministracion" VerticalAlignment="Center" 
                           Text="{Binding Path=AlarmaDescripcion}" Grid.ColumnSpan="3" Margin="30,0,0,0"
                          TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
                              Height="75" SpellCheck.IsEnabled="True" IsEnabled="False"></custom:ByTTextBox>

@@ -140,6 +140,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
 
             bool exitoso = false;
+            bool resultado = false;
+            String distingueIngles = String.Empty;
+            
 
             try
             {
@@ -164,7 +167,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                     this._marca.InfoAdicional = infoAdicional;
 
+                    distingueIngles = infoAdicional.Info;
+                    infoAdicional.Info = "";
+
                     exitoso = this._infoAdicionalServicios.InsertarOModificar(infoAdicional, UsuarioLogeado.Hash);
+
+                    if (exitoso)
+                        resultado = this._infoAdicionalServicios.ActualizarDistingueInfoAdicional(infoAdicional, distingueIngles);
 
                 }
 

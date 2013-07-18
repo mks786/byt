@@ -1978,7 +1978,7 @@
                         <Label Grid.Column="9" Grid.Row="21" Grid.ColumnSpan="1" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblExpCamPend}"/>
                         </Label>
-                        <custom:ByTTextBox  Grid.Column="10" Grid.Row="21" Grid.ColumnSpan="1" Margin="3" Name="_txtExptyr" VerticalAlignment="Center" IsReadOnly="True" Text="{Binding Path=ExpTraspasoRenovacion}"></custom:ByTTextBox>
+                        <custom:ByTTextBox  Grid.Column="10" Grid.Row="21" Grid.ColumnSpan="1" Margin="3" Name="_txtExptyr" VerticalAlignment="Center" IsReadOnly="False" Text="{Binding Path=ExpTraspasoRenovacion}"></custom:ByTTextBox>
                         <!--Fin Nuevo-->
 
                         <Separator Margin="10 0" Grid.Column="6" Grid.Row="21" Grid.ColumnSpan="5" VerticalAlignment="bottom"/>

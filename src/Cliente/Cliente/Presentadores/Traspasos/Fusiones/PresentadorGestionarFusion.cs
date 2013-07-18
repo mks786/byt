@@ -779,6 +779,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         public void Modificar()
         {
             Mouse.OverrideCursor = Cursors.Wait;
+            String distingueMarca = String.Empty;
 
             try
             {
@@ -802,6 +803,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
                     if (null != fusion.Marca)
                     {
+
+
+                        #region Necesario para el Hibrido
+
+                        distingueMarca = fusion.Marca.XDistingue;
+                        fusion.Marca.Distingue = distingueMarca;
+                        fusion.Marca.XDistingue = String.Empty; 
+
+                        #endregion
+
+                        
+
                         fusion.Marca.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarca(fusion.Marca);
                         fusion.Marca.Operaciones = this._operacionServicios.ConsultarOperacionesPorMarca(fusion.Marca);
                         fusion.Marca.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarca(fusion.Marca);
@@ -819,11 +832,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                             int? exitoso = this._fusionesServicios.InsertarOModificarFusion(fusion, UsuarioLogeado.Hash);
                             if ((!exitoso.Equals(null)) && (this._agregar == false))
                             {
+                                this._marcaServicios.ActualizarDistingueDeMarca(fusion.Marca, distingueMarca);
                                 this._ventana.HabilitarCampos = false;
                                 this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
                             }
                             else if ((!exitoso.Equals(null)) && (this._agregar == true))
                             {
+                                this._marcaServicios.ActualizarDistingueDeMarca(fusion.Marca, distingueMarca);
                                 fusion.Id = exitoso.Value;
                                 this.Navegar(new GestionarFusion(fusion));
                             }
