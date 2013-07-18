@@ -554,7 +554,7 @@ Namespace Presentadores.FacReportes
                 End If
             End If
             If valor = True Then
-                operacionaux.ValorQuery = operacionaux.ValorQuery & "and o.Saldo > 0 and o.Id='" & nc & "'  order by Asociado.Id, o.FechaOperacion desc, o.CodigoOperacion desc "
+                operacionaux.ValorQuery = operacionaux.ValorQuery & "and o.Saldo > 0 and o.Id='" & nc & "'  order by Asociado.Id, o.FechaOperacion , o.CodigoOperacion  "
                 'operacionaux.ValorQuery = operacionaux.ValorQuery & " and o.Saldo > 0 and o.Id='" & nc & "'  order by o.FechaOperacion, o.CodigoOperacion desc "
                 operacionaux.Seleccion = True
             End If
@@ -647,7 +647,7 @@ Namespace Presentadores.FacReportes
             If valor = True Then
                 Dim query_pais As String = ""
                 query_pais = "' and Pais.Id<>" & (DirectCast(Me._ventana.Pais, Pais)).Id
-                operacionaux.ValorQuery = operacionaux.ValorQuery & " and o.Saldo > 0 and o.Id='" & nc & query_pais & "   order by Asociado.Id, o.FechaOperacion desc, o.CodigoOperacion desc "
+                operacionaux.ValorQuery = operacionaux.ValorQuery & " and o.Saldo > 0 and o.Id='" & nc & query_pais & "   order by Asociado.Id, o.FechaOperacion , o.CodigoOperacion  "
                 'operacionaux.ValorQuery = operacionaux.ValorQuery & " and o.Saldo > 0 and o.Id='" & nc & "'  order by o.FechaOperacion, o.CodigoOperacion desc "
                 operacionaux.Seleccion = True
             End If

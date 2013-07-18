@@ -485,8 +485,13 @@ Namespace Presentadores.FacReportes
             Dim etiquetas As List(Of Etiqueta) = _etiquetaServicios.ConsultarTodos()
             Dim EtiquetaFiltrados As IEnumerable(Of Etiqueta) = etiquetas
             EtiquetaFiltrados = From e In EtiquetaFiltrados Where e.Id IsNot Nothing AndAlso e.Id.ToLower().Contains(codigo.ToLower())
-            valor(0) = EtiquetaFiltrados(0).Descripcion1
-            valor(1) = EtiquetaFiltrados(0).Descripcion2
+            If EtiquetaFiltrados.Count > 0 Then
+                valor(0) = EtiquetaFiltrados(0).Descripcion1
+                valor(1) = EtiquetaFiltrados(0).Descripcion2
+            Else
+                valor(0) = ""
+                valor(1) = ""
+            End If
             Return (valor)
 
         End Function
@@ -504,75 +509,75 @@ Namespace Presentadores.FacReportes
             Select Case mes
                 Case 1
                     If idioma = "ES" Then
-                        retorna = "Caracas, Enero " & dia & ", " & anio
+                        retorna = " Enero " & dia & ", " & anio
                     Else
-                        retorna = "Caracas, January " & dia & ", " & anio
+                        retorna = " January " & dia & ", " & anio
                     End If
                 Case 2
                     If idioma = "ES" Then
-                        retorna = "Caracas, Febrero " & dia & ", " & anio
+                        retorna = " Febrero " & dia & ", " & anio
                     Else
-                        retorna = "Caracas, February " & dia & ", " & anio
+                        retorna = " February " & dia & ", " & anio
                     End If
                 Case 3
                     If idioma = "ES" Then
-                        retorna = "Caracas, Marzo " & dia & ", " & anio
+                        retorna = " Marzo " & dia & ", " & anio
                     Else
-                        retorna = "Caracas, March " & dia & ", " & anio
+                        retorna = " March " & dia & ", " & anio
                     End If
                 Case 4
                     If idioma = "ES" Then
-                        retorna = "Caracas, Abril " & dia & ", " & anio
+                        retorna = " Abril " & dia & ", " & anio
                     Else
-                        retorna = "Caracas, April " & dia & ", " & anio
+                        retorna = " April " & dia & ", " & anio
                     End If
                 Case 5
                     If idioma = "ES" Then
-                        retorna = "Caracas, Mayo " & dia & ", " & anio
+                        retorna = " Mayo " & dia & ", " & anio
                     Else
-                        retorna = "Caracas, May " & dia & ", " & anio
+                        retorna = " May " & dia & ", " & anio
                     End If
                 Case 6
                     If idioma = "ES" Then
-                        retorna = "Caracas, Junio " & dia & ", " & anio
+                        retorna = " Junio " & dia & ", " & anio
                     Else
-                        retorna = "Caracas, June " & dia & ", " & anio
+                        retorna = " June " & dia & ", " & anio
                     End If
                 Case 7
                     If idioma = "ES" Then
-                        retorna = "Caracas, Julio " & dia & ", " & anio
+                        retorna = " Julio " & dia & ", " & anio
                     Else
-                        retorna = "Caracas, July " & dia & ", " & anio
+                        retorna = " July " & dia & ", " & anio
                     End If
                 Case 8
                     If idioma = "ES" Then
-                        retorna = "Caracas, Agosto " & dia & ", " & anio
+                        retorna = " Agosto " & dia & ", " & anio
                     Else
-                        retorna = "Caracas, August " & dia & ", " & anio
+                        retorna = " August " & dia & ", " & anio
                     End If
                 Case 9
                     If idioma = "ES" Then
-                        retorna = "Caracas, Septiembre " & dia & ", " & anio
+                        retorna = " Septiembre " & dia & ", " & anio
                     Else
-                        retorna = "Caracas, September " & dia & ", " & anio
+                        retorna = " September " & dia & ", " & anio
                     End If
                 Case 10
                     If idioma = "ES" Then
-                        retorna = "Caracas, Octubre " & dia & ", " & anio
+                        retorna = " Octubre " & dia & ", " & anio
                     Else
-                        retorna = "Caracas, October " & dia & ", " & anio
+                        retorna = " October " & dia & ", " & anio
                     End If
                 Case 11
                     If idioma = "ES" Then
-                        retorna = "Caracas, Noviembre " & dia & ", " & anio
+                        retorna = " Noviembre " & dia & ", " & anio
                     Else
-                        retorna = "Caracas, November " & dia & ", " & anio
+                        retorna = " November " & dia & ", " & anio
                     End If
                 Case 12
                     If idioma = "ES" Then
-                        retorna = "Caracas, Diciembre " & dia & ", " & anio
+                        retorna = " Diciembre " & dia & ", " & anio
                     Else
-                        retorna = "Caracas, December " & dia & ", " & anio
+                        retorna = " December " & dia & ", " & anio
                     End If
 
             End Select
@@ -643,7 +648,7 @@ Namespace Presentadores.FacReportes
                 'End If
 
                 If valor = True Then
-                    operacionaux.ValorQuery = operacionaux.ValorQuery & "and o.Saldo > 0 and o.Id='" & nc & "'  order by Asociado.Id, o.FechaOperacion "
+                    operacionaux.ValorQuery = operacionaux.ValorQuery & "and o.Saldo > 0 and o.Id='" & nc & "'  order by Asociado.Id, o.FechaOperacion, o.CodigoOperacion  "
                     operacionaux.Seleccion = True
                 End If
 
@@ -719,7 +724,7 @@ Namespace Presentadores.FacReportes
                     Else
                         query_pais = "' and Pais.Id<>" & (DirectCast(Me._ventana.Pais, Pais)).Id
                     End If
-                    operacionaux.ValorQuery = operacionaux.ValorQuery & " and o.Saldo > 0 and o.Id='" & nc & query_pais & "   order by Asociado.Id, o.FechaOperacion "
+                    operacionaux.ValorQuery = operacionaux.ValorQuery & " and o.Saldo > 0 and o.Id='" & nc & query_pais & "   order by Asociado.Id, o.FechaOperacion, o.CodigoOperacion  "
                     operacionaux.Seleccion = True
                 End If
 
@@ -835,11 +840,11 @@ Namespace Presentadores.FacReportes
                         structura.Cliente1 = structura.Cliente1 & ControlChars.NewLine & structura.Mail1
                     End If
                 End If
-                If Me._ventana.TipoSel = "Moneda Original" Then
-                    structura.Moneda = operacion.Moneda.Id
-                Else
-                    structura.Moneda = "BsF"
-                End If
+                'If Me._ventana.TipoSel = "Moneda Original" Then
+                structura.Moneda = operacion.Moneda.Id
+                'Else
+                '    structura.Moneda = "BsF"
+                'End If
 
                 Dim fc As String = ""
                 'If Me._ventana.Fecha1 IsNot Nothing And Me._ventana.Fecha1.ToString <> "" Then
@@ -929,11 +934,11 @@ Namespace Presentadores.FacReportes
                         structura.Cliente1 = structura.Cliente1 & ControlChars.NewLine & structura.Mail1
                     End If
                 End If
-                If Me._ventana.TipoSel = "Moneda Original" Then
-                    structura.Moneda = operacion.Moneda.Id
-                Else
-                    structura.Moneda = "BsF"
-                End If
+                'If Me._ventana.TipoSel = "Moneda Original" Then
+                structura.Moneda = operacion.Moneda.Id
+                'Else
+                '    structura.Moneda = "BsF"
+                'End If
 
                 Dim fc As String = ""
                 'If Me._ventana.Fecha1 IsNot Nothing And Me._ventana.Fecha1.ToString <> "" Then
@@ -1233,11 +1238,11 @@ Namespace Presentadores.FacReportes
                     Else
                         structura.Nota = operacion.CodigoOperacion
                     End If
-                    If Me._ventana.TipoSel = "Moneda Original" Then
-                        structura.Moneda = operacion.Moneda.Id
-                    Else
-                        structura.Moneda = "BsF"
-                    End If
+                    'If Me._ventana.TipoSel = "Moneda Original" Then
+                    structura.Moneda = operacion.Moneda.Id
+                    'Else
+                    '    structura.Moneda = "BsF"
+                    'End If
                     structura.Desc = operacion.XOperacion
                     'If operacion.Id = "ND" Then
                     monto = operacion.Monto
@@ -1304,11 +1309,11 @@ Namespace Presentadores.FacReportes
                     Else
                         structura.Nota = operacion.CodigoOperacion
                     End If
-                    If Me._ventana.TipoSel = "Moneda Original" Then
-                        structura.Moneda = operacion.Moneda.Id
-                    Else
-                        structura.Moneda = "BsF"
-                    End If
+                    'If Me._ventana.TipoSel = "Moneda Original" Then
+                    structura.Moneda = operacion.Moneda.Id
+                    'Else
+                    '    structura.Moneda = "BsF"
+                    'End If
                     structura.Desc = operacion.XOperacion
                     'If operacion.Id = "ND" Then
                     monto = operacion.Monto
