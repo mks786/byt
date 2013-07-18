@@ -773,6 +773,52 @@ Namespace Presentadores.FacReportes
             Dim structura As New StructReporteFActuraCuentaEnc()
             Dim w_s As String = ""
             structura = inicializar_Cuentaenc()
+            'Try
+
+            '    If operacion.Asociado IsNot Nothing Then
+            '        If operacion.Asociado IsNot Nothing Then
+            '            structura.CodigoCliente1 = operacion.Asociado.Id
+            '            structura.Cliente1 = operacion.Asociado.Nombre
+            '            structura.Domicilio1 = operacion.Asociado.Domicilio
+            '            structura.Mail1 = operacion.Asociado.Email
+            '            If operacion.Asociado.Pais IsNot Nothing Then
+            '                structura.Pais1 = BuscarPais(Me._ventana.Paises, operacion.Asociado.Pais).NombreIngles
+            '            End If
+            '            'structura.Pais1 = operacion.Asociado.Pais.NombreIngles
+            '        End If
+            '    End If
+            '    If Me._ventana.TipoSel = "Moneda Original" Then
+            '        structura.Moneda = operacion.Moneda.Id
+            '    Else
+            '        structura.Moneda = "BsF"
+            '    End If
+
+            '    Dim fc As String = ""
+            '    'If Me._ventana.Fecha1 IsNot Nothing And Me._ventana.Fecha1.ToString <> "" Then
+            '    lp_fecha_esc_n(Date.Now, fc, operacion.Idioma.Id)
+            '    'End If
+            '    structura.Titulo1 = "LIST OF PENDING DEBIT NOTES AS OF " & fc
+            '    structura.Titulo2 = "LISTA DE NOTAS DE DEBITO PENDIENTES HASTA " & fc
+
+            '    'preguntar
+            '    'linea = "Select replace(xdomicilio,chr(10),chr(32)) from fac_asociados where casociado = %%casociado.fac_operaciones"
+            '    'Sql(linea, "ORA")
+            '    If operacion.Asociado IsNot Nothing Then
+            '        If operacion.Asociado IsNot Nothing Then
+            '            structura.CodigoCliente2 = operacion.Asociado.Id
+            '            structura.Cliente2 = operacion.Asociado.Nombre
+            '            structura.Domicilio2 = operacion.Asociado.Domicilio
+            '            structura.Mail2 = operacion.Asociado.Email
+            '            If operacion.Asociado.Pais IsNot Nothing Then
+            '                structura.Pais2 = BuscarPais(Me._ventana.Paises, operacion.Asociado.Pais).NombreIngles
+            '            End If
+            '            'structura.Pais1 = operacion.Asociado.Pais.NombreIngles
+            '        End If
+            '    End If
+            '    'structura.Pais2 = operacion.Asociado.Pais.NombreIngles
+
+            '    structura.Mabono = SetFormatoDouble2(sumar_abono(operacion.Asociado.Id))
+
             Try
 
                 If operacion.Asociado IsNot Nothing Then
@@ -780,11 +826,13 @@ Namespace Presentadores.FacReportes
                         structura.CodigoCliente1 = operacion.Asociado.Id
                         structura.Cliente1 = operacion.Asociado.Nombre
                         structura.Domicilio1 = operacion.Asociado.Domicilio
-                        structura.Mail1 = operacion.Asociado.Email
+                        structura.Cliente1 = structura.Cliente1 & ControlChars.NewLine & structura.Domicilio1
                         If operacion.Asociado.Pais IsNot Nothing Then
                             structura.Pais1 = BuscarPais(Me._ventana.Paises, operacion.Asociado.Pais).NombreIngles
+                            structura.Cliente1 = structura.Cliente1 & ControlChars.NewLine & structura.Pais1
                         End If
-                        'structura.Pais1 = operacion.Asociado.Pais.NombreIngles
+                        structura.Mail1 = operacion.Asociado.Email
+                        structura.Cliente1 = structura.Cliente1 & ControlChars.NewLine & structura.Mail1
                     End If
                 End If
                 If Me._ventana.TipoSel = "Moneda Original" Then
@@ -797,12 +845,13 @@ Namespace Presentadores.FacReportes
                 'If Me._ventana.Fecha1 IsNot Nothing And Me._ventana.Fecha1.ToString <> "" Then
                 lp_fecha_esc_n(Date.Now, fc, operacion.Idioma.Id)
                 'End If
-                structura.Titulo1 = "LIST OF PENDING DEBIT NOTES AS OF " & fc
+                structura.Titulo1 = "LIST OF PENDING DEBIT NOTES AS OF  " & fc
                 structura.Titulo2 = "LISTA DE NOTAS DE DEBITO PENDIENTES HASTA " & fc
 
                 'preguntar
                 'linea = "Select replace(xdomicilio,chr(10),chr(32)) from fac_asociados where casociado = %%casociado.fac_operaciones"
                 'Sql(linea, "ORA")
+
                 If operacion.Asociado IsNot Nothing Then
                     If operacion.Asociado IsNot Nothing Then
                         structura.CodigoCliente2 = operacion.Asociado.Id
@@ -812,10 +861,8 @@ Namespace Presentadores.FacReportes
                         If operacion.Asociado.Pais IsNot Nothing Then
                             structura.Pais2 = BuscarPais(Me._ventana.Paises, operacion.Asociado.Pais).NombreIngles
                         End If
-                        'structura.Pais1 = operacion.Asociado.Pais.NombreIngles
                     End If
                 End If
-                'structura.Pais2 = operacion.Asociado.Pais.NombreIngles
 
                 structura.Mabono = SetFormatoDouble2(sumar_abono(operacion.Asociado.Id))
 
@@ -830,6 +877,42 @@ Namespace Presentadores.FacReportes
             Dim structura As New StructReporteFActuraCuentaEnc()
             Dim w_s As String = ""
             structura = inicializar_Cuentaenc()
+            'Try
+
+            '    If operacion.Asociado IsNot Nothing Then
+            '        If operacion.Asociado IsNot Nothing Then
+            '            structura.CodigoCliente1 = operacion.Asociado.Id
+            '            structura.Cliente1 = operacion.Asociado.Nombre
+            '            structura.Domicilio1 = operacion.Asociado.Domicilio
+            '            structura.Mail1 = operacion.Asociado.Email
+            '            'structura.Pais1 = operacion.Asociado.Pais.NombreIngles
+            '        End If
+            '    End If
+            '    If Me._ventana.TipoSel = "Moneda Original" Then
+            '        structura.Moneda = operacion.Moneda.Id
+            '    Else
+            '        structura.Moneda = "BsF"
+            '    End If
+
+            '    Dim fc As String = ""
+            '    'If Me._ventana.Fecha1 IsNot Nothing And Me._ventana.Fecha1.ToString <> "" Then
+            '    lp_fecha_esc_n(Date.Now, fc, operacion.Idioma.Id)
+            '    'End If
+            '    structura.Titulo1 = "LIST OF PENDING DEBIT NOTES AS OF  " & fc
+            '    structura.Titulo2 = "LISTA DE NOTAS DE DEBITO PENDIENTES HASTA " & fc
+
+            '    'preguntar
+            '    'linea = "Select replace(xdomicilio,chr(10),chr(32)) from fac_asociados where casociado = %%casociado.fac_operaciones"
+            '    'Sql(linea, "ORA")
+            '    structura.Domicilio2 = operacion.Asociado.Domicilio
+
+            '    structura.Cliente2 = operacion.Asociado.Nombre
+            '    structura.CodigoCliente2 = operacion.Asociado.Id
+            '    structura.Mail2 = operacion.Asociado.Email
+            '    'structura.Pais2 = operacion.Asociado.Pais.NombreIngles
+
+            '    structura.Mabono = SetFormatoDouble2(sumar_abono(operacion.Asociado.Id))
+
             Try
 
                 If operacion.Asociado IsNot Nothing Then
@@ -837,8 +920,13 @@ Namespace Presentadores.FacReportes
                         structura.CodigoCliente1 = operacion.Asociado.Id
                         structura.Cliente1 = operacion.Asociado.Nombre
                         structura.Domicilio1 = operacion.Asociado.Domicilio
+                        structura.Cliente1 = structura.Cliente1 & ControlChars.NewLine & structura.Domicilio1
+                        If operacion.Asociado.Pais IsNot Nothing Then
+                            structura.Pais1 = BuscarPais(Me._ventana.Paises, operacion.Asociado.Pais).NombreIngles
+                            structura.Cliente1 = structura.Cliente1 & ControlChars.NewLine & structura.Pais1
+                        End If
                         structura.Mail1 = operacion.Asociado.Email
-                        'structura.Pais1 = operacion.Asociado.Pais.NombreIngles
+                        structura.Cliente1 = structura.Cliente1 & ControlChars.NewLine & structura.Mail1
                     End If
                 End If
                 If Me._ventana.TipoSel = "Moneda Original" Then
@@ -862,7 +950,7 @@ Namespace Presentadores.FacReportes
                 structura.Cliente2 = operacion.Asociado.Nombre
                 structura.CodigoCliente2 = operacion.Asociado.Id
                 structura.Mail2 = operacion.Asociado.Email
-                'structura.Pais2 = operacion.Asociado.Pais.NombreIngles
+                structura.Pais2 = operacion.Asociado.Pais.NombreIngles
 
                 structura.Mabono = SetFormatoDouble2(sumar_abono(operacion.Asociado.Id))
 
@@ -884,6 +972,105 @@ Namespace Presentadores.FacReportes
             If (DirectCast(Me._ventana.Pais, Pais).Id > Integer.MinValue) Then
                 seleccionpais = True
             End If
+            'Try
+            '    '''''''''''''''''''''''''''''''''''''
+            '    If seleccionpais = False Then
+            '        Dim facOperacion As List(Of FacOperacion) = Buscar_Operacion("ND", idasociado)
+            '        For i As Integer = 0 To facOperacion.Count - 1
+            '            If i = 0 Then
+            '                'llamar encabezado
+            '                structura = ObtenerEstructuraCuentaEnc(facOperacion(i))
+            '                j = j + 1
+            '                structura.Id = j
+            '                crea = True
+            '            Else
+            '                If facOperacion(i).Asociado.Id <> facOperacion(i - 1).Asociado.Id Then
+            '                    'llamar encabezado                           
+            '                    structura.Mttotal = SetFormatoDouble2(montototal)
+            '                    Dim abono As Double = structura.Mabono
+            '                    structura.MttotalG = SetFormatoDouble2(montototal + abono)
+            '                    retorno.Add(structura)
+
+            '                    structura = ObtenerEstructuraCuentaEnc(facOperacion(i))
+            '                    j = j + 1
+            '                    structura.Id = j
+            '                    montototal = 0
+            '                    crea = False
+            '                    'retorno.Add(structura)
+            '                    'ObtenerEstructuraDeta(j, det)
+            '                    'Else
+            '                    '    If facOperacion(i).Asociado.Id <> facOperacion(i - 1).Asociado.Id Then
+            '                    '        crea = False
+            '                    '    End If
+            '                End If
+            '            End If
+            '            ObtenerEstructuraCuentaDeta(j, det, facOperacion(i), montototal)
+            '            If i = facOperacion.Count - 1 Then
+            '                'llamar detalle
+            '            Else
+            '                If facOperacion(i).Asociado.Id <> facOperacion(i + 1).Asociado.Id Then
+            '                    'llamar detalle
+            '                End If
+            '            End If
+            '        Next
+            '        If j = 1 And retorno.Count = 0 Then
+            '            structura.Mttotal = SetFormatoDouble2(montototal)
+            '            Dim abono As Double = structura.Mabono
+            '            structura.MttotalG = SetFormatoDouble2(montototal + abono)
+            '            retorno.Add(structura)
+            '        End If
+            '        '''''''''''''''''''''''''''''''''''''
+
+            '        '''''''''''''''''''''''''''''''''''''
+            '    Else 'si es pais
+            '        Dim facOperacionPais As List(Of FacOperacionPais) = Buscar_OperacionPais("ND", idasociado)
+            '        For i As Integer = 0 To facOperacionPais.Count - 1
+            '            If i = 0 Then
+            '                'llamar encabezado
+            '                structura = ObtenerEstructuraEncPais(facOperacionPais(i))
+            '                j = j + 1
+            '                structura.Id = j
+            '                crea = True
+            '            Else
+            '                If facOperacionPais(i).Asociado.Id <> facOperacionPais(i - 1).Asociado.Id Then
+            '                    'llamar encabezado                           
+            '                    structura.Mttotal = SetFormatoDouble2(montototal)
+            '                    Dim abono As Double = structura.Mabono
+            '                    structura.MttotalG = SetFormatoDouble2(montototal + abono)
+            '                    retorno.Add(structura)
+
+            '                    structura = ObtenerEstructuraEncPais(facOperacionPais(i))
+            '                    j = j + 1
+            '                    structura.Id = j
+            '                    montototal = 0
+            '                    crea = False
+            '                    'retorno.Add(structura)
+            '                    'ObtenerEstructuraDeta(j, det)
+            '                    'Else
+            '                    '    If facOperacion(i).Asociado.Id <> facOperacion(i - 1).Asociado.Id Then
+            '                    '        crea = False
+            '                    '    End If
+            '                End If
+            '            End If
+            '            ObtenerEstructuraCuentaDetaPais(j, det, facOperacionPais(i), montototal)
+            '            If i = facOperacionPais.Count - 1 Then
+            '                'llamar detalle
+            '            Else
+            '                If facOperacionPais(i).Asociado.Id <> facOperacionPais(i + 1).Asociado.Id Then
+            '                    'llamar detalle
+            '                End If
+            '            End If
+            '        Next
+            '        If j = 1 And retorno.Count = 0 Then
+            '            structura.Mttotal = SetFormatoDouble2(montototal)
+            '            Dim abono As Double = structura.Mabono
+            '            structura.MttotalG = SetFormatoDouble2(montototal + abono)
+            '            retorno.Add(structura)
+            '        End If
+            '        '''''''''''''''''''''''''''''''''''''
+
+            '    End If 'si no es pais
+
             Try
                 '''''''''''''''''''''''''''''''''''''
                 If seleccionpais = False Then
@@ -899,7 +1086,7 @@ Namespace Presentadores.FacReportes
                             If facOperacion(i).Asociado.Id <> facOperacion(i - 1).Asociado.Id Then
                                 'llamar encabezado                           
                                 structura.Mttotal = SetFormatoDouble2(montototal)
-                                Dim abono As Double = structura.Mabono
+                                Dim abono As Double = GetFormatoDouble2(structura.Mabono)
                                 structura.MttotalG = SetFormatoDouble2(montototal + abono)
                                 retorno.Add(structura)
 
@@ -916,6 +1103,7 @@ Namespace Presentadores.FacReportes
                                 '    End If
                             End If
                         End If
+
                         ObtenerEstructuraCuentaDeta(j, det, facOperacion(i), montototal)
                         If i = facOperacion.Count - 1 Then
                             'llamar detalle
@@ -927,9 +1115,16 @@ Namespace Presentadores.FacReportes
                     Next
                     If j = 1 And retorno.Count = 0 Then
                         structura.Mttotal = SetFormatoDouble2(montototal)
-                        Dim abono As Double = structura.Mabono
+                        Dim abono As Double = GetFormatoDouble2(structura.Mabono)
                         structura.MttotalG = SetFormatoDouble2(montototal + abono)
                         retorno.Add(structura)
+                    Else
+                        If j > retorno.Count Then
+                            structura.Mttotal = SetFormatoDouble2(montototal)
+                            Dim abono As Double = GetFormatoDouble2(structura.Mabono)
+                            structura.MttotalG = SetFormatoDouble2(montototal + abono)
+                            retorno.Add(structura)
+                        End If
                     End If
                     '''''''''''''''''''''''''''''''''''''
 
@@ -947,7 +1142,7 @@ Namespace Presentadores.FacReportes
                             If facOperacionPais(i).Asociado.Id <> facOperacionPais(i - 1).Asociado.Id Then
                                 'llamar encabezado                           
                                 structura.Mttotal = SetFormatoDouble2(montototal)
-                                Dim abono As Double = structura.Mabono
+                                Dim abono As Double = GetFormatoDouble2(structura.Mabono)
                                 structura.MttotalG = SetFormatoDouble2(montototal + abono)
                                 retorno.Add(structura)
 
@@ -975,9 +1170,16 @@ Namespace Presentadores.FacReportes
                     Next
                     If j = 1 And retorno.Count = 0 Then
                         structura.Mttotal = SetFormatoDouble2(montototal)
-                        Dim abono As Double = structura.Mabono
+                        Dim abono As Double = GetFormatoDouble2(structura.Mabono)
                         structura.MttotalG = SetFormatoDouble2(montototal + abono)
                         retorno.Add(structura)
+                    Else
+                        If j > retorno.Count Then
+                            structura.Mttotal = SetFormatoDouble2(montototal)
+                            Dim abono As Double = GetFormatoDouble2(structura.Mabono)
+                            structura.MttotalG = SetFormatoDouble2(montototal + abono)
+                            retorno.Add(structura)
+                        End If
                     End If
                     '''''''''''''''''''''''''''''''''''''
 
@@ -995,6 +1197,35 @@ Namespace Presentadores.FacReportes
                 retorno = detalle
                 Dim monto As Double = 0
                 Dim structura As New StructReporteFActuraCuentaDeta()
+                'Try
+                '    structura.Fecha = operacion.FechaOperacion
+                '    If operacion.Id = "ND" Then
+                '        lp_compl(operacion.FechaOperacion, operacion.CodigoOperacion, structura.Nota)
+                '    Else
+                '        structura.Nota = operacion.CodigoOperacion
+                '    End If
+                '    If Me._ventana.TipoSel = "Moneda Original" Then
+                '        structura.Moneda = operacion.Moneda.Id
+                '    Else
+                '        structura.Moneda = "BsF"
+                '    End If
+                '    structura.Desc = operacion.XOperacion
+                '    'If operacion.Id = "ND" Then
+                '    monto = operacion.Monto
+                '    'End If
+
+                '    'If operacion.Id = "NC" Then
+                '    '    monto = operacion.Monto * -1
+                '    'End If
+
+                '    'If operacion.Id = "NP" Then
+                '    '    monto = operacion.Monto * -1
+                '    'End If
+                '    structura.MMonto = SetFormatoDouble2(monto)
+                '    montototal = montototal + monto
+                '    structura.Id = id
+                '    retorno.Add(structura)
+
                 Try
                     structura.Fecha = operacion.FechaOperacion
                     If operacion.Id = "ND" Then
@@ -1037,6 +1268,35 @@ Namespace Presentadores.FacReportes
                 retorno = detalle
                 Dim monto As Double = 0
                 Dim structura As New StructReporteFActuraCuentaDeta()
+                'Try
+                '    structura.Fecha = operacion.FechaOperacion
+                '    If operacion.Id = "ND" Then
+                '        lp_compl(operacion.FechaOperacion, operacion.CodigoOperacion, structura.Nota)
+                '    Else
+                '        structura.Nota = operacion.CodigoOperacion
+                '    End If
+                '    If Me._ventana.TipoSel = "Moneda Original" Then
+                '        structura.Moneda = operacion.Moneda.Id
+                '    Else
+                '        structura.Moneda = "BsF"
+                '    End If
+                '    structura.Desc = operacion.XOperacion
+                '    'If operacion.Id = "ND" Then
+                '    monto = operacion.Monto
+                '    'End If
+
+                '    'If operacion.Id = "NC" Then
+                '    '    monto = operacion.Monto * -1
+                '    'End If
+
+                '    'If operacion.Id = "NP" Then
+                '    '    monto = operacion.Monto * -1
+                '    'End If
+                '    structura.MMonto = SetFormatoDouble2(monto)
+                '    montototal = montototal + monto
+                '    structura.Id = id
+                '    retorno.Add(structura)
+
                 Try
                     structura.Fecha = operacion.FechaOperacion
                     If operacion.Id = "ND" Then
@@ -1423,6 +1683,7 @@ Namespace Presentadores.FacReportes
         ''''''''fin Reporte Cuenta
 
         '''''''''''''''reportes  facturas pendientes
+
         Private Function GetRutaReportePendiente() As String
             Dim retorno As String
             retorno = Environment.CurrentDirectory & ConfigurationManager.AppSettings("rutaFacreportes") & "FacturasPendientesAsociados.rpt"
@@ -2404,6 +2665,8 @@ Namespace Presentadores.FacReportes
         End Structure
         '''''''''''''''Fin reportes  facturas pendientes
 
+
+
         '''''''''''''''reportes Carta
 
         Private Function GetRutaReportecartaEs() As String
@@ -2722,13 +2985,30 @@ Namespace Presentadores.FacReportes
             If IsDate(Me._ventana.FechaEnvio) Then
                 lp_fecha_esc_n_carta(Me._ventana.FechaEnvio, structura.Fecha, Asociado.Idioma.Id, s)
             End If
-            structura.CodigoAsociado = "Ref: " & Asociado.Id & "/ACCODPES"
-            structura.Cliente = Asociado.Nombre
-            structura.Direccion = Asociado.Domicilio
+            'structura.CodigoAsociado = "Ref: " & Asociado.Id & "/ACCODPES"
+            'structura.Cliente = Asociado.Nombre
+            'structura.Direccion = Asociado.Domicilio
+            'Dim pais As Pais = BuscarPais(Me._ventana.Paises, Asociado.Pais)
+            'structura.Pais = pais.NombreIngles
+            If Asociado IsNot Nothing Then
+                If Asociado IsNot Nothing Then
+                    structura.CodigoAsociado = "Ref: " & Asociado.Id & "/ACCODPES"
+                    structura.Cliente = Asociado.Nombre
+                    structura.Direccion = Asociado.Domicilio
+                    structura.Cliente = structura.Cliente & ControlChars.NewLine & structura.Direccion
+                    structura.Direccion = ""
+                    If Asociado.Pais IsNot Nothing Then
+                        structura.Pais = BuscarPais(Me._ventana.Paises, Asociado.Pais).NombreIngles
+                        structura.Cliente = structura.Cliente & ControlChars.NewLine & structura.Pais
+                        structura.Pais = ""
+                    End If
+                    'structura.Mail1 = Operacion.Asociado.Email
+                    'structura.Cliente1 = structura.Cliente1 & ControlChars.NewLine & structura.Mail1
+                End If
+            End If
+
             'structura.Usua = DirectCast(Me._ventana.Usuario, Usuario).NombreCompleto
             structura.Usua = DirectCast(Me._ventana.Usuario, Usuario).Email
-            Dim pais As Pais = BuscarPais(Me._ventana.Paises, Asociado.Pais)
-            structura.Pais = pais.NombreIngles
             Dim campo1 As String = ""
             Dim campo2 As String = ""
             If Asociado.Idioma.Id = "ES" Then

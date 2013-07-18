@@ -241,12 +241,12 @@ Namespace Presentadores.FacCobros
                     If (valido = True) Then
 
                         'para el contador
-                        Dim contador As New ContadorFac
-                        contador.Id = "FAC_COBROS"
-                        contador = _contadorfacServicios.ConsultarPorId(contador)
-                        FacCobro.Id = contador.ProximoValor
-                        contador.ProximoValor = System.Math.Max(System.Threading.Interlocked.Increment(contador.ProximoValor), contador.ProximoValor - 1)
-                        Dim exitocontador As Boolean = _contadorfacServicios.InsertarOModificar(contador, UsuarioLogeado.Hash)
+                        'Dim contador As New ContadorFac
+                        'contador.Id = "FAC_COBROS"
+                        'contador = _contadorfacServicios.ConsultarPorId(contador)
+                        'FacCobro.Id = contador.ProximoValor
+                        'contador.ProximoValor = System.Math.Max(System.Threading.Interlocked.Increment(contador.ProximoValor), contador.ProximoValor - 1)
+                        'Dim exitocontador As Boolean = _contadorfacServicios.InsertarOModificar(contador, UsuarioLogeado.Hash)
                         'fin contador                   
 
                         Dim FacFormas As List(Of FacForma) = DirectCast(Me._ventana.ResultadosForma, List(Of FacForma))

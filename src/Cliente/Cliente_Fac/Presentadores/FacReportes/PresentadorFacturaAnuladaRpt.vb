@@ -529,17 +529,20 @@ Namespace Presentadores.FacReportes
                 If _FacFacturaAnulada.Asociado IsNot Nothing Then
                     If _FacFacturaAnulada.Asociado.Pais IsNot Nothing Then
                         Dim paises As IList(Of Pais) = Me._PaisServicios.ConsultarTodos()
-                        structura.Pais = BuscarPais(paises, _FacFacturaAnulada.Asociado.Pais).NombreIngles
+                        structura.Pais = BuscarPais(paises, _FacFacturaAnulada.Asociado.Pais).NombreIngles                        
                         structura.Cliente = structura.Cliente & ControlChars.NewLine & structura.Pais
+                        structura.Pais = ""
                     End If
                 End If
                 If _FacFacturaAnulada.Asociado.Rif IsNot Nothing And _FacFacturaAnulada.Asociado.Rif <> "" Then
                     structura.RifCliente = "RIF: " & _FacFacturaAnulada.Asociado.Rif
                     structura.Cliente = structura.Cliente & ControlChars.NewLine & structura.RifCliente
+                    structura.RifCliente = ""
                 End If
                 If _FacFacturaAnulada.Asociado.Nit IsNot Nothing And _FacFacturaAnulada.Asociado.Nit <> "" Then
                     structura.NitCliente = "NIT: " & _FacFacturaAnulada.Asociado.Nit
                     structura.Cliente = structura.Cliente & ControlChars.NewLine & structura.NitCliente
+                    structura.NitCliente = ""
                 End If
                 If _FacFacturaAnulada.Xter = 1 Then
                     If _FacFacturaAnulada.Secanula IsNot Nothing Then

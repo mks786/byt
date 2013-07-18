@@ -1802,23 +1802,38 @@
         </WrapPanel>
 
         <WrapPanel Name="_Wp_Btn3" Grid.Column="1" Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Top">
-            <Button Name="btnRecalcular_Nuevo" VerticalAlignment="Bottom" Height="40" Width="80"
+            <Button Name="btnRecalcular_Nuevo" VerticalAlignment="Bottom" Height="40" Width="80" 
                     Click="_btnRecalcular_Nuevo_Click" FontSize="10">
                 <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Name="_txtRecalcular_Nuevo" Text="Recalcular Statement"/>
             </Button>
+
+            <Label  >
+                <TextBlock Text="  "/>
+            </Label>
+
+            <Button Name="_btnProcesarStatement" VerticalAlignment="Bottom" Height="40" Width="80"
+                    Click="_btnImprimir">
+                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Name="_txtProcesarStatement" Text=" Procesar Statement"/>
+            </Button>
+            <Button Name="_btnReImprimirSF" VerticalAlignment="Bottom" Height="40" Width="80"
+                    Click="_btnImprimir">
+                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"  Name="_txtReImprimirSF" Text="Re Imprimir         S-F"/>
+            </Button>
         </WrapPanel>
+
+
 
         <WrapPanel Name="_Wp_Btn2" Grid.Column="1" Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Center">
         
-            <Button Name="_btnImprimirFacturaAnulada" VerticalAlignment="Bottom" Height="40" Width="80"
-                    Click="_btnImprimir" FontSize="10">
-                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Name="_txtImprimirFacturaAnulada" Text="Copia Factura Anulada"/>
-            </Button>
-
             <!--<Button Name="btnRecalcular_Nuevo" VerticalAlignment="Bottom" Height="40" Width="80"
                     Click="_btnRecalcular_Nuevo_Click" FontSize="10">
                 <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Name="_txtRecalcular_Nuevo" Text="Recalcular Statement"/>
             </Button>-->
+
+            <Button Name="_btnImprimirFacturaAnulada" VerticalAlignment="Bottom" Height="40" Width="80"
+                    Click="_btnImprimir" FontSize="10">
+                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Name="_txtImprimirFacturaAnulada" Text="Copia Factura Anulada"/>
+            </Button>
 
             <Button Name="_btnImprimirFacturaCopia" VerticalAlignment="Bottom" Height="40" Width="80"
                     Click="_btnImprimir" FontSize="10">
@@ -1865,14 +1880,6 @@
                     Click="_btnImprimir">
                 <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Name="_txtImprimirStatement" Text=" Imprimir Statement"/>
             </Button>            
-            <Button Name="_btnProcesarStatement" VerticalAlignment="Bottom" Height="40" Width="80"
-                    Click="_btnImprimir">
-                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Name="_txtProcesarStatement" Text=" Procesar Statement"/>
-            </Button>
-            <Button Name="_btnReImprimirSF" VerticalAlignment="Bottom" Height="40" Width="80"
-                    Click="_btnImprimir">
-                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"  Name="_txtReImprimirSF" Text="Re Imprimir         S-F"/>
-            </Button>
         </WrapPanel>
 
         <WrapPanel Grid.Column="0" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">

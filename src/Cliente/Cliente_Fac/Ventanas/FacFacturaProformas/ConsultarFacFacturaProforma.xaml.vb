@@ -2066,6 +2066,11 @@ Namespace Ventanas.FacFacturaProformas
                     _btnEliminarDepartamentoServicio2.Visibility = Windows.Visibility.Collapsed
                     _btnrecalcular.Visibility = Windows.Visibility.Collapsed
                 End If
+                If value = False Then
+                    _btnConsultarDepartamentoServicio2.Visibility = Windows.Visibility.Visible
+                    _btnEliminarDepartamentoServicio2.Visibility = Windows.Visibility.Visible
+                    _btnrecalcular.Visibility = Windows.Visibility.Visible
+                End If
             End Set
         End Property
     End Class

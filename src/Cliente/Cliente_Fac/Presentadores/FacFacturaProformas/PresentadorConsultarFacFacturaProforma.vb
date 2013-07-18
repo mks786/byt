@@ -325,6 +325,10 @@ Namespace Presentadores.FacFacturaProformas
                         Me._ventana.Validar_Autorizada = True
                     End If
 
+                    If FacFacturaProforma.Auto = "3" Then
+                        Me._ventana.Validar_Autorizada = False
+                    End If
+
                     Me._ventana.FocoPredeterminado()
 
                     '#Region "trace"
@@ -1402,14 +1406,24 @@ Namespace Presentadores.FacFacturaProformas
 
                     'esto sustituye el memsaje de abajo                    
                     Me._ventana.Desactivar_Descuento = detalle_proforma.Desactivar_Desglose
-
+                    If detalle_proforma.Impuesto = "F" Then
+                        Me._ventana.Desactivar_Descuento = True
+                    End If
 
                     ' esto tengo que verificarlo con el desglose servicio
-                    'If desglose_servicio.Id = "G" Then
+                    'If desglose_servicio.Id = "G" The
                     '    detalle_proforma.Impuesto = "F"
                     '    detalle_proforma.Descuento = 0
                     '    Me._ventana.Desactivar_Descuento = False
                     'End If
+
+
+                    Dim asociado As Asociado
+                    If DirectCast(Me._ventana.Asociado, Asociado) IsNot Nothing Then
+                        If Me._ventana.Asociado.id <> Integer.MinValue Then
+                            asociado = Me._asociadosServicios.ConsultarAsociadoConTodo(DirectCast(Me._ventana.Asociado, Asociado))
+                        End If
+                    End If
 
                     If detalle_proforma.Servicio.BAimpuesto = False Then
                         detalle_proforma.Descuento = 0
@@ -1420,7 +1434,6 @@ Namespace Presentadores.FacFacturaProformas
                     '    detalle_proforma.Descuento = 0
                     '    Me._ventana.Desactivar_Descuento = False
                     'End If
-
 
                     If detalle_proforma.NCantidad.ToString <> "" And detalle_proforma.NCantidad.ToString <> Nothing Then
                         Me._ventana.NCantidad = detalle_proforma.NCantidad
@@ -2614,16 +2627,17 @@ Namespace Presentadores.FacFacturaProformas
                 End If
 
                 If departamento_servicio.Servicio.BAimpuesto = True Then
-                    facfactudetaproforma.Desactivar_Desglose = False 'lleva descuento
+                    facfactudetaproforma.Desactivar_Desglose = False
                 Else
                     facfactudetaproforma.Desactivar_Desglose = True
                 End If
+
                 Dim tipo_desg As String = ""
                 If Me._ventana.Desglose = True Then
                     Dim desglose_servicio As FacDesgloseServicio = DirectCast(Me._ventana.DesgloseServicio_Seleccionado, FacDesgloseServicio)
                     If desglose_servicio IsNot Nothing Then
                         If desglose_servicio.Id = "H" Then
-                            facfactudetaproforma.Desactivar_Desglose = False 'lleva descuento
+                            facfactudetaproforma.Desactivar_Desglose = False
                         Else
                             facfactudetaproforma.Desactivar_Desglose = True
                             facfactudetaproforma.Descuento = 0
@@ -2689,7 +2703,6 @@ Namespace Presentadores.FacFacturaProformas
                         facfactudetaproforma.Impuesto = "F"
                         facfactudetaproforma.Descuento = 0
                         Me._ventana.Desactivar_Descuento = True
-                        facfactudetaproforma.Desactivar_Desglose = True
                     End If
 
                     Me._ventana.Desactivar_Descuento = facfactudetaproforma.Desactivar_Desglose
@@ -2746,6 +2759,11 @@ Namespace Presentadores.FacFacturaProformas
             Else
                 detalle_proforma.Descuento = 0
             End If
+
+            'asociado = DirectCast(Me._ventana.Asociado, Asociado)
+            'If detalle_proforma.Servicio.BAimpuesto <> False And asociado.Then Then
+
+            'End If
 
 
             'detalle_proforma.BDetalle = (detalle_proforma.Pu * detalle_proforma.NCantidad) * (1 - (detalle_proforma.Descuento / 100))
