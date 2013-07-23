@@ -1636,4 +1636,19 @@
   <data name="fac_titleConsultarFacTarifas" xml:space="preserve">
     <value>Consultar Tarifas</value>
   </data>
+  <data name="fac_menuItemFacBanco" xml:space="preserve">
+    <value>Bancos</value>
+  </data>
+  <data name="fac_titleAgregarFacBanco" xml:space="preserve">
+    <value>Registro Bancos</value>
+  </data>
+  <data name="fac_titleConsultarFacBanco" xml:space="preserve">
+    <value>Consultar Bancos</value>
+  </data>
+  <data name="fac_titleConsultarFacBancos" xml:space="preserve">
+    <value>Consultar Bancos</value>
+  </data>
+  <data name="lblCodigo1" xml:space="preserve">
+    <value>Codigo</value>
+  </data>
 </root>

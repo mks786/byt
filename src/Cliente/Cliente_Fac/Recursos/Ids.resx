@@ -891,4 +891,13 @@
   <data name="fac_FacTarifa" xml:space="preserve">
     <value>FAC_TARIFAS</value>
   </data>
+  <data name="fac_AgregarFacBanco" xml:space="preserve">
+    <value>FAC_MBANCO</value>
+  </data>
+  <data name="fac_ConsultarFacBanco" xml:space="preserve">
+    <value>FAC_MBANCO</value>
+  </data>
+  <data name="fac_FacBanco" xml:space="preserve">
+    <value>FAC_MBANCO</value>
+  </data>
 </root>

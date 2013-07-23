@@ -392,6 +392,10 @@
                         <MenuItem Name="_fac_menuItemFacRecursoConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemFacRecursoConsultar_Click"/>
                         <MenuItem Name="_fac_menuItemFacRecursoAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemFacRecursoAgregar_Click"/>
                     </MenuItem>
+                    <MenuItem Name="_fac_menuItemFacBanco" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemFacBanco}">
+                        <MenuItem Name="_fac_menuItemFacBancoConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemFacBancoConsultar_Click"/>
+                        <MenuItem Name="_fac_menuItemFacBancoAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemFacBancoAgregar_Click"/>
+                    </MenuItem>                    
                     <MenuItem Name="_fac_menuItemGuia" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemGuia}">
                         <MenuItem Name="_fac_menuItemGuiaConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemGuiaConsultar_Click"/>
                         <MenuItem Name="_fac_menuItemGuiaAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemGuiaAgregar_Click"/>

@@ -1002,4 +1002,19 @@
   <data name="fac_FacTarifaEliminado" xml:space="preserve">
     <value>Tarifa eliminado con éxito</value>
   </data>
+  <data name="fac_ConfirmacionEliminarFacBanco" xml:space="preserve">
+    <value>¿Seguro que desea eliminar Registro Banco?</value>
+  </data>
+  <data name="fac_ErrorFacBancoRepetido" xml:space="preserve">
+    <value>Error Banco que desea guardar ya existe</value>
+  </data>
+  <data name="fac_FacBancoEliminado" xml:space="preserve">
+    <value>Banco eliminado con éxito</value>
+  </data>
+  <data name="fac_FacBancoInsertado" xml:space="preserve">
+    <value>Banco insertado con éxito</value>
+  </data>
+  <data name="fac_FacBancoModificado" xml:space="preserve">
+    <value>Banco modificado con éxito</value>
+  </data>
 </root>

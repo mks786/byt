@@ -742,6 +742,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         {
             this._presentador.ConsultarFacRecursos();
         }
+
+
+        private void _fac_menuItemFacBancoAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarFacBanco();
+        }
+
+        private void _fac_menuItemFacBancoConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarFacBancos();
+        }
+
+
         private void _fac_menuItemGuiaAgregar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.AgregarGuia();

@@ -3789,4 +3789,16 @@ en Prensa:</value>
   <data name="btnNuevaRenovacion" xml:space="preserve">
     <value>Crear Renovacion</value>
   </data>
+  <data name="fac_menuItemFacBanco" xml:space="preserve">
+    <value>Bancos</value>
+  </data>
+  <data name="fac_titleAgregarFacBanco" xml:space="preserve">
+    <value>Registro Bancos</value>
+  </data>
+  <data name="fac_titleConsultarFacBanco" xml:space="preserve">
+    <value>Consultar Bancos</value>
+  </data>
+  <data name="fac_titleConsultarFacBancos" xml:space="preserve">
+    <value>Consultar Bancos</value>
+  </data>
 </root>

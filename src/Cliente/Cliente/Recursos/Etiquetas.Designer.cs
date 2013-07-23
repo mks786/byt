@@ -2098,6 +2098,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Bancos.
+        /// </summary>
+        public static string fac_menuItemFacBanco {
+            get {
+                return ResourceManager.GetString("fac_menuItemFacBanco", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Registro Cobros.
         /// </summary>
         public static string fac_menuItemFacCobro {
@@ -2566,6 +2575,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Registro Bancos.
+        /// </summary>
+        public static string fac_titleAgregarFacBanco {
+            get {
+                return ResourceManager.GetString("fac_titleAgregarFacBanco", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Registro Cobros.
         /// </summary>
         public static string fac_titleAgregarFacCobro {
@@ -2868,6 +2886,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string fac_titleConsultarEtiquetas {
             get {
                 return ResourceManager.GetString("fac_titleConsultarEtiquetas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Consultar Bancos.
+        /// </summary>
+        public static string fac_titleConsultarFacBanco {
+            get {
+                return ResourceManager.GetString("fac_titleConsultarFacBanco", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Consultar Bancos.
+        /// </summary>
+        public static string fac_titleConsultarFacBancos {
+            get {
+                return ResourceManager.GetString("fac_titleConsultarFacBancos", resourceCulture);
             }
         }
         

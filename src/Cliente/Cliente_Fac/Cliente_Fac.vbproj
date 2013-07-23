@@ -180,6 +180,9 @@
     <Compile Include="Contratos\Consultas\IConsultaFacturacionAsociado.vb" />
     <Compile Include="Contratos\Consultas\IConsultaFacturacionAnuladas.vb" />
     <Compile Include="Contratos\Consultas\IConsultarFacStatementProcesar.vb" />
+    <Compile Include="Contratos\FacBanco\IAgregarFacBanco.vb" />
+    <Compile Include="Contratos\FacBanco\IConsultarFacBanco.vb" />
+    <Compile Include="Contratos\FacBanco\IConsultarFacBancos.vb" />
     <Compile Include="Contratos\FacTarifa\IAgregarFacTarifa.vb" />
     <Compile Include="Contratos\FacTarifa\IConsultarFacTarifa.vb" />
     <Compile Include="Contratos\FacTarifa\IConsultarFacTarifas.vb" />
@@ -355,6 +358,9 @@
     <Compile Include="Presentadores\Consultas\PresentadorConsultaConsultaFacturacionAsociado.vb" />
     <Compile Include="Presentadores\Consultas\PresentadorConsultaFacturacionAnuladas.vb" />
     <Compile Include="Presentadores\Consultas\PresentadorConsultarFacStatementProcesar.vb" />
+    <Compile Include="Presentadores\FacBancos\PresentadorAgregarFacBanco.vb" />
+    <Compile Include="Presentadores\FacBancos\PresentadorConsultarFacBanco.vb" />
+    <Compile Include="Presentadores\FacBancos\PresentadorConsultarFacFacBancos.vb" />
     <Compile Include="Presentadores\FacTarifas\PresentadorAgregarFacTarifa.vb" />
     <Compile Include="Presentadores\FacTarifas\PresentadorConsultarFacTarifa.vb" />
     <Compile Include="Presentadores\FacTarifas\PresentadorConsultarFacTarifas.vb" />
@@ -571,6 +577,15 @@
     </Compile>
     <Compile Include="Ventanas\Consultas\ConsultaFacturasAnuladasFisicas.xaml.vb">
       <DependentUpon>ConsultaFacturasAnuladasFisicas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacBancos\AgregarFacBanco.xaml.vb">
+      <DependentUpon>AgregarFacBanco.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacBancos\ConsultarFacBanco.xaml.vb">
+      <DependentUpon>ConsultarFacBanco.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacBancos\ConsultarFacBancos.xaml.vb">
+      <DependentUpon>ConsultarFacBancos.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\FacTarifas\AgregarFacTarifa.xaml.vb">
       <DependentUpon>AgregarFacTarifa.xaml</DependentUpon>
@@ -1083,6 +1098,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Consultas\ConsultaFacturasAnuladasFisicas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacBancos\AgregarFacBanco.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacBancos\ConsultarFacBanco.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacBancos\ConsultarFacBancos.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

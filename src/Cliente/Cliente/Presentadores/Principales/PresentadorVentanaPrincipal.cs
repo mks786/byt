@@ -106,6 +106,7 @@ using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacGestiones;
 using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacInternacionales;
 using Diginsoft.Bolet.Cliente.Fac.Ventanas.Consultas;
 using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacTarifas;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacBancos;
 
 
 namespace Trascend.Bolet.Cliente.Presentadores.Principales
@@ -1176,6 +1177,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         {
             this._ventana.Contenedor.Navigate(new ConsultarFacRecursos());
         }
+        public void AgregarFacBanco()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarFacBanco());
+        }
+
+        public void ConsultarFacBancos()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarFacBancos());
+        }
         public void AgregarGuia()
         {
             this._ventana.Contenedor.Navigate(new AgregarGuia());
@@ -2063,6 +2073,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
 
                                     case "_fac_menuItemFacRecurso":
                                         if (objeto.Id.Equals(Recursos.Ids.fac_FacRecurso))
+                                        {
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        }
+                                        break;
+
+                                    case "_fac_menuItemFacBanco":
+                                        if (objeto.Id.Equals(Recursos.Ids.fac_FacBanco))
                                         {
                                             itemNivel3.Visibility = System.Windows.Visibility.Visible;
                                         }
