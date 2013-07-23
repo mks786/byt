@@ -13,7 +13,8 @@ Namespace Fabrica
         ''' <param name="FacBanco">FacBanco a agregar en la base de datos</param>
         ''' <returns>El Comando que permite agregar el país en la base de datos</returns>
         Public Shared Function ObtenerComandoInsertarOModificar(ByVal FacBanco As FacBanco) As ComandoBase(Of Boolean)
-            Throw New NotImplementedException()
+            'Throw New NotImplementedException()
+            Return New ComandoInsertarOModificarFacBanco(FacBanco)
         End Function
 
         ''' <summary>
@@ -30,7 +31,8 @@ Namespace Fabrica
         ' ''' <param name="usuario">FacBanco que se va a FacBanco</param>
         ' ''' <returns>Comando para eliminar</returns>
         Public Shared Function ObtenerComandoEliminarFacBanco(ByVal FacBanco As FacBanco) As ComandoBase(Of Boolean)
-            Throw New NotImplementedException()
+            'Throw New NotImplementedException()
+            Return New ComandoEliminarFacBanco(FacBanco)
         End Function
 
         ''' <summary>
@@ -47,7 +49,7 @@ Namespace Fabrica
         ''' <param name="FacBanco">FacBanco a verificar</param>
         ''' <returns>True: si se realizo el comando con exito; False: en caso contrario</returns>
         Public Shared Function ObtenerComandoVerificarExistenciaFacBanco(ByVal FacBanco As FacBanco) As ComandoBase(Of Boolean)
-            Throw New NotImplementedException()
+            Return New ComandoVerificarExistenciaFacBanco(FacBanco)
         End Function
 
         Public Shared Function ObtenerComandoConsultarFacBancosFiltro(ByVal FacBanco As FacBanco) As ComandoBase(Of IList(Of FacBanco))
