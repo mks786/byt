@@ -1095,7 +1095,7 @@
                         </WrapPanel>
 
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" >
-                            <custom:ByTTextBox Name="_txtServicioId" Width="60" MaxLength="100" Focusable="True" HorizontalAlignment="Center" >
+                            <custom:ByTTextBox Name="_txtServicioId" Width="60" MaxLength="100"  Focusable="True" HorizontalAlignment="Center" >
                             </custom:ByTTextBox>
                             <Label HorizontalAlignment="Center" >
                                 <TextBlock Text=" "/>

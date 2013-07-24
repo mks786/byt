@@ -35,9 +35,14 @@ Namespace Ventanas.FacBancos
 
         Public WriteOnly Property HabilitarCampos() As Boolean Implements Contratos.FacBancos.IConsultarFacBanco.HabilitarCampos
             Set(ByVal value As Boolean)
-                Me._txtDoc_Esp.IsEnabled = value
-                Me._txtDoc_Ingl.IsEnabled = value
-                Me._txtId.IsEnabled = value
+                'Me._txtDoc_Esp.IsEnabled = value
+                ' Me._txtDoc_Ingl.IsEnabled = value
+                ' Me._txtId.IsEnabled = value
+                _txtXBanco.IsEnabled = value
+                _txtXbancoWeb.IsEnabled = value
+                _txtSaldo.IsEnabled = value
+                _dpkFechaSaldo.IsEnabled = value
+                _cbxIIw.IsEnabled = value
             End Set
         End Property
 
@@ -89,6 +94,33 @@ Namespace Ventanas.FacBancos
             End Get
             Set(ByVal value As Object)
                 Me._gridDatos.DataContext = value
+            End Set
+        End Property
+
+        Public Property Moneda As Object Implements Contratos.FacBancos.IConsultarFacBanco.Moneda
+            Get
+                Return Me._cbxMoneda.SelectedItem
+            End Get
+            Set(ByVal value As Object)
+                Me._cbxMoneda.SelectedItem = value
+            End Set
+        End Property
+
+        Public Property Monedas As Object Implements Contratos.FacBancos.IConsultarFacBanco.Monedas
+            Get
+                Return Me._cbxMoneda.DataContext
+            End Get
+            Set(ByVal value As Object)
+                Me._cbxMoneda.DataContext = value
+            End Set
+        End Property
+
+        Public Property Publica As String Implements Contratos.FacBancos.IConsultarFacBanco.Publica
+            Get
+                Return _cbxIIw.Text
+            End Get
+            Set(ByVal value As String)
+                _cbxIIw.Text = value
             End Set
         End Property
     End Class

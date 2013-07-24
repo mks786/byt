@@ -28,7 +28,7 @@ Namespace Ventanas.FacFacturaProformas
         End Property
 
         Public Sub FocoPredeterminado() Implements IPaginaBaseFac.FocoPredeterminado
-            Me._lstAsociados.Focus()
+            _txtServicioId.Focus()
         End Sub
 
         Public Property FacFacturaProforma() As Object Implements Contratos.FacFacturaProformas.IAgregarFacFacturaProforma.FacFacturaProforma
@@ -380,6 +380,7 @@ Namespace Ventanas.FacFacturaProformas
             VerDepartamentoDesglose()
         End Sub
         Public Sub VerDepartamentoDesglose()
+            Me._presentador.foco("1")
             Me._GbDepartamentoServicio.Visibility = Windows.Visibility.Visible
             Me._GbDesgloseServicio.Visibility = Windows.Visibility.Collapsed
             Me._GbDetalleProforma.Visibility = Windows.Visibility.Collapsed
@@ -397,8 +398,19 @@ Namespace Ventanas.FacFacturaProformas
             _Wp_Btn.Visibility = Windows.Visibility.Collapsed
             Me._Wp_Salir.Visibility = Windows.Visibility.Visible
 
+            _GbDepartamentoServicio.Focus()
+            Keyboard.Focus(_GbDepartamentoServicio)
             _txtServicioId.Focus()
+            Keyboard.Focus(_txtServicioId)
             Me._presentador.VerDepartamentoServicios()
+            _GbDepartamentoServicio.Focus()
+            Keyboard.Focus(_GbDepartamentoServicio)
+            _txtServicioId.Focus()
+            Keyboard.Focus(_txtServicioId)
+            _txtServicioId.Text = ""
+
+            Me._presentador.foco("1")
+
         End Sub
 
         Private Sub _btnElimDepartamentoServicios_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
@@ -1892,5 +1904,11 @@ Namespace Ventanas.FacFacturaProformas
                 Me._lstAsociados = value
             End Set
         End Property
+
+        Public Sub focos_elejir(ByVal valor As String) Implements Contratos.FacFacturaProformas.IAgregarFacFacturaProforma.focos_elejir
+            If valor = "1" Then
+                _txtServicioId.Focus()
+            End If
+        End Sub
     End Class
 End Namespace

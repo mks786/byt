@@ -156,10 +156,10 @@ Namespace Presentadores.FacFacturaAnuladas
                 'variables
                 'Dim lista_d, w_lis_dat As String
                 Dim nActual, w_fac, w_fac_o As Integer
-                Dim w_old_fecha As DateTime
-                Dim w_old_mpago As String
-                Dim w_old_desc_pago As String
-                Dim w_old_cbanco As FacBanco
+                'Dim w_old_fecha As DateTime
+                'Dim w_old_mpago As String
+                'Dim w_old_desc_pago As String
+                'Dim w_old_cbanco As FacBanco
                 Dim w_asocia As Asociado
                 'variables
 
@@ -239,53 +239,61 @@ Namespace Presentadores.FacFacturaAnuladas
                     If factura.Proforma IsNot Nothing Then
                         If factura.Proforma.Local = "I" Then 'para proformas internacionales
 
-                            'para transferir proforma 
-                            If Me._ventana.cpro = "" Or Me._ventana.cpro = Nothing Then
-                                Mouse.OverrideCursor = Nothing
-                                MessageBox.Show("Debe seleccionar una proforma a transferir", "Error", MessageBoxButton.OK)
-                                Me._ventana.MensajeErrorCobro = "Debe seleccionar una proforma a transferir"
-                                Exit Sub
-                            End If
-                            Dim facproformastran = buscar_facfacturaproforma(Me._ventana.cpro)
-                            'fin verificar la proforma a transferir
-                            If facproformastran Is Nothing Then
-                                Mouse.OverrideCursor = Nothing
-                                MessageBox.Show("No existe Proforma No. " & (Me._ventana.cpro), "Error", MessageBoxButton.OK)
-                                Me._ventana.MensajeErrorCobro = "No existe Proforma No. " & (Me._ventana.cpro)
-                                Exit Sub
-                            Else
-                                If facproformastran.Local <> "I" Then
-                                    Mouse.OverrideCursor = Nothing
-                                    MessageBox.Show("Proforma no es internacional", "Error", MessageBoxButton.OK)
-                                    Me._ventana.MensajeErrorCobro = "Proforma no es internacional"
-                                    Exit Sub
-                                Else
-                                    w_asocia = facproformastran.Asociado
-                                End If
-                            End If
-
-                            'este es nuevo lo agregue yo carlos 
-                            Dim facinternacional_proforma_nueva As FacInternacional = Nothing
-                            facinternacional_proforma_nueva = buscar_facinternacional(Me._ventana.cpro)
-                            If facinternacional_proforma_nueva IsNot Nothing Then
-                                Mouse.OverrideCursor = Nothing
-                                MessageBox.Show("Proforma a transferir ya esta registrada en una Cxp internacional", "Error", MessageBoxButton.OK)
-                                Me._ventana.MensajeErrorCobro = "Proforma a transferir ya esta registrada en una Cxp internacional"
-                                Exit Sub
-                            End If
-
-
-                            'fin para transferir proforma 
                             facinternacional = buscar_facinternacional(factura.Proforma.Id)
                             If facinternacional IsNot Nothing Then
-                                If facinternacional.FechaPago IsNot Nothing Then
-                                    w_old_fecha = facinternacional.FechaPago 'fpago.lv_fac_cxp_int
+
+
+                                'para transferir proforma 
+                                If Me._ventana.cpro = "" Or Me._ventana.cpro = Nothing Then
+                                    Mouse.OverrideCursor = Nothing
+                                    MessageBox.Show("Debe seleccionar una proforma a transferir", "Error", MessageBoxButton.OK)
+                                    Me._ventana.MensajeErrorCobro = "Debe seleccionar una proforma a transferir"
+                                    Exit Sub
                                 End If
-                                w_old_mpago = facinternacional.TipoPago 'mpago.lv_fac_cxp_int
-                                w_old_desc_pago = facinternacional.DescripcionPago 'desc_pago.lv_fac_cxp_int
-                                If facinternacional.Banco IsNot Nothing Then
-                                    w_old_cbanco = facinternacional.Banco  'cbanco.lv_fac_cxp_int
+                                Dim facproformastran = buscar_facfacturaproforma(Me._ventana.cpro)
+                                'fin verificar la proforma a transferir
+                                If facproformastran Is Nothing Then
+                                    Mouse.OverrideCursor = Nothing
+                                    MessageBox.Show("No existe Proforma No. " & (Me._ventana.cpro), "Error", MessageBoxButton.OK)
+                                    Me._ventana.MensajeErrorCobro = "No existe Proforma No. " & (Me._ventana.cpro)
+                                    Exit Sub
+                                Else
+                                    If facproformastran.Local <> "I" Then
+                                        Mouse.OverrideCursor = Nothing
+                                        MessageBox.Show("Proforma no es internacional", "Error", MessageBoxButton.OK)
+                                        Me._ventana.MensajeErrorCobro = "Proforma no es internacional"
+                                        Exit Sub
+                                    Else
+                                        w_asocia = facproformastran.Asociado
+                                    End If
                                 End If
+
+                                'este es nuevo lo agregue yo carlos 
+                                Dim facinternacional_proforma_nueva As FacInternacional = Nothing
+                                facinternacional_proforma_nueva = buscar_facinternacional(Me._ventana.cpro)
+                                If facinternacional_proforma_nueva Is Nothing Then
+                                    If MessageBoxResult.Yes = MessageBox.Show("La Proforma Nueva no tiene Cxp Inernacional Desea continuar?", "Anulacion Internacional", MessageBoxButton.YesNo, MessageBoxImage.Question) Then
+
+                                    Else
+                                        Mouse.OverrideCursor = Nothing
+                                        Exit Sub
+                                    End If
+                                End If
+                                'If facinternacional_proforma_nueva IsNot Nothing Then
+                                '    Mouse.OverrideCursor = Nothing
+                                '    MessageBox.Show("Proforma a transferir ya esta registrada en una Cxp internacional", "Error", MessageBoxButton.OK)
+                                '    Me._ventana.MensajeErrorCobro = "Proforma a transferir ya esta registrada en una Cxp internacional"
+                                '    Exit Sub
+                                'End If
+
+                                'If facinternacional.FechaPago IsNot Nothing Then
+                                '    w_old_fecha = facinternacional.FechaPago 'fpago.lv_fac_cxp_int
+                                'End If
+                                'w_old_mpago = facinternacional.TipoPago 'mpago.lv_fac_cxp_int
+                                'w_old_desc_pago = facinternacional.DescripcionPago 'desc_pago.lv_fac_cxp_int
+                                'If facinternacional.Banco IsNot Nothing Then
+                                '    w_old_cbanco = facinternacional.Banco  'cbanco.lv_fac_cxp_int
+                                'End If
 
                                 'pasar de internacional a internacional anulada
                                 'fin pasar de internacional a internacional anulada
@@ -306,15 +314,43 @@ Namespace Presentadores.FacFacturaAnuladas
                                 facinternacionalAnulada.FechaAnulacion = facinternacional.FechaRecepcion
 
                                 If _FacInternacionalAnuladasServicios.InsertarOModificar(facinternacionalAnulada, UsuarioLogeado.Hash) = True Then  'agregar a internacional anulada
-                                    'esto lo agregue yo para guardar la cxp internacional con la proforma nueva antes de eliminar
-                                    facinternacional_proforma_nueva = facinternacional
-                                    facinternacional_proforma_nueva.Id = Me._ventana.cpro
-                                    If _FacInternacionalesServicios.InsertarOModificar(facinternacional_proforma_nueva, UsuarioLogeado.Hash) = True Then
-                                        'hasta aqui esto lo agregue yo para guardar la cxp internacional con la proforma nueva antes de eliminar
 
-                                        _FacInternacionalesServicios.Eliminar(facinternacional, UsuarioLogeado.Hash) 'elimina de internacional¡
-                                        Dim facinternacionaltra As FacInternacional = buscar_facinternacional(Me._ventana.cpro)
+                                    ' si la proforma nueva tiene cxp internacional 
+                                    If facinternacional_proforma_nueva IsNot Nothing Then
+                                        If facinternacional.FechaPago IsNot Nothing Then
+                                            facinternacional_proforma_nueva.FechaPago = facinternacional.FechaPago
+                                            'If facinternacional.TipoPago IsNot Nothing Then
+                                            facinternacional_proforma_nueva.TipoPago = facinternacional.TipoPago
+                                            'End If
+                                            If facinternacional.Asociado IsNot Nothing Then
+                                                If facinternacional.Asociado.Id > Integer.MinValue Then
+                                                    facinternacional_proforma_nueva.Asociado = facinternacional.Asociado
+                                                End If
+                                            End If
+                                            If facinternacional.DescripcionPago IsNot Nothing And facinternacional.DescripcionPago <> "" Then
+                                                facinternacional_proforma_nueva.DescripcionPago = facinternacional.DescripcionPago
+                                            End If
+                                            If facinternacional.Banco IsNot Nothing Then
+                                                If facinternacional.Banco.Id > Integer.MinValue Then
+                                                    facinternacional_proforma_nueva.Asociado = facinternacional.Asociado
+                                                End If
+                                            End If
+                                        End If
                                     End If
+
+                                    _FacInternacionalesServicios.Eliminar(facinternacional, UsuarioLogeado.Hash) 'elimina de internacional¡
+
+                                    'esto lo agregue yo para guardar la cxp internacional con la proforma nueva antes de eliminar
+                                    'facinternacional_proforma_nueva = facinternacional
+                                    'facinternacional_proforma_nueva.Id = Me._ventana.cpro
+                                    'If _FacInternacionalesServicios.InsertarOModificar(facinternacional_proforma_nueva, UsuarioLogeado.Hash) = True Then
+                                    '    'hasta aqui esto lo agregue yo para guardar la cxp internacional con la proforma nueva antes de eliminar
+
+                                    '    _FacInternacionalesServicios.Eliminar(facinternacional, UsuarioLogeado.Hash) 'elimina de internacional¡
+                                    '    Dim facinternacionaltra As FacInternacional = buscar_facinternacional(Me._ventana.cpro)
+                                    'End If
+
+
                                     'If facinternacionaltra IsNot Nothing Then
                                     '    Dim internacionaltra As New FacInternacional
                                     '    internacionaltra.FechaPago = w_old_fecha
@@ -686,7 +722,9 @@ Namespace Presentadores.FacFacturaAnuladas
                     detallaanulada(i).Desglose = detalles(i).Desglose
                     'facturadetalles(i).Factura = Nothing
 
-                    _FacFactuDetaAnuladaServicios.InsertarOModificar(detallaanulada(i), UsuarioLogeado.Hash)
+                    If _FacFactuDetaAnuladaServicios.InsertarOModificar(detallaanulada(i), UsuarioLogeado.Hash) = True Then 'si se agrego el detalle de anulada con exito eliminar de detalle factura
+                        Me._FacFactuDetaServicios.Eliminar(detalles(i), UsuarioLogeado.Hash)
+                    End If
                 Next
 
                 creo_detalle = existe_detalle_anulada(facfacturaanulada)
@@ -777,10 +815,11 @@ Namespace Presentadores.FacFacturaAnuladas
             Dim detalles As List(Of FacFactuDetalle)
             detallaux.Factura = factura
             detalles = Me._FacFactuDetaServicios.ObtenerFacFactuDetallesFiltro(detallaux)
-
-            For i As Integer = 0 To detalles.Count - 1
-                Me._FacFactuDetaServicios.Eliminar(detalles(i), UsuarioLogeado.Hash)
-            Next
+            If detalles.Count > 0 Then
+                For i As Integer = 0 To detalles.Count - 1
+                    Me._FacFactuDetaServicios.Eliminar(detalles(i), UsuarioLogeado.Hash)
+                Next
+            End If
             Return (True)
         End Function
 

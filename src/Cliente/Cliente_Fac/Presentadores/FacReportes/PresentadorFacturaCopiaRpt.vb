@@ -560,10 +560,22 @@ Namespace Presentadores.FacReportes
                             Case 2 'Caso Est
                                 'Call lp_compl(ffactura.fac_facturas, cfactura.fac_facturas, w_s)
                                 'xinvoice.encabezado = w_s
-                                structura.Invoice = ""
+                                'structura.Invoice = ""
                                 If _FacFactura.FechaFactura IsNot Nothing Then
                                     lp_compl(_FacFactura.FechaFactura, _FacFactura.Id, w_s)
-                                    structura.Invoice = "STATEMENT  N° " & w_s
+                                    If _FacFactura.Status <> 2 Then
+                                        If structura.Invoice <> "" Then
+                                            structura.Invoice = structura.Invoice & " " & w_s
+                                        Else
+                                            structura.Invoice = w_s
+                                        End If
+                                    Else
+                                        If structura.Invoice <> "" Then
+                                            structura.Invoice = structura.Invoice & " " & w_s
+                                        Else
+                                            structura.Invoice = w_s
+                                        End If
+                                    End If
                                     structura.Xfactura = ""
 
                                     lp_fecha_esc_n(_FacFactura.FechaFactura, structura.Fecha)
@@ -590,7 +602,19 @@ Namespace Presentadores.FacReportes
                                 'xinvoice.encabezado = w_s
                                 If _FacFactura.FechaFactura IsNot Nothing Then
                                     lp_compl(_FacFactura.FechaFactura, _FacFactura.Id, w_s)
-                                    structura.Invoice = "STATEMENT  N° " & w_s
+                                    If _FacFactura.Status <> 2 Then
+                                        If structura.Invoice <> "" Then
+                                            structura.Invoice = structura.Invoice & " " & w_s
+                                        Else
+                                            structura.Invoice = w_s
+                                        End If
+                                    Else
+                                        If structura.Invoice <> "" Then
+                                            structura.Invoice = structura.Invoice & " " & w_s
+                                        Else
+                                            structura.Invoice = w_s
+                                        End If
+                                    End If
                                     structura.Xfactura = ""
 
                                     lp_fecha_esc_n(_FacFactura.FechaFactura, structura.Fecha)

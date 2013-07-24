@@ -488,6 +488,7 @@ Namespace Ventanas.FacFacturaProformas
             VerDepartamentoDesglose()
         End Sub
         Public Sub VerDepartamentoDesglose()
+            _txtServicioId.Focus()
             Me._GbDepartamentoServicio.Visibility = Windows.Visibility.Visible
             Me._GbDesgloseServicio.Visibility = Windows.Visibility.Collapsed
             Me._GbDetalleProforma.Visibility = Windows.Visibility.Collapsed

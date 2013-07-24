@@ -36,9 +36,9 @@
                         DataContext="{Binding}">
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigo}"/>
                     </Label>
-                    <TextBox Name="_txtId" Width="150" MaxLength="3" Focusable="True" IsEnabled="False"
+                    <TextBox Name="_txtId" Width="150" MaxLength="3" IsEnabled="false" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">
@@ -53,12 +53,12 @@
 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="Doc Español Singular"/>
+                        <TextBlock Text="Detalle"/>
                     </Label>
-                    <TextBox Name="_txtDoc_Esp" Width="150" MaxLength="50" Focusable="True" IsEnabled="False"
+                    <TextBox Name="_txtXBanco" Width="150" MaxLength="60" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
-                            <Binding Path="Doc_Esp" UpdateSourceTrigger="PropertyChanged">
+                            <Binding Path="XBanco" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
                                     <reglas:Obligatorio ValidatesOnTargetUpdated="True" />
                                 </Binding.ValidationRules>
@@ -70,18 +70,68 @@
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="Doc Ingles Singular"/>
+                        <TextBlock Text="Banco Web"/>
                     </Label>
-                    <TextBox Name="_txtDoc_Ingl" Width="150" MaxLength="50" IsEnabled="False"
+                    <TextBox Name="_txtXbancoWeb" Width="150" MaxLength="60"
                              ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
-                            <Binding Path="Doc_Ingl" UpdateSourceTrigger="PropertyChanged">
+                            <Binding Path="XbancoWeb" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
                                     <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
+                </WrapPanel>
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="Saldo"/>
+                    </Label>
+                    <TextBox Name="_txtSaldo" Width="150" MaxLength="22"
+                             ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}">
+                        <TextBox.Text>
+                            <Binding Path="Saldo" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </WrapPanel>
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label VerticalAlignment="Center" HorizontalContentAlignment="Left">
+                        <TextBlock Text="Fecha"/>
+                    </Label>
+                    <DatePicker Name="_dpkFechaSaldo" Width="150" Text="" Focusable="False" BorderBrush="{x:Null}" IsEnabled="true">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="FechaSaldo" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                </WrapPanel>
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="Publicar"/>
+                    </Label>
+                    <ComboBox Name="_cbxIIw"  SelectedIndex="0" Width="150">
+                        <ComboBoxItem>
+                            <TextBlock Text="SI"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="NO"/>
+                        </ComboBoxItem>
+                    </ComboBox>
+                </WrapPanel>
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="Moneda"/>
+                    </Label>
+                    <ComboBox  Name="_cbxMoneda" HorizontalAlignment="Left" Width="150" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
+                    </ComboBox>
                 </WrapPanel>
 
             </StackPanel>

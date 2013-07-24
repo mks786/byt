@@ -139,7 +139,7 @@ Namespace Dao.NHibernate
                 variosFiltros = True
             End If
 
-            If (FacFactura.FechaFactura IsNot Nothing) AndAlso (FacFactura.FechaSeniat IsNot Nothing) Then
+            If (FacFactura.FechaSeniat IsNot Nothing) AndAlso (FacFactura.FechaSeniat IsNot Nothing) Then
                 If variosFiltros Then
                     filtro += " and "
                 End If

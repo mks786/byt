@@ -124,13 +124,13 @@ Namespace Presentadores.FacBancos
                 Dim FacBancosFiltrados As IEnumerable(Of FacBanco) = Me._FacBancos
 
 
-                'If Not String.IsNullOrEmpty(FacBanco.Id) Then
-                '    FacBancosFiltrados = From p In FacBancosFiltrados Where p.Id IsNot Nothing AndAlso p.Id.ToLower().Contains(FacBanco.Id.ToLower())
-                'End If
+                If FacBanco.Id > 0 Then
+                    FacBancosFiltrados = From p In FacBancosFiltrados Where p.Id.ToString.ToLower IsNot Nothing AndAlso p.Id.ToString.ToLower().Contains(FacBanco.Id.ToString.ToLower())
+                End If
 
-                'If Not String.IsNullOrEmpty(FacBanco.Doc_esp) Then
-                '    FacBancosFiltrados = From p In FacBancosFiltrados Where p.Doc_esp IsNot Nothing AndAlso p.Doc_esp.ToLower().Contains(FacBanco.Doc_esp.ToLower())
-                'End If
+                If Not String.IsNullOrEmpty(FacBanco.XBanco) Then
+                    FacBancosFiltrados = From p In FacBancosFiltrados Where p.XBanco IsNot Nothing AndAlso p.XBanco.ToLower().Contains(FacBanco.XBanco.ToLower())
+                End If
 
                 'If Not String.IsNullOrEmpty(FacBanco.Doc_ingl) Then
                 '    FacBancosFiltrados = From p In FacBancosFiltrados Where p.Doc_ingl IsNot Nothing AndAlso p.Doc_ingl.ToLower().Contains(FacBanco.Doc_ingl.ToLower())

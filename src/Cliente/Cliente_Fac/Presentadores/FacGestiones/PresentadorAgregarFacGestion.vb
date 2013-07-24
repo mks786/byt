@@ -575,7 +575,14 @@ Namespace Presentadores.FacGestiones
                 If DirectCast(Me._ventana.Carta_2, Carta) IsNot Nothing Then
                     If Me._ventana.Carta_2.id <> Integer.MinValue Then
                         'Dim Carta_2 As List(Of Carta) = Me._cartasServicios.ObtenerCartasFiltro(DirectCast(Me._ventana.Carta_2, Carta))
-                        Me._ventana.NombreCarta = DirectCast(Me._ventana.Carta, Carta).Id & " - " & DirectCast(Me._ventana.Carta, Carta).Medio & " - " & FormatDateTime(DirectCast(Me._ventana.Carta, Carta).Fecha, DateFormat.ShortDate)
+                        Dim carta As Carta = DirectCast(Me._ventana.Carta_2, Carta)
+                        Me._ventana.NombreCarta_2 = carta.Id
+                        If carta.Medio IsNot Nothing Then
+                            Me._ventana.NombreCarta_2 = Me._ventana.NombreCarta_2 & " - " & carta.Medio
+                        End If
+                        If (Not carta.Fecha.Equals(DateTime.MinValue)) Then
+                            Me._ventana.NombreCarta_2 = Me._ventana.NombreCarta_2 & " - " & FormatDateTime(carta.Fecha, DateFormat.ShortDate)
+                        End If
                     End If
                 Else
                     Me._ventana.NombreCarta_2 = Nothing

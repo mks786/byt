@@ -265,6 +265,10 @@ Namespace Presentadores.FacFacturaProformas
             End If
         End Sub
 
+        Public Sub foco(ByVal valor As String)
+            Me._ventana.focos_elejir(valor)
+        End Sub
+
         Public Sub Aceptar()
             Mouse.OverrideCursor = Cursors.Wait
             Try

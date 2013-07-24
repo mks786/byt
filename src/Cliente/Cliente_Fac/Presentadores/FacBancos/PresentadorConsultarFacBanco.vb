@@ -10,6 +10,7 @@ Imports Diginsoft.Bolet.ObjetosComunes.Entidades
 Imports Trascend.Bolet.ObjetosComunes.Entidades
 Imports Trascend.Bolet.Cliente.Presentadores
 Imports Trascend.Bolet.Cliente.Ventanas.Principales
+Imports Trascend.Bolet.ObjetosComunes.ContratosServicios
 
 Namespace Presentadores.FacBancos
     Class PresentadorConsultarFacBanco
@@ -20,6 +21,7 @@ Namespace Presentadores.FacBancos
         Private Shared _paginaPrincipal As PaginaPrincipal = PaginaPrincipal.ObtenerInstancia
         Private Shared logger As Logger = LogManager.GetCurrentClassLogger()
         Private _FacBanco As FacBanco
+        Private _monedasServicios As IMonedaServicios
         ''' <summary>
         ''' Constructor predeterminado
         ''' </summary>
@@ -31,8 +33,9 @@ Namespace Presentadores.FacBancos
                 Me._ventana.FacBanco = FacBanco
                 _FacBanco = DirectCast(FacBanco, FacBanco)
                 'Me._ventana.Region = DirectCast(Me._ventana.FacBanco, FacBanco).Region
-
+                Me._ventana.HabilitarCampos = False
                 Me._FacBancoServicios = DirectCast(Activator.GetObject(GetType(IFacBancoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacBancoServicios")), IFacBancoServicios)
+                Me._monedasServicios = DirectCast(Activator.GetObject(GetType(IMonedaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("MonedaServicios")), IMonedaServicios)
             Catch ex As Exception
                 logger.[Error](ex.Message)
                 Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
@@ -67,6 +70,20 @@ Namespace Presentadores.FacBancos
                     logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
                 End If
                 '#End Region
+
+                Dim monedas As IList(Of Moneda) = Me._monedasServicios.ConsultarTodos()
+                Me._ventana.Monedas = monedas
+                Dim monedanuevo As New Moneda
+                If _FacBanco.Moneda <> "" And _FacBanco.Moneda IsNot Nothing Then
+                    monedanuevo.Id = _FacBanco.Moneda
+                    Me._ventana.Moneda = Me.BuscarMoneda(monedas, monedanuevo)
+                End If
+
+                If _FacBanco.Iw = "S" Then
+                    _ventana.Publica = "SI"
+                Else
+                    _ventana.Publica = "NO"
+                End If
 
                 Me.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.fac_titleConsultarFacBanco, Recursos.Ids.fac_ConsultarFacBanco)
                 Me._ventana.FocoPredeterminado()
@@ -105,6 +122,20 @@ Namespace Presentadores.FacBancos
                     'Modifica los datos del FacBanco
                     Dim FacBanco As FacBanco = DirectCast(Me._ventana.FacBanco, FacBanco)
                     'FacBanco.Region = If(Not Me._ventana.Region.Equals(""), Me._ventana.Region, Nothing)
+
+                    Dim moneda As Moneda = DirectCast(_ventana.Moneda, Moneda)
+                    If moneda IsNot Nothing Then
+                        If moneda.Id <> "" Then
+                            FacBanco.Moneda = moneda.Id
+                        End If
+                    End If
+
+                    Dim publica As String = _ventana.Publica
+                    If publica = "SI" Then
+                        FacBanco.Iw = "S"
+                    Else
+                        FacBanco.Iw = "N"
+                    End If
 
                     If Me._FacBancoServicios.InsertarOModificar(FacBanco, UsuarioLogeado.Hash) Then
                         '_paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.fac_FacBancoModificado

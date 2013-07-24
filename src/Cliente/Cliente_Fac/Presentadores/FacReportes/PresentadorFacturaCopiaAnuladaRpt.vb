@@ -178,7 +178,9 @@ Namespace Presentadores.FacReportes
                     detallaanulada(i).Desglose = detalles(i).Desglose
                     'facturadetalles(i).Factura = Nothing
 
-                    _FacFactuDetaServicios.InsertarOModificar(detallaanulada(i), UsuarioLogeado.Hash)
+                    If _FacFactuDetaServicios.InsertarOModificar(detallaanulada(i), UsuarioLogeado.Hash) = True Then
+
+                    End If
                 Next
 
             Catch ex As ApplicationException

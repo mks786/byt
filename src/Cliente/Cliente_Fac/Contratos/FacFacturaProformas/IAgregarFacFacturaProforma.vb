@@ -263,6 +263,8 @@ Namespace Contratos.FacFacturaProformas
 
         Property ListaResultados() As ListView
 
+        Sub focos_elejir(ByVal valor As String)
+
         Sub Mensaje(ByVal mensaje__1 As String)
     End Interface
 End Namespace
