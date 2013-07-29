@@ -215,6 +215,44 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return existe;
         }
+
+
+        /// <summary>
+        /// Metodo para obtener la informacion adicional de un grupo de marcas, por el Distingue en Ingles
+        /// </summary>
+        /// <param name="infoAdicional">Informacion adicional a filtrar que contiene el distingue en ingles a obtener</param>
+        /// <returns>Lista de informacion adicional que cumple con la condicion</returns>
+        public static IList<InfoAdicional> ObtenerInfoAdicionalDistingueInglesFiltro(InfoAdicional infoAdicional)
+        {
+
+            IList<InfoAdicional> retorno;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<IList<InfoAdicional>> comando = FabricaComandosInfoAdicional.ObtenerComandoObtenerInfoAdicionalDistingueInglesFiltro(infoAdicional);
+                comando.Ejecutar();
+                retorno = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+                
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+
+            return retorno;
+        }
+
     }
 }
 

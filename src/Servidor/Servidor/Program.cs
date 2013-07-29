@@ -89,9 +89,43 @@ namespace Trascend.Bolet.Servidor
             //MarcaServicios marcaServicios = new MarcaServicios();
             //bool salida = false;
             //salida = marcaServicios.ActualizarDistingueDeMarca(marca);
+
+            //IList<InfoAdicional> listaPrueba = null;
+            //InfoAdicional infoPrueba = new InfoAdicional();
+            //infoPrueba.Id = "M.";
+            //infoPrueba.Info = "COMPUTER";
+            //InfoAdicionalServicios servicio1 = new InfoAdicionalServicios();
+            //listaPrueba = servicio1.ObtenerDistingueInglesPorFiltro(infoPrueba);
+
+            //bool funciono = false;
+            //Marca marcaPrueba = new Marca();
+            //MarcaTercero marcaPrueba = new MarcaTercero();
+            //IList<InfoBol> infoboles = null;
+            //IList<InfoBolMarcaTer> infoboles = null;
+            //InfoBolMarcaTer infobolPrueba = null;
+            //marcaPrueba.Id = "M-223";
+            //marcaPrueba.Anexo = 1;
+
+            //InfoBolMarcaTerServicios serviciosInfobol = new InfoBolMarcaTerServicios();
+            //infoboles = serviciosInfobol.ConsultarInfoBolMarcaTeresPorMarca(marcaPrueba);
+            
+                        
+            //InfoBolServicios serviciosInfobol = new InfoBolServicios();
+            //marcaPrueba = servicioMarca.ConsultarMarcaConTodo(marcaPrueba);
+            //infoboles = serviciosInfobol.ConsultarInfoBolesPorMarca(marcaPrueba);
+            //marcaPrueba.InfoBoles = infoboles;
+            //infobolPrueba = infoboles[0];
+            //infobolPrueba.Comentario = "prueba123";
+            //funciono = serviciosInfobol.InsertarOModificar(infobolPrueba, 123);
+
             //Console.ReadLine();
-        
-          
+
+
+
+
+
+
+
             #endregion
 
             Console.WriteLine("Se han cargado " + ConfiguracionServicios.CargarUsuarios() + " sesiones de archivo XML");

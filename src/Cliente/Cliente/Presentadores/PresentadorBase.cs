@@ -1276,6 +1276,52 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
 
         /// <summary>
+        /// Metodo para buscar un infobol de marca en una lista de infoboles de marca
+        /// </summary>
+        /// <param name="infoboles">Lista de infoboles de marca</param>
+        /// <param name="infobolBuscado">Infobol a buscar</param>
+        /// <returns>Retorna un objeto Infobol, en caso contrario retorna null</returns>
+        public InfoBol BuscarInfobol(IList<InfoBol> infoboles, InfoBol infobolBuscado)
+        {
+            InfoBol retorno = null;
+            if(infobolBuscado != null)
+                foreach (InfoBol item in infoboles)
+                {
+                    if ((item.Marca.Id == infobolBuscado.Marca.Id)
+                        && (item.TipoInfobol.Id.Trim().Equals(infobolBuscado.TipoInfobol.Id.Trim())))
+                    {
+                        retorno = item;
+                        break;
+                    }
+                       
+                }
+
+            return retorno;
+        }
+
+
+
+        public InfoBolMarcaTer BuscarInfobolMarcaTer(IList<InfoBolMarcaTer> infoboles, InfoBolMarcaTer infobolBuscado)
+        {
+            InfoBolMarcaTer retorno = null;
+            if (infobolBuscado != null)
+                foreach (InfoBolMarcaTer item in infoboles)
+                {
+                    if ((item.Marca.Id == infobolBuscado.Marca.Id)
+                        && (item.Marca.Anexo == infobolBuscado.Marca.Anexo)
+                        && (item.TipoInfobol.Id.Trim().Equals(infobolBuscado.TipoInfobol.Id.Trim())))
+                    {
+                        retorno = item;
+                        break;
+                    }
+
+                }
+
+            return retorno;
+        }
+
+
+        /// <summary>
         /// Método que busca un estado dentro de una lista de Tarifas
         /// </summary>
         /// <param name="tarifas">Lista de Tarifas</param>

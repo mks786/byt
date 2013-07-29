@@ -528,6 +528,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     if (_patente.LocalidadPatente.Equals("N"))
                     {
                         archivoPatente = new Archivo(_patente.Id.ToString());
+                        archivoPatente.TipoDeDocumento = "P";
                         archivoPatente = this._archivoServicios.ConsultarPorId(archivoPatente);
                     }
                     else if (_patente.LocalidadPatente.Equals("I"))
@@ -541,6 +542,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                         else
                         {
                             archivoPatente = new Archivo(_patente.Id.ToString());
+                            archivoPatente.TipoDeDocumento = "P";
                             archivoPatente = this._archivoServicios.ConsultarPorId(archivoPatente);
                         }
                     }
@@ -3385,6 +3387,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 if (patente.LocalidadPatente.Equals("N"))
                 {
                     archivoConsultar = new Archivo(patente.Id.ToString());
+                    archivoConsultar.TipoDeDocumento = "P";
                     archivo = this._archivoServicios.ConsultarPorId(archivoConsultar);
                 }
                 else if (patente.LocalidadPatente.Equals("I"))
@@ -3398,6 +3401,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     else
                     {
                         archivoConsultar = new Archivo(patente.Id.ToString());
+                        archivoConsultar.TipoDeDocumento = "P";
                         archivo = this._archivoServicios.ConsultarPorId(archivoConsultar);
                     }
 

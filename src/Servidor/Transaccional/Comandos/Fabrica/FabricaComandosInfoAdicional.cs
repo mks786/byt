@@ -64,6 +64,12 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarInfoAdicionalPorID(infoAdicional);
         }
+
+
+        public static ComandoBase<IList<InfoAdicional>> ObtenerComandoObtenerInfoAdicionalDistingueInglesFiltro(InfoAdicional infoAdicional)
+        {
+            return new ComandoObtenerInfoAdicionalDistingueInglesFiltro(infoAdicional);
+        }
     }
     
 }

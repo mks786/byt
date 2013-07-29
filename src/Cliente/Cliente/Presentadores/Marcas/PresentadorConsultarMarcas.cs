@@ -35,6 +35,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private ICondicionServicios _condicionServicios;
         private IBoletinServicios _boletinServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
+        private IInfoAdicionalServicios _infoAdicionalServicios;
 
         private IList<Marca> _marcas;
         private IList<Asociado> _asociados;
@@ -46,7 +47,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         private bool _soloLocalidad = false; //Variable utilizada para indicar que solamente se hara la consulta de las marcas tomando en cuenta la localidad de la misma
         private String _localidadAConsultar; //Variable que indica que localidad se va a consultar, si marcas Nacionales o marcas Internacionales
-
+        private bool _consultaInfoAdicional = false; //Variable que indica que se consultara por InfoAdicional (Distingue en Ingles)
 
         /// <summary>
         /// Constructor Predeterminado
@@ -88,6 +89,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
                 this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IBoletinServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
+                this._infoAdicionalServicios = (IInfoAdicionalServicios)Activator.GetObject(typeof(IInfoAdicionalServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoAdicionalServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -256,6 +259,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 Marca MarcaAuxiliar = new Marca();
                 MarcaAuxiliar.Id = int.MinValue;
                 IList<Marca> marcasDesinfladas = new List<Marca>();
+
                 MarcaAuxiliar = ObtenerMarcaFiltro();
 
                 _soloLocalidad = ConsultaSoloLocalidad(MarcaAuxiliar);
@@ -269,7 +273,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 if ((confirmacion && _soloLocalidad) || (confirmacion && !_soloLocalidad) || (!confirmacion && !_soloLocalidad))
                 {
-                    if (_filtroValido >= 2)
+                    //if (_filtroValido >= 2)
+                    if ((_filtroValido >= 2) && (!_consultaInfoAdicional))
                     {
 
                         this._marcas = this._marcaServicios.ObtenerMarcasFiltro(MarcaAuxiliar);
@@ -333,6 +338,36 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         if (marcasDesinfladas.Count == 0)
                             this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                     }
+                    else if ((_filtroValido >= 2) && (_consultaInfoAdicional))
+                    {
+                        IList<InfoAdicional> infoAdicionalLista = this._infoAdicionalServicios.ObtenerDistingueInglesPorFiltro(MarcaAuxiliar.InfoAdicional);
+                        Marca marcaAux = new Marca();
+                        marcaAux = MarcaAuxiliar;
+                        IList<Marca> marcaLista = new List<Marca>();
+                        String codigoMarca = String.Empty;
+                        String[] codigos = null;
+                        
+
+                        foreach (InfoAdicional item in infoAdicionalLista)
+                        {
+                            codigos = item.Id.Split('.');
+                            marcaAux.Id = int.Parse(codigos[1]);
+                            marcaLista = this._marcaServicios.ObtenerMarcasFiltro(marcaAux);
+                            if (marcaLista.Count != 0)
+                            {
+                                marcasDesinfladas.Add(marcaLista[0]);
+                            }
+
+                            codigos = null;
+                            //marcaLista.RemoveAt(0); 
+                        }
+
+                        this._marcas = marcasDesinfladas;
+                        this._ventana.Resultados = marcasDesinfladas;
+                        this._ventana.TotalHits = marcasDesinfladas.Count.ToString();
+                        if (marcasDesinfladas.Count == 0)
+                            this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                    }
                     else
                     {
 
@@ -343,11 +378,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     }
                 }
 
-                //else if (!confirmacion && _soloLocalidad)
-                //{
-                //    String prueba;
-                //    prueba = "no lo hace";
-                //}
+                
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -411,6 +442,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     {
                         marcaAuxiliar = TomarDatosMarcaFiltroTYR(marcaAuxiliar);
                     }
+
+                    //---
+                   
+
+                    //---
                 }
                 else
                 {
@@ -767,6 +803,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 else
                     marcaAuxiliar.XDistingue = null;
 
+                //---
+                if (!this._ventana.DistingueEnIngles.Equals(""))
+                {
+                    _filtroValido = 2;
+                    _consultaInfoAdicional = true;
+                    marcaAuxiliar.InfoAdicional = new InfoAdicional();
+                    ((InfoAdicional)marcaAuxiliar.InfoAdicional).Info = this._ventana.DistingueEnIngles.ToUpper();
+                    ((InfoAdicional)marcaAuxiliar.InfoAdicional).Id = "M.";
+
+                }
+
+
+                //---
+
                 if ((!this._ventana.Solicitud.Equals("")) && (this._ventana.Solicitud != "0"))
                 {
                     _filtroValido = 2;
@@ -1073,21 +1123,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                                                     if (this._ventana.ClaseInternacional.Equals(""))
                                                         if (this._ventana.ClaseNacional.Equals(""))
                                                             if (this._ventana.Distingue.Equals(""))
-                                                                if (this._ventana.Solicitud.Equals(""))
-                                                                    if (null == marcaAuxiliar.PrimeraReferencia)
-                                                                        if (this._ventana.IdInternacional.Equals(string.Empty))
-                                                                            if (this._ventana.IdCorrelativoInternacional.Equals(string.Empty))
-                                                                                if (this._ventana.Pais == null)
-                                                                                    if (this._ventana.ReferenciaAsociado.Equals(string.Empty))
-                                                                                        if (this._ventana.ReferenciaInteresado.Equals(string.Empty))
-                                                                                            if(!this._ventana.BoletinesEstaSeleccionado)
-                                                                                                if(!this._ventana.IndicadoresEstaSeleccionado)
-                                                                                                    if(!this._ventana.PrioridadesEstaSeleccionado)
-                                                                                                        if(!this._ventana.TYREstaSeleccionado)
-                                                                                                            {
-                                                                                                               _soloLocalidad = true;
-                                                                                                               retorno = _soloLocalidad;
-                                                                                                            }
+                                                                if(this._ventana.DistingueEnIngles.Equals(""))
+                                                                    if (this._ventana.Solicitud.Equals(""))
+                                                                        if (null == marcaAuxiliar.PrimeraReferencia)
+                                                                            if (this._ventana.IdInternacional.Equals(string.Empty))
+                                                                                if (this._ventana.IdCorrelativoInternacional.Equals(string.Empty))
+                                                                                    if (this._ventana.Pais == null)
+                                                                                        if (this._ventana.ReferenciaAsociado.Equals(string.Empty))
+                                                                                            if (this._ventana.ReferenciaInteresado.Equals(string.Empty))
+                                                                                                if(!this._ventana.BoletinesEstaSeleccionado)
+                                                                                                    if(!this._ventana.IndicadoresEstaSeleccionado)
+                                                                                                        if(!this._ventana.PrioridadesEstaSeleccionado)
+                                                                                                            if(!this._ventana.TYREstaSeleccionado)
+                                                                                                                {
+                                                                                                                   _soloLocalidad = true;
+                                                                                                                   retorno = _soloLocalidad;
+                                                                                                                }
 
                 if (marcaAuxiliar.LocalidadMarca.Equals("N"))
                     _localidadAConsultar = "Nacionales";

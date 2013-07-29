@@ -160,7 +160,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorGestionarInfoBol(this, infoBol,ventanaPadre);
+            this._presentador = new PresentadorGestionarInfoBol(this, infoBol, ventanaPadre);
 
             _bgw.WorkerReportsProgress = true;
             _bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(bgw_DoWork);

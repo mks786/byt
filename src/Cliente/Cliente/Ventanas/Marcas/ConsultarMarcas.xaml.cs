@@ -182,6 +182,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
 
+        public string DistingueEnIngles
+        {
+            get { return this._txtDistingueIngles.Text; }
+            set { this._txtDistingueIngles.Text = value; }
+        }
+
+
         public string NombreInteresadoFiltrar
         {
             get { return this._txtNombreInteresado.Text; }

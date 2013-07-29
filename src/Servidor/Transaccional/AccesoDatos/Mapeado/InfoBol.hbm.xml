@@ -6,11 +6,8 @@
   <class name="InfoBol" table="MYP_MINFOBOL">
 
     <composite-id>
-      <key-many-to-one name="Marca" column="CMARCA" class="Marca"/>
       <key-many-to-one name="TipoInfobol" column="TIPO" class="TipoInfobol"/>
-      <!--<key-many-to-one name="TipoInfobol" column="TIPO" class="TipoInfobol" lazy="false" />-->
-        
-     
+      <key-many-to-one name="Marca" column="CMARCA" class="Marca" lazy="false"/>
     </composite-id>
 
     <property name="Tomo" type="String" column="TOMO"/>

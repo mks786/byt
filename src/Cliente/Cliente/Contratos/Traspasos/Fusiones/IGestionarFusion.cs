@@ -29,6 +29,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
 
         string IdApoderado { get; set; }
 
+        bool ActaFusion { get; }
+
+        void MarcaActaFusion();
+
         #region Marcas
 
         string NombreMarca { set; }

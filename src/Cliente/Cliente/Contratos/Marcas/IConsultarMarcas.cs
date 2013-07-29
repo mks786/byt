@@ -31,6 +31,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string Distingue { get; set; }
 
+        string DistingueEnIngles { get; set; }
+
         string ClaseInternacional { get; set; }
 
         string ClaseNacional { get; set; }

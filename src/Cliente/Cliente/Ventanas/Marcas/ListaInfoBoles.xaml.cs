@@ -38,6 +38,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public object InfoBolSeleccionado
         {
             get { return this._lstResultados.SelectedItem; }
+            set { this._lstResultados.SelectedItem = value; }
         }
 
         public void FocoPredeterminado()

@@ -26,6 +26,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private ITipoInfobolServicios _tipoInfobolServicios;
+        private IInfoBolServicios _infobolServicios;
 
 
         /// <summary>
@@ -44,6 +45,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             this._tipoInfobolServicios = (ITipoInfobolServicios)Activator.GetObject(typeof(ITipoInfobolServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoInfobolServicios"]);
+
+            this._infobolServicios = (IInfoBolServicios)Activator.GetObject(typeof(IInfoBolServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoBolServicios"]);
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -69,6 +73,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             this._tipoInfobolServicios = (ITipoInfobolServicios)Activator.GetObject(typeof(ITipoInfobolServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoInfobolServicios"]);
+
+            this._infobolServicios = (IInfoBolServicios)Activator.GetObject(typeof(IInfoBolServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoBolServicios"]);
 
 
             #region trace
@@ -100,6 +107,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 IList<TipoInfobol> tipoInfobol = this._tipoInfobolServicios.ConsultarTodos();
 
                 IList<InfoBol> listaInfobolesMarca = ((Marca)this._marca).InfoBoles;
+                IList<InfoBol> listaInfobolesMarcaAntes = ((Marca)this._marca).InfoBoles;
                
                 foreach (InfoBol item in listaInfobolesMarca)
                 {
@@ -117,8 +125,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 ((Marca)this._marca).InfoBoles = listaInfobolesMarca;
 
-
+                
                 this._ventana.InfoBoles = ((Marca)this._marca).InfoBoles;
+
                 this._ventana.TotalHits = ((Marca)this._marca).InfoBoles.Count.ToString();
                 this._ventana.FocoPredeterminado();
 
@@ -154,13 +163,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 ((InfoBol)this._ventana.InfoBolSeleccionado).Marca = this._marca;
                 //this.Navegar(new GestionarInfoBol(this._ventana.InfoBolSeleccionado));
 
+                IList<InfoBol> infoboles = this._infobolServicios.ConsultarInfoBolesPorMarca(this._marca);
+                InfoBol infobol = this.BuscarInfobol(infoboles, (InfoBol)this._ventana.InfoBolSeleccionado);
+
+                ((InfoBol)this._ventana.InfoBolSeleccionado).TipoInfobol = infobol.TipoInfobol;
+                ((InfoBol)this._ventana.InfoBolSeleccionado).Marca = this._marca;
+
                 this.Navegar(new GestionarInfoBol(this._ventana.InfoBolSeleccionado, this._ventana));
             }
             else
             {
                 InfoBol infoBol = new InfoBol();
                 infoBol.Marca = this._marca;
-                infoBol.Id = int.MinValue;
+                //infoBol.Id = int.MinValue;
+                //infoBol.Id = this._marca.Id;
                 this.Navegar(new GestionarInfoBol(infoBol));
             }
 

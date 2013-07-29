@@ -371,6 +371,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
                     CargaBoletines();
 
+                    if((null != fusion) && (!fusion.Acta.Equals(' ')))
+                    {
+                        if(fusion.Acta.Equals('T'))
+                        {
+                            this._ventana.MarcaActaFusion();
+                        }
+                    }
+
                     this._ventana.FocoPredeterminado();
 
                 }
@@ -703,6 +711,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             if (null != this._ventana.Boletin)
                 fusion.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ?
                                                         (Boletin)this._ventana.Boletin : null;
+
+            if (this._ventana.ActaFusion)
+                fusion.Acta = 'T';
+            
 
 
             #region Comentado

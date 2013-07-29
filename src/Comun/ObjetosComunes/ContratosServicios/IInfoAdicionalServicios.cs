@@ -21,5 +21,15 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// <param name="distingueInfoAdicional">Cadena con el Distingue en Ingles para InfoAdicional</param>
         /// <returns>True si la operacion se realiza correctamente; false, en caso contrario</returns>
         bool ActualizarDistingueInfoAdicional(InfoAdicional infoAdicional, String distingueInfoAdicional);
+
+
+        /// <summary>
+        /// Servicio que obtiene todos los InfoAdicionales de marcas 
+        /// Este servicio se usa para obtener el grupo de marcas que se estan filtrando por el Distingue en Ingles
+        /// </summary>
+        /// <param name="infoAdicional">InfoAdicional a filtrar</param>
+        /// <returns>Lista de InfoAdicional</returns>
+        IList<InfoAdicional> ObtenerDistingueInglesPorFiltro(InfoAdicional infoAdicional); 
+
     }
 }

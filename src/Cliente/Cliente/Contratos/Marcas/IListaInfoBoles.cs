@@ -5,7 +5,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 {
     interface IListaInfoBoles : IPaginaBase
     {
-        object InfoBolSeleccionado { get; }
+        //object InfoBolSeleccionado { get; }
+
+        object InfoBolSeleccionado { get; set; }
 
         object InfoBoles { get; set; }
 

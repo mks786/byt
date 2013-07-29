@@ -36,9 +36,20 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// Constructor que inicializa el condigo de la infoBol
         /// </summary>
         /// <param name="id">Codigo de la infoBol</param>
-        public InfoBol(Marca marca)
+        //public InfoBol(Marca marca)
+        //{
+        //    this._id = marca.Id;
+        //}
+
+
+
+        /// <summary>
+        /// Constructor modificado para arreglar caso de insercion y update de un infobol
+        /// </summary>
+        /// <param name="id"></param>
+        public InfoBol(int id)
         {
-            this._id = marca.Id;
+            this.Marca.Id = id;
         }
 
         #endregion
@@ -47,7 +58,18 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         public override bool Equals(object obj)
         {
-            if ((this.Id == ((InfoBol)obj).Id) && (this.TipoInfobol.Id == ((InfoBol)obj).TipoInfobol.Id))
+            #region Codigo original comentado
+            //if ((this.Id == ((InfoBol)obj).Id) && (this.TipoInfobol.Id == ((InfoBol)obj).TipoInfobol.Id))
+            //    return true;
+            //return false; 
+            #endregion
+
+            if (obj == null)
+                return false;
+            var t = obj as InfoBol;
+            if (t == null)
+                return false;
+            if ((TipoInfobol.Id == (t.TipoInfobol.Id)) && (Marca.Id == (t.Marca.Id)))
                 return true;
             return false;
         }
@@ -67,22 +89,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// </summary>
         public virtual int Id
         {
-            get { return this._id; }
-            set { this._id = value; }
+            get { return this._marca.Id; }
+            set { this._marca.Id = value; }
         }
 
-        /// <summary>
-        /// Propiedad que asigna u obtiene la Marca
-        /// </summary>
-        public virtual Marca Marca
-        {
-            get { return _marca; }
-            set
-            {
-                _marca = value;
-                this.Id = _marca.Id;
-            }
-        }
 
         /// <summary>
         /// Propiedad que asigna u obtiene el TipoInfobol
@@ -92,6 +102,27 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             get { return _tipoInfobol; }
             set { _tipoInfobol = value; }
         }
+
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la Marca
+        /// </summary>
+        public virtual Marca Marca
+        {
+            get { return _marca; }
+            set { _marca = value; }
+
+            #region Codigo original comentado
+            //set
+            //{
+            //    _marca = value;
+            //    this.Id = _marca.Id;
+            //} 
+            #endregion
+        }
+
+       
 
         /// <summary>
         /// Propiedad que asigna u obtiene el Tomo

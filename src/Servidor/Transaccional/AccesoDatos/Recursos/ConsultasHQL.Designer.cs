@@ -1924,7 +1924,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select a from Archivo a where a.Id = &apos;{0}&apos;.
+        ///   Busca una cadena traducida similar a Select a from Archivo a where a.Id = &apos;{0}&apos; and a.TipoDeDocumento = &apos;{1}&apos;.
         /// </summary>
         public static string ObtenerArchivoPorId {
             get {
@@ -2082,6 +2082,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string ObtenerInfoAdicinalPorId {
             get {
                 return ResourceManager.GetString("ObtenerInfoAdicinalPorId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select i from InfoAdicional i where i.Info like &apos;%{0}%&apos;  and i.Id like &apos;{1}%&apos;.
+        /// </summary>
+        public static string ObtenerInfoAdicionalDistingueIngles {
+            get {
+                return ResourceManager.GetString("ObtenerInfoAdicionalDistingueIngles", resourceCulture);
             }
         }
         

@@ -759,6 +759,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             {
                 GestionarVisibilidadDatosDeMarca(Visibility.Visible);
                 GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
+                this._btnIrAsociados.Visibility = System.Windows.Visibility.Visible;
             }
         }
 
@@ -826,7 +827,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             this._txtIdMarcaFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lstMarcas.Visibility = (System.Windows.Visibility)value;
             this._btnConsultarMarca.Visibility = (System.Windows.Visibility)value;
-            this._btnIrAsociados.Visibility = (System.Windows.Visibility)value;
+            this._btnIrAsociados.Visibility = System.Windows.Visibility.Collapsed;
+            //this._btnIrAsociados.Visibility = (System.Windows.Visibility)value;
         }
 
         private void _txtMarcaFiltrar_GotFocus(object sender, RoutedEventArgs e)

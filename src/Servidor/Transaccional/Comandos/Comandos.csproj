@@ -126,6 +126,7 @@
     <Compile Include="Comandos\ComandosFusionMarcaTercero\ComandoConsultarFusionMarcaTerceroPorFusion.cs" />
     <Compile Include="Comandos\ComandosFusionPatenteTercero\ComandoConsultarFusionPatenteTerceroPorFusion.cs" />
     <Compile Include="Comandos\ComandosFusion\ComandoConsultarFusionesFiltro.cs" />
+    <Compile Include="Comandos\ComandosInfoAdicional\ComandoObtenerInfoAdicionalDistingueInglesFiltro.cs" />
     <Compile Include="Comandos\ComandosInfoBol\ComandoConsultarInfoBolesPorMarca.cs" />
     <Compile Include="Comandos\ComandosInfoBol\ComandoConsultarInteresadosDeUnPoder.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoConsultarInteresadoConTodo.cs" />

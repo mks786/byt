@@ -51,6 +51,45 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
 
         /// <summary>
+        /// Servicio que obtiene todos los InfoAdicionales de marcas 
+        /// Este servicio se usa para obtener el grupo de marcas que se estan filtrando por el Distingue en Ingles
+        /// </summary>
+        /// <param name="infoAdicional">InfoAdicional a filtrar</param>
+        /// <returns>Lista de InfoAdicional</returns>
+        public IList<InfoAdicional> ObtenerDistingueInglesPorFiltro(InfoAdicional infoAdicional)
+        {
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                IList<InfoAdicional> InfoAdicionales = ControladorInfoAdicional.ObtenerInfoAdicionalDistingueInglesFiltro(infoAdicional);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                return InfoAdicionales;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
+        }
+
+
+
+        /// <summary>
         /// Servicio que consulta una entidad por su Id
         /// </summary>
         /// <param name="entidad"></param>
@@ -329,6 +368,9 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             return resultado;
         }
+
+
+        
 
 
 

@@ -71,6 +71,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             }
         }
 
+
+        public object FusionDatosAdicionales
+        {
+            get { return this._gridDatosAdicionalesFusion.DataContext; }
+            set { this._gridDatosAdicionalesFusion.DataContext = value; }
+        }
+
+
         public object Boletines
         {
             get { return this._cbxBoletin.DataContext; }
@@ -253,15 +261,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
 
                 this._lblIdPoder.IsEnabled = value;
                 this._lblFomento.IsEnabled = value;
-                this._lblAnexoPoder.IsEnabled = value;
+                //this._lblAnexoPoder.IsEnabled = value;
                 this._lblBoletinPoder.IsEnabled = value;
                 this._lblFechaPoder.IsEnabled = value;
-                this._lblFacultadPoder.IsEnabled = value;
+                //this._lblFacultadPoder.IsEnabled = value;
                 this._txtIdPoder.IsEnabled = value;
-                this._txtFacultadPoder.IsEnabled = value;
-                this._txtAnexoPoder.IsEnabled = value;
+                //this._txtFacultadPoder.IsEnabled = value;
+                //this._txtAnexoPoder.IsEnabled = value;
                 this._cbxBoletin.IsEnabled = value;
-                this._txtFacultadPoder.IsEnabled = value;
+                //this._txtFacultadPoder.IsEnabled = value;
                 this._txtFechaPoder.IsEnabled = value;
                 this._txtNumPoder.IsEnabled = value;
 
@@ -388,6 +396,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             set { this._gridDatosPoder.DataContext = value; }
         }
 
+        
+
         public string IdPoder
         {
             get { return this._txtIdPoder.Text; }
@@ -477,6 +487,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         {
             get { return this._cbxPaisMarcaTercero.DataContext; }
             set { this._cbxPaisMarcaTercero.DataContext = value; }
+        }
+
+        public bool ActaFusion
+        {
+            get { return this._chkAsientoEnLibro.IsChecked.Value; }
+            
         }
 
         #endregion
@@ -675,6 +691,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         private void _btnIrAsociados_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrVentanaAsociado();
+        }
+
+        public void MarcaActaFusion()
+        {
+            this._chkAsientoEnLibro.IsChecked = true;
         }
 
 
@@ -1125,13 +1146,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             this._lblFomento.Visibility = (System.Windows.Visibility)value;
             this._lblFechaPoder.Visibility = (System.Windows.Visibility)value;
             this._lblBoletinPoder.Visibility = (System.Windows.Visibility)value;
-            this._lblAnexoPoder.Visibility = (System.Windows.Visibility)value;
-            this._lblFacultadPoder.Visibility = (System.Windows.Visibility)value;
+            //this._lblAnexoPoder.Visibility = (System.Windows.Visibility)value;
+            //this._lblFacultadPoder.Visibility = (System.Windows.Visibility)value;
             this._txtNumPoder.Visibility = (System.Windows.Visibility)value;
             this._txtFechaPoder.Visibility = (System.Windows.Visibility)value;
             this._cbxBoletin.Visibility = (System.Windows.Visibility)value;
-            this._txtAnexoPoder.Visibility = (System.Windows.Visibility)value;
-            this._txtFacultadPoder.Visibility = (System.Windows.Visibility)value;
+            //this._txtAnexoPoder.Visibility = (System.Windows.Visibility)value;
+            //this._txtFacultadPoder.Visibility = (System.Windows.Visibility)value;
         }
 
         #endregion

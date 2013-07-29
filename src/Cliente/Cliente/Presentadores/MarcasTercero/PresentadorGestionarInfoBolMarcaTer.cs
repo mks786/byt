@@ -50,7 +50,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 this._ventana = ventana;
                 this._ventana.InfoBolMarcaTer = null != (InfoBolMarcaTer)infoBol ? (InfoBolMarcaTer)infoBol : new InfoBolMarcaTer();
 
-                if (((InfoBolMarcaTer)infoBol).Id == null)
+                //if (((InfoBolMarcaTer)infoBol).Id == null)
+                //    this._nuevaInfoBolMarcaTer = true;
+
+                if(((InfoBolMarcaTer)infoBol).TipoInfobol == null)
                     this._nuevaInfoBolMarcaTer = true;
 
                 this._infoBolServicios = (IInfoBolMarcaTerServicios)Activator.GetObject(typeof(IInfoBolMarcaTerServicios),

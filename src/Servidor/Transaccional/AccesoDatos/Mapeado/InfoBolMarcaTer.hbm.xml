@@ -12,7 +12,7 @@
 
     <composite-id>
       <key-many-to-one name="TipoInfobol" column="TIPO" class="TipoInfobol" />
-      <key-many-to-one name="Marca">
+      <key-many-to-one name="Marca" lazy="false">
         <column name="CMARCA"/>
         <column name="CANEXO"/>
       </key-many-to-one>
@@ -25,11 +25,11 @@
     <property name="Comentario" type="String" column="COMENTARIO"/>
     <property name="TimeStamp" type="DateTime" column="TIMESTAMP"/>
 
-    <many-to-one name="Boletin" class="Boletin">
+    <many-to-one name="Boletin" class="Boletin" lazy="false">
       <column name="CBOLETIN"/>
     </many-to-one>
 
-    <many-to-one name="Usuario" class="Usuario">
+    <many-to-one name="Usuario" class="Usuario" lazy="false">
       <column name="USUARIO"/>
     </many-to-one>
   </class>

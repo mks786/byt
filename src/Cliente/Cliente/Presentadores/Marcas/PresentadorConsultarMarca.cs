@@ -464,6 +464,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if (marca.LocalidadMarca.Equals("N"))
                 {
                     archivoMarca = new Archivo(marca.Id.ToString());
+                    archivoMarca.TipoDeDocumento = "M";
                     archivoMarca = this._archivoServicios.ConsultarPorId(archivoMarca);
                 }
                 else if (marca.LocalidadMarca.Equals("I"))
@@ -477,6 +478,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     else
                     {
                         archivoMarca = new Archivo(marca.Id.ToString());
+                        archivoMarca.TipoDeDocumento = "M";
                         archivoMarca = this._archivoServicios.ConsultarPorId(archivoMarca);
                     }
                 }
@@ -1129,6 +1131,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if (marca.LocalidadMarca.Equals("N"))
                 {
                     archivoConsultar = new Archivo(marca.Id.ToString());
+                    archivoConsultar.TipoDeDocumento = "M";
                     archivo = this._archivoServicios.ConsultarPorId(archivoConsultar);
                 }
                 else if (marca.LocalidadMarca.Equals("I"))
@@ -1142,6 +1145,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     else
                     {
                         archivoConsultar = new Archivo(marca.Id.ToString());
+                        archivoConsultar.TipoDeDocumento = "M";
                         archivo = this._archivoServicios.ConsultarPorId(archivoConsultar);
                     }
                     
@@ -2530,10 +2534,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     {
                         Poder primerPoder = new Poder();
                         primerPoder.Id = int.MinValue;
-                        _poderesFiltrados = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.Agente, (Interesado)this._ventana.InteresadoSolicitud);
+                        _poderesFiltrados = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.Agente, (Interesado)this._ventana.InteresadoDatos);
                         if (_poderesFiltrados.Count != 0)
                         {
-                            poderABuscar = this.BuscarPoder(_poderesFiltrados, (Poder)this._ventana.PoderSolicitud);
+                            poderABuscar = this.BuscarPoder(_poderesFiltrados, (Poder)this._ventana.PoderDatos);
 
                             if (poderABuscar != null)
                             {

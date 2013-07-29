@@ -58,9 +58,12 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvDescripcion}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Interno}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Interno" Content="{x:Static recurso:Etiquetas.lsvCodigoInternoOperaciones}"/>
                         </GridViewColumn>
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                        </GridViewColumn>-->
                     </GridView>
                 </ListView.View>
             </ListView>

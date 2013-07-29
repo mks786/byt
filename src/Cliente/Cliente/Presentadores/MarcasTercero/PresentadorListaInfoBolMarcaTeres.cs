@@ -26,6 +26,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private ITipoInfobolServicios _tipoInfobolServicios;
+        private IInfoBolMarcaTerServicios _infobolServicios;
 
 
         /// <summary>
@@ -44,6 +45,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
             this._tipoInfobolServicios = (ITipoInfobolServicios)Activator.GetObject(typeof(ITipoInfobolServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoInfobolServicios"]);
+
+            this._infobolServicios = (IInfoBolMarcaTerServicios)Activator.GetObject(typeof(IInfoBolMarcaTerServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoBolMarcaTerServicios"]);
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -132,13 +136,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             if (!nuevo)
             {
                 ((InfoBolMarcaTer)this._ventana.InfoBolMarcaTerSeleccionado).Marca = this._marca;
+
+                IList<InfoBolMarcaTer> infoboles = this._infobolServicios.ConsultarInfoBolMarcaTeresPorMarca(this._marca);
+                InfoBolMarcaTer infobol = this.BuscarInfobolMarcaTer(infoboles, (InfoBolMarcaTer)this._ventana.InfoBolMarcaTerSeleccionado);
+
+                ((InfoBolMarcaTer)this._ventana.InfoBolMarcaTerSeleccionado).TipoInfobol = infobol.TipoInfobol;
+                ((InfoBolMarcaTer)this._ventana.InfoBolMarcaTerSeleccionado).Marca = this._marca;
+                
                 this.Navegar(new GestionarInfoBolMarcaTer(this._ventana.InfoBolMarcaTerSeleccionado));
             }
             else
             {
                 InfoBolMarcaTer infoBol = new InfoBolMarcaTer();
                 infoBol.Marca = this._marca;
-                infoBol.Id = null;
+                //infoBol.Id = null;
                 this.Navegar(new GestionarInfoBolMarcaTer(infoBol));
             }
 

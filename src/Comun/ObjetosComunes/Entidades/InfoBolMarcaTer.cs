@@ -32,14 +32,26 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
         }
 
+        #region Constructor original comentado
         /// <summary>
         /// Constructor que inicializa el condigo de la infoBol
         /// </summary>
         /// <param name="id">Codigo de la infoBol</param>
-        public InfoBolMarcaTer(MarcaTercero marca)
+        //public InfoBolMarcaTer(MarcaTercero marca)
+        //{
+        //    this._id = marca.Id;
+        //} 
+        #endregion
+
+        /// <summary>
+        /// Constructor predeterminado que recibe el string de la Marca a Terceros
+        /// </summary>
+        /// <param name="id"></param>
+        public InfoBolMarcaTer(string id)
         {
-            this._id = marca.Id;
+            this.TipoInfobol.Id = id;
         }
+
 
         #endregion
 
@@ -47,9 +59,22 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         public override bool Equals(object obj)
         {
-            if ((this.Id == ((InfoBolMarcaTer)obj).Id) && (this.TipoInfobol.Id == ((InfoBolMarcaTer)obj).TipoInfobol.Id))
+            #region Codigo original comentado
+            //if ((this.Id == ((InfoBolMarcaTer)obj).Id)
+            //        && (this.TipoInfobol.Id == ((InfoBolMarcaTer)obj).TipoInfobol.Id))
+            //    return true;
+            //return false; 
+            #endregion
+
+            if (obj == null)
+                return false;
+            var t = obj as InfoBolMarcaTer;
+            if (t == null)
+                return false;
+            if ((TipoInfobol.Id == (t.TipoInfobol.Id)) && (Marca.Id == (t.Marca.Id)))
                 return true;
             return false;
+
         }
 
         public override int GetHashCode()
@@ -67,8 +92,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// </summary>
         public virtual string Id
         {
-            get { return this._id; }
-            set { this._id = value; }
+            get { return this._marca.Id; }
+            set { this._marca.Id = value; }
         }
 
         /// <summary>
@@ -76,12 +101,17 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// </summary>
         public virtual MarcaTercero Marca
         {
+            #region Codigo original comentado
+            //get { return _marca; }
+            //set
+            //{
+            //    _marca = value;
+            //    this.Id = _marca.Id;
+            //} 
+            #endregion
+
             get { return _marca; }
-            set
-            {
-                _marca = value;
-                this.Id = _marca.Id;
-            }
+            set { _marca = value; }
         }
 
         /// <summary>

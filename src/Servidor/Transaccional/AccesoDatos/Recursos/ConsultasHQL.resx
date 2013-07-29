@@ -1072,8 +1072,8 @@
     <comment>Filtro de marca por PrimerOtro</comment>
   </data>
   <data name="ObtenerArchivoPorId" xml:space="preserve">
-    <value>Select a from Archivo a where a.Id = '{0}'</value>
-    <comment>Obtiene un archivo de marca o patente por Id</comment>
+    <value>Select a from Archivo a where a.Id = '{0}' and a.TipoDeDocumento = '{1}'</value>
+    <comment>Obtiene un archivo de marca o patente por Id y por el campo ITIPO</comment>
   </data>
   <data name="ObtenerTipoDocumentoPorMarcaOPorPatente" xml:space="preserve">
     <value>Select tipDoc from TipoDocumento tipDoc where tipDoc.TipoDoc = '{0}' or tipDoc.TipoDoc = '{1}' order by tipDoc.Id asc</value>
@@ -1098,5 +1098,9 @@
   <data name="FiltroObtenerMarcaXDistingue" xml:space="preserve">
     <value>upper(m.XDistingue) like '%{0}%'</value>
     <comment>Filtro para obtener la marca por el campo XDistingue SUSTITUYE AL FILTRO POR m.Distingue</comment>
+  </data>
+  <data name="ObtenerInfoAdicionalDistingueIngles" xml:space="preserve">
+    <value>Select i from InfoAdicional i where i.Info like '%{0}%'  and i.Id like '{1}%'</value>
+    <comment>Obtiene una lista de InfoAdicional con Distingue en Inles segun el filtro determinado</comment>
   </data>
 </root>

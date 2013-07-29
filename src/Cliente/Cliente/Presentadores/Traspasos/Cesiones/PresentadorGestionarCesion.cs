@@ -1183,7 +1183,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
             if (tipo.Equals("Cedente"))
             {
-                if (!(((Agente)this._ventana.ApoderadoCedenteFiltrado).Id.Equals("")) || (((Interesado)this._ventana.CedenteFiltrado).Id != int.MinValue))
+                if (!(((Agente)this._ventana.ApoderadoCedenteFiltrado).Id.Equals(""))
+                    || (((Interesado)this._ventana.CedenteFiltrado).Id != int.MinValue))
                     retorno = true;
             }
             if (tipo.Equals("Cesionario"))
@@ -2035,7 +2036,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (!((Agente)this._ventana.ApoderadoCedenteFiltrado).Id.Equals(""))
+                if ((this._ventana.ApoderadoCedenteFiltrado != null)
+                    && !(((Agente)this._ventana.ApoderadoCedenteFiltrado).Id == null)
+                    && !((Agente)this._ventana.ApoderadoCedenteFiltrado).Id.Equals(""))
                 {
                     if (((Interesado)this._ventana.CedenteFiltrado).Id != int.MinValue)
                     {
@@ -2117,8 +2120,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 }
                 else
                 {
+                    ((Agente)this._ventana.ApoderadoCedenteFiltrado).Id = "";
                     this._ventana.ApoderadoCedente = this._ventana.ApoderadoCedenteFiltrado;
                     this._ventana.NombreApoderadoCedente = ((Agente)this._ventana.ApoderadoCedenteFiltrado).Nombre;
+
                     retorno = true;
                 }
 

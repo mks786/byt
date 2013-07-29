@@ -70,8 +70,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 this._ventana.InfoBol = null != (InfoBol)infoBol ? (InfoBol)infoBol : new InfoBol();
 
-                if (((InfoBol)infoBol).Id == int.MinValue)
+                /*if (((InfoBol)infoBol).Id == int.MinValue)
+                {
                     this._nuevaInfoBol = true;
+                    
+                }*/
+
+                if (((InfoBol)infoBol).TipoInfobol == null)
+                {
+                    this._nuevaInfoBol = true;
+
+                }
 
                 this._infoBolServicios = (IInfoBolServicios)Activator.GetObject(typeof(IInfoBolServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoBolServicios"]);
@@ -216,7 +225,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.Boletin = this.BuscarBoletin(boletines, ((InfoBol)this._ventana.InfoBol).Boletin);
                     this._ventana.Tipo = this.BuscarTipoInfobol(this._infoboles, ((InfoBol)this._ventana.InfoBol).TipoInfobol);
                     //Para asegurar que el Infobol tenga un tipo de Infobol
-                    ((InfoBol)this._ventana.InfoBol).TipoInfobol = (TipoInfobol)this._ventana.Tipo;
+                    //((InfoBol)this._ventana.InfoBol).TipoInfobol = (TipoInfobol)this._ventana.Tipo;
                     if (((InfoBol)this._ventana.InfoBol).Cambio != 0)
                         this._ventana.TextoCambio = ((InfoBol)this._ventana.InfoBol).Cambio.ToString();
                     else
@@ -304,6 +313,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     {
                         infoBol.TipoInfobol = (TipoInfobol)this._ventana.Tipo;
                         ((InfoBol)this._ventana.InfoBol).Marca.InfoBoles.Add(infoBol);
+                        infoBol.Id = ((InfoBol)this._ventana.InfoBol).Marca.Id;
                     }
 
                     exitoso = this._infoBolServicios.InsertarOModificar(infoBol, UsuarioLogeado.Hash);
@@ -436,7 +446,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new ListaInfoBoles(((InfoBol)this._ventana.InfoBol).Marca));
+            //---
+
+            Marca marcaAux = ((InfoBol)this._ventana.InfoBol).Marca;
+            IList<InfoBol> infoboles = this._infoBolServicios.ConsultarInfoBolesPorMarca(marcaAux);
+            marcaAux.InfoBoles = infoboles;
+            this.Navegar(new ListaInfoBoles(marcaAux));
+
+            //---
+            //this.Navegar(new ListaInfoBoles(((InfoBol)this._ventana.InfoBol).Marca));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
