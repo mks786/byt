@@ -355,6 +355,41 @@ Namespace Presentadores.FacFacturas
             'End If
         End Sub
 
+        Public Sub verificar_limite_serv()
+            Dim FacFactuDetas As List(Of FacFactuDetalle) = DirectCast(Me._ventana.ResultadosFacFactuDeta, List(Of FacFactuDetalle))
+
+            Dim cant_letra_linea As Integer = ConfigurationManager.AppSettings("cant_caract_linea")
+            Dim max_lineas As Integer = ConfigurationManager.AppSettings("max_lineas")
+            Dim lias_vacias = 0
+
+            Dim cant_lineas_org As Integer = 0
+            Dim cant_lineas_esp As Integer = 0
+
+            ' FormatNumber((FacFactuDetaProformas(i).BDetalle), 2)
+            If FacFactuDetas IsNot Nothing Then
+                lias_vacias = FacFactuDetas.Count 'lineas entre cada servicio
+
+                For i As Integer = 0 To FacFactuDetas.Count - 1
+                    cant_lineas_org = cant_lineas_org + FormatNumber((FacFactuDetas(i).XDetalle.Length / cant_letra_linea), 0)
+                    cant_lineas_esp = cant_lineas_esp + FormatNumber((FacFactuDetas(i).XDetalleEs.Length / cant_letra_linea), 0)
+                Next
+            End If
+            cant_lineas_org = cant_lineas_org + lias_vacias
+            cant_lineas_esp = cant_lineas_esp + lias_vacias            
+            If (cant_lineas_org > max_lineas) Or (cant_lineas_esp > max_lineas) Then
+
+                Dim mensaje As String = "Detalle Moneda Original, Para esta Factura Existen " & lias_vacias & " Servicios, Verificar Informacion para evitar errores en la factura por que es probable que no salga la informacion completa dado que tienen mas de 15 lineas que son las permitidas"
+                If cant_lineas_org > max_lineas Then
+                    MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK)
+                End If
+                mensaje = "Detalle Moneda Español, Para esta Factura Existen " & lias_vacias & " Servicios, Verificar Informacion para evitar errores en la factura por que es probable que no salga la informacion completa dado que tienen mas de 15 lineas que son las permitidas"
+                If cant_lineas_esp > max_lineas Then
+                    MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK)
+                End If
+            End If
+
+        End Sub
+
         Public Sub Limpiar()
             '#Region "trace"
             If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
@@ -1102,6 +1137,7 @@ Namespace Presentadores.FacFacturas
                 FacFactura.Status = 4
             End If
 
+            verificar_limite_serv()
             Me.Navegar(New FacturaRpt((FacFactura)))
             'Me.Navegar(New FacturaRpt2())
             'Me.Navegar(New ConsultarFacFactura())

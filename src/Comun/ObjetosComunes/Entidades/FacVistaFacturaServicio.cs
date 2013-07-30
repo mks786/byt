@@ -9,6 +9,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         #region "Atributos"
           
            private int? _id;
+           private int? _detalle;
            private string _Inicial;
            private string _CodigoServicio;
            private string _Referencia;
@@ -30,10 +31,42 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         // ''' Constructor que inicializa el Id de la FacVistaFacturaServicio
         // ''' </summary>
         // ''' <param name="id">Id de la tasa</param>
-        public FacVistaFacturaServicio(int? id)
+        public FacVistaFacturaServicio(int? id,int? detalle)
         {
             this._id = id;
+            this._detalle = detalle;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            // var t = ((ChequeRecido)obj);
+            var t = obj as FacVistaFacturaServicio;
+            if (t == null)
+            {
+                return false;
+            }
+            if ((Id == (t.Id)) && (Detalle == t.Detalle))
+            {
+                //If (Doc_servicio = t.Doc_servicio) Then
+                return true;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+
 
         public virtual int? Id
         {
@@ -47,7 +80,18 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             }
         }
 
- 
+        public virtual int? Detalle
+        {
+            get
+            {
+                return this._detalle;
+            }
+            set
+            {
+                this._detalle = value;
+            }
+        }
+
         // ''' <summary>
         // ''' Propiedad que asigna u obtiene
         // ''' </summary>

@@ -39,12 +39,12 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
                 return false;
             }
             // var t = ((ChequeRecido)obj);
-            var t = obj as ChequeRecido;
+            var t = obj as ViGestionAsociado;
             if (t == null)
             {
                 return false;
             }
-            if ((Id.Id == (t.Id.Id)) && (Moneda == Moneda))
+            if ((Id.Id == (t.Id.Id)) && (Moneda == t.Moneda))
             {
                 //If (Doc_servicio = t.Doc_servicio) Then
                 return true;

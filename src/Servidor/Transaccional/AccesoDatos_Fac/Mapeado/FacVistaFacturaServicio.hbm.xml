@@ -4,7 +4,11 @@
                    namespace="Trascend.Bolet.ObjetosComunes.Entidades">
   
   <class name="FacVistaFacturaServicio" table="VI_FAC_SERV">
-    <id name="Id" column="CODIGO" />
+    <composite-id>
+      <key-property name="Id" column="CODIGO"/>
+      <key-property name="Detalle" column="CDETALLE"  type="int"/>
+    </composite-id>
+    <!--<id name="Id" column="CODIGO" />-->
     <property name="Inicial" column="XINICIAL" type="string"/>
     <property name="CodigoServicio" column="COD_SER" type="string"/>
     <property name="Referencia" column="XREFERENCIA" type="string"/>
