@@ -761,4 +761,8 @@
     <value>Select t from FacTarifa t</value>
     <comment>Cabecera del query para el filtro de FacImpuesto</comment>
   </data>
+  <data name="ObtenerCarpetaGestionAutomatica" xml:space="preserve">
+    <value>Select c from CarpetaGestionAutomatica c where c.Iniciales ='{0}' </value>
+    <comment>Consulta para obtener las carpetas del usuario para la generacion automatica de Gestiones</comment>
+  </data>
 </root>

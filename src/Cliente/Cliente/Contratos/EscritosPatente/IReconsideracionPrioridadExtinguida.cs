@@ -81,5 +81,7 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosPatente
         string BotonModificar { get; set; }
 
         bool HabilitarCampos { set; }
+
+        void DesactivarBotonAceptar();
     }
 }

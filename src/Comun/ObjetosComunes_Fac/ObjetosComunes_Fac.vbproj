@@ -69,6 +69,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContratosServicios\ICarpetaGestionAutomaticaServicios.vb" />
     <Compile Include="ContratosServicios\IFacTarifaServicios.vb" />
     <Compile Include="ContratosServicios\IFacVistaFacturacionCxpInternaServicios.vb" />
     <Compile Include="ContratosServicios\IFacFacturaPendienteConGruServicios.vb" />
@@ -136,6 +137,7 @@
     <Compile Include="ContratosServicios\ITipoMarcaServicios.vb" />
     <Compile Include="ContratosServicios\ITipoPatenteServicios.vb" />
     <Compile Include="ContratosServicios\IViGestionAsociadoServicios.vb" />
+    <Compile Include="Entidades\CarpetaGestionAutomatica.vb" />
     <Compile Include="Entidades\ConceptoGestion.vb" />
     <Compile Include="Entidades\FacImpuesto.vb" />
     <Compile Include="Entidades\Correspondenci.vb" />

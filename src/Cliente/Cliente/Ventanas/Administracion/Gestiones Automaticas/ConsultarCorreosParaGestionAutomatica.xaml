@@ -1,0 +1,150 @@
+﻿<Page x:Class="Trascend.Bolet.Cliente.Ventanas.Administracion.Gestiones_Automaticas.ConsultarCorreosParaGestionAutomatica"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+      xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
+      xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
+	Title="{x:Static recurso:Etiquetas.titleGenerarGestionAutomatica}" Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <conv:DosValresAUno x:Key="convertirADosValores"></conv:DosValresAUno>
+        <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
+        <Style TargetType="{x:Type DatePickerTextBox}">
+            <Setter Property="Text" Value="{x:Static recurso:Etiquetas.dpkText}" />
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="270"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        
+        
+        <GroupBox Grid.Column="0" Grid.Row="0" Margin="5,5,0,5" Height="35" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label>
+                    <TextBlock FontSize="15" Text="{x:Static recurso:Etiquetas.lblTotalHits}"/>
+                </Label>
+                <Label>
+                    <TextBlock FontSize="15" Name="_lblHits"/>
+                </Label>
+
+            </StackPanel>
+        </GroupBox>
+        
+        <Grid Grid.Row="1" Grid.RowSpan="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="290"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="68"/>
+                <RowDefinition Height="68"/>
+                <RowDefinition Height="68"/>
+                <RowDefinition Height="68*"/>
+                <RowDefinition Height="68"/>
+                <RowDefinition Height="68"/>
+            </Grid.RowDefinitions>
+
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,12,16" Width="252" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center">
+                <Label  Name="_lblMedioGestion" >
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblMedio}"/>
+                </Label>
+                <ComboBox Name="_cbxMedio" Width="190" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                </ComboBox>
+            </WrapPanel>
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,20,12,16" Width="252" Grid.Column="0" Grid.Row="1">
+                <Label  Name="_lblConceptoGestion" >
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblConcepto}"/>
+                </Label>
+                <ComboBox Name="_cbxConcepto" Width="180" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" Height="26">
+                </ComboBox>
+            </WrapPanel>
+
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,20,12,16" Grid.Row="2" Grid.Column="0" Width="252" >
+                <Label  Name="_lblDetalleGestion" >
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblDetalle}"/>
+                </Label>
+                <custom:ByTTextBox Name="_txtDetalleGestion" Text="" Width="190" MaxLength="500" Height="25" HorizontalAlignment="Left" Margin="5,5,0,0" />
+            </WrapPanel>
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,20,12,16" Grid.Row="3" Grid.Column="0" Width="252">
+                <Label  Name="_lblUsuarioGestion" >
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblUsuarioLogueado}"/>
+                </Label>
+                <custom:ByTTextBox Name="_txtUsuarioGestion" Text="" Width="180" MaxLength="15" Height="25" HorizontalAlignment="Left" Margin="5,5,0,0" IsEnabled="False" />
+            </WrapPanel>
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,20,12,16" Grid.Row="4" Grid.Column="0" Width="252">
+                <Label  Name="_lblAsociadoGestion" >
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
+                </Label>
+                <custom:ByTTextBox Name="_txtAsociadoGestion" Text="" Width="180" MaxLength="15" Height="25" HorizontalAlignment="Left" Margin="5,5,0,0" SoloNumero="True" />
+            </WrapPanel>
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,20,12,16" Grid.Row="5" Grid.Column="0" Width="252">
+                <Label  Name="_lblCarpetaGestion" >
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblCarpetaGestion}"/>
+                </Label>
+                <ComboBox Name="_cbxCarpetaGestion" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                </ComboBox>
+            </WrapPanel>
+
+
+        </Grid>
+
+        <!--Lista de Resultados-->
+        <GroupBox Grid.Column="1" Grid.Row="0" Grid.RowSpan="5" Grid.ColumnSpan="2" Margin="5">
+            <ListView Name="_lstResultados" ItemsSource="{Binding}"  SelectionMode="Extended" 
+                      ItemContainerStyle="{DynamicResource ListViewRecordatorio}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Id}" Width="110">
+                            <GridViewColumnHeader Tag="From" Content="{x:Static recurso:Etiquetas.lsvFromCorreoGestion}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Nombre}" Width="110">
+                            <GridViewColumnHeader Tag="FechaCorreo" Content="{x:Static recurso:Etiquetas.lsvFechaCorreoGestion}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Fax1}" Width="290">
+                            <GridViewColumnHeader Tag="Subject" Content="{x:Static recurso:Etiquetas.lsvSubjectCorreoGestion}"/>
+                        </GridViewColumn>
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            
+        </GroupBox>
+
+
+        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="7" BorderBrush="{x:Null}">
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
+                <Button Name="_btnGenerarGestiones" Margin="0,0,5,0" Width="120">
+                    <TextBlock Text="Generar Gestiones"/>
+                </Button>
+                <Button Name="_btnRecargarCorreos" Margin="0,0,5,0" Width="120">
+                    <TextBlock Text="Recargar Correos"/>
+                </Button>
+                <Button Name="_btnCancelar" Width="100" Click="_btnCancelar_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnCancelar}"/>
+                </Button>
+            </StackPanel>
+        </GroupBox>
+
+
+
+
+
+    </Grid>
+</Page>

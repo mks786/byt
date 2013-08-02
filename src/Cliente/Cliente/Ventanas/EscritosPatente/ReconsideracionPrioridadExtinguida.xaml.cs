@@ -374,6 +374,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosPatente
         }
 
 
+        public void DesactivarBotonAceptar()
+        {
+            this._btnAceptar.IsEnabled = false;
+        }
+
+
         public void ActualizarResoluciones()
         {
             throw new System.NotImplementedException();

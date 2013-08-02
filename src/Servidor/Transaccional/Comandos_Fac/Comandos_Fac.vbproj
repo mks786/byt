@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Comandos\ComandosBancoG\ComandoConsultarFacBancosFiltro.vb" />
+    <Compile Include="Comandos\ComandosCarpetaGestionAutomatica\ComandoObtenerCarpetasPorIniciales.vb" />
     <Compile Include="Comandos\ComandosDesgloseServicio\ComandoConsultarFacDesgloseServiciosFiltro.vb" />
     <Compile Include="Comandos\ComandosFacAnualidad\ComandoConsultarTodosFacAnualidades.vb" />
     <Compile Include="Comandos\ComandosFacAnualidad\ComandoEliminarFacAnualidad.vb" />
@@ -339,6 +340,7 @@
     <Compile Include="Comandos\ComandosFacTarifa\ComandoEliminarFacTarifa.vb" />
     <Compile Include="Comandos\ComandosFacTarifa\ComandoInsertarOModificarFacTarifa.vb" />
     <Compile Include="Comandos\ComandosFacTarifa\ComandoVerificarExistenciaFacTarifa.vb" />
+    <Compile Include="Fabrica\FabricaComandosCarpetaGestionAutomatica.vb" />
     <Compile Include="Fabrica\FabricaComandosFacTarifa.vb" />
     <Compile Include="Fabrica\FabricaComandosFacFacturaPendienteConGru.vb" />
     <Compile Include="Fabrica\FabricaComandosFacVistaFacturacionCxpInterna.vb" />
@@ -465,6 +467,7 @@
   <ItemGroup>
     <Compile Include="Fabrica\FabricaComandosFacContadorPro.vb" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

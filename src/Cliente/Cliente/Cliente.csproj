@@ -74,6 +74,9 @@
     <Reference Include="LinFu.DynamicProxy">
       <HintPath>..\..\..\lib\LinFu.DynamicProxy.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Outlook, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\..\..\lib\NHibernate.dll</HintPath>
     </Reference>
@@ -108,6 +111,7 @@
     <Compile Include="Ayuda\SortAdorner.cs" />
     <Compile Include="Contratos\Abandonos\IConsultarAbandonos.cs" />
     <Compile Include="Contratos\Abandonos\IGestionarAbandono.cs" />
+    <Compile Include="Contratos\Administracion\Gestiones Automaticas\IConsultarCorreosParaGestionAutomatica.cs" />
     <Compile Include="Contratos\Agentes\IAgregarAgente.cs" />
     <Compile Include="Contratos\Agentes\IConsultarAgente.cs" />
     <Compile Include="Contratos\Agentes\IConsultarAgentes.cs" />
@@ -540,6 +544,7 @@
     </Compile>
     <Compile Include="Presentadores\Abandonos\PresentadorConsultarAbandonos.cs" />
     <Compile Include="Presentadores\Abandonos\PresentadorGestionarAbandono.cs" />
+    <Compile Include="Presentadores\Administracion\Gestiones Automaticas\PresentadorConsultarCorreosParaGestionAutomatica.cs" />
     <Compile Include="Presentadores\Agentes\PresentadorAgregarAgente.cs" />
     <Compile Include="Presentadores\Agentes\PresentadorConsultarAgente.cs" />
     <Compile Include="Presentadores\Agentes\PresentadorConsultarAgentes.cs" />
@@ -961,6 +966,9 @@
     </Compile>
     <Compile Include="Ventanas\Abandonos\GestionarAbandono.xaml.cs">
       <DependentUpon>GestionarAbandono.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Administracion\Gestiones Automaticas\ConsultarCorreosParaGestionAutomatica.xaml.cs">
+      <DependentUpon>ConsultarCorreosParaGestionAutomatica.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Agentes\AgregarAgente.xaml.cs">
       <DependentUpon>AgregarAgente.xaml</DependentUpon>
@@ -1640,6 +1648,10 @@
     <Page Include="Ventanas\Abandonos\GestionarAbandono.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Administracion\Gestiones Automaticas\ConsultarCorreosParaGestionAutomatica.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\Agentes\AgregarAgente.xaml">
       <Generator>MSBuild:Compile</Generator>

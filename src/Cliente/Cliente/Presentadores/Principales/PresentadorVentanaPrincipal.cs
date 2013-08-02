@@ -4,6 +4,7 @@ using System.Net.Sockets;
 using System.Runtime.Remoting;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Data;
 using NLog;
 using Trascend.Bolet.Cliente.Contratos.Principales;
 using Trascend.Bolet.Cliente.Ventanas.Abandonos;
@@ -62,6 +63,7 @@ using Trascend.Bolet.Cliente.Ventanas.Reportes;
 using Trascend.Bolet.Cliente.Ventanas.Corresponsales;
 using Trascend.Bolet.Cliente.Ventanas.TiposEmailAsociado;
 using Trascend.Bolet.Cliente.Ventanas.Inventores;
+using Trascend.Bolet.Cliente.Ventanas.Administracion.Gestiones_Automaticas;
 using System.Diagnostics;
 using System.Collections.Generic;
 
@@ -2372,6 +2374,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                             if (objeto.Id.Equals(Recursos.Ids.fac_menuItemResumenOperacionesRpt))
                                                 itemNivel4.Visibility = System.Windows.Visibility.Visible;
                                             break;
+
+                                        case "_fac_menuItemFacGestionAutomatica":
+                                            if (objeto.Id.Equals(Recursos.Ids.fac_GestionAutomatica))
+                                                itemNivel4.Visibility = System.Windows.Visibility.Visible;
+                                            break;
+
                                     }
                                 }
 
@@ -2394,5 +2402,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         {
             Navegar(new ConsultarTiposEmailAsociado());
         }
+
+        /// <summary>
+        /// Metodo para iniciar subproceso de Generacion Automatica de Gestiones de Asociado
+        /// </summary>
+        public void GenerarGestionesAutomaticas()
+        {
+
+            Navegar(new ConsultarCorreosParaGestionAutomatica());
+        }
+
+
+        
     }
 }

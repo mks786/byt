@@ -2,8 +2,13 @@
 using System.Runtime.Remoting;
 using Trascend.Bolet.Servicios;
 using Trascend.Bolet.Servicios.Implementacion;
+using Diginsoft.Bolet.Servicios.Implementacion;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using System.Collections.Generic;
+using Diginsoft.Bolet.ObjetosComunes.Entidades;
+
+
+
 
 namespace Trascend.Bolet.Servidor
 {
@@ -117,6 +122,14 @@ namespace Trascend.Bolet.Servidor
             //infobolPrueba = infoboles[0];
             //infobolPrueba.Comentario = "prueba123";
             //funciono = serviciosInfobol.InsertarOModificar(infobolPrueba, 123);
+
+            //Usuario usuarioPrueba1 = new Usuario();
+            //usuarioPrueba1.Iniciales = "CD";
+            //usuarioPrueba1.NombreCompleto = "Carlos Duque";
+
+            //IList<CarpetaGestionAutomatica> carpetas;
+            //CarpetaGestionAutomaticaServicios servicioPrueba = new CarpetaGestionAutomaticaServicios();
+            //carpetas = servicioPrueba.ObtenerCarpetasPorIniciales(usuarioPrueba1);
 
             //Console.ReadLine();
 

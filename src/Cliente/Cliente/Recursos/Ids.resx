@@ -1128,4 +1128,7 @@
   <data name="fac_FacBanco" xml:space="preserve">
     <value>FAC_MBANCO</value>
   </data>
+  <data name="fac_GestionAutomatica" xml:space="preserve">
+    <value>FAC_GESTIONES</value>
+  </data>
 </root>

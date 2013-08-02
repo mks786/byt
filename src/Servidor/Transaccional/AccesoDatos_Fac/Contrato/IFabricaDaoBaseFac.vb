@@ -122,6 +122,8 @@
 
         Function ObtenerDaoFacGestion() As IDaoFacGestion
 
+        Function ObtenerDaoCarpetaGestionAutomatica() As IDaoCarpetaGestionAutomatica
+
         Function ObtenerDaoFacFacturaPendienteConGru() As IDaoFacFacturaPendienteConGru
 
         Function ObtenerDaoFacVistaFacturacionCxpInterna() As IDaoFacVistaFacturacionCxpInterna

@@ -169,7 +169,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 ((InfoBol)this._ventana.InfoBolSeleccionado).TipoInfobol = infobol.TipoInfobol;
                 ((InfoBol)this._ventana.InfoBolSeleccionado).Marca = this._marca;
 
-                this.Navegar(new GestionarInfoBol(this._ventana.InfoBolSeleccionado, this._ventana));
+                //this.Navegar(new GestionarInfoBol(this._ventana.InfoBolSeleccionado, this._ventana));
+
+                this.Navegar(new GestionarInfoBol(this._ventana.InfoBolSeleccionado, this._ventana, this._ventanaPadre));
             }
             else
             {
@@ -177,7 +179,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 infoBol.Marca = this._marca;
                 //infoBol.Id = int.MinValue;
                 //infoBol.Id = this._marca.Id;
-                this.Navegar(new GestionarInfoBol(infoBol));
+                //this.Navegar(new GestionarInfoBol(infoBol));
+                this.Navegar(new GestionarInfoBol(infoBol, this._ventana, this._ventanaPadre));
             }
 
             #region trace

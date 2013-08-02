@@ -218,7 +218,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                 {
                     if (this.ValidarAgenteApoderadoDePatentes((Agente)this._ventana.AgenteFiltrado, this._patentesAgregadas))
                     {
-                        retorno = true;
+                        if (!this._ventana.EscritoDeFecha.Equals(""))
+                        {
+                            retorno = true;
+                        }
+                        else
+                        {
+                            this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaEscritoSinFechaEscrito);
+                        }
                     }
                     else
                     {
@@ -282,8 +289,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             if (((Boletin)this._ventana.Boletin).Id != int.MinValue)
             {
                 IList<Resolucion> resoluciones = this._boletinServicios.ConsultarResolucionesDeBoletin((Boletin)this._ventana.Boletin);
-                this._ventana.Resoluciones = resoluciones;
-                this._ventana.Resolucion = resoluciones[0];
+                if (resoluciones.Count != 0)
+                {
+                    this._ventana.Resoluciones = resoluciones;
+                    this._ventana.Resolucion = resoluciones[0];
+                }
+                else
+                {
+                    this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaResolucionDeBoletin);
+                    this._ventana.DesactivarBotonAceptar();
+                }
             }
             else
             {

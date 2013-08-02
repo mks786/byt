@@ -557,6 +557,9 @@
                             <MenuItem Name="_fac_menuItemFacGestionConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_fac_menuItemFacGestionConsultar_Click"/>
                             <MenuItem Name="_fac_menuItemFacGestionAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_fac_menuItemFacGestionAgregar_Click"/>
                         </MenuItem>
+                        <MenuItem Name="_fac_menuItemFacGestionAutomatica" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItem_FacGestionAutomatica}" Click="_fac_menuItemFacGestionAutomatica_Click">
+                            
+                        </MenuItem>
                     </MenuItem>
 
                     <MenuItem Name="_fac_menuItemChequeRecido" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemChequeRecido}">

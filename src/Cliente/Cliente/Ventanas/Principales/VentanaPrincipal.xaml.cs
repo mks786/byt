@@ -1061,6 +1061,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.AgregarFacGestion();
         }
 
+        //aqui
+        private void _fac_menuItemFacGestionAutomatica_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.GenerarGestionesAutomaticas();
+        }
+
         private void _fac_menuItemFacGestionConsultar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.ConsultarFacGestiones();
@@ -1207,6 +1213,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         {
             this._presentador.IrConsultarInventores();
         }
+
+        
+
+        
 
        
     }

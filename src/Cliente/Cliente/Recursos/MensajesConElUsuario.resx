@@ -1402,4 +1402,10 @@
   <data name="fac_FacBancoModificado" xml:space="preserve">
     <value>Banco modificado con éxito</value>
   </data>
+  <data name="AlertaResolucionDeBoletin" xml:space="preserve">
+    <value>No existen Resoluciones para el Boletin seleccionado</value>
+  </data>
+  <data name="AlertaEscritoSinFechaEscrito" xml:space="preserve">
+    <value> No es posible generar un Escrito sin Fecha de Omision</value>
+  </data>
 </root>

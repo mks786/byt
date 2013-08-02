@@ -322,6 +322,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a  No es posible generar un Escrito sin Fecha de Omision.
+        /// </summary>
+        internal static string AlertaEscritoSinFechaEscrito {
+            get {
+                return ResourceManager.GetString("AlertaEscritoSinFechaEscrito", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Disculpe el Escrito debe tener al menos un Interesado.
         /// </summary>
         internal static string AlertaEscritoSinInteresados {
@@ -435,6 +444,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string AlertaRenovacionSinMarcas {
             get {
                 return ResourceManager.GetString("AlertaRenovacionSinMarcas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No existen Resoluciones para el Boletin seleccionado.
+        /// </summary>
+        internal static string AlertaResolucionDeBoletin {
+            get {
+                return ResourceManager.GetString("AlertaResolucionDeBoletin", resourceCulture);
             }
         }
         

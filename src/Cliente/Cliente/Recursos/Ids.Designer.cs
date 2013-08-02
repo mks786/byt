@@ -2131,6 +2131,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a FAC_GESTIONES.
+        /// </summary>
+        public static string fac_GestionAutomatica {
+            get {
+                return ResourceManager.GetString("fac_GestionAutomatica", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a FAC_GUIAS.
         /// </summary>
         public static string fac_Guia {

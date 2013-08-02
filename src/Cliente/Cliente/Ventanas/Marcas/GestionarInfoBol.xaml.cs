@@ -143,6 +143,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         #endregion
 
+
+        /// <summary>
+        /// Constructor por defecto que recibe un infobol como parametro
+        /// </summary>
+        /// <param name="infoBol">Infobol a mostrar en la ventana</param>
         public GestionarInfoBol(object infoBol)
         {
             InitializeComponent();
@@ -156,6 +161,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
 
+        /// <summary>
+        /// Constructor por defecto que recibe un infobol y una ventana padre
+        /// </summary>
+        /// <param name="infoBol">Infobol a mostrar</param>
+        /// <param name="ventanaPadre">Ventana que precede a esta ventana</param>
         public GestionarInfoBol(object infoBol, object ventanaPadre)
         {
             InitializeComponent();
@@ -167,6 +177,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             _bgw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(bgw_RunWorkerCompleted);
             _bgw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(bgw_ProgressChanged);
         }
+
+
+
+        public GestionarInfoBol(object infoBol, object ventanaPadre, object ventanaPadreListaInfoboles)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorGestionarInfoBol(this, infoBol, ventanaPadre,ventanaPadreListaInfoboles);
+
+            _bgw.WorkerReportsProgress = true;
+            _bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(bgw_DoWork);
+            _bgw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(bgw_RunWorkerCompleted);
+            _bgw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(bgw_ProgressChanged);
+        }
+
+
+
 
 
 

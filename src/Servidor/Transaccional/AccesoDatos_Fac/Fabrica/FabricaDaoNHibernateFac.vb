@@ -283,5 +283,11 @@ Namespace Fabrica
         Public Overrides Function ObtenerDaoFacTarifa() As IDaoFacTarifa
             Return New DaoFacTarifaNHibernate()
         End Function
+
+        Public Overrides Function ObtenerDaoCarpetaGestionAutomatica() As IDaoCarpetaGestionAutomatica
+            Return New DaoCarpetaGestionAutomaticaNHibernate()
+        End Function
+
+
     End Class
 End Namespace

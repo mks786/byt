@@ -49,6 +49,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private ICambioDeDomicilioServicios _cambioDomicilioServicios;
         private IRenovacionServicios _renovacionServicios;
         private ICambioPeticionarioServicios _peticionarioServicios;
+
+        private object _ventanaPadreListaInfoboles = null;
         
 
 
@@ -176,7 +178,71 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
 
+        public PresentadorGestionarInfoBol(IGestionarInfoBol ventana, object infoBol, object ventanaPadre, object ventanaPadreListaInfoboles)
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
+                this._ventana = ventana;
+                this._ventanaPadre = ventanaPadre;
+                this._ventanaPadreListaInfoboles = ventanaPadreListaInfoboles;
+
+                this._ventana.InfoBol = null != (InfoBol)infoBol ? (InfoBol)infoBol : new InfoBol();
+
+                //if (((InfoBol)infoBol).Id == int.MinValue)
+                //    this._nuevaInfoBol = true;
+
+                if (((InfoBol)infoBol).TipoInfobol == null)
+                {
+                    this._nuevaInfoBol = true;
+
+                }
+
+
+                this._infoBolServicios = (IInfoBolServicios)Activator.GetObject(typeof(IInfoBolServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoBolServicios"]);
+                this._boletinServicios = (IBoletinServicios)Activator.GetObject(typeof(IBoletinServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
+                this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+                this._tipoInfobolServicios = (ITipoInfobolServicios)Activator.GetObject(typeof(ITipoInfobolServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoInfobolServicios"]);
+                this._operacionServicios = (IOperacionServicios)Activator.GetObject(typeof(IOperacionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["OperacionServicios"]);
+                this._cambioNombreServicios = (ICambioDeNombreServicios)Activator.GetObject(typeof(ICambioDeNombreServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioDeNombreServicios"]);
+                this._licenciaServicios = (ILicenciaServicios)Activator.GetObject(typeof(ILicenciaServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["LicenciaServicios"]);
+                this._cesionServicios = (ICesionServicios)Activator.GetObject(typeof(ICesionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CesionServicios"]);
+                this._fusionServicios = (IFusionServicios)Activator.GetObject(typeof(IFusionServicios),
+                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FusionServicios"]);
+                this._cambioDomicilioServicios = (ICambioDeDomicilioServicios)Activator.GetObject(typeof(ICambioDeDomicilioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioDeDomicilioServicios"]);
+                this._renovacionServicios = (IRenovacionServicios)Activator.GetObject(typeof(IRenovacionServicios),
+                      ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["RenovacionServicios"]);
+                this._peticionarioServicios = (ICambioPeticionarioServicios)Activator.GetObject(typeof(ICambioPeticionarioServicios),
+                      ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioPeticionarioServicios"]);
+
+                this._infoboles = this._tipoInfobolServicios.ConsultarTodos();
+                this._ventana.Tipos = null;
+                this._ventana.Tipos = this._infoboles;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
 
 
 
@@ -451,7 +517,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             Marca marcaAux = ((InfoBol)this._ventana.InfoBol).Marca;
             IList<InfoBol> infoboles = this._infoBolServicios.ConsultarInfoBolesPorMarca(marcaAux);
             marcaAux.InfoBoles = infoboles;
-            this.Navegar(new ListaInfoBoles(marcaAux));
+            //this.Navegar(new ListaInfoBoles(marcaAux));
+            this.Navegar(new ListaInfoBoles(marcaAux, this._ventanaPadreListaInfoboles));
 
             //---
             //this.Navegar(new ListaInfoBoles(((InfoBol)this._ventana.InfoBol).Marca));

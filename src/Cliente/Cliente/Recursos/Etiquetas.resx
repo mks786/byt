@@ -3801,4 +3801,25 @@ en Prensa:</value>
   <data name="fac_titleConsultarFacBancos" xml:space="preserve">
     <value>Consultar Bancos</value>
   </data>
+  <data name="fac_menuItem_FacGestionAutomatica" xml:space="preserve">
+    <value>Generar Gestion Automatica</value>
+  </data>
+  <data name="lblCarpetaGestion" xml:space="preserve">
+    <value>Carpeta Outlook:</value>
+  </data>
+  <data name="lblUsuarioLogueado" xml:space="preserve">
+    <value>Usuario:</value>
+  </data>
+  <data name="lsvFechaCorreoGestion" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="lsvFromCorreoGestion" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="lsvSubjectCorreoGestion" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="titleGenerarGestionAutomatica" xml:space="preserve">
+    <value>Gestiones Automaticas de Asociado</value>
+  </data>
 </root>

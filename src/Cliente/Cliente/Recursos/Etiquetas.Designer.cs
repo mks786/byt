@@ -1891,6 +1891,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Generar Gestion Automatica.
+        /// </summary>
+        public static string fac_menuItem_FacGestionAutomatica {
+            get {
+                return ResourceManager.GetString("fac_menuItem_FacGestionAutomatica", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Anualidades.
         /// </summary>
         public static string fac_menuItemAnualidad {
@@ -4246,6 +4255,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblCargo {
             get {
                 return ResourceManager.GetString("lblCargo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Carpeta Outlook:.
+        /// </summary>
+        public static string lblCarpetaGestion {
+            get {
+                return ResourceManager.GetString("lblCarpetaGestion", resourceCulture);
             }
         }
         
@@ -6789,6 +6807,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Usuario:.
+        /// </summary>
+        public static string lblUsuarioLogueado {
+            get {
+                return ResourceManager.GetString("lblUsuarioLogueado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Vencido a:.
         /// </summary>
         public static string lblVencidoA {
@@ -7302,6 +7329,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Fecha.
+        /// </summary>
+        public static string lsvFechaCorreoGestion {
+            get {
+                return ResourceManager.GetString("lsvFechaCorreoGestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Fecha Creación.
         /// </summary>
         public static string lsvFechaCreacion {
@@ -7442,6 +7478,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvFormato {
             get {
                 return ResourceManager.GetString("lsvFormato", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a From.
+        /// </summary>
+        public static string lsvFromCorreoGestion {
+            get {
+                return ResourceManager.GetString("lsvFromCorreoGestion", resourceCulture);
             }
         }
         
@@ -7820,6 +7865,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvStatusAcuse {
             get {
                 return ResourceManager.GetString("lsvStatusAcuse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Subject.
+        /// </summary>
+        public static string lsvSubjectCorreoGestion {
+            get {
+                return ResourceManager.GetString("lsvSubjectCorreoGestion", resourceCulture);
             }
         }
         
@@ -10673,6 +10727,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleEscritoRenunciaParcial {
             get {
                 return ResourceManager.GetString("titleEscritoRenunciaParcial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Gestiones Automaticas de Asociado.
+        /// </summary>
+        public static string titleGenerarGestionAutomatica {
+            get {
+                return ResourceManager.GetString("titleGenerarGestionAutomatica", resourceCulture);
             }
         }
         

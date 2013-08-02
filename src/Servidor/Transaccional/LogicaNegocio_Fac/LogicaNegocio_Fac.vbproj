@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controladores\ControladorBancoG.vb" />
+    <Compile Include="Controladores\ControladorCarpetaGestionAutomatica.vb" />
     <Compile Include="Controladores\ControladorChequeRecido.vb" />
     <Compile Include="Controladores\ControladorConceptoGestion.vb" />
     <Compile Include="Controladores\ControladorCorrespondencia.vb" />
