@@ -1924,9 +1924,9 @@ Namespace Ventanas.FacFacturas
         Public WriteOnly Property Mostrar_Recalculo As Boolean Implements Contratos.FacFacturas.IConsultarFacFactura.Mostrar_Recalculo
             Set(ByVal value As Boolean)
                 If value = True Then
-                    _Wp_Btn3.Visibility = Windows.Visibility.Visible
+                    btnRecalcular_Nuevo.Visibility = Windows.Visibility.Visible
                 Else
-                    _Wp_Btn3.Visibility = Windows.Visibility.Collapsed
+                    btnRecalcular_Nuevo.Visibility = Windows.Visibility.Collapsed
                 End If
             End Set
         End Property

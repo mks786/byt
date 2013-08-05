@@ -257,6 +257,45 @@ Namespace Presentadores.FacFacturaProformas
             End Try
         End Sub
 
+
+        ''' <summary>
+        ''' Método que realiza una consulta al servicio, con el fin de filtrar los datos que se muestran 
+        ''' por pantalla
+        ''' </summary>
+        Public Sub ConsultarProforma(ByVal proforma As Integer)
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+
+                Dim FacFacturaProformaAuxiliar As New FacFacturaProforma()
+                FacFacturaProformaAuxiliar.Id = proforma
+                'FacFacturaProformaAuxiliar.Status = 4 'solo para las proformas Autorizadas
+
+                Dim FacFacturaProformas As FacFacturaProforma
+                FacFacturaProformas = Me._FacFacturaProformaServicios.ObtenerFacFacturaProformasFiltro(FacFacturaProformaAuxiliar)
+                If FacFacturaProformas IsNot Nothing Then
+                    If FacFacturaProformas.Auto = "2" Then
+                        MessageBox.Show("Proforma # " & proforma & " ya esta asociado a una Factura", "Error")
+                        Consultar()
+                        'Mouse.OverrideCursor = Nothing
+                    End If
+                End If
+
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                    '#End Region
+                End If
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
+            End Try
+        End Sub
+
+
         Public Sub VerRechazo()
             Me._ventana.VerTipo = "1"
         End Sub

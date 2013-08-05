@@ -333,19 +333,19 @@ Namespace Ventanas.FacFacturas
 
         Public Property Guia As Object Implements Contratos.FacFacturas.IConsultarFacFacturaPase.Guia
             Get
-                Return Me._cbxGuia.SelectedItem
+                Return Me._cbxguia.SelectedItem
             End Get
             Set(ByVal value As Object)
-                Me._cbxGuia.SelectedItem = value
+                Me._cbxguia.SelectedItem = value
             End Set
         End Property
 
         Public Property Guias As Object Implements Contratos.FacFacturas.IConsultarFacFacturaPase.Guias
             Get
-                Return Me._cbxGuia.DataContext
+                Return Me._cbxguia.DataContext
             End Get
             Set(ByVal value As Object)
-                Me._cbxGuia.DataContext = value
+                Me._cbxguia.DataContext = value
             End Set
         End Property
 
@@ -445,7 +445,7 @@ Namespace Ventanas.FacFacturas
                         Me._presentador.ConsultarGuia(DirectCast(sender, ByTTextBox).Text)
                     End If
                 End If
-            End If            
+            End If
 
         End Sub
 
@@ -1646,7 +1646,7 @@ Namespace Ventanas.FacFacturas
 
         Public Property pu As Double Implements Contratos.FacFacturas.IConsultarFacFacturaPase.Pu
             Get
-                Return getformatodouble(Me._txtPu.Text)
+                Return GetFormatoDouble(Me._txtPu.Text)
             End Get
             Set(ByVal value As Double)
                 Me._txtPu.Text = SetFormatoDouble(value)
@@ -1886,7 +1886,7 @@ Namespace Ventanas.FacFacturas
             End Get
         End Property
 
-        Public Function GetFormatoDouble(texto As String) As String
+        Public Function GetFormatoDouble(ByVal texto As String) As String
             'Dim valor As String = Replace(texto, ",", "")
             'valor = Replace(valor, ".", ",")
 
@@ -1908,5 +1908,16 @@ Namespace Ventanas.FacFacturas
             Me._presentador.buscar_departamento_servicio_esp(cproformadetalle)
         End Sub
         Public Shared Mostrar_Detalle_Servicio As New RoutedCommand("Mostrar_Detalle_Servicio", GetType(ConsultarFacFacturaPase))
+
+        Public WriteOnly Property Ocultar_Botones As Boolean Implements Contratos.FacFacturas.IConsultarFacFacturaPase.Ocultar_Botones
+            Set(ByVal value As Boolean)
+                If value = True Then
+                    _btnModificar.Visibility = Windows.Visibility.Collapsed
+                    _btnEliminar.Visibility = Windows.Visibility.Collapsed
+                    _btnRegresar.IsEnabled = True
+                    _btnRegresar.Visibility = Windows.Visibility.Visible
+                End If
+            End Set
+        End Property
     End Class
 End Namespace

@@ -279,6 +279,17 @@ Namespace Presentadores.FacFacturaAnuladas
                                         Exit Sub
                                     End If
                                 End If
+
+                                'esto se agrego nuevo para verificar que el monto en la cxp internacional nueva sea igual al de la veija
+                                If facinternacional_proforma_nueva.Monto <> facinternacional.Monto Then
+                                    Mouse.OverrideCursor = Nothing
+                                    MessageBox.Show("Imposible Anular, Monto de la cpx Internacional a anular no es igual al monto de la cxp Internacional nueva", "Error", MessageBoxButton.OK)
+                                    Me._ventana.MensajeErrorCobro = "Imposible Anular, Monto de la cpx Internacional a anular no es igual al monto de la cxp Internacional nueva"
+                                    Exit Sub
+                                End If
+
+
+
                                 'If facinternacional_proforma_nueva IsNot Nothing Then
                                 '    Mouse.OverrideCursor = Nothing
                                 '    MessageBox.Show("Proforma a transferir ya esta registrada en una Cxp internacional", "Error", MessageBoxButton.OK)

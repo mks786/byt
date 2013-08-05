@@ -345,6 +345,7 @@ Namespace Presentadores.FacReportes
                                     'Process.Start(ConfigurationManager.AppSettings("rutaEnvioAsociado") + nombre)
                                     reportecuenta.Dispose()
                                     reportecuenta.Close()
+                                    System.Threading.Thread.Sleep(600)
                                 End If
                                 Mouse.OverrideCursor = Nothing
                             End If
@@ -399,6 +400,7 @@ Namespace Presentadores.FacReportes
                                     'Process.Start(ConfigurationManager.AppSettings("rutaEnvioAsociado") + nombre)
                                     reportePendiente.Dispose()
                                     reportePendiente.Close()
+                                    System.Threading.Thread.Sleep(600)
                                 End If
                                 Mouse.OverrideCursor = Nothing
                             End If
@@ -429,6 +431,7 @@ Namespace Presentadores.FacReportes
                                     'Process.Start(ConfigurationManager.AppSettings("rutaEnvioAsociado") + nombre)
                                     reporteCarta.Dispose()
                                     reporteCarta.Close()
+                                    System.Threading.Thread.Sleep(600)
                                 End If
 
                                 Mouse.OverrideCursor = Nothing

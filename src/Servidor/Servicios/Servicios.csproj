@@ -35,10 +35,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\lib\NLog.dll</HintPath>
     </Reference>
-    <Reference Include="Oracle.DataAccess, Version=2.112.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\app\Administrator\product\11.2.0\client_2\ODP.NET\bin\2.x\Oracle.DataAccess.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Oracle.DataAccess">
+      <HintPath>..\..\..\lib\Oracle.DataAccess.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />

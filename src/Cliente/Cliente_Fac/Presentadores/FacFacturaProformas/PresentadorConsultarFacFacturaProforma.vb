@@ -172,12 +172,12 @@ Namespace Presentadores.FacFacturaProformas
             cant_lineas_esp = cant_lineas_esp + lias_vacias
             If (cant_lineas_org > max_lineas) Or (cant_lineas_esp > max_lineas) Then
 
-                Dim mensaje As String = "Detalle Moneda Original, Para esta Factura Existen " & lias_vacias & " Servicios, Verificar Informacion para evitar errores en la factura por que es probable que no salga la informacion completa dado que tienen mas de 15 lineas que son las permitidas"
-                If cant_lineas_org > max_lineas Then
+                Dim mensaje As String = "Detalle Moneda Original, Para esta Factura Existen " & lias_vacias & " Servicios, Verificar Informacion para evitar errores en la factura por que es probable que no salga la informacion completa dado que tienen 14 o más lineas"
+                If cant_lineas_org >= max_lineas Then
                     MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK)
                 End If
-                mensaje = "Detalle Moneda Español, Para esta Factura Existen " & lias_vacias & " Servicios, Verificar Informacion para evitar errores en la factura por que es probable que no salga la informacion completa dado que tienen mas de 15 lineas que son las permitidas"
-                If cant_lineas_esp > max_lineas Then
+                mensaje = "Detalle Moneda Español, Para esta Factura Existen " & lias_vacias & " Servicios, Verificar Informacion para evitar errores en la factura por que es probable que no salga la informacion completa dado que tienen que tienen 14 o más lineas"
+                If cant_lineas_esp >= max_lineas Then
                     MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK)
                 End If
             End If

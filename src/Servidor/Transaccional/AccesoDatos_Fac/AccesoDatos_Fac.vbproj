@@ -371,7 +371,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Mapeado\FacBanco.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\FacBanco.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapeado\FacPagoBolivia.hbm.xml" />
@@ -475,7 +477,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Mapeado\FacFacturaPendienteConGru.hbm.xml" />
-    <EmbeddedResource Include="Mapeado\FacVistaFacturaServicio.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\FacVistaFacturaServicio.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mapeado\FacVistaFacturacionCxpInterna.hbm.xml" />
     <EmbeddedResource Include="Mapeado\CarpetaGestionAutomatica.hbm.xml" />
     <Content Include="Mapeado\FacFacturaTotal.xml" />

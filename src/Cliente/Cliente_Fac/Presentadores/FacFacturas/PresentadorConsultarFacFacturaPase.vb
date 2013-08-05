@@ -846,7 +846,10 @@ Namespace Presentadores.FacFacturas
                         MessageBox.Show(Recursos.MensajesConElUsuario.fac_FacFacturaModificado)
                         Me._ventana.FacFactura = Nothing
                         Me._ventana.FacFactura = FacFactura
+                        Me._ventana.Ocultar_Botones = True
                         IrConsultarFacFactura()
+
+
                         '    Me.Navegar(_paginaPrincipal)
                         'End If
                     End If

@@ -271,6 +271,8 @@ Namespace Contratos.FacFacturas
 
         Property Guias() As Object
 
+        WriteOnly Property Ocultar_Botones As Boolean
+
         Property TextoBotonModificar() As String
         Sub Mensaje(ByVal mensaje__1 As String)
     End Interface
