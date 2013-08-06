@@ -223,6 +223,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Debe seleccionar al menos un correo para generar Gestiones.
+        /// </summary>
+        internal static string AlertaCorreosOutlookSinSeleccion {
+            get {
+                return ResourceManager.GetString("AlertaCorreosOutlookSinSeleccion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Disculpe, para poder agregar un Contacto debe agregarle su correspondencia.
         /// </summary>
         internal static string AlertaDebeAgregarUnaCorrespondencia {

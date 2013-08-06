@@ -646,7 +646,7 @@
     <comment>Cabecera del query para el filtro de FacImpuesto</comment>
   </data>
   <data name="FiltroObtenerFacGestionAsociado" xml:space="preserve">
-    <value>asociado.Id = {0}</value>
+    <value>asociado.Id = {0}  </value>
   </data>
   <data name="FiltroObtenerFacGestionConceptoGestion" xml:space="preserve">
     <value>fg.ConceptoGestion= '{0}'</value>
@@ -764,5 +764,8 @@
   <data name="ObtenerCarpetaGestionAutomatica" xml:space="preserve">
     <value>Select c from CarpetaGestionAutomatica c where c.Iniciales ='{0}' </value>
     <comment>Consulta para obtener las carpetas del usuario para la generacion automatica de Gestiones</comment>
+  </data>
+  <data name="FiltroObtenerFacGestionCodigoResp" xml:space="preserve">
+    <value>fg.CodigoResp = {0} </value>
   </data>
 </root>

@@ -92,6 +92,33 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.Gestiones_Automaticas
             set { this._txtUsuarioGestion.Text = value; }
         }
 
+        public object Carpetas
+        {
+            get { return this._cbxCarpetaGestion.DataContext; }
+            set { this._cbxCarpetaGestion.DataContext = value; }
+        }
+
+
+        public object Carpeta
+        {
+            get { return this._cbxCarpetaGestion.SelectedItem; }
+            set { this._cbxCarpetaGestion.SelectedItem = value; }
+        }
+
+
+        public string IdAsociado
+        {
+            get { return this._txtAsociadoGestion.Text; }
+            set { this._txtAsociadoGestion.Text = value; }
+        }
+
+
+        public string DetalleGestion
+        {
+            get { return this._txtDetalleGestion.Text; }
+            set { this._txtDetalleGestion.Text = value; }
+        }
+
 
         public void FocoPredeterminado()
         {
@@ -99,6 +126,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.Gestiones_Automaticas
         }
 
         #endregion
+
+        #region Eventos
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -114,6 +143,54 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.Gestiones_Automaticas
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.RegresarVentanaPadre();
+        }
+
+        private void _btnRecargarCorreos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.CargarCorreosOutlook();
+            this._btnGenerarGestiones.Focus();
+        }
+
+        private void _btnGenerarGestiones_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.GenerarGestiones();
+        } 
+
+        #endregion
+
+
+
+        #region Metodos de la clase
+
+        public void Mensaje(string mensaje, int opcion)
+        {
+            if (opcion == 0)
+                MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (opcion == 1)
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            else
+                MessageBox.Show(mensaje, "Operación Exitosa", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        public bool MensajeAlerta(string mensaje)
+        {
+            bool retorno = false;
+
+            if (MessageBoxResult.Yes == MessageBox.Show(mensaje,
+                "Alerta", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                retorno = true;
+
+            return retorno;
+        } 
+
+        #endregion
+
+        private void _btnLimpiarTodo_Click(object sender, RoutedEventArgs e)
+        {
+            this._txtAsociadoGestion.Text = "";
+            this._txtDetalleGestion.Text = "";
+            this._lstResultados = null;
+            this._lblHits.Text = "0";
         }
     }
 }

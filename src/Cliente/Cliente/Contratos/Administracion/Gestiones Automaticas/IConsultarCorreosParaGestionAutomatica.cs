@@ -20,5 +20,17 @@ namespace Trascend.Bolet.Cliente.Contratos.Administracion.Gestiones_Automaticas
 
         string IdentificacionDeUsuario { get; set; }
 
+        object Carpetas { get; set; }
+
+        object Carpeta { get; set; }
+
+        string IdAsociado { get; set; }
+
+        string DetalleGestion { get; set; }
+
+        void Mensaje(string mensaje, int opcion);
+
+        bool MensajeAlerta(string mensaje);
+
     }
 }

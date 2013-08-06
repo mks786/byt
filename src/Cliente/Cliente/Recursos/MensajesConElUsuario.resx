@@ -1408,4 +1408,7 @@
   <data name="AlertaEscritoSinFechaEscrito" xml:space="preserve">
     <value> No es posible generar un Escrito sin Fecha de Omision</value>
   </data>
+  <data name="AlertaCorreosOutlookSinSeleccion" xml:space="preserve">
+    <value>Debe seleccionar al menos un correo para generar Gestiones</value>
+  </data>
 </root>

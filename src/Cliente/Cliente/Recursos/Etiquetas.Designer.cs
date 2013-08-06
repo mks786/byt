@@ -187,6 +187,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Cargar Correos.
+        /// </summary>
+        public static string btnCargarCorreos {
+            get {
+                return ResourceManager.GetString("btnCargarCorreos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Carpeta.
         /// </summary>
         public static string btnCarpeta {
@@ -409,6 +418,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string btnGenCartel {
             get {
                 return ResourceManager.GetString("btnGenCartel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Generar Gestiones.
+        /// </summary>
+        public static string btnGenerarGestiones {
+            get {
+                return ResourceManager.GetString("btnGenerarGestiones", resourceCulture);
             }
         }
         

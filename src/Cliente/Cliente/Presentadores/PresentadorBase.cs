@@ -1013,6 +1013,26 @@ namespace Trascend.Bolet.Cliente.Presentadores
         }
 
 
+        public CarpetaGestionAutomatica BuscarCarpetaGestionAutomatica(IList<CarpetaGestionAutomatica> carpetas, CarpetaGestionAutomatica carpetaBuscada)
+        {
+            CarpetaGestionAutomatica retorno = null;
+
+            if (carpetaBuscada != null)
+                foreach (CarpetaGestionAutomatica carpeta in carpetas)
+                {
+                    if ((carpeta.Id.Equals(carpetaBuscada.Id))
+                        &&(carpeta.Iniciales.Equals(carpetaBuscada.Iniciales)) 
+                        && (carpeta.Carpeta.Equals(carpetaBuscada.Carpeta)))
+                    {
+                        retorno = carpeta;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+
         /// <summary>
         /// Método que busca un estado dentro de una lista de remitentes
         /// </summary>

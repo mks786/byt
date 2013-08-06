@@ -124,8 +124,8 @@ namespace Trascend.Bolet.Servidor
             //funciono = serviciosInfobol.InsertarOModificar(infobolPrueba, 123);
 
             //Usuario usuarioPrueba1 = new Usuario();
-            //usuarioPrueba1.Iniciales = "CD";
-            //usuarioPrueba1.NombreCompleto = "Carlos Duque";
+            //usuarioPrueba1.Iniciales = "DQ";
+            //usuarioPrueba1.NombreCompleto = "Dirimo Quintero";
 
             //IList<CarpetaGestionAutomatica> carpetas;
             //CarpetaGestionAutomaticaServicios servicioPrueba = new CarpetaGestionAutomaticaServicios();

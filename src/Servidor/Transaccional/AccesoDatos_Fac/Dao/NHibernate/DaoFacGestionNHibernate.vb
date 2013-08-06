@@ -30,9 +30,11 @@ Namespace Dao.NHibernate
 
             If (FacGestion.Asociado IsNot Nothing) AndAlso (Not FacGestion.Asociado.Id.Equals("")) Then
                 If variosFiltros Then
-                    filtro += " and "
+                    filtro += " and  "
                 End If
                 filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacGestionAsociado, FacGestion.Asociado.Id)
+                variosFiltros = True
+
             End If
 
             'If (FacGestion IsNot Nothing) AndAlso (FacGestion.EstadoCuenta IsNot Nothing) Then
@@ -107,9 +109,19 @@ Namespace Dao.NHibernate
                 variosFiltros = True
             End If
 
-            If (FacGestion IsNot Nothing) AndAlso (FacGestion.Observacion <> "") Then
+            ' Agregando el filtro para traer las gestiones por el campo CRESP - Campo CodigoResp
+            If (FacGestion IsNot Nothing) AndAlso (FacGestion.CodigoResp <> 0) Then
                 If variosFiltros Then
                     filtro += " and "
+                End If
+                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacGestionCodigoResp, FacGestion.CodigoResp)
+                variosFiltros = True
+            End If
+
+
+            If (FacGestion IsNot Nothing) AndAlso (FacGestion.Observacion <> "") Then
+                If variosFiltros Then
+                    filtro += " and  "
                 End If
                 filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacGestionObservacion, FacGestion.Observacion)
                 variosFiltros = True

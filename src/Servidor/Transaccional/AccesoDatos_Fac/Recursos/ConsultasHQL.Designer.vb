@@ -1199,11 +1199,20 @@ Namespace Recursos
         End Property
         
         '''<summary>
-        '''  Busca una cadena traducida similar a asociado.Id = {0}.
+        '''  Busca una cadena traducida similar a asociado.Id = {0}  .
         '''</summary>
         Public Shared ReadOnly Property FiltroObtenerFacGestionAsociado() As String
             Get
                 Return ResourceManager.GetString("FiltroObtenerFacGestionAsociado", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca una cadena traducida similar a fg.CodigoResp = {0} .
+        '''</summary>
+        Public Shared ReadOnly Property FiltroObtenerFacGestionCodigoResp() As String
+            Get
+                Return ResourceManager.GetString("FiltroObtenerFacGestionCodigoResp", resourceCulture)
             End Get
         End Property
         

@@ -3822,4 +3822,10 @@ en Prensa:</value>
   <data name="titleGenerarGestionAutomatica" xml:space="preserve">
     <value>Gestiones Automaticas de Asociado</value>
   </data>
+  <data name="btnCargarCorreos" xml:space="preserve">
+    <value>Cargar Correos</value>
+  </data>
+  <data name="btnGenerarGestiones" xml:space="preserve">
+    <value>Generar Gestiones</value>
+  </data>
 </root>
