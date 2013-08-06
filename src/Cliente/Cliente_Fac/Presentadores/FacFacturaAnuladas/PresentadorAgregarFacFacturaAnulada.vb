@@ -343,7 +343,7 @@ Namespace Presentadores.FacFacturaAnuladas
                                             End If
                                             If facinternacional.Banco IsNot Nothing Then
                                                 If facinternacional.Banco.Id > Integer.MinValue Then
-                                                    facinternacional_proforma_nueva.Asociado = facinternacional.Asociado
+                                                    facinternacional_proforma_nueva.Banco = facinternacional.Banco
                                                 End If
                                             End If
                                         End If
