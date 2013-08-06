@@ -509,7 +509,7 @@ Namespace Presentadores.FacReportes
                     If _FacFactura.Asociado.BIsf = True Then
                         structura.Invoice = "I N V O I C E   N°"
                     Else
-                        structura.Invoice = "ESTATEMENT N°"
+                        structura.Invoice = "STATEMENT N°"
                     End If
                     'structura.Cliente = _FacFactura.Asociado.Nombre
                     'structura. = _FacFactura.Asociado.Domicilio
@@ -520,7 +520,7 @@ Namespace Presentadores.FacReportes
                     If _FacFactura.Asociado.BIsf = True Then
                         structura.Invoice = "I N V O I C E   N°"
                     Else
-                        structura.Invoice = "ESTATEMENT N°"
+                        structura.Invoice = "STATEMENT N°"
                     End If
                     'structura.Cliente = _FacFactura.InteresadoImp.Nombre
                     'structura. = _FacFactura.InteresadoImp.Domicilio
