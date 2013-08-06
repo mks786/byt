@@ -310,19 +310,48 @@ Namespace Presentadores.FacFacturaAnuladas
                                 'fin pasar de internacional a internacional anulada
                                 Dim facinternacionalAnulada As New FacInternacionalAnulada
                                 facinternacionalAnulada.Id = facinternacional.Id
-                                facinternacionalAnulada.Asociado = facinternacional.Asociado
-                                facinternacionalAnulada.Asociado_o = facinternacional.Asociado_o
-                                facinternacionalAnulada.Numerofactura = facinternacional.Numerofactura
+                                If facinternacional.Asociado IsNot Nothing Then
+                                    facinternacionalAnulada.Asociado = facinternacional.Asociado
+                                End If
+                                If facinternacional.Asociado_o IsNot Nothing Then
+                                    facinternacionalAnulada.Asociado_o = facinternacional.Asociado_o
+                                End If
+                                If facinternacional.Numerofactura IsNot Nothing Then
+                                    facinternacionalAnulada.Numerofactura = facinternacional.Numerofactura
+                                End If
+                                'If facinternacional.Monto IsNot Nothing Then
                                 facinternacionalAnulada.Monto = facinternacional.Monto
-                                facinternacionalAnulada.Fecha = facinternacional.Fecha
-                                facinternacionalAnulada.Pais = facinternacional.Pais
-                                facinternacionalAnulada.Detalle = facinternacional.Detalle
-                                facinternacionalAnulada.FechaPago = facinternacional.FechaPago
-                                facinternacionalAnulada.TipoPago = facinternacional.TipoPago
-                                facinternacionalAnulada.DescripcionPago = facinternacional.DescripcionPago
-                                facinternacionalAnulada.Banco = facinternacional.Banco
-                                facinternacionalAnulada.Factura = facinternacional.Factura
-                                facinternacionalAnulada.FechaAnulacion = facinternacional.FechaRecepcion
+                                'End If
+                                If facinternacional.Fecha IsNot Nothing Then
+                                    facinternacionalAnulada.Fecha = facinternacional.Fecha
+                                End If
+                                If facinternacional.Pais IsNot Nothing Then
+                                    facinternacionalAnulada.Pais = facinternacional.Pais
+                                End If
+                                If facinternacional.Detalle IsNot Nothing Then
+                                    facinternacionalAnulada.Detalle = facinternacional.Detalle
+                                End If
+                                If facinternacional.FechaPago IsNot Nothing Then
+                                    facinternacionalAnulada.FechaPago = facinternacional.FechaPago
+                                End If
+                                If facinternacional.TipoPago.ToString IsNot Nothing Then
+                                    facinternacionalAnulada.TipoPago = facinternacional.TipoPago
+                                End If
+                                If facinternacional.DescripcionPago IsNot Nothing Then
+                                    facinternacionalAnulada.DescripcionPago = facinternacional.DescripcionPago
+                                End If
+                                If facinternacional.Banco IsNot Nothing Then
+                                    facinternacionalAnulada.Banco = facinternacional.Banco
+                                End If
+                                If facinternacional.Factura IsNot Nothing Then
+                                    facinternacionalAnulada.Factura = facinternacional.Factura
+                                End If
+                                If facinternacional.FechaRecepcion IsNot Nothing Then
+                                    facinternacionalAnulada.FechaAnulacion = facinternacional.FechaRecepcion
+                                Else
+                                    facinternacionalAnulada.FechaAnulacion = FormatDateTime(Date.Now, DateFormat.ShortDate)
+                                End If
+
 
                                 If _FacInternacionalAnuladasServicios.InsertarOModificar(facinternacionalAnulada, UsuarioLogeado.Hash) = True Then  'agregar a internacional anulada
 
@@ -347,6 +376,7 @@ Namespace Presentadores.FacFacturaAnuladas
                                                 End If
                                             End If
                                         End If
+                                        _FacInternacionalesServicios.InsertarOModificar(facinternacional_proforma_nueva, UsuarioLogeado.Hash)
                                     End If
 
                                     _FacInternacionalesServicios.Eliminar(facinternacional, UsuarioLogeado.Hash) 'elimina de internacional¡
