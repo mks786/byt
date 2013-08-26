@@ -49,6 +49,9 @@
     <Compile Include="ContratosServicios\ICertificadoMarcaServicios.cs" />
     <Compile Include="ContratosServicios\IEmailAsociadoServicios.cs" />
     <Compile Include="ContratosServicios\IFechaMarcaServicios.cs" />
+    <Compile Include="ContratosServicios\IFiltroPlantillaServicios.cs" />
+    <Compile Include="ContratosServicios\IMaestroDePlantillaServicios.cs" />
+    <Compile Include="ContratosServicios\IPlantillaServicios.cs" />
     <Compile Include="ContratosServicios\IRegistradorServicios.cs" />
     <Compile Include="ContratosServicios\ITipoCajaServicios.cs" />
     <Compile Include="ContratosServicios\ITipoDocumentoServicios.cs" />
@@ -133,6 +136,7 @@
     <Compile Include="Entidades\Archivo.cs" />
     <Compile Include="Entidades\Auditoria.cs" />
     <Compile Include="Entidades\Agente.cs" />
+    <Compile Include="Entidades\BatPlantilla.cs" />
     <Compile Include="Entidades\Busqueda.cs" />
     <Compile Include="Entidades\Caja.cs" />
     <Compile Include="Entidades\CertificadoMarca.cs" />
@@ -160,6 +164,8 @@
     <Compile Include="Entidades\Anualidad.cs" />
     <Compile Include="Entidades\ContactosDelAsociadoVista.cs" />
     <Compile Include="Entidades\CorreoOutlook.cs" />
+    <Compile Include="Entidades\DetallePlantilla.cs" />
+    <Compile Include="Entidades\EncabezadoPlantilla.cs" />
     <Compile Include="Entidades\FacTarifa.cs" />
     <Compile Include="Entidades\FacVistaFacturaServicio.cs" />
     <Compile Include="Entidades\FacFacturaPendienteConGru.cs" />
@@ -208,6 +214,9 @@
     <Compile Include="Entidades\FacTipoServicio.cs" />
     <Compile Include="Entidades\FacViGestionAsociado.cs" />
     <Compile Include="Entidades\FechaMarca.cs" />
+    <Compile Include="Entidades\FiltroPlantilla.cs" />
+    <Compile Include="Entidades\MaestroDePlantilla.cs" />
+    <Compile Include="Entidades\Plantilla.cs" />
     <Compile Include="Entidades\Registrador.cs" />
     <Compile Include="Entidades\TipoCaja.cs" />
     <Compile Include="Entidades\TipoDocumento.cs" />

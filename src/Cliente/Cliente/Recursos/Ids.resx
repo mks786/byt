@@ -1131,4 +1131,10 @@
   <data name="fac_GestionAutomatica" xml:space="preserve">
     <value>FAC_GESTIONES</value>
   </data>
+  <data name="Plantilla" xml:space="preserve">
+    <value>ENV_MAESTRO</value>
+  </data>
+  <data name="ListaFiltrosPlantilla" xml:space="preserve">
+    <value>ENV_FILTRO_PLANT</value>
+  </data>
 </root>

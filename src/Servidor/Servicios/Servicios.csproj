@@ -80,6 +80,9 @@
     <Compile Include="Implementacion\CesionPatenteServicios.cs" />
     <Compile Include="Implementacion\AnualidadServicios.cs" />
     <Compile Include="Implementacion\FechaMarcaServicios.cs" />
+    <Compile Include="Implementacion\FiltroPlantillaServicios.cs" />
+    <Compile Include="Implementacion\MaestroDePlantillaServicios.cs" />
+    <Compile Include="Implementacion\PlantillaServicios.cs" />
     <Compile Include="Implementacion\RegistradorServicios.cs" />
     <Compile Include="Implementacion\TipoCajaServicios.cs" />
     <Compile Include="Implementacion\TipoDocumentoServicios.cs" />

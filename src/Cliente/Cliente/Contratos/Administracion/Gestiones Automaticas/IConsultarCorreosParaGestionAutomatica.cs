@@ -10,6 +10,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Administracion.Gestiones_Automaticas
 
         object Resultado { get; set; }
 
+        object CorreoSeleccionado { get; set; }
+
         object Medios { get; set; }
 
         object Medio { get; set; }
@@ -24,13 +26,25 @@ namespace Trascend.Bolet.Cliente.Contratos.Administracion.Gestiones_Automaticas
 
         object Carpeta { get; set; }
 
-        string IdAsociado { get; set; }
+        string IdAsociado { set; }
 
         string DetalleGestion { get; set; }
+
+        string IdAsociadoFiltrar { get; set; }
+
+        string NombreAsociadoFiltrar { get; set; }
+
+        object Asociados { get; set; }
+
+        object Asociado { get; set; }
+
+        string TotalHits { set; }
 
         void Mensaje(string mensaje, int opcion);
 
         bool MensajeAlerta(string mensaje);
+
+        void MensajeFinalProceso(string mensaje);
 
     }
 }

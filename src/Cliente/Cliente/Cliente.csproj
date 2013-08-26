@@ -112,6 +112,7 @@
     <Compile Include="Contratos\Abandonos\IConsultarAbandonos.cs" />
     <Compile Include="Contratos\Abandonos\IGestionarAbandono.cs" />
     <Compile Include="Contratos\Administracion\Gestiones Automaticas\IConsultarCorreosParaGestionAutomatica.cs" />
+    <Compile Include="Contratos\Administracion\Gestiones Automaticas\IGestionarDetallesCorreoOutlook.cs" />
     <Compile Include="Contratos\Agentes\IAgregarAgente.cs" />
     <Compile Include="Contratos\Agentes\IConsultarAgente.cs" />
     <Compile Include="Contratos\Agentes\IConsultarAgentes.cs" />
@@ -148,6 +149,12 @@
     <Compile Include="Contratos\Marcas\IGestionarFechaDeMarca.cs" />
     <Compile Include="Contratos\Marcas\IListaFechasDeMarca.cs" />
     <Compile Include="Contratos\Patentes\IGestionarArchivoDePatente.cs" />
+    <Compile Include="Contratos\Plantillas\IAnalizarDetallePlantilla.cs" />
+    <Compile Include="Contratos\Plantillas\IAnalizarEncabezadoPlantilla.cs" />
+    <Compile Include="Contratos\Plantillas\IGestionarFiltroDePlantilla.cs" />
+    <Compile Include="Contratos\Plantillas\IGestionarMaestroPlantilla.cs" />
+    <Compile Include="Contratos\Plantillas\IListaValoresDetalle.cs" />
+    <Compile Include="Contratos\Plantillas\IListaValoresEncabezado.cs" />
     <Compile Include="Contratos\TiposEmailAsociado\IGestionarTipoEmailAsociado.cs" />
     <Compile Include="Contratos\TiposEmailAsociado\IConsultarTiposEmailAsociado.cs" />
     <Compile Include="Contratos\Corresponsales\IAgregarCorresponsal.cs" />
@@ -545,6 +552,7 @@
     <Compile Include="Presentadores\Abandonos\PresentadorConsultarAbandonos.cs" />
     <Compile Include="Presentadores\Abandonos\PresentadorGestionarAbandono.cs" />
     <Compile Include="Presentadores\Administracion\Gestiones Automaticas\PresentadorConsultarCorreosParaGestionAutomatica.cs" />
+    <Compile Include="Presentadores\Administracion\Gestiones Automaticas\PresentadorGestionarDetallesCorreoOutlook.cs" />
     <Compile Include="Presentadores\Agentes\PresentadorAgregarAgente.cs" />
     <Compile Include="Presentadores\Agentes\PresentadorConsultarAgente.cs" />
     <Compile Include="Presentadores\Agentes\PresentadorConsultarAgentes.cs" />
@@ -585,6 +593,12 @@
     <Compile Include="Presentadores\Marcas\PresentadorGestionarFechaDeMarca.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorListaFechasDeMarca.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorGestionarArchivoDePatente.cs" />
+    <Compile Include="Presentadores\Plantillas\PresentadorAnalizarDetallePlantilla.cs" />
+    <Compile Include="Presentadores\Plantillas\PresentadorAnalizarEncabezadoPlantilla.cs" />
+    <Compile Include="Presentadores\Plantillas\PresentadorGestionarFiltroDePlantilla.cs" />
+    <Compile Include="Presentadores\Plantillas\PresentadorGestionarMaestroPlantilla.cs" />
+    <Compile Include="Presentadores\Plantillas\PresentadorListaValoresDetalle.cs" />
+    <Compile Include="Presentadores\Plantillas\PresentadorListaValoresEncabezado.cs" />
     <Compile Include="Presentadores\TiposEmailAsociado\PresentadorGestionarTipoEmailAsociado.cs" />
     <Compile Include="Presentadores\TiposEmailAsociado\PresentadorConsultarTiposEmailAsociado.cs" />
     <Compile Include="Presentadores\Corresponsales\PresentadorAgregarCorresponsal.cs" />
@@ -970,6 +984,9 @@
     <Compile Include="Ventanas\Administracion\Gestiones Automaticas\ConsultarCorreosParaGestionAutomatica.xaml.cs">
       <DependentUpon>ConsultarCorreosParaGestionAutomatica.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\Administracion\Gestiones Automaticas\GestionarDetallesCorreoOutlook.xaml.cs">
+      <DependentUpon>GestionarDetallesCorreoOutlook.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Agentes\AgregarAgente.xaml.cs">
       <DependentUpon>AgregarAgente.xaml</DependentUpon>
     </Compile>
@@ -1080,6 +1097,24 @@
     </Compile>
     <Compile Include="Ventanas\Patentes\GestionarArchivoDePatente.xaml.cs">
       <DependentUpon>GestionarArchivoDePatente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Plantillas\AnalizarDetallePlantilla.xaml.cs">
+      <DependentUpon>AnalizarDetallePlantilla.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Plantillas\AnalizarEncabezadoPlantilla.xaml.cs">
+      <DependentUpon>AnalizarEncabezadoPlantilla.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Plantillas\GestionarFiltroDePlantilla.xaml.cs">
+      <DependentUpon>GestionarFiltroDePlantilla.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Plantillas\GestionarMaestroPlantilla.xaml.cs">
+      <DependentUpon>GestionarMaestroPlantilla.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Plantillas\ListaValoresDetalle.xaml.cs">
+      <DependentUpon>ListaValoresDetalle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Plantillas\ListaValoresEncabezado.xaml.cs">
+      <DependentUpon>ListaValoresEncabezado.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\TiposEmailAsociado\ConsultarTiposEmailAsociado.xaml.cs">
       <DependentUpon>ConsultarTiposEmailAsociado.xaml</DependentUpon>
@@ -1653,6 +1688,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Ventanas\Administracion\Gestiones Automaticas\GestionarDetallesCorreoOutlook.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Ventanas\Agentes\AgregarAgente.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1818,6 +1857,30 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Patentes\GestionarArchivoDePatente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Plantillas\AnalizarDetallePlantilla.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Plantillas\AnalizarEncabezadoPlantilla.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Plantillas\GestionarFiltroDePlantilla.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Plantillas\GestionarMaestroPlantilla.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Plantillas\ListaValoresDetalle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Plantillas\ListaValoresEncabezado.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

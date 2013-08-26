@@ -27,6 +27,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private ITipoInfobolServicios _tipoInfobolServicios;
         private IInfoBolMarcaTerServicios _infobolServicios;
+        private object _ventanaPadreConsultarMarcaTercero = null;
 
 
         /// <summary>
@@ -41,6 +42,43 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             #endregion
 
             this._ventana = ventana;
+            this._marca = (MarcaTercero)marca;
+
+            this._tipoInfobolServicios = (ITipoInfobolServicios)Activator.GetObject(typeof(ITipoInfobolServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoInfobolServicios"]);
+
+            this._infobolServicios = (IInfoBolMarcaTerServicios)Activator.GetObject(typeof(IInfoBolMarcaTerServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoBolMarcaTerServicios"]);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+
+
+        /// <summary>
+        /// Constructor por defecto que recibe una marca, una ventana padre y la ventana que precede a la consulta de marcas a terceros (opcional)
+        /// </summary>
+        /// <param name="ventana">Ventana IGestionarInfobolMarcaTer</param>
+        /// <param name="marca">Marca a consultar</param>
+        /// <param name="ventanaPadre">Ventana padre que precede a esta ventana</param>
+        /// <param name="ventanaPadreConsultarMarcaTercero">Ventana que contiene la consulta de las marcas a terceros (opcional)</param>
+        public PresentadorListaInfoBolMarcaTeres(IListaInfoBolMarcaTeres ventana, object marca, object ventanaPadre, object ventanaPadreConsultarMarcaTercero)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this._ventana = ventana;
+            
+            this._ventanaPadre = ventanaPadre;
+            
+            if(ventanaPadreConsultarMarcaTercero != null)
+                this._ventanaPadreConsultarMarcaTercero = ventanaPadreConsultarMarcaTercero;
+
             this._marca = (MarcaTercero)marca;
 
             this._tipoInfobolServicios = (ITipoInfobolServicios)Activator.GetObject(typeof(ITipoInfobolServicios),
@@ -143,14 +181,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 ((InfoBolMarcaTer)this._ventana.InfoBolMarcaTerSeleccionado).TipoInfobol = infobol.TipoInfobol;
                 ((InfoBolMarcaTer)this._ventana.InfoBolMarcaTerSeleccionado).Marca = this._marca;
                 
-                this.Navegar(new GestionarInfoBolMarcaTer(this._ventana.InfoBolMarcaTerSeleccionado));
+                //this.Navegar(new GestionarInfoBolMarcaTer(this._ventana.InfoBolMarcaTerSeleccionado));
+
+                this.Navegar(new GestionarInfoBolMarcaTer(this._ventana.InfoBolMarcaTerSeleccionado, this._ventanaPadre, this._ventanaPadreConsultarMarcaTercero));
             }
             else
             {
                 InfoBolMarcaTer infoBol = new InfoBolMarcaTer();
                 infoBol.Marca = this._marca;
                 //infoBol.Id = null;
-                this.Navegar(new GestionarInfoBolMarcaTer(infoBol));
+                //this.Navegar(new GestionarInfoBolMarcaTer(infoBol));
+
+                this.Navegar(new GestionarInfoBolMarcaTer(infoBol, this._ventanaPadre, this._ventanaPadreConsultarMarcaTercero));
             }
 
             #region trace
@@ -170,7 +212,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new GestionarMarcaTercero(this._marca));//,Recursos.Etiquetas.tabDatos));
+            //this.Navegar(new GestionarMarcaTercero(this._marca));//,Recursos.Etiquetas.tabDatos));
+
+            this.Navegar(new GestionarMarcaTercero(this._marca, this._ventanaPadreConsultarMarcaTercero));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

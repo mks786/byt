@@ -64,6 +64,7 @@ using Trascend.Bolet.Cliente.Ventanas.Corresponsales;
 using Trascend.Bolet.Cliente.Ventanas.TiposEmailAsociado;
 using Trascend.Bolet.Cliente.Ventanas.Inventores;
 using Trascend.Bolet.Cliente.Ventanas.Administracion.Gestiones_Automaticas;
+using Trascend.Bolet.Cliente.Ventanas.Plantillas;
 using System.Diagnostics;
 using System.Collections.Generic;
 
@@ -1761,6 +1762,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
 
+                                case "_menuItemPlantillas":
+                                    if (objeto.Id.Equals(Recursos.Ids.Plantilla))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+
                                 case "_menuItemInventores":
                                     if (objeto.Id.Equals(Recursos.Ids.Inventor))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
@@ -2410,6 +2416,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         {
 
             Navegar(new ConsultarCorreosParaGestionAutomatica());
+        }
+
+
+        /// <summary>
+        /// Metodo para llamar a la ventana para las plantillas
+        /// </summary>
+        public void GestionarMaestroPlantilla()
+        {
+            Navegar(new GestionarMaestroPlantilla());
         }
 
 

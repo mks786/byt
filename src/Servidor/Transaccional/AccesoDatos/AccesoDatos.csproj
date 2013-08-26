@@ -73,6 +73,9 @@
     <Compile Include="Contrato\IDaoCertificadoMarca.cs" />
     <Compile Include="Contrato\IDaoEmailAsociado.cs" />
     <Compile Include="Contrato\IDaoFechaMarca.cs" />
+    <Compile Include="Contrato\IDaoFiltroPlantilla.cs" />
+    <Compile Include="Contrato\IDaoMaestroDePlantilla.cs" />
+    <Compile Include="Contrato\IDaoPlantilla.cs" />
     <Compile Include="Contrato\IDaoRegistrador.cs" />
     <Compile Include="Contrato\IDaoTipoCaja.cs" />
     <Compile Include="Contrato\IDaoTipoDocumento.cs" />
@@ -168,6 +171,9 @@
     <Compile Include="Dao\NHibernate\DaoCertificadoMarcaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoEmailAsociadoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoFechaMarcaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoFiltroPlantillaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoMaestroDePlantillaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoPlantillaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoRegistradorNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoTipoCajaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoTipoDocumentoNHibernate.cs" />
@@ -646,7 +652,9 @@
     <EmbeddedResource Include="Mapeado\CambioPeticionarioPatente.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mapeado\Inventor.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\Inventor.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapeado\Anualidad.hbm.xml">
@@ -723,6 +731,17 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapeado\FechaMarca.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\Plantilla.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FiltroPlantilla.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\MaestroDePlantilla.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

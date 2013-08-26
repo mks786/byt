@@ -344,6 +344,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.GestionarTipoEmailAsociado();
         }
 
+        private void _menuItemPlantillasProbar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.GestionarMaestroPlantilla();
+        }
+
         #endregion
 
         #region Marcas
@@ -1213,6 +1218,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         {
             this._presentador.IrConsultarInventores();
         }
+
+        
 
         
 

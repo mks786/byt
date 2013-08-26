@@ -100,7 +100,7 @@
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
             <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" 
                     Click="_btnAceptar_Click" IsDefault="True">
-                <Button.Style>
+                <!--<Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding ElementName=_txtNombre,Path=(Validation.HasError)}" Value="True">
@@ -114,7 +114,7 @@
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
-                </Button.Style>
+                </Button.Style>-->
                 <TextBlock Name="_txbAceptar" Text="{x:Static recurso:Etiquetas.btnModificar}"/>
             </Button>
             <Button Name="_btnAuditoria" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnAuditoria_Click">

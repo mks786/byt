@@ -220,6 +220,17 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
 
 
         /// <summary>
+        /// Método que devuelve el DaoPlantilla
+        /// </summary>
+        /// <returns>IDaoPlantilla</returns>
+        public override IDaoPlantilla ObtenerDaoPlantilla()
+        {
+            return new DaoPlantillaNHibernate();
+        }
+
+
+
+        /// <summary>
         /// Método que devuelve el DaoCaja
         /// </summary>
         /// <returns>IDaoTipoCaja</returns>
@@ -236,6 +247,26 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         public override IDaoArchivo ObtenerDaoArchivo()
         {
             return new DaoArchivoNHibernate();
+        }
+
+
+        /// <summary>
+        /// Método que devuelve el DaoFiltroPlantilla
+        /// </summary>
+        /// <returns>IDaoFiltroPlantilla</returns>
+        public override IDaoFiltroPlantilla ObtenerDaoFiltroPlantilla()
+        {
+            return new DaoFiltroPlantillaNHibernate();
+        }
+
+
+        /// <summary>
+        /// Metodo que devuelve el DaoMaestroDePlantilla
+        /// </summary>
+        /// <returns>IDaoMaestroDePlantilla</returns>
+        public override IDaoMaestroDePlantilla ObtenerDaoMaestroDePlantilla()
+        {
+            return new DaoMaestroDePlantillaNHibernate();
         }
 
 

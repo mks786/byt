@@ -1411,4 +1411,10 @@
   <data name="AlertaCorreosOutlookSinSeleccion" xml:space="preserve">
     <value>Debe seleccionar al menos un correo para generar Gestiones</value>
   </data>
+  <data name="ErrorCargaDeCorreosOutlook" xml:space="preserve">
+    <value>Se ha presentado un error al cargar los correos. Verifique que Outlook esta activo o llame al Administrador</value>
+  </data>
+  <data name="ConfirmacionEliminarFiltroPlantilla" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar el filtro de la plantilla seleccionada?</value>
+  </data>
 </root>

@@ -3828,4 +3828,130 @@ en Prensa:</value>
   <data name="btnGenerarGestiones" xml:space="preserve">
     <value>Generar Gestiones</value>
   </data>
+  <data name="lblCorreoOutlookCC" xml:space="preserve">
+    <value>CC:</value>
+  </data>
+  <data name="lblCorreoOutlookFrom" xml:space="preserve">
+    <value>From:</value>
+  </data>
+  <data name="lblCorreoOutlookSubject" xml:space="preserve">
+    <value>Subject:</value>
+  </data>
+  <data name="lblCorreoOutlookTo" xml:space="preserve">
+    <value>To:</value>
+  </data>
+  <data name="titleVerDetalleCorreoOutlook" xml:space="preserve">
+    <value>Detalle Correo Outlook</value>
+  </data>
+  <data name="lblCriterio" xml:space="preserve">
+    <value>Criterio:</value>
+  </data>
+  <data name="lblPlantilla" xml:space="preserve">
+    <value>Plantilla:</value>
+  </data>
+  <data name="lblReferido" xml:space="preserve">
+    <value>Referido:</value>
+  </data>
+  <data name="menuItemPlantillas" xml:space="preserve">
+    <value>Plantillas</value>
+  </data>
+  <data name="menuItemPlantillasProbarPlantillas" xml:space="preserve">
+    <value>Probar Plantilla</value>
+  </data>
+  <data name="titleMaestroPlantillas" xml:space="preserve">
+    <value>Gestor de Plantillas</value>
+  </data>
+  <data name="btnAnalizarQuery" xml:space="preserve">
+    <value>Analizar Query</value>
+  </data>
+  <data name="btnAnalizarRelacion" xml:space="preserve">
+    <value>Analizar Relacion</value>
+  </data>
+  <data name="btnCondiciones" xml:space="preserve">
+    <value>Variables Query</value>
+  </data>
+  <data name="lblBat" xml:space="preserve">
+    <value>Archivo BAT:</value>
+  </data>
+  <data name="lblClaveDeRelacion" xml:space="preserve">
+    <value>Clave Relacion:</value>
+  </data>
+  <data name="lblSQLDetalle" xml:space="preserve">
+    <value>Detalle:</value>
+  </data>
+  <data name="lblSQLEncabezado" xml:space="preserve">
+    <value>Encabezado:</value>
+  </data>
+  <data name="cbiCriteriosPlantilla" xml:space="preserve">
+    <value>ENV_CRITERIOS</value>
+  </data>
+  <data name="cbiReferenciaPlantilla" xml:space="preserve">
+    <value>ENV_REFERENCIAS</value>
+  </data>
+  <data name="btnNuevaVariable" xml:space="preserve">
+    <value>Nueva Variable</value>
+  </data>
+  <data name="lsvCampoVariable" xml:space="preserve">
+    <value>Campo</value>
+  </data>
+  <data name="lsvPlantilla" xml:space="preserve">
+    <value>Descripcion Plantilla</value>
+  </data>
+  <data name="lsvTipoCampo" xml:space="preserve">
+    <value>Tipo de Dato</value>
+  </data>
+  <data name="titleListadoFiltrosEncabezadoPlantilla" xml:space="preserve">
+    <value>Lista de Filtros de Encabezado de Plantilla</value>
+  </data>
+  <data name="lblNombreCampoFiltro" xml:space="preserve">
+    <value>Campo Filtro:</value>
+  </data>
+  <data name="lblNombreVariableFiltro" xml:space="preserve">
+    <value>Variable Filtro:</value>
+  </data>
+  <data name="lblTipoDatoCampoFiltro" xml:space="preserve">
+    <value>Tipo de Dato:</value>
+  </data>
+  <data name="lblTipoDeFiltro" xml:space="preserve">
+    <value>Tipo de Filtro:</value>
+  </data>
+  <data name="cbiTipoDatoFiltroPlantilla" xml:space="preserve">
+    <value>ENV_FILTRO_TDATO</value>
+  </data>
+  <data name="cbiTipoDeFiltroPlantilla" xml:space="preserve">
+    <value>ENV_FILTRO_PLANT</value>
+  </data>
+  <data name="titleListadoFiltrosDetallePlantilla" xml:space="preserve">
+    <value>Lista de Filtros de Detalle de Plantilla</value>
+  </data>
+  <data name="btnVerArchivoLog" xml:space="preserve">
+    <value>Registro Log</value>
+  </data>
+  <data name="btnProbarSQL" xml:space="preserve">
+    <value>Probar SQL</value>
+  </data>
+  <data name="btnVerScriptSQL" xml:space="preserve">
+    <value>Ver Script</value>
+  </data>
+  <data name="lblVariablesEncabezado" xml:space="preserve">
+    <value>Variables Encabezado</value>
+  </data>
+  <data name="lsvNombreVariable" xml:space="preserve">
+    <value>Variable</value>
+  </data>
+  <data name="lsvValoresVariables" xml:space="preserve">
+    <value>Valores Variables</value>
+  </data>
+  <data name="btnProbarBat" xml:space="preserve">
+    <value>Probar BAT</value>
+  </data>
+  <data name="lblMensajeAnalisisSQL" xml:space="preserve">
+    <value>Coloque los valores de las variables:</value>
+  </data>
+  <data name="lblMensajeAnalisisBAT" xml:space="preserve">
+    <value>Analizar BAT:</value>
+  </data>
+  <data name="lblVariablesDetalle" xml:space="preserve">
+    <value>Variables Detalle</value>
+  </data>
 </root>

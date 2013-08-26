@@ -39,7 +39,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtNombre" Width="150" MaxLength="80"  Text="{Binding Path=InventorPatente}" IsEnabled="False"/>
+                    <custom:ByTTextBox Name="_txtNombre" Width="150" MaxLength="510"  Text="{Binding Path=InventorPatente}" IsEnabled="False"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>

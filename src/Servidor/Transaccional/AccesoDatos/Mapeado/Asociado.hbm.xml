@@ -42,7 +42,7 @@
       <column name="CMONEDA"/>
     </many-to-one>
 
-    <many-to-one name="TipoCliente" class="TipoCliente">
+    <many-to-one name="TipoCliente" class="TipoCliente" lazy="false">
       <column name="CTIPO"/>
     </many-to-one>
 

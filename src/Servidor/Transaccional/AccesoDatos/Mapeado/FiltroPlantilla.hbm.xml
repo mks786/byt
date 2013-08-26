@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="FiltroPlantilla" table="ENV_FILTRO_PLANT">
+
+    <composite-id>
+      <key-property name="Id" column="CFILTRO" type="int"/>
+      <key-many-to-one name="Plantilla" column="CPLANTILLA" class="Plantilla" lazy="false"/>
+    </composite-id>
+  
+    <property name="NombreCampoFiltro" type="string" column="XCAMPO"/>
+    <property name="TipoDatoCampoFiltro" type="string" column="TCAMPO"/>
+    <property name="NombreVariableFiltro" type="String" column="VARFILTRO"/>
+    <property name="TipoDeFiltro" type="string" column="TFILTRO"/>
+
+  </class>
+
+
+</hibernate-mapping>

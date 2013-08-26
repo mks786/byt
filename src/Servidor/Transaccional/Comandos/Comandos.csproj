@@ -123,6 +123,11 @@
     <Compile Include="Comandos\ComandosFechaMarca\ComandoConsultarFechasPorMarca.cs" />
     <Compile Include="Comandos\ComandosFechaMarca\ComandoEliminarFechaMarca.cs" />
     <Compile Include="Comandos\ComandosFechaMarca\ComandoInsertarOModificarFechaMarca.cs" />
+    <Compile Include="Comandos\ComandosFiltroPlantilla\ComandoConsultarFiltrosDetallePlantilla.cs" />
+    <Compile Include="Comandos\ComandosFiltroPlantilla\ComandoConsultarFiltrosEncabezadoPlantilla.cs" />
+    <Compile Include="Comandos\ComandosFiltroPlantilla\ComandoConsultarTodosFiltroPlantilla.cs" />
+    <Compile Include="Comandos\ComandosFiltroPlantilla\ComandoEliminarFiltroPlantilla.cs" />
+    <Compile Include="Comandos\ComandosFiltroPlantilla\ComandoInsertarOModificarFiltroPlantilla.cs" />
     <Compile Include="Comandos\ComandosFusionMarcaTercero\ComandoConsultarFusionMarcaTerceroPorFusion.cs" />
     <Compile Include="Comandos\ComandosFusionPatenteTercero\ComandoConsultarFusionPatenteTerceroPorFusion.cs" />
     <Compile Include="Comandos\ComandosFusion\ComandoConsultarFusionesFiltro.cs" />
@@ -137,6 +142,7 @@
     <Compile Include="Comandos\ComandosInternacional\ComandoConsultarPorId.cs" />
     <Compile Include="Comandos\ComandosInventor\ComandoConsultarInventoresPorPatente.cs" />
     <Compile Include="Comandos\ComandosLicencia\ComandoConsultarLicenciasFiltro.cs" />
+    <Compile Include="Comandos\ComandosMaestroDePlantilla\ComandoInsertarOModificarMaestroDePlantilla.cs" />
     <Compile Include="Comandos\ComandosMarcaBaseTercero\ComandoConsultarMarcasBaseTerceroFiltro.cs" />
     <Compile Include="Comandos\ComandosMarcaBaseTercero\ComandoConsultarTodosMarcaBaseTerceros.cs" />
     <Compile Include="Comandos\ComandosMarcaBaseTercero\ComandoEliminarMarcaBaseTercero.cs" />
@@ -163,6 +169,7 @@
     <Compile Include="Comandos\ComandosOperacion\ComandoConsultarOperacionesPorMarcaYServicio.cs" />
     <Compile Include="Comandos\ComandosPlanilla\ComandoConsultarPlanillaPorUsuario.cs" />
     <Compile Include="Comandos\ComandosPlanilla\ComandoEliminarPlanilla.cs" />
+    <Compile Include="Comandos\ComandosPlantilla\ComandoConsultarTodosPlantilla.cs" />
     <Compile Include="Comandos\ComandosPoder\ComandoConsultarPoderesFiltro.cs" />
     <Compile Include="Comandos\ComandosPoder\ComandoConsultarPoderesPorAgente.cs" />
     <Compile Include="Comandos\ComandosPoder\ComandoConsultarPoderesEntreAgentesEInteresado.cs" />
@@ -443,6 +450,9 @@
     <Compile Include="Fabrica\FabricaComandosCertificadoMarca.cs" />
     <Compile Include="Fabrica\FabricaComandosEmailAsociado.cs" />
     <Compile Include="Fabrica\FabricaComandosFechaMarca.cs" />
+    <Compile Include="Fabrica\FabricaComandosFiltroPlantilla.cs" />
+    <Compile Include="Fabrica\FabricaComandosMaestroDePlantilla.cs" />
+    <Compile Include="Fabrica\FabricaComandosPlantilla.cs" />
     <Compile Include="Fabrica\FabricaComandosRegistrador.cs" />
     <Compile Include="Fabrica\FabricaComandosTipoCaja.cs" />
     <Compile Include="Fabrica\FabricaComandosTipoDocumento.cs" />

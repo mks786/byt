@@ -896,7 +896,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         /// </summary>
         public void IrInfoBoles()
         {
-            this.Navegar(new ListaInfoBolMarcaTeres(CargarMarcaTerceroDeLaPantalla()));
+            //this.Navegar(new ListaInfoBolMarcaTeres(CargarMarcaTerceroDeLaPantalla()));
+            this.Navegar(new ListaInfoBolMarcaTeres(CargarMarcaTerceroDeLaPantalla(), this._ventana, this._ventanaPadre));
         }
 
         /// <summary>

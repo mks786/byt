@@ -137,12 +137,12 @@ Namespace Dao.NHibernate
 
             Dim query As IQuery
             If (filtro = "") Then
-                query = Session.CreateQuery(cabecera & "  order by fg.FechaGestion desc")
+                query = Session.CreateQuery(cabecera & "  order by fg.Id desc, fg.FechaGestion desc")
             Else
                 cabecera = cabecera & " Where "
 
                 If FacGestion.Status Is Nothing Then
-                    cabecera = cabecera & filtro & "  order by fg.FechaGestion desc"
+                    cabecera = cabecera & filtro & "  order by fg.Id desc, fg.FechaGestion desc"
                 Else
                     cabecera = cabecera & filtro
                 End If

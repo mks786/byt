@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Net.Sockets;
 using System.Runtime.Remoting;
@@ -40,6 +41,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.Gestiones_Automati
         private ICarpetaGestionAutomaticaServicios _carpetaGestionAutomaticaServicios;
         private IFacGestionServicios _facGestionServicios;
         private IList<CarpetaGestionAutomatica> _listaCarpetasOutlookUsuario;
+        private IList<Asociado> _asociados; 
         
         
 
@@ -158,7 +160,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.Gestiones_Automati
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                ConceptoGestion primerConcepto = new ConceptoGestion();
+                primerConcepto.Id = "NGN";
                 _listaConceptosGestion = this._conceptosGestionServicios.ConsultarTodos();
+                _listaConceptosGestion.Insert(0, primerConcepto);
                 this._ventana.Conceptos = _listaConceptosGestion;
                 this._ventana.Concepto = this.BuscarConceptoGestion(_listaConceptosGestion, _listaConceptosGestion[0]);
 
@@ -215,9 +220,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.Gestiones_Automati
                 #endregion
 
                 _listaCarpetasOutlookUsuario = this._carpetaGestionAutomaticaServicios.ObtenerCarpetasPorIniciales(UsuarioLogeado);
-                CarpetaGestionAutomatica primeraCarpeta = new CarpetaGestionAutomatica();
-                primeraCarpeta.Id = "NGN";
-                _listaCarpetasOutlookUsuario.Insert(0,primeraCarpeta);
+                //CarpetaGestionAutomatica primeraCarpeta = new CarpetaGestionAutomatica();
+                //primeraCarpeta.Id = "NGN";
+                //_listaCarpetasOutlookUsuario.Insert(0,primeraCarpeta);
                 this._ventana.Carpetas = _listaCarpetasOutlookUsuario;
                                 
                 #region trace
@@ -234,6 +239,50 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.Gestiones_Automati
 
 
         /// <summary>
+        /// Metodo que verifica si Outlook esta activo antes de descargar los correos
+        /// </summary>
+        /// <returns></returns>
+        public bool VerificarOutlookActivo()
+        {
+            bool retorno = false;
+
+            try
+            {
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                System.Diagnostics.Process[] procesos = System.Diagnostics.Process.GetProcesses();
+
+                foreach (System.Diagnostics.Process proceso in procesos)
+                {
+                    if (proceso.ProcessName == "OUTLOOK")
+                    {
+                        retorno = true;
+                        break;
+                    }
+
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (System.Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+
+            return retorno;
+        }
+
+
+        
+        /// <summary>
         /// Metodo que carga los correos de una carpeta de Outlook determinada. 
         /// NOTA: El usuario debe tener permisologia para poder ver la carpeta seleccionada desde Outlook
         /// </summary>
@@ -241,6 +290,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.Gestiones_Automati
         {
             Mouse.OverrideCursor = Cursors.Wait;
             String carpetaUsuarioLogueado = String.Empty;
+            bool outlookActivo = false;
+            int contador = 1;
 
             try
             {
@@ -249,56 +300,97 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.Gestiones_Automati
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                Microsoft.Office.Interop.Outlook.Application outlookApp = new Microsoft.Office.Interop.Outlook.Application();
-                NameSpace outlookNS = null;
-                MAPIFolder mails = null;
-                outlookNS = outlookApp.GetNamespace("MAPI");
-                mails = outlookNS.GetDefaultFolder(OlDefaultFolders.olPublicFoldersAllPublicFolders);
+                outlookActivo = VerificarOutlookActivo();
 
-                if ((this._ventana.Carpeta != null) && (!((CarpetaGestionAutomatica)this._ventana.Carpeta).Id.Equals("NGN")))
+
+
+
+                if (outlookActivo)
                 {
-                    carpetaUsuarioLogueado = ((CarpetaGestionAutomatica)this._ventana.Carpeta).Carpeta;
-                    outlookApp.ActiveExplorer().CurrentFolder = mails.Folders[carpetaUsuarioLogueado];
+                    Microsoft.Office.Interop.Outlook.Application outlookApp = new Microsoft.Office.Interop.Outlook.Application();
+                    NameSpace outlookNS = null;
+                    MAPIFolder mails = null;
+                    outlookNS = outlookApp.GetNamespace("MAPI");
+                    mails = outlookNS.GetDefaultFolder(OlDefaultFolders.olPublicFoldersAllPublicFolders);
 
-                    Items Correos = outlookApp.ActiveExplorer().CurrentFolder.Items.Restrict("[MessageClass]='IPM.Note'");
-
-                    int numCorreos = Correos.Count;
-
-                    IList<CorreoOutlook> listaCorreosOutlook = new List<CorreoOutlook>();
-
-                    #region Codigo comentado
-                    //DataTable mitabla = new DataTable();
-                    //mitabla.Columns.Add("Fecha");
-                    //mitabla.Columns.Add("Subject");
-                    //mitabla.Columns.Add("Remite"); 
-                    #endregion
-
-                    foreach (object obj in outlookApp.ActiveExplorer().CurrentFolder.Items)
+                    if ((this._ventana.Carpeta != null) && (!((CarpetaGestionAutomatica)this._ventana.Carpeta).Id.Equals("NGN")))
                     {
-                        MailItem item = obj as MailItem;
-                        if (item != null)
+                        carpetaUsuarioLogueado = ((CarpetaGestionAutomatica)this._ventana.Carpeta).Carpeta;
+                        outlookApp.ActiveExplorer().CurrentFolder = mails.Folders[carpetaUsuarioLogueado];
+
+                        Items Correos = outlookApp.ActiveExplorer().CurrentFolder.Items.Restrict("[MessageClass]='IPM.Note'");
+
+                        int numCorreos = Correos.Count;
+
+                        IList<CorreoOutlook> listaCorreosOutlook = new List<CorreoOutlook>();
+
+
+
+                        #region Codigo comentado
+                        //DataTable mitabla = new DataTable();
+                        //mitabla.Columns.Add("Fecha");
+                        //mitabla.Columns.Add("Subject");
+                        //mitabla.Columns.Add("Remite"); 
+                        #endregion
+
+                        //foreach (object obj in outlookApp.ActiveExplorer().CurrentFolder.Items)
+                        foreach (object obj in Correos)
                         {
-                            #region Codigo comentado
-                            //DataRow fila = mitabla.NewRow();
-                            //fila["Fecha"] = item.LastModificationTime.ToString();
-                            //fila["Subject"] = item.Subject;
-                            //fila["Remite"] = item.SenderName;
-                            //mitabla.Rows.Add(fila); 
+
+                            MailItem item = obj as MailItem;
+                            if (item != null)
+                            {
+                                #region Codigo comentado
+                                //DataRow fila = mitabla.NewRow();
+                                //fila["Fecha"] = item.LastModificationTime.ToString();
+                                //fila["Subject"] = item.Subject;
+                                //fila["Remite"] = item.SenderName;
+                                //mitabla.Rows.Add(fila); 
+                                #endregion
+
+                                CorreoOutlook correo = new CorreoOutlook();
+                                //correo.Fecha = item.LastModificationTime;
+                                correo.Fecha = item.ReceivedTime;
+                                correo.Subject = item.Subject;
+                                correo.Remite = item.SenderName;
+                                correo.Destino = item.To;
+                                correo.ConCopiaA = item.CC;
+                                item.BodyFormat = OlBodyFormat.olFormatRichText;
+                                correo.Body = item.Body;
+                                listaCorreosOutlook.Add(correo);
+                                #region Codigo comentado
+                                //EscribirLogGeneracionGestion("El correo No. " + contador.ToString() + " fue reconocido", @"C:\bolyter\correos.txt");
+                                //contador++;
+
+                                //if (contador == 248)
+                                //{
+                                //    String prueba = String.Empty;
+                                //    prueba = "Llego a 248";
+                                //} 
+                                #endregion
+
+                            }
+                            #region Codigo comentado 
+                            //else
+                            //{
+                            //    EscribirLogGeneracionGestion("El correo No. " + contador.ToString() + " no fue reconocido", @"C:\bolyter\correos.txt");
+                            //    contador++;
+                            //} 
                             #endregion
 
-                            CorreoOutlook correo = new CorreoOutlook();
-                            correo.Fecha = item.LastModificationTime;
-                            correo.Subject = item.Subject;
-                            correo.Remite = item.SenderName;
-                            listaCorreosOutlook.Add(correo);
                         }
-                    }
 
-                    this._ventana.Resultados = listaCorreosOutlook;
+                        this._ventana.Resultados = listaCorreosOutlook;
+                        this._ventana.TotalHits = listaCorreosOutlook.Count.ToString();
+                    }
+                    else
+                    {
+                        this._ventana.Mensaje("Seleccion de Carpeta Usuario invalida", 1);
+                    }
                 }
                 else
                 {
-                    this._ventana.Mensaje("Seleccion de Carpeta Usuario invalida", 1);
+                    this._ventana.Mensaje("Inicie Outlook para poder descargar los correos", 1);
                 }
 
                 
@@ -312,7 +404,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.Gestiones_Automati
             catch (System.Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorCargaDeCorreosOutlook, true);
             }
             finally
             {
@@ -389,30 +481,38 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.Gestiones_Automati
                             gestionNueva.Medio = (this._ventana.Medio != null) ? ((MediosGestion)this._ventana.Medio).Id : null;
                             gestionNueva.ConceptoGestion = (this._ventana.Concepto != null) ? ((ConceptoGestion)this._ventana.Concepto).Id : null;
                             gestionNueva.FechaGestion = DateTime.Today;
+                            gestionNueva.FechaIngreso = DateTime.Today;
                             gestionNueva.Inicial = UsuarioLogeado.Iniciales;
                             gestionNueva.Observacion = this._ventana.DetalleGestion;
                             gestionNueva.Operacion = "CREATE";
 
                             idAsociado = ObtenerCodigoAsociado(correo);
 
-                            if ((idAsociado != int.MinValue) && (this._ventana.IdAsociado.Equals("")))
+                            //if ((idAsociado != int.MinValue) && (this._ventana.IdAsociado.Equals("")))
+                            if ((idAsociado != int.MinValue) && (this._ventana.Asociado == null))
                             {
                                 asociado = new Asociado();
                                 asociado.Id = idAsociado;
                                 asociado = this._asociadoServicios.ConsultarAsociadoConTodo(asociado);
                                 gestionNueva.Asociado = asociado;
+                                gestionNueva.TipoAsociado = asociado.TipoCliente;
                                 idGestion = ObtenerUltimaGestionAsociado(asociado);
                             }
-                            else if (((idAsociado == int.MinValue) && (!this._ventana.IdAsociado.Equals("")))
-                            || ((idAsociado != int.MinValue) && (!this._ventana.IdAsociado.Equals(""))))
+                            //else if (((idAsociado == int.MinValue) && (!this._ventana.IdAsociado.Equals("")))
+                            //|| ((idAsociado != int.MinValue) && (!this._ventana.IdAsociado.Equals(""))))
+                            else if (((idAsociado == int.MinValue) && (this._ventana.Asociado != null))
+                            || ((idAsociado != int.MinValue) && (this._ventana.Asociado != null)))
                             {
                                 asociado = new Asociado();
-                                asociado.Id = int.Parse(this._ventana.IdAsociado);
+                                //asociado.Id = int.Parse(this._ventana.IdAsociado);
+                                asociado.Id = ((Asociado)this._ventana.Asociado).Id;
                                 asociado = this._asociadoServicios.ConsultarAsociadoConTodo(asociado);
                                 gestionNueva.Asociado = asociado;
+                                gestionNueva.TipoAsociado = asociado.TipoCliente;
                                 idGestion = ObtenerUltimaGestionAsociado(asociado);
                             }
-                            else if ((idAsociado == int.MinValue) && (this._ventana.IdAsociado.Equals("")))
+                            //else if ((idAsociado == int.MinValue) && (this._ventana.IdAsociado.Equals("")))
+                            else if ((idAsociado == int.MinValue) && (this._ventana.Asociado == null))
                             {
                                 str_log = "Gestion No " + codigoRespGestion.ToString() + " sin Asociado. No pudo ser registrada.";
                                 EscribirLogGeneracionGestion(str_log, archivoLog);
@@ -451,6 +551,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.Gestiones_Automati
                         }
 
                     }
+
+                    this._ventana.MensajeFinalProceso("El proceso de generacion de Gestiones ha terminado");
 
                 }
                 else
@@ -583,6 +685,151 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.Gestiones_Automati
             }
 
             return idGestion;
+        }
+
+
+        /// <summary>
+        /// Método que se encarga de buscar el asociado definido en el filtro
+        /// </summary>
+        public void BuscarAsociado()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            try
+            {
+                Mouse.OverrideCursor = Cursors.Wait;
+
+                Asociado asociadoABuscar = new Asociado();
+
+                //asociadoABuscar.Id = !this._ventana.IdAsociadoFiltrar.Equals("") ?
+                //                     int.Parse(this._ventana.IdAsociadoFiltrar) : 0;
+
+                asociadoABuscar.Id = !this._ventana.IdAsociadoFiltrar.Equals("") ?
+                                    int.Parse(this._ventana.IdAsociadoFiltrar) : int.MinValue;
+
+                asociadoABuscar.Nombre = !this._ventana.NombreAsociadoFiltrar.Equals("") ?
+                                         this._ventana.NombreAsociadoFiltrar.ToUpper() : "";
+
+                //if ((asociadoABuscar.Id != 0) || !(asociadoABuscar.Nombre.Equals("")))
+                if ((asociadoABuscar.Id != int.MinValue) || !(asociadoABuscar.Nombre.Equals("")))
+                {
+                    IList<Asociado> asociados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoABuscar);
+
+                    if (asociados.Count > 0)
+                    {
+                        asociados.Insert(0, new Asociado(int.MinValue));
+                        this._ventana.Asociados = asociados;
+                    }
+                    else
+                    {
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                        this._ventana.Asociados = this._asociados;
+                    }
+                }
+
+                else
+                    this._ventana.Mensaje("Ingrese criterios validos para la busqueda del Asociado", 1);
+            }
+            catch (System.Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+
+        /// <summary>
+        /// Metodo que cambia el texto del Asociado en la interfaz
+        /// </summary>
+        /// <returns>true en caso de que el Asociado haya sido valido, false en caso contrario</returns>
+        public bool CambiarAsociado()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            bool retorno = false;
+
+            if (this._ventana.Asociado != null)
+            {
+                this._ventana.IdAsociado = ((Asociado)this._ventana.Asociado).Nombre;
+                retorno = true;
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return retorno;
+        }
+
+
+
+        /// <summary>
+        /// Metodo para desplegar la ventana para ver el detalle de un correo outlook seleccionado
+        /// </summary>
+        public void VerDetalleCorreoOutlook()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            if (this._ventana.CorreoSeleccionado != null)
+            {
+                CorreoOutlook correo = (CorreoOutlook)this._ventana.CorreoSeleccionado;
+                this.Navegar(new GestionarDetallesCorreoOutlook(correo, this._ventana));
+            }
+
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+
+        /// <summary>
+        /// Metodo para ver el contenido del archivo log que guarda las incidencias del proceso de generacion automatica de gestiones
+        /// </summary>
+        public void VerArchivoLog()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            String rutaArchivoLog = String.Empty;
+
+            rutaArchivoLog = ConfigurationManager.AppSettings["rutaGestionesAutomaticas"].ToString();
+
+            if (File.Exists(rutaArchivoLog))
+            {
+                Process.Start(rutaArchivoLog);
+            }
+            else
+            {
+                this._ventana.Mensaje("El archivo Log de generacion de Gestiones no existe. Revise", 0);
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
     }
 }

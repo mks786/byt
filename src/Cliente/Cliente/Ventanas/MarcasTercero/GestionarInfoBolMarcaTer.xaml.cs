@@ -143,12 +143,43 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
 
         #endregion
 
+        /// <summary>
+        /// Constructor por defecto que recibe un infobol
+        /// </summary>
+        /// <param name="infoBol"></param>
         public GestionarInfoBolMarcaTer(object infoBol)
         {
             InitializeComponent();
             this._cargada = false;
             this._presentador = new PresentadorGestionarInfoBolMarcaTer(this, infoBol);
 
+            _bgw.WorkerReportsProgress = true;
+            _bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(bgw_DoWork);
+            _bgw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(bgw_RunWorkerCompleted);
+            _bgw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(bgw_ProgressChanged);
+        }
+
+
+        public GestionarInfoBolMarcaTer(object infoBol, object ventanaPadre)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            //this._presentador = new PresentadorGestionarInfoBolMarcaTer(this, infoBol);
+            this._presentador = new PresentadorGestionarInfoBolMarcaTer(this, infoBol, ventanaPadre, null);
+
+            _bgw.WorkerReportsProgress = true;
+            _bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(bgw_DoWork);
+            _bgw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(bgw_RunWorkerCompleted);
+            _bgw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(bgw_ProgressChanged);
+        }
+
+
+        public GestionarInfoBolMarcaTer(object infoBol, object ventanaPadre, object ventanaPadreListaInfoboles)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            //this._presentador = new PresentadorGestionarInfoBolMarcaTer(this, infoBol);
+            this._presentador = new PresentadorGestionarInfoBolMarcaTer(this, infoBol, ventanaPadre, ventanaPadreListaInfoboles);
             _bgw.WorkerReportsProgress = true;
             _bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(bgw_DoWork);
             _bgw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(bgw_RunWorkerCompleted);

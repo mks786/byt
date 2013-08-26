@@ -32,6 +32,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         private IList<TipoInfobol> _infoboles;
         private bool _nuevaInfoBolMarcaTer = false;
         private bool _tieneListaCambios = false;
+        private object _ventanaPadreListaInfoboles = null;
 
 
         /// <summary>
@@ -54,6 +55,57 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 //    this._nuevaInfoBolMarcaTer = true;
 
                 if(((InfoBolMarcaTer)infoBol).TipoInfobol == null)
+                    this._nuevaInfoBolMarcaTer = true;
+
+                this._infoBolServicios = (IInfoBolMarcaTerServicios)Activator.GetObject(typeof(IInfoBolMarcaTerServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoBolMarcaTerServicios"]);
+                this._boletinServicios = (IBoletinServicios)Activator.GetObject(typeof(IBoletinServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
+                this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+                this._tipoInfobolServicios = (ITipoInfobolServicios)Activator.GetObject(typeof(ITipoInfobolServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoInfobolServicios"]);
+                this._operacionServicios = (IOperacionServicios)Activator.GetObject(typeof(IOperacionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["OperacionServicios"]);
+
+                this._infoboles = this._tipoInfobolServicios.ConsultarTodos();
+                this._ventana.Tipos = null;
+                this._ventana.Tipos = this._infoboles;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+
+
+        public PresentadorGestionarInfoBolMarcaTer(IGestionarInfoBolMarcaTer ventana, object infoBol, object ventanaPadre, object ventanaPadreListaInfoboles)
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                this._ventana = ventana;
+                this._ventanaPadre = ventanaPadre;
+                if(ventanaPadreListaInfoboles != null)
+                    this._ventanaPadreListaInfoboles = ventanaPadreListaInfoboles;
+
+                this._ventana.InfoBolMarcaTer = null != (InfoBolMarcaTer)infoBol ? (InfoBolMarcaTer)infoBol : new InfoBolMarcaTer();
+
+                //if (((InfoBolMarcaTer)infoBol).Id == null)
+                //    this._nuevaInfoBolMarcaTer = true;
+
+                if (((InfoBolMarcaTer)infoBol).TipoInfobol == null)
                     this._nuevaInfoBolMarcaTer = true;
 
                 this._infoBolServicios = (IInfoBolMarcaTerServicios)Activator.GetObject(typeof(IInfoBolMarcaTerServicios),
@@ -343,7 +395,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new ListaInfoBolMarcaTeres(((InfoBolMarcaTer)this._ventana.InfoBolMarcaTer).Marca));
+            //this.Navegar(new ListaInfoBolMarcaTeres(((InfoBolMarcaTer)this._ventana.InfoBolMarcaTer).Marca));
+            this.Navegar(new ListaInfoBolMarcaTeres(((InfoBolMarcaTer)this._ventana.InfoBolMarcaTer).Marca, this._ventanaPadre, this._ventanaPadreListaInfoboles));
+
+            
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

@@ -2698,6 +2698,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a ENV_FILTRO_PLANT.
+        /// </summary>
+        public static string ListaFiltrosPlantilla {
+            get {
+                return ResourceManager.GetString("ListaFiltrosPlantilla", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a LST_PODERES.
         /// </summary>
         public static string ListaPoderes {
@@ -2982,6 +2991,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string PatentesSolicitud {
             get {
                 return ResourceManager.GetString("PatentesSolicitud", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ENV_MAESTRO.
+        /// </summary>
+        public static string Plantilla {
+            get {
+                return ResourceManager.GetString("Plantilla", resourceCulture);
             }
         }
         

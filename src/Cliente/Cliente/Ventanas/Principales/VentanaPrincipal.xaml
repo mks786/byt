@@ -354,6 +354,10 @@
                     <MenuItem Name="_menuItemTipoEmailAsociadoAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemTipoEmailAsociadoAgregar_Click"/>
                     <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
                 </MenuItem>
+
+                <MenuItem Name="_menuItemPlantillas" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemPlantillas}">
+                    <MenuItem Name="_menuItemPlantillasProbar" Header="{x:Static resx:Etiquetas.menuItemPlantillasProbarPlantillas}" Click="_menuItemPlantillasProbar_Click" />
+                </MenuItem>
                 
             </MenuItem>
             
@@ -617,6 +621,7 @@
                 </MenuItem>
             </MenuItem>
             <!--Fin Facturacion-->
+            
             
             
             <MenuItem Name="_menuItemAyuda" Header="{x:Static resx:Etiquetas.menuItemAyuda}">

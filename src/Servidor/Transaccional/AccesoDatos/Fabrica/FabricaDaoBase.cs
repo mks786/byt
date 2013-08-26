@@ -140,6 +140,14 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// <returns>IDaoTipoDocumento</returns>
         public abstract IDaoTipoCaja ObtenerDaoTipoCaja();
 
+
+        /// <summary>
+        /// Método que devuelve el DaoPlantilla del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoPlantilla</returns>
+        public abstract IDaoPlantilla ObtenerDaoPlantilla();
+
+
         /// <summary>
         /// Método que devuelve el DaoCaja del manejador que se esté utilizando
         /// </summary>
@@ -152,6 +160,19 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// </summary>
         /// <returns>IDaoArchivo</returns>
         public abstract IDaoArchivo ObtenerDaoArchivo();
+
+
+        /// <summary>
+        /// Método que devuelve el DaoFiltroPlantilla del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoFiltroPlantilla</returns>
+        public abstract IDaoFiltroPlantilla ObtenerDaoFiltroPlantilla();
+
+        /// <summary>
+        /// Metodo que devuelve el DaoMaestroDePlantilla del manejador que se este utilizando
+        /// </summary>
+        /// <returns></returns>
+        public abstract IDaoMaestroDePlantilla ObtenerDaoMaestroDePlantilla();
 
 
         /// <summary>

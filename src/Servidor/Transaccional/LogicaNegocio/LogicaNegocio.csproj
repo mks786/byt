@@ -56,7 +56,10 @@
     <Compile Include="Controladores\ControladorEstado.cs" />
     <Compile Include="Controladores\ControladorEstadoMarca.cs" />
     <Compile Include="Controladores\ControladorFechaMarca.cs" />
+    <Compile Include="Controladores\ControladorFiltroPlantilla.cs" />
+    <Compile Include="Controladores\ControladorMaestroDePlantilla.cs" />
     <Compile Include="Controladores\ControladorObjeto.cs" />
+    <Compile Include="Controladores\ControladorPlantilla.cs" />
     <Compile Include="Controladores\ControladorRegistrador.cs" />
     <Compile Include="Controladores\ControladorTipoBase.cs" />
     <Compile Include="Controladores\ControladorTipoCaja.cs" />

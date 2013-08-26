@@ -26,7 +26,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -57,7 +57,7 @@
                 <RowDefinition Height="65"/>
                 <RowDefinition Height="65"/>
                 <RowDefinition Height="65"/>
-                <RowDefinition Height="65"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="65"/>
             </Grid.RowDefinitions>
 
@@ -72,7 +72,22 @@
                 <Label  Name="_lblConceptoGestion" >
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblConcepto}"/>
                 </Label>
-                <ComboBox Name="_cbxConcepto" Width="174" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" Height="26">
+                <!--<ComboBox Name="_cbxConcepto" Width="174" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" Height="26">
+                </ComboBox>-->
+                <ComboBox Name="_cbxConcepto" Width="174" ItemsSource="{Binding}" SelectedIndex="0" Height="26">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource convertirADosValores}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="Descripcion" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+
                 </ComboBox>
             </WrapPanel>
 
@@ -88,17 +103,86 @@
                 </Label>
                 <custom:ByTTextBox Name="_txtUsuarioGestion" Text="" Width="180" MaxLength="15" Height="25" HorizontalAlignment="Left" Margin="5,5,0,0" IsEnabled="False" />
             </WrapPanel>
-            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,20,12,16" Grid.Row="4" Grid.Column="0" Width="252">
+            <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,20,12,16" Grid.Row="4" Grid.Column="0" Width="252">
                 <Label  Name="_lblAsociadoGestion" >
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
                 </Label>
                 <custom:ByTTextBox Name="_txtAsociadoGestion" Text="" Width="173" MaxLength="15" Height="25" HorizontalAlignment="Left" Margin="5,5,0,0" SoloNumero="True" />
+            </WrapPanel>-->
+            
+            <!-- Datos del Asociado -->
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,20,12,16" Grid.Row="4" Grid.Column="0" Width="252">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="84"/>
+                        <ColumnDefinition Width="190"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Name="_lblAsociadoGestion" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
+                    </Label>
+                    <custom:ByTTextBox BorderBrush="LightGreen" Name="_txtAsociadoGestion" Text="" Width="150" MaxLength="15" Grid.Row="0" Grid.Column="1" Height="25" HorizontalAlignment="Left" IsReadOnly="True" MouseDoubleClick="_txtAsociadoGestion_MouseDoubleClick"/>
+
+                    <Label Name="_lblIdAsociado" Visibility="Collapsed"  VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                    </Label>
+                    <custom:ByTTextBox Visibility="Collapsed" Name="_txtIdAsociado" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left" SoloNumero="True" Filtro="True" Margin="0,3" TamanoMaximo="8" GotFocus="_btnConsultarAsociadoFocus" GotKeyboardFocus="_btnConsultarAsociadoFocus"/>
+
+                    <Label Name="_lblNombreAsociado" Visibility="Collapsed"  VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
+                    </Label>
+                    <custom:ByTTextBox Visibility="Collapsed"  Name="_txtNombreAsociado" Text="" Width="80" MaxLength="255" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left" Margin="0,3" GotFocus="_btnConsultarAsociadoFocus" GotKeyboardFocus="_btnConsultarAsociadoFocus" />
+
+                    <Button Visibility="Collapsed"  Name="_btnConsultarAsociado" Width="70" IsDefault="False" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left" Margin="80,0,0,0" Click="_btnConsultarAsociado_Click" GotFocus="_btnConsultarAsociadoFocus" GotKeyboardFocus="_btnConsultarAsociadoFocus">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                    </Button>
+
+                    <ListView Visibility="Collapsed"  Height="150" Name="_lstAsociados" ItemsSource="{Binding}" 
+                      SelectionMode="Single" Style="{DynamicResource EstiloListView}" Grid.Row="3" Grid.ColumnSpan="2" MouseDoubleClick="_lstAsociados_MouseDoubleClick">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="45">
+                                    <GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock>
+                                                <TextBlock.Text>
+                                                    <Binding Path="Id" Converter="{StaticResource convertir}"/>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="250">
+                                    <GridViewColumnHeader Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Domicilio}" Width="250">
+                                    <GridViewColumnHeader Tag="Domicilio" Content="{x:Static recurso:Etiquetas.lsvDomicilio}"/>
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Pais.NombreEspanol}" Width="250">
+                                    <GridViewColumnHeader Tag="Pais.NombreEspanol" Content="{x:Static recurso:Etiquetas.lsvPais}"/>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+
+                </Grid>
             </WrapPanel>
+            <!-- Fin de Datos del Asociado -->
+            
             <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,20,12,16" Grid.Row="5" Grid.Column="0" Width="252">
                 <Label  Name="_lblCarpetaGestion" >
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblCarpetaGestion}"/>
                 </Label>
-                <ComboBox Name="_cbxCarpetaGestion" Width="140" ItemsSource="{Binding}" DisplayMemberPath="Carpeta" >
+                <ComboBox Name="_cbxCarpetaGestion" Width="140" ItemsSource="{Binding}" DisplayMemberPath="Carpeta" SelectedIndex="0" >
                 </ComboBox>
             </WrapPanel>
 
@@ -108,14 +192,26 @@
         <!--Lista de Resultados-->
         <GroupBox Grid.RowSpan="5" Grid.ColumnSpan="3" Margin="275,5,5,5">
             <ListView Name="_lstResultados" ItemsSource="{Binding}"  SelectionMode="Extended" 
-                      ItemContainerStyle="{DynamicResource ListViewRecordatorio}">
+                      ItemContainerStyle="{DynamicResource ListViewRecordatorio}" MouseDoubleClick="_lstResultados_MouseDoubleClick">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Remite}" Width="250">
                             <GridViewColumnHeader Tag="From" Content="{x:Static recurso:Etiquetas.lsvFromCorreoGestion}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Fecha}" Width="200">
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Fecha}" Width="200">
                             <GridViewColumnHeader Tag="FechaCorreo" Content="{x:Static recurso:Etiquetas.lsvFechaCorreoGestion}"/>
+                        </GridViewColumn>-->
+                        <GridViewColumn Width="200">
+                            <GridViewColumnHeader Tag="FechaCorreo" Content="{x:Static recurso:Etiquetas.lsvFechaCorreoGestion}" HorizontalContentAlignment="Center"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <Binding Path="Fecha" StringFormat="{}{0:dd/MM/yyyy}"/>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Subject}" Width="590">
                             <GridViewColumnHeader Tag="Subject" Content="{x:Static recurso:Etiquetas.lsvSubjectCorreoGestion}"/>
@@ -132,6 +228,9 @@
             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
                 <Button Name="_btnLimpiarTodo" Margin="0,0,5,0" Width="100" Click="_btnLimpiarTodo_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnLimpiarCampos}"/>
+                </Button>
+                <Button Name="_btnVerArchivoLog" Margin="0,0,5,0" Width="120" Click="_btnVerArchivoLog_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnVerArchivoLog}"/>
                 </Button>
                 <Button Name="_btnGenerarGestiones" Margin="0,0,5,0" Width="120" Click="_btnGenerarGestiones_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnGenerarGestiones}"/>

@@ -1,0 +1,79 @@
+﻿<Page x:Class="Trascend.Bolet.Cliente.Ventanas.Administracion.Gestiones_Automaticas.GestionarDetallesCorreoOutlook"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+      xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
+      xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
+	Title="{x:Static recurso:Etiquetas.titleVerDetalleCorreoOutlook}" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Grid.Column="1" Grid.Row="1">
+            <StackPanel VerticalAlignment="Center"  HorizontalAlignment="Center">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCorreoOutlookFrom}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtCorreoFrom" Width="529" MaxLength="500" IsReadOnly="True"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="12,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCorreoOutlookTo}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtCorreoTo" Width="541" MaxLength="500" IsReadOnly="True"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="12,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCorreoOutlookCC}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtCorreoCC" Width="539" MaxLength="500" IsReadOnly="True"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,5,0,5">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCorreoOutlookSubject}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtCorreoSubject" Width="516" MaxLength="500" IsReadOnly="True"/>
+                </WrapPanel>
+                <WrapPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="12,5,0,5" >
+                    <custom:ByTTextBox Name="_txtCorreoBody" Width="585" Height="200" MaxLength="2000" IsReadOnly="True"/>
+                </WrapPanel>
+            </StackPanel>
+            
+        </GroupBox>
+
+
+        <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
+                       
+            <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnRegresar_Click">
+                <TextBlock Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
+            </Button>
+        </WrapPanel>
+
+
+        <!--<GroupBox Grid.Column="2" Grid.Row="2" BorderBrush="{x:Null}">
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
+                <Button Name="_btnRegresar" Width="100" Click="_btnRegresar_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
+                </Button>
+            </StackPanel>
+        </GroupBox>-->
+
+
+    </Grid>
+</Page>

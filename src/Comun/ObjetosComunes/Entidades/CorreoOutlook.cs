@@ -11,8 +11,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private DateTime _fecha;
         private string _remite;
         private string _subject;
-        //private Marca _marca;
-
+        private string _body;
+        private string _cc;
+        private string _destino;
+       
         #endregion
 
         #region Constructores
@@ -25,46 +27,6 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         #endregion
 
         #region Propiedades
-
-        /// <summary>
-        /// Sobreescritura del Método Equals debido a que la clase tiene id compuesto
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        /*public override bool Equals(object obj)
-        {
-            if (obj == null)
-                return false;
-            var t = obj as Archivo;
-            if (t == null)
-                return false;
-            if ((Id == (t.Id)) && (Aux == (t.Aux)) && (Documento.Id == t.Documento.Id))
-                return true;
-            return false;
-
-        }*/
-
-        /// <summary>
-        /// Sobreescritura del Método GetHashCode debido a que la clase tiene id compuesto
-        /// </summary>
-        /// <returns></returns>
-        /*public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }*/
-
-        /// <summary>
-        /// Sobreescritura del Método ToString debido a que la clase tiene id compuesto
-        /// </summary>
-        /// <returns></returns>
-        /*public override string ToString()
-        {
-            return base.ToString();
-        }*/
-
-
-
-
 
         /// <summary>
         /// Propiedad que asigna el Expediente del Archivo
@@ -86,6 +48,25 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
 
+        /// <summary>
+        /// Propiedad que asigna o recuperar el Destinatario del CorreoOutlook
+        /// </summary>
+        public virtual string Destino
+        {
+            get { return this._destino; }
+            set { this._destino = value; }
+        }
+        
+
+        /// <summary>
+        /// Propiedad que asigna o recuperar el Destinatario Con Copia del CorreoOutlook
+        /// </summary>
+        public virtual string ConCopiaA
+        {
+            get { return this._cc; }
+            set { this._cc = value; }
+        }
+        
 
         /// <summary>
         /// Propiedad que asigna el TipoDeDocumento del Archivo
@@ -97,9 +78,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
 
-
-       
-            
+        /// <summary>
+        /// Propiedad que asigna o recuperar el Cuerpo del CorreoOutlook
+        /// </summary>
+        public virtual string Body
+        {
+            get { return this._body; }
+            set { this._body = value; }
+        }
+  
 
         #endregion
     }

@@ -131,7 +131,16 @@ namespace Trascend.Bolet.Servidor
             //CarpetaGestionAutomaticaServicios servicioPrueba = new CarpetaGestionAutomaticaServicios();
             //carpetas = servicioPrueba.ObtenerCarpetasPorIniciales(usuarioPrueba1);
 
-            //Console.ReadLine();
+            //Plantilla plantilla = new Plantilla();
+            //plantilla.Id = 1;
+            //PlantillaServicios servicioPrueba = new PlantillaServicios();
+            //IList<Plantilla> listaPlantillas = servicioPrueba.ConsultarTodos();
+
+           //FiltroPlantillaServicios servicioPrueba = new FiltroPlantillaServicios();
+           // IList<FiltroPlantilla> listaFiltros = servicioPrueba.ObtenerFiltrosDetallePlantilla(plantilla);
+
+
+           // Console.ReadLine();
 
 
 

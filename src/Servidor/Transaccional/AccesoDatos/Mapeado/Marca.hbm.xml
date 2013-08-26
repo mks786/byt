@@ -62,7 +62,7 @@
       <column name="CASOCIADO"/>
     </many-to-one>
 
-    <many-to-one name="Corresponsal" class="Corresponsal">
+    <many-to-one name="Corresponsal" class="Corresponsal" lazy="false">
       <column name="CCORRESP"/>
     </many-to-one>
 

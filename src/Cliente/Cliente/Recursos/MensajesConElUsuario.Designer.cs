@@ -935,6 +935,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a ¿Está seguro que desea eliminar el filtro de la plantilla seleccionada?.
+        /// </summary>
+        internal static string ConfirmacionEliminarFiltroPlantilla {
+            get {
+                return ResourceManager.GetString("ConfirmacionEliminarFiltroPlantilla", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a ¿Seguro que desea eliminar la fusión?.
         /// </summary>
         internal static string ConfirmacionEliminarFusion {
@@ -1426,6 +1435,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ErrorBoletinRepetido {
             get {
                 return ResourceManager.GetString("ErrorBoletinRepetido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Se ha presentado un error al cargar los correos. Verifique que Outlook esta activo o llame al Administrador.
+        /// </summary>
+        internal static string ErrorCargaDeCorreosOutlook {
+            get {
+                return ResourceManager.GetString("ErrorCargaDeCorreosOutlook", resourceCulture);
             }
         }
         

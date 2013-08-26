@@ -2059,6 +2059,24 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Select fp from FiltroPlantilla fp where fp.Plantilla.Id = {0} and fp.TipoDeFiltro = &apos;D&apos; order by fp.NombreVariableFiltro asc.
+        /// </summary>
+        public static string ObtenerFiltroDetallePlantilla {
+            get {
+                return ResourceManager.GetString("ObtenerFiltroDetallePlantilla", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select fp from FiltroPlantilla fp where fp.Plantilla.Id = {0} and fp.TipoDeFiltro = &apos;E&apos; order by fp.NombreVariableFiltro asc.
+        /// </summary>
+        public static string ObtenerFiltroEncabezadoPlantilla {
+            get {
+                return ResourceManager.GetString("ObtenerFiltroEncabezadoPlantilla", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Select m from FusionMarcaTercero m where m.Fusion.Id = {0}.
         /// </summary>
         public static string ObtenerFusionMarcaTercero {

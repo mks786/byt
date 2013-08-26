@@ -70,6 +70,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
 
         #endregion
 
+        /// <summary>
+        /// Constructor por defecto que recibe una marca 
+        /// </summary>
+        /// <param name="marca">Marca para ver sus Infoboles</param>
         public ListaInfoBolMarcaTeres(object marca)
         {
             InitializeComponent();
@@ -77,6 +81,38 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             this._presentador = new PresentadorListaInfoBolMarcaTeres(this, marca);
 
         }
+
+
+        /// <summary>
+        /// Constructor por defecto qre recibe una ventana padre
+        /// </summary>
+        /// <param name="marca">Marca para ver sus Infoboles</param>
+        /// <param name="ventanaPadre">Ventana que precede a esta ventana</param>
+        public ListaInfoBolMarcaTeres(object marca, object ventanaPadre)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorListaInfoBolMarcaTeres(this, marca, ventanaPadre, null);
+
+        }
+
+
+        /// <summary>
+        /// Constructor por defecto que recibe la marca, la ventana padre y la ventana anterior a la ventana padre 
+        /// </summary>
+        /// <param name="marca">Marca a consultar</param>
+        /// <param name="ventanaPadre">Ventana IGestionarMarcaTercero que precede a esta ventana</param>
+        /// <param name="ventanaPadreConsultarMarcaTercero">Ventana IConsultarMarcasTercero que precede a la ventana IGestionarMarcaTercero</param>
+        public ListaInfoBolMarcaTeres(object marca, object ventanaPadre, object ventanaPadreConsultarMarcaTercero)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorListaInfoBolMarcaTeres(this, marca, ventanaPadre, ventanaPadreConsultarMarcaTercero);
+
+        }
+
+
+
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {

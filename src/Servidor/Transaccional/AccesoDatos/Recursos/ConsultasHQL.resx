@@ -1103,4 +1103,12 @@
     <value>Select i from InfoAdicional i where i.Info like '%{0}%'  and i.Id like '{1}%'</value>
     <comment>Obtiene una lista de InfoAdicional con Distingue en Inles segun el filtro determinado</comment>
   </data>
+  <data name="ObtenerFiltroEncabezadoPlantilla" xml:space="preserve">
+    <value>Select fp from FiltroPlantilla fp where fp.Plantilla.Id = {0} and fp.TipoDeFiltro = 'E' order by fp.NombreVariableFiltro asc</value>
+    <comment>Obtiene los filtros de encabezado de una plantilla especifica</comment>
+  </data>
+  <data name="ObtenerFiltroDetallePlantilla" xml:space="preserve">
+    <value>Select fp from FiltroPlantilla fp where fp.Plantilla.Id = {0} and fp.TipoDeFiltro = 'D' order by fp.NombreVariableFiltro asc</value>
+    <comment>Consulta para obtener los filtros de detalle de una plantilla</comment>
+  </data>
 </root>
