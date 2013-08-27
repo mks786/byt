@@ -78,6 +78,8 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return retorno;
         }
+
+
         public static bool TransferirPlantilla(IList<CartaOut> cartasOut, int hash)
         {
             #region trace

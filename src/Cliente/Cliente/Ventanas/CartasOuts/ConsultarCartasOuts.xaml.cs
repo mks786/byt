@@ -86,9 +86,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.CartasOuts
             MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
+        //public void ContadorDeTransferenciaDePlantilla(string mensaje)
+        //{
+        //    this._lblContadorTransferirPlantilla.Text = mensaje;
+        //}
+
+               
+
         public string TotalHits
         {
             set { this._lblHits.Text = value; }
+        }
+
+        public string ContadorTransferencia
+        {
+            set { this._lblContadorTransferirPlantilla.Text = value; }
         }
 
         #endregion

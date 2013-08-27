@@ -24,5 +24,9 @@ namespace Trascend.Bolet.Cliente.Contratos.CartasOuts
         void Mensaje(string mensaje);
 
         string TotalHits { set; }
+
+        
+
+        string ContadorTransferencia { set; }
     }
 }

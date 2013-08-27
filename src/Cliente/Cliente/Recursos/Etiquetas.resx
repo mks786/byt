@@ -3954,4 +3954,7 @@ en Prensa:</value>
   <data name="lblVariablesDetalle" xml:space="preserve">
     <value>Variables Detalle</value>
   </data>
+  <data name="lblContadorTransferirPlantilla" xml:space="preserve">
+    <value>Correos Transferidos:</value>
+  </data>
 </root>

@@ -99,6 +99,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.CartasOuts
                 this._cartasOuts = this._cartaOutServicios.ObtenerCartasOutsFiltro(cartaOut);
                 this._ventana.Resultados = this._cartasOuts;
                 this._ventana.TotalHits = this._cartasOuts.Count.ToString();
+                this._ventana.ContadorTransferencia = "0";
 
                 this._ventana.FocoPredeterminado();
 
@@ -246,8 +247,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.CartasOuts
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                int contador = 1;
+
+                bool exito = false;
+
                 Mouse.OverrideCursor = Cursors.Wait;
-                if (this._cartaOutServicios.TransferirPlantilla(this._cartasOuts,UsuarioLogeado.Hash))
+
+                foreach (CartaOut cartaOut in this._cartasOuts)
+                {
+                    IList<CartaOut> listaCartasOut = new List<CartaOut>();
+                    listaCartasOut.Add(cartaOut);
+                    exito = this._cartaOutServicios.TransferirPlantilla(listaCartasOut, UsuarioLogeado.Hash);
+                    if (exito)
+                    {
+                        this._ventana.ContadorTransferencia = (string.Format(" {0} Cartas transferidas", contador.ToString()));
+                        contador++;
+                        
+                    }
+
+                }
+
+                //if (this._cartaOutServicios.TransferirPlantilla(this._cartasOuts,UsuarioLogeado.Hash))
+                if (exito)
                 {
                     this.Navegar(Recursos.MensajesConElUsuario.ConfirmacionTransferenciaPlantilla, false);
                 }
@@ -255,6 +276,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.CartasOuts
                 {
                     this.Navegar(Recursos.MensajesConElUsuario.ErrorTransferenciaPlantilla, true);
                 }
+
                 Mouse.OverrideCursor = null;
 
                 #region trace

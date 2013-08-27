@@ -71,6 +71,16 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                 </Button>
                 <Separator Margin="0,5,0,5"/>
+                
+                <WrapPanel>
+                    <Label VerticalAlignment="Center" HorizontalContentAlignment="Left">
+                        <TextBlock FontSize="15" Text="{x:Static recurso:Etiquetas.lblContadorTransferirPlantilla}"/>
+                    </Label>
+                    <Label>
+                        <TextBlock FontSize="15" Name="_lblContadorTransferirPlantilla"/>
+                    </Label>
+                </WrapPanel>
+
             </StackPanel>
         </GroupBox>
 

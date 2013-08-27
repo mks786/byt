@@ -4700,6 +4700,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Correos Transferidos:.
+        /// </summary>
+        public static string lblContadorTransferirPlantilla {
+            get {
+                return ResourceManager.GetString("lblContadorTransferirPlantilla", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Contribuyente:.
         /// </summary>
         public static string lblContribuyente {
