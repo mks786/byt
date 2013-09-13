@@ -1137,4 +1137,7 @@
   <data name="ListaFiltrosPlantilla" xml:space="preserve">
     <value>ENV_FILTRO_PLANT</value>
   </data>
+  <data name="GeneradorReporteMarca" xml:space="preserve">
+    <value>MYP_MARCAS_REP</value>
+  </data>
 </root>

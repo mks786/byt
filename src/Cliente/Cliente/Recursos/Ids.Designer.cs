@@ -2482,6 +2482,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a MYP_MARCAS_REP.
+        /// </summary>
+        public static string GeneradorReporteMarca {
+            get {
+                return ResourceManager.GetString("GeneradorReporteMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a MYPMABAM.
         /// </summary>
         public static string GestionarAbandono {

@@ -65,6 +65,7 @@ using Trascend.Bolet.Cliente.Ventanas.TiposEmailAsociado;
 using Trascend.Bolet.Cliente.Ventanas.Inventores;
 using Trascend.Bolet.Cliente.Ventanas.Administracion.Gestiones_Automaticas;
 using Trascend.Bolet.Cliente.Ventanas.Plantillas;
+using Trascend.Bolet.Cliente.Ventanas.ReportesMaestro;
 using System.Diagnostics;
 using System.Collections.Generic;
 
@@ -952,6 +953,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                 default:
                     break;
             }
+        }
+
+
+        /// <summary>
+        /// Metodo que coloca la página "ConsultarReporteMarca" en el Frame principal
+        /// </summary>
+        public void ConsultarReportesDeMarca()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarReportes());
+        }
+
+        /// <summary>
+        /// Metodo que coloca la página "GestionarReporteMarca" en el Frame principal
+        /// </summary>
+        public void AgregarReporteDeMarca()
+        {
+            this._ventana.Contenedor.Navigate(new GestionarReporte(null));
         }
 
         /// <summary>
@@ -1972,6 +1990,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                     break;
                                 case "_menuItemCartas":
                                     if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemGeneradorReporteMarca":
+                                    if (objeto.Id.Equals(Recursos.Ids.GeneradorReporteMarca))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
 

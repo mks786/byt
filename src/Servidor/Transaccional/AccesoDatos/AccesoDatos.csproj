@@ -70,13 +70,17 @@
     <Compile Include="Contrato\IDaoAlmacen.cs" />
     <Compile Include="Contrato\IDaoArchivo.cs" />
     <Compile Include="Contrato\IDaoCaja.cs" />
+    <Compile Include="Contrato\IDaoCamposReporte.cs" />
+    <Compile Include="Contrato\IDaoCamposReporteRelacion.cs" />
     <Compile Include="Contrato\IDaoCertificadoMarca.cs" />
     <Compile Include="Contrato\IDaoEmailAsociado.cs" />
     <Compile Include="Contrato\IDaoFechaMarca.cs" />
     <Compile Include="Contrato\IDaoFiltroPlantilla.cs" />
+    <Compile Include="Contrato\IDaoFiltroReporte.cs" />
     <Compile Include="Contrato\IDaoMaestroDePlantilla.cs" />
     <Compile Include="Contrato\IDaoPlantilla.cs" />
     <Compile Include="Contrato\IDaoRegistrador.cs" />
+    <Compile Include="Contrato\IDaoReporte.cs" />
     <Compile Include="Contrato\IDaoTipoCaja.cs" />
     <Compile Include="Contrato\IDaoTipoDocumento.cs" />
     <Compile Include="Contrato\IDaoTipoEmailAsociado.cs" />
@@ -164,17 +168,22 @@
     <Compile Include="Contrato\IDaoDepartamento.cs" />
     <Compile Include="Contrato\IDaoBase.cs" />
     <Compile Include="Contrato\IDaoUsuario.cs" />
+    <Compile Include="Contrato\IDaoVistaReporte.cs" />
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
     <Compile Include="Dao\NHibernate\DaoAlmacenNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoArchivoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCajaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoCamposReporteRelacionNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoCamposReporteNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCertificadoMarcaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoEmailAsociadoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoFechaMarcaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoFiltroPlantillaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoFiltroReporteNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoMaestroDePlantillaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoPlantillaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoRegistradorNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoReporteNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoTipoCajaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoTipoDocumentoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoTipoEmailAsociadoNHibernate.cs" />
@@ -262,6 +271,7 @@
     <Compile Include="Dao\NHibernate\DaoTipoFechaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoTipoInfobolNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoUsuarioNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoVistaReporteNHibernate.cs" />
     <Compile Include="Fabrica\FabricaDaoBase.cs" />
     <Compile Include="Fabrica\FabricaDaoNHibernate.cs" />
     <Compile Include="NHibernateHelper.cs" />
@@ -742,6 +752,27 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapeado\MaestroDePlantilla.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\Reporte.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\CamposReporte.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\CamposReporteRelacion.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FiltroReporte.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\VistaReporte.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

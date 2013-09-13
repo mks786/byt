@@ -147,12 +147,43 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// <returns>IDaoPlantilla</returns>
         public abstract IDaoPlantilla ObtenerDaoPlantilla();
 
+        /// <summary>
+        /// Metodo que devuelve el DaoCamposReporte del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoCamposReporte</returns>
+        public abstract IDaoCamposReporte ObtenerDaoCamposReporte();
+
+
+        /// <summary>
+        /// Metodo que devuelve el DaoReporteDeMarca del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoReporteDeMarca</returns>
+        public abstract IDaoReporte ObtenerDaoReporte();
+
+        /// <summary>
+        /// Metodo que devuelve el DaoCamposReporteDeMarca del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoCamposReporteDeMarca</returns>
+        public abstract IDaoCamposReporteRelacion ObtenerDaoCamposReporteRelacion();
+
+        /// <summary>
+        /// Metodo que devuelve el DaoFiltroReporte del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoFiltroReporteDeMarca</returns>
+        public abstract IDaoFiltroReporte ObtenerDaoFiltroReporte();
+
 
         /// <summary>
         /// Método que devuelve el DaoCaja del manejador que se esté utilizando
         /// </summary>
         /// <returns>IDaoCaja</returns>
         public abstract IDaoCaja ObtenerDaoCaja();
+
+        /// <summary>
+        /// Método que devuelve el DaoCaja del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoVistaReporte</returns>
+        public abstract IDaoVistaReporte ObtenerDaoVistaReporte();
 
 
         /// <summary>

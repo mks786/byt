@@ -1,0 +1,2379 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{84CD6464-5709-4BE7-818D-5CE3FE2CF171}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Trascend.Bolet.Cliente</RootNamespace>
+    <AssemblyName>Trascend.Bolet.Cliente</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Trascend.Bolet.Cliente.App</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ayuda\SortAdorner.cs" />
+    <Compile Include="Contratos\Abandonos\IConsultarAbandonos.cs" />
+    <Compile Include="Contratos\Abandonos\IGestionarAbandono.cs" />
+    <Compile Include="Contratos\Administracion\Gestiones Automaticas\IConsultarCorreosParaGestionAutomatica.cs" />
+    <Compile Include="Contratos\Administracion\Gestiones Automaticas\IGestionarDetallesCorreoOutlook.cs" />
+    <Compile Include="Contratos\Agentes\IAgregarAgente.cs" />
+    <Compile Include="Contratos\Agentes\IConsultarAgente.cs" />
+    <Compile Include="Contratos\Agentes\IConsultarAgentes.cs" />
+    <Compile Include="Contratos\Anualidades\IConsultarAnualidades.cs" />
+    <Compile Include="Contratos\Anualidades\IGestionarAnualidades.cs" />
+    <Compile Include="Contratos\Asociados\IListaConectividad.cs" />
+    <Compile Include="Contratos\Asociados\IListaEmails.cs" />
+    <Compile Include="Contratos\Asociados\IListaDatosTransferencia.cs" />
+    <Compile Include="Contratos\Asociados\IListaContactos.cs" />
+    <Compile Include="Contratos\Asociados\IListaJustificaciones.cs" />
+    <Compile Include="Contratos\Auditorias\IListaAuditorias.cs" />
+    <Compile Include="Contratos\Asociados\IAgregarAsociado.cs" />
+    <Compile Include="Contratos\Asociados\IConsultarAsociado.cs" />
+    <Compile Include="Contratos\Asociados\IConsultarAsociados.cs" />
+    <Compile Include="Contratos\Cartas\IConsultarContactosPorAsociado.cs" />
+    <Compile Include="Contratos\Cartas\IAgregarCarta.cs" />
+    <Compile Include="Contratos\Cartas\IConsultarCartas.cs" />
+    <Compile Include="Contratos\Cartas\IConsultarCarta.cs" />
+    <Compile Include="Contratos\Contactos\IAgregarContacto.cs" />
+    <Compile Include="Contratos\Contactos\IConsultarContactos.cs" />
+    <Compile Include="Contratos\Contactos\IConsultarContacto.cs" />
+    <Compile Include="Contratos\Anexos\IAgregarAnexo.cs" />
+    <Compile Include="Contratos\Anexos\IConsultarAnexo.cs" />
+    <Compile Include="Contratos\Anexos\IConsultarAnexos.cs" />
+    <Compile Include="Contratos\CartasOuts\IConsultarCartasOuts.cs" />
+    <Compile Include="Contratos\AbandonosPatente\IConsultarAbandonosPatente.cs" />
+    <Compile Include="Contratos\AbandonosPatente\IGestionarAbandonoPatente.cs" />
+    <Compile Include="Contratos\EmailsAsociado\IConsultarEmailAsociado.cs" />
+    <Compile Include="Contratos\EmailsAsociado\IAgregarEmailAsociado.cs" />
+    <Compile Include="Contratos\Inventores\IQueryInventor.cs" />
+    <Compile Include="Contratos\MarcasTercero\IInfoAdicionalInteresadosAsociadosMarcaTerceros.cs" />
+    <Compile Include="Contratos\Marcas\IGestionarArchivoDeMarca.cs" />
+    <Compile Include="Contratos\Marcas\IGestionarCertificadoDeMarca.cs" />
+    <Compile Include="Contratos\Marcas\IGestionarFechaDeMarca.cs" />
+    <Compile Include="Contratos\Marcas\IListaFechasDeMarca.cs" />
+    <Compile Include="Contratos\Patentes\IGestionarArchivoDePatente.cs" />
+    <Compile Include="Contratos\Plantillas\IAnalizarDetallePlantilla.cs" />
+    <Compile Include="Contratos\Plantillas\IAnalizarEncabezadoPlantilla.cs" />
+    <Compile Include="Contratos\Plantillas\IGestionarFiltroDePlantilla.cs" />
+    <Compile Include="Contratos\Plantillas\IGestionarMaestroPlantilla.cs" />
+    <Compile Include="Contratos\Plantillas\IListaValoresDetalle.cs" />
+    <Compile Include="Contratos\Plantillas\IListaValoresEncabezado.cs" />
+    <Compile Include="Contratos\TiposEmailAsociado\IGestionarTipoEmailAsociado.cs" />
+    <Compile Include="Contratos\TiposEmailAsociado\IConsultarTiposEmailAsociado.cs" />
+    <Compile Include="Contratos\Corresponsales\IAgregarCorresponsal.cs" />
+    <Compile Include="Contratos\Corresponsales\IConsultarCorresponsales.cs" />
+    <Compile Include="Contratos\MarcasTercero\IConsultaMarcasTercero.cs" />
+    <Compile Include="Contratos\MarcasTercero\IGestionarInfoAdicionalMarcaTercero.cs" />
+    <Compile Include="Contratos\MarcasTercero\IGestionarInfoBolMarcaTer.cs" />
+    <Compile Include="Contratos\MarcasTercero\IListaInfoBolMarcaTeres.cs" />
+    <Compile Include="Contratos\Marcas\IGestionarInstruccionDeRenovacion.cs" />
+    <Compile Include="Contratos\Marcas\IListaInstruccionesRenovacion.cs" />
+    <Compile Include="Contratos\Memorias\IAgregarMemoria.cs" />
+    <Compile Include="Contratos\Memorias\IConsultarMemoria.cs" />
+    <Compile Include="Contratos\FechasPatente\IAgregarFecha.cs" />
+    <Compile Include="Contratos\FechasPatente\IConsultarFecha.cs" />
+    <Compile Include="Contratos\Memorias\IConsultarMemorias.cs" />
+    <Compile Include="Contratos\EscritosPatente\IContestacionAOposicion.cs" />
+    <Compile Include="Contratos\EscritosPatente\IOficioDeJuramento.cs" />
+    <Compile Include="Contratos\EscritosPatente\IConsignacionDePrioridadExtranjera.cs" />
+    <Compile Include="Contratos\EscritosPatente\IOficioDePoder.cs" />
+    <Compile Include="Contratos\EscritosPatente\IOficioDeJuramentoYPoder.cs" />
+    <Compile Include="Contratos\EscritosPatente\IConsignacionDePoder.cs" />
+    <Compile Include="Contratos\EscritosPatente\IConsignacionDeJuramento.cs" />
+    <Compile Include="Contratos\EscritosPatente\IConsignacionDeJuramentoYPoder.cs" />
+    <Compile Include="Contratos\EscritosPatente\ICorreccionVoluntaria.cs" />
+    <Compile Include="Contratos\EscritosPatente\IOficioDeFondo.cs" />
+    <Compile Include="Contratos\EscritosPatente\IReconsideracionPerimidaVariante.cs" />
+    <Compile Include="Contratos\EscritosPatente\IReconsideracionDePerencion.cs" />
+    <Compile Include="Contratos\EscritosPatente\ICorreccionErrorDePublicacionEnPrensa.cs" />
+    <Compile Include="Contratos\EscritosPatente\IProrrogaDeContestacionDeOposicion.cs" />
+    <Compile Include="Contratos\EscritosPatente\IProrrogaDeForma.cs" />
+    <Compile Include="Contratos\EscritosPatente\IProrrogaDeFondo.cs" />
+    <Compile Include="Contratos\EscritosPatente\IReconsideracionPrioridadExtinguida.cs" />
+    <Compile Include="Contratos\EscritosPatente\IPagoDeAnualidad.cs" />
+    <Compile Include="Contratos\EscritosPatente\INumeracionDePoder.cs" />
+    <Compile Include="Contratos\EscritosPatente\IExamenDePatentabilidad.cs" />
+    <Compile Include="Contratos\Inventores\IAgregarInventor.cs" />
+    <Compile Include="Contratos\Inventores\IConsultarInventor.cs" />
+    <Compile Include="Contratos\Memorias\IListaMemorias.cs" />
+    <Compile Include="Contratos\Patentes\IListaFechas.cs" />
+    <Compile Include="Contratos\Patentes\IGestionarInfoAdicional.cs" />
+    <Compile Include="Contratos\Patentes\IGestionarInfoBol.cs" />
+    <Compile Include="Contratos\Patentes\IGestionarPatente.cs" />
+    <Compile Include="Contratos\Patentes\IConsultarPatentes.cs" />
+    <Compile Include="Contratos\Patentes\IListaInfoBoles.cs" />
+    <Compile Include="Contratos\Patentes\IListaInventores.cs" />
+    <Compile Include="Contratos\Patentes\IListaOperaciones.cs" />
+    <Compile Include="Contratos\ReportesPatente\IReportePatente.cs" />
+    <Compile Include="Contratos\Reportes\ICarta16P.cs" />
+    <Compile Include="Contratos\Reportes\ICarta16M.cs" />
+    <Compile Include="Contratos\Reportes\ICarta16.cs" />
+    <Compile Include="Contratos\Reportes\ICarta14.cs" />
+    <Compile Include="Contratos\Reportes\ICarta2.cs" />
+    <Compile Include="Contratos\Reportes\ICarta1.cs" />
+    <Compile Include="Contratos\TraspasosPatentes\CambiosDeDomicilioPatentes\IConsultarCambiosDeDomicilioPatentes.cs" />
+    <Compile Include="Contratos\TraspasosPatentes\CambiosDeDomicilioPatentes\IGestionarCambioDeDomicilioPatentes.cs" />
+    <Compile Include="Contratos\EscritosMarca\IConsignacionDeBusqueda.cs" />
+    <Compile Include="Contratos\EscritosMarca\IReingresoDePoderAnexo.cs" />
+    <Compile Include="Contratos\EscritosMarca\IReingresoDeDistingue.cs" />
+    <Compile Include="Contratos\EscritosMarca\IReingresoDeClasificacion.cs" />
+    <Compile Include="Contratos\EscritosMarca\IReingresoDePoderYPrioridad.cs" />
+    <Compile Include="Contratos\EscritosMarca\IReingresoDePoderYReclasificacion.cs" />
+    <Compile Include="Contratos\EscritosMarca\IReingresoDePoderPresentado.cs" />
+    <Compile Include="Contratos\EscritosMarca\IReingresoReingresoDePoderDistingueConSinClasificacion.cs" />
+    <Compile Include="Contratos\EscritosMarca\IReingresoDeNombreDeMarca.cs" />
+    <Compile Include="Contratos\EscritosMarca\INotificacionDeIngresoDePoder.cs" />
+    <Compile Include="Contratos\EscritosMarca\IRenunciaParcial.cs" />
+    <Compile Include="Contratos\EscritosMarca\ICorreccionDelDistingue.cs" />
+    <Compile Include="Contratos\EscritosMarca\ICorreccionErrorMaterial.cs" />
+    <Compile Include="Contratos\EscritosMarca\ICorreccionErrorMaterialDistingue.cs" />
+    <Compile Include="Contratos\EscritosMarca\ICopiaCertificada.cs" />
+    <Compile Include="Contratos\EscritosMarca\IContinuacionDeTramite.cs" />
+    <Compile Include="Contratos\EscritosMarca\IPrioridadExtranjera.cs" />
+    <Compile Include="Contratos\EscritosMarca\INumeracionDePoderPorInteresado.cs" />
+    <Compile Include="Contratos\EscritosMarca\ICertificadoDeOrigen.cs" />
+    <Compile Include="Contratos\EscritosMarca\INumeracionDePoderPorMarca.cs" />
+    <Compile Include="Contratos\EscritosMarca\IDeDesisitimiento.cs" />
+    <Compile Include="Contratos\EscritosMarca\ICambioDeTramitante.cs" />
+    <Compile Include="Contratos\EscritosMarca\ILimitacionDelDistingue.cs" />
+    <Compile Include="Contratos\MarcasTercero\IGestionarMarcaTercero.cs" />
+    <Compile Include="Contratos\Recordatorios\IConsultarRecordatorios.cs" />
+    <Compile Include="Contratos\Renovaciones\IConsultarRenovaciones.cs" />
+    <Compile Include="Contratos\EntradasAlternas\IAgregarEntradaAlterna.cs" />
+    <Compile Include="Contratos\EntradasAlternas\IConsultarEntradaAlterna.cs" />
+    <Compile Include="Contratos\EntradasAlternas\IConsultarEntradasAlternas.cs" />
+    <Compile Include="Contratos\EstadosMarca\IAgregarEstadoMarca.cs" />
+    <Compile Include="Contratos\EstadosMarca\IConsultarEstadoMarca.cs" />
+    <Compile Include="Contratos\EstadosMarca\IConsultarEstadosMarcas.cs" />
+    <Compile Include="Contratos\Marcas\IConsultarMarca.cs" />
+    <Compile Include="Contratos\Marcas\IConsultarMarcas.cs" />
+    <Compile Include="Contratos\Marcas\IListaBusquedas.cs" />
+    <Compile Include="Contratos\Marcas\IListaOperaciones.cs" />
+    <Compile Include="Contratos\Marcas\IGestionarBusqueda.cs" />
+    <Compile Include="Contratos\Marcas\IGestionarInfoBol.cs" />
+    <Compile Include="Contratos\Marcas\IGestionarAnaqua.cs" />
+    <Compile Include="Contratos\Marcas\IAgregarMarca.cs" />
+    <Compile Include="Contratos\Marcas\IGestionarInfoAdicional.cs" />
+    <Compile Include="Contratos\Marcas\IListaInfoBoles.cs" />
+    <Compile Include="Contratos\Poderes\IAgregarPoder.cs" />
+    <Compile Include="Contratos\Poderes\IConsultarPoder.cs" />
+    <Compile Include="Contratos\Poderes\IConsultarPoderes.cs" />
+    <Compile Include="Contratos\Poderes\IGestionarPoderesXAgentes.cs" />
+    <Compile Include="Contratos\Remitentes\IAgregarRemitente.cs" />
+    <Compile Include="Contratos\Remitentes\IConsultarRemitente.cs" />
+    <Compile Include="Contratos\Remitentes\IConsultarRemitentes.cs" />
+    <Compile Include="Contratos\Categorias\IAgregarCategoria.cs" />
+    <Compile Include="Contratos\Categorias\IConsultarCategoria.cs" />
+    <Compile Include="Contratos\Categorias\IConsultarCategorias.cs" />
+    <Compile Include="Contratos\Medios\IAgregarMedio.cs" />
+    <Compile Include="Contratos\Medios\IConsultarMedio.cs" />
+    <Compile Include="Contratos\Medios\IConsultarMedios.cs" />
+    <Compile Include="Contratos\Renovaciones\IGestionarRenovacion.cs" />
+    <Compile Include="Contratos\Resumenes\IAgregarResumen.cs" />
+    <Compile Include="Contratos\Resumenes\IConsultarResumen.cs" />
+    <Compile Include="Contratos\Resumenes\IConsultarResumenes.cs" />
+    <Compile Include="Contratos\DatosTransferencias\IAgregarIAgregarDatosTransferencia.cs" />
+    <Compile Include="Contratos\DatosTransferencias\IConsultarIConsultarDatosTransferencia.cs" />
+    <Compile Include="Contratos\Detalles\IVentanaDetalle.cs" />
+    <Compile Include="Contratos\Interesados\IAgregarInteresado.cs" />
+    <Compile Include="Contratos\Interesados\IListaPoderes.cs" />
+    <Compile Include="Contratos\Interesados\IConsultarInteresado.cs" />
+    <Compile Include="Contratos\Interesados\IConsultarInteresados.cs" />
+    <Compile Include="Contratos\Justificaciones\IAgregarJustificacion.cs" />
+    <Compile Include="Contratos\Justificaciones\IConsultarJustificacion.cs" />
+    <Compile Include="Contratos\Estatuses\IAgregarEstatus.cs" />
+    <Compile Include="Contratos\Estatuses\IConsultarEstatus.cs" />
+    <Compile Include="Contratos\Estatuses\IConsultarEstatuses.cs" />
+    <Compile Include="Contratos\TipoFechas\IAgregarTipoFecha.cs" />
+    <Compile Include="Contratos\TipoFechas\IConsultarTipoFecha.cs" />
+    <Compile Include="Contratos\TipoFechas\IConsultarTipoFechas.cs" />
+    <Compile Include="Contratos\Resoluciones\IAgregarResolucion.cs" />
+    <Compile Include="Contratos\Resoluciones\IConsultarResolucion.cs" />
+    <Compile Include="Contratos\Resoluciones\IConsultarResoluciones.cs" />
+    <Compile Include="Contratos\TipoInfoboles\IAgregarTipoInfobol.cs" />
+    <Compile Include="Contratos\TipoInfoboles\IConsultarTipoInfobol.cs" />
+    <Compile Include="Contratos\TipoInfoboles\IConsultarTipoInfoboles.cs" />
+    <Compile Include="Contratos\Internacionales\IAgregarInternacional.cs" />
+    <Compile Include="Contratos\Internacionales\IConsultarInternacional.cs" />
+    <Compile Include="Contratos\Internacionales\IConsultarInternacionales.cs" />
+    <Compile Include="Contratos\Paises\IAgregarPais.cs" />
+    <Compile Include="Contratos\Paises\IConsultarPais.cs" />
+    <Compile Include="Contratos\Paises\IConsultarPaises.cs" />
+    <Compile Include="Contratos\Boletines\IAgregarBoletin.cs" />
+    <Compile Include="Contratos\Boletines\IConsultarBoletin.cs" />
+    <Compile Include="Contratos\Boletines\IConsultarBoletines.cs" />
+    <Compile Include="Contratos\Estados\IAgregarEstado.cs" />
+    <Compile Include="Contratos\Estados\IConsultarEstado.cs" />
+    <Compile Include="Contratos\Estados\IConsultarEstados.cs" />
+    <Compile Include="Contratos\Nacionales\IAgregarNacional.cs" />
+    <Compile Include="Contratos\Nacionales\IConsultarNacional.cs" />
+    <Compile Include="Contratos\Nacionales\IConsultarNacionales.cs" />
+    <Compile Include="Contratos\Principales\IPaginaPrincipal.cs" />
+    <Compile Include="Contratos\Roles\IAgregarRol.cs" />
+    <Compile Include="Contratos\Roles\IConsultarRol.cs" />
+    <Compile Include="Contratos\Roles\IConsultarRoles.cs" />
+    <Compile Include="Contratos\Logines\ILogin.cs" />
+    <Compile Include="Contratos\Objetos\IAgregarObjeto.cs" />
+    <Compile Include="Contratos\Objetos\IConsultarObjeto.cs" />
+    <Compile Include="Contratos\Objetos\IConsultarObjetos.cs" />
+    <Compile Include="Contratos\Objetos\IGestionarObjetosXRoles.cs" />
+    <Compile Include="Contratos\Principales\IVentanaPrincipal.cs" />
+    <Compile Include="Contratos\TiposBase\IAgregarTipoBase.cs" />
+    <Compile Include="Contratos\TiposBase\IConsultarTipoBase.cs" />
+    <Compile Include="Contratos\TiposBase\IConsultarTiposBase.cs" />
+    <Compile Include="Contratos\TraspasosPatentes\CambiosDeNombrePatentes\IConsultarCambiosDeNombrePatentes.cs" />
+    <Compile Include="Contratos\TraspasosPatentes\CambiosDeNombrePatentes\IGestionarCambioDeNombrePatentes.cs" />
+    <Compile Include="Contratos\TraspasosPatentes\CambiosDePeticionarioPatentes\IConsultarCambiosDePeticionarioPatentes.cs" />
+    <Compile Include="Contratos\TraspasosPatentes\CambiosDePeticionarioPatentes\IGestionarCambioDePeticionarioPatentes.cs" />
+    <Compile Include="Contratos\TraspasosPatentes\CesionesPatentes\IConsultarCesionesPatentes.cs" />
+    <Compile Include="Contratos\TraspasosPatentes\CesionesPatentes\IGestionarCesionPatentes.cs" />
+    <Compile Include="Contratos\TraspasosPatentes\FusionesPatentes\IConsultarFusionesPatentes.cs" />
+    <Compile Include="Contratos\TraspasosPatentes\FusionesPatentes\IGestionarFusionPatentes.cs" />
+    <Compile Include="Contratos\TraspasosPatentes\LicenciasPatentes\IConsultarLicenciasPatentes.cs" />
+    <Compile Include="Contratos\TraspasosPatentes\LicenciasPatentes\IGestionarLicenciaPatentes.cs" />
+    <Compile Include="Contratos\Traspasos\CambiosDeNombre\IConsultarCambiosDeNombre.cs" />
+    <Compile Include="Contratos\Traspasos\CambiosDeNombre\IGestionarCambioDeNombre.cs" />
+    <Compile Include="Contratos\Traspasos\Cesiones\IConsultarCesiones.cs" />
+    <Compile Include="Contratos\Traspasos\Cesiones\IGestionarCesion.cs" />
+    <Compile Include="Contratos\Traspasos\Licencias\IConsultarLicencias.cs" />
+    <Compile Include="Contratos\Traspasos\CambiosDeDomicilio\IConsultarCambiosDeDomicilio.cs" />
+    <Compile Include="Contratos\Traspasos\Licencias\IGestionarLicencia.cs" />
+    <Compile Include="Contratos\Traspasos\CambiosDeDomicilio\IGestionarCambioDeDomicilio.cs" />
+    <Compile Include="Contratos\Traspasos\CambiosDePeticionario\IConsultarCambiosDePeticionario.cs" />
+    <Compile Include="Contratos\Traspasos\CambiosDePeticionario\IGestionarCambioDePeticionario.cs" />
+    <Compile Include="Contratos\Traspasos\Fusiones\IConsultarFusiones.cs" />
+    <Compile Include="Contratos\Traspasos\Fusiones\IGestionarFusion.cs" />
+    <Compile Include="Contratos\Usuarios\IAgregarUsuario.cs" />
+    <Compile Include="Contratos\Usuarios\IConsultarUsuario.cs" />
+    <Compile Include="Contratos\Usuarios\IConsultarUsuarios.cs" />
+    <Compile Include="Contratos\IPaginaBase.cs" />
+    <Compile Include="App.cs" />
+    <Compile Include="FacReportes\DsFacEstadoCuenta.cs">
+      <DependentUpon>DsFacEstadoCuenta.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FacReportes\DsFacEstadoCuenta.Designer.cs">
+      <DependentUpon>DsFacEstadoCuenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FacReportes\DsFacFacturaPendiente.cs">
+      <DependentUpon>DsFacFacturaPendiente.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FacReportes\DsFacFacturaPendiente.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsFacFacturaPendiente.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FacReportes\DsFactura.cs">
+      <DependentUpon>DsFactura.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FacReportes\DsFacturaAnulada.cs">
+      <DependentUpon>DsFacturaAnulada.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FacReportes\DsFacturaAnulada.Designer.cs">
+      <DependentUpon>DsFacturaAnulada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FacReportes\DsFacturaDigital.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsFacturaDigital.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FacReportes\DsFacturaProforma.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsFacturaProforma.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FacReportes\DsFacturasPendientesAsociados.cs">
+      <DependentUpon>DsFacturasPendientesAsociados.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FacReportes\DsFacturasPendientesAsociados.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsFacturasPendientesAsociados.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FacReportes\DSResumenOperacionesRpt.cs">
+      <DependentUpon>DSResumenOperacionesRpt.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FacReportes\DSResumenOperacionesRpt.Designer.cs">
+      <DependentUpon>DSResumenOperacionesRpt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FacReportes\DsVentasTotalesRevRpt.cs">
+      <DependentUpon>DsVentasTotalesRevRpt.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FacReportes\DsVentasTotalesRevRpt.Designer.cs">
+      <DependentUpon>DsVentasTotalesRevRpt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FacReportes\FacFacturacionLoteVieja.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FacFacturacionLoteVieja.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\FacturasPendientesAsociados.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FacturasPendientesAsociados.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\ResumenOperacionesRpt.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResumenOperacionesRpt.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RpFacEstadoCuenta.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RpFacEstadoCuenta.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RpFacFacturaPendiente.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RpFacFacturaPendiente.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RpFacFacturaPendiente2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RpFacFacturaPendiente2.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFacCartaAsociadoEs.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacCartaAsociadoEs.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFacCartaAsociadoIn.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacCartaAsociadoIn.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFactura.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFactura.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFacturaAnulada.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturaAnulada.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFacturacionPendienteMenor.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturacionPendienteMenor.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFacturaCopia.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturaCopia.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFacturaCopiaBf.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturaCopiaBf.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFacturaDeta.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturaDeta.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFacturaDigital.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturaDigital.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFacturaPendienteDeta.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturaPendienteDeta.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFacturaPendienteDeta2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturaPendienteDeta2.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFacturaPendienteDetaTotales.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturaPendienteDetaTotales.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\RptFacturaProforma.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturaProforma.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FacReportes\VentasTotalesRevRpt.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VentasTotalesRevRpt.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FacReportes\VentasTotalesRpt.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VentasTotalesRpt.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Presentadores\Abandonos\PresentadorConsultarAbandonos.cs" />
+    <Compile Include="Presentadores\Abandonos\PresentadorGestionarAbandono.cs" />
+    <Compile Include="Presentadores\Administracion\Gestiones Automaticas\PresentadorConsultarCorreosParaGestionAutomatica.cs" />
+    <Compile Include="Presentadores\Administracion\Gestiones Automaticas\PresentadorGestionarDetallesCorreoOutlook.cs" />
+    <Compile Include="Presentadores\Agentes\PresentadorAgregarAgente.cs" />
+    <Compile Include="Presentadores\Agentes\PresentadorConsultarAgente.cs" />
+    <Compile Include="Presentadores\Agentes\PresentadorConsultarAgentes.cs" />
+    <Compile Include="Presentadores\Anexos\PresentadorAgregarAnexo.cs" />
+    <Compile Include="Presentadores\Anexos\PresentadorConsultarAnexo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Presentadores\Anexos\PresentadorConsultarAnexos.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Presentadores\Anualidades\PresentadorConsultarAnualidades.cs" />
+    <Compile Include="Presentadores\Anualidades\PresentadorGestionarAnualidades.cs" />
+    <Compile Include="Presentadores\Asociados\PresentadorListaConectividad.cs" />
+    <Compile Include="Presentadores\Asociados\PresentadorListaEmails.cs" />
+    <Compile Include="Presentadores\Asociados\PresentadorListaDatosTransferencia.cs" />
+    <Compile Include="Presentadores\Asociados\PresentadorListaContactos.cs" />
+    <Compile Include="Presentadores\Asociados\PresentadorListaJustificaciones.cs" />
+    <Compile Include="Presentadores\Auditorias\PresentadorListaAuditorias.cs" />
+    <Compile Include="Presentadores\Asociados\PresentadorAgregarAsociado.cs" />
+    <Compile Include="Presentadores\Asociados\PresentadorConsultarAsociado.cs" />
+    <Compile Include="Presentadores\Asociados\PresentadorConsultarAsociados.cs" />
+    <Compile Include="Presentadores\Cartas\PresentadorConsultarContactosPorAsociado.cs" />
+    <Compile Include="Presentadores\Cartas\PresentadorConsultarCarta.cs" />
+    <Compile Include="Presentadores\Cartas\PresentadorAgregarCarta.cs" />
+    <Compile Include="Presentadores\Cartas\PresentadorConsultarCartas.cs" />
+    <Compile Include="Presentadores\Contactos\PresentadorAgregarContacto.cs" />
+    <Compile Include="Presentadores\Contactos\PresentadorConsultarContactos.cs" />
+    <Compile Include="Presentadores\Contactos\PresentadorConsultarContacto.cs" />
+    <Compile Include="Presentadores\CartasOuts\PresentadorConsultarCartasOuts.cs" />
+    <Compile Include="Presentadores\AbandonosPatente\PresentadorConsultarAbandonosPatente.cs" />
+    <Compile Include="Presentadores\AbandonosPatente\PresentadorGestionarAbandonoPatente.cs" />
+    <Compile Include="Presentadores\EmailsAsociado\PresentadorConsultarEmailAsociado.cs" />
+    <Compile Include="Presentadores\EmailsAsociado\PresentadorAgregarEmailAsociado.cs" />
+    <Compile Include="Presentadores\Inventores\PresentadorQueryInventor.cs" />
+    <Compile Include="Presentadores\MarcasTercero\PresentadorInfoAdicionalInteresadosAsociadosMarcaTerceros.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorGestionarArchivoDeMarca.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorGestionarCertificadoDeMarca.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorGestionarFechaDeMarca.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorListaFechasDeMarca.cs" />
+    <Compile Include="Presentadores\Patentes\PresentadorGestionarArchivoDePatente.cs" />
+    <Compile Include="Presentadores\Plantillas\PresentadorAnalizarDetallePlantilla.cs" />
+    <Compile Include="Presentadores\Plantillas\PresentadorAnalizarEncabezadoPlantilla.cs" />
+    <Compile Include="Presentadores\Plantillas\PresentadorGestionarFiltroDePlantilla.cs" />
+    <Compile Include="Presentadores\Plantillas\PresentadorGestionarMaestroPlantilla.cs" />
+    <Compile Include="Presentadores\Plantillas\PresentadorListaValoresDetalle.cs" />
+    <Compile Include="Presentadores\Plantillas\PresentadorListaValoresEncabezado.cs" />
+    <Compile Include="Presentadores\TiposEmailAsociado\PresentadorGestionarTipoEmailAsociado.cs" />
+    <Compile Include="Presentadores\TiposEmailAsociado\PresentadorConsultarTiposEmailAsociado.cs" />
+    <Compile Include="Presentadores\Corresponsales\PresentadorAgregarCorresponsal.cs" />
+    <Compile Include="Presentadores\Corresponsales\PresentadorConsultarCorresponsales.cs" />
+    <Compile Include="Presentadores\FechasPatente\PresentadorAgregarFecha.cs" />
+    <Compile Include="Presentadores\FechasPatente\PresentadorConsultarFecha.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorOficioDeJuramento.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorConsignacionDePrioridadExtranjera.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorOficioDePoder.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorOficioDeJuramentoYPoder.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorConsignacionDePoder.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorConsignacionDeJuramento.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorConsignacionDeJuramentoYPoder.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorCorreccionVoluntaria.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorOficioDeFondo.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorReconsideracionPerimidaVariante.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorReconsideracionDePerencion.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorCorreccionErrorDePublicacionEnPrensa.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorProrrogaDeContestacionDeOposicion.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorProrrogaDeForma.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorProrrogaDeFondo.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorContestacionAOposicion.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorNumeracionDePoder.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorReconsideracionPrioridadExtinguida.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorPagoDeAnualidad.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorExamenDePatentabilidad.cs" />
+    <Compile Include="Presentadores\Inventores\PresentadorAgregarInventor.cs" />
+    <Compile Include="Presentadores\Inventores\PresentadorConsultarInventor.cs" />
+    <Compile Include="Presentadores\MarcasTercero\PresentadorConsultaMarcasTercero.cs" />
+    <Compile Include="Presentadores\MarcasTercero\PresentadorGestionarInfoAdicionalMarcaTercero.cs" />
+    <Compile Include="Presentadores\MarcasTercero\PresentadorGestionarInfoBolMarcaTer.cs" />
+    <Compile Include="Presentadores\MarcasTercero\PresentadorListaInfoBolMarcaTeres.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorListaInstruccionesRenovacion.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorGestionarIntruccionRenovacion.cs" />
+    <Compile Include="Presentadores\Memorias\PresentadorAgregarMemoria.cs" />
+    <Compile Include="Presentadores\Memorias\PresentadorConsultarMemoria.cs" />
+    <Compile Include="Presentadores\Memorias\PresentadorConsultarMemorias.cs" />
+    <Compile Include="Presentadores\Patentes\PresentadorListaFechas.cs" />
+    <Compile Include="Presentadores\Patentes\PresentadorGestionarInfoAdicional.cs" />
+    <Compile Include="Presentadores\Patentes\PresentadorGestionarInfoBol.cs" />
+    <Compile Include="Presentadores\Patentes\PresentadorGestionarPatente.cs" />
+    <Compile Include="Presentadores\Patentes\PresentadorConsultarPatentes.cs" />
+    <Compile Include="Presentadores\Patentes\PresentadorListaInfoBoles.cs" />
+    <Compile Include="Presentadores\Patentes\PresentadorListaInventores.cs" />
+    <Compile Include="Presentadores\Patentes\PresentadorListaMemorias.cs" />
+    <Compile Include="Presentadores\Patentes\PresentadorListaOperaciones.cs" />
+    <Compile Include="Presentadores\ReportesPatente\PresentadorReportePatente.cs" />
+    <Compile Include="Presentadores\Reportes\PresentadorCarta16P.cs" />
+    <Compile Include="Presentadores\Reportes\PresentadorCarta16M.cs" />
+    <Compile Include="Presentadores\Reportes\PresentadorCarta16.cs" />
+    <Compile Include="Presentadores\Reportes\PresentadorCarta14.cs" />
+    <Compile Include="Presentadores\Reportes\PresentadorCarta2.cs" />
+    <Compile Include="Presentadores\Reportes\PresentadorCarta1.cs" />
+    <Compile Include="Presentadores\TraspasosPatentes\CambiosDeDomicilioPatentes\PresentadorConsultarCambiosDeDomicilioPatentes.cs" />
+    <Compile Include="Presentadores\TraspasosPatentes\CambiosDeDomicilioPatentes\PresentadorGestionarCambioDeDomicilioPatentes.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorConsignacionDeBusqueda.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorReingresoDePoderAnexo.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorReingresoDeDistingue.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorReingresoDeClasificacion.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorReingresoDePoderYPrioridad.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorReingresoDePoderYReclasificacion.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorReingresoDePoderPresentado.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorReingresoDePoderDistingueConSinClasificacion.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorReingresoDeNombreDeMarca.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorNotificacionDeIngresoDePoder.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorRenunciaParcial.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorCorreccionDelDistingue.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorCorreccionErrorMaterial.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorPrioridadExtranjera.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorNumeracionDePoderPorInteresado.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorCorreccionErrorMaterialDistingue.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorCopiaCertificada.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorContinuacionDeTramite.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorCertificadoDeOrigen.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorNumeracionDePoderPorMarca.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorDeDesistimiento.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorCambioDeTramitante.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorLimitacionDelDistingue.cs" />
+    <Compile Include="Presentadores\MarcasTercero\PresentadorGestionarMarcaTercero.cs" />
+    <Compile Include="Presentadores\Recordatorios\PresentadorConsultarRecordatorios.cs" />
+    <Compile Include="Presentadores\Renovaciones\PresentadorConsultarRenovaciones.cs" />
+    <Compile Include="Presentadores\EntradasAlternas\PresentadorAgregarEntradaAlterna.cs" />
+    <Compile Include="Presentadores\EntradasAlternas\PresentadorConsultarEntradaAlterna.cs" />
+    <Compile Include="Presentadores\EntradasAlternas\PresentadorConsultarEntradasAlternas.cs" />
+    <Compile Include="Presentadores\EstadosMarca\PresentadorAgregarEstadoMarca.cs" />
+    <Compile Include="Presentadores\EstadosMarca\PresentadorConsultarEstadoMarca.cs" />
+    <Compile Include="Presentadores\EstadosMarca\PresentadorConsultarEstadosMarcas.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorListaBusquedas.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorListaOperaciones.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorGestionarBusqueda.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorGestionarInfoBol.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorGestionarAnaqua.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorGestionarInfoAdicional.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorAgregarMarca.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorConsultarMarca.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorConsultarMarcas.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorListaInfoBoles.cs" />
+    <Compile Include="Presentadores\Remitentes\PresentadorAgregarRemitente.cs" />
+    <Compile Include="Presentadores\Remitentes\PresentadorConsultarRemitente.cs" />
+    <Compile Include="Presentadores\Remitentes\PresentadorConsultarRemitentes.cs" />
+    <Compile Include="Presentadores\Categorias\PresentadorAgregarCategoria.cs" />
+    <Compile Include="Presentadores\Categorias\PresentadorConsultarCategoria.cs" />
+    <Compile Include="Presentadores\Categorias\PresentadorConsultarCategorias.cs" />
+    <Compile Include="Presentadores\Renovaciones\PresentadorGestionarRenovacion.cs" />
+    <Compile Include="Presentadores\Resumenes\PresentadorAgregarResumen.cs" />
+    <Compile Include="Presentadores\Resumenes\PresentadorConsultarResumen.cs" />
+    <Compile Include="Presentadores\Resumenes\PresentadorConsultarResumenes.cs" />
+    <Compile Include="Presentadores\Medios\PresentadorAgregarMedio.cs" />
+    <Compile Include="Presentadores\Medios\PresentadorConsultarMedio.cs" />
+    <Compile Include="Presentadores\Medios\PresentadorConsultarMedios.cs" />
+    <Compile Include="Presentadores\DatosTransferencias\PresentadorAgregarDatosTransferencia.cs" />
+    <Compile Include="Presentadores\DatosTransferencias\PresentadorConsultarDatosTransferencia.cs" />
+    <Compile Include="Presentadores\Interesados\PresentadorAgregarInteresado.cs" />
+    <Compile Include="Presentadores\Interesados\PresentadorConsultarInteresado.cs" />
+    <Compile Include="Presentadores\Interesados\PresentadorConsultarInteresados.cs" />
+    <Compile Include="Presentadores\Interesados\PresentadorListaPoderes.cs" />
+    <Compile Include="Presentadores\Justificaciones\PresentadorAgregarJustificacion.cs" />
+    <Compile Include="Presentadores\Justificaciones\PresentadorConsultarJustificacion.cs" />
+    <Compile Include="Presentadores\Poderes\PresentadorAgregarPoder.cs" />
+    <Compile Include="Presentadores\Poderes\PresentadorConsultarPoder.cs" />
+    <Compile Include="Presentadores\Poderes\PresentadorConsultarPoderes.cs" />
+    <Compile Include="Presentadores\Estatuses\PresentadorAgregarEstatus.cs" />
+    <Compile Include="Presentadores\Estatuses\PresentadorConsultarEstatus.cs" />
+    <Compile Include="Presentadores\Estatuses\PresentadorConsultarEstatuses.cs" />
+    <Compile Include="Presentadores\Poderes\PresentadorGestionarPoderesXAgentes.cs" />
+    <Compile Include="Presentadores\TipoFechas\PresentadorAgregarTipoFecha.cs" />
+    <Compile Include="Presentadores\TipoFechas\PresentadorConsultarTipoFecha.cs" />
+    <Compile Include="Presentadores\TipoFechas\PresentadorConsultarTipoFechas.cs" />
+    <Compile Include="Presentadores\Resoluciones\PresentadorAgregarResolucion.cs" />
+    <Compile Include="Presentadores\Resoluciones\PresentadorConsultarResolucion.cs" />
+    <Compile Include="Presentadores\Resoluciones\PresentadorConsultarResoluciones.cs" />
+    <Compile Include="Presentadores\TipoInfoboles\PresentadorAgregarTipoInfobol.cs" />
+    <Compile Include="Presentadores\TipoInfoboles\PresentadorConsultarTipoInfobol.cs" />
+    <Compile Include="Presentadores\TipoInfoboles\PresentadorConsultarTipoInfoboles.cs" />
+    <Compile Include="Presentadores\Internacionales\PresentadorAgregarInternacional.cs" />
+    <Compile Include="Presentadores\Internacionales\PresentadorConsultarInternacional.cs" />
+    <Compile Include="Presentadores\Internacionales\PresentadorConsultarInternacionales.cs" />
+    <Compile Include="Presentadores\Paises\PresentadorAgregarPais.cs" />
+    <Compile Include="Presentadores\Paises\PresentadorConsultarPais.cs" />
+    <Compile Include="Presentadores\Paises\PresentadorConsultarPaises.cs" />
+    <Compile Include="Presentadores\Boletines\PresentadorAgregarBoletin.cs" />
+    <Compile Include="Presentadores\Boletines\PresentadorConsultarBoletin.cs" />
+    <Compile Include="Presentadores\Boletines\PresentadorConsultarBoletines.cs" />
+    <Compile Include="Presentadores\Estados\PresentadorAgregarEstado.cs" />
+    <Compile Include="Presentadores\Estados\PresentadorConsultarEstado.cs" />
+    <Compile Include="Presentadores\Estados\PresentadorConsultarEstados.cs" />
+    <Compile Include="Presentadores\Nacionales\PresentadorAgregarNacional.cs" />
+    <Compile Include="Presentadores\Nacionales\PresentadorConsultarNacional.cs" />
+    <Compile Include="Presentadores\Nacionales\PresentadorConsultarNacionales.cs" />
+    <Compile Include="Presentadores\Principales\PresentadorPaginaPrincipal.cs" />
+    <Compile Include="Presentadores\Roles\PresentadorAgregarRol.cs" />
+    <Compile Include="Presentadores\Roles\PresentadorConsultarRol.cs" />
+    <Compile Include="Presentadores\Roles\PresentadorConsultarRoles.cs" />
+    <Compile Include="Presentadores\Logines\PresentadorLogin.cs" />
+    <Compile Include="Presentadores\Objetos\PresentadorAgregarObjeto.cs" />
+    <Compile Include="Presentadores\Objetos\PresentadorConsultarObjeto.cs" />
+    <Compile Include="Presentadores\Objetos\PresentadorConsultarObjetos.cs" />
+    <Compile Include="Presentadores\Objetos\PresentadorGestionarObjetosXRoles.cs" />
+    <Compile Include="Presentadores\PresentadorBase.cs" />
+    <Compile Include="Presentadores\Principales\PresentadorVentanaPrincipal.cs" />
+    <Compile Include="Presentadores\TiposBase\PresentadorAgregarTipoBase.cs" />
+    <Compile Include="Presentadores\TiposBase\PresentadorConsultarTipoBase.cs" />
+    <Compile Include="Presentadores\TiposBase\PresentadorConsultarTiposBase.cs" />
+    <Compile Include="Presentadores\TraspasosPatentes\CambiosDeNombrePatentes\PresentadorConsultarCambiosDeNombrePatentes.cs" />
+    <Compile Include="Presentadores\TraspasosPatentes\CambiosDeNombrePatentes\PresentadorGestionarCambioDeNombrePatentes.cs" />
+    <Compile Include="Presentadores\TraspasosPatentes\CambiosDePeticionarioPatentes\PresentadorConsultarCambiosDePeticionarioPatentes.cs" />
+    <Compile Include="Presentadores\TraspasosPatentes\CambiosDePeticionarioPatentes\PresentadorGestionarCambioDePeticionarioPatentes.cs" />
+    <Compile Include="Presentadores\TraspasosPatentes\CesionesPatentes\PresentadorConsultarCesionesPatentes.cs" />
+    <Compile Include="Presentadores\TraspasosPatentes\CesionesPatentes\PresentadorGestionarCesionPatentes.cs" />
+    <Compile Include="Presentadores\TraspasosPatentes\FusionesPatentes\PresentadorConsultarFusionesPatentes.cs" />
+    <Compile Include="Presentadores\TraspasosPatentes\FusionesPatentes\PresentadorGestionarFusionPatentes.cs" />
+    <Compile Include="Presentadores\TraspasosPatentes\LicenciasPatentes\PresentadorConsultarLicenciasPatentes.cs" />
+    <Compile Include="Presentadores\TraspasosPatentes\LicenciasPatentes\PresentadorGestionarLicenciaPatentes.cs" />
+    <Compile Include="Presentadores\Traspasos\CambiosDeNombre\PresentadorConsultarCambiosDeNombre.cs" />
+    <Compile Include="Presentadores\Traspasos\CambiosDeNombre\PresentadorGestionarCambioDeNombre.cs" />
+    <Compile Include="Presentadores\Traspasos\Cesiones\PresentadorConsultarCesiones.cs" />
+    <Compile Include="Presentadores\Traspasos\Cesiones\PresentadorGestionarCesion.cs" />
+    <Compile Include="Presentadores\Traspasos\Licencias\PresentadorConsultarLicencias.cs" />
+    <Compile Include="Presentadores\Traspasos\Licencias\PresentadorGestionarLicencia.cs" />
+    <Compile Include="Presentadores\Traspasos\CambiosDeDomicilio\PresentadorConsultarCambiosDeDomicilio.cs" />
+    <Compile Include="Presentadores\Traspasos\CambiosDeDomicilio\PresentadorGestionarCambioDeDomicilio.cs" />
+    <Compile Include="Presentadores\Traspasos\CambiosDePeticionario\PresentadorConsultarCambiosDePeticionario.cs" />
+    <Compile Include="Presentadores\Traspasos\CambiosDePeticionario\PresentadorGestionarCambioDePeticionario.cs" />
+    <Compile Include="Presentadores\Traspasos\Fusiones\PresentadorConsultarFusiones.cs" />
+    <Compile Include="Presentadores\Traspasos\Fusiones\PresentadorGestionarFusion.cs" />
+    <Compile Include="Presentadores\Usuarios\PresentadorAgregarUsuario.cs" />
+    <Compile Include="Presentadores\Usuarios\PresentadorConsultarUsuarios.cs" />
+    <Compile Include="Presentadores\Usuarios\PresentadorConsultarUsuario.cs" />
+    <Compile Include="Recursos\Etiquetas.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Etiquetas.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Recursos\Ids.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ids.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Recursos\MensajesConElUsuario.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MensajesConElUsuario.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Recursos\MensajesValidaciones.Designer.cs">
+      <DependentUpon>MensajesValidaciones.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reportes\Carta14DS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Carta14DS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Carta16DS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Carta16DS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Carta16MDS.cs">
+      <DependentUpon>Carta16MDS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\Carta16MDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Carta16MDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Carta16PDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Carta16PDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Carta1CR.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Carta1CR.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reportes\Carta1DS.cs">
+      <DependentUpon>Carta1DS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\Carta1DS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Carta1DS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Carta1CREN.cs">
+      <DependentUpon>Carta1CREN.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reportes\Carta2CR.cs">
+      <DependentUpon>Carta2CR.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reportes\Carta2CREN.cs">
+      <DependentUpon>Carta2CREN.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reportes\Carta2DS.cs">
+      <DependentUpon>Carta2DS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\Carta2DS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Carta2DS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Carta14CR.cs">
+      <DependentUpon>Carta14CR.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reportes\Carta14CREN.cs">
+      <DependentUpon>Carta14CREN.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reportes\Carta16CR.cs">
+      <DependentUpon>Carta16CR.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reportes\Carta16CREN.cs">
+      <DependentUpon>Carta16CREN.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reportes\Carta16MCR.cs">
+      <DependentUpon>Carta16MCR.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reportes\Carta16MCREN.cs">
+      <DependentUpon>Carta16MCREN.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reportes\Carta16PCR.cs">
+      <DependentUpon>Carta16PCR.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reportes\Carta16PCREN.cs">
+      <DependentUpon>Carta16PCREN.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reportes\Patentes\DatosVienen.cs">
+      <DependentUpon>DatosVienen.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reportes\Patentes\SolicitudVienen.cs">
+      <DependentUpon>SolicitudVienen.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reportes\Patentes\Planilla.cs">
+      <DependentUpon>Planilla.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reportes\Patentes\DatosVan.cs">
+      <DependentUpon>DatosVan.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reportes\Patentes\SolicitudVan.cs">
+      <DependentUpon>SolicitudVan.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Transformadores\DosValoresAUno.cs" />
+    <Compile Include="Transformadores\EnteroMinimoABlanco.cs" />
+    <Compile Include="Transformadores\FechaABlanco.cs" />
+    <Compile Include="Validaciones\SoloNumeros.cs" />
+    <Compile Include="Validaciones\CorreoElectronico.cs" />
+    <Compile Include="Validaciones\LongitudMaxima.cs" />
+    <Compile Include="Validaciones\Obligatorio.cs" />
+    <Compile Include="Ventanas\Abandonos\ConsultarAbondonos.xaml.cs">
+      <DependentUpon>ConsultarAbondonos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Abandonos\GestionarAbandono.xaml.cs">
+      <DependentUpon>GestionarAbandono.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Administracion\Gestiones Automaticas\ConsultarCorreosParaGestionAutomatica.xaml.cs">
+      <DependentUpon>ConsultarCorreosParaGestionAutomatica.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Administracion\Gestiones Automaticas\GestionarDetallesCorreoOutlook.xaml.cs">
+      <DependentUpon>GestionarDetallesCorreoOutlook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Agentes\AgregarAgente.xaml.cs">
+      <DependentUpon>AgregarAgente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Agentes\ConsultarAgente.xaml.cs">
+      <DependentUpon>ConsultarAgente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Agentes\ConsultarAgentes.xaml.cs">
+      <DependentUpon>ConsultarAgentes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Anexos\AgregarAnexo.xaml.cs">
+      <DependentUpon>AgregarAnexo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Anualidades\ConsultarAnualidades.xaml.cs">
+      <DependentUpon>ConsultarAnualidades.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Anualidades\GestionarAnualidades.xaml.cs">
+      <DependentUpon>GestionarAnualidades.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Asociados\AgregarAsociado.xaml.cs">
+      <DependentUpon>AgregarAsociado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Asociados\ConsultarAsociado.xaml.cs">
+      <DependentUpon>ConsultarAsociado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Asociados\ConsultarAsociados.xaml.cs">
+      <DependentUpon>ConsultarAsociados.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Asociados\ListaConectividad.xaml.cs">
+      <DependentUpon>ListaConectividad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Asociados\ListaEmails.xaml.cs">
+      <DependentUpon>ListaEmails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Asociados\ListaDatosTransferencias.xaml.cs">
+      <DependentUpon>ListaDatosTransferencias.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Asociados\ListaContactos.xaml.cs">
+      <DependentUpon>ListaContactos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Asociados\ListaJustificaciones.xaml.cs">
+      <DependentUpon>ListaJustificaciones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Auditorias\ListaAuditorias.xaml.cs">
+      <DependentUpon>ListaAuditorias.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Base\Comodin.xaml.cs">
+      <DependentUpon>Comodin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\CartasOuts\ConsultarCartasOuts.xaml.cs">
+      <DependentUpon>ConsultarCartasOuts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Cartas\AgregarCarta.xaml.cs">
+      <DependentUpon>AgregarCarta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Cartas\ConsultarContactosPorAsociado.xaml.cs">
+      <DependentUpon>ConsultarContactosPorAsociado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Cartas\ConsultarCarta.xaml.cs">
+      <DependentUpon>ConsultarCarta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Contactos\ConsultarContactos.xaml.cs">
+      <DependentUpon>ConsultarContactos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Contactos\ConsultarContacto.xaml.cs">
+      <DependentUpon>ConsultarContacto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Contactos\AgregarContacto.xaml.cs">
+      <DependentUpon>AgregarContacto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Anexos\ConsultarAnexo.xaml.cs">
+      <DependentUpon>ConsultarAnexo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Anexos\ConsultarAnexos.xaml.cs">
+      <DependentUpon>ConsultarAnexos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\AbandonosPatente\ConsultarAbondonosPatente.xaml.cs">
+      <DependentUpon>ConsultarAbondonosPatente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\AbandonosPatente\GestionarAbandonoPatente.xaml.cs">
+      <DependentUpon>GestionarAbandonoPatente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EmailsAsociado\AgregarEmailAsociado.xaml.cs">
+      <DependentUpon>AgregarEmailAsociado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EmailsAsociado\ConsultarEmailAsociado.xaml.cs">
+      <DependentUpon>ConsultarEmailAsociado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Inventores\QueryInventor.xaml.cs">
+      <DependentUpon>QueryInventor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\MarcasTercero\GestionarInfoAdicionalMarcaTercero.xaml.cs">
+      <DependentUpon>GestionarInfoAdicionalMarcaTercero.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\MarcasTercero\InfoAdicionalInteresadosAsociadosMarcaTerceros.xaml.cs">
+      <DependentUpon>InfoAdicionalInteresadosAsociadosMarcaTerceros.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\GestionarArchivoDeMarca.xaml.cs">
+      <DependentUpon>GestionarArchivoDeMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\GestionarCertificadoDeMarca.xaml.cs">
+      <DependentUpon>GestionarCertificadoDeMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\GestionarFechaDeMarca.xaml.cs">
+      <DependentUpon>GestionarFechaDeMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\ListaFechasDeMarca.xaml.cs">
+      <DependentUpon>ListaFechasDeMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Patentes\GestionarArchivoDePatente.xaml.cs">
+      <DependentUpon>GestionarArchivoDePatente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Plantillas\AnalizarDetallePlantilla.xaml.cs">
+      <DependentUpon>AnalizarDetallePlantilla.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Plantillas\AnalizarEncabezadoPlantilla.xaml.cs">
+      <DependentUpon>AnalizarEncabezadoPlantilla.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Plantillas\GestionarFiltroDePlantilla.xaml.cs">
+      <DependentUpon>GestionarFiltroDePlantilla.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Plantillas\GestionarMaestroPlantilla.xaml.cs">
+      <DependentUpon>GestionarMaestroPlantilla.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Plantillas\ListaValoresDetalle.xaml.cs">
+      <DependentUpon>ListaValoresDetalle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Plantillas\ListaValoresEncabezado.xaml.cs">
+      <DependentUpon>ListaValoresEncabezado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TiposEmailAsociado\ConsultarTiposEmailAsociado.xaml.cs">
+      <DependentUpon>ConsultarTiposEmailAsociado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TiposEmailAsociado\GestionarTipoEmailAsociado.xaml.cs">
+      <DependentUpon>GestionarTipoEmailAsociado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Corresponsales\AgregarCorresponsal.xaml.cs">
+      <DependentUpon>AgregarCorresponsal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Corresponsales\ConsultarCorresponsales.xaml.cs">
+      <DependentUpon>ConsultarCorresponsales.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\MarcasTercero\ConsultaMarcasTercero.xaml.cs">
+      <DependentUpon>ConsultaMarcasTercero.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\MarcasTercero\GestionarInfoBolMarcaTer.xaml.cs">
+      <DependentUpon>GestionarInfoBolMarcaTer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\MarcasTercero\ListaInfoBolMarcaTeres.xaml.cs">
+      <DependentUpon>ListaInfoBolMarcaTeres.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\GestionarInstruccionDeRenovacion.xaml.cs">
+      <DependentUpon>GestionarInstruccionDeRenovacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\ListaInstruccionesRenovacion.xaml.cs">
+      <DependentUpon>ListaInstruccionesRenovacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Memorias\AgregarMemoria.xaml.cs">
+      <DependentUpon>AgregarMemoria.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Memorias\ConsultarMemoria.xaml.cs">
+      <DependentUpon>ConsultarMemoria.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FechasPatente\AgregarFecha.xaml.cs">
+      <DependentUpon>AgregarFecha.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FechasPatente\ConsultarFecha.xaml.cs">
+      <DependentUpon>ConsultarFecha.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Patentes\ListaMemorias.xaml.cs">
+      <DependentUpon>ListaMemorias.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\ContestacionAOposicion.xaml.cs">
+      <DependentUpon>ContestacionAOposicion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\ConsignacionDeJuramentoYPoder.xaml.cs">
+      <DependentUpon>ConsignacionDeJuramentoYPoder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\ConsignacionDeJuramento.xaml.cs">
+      <DependentUpon>ConsignacionDeJuramento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\ConsignacionDePoder.xaml.cs">
+      <DependentUpon>ConsignacionDePoder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\ConsignacionDePrioridadExtranjera.xaml.cs">
+      <DependentUpon>ConsignacionDePrioridadExtranjera.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\OficioDeJuramento.xaml.cs">
+      <DependentUpon>OficioDeJuramento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\OficioDePoder.xaml.cs">
+      <DependentUpon>OficioDePoder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\OficioDeJuramentoYPoder.xaml.cs">
+      <DependentUpon>OficioDeJuramentoYPoder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\CorreccionVoluntaria.xaml.cs">
+      <DependentUpon>CorreccionVoluntaria.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\OficioDeFondo.xaml.cs">
+      <DependentUpon>OficioDeFondo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\ReconsideracionPerimidaVariante.xaml.cs">
+      <DependentUpon>ReconsideracionPerimidaVariante.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\ReconsideracionDePerencion.xaml.cs">
+      <DependentUpon>ReconsideracionDePerencion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\CorreccionErrorDePublicacionEnPrensa.xaml.cs">
+      <DependentUpon>CorreccionErrorDePublicacionEnPrensa.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\ProrrogaDeContestacionDeOposicion.xaml.cs">
+      <DependentUpon>ProrrogaDeContestacionDeOposicion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\ProrrogaDeForma.xaml.cs">
+      <DependentUpon>ProrrogaDeForma.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\ProrrogaDeFondo.xaml.cs">
+      <DependentUpon>ProrrogaDeFondo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\NumeracionDePoder.xaml.cs">
+      <DependentUpon>NumeracionDePoder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\ReconsideracionPrioridadExtinguida.xaml.cs">
+      <DependentUpon>ReconsideracionPrioridadExtinguida.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\PagoDeAnualidad.xaml.cs">
+      <DependentUpon>PagoDeAnualidad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\ExamenDePatentabilidad.xaml.cs">
+      <DependentUpon>ExamenDePatentabilidad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Inventores\AgregarInventor.xaml.cs">
+      <DependentUpon>AgregarInventor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Inventores\ConsultarInventor.xaml.cs">
+      <DependentUpon>ConsultarInventor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\CertificadoDeOrigen.xaml.cs">
+      <DependentUpon>CertificadoDeOrigen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\CambioDeTramitante.xaml.cs">
+      <DependentUpon>CambioDeTramitante.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\ConsignacionDeBusqueda.xaml.cs">
+      <DependentUpon>ConsignacionDeBusqueda.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\ReingresoDePoderAnexo.xaml.cs">
+      <DependentUpon>ReingresoDePoderAnexo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\ReingresoDeDistingue.xaml.cs">
+      <DependentUpon>ReingresoDeDistingue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\ReingresoDePoderYPrioridad.xaml.cs">
+      <DependentUpon>ReingresoDePoderYPrioridad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\ReingresoDePoderYReclasificacion.xaml.cs">
+      <DependentUpon>ReingresoDePoderYReclasificacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\ReingresoDePoderPresentado.xaml.cs">
+      <DependentUpon>ReingresoDePoderPresentado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\ReingresoDePoderDistingueConSinClasificacion.xaml.cs">
+      <DependentUpon>ReingresoDePoderDistingueConSinClasificacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\ReingresoDeClasificacion.xaml.cs">
+      <DependentUpon>ReingresoDeClasificacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\ReingresoDeNombreDeMarca.xaml.cs">
+      <DependentUpon>ReingresoDeNombreDeMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\NotificacionDeIngresoDePoder.xaml.cs">
+      <DependentUpon>NotificacionDeIngresoDePoder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\RenunciaParcial.xaml.cs">
+      <DependentUpon>RenunciaParcial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\ContinuacionDeTramite.xaml.cs">
+      <DependentUpon>ContinuacionDeTramite.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\CorreccionDelDistingue.xaml.cs">
+      <DependentUpon>CorreccionDelDistingue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\PrioridadExtranjera.xaml.cs">
+      <DependentUpon>PrioridadExtranjera.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\NumeracionDePoderPorInteresado.xaml.cs">
+      <DependentUpon>NumeracionDePoderPorInteresado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\CopiaCertificada.xaml.cs">
+      <DependentUpon>CopiaCertificada.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\CorreccionErrorMaterial.xaml.cs">
+      <DependentUpon>CorreccionErrorMaterial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\CorreccionErrorMaterialDistingue.xaml.cs">
+      <DependentUpon>CorreccionErrorMaterialDistingue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\NumeracionDePoderPorMarca.xaml.cs">
+      <DependentUpon>NumeracionDePoderPorMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\DeDesistimiento.xaml.cs">
+      <DependentUpon>DeDesistimiento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\LimitacionDelDistingue.xaml.cs">
+      <DependentUpon>LimitacionDelDistingue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\MarcasTercero\GestionarMarcaTercero.xaml.cs">
+      <DependentUpon>GestionarMarcaTercero.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Patentes\ListaFechas.xaml.cs">
+      <DependentUpon>ListaFechas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Patentes\GestionarInfoAdicional.xaml.cs">
+      <DependentUpon>GestionarInfoAdicional.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Patentes\GestionarInfoBol.xaml.cs">
+      <DependentUpon>GestionarInfoBol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Patentes\GestionarPatente.xaml.cs">
+      <DependentUpon>GestionarPatente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Patentes\ConsultarPatentes.xaml.cs">
+      <DependentUpon>ConsultarPatentes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Patentes\ListaInfoBoles.xaml.cs">
+      <DependentUpon>ListaInfoBoles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Patentes\ListaInventores.xaml.cs">
+      <DependentUpon>ListaInventores.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Patentes\ListaOperaciones.xaml.cs">
+      <DependentUpon>ListaOperaciones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Recordatorios\ConsultarRecordatorios.xaml.cs">
+      <DependentUpon>ConsultarRecordatorios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EntradasAlternas\AgregarEntradaAlterna.xaml.cs">
+      <DependentUpon>AgregarEntradaAlterna.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EntradasAlternas\ConsultarEntradaAlterna.xaml.cs">
+      <DependentUpon>ConsultarEntradaAlterna.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EntradasAlternas\ConsultarEntradasAlternas.xaml.cs">
+      <DependentUpon>ConsultarEntradasAlternas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Cartas\ConsultarCartas.xaml.cs">
+      <DependentUpon>ConsultarCartas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EstadosMarca\AgregarEstadoMarca.xaml.cs">
+      <DependentUpon>AgregarEstadoMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EstadosMarca\ConsultarEstadoMarca.xaml.cs">
+      <DependentUpon>ConsultarEstadoMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EstadosMarca\ConsultarEstadosMarcas.xaml.cs">
+      <DependentUpon>ConsultarEstadosMarcas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\AgregarMarca.xaml.cs">
+      <DependentUpon>AgregarMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\ListaOperaciones.xaml.cs">
+      <DependentUpon>ListaOperaciones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\ListaBusquedas.xaml.cs">
+      <DependentUpon>ListaBusquedas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\GestionarBusqueda.xaml.cs">
+      <DependentUpon>GestionarBusqueda.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\GestionarInfoBol.xaml.cs">
+      <DependentUpon>GestionarInfoBol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\GestionarAnaqua.xaml.cs">
+      <DependentUpon>GestionarAnaqua.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\GestionarInfoAdicional.xaml.cs">
+      <DependentUpon>GestionarInfoAdicional.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\ConsultarMarcas.xaml.cs">
+      <DependentUpon>ConsultarMarcas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\ConsultarMarca.xaml.cs">
+      <DependentUpon>ConsultarMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\ListaInfoBoles.xaml.cs">
+      <DependentUpon>ListaInfoBoles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Remitentes\AgregarRemitente.xaml.cs">
+      <DependentUpon>AgregarRemitente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Remitentes\ConsultarRemitente.xaml.cs">
+      <DependentUpon>ConsultarRemitente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Remitentes\ConsultarRemitentes.xaml.cs">
+      <DependentUpon>ConsultarRemitentes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Categorias\AgregarCategoria.xaml.cs">
+      <DependentUpon>AgregarCategoria.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Categorias\ConsultarCategoria.xaml.cs">
+      <DependentUpon>ConsultarCategoria.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Categorias\ConsultarCategorias.xaml.cs">
+      <DependentUpon>ConsultarCategorias.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Medios\AgregarMedio.xaml.cs">
+      <DependentUpon>AgregarMedio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Medios\ConsultarMedio.xaml.cs">
+      <DependentUpon>ConsultarMedio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Medios\ConsultarMedios.xaml.cs">
+      <DependentUpon>ConsultarMedios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\DatosTransferencias\AgregarDatosTransferencia.xaml.cs">
+      <DependentUpon>AgregarDatosTransferencia.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\DatosTransferencias\ConsultarDatosTransferencia.xaml.cs">
+      <DependentUpon>ConsultarDatosTransferencia.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Interesados\AgregarInteresado.xaml.cs">
+      <DependentUpon>AgregarInteresado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Interesados\ConsultarInteresado.xaml.cs">
+      <DependentUpon>ConsultarInteresado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Interesados\ConsultarInteresados.xaml.cs">
+      <DependentUpon>ConsultarInteresados.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Interesados\ListaPoderes.xaml.cs">
+      <DependentUpon>ListaPoderes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Justificaciones\AgregarJustificacion.xaml.cs">
+      <DependentUpon>AgregarJustificacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Justificaciones\ConsultarJustificacion.xaml.cs">
+      <DependentUpon>ConsultarJustificacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Objetos\GestionarObjetos.xaml.cs">
+      <DependentUpon>GestionarObjetos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Poderes\AgregarPoder.xaml.cs">
+      <DependentUpon>AgregarPoder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Poderes\ConsultarPoder.xaml.cs">
+      <DependentUpon>ConsultarPoder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Poderes\ConsultarPoderes.xaml.cs">
+      <DependentUpon>ConsultarPoderes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Estatuses\AgregarEstatus.xaml.cs">
+      <DependentUpon>AgregarEstatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Estatuses\ConsultarEstatus.xaml.cs">
+      <DependentUpon>ConsultarEstatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Estatuses\ConsultarEstatuses.xaml.cs">
+      <DependentUpon>ConsultarEstatuses.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Poderes\GestionarPoderesXAgentes.xaml.cs">
+      <DependentUpon>GestionarPoderesXAgentes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Renovaciones\ConsultarRenovaciones.xaml.cs">
+      <DependentUpon>ConsultarRenovaciones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Renovaciones\GestionarRenovacion.xaml.cs">
+      <DependentUpon>GestionarRenovacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\ReportesPatentes\ReportesBotones.xaml.cs">
+      <DependentUpon>ReportesBotones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Reportes\Carta1.xaml.cs">
+      <DependentUpon>Carta1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Reportes\Carta2.xaml.cs">
+      <DependentUpon>Carta2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Reportes\Carta14.xaml.cs">
+      <DependentUpon>Carta14.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Reportes\Carta16.xaml.cs">
+      <DependentUpon>Carta16.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Reportes\Carta16M.xaml.cs">
+      <DependentUpon>Carta16M.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Reportes\Carta16P.xaml.cs">
+      <DependentUpon>Carta16P.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Patentes\ReportePatente.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportePatente.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Resumenes\AgregarResumen.xaml.cs">
+      <DependentUpon>AgregarResumen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Resumenes\ConsultarResumen.xaml.cs">
+      <DependentUpon>ConsultarResumen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Resumenes\ConsultarResumenes.xaml.cs">
+      <DependentUpon>ConsultarResumenes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Roles\AgregarRol.xaml.cs">
+      <DependentUpon>AgregarRol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Roles\ConsultarRol.xaml.cs">
+      <DependentUpon>ConsultarRol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Roles\ConsultarRoles.xaml.cs">
+      <DependentUpon>ConsultarRoles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TiposBase\AgregarTipoBase.xaml.cs">
+      <DependentUpon>AgregarTipoBase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TiposBase\ConsultarTipoBase.xaml.cs">
+      <DependentUpon>ConsultarTipoBase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TiposBase\ConsultarTiposBase.xaml.cs">
+      <DependentUpon>ConsultarTiposBase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TipoFechas\AgregarTipoFecha.xaml.cs">
+      <DependentUpon>AgregarTipoFecha.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TipoFechas\ConsultarTipoFecha.xaml.cs">
+      <DependentUpon>ConsultarTipoFecha.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TipoFechas\ConsultarTipoFechas.xaml.cs">
+      <DependentUpon>ConsultarTipoFechas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Resoluciones\AgregarResolucion.xaml.cs">
+      <DependentUpon>AgregarResolucion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Resoluciones\ConsultarResolucion.xaml.cs">
+      <DependentUpon>ConsultarResolucion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Resoluciones\ConsultarResoluciones.xaml.cs">
+      <DependentUpon>ConsultarResoluciones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TipoInfoboles\AgregarTipoInfobol.xaml.cs">
+      <DependentUpon>AgregarTipoInfobol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TipoInfoboles\ConsultarTipoInfobol.xaml.cs">
+      <DependentUpon>ConsultarTipoInfobol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TipoInfoboles\ConsultarTipoInfoboles.xaml.cs">
+      <DependentUpon>ConsultarTipoInfoboles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Internacionales\AgregarInternacional.xaml.cs">
+      <DependentUpon>AgregarInternacional.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Internacionales\ConsultarInternacional.xaml.cs">
+      <DependentUpon>ConsultarInternacional.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Internacionales\ConsultarInternacionales.xaml.cs">
+      <DependentUpon>ConsultarInternacionales.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Paises\AgregarPais.xaml.cs">
+      <DependentUpon>AgregarPais.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Paises\ConsultarPais.xaml.cs">
+      <DependentUpon>ConsultarPais.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Paises\ConsultarPaises.xaml.cs">
+      <DependentUpon>ConsultarPaises.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Boletines\AgregarBoletin.xaml.cs">
+      <DependentUpon>AgregarBoletin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Boletines\ConsultarBoletin.xaml.cs">
+      <DependentUpon>ConsultarBoletin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Boletines\ConsultarBoletines.xaml.cs">
+      <DependentUpon>ConsultarBoletines.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Estados\AgregarEstado.xaml.cs">
+      <DependentUpon>AgregarEstado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Estados\ConsultarEstado.xaml.cs">
+      <DependentUpon>ConsultarEstado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Estados\ConsultarEstados.xaml.cs">
+      <DependentUpon>ConsultarEstados.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Nacionales\AgregarNacional.xaml.cs">
+      <DependentUpon>AgregarNacional.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Nacionales\ConsultarNacional.xaml.cs">
+      <DependentUpon>ConsultarNacional.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Nacionales\ConsultarNacionales.xaml.cs">
+      <DependentUpon>ConsultarNacionales.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Objetos\AgregarObjeto.xaml.cs">
+      <DependentUpon>AgregarObjeto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Objetos\ConsultarObjeto.xaml.cs">
+      <DependentUpon>ConsultarObjeto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Objetos\ConsultarObjetos.xaml.cs">
+      <DependentUpon>ConsultarObjetos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Objetos\GestionarObjetosXRoles.xaml.cs">
+      <DependentUpon>GestionarObjetosXRoles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Principales\PaginaPrincipal.xaml.cs">
+      <DependentUpon>PaginaPrincipal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TraspasosPatentes\CambiosDeDomicilioPatentes\ConsultarCambiosDeDomicilioPatentes.xaml.cs">
+      <DependentUpon>ConsultarCambiosDeDomicilioPatentes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TraspasosPatentes\CambiosDeDomicilioPatentes\GestionarCambioDeDomicilioPatentes.xaml.cs">
+      <DependentUpon>GestionarCambioDeDomicilioPatentes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TraspasosPatentes\CambiosDeNombrePatentes\ConsultarCambiosDeNombrePatentes.xaml.cs">
+      <DependentUpon>ConsultarCambiosDeNombrePatentes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TraspasosPatentes\CambiosDeNombrePatentes\GestionarCambioDeNombrePatentes.xaml.cs">
+      <DependentUpon>GestionarCambioDeNombrePatentes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TraspasosPatentes\CambiosPeticionarioPatentes\ConsultarCambiosPeticionarioPatentes.xaml.cs">
+      <DependentUpon>ConsultarCambiosPeticionarioPatentes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TraspasosPatentes\CambiosPeticionarioPatentes\GestionarCambioPeticionarioPatentes.xaml.cs">
+      <DependentUpon>GestionarCambioPeticionarioPatentes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TraspasosPatentes\CesionesPatentes\ConsultarCesionesPatentes.xaml.cs">
+      <DependentUpon>ConsultarCesionesPatentes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TraspasosPatentes\CesionesPatentes\GestionarCesionPatentes.xaml.cs">
+      <DependentUpon>GestionarCesionPatentes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TraspasosPatentes\FusionesPatentes\ConsultarFusionesPatentes.xaml.cs">
+      <DependentUpon>ConsultarFusionesPatentes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TraspasosPatentes\FusionesPatentes\GestionarFusionPatentes.xaml.cs">
+      <DependentUpon>GestionarFusionPatentes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TraspasosPatentes\LicenciasPatentes\ConsultarLicenciasPatentes.xaml.cs">
+      <DependentUpon>ConsultarLicenciasPatentes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TraspasosPatentes\LicenciasPatentes\GestionarLicenciaPatentes.xaml.cs">
+      <DependentUpon>GestionarLicenciaPatentes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Traspasos\CambiosDeNombre\ConsultarCambiosDeNombre.xaml.cs">
+      <DependentUpon>ConsultarCambiosDeNombre.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Traspasos\CambiosDeNombre\GestionarCambioDeNombre.xaml.cs">
+      <DependentUpon>GestionarCambioDeNombre.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Traspasos\Cesiones\ConsultarCesiones.xaml.cs">
+      <DependentUpon>ConsultarCesiones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Traspasos\Cesiones\GestionarCesion.xaml.cs">
+      <DependentUpon>GestionarCesion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Traspasos\Licencias\ConsultarLicencias.xaml.cs">
+      <DependentUpon>ConsultarLicencias.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Traspasos\Licencias\GestionarLicencia.xaml.cs">
+      <DependentUpon>GestionarLicencia.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Traspasos\CambiosDeDomicilio\ConsultarCambiosDeDomicilio.xaml.cs">
+      <DependentUpon>ConsultarCambiosDeDomicilio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Traspasos\CambiosDeDomicilio\GestionarCambioDeDomicilio.xaml.cs">
+      <DependentUpon>GestionarCambioDeDomicilio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Traspasos\CambiosPeticionario\ConsultarCambiosPeticionario.xaml.cs">
+      <DependentUpon>ConsultarCambiosPeticionario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Traspasos\CambiosPeticionario\GestionarCambioPeticionario.xaml.cs">
+      <DependentUpon>GestionarCambioPeticionario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Traspasos\Fusiones\ConsultarFusiones.xaml.cs">
+      <DependentUpon>ConsultarFusiones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Traspasos\Fusiones\GestionarFusion.xaml.cs">
+      <DependentUpon>GestionarFusion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Usuarios\ConsultarUsuarios.xaml.cs">
+      <DependentUpon>ConsultarUsuarios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Usuarios\ConsultarUsuario.xaml.cs">
+      <DependentUpon>ConsultarUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Usuarios\AgregarUsuario.xaml.cs">
+      <DependentUpon>AgregarUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Logines\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Principales\VentanaPrincipal.xaml.cs">
+      <DependentUpon>VentanaPrincipal.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="FacReportes\RptFacturaProforma.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <LastGenOutput>RptFacturaProforma.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\FacFacturacionLoteVieja.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FacFacturacionLoteVieja.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\FacturasPendientesAsociados.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FacturasPendientesAsociados.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\ResumenOperacionesRpt.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ResumenOperacionesRpt.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RpFacEstadoCuenta.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RpFacEstadoCuenta.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RpFacFacturaPendiente.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RpFacFacturaPendiente.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RpFacFacturaPendiente2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RpFacFacturaPendiente2.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RptFacCartaAsociadoEs.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacCartaAsociadoEs.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RptFacCartaAsociadoIn.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacCartaAsociadoIn.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RptFactura.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFactura.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RptFacturaAnulada.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacturaAnulada.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RptFacturacionPendienteMenor.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacturacionPendienteMenor.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RptFacturaCopia.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacturaCopia.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RptFacturaCopiaBf.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacturaCopiaBf.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RptFacturaDeta.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacturaDeta.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RptFacturaDigital.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacturaDigital.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RptFacturaPendienteDeta.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacturaPendienteDeta.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RptFacturaPendienteDeta2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacturaPendienteDeta2.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\RptFacturaPendienteDetaTotales.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacturaPendienteDetaTotales.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\VentasTotalesRevRpt.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>VentasTotalesRevRpt.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacReportes\VentasTotalesRpt.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>VentasTotalesRpt.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recursos\Etiquetas.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Etiquetas.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recursos\Ids.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Ids.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recursos\MensajesConElUsuario.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MensajesConElUsuario.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recursos\MensajesValidaciones.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MensajesValidaciones.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Carta1CR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Carta1CR.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Carta1CREN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Carta1CREN.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Carta2CR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Carta2CR.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Carta2CREN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Carta2CREN.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Carta14CR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Carta14CR.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Carta14CREN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Carta14CREN.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Carta16CR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Carta16CR.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Carta16CREN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Carta16CREN.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Carta16MCR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Carta16MCR.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Carta16MCREN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Carta16MCREN.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Carta16PCR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Carta16PCR.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Carta16PCREN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Carta16PCREN.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Patentes\DatosVienen.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DatosVienen.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Patentes\SolicitudVienen.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SolicitudVienen.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Patentes\Planilla.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Planilla.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Patentes\DatosVan.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DatosVan.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Patentes\SolicitudVan.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SolicitudVan.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FacReportes\DsFacEstadoCuenta.xsc">
+      <DependentUpon>DsFacEstadoCuenta.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFacEstadoCuenta.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsFacEstadoCuenta1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FacReportes\DsFacEstadoCuenta.xss">
+      <DependentUpon>DsFacEstadoCuenta.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFacFacturaPendiente.xsc">
+      <DependentUpon>DsFacFacturaPendiente.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFacFacturaPendiente.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsFacFacturaPendiente.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FacReportes\DsFacFacturaPendiente.xss">
+      <DependentUpon>DsFacFacturaPendiente.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFactura.xsc">
+      <DependentUpon>DsFactura.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFactura.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsFactura1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FacReportes\DsFactura.xss">
+      <DependentUpon>DsFactura.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFacturaAnulada.xsc">
+      <DependentUpon>DsFacturaAnulada.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFacturaAnulada.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsFacturaAnulada1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FacReportes\DsFacturaAnulada.xss">
+      <DependentUpon>DsFacturaAnulada.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFacturaDigital.xsc">
+      <DependentUpon>DsFacturaDigital.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFacturaDigital.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsFacturaDigital.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FacReportes\DsFacturaDigital.xss">
+      <DependentUpon>DsFacturaDigital.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFacturaProforma.xsc">
+      <DependentUpon>DsFacturaProforma.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFacturaProforma.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsFacturaProforma.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="FacReportes\DsFacturaProforma.xss">
+      <DependentUpon>DsFacturaProforma.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFacturasPendientesAsociados.xsc">
+      <DependentUpon>DsFacturasPendientesAsociados.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsFacturasPendientesAsociados.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsFacturasPendientesAsociados.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FacReportes\DsFacturasPendientesAsociados.xss">
+      <DependentUpon>DsFacturasPendientesAsociados.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DSResumenOperacionesRpt.xsc">
+      <DependentUpon>DSResumenOperacionesRpt.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DSResumenOperacionesRpt.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSResumenOperacionesRpt1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FacReportes\DSResumenOperacionesRpt.xss">
+      <DependentUpon>DSResumenOperacionesRpt.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsVentasTotalesRevRpt.xsc">
+      <DependentUpon>DsVentasTotalesRevRpt.xsd</DependentUpon>
+    </None>
+    <None Include="FacReportes\DsVentasTotalesRevRpt.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsVentasTotalesRevRpt1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FacReportes\DsVentasTotalesRevRpt.xss">
+      <DependentUpon>DsVentasTotalesRevRpt.xsd</DependentUpon>
+    </None>
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="Reportes\Carta14DS.xsc">
+      <DependentUpon>Carta14DS.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\Carta14DS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Carta14DS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\Carta14DS.xss">
+      <DependentUpon>Carta14DS.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\Carta16DS.xsc">
+      <DependentUpon>Carta16DS.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\Carta16DS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Carta16DS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\Carta16DS.xss">
+      <DependentUpon>Carta16DS.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\Carta16MDS.xsc">
+      <DependentUpon>Carta16MDS.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\Carta16MDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Carta16MDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\Carta16MDS.xss">
+      <DependentUpon>Carta16MDS.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\Carta16PDS.xsc">
+      <DependentUpon>Carta16PDS.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\Carta16PDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Carta16PDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\Carta16PDS.xss">
+      <DependentUpon>Carta16PDS.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\Carta1DS.xsc">
+      <DependentUpon>Carta1DS.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\Carta1DS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Carta1DS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\Carta1DS.xss">
+      <DependentUpon>Carta1DS.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\Carta2DS.xsc">
+      <DependentUpon>Carta2DS.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\Carta2DS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Carta2DS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\Carta2DS.xss">
+      <DependentUpon>Carta2DS.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\Patentes\ReportePatente.xsc">
+      <DependentUpon>ReportePatente.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\Patentes\ReportePatente.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReportePatente.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\Patentes\ReportePatente.xss">
+      <DependentUpon>ReportePatente.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Comun\ObjetosComunes\ObjetosComunes.csproj">
+      <Project>{15437671-F551-4B4B-9E06-283A1D241CE0}</Project>
+      <Name>ObjetosComunes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Comun\ObjetosComunes_Fac\ObjetosComunes_Fac.vbproj">
+      <Project>{802FFAF7-96CE-446C-A5ED-3DC7A16163AC}</Project>
+      <Name>ObjetosComunes_Fac</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ControlesByT\ControlesByT.csproj">
+      <Project>{95CC239A-6E33-40B3-92D1-F67AF9ACC66E}</Project>
+      <Name>ControlesByT</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <ReferencePath Include="C:\Solucion actual\trunk\src\Cliente\ControlesByT\bin\Debug\ControlesByT.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\CrystalDecisions.CrystalReports.Engine.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\CrystalDecisions.ReportSource.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\CrystalDecisions.Shared.dll" />
+    <ReferencePath Include="C:\Solucion actual\trunk\lib\Diginsoft.Bolet.Cliente.Fac.dll" />
+    <ReferencePath Include="C:\Solucion actual\trunk\src\Comun\ObjetosComunes_Fac\bin\Debug\Diginsoft.Bolet.ObjetosComunes.dll" />
+    <ReferencePath Include="C:\Solucion actual\trunk\lib\LinFu.DynamicProxy.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Microsoft.CSharp.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Microsoft Visual Studio 10.0\Visual Studio Tools for Office\PIA\Office12\Microsoft.Office.Interop.Outlook.dll">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </ReferencePath>
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\mscorlib.dll" />
+    <ReferencePath Include="C:\Solucion actual\trunk\lib\NHibernate.ByteCode.LinFu.dll" />
+    <ReferencePath Include="C:\Solucion actual\trunk\lib\NHibernate.dll" />
+    <ReferencePath Include="C:\Solucion actual\trunk\lib\NLog.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\PresentationCore.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\PresentationFramework.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.configuration.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.DataSetExtensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Runtime.Serialization.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.ServiceModel.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Web.Extensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xaml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.Linq.dll" />
+    <ReferencePath Include="C:\Solucion actual\trunk\src\Comun\ObjetosComunes\bin\Debug\Trascend.Bolet.ObjetosComunes.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\WindowsBase.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Abandonos\ConsultarAbondonos.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Abandonos\GestionarAbandono.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Administracion\Gestiones Automaticas\ConsultarCorreosParaGestionAutomatica.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Administracion\Gestiones Automaticas\GestionarDetallesCorreoOutlook.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Agentes\AgregarAgente.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Agentes\ConsultarAgente.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Agentes\ConsultarAgentes.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Anexos\AgregarAnexo.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Anualidades\ConsultarAnualidades.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Anualidades\GestionarAnualidades.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Asociados\AgregarAsociado.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Asociados\ConsultarAsociado.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Asociados\ConsultarAsociados.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Asociados\ListaConectividad.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Asociados\ListaEmails.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Asociados\ListaDatosTransferencias.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Asociados\ListaContactos.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Asociados\ListaJustificaciones.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Auditorias\ListaAuditorias.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Base\Comodin.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\CartasOuts\ConsultarCartasOuts.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Cartas\AgregarCarta.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Cartas\ConsultarContactosPorAsociado.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Cartas\ConsultarCarta.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Contactos\ConsultarContactos.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Contactos\ConsultarContacto.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Contactos\AgregarContacto.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Anexos\ConsultarAnexo.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Anexos\ConsultarAnexos.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Categorias\AgregarCategoria.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Categorias\ConsultarCategoria.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Categorias\ConsultarCategorias.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Cartas\ConsultarCartas.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\AbandonosPatente\ConsultarAbondonosPatente.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\AbandonosPatente\GestionarAbandonoPatente.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EmailsAsociado\AgregarEmailAsociado.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EmailsAsociado\ConsultarEmailAsociado.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Inventores\QueryInventor.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\MarcasTercero\GestionarInfoAdicionalMarcaTercero.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\MarcasTercero\InfoAdicionalInteresadosAsociadosMarcaTerceros.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Marcas\GestionarArchivoDeMarca.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Marcas\GestionarCertificadoDeMarca.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Marcas\GestionarFechaDeMarca.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Marcas\ListaFechasDeMarca.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Patentes\GestionarArchivoDePatente.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Plantillas\AnalizarDetallePlantilla.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Plantillas\AnalizarEncabezadoPlantilla.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Plantillas\GestionarFiltroDePlantilla.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Plantillas\GestionarMaestroPlantilla.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Plantillas\ListaValoresDetalle.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Plantillas\ListaValoresEncabezado.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\TiposEmailAsociado\ConsultarTiposEmailAsociado.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\TiposEmailAsociado\GestionarTipoEmailAsociado.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Corresponsales\AgregarCorresponsal.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Corresponsales\ConsultarCorresponsales.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\MarcasTercero\ConsultaMarcasTercero.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\MarcasTercero\GestionarInfoBolMarcaTer.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\MarcasTercero\ListaInfoBolMarcaTeres.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Marcas\GestionarInstruccionDeRenovacion.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Marcas\ListaInstruccionesRenovacion.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Memorias\AgregarMemoria.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Memorias\ConsultarMemoria.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\FechasPatente\AgregarFecha.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\FechasPatente\ConsultarFecha.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Patentes\ListaMemorias.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosPatente\ContestacionAOposicion.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosPatente\ConsignacionDeJuramentoYPoder.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosPatente\ConsignacionDeJuramento.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosPatente\ConsignacionDePoder.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosPatente\ConsignacionDePrioridadExtranjera.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosPatente\OficioDeJuramento.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosPatente\OficioDePoder.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosPatente\OficioDeJuramentoYPoder.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosPatente\CorreccionVoluntaria.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosPatente\OficioDeFondo.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosPatente\ReconsideracionPerimidaVariante.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosPatente\ReconsideracionDePerencion.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosPatente\CorreccionErrorDePublicacionEnPrensa.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosPatente\ProrrogaDeContestacionDeOposicion.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosPatente\ProrrogaDeForma.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosPatente\ProrrogaDeFondo.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosPatente\NumeracionDePoder.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosPatente\ReconsideracionPrioridadExtinguida.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosPatente\PagoDeAnualidad.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosPatente\ExamenDePatentabilidad.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Inventores\AgregarInventor.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Inventores\ConsultarInventor.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosMarca\CertificadoDeOrigen.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosMarca\CambioDeTramitante.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosMarca\ConsignacionDeBusqueda.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosMarca\ReingresoDePoderAnexo.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosMarca\ReingresoDeDistingue.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosMarca\ReingresoDePoderYPrioridad.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosMarca\ReingresoDePoderYReclasificacion.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosMarca\ReingresoDePoderPresentado.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosMarca\ReingresoDePoderDistingueConSinClasificacion.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosMarca\ReingresoDeClasificacion.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosMarca\ReingresoDeNombreDeMarca.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosMarca\NotificacionDeIngresoDePoder.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosMarca\RenunciaParcial.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosMarca\ContinuacionDeTramite.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosMarca\CorreccionDelDistingue.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosMarca\PrioridadExtranjera.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosMarca\NumeracionDePoderPorInteresado.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosMarca\CopiaCertificada.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosMarca\CorreccionErrorMaterial.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosMarca\CorreccionErrorMaterialDistingue.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosMarca\NumeracionDePoderPorMarca.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosMarca\DeDesistimiento.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EscritosMarca\LimitacionDelDistingue.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\MarcasTercero\GestionarMarcaTercero.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Patentes\ListaFechas.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Patentes\GestionarInfoAdicional.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Patentes\GestionarInfoBol.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Patentes\GestionarPatente.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Patentes\ConsultarPatentes.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Patentes\ListaInfoBoles.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Patentes\ListaInventores.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Patentes\ListaOperaciones.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Recordatorios\ConsultarRecordatorios.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EntradasAlternas\AgregarEntradaAlterna.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EntradasAlternas\ConsultarEntradaAlterna.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EntradasAlternas\ConsultarEntradasAlternas.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EstadosMarca\AgregarEstadoMarca.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EstadosMarca\ConsultarEstadoMarca.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\EstadosMarca\ConsultarEstadosMarcas.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Marcas\AgregarMarca.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Marcas\ListaOperaciones.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Marcas\ListaBusquedas.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Marcas\GestionarBusqueda.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Marcas\GestionarInfoBol.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Marcas\GestionarAnaqua.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Marcas\GestionarInfoAdicional.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Marcas\ConsultarMarcas.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Marcas\ConsultarMarca.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Marcas\ListaInfoBoles.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Medios\AgregarMedio.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Medios\ConsultarMedio.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Medios\ConsultarMedios.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Remitentes\AgregarRemitente.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Remitentes\ConsultarRemitente.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Remitentes\ConsultarRemitentes.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\DatosTransferencias\AgregarDatosTransferencia.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\DatosTransferencias\ConsultarDatosTransferencia.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Interesados\AgregarInteresado.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Interesados\ConsultarInteresado.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Interesados\ConsultarInteresados.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Interesados\ListaPoderes.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Justificaciones\AgregarJustificacion.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Justificaciones\ConsultarJustificacion.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Objetos\GestionarObjetos.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Poderes\AgregarPoder.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Poderes\ConsultarPoder.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Poderes\ConsultarPoderes.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Estatuses\AgregarEstatus.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Estatuses\ConsultarEstatus.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Estatuses\ConsultarEstatuses.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Poderes\GestionarPoderesXAgentes.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Renovaciones\ConsultarRenovaciones.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Renovaciones\GestionarRenovacion.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\ReportesPatentes\ReportesBotones.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Reportes\Carta1.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Reportes\Carta2.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Reportes\Carta14.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Reportes\Carta16.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Reportes\Carta16M.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Reportes\Carta16P.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Resumenes\AgregarResumen.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Resumenes\ConsultarResumen.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Resumenes\ConsultarResumenes.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Roles\AgregarRol.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Roles\ConsultarRol.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Roles\ConsultarRoles.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\TiposBase\AgregarTipoBase.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\TiposBase\ConsultarTipoBase.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\TiposBase\ConsultarTiposBase.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\TipoFechas\AgregarTipoFecha.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\TipoFechas\ConsultarTipoFecha.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\TipoFechas\ConsultarTipoFechas.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Resoluciones\AgregarResolucion.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Resoluciones\ConsultarResolucion.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Resoluciones\ConsultarResoluciones.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\TipoInfoboles\AgregarTipoInfobol.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\TipoInfoboles\ConsultarTipoInfobol.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\TipoInfoboles\ConsultarTipoInfoboles.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Internacionales\AgregarInternacional.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Internacionales\ConsultarInternacional.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Internacionales\ConsultarInternacionales.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Paises\AgregarPais.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Paises\ConsultarPais.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Paises\ConsultarPaises.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Boletines\AgregarBoletin.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Boletines\ConsultarBoletin.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Boletines\ConsultarBoletines.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Estados\AgregarEstado.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Estados\ConsultarEstado.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Estados\ConsultarEstados.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Logines\Login.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Nacionales\AgregarNacional.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Nacionales\ConsultarNacional.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Nacionales\ConsultarNacionales.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Objetos\AgregarObjeto.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Objetos\ConsultarObjeto.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Objetos\ConsultarObjetos.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Objetos\GestionarObjetosXRoles.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Principales\PaginaPrincipal.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Principales\VentanaPrincipal.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\TraspasosPatentes\CambiosDeDomicilioPatentes\ConsultarCambiosDeDomicilioPatentes.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\TraspasosPatentes\CambiosDeDomicilioPatentes\GestionarCambioDeDomicilioPatentes.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\TraspasosPatentes\CambiosDeNombrePatentes\ConsultarCambiosDeNombrePatentes.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\TraspasosPatentes\CambiosDeNombrePatentes\GestionarCambioDeNombrePatentes.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\TraspasosPatentes\CambiosPeticionarioPatentes\ConsultarCambiosPeticionarioPatentes.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\TraspasosPatentes\CambiosPeticionarioPatentes\GestionarCambioPeticionarioPatentes.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\TraspasosPatentes\CesionesPatentes\ConsultarCesionesPatentes.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\TraspasosPatentes\CesionesPatentes\GestionarCesionPatentes.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\TraspasosPatentes\FusionesPatentes\ConsultarFusionesPatentes.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\TraspasosPatentes\FusionesPatentes\GestionarFusionPatentes.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\TraspasosPatentes\LicenciasPatentes\ConsultarLicenciasPatentes.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\TraspasosPatentes\LicenciasPatentes\GestionarLicenciaPatentes.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Traspasos\CambiosDeNombre\ConsultarCambiosDeNombre.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Traspasos\CambiosDeNombre\GestionarCambioDeNombre.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Traspasos\Cesiones\ConsultarCesiones.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Traspasos\Cesiones\GestionarCesion.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Traspasos\Licencias\ConsultarLicencias.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Traspasos\Licencias\GestionarLicencia.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Traspasos\CambiosDeDomicilio\ConsultarCambiosDeDomicilio.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Traspasos\CambiosDeDomicilio\GestionarCambioDeDomicilio.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Traspasos\CambiosPeticionario\ConsultarCambiosPeticionario.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Traspasos\CambiosPeticionario\GestionarCambioPeticionario.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Traspasos\Fusiones\ConsultarFusiones.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Traspasos\Fusiones\GestionarFusion.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Usuarios\ConsultarUsuarios.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Usuarios\ConsultarUsuario.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\Ventanas\Usuarios\AgregarUsuario.g.cs" />
+    <Compile Include="C:\Solucion actual\trunk\src\Cliente\Cliente\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs" />
+  </ItemGroup>
+</Project>

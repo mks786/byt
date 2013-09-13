@@ -229,6 +229,45 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         }
 
 
+        /// <summary>
+        /// Metodo que devuelve el DaoCamposReporte
+        /// </summary>
+        /// <returns>IDaoCamposReporte</returns>
+        public override IDaoCamposReporte ObtenerDaoCamposReporte()
+        {
+            return new DaoCamposReporteNHibernate();
+        }
+
+
+        /// <summary>
+        /// Metodo que devuelve el DaoReporte
+        /// </summary>
+        /// <returns>IDaoReporteDeMarca</returns>
+        public override IDaoReporte ObtenerDaoReporte()
+        {
+            return new DaoReporteNHibernate();
+        }
+
+
+        /// <summary>
+        /// Metodo que devuelve el DaoCamposReporteDeMarca
+        /// </summary>
+        /// <returns>IDaoCamposReporteDeMarca</returns>
+        public override IDaoCamposReporteRelacion ObtenerDaoCamposReporteRelacion()
+        {
+            return new DaoCamposReporteRelacionNHibernate();
+        }
+
+
+        /// <summary>
+        /// Metodo que devuelve el DaoFiltroReporteDeMarca
+        /// </summary>
+        /// <returns>IDaoFiltroReporteDeMarca</returns>
+        public override IDaoFiltroReporte ObtenerDaoFiltroReporte()
+        {
+            return new DaoFiltroReporteNHibernate();
+        }
+
 
         /// <summary>
         /// Método que devuelve el DaoCaja
@@ -239,7 +278,16 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoCajaNHibernate();
         }
 
+        /// <summary>
+        /// Método que devuelve el DaoVistaReporte
+        /// </summary>
+        /// <returns>IDaoVistaReporte</returns>
+        public override IDaoVistaReporte ObtenerDaoVistaReporte()
+        {
+            return new DaoVistaReporteNHibernate();
+        }
 
+        
         /// <summary>
         /// Método que devuelve el DaoArchivo
         /// </summary>

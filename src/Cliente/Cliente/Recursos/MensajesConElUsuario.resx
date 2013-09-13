@@ -1417,4 +1417,16 @@
   <data name="ConfirmacionEliminarFiltroPlantilla" xml:space="preserve">
     <value>¿Está seguro que desea eliminar el filtro de la plantilla seleccionada?</value>
   </data>
+  <data name="ConfirmarModificarReporte" xml:space="preserve">
+    <value>¿Está seguro que desea guardar los cambios del Reporte actual?</value>
+  </data>
+  <data name="ConfirmarModificacionFiltrosDeReporte" xml:space="preserve">
+    <value>¿Está seguro que desea modificar los filtros de este Reporte?</value>
+  </data>
+  <data name="ReporteDeMarcaVacio" xml:space="preserve">
+    <value>Debe guardar primero los cambios en el Reporte para poder agregar Filtros</value>
+  </data>
+  <data name="ErrorEjecucionReporte" xml:space="preserve">
+    <value>Se ha producido el siguiente error generando el Reporte: </value>
+  </data>
 </root>

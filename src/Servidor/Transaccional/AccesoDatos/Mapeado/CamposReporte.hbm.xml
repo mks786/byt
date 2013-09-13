@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="CamposReporte" table="MYP_REP_CAMPOS">
+
+    <id name="Id" column="IDCAMPO" type="string" />
+
+    <!--<composite-id>
+      <key-property name="Id" column="CCAMPO" type="string"/>
+      <key-property name="TipoDeReporte" column="TIPOREPORTE" type="string"/>
+    </composite-id>-->
+    
+    <property name="NombreCampo" column="CCAMPO" type="string"/>
+    <property name="TipoDeCampo" column="TIPOCAMPO" type="string"/>
+    <property name="Clase" column="CLASE" type="string"/>
+    <property name="TipoDeReporte" column="TIPOREPORTE" type="string"/>
+    <property name="EncabezadoEspanol" column="ENCAB_ESP" type="string"/>
+    <property name="EncabezadoIngles" column="ENCAB_ING" type="string"/>
+    <property name="AdicionalEspanol" column="ADICIONAL_ESP" type="string"/>
+    <property name="AdicionalIngles" column="ADICIONAL_ING" type="string"/>   
+
+  </class>
+  
+</hibernate-mapping>
+

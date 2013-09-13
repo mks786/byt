@@ -155,6 +155,11 @@
     <Compile Include="Contratos\Plantillas\IGestionarMaestroPlantilla.cs" />
     <Compile Include="Contratos\Plantillas\IListaValoresDetalle.cs" />
     <Compile Include="Contratos\Plantillas\IListaValoresEncabezado.cs" />
+    <Compile Include="Contratos\ReportesMaestro\IConsultarReportes.cs" />
+    <Compile Include="Contratos\ReportesMaestro\IGestionarFiltrosReporte.cs" />
+    <Compile Include="Contratos\ReportesMaestro\IGestionarReporte.cs" />
+    <Compile Include="Contratos\ReportesMaestro\IGestionarValoresFiltrosDeReporte.cs" />
+    <Compile Include="Contratos\ReportesMaestro\IVisualizarReporte.cs" />
     <Compile Include="Contratos\TiposEmailAsociado\IGestionarTipoEmailAsociado.cs" />
     <Compile Include="Contratos\TiposEmailAsociado\IConsultarTiposEmailAsociado.cs" />
     <Compile Include="Contratos\Corresponsales\IAgregarCorresponsal.cs" />
@@ -599,6 +604,11 @@
     <Compile Include="Presentadores\Plantillas\PresentadorGestionarMaestroPlantilla.cs" />
     <Compile Include="Presentadores\Plantillas\PresentadorListaValoresDetalle.cs" />
     <Compile Include="Presentadores\Plantillas\PresentadorListaValoresEncabezado.cs" />
+    <Compile Include="Presentadores\ReportesMaestro\PresentadorConsultarReportes.cs" />
+    <Compile Include="Presentadores\ReportesMaestro\PresentadorGestionarFiltroReporte.cs" />
+    <Compile Include="Presentadores\ReportesMaestro\PresentadorGestionarReporte.cs" />
+    <Compile Include="Presentadores\ReportesMaestro\PresentadorGestionarValoresFiltrosDeReporte.cs" />
+    <Compile Include="Presentadores\ReportesMaestro\PresentadorVisualizarReporte.cs" />
     <Compile Include="Presentadores\TiposEmailAsociado\PresentadorGestionarTipoEmailAsociado.cs" />
     <Compile Include="Presentadores\TiposEmailAsociado\PresentadorConsultarTiposEmailAsociado.cs" />
     <Compile Include="Presentadores\Corresponsales\PresentadorAgregarCorresponsal.cs" />
@@ -1115,6 +1125,21 @@
     </Compile>
     <Compile Include="Ventanas\Plantillas\ListaValoresEncabezado.xaml.cs">
       <DependentUpon>ListaValoresEncabezado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\ReportesMaestro\ConsultarReportes.xaml.cs">
+      <DependentUpon>ConsultarReportes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\ReportesMaestro\GestionarFiltrosReporte.xaml.cs">
+      <DependentUpon>GestionarFiltrosReporte.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\ReportesMaestro\GestionarReporte.xaml.cs">
+      <DependentUpon>GestionarReporte.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\ReportesMaestro\GestionarValoresFiltrosDeReporte.xaml.cs">
+      <DependentUpon>GestionarValoresFiltrosDeReporte.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\ReportesMaestro\VisualizarReporte.xaml.cs">
+      <DependentUpon>VisualizarReporte.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\TiposEmailAsociado\ConsultarTiposEmailAsociado.xaml.cs">
       <DependentUpon>ConsultarTiposEmailAsociado.xaml</DependentUpon>
@@ -1881,6 +1906,26 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\Plantillas\ListaValoresEncabezado.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\ReportesMaestro\ConsultarReportes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\ReportesMaestro\GestionarFiltrosReporte.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\ReportesMaestro\GestionarReporte.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\ReportesMaestro\GestionarValoresFiltrosDeReporte.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\ReportesMaestro\VisualizarReporte.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -93,6 +93,13 @@
     <Compile Include="Comandos\ComandosCambioPeticionario\ComandoEliminarCambioPeticionario.cs" />
     <Compile Include="Comandos\ComandosCambioPeticionario\ComandoInsertarOModificarCambioPeticionario.cs" />
     <Compile Include="Comandos\ComandosCambioPeticionario\ComandoVerificarExistenciaCambioPeticionario.cs" />
+    <Compile Include="Comandos\ComandosCamposReporteRelacion\ComandoConsultarCamposDeReporte.cs" />
+    <Compile Include="Comandos\ComandosCamposReporteRelacion\ComandoEliminarCampoRelacion.cs" />
+    <Compile Include="Comandos\ComandosCamposReporteRelacion\ComandoEliminarCamposReporte.cs" />
+    <Compile Include="Comandos\ComandosCamposReporteRelacion\ComandoInsertarOModificarCamposReporte.cs" />
+    <Compile Include="Comandos\ComandosCamposReporte\ComandoConsultarTodosCamposReporte.cs" />
+    <Compile Include="Comandos\ComandosCamposReporte\ComandoObtenerCamposReporteDeMarca.cs" />
+    <Compile Include="Comandos\ComandosCamposReporte\ComandoObtenerCamposReporteDePatente.cs" />
     <Compile Include="Comandos\ComandosCartaOut\ComandoConsultarCartasOutsFiltro.cs" />
     <Compile Include="Comandos\ComandosCartaOut\ComandoConsultarTodosCartaOuts.cs" />
     <Compile Include="Comandos\ComandosCartaOut\ComandoInsertarOModificarCartaOut.cs" />
@@ -128,6 +135,9 @@
     <Compile Include="Comandos\ComandosFiltroPlantilla\ComandoConsultarTodosFiltroPlantilla.cs" />
     <Compile Include="Comandos\ComandosFiltroPlantilla\ComandoEliminarFiltroPlantilla.cs" />
     <Compile Include="Comandos\ComandosFiltroPlantilla\ComandoInsertarOModificarFiltroPlantilla.cs" />
+    <Compile Include="Comandos\ComandosFiltroReporte\ComandoConsultarFiltrosReporte.cs" />
+    <Compile Include="Comandos\ComandosFiltroReporte\ComandoEliminarFiltroDeReporte.cs" />
+    <Compile Include="Comandos\ComandosFiltroReporte\ComandoInsertarOModificarFiltroReporte.cs" />
     <Compile Include="Comandos\ComandosFusionMarcaTercero\ComandoConsultarFusionMarcaTerceroPorFusion.cs" />
     <Compile Include="Comandos\ComandosFusionPatenteTercero\ComandoConsultarFusionPatenteTerceroPorFusion.cs" />
     <Compile Include="Comandos\ComandosFusion\ComandoConsultarFusionesFiltro.cs" />
@@ -177,6 +187,9 @@
     <Compile Include="Comandos\ComandosRenovacion\ComandoConsultarRenovacionesFiltro.cs" />
     <Compile Include="Comandos\ComandosRenovacion\ComandoVerificarExistenciaRenovacion.cs" />
     <Compile Include="Comandos\ComandosRenovacion\ComandoConsultarUltimaRenovacion.cs" />
+    <Compile Include="Comandos\ComandosReporte\ComandoConsultarTodosReporte.cs" />
+    <Compile Include="Comandos\ComandosReporte\ComandoInsertarOModificarReporte.cs" />
+    <Compile Include="Comandos\ComandosReporte\ComandoObtenerReporteFiltro.cs" />
     <Compile Include="Comandos\ComandosReportePatente\ComandoConsultarReportePatentePorCodigoPatente.cs" />
     <Compile Include="Comandos\ComandosResumen\ComandoVerificarExistenciaResumen.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoVerificarExistenciaCarta.cs" />
@@ -440,6 +453,7 @@
     <Compile Include="Comandos\ComandosEmailAsociado\ComandoEliminarTipoEmailAsociado.cs" />
     <Compile Include="Comandos\ComandosEmailAsociado\ComandoInsertarOModificarTipoEmailAsociado.cs" />
     <Compile Include="Comandos\ComandosEmailAsociado\ComandoVerificarExistenciaTipoEmailAsociado.cs" />
+    <Compile Include="Comandos\ComandosVistaReporte\ComandoConsultarTodosVistasReporte.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
@@ -447,13 +461,17 @@
     <Compile Include="Fabrica\FabricaComandosAlmacen.cs" />
     <Compile Include="Fabrica\FabricaComandosArchivo.cs" />
     <Compile Include="Fabrica\FabricaComandosCaja.cs" />
+    <Compile Include="Fabrica\FabricaComandosCamposReporte.cs" />
+    <Compile Include="Fabrica\FabricaComandosCamposReporteRelacion.cs" />
     <Compile Include="Fabrica\FabricaComandosCertificadoMarca.cs" />
     <Compile Include="Fabrica\FabricaComandosEmailAsociado.cs" />
     <Compile Include="Fabrica\FabricaComandosFechaMarca.cs" />
     <Compile Include="Fabrica\FabricaComandosFiltroPlantilla.cs" />
+    <Compile Include="Fabrica\FabricaComandosFiltroReporte.cs" />
     <Compile Include="Fabrica\FabricaComandosMaestroDePlantilla.cs" />
     <Compile Include="Fabrica\FabricaComandosPlantilla.cs" />
     <Compile Include="Fabrica\FabricaComandosRegistrador.cs" />
+    <Compile Include="Fabrica\FabricaComandosReporte.cs" />
     <Compile Include="Fabrica\FabricaComandosTipoCaja.cs" />
     <Compile Include="Fabrica\FabricaComandosTipoDocumento.cs" />
     <Compile Include="Fabrica\FabricaComandosTipoEmailAsociado.cs" />
@@ -541,6 +559,7 @@
     <Compile Include="Fabrica\FabricaComandosRol.cs" />
     <Compile Include="Fabrica\FabricaComandosDepartamento.cs" />
     <Compile Include="Fabrica\FabricaComandosUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosVistaReporte.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

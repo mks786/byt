@@ -51,16 +51,20 @@
     <Compile Include="Controladores\ControladorArchivo.cs" />
     <Compile Include="Controladores\ControladorBusqueda.cs" />
     <Compile Include="Controladores\ControladorCaja.cs" />
+    <Compile Include="Controladores\ControladorCamposReporte.cs" />
+    <Compile Include="Controladores\ControladorCamposReporteRelacion.cs" />
     <Compile Include="Controladores\ControladorCertificadoMarca.cs" />
     <Compile Include="Controladores\ControladorCorresponsal.cs" />
     <Compile Include="Controladores\ControladorEstado.cs" />
     <Compile Include="Controladores\ControladorEstadoMarca.cs" />
     <Compile Include="Controladores\ControladorFechaMarca.cs" />
     <Compile Include="Controladores\ControladorFiltroPlantilla.cs" />
+    <Compile Include="Controladores\ControladorFiltroReporte.cs" />
     <Compile Include="Controladores\ControladorMaestroDePlantilla.cs" />
     <Compile Include="Controladores\ControladorObjeto.cs" />
     <Compile Include="Controladores\ControladorPlantilla.cs" />
     <Compile Include="Controladores\ControladorRegistrador.cs" />
+    <Compile Include="Controladores\ControladorReporte.cs" />
     <Compile Include="Controladores\ControladorTipoBase.cs" />
     <Compile Include="Controladores\ControladorTipoCaja.cs" />
     <Compile Include="Controladores\ControladorTipoDocumento.cs" />
@@ -137,6 +141,7 @@
     <Compile Include="Controladores\ControladorReportePatente.cs" />
     <Compile Include="Controladores\ControladorEmailAsociado.cs" />
     <Compile Include="Controladores\ControladorTipoEmailAsociado.cs" />
+    <Compile Include="Controladores\ControladorVistaReporte.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

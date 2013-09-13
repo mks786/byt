@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="CamposReporteRelacion" table="MYP_REP_RELACION">
+
+    <composite-id>
+      <key-many-to-one name="Reporte" column="CPLANTILLA" class="Reporte" lazy="false"/>
+      <key-many-to-one name="Campo" column="IDCAMPO" class="CamposReporte" lazy="false"/>
+    </composite-id>
+    
+    <property name="PosicionCampo" column="POSICION" type="int"/>
+    <property name="StatusCampo" column="BORRADO" type="string"/>
+    <property name="CampoFiltro" column="FILTRO" type="string"/>
+    
+  </class>
+
+</hibernate-mapping>

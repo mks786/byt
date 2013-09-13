@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="Reporte" table="MYP_REP_REPORTE">
+
+    
+    <!--<composite-id>
+      <key-property name="Id" column="CPLANTILLA" type="int"/>
+      <key-many-to-one name="VistaReporte" column="CVISTA" class="VistaReporte" lazy="false"/>
+    </composite-id>-->
+    <id name="Id" column="CPLANTILLA" type="int" />
+    <property name="Descripcion" column="XPLANTILLA" type="string"/>
+    <property name="Usuario" column="XUSUARIO" type="string"/>
+    <property name="TituloEspanol" column="TITULO_ES" type="string"/>
+    <property name="TituloIngles" column="TITULO_ING" type="string"/>
+    
+    <many-to-one name="Idioma" class="Idioma" lazy="false">
+      <column name="CIDIOMA"/>
+    </many-to-one>
+
+    <many-to-one name="VistaReporte" class="VistaReporte" lazy="false">
+      <column name="CVISTA"/>
+    </many-to-one>
+
+  </class>
+</hibernate-mapping>

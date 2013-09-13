@@ -1241,6 +1241,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a ¿Está seguro que desea modificar los filtros de este Reporte?.
+        /// </summary>
+        internal static string ConfirmarModificacionFiltrosDeReporte {
+            get {
+                return ResourceManager.GetString("ConfirmarModificacionFiltrosDeReporte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a ¿Está seguro que desea modificar el Archivo para la Marca {0}?.
         /// </summary>
         internal static string ConfirmarModificarArchivoMarca {
@@ -1300,6 +1309,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ConfirmarModificarPoder {
             get {
                 return ResourceManager.GetString("ConfirmarModificarPoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ¿Está seguro que desea guardar los cambios del Reporte actual?.
+        /// </summary>
+        internal static string ConfirmarModificarReporte {
+            get {
+                return ResourceManager.GetString("ConfirmarModificarReporte", resourceCulture);
             }
         }
         
@@ -1525,6 +1543,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ErrorCorresponsalRepetido {
             get {
                 return ResourceManager.GetString("ErrorCorresponsalRepetido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Se ha producido el siguiente error generando el Reporte: .
+        /// </summary>
+        internal static string ErrorEjecucionReporte {
+            get {
+                return ResourceManager.GetString("ErrorEjecucionReporte", resourceCulture);
             }
         }
         
@@ -3721,6 +3748,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string RenovacionTercero {
             get {
                 return ResourceManager.GetString("RenovacionTercero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Debe guardar primero los cambios en el Reporte para poder agregar Filtros.
+        /// </summary>
+        internal static string ReporteDeMarcaVacio {
+            get {
+                return ResourceManager.GetString("ReporteDeMarcaVacio", resourceCulture);
             }
         }
         

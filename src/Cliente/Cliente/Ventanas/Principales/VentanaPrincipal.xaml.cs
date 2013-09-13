@@ -506,6 +506,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.IrCarta(((MenuItem)sender).Name);
         }
 
+        private void _menuItemGeneradorReporteMarcaConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarReportesDeMarca();
+        }
+
+        private void _menuItemGeneradorReporteMarcaGestionar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarReporteDeMarca();
+        }
+
         #region Escritos
 
         private void _menuItemEscritos_Click(object sender, RoutedEventArgs e)
@@ -1218,6 +1228,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         {
             this._presentador.IrConsultarInventores();
         }
+
+        
 
         
 

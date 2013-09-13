@@ -1111,4 +1111,56 @@
     <value>Select fp from FiltroPlantilla fp where fp.Plantilla.Id = {0} and fp.TipoDeFiltro = 'D' order by fp.NombreVariableFiltro asc</value>
     <comment>Consulta para obtener los filtros de detalle de una plantilla</comment>
   </data>
+  <data name="ObtenerCamposDeReporteDeMarca" xml:space="preserve">
+    <value>Select cr from CamposReporte cr where cr.TipoDeReporte = 'MYP_DATA_MARCAS'</value>
+    <comment>Obtiene todos los campos definidos para el Reporte de Marca</comment>
+  </data>
+  <data name="ObtenerCamposDeReporteDePatente" xml:space="preserve">
+    <value>Select cr from CamposReporte cr where cr.TipoDeReporte = 'MYP_DATA_PATENTES'</value>
+    <comment>Obtiene todos los campos definidos para el Reporte de Patente</comment>
+  </data>
+  <data name="ObtenerCamposSeleccionadosDeReporte" xml:space="preserve">
+    <value>Select crr from CamposReporteRelacion crr where crr.Reporte.Id = {0} order by crr.PosicionCampo asc</value>
+    <comment>Obtiene los campos de un reporte seleccionado y previamente existente. </comment>
+  </data>
+  <data name="ObtenerFiltrosDeReporte" xml:space="preserve">
+    <value>Select fr from FiltroReporte fr where fr.Reporte.Id = {0}</value>
+    <comment>Para obtener los filtros configurados para un reporte especifico</comment>
+  </data>
+  <data name="CabeceraObtenerReporte" xml:space="preserve">
+    <value>Select r from Reporte r left join fetch r.Idioma as idioma left join fetch r.VistaReporte as vistaReporte where </value>
+    <comment>Cabecera de la consulta para obtener Reportes por filtro</comment>
+  </data>
+  <data name="FiltroObtenerReporteDescripcion" xml:space="preserve">
+    <value>upper(r.Descripcion) like '%{0}%'</value>
+    <comment>Filtro por Descripcion Reporte de Marca</comment>
+  </data>
+  <data name="FiltroObtenerReporteId" xml:space="preserve">
+    <value>r.Id = {0}</value>
+    <comment>Filtro por Id Reporte de Marca</comment>
+  </data>
+  <data name="FiltroObtenerReporteIdioma" xml:space="preserve">
+    <value>idioma.Id = '{0}'</value>
+    <comment>Filtro por Idioma Reporte de Marca</comment>
+  </data>
+  <data name="FiltroObtenerReporteTituloEspanol" xml:space="preserve">
+    <value>upper(r.TituloEspanol) like '%{0}%'</value>
+    <comment>Filtro por Titulo en Español Reporte de Marca</comment>
+  </data>
+  <data name="FiltroObtenerReporteTituloIngles" xml:space="preserve">
+    <value>upper(r.TituloIngles) like '%{0}%'</value>
+    <comment>Filtro por Titulo en Ingles Reporte de Marca</comment>
+  </data>
+  <data name="FiltroObtenerReporteUsuario" xml:space="preserve">
+    <value>r.Usuario like '%{0}%'</value>
+    <comment>Filtro por Usuario Reporte de Marca</comment>
+  </data>
+  <data name="EliminarCamposReporteDeMarcaPorCodigoReporte" xml:space="preserve">
+    <value>Delete from CamposReporteDeMarca crm where crm.ReporteDeMarca.Id = {0}</value>
+    <comment>Eliminacion de los campos definidos para un Reporte de Marca para su actualizacion</comment>
+  </data>
+  <data name="FiltroObtenerReporteVistaReporte" xml:space="preserve">
+    <value>vistaReporte.Id  = {0}</value>
+    <comment>Filtro para obtener un reporte por la vista que se esta usando con el mismo</comment>
+  </data>
 </root>

@@ -46,13 +46,17 @@
     <Compile Include="ContratosServicios\IAlmacenServicios.cs" />
     <Compile Include="ContratosServicios\IArchivoServicios.cs" />
     <Compile Include="ContratosServicios\ICajaServicios.cs" />
+    <Compile Include="ContratosServicios\ICamposReporteRelacionServicios.cs" />
+    <Compile Include="ContratosServicios\ICamposReporteServicios.cs" />
     <Compile Include="ContratosServicios\ICertificadoMarcaServicios.cs" />
     <Compile Include="ContratosServicios\IEmailAsociadoServicios.cs" />
     <Compile Include="ContratosServicios\IFechaMarcaServicios.cs" />
     <Compile Include="ContratosServicios\IFiltroPlantillaServicios.cs" />
+    <Compile Include="ContratosServicios\IFiltroReporteServicios.cs" />
     <Compile Include="ContratosServicios\IMaestroDePlantillaServicios.cs" />
     <Compile Include="ContratosServicios\IPlantillaServicios.cs" />
     <Compile Include="ContratosServicios\IRegistradorServicios.cs" />
+    <Compile Include="ContratosServicios\IReporteServicios.cs" />
     <Compile Include="ContratosServicios\ITipoCajaServicios.cs" />
     <Compile Include="ContratosServicios\ITipoDocumentoServicios.cs" />
     <Compile Include="ContratosServicios\ITipoEmailAsociadoServicios.cs" />
@@ -132,6 +136,7 @@
     <Compile Include="ContratosServicios\IObjetoServicios.cs" />
     <Compile Include="ContratosServicios\IRolServicios.cs" />
     <Compile Include="ContratosServicios\IServicioBase.cs" />
+    <Compile Include="ContratosServicios\IVistaReporteServicios.cs" />
     <Compile Include="Entidades\Almacen.cs" />
     <Compile Include="Entidades\Archivo.cs" />
     <Compile Include="Entidades\Auditoria.cs" />
@@ -139,6 +144,8 @@
     <Compile Include="Entidades\BatPlantilla.cs" />
     <Compile Include="Entidades\Busqueda.cs" />
     <Compile Include="Entidades\Caja.cs" />
+    <Compile Include="Entidades\CamposReporte.cs" />
+    <Compile Include="Entidades\CamposReporteRelacion.cs" />
     <Compile Include="Entidades\CertificadoMarca.cs" />
     <Compile Include="Entidades\Concepto.cs" />
     <Compile Include="Entidades\Conectividad.cs" />
@@ -215,9 +222,11 @@
     <Compile Include="Entidades\FacViGestionAsociado.cs" />
     <Compile Include="Entidades\FechaMarca.cs" />
     <Compile Include="Entidades\FiltroPlantilla.cs" />
+    <Compile Include="Entidades\FiltroReporte.cs" />
     <Compile Include="Entidades\MaestroDePlantilla.cs" />
     <Compile Include="Entidades\Plantilla.cs" />
     <Compile Include="Entidades\Registrador.cs" />
+    <Compile Include="Entidades\Reporte.cs" />
     <Compile Include="Entidades\TipoCaja.cs" />
     <Compile Include="Entidades\TipoDocumento.cs" />
     <Compile Include="Entidades\TipoEmailAsociado.cs" />
@@ -285,6 +294,7 @@
     <Compile Include="Entidades\Objeto.cs" />
     <Compile Include="Entidades\Rol.cs" />
     <Compile Include="Entidades\Usuario.cs" />
+    <Compile Include="Entidades\VistaReporte.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -61,6 +61,8 @@
     <Compile Include="Implementacion\AsociadoServicios.cs" />
     <Compile Include="Implementacion\BusquedaServicios.cs" />
     <Compile Include="Implementacion\CajaServicios.cs" />
+    <Compile Include="Implementacion\CamposReporteRelacionServicios.cs" />
+    <Compile Include="Implementacion\CamposReporteServicios.cs" />
     <Compile Include="Implementacion\CertificadoMarcaServicios.cs" />
     <Compile Include="Implementacion\ConceptoServicios.cs" />
     <Compile Include="Implementacion\ContactoServicios.cs" />
@@ -81,9 +83,11 @@
     <Compile Include="Implementacion\AnualidadServicios.cs" />
     <Compile Include="Implementacion\FechaMarcaServicios.cs" />
     <Compile Include="Implementacion\FiltroPlantillaServicios.cs" />
+    <Compile Include="Implementacion\FiltroReporteServicios.cs" />
     <Compile Include="Implementacion\MaestroDePlantillaServicios.cs" />
     <Compile Include="Implementacion\PlantillaServicios.cs" />
     <Compile Include="Implementacion\RegistradorServicios.cs" />
+    <Compile Include="Implementacion\ReporteServicios.cs" />
     <Compile Include="Implementacion\TipoCajaServicios.cs" />
     <Compile Include="Implementacion\TipoDocumentoServicios.cs" />
     <Compile Include="Implementacion\TipoEmailAsociadoServicios.cs" />
@@ -143,6 +147,7 @@
     <Compile Include="Implementacion\EstadoServicios.cs" />
     <Compile Include="Implementacion\ObjetoServicios.cs" />
     <Compile Include="Implementacion\RolServicios.cs" />
+    <Compile Include="Implementacion\VistaReporteServicios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Implementacion\UsuarioServicios.cs" />
   </ItemGroup>

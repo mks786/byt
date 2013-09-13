@@ -349,11 +349,29 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Select r from Reporte r left join fetch r.Idioma as idioma left join fetch r.VistaReporte as vistaReporte where .
+        /// </summary>
+        public static string CabeceraObtenerReporte {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerReporte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Delete from Asignacion where Carta.Id ={0}.
         /// </summary>
         public static string EliminarAsignacionesPorCarta {
             get {
                 return ResourceManager.GetString("EliminarAsignacionesPorCarta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Delete from CamposReporteDeMarca crm where crm.ReporteDeMarca.Id = {0}.
+        /// </summary>
+        public static string EliminarCamposReporteDeMarcaPorCodigoReporte {
+            get {
+                return ResourceManager.GetString("EliminarCamposReporteDeMarcaPorCodigoReporte", resourceCulture);
             }
         }
         
@@ -1879,6 +1897,69 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a upper(r.Descripcion) like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroObtenerReporteDescripcion {
+            get {
+                return ResourceManager.GetString("FiltroObtenerReporteDescripcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a r.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerReporteId {
+            get {
+                return ResourceManager.GetString("FiltroObtenerReporteId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a idioma.Id = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerReporteIdioma {
+            get {
+                return ResourceManager.GetString("FiltroObtenerReporteIdioma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a upper(r.TituloEspanol) like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroObtenerReporteTituloEspanol {
+            get {
+                return ResourceManager.GetString("FiltroObtenerReporteTituloEspanol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a upper(r.TituloIngles) like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroObtenerReporteTituloIngles {
+            get {
+                return ResourceManager.GetString("FiltroObtenerReporteTituloIngles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a r.Usuario like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroObtenerReporteUsuario {
+            get {
+                return ResourceManager.GetString("FiltroObtenerReporteUsuario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a vistaReporte.Id  = {0}.
+        /// </summary>
+        public static string FiltroObtenerReporteVistaReporte {
+            get {
+                return ResourceManager.GetString("FiltroObtenerReporteVistaReporte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a upper(c.Telefono) like &apos;%{0}%&apos;.
         /// </summary>
         public static string FiltroTelefonoContacto {
@@ -1987,6 +2068,33 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Select cr from CamposReporte cr where cr.TipoDeReporte = &apos;MYP_DATA_MARCAS&apos;.
+        /// </summary>
+        public static string ObtenerCamposDeReporteDeMarca {
+            get {
+                return ResourceManager.GetString("ObtenerCamposDeReporteDeMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select cr from CamposReporte cr where cr.TipoDeReporte = &apos;MYP_DATA_PATENTES&apos;.
+        /// </summary>
+        public static string ObtenerCamposDeReporteDePatente {
+            get {
+                return ResourceManager.GetString("ObtenerCamposDeReporteDePatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select crr from CamposReporteRelacion crr where crr.Reporte.Id = {0} order by crr.PosicionCampo asc.
+        /// </summary>
+        public static string ObtenerCamposSeleccionadosDeReporte {
+            get {
+                return ResourceManager.GetString("ObtenerCamposSeleccionadosDeReporte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Select cm from CertificadoMarca cm where cm.IdMarca = {0}.
         /// </summary>
         public static string ObtenerCertificadoMarcaPorId {
@@ -2073,6 +2181,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string ObtenerFiltroEncabezadoPlantilla {
             get {
                 return ResourceManager.GetString("ObtenerFiltroEncabezadoPlantilla", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select fr from FiltroReporte fr where fr.Reporte.Id = {0}.
+        /// </summary>
+        public static string ObtenerFiltrosDeReporte {
+            get {
+                return ResourceManager.GetString("ObtenerFiltrosDeReporte", resourceCulture);
             }
         }
         

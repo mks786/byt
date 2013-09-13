@@ -187,6 +187,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a ▼.
+        /// </summary>
+        public static string btnBajar {
+            get {
+                return ResourceManager.GetString("btnBajar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Búsqueda.
         /// </summary>
         public static string btnBusqueda {
@@ -355,6 +364,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string btnEdoCta {
             get {
                 return ResourceManager.GetString("btnEdoCta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ver Reporte.
+        /// </summary>
+        public static string btnEjecutarReporte {
+            get {
+                return ResourceManager.GetString("btnEjecutarReporte", resourceCulture);
             }
         }
         
@@ -927,6 +945,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a ▲.
+        /// </summary>
+        public static string btnSubir {
+            get {
+                return ResourceManager.GetString("btnSubir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Tipo Entrada.
         /// </summary>
         public static string btnTipoEntrada {
@@ -1184,6 +1211,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string cbiAsia {
             get {
                 return ResourceManager.GetString("cbiAsia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CAMPO_MARCA_REPORTE.
+        /// </summary>
+        public static string cbiCamposReporteMarca {
+            get {
+                return ResourceManager.GetString("cbiCamposReporteMarca", resourceCulture);
             }
         }
         
@@ -1508,6 +1544,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string cbiNinguno {
             get {
                 return ResourceManager.GetString("cbiNinguno", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a MYP_OPERADOR_REP.
+        /// </summary>
+        public static string cbiOperadoresDeReporte {
+            get {
+                return ResourceManager.GetString("cbiOperadoresDeReporte", resourceCulture);
             }
         }
         
@@ -4204,6 +4249,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Generador por:.
+        /// </summary>
+        public static string lblAutorReporte {
+            get {
+                return ResourceManager.GetString("lblAutorReporte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Aux:.
         /// </summary>
         public static string lblAuxArchivo {
@@ -4354,6 +4408,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblCambio {
             get {
                 return ResourceManager.GetString("lblCambio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Campos Seleccionados:.
+        /// </summary>
+        public static string lblCamposDelReporte {
+            get {
+                return ResourceManager.GetString("lblCamposDelReporte", resourceCulture);
             }
         }
         
@@ -6024,6 +6087,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Operador:.
+        /// </summary>
+        public static string lblOperadores {
+            get {
+                return ResourceManager.GetString("lblOperadores", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Oponente:.
         /// </summary>
         public static string lblOponente {
@@ -6470,6 +6542,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblRenovarAntesDe {
             get {
                 return ResourceManager.GetString("lblRenovarAntesDe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Reporte:.
+        /// </summary>
+        public static string lblReporteDeMarcaNombre {
+            get {
+                return ResourceManager.GetString("lblReporteDeMarcaNombre", resourceCulture);
             }
         }
         
@@ -6960,6 +7041,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Tipo Reporte:.
+        /// </summary>
+        public static string lblTipoReporte {
+            get {
+                return ResourceManager.GetString("lblTipoReporte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Tipo reproducción:.
         /// </summary>
         public static string lblTipoReproduccion {
@@ -7001,6 +7091,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblTitleResponsables {
             get {
                 return ResourceManager.GetString("lblTitleResponsables", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Titulo En Español:.
+        /// </summary>
+        public static string lblTituloEnEspanol {
+            get {
+                return ResourceManager.GetString("lblTituloEnEspanol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Titulo En Inglés:.
+        /// </summary>
+        public static string lblTituloEnIngles {
+            get {
+                return ResourceManager.GetString("lblTituloEnIngles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Título del Reporte:.
+        /// </summary>
+        public static string lblTituloReporte {
+            get {
+                return ResourceManager.GetString("lblTituloReporte", resourceCulture);
             }
         }
         
@@ -7995,6 +8112,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Operador.
+        /// </summary>
+        public static string lsvOperadorReporte {
+            get {
+                return ResourceManager.GetString("lsvOperadorReporte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Pagina.
         /// </summary>
         public static string lsvPagina {
@@ -8265,6 +8391,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Tipo de Reporte.
+        /// </summary>
+        public static string lsvTipoDeReporte {
+            get {
+                return ResourceManager.GetString("lsvTipoDeReporte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Titulo en Español.
+        /// </summary>
+        public static string lsvTituloReporteEsp {
+            get {
+                return ResourceManager.GetString("lsvTituloReporteEsp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Titulo en Inglés.
+        /// </summary>
+        public static string lsvTituloReporteIng {
+            get {
+                return ResourceManager.GetString("lsvTituloReporteIng", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Tomo.
         /// </summary>
         public static string lsvTomo {
@@ -8279,6 +8432,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvUsuario {
             get {
                 return ResourceManager.GetString("lsvUsuario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Autor del Reporte.
+        /// </summary>
+        public static string lsvUsuarioReporte {
+            get {
+                return ResourceManager.GetString("lsvUsuarioReporte", resourceCulture);
             }
         }
         
@@ -9233,6 +9395,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string menuItemRenovaciones {
             get {
                 return ResourceManager.GetString("menuItemRenovaciones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Generador de Reporte de Marca.
+        /// </summary>
+        public static string menuItemReporteMarca {
+            get {
+                return ResourceManager.GetString("menuItemReporteMarca", resourceCulture);
             }
         }
         
@@ -10578,6 +10749,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Consultar Reportes de Marca.
+        /// </summary>
+        public static string titleConsultarReportesDeMarca {
+            get {
+                return ResourceManager.GetString("titleConsultarReportesDeMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Consultar Resolucion.
         /// </summary>
         public static string titleConsultarResolucion {
@@ -11330,6 +11510,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleGestionarRenovacion {
             get {
                 return ResourceManager.GetString("titleGestionarRenovacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Gestionar Reporte de Marca.
+        /// </summary>
+        public static string titleGestionarReporteDeMarca {
+            get {
+                return ResourceManager.GetString("titleGestionarReporteDeMarca", resourceCulture);
             }
         }
         

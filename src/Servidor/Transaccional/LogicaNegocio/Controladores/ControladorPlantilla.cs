@@ -29,10 +29,6 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                //ComandoBase<IList<TipoCaja>> comando = FabricaComandosTipoCaja.ObtenerComandoConsultarTodos();
-                //comando.Ejecutar();
-                //retorno = comando.Receptor.ObjetoAlmacenado;
-
                 ComandoBase<IList<Plantilla>> comando = FabricaComandosPlantilla.ObtenerComandoConsultarTodos();
                 comando.Ejecutar();
                 retorno = comando.Receptor.ObjetoAlmacenado;

@@ -449,6 +449,31 @@ namespace Trascend.Bolet.Cliente.Presentadores
         }
 
 
+        /// <summary>
+        /// Metodo que busca un operador en una lista de operadores. 
+        /// Este metodo se usa para construir el query de ejecucion de un reporte 
+        /// </summary>
+        /// <param name="operadores">Lista de operadores</param>
+        /// <param name="nombreOperador">Nombre del operador a buscar</param>
+        /// <returns>Operador de Filtro de Reporte</returns>
+        public ListaDatosValores BuscarOperador(IList<ListaDatosValores> operadores, string nombreOperador)
+        {
+            ListaDatosValores retorno = null;
+
+            if (nombreOperador != null)
+                foreach (ListaDatosValores operador in operadores)
+                {
+                    if(operador.Descripcion.Equals(nombreOperador))
+                    {
+                        retorno = operador;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+
 
         /// <summary>
         /// Método que busca un Almacen especifico dentro de una lista de almacenes

@@ -3957,4 +3957,67 @@ en Prensa:</value>
   <data name="lblContadorTransferirPlantilla" xml:space="preserve">
     <value>Correos Transferidos:</value>
   </data>
+  <data name="menuItemReporteMarca" xml:space="preserve">
+    <value>Generador de Reporte de Marca</value>
+  </data>
+  <data name="lblTituloReporte" xml:space="preserve">
+    <value>Título del Reporte:</value>
+  </data>
+  <data name="titleGestionarReporteDeMarca" xml:space="preserve">
+    <value>Gestionar Reporte de Marca</value>
+  </data>
+  <data name="btnBajar" xml:space="preserve">
+    <value>▼</value>
+  </data>
+  <data name="btnSubir" xml:space="preserve">
+    <value>▲</value>
+  </data>
+  <data name="cbiCamposReporteMarca" xml:space="preserve">
+    <value>CAMPO_MARCA_REPORTE</value>
+  </data>
+  <data name="cbiOperadoresDeReporte" xml:space="preserve">
+    <value>MYP_OPERADOR_REP</value>
+  </data>
+  <data name="lblCamposDelReporte" xml:space="preserve">
+    <value>Campos Seleccionados:</value>
+  </data>
+  <data name="lblOperadores" xml:space="preserve">
+    <value>Operador:</value>
+  </data>
+  <data name="lblReporteDeMarcaNombre" xml:space="preserve">
+    <value>Reporte:</value>
+  </data>
+  <data name="lsvOperadorReporte" xml:space="preserve">
+    <value>Operador</value>
+  </data>
+  <data name="lblTituloEnEspanol" xml:space="preserve">
+    <value>Titulo En Español:</value>
+  </data>
+  <data name="lblTituloEnIngles" xml:space="preserve">
+    <value>Titulo En Inglés:</value>
+  </data>
+  <data name="lsvTituloReporteEsp" xml:space="preserve">
+    <value>Titulo en Español</value>
+  </data>
+  <data name="lsvUsuarioReporte" xml:space="preserve">
+    <value>Autor del Reporte</value>
+  </data>
+  <data name="titleConsultarReportesDeMarca" xml:space="preserve">
+    <value>Consultar Reportes de Marca</value>
+  </data>
+  <data name="lblTipoReporte" xml:space="preserve">
+    <value>Tipo Reporte:</value>
+  </data>
+  <data name="btnEjecutarReporte" xml:space="preserve">
+    <value>Ver Reporte</value>
+  </data>
+  <data name="lblAutorReporte" xml:space="preserve">
+    <value>Generador por:</value>
+  </data>
+  <data name="lsvTipoDeReporte" xml:space="preserve">
+    <value>Tipo de Reporte</value>
+  </data>
+  <data name="lsvTituloReporteIng" xml:space="preserve">
+    <value>Titulo en Inglés</value>
+  </data>
 </root>

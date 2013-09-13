@@ -24,9 +24,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosPlantilla
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                //IDaoTipoCaja dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoTipoCaja();
                 IDaoPlantilla dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoPlantilla();
-                //this.Receptor = new Receptor<IList<TipoCaja>>(dao.ObtenerTodos());
                 this.Receptor = new Receptor<IList<Plantilla>>(dao.ObtenerTodos());
 
                 #region trace
