@@ -8,46 +8,98 @@
       xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
-      d:DesignHeight="550" d:DesignWidth="800"
+      d:DesignHeight="680" d:DesignWidth="800"
 	Title="VisualizarReporte" Loaded="Page_Loaded">
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="350"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="300"/>
+            <RowDefinition Height="330"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="6" Name="_grid">
-            <DataGrid   ItemsSource="{Binding Path=.}"   
-                        Margin="85,10,62,10" 
+        <GroupBox Grid.Row="0" HorizontalAlignment="Center" Grid.ColumnSpan="3" Margin="5">
+            <StackPanel VerticalAlignment="Top" Margin="5" Name="_stckDatos" DataContext="{Binding}">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTituloReporte}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtTituloReporte" Width="450" MaxLength="255" Filtro="True" IsEnabled="False"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="15,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblAutorReporte}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtUsuarioReporte" Width="150" MaxLength="255" Filtro="True" 
+                                       Text="{Binding Path=Usuario}" IsEnabled="False"/>
+                </WrapPanel >
+                <WrapPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="15,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCamposFiltro}"/>
+                    </Label>
+                    <ListView Grid.Row="0" Grid.ColumnSpan="6" Grid.RowSpan="4" Name="_lstFiltrosReporte" ItemsSource="{Binding}" 
+                        SelectionMode="Single" Style="{DynamicResource EstiloListView}" Visibility="Visible" Height="150" Width="450"
+                        VerticalAlignment="Center" HorizontalAlignment="Center" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Campo.EncabezadoEspanol}" Width="200">
+                                    <GridViewColumnHeader Tag="NombreCampo" Content="{x:Static recurso:Etiquetas.lsvCampo}"/>
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Operador}" Width="120">
+                                    <GridViewColumnHeader Tag="Operador" Content="{x:Static recurso:Etiquetas.lsvOperadorReporte}"/>
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Valor}" Width="120">
+                                    <GridViewColumnHeader Tag="Valor" Content="Valor"/>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="15,5,0,0">
+                    <Label>
+                        <TextBlock FontSize="15" Text="{x:Static recurso:Etiquetas.lblTotalHits}"/>
+                    </Label>
+                    <Label>
+                        <TextBlock FontSize="15" Name="_lblHits"/>
+                    </Label>
+                </WrapPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Stretch" Name="_grid">
+            <DataGrid   Margin="129,6,144,58" 
                         x:Name="_dataGrid"   
-                        ColumnHeaderHeight="30" AutoGenerateColumns="True"   
-                        CanUserSortColumns="False"
-                        HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" SelectionChanged="_dataGrid_SelectionChanged">
+                        ItemsSource="{Binding}" 
+                        ColumnHeaderHeight="30" AutoGenerateColumns="False"
+                        CanUserResizeColumns="False" CanUserAddRows="False"
+                        CanUserReorderColumns="True" CanUserResizeRows="False"
+                        VerticalAlignment="Center" HorizontalContentAlignment="Center">
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="FontWeight" Value="Bold" />
                         <Setter Property="HorizontalAlignment" Value="Center" />
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
+               
                 
             </DataGrid>
+            
+            <!--<ListView Name="_dataGrid" ItemsSource="{Binding}">-->
+                
+            <!--</ListView>-->
         </Grid>
 
         <WrapPanel Grid.Row="6" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
 
-            <Button Name="_btnFiltrosReporte" VerticalAlignment="Bottom" Height="25" Width="90" Visibility="Collapsed">
-                Filtros
+            <Button Name="_btnExportarReporte" VerticalAlignment="Bottom" Height="25" Width="90" Visibility="Visible" Click="_btnExportarReporte_Click">
+                Exportar
             </Button>
             <Button Name="_btnCancelar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnCancelar_Click">Regresar</Button>
         </WrapPanel>

@@ -36,5 +36,15 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoObtenerReporteFiltro(reporte);
         }
+
+        /// <summary>
+        /// Metodo que obtiene el comando para consultar la cabecera de un reporte con todos sus componentes
+        /// </summary>
+        /// <param name="reporte">Reporte a consultar</param>
+        /// <returns>Cabecera del reporte con todos sus componentes</returns>
+        public static ComandoBase<Reporte> ObtenerComandoConsultarReporteConTodo(Reporte reporte)
+        {
+            return new ComandoConsultarReporteConTodo(reporte);
+        }
     }
 }

@@ -40,8 +40,8 @@
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
         
-        <GroupBox Grid.Column="1" Grid.Row="1" Margin="5">
-            <Grid Name="_gridDatos">
+        <!--<GroupBox Grid.Column="1" Grid.Row="1" Margin="5">-->
+        <Grid Name="_gridDatos" Grid.Column="1" Grid.Row="1" Margin="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
@@ -117,18 +117,26 @@
 
 
                 <!-- Fila 3: Usuario e Idioma Fin -->
-                <!-- Fila 4: Titulo del Reporte -->
+                <!-- Fila 4: Titulo en Español del Reporte -->
 
                 <Label Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                    <TextBlock Text="{x:Static recurso:Etiquetas.lblTituloReporte}"/>
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblTituloEnEspanol}"/>
                 </Label>
                 <custom:ByTTextBox Grid.Row="4" Grid.Column="1" IsEnabled="False" Name="_txtTituloReporte" 
                                    VerticalAlignment="Center" MaxLength="255" Margin="0,2" Grid.ColumnSpan="8" CharacterCasing="Upper"/>
 
-                <!-- Fila 4: Titulo del Reporte Fin -->
-                <!-- Fila 5: Separador de Campos -->
-                <Separator Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="12" Margin="10 0" VerticalAlignment="Center" />
-                <!-- Fila 5: Separador de Campos Fin -->
+                <!-- Fila 4: Titulo en Español del Reporte Fin -->
+                <!-- Fila 5: Titulo en Ingles del Reporte  -->
+
+                <Label Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblTituloEnIngles}"/>
+                </Label>
+                <custom:ByTTextBox Grid.Row="5" Grid.Column="1" IsEnabled="False" Name="_txtTituloReporteIng" 
+                                   VerticalAlignment="Center" MaxLength="255" Margin="0,2" Grid.ColumnSpan="8" CharacterCasing="Upper"/>
+
+
+
+            <!-- Fila 5: Titulo en Ingles del Reporte Fin -->
                 <!-- Fila 6: Listas de Campos de los Reportes-->
                 <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="10" HorizontalAlignment="Center">
                     <Grid.ColumnDefinitions>
@@ -195,31 +203,18 @@
  
             </Grid>
             
-        </GroupBox>
+        <!--</GroupBox>-->
 
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
             
-            <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" 
-                    Click="_btnAceptar_Click" IsDefault="True">
-                <!--<Button.Style>
-                    <Style TargetType="Button">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding ElementName=_txtDescripcionDatos,Path=(Validation.HasError)}" Value="True">
-                                <Setter Property="IsEnabled" Value="True" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding ElementName=_txtNombreAdministracion,Path=(Validation.HasError)}" Value="True">
-                                <Setter Property="IsEnabled" Value="True" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding ElementName=_txtDomicilioDatos,Path=(Validation.HasError)}" Value="True">
-                                <Setter Property="IsEnabled" Value="True" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>-->
+            <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnAceptar_Click" IsDefault="True">
                 <TextBlock Name="_txbAceptar" Text="{x:Static recurso:Etiquetas.btnAceptar}"/>
             </Button>
             <Button Name="_btnFiltrosReporte" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnFiltrosReporte_Click">
                 Filtros
+            </Button>
+            <Button Name="_btnEjecutarReporte" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnEjecutarReporte_Click">
+                Ver Reporte
             </Button>
             <Button Name="_btnCancelar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnCancelar_Click">Regresar</Button>
         </WrapPanel>

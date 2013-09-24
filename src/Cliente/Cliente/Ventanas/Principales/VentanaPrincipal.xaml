@@ -122,10 +122,10 @@
                     <MenuItem Name="_menuItemTipoBaseConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemTipoBaseConsultar_Click"/>
                     <MenuItem Name="_menuItemTipoBaseGestionar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemTipoBaseGestionar_Click"/>
                 </MenuItem>
-                <MenuItem Name="_menuItemGeneradorReporteMarca" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemReporteMarca}">
+                <!--<MenuItem Name="_menuItemGeneradorReporteMarca" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemReporteMarca}">
                     <MenuItem Name="_menuItemGeneradorReporteMarcaConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemGeneradorReporteMarcaConsultar_Click" />
                     <MenuItem Name="_menuItemGeneradorReporteMarcaGestionar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemGeneradorReporteMarcaGestionar_Click" />
-                </MenuItem>
+                </MenuItem>-->
             </MenuItem>
 
             <MenuItem Name="_menuItemPatente" Header="{x:Static resx:Etiquetas.menuItemPatente}">
@@ -362,7 +362,12 @@
                 <MenuItem Name="_menuItemPlantillas" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemPlantillas}">
                     <MenuItem Name="_menuItemPlantillasProbar" Header="{x:Static resx:Etiquetas.menuItemPlantillasProbarPlantillas}" Click="_menuItemPlantillasProbar_Click" />
                 </MenuItem>
-                
+
+                <MenuItem Name="_menuItemGeneradorReporteMarca" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemReporteMarca}">
+                    <MenuItem Name="_menuItemGeneradorReporteMarcaConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemGeneradorReporteMarcaConsultar_Click" />
+                    <MenuItem Name="_menuItemGeneradorReporteMarcaGestionar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemGeneradorReporteMarcaGestionar_Click" />
+                </MenuItem>
+
             </MenuItem>
             
             <!--Facturacion-->

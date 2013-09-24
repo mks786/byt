@@ -1187,6 +1187,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a El Reporte {0} ha sido guardado con éxito.
+        /// </summary>
+        internal static string ConfirmacionReporteModificado {
+            get {
+                return ResourceManager.GetString("ConfirmacionReporteModificado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a ¿Seguro que desea salir del Sistema?.
         /// </summary>
         internal static string ConfirmacionSalirDelSistema {
@@ -1228,6 +1237,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ConfirmarEliminarCertificadoMarca {
             get {
                 return ResourceManager.GetString("ConfirmarEliminarCertificadoMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Desea exportar el contenido del reporte a Excel?.
+        /// </summary>
+        internal static string ConfirmarExportarReporteAExcel {
+            get {
+                return ResourceManager.GetString("ConfirmarExportarReporteAExcel", resourceCulture);
             }
         }
         

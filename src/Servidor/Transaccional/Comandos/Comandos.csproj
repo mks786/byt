@@ -187,6 +187,7 @@
     <Compile Include="Comandos\ComandosRenovacion\ComandoConsultarRenovacionesFiltro.cs" />
     <Compile Include="Comandos\ComandosRenovacion\ComandoVerificarExistenciaRenovacion.cs" />
     <Compile Include="Comandos\ComandosRenovacion\ComandoConsultarUltimaRenovacion.cs" />
+    <Compile Include="Comandos\ComandosReporte\ComandoConsultarReporteConTodo.cs" />
     <Compile Include="Comandos\ComandosReporte\ComandoConsultarTodosReporte.cs" />
     <Compile Include="Comandos\ComandosReporte\ComandoInsertarOModificarReporte.cs" />
     <Compile Include="Comandos\ComandosReporte\ComandoObtenerReporteFiltro.cs" />

@@ -11,5 +11,13 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
         /// <param name="reporteDeMarca">Reporte de Marca filtro</param>
         /// <returns>Lista de reportes de marca por filtro</returns>
         IList<Reporte> ObtenerReporteFiltro(Reporte reporte);
+
+
+        /// <summary>
+        /// Metodo que obtiene la cabecera completa de un reporte seleccionado
+        /// </summary>
+        /// <param name="reporte">Reporte a consultar</param>
+        /// <returns>Cabecera completa del Reporte seleccionado</returns>
+        Reporte ObtenerReporteConTodo(Reporte reporte);
     }
 }

@@ -181,15 +181,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
         
         /// <summary>
-        /// Metodo que realiza la consulta del Reporte
+        /// Servicio que consulta un Reporte con todos sus componentes basicos (Cabecera)
         /// </summary>
-        /// <param name="query">Consulta construida en el Cliente para este Reporte</param>
-        /// <returns>DataSet resultante de dicha consulta</returns>
-        private DataSet EjecutarConsultaReporte(OracleConnection con, string query)
+        /// <param name="reporte">Reporte a consultar</param>
+        /// <returns>Reporte con todo</returns>
+        public Reporte ConsultarReporteConTodo(Reporte reporte)
         {
-
-            DataSet resultado = new DataSet();
-
+            Reporte retorno;
             try
             {
                 #region trace
@@ -197,13 +195,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                
+                retorno = ControladorReporte.ConsultarReporteConTodo(reporte);
 
-               
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
                     logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
+
             }
             catch (ApplicationException ex)
             {
@@ -216,8 +214,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
                 throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
             }
 
-            return resultado;
+            return retorno;
         }
+
+
+
 
         public bool Eliminar(Reporte entidad, int hash)
         {

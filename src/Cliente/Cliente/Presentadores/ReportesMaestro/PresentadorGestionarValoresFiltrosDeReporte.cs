@@ -32,6 +32,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
         private IListaDatosValoresServicios _listaDatosValoresServicios;
         private IList<CamposReporteRelacion> _listaDeCamposDelReporte;
         private IList<ListaDatosValores> _operadoresDeReportes;
+        private IList<ListaDatosValores> _filtrosDeOrdenReporte;
 
         
         
@@ -97,13 +98,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this._ventana.TituloReporte = ((Reporte)this._ventana.Reporte).TituloEspanol != null ? 
+                this._ventana.TituloReporte = ((Reporte)this._ventana.Reporte).Idioma.Id.Equals("ES") ?
                     ((Reporte)this._ventana.Reporte).TituloEspanol : ((Reporte)this._ventana.Reporte).TituloIngles;
 
                 this._listaDeCamposDelReporte = this._camposReporteRelacionServicios.ConsultarCamposDeReporte((Reporte)this._ventana.Reporte);
 
                 this._operadoresDeReportes = this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro
                     (new ListaDatosValores(Recursos.Etiquetas.cbiOperadoresDeReporte));
+
+                //Se recuperan los tipos de ordenamiento existentes para los reportes
+                this._filtrosDeOrdenReporte = this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro
+                    (new ListaDatosValores(Recursos.Etiquetas.cbiOrdenamientoReporte));
+                this._ventana.TiposDeOrdenamiento = this._filtrosDeOrdenReporte;
+
+                //Se recuperan los campos del Reporte para hacer el ordenamiento
+                this._ventana.CamposDelReporte = this._listaDeCamposDelReporte;
                     
                 IList<FiltroReporte> filtrosDelReporte = this._filtroReporteServicios.ConsultarFiltrosReporte((Reporte)this._ventana.Reporte);
 
@@ -125,6 +134,123 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
             {
                 Mouse.OverrideCursor = null;
             }
+        }
+
+
+        /// <summary>
+        /// Metodo que agrega un tipo de ordenamiento al Reporte para ejecutarlo
+        /// </summary>
+        public void AgregarOrdenamientoAReporte()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                CamposReporte campoFiltroSeleccionado;
+                ListaDatosValores operadorSeleccionado = new ListaDatosValores();
+                OrdenReporte ordenReporte = new OrdenReporte();
+                IList<OrdenReporte> listaOrdenamientosReporte = new List<OrdenReporte>();
+                campoFiltroSeleccionado = ((CamposReporteRelacion)this._ventana.CampoDelReporte).Campo;
+                operadorSeleccionado = (ListaDatosValores)this._ventana.TipoDeOrdenamiento;
+                ordenReporte.Reporte = (Reporte)this._ventana.Reporte;
+                ordenReporte.Campo = campoFiltroSeleccionado;
+                ordenReporte.TipoOrdenamiento = operadorSeleccionado.Valor;
+
+                if (this._ventana.OrdenamientosReporte != null)
+                {
+                    listaOrdenamientosReporte = (IList<OrdenReporte>)this._ventana.OrdenamientosReporte;
+                    listaOrdenamientosReporte.Add(ordenReporte);
+                    this._ventana.OrdenamientosReporte = null;
+                    this._ventana.OrdenamientosReporte = listaOrdenamientosReporte;
+                }
+                else
+                {
+                    listaOrdenamientosReporte.Add(ordenReporte);
+                    this._ventana.OrdenamientosReporte = listaOrdenamientosReporte;
+                }
+
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+
+
+
+        /// <summary>
+        /// Metodo que quita un ordenamiento seleccionado de la lista de ordenamientos del Reporte
+        /// </summary>
+        public void QuitarOrdenamientoAReporte()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                
+                OrdenReporte ordenAQuitar;
+                IList<OrdenReporte> listaOrdenamientosDeReporte;
+               
+                ordenAQuitar = (OrdenReporte)this._ventana.OrdenamientoReporte; 
+
+                if (ordenAQuitar != null)
+                {
+                    listaOrdenamientosDeReporte = (IList<OrdenReporte>)this._ventana.OrdenamientosReporte;
+                    listaOrdenamientosDeReporte.Remove(ordenAQuitar);
+                    this._ventana.OrdenamientosReporte = null;
+                    this._ventana.OrdenamientosReporte = listaOrdenamientosDeReporte;
+                    this._ventana.OrdenamientoReporte = null;
+                }
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo que quita un elemento de la lista de ordenamientos a pie (OPCIONAL)
+        /// </summary>
+        /// <param name="listaOrdenamientos">Lista de ordenamientos de la ventana</param>
+        /// <param name="ordenBuscada">Ordenamiento a eliminar</param>
+        /// <returns>Nueva Lista de ordenamientos del reporte</returns>
+        public IList<OrdenReporte> BuscarYQuitarOrden(IList<OrdenReporte> listaOrdenamientos, OrdenReporte ordenBuscada)
+        {
+            IList<OrdenReporte> retorno = new List<OrdenReporte>();
+
+            if (listaOrdenamientos != null)
+                foreach (OrdenReporte item in listaOrdenamientos)
+                {
+                    if ((!item.Campo.EncabezadoEspanol.Equals(ordenBuscada.Campo.EncabezadoEspanol)) && (!item.TipoOrdenamiento.Equals(ordenBuscada.TipoOrdenamiento)))
+                    {
+                        retorno.Add(item) ;
+                        
+                    }
+                }
+
+            return retorno;
         }
 
 
@@ -159,7 +285,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                 DataSet resultado = this._reporteServicios.EjecutarQuery(queryResultante);
 
                 if (resultado != null)
-                    this.Navegar(new VisualizarReporte(this._ventana, resultado));
+                    this.Navegar(new VisualizarReporte(this._ventana, this._ventana.Reporte, resultado));
                 else
                     this._ventana.Mensaje("El resultado de su consulta es Vacio. Revise sus filtros", 1);
 
@@ -200,35 +326,49 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                 #endregion
 
                 StringBuilder resultado = new StringBuilder();
-                String clausulaCabecera = String.Empty; clausulaCabecera = "Select ";
-                String clausulaFrom = String.Empty; clausulaFrom = "from ";
-                String clausulaWhere = String.Empty; clausulaWhere = " where ";
+                String clausulaCabecera = String.Empty; clausulaCabecera = "SELECT ROWNUM " + '\u0022' + "No" + '\u0022' + ", ";
+                String clausulaFrom = String.Empty; clausulaFrom = "FROM ";
+                String clausulaWhere = String.Empty; clausulaWhere = " WHERE ";
+                String clausulaOrderBy = String.Empty; clausulaOrderBy = " ORDER BY ";
                 String cadenaCampos = String.Empty; String cadenaFiltros = String.Empty; String nombreCampo = String.Empty;
                 String simboloOperador = String.Empty;
                 int posicionCampo = 1;
                 int numeroFiltro = 1;
+                int numeroOrdenamientos = 1;
+                String[] parametros = null;
+                
 
                 IList<CamposReporteRelacion> camposDefinidosDelReporte = this._listaDeCamposDelReporte;
                 IList<FiltroReporte> filtrosDelReporte = filtrosModificados;
 
                 resultado.Append(clausulaCabecera);
 
+                //Definiendo la cadena de los campos a consultar SELECT campo1, campo2,....,campoN
                 foreach (CamposReporteRelacion campo in camposDefinidosDelReporte)
                 {
                     if (posicionCampo < camposDefinidosDelReporte.Count)
                     {
-                        if(((Reporte)this._ventana.Reporte).Idioma.Id.Equals("ES"))
+                        if(((Reporte)this._ventana.Reporte).Idioma.Id.Equals("ES") && campo.Campo.Clase.Equals("NORMAL"))
                             //cadenaCampos += campo.Campo.NombreCampo + ", ";
                             cadenaCampos += campo.Campo.NombreCampo + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + ", ";
-                        else if(((Reporte)this._ventana.Reporte).Idioma.Id.Equals("IN"))
+                        else if (((Reporte)this._ventana.Reporte).Idioma.Id.Equals("IN") && campo.Campo.Clase.Equals("NORMAL"))
                             cadenaCampos += campo.Campo.NombreCampo + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + ", ";
+                        else if (((Reporte)this._ventana.Reporte).Idioma.Id.Equals("ES") && campo.Campo.Clase.Equals("ESPECIAL"))
+                            cadenaCampos += campo.Campo.AdicionalEspanol + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + ", ";
+                        else if (((Reporte)this._ventana.Reporte).Idioma.Id.Equals("IN") && campo.Campo.Clase.Equals("ESPECIAL"))
+                            cadenaCampos += campo.Campo.AdicionalIngles + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + ", ";
+
                     }
                     else if (posicionCampo == camposDefinidosDelReporte.Count)
                     {
-                        if(((Reporte)this._ventana.Reporte).Idioma.Id.Equals("ES"))
+                        if(((Reporte)this._ventana.Reporte).Idioma.Id.Equals("ES") && campo.Campo.Clase.Equals("NORMAL"))
                             cadenaCampos += campo.Campo.NombreCampo + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + " ";
-                        else if(((Reporte)this._ventana.Reporte).Idioma.Id.Equals("IN"))
+                        else if (((Reporte)this._ventana.Reporte).Idioma.Id.Equals("IN") && campo.Campo.Clase.Equals("NORMAL"))
                             cadenaCampos += campo.Campo.NombreCampo + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + " ";
+                        else if (((Reporte)this._ventana.Reporte).Idioma.Id.Equals("ES") && campo.Campo.Clase.Equals("ESPECIAL"))
+                            cadenaCampos += campo.Campo.AdicionalEspanol + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + " ";
+                        else if (((Reporte)this._ventana.Reporte).Idioma.Id.Equals("IN") && campo.Campo.Clase.Equals("ESPECIAL"))
+                            cadenaCampos += campo.Campo.AdicionalIngles + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + " ";
                         //cadenaCampos += campo.Campo.NombreCampo + " ";
                     }
                     posicionCampo++;
@@ -239,6 +379,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                 resultado.Append(clausulaFrom);
                 resultado.Append(((Reporte)this._ventana.Reporte).VistaReporte.NombreVistaBD);
 
+
+                //Definiendo el WHERE de la consulta
                 if (filtrosDelReporte.Count > 0)
                 {
                     resultado.Append(clausulaWhere);
@@ -256,7 +398,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                         cadenaFiltros += simboloOperador;
                         if(filtro.Campo.TipoDeCampo.Equals("NUMERICO"))
                         {
-                            cadenaFiltros += filtro.Valor + " ";
+                            if (operador.Valor.Equals("IN"))
+                            {
+                                cadenaFiltros += "(";
+                                parametros = filtro.Valor.Split(',');
+                                for (int i = 0; i < parametros.Length; i++)
+                                {
+                                    if (i < parametros.Length - 1)
+                                        cadenaFiltros += parametros[i] + ",";
+                                    else if (i == parametros.Length - 1)
+                                        cadenaFiltros += parametros[i];
+                                }
+                                cadenaFiltros += ")";
+                                parametros = null;
+                            }
+                            else
+                                cadenaFiltros += filtro.Valor + " ";
                         }
                         else if(filtro.Campo.TipoDeCampo.Equals("CARACTER") || filtro.Campo.TipoDeCampo.Equals("FECHA"))
                         {
@@ -264,6 +421,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                             {
                                 cadenaFiltros += "'%" + filtro.Valor + "%' ";
                             }
+                            else if (operador.Valor.Equals("IN"))
+                            {
+                                cadenaFiltros += "(";
+                                parametros = filtro.Valor.Split(',');
+                                for (int i = 0; i < parametros.Length; i++)
+                                {
+                                    if (i < parametros.Length - 1)
+                                        cadenaFiltros += "'" + parametros[i] + "'" + ",";
+                                    else if (i == parametros.Length - 1)
+                                        cadenaFiltros += "'" + parametros[i] + "'";
+                                }
+                                cadenaFiltros += ")";
+                                parametros = null;
+                            }
+
                             else
                                 cadenaFiltros += "'" + filtro.Valor + "' ";
                         }
@@ -280,6 +452,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
 
                     }
                 }
+
+                //resultado.Append(cadenaFiltros);
+
+                if (this._ventana.OrdenamientosReporte != null)
+                {
+                    IList<OrdenReporte> ordersBy = (IList<OrdenReporte>)this._ventana.OrdenamientosReporte;
+                    if (ordersBy.Count > 0)
+                    {
+                        cadenaFiltros += clausulaOrderBy;
+
+                        foreach (OrdenReporte item in ordersBy)
+                        {
+                            if(numeroOrdenamientos < ordersBy.Count)
+                                cadenaFiltros += item.Campo.NombreCampo + " " + item.TipoOrdenamiento + ", ";
+                            else if(numeroOrdenamientos == ordersBy.Count)
+                                cadenaFiltros += item.Campo.NombreCampo + " " + item.TipoOrdenamiento;
+
+                            numeroOrdenamientos++;
+                        }
+                    }
+                }
+
 
                 resultado.Append(cadenaFiltros);
 

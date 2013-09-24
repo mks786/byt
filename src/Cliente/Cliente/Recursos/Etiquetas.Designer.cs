@@ -1557,6 +1557,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a MYP_ORDEN_REP.
+        /// </summary>
+        public static string cbiOrdenamientoReporte {
+            get {
+                return ResourceManager.GetString("cbiOrdenamientoReporte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Otro.
         /// </summary>
         public static string cbiOtro {
@@ -4421,6 +4430,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Campos Filtro del Reporte:.
+        /// </summary>
+        public static string lblCamposFiltro {
+            get {
+                return ResourceManager.GetString("lblCamposFiltro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Campos Internacionales:.
         /// </summary>
         public static string lblCamposInternacionales {
@@ -7005,6 +7023,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Ordenamiento:.
+        /// </summary>
+        public static string lblTipoOrdenamientoReporte {
+            get {
+                return ResourceManager.GetString("lblTipoOrdenamientoReporte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Tipo.
         /// </summary>
         public static string lblTipoPatente {
@@ -9399,7 +9426,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Generador de Reporte de Marca.
+        ///   Busca una cadena traducida similar a Generador de Reportes.
         /// </summary>
         public static string menuItemReporteMarca {
             get {

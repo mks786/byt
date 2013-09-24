@@ -14,6 +14,8 @@ namespace Trascend.Bolet.Cliente.Contratos.ReportesMaestro
 
         string TituloReporte { get; set; }
 
+        string TituloReporteIngles { get; set; }
+
         object Usuarios { get; set; }
 
         object Usuario { get; set; }
@@ -43,5 +45,9 @@ namespace Trascend.Bolet.Cliente.Contratos.ReportesMaestro
         void Mensaje(string mensaje, int opcion);
 
         void InicializarVistaReporte();
+
+        void ActivarBotonValoresParaFiltros(bool valor);
+
+        void MostarBotonesParaModificarReporte(bool valor);
     }
 }

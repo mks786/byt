@@ -120,29 +120,44 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
 
                 if (_agregar == false) //Cuando el reporte ya existe
                 {
+
+                    Reporte reporteFiltro = new Reporte();
+                    reporteFiltro.Id = this._reporteDeMarca.Id;
+
+                    this._reporteDeMarca = this._reporteDeMarcaServicios.ConsultarReporteConTodo(reporteFiltro);
+                    
                     this._ventana.IdReporte = this._reporteDeMarca.Id.ToString();
                     this._ventana.DescripcionReporte = this._reporteDeMarca.Descripcion;
-
-                    this._ventana.TituloReporte = this._reporteDeMarca.Idioma.Id.Equals("ES") ? 
-                        this._reporteDeMarca.TituloEspanol : this._reporteDeMarca.TituloIngles;
-
+                    this._ventana.TituloReporte = !this._reporteDeMarca.TituloEspanol.Equals(String.Empty) ? this._reporteDeMarca.TituloEspanol : null;
+                    this._ventana.TituloReporteIngles = !this._reporteDeMarca.TituloIngles.Equals(String.Empty) ? this._reporteDeMarca.TituloIngles : null;
+                    
                     CargarTipoDeReporte();
                     CargarCamposReporte(false);
                     CargarCamposReporteSeleccionado(); 
                     CargarUsuario();
                     CargarIdiomas(false);
-                    IList<FiltroReporte> listaDeFiltros = this._filtroReporteDeMarcaServicios.ConsultarFiltrosReporte(this._reporteDeMarca);
-                    if (listaDeFiltros.Count != 0)
-                        this._ventana.PintarFiltros();
+
+                    //Solo se mostraran los botones de Modificar y Modificacion de Filtros si el Usuario Logueado es el mismo que esta consultando
+                    if (UsuarioLogeado.NombreCompleto.Equals(this._reporteDeMarca.Usuario))
+                    {
+                        IList<FiltroReporte> listaDeFiltros = this._filtroReporteDeMarcaServicios.ConsultarFiltrosReporte(this._reporteDeMarca);
+                        if (listaDeFiltros.Count != 0)
+                            this._ventana.PintarFiltros();
+                    }
+                    else
+                    {
+                        this._ventana.MostarBotonesParaModificarReporte(false);
+                    }
+                    
                 }
                 else
                 {
                     CargarTipoDeReporte();
-                    //this._ventana.InicializarVistaReporte();
                     CargarCamposReporte(true);
                     CargarUsuario();
                     CargarIdiomas(true);
                     this._ventana.ActivarBotonFiltros(false);
+                    this._ventana.ActivarBotonValoresParaFiltros(false);
 
                 }
 
@@ -243,10 +258,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                 #endregion
 
                 VistaReporte vista = null;
-
-                //if(vista.NombreVista.Equals("MARCAS"))
-                //    campos = this._camposReporteServicios.ObtenerCamposReporteDeMarca();
-
+                
                 if (!agregar) 
                 {
 
@@ -282,9 +294,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                     this._ventana.CamposReporte = campos;
                 }
 
-                //else
-                //    this._ventana.CamposReporte = campos;
-
+                
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -383,9 +393,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                 this._ventana.Idiomas = idiomas;
                 if (!agregar)
                 {
-                    //this._ventana.Idioma = this._reporteDeMarca.Idioma;
                     this._ventana.Idioma = this.BuscarIdioma(idiomas, this._reporteDeMarca.Idioma);
-
                 }
 
                 #region trace
@@ -414,7 +422,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
 
                 this._ventana.ActivarBotonFiltros(false);
 
-                //ListaDatosValores campoAMover = (ListaDatosValores)this._ventana.CampoReporte;
                 CamposReporte campoAMover = (CamposReporte)this._ventana.CampoReporte;
                 bool exitoso = false;
 
@@ -685,7 +692,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                                             foreach (CamposReporte campo in listaCamposSeleccionados)
                                             {
                                                 campoReporteMarca = new CamposReporteRelacion();
-                                                //campoReporteMarca.Id = reporteDeMarca.Id;
                                                 campoReporteMarca.Reporte = reporte;
                                                 campoReporteMarca.Id = reporte.Id;
                                                 campoReporteMarca.Campo = campo;
@@ -700,13 +706,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                                             //Se obtienen los campos del reporte de marca y se agregan al reporte
                                             IList<CamposReporteRelacion> camposSeleccionados = this._camposReporteDeMarcaServicios.ConsultarCamposDeReporte(reporte);
                                             reporte.CamposDelReporte = camposSeleccionados;
-                                            this._ventana.Mensaje("Reporte guardado con exito", 1);
+                                            //this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ConfirmacionReporteModificado,reporte.Id), 1);
                                         }
                                         else
-                                            this._ventana.Mensaje("El reporte no tiene campos asociados", 0);
+                                            this._ventana.Mensaje("El reporte no tiene campos asociados", 1);
 
                                         this._reporteDeMarca = reporte;
                                         this._ventana.ActivarBotonFiltros(true);
+                                        this._ventana.ActivarBotonValoresParaFiltros(true);
                                     }
                                 }
                                 else
@@ -751,8 +758,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                                     posicion++;
                                 }
 
-                                this._ventana.Mensaje("Reporte modificado con éxito", 1);
+                                //this._ventana.Mensaje("Reporte modificado con éxito", 1);
 
+                                this._reporteDeMarca = reporte;
                                 this._ventana.ActivarBotonFiltros(true);
                             }
                             else
@@ -807,18 +815,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
 
                 reporte.VistaReporte = this._ventana.TiposDeReporte != null ? (VistaReporte)this._ventana.TipoDeReporte : null;
 
-                if (((Idioma)this._ventana.Idioma).Descripcion.Equals("INGLES"))
-                {
-                    reporte.TituloIngles = !this._ventana.TituloReporte.Equals(String.Empty) ? this._ventana.TituloReporte : null;
-                    reporte.TituloEspanol = null;
-                }
-                else
-                {
-                    reporte.TituloEspanol = !this._ventana.TituloReporte.Equals(String.Empty) ? this._ventana.TituloReporte : null;
-                    reporte.TituloIngles = null;
-                }
-
-
+                reporte.TituloIngles = !this._ventana.TituloReporteIngles.Equals(String.Empty) ? this._ventana.TituloReporteIngles : null;
+                
+                reporte.TituloEspanol = !this._ventana.TituloReporte.Equals(String.Empty) ? this._ventana.TituloReporte : null;
+                
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -900,6 +900,45 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+        }
+
+
+        /// <summary>
+        /// Metodo que llama a la ventana para ejecutar un Reporte
+        /// </summary>
+        public void GestionarValoresParaFiltros()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (this._reporteDeMarca != null)
+                    this.Navegar(new GestionarValoresFiltrosDeReporte(this._reporteDeMarca,this._ventana));
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo que retorna el Id del Reporte para mensaje de confirmacion
+        /// </summary>
+        /// <param name="reporte">Reporte guardado exitosamente</param>
+        /// <returns>Id del Reporte</returns>
+        public String ObtenerIdReporte()
+        {
+            return this._reporteDeMarca.Id.ToString();
         }
     }
 }

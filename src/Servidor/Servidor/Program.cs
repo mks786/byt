@@ -35,6 +35,11 @@ namespace Trascend.Bolet.Servidor
             //IList<CamposReporte> campos1 = servicioPrueba.ObtenerCamposReportePatente();
 
             //ReporteServicios servicioPrueba = new ReporteServicios();
+            //Reporte reporte = new Reporte();
+            //reporte.Id = 17;
+
+            //Reporte r = servicioPrueba.ConsultarReporteConTodo(reporte);
+
             //DataSet ds = new DataSet();
             //String query = "Select CMARCA, XMARCA from MYP_DATA_MARCAS";
             //ds = servicioPrueba.EjecutarQuery(query);

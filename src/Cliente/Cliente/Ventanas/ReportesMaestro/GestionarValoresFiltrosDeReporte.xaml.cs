@@ -72,6 +72,42 @@ namespace Trascend.Bolet.Cliente.Ventanas.ReportesMaestro
             set { this._grdFiltrosReporte.DataContext = value; }
         }
 
+        public object CamposDelReporte
+        {
+            get { return this._cbxCamposReporte.DataContext; }
+            set { this._cbxCamposReporte.DataContext = value; }
+        }
+
+        public object CampoDelReporte
+        {
+            get { return this._cbxCamposReporte.SelectedItem; }
+            set { this._cbxCamposReporte.SelectedItem = value; }
+        }
+
+        public object TiposDeOrdenamiento
+        {
+            get { return this._cbxTipoOrdenamientoReporte.DataContext; }
+            set { this._cbxTipoOrdenamientoReporte.DataContext = value; }
+        }
+
+        public object TipoDeOrdenamiento
+        {
+            get { return this._cbxTipoOrdenamientoReporte.SelectedItem; }
+            set { this._cbxTipoOrdenamientoReporte.SelectedItem = value; }
+        }
+
+        public object OrdenamientosReporte
+        {
+            get { return this._lstOrdenReporte.DataContext; }
+            set { this._lstOrdenReporte.DataContext = value; }
+        }
+
+        public object OrdenamientoReporte
+        {
+            get { return this._lstOrdenReporte.SelectedItem; }
+            set { this._lstOrdenReporte.SelectedItem = value; }
+        }
+
 
         #endregion
 
@@ -98,6 +134,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.ReportesMaestro
             this._presentador.RegresarVentanaPadre();
         }
 
+        private void _btnAgregarOrdenamiento_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarOrdenamientoAReporte();
+        }
+
+        private void _btnQuitarOrdenamiento_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.QuitarOrdenamientoAReporte();
+        }
+
+
         #endregion
 
         #region Metodos
@@ -111,6 +158,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.ReportesMaestro
         }
 
         #endregion
+
+        
 
     }
 }

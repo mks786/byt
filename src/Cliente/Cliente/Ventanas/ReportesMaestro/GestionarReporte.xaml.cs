@@ -71,6 +71,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.ReportesMaestro
                 this._txtTituloReporte.IsEnabled = value;
                 this._cbxUsuarioReporte.IsEnabled = value;
                 this._cbxIdiomaReporte.IsEnabled = value;
+                this._txtTituloReporteIng.IsEnabled = value;
             }
             
         }
@@ -97,6 +98,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.ReportesMaestro
         {
             get { return this._txtTituloReporte.Text; }
             set { this._txtTituloReporte.Text = value; }
+        }
+
+        public string TituloReporteIngles
+        {
+            get { return this._txtTituloReporteIng.Text; }
+            set { this._txtTituloReporteIng.Text = value; }
         }
 
         public object Usuarios
@@ -189,6 +196,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.ReportesMaestro
                     "Modificar Reporte de Marca", MessageBoxButton.YesNo, MessageBoxImage.Question))
             {
                 this._presentador.Aceptar();
+                MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmacionReporteModificado, this._presentador.ObtenerIdReporte()),
+                    "Confirmacion Reporte Modificado",MessageBoxButton.OK,MessageBoxImage.Information);
             }
             
         }
@@ -218,6 +227,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.ReportesMaestro
             this._presentador.GestionarFiltros();
         }
 
+        private void _cbxTipoReporte_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._presentador.CargarCamposPorVista();
+        }
+
+        private void _btnEjecutarReporte_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.GestionarValoresParaFiltros();
+        }
+
         #endregion
 
 
@@ -232,6 +251,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.ReportesMaestro
         public void ActivarBotonFiltros(bool valor)
         {
             this._btnFiltrosReporte.IsEnabled = valor;
+        }
+
+        public void ActivarBotonValoresParaFiltros(bool valor)
+        {
+            this._btnEjecutarReporte.IsEnabled = valor;
+        }
+
+        public void MostarBotonesParaModificarReporte(bool valor)
+        {
+            if (!valor)
+            {
+                this._btnAceptar.Visibility = System.Windows.Visibility.Collapsed;
+                this._btnFiltrosReporte.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            else
+            {
+                this._btnAceptar.Visibility = System.Windows.Visibility.Visible;
+                this._btnFiltrosReporte.Visibility = System.Windows.Visibility.Visible;
+            }
         }
 
 
@@ -252,9 +290,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.ReportesMaestro
 
         #endregion
 
-        private void _cbxTipoReporte_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            this._presentador.CargarCamposPorVista();
-        }
+        
     }
 }

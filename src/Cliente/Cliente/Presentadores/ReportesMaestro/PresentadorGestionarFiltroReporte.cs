@@ -128,7 +128,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
 
                 this._ventana.FocoPredeterminado();
 
-                this._ventana.TituloReporteDeMarca = ((Reporte)this._ventana.ReporteDeMarca).TituloEspanol != null ?
+                //this._ventana.TituloReporteDeMarca = ((Reporte)this._ventana.ReporteDeMarca).TituloEspanol != null ?
+                //    ((Reporte)this._ventana.ReporteDeMarca).TituloEspanol : ((Reporte)this._ventana.ReporteDeMarca).TituloIngles;
+
+                this._ventana.TituloReporteDeMarca = ((Reporte)this._ventana.ReporteDeMarca).Idioma.Id.Equals("ES") ? 
                     ((Reporte)this._ventana.ReporteDeMarca).TituloEspanol : ((Reporte)this._ventana.ReporteDeMarca).TituloIngles;
 
                 CargarCombos();

@@ -1429,4 +1429,10 @@
   <data name="ErrorEjecucionReporte" xml:space="preserve">
     <value>Se ha producido el siguiente error generando el Reporte: </value>
   </data>
+  <data name="ConfirmarExportarReporteAExcel" xml:space="preserve">
+    <value>Desea exportar el contenido del reporte a Excel?</value>
+  </data>
+  <data name="ConfirmacionReporteModificado" xml:space="preserve">
+    <value>El Reporte {0} ha sido guardado con éxito</value>
+  </data>
 </root>

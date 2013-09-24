@@ -2437,6 +2437,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Select r from Reporte r left join fetch r.Idioma as idioma left join fetch r.VistaReporte as vistaReporte where r.Id = {0} order by r.Id.
+        /// </summary>
+        public static string ObtenerReporteConTodo {
+            get {
+                return ResourceManager.GetString("ObtenerReporteConTodo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Select p from ReportePatente p where p.CodigoPatente = {0}.
         /// </summary>
         public static string ObtenerReportePatentePorCodigoPatente {

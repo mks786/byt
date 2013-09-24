@@ -22,5 +22,12 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// <param name="query">Consulta a ejecutar</param>
         /// <returns>DataSet que tiene la informacion resultante de la consulta</returns>
         DataSet EjecutarQuery(String query);
+
+        /// <summary>
+        /// Servicio que consulta un Reporte con todos sus componentes basicos (Cabecera)
+        /// </summary>
+        /// <param name="reporte">Reporte a consultar</param>
+        /// <returns>Reporte con todo</returns>
+        Reporte ConsultarReporteConTodo(Reporte reporte);
     }
 }

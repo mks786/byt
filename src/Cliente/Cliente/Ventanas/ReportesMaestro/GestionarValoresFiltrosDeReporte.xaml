@@ -30,7 +30,7 @@
             <ColumnDefinition Width="75"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="160"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="40"/>
             
@@ -40,7 +40,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="600"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -64,7 +64,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 
@@ -72,24 +72,25 @@
                        VerticalAlignment="Center">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblTituloReporte}"/>
                 </Label>
-                <custom:ByTTextBox IsEnabled="True"  Grid.Column="1" Grid.Row="0" Name="_txtTituloReporte"
+                <custom:ByTTextBox IsEnabled="False"  Grid.Column="1" Grid.Row="0" Name="_txtTituloReporte"
                                    VerticalAlignment="Center" MaxLength="255" IsReadOnly="True" Grid.ColumnSpan="6" >
                 </custom:ByTTextBox>
                 <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblAutorReporte}"/>
                 </Label>
-                <custom:ByTTextBox IsEnabled="True"  Grid.Column="1" Grid.Row="1" Name="_txtUsuarioReporte"
+                <custom:ByTTextBox IsEnabled="False"  Grid.Column="1" Grid.Row="1" Name="_txtUsuarioReporte"
                                    VerticalAlignment="Center" MaxLength="255" IsReadOnly="True" Grid.ColumnSpan="3" 
                                    Text="{Binding Path=Usuario}">
                 </custom:ByTTextBox>
             </Grid>
 
+            <!-- Grid de la tabla donde se muestra el resultado del reporte -->
             <Grid  Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="140"/>
                     <ColumnDefinition Width="80"/>
                     <ColumnDefinition Width="80"/>
-                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="95"/>
                     <ColumnDefinition Width="80"/>
                     <ColumnDefinition Width="80"/>
                     <ColumnDefinition Width="80"/>
@@ -100,28 +101,11 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-
-                <!--<ListView Grid.Row="0" Grid.ColumnSpan="6" Grid.RowSpan="4" Name="_lstFiltrosReporte" ItemsSource="{Binding}" 
-                        SelectionMode="Single" Style="{DynamicResource EstiloListView}" Visibility="Visible" Height="180" Width="500"
-                        VerticalAlignment="Top" >
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Campo.EncabezadoEspanol}" Width="180">
-                                <GridViewColumnHeader Tag="NombreCampo" Content="{x:Static recurso:Etiquetas.lsvCampo}"/>
-                            </GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Operador}" Width="160">
-                                <GridViewColumnHeader Tag="Operador" Content="{x:Static recurso:Etiquetas.lsvOperadorReporte}"/>
-                            </GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Valor}" Width="150">
-                                <GridViewColumnHeader Tag="Valor" Content="{x:Static recurso:Etiquetas.lsvOperadorReporte}"/>
-                            </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>-->
-                <!--<Button Grid.Column="6" Name="_btnQuitarCampoAFiltro"  Width="40" Height="30" VerticalAlignment="Top" Margin="5,1,35,0">
-                    <TextBlock Text="{x:Static recurso:Etiquetas.btnEliminarSimbolo}"/>
-                </Button>-->
 
                 <DataGrid Grid.Row="0" Grid.ColumnSpan="6" Grid.RowSpan="4" ItemsSource="{Binding}" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Auto" Name="_grdFiltrosReporte" Height="200" Width="410" GridLinesVisibility="None">
                     <DataGrid.ColumnHeaderStyle>
@@ -138,14 +122,76 @@
                         <DataGridTextColumn Header="Valor" Binding="{Binding Path=Valor}" Width="120"  />
                     </DataGrid.Columns>
                 </DataGrid>
+                
+
+                <!-- Campos del Reporte para ordenar -->
+                <Label Grid.Column="0" Grid.Row="6" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblCamposDelReporte}"/>
+                </Label>
+                <ComboBox Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2" Name="_cbxCamposReporte" ItemsSource="{Binding}"
+                          DisplayMemberPath="Campo.EncabezadoEspanol" Width="150" HorizontalAlignment="Left"/>
+                <!-- Tipos de Ordenamiento segun el Campo seleccionado -->
+                <Label Grid.Column="3" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,0,0">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoOrdenamientoReporte}"/>
+                </Label>
+                <ComboBox Grid.Column="4" Grid.Row="6"  Name="_cbxTipoOrdenamientoReporte" ItemsSource="{Binding}"
+                          DisplayMemberPath="Valor" Width="80"/> 
+                
+                <Grid Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="6" HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="90"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <ListView Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="3" Name="_lstOrdenReporte" 
+                              ItemsSource="{Binding}" SelectionMode="Single" Style="{DynamicResource EstiloListView}" 
+                              Visibility="Visible" Height="140" Width="500"
+                    VerticalAlignment="Top" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Campo.EncabezadoEspanol}" Width="158">
+                                    <GridViewColumnHeader Tag="NombreCampo" Content="{x:Static recurso:Etiquetas.lsvCampo}"/>
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=TipoOrdenamiento}" Width="120">
+                                    <GridViewColumnHeader Tag="Operador" Content="{x:Static recurso:Etiquetas.lsvOperadorReporte}"/>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <WrapPanel Grid.Column="3" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="5" Orientation="Vertical">
+                        <Button Name="_btnAgregarOrdenamiento" Height="25" Width="50" Click="_btnAgregarOrdenamiento_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnAgregarSimbolo}"/>
+                        </Button>
+                        <Button Name="_btnQuitarOrdenamiento" Height="25" Margin="0,20,0,0" Width="50" Click="_btnQuitarOrdenamiento_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnEliminarSimbolo}"/>
+                        </Button>
+                    </WrapPanel>
+                    
+                    
+                    
+                </Grid>
+                
 
             </Grid>
+            <!-- Fin Grid de la tabla donde se muestra el resultado del reporte -->
+            
+            
+
+            
 
         </Grid>
 
         <WrapPanel Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
             <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" IsDefault="True" Click="_btnAceptar_Click">
-                <TextBlock Name="_txbAceptar" Text="{x:Static recurso:Etiquetas.btnAceptar}"/>
+                <TextBlock Name="_txbAceptar" Text="{x:Static recurso:Etiquetas.btnEjecutarReporte}"/>
             </Button>
             <Button Name="_btnCancelar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnCancelar_Click">Regresar</Button>
         </WrapPanel>

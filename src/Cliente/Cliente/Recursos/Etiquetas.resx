@@ -3958,7 +3958,7 @@ en Prensa:</value>
     <value>Correos Transferidos:</value>
   </data>
   <data name="menuItemReporteMarca" xml:space="preserve">
-    <value>Generador de Reporte de Marca</value>
+    <value>Generador de Reportes</value>
   </data>
   <data name="lblTituloReporte" xml:space="preserve">
     <value>Título del Reporte:</value>
@@ -4019,5 +4019,14 @@ en Prensa:</value>
   </data>
   <data name="lsvTituloReporteIng" xml:space="preserve">
     <value>Titulo en Inglés</value>
+  </data>
+  <data name="lblCamposFiltro" xml:space="preserve">
+    <value>Campos Filtro del Reporte:</value>
+  </data>
+  <data name="cbiOrdenamientoReporte" xml:space="preserve">
+    <value>MYP_ORDEN_REP</value>
+  </data>
+  <data name="lblTipoOrdenamientoReporte" xml:space="preserve">
+    <value>Ordenamiento:</value>
   </data>
 </root>

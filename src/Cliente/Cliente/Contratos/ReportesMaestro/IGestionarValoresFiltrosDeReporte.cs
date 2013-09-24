@@ -13,6 +13,18 @@ namespace Trascend.Bolet.Cliente.Contratos.ReportesMaestro
         
         object Filtros { get; set; }
 
+        object CamposDelReporte { get; set; }
+
+        object CampoDelReporte { get; set; }
+
+        object TiposDeOrdenamiento { get; set; }
+
+        object TipoDeOrdenamiento { get; set; }
+
+        object OrdenamientosReporte { get; set; }
+
+        object OrdenamientoReporte { get; set; }
+
         void Mensaje(string mensaje, int opcion);
     }
 }

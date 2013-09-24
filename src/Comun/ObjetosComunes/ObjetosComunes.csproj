@@ -224,6 +224,7 @@
     <Compile Include="Entidades\FiltroPlantilla.cs" />
     <Compile Include="Entidades\FiltroReporte.cs" />
     <Compile Include="Entidades\MaestroDePlantilla.cs" />
+    <Compile Include="Entidades\OrdenReporte.cs" />
     <Compile Include="Entidades\Plantilla.cs" />
     <Compile Include="Entidades\Registrador.cs" />
     <Compile Include="Entidades\Reporte.cs" />

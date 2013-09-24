@@ -1163,4 +1163,8 @@
     <value>vistaReporte.Id  = {0}</value>
     <comment>Filtro para obtener un reporte por la vista que se esta usando con el mismo</comment>
   </data>
+  <data name="ObtenerReporteConTodo" xml:space="preserve">
+    <value>Select r from Reporte r left join fetch r.Idioma as idioma left join fetch r.VistaReporte as vistaReporte where r.Id = {0} order by r.Id</value>
+    <comment>Consulta para obtener el Reporte con Todo</comment>
+  </data>
 </root>
