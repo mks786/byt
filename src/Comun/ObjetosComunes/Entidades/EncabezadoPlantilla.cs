@@ -10,7 +10,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         private string _nombreArchivo;
         private string _rutaArchivo;
-        private Plantilla _plantilla;
+        private MaestroDePlantilla _maestroDePlantilla;
         private IList<FiltroPlantilla> _filtrosEncabezado;
         private BatPlantilla _batPlantilla;
         
@@ -54,12 +54,12 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
 
         /// <summary>
-        /// Propiedad que asigna o recupera la plantilla a la que pertenece el encabezado seleccionado
+        /// Propiedad que asigna o recupera el maestro de plantilla al que pertenece el encabezado seleccionado
         /// </summary>
-        public virtual Plantilla Plantilla
+        public virtual MaestroDePlantilla MaestroDePlantilla
         {
-            get { return this._plantilla; }
-            set { this._plantilla = value; }
+            get { return this._maestroDePlantilla; }
+            set { this._maestroDePlantilla = value; }
         }
 
 

@@ -326,7 +326,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                 #endregion
 
                 StringBuilder resultado = new StringBuilder();
-                String clausulaCabecera = String.Empty; clausulaCabecera = "SELECT ROWNUM " + '\u0022' + "No" + '\u0022' + ", ";
+                String clausulaCabecera = String.Empty; clausulaCabecera = "SELECT ";
+                String cabeceraOrdenamiento = "SELECT ROWNUM " + '\u0022' + "No" + '\u0022' + ", T.* FROM ( ";
                 String clausulaFrom = String.Empty; clausulaFrom = "FROM ";
                 String clausulaWhere = String.Empty; clausulaWhere = " WHERE ";
                 String clausulaOrderBy = String.Empty; clausulaOrderBy = " ORDER BY ";
@@ -341,6 +342,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                 IList<CamposReporteRelacion> camposDefinidosDelReporte = this._listaDeCamposDelReporte;
                 IList<FiltroReporte> filtrosDelReporte = filtrosModificados;
 
+                resultado.Append(cabeceraOrdenamiento);
                 resultado.Append(clausulaCabecera);
 
                 //Definiendo la cadena de los campos a consultar SELECT campo1, campo2,....,campoN
@@ -412,6 +414,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                                 cadenaFiltros += ")";
                                 parametros = null;
                             }
+                            else if (operador.Valor.Equals("BETWEEN"))
+                            {
+                                parametros = filtro.Valor.Split(',');
+                                cadenaFiltros +=  " " + parametros[0] + " AND " + parametros[1] ;
+                                parametros = null;
+                            }
                             else
                                 cadenaFiltros += filtro.Valor + " ";
                         }
@@ -435,7 +443,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                                 cadenaFiltros += ")";
                                 parametros = null;
                             }
-
+                            else if (operador.Valor.Equals("BETWEEN") && filtro.Campo.TipoDeCampo.Equals("FECHA"))
+                            {
+                                
+                                parametros = filtro.Valor.Split(',');
+                                cadenaFiltros += "'" + parametros[0] + "' AND '" + parametros[1] + "' ";
+                                parametros = null;
+                            }
                             else
                                 cadenaFiltros += "'" + filtro.Valor + "' ";
                         }
@@ -476,7 +490,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
 
 
                 resultado.Append(cadenaFiltros);
+                resultado.Append(")T");
 
+                
                 query = resultado.ToString();
                
                 

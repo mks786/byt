@@ -31,8 +31,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
         private IListaValoresDetalle _ventana;
         private IPlantillaServicios _plantillaServicios;
         private IFiltroPlantillaServicios _filtroPlantillaServicios;
-        private Plantilla _plantilla;
-
+        private MaestroDePlantilla _plantilla;
+        private object _ventanaPadreConsultarMaestroPlantilla;
         
         
         /// <summary>
@@ -41,7 +41,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
         /// <param name="ventana">Ventana actual IGestionarMaestroPlantilla</param>
         /// <param name="plantilla">Plantilla Seleccionada</param>
         /// <param name="ventanaPadre">Ventana que precede a esta ventana</param>
-        public PresentadorListaValoresDetalle(IListaValoresDetalle ventana, object plantilla, object ventanaPadre)
+        public PresentadorListaValoresDetalle(IListaValoresDetalle ventana, object plantilla, object ventanaPadre, object ventanaPadreConsultarMaestroPlantilla)
         {
 
             try
@@ -53,7 +53,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
 
                 this._ventana = ventana;
                 this._ventanaPadre = ventanaPadre;
-                this._plantilla = (Plantilla)plantilla;
+                this._ventanaPadreConsultarMaestroPlantilla =
+                    (ventanaPadreConsultarMaestroPlantilla != null) ? ventanaPadreConsultarMaestroPlantilla : null;
+
+                this._plantilla = (MaestroDePlantilla)plantilla;
 
                 
                 this._plantillaServicios = (IPlantillaServicios)Activator.GetObject(typeof(IPlantillaServicios),
@@ -88,12 +91,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
 
                 ActualizarTitulo();
 
-                IList<FiltroPlantilla> listaFiltrosEncabezado = this._filtroPlantillaServicios.ObtenerFiltrosDetallePlantilla(this._plantilla);
+                IList<FiltroPlantilla> listaFiltrosDetalle = this._filtroPlantillaServicios.ObtenerFiltrosDetallePlantilla(this._plantilla);
 
-                this._ventana.FiltrosEncabezado = listaFiltrosEncabezado;
+                this._ventana.FiltrosEncabezado = listaFiltrosDetalle;
 
-                if (listaFiltrosEncabezado.Count > 0)
-                    this._ventana.TotalHits = listaFiltrosEncabezado.Count.ToString();
+                if (listaFiltrosDetalle.Count > 0)
+                    this._ventana.TotalHits = listaFiltrosDetalle.Count.ToString();
 
                 this._ventana.FocoPredeterminado();
 
@@ -128,15 +131,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
             if (!nuevo)
             {
                 FiltroPlantilla filtro = (FiltroPlantilla)this._ventana.FiltroEncabezado;
-                this.Navegar(new GestionarFiltroDePlantilla(filtro, this._ventana, this._ventanaPadre));
+                //this.Navegar(new GestionarFiltroDePlantilla(filtro, this._ventana, this._ventanaPadre));
+                this.Navegar(new GestionarFiltroDePlantilla(filtro, this._ventana, this._ventanaPadre, this._ventanaPadreConsultarMaestroPlantilla));
             }
             else
             {
 
                 FiltroPlantilla filtro = new FiltroPlantilla();
-                filtro.Plantilla = this._plantilla;
+                filtro.MaestroDePlantilla = this._plantilla;
                 filtro.TipoDeFiltro = "D";
-                this.Navegar(new GestionarFiltroDePlantilla(filtro, this._ventana, this._ventanaPadre));
+                //this.Navegar(new GestionarFiltroDePlantilla(filtro, this._ventana, this._ventanaPadre));
+                this.Navegar(new GestionarFiltroDePlantilla(filtro, this._ventana, this._ventanaPadre, this._ventanaPadreConsultarMaestroPlantilla));
             }
 
             #region trace
@@ -146,7 +151,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
         }
 
 
+        /// <summary>
+        /// Metodo que vuelve a cargar la ventana del Maestro de Plantilla para refrescar los botones de Variables de Encabezado
+        /// y de Detalle
+        /// </summary>
+        public void IrCargarMaestroDePlantilla()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
+            this.Navegar(new GestionarMaestroPlantilla(this._plantilla, this._ventanaPadreConsultarMaestroPlantilla));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
 
     }
 }

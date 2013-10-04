@@ -192,6 +192,32 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// <returns>IDaoArchivo</returns>
         public abstract IDaoArchivo ObtenerDaoArchivo();
 
+        /// <summary>
+        /// Método que devuelve el DaoInstruccionEnvioOriginales del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoInstruccionEnvioOriginales</returns>
+        public abstract IDaoInstruccionEnvioOriginales ObtenerDaoInstruccionEnvioOriginales();
+
+
+        /// <summary>
+        /// Método que devuelve el DaoInstruccionOtros del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoInstruccionOtros</returns>
+        public abstract IDaoInstruccionOtros ObtenerDaoInstruccionOtros();
+
+
+        /// <summary>
+        /// Método que devuelve el DaoInstruccionDescuento del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoInstruccionDescuento</returns>
+        public abstract IDaoInstruccionDescuento ObtenerDaoInstruccionDescuento();
+
+        /// <summary>
+        /// Método que devuelve el DaoInstruccionCorrespondencia del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoInstruccionCorrespondencia</returns>
+        public abstract IDaoInstruccionCorrespondencia ObtenerDaoInstruccionCorrespondencia();
+
 
         /// <summary>
         /// Método que devuelve el DaoFiltroPlantilla del manejador que se esté utilizando

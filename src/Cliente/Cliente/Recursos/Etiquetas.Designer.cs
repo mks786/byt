@@ -106,6 +106,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Ejecutar Detalle.
+        /// </summary>
+        public static string btnAnalizarQueryDetalle {
+            get {
+                return ResourceManager.GetString("btnAnalizarQueryDetalle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ejecutar Encabezado.
+        /// </summary>
+        public static string btnAnalizarQueryEncabezado {
+            get {
+                return ResourceManager.GetString("btnAnalizarQueryEncabezado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Analizar Relacion.
         /// </summary>
         public static string btnAnalizarRelacion {
@@ -232,6 +250,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Correspondencia:.
+        /// </summary>
+        public static string btnCartaInstruccion {
+            get {
+                return ResourceManager.GetString("btnCartaInstruccion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Caso Especial....
         /// </summary>
         public static string btnCasoEspecial {
@@ -301,6 +328,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string btnCopiarDistingue {
             get {
                 return ResourceManager.GetString("btnCopiarDistingue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Correspondencia.
+        /// </summary>
+        public static string btnCorrespondencia {
+            get {
+                return ResourceManager.GetString("btnCorrespondencia", resourceCulture);
             }
         }
         
@@ -629,6 +665,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Modificar Instruccion Envio de Email.
+        /// </summary>
+        public static string btnModificarEnvioEmails {
+            get {
+                return ResourceManager.GetString("btnModificarEnvioEmails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Modificar Instruccion Envio de Originales.
+        /// </summary>
+        public static string btnModificarEnvioOriginales {
+            get {
+                return ResourceManager.GetString("btnModificarEnvioOriginales", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a NDP.
         /// </summary>
         public static string btnNdp {
@@ -679,6 +733,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string btnNuevaFecha {
             get {
                 return ResourceManager.GetString("btnNuevaFecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Nueva Instrucción.
+        /// </summary>
+        public static string btnNuevaInstruccion {
+            get {
+                return ResourceManager.GetString("btnNuevaInstruccion", resourceCulture);
             }
         }
         
@@ -995,6 +1058,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string btnVanDir {
             get {
                 return ResourceManager.GetString("btnVanDir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Variables Detalle.
+        /// </summary>
+        public static string btnVariablesDetalle {
+            get {
+                return ResourceManager.GetString("btnVariablesDetalle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Variables Encabezado.
+        /// </summary>
+        public static string btnVariablesEncabezado {
+            get {
+                return ResourceManager.GetString("btnVariablesEncabezado", resourceCulture);
             }
         }
         
@@ -1778,6 +1859,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string cbiTipoDocumentoArchivoPatente {
             get {
                 return ResourceManager.GetString("cbiTipoDocumentoArchivoPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a MYP_INSTR_TIPO.
+        /// </summary>
+        public static string cbiTipoInstruccion {
+            get {
+                return ResourceManager.GetString("cbiTipoInstruccion", resourceCulture);
             }
         }
         
@@ -4195,6 +4285,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Incluir en BAT.
+        /// </summary>
+        public static string lblAplicaBat {
+            get {
+                return ResourceManager.GetString("lblAplicaBat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Apoderado:.
         /// </summary>
         public static string lblApoderado {
@@ -4520,6 +4619,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Email CC:.
+        /// </summary>
+        public static string lblCCEmailInstruccion {
+            get {
+                return ResourceManager.GetString("lblCCEmailInstruccion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a CCI:.
         /// </summary>
         public static string lblCCI {
@@ -4687,6 +4795,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblCodigoInt {
             get {
                 return ResourceManager.GetString("lblCodigoInt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Codigo de Operación:.
+        /// </summary>
+        public static string lblCodigoMarcaOPatente {
+            get {
+                return ResourceManager.GetString("lblCodigoMarcaOPatente", resourceCulture);
             }
         }
         
@@ -5628,6 +5745,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Código de Plantilla:.
+        /// </summary>
+        public static string lblIdPlantilla {
+            get {
+                return ResourceManager.GetString("lblIdPlantilla", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Iniciales:.
         /// </summary>
         public static string lblIniciales {
@@ -5642,6 +5768,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblInscripcion {
             get {
                 return ResourceManager.GetString("lblInscripcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Aplica a:.
+        /// </summary>
+        public static string lblInstruccionAplicaA {
+            get {
+                return ResourceManager.GetString("lblInstruccionAplicaA", resourceCulture);
             }
         }
         
@@ -5741,6 +5876,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblLogin {
             get {
                 return ResourceManager.GetString("lblLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Código Maestro de Plantilla:.
+        /// </summary>
+        public static string lblMaestroPlantilla {
+            get {
+                return ResourceManager.GetString("lblMaestroPlantilla", resourceCulture);
             }
         }
         
@@ -5970,6 +6114,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Nombre Email:.
+        /// </summary>
+        public static string lblNombreInstruccion {
+            get {
+                return ResourceManager.GetString("lblNombreInstruccion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Variable Filtro:.
         /// </summary>
         public static string lblNombreVariableFiltro {
@@ -6141,6 +6294,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Otra Direccion:.
+        /// </summary>
+        public static string lblOtraDireccion {
+            get {
+                return ResourceManager.GetString("lblOtraDireccion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Otro:.
         /// </summary>
         public static string lblOtro {
@@ -6209,6 +6371,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblPara {
             get {
                 return ResourceManager.GetString("lblPara", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Email Para:.
+        /// </summary>
+        public static string lblParaEmailInstruccion {
+            get {
+                return ResourceManager.GetString("lblParaEmailInstruccion", resourceCulture);
             }
         }
         
@@ -6708,6 +6879,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Servicio:.
+        /// </summary>
+        public static string lblServicio {
+            get {
+                return ResourceManager.GetString("lblServicio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Género:.
         /// </summary>
         public static string lblSexo {
@@ -7010,6 +7190,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblTipoEtiqueta {
             get {
                 return ResourceManager.GetString("lblTipoEtiqueta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tipo De Instruccion:.
+        /// </summary>
+        public static string lblTipoInstruccion {
+            get {
+                return ResourceManager.GetString("lblTipoInstruccion", resourceCulture);
             }
         }
         
@@ -7527,6 +7716,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Codigo Marca.
+        /// </summary>
+        public static string lsvCodigoMarcaOPatente {
+            get {
+                return ResourceManager.GetString("lsvCodigoMarcaOPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Codigo País.
         /// </summary>
         public static string lsvCodigoPais {
@@ -7590,6 +7788,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Criterio.
+        /// </summary>
+        public static string lsvCriterio {
+            get {
+                return ResourceManager.GetString("lsvCriterio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Cuenta.
         /// </summary>
         public static string lsvCuenta {
@@ -7640,6 +7847,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvDescripcionIngles {
             get {
                 return ResourceManager.GetString("lsvDescripcionIngles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Descuento%.
+        /// </summary>
+        public static string lsvDescuento {
+            get {
+                return ResourceManager.GetString("lsvDescuento", resourceCulture);
             }
         }
         
@@ -7977,6 +8193,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Código Maestro de Plantilla.
+        /// </summary>
+        public static string lsvIdCodMaestroPlantilla {
+            get {
+                return ResourceManager.GetString("lsvIdCodMaestroPlantilla", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Código Interesado.
         /// </summary>
         public static string lsvIdInteresado {
@@ -8009,6 +8234,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvIdPatente {
             get {
                 return ResourceManager.GetString("lsvIdPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Código de Plantilla.
+        /// </summary>
+        public static string lsvIdPlantilla {
+            get {
+                return ResourceManager.GetString("lsvIdPlantilla", resourceCulture);
             }
         }
         
@@ -8099,6 +8333,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvNombreMarca {
             get {
                 return ResourceManager.GetString("lsvNombreMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Nombre de Plantilla.
+        /// </summary>
+        public static string lsvNombrePlantilla {
+            get {
+                return ResourceManager.GetString("lsvNombrePlantilla", resourceCulture);
             }
         }
         
@@ -8256,6 +8499,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Referido.
+        /// </summary>
+        public static string lsvReferido {
+            get {
+                return ResourceManager.GetString("lsvReferido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Region.
         /// </summary>
         public static string lsvRegion {
@@ -8324,6 +8576,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvSeguimiento {
             get {
                 return ResourceManager.GetString("lsvSeguimiento", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Servicio.
+        /// </summary>
+        public static string lsvServicio {
+            get {
+                return ResourceManager.GetString("lsvServicio", resourceCulture);
             }
         }
         
@@ -10569,6 +10830,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Consultar Maestros de Plantillas.
+        /// </summary>
+        public static string titleConsultarMaestroPlantilla {
+            get {
+                return ResourceManager.GetString("titleConsultarMaestroPlantilla", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Consultar Marca.
         /// </summary>
         public static string titleConsultarMarca {
@@ -11478,6 +11748,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Gestionar Instruccion de Envio de Emails.
+        /// </summary>
+        public static string titleGestionarInstruccionCorrespondencia {
+            get {
+                return ResourceManager.GetString("titleGestionarInstruccionCorrespondencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Instrucción No Tipificada.
+        /// </summary>
+        public static string titleGestionarInstruccionNoTipificada {
+            get {
+                return ResourceManager.GetString("titleGestionarInstruccionNoTipificada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Gestionar Licencia  de Marcas.
         /// </summary>
         public static string titleGestionarLicencia {
@@ -11681,6 +11969,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleListaInfoBol {
             get {
                 return ResourceManager.GetString("titleListaInfoBol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Lista de Instrucciones de Descuento.
+        /// </summary>
+        public static string titleListaInstruccionesDescuento {
+            get {
+                return ResourceManager.GetString("titleListaInstruccionesDescuento", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Lista de Instrucciones No Tipificadas.
+        /// </summary>
+        public static string titleListaInstruccionesNoTipificadas {
+            get {
+                return ResourceManager.GetString("titleListaInstruccionesNoTipificadas", resourceCulture);
             }
         }
         

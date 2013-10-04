@@ -41,7 +41,7 @@
 
         <GroupBox Grid.Column="1" Grid.Row="1" Width="500">
 
-            <Grid>
+            <Grid Name="_grdPlantilla" DataContext="{Binding}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="130" />
                     <ColumnDefinition Width="130"/>
@@ -64,13 +64,11 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
+                <!-- Codigo y Descripcion de la Plantilla -->
                 <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblPlantilla}"/>
                 </Label>
-                <!--<custom:ByTTextBox Grid.Column="1" Grid.Row="1" Name="_txtCodigoPlantilla" VerticalAlignment="Center" 
-                               Width="60" HorizontalAlignment="Left" Height="25"/>
-                <custom:ByTTextBox Grid.Column="2" Grid.Row="1" Name="_txtDescripcionPlantilla" 
-                                   VerticalAlignment="Center" Width="180" HorizontalAlignment="Left" Height="25"/>-->
+                
                 <ComboBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Name="_cbxPlantilla" Width="200" ItemsSource="{Binding}" 
                           VerticalAlignment="Center" HorizontalAlignment="Left" Height="25" SelectedIndex="0">
                     <ComboBox.ItemTemplate>
@@ -87,6 +85,7 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
 
+                <!-- Idioma de la Plantilla -->
                 <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblIdioma}"/>
                 </Label>
@@ -95,6 +94,7 @@
                           SelectedIndex="0">
                 </ComboBox>
 
+                <!-- Referido de la Plantilla -->
                 <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblReferido}"/>
                 </Label>
@@ -102,6 +102,7 @@
                       DisplayMemberPath="Descripcion" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25">
                 </ComboBox>
 
+                <!-- Criterio de la Plantilla -->
                 <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblCriterio}"/>
                 </Label>
@@ -109,21 +110,20 @@
                       DisplayMemberPath="Descripcion" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" >
                 </ComboBox>
 
+                <!-- Departamento de la Plantilla -->
                 <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblDepartamento}"/>
                 </Label>
                 <ComboBox Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Name="_cbxDepartamento" Width="200" ItemsSource="{Binding}" 
-                      DisplayMemberPath="Descripcion" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25">
+                      DisplayMemberPath="Descripcion" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" IsEnabled="False">
                 </ComboBox>
 
+                <!-- Usuario de la Plantilla -->
                 <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblUsuarioLogueado}"/>
                 </Label>
-                <!--<ComboBox Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2" Name="_cbxUsuario" Width="200" ItemsSource="{Binding}" 
-                      HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" >
-                </ComboBox>-->
                 <ComboBox Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2" Name="_cbxUsuario" HorizontalAlignment="Left" 
-                          VerticalAlignment="Center" Width="200" Height="25" IsEnabled="True" ItemsSource="{Binding}">
+                          VerticalAlignment="Center" Width="200" Height="25" IsEnabled="False" ItemsSource="{Binding}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock>
@@ -149,19 +149,16 @@
                 <ComboBox Grid.Column="1" Grid.Row="8" Name="_cbxArchivoSQL_Encabezado" Width="130" ItemsSource="{Binding}"
                           DisplayMemberPath="NombreEncabezado" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" >
                 </ComboBox>
-                <Button Grid.Column="2" Grid.Row="8" Name="_btnAnalizarEncabezado" VerticalAlignment="Center" Height="25" Width="110" Click="_btnAnalizarEncabezado_Click">
-                    <TextBlock Text="{x:Static recurso:Etiquetas.btnAnalizarQuery}"/>
-                </Button>
-
+                
                 <Label Grid.Column="0" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblBat}"/>
                 </Label>
                 <ComboBox Grid.Column="1" Grid.Row="9" Name="_cbxArchivoBat" Width="130" ItemsSource="{Binding}"
                           DisplayMemberPath="NombreBat" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" >
                 </ComboBox>
-                <Button Grid.Column="2" Grid.Row="9" Name="_btnAnalizarVariablesWhere_Encabezado" VerticalAlignment="Center" 
-                        Height="25" Width="110" Click="_btnAnalizarVariablesWhere_Encabezado_Click">
-                    <TextBlock Text="{x:Static recurso:Etiquetas.btnCondiciones}"/>
+                <Button Grid.Column="2" Grid.Row="8" Name="_btnAnalizarVariablesWhere_Encabezado" VerticalAlignment="Center" 
+                        Height="25" Width="120" Click="_btnAnalizarVariablesWhere_Encabezado_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnVariablesEncabezado}"/>
                 </Button>
 
                 <!-- Fin de Encabezado de la Plantilla -->
@@ -173,20 +170,17 @@
                 <ComboBox Grid.Column="1" Grid.Row="11" Name="_cbxArchivoSQL_Detalle" Width="130" ItemsSource="{Binding}"
                           DisplayMemberPath="NombreDetalle" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" >
                 </ComboBox>
-                <Button Grid.Column="2" Grid.Row="11" Name="_btnAnalizarDetalle" VerticalAlignment="Center" Height="25" Width="110" Click="_btnAnalizarDetalle_Click">
-                    <TextBlock Text="{x:Static recurso:Etiquetas.btnAnalizarQuery}"/>
-                </Button>
+                
                 <Label Grid.Column="0" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblBat}"/>
                 </Label>
                 <ComboBox Grid.Column="1" Grid.Row="12" Name="_cbxArchivoBatDetalle" Width="130" ItemsSource="{Binding}"
                           DisplayMemberPath="NombreBat" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" >
                 </ComboBox>
-                <Button Grid.Column="2" Grid.Row="12" Name="_btnAnalizarVariablesWhere_Detalle" VerticalAlignment="Center" 
-                        Height="25" Width="110" Click="_btnAnalizarVariablesWhere_Detalle_Click">
-                    <TextBlock Text="{x:Static recurso:Etiquetas.btnCondiciones}"/>
+                <Button Grid.Column="2" Grid.Row="11" Name="_btnAnalizarVariablesWhere_Detalle" VerticalAlignment="Center" 
+                        Height="25" Width="120" Click="_btnAnalizarVariablesWhere_Detalle_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnVariablesDetalle}"/>
                 </Button>
-                
 
                 <!-- Fin del Detalle de la Plantilla -->
 
@@ -204,6 +198,14 @@
 
             <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" IsDefault="True" Click="_btnAceptar_Click">
                 <TextBlock Name="_txbAceptar" Text="{x:Static recurso:Etiquetas.btnAceptar}"/>
+            </Button>
+            <Button Name="_btnAnalizarEncabezado" VerticalAlignment="Center" Height="25" Width="120" 
+                    Click="_btnAnalizarEncabezado_Click">
+                <TextBlock Text="{x:Static recurso:Etiquetas.btnAnalizarQueryEncabezado}"/>
+            </Button>
+            <Button Grid.Column="2" Grid.Row="11" Name="_btnAnalizarDetalle" VerticalAlignment="Center" Height="25" Width="110" 
+                    Click="_btnAnalizarDetalle_Click">
+                <TextBlock Text="{x:Static recurso:Etiquetas.btnAnalizarQueryDetalle}"/>
             </Button>
             <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnRegresar_Click">
                 <TextBlock Text="{x:Static recurso:Etiquetas.btnRegresar}"/>

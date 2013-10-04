@@ -1304,6 +1304,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a ¿Está seguro que desea modificar la Instruccion de Correspondencia para la Marca {0}?.
+        /// </summary>
+        internal static string ConfirmarModificarInstruccionCorrespondenciaMarca {
+            get {
+                return ResourceManager.GetString("ConfirmarModificarInstruccionCorrespondenciaMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ¿Está seguro que desea modificar la Instruccion de Facturacion para la Marca {0}?.
+        /// </summary>
+        internal static string ConfirmarModificarInstruccionFacturacionMarca {
+            get {
+                return ResourceManager.GetString("ConfirmarModificarInstruccionFacturacionMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a ¿Está seguro que desea modificar la Marca {0}?.
         /// </summary>
         internal static string ConfirmarModificarMarca {

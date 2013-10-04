@@ -77,6 +77,10 @@
     <Compile Include="Contrato\IDaoFechaMarca.cs" />
     <Compile Include="Contrato\IDaoFiltroPlantilla.cs" />
     <Compile Include="Contrato\IDaoFiltroReporte.cs" />
+    <Compile Include="Contrato\IDaoInstruccionCorrespondencia.cs" />
+    <Compile Include="Contrato\IDaoInstruccionDescuento.cs" />
+    <Compile Include="Contrato\IDaoInstruccionEnvioOriginales.cs" />
+    <Compile Include="Contrato\IDaoInstruccionOtros.cs" />
     <Compile Include="Contrato\IDaoMaestroDePlantilla.cs" />
     <Compile Include="Contrato\IDaoPlantilla.cs" />
     <Compile Include="Contrato\IDaoRegistrador.cs" />
@@ -180,6 +184,10 @@
     <Compile Include="Dao\NHibernate\DaoFechaMarcaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoFiltroPlantillaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoFiltroReporteNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoInstruccionCorrespondenciaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoInstruccionDescuentoNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoInstruccionEnvioOriginalesNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoInstruccionOtrosNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoMaestroDePlantillaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoPlantillaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoRegistradorNHibernate.cs" />
@@ -773,6 +781,22 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapeado\VistaReporte.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\InstruccionEnvioOriginales.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\InstruccionCorrespondencia.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\InstruccionOtros.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\InstruccionDescuento.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

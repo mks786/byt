@@ -22,9 +22,6 @@ using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 
 
-
-
-
 namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
     class PresentadorGestionarArchivoDeMarca : PresentadorBase

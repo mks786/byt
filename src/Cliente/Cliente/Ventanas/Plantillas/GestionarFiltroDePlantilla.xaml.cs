@@ -48,11 +48,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Plantillas
         }
 
 
-        public GestionarFiltroDePlantilla(object filtro, object ventanaPadre, object ventanaPadreMaestroPlantillas)
+        public GestionarFiltroDePlantilla(object filtro, object ventanaPadre, object ventanaPadreMaestroPlantillas, object ventanaPadreConsultarMaestroPlantilla)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorGestionarFiltroDePlantilla(this, filtro, ventanaPadre, ventanaPadreMaestroPlantillas);
+            this._presentador = new PresentadorGestionarFiltroDePlantilla(this, filtro, ventanaPadre, ventanaPadreMaestroPlantillas, ventanaPadreConsultarMaestroPlantilla);
 
             _bgw.WorkerReportsProgress = true;
             _bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(bgw_DoWork);
@@ -92,6 +92,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Plantillas
                 this._txtNombreVariableFiltro.IsEnabled = value;
                 this._cbxTipoDeFiltro.IsEnabled = value;
                 this._cbxTipoCampoFiltro.IsEnabled = value;
+                this._chkIncluirBat.IsEnabled = value;
+
                 
             }
         }
@@ -145,7 +147,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Plantillas
             set { this._cbxTipoDeFiltro.SelectedItem = value; }
         }
 
-
+        public bool IncluirEnBat
+        {
+            get { return this._chkIncluirBat.IsChecked.Value; }
+        }
 
         #endregion
 
@@ -217,6 +222,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Plantillas
             else
                 MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
+
+        public void MarcarCheckAplica()
+        {
+            this._chkIncluirBat.IsChecked = true;
+        }
+
 
         #endregion
     }

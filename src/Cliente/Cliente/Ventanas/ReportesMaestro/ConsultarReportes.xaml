@@ -116,6 +116,15 @@
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Usuario" 
                                                   Content="{x:Static recurso:Etiquetas.lsvUsuarioReporte}"/>
                         </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="200">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" 
+                                                  Content="{x:Static recurso:Etiquetas.lsvDescripcion}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Idioma.Descripcion}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Idioma" 
+                                                  Content="{x:Static recurso:Etiquetas.lsvIdioma}"/>
+                        </GridViewColumn>
+                        
                         <GridViewColumn DisplayMemberBinding="{Binding Path=TituloEspanol}" Width="300">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="TituloEspanol" 
                                                   Content="{x:Static recurso:Etiquetas.lsvTituloReporteEsp}"/>

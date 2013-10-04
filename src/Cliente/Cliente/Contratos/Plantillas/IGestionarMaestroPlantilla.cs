@@ -6,6 +6,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Plantillas
 {
     interface IGestionarMaestroPlantilla: IPaginaBase
     {
+
+        object DatosMaestrosPlantilla { get; set; }
+
         object Plantillas { get; set; }
 
         object Plantilla { get; set; }
@@ -48,6 +51,11 @@ namespace Trascend.Bolet.Cliente.Contratos.Plantillas
 
         void MensajeAlerta(string mensaje, int opcion);
 
+        void PintarBotonVariablesEncabezado();
+
+        void PintarBotonVariablesDetalle();
+
+        void ActivarBotonVariables(bool valor);
 
     }
 }

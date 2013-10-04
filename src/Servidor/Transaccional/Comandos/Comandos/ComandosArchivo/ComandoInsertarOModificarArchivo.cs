@@ -33,7 +33,6 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosArchivo
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                //IDaoInfoBol dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoInfoBol();
                 IDaoArchivo dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoArchivo();
                 this.Receptor = new Receptor<bool>(dao.InsertarOModificar(this._archivo));
 

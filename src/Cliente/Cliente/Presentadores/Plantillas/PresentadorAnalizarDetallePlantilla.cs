@@ -85,7 +85,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
 
                 ActualizarTitulo();
 
-                DetallePlantilla detalle = (DetallePlantilla)this._ventana.DetallePlantilla;
+                /*DetallePlantilla detalle = (DetallePlantilla)this._ventana.DetallePlantilla;
 
 
                 IList<FiltroPlantilla> listaDeFiltros = this._filtroPlantillaServicios.ObtenerFiltrosDetallePlantilla(((DetallePlantilla)this._ventana.DetallePlantilla).Plantilla);
@@ -107,7 +107,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                 if (detalle.BatPlantilla != null)
                     EscribirComandoBat(detalle);
                 else
-                    this._ventana.GestionarVisibilidadBat();
+                    this._ventana.GestionarVisibilidadBat();*/
 
 
 

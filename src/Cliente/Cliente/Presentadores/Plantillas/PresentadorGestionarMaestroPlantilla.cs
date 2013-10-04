@@ -29,19 +29,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private IGestionarMaestroPlantilla _ventana;
+        private bool _nuevo = false;
         private IIdiomaServicios _idiomaServicios;
         private IDepartamentoServicios _departamentoServicios;
         private IUsuarioServicios _usuarioServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
         private IPlantillaServicios _plantillaServicios;
         private IMaestroDePlantillaServicios _maestroDePlantillaServicios;
+        private IFiltroPlantillaServicios _filtroPlantillaServicios;
 
 
         /// <summary>
         /// Constructor por defecto que recibe una ventana IGestionarMaestroPlantilla
         /// </summary>
         /// <param name="ventana">Ventana actual a llamar</param>
-        public PresentadorGestionarMaestroPlantilla(IGestionarMaestroPlantilla ventana)
+        /// <param name="maestroPlantilla">Datos maestros para una plantilla seleccionados</param>
+        public PresentadorGestionarMaestroPlantilla(IGestionarMaestroPlantilla ventana, object maestroPlantilla, object ventanaPadre)
         {
 
             try
@@ -52,6 +55,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                 #endregion
 
                 this._ventana = ventana;
+                this._ventanaPadre = ventanaPadre;
+
+                if (maestroPlantilla == null)
+                {
+                    this._nuevo = true;
+                    MaestroDePlantilla _maestroPlantilla = new MaestroDePlantilla();
+                    this._ventana.DatosMaestrosPlantilla = _maestroPlantilla;
+                }
+                else
+                {
+                    this._ventana.DatosMaestrosPlantilla = (MaestroDePlantilla)maestroPlantilla;
+                }
+                 
+                 
                 this._idiomaServicios = (IIdiomaServicios)Activator.GetObject(typeof(IIdiomaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["IdiomaServicios"]);
                 this._departamentoServicios = (IDepartamentoServicios)Activator.GetObject(typeof(IDepartamentoServicios),
@@ -64,7 +81,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PlantillaServicios"]);
                 this._maestroDePlantillaServicios = (IMaestroDePlantillaServicios)Activator.GetObject(typeof(IMaestroDePlantillaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MaestroDePlantillaServicios"]);
-
+                this._filtroPlantillaServicios = (IFiltroPlantillaServicios)Activator.GetObject(typeof(IFiltroPlantillaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FiltroPlantillaServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -91,16 +109,37 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                 #endregion
 
                 ActualizarTitulo();
-                CargarComboPlantillas();
-                CargarComboIdiomas();
-                CargarReferencias();
-                CargarCriterios();
+
+                CargarComboPlantillas(this._nuevo);
+                CargarComboIdiomas(this._nuevo);
+                CargarReferencias(this._nuevo);
+                CargarCriterios(this._nuevo);
                 CargarComboDepartamentos();
                 CargarComboUsuarios();
-                CargarArchivosEncabezado();
-                CargarArchivosDetalle();
-                CargarArchivosBAT("encabezado");
-                CargarArchivosBAT("detalle");
+                CargarArchivosEncabezado(this._nuevo);
+                CargarArchivosDetalle(this._nuevo);
+                CargarArchivosBAT("encabezado",this._nuevo);
+                CargarArchivosBAT("detalle",this._nuevo);
+
+                if (!this._nuevo)
+                {
+                    IList<FiltroPlantilla> variablesEncabezado = 
+                        this._filtroPlantillaServicios.ObtenerFiltrosEncabezadoPlantilla((MaestroDePlantilla)this._ventana.DatosMaestrosPlantilla);
+                    if (variablesEncabezado.Count > 0)
+                    {
+                        this._ventana.PintarBotonVariablesEncabezado();
+                    }
+                    IList<FiltroPlantilla> variablesDetallle = 
+                        this._filtroPlantillaServicios.ObtenerFiltrosDetallePlantilla((MaestroDePlantilla)this._ventana.DatosMaestrosPlantilla);
+                    if (variablesDetallle.Count > 0)
+                    {
+                        this._ventana.PintarBotonVariablesDetalle();
+                    }
+                }
+                else
+                {
+                    this._ventana.ActivarBotonVariables(false);
+                }
 
 
                 IList<ListaDatosValores> localidades = this._listaDatosValoresServicios.
@@ -121,17 +160,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
         }
 
         
-
-
-
-
-        
-
-
         /// <summary>
         /// Metodo que llena el combo con todas las plantillas definidas en base de datos
+        /// <param name="nuevoMaestro">Bandera que indica que si es un nuevo maestro de plantilla o no</param>
         /// </summary>
-        private void CargarComboPlantillas()
+        private void CargarComboPlantillas(bool nuevoMaestro)
         {
             try
             {
@@ -142,6 +175,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
 
                 IList<Plantilla> listaPlantillas = this._plantillaServicios.ConsultarTodos();
                 this._ventana.Plantillas = listaPlantillas;
+                if (!nuevoMaestro)
+                {
+                    this._ventana.Plantilla = this.BuscarPlantilla(listaPlantillas, ((MaestroDePlantilla)this._ventana.DatosMaestrosPlantilla).Plantilla);
+                }
                 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -159,8 +196,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
         /// <summary>
         /// Metodo que carga en el combobox de los Encabezados, todos los archivos existentes en la carpeta respectiva para 
         /// analizarlos
+        /// <param name="nuevoMaestro">Bandera que indica que si es un nuevo maestro de plantilla o no</param>
         /// </summary>
-        private void CargarArchivosEncabezado()
+        private void CargarArchivosEncabezado(bool nuevoMaestro)
         {
 
 
@@ -192,6 +230,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                 }
 
                 this._ventana.ArchivosEncabezado = archivos;
+
+                if (!nuevoMaestro)
+                {
+                    this._ventana.ArchivoEncabezado = this.BuscarEncabezadoPlantilla(archivos, ((MaestroDePlantilla)this._ventana.DatosMaestrosPlantilla).SQL_Encabezado);
+                }
                 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -210,8 +253,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
 
         /// <summary>
         /// Metodo que llena el combo con todos los archivos BAT definidos en la carpeta 
+        /// <param name="tipoDeBat">Tipo de Archivo BAT, Encabezado o Detalle</param>
+        /// <param name="nuevoMaestro">Bandera que indica si es un nuevo maestro de plantilla o no</param>
         /// </summary>
-        private void CargarArchivosBAT(String tipoDeBat)
+        private void CargarArchivosBAT(String tipoDeBat, bool nuevoMaestro)
         {
             try
             {
@@ -247,9 +292,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                 }
 
                 if (tipoDeBat.Equals("encabezado"))
+                {
                     this._ventana.ArchivosBat = archivos;
+                    if(!nuevoMaestro)
+                        this._ventana.ArchivoBat = this.BuscarArchivoBatMaestroPlantilla(archivos, ((MaestroDePlantilla)this._ventana.DatosMaestrosPlantilla).BAT_Encabezado);
+                }
+
                 else if (tipoDeBat.Equals("detalle"))
+                {
                     this._ventana.ArchivosBatDetalle = archivos;
+                    if (!nuevoMaestro)
+                        this._ventana.ArchivoBatDetalle = this.BuscarArchivoBatMaestroPlantilla(archivos, ((MaestroDePlantilla)this._ventana.DatosMaestrosPlantilla).BAT_Detalle);
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -265,13 +319,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
 
 
 
-
-
-
         /// <summary>
         /// Metodo que sirve para cargar el contenido de la carpeta donde se encuentran los archivos con el SQL del detalle
+        /// <param name="nuevoMaestro">Bandera que indica si es un nuevo Maestro de Plantilla o no</param>
         /// </summary>
-        private void CargarArchivosDetalle()
+        private void CargarArchivosDetalle(bool nuevoMaestro)
         {
             try
             {
@@ -301,6 +353,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
 
                 this._ventana.ArchivosDetalle = archivos;
 
+                if (!nuevoMaestro)
+                {
+                    this._ventana.ArchivoDetalle = this.BuscarDetallePlantilla(archivos, ((MaestroDePlantilla)this._ventana.DatosMaestrosPlantilla).SQL_Detalle);
+                }
+
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -316,8 +373,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
 
         /// <summary>
         /// Metodo que llena el combo de los Criterios para una Plantilla
+        /// <param name="nuevoMaestro">Bandera que indica que es un nuevo Maestro de Plantilla o no</param>
         /// </summary>
-        private void CargarCriterios()
+        private void CargarCriterios(bool nuevoMaestro)
         {
             try
             {
@@ -329,6 +387,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                 IList<ListaDatosValores> criterios = this._listaDatosValoresServicios.
                     ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCriteriosPlantilla));
                 this._ventana.Criterios = criterios;
+
+                if (!nuevoMaestro)
+                {
+                    this._ventana.Criterio = 
+                        this.BuscarTipoReferenciaYCriterio(criterios, ((MaestroDePlantilla)this._ventana.DatosMaestrosPlantilla).Criterio);
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -346,8 +410,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
         
         /// <summary>
         /// Metodo que carga las Referencias de una plantilla
+        /// <param name="nuevoMaestro">Bandera que indica si es un nuevo Maestro de Plantilla o no</param>
         /// </summary>
-        private void CargarReferencias()
+        private void CargarReferencias(bool nuevoMaestro)
         {
            try
             {
@@ -356,9 +421,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                IList<ListaDatosValores> referencias = this._listaDatosValoresServicios.
+               IList<ListaDatosValores> referencias = this._listaDatosValoresServicios.
                     ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiReferenciaPlantilla));
-                this._ventana.Referencias = referencias;
+               this._ventana.Referencias = referencias;
+
+               if (!nuevoMaestro)
+               {
+                   this._ventana.Referencia = 
+                       this.BuscarTipoReferenciaYCriterio(referencias, ((MaestroDePlantilla)this._ventana.DatosMaestrosPlantilla).Referido);
+               }
+
                 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -426,7 +498,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                 this._ventana.Departamentos = listaDepartamentos;
                 this._ventana.Departamento = this.BuscarDepartamento(listaDepartamentos, UsuarioLogeado.Departamento);
 
-
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -442,8 +513,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
 
         /// <summary>
         /// Metodo que llena el combo de los idiomas de la ventana
+        /// <param name="nuevoMaestro">Bandera para indicar si es un nuevo maestro de plantilla o no</param>
         /// </summary>
-        private void CargarComboIdiomas()
+        private void CargarComboIdiomas(bool nuevoMaestro)
         {
             IList<Idioma> listaIdiomas;
 
@@ -457,6 +529,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                 listaIdiomas = this._idiomaServicios.ConsultarTodos();
                 this._ventana.Idiomas = listaIdiomas;
 
+                if (!nuevoMaestro)
+                {
+                    this._ventana.Idioma = this.BuscarIdioma(listaIdiomas, ((MaestroDePlantilla)this._ventana.DatosMaestrosPlantilla).Idioma);
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -512,7 +588,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
 
                 if (this._ventana.ArchivoEncabezado != null)
                 {
-                    ((EncabezadoPlantilla)this._ventana.ArchivoEncabezado).Plantilla = (Plantilla)this._ventana.Plantilla;
+                    //((EncabezadoPlantilla)this._ventana.ArchivoEncabezado).Plantilla = (Plantilla)this._ventana.Plantilla;
+                    ((EncabezadoPlantilla)this._ventana.ArchivoEncabezado).MaestroDePlantilla = (MaestroDePlantilla)this._ventana.DatosMaestrosPlantilla;
 
                     if (this._ventana.ArchivoBat != null)
                       ((EncabezadoPlantilla)this._ventana.ArchivoEncabezado).BatPlantilla = (BatPlantilla)this._ventana.ArchivoBat;  
@@ -591,7 +668,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new ListaValoresEncabezado(this._ventana.Plantilla, this._ventana));
+            this.Navegar(new ListaValoresEncabezado(this._ventana.DatosMaestrosPlantilla, this._ventana, this._ventanaPadre));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -611,7 +688,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new ListaValoresDetalle(this._ventana.Plantilla, this._ventana));
+            this.Navegar(new ListaValoresDetalle(this._ventana.DatosMaestrosPlantilla, this._ventana, this._ventanaPadre));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -628,6 +705,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
             try
             {
                 bool exito;
+                int numeroRegistros = 0, nuevoValor = 0;
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -638,16 +717,58 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
 
                 maestroPlantilla = CargarMaestroDePlantillaDeLaPantalla();
 
-                if (maestroPlantilla.Plantilla != null)
+                if (this._nuevo)
                 {
-                    exito = this._maestroDePlantillaServicios.InsertarOModificar(maestroPlantilla, UsuarioLogeado.Hash);
-                    if (exito)
-                        this._ventana.MensajeAlerta("Insercion o modificacion de plantilla ejecutada con exito", 2);
+
+                    if (maestroPlantilla.Plantilla != null)
+                    {
+                        if (maestroPlantilla.Idioma != null)
+                        {
+                            IList<MaestroDePlantilla> _plantillas = this._maestroDePlantillaServicios.ConsultarTodos();
+
+                            if (_plantillas.Count > 0)
+                            {
+                                numeroRegistros = _plantillas.Count;
+                                nuevoValor = numeroRegistros + 1;
+                                maestroPlantilla.Id = nuevoValor;
+                            }
+                            else if (_plantillas.Count == 0)
+                            {
+                                nuevoValor = 1;
+                                maestroPlantilla.Id = nuevoValor;
+                            }
+
+                            exito = this._maestroDePlantillaServicios.InsertarOModificar(maestroPlantilla, UsuarioLogeado.Hash);
+                            if (exito)
+                            {
+                                this._ventana.MensajeAlerta("Insercion de Maestro de Plantilla ejecutada con exito", 2);
+                                this._ventana.DatosMaestrosPlantilla = maestroPlantilla;
+                                this._ventana.ActivarBotonVariables(true);
+                            }
+                        }
+                        else
+                            this._ventana.MensajeAlerta("Seleccione un Idioma para la Plantilla", 0);
+                    }
+                    else
+                        this._ventana.MensajeAlerta("Debe seleccionar una plantilla", 0);
+
                 }
                 else
-                    this._ventana.MensajeAlerta("Debe seleccionar una plantilla", 0);
-
-
+                {
+                    if (maestroPlantilla.Plantilla != null)
+                    {
+                        if (maestroPlantilla.Idioma != null)
+                        {
+                            exito = this._maestroDePlantillaServicios.InsertarOModificar(maestroPlantilla, UsuarioLogeado.Hash);
+                            if (exito)
+                                this._ventana.MensajeAlerta("Maestro de Plantilla modificado con exito", 2);
+                        }
+                        else
+                            this._ventana.MensajeAlerta("Seleccione un Idioma para la Plantilla", 0);
+                    }
+                    else
+                        this._ventana.MensajeAlerta("Debe seleccionar una plantilla", 0);
+                }
                 
                     
 
@@ -677,7 +798,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                MaestroDePlantilla maestroPlantilla = new MaestroDePlantilla();
+                MaestroDePlantilla maestroPlantilla = (MaestroDePlantilla)this._ventana.DatosMaestrosPlantilla;
 
 
                 maestroPlantilla.Plantilla = this._ventana.Plantilla != null ? (Plantilla)this._ventana.Plantilla : null;

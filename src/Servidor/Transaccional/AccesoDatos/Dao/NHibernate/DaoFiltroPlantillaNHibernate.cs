@@ -12,7 +12,12 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        public IList<FiltroPlantilla> ObtenerFiltrosEncabezadoPlantilla(Plantilla plantilla)
+        /// <summary>
+        /// Metodo que obtiene las variables de encabezado de un maestro de plantilla determinado
+        /// </summary>
+        /// <param name="plantilla">Maestro de Plantilla a consultar</param>
+        /// <returns>Lista de variables de encabezado del maestro de plantilla seleccionado; en caso contrario devuelve NULL</returns>
+        public IList<FiltroPlantilla> ObtenerFiltrosEncabezadoPlantilla(MaestroDePlantilla plantilla)
         {
             IList<FiltroPlantilla> Encabezados;
 
@@ -34,7 +39,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.exObtenerInfobolesPorMarca);
+                throw new ApplicationException(Recursos.Errores.exObtenerFiltroEncabezadoPlantilla + ": " + ex.Message);
             }
             finally
             {
@@ -45,7 +50,12 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         }
 
 
-        public IList<FiltroPlantilla> ObtenerFiltrosDetallePlantilla(Plantilla plantilla)
+        /// <summary>
+        /// Metodo que obtiene las variables del detalle de un maestro de plantilla determinado
+        /// </summary>
+        /// <param name="plantilla">Maestro de plantilla seleccionado</param>
+        /// <returns>Lista de variables de detalle del maestro de plantilla consultado; en caso contrario devuelve NULL</returns>
+        public IList<FiltroPlantilla> ObtenerFiltrosDetallePlantilla(MaestroDePlantilla plantilla)
         {
             IList<FiltroPlantilla> Encabezados;
 
@@ -67,7 +77,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.exObtenerInfobolesPorMarca);
+                throw new ApplicationException(Recursos.Errores.exObtenerFiltroDetallePlantilla + ": " + ex.Message);
             }
             finally
             {

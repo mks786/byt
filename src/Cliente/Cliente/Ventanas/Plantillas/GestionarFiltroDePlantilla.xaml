@@ -44,9 +44,9 @@
             <StackPanel Name="_gridDatos" VerticalAlignment="Center"  HorizontalAlignment="Center" DataContext="{Binding}">
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0" >
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblPlantilla}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblMaestroPlantilla}"/>
                     </Label>
-                    <custom:ByTTextBox IsEnabled="False" Name="_txtIdPlantilla" Width="130" MaxLength="8" Text="{Binding Path=Plantilla.Descripcion}"/>
+                    <custom:ByTTextBox IsEnabled="False" Name="_txtIdPlantilla" Width="130" MaxLength="16" Text="{Binding Path=MaestroDePlantilla.Id}"/>
                 </WrapPanel>
 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
@@ -84,6 +84,18 @@
                     <!--<custom:ByTTextBox IsEnabled="False" Name="_txtTipoDeFiltro" Text="{Binding Path=Carta.Id}" Width="130" MaxLength="8"/>-->
 
                 </WrapPanel>
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="75,5,0,0" >
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblAplicaBat}"/>
+                    </Label>
+                    <CheckBox   Name="_chkIncluirBat" VerticalAlignment="Center" HorizontalAlignment="Left" 
+                                IsChecked="{Binding Path=BEtiqueta}" Margin="0,0,0,0">
+                    </CheckBox>
+                    <!--<custom:ByTTextBox IsEnabled="False" Name="_txtTipoDeFiltro" Text="{Binding Path=Carta.Id}" Width="130" MaxLength="8"/>-->
+
+                </WrapPanel>
+
 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>

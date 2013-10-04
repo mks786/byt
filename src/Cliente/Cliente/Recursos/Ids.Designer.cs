@@ -2590,6 +2590,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a MYP_INSTR_EMAIL.
+        /// </summary>
+        public static string GestionarInstruccionCorrespondencia {
+            get {
+                return ResourceManager.GetString("GestionarInstruccionCorrespondencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a MYPPLICM.
         /// </summary>
         public static string GestionarLicenciaPatente {
@@ -2653,11 +2662,29 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a MYP_INSTR_DESCUENTOS.
+        /// </summary>
+        public static string InstruccionDeDescuento {
+            get {
+                return ResourceManager.GetString("InstruccionDeDescuento", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a MYP_INSTREN.
         /// </summary>
         public static string InstruccionesDeRenovacion {
             get {
                 return ResourceManager.GetString("InstruccionesDeRenovacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a MYP_INSTR_OTROS.
+        /// </summary>
+        public static string InstruccionNoTipificada {
+            get {
+                return ResourceManager.GetString("InstruccionNoTipificada", resourceCulture);
             }
         }
         
@@ -2721,6 +2748,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string ListaPoderes {
             get {
                 return ResourceManager.GetString("ListaPoderes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ENV_MAESTRO_PLANT.
+        /// </summary>
+        public static string MaestroPlantilla {
+            get {
+                return ResourceManager.GetString("MaestroPlantilla", resourceCulture);
             }
         }
         

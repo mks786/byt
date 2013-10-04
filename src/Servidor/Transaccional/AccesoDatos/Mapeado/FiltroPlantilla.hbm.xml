@@ -7,13 +7,15 @@
 
     <composite-id>
       <key-property name="Id" column="CFILTRO" type="int"/>
-      <key-many-to-one name="Plantilla" column="CPLANTILLA" class="Plantilla" lazy="false"/>
+      <key-many-to-one name="MaestroDePlantilla" column="CCODIGO" class="MaestroDePlantilla" lazy="false"/>
     </composite-id>
   
     <property name="NombreCampoFiltro" type="string" column="XCAMPO"/>
     <property name="TipoDatoCampoFiltro" type="string" column="TCAMPO"/>
     <property name="NombreVariableFiltro" type="String" column="VARFILTRO"/>
     <property name="TipoDeFiltro" type="string" column="TFILTRO"/>
+    <property name="ValorFiltro" type="string" column="VALOR"/>
+    <property name="AplicaBAT" type="string" column="APLICA_BAT"/>
 
   </class>
 

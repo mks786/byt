@@ -339,4 +339,10 @@
   <data name="exObtenerArchivoPorId" xml:space="preserve">
     <value>Ocurrió un error consultando el Archivo de la Marca o la Patente especificada</value>
   </data>
+  <data name="exObtenerFiltroDetallePlantilla" xml:space="preserve">
+    <value>Ocurrió un error al obtener las Variables de Detalle del Maestro de Plantilla seleccionado</value>
+  </data>
+  <data name="exObtenerFiltroEncabezadoPlantilla" xml:space="preserve">
+    <value>Ocurrió un error al obtener las Variables de Encabezado del Maestro de Plantilla seleccionado</value>
+  </data>
 </root>

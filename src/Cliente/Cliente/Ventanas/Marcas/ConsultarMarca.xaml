@@ -9,7 +9,7 @@
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
       d:DesignHeight="1745" d:DesignWidth="955"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
-	Title="{x:Static recurso:Etiquetas.titleAgregarAgente}" Loaded="Page_Loaded"
+      Title="{x:Static recurso:Etiquetas.titleAgregarAgente}" Loaded="Page_Loaded"
       KeepAlive="True">
     <Page.Resources>
         <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
@@ -1668,30 +1668,35 @@
                             <Label Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Left">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblCorrespondencia}" Margin="0,0,0,0"/>
                             </Label>
-                            <CheckBox  Name="_chkCorrespondenciaDatos" Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="0" VerticalAlignment="Center"
-                         HorizontalAlignment="Left" Margin="0,0,0,0">
-                            </CheckBox>
-
+                            <!--<CheckBox  Name="_chkCorrespondenciaDatos" Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0">
+                            </CheckBox>-->
+                            <Button Name="_btnCorrespondenciaDatos" Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Height="30" Width="30" Margin="0,0,0,0" Click="_btnCorrespondenciaDatos_Click"/>
+                            
                             <Label Grid.Column="3" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Left">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblFacturacion}" Margin="0,0,0,0"/>
                             </Label>
-                            <CheckBox  Name="_chkFacturacionDatos" Grid.Column="4" Grid.Row="0" VerticalAlignment="Center"
+                            <Button Name="_btnIFacturacionDatos" Grid.Column="4" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Height="30" Width="30" Margin="0,0,0,0" Click="_btnIFacturacionDatos_Click" />
+                            
+                            <!--<CheckBox  Name="_chkFacturacionDatos" Grid.Column="4" Grid.Row="0" VerticalAlignment="Center"
                          HorizontalAlignment="Left" Margin="0,0,0,0" >
-                            </CheckBox>
+                            </CheckBox>-->
 
                             <Label Grid.Column="5" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Left">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblDescuento}" Margin="0,0,0,0"/>
                             </Label>
-                            <CheckBox  Name="_chkDescuentoDatos" Grid.Column="6" Grid.Row="0" VerticalAlignment="Center"
+                            <Button Name="_btnDescuentoDatos" Grid.Column="6" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Height="30" Width="30" Margin="0,0,0,0" Click="_btnDescuentoDatos_Click" />                          
+                            
+                            <!--<CheckBox  Name="_chkDescuentoDatos" Grid.Column="6" Grid.Row="0" VerticalAlignment="Center"
                          HorizontalAlignment="Left" Margin="0,0,0,0">
-                            </CheckBox>
+                            </CheckBox>-->
 
                             <Label Grid.Column="7" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Left">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblOtro}" Margin="0,0,0,0"/>
                             </Label>
-                            <CheckBox  Name="_chkOtroDatos" Grid.Column="8" Grid.Row="0" VerticalAlignment="Center"
+                            <Button Name="_btnOtroDatos" Grid.Column="8" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Height="30" Width="30" Margin="0,0,0,0" Click="_btnOtroDatos_Click" />
+                            <!--<CheckBox  Name="_chkOtroDatos" Grid.Column="8" Grid.Row="0" VerticalAlignment="Center"
                          HorizontalAlignment="Left" Margin="0,0,0,0">
-                            </CheckBox>
+                            </CheckBox>-->
 
                             <Button Grid.Column="9" Grid.Row="0" Name="_btnIrMarcaOrigenDatos" IsDefault="False" Height="25" HorizontalAlignment="Right" Click="_btnIrMarcaOrigen_Click">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.btnMarcaOrigen}"/>

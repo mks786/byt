@@ -4029,4 +4029,106 @@ en Prensa:</value>
   <data name="lblTipoOrdenamientoReporte" xml:space="preserve">
     <value>Ordenamiento:</value>
   </data>
+  <data name="lblCCEmailInstruccion" xml:space="preserve">
+    <value>Email CC:</value>
+  </data>
+  <data name="lblNombreInstruccion" xml:space="preserve">
+    <value>Nombre Email:</value>
+  </data>
+  <data name="lblParaEmailInstruccion" xml:space="preserve">
+    <value>Email Para:</value>
+  </data>
+  <data name="lblTipoInstruccion" xml:space="preserve">
+    <value>Tipo De Instruccion:</value>
+  </data>
+  <data name="titleGestionarInstruccionCorrespondencia" xml:space="preserve">
+    <value>Gestionar Instruccion de Envio de Emails</value>
+  </data>
+  <data name="btnCartaInstruccion" xml:space="preserve">
+    <value>Correspondencia:</value>
+  </data>
+  <data name="cbiTipoInstruccion" xml:space="preserve">
+    <value>MYP_INSTR_TIPO</value>
+  </data>
+  <data name="lblInstruccionAplicaA" xml:space="preserve">
+    <value>Aplica a:</value>
+  </data>
+  <data name="btnModificarEnvioEmails" xml:space="preserve">
+    <value>Modificar Instruccion Envio de Email</value>
+  </data>
+  <data name="btnModificarEnvioOriginales" xml:space="preserve">
+    <value>Modificar Instruccion Envio de Originales</value>
+  </data>
+  <data name="lblOtraDireccion" xml:space="preserve">
+    <value>Otra Direccion:</value>
+  </data>
+  <data name="btnNuevaInstruccion" xml:space="preserve">
+    <value>Nueva Instrucción</value>
+  </data>
+  <data name="titleListaInstruccionesNoTipificadas" xml:space="preserve">
+    <value>Lista de Instrucciones No Tipificadas</value>
+  </data>
+  <data name="btnCorrespondencia" xml:space="preserve">
+    <value>Correspondencia</value>
+  </data>
+  <data name="lblCodigoMarcaOPatente" xml:space="preserve">
+    <value>Codigo de Operación:</value>
+  </data>
+  <data name="titleGestionarInstruccionNoTipificada" xml:space="preserve">
+    <value>Instrucción No Tipificada</value>
+  </data>
+  <data name="lblServicio" xml:space="preserve">
+    <value>Servicio:</value>
+  </data>
+  <data name="lsvCodigoMarcaOPatente" xml:space="preserve">
+    <value>Codigo Marca</value>
+  </data>
+  <data name="lsvDescuento" xml:space="preserve">
+    <value>Descuento%</value>
+  </data>
+  <data name="lsvServicio" xml:space="preserve">
+    <value>Servicio</value>
+  </data>
+  <data name="titleListaInstruccionesDescuento" xml:space="preserve">
+    <value>Lista de Instrucciones de Descuento</value>
+  </data>
+  <data name="lblIdPlantilla" xml:space="preserve">
+    <value>Código de Plantilla:</value>
+  </data>
+  <data name="lsvCriterio" xml:space="preserve">
+    <value>Criterio</value>
+  </data>
+  <data name="lsvIdPlantilla" xml:space="preserve">
+    <value>Código de Plantilla</value>
+  </data>
+  <data name="lsvNombrePlantilla" xml:space="preserve">
+    <value>Nombre de Plantilla</value>
+  </data>
+  <data name="lsvReferido" xml:space="preserve">
+    <value>Referido</value>
+  </data>
+  <data name="titleConsultarMaestroPlantilla" xml:space="preserve">
+    <value>Consultar Maestros de Plantillas</value>
+  </data>
+  <data name="btnAnalizarQueryDetalle" xml:space="preserve">
+    <value>Ejecutar Detalle</value>
+  </data>
+  <data name="btnAnalizarQueryEncabezado" xml:space="preserve">
+    <value>Ejecutar Encabezado</value>
+  </data>
+  <data name="btnVariablesDetalle" xml:space="preserve">
+    <value>Variables Detalle</value>
+  </data>
+  <data name="btnVariablesEncabezado" xml:space="preserve">
+    <value>Variables Encabezado</value>
+  </data>
+  <data name="lblMaestroPlantilla" xml:space="preserve">
+    <value>Código Maestro de Plantilla:</value>
+  </data>
+  <data name="lblAplicaBat" xml:space="preserve">
+    <value>Incluir en BAT</value>
+  </data>
+  <data name="lsvIdCodMaestroPlantilla" xml:space="preserve">
+    <value>Código Maestro de Plantilla</value>
+  </data>
 </root>

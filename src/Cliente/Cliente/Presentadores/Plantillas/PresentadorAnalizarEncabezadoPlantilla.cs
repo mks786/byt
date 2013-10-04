@@ -27,10 +27,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
     {
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
-
         private IAnalizarEncabezadoPlantilla _ventana;
         private IFiltroPlantillaServicios _filtroPlantillaServicios;
         private EncabezadoPlantilla _encabezado;
+        private string _comandoSQL;
+        private string _comandoBat;
 
 
 
@@ -87,7 +88,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
 
                  
 
-                IList<FiltroPlantilla> listaDeFiltros = this._filtroPlantillaServicios.ObtenerFiltrosEncabezadoPlantilla(((EncabezadoPlantilla)this._ventana.EncabezadoPlantilla).Plantilla);
+                IList<FiltroPlantilla> listaDeFiltros = this._filtroPlantillaServicios.ObtenerFiltrosEncabezadoPlantilla(((EncabezadoPlantilla)this._ventana.EncabezadoPlantilla).MaestroDePlantilla);
 
                 if (listaDeFiltros.Count > 0)
                 {
@@ -144,6 +145,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                String comandoSQL = String.Empty;
                 StringBuilder sb = new StringBuilder();
                 String comandoSQLPlus = String.Empty;
 
@@ -169,6 +171,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                 comandoSQLPlus = sb.ToString();
 
                 this._ventana.ComandoSQLPlus = comandoSQLPlus;
+
+
 
 
                 #region trace
@@ -208,7 +212,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                     IList<FiltroPlantilla> listaFiltrosEncabezado = encabezado.VariablesEncabezado;
                     foreach (FiltroPlantilla variable in listaFiltrosEncabezado)
                     {
-                        sb.Append(variable.NombreVariableFiltro + " ");
+                        if(!variable.AplicaBAT.Equals("NO"))
+                            sb.Append(variable.NombreVariableFiltro + " ");
                     }
 
                 }
@@ -241,10 +246,36 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                String comandoCompleto = String.Empty, comandoConsola = String.Empty, argumentos = String.Empty;
+                IList<String> valoresVariables = new List<String>();
+                StringBuilder sb = new StringBuilder();
+                String in_database = ConfigurationManager.AppSettings["NombreBaseDatosMaestroPlantillas"];
+                String comandoConsola = ConfigurationManager.AppSettings["ComandoTestMaestroPlantilla"];
+                String usuario_password = ConfigurationManager.AppSettings["UserPasswordMaestroPlantilla"];
+                String comandoSQLPlus = String.Empty;
+                String comandoCompleto = String.Empty, comandoConsola1 = String.Empty, argumentos = String.Empty;
+                String valorVariable = null;
+                EncabezadoPlantilla encabezado = (EncabezadoPlantilla)this._ventana.EncabezadoPlantilla;
+                IList<FiltroPlantilla> filtrosEncabezado = (IList<FiltroPlantilla>)this._ventana.Variables;
+                
+                sb.Append(comandoConsola + " ");
+                sb.Append(usuario_password);
+                sb.Append("@" + in_database + " @");
+                sb.Append(encabezado.RutaEncabezado + " ");
+                
 
-                comandoCompleto = this._ventana.ComandoSQLPlus;
-                comandoConsola = comandoCompleto.Substring(0, 7);
+                
+                foreach (FiltroPlantilla filtro in filtrosEncabezado)
+                {
+                    valorVariable = filtro.ValorFiltro;
+                    sb.Append(valorVariable + " ");
+
+                }
+
+                
+
+                //comandoCompleto = this._ventana.ComandoSQLPlus;
+                comandoCompleto = sb.ToString();
+                comandoConsola1 = comandoCompleto.Substring(0, 7);
                 argumentos = comandoCompleto.Substring(8);
 
 
@@ -322,14 +353,38 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                StringBuilder sb = new StringBuilder();
+                String comandoBatConsola = String.Empty;
                 String comando = String.Empty, parametros = String.Empty;
                 String[] _comandoBatPorPartes = null;
                 int contador = 1;
 
-                comando = this._ventana.ComandoBat;
-                _comandoBatPorPartes = comando.Split(' ');
 
                 EncabezadoPlantilla encabezado = (EncabezadoPlantilla)this._ventana.EncabezadoPlantilla;
+                IList<FiltroPlantilla> filtrosEncabezado = (IList<FiltroPlantilla>)this._ventana.Variables;
+                encabezado.VariablesEncabezado = filtrosEncabezado;
+
+                BatPlantilla batEncabezdo = encabezado.BatPlantilla;
+
+                sb.Append(batEncabezdo.RutaBat + " ");
+
+                if (encabezado.VariablesEncabezado != null)
+                {
+                    IList<FiltroPlantilla> listaFiltrosEncabezado = encabezado.VariablesEncabezado;
+                    foreach (FiltroPlantilla variable in listaFiltrosEncabezado)
+                    {
+                        if(!variable.AplicaBAT.Equals("NO"))
+                            sb.Append(variable.ValorFiltro + " ");
+                    }
+
+                }
+
+                
+                //comando = this._ventana.ComandoBat;
+                comando = sb.ToString();
+                _comandoBatPorPartes = comando.Split(' ');
+
+                //EncabezadoPlantilla encabezado = (EncabezadoPlantilla)this._ventana.EncabezadoPlantilla;
                 BatPlantilla bat = ((EncabezadoPlantilla)this._ventana.EncabezadoPlantilla).BatPlantilla;
 
                 String _urlBat = _comandoBatPorPartes[0];

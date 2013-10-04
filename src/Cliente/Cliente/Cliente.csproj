@@ -150,10 +150,18 @@
     <Compile Include="Contratos\Marcas\IGestionarArchivoDeMarca.cs" />
     <Compile Include="Contratos\Marcas\IGestionarCertificadoDeMarca.cs" />
     <Compile Include="Contratos\Marcas\IGestionarFechaDeMarca.cs" />
+    <Compile Include="Contratos\Marcas\IGestionarInstruccionCorrespondenciaMarca.cs" />
+    <Compile Include="Contratos\Marcas\IGestionarInstruccionDeDescuentoMarca.cs" />
+    <Compile Include="Contratos\Marcas\IGestionarInstruccionEnvioOriginalesMarca.cs" />
+    <Compile Include="Contratos\Marcas\IGestionarInstruccionFacturacionMarca.cs" />
+    <Compile Include="Contratos\Marcas\IGestionarInstruccionNoTipificadaMarca.cs" />
     <Compile Include="Contratos\Marcas\IListaFechasDeMarca.cs" />
+    <Compile Include="Contratos\Marcas\IListaInstruccionesDescuentoMarca.cs" />
+    <Compile Include="Contratos\Marcas\IListaInstruccionesNoTipificadasDeMarca.cs" />
     <Compile Include="Contratos\Patentes\IGestionarArchivoDePatente.cs" />
     <Compile Include="Contratos\Plantillas\IAnalizarDetallePlantilla.cs" />
     <Compile Include="Contratos\Plantillas\IAnalizarEncabezadoPlantilla.cs" />
+    <Compile Include="Contratos\Plantillas\IConsultarMaestrosPlantillas.cs" />
     <Compile Include="Contratos\Plantillas\IGestionarFiltroDePlantilla.cs" />
     <Compile Include="Contratos\Plantillas\IGestionarMaestroPlantilla.cs" />
     <Compile Include="Contratos\Plantillas\IListaValoresDetalle.cs" />
@@ -599,10 +607,17 @@
     <Compile Include="Presentadores\Marcas\PresentadorGestionarArchivoDeMarca.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorGestionarCertificadoDeMarca.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorGestionarFechaDeMarca.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorGestionarInstruccionCorrespondenciaMarca.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorGestionarInstruccionDeDescuentoMarca.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorGestionarInstruccionFacturacionMarca.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorGestionarInstruccionNoTipificadaMarca.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorListaFechasDeMarca.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorListaInstruccionesDescuentoMarca.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorListaInstruccionesNoTipificadasDeMarca.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorGestionarArchivoDePatente.cs" />
     <Compile Include="Presentadores\Plantillas\PresentadorAnalizarDetallePlantilla.cs" />
     <Compile Include="Presentadores\Plantillas\PresentadorAnalizarEncabezadoPlantilla.cs" />
+    <Compile Include="Presentadores\Plantillas\PresentadorConsultarMaestrosPlantillas.cs" />
     <Compile Include="Presentadores\Plantillas\PresentadorGestionarFiltroDePlantilla.cs" />
     <Compile Include="Presentadores\Plantillas\PresentadorGestionarMaestroPlantilla.cs" />
     <Compile Include="Presentadores\Plantillas\PresentadorListaValoresDetalle.cs" />
@@ -1105,8 +1120,26 @@
     <Compile Include="Ventanas\Marcas\GestionarFechaDeMarca.xaml.cs">
       <DependentUpon>GestionarFechaDeMarca.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\Marcas\GestionarInstruccionCorrespondenciaMarca.xaml.cs">
+      <DependentUpon>GestionarInstruccionCorrespondenciaMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\GestionarInstruccionDeDescuentoMarca.xaml.cs">
+      <DependentUpon>GestionarInstruccionDeDescuentoMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\GestionarInstruccionFacturacionMarca.xaml.cs">
+      <DependentUpon>GestionarInstruccionFacturacionMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\GestionarInstruccionNoTipificadaMarca.xaml.cs">
+      <DependentUpon>GestionarInstruccionNoTipificadaMarca.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Marcas\ListaFechasDeMarca.xaml.cs">
       <DependentUpon>ListaFechasDeMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\ListaInstruccionesDescuentoMarca.xaml.cs">
+      <DependentUpon>ListaInstruccionesDescuentoMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\ListaInstruccionesNoTipificadasDeMarca.xaml.cs">
+      <DependentUpon>ListaInstruccionesNoTipificadasDeMarca.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Patentes\GestionarArchivoDePatente.xaml.cs">
       <DependentUpon>GestionarArchivoDePatente.xaml</DependentUpon>
@@ -1116,6 +1149,9 @@
     </Compile>
     <Compile Include="Ventanas\Plantillas\AnalizarEncabezadoPlantilla.xaml.cs">
       <DependentUpon>AnalizarEncabezadoPlantilla.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Plantillas\ConsultarMaestrosPlantillas.xaml.cs">
+      <DependentUpon>ConsultarMaestrosPlantillas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Plantillas\GestionarFiltroDePlantilla.xaml.cs">
       <DependentUpon>GestionarFiltroDePlantilla.xaml</DependentUpon>
@@ -1880,9 +1916,33 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Ventanas\Marcas\GestionarInstruccionCorrespondenciaMarca.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Marcas\GestionarInstruccionDeDescuentoMarca.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Marcas\GestionarInstruccionFacturacionMarca.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Marcas\GestionarInstruccionNoTipificadaMarca.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Ventanas\Marcas\ListaFechasDeMarca.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Marcas\ListaInstruccionesDescuentoMarca.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Marcas\ListaInstruccionesNoTipificadasDeMarca.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\Patentes\GestionarArchivoDePatente.xaml">
       <SubType>Designer</SubType>
@@ -1893,6 +1953,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\Plantillas\AnalizarEncabezadoPlantilla.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Plantillas\ConsultarMaestrosPlantillas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -3151,6 +3215,21 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\checkOn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ico_correspondencia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ico_facturacion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ico_notipificada.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ico_descuento.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

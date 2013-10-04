@@ -1104,11 +1104,11 @@
     <comment>Obtiene una lista de InfoAdicional con Distingue en Inles segun el filtro determinado</comment>
   </data>
   <data name="ObtenerFiltroEncabezadoPlantilla" xml:space="preserve">
-    <value>Select fp from FiltroPlantilla fp where fp.Plantilla.Id = {0} and fp.TipoDeFiltro = 'E' order by fp.NombreVariableFiltro asc</value>
+    <value>Select fp from FiltroPlantilla fp where fp.MaestroDePlantilla.Id = {0} and fp.TipoDeFiltro = 'E' order by fp.NombreVariableFiltro asc</value>
     <comment>Obtiene los filtros de encabezado de una plantilla especifica</comment>
   </data>
   <data name="ObtenerFiltroDetallePlantilla" xml:space="preserve">
-    <value>Select fp from FiltroPlantilla fp where fp.Plantilla.Id = {0} and fp.TipoDeFiltro = 'D' order by fp.NombreVariableFiltro asc</value>
+    <value>Select fp from FiltroPlantilla fp where fp.MaestroDePlantilla.Id = {0} and fp.TipoDeFiltro = 'D' order by fp.NombreVariableFiltro asc</value>
     <comment>Consulta para obtener los filtros de detalle de una plantilla</comment>
   </data>
   <data name="ObtenerCamposDeReporteDeMarca" xml:space="preserve">
@@ -1166,5 +1166,49 @@
   <data name="ObtenerReporteConTodo" xml:space="preserve">
     <value>Select r from Reporte r left join fetch r.Idioma as idioma left join fetch r.VistaReporte as vistaReporte where r.Id = {0} order by r.Id</value>
     <comment>Consulta para obtener el Reporte con Todo</comment>
+  </data>
+  <data name="ObtenerInstruccionDeCorrespondenciaMarcaOPatente" xml:space="preserve">
+    <value>Select ic from InstruccionCorrespondencia ic left outer join fetch ic.Correspondencia where ic.Id = {0} and ic.AplicadaA = '{1}' and ic.Concepto = '{2}'</value>
+    <comment>Query que obtiene la instruccion de correspondencia de una marca o patente especifica segun el Id, a quien se aplica y el concepto.</comment>
+  </data>
+  <data name="ObtenerInstruccionDeEnvioOriginalesMarcaOPatente" xml:space="preserve">
+    <value>Select ieo from InstruccionEnvioOriginales ieo left outer join fetch ieo.Asociado left outer join fetch ieo.CorrespAsociado left outer join fetch ieo.Interesado left outer join fetch ieo.CorrespInteresado where ieo.Id = {0} and ieo.AplicadaA = '{1}' and ieo.Concepto = '{2}'</value>
+    <comment>Query que obtiene una instruccion de envio de originales de una marca o una patente especifica segun su codigo, aplicacion y concepto</comment>
+  </data>
+  <data name="ObtenerInstruccionesNoTipificadas" xml:space="preserve">
+    <value>Select io from InstruccionOtros io left outer join fetch io.Correspondencia where io.Cod_MarcaOPatente = {0}</value>
+    <comment>Query para obtener las instrucciones no tipificadas de una marca o una patente</comment>
+  </data>
+  <data name="ObtenerInstruccionesDescuentoMarcaOPatente" xml:space="preserve">
+    <value>Select idcto from InstruccionDescuento idcto left outer join fetch idcto.Servicio left outer join fetch idcto.Correspondencia where idcto.CodigoOperacion = {0} and idcto.AplicaA = '{1}'</value>
+    <comment>Query para obtener las Instrucciones de Descuento para una Marca o para una Patente</comment>
+  </data>
+  <data name="CabeceraObtenerMaestroPlantilla" xml:space="preserve">
+    <value>from MaestroDePlantilla mp left join fetch mp.Plantilla as plantilla left join fetch mp.Idioma as idioma where</value>
+    <comment>Cabecera para la consulta de Maestros de Plantilla por filtro</comment>
+  </data>
+  <data name="FiltroObtenerMaestroPlantillaCriterio" xml:space="preserve">
+    <value> upper(mp.Criterio) = '{0}'</value>
+    <comment>Filtro Criterio - ObtenerMaestroDePlantillaFiltro</comment>
+  </data>
+  <data name="FiltroObtenerMaestroPlantillaDetalle" xml:space="preserve">
+    <value> mp.SQL_Detalle like '%{0}%'</value>
+    <comment>Filtro SQL Detalle - ObtenerMaestroDePlantillaFiltro</comment>
+  </data>
+  <data name="FiltroObtenerMaestroPlantillaEncabezado" xml:space="preserve">
+    <value> mp.SQL_Encabezado like '%{0}%'</value>
+    <comment>Filtro SQL Encabezado - ObtenerMaestroDePlantillaFiltro</comment>
+  </data>
+  <data name="FiltroObtenerMaestroPlantillaIdioma" xml:space="preserve">
+    <value> idioma.Id = '{0}'</value>
+    <comment>Filtro Idioma - ObtenerMaestroDePlantillaFiltro</comment>
+  </data>
+  <data name="FiltroObtenerMaestroPlantillaPlantilla" xml:space="preserve">
+    <value> plantilla.Id = {0}</value>
+    <comment>Filtro Plantilla - ObtenerMaestroDePlantillaFiltro</comment>
+  </data>
+  <data name="FiltroObtenerMaestroPlantillaReferido" xml:space="preserve">
+    <value> upper(mp.Referido) = '{0}'</value>
+    <comment>Filtro Referido - ObtenerMaestroDePlantillaFiltro</comment>
   </data>
 </root>

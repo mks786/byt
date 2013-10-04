@@ -11,13 +11,13 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosFiltroPlantilla
     class ComandoConsultarFiltrosDetallePlantilla : ComandoBase<IList<FiltroPlantilla>>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private Plantilla _plantilla;
+        private MaestroDePlantilla _plantilla;
 
         /// <summary>
         /// Constructor por defecto que recibe la plantilla a consultar
         /// </summary>
         /// <param name="plantilla">Plantilla a consultar</param>
-        public ComandoConsultarFiltrosDetallePlantilla(Plantilla plantilla)
+        public ComandoConsultarFiltrosDetallePlantilla(MaestroDePlantilla plantilla)
         {
             this._plantilla = plantilla;
         }

@@ -1140,4 +1140,16 @@
   <data name="GeneradorReporteMarca" xml:space="preserve">
     <value>MYP_MARCAS_REP</value>
   </data>
+  <data name="GestionarInstruccionCorrespondencia" xml:space="preserve">
+    <value>MYP_INSTR_EMAIL</value>
+  </data>
+  <data name="InstruccionNoTipificada" xml:space="preserve">
+    <value>MYP_INSTR_OTROS</value>
+  </data>
+  <data name="InstruccionDeDescuento" xml:space="preserve">
+    <value>MYP_INSTR_DESCUENTOS</value>
+  </data>
+  <data name="MaestroPlantilla" xml:space="preserve">
+    <value>ENV_MAESTRO_PLANT</value>
+  </data>
 </root>

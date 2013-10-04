@@ -11,13 +11,13 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosFiltroPlantilla
     class ComandoConsultarFiltrosEncabezadoPlantilla: ComandoBase<IList<FiltroPlantilla>>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private Plantilla _plantilla;
+        private MaestroDePlantilla _plantilla;
 
         /// <summary>
         /// Constructor por defecto que recibe la plantilla a consultar
         /// </summary>
         /// <param name="plantilla">Plantilla a consultar</param>
-        public ComandoConsultarFiltrosEncabezadoPlantilla(Plantilla plantilla)
+        public ComandoConsultarFiltrosEncabezadoPlantilla(MaestroDePlantilla plantilla)
         {
             this._plantilla = plantilla;
         }
@@ -35,9 +35,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosFiltroPlantilla
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                //IDaoFechaMarca dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoFechaMarca();
                 IDaoFiltroPlantilla dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoFiltroPlantilla();
-                //this.Receptor = new Receptor<IList<FechaMarca>>(dao.ObtenerFechasPorMarca(this._marca));
                 this.Receptor = new Receptor<IList<FiltroPlantilla>>(dao.ObtenerFiltrosEncabezadoPlantilla(this._plantilla));
 
                 #region trace

@@ -30,30 +30,22 @@ namespace Trascend.Bolet.Servidor
 
             #region Codigo de Prueba NO BORRAR - CONECTIVIDAD
 
-            //CamposReporteServicios servicioPrueba = new CamposReporteServicios();
-            //IList<CamposReporte> campos = servicioPrueba.ConsultarTodos();
-            //IList<CamposReporte> campos1 = servicioPrueba.ObtenerCamposReportePatente();
+            /*MaestroDePlantillaServicios servicioPrueba = new MaestroDePlantillaServicios();
+            MaestroDePlantilla mp = new MaestroDePlantilla();
+            Plantilla plantilla = new Plantilla();
+            plantilla.Id = 1;
+            mp.Plantilla = plantilla;
+            IList<MaestroDePlantilla> resultados = servicioPrueba.ObtenerMaestroDePlantillaFiltro(mp);*/
 
-            //ReporteServicios servicioPrueba = new ReporteServicios();
-            //Reporte reporte = new Reporte();
-            //reporte.Id = 17;
+            /*MaestroDePlantilla plantilla = new MaestroDePlantilla();
+            plantilla.Id = 1;
 
-            //Reporte r = servicioPrueba.ConsultarReporteConTodo(reporte);
+            FiltroPlantillaServicios servicioPrueba = new FiltroPlantillaServicios();
+            IList<FiltroPlantilla> filtros = servicioPrueba.ObtenerFiltrosDetallePlantilla(plantilla);
 
-            //DataSet ds = new DataSet();
-            //String query = "Select CMARCA, XMARCA from MYP_DATA_MARCAS";
-            //ds = servicioPrueba.EjecutarQuery(query);
+            Console.ReadLine();*/
 
             
-
-            //Console.ReadLine();
-
-
-
-
-
-
-
             #endregion
 
             Console.WriteLine("Se han cargado " + ConfiguracionServicios.CargarUsuarios() + " sesiones de archivo XML");

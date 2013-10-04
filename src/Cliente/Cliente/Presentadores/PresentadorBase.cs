@@ -473,6 +473,126 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+        /// <summary>
+        /// Metodo que encuentra una Referencia de Maestro de Plantilla en un grupo de referencias 
+        /// </summary>
+        /// <param name="referencias">Lista de referencias de Maestro de Plantilla</param>
+        /// <param name="nombreReferencia">Referencia buscada</param>
+        /// <returns>Objeto que guarda el codigo y la descripcion de la de referencia</returns>
+        public ListaDatosValores BuscarTipoReferenciaYCriterio(IList<ListaDatosValores> referencias, string valorReferencia)
+        {
+            ListaDatosValores retorno = null;
+
+            if (valorReferencia != null)
+                foreach (ListaDatosValores referencia in referencias)
+                {
+                    if (referencia.Valor.Equals(valorReferencia))
+                    {
+                        retorno = referencia;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+
+        /// <summary>
+        /// Metodo que busca una plantilla determinada en una lista de plantillas
+        /// </summary>
+        /// <param name="plantillas">Lista de plantillas</param>
+        /// <param name="plantillaBuscada">Plantilla a encontrar en la lista</param>
+        /// <returns>Plantilla que concuerde con la validacion; en caso contrario retorna NULL</returns>
+        public Plantilla BuscarPlantilla(IList<Plantilla> plantillas, Plantilla plantillaBuscada)
+        {
+            Plantilla retorno = null;
+
+            if (plantillaBuscada != null)
+                foreach (Plantilla plantilla in plantillas)
+                {
+                    if (plantilla.Id == plantillaBuscada.Id)
+                    {
+                        retorno = plantilla;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+
+        /// <summary>
+        /// Metodo que devuelve el objeto EncabezadoPlantilla que posee el nombre del archivo SQL de Encabezado del Maestro 
+        /// de Plantilla consultado
+        /// </summary>
+        /// <param name="listaArchivosEncabezado">Lista de archivos de Encabezado de Maestro de Plantilla</param>
+        /// <param name="archivoBuscado">Archivo buscado</param>
+        /// <returns>Objeto EncabezadoPlantilla con el nombre del archivo buscado; en caso contrario devuelve NULL</returns>
+        public EncabezadoPlantilla BuscarEncabezadoPlantilla(IList<EncabezadoPlantilla> listaArchivosEncabezado,String archivoBuscado)
+        {
+            EncabezadoPlantilla retorno = null;
+
+            if (archivoBuscado != null)
+                foreach (EncabezadoPlantilla archivo in listaArchivosEncabezado)
+                {
+                    if (archivo.NombreEncabezado.Equals(archivoBuscado))
+                    {
+                        retorno = archivo;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Metodo que devuelve el objeto BatPlantilla que posee el nombre del archivo SQL de Encabezado del Maestro 
+        /// de Plantilla consultado
+        /// </summary>
+        /// <param name="listaArchivosBat">Lista de archivos de Bat de Encabezado o Detalle de Maestro de Plantilla</param>
+        /// <param name="archivoBatBuscado">Archivo BAT buscado</param>
+        /// <returns>Objeto BatPlantilla con el nombre del archivo BAT buscado; en caso contrario NULL</returns>
+        public BatPlantilla BuscarArchivoBatMaestroPlantilla(IList<BatPlantilla> listaArchivosBat, string archivoBatBuscado)
+        {
+            BatPlantilla retorno = null;
+
+            if (archivoBatBuscado != null)
+                foreach (BatPlantilla archivoBat in listaArchivosBat)
+                {
+                    if (archivoBat.NombreBat.Equals(archivoBatBuscado))
+                    {
+                        retorno = archivoBat;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+
+        /// <summary>
+        /// Metodo que devuelve el objeto DetallePlantilla que posee el nombre del archivo SQL de Detalle del Maestro 
+        /// de Plantilla consultado
+        /// </summary>
+        /// <param name="listaArchivosDetalle">Lista de Archivos SQL de Detalle</param>
+        /// <param name="archivoBuscado">Nombre del archivo SQL de Detalle a buscar</param>
+        /// <returns>Objeto DetallePlantilla con el nombre del archivo buscado; en caso contrario devuelve NULL</returns>
+        public DetallePlantilla BuscarDetallePlantilla(IList<DetallePlantilla> listaArchivosDetalle, String archivoBuscado)
+        {
+            DetallePlantilla retorno = null;
+
+            if (archivoBuscado != null)
+                foreach (DetallePlantilla archivo in listaArchivosDetalle)
+                {
+                    if (archivo.NombreDetalle.Equals(archivoBuscado))
+                    {
+                        retorno = archivo;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
 
 
         /// <summary>
@@ -516,6 +636,31 @@ namespace Trascend.Bolet.Cliente.Presentadores
                     if (tipoDocumento.Valor == tipoDocumentoBuscado.Id)
                     {
                         retorno = tipoDocumento;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+
+        /// <summary>
+        /// Metodo que busca un tipo de instruccion en una lista de tipos de instrucciones
+        /// Este metodo aplica para las Instrucciones de Envio de Originales y para las Instrucciones por Correspondencia
+        /// </summary>
+        /// <param name="tiposInstrucciones">Lista de Tipos de Instrucciones</param>
+        /// <param name="tipoInstruccionBuscado">Tipo de instruccion a encontrar en la lista</param>
+        /// <returns>Tipo de Instruccion buscado si se encuentra en la lista; NULL en caso contrario</returns>
+        public ListaDatosValores BuscarTipoInstruccion(IList<ListaDatosValores> tiposInstrucciones, ListaDatosValores tipoInstruccionBuscado)
+        {
+            ListaDatosValores retorno = null;
+
+            if (tiposInstrucciones != null)
+                foreach (ListaDatosValores tipoInstruccion in tiposInstrucciones)
+                {
+                    if (tipoInstruccion.Valor == tipoInstruccionBuscado.Valor)
+                    {
+                        retorno = tipoInstruccion;
                         break;
                     }
                 }

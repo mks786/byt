@@ -60,6 +60,10 @@
     <Compile Include="Controladores\ControladorFechaMarca.cs" />
     <Compile Include="Controladores\ControladorFiltroPlantilla.cs" />
     <Compile Include="Controladores\ControladorFiltroReporte.cs" />
+    <Compile Include="Controladores\ControladorInstruccionCorrespondencia.cs" />
+    <Compile Include="Controladores\ControladorInstruccionDescuento.cs" />
+    <Compile Include="Controladores\ControladorInstruccionEnvioOriginales.cs" />
+    <Compile Include="Controladores\ControladorInstruccionOtros.cs" />
     <Compile Include="Controladores\ControladorMaestroDePlantilla.cs" />
     <Compile Include="Controladores\ControladorObjeto.cs" />
     <Compile Include="Controladores\ControladorPlantilla.cs" />

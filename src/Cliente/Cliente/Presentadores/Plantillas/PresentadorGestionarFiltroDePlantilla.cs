@@ -34,8 +34,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
         private FiltroPlantilla _filtro;
         private bool _nuevoFiltro = false;
         private object _ventanaPadreMaestroPlantillas;
+        private object _ventanaPadreConsultarMaestroPlantilla;
 
-
+        /// <summary>
+        /// Constructor por defecto que recibe un filtro de encabezado y una ventana padre
+        /// </summary>
+        /// <param name="ventana">Ventana actual</param>
+        /// <param name="filtro">Filtro de encabezado a modifica o a insertar</param>
+        /// <param name="ventanaPadre">Ventana ListaValoresEncabezado que precede a esta ventana</param>
         public PresentadorGestionarFiltroDePlantilla(IGestionarFiltroDePlantilla ventana, object filtro, object ventanaPadre)
         {
             try
@@ -47,6 +53,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
 
                 this._ventana = ventana;
                 this._ventanaPadre = ventanaPadre;
+
+                
                 this._filtro = (FiltroPlantilla)filtro;
 
                 if(((FiltroPlantilla)filtro).NombreCampoFiltro == null)
@@ -74,14 +82,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
         }
 
         /// <summary>
-        /// Constructor por defecto que recibe un filtro nuevo o seleccionado de la lista de filtros
-        /// Recibe la ventana actual, la ventana padre y la ventana de Gestion de Maestro de Plantillas
+        /// Constructor por defecto que recibe un filtro, la ventana padre y las ventanas que preceden a este ventana
         /// </summary>
-        /// <param name="ventana">Ventana actual</param>
-        /// <param name="filtro">Filtro seleccionado, existente o uno nuevo</param>
-        /// <param name="ventanaPadre">Ventana que precede a esta ventana</param>
-        /// <param name="ventanaPadreMaestroPlantillas">Ventana que precede al listado de filtros de la plantilla</param>
-        public PresentadorGestionarFiltroDePlantilla(IGestionarFiltroDePlantilla ventana, object filtro, object ventanaPadre, object ventanaPadreMaestroPlantillas)
+        /// <param name="ventana">Ventana Actual GestionarFiltroDePlantilla</param>
+        /// <param name="filtro">Filtro a insertar o a modificar</param>
+        /// <param name="ventanaPadre">Ventana inmediata que precede a esta ventana ListaValoresEncabezado</param>
+        /// <param name="ventanaPadreMaestroPlantilla">Ventana GestionarMaestroPlantilla</param>
+        /// <param name="ventanaPadreConsultarMaestroPlantilla">Ventana ConsultarMaestrosPlantillas</param>
+        public PresentadorGestionarFiltroDePlantilla(IGestionarFiltroDePlantilla ventana, 
+                                                     object filtro, 
+                                                     object ventanaPadre,
+                                                     object ventanaPadreMaestroPlantilla,
+                                                     object ventanaPadreConsultarMaestroPlantilla)
         {
             try
             {
@@ -92,7 +104,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
 
                 this._ventana = ventana;
                 this._ventanaPadre = ventanaPadre;
-                this._ventanaPadreMaestroPlantillas = ventanaPadreMaestroPlantillas;
+                this._ventanaPadreMaestroPlantillas = ventanaPadreMaestroPlantilla;
+                this._ventanaPadreConsultarMaestroPlantilla = ventanaPadreConsultarMaestroPlantilla;
+
                 this._filtro = (FiltroPlantilla)filtro;
 
                 this._ventana.FiltroPlantilla = (FiltroPlantilla)filtro;
@@ -142,7 +156,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                 {
                     ListaDatosValores tipoDeDatos = new ListaDatosValores();
                     tipoDeDatos.Valor = this._filtro.TipoDatoCampoFiltro;
-                    //this._ventana.TipoDeDatosFiltro = this.BuscarListaDeDatosValores(tiposDeDatosDeFiltros, tipoDeDatos);
                     tipoDeDatos = this.BuscarListaDeDatosValores((IList<ListaDatosValores>)this._ventana.TiposDeDatosFiltro, tipoDeDatos);
                     this._ventana.TipoDeDatosFiltro = tipoDeDatos;
                 }
@@ -155,6 +168,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                     ListaDatosValores tipoDeFiltro = new ListaDatosValores();
                     tipoDeFiltro.Valor = this._filtro.TipoDeFiltro;
                     this._ventana.TipoDeFiltro = this.BuscarListaDeDatosValores(tiposDeFiltros, tipoDeFiltro);
+                }
+
+                if (((FiltroPlantilla)this._ventana.FiltroPlantilla).AplicaBAT.Equals("SI"))
+                {
+                    this._ventana.MarcarCheckAplica();
                 }
                 
                 this._ventana.FocoPredeterminado();
@@ -211,6 +229,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                     filtroPlantilla.TipoDatoCampoFiltro = this._ventana.TipoDeDatosFiltro != null ? 
                         ((ListaDatosValores)this._ventana.TipoDeDatosFiltro).Descripcion : null;
 
+                    filtroPlantilla.AplicaBAT = (this._ventana.IncluirEnBat) ? filtroPlantilla.AplicaBAT = "SI" : filtroPlantilla.AplicaBAT = "NO";
+
                     if (this._nuevoFiltro)
                     {
                         IList<FiltroPlantilla> listaFiltros = this._filtroPlantillaServicios.ConsultarTodos();
@@ -241,27 +261,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                     {
                         this._ventana.MensajeAlerta("Indique el campo filtro para este Encabezado", 0);
                     }
-
-
-                    #region CODIGO COMENTADO
-                    //InfoBol infoBol = (InfoBol)this._ventana.InfoBol;
-
-                    //infoBol.Tomo = ((ListaDatosDominio)this._ventana.Tomo).Id;
-                    //infoBol.Boletin = (Boletin)this._ventana.Boletin;
-                    //infoBol.TimeStamp = System.DateTime.Now;
-                    //infoBol.Usuario = UsuarioLogeado;
-                    //infoBol.Cambio = !string.IsNullOrEmpty(this._ventana.TextoCambio) ? int.Parse(this._ventana.TextoCambio) : 0;
-
-                    //if (this._nuevaInfoBol)
-                    //{
-                    //    infoBol.TipoInfobol = (TipoInfobol)this._ventana.Tipo;
-                    //    ((InfoBol)this._ventana.InfoBol).Marca.InfoBoles.Add(infoBol);
-                    //    infoBol.Id = ((InfoBol)this._ventana.InfoBol).Marca.Id;
-                    //}
-
-                    //exitoso = this._infoBolServicios.InsertarOModificar(infoBol, UsuarioLogeado.Hash); 
-                    #endregion
-
                 }
 
                 #region trace
@@ -306,29 +305,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
 
             String tipoFiltro = String.Empty;
 
-            #region CODIGO COMENTADO
-            //---
-
-            //Marca marcaAux = ((InfoBol)this._ventana.InfoBol).Marca;
-            //IList<InfoBol> infoboles = this._infoBolServicios.ConsultarInfoBolesPorMarca(marcaAux);
-            //marcaAux.InfoBoles = infoboles;
-            ////this.Navegar(new ListaInfoBoles(marcaAux));
-            //this.Navegar(new ListaInfoBoles(marcaAux, this._ventanaPadreListaInfoboles));
-
-            //---
-            //this.Navegar(new ListaInfoBoles(((InfoBol)this._ventana.InfoBol).Marca)); 
-            #endregion
-
             tipoFiltro = ((FiltroPlantilla)this._ventana.FiltroPlantilla).TipoDeFiltro;
-            Plantilla plantilla = ((FiltroPlantilla)this._ventana.FiltroPlantilla).Plantilla;
+            MaestroDePlantilla plantilla = ((FiltroPlantilla)this._ventana.FiltroPlantilla).MaestroDePlantilla;
 
             if (tipoFiltro.Equals("E"))
             {
-                this.Navegar(new ListaValoresEncabezado(plantilla, _ventanaPadreMaestroPlantillas)); 
+                this.Navegar(new ListaValoresEncabezado(plantilla, this._ventanaPadreMaestroPlantillas, this._ventanaPadreConsultarMaestroPlantilla)); 
             }
             else if (tipoFiltro.Equals("D"))
             {
-                this.Navegar(new ListaValoresDetalle(plantilla, _ventanaPadreMaestroPlantillas));
+                //this.Navegar(new ListaValoresDetalle(plantilla, _ventanaPadreMaestroPlantillas));
+                this.Navegar(new ListaValoresDetalle(plantilla, _ventanaPadreMaestroPlantillas, this._ventanaPadreConsultarMaestroPlantilla));
             }
 
             #region trace
@@ -356,14 +343,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                 {
                     exitoso = true;
                 }
-
-
-                //((InfoBol)this._ventana.InfoBol).Marca.InfoBoles.Remove((InfoBol)this._ventana.InfoBol);
-
-                //if (this._infoBolServicios.Eliminar((InfoBol)this._ventana.InfoBol, UsuarioLogeado.Hash))
-                //{
-                //    exitoso = true;
-                //}
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

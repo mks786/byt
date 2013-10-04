@@ -53,7 +53,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
        /// </summary>
        /// <param name="plantilla">Plantilla a consultar</param>
        /// <returns>Lista de filtros de encabezado de una plantilla especifica</returns>
-       public static IList<FiltroPlantilla> ConsultarFiltrosEncabezadoPlantilla(Plantilla plantilla)
+       public static IList<FiltroPlantilla> ConsultarFiltrosEncabezadoPlantilla(MaestroDePlantilla plantilla)
        {
            IList<FiltroPlantilla> retorno;
            try
@@ -87,7 +87,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
        /// </summary>
        /// <param name="plantilla">Plantilla a consultar</param>
        /// <returns>Lista de filtros de detalle de una plantilla especifica</returns>
-       public static IList<FiltroPlantilla> ConsultarFiltrosDetallePlantilla(Plantilla plantilla)
+       public static IList<FiltroPlantilla> ConsultarFiltrosDetallePlantilla(MaestroDePlantilla plantilla)
        {
            IList<FiltroPlantilla> retorno;
            try

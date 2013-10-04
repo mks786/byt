@@ -84,6 +84,10 @@
     <Compile Include="Implementacion\FechaMarcaServicios.cs" />
     <Compile Include="Implementacion\FiltroPlantillaServicios.cs" />
     <Compile Include="Implementacion\FiltroReporteServicios.cs" />
+    <Compile Include="Implementacion\InstruccionCorrespondenciaServicios.cs" />
+    <Compile Include="Implementacion\InstruccionDescuentoServicios.cs" />
+    <Compile Include="Implementacion\InstruccionEnvioOriginalesServicios.cs" />
+    <Compile Include="Implementacion\InstruccionOtrosServicios.cs" />
     <Compile Include="Implementacion\MaestroDePlantillaServicios.cs" />
     <Compile Include="Implementacion\PlantillaServicios.cs" />
     <Compile Include="Implementacion\RegistradorServicios.cs" />

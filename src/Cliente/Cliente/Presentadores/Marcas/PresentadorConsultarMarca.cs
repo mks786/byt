@@ -66,6 +66,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IArchivoServicios _archivoServicios;
         private ICertificadoMarcaServicios _certificadoMarcaServicios;
         private ICartaServicios _cartaServicios;
+        private IInstruccionCorrespondenciaServicios _instruccionCorrespondenciaServicios;
+        private IInstruccionEnvioOriginalesServicios _instruccionEnvioOriginalesServicios;
+        private IInstruccionOtrosServicios _instruccionOtrosServicios;
+        private IInstruccionDescuentoServicios _instruccionDescuentoServicios;
 
 
         private IList<Asociado> _asociados;
@@ -166,6 +170,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CertificadoMarcaServicios"]);
                 this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
+                this._instruccionCorrespondenciaServicios = (IInstruccionCorrespondenciaServicios)Activator.GetObject(typeof(IInstruccionCorrespondenciaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InstruccionCorrespondenciaServicios"]);
+                this._instruccionEnvioOriginalesServicios = (IInstruccionEnvioOriginalesServicios)Activator.GetObject(typeof(IInstruccionEnvioOriginalesServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InstruccionEnvioOriginalesServicios"]);
+                this._instruccionOtrosServicios = (IInstruccionOtrosServicios)Activator.GetObject(typeof(IInstruccionOtrosServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InstruccionOtrosServicios"]);
+                this._instruccionDescuentoServicios = (IInstruccionDescuentoServicios)Activator.GetObject(typeof(IInstruccionDescuentoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InstruccionDescuentoServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -523,13 +535,88 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.PintarCertificado();
 
 
+                #region Instrucciones de Correspondencia 
 
-                //if (marca.Servicio.Id.Equals("AB"))
-                //{
-                //    this._ventana.DeshabilitarBotonModificar();
-                //}
+                InstruccionCorrespondencia instruccionEnvioEmails = new InstruccionCorrespondencia();
+                InstruccionCorrespondencia instruccion = null;
+                instruccionEnvioEmails.Id = this._marca.Id;
+                instruccionEnvioEmails.AplicadaA = "M";
+                instruccionEnvioEmails.Concepto = "C";
+
+                InstruccionEnvioOriginales instruccionEnvioOriginales = new InstruccionEnvioOriginales();
+                InstruccionEnvioOriginales instruccionEO = null;
+                instruccionEnvioOriginales.Id = this._marca.Id;
+                instruccionEnvioOriginales.AplicadaA = "M";
+                instruccionEnvioOriginales.Concepto = "C";
+
+                instruccion = this._instruccionCorrespondenciaServicios.ObtenerInstruccionCorrespondencia(instruccionEnvioEmails);
+                instruccionEO = this._instruccionEnvioOriginalesServicios.ObtenerInstruccionEnvioOriginales(instruccionEnvioOriginales);
+                if ((instruccion != null) || (instruccionEO != null))
+                {
+                    this._ventana.PintarIconoBotonCorrespondencia();
+                }
+ 
+                #endregion
+
+
+                #region Instrucciones de Facturacion 
+
+                InstruccionCorrespondencia instruccionFacEnvioEmails = new InstruccionCorrespondencia();
+                InstruccionCorrespondencia instruccionFac = null;
+                instruccionEnvioEmails.Id = this._marca.Id;
+                instruccionEnvioEmails.AplicadaA = "M";
+                instruccionEnvioEmails.Concepto = "F";
+
+                InstruccionEnvioOriginales instruccionFacEnvioOriginales = new InstruccionEnvioOriginales();
+                InstruccionEnvioOriginales instruccionFac_EO = null;
+                instruccionFacEnvioOriginales.Id = this._marca.Id;
+                instruccionFacEnvioOriginales.AplicadaA = "M";
+                instruccionFacEnvioOriginales.Concepto = "F";
+
+                instruccionFac = this._instruccionCorrespondenciaServicios.ObtenerInstruccionCorrespondencia(instruccionFacEnvioEmails);
+                instruccionFac_EO = this._instruccionEnvioOriginalesServicios.ObtenerInstruccionEnvioOriginales(instruccionFacEnvioOriginales);
+                if ((instruccionFac != null) || (instruccionFac_EO != null))
+                {
+                    this._ventana.PintarIconoBotonFacturacion();
+                }
+
+                #endregion
+
+                #region Instrucciones de Descuento de Marca
+
+                InstruccionDescuento instruccionDescuentoFiltro = new InstruccionDescuento();
+                instruccionDescuentoFiltro.CodigoOperacion = marca.Id;
+                instruccionDescuentoFiltro.AplicaA = "M";
+
+                IList<InstruccionDescuento> instruccionesD = 
+                    this._instruccionDescuentoServicios.ObtenerInstruccionesDeDescuentoMarcaOPatente(instruccionDescuentoFiltro);
+
+                if (instruccionesD.Count > 0)
+                {
+                    this._ventana.PintarIconoBotonDescuento();
+                }
+
+                #endregion
+
+                #region Instrucciones No Tipificadas  De Marca
+
+                InstruccionOtros instruccionNoTipificadaFiltro = new InstruccionOtros();
+                instruccionNoTipificadaFiltro.Cod_MarcaOPatente = marca.Id;
+
+                IList<InstruccionOtros> instrucciones = 
+                    this._instruccionOtrosServicios.ObtenerInstruccionesNoTipificadasPorFiltro(instruccionNoTipificadaFiltro);
+
+                if (instrucciones.Count > 0)
+                {
+                    this._ventana.PintarIconoBotonOtros();
+                }
+
+                #endregion
+
 
                 
+
+
                 #region Marca de Origen
 
                 //Pintando el label para indicar que la marca cargada en pantalla es la Marca Origen
@@ -3940,5 +4027,191 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
 
 
+        /// <summary>
+        /// Metodo que abre la ventana para ver la Instruccion de Correspondencia de la marca consultada
+        /// </summary>
+        public void GestionarInstruccionDeCorrespondencia()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                InstruccionCorrespondencia instruccionAConsultarEmails = null;
+                InstruccionCorrespondencia instruccionEmails = null;
+
+                InstruccionEnvioOriginales instruccionAConsultarEOriginales = null;
+                InstruccionEnvioOriginales instruccionEOriginales = null;
+
+                Marca marca = CargarMarcaDeLaPantalla();
+
+
+                //Se obtiene la instruccion de Correspondencia de Envio de Emails de la Marca seleccionada
+                instruccionAConsultarEmails = new InstruccionCorrespondencia(marca.Id);
+                instruccionAConsultarEmails.Marca = marca;
+                instruccionAConsultarEmails.AplicadaA = "M";
+                instruccionAConsultarEmails.Concepto = "C"; //Concepto = Correspondencia "C"
+
+                instruccionEmails = this._instruccionCorrespondenciaServicios.ObtenerInstruccionCorrespondencia(instruccionAConsultarEmails);
+
+
+                //Se obtiene la instruccion de Correspondencia de Envio de Originales de la Marca seleccionada
+                instruccionAConsultarEOriginales = new InstruccionEnvioOriginales(marca.Id);
+                instruccionAConsultarEOriginales.Marca = marca;
+                instruccionAConsultarEOriginales.AplicadaA = "M";
+                instruccionAConsultarEOriginales.Concepto = "C";  //Concepto = Correspondencia "C"
+
+                instruccionEOriginales = this._instruccionEnvioOriginalesServicios.ObtenerInstruccionEnvioOriginales(instruccionAConsultarEOriginales);
+
+                //Logica para presentar los resultados de la consulta
+                if ((instruccionEmails != null) || (instruccionEOriginales != null))
+                {
+                    if (instruccionEmails == null)
+                    {
+                        this.Navegar(new GestionarInstruccionCorrespondenciaMarca(instruccionAConsultarEmails, instruccionEOriginales, marca, this._ventana, this._ventanaPadre));
+                    }
+                    else if (instruccionEOriginales == null)
+                    {
+                        instruccionEmails.Marca = marca;
+                        this.Navegar(new GestionarInstruccionCorrespondenciaMarca(instruccionEmails, instruccionAConsultarEOriginales, marca, this._ventana, this._ventanaPadre));
+                    }
+                    else
+                    {
+                        this.Navegar(new GestionarInstruccionCorrespondenciaMarca(instruccionEmails, instruccionEOriginales, marca, this._ventana, this._ventanaPadre));
+                    }
+                    
+                }
+                else
+                    this.Navegar(new GestionarInstruccionCorrespondenciaMarca(instruccionAConsultarEmails, instruccionAConsultarEOriginales, marca, this._ventana, this._ventanaPadre));
+                
+               
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+
+        }
+
+
+        /// <summary>
+        /// Metodo que llama a la ventana de Instrucciones de Facturacion
+        /// </summary>
+        public void GestionarInstruccionDeFacturacion()
+        {
+            try
+            {
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                InstruccionCorrespondencia instruccionFac_Emails = null;
+                InstruccionCorrespondencia instruccionEmails = null;
+
+                InstruccionEnvioOriginales instruccionFac_EOriginales = null;
+                InstruccionEnvioOriginales instruccionEOriginales = null;
+
+                Marca marca = CargarMarcaDeLaPantalla();
+
+                //Se obtiene la instruccion de Facturacion de Envio de Emails de la Marca seleccionada
+                instruccionFac_Emails = new InstruccionCorrespondencia(marca.Id);
+                instruccionFac_Emails.Marca = marca;
+                instruccionFac_Emails.AplicadaA = "M";
+                instruccionFac_Emails.Concepto = "F"; //Concepto = Facturacion "F"
+
+                instruccionEmails = this._instruccionCorrespondenciaServicios.ObtenerInstruccionCorrespondencia(instruccionFac_Emails);
+
+
+                //Se obtiene la instruccion de Facturacion de Envio de Originales de la Marca seleccionada
+                instruccionFac_EOriginales = new InstruccionEnvioOriginales(marca.Id);
+                instruccionFac_EOriginales.Marca = marca;
+                instruccionFac_EOriginales.AplicadaA = "M";
+                instruccionFac_EOriginales.Concepto = "F";  //Concepto = Facturacion "F"
+
+                instruccionEOriginales = this._instruccionEnvioOriginalesServicios.ObtenerInstruccionEnvioOriginales(instruccionFac_EOriginales);
+
+                //Logica para presentar los resultados de la consulta
+                if ((instruccionEmails != null) || (instruccionEOriginales != null))
+                {
+                    if (instruccionEmails == null)
+                    {
+                        this.Navegar(new GestionarInstruccionFacturacionMarca(instruccionFac_Emails, instruccionEOriginales, marca, this._ventana, this._ventanaPadre));
+                    }
+                    else if (instruccionEOriginales == null)
+                    {
+                        instruccionEmails.Marca = marca;
+                        this.Navegar(new GestionarInstruccionFacturacionMarca(instruccionEmails, instruccionFac_EOriginales, marca, this._ventana, this._ventanaPadre));
+                    }
+                    else
+                    {
+                        this.Navegar(new GestionarInstruccionFacturacionMarca(instruccionEmails, instruccionEOriginales, marca, this._ventana, this._ventanaPadre));
+                    }
+
+                }
+                else
+                    this.Navegar(new GestionarInstruccionFacturacionMarca(instruccionFac_Emails, instruccionFac_EOriginales, marca, this._ventana, this._ventanaPadre));
+                
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+        }
+
+        /// <summary>
+        /// Metodo que muestra la lista de las instrucciones no tipificadas de una marca
+        /// </summary>
+        public void IrListaInstruccionesNoTipificadas()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this.Navegar(new ListaInstruccionesNoTipificadasDeMarca(CargarMarcaDeLaPantalla(), this._ventana));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+
+        /// <summary>
+        /// Metodo que muestra la lista de todas las instrucciones de descuento de una marca
+        /// </summary>
+        public void IrListaInstruccionesDeDescuento()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this.Navegar(new ListaInstruccionesDescuentoMarca(CargarMarcaDeLaPantalla(), this._ventana));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
     }
 }

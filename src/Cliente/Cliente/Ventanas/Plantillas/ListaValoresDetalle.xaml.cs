@@ -29,13 +29,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Plantillas
         /// <summary>
         /// Constructor por defecto que recibe la plantilla y la ventana que precede a esta ventana
         /// </summary>
-        /// <param name="plantilla"></param>
-        /// <param name="ventanaPadre"></param>
-        public ListaValoresDetalle(object plantilla, object ventanaPadre)
+        /// <param name="maestroPlantilla"></param>
+        /// <param name="ventanaPadre">Ventana GestionarMaestroPlantilla</param>
+        /// <param name="ventanaPadreConsultarMaestroPlantilla">Ventana ConsultarMaestrosPlantillas</param>
+        public ListaValoresDetalle(object maestroPlantilla, object ventanaPadre, object ventanaPadreConsultarMaestroPlantilla)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorListaValoresDetalle(this, plantilla, ventanaPadre);
+            this._presentador = new PresentadorListaValoresDetalle(this, maestroPlantilla, ventanaPadre, ventanaPadreConsultarMaestroPlantilla);
         }
 
 
@@ -91,17 +92,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Plantillas
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.RegresarVentanaPadre();
+            //this._presentador.RegresarVentanaPadre();
+            this._presentador.IrCargarMaestroDePlantilla();
         }
 
 
         private void EventoIrGestionarFiltroPlantilla(object sender, EventArgs e)
         {
             if (sender.GetType().ToString().Equals("System.Windows.Controls.Button"))
-                //this._presentador.IrGestionarInfoBol(true);
                 this._presentador.IrGestionarFiltroEncabezado(true);
             else
-                //this._presentador.IrGestionarInfoBol(false);
                 this._presentador.IrGestionarFiltroEncabezado(false);
         }
 

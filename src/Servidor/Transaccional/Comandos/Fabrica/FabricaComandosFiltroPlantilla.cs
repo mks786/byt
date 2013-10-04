@@ -24,7 +24,7 @@ namespace Trascend.Bolet.Comandos.Fabrica
         /// </summary>
         /// <param name="plantilla">Plantilla seleccionada</param>
         /// <returns>Lista de los filtros de encabezado de una plantilla especifica</returns>
-        public static ComandoBase<IList<FiltroPlantilla>> ObtenerComandoConsultarFiltrosEncabezadoPlantilla(Plantilla plantilla)
+        public static ComandoBase<IList<FiltroPlantilla>> ObtenerComandoConsultarFiltrosEncabezadoPlantilla(MaestroDePlantilla plantilla)
         {
             return new ComandoConsultarFiltrosEncabezadoPlantilla(plantilla);
         }
@@ -35,7 +35,7 @@ namespace Trascend.Bolet.Comandos.Fabrica
         /// </summary>
         /// <param name="plantilla">Plantilla seleccionada</param>
         /// <returns>Lista de los filtros de encabezado de una plantilla especifica</returns>
-        public static ComandoBase<IList<FiltroPlantilla>> ObtenerComandoConsultarFiltrosDetallePlantilla(Plantilla plantilla)
+        public static ComandoBase<IList<FiltroPlantilla>> ObtenerComandoConsultarFiltrosDetallePlantilla(MaestroDePlantilla plantilla)
         {
             return new ComandoConsultarFiltrosDetallePlantilla(plantilla);
         }

@@ -5,16 +5,20 @@
 
   <class name="MaestroDePlantilla" table="ENV_MAESTRO_PLANT">
 
-    <composite-id>
+    <!--<composite-id>
       <key-many-to-one name="Plantilla" column="CPLANTILLA" class="Plantilla" lazy="false"/>
-    </composite-id>
-        
+    </composite-id>-->
+    <id name="Id" column="CODIGO" type="int" />   
     <property name="Referido" type="string" column="CCODREF"/>
     <property name="Criterio" type="string" column="CCRITERIO"/>
     <property name="SQL_Encabezado" type="String" column="SQL_ENCABEZADO"/>
     <property name="SQL_Detalle" type="string" column="SQL_DETALLE"/>
     <property name="BAT_Encabezado" type="string" column="BAT_ENCABEZADO"/>
     <property name="BAT_Detalle" type="string" column="BAT_DETALLE"/>
+
+    <many-to-one name="Plantilla" class="Plantilla" lazy="false">
+      <column name="CPLANTILLA"/>
+    </many-to-one>
 
     <many-to-one name="Idioma" class="Idioma" lazy="false">
       <column name="CIDIOMA"/>

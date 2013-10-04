@@ -299,6 +299,46 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
 
 
         /// <summary>
+        /// Método que devuelve el DaoInstruccionEnvioOriginales
+        /// </summary>
+        /// <returns>IDaoInstruccionEnvioOriginales</returns>
+        public override IDaoInstruccionEnvioOriginales ObtenerDaoInstruccionEnvioOriginales()
+        {
+            return new DaoInstruccionEnvioOriginalesNHibernate();
+        }
+
+
+        /// <summary>
+        /// Método que devuelve el DaoInstruccionOtros
+        /// </summary>
+        /// <returns>IDaoInstruccionOtros</returns>
+        public override IDaoInstruccionOtros ObtenerDaoInstruccionOtros()
+        {
+            return new DaoInstruccionOtrosNHibernate();
+        }
+
+
+        /// <summary>
+        /// Método que devuelve el DaoInstruccionDescuento
+        /// </summary>
+        /// <returns>IDaoInstruccionDescuento</returns>
+        public override IDaoInstruccionDescuento ObtenerDaoInstruccionDescuento()
+        {
+            return new DaoInstruccionDescuentoNHibernate();
+        }
+
+
+        /// <summary>
+        /// Método que devuelve el DaoInstruccionCorrespondencia
+        /// </summary>
+        /// <returns>IDaoInstruccionCorrespondencia</returns>
+        public override IDaoInstruccionCorrespondencia ObtenerDaoInstruccionCorrespondencia()
+        {
+            return new DaoInstruccionCorrespondenciaNHibernate();
+        }
+
+
+        /// <summary>
         /// Método que devuelve el DaoFiltroPlantilla
         /// </summary>
         /// <returns>IDaoFiltroPlantilla</returns>

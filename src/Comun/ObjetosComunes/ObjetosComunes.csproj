@@ -53,6 +53,10 @@
     <Compile Include="ContratosServicios\IFechaMarcaServicios.cs" />
     <Compile Include="ContratosServicios\IFiltroPlantillaServicios.cs" />
     <Compile Include="ContratosServicios\IFiltroReporteServicios.cs" />
+    <Compile Include="ContratosServicios\IInstruccionCorrespondenciaServicios.cs" />
+    <Compile Include="ContratosServicios\IInstruccionDescuentoServicios.cs" />
+    <Compile Include="ContratosServicios\IInstruccionEnvioOriginalesServicios.cs" />
+    <Compile Include="ContratosServicios\IInstruccionOtrosServicios.cs" />
     <Compile Include="ContratosServicios\IMaestroDePlantillaServicios.cs" />
     <Compile Include="ContratosServicios\IPlantillaServicios.cs" />
     <Compile Include="ContratosServicios\IRegistradorServicios.cs" />
@@ -223,6 +227,10 @@
     <Compile Include="Entidades\FechaMarca.cs" />
     <Compile Include="Entidades\FiltroPlantilla.cs" />
     <Compile Include="Entidades\FiltroReporte.cs" />
+    <Compile Include="Entidades\InstruccionCorrespondencia.cs" />
+    <Compile Include="Entidades\InstruccionDescuento.cs" />
+    <Compile Include="Entidades\InstruccionEnvioOriginales.cs" />
+    <Compile Include="Entidades\InstruccionOtros.cs" />
     <Compile Include="Entidades\MaestroDePlantilla.cs" />
     <Compile Include="Entidades\OrdenReporte.cs" />
     <Compile Include="Entidades\Plantilla.cs" />

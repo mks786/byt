@@ -349,6 +349,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.GestionarMaestroPlantilla();
         }
 
+        private void _menuItemPlantillasConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarMaestroDePlantilla();
+        }
+
         #endregion
 
         #region Marcas
@@ -1228,6 +1233,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         {
             this._presentador.IrConsultarInventores();
         }
+
+        
 
         
 

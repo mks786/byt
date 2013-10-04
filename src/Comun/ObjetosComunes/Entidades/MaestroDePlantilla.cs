@@ -17,6 +17,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _bat_Encabezado;
         private string _bat_Detalle;
         private Idioma _idioma;
+        private ListaDatosValores _tipoReferencia;
+        private ListaDatosValores _tipoCriterio;
 
        
         #endregion
@@ -32,52 +34,52 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         
         /// <summary>
-        /// Constructor por defecto que recibe el codigo de la plantilla
+        /// Constructor por defecto que recibe un Id de maestro de plantilla
         /// </summary>
         /// <param name="id"></param>
         public MaestroDePlantilla(int id)
         {
-            this.Plantilla.Id = id;
+            this._id = id;
         }
 
         #endregion
 
         #region Propiedades
 
-        public override bool Equals(object obj)
-        {
-            if (obj == null)
-                return false;
-            var t = obj as MaestroDePlantilla;
-            if (t == null)
-                return false;
-            if ((Plantilla.Id == (t.Plantilla.Id)))
-                return true;
-            return false;
-        }
+        //public override bool Equals(object obj)
+        //{
+        //    if (obj == null)
+        //        return false;
+        //    var t = obj as MaestroDePlantilla;
+        //    if (t == null)
+        //        return false;
+        //    if ((Plantilla.Id == (t.Plantilla.Id)))
+        //        return true;
+        //    return false;
+        //}
 
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
+        //public override int GetHashCode()
+        //{
+        //    return base.GetHashCode();
+        //}
 
-        public override string ToString()
-        {
-            return base.ToString();
-        }
+        //public override string ToString()
+        //{
+        //    return base.ToString();
+        //}
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el código
+        /// Propiedad que asigna u obtiene el id del maestro de la plantilla
         /// </summary>
         public virtual int Id
         {
-            get { return this._plantilla.Id; }
-            set { this._plantilla.Id = value; }
+            get { return this._id; }
+            set { this._id = value; }
         }
 
 
         /// <summary>
-        /// Propiedad que asigna u obtiene la Plantilla
+        /// Propiedad que asigna u obtiene la Plantilla del Maestro de Plantilla
         /// </summary>
         public virtual Plantilla Plantilla
         {
@@ -155,6 +157,24 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _idioma = value; }
         }
 
+        /// <summary>
+        /// Propiedad que asigna u obtiene el objeto con el tipo de Referencia de un Maestro de Plantilla
+        /// </summary>
+        public virtual ListaDatosValores TipoReferencia
+        {
+            get { return _tipoReferencia; }
+            set { _tipoReferencia = value; }
+        }
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el objeto con el tipo de Criterio de un Maestro de Plantilla
+        /// </summary>
+        public virtual ListaDatosValores TipoCriterio
+        {
+            get { return _tipoCriterio; }
+            set { _tipoCriterio = value; }
+        }
         
 
         #endregion

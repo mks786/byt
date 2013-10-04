@@ -27,7 +27,11 @@ namespace Trascend.Bolet.Cliente.Contratos.Plantillas
 
         bool HabilitarCampos { set; }
 
+        bool IncluirEnBat { get; }
+
         void MensajeAlerta(string mensaje, int opcion);
+
+        void MarcarCheckAplica();
 
     }
 }

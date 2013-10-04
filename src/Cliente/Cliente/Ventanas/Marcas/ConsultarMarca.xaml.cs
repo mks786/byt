@@ -6,6 +6,8 @@ using System.Windows.Media;
 using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.Marcas;
 using Trascend.Bolet.Cliente.Presentadores.Marcas;
+using System.Windows.Resources;
+using System.Windows.Media.Imaging;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 {
@@ -441,9 +443,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._cbxTipoMarcaSolicitud.IsEnabled = value;
                 this._cbxTipoMarcaDatos.IsEnabled = value;
                 this._cbxTipoReproduccion.IsEnabled = value;
-                this._chkFacturacionDatos.IsEnabled = value;
-                this._chkDescuentoDatos.IsEnabled = value;
-                this._chkCorrespondenciaDatos.IsEnabled = value;
+                //this._chkFacturacionDatos.IsEnabled = value;
+                this._btnIFacturacionDatos.IsEnabled = value;
+                //this._chkDescuentoDatos.IsEnabled = value;
+                this._btnDescuentoDatos.IsEnabled = value;
+                //this._chkCorrespondenciaDatos.IsEnabled = value;
+                this._btnCorrespondenciaDatos.IsEnabled = value;
+                this._btnOtroDatos.IsEnabled = value;
 
                 this._cbxBoletinConcesion.IsEnabled = value;
                 this._cbxBoletinPublicacion.IsEnabled = value;
@@ -1156,6 +1162,54 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public void PintarArchivo()
         {
             this._btnArchivoDatos.Background = Brushes.LightGreen;
+        }
+
+
+        public void PintarIconoBotonCorrespondencia()
+        {
+            Uri resourceUri = new Uri("Images/ico_correspondencia.png", UriKind.Relative);
+            StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+            BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+            var brush = new ImageBrush();
+            brush.ImageSource = temp;
+
+            this._btnCorrespondenciaDatos.Background = brush;
+        }
+
+
+        public void PintarIconoBotonFacturacion()
+        {
+            Uri resourceUri = new Uri("Images/ico_facturacion.png", UriKind.Relative);
+            StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+            BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+            var brush = new ImageBrush();
+            brush.ImageSource = temp;
+
+            this._btnIFacturacionDatos.Background = brush;
+        }
+
+
+        public void PintarIconoBotonDescuento()
+        {
+            Uri resourceUri = new Uri("Images/ico_descuento.png", UriKind.Relative);
+            StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+            BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+            var brush = new ImageBrush();
+            brush.ImageSource = temp;
+
+            this._btnDescuentoDatos.Background = brush;
+        }
+
+
+        public void PintarIconoBotonOtros()
+        {
+            Uri resourceUri = new Uri("Images/ico_notipificada.png", UriKind.Relative);
+            StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+            BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+            var brush = new ImageBrush();
+            brush.ImageSource = temp;
+
+            this._btnOtroDatos.Background = brush;
         }
 
 
@@ -2756,6 +2810,26 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private void _btnVerCartaOrden_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.ConsultarCartaOrden();
+        }
+
+        private void _btnCorrespondenciaDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.GestionarInstruccionDeCorrespondencia();
+        }
+
+        private void _btnIFacturacionDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.GestionarInstruccionDeFacturacion();
+        }
+
+        private void _btnOtroDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrListaInstruccionesNoTipificadas();
+        }
+
+        private void _btnDescuentoDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrListaInstruccionesDeDescuento();
         }
 
         

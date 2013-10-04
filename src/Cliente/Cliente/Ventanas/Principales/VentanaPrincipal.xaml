@@ -360,7 +360,9 @@
                 </MenuItem>
 
                 <MenuItem Name="_menuItemPlantillas" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemPlantillas}">
-                    <MenuItem Name="_menuItemPlantillasProbar" Header="{x:Static resx:Etiquetas.menuItemPlantillasProbarPlantillas}" Click="_menuItemPlantillasProbar_Click" />
+                    <MenuItem Name="_menuItemPlantillasConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemPlantillasConsultar_Click" />
+                    <MenuItem Name="_menuItemPlantillasAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemPlantillasProbar_Click" />
+                    <!--<MenuItem Name="_menuItemPlantillasProbar" Header="{x:Static resx:Etiquetas.menuItemPlantillasProbarPlantillas}"/>-->
                 </MenuItem>
 
                 <MenuItem Name="_menuItemGeneradorReporteMarca" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemReporteMarca}">

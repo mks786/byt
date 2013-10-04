@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="InstruccionDescuento" table="MYP_INSTR_DESCUENTOS">
+
+    <id name="Id" column="CODID"/>
+    <property name="CodigoOperacion" type="int" column="COPERACION"/>
+    <property name="AplicaA" type="string" column="APLICA"/>
+    <property name="Descuento" type="int" column="DCTO"/>
+    <property name="Observaciones" type="string" column="XOBSERVACION"/>
+
+    <many-to-one name="Servicio" class="Servicio" lazy="false">
+      <column name="CSERVICIO"/>
+    </many-to-one>
+
+    <many-to-one name="Correspondencia" class="Carta" lazy="false">
+      <column name="CCARTA"/>
+    </many-to-one>
+
+
+
+  </class>
+
+</hibernate-mapping>

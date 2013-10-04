@@ -27,6 +27,30 @@ namespace Trascend.Bolet.Cliente.Ventanas.Plantillas
         private PresentadorGestionarMaestroPlantilla _presentador;
 
 
+        /// <summary>
+        /// Constructor por defecto que solamente recibe un maestro de Plantilla con todos sus datos
+        /// </summary>
+        /// <param name="maestroPlantilla">Maestro de plantilla seleccionado</param>
+        public GestionarMaestroPlantilla(object maestroPlantilla)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorGestionarMaestroPlantilla(this, maestroPlantilla,null);
+        }
+
+        /// <summary>
+        /// Constructor por defecto que recibe un maestro de plantilla y una ventana padre
+        /// </summary>
+        /// <param name="maestroPlantilla">Datos maestros de una plantilla seleccionada</param>
+        /// <param name="ventanaPadre">Ventana que precede a esta ventana</param>
+        public GestionarMaestroPlantilla(object maestroPlantilla, object ventanaPadre)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorGestionarMaestroPlantilla(this, maestroPlantilla, ventanaPadre);
+        }
+
+
         #region IGestionarMaestroPlantilla
 
         public bool EstaCargada
@@ -38,6 +62,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Plantillas
         public void FocoPredeterminado()
         {
             this._btnRegresar.Focus();
+        }
+
+
+        public object DatosMaestrosPlantilla
+        {
+            get { return this._grdPlantilla.DataContext; }
+            set { this._grdPlantilla.DataContext = value; }
         }
 
 
@@ -169,18 +200,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Plantillas
 
         #endregion
 
-
-        public GestionarMaestroPlantilla()
-        {
-            InitializeComponent();
-            this._cargada = false;
-            this._presentador = new PresentadorGestionarMaestroPlantilla(this);
-
-        }
-
-
-
-
         #region Eventos
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -233,8 +252,28 @@ namespace Trascend.Bolet.Cliente.Ventanas.Plantillas
         {
             if (opcion == 0)
                 MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            else
+            else if (opcion == 1)
                 MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            else if (opcion == 2)
+                MessageBox.Show(mensaje, "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        public void PintarBotonVariablesEncabezado()
+        {
+            this._btnAnalizarVariablesWhere_Encabezado.Background = Brushes.LightGreen;
+        }
+
+
+        public void PintarBotonVariablesDetalle()
+        {
+            this._btnAnalizarVariablesWhere_Detalle.Background = Brushes.LightGreen;
+        }
+
+
+        public void ActivarBotonVariables(bool valor)
+        {
+            this._btnAnalizarVariablesWhere_Encabezado.IsEnabled = valor;
+            this._btnAnalizarVariablesWhere_Detalle.IsEnabled = valor;
         }
 
         #endregion

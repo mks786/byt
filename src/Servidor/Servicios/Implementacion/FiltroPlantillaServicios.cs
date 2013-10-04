@@ -55,7 +55,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// </summary>
         /// <param name="plantilla">Plantilla a consultar</param>
         /// <returns>Lista de filtros de encabezado de una plantilla especifica</returns>
-        public IList<FiltroPlantilla> ObtenerFiltrosEncabezadoPlantilla(Plantilla plantilla)
+        public IList<FiltroPlantilla> ObtenerFiltrosEncabezadoPlantilla(MaestroDePlantilla plantilla)
         {
             IList<FiltroPlantilla> filtros;
             try
@@ -91,7 +91,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// </summary>
         /// <param name="plantilla">Plantilla a consultar sus filtros de detalle</param>
         /// <returns>Lista de filtros de detalle de la plantilla seleccionada</returns>
-        public IList<FiltroPlantilla> ObtenerFiltrosDetallePlantilla(Plantilla plantilla)
+        public IList<FiltroPlantilla> ObtenerFiltrosDetallePlantilla(MaestroDePlantilla plantilla)
         {
             IList<FiltroPlantilla> filtros;
             try

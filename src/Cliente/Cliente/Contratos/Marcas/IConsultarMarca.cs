@@ -219,6 +219,14 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         void PintarArchivo();
 
+        void PintarIconoBotonCorrespondencia();
+
+        void PintarIconoBotonFacturacion();
+
+        void PintarIconoBotonDescuento();
+
+        void PintarIconoBotonOtros();
+
         void PintarRenovacion();
 
         void PintarInstRenovacion();

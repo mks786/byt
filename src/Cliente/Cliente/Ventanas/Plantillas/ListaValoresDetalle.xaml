@@ -41,8 +41,9 @@
                 <ListView.View>
                     <GridView>
 
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Plantilla.Descripcion}" Width="230">
-                            <GridViewColumnHeader Tag="Plantilla.Descripcion" Content="{x:Static recurso:Etiquetas.lsvPlantilla}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=MaestroDePlantilla.Plantilla.Descripcion}" Width="230">
+                            <GridViewColumnHeader Tag="MaestroDePlantilla.Plantilla.Descripcion" 
+                                                  Content="{x:Static recurso:Etiquetas.lsvPlantilla}"/>
                         </GridViewColumn>
 
                         <GridViewColumn DisplayMemberBinding="{Binding Path=NombreCampoFiltro}" Width="120">

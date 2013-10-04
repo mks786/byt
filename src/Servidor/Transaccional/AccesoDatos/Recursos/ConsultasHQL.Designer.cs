@@ -268,6 +268,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a from MaestroDePlantilla mp left join fetch mp.Plantilla as plantilla left join fetch mp.Idioma as idioma where.
+        /// </summary>
+        public static string CabeceraObtenerMaestroPlantilla {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerMaestroPlantilla", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Select m from Marca m left join fetch m.Asociado as asociado left join fetch m.Agente as agente left join fetch m.Corresponsal as corresponsal left join fetch m.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as idioma left join fetch m.BoletinConcesion as boletinC left join fetch m.BoletinPublicacion as boletinP left join fetch m.BoletinOrdenPublicacion as boletinO left join fetch m.Nacional as nacional left join fetch m.Internacional as internacional left joi [resto de la cadena truncado]&quot;;.
         /// </summary>
         public static string CabeceraObtenerMarca {
@@ -1065,6 +1074,60 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerLicenciaIdPatente {
             get {
                 return ResourceManager.GetString("FiltroObtenerLicenciaIdPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a  upper(mp.Criterio) = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerMaestroPlantillaCriterio {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMaestroPlantillaCriterio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a  mp.SQL_Detalle like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroObtenerMaestroPlantillaDetalle {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMaestroPlantillaDetalle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a  mp.SQL_Encabezado like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroObtenerMaestroPlantillaEncabezado {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMaestroPlantillaEncabezado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a  idioma.Id = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerMaestroPlantillaIdioma {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMaestroPlantillaIdioma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a  plantilla.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerMaestroPlantillaPlantilla {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMaestroPlantillaPlantilla", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a  upper(mp.Referido) = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerMaestroPlantillaReferido {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMaestroPlantillaReferido", resourceCulture);
             }
         }
         
@@ -2167,7 +2230,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select fp from FiltroPlantilla fp where fp.Plantilla.Id = {0} and fp.TipoDeFiltro = &apos;D&apos; order by fp.NombreVariableFiltro asc.
+        ///   Busca una cadena traducida similar a Select fp from FiltroPlantilla fp where fp.MaestroDePlantilla.Id = {0} and fp.TipoDeFiltro = &apos;D&apos; order by fp.NombreVariableFiltro asc.
         /// </summary>
         public static string ObtenerFiltroDetallePlantilla {
             get {
@@ -2176,7 +2239,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select fp from FiltroPlantilla fp where fp.Plantilla.Id = {0} and fp.TipoDeFiltro = &apos;E&apos; order by fp.NombreVariableFiltro asc.
+        ///   Busca una cadena traducida similar a Select fp from FiltroPlantilla fp where fp.MaestroDePlantilla.Id = {0} and fp.TipoDeFiltro = &apos;E&apos; order by fp.NombreVariableFiltro asc.
         /// </summary>
         public static string ObtenerFiltroEncabezadoPlantilla {
             get {
@@ -2257,11 +2320,47 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Select ic from InstruccionCorrespondencia ic left outer join fetch ic.Correspondencia where ic.Id = {0} and ic.AplicadaA = &apos;{1}&apos; and ic.Concepto = &apos;{2}&apos;.
+        /// </summary>
+        public static string ObtenerInstruccionDeCorrespondenciaMarcaOPatente {
+            get {
+                return ResourceManager.GetString("ObtenerInstruccionDeCorrespondenciaMarcaOPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select ieo from InstruccionEnvioOriginales ieo left outer join fetch ieo.Asociado left outer join fetch ieo.CorrespAsociado left outer join fetch ieo.Interesado left outer join fetch ieo.CorrespInteresado where ieo.Id = {0} and ieo.AplicadaA = &apos;{1}&apos; and ieo.Concepto = &apos;{2}&apos;.
+        /// </summary>
+        public static string ObtenerInstruccionDeEnvioOriginalesMarcaOPatente {
+            get {
+                return ResourceManager.GetString("ObtenerInstruccionDeEnvioOriginalesMarcaOPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Select i from InstruccionDeRenovacion i where i.Marca.Id = &apos;{0}&apos;.
         /// </summary>
         public static string ObtenerInstruccionesDeRenovacionPorMarca {
             get {
                 return ResourceManager.GetString("ObtenerInstruccionesDeRenovacionPorMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select idcto from InstruccionDescuento idcto left outer join fetch idcto.Servicio left outer join fetch idcto.Correspondencia where idcto.CodigoOperacion = {0} and idcto.AplicaA = &apos;{1}&apos;.
+        /// </summary>
+        public static string ObtenerInstruccionesDescuentoMarcaOPatente {
+            get {
+                return ResourceManager.GetString("ObtenerInstruccionesDescuentoMarcaOPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select io from InstruccionOtros io left outer join fetch io.Correspondencia where io.Cod_MarcaOPatente = {0}.
+        /// </summary>
+        public static string ObtenerInstruccionesNoTipificadas {
+            get {
+                return ResourceManager.GetString("ObtenerInstruccionesNoTipificadas", resourceCulture);
             }
         }
         

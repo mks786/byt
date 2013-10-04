@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="InstruccionCorrespondencia" table="MYP_INSTR_EMAIL">
+
+    <composite-id>
+      <key-property name="Id" column="COPERACION" type="int"/>
+      <key-property name="AplicadaA" column="IAPLICADA" type="string"/>
+      <key-property name="Concepto" column="CCONCEPTO" type="string"/>
+    </composite-id>
+
+    <property name="TipoInstruccion" type="String" column="LVTIPOINST"/>
+    <property name="NombreEmail" type="String" column="XNOMBRE_EMAIL"/>
+    <property name="ParaEmail" type="string" column="PARA_EMAIL"/>
+    <property name="CCEmail" type="string" column="CC_EMAIL"/>
+
+    <many-to-one name="Correspondencia" class="Carta" lazy="false">
+      <column name="CCORRESP"/>
+    </many-to-one>
+    
+  </class>
+
+</hibernate-mapping>

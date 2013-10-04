@@ -1435,4 +1435,10 @@
   <data name="ConfirmacionReporteModificado" xml:space="preserve">
     <value>El Reporte {0} ha sido guardado con éxito</value>
   </data>
+  <data name="ConfirmarModificarInstruccionCorrespondenciaMarca" xml:space="preserve">
+    <value>¿Está seguro que desea modificar la Instruccion de Correspondencia para la Marca {0}?</value>
+  </data>
+  <data name="ConfirmarModificarInstruccionFacturacionMarca" xml:space="preserve">
+    <value>¿Está seguro que desea modificar la Instruccion de Facturacion para la Marca {0}?</value>
+  </data>
 </root>

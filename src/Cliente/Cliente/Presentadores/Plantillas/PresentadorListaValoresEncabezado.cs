@@ -31,7 +31,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
         private IListaValoresEncabezado _ventana;
         private IPlantillaServicios _plantillaServicios;
         private IFiltroPlantillaServicios _filtroPlantillaServicios;
-        private Plantilla _plantilla;
+        private MaestroDePlantilla _plantilla;
+        private object _ventanaPadreConsultarMaestroPlantilla;
 
 
         /// <summary>
@@ -39,8 +40,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
         /// </summary>
         /// <param name="ventana">Ventana actual IGestionarMaestroPlantilla</param>
         /// <param name="plantilla">Plantilla Seleccionada</param>
-        /// <param name="ventanaPadre">Ventana que precede a esta ventana</param>
-        public PresentadorListaValoresEncabezado(IListaValoresEncabezado ventana, object plantilla, object ventanaPadre)
+        /// <param name="ventanaPadre">Ventana que precede a esta ventana GestionarMaestroPlantilla</param>
+        /// <param name="ventanaPadreConsultarMaestroPlantilla">Ventana padre ConsultarMaestroPlantilla</param>
+        public PresentadorListaValoresEncabezado(IListaValoresEncabezado ventana, object plantilla, object ventanaPadre, object ventanaPadreConsultarMaestroPlantilla)
         {
 
             try
@@ -52,7 +54,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
 
                 this._ventana = ventana;
                 this._ventanaPadre = ventanaPadre;
-                this._plantilla = (Plantilla)plantilla;
+                this._ventanaPadreConsultarMaestroPlantilla = 
+                    (ventanaPadreConsultarMaestroPlantilla != null) ? ventanaPadreConsultarMaestroPlantilla : null;
+
+                this._plantilla = (MaestroDePlantilla)plantilla;
 
                 
                 this._plantillaServicios = (IPlantillaServicios)Activator.GetObject(typeof(IPlantillaServicios),
@@ -127,30 +132,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
             if (!nuevo)
             {
                 FiltroPlantilla filtro = (FiltroPlantilla)this._ventana.FiltroEncabezado;
-                this.Navegar(new GestionarFiltroDePlantilla(filtro, this._ventana, this._ventanaPadre));
-                #region CODIGO COMENTADO NO BORRAR
-                /*((InfoBol)this._ventana.InfoBolSeleccionado).Marca = this._marca;
-                IList<InfoBol> infoboles = this._infobolServicios.ConsultarInfoBolesPorMarca(this._marca);
-                InfoBol infobol = this.BuscarInfobol(infoboles, (InfoBol)this._ventana.InfoBolSeleccionado);
-                ((InfoBol)this._ventana.InfoBolSeleccionado).TipoInfobol = infobol.TipoInfobol;
-                ((InfoBol)this._ventana.InfoBolSeleccionado).Marca = this._marca;
-                this.Navegar(new GestionarInfoBol(this._ventana.InfoBolSeleccionado, this._ventana, this._ventanaPadre));*/
-                
-                #endregion
+                this.Navegar(new GestionarFiltroDePlantilla(filtro, this._ventana, this._ventanaPadre, this._ventanaPadreConsultarMaestroPlantilla));
             }
             else
             {
-
                 FiltroPlantilla filtro = new FiltroPlantilla();
-                filtro.Plantilla = this._plantilla;
+                filtro.MaestroDePlantilla = this._plantilla;
                 filtro.TipoDeFiltro = "E";
-                this.Navegar(new GestionarFiltroDePlantilla(filtro, this._ventana,this._ventanaPadre));
-                #region CODIGO COMENTADO NO BORRAR
-                /*InfoBol infoBol = new InfoBol();
-                infoBol.Marca = this._marca;
-                this.Navegar(new GestionarInfoBol(infoBol, this._ventana, this._ventanaPadre));*/
-                
-                #endregion
+                filtro.AplicaBAT = "NO";
+                this.Navegar(new GestionarFiltroDePlantilla(filtro, this._ventana,this._ventanaPadre, this._ventanaPadreConsultarMaestroPlantilla));
             }
 
             #region trace
@@ -160,6 +150,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
         }
 
 
+        /// <summary>
+        /// Metodo que vuelve a cargar la ventana del Maestro de Plantilla para refrescar los botones de Variables de Encabezado
+        /// y de Detalle
+        /// </summary>
+        public void IrCargarMaestroDePlantilla()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this.Navegar(new GestionarMaestroPlantilla(this._plantilla,this._ventanaPadreConsultarMaestroPlantilla));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
     }
 
 

@@ -10,7 +10,7 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
         /// </summary>
         /// <param name="plantilla">Plantilla a consultar</param>
         /// <returns>Lista de encabezados de una plantilla</returns>
-        IList<FiltroPlantilla> ObtenerFiltrosEncabezadoPlantilla(Plantilla plantilla);
+        IList<FiltroPlantilla> ObtenerFiltrosEncabezadoPlantilla(MaestroDePlantilla plantilla);
 
 
         /// <summary>
@@ -18,6 +18,6 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
         /// </summary>
         /// <param name="plantilla">Plantilla a consultar</param>
         /// <returns>Lista de detalles de una plantilla</returns>
-        IList<FiltroPlantilla> ObtenerFiltrosDetallePlantilla(Plantilla plantilla);
+        IList<FiltroPlantilla> ObtenerFiltrosDetallePlantilla(MaestroDePlantilla plantilla);
     }
 }

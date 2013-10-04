@@ -2446,10 +2446,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void GestionarMaestroPlantilla()
         {
-            Navegar(new GestionarMaestroPlantilla());
+            Navegar(new GestionarMaestroPlantilla(null));
         }
 
 
-        
+
+        /// <summary>
+        /// Metodo que inicia el subproceso para Consultar un Maestro de Plantilla
+        /// </summary>
+        public void ConsultarMaestroDePlantilla()
+        {
+            Navegar(new ConsultarMaestrosPlantillas());
+        }
     }
 }
