@@ -1326,8 +1326,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             if (opcion == 0)
                 MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            else
+            else if(opcion == 1)
                 MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            else if(opcion == 2)
+                MessageBox.Show(mensaje, "Información", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
 
@@ -1400,6 +1402,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                     item.IsSelected = true;
             }
         }
+
+
+        public ConsultarMarca(object marcaSeleccionada, string tab, object ventanaPadreConsultarMarcas)
+            : this(marcaSeleccionada, ventanaPadreConsultarMarcas)
+        {
+            this._presentador.CambiarAModificar();
+
+            foreach (TabItem item in this._tbcPestanas.Items)
+            {
+                if (item.Header.Equals(tab))
+                    item.IsSelected = true;
+            }
+        }
+
+
 
 
         private void _cbxSituacion_SelectionChanged(object sender, SelectionChangedEventArgs e)

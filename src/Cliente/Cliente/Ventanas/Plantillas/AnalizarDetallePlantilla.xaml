@@ -46,7 +46,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblSQLDetalle}"/>
                     </Label>
                     <custom:ByTTextBox IsEnabled="False" Name="_txtNombreArchivoDetalle" Width="130" MaxLength="8" 
-                                       Text="{Binding Path=NombreEncabezado}"/>
+                                       Text="{Binding Path=NombreDetalle}"/>
                 </WrapPanel>
 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" >
@@ -64,7 +64,7 @@
                </WrapPanel>
                 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" >
-                    <ListView IsEnabled="True" Name="_lstVariables" ItemsSource="{Binding}" MaxHeight="100" 
+                    <!--<ListView IsEnabled="True" Name="_lstVariables" ItemsSource="{Binding}" MaxHeight="100" 
                       SelectionMode="Single" Style="{DynamicResource EstiloListView}">
                         <ListView.View>
                             <GridView>
@@ -76,7 +76,24 @@
                                 </GridViewColumn>
                             </GridView>
                         </ListView.View>
-                    </ListView>
+                    </ListView>-->
+                    <DataGrid ItemsSource="{Binding}" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Auto"  
+                              VerticalScrollBarVisibility="Auto" Name="_lstVariables" Height="200" Width="380" 
+                              GridLinesVisibility="None">
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="FontWeight" Value="Bold" />
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="{x:Static recurso:Etiquetas.lsvNombreVariable}" 
+                                            Binding="{Binding Path=NombreVariableFiltro}" Width="120"/>
+                            <DataGridTextColumn Header="{x:Static recurso:Etiquetas.lsvCampoVariable}" 
+                                                Binding="{Binding Path=NombreCampoFiltro}" Width="120"/>
+                            <DataGridTextColumn Header="Valor" Binding="{Binding Path=ValorFiltro}" Width="120"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </WrapPanel>
                 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" >

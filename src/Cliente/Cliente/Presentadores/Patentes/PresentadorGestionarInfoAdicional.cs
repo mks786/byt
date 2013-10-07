@@ -24,13 +24,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         private IInfoAdicionalServicios _infoAdicionalServicios;
         private IList<Auditoria> _auditorias;
         private bool _nuevaInfoAdicional = false;
+        private object _ventanaPadreConsultarPatentes;
 
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorGestionarInfoAdicional(IGestionarInfoAdicional ventana, object patente)
+        public PresentadorGestionarInfoAdicional(IGestionarInfoAdicional ventana, object patente, object ventanaPadreConsultarPatentes)
         {
             try
             {
@@ -40,6 +41,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 #endregion
 
                 this._ventana = ventana;
+                this._ventanaPadreConsultarPatentes = ventanaPadreConsultarPatentes;
                 this._patente = (Patente)patente;
                 this._ventana.InfoAdicional = null != ((Patente)patente).InfoAdicional ? ((Patente)patente).InfoAdicional : new InfoAdicional("P." + this._patente.Id);
 
@@ -252,7 +254,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new GestionarPatente(this._patente, this._ventana.Tab));
+            this.Navegar(new GestionarPatente(this._patente, this._ventana.Tab, this._ventanaPadreConsultarPatentes));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

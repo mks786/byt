@@ -1441,4 +1441,7 @@
   <data name="ConfirmarModificarInstruccionFacturacionMarca" xml:space="preserve">
     <value>¿Está seguro que desea modificar la Instruccion de Facturacion para la Marca {0}?</value>
   </data>
+  <data name="ConfirmacionInsertarOModificarFecha" xml:space="preserve">
+    <value>¿Desea agregar o modificar la Fecha?</value>
+  </data>
 </root>

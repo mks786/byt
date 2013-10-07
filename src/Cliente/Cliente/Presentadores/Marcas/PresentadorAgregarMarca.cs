@@ -1034,6 +1034,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// </summary>
         public void CambiarInteresadoSolicitud()
         {
+            String alertaInteresado = String.Empty;
+
             try
             {
                 #region trace
@@ -1044,6 +1046,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if ((Interesado)this._ventana.InteresadoSolicitud != null)
                 {
                     Interesado interesadoAux = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoSolicitud);
+                    //---
+                    if (interesadoAux.Alerta != null)
+                    {
+                        if (!interesadoAux.Equals(""))
+                        {
+                            alertaInteresado += "Alerta de Interesado: " + interesadoAux.Alerta;
+                            this._ventana.Mensaje(alertaInteresado, 2);
+                        }
+                    }
+
+                    //---
                     this._ventana.NombreInteresadoSolicitud = ((Interesado)this._ventana.InteresadoSolicitud).Nombre;
                     this._ventana.IdInteresadoSolicitud = ((Interesado)this._ventana.InteresadoSolicitud).Id.ToString();
 
@@ -1083,6 +1096,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// </summary>
         public void CambiarInteresadoDatos()
         {
+
+            String alertaInteresado = String.Empty;
+
             try
             {
                 #region trace
@@ -1093,6 +1109,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if ((Interesado)this._ventana.InteresadoDatos != null)
                 {
                     Interesado interesadoAux = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoDatos);
+                    if (interesadoAux.Alerta != null)
+                    {
+                        if (!interesadoAux.Equals(""))
+                        {
+                            alertaInteresado += "Alerta de Interesado: " + interesadoAux.Alerta;
+                            this._ventana.Mensaje(alertaInteresado, 2);
+                        }
+                    }
                     this._ventana.InteresadoDatos = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoDatos);
                     this._ventana.NombreInteresadoDatos = ((Interesado)this._ventana.InteresadoDatos).Nombre;
                     this._ventana.IdInteresadoDatos = ((Interesado)this._ventana.InteresadoDatos).Id.ToString();

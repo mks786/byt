@@ -128,9 +128,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
         {
-            if (this._presentador.Aceptar())
+            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionInsertarOModificarFecha,
+                "Agregar o Modificar Fecha de Marca", MessageBoxButton.YesNo, MessageBoxImage.Question))
             {
-                _bgw.RunWorkerAsync();
+                if (this._presentador.Aceptar())
+                {
+                    _bgw.RunWorkerAsync();
+                }
             }
         }
 

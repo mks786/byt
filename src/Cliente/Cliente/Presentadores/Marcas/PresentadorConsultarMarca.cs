@@ -219,6 +219,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
             Mouse.OverrideCursor = Cursors.Wait;
             Archivo archivoMarca = null;
+            String alertaInteresado = String.Empty;
 
             try
             {
@@ -365,6 +366,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 this._ventana.InteresadoSolicitud = this.BuscarInteresado((IList<Interesado>)this._ventana.InteresadosSolicitud, ((Marca)this._ventana.Marca).Interesado);
                 this._ventana.InteresadoDatos = this.BuscarInteresado((IList<Interesado>)this._ventana.InteresadosDatos, ((Marca)this._ventana.Marca).Interesado);
+
+                if (interesado.Alerta != null)
+                {
+                    if (!interesado.Alerta.Equals(""))
+                    {
+                        alertaInteresado += "Alerta de Interesado: " + interesado.Alerta;
+                        this._ventana.Mensaje(alertaInteresado, 2);
+                    }
+                }
 
 
                 IList<Asociado> listaAsociado = new List<Asociado>();
@@ -1164,7 +1174,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new GestionarInfoAdicional(CargarMarcaDeLaPantalla(), tab));
+            this.Navegar(new GestionarInfoAdicional(CargarMarcaDeLaPantalla(), tab, this._ventanaPadre));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1827,6 +1837,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// </summary>
         public void CambiarInteresadoSolicitud()
         {
+
+            String alertaInteresado = String.Empty;
+
             try
             {
                 #region trace
@@ -1841,6 +1854,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                     if (null != interesadoAux)
                     {
+                        if (interesadoAux.Alerta != null)
+                        {
+                            if (!interesadoAux.Alerta.Equals(""))
+                            {
+                                alertaInteresado += "Alerta de Interesado: " + interesadoAux.Alerta;
+                                this._ventana.Mensaje(alertaInteresado, 2);
+                            }
+                        }
                         this._ventana.NombreInteresadoSolicitud = ((Interesado)this._ventana.InteresadoSolicitud).Nombre;
                         this._ventana.IdInteresadoSolicitud = ((Interesado)this._ventana.InteresadoSolicitud).Id.ToString();
                         this._ventana.InteresadoDatos = (Interesado)this._ventana.InteresadoSolicitud;
@@ -1909,6 +1930,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// </summary>
         public void CambiarInteresadoDatos()
         {
+
+            String alertaInteresado = String.Empty;
+
             try
             {
                 #region trace
@@ -1923,6 +1947,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                     if (null != interesadoAux)
                     {
+                        if (interesadoAux.Alerta != null)
+                        {
+                            if (!interesadoAux.Alerta.Equals(""))
+                            {
+                                alertaInteresado += "Alerta de Interesado: " + interesadoAux.Alerta;
+                                this._ventana.Mensaje(alertaInteresado, 2);
+                            }
+                        }
                         this._ventana.InteresadoDatos = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoDatos);
                         this._ventana.NombreInteresadoDatos = ((Interesado)this._ventana.InteresadoDatos).Nombre;
                         this._ventana.IdInteresadoDatos = ((Interesado)this._ventana.InteresadoDatos).Id.ToString();

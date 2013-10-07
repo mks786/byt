@@ -823,8 +823,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         {
             if (opcion == 0)
                 MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            else
+            else if(opcion == 1)
                 MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            else if(opcion == 2)
+                MessageBox.Show(mensaje, "Información", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
 
@@ -1214,6 +1216,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                     item.IsSelected = true;
             }
         }
+
+
+        public GestionarPatente(object patenteSeleccionada, string tab, object ventanaPadreConsultarPatentes)
+            : this(patenteSeleccionada, ventanaPadreConsultarPatentes)
+        {
+            this._presentador.CambiarAModificar();
+
+            foreach (TabItem item in this._tbcPestanas.Items)
+            {
+                if (item.Header.Equals(tab))
+                    item.IsSelected = true;
+            }
+        }
+
+
 
         private void _cbxSituacionDatos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

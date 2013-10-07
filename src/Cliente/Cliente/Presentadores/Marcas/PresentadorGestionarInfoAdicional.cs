@@ -24,13 +24,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IInfoAdicionalServicios _infoAdicionalServicios;
         private IList<Auditoria> _auditorias;
         private bool _nuevaInfoAdicional = false;
+        private object _ventanaPadreConsultarMarcas;
 
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorGestionarInfoAdicional(IGestionarInfoAdicional ventana, object marca)
+        public PresentadorGestionarInfoAdicional(IGestionarInfoAdicional ventana, object marca, object ventanaPadreConsultarMarcas)
         {
             try
             {
@@ -40,6 +41,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 #endregion
 
                 this._ventana = ventana;
+                this._ventanaPadreConsultarMarcas = ventanaPadreConsultarMarcas;
                 this._marca = (Marca)marca;
                 this._ventana.InfoAdicional = null != ((Marca)marca).InfoAdicional ? ((Marca)marca).InfoAdicional : new InfoAdicional("M." + this._marca.Id);
 
@@ -261,7 +263,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new ConsultarMarca(this._marca, this._ventana.Tab));
+            this.Navegar(new ConsultarMarca(this._marca, this._ventana.Tab, this._ventanaPadreConsultarMarcas));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

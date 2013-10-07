@@ -72,11 +72,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         #endregion
 
+        /// <summary>
+        /// Constructor por defecto que recibe una marca 
+        /// </summary>
+        /// <param name="marca">Marca seleccionada</param>
         public GestionarInfoAdicional(object marca)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorGestionarInfoAdicional(this, marca);
+            this._presentador = new PresentadorGestionarInfoAdicional(this, marca,null);
 
             _bgw.WorkerReportsProgress = true;
             _bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(bgw_DoWork);
@@ -84,11 +88,47 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             _bgw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(bgw_ProgressChanged);
         }
 
+        /// <summary>
+        /// Constructor por defecto que recibe una marca y la ventana padre ConsultarMarcas
+        /// </summary>
+        /// <param name="marca">Marca seleccionada</param>
+        /// <param name="ventanaPadreConsultarMarcas">Ventana ConsultarMarcas</param>
+        public GestionarInfoAdicional(object marca, object ventanaPadreConsultarMarcas)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorGestionarInfoAdicional(this, marca,ventanaPadreConsultarMarcas);
+
+            _bgw.WorkerReportsProgress = true;
+            _bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(bgw_DoWork);
+            _bgw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(bgw_RunWorkerCompleted);
+            _bgw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(bgw_ProgressChanged);
+        }
+
+        /// <summary>
+        /// Referencia a constructor por defecto con una marca y el nombre del tab de la ventana padre
+        /// </summary>
+        /// <param name="marca">Marca consultada</param>
+        /// <param name="tab">Nombre del tab de la ventana anterior</param>
         public GestionarInfoAdicional(object marca, string tab)
             : this(marca)
         {
             this._tab = tab;
         }
+
+        /// <summary>
+        /// Referencia a constructor por defecto con una marca, el nombre del tab de la ventana padre y la ventana ConsultarMarcas
+        /// </summary>
+        /// <param name="marca">Marca consultada</param>
+        /// <param name="tab">Nombre del tab de la ventana anterior</param>
+        /// <param name="ventanaPadreConsultarMarcas">Ventana padre ConsultarMarcas</param>
+        public GestionarInfoAdicional(object marca, string tab, object ventanaPadreConsultarMarcas)
+            : this(marca, ventanaPadreConsultarMarcas)
+        {
+            this._tab = tab;
+        }
+
+
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
         {

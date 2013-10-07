@@ -72,11 +72,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         #endregion
 
-        public GestionarInfoAdicional(object marca)
+        /// <summary>
+        /// Constructor por defecto que recibe una patente
+        /// </summary>
+        /// <param name="patente">Patente consultada</param>
+        public GestionarInfoAdicional(object patente)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorGestionarInfoAdicional(this, marca);
+            this._presentador = new PresentadorGestionarInfoAdicional(this, patente,null);
 
             _bgw.WorkerReportsProgress = true;
             _bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(bgw_DoWork);
@@ -84,11 +88,43 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             _bgw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(bgw_ProgressChanged);
         }
 
-        public GestionarInfoAdicional(object marca, string tab)
-            : this(marca)
+        /// <summary>
+        /// Constructor por defecto que recibe una patente y la ventana ConsultarPatentes
+        /// </summary>
+        /// <param name="patente">Patente consultada</param>
+        /// <param name="ventanaPadreConsultarPatentes">Ventana padre ConsultarPatentes</param>
+        public GestionarInfoAdicional(object patente, object ventanaPadreConsultarPatentes)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorGestionarInfoAdicional(this, patente,ventanaPadreConsultarPatentes);
+
+            _bgw.WorkerReportsProgress = true;
+            _bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(bgw_DoWork);
+            _bgw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(bgw_RunWorkerCompleted);
+            _bgw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(bgw_ProgressChanged);
+        }
+
+
+        /// <summary>
+        /// REferencia a constructor por defecto que recibe una patente como parametro
+        /// </summary>
+        /// <param name="patente">Patente consultada</param>
+        /// <param name="tab">Nombre del tab de la ventana anterior</param>
+        public GestionarInfoAdicional(object patente, string tab)
+            : this(patente)
         {
             this._tab = tab;
         }
+
+
+        public GestionarInfoAdicional(object patente, string tab, object ventanaPadreConsultarPatentes)
+            : this(patente, ventanaPadreConsultarPatentes)
+        {
+            this._tab = tab;
+        }
+
+
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
         {

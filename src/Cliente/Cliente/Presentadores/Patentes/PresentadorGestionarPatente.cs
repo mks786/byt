@@ -198,6 +198,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         {
             Mouse.OverrideCursor = Cursors.Wait;
             Archivo archivoPatente = null;
+            String alertaInteresado = String.Empty;
 
             try
             {
@@ -271,7 +272,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.PresentacionesPatenteDatos = presentacionPatente;
                     this._ventana.PresentacionPatenteDatos = this.BuscarPresentacionPatente(_patente.Presentacion, presentacionPatente);
 
-
                     //--- Llenando la lista de los Agentes, incluyendo el Agente de la Patente si no es NULL
 
                     IList<Agente> agentes = this._agenteServicios.ConsultarTodos();
@@ -284,18 +284,35 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                         this._ventana.AgenteSolicitudFiltrar = this.BuscarAgente(agentes, (Agente)_patente.Agente);
                     }
 
-
                     //---
-
-
                     //IList<Interesado> Interesados = this._interesadoServicios.ConsultarTodos();
+
+                    //Carga de los interesados de la Patente
                     IList<Interesado> Interesados = new List<Interesado>();
                     Interesado primerInteresado = new Interesado();
                     primerInteresado.Id = int.MinValue;
-                    Interesados.Add(((Patente)this._ventana.Patente).Interesado);
-                    Interesados.Insert(0, primerInteresado);
+
+                    if (((Patente)this._ventana.Patente).Interesado != null)
+                    {
+                        Interesados.Add(((Patente)this._ventana.Patente).Interesado);
+                        Interesados.Insert(0, primerInteresado);
+                    }
+                    else
+                        Interesados.Add(primerInteresado);
+
+                    if (((Patente)this._ventana.Patente).Interesado.Alerta != null)
+                    {
+                        if (!((Patente)this._ventana.Patente).Interesado.Alerta.Equals(""))
+                        {
+                            alertaInteresado += "Alerta de Interesado: " + ((Patente)this._ventana.Patente).Interesado.Alerta;
+                            this._ventana.Mensaje(alertaInteresado, 2);
+                        }
+                    }
+                    
                     this._ventana.InteresadosSolicitud = Interesados;
                     this._ventana.InteresadoSolicitud = this.BuscarInteresado(Interesados, ((Patente)this._ventana.Patente).Interesado);
+
+                    // Fin de Carga de los interesados de la Patente
 
                     IList<Pais> paises = this._paisServicios.ConsultarTodos();
                     Pais primerPais = new Pais();
@@ -702,7 +719,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 patente.Asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
 
             if (null != this._ventana.InteresadoSolicitud)
-                patente.Interesado = !((Interesado)this._ventana.InteresadoSolicitud).Id.Equals("NGN") ? ((Interesado)this._ventana.InteresadoSolicitud) : null;
+                //patente.Interesado = !((Interesado)this._ventana.InteresadoSolicitud).Id.Equals("NGN") ? ((Interesado)this._ventana.InteresadoSolicitud) : null;
+                patente.Interesado = ((Interesado)this._ventana.InteresadoSolicitud).Id != int.MinValue ? ((Interesado)this._ventana.InteresadoSolicitud) : null;
 
             if (null != this._ventana.PoderSolicitudFiltrar)
                 patente.Poder = ((Poder)this._ventana.PoderSolicitudFiltrar).Id != int.MinValue ? ((Poder)this._ventana.PoderSolicitudFiltrar) : null;
@@ -818,12 +836,32 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                             {
                                 if (_agregar)
                                 {
-                                    exitosoEntero = this._patenteServicios.InsertarOModificarPatente(patente, UsuarioLogeado.Hash);
-                                    patente.Id = (int)exitosoEntero;
+                                    if (patente.Asociado != null)
+                                    {
+                                        if (patente.Interesado != null)
+                                        {
+                                            exitosoEntero = this._patenteServicios.InsertarOModificarPatente(patente, UsuarioLogeado.Hash);
+                                            patente.Id = (int)exitosoEntero;
+                                        }
+                                        else
+                                            this._ventana.Mensaje("Ingrese el Interesado de la Patente", 0);
+                                    }
+                                    else
+                                        this._ventana.Mensaje("Ingrese el Asociado de la Patente", 0);
                                 }
                                 else
                                 {
-                                    exitoso = this._patenteServicios.InsertarOModificar(patente, UsuarioLogeado.Hash);
+                                    if (patente.Asociado != null)
+                                    {
+                                        if ((patente.Interesado != null) || (patente.Interesado.Id != int.MinValue))
+                                        {
+                                            exitoso = this._patenteServicios.InsertarOModificar(patente, UsuarioLogeado.Hash);  
+                                        }
+                                        else
+                                            this._ventana.Mensaje("Ingrese el Asociado de la Patente", 0);
+                                    }
+                                    else
+                                        this._ventana.Mensaje("Ingrese el Asociado de la Patente", 0);
                                 }
 
                                 if ((!exitosoEntero.Equals(null)) || (exitoso))
@@ -986,7 +1024,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new GestionarInfoAdicional(CargarPatenteDeLaPantalla(), tab));
+            this.Navegar(new GestionarInfoAdicional(CargarPatenteDeLaPantalla(), tab, this._ventanaPadre));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1956,6 +1994,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         /// </summary>
         public void CambiarInteresadoSolicitud()
         {
+
+            String alertaInteresado = String.Empty;
+
             try
             {
                 #region trace
@@ -1974,6 +2015,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                     if (interesadoAux != null)
                     {
+                        if (interesadoAux.Alerta != null)
+                        {
+                            if (!interesadoAux.Equals(""))
+                            {
+                                alertaInteresado += "Alerta de Interesado: " + interesadoAux.Alerta;
+                                this._ventana.Mensaje(alertaInteresado, 2);
+                            }
+                        }
                         this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
                         this._ventana.InteresadoEstadoSolicitud = interesadoAux.Estado != null ? interesadoAux.Estado : "";
                         this._ventana.InteresadoPaisDatos = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
@@ -2009,6 +2058,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         /// </summary>
         public void CambiarInteresadoDatos()
         {
+
+            String alertaInteresado = String.Empty;
+
             try
             {
                 #region trace
@@ -2028,6 +2080,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                     if (interesadoAux != null)
                     {
+                        if (interesadoAux.Alerta != null)
+                        {
+                            if (!interesadoAux.Equals(""))
+                            {
+                                alertaInteresado += "Alerta de Interesado: " + interesadoAux.Alerta;
+                                this._ventana.Mensaje(alertaInteresado, 2);
+                            }
+                        }
                         this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
                         this._ventana.InteresadoEstadoSolicitud = interesadoAux.Estado != null ? interesadoAux.Estado : "";
                         this._ventana.InteresadoPaisDatos = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
@@ -2185,48 +2245,56 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         /// </summary>
         public void CargarInteresados()
         {
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
-
-            Mouse.OverrideCursor = Cursors.Wait;
-
-            Patente patente = null != this._ventana.Patente ? (Patente)this._ventana.Patente : new Patente();
-            //IList<Interesado> interesados = this._interesadoServicios.ConsultarTodos();
-            IList<Interesado> interesados = new List<Interesado>();
-            Interesado primerInteresado = new Interesado();
-            primerInteresado.Id = int.MinValue;
-            interesados.Insert(0, primerInteresado);
-            this._interesados = interesados;
-
-            if (this._agregar == false)
+            try
             {
-                ((Patente)this._ventana.Patente).Interesado = this._interesadoServicios.ConsultarInteresadoConTodo(patente.Interesado);
-                if (null != ((Patente)this._ventana.Patente).Interesado)
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Mouse.OverrideCursor = Cursors.Wait;
+
+                Patente patente = null != this._ventana.Patente ? (Patente)this._ventana.Patente : new Patente();
+                //IList<Interesado> interesados = this._interesadoServicios.ConsultarTodos();
+                IList<Interesado> interesados = new List<Interesado>();
+                Interesado primerInteresado = new Interesado();
+                primerInteresado.Id = int.MinValue;
+                interesados.Insert(0, primerInteresado);
+                this._interesados = interesados;
+
+                if ((this._agregar == false) && (((Patente)this._ventana.Patente).Interesado != null))
                 {
-                    Interesado interesado = this.BuscarInteresado(interesados, patente.Interesado);
-                    this._interesados.Add(((Patente)this._ventana.Patente).Interesado);
-                    this._ventana.InteresadoSolicitud = ((Patente)this._ventana.Patente).Interesado;
-                    this._ventana.InteresadoDatos = ((Patente)this._ventana.Patente).Interesado;
-                    this._ventana.InteresadoPaisSolicitud = ((Patente)this._ventana.Patente).Interesado.Pais.NombreEspanol;
-                    this._ventana.InteresadoEstadoSolicitud = ((Patente)this._ventana.Patente).Interesado.Ciudad;
+                    ((Patente)this._ventana.Patente).Interesado = this._interesadoServicios.ConsultarInteresadoConTodo(patente.Interesado);
+                    if (null != ((Patente)this._ventana.Patente).Interesado)
+                    {
+                        Interesado interesado = this.BuscarInteresado(interesados, patente.Interesado);
+                        this._interesados.Add(((Patente)this._ventana.Patente).Interesado);
+                        this._ventana.InteresadoSolicitud = ((Patente)this._ventana.Patente).Interesado;
+                        this._ventana.InteresadoDatos = ((Patente)this._ventana.Patente).Interesado;
+                        this._ventana.InteresadoPaisSolicitud = ((Patente)this._ventana.Patente).Interesado.Pais.NombreEspanol;
+                        this._ventana.InteresadoEstadoSolicitud = ((Patente)this._ventana.Patente).Interesado.Ciudad;
 
+                    }
+                    this._ventana.NombreInteresadoDatos = null != ((Patente)this._ventana.Patente).Interesado ? ((Patente)this._ventana.Patente).Interesado.Nombre : "";
+                    this._ventana.NombreInteresadoSolicitud = null != ((Patente)this._ventana.Patente).Interesado ? ((Patente)this._ventana.Patente).Interesado.Nombre : "";
                 }
-                this._ventana.NombreInteresadoDatos = null != ((Patente)this._ventana.Patente).Interesado ? ((Patente)this._ventana.Patente).Interesado.Nombre : "";
-                this._ventana.NombreInteresadoSolicitud = null != ((Patente)this._ventana.Patente).Interesado ? ((Patente)this._ventana.Patente).Interesado.Nombre : "";
+
+                this._ventana.InteresadosDatos = _interesados;
+                this._ventana.InteresadosSolicitud = _interesados;
+                //this._ventana.InteresadosEstanCargados = true;
+
+                Mouse.OverrideCursor = null;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
-
-            this._ventana.InteresadosDatos = _interesados;
-            this._ventana.InteresadosSolicitud = _interesados;
-            //this._ventana.InteresadosEstanCargados = true;
-
-            Mouse.OverrideCursor = null;
-
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
         }
 
 

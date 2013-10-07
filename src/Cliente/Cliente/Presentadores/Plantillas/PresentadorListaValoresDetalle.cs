@@ -131,7 +131,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
             if (!nuevo)
             {
                 FiltroPlantilla filtro = (FiltroPlantilla)this._ventana.FiltroEncabezado;
-                //this.Navegar(new GestionarFiltroDePlantilla(filtro, this._ventana, this._ventanaPadre));
                 this.Navegar(new GestionarFiltroDePlantilla(filtro, this._ventana, this._ventanaPadre, this._ventanaPadreConsultarMaestroPlantilla));
             }
             else
@@ -140,7 +139,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                 FiltroPlantilla filtro = new FiltroPlantilla();
                 filtro.MaestroDePlantilla = this._plantilla;
                 filtro.TipoDeFiltro = "D";
-                //this.Navegar(new GestionarFiltroDePlantilla(filtro, this._ventana, this._ventanaPadre));
+                filtro.AplicaBAT = "NO";
                 this.Navegar(new GestionarFiltroDePlantilla(filtro, this._ventana, this._ventanaPadre, this._ventanaPadreConsultarMaestroPlantilla));
             }
 

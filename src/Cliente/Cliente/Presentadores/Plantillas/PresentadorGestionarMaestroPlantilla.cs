@@ -588,7 +588,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
 
                 if (this._ventana.ArchivoEncabezado != null)
                 {
-                    //((EncabezadoPlantilla)this._ventana.ArchivoEncabezado).Plantilla = (Plantilla)this._ventana.Plantilla;
                     ((EncabezadoPlantilla)this._ventana.ArchivoEncabezado).MaestroDePlantilla = (MaestroDePlantilla)this._ventana.DatosMaestrosPlantilla;
 
                     if (this._ventana.ArchivoBat != null)
@@ -631,7 +630,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                 
                 if (this._ventana.ArchivoDetalle != null)
                 {
-                    ((DetallePlantilla)this._ventana.ArchivoDetalle).Plantilla = (Plantilla)this._ventana.Plantilla;
+                    ((DetallePlantilla)this._ventana.ArchivoDetalle).MaestroDePlantilla = (MaestroDePlantilla)this._ventana.DatosMaestrosPlantilla; 
 
                     if (this._ventana.ArchivoBatDetalle != null)
                         ((DetallePlantilla)this._ventana.ArchivoDetalle).BatPlantilla = (BatPlantilla)this._ventana.ArchivoBatDetalle;

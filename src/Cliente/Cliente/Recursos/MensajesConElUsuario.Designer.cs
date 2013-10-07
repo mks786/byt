@@ -1187,6 +1187,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a ¿Desea agregar o modificar la Fecha?.
+        /// </summary>
+        internal static string ConfirmacionInsertarOModificarFecha {
+            get {
+                return ResourceManager.GetString("ConfirmacionInsertarOModificarFecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a El Reporte {0} ha sido guardado con éxito.
         /// </summary>
         internal static string ConfirmacionReporteModificado {
