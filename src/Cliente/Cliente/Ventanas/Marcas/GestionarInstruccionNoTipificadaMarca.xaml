@@ -58,7 +58,8 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.btnCorrespondencia}"/>
                     </Button>
                     <custom:ByTTextBox Name="_txtCorrespondencia" HorizontalAlignment="Left" Width="200" IsEnabled="True"
-                                       SoloNumero="True" MaxLength="8" Text="{Binding Path=Correspondencia.Id}">
+                                       SoloNumero="True" MaxLength="8" Text="{Binding Path=Correspondencia.Id}" 
+                                       BorderBrush="LightGreen">
                         
                     </custom:ByTTextBox>
                 </WrapPanel>

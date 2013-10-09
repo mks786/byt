@@ -6,10 +6,12 @@
       xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       mc:Ignorable="d" 
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
+      xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
       d:DesignHeight="550" d:DesignWidth="800"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
 	Title="GestionarInstruccionDeDescuentoMarca" Loaded="Page_Loaded">
     <Page.Resources>
+        <conv:DosValresAUno x:Key="convertirADosValores"></conv:DosValresAUno>
         <Style x:Key="ElementInError" TargetType="{x:Type FrameworkElement}">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="True">
@@ -48,16 +50,31 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblServicio}"/>
                     </Label>
-                    <ComboBox  Grid.Column="3" Grid.Row="1" Name="_cbxServicio" Width="200" IsEnabled="True" ItemsSource="{Binding}" 
+                    <!--<ComboBox  Grid.Column="3" Grid.Row="1" Name="_cbxServicio" Width="200" IsEnabled="True" ItemsSource="{Binding}" 
                                DisplayMemberPath="Descripcion">
-                    </ComboBox>
+                    </ComboBox>-->
+					<ComboBox  Grid.Column="3" Grid.Row="1" Name="_cbxServicio" Width="200" IsEnabled="True" ItemsSource="{Binding}">
+						<ComboBox.ItemTemplate>
+							<DataTemplate>
+								<TextBlock>
+				                    <TextBlock.Text>
+					                    <MultiBinding Converter="{StaticResource convertirADosValores}">
+						                    <Binding Path="Id" />
+						                    <Binding Path="Detalle_Esp" />
+					                    </MultiBinding>
+				                    </TextBlock.Text>
+								</TextBlock>
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
                 </WrapPanel>
 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblDescuento}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblPorcentajeDescuento}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtDescuento" Width="200" MaxLength="30" IsEnabled="True" Text="{Binding Path=Descuento}"/>
+                    <custom:ByTTextBox Name="_txtDescuento" Width="200" MaxLength="30" IsEnabled="True" SoloNumero="True"
+                                       Text="{Binding Path=Descuento}"/>
                 </WrapPanel>
 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
@@ -65,7 +82,8 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.btnCorrespondencia}"/>
                     </Button>
                     <custom:ByTTextBox Name="_txtCorrespondencia" HorizontalAlignment="Left" Width="200" IsEnabled="True"
-                                       SoloNumero="True" MaxLength="8" Text="{Binding Path=Correspondencia.Id}">
+                                       SoloNumero="True" MaxLength="8" Text="{Binding Path=Correspondencia.Id}"
+                                       BorderBrush="LightGreen">
 
                     </custom:ByTTextBox>
                 </WrapPanel>

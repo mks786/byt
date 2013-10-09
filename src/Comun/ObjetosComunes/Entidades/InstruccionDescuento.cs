@@ -14,7 +14,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _aplicaA;
         private int _descuento;
         private string _observaciones;
-        private Servicio _servicio;
+        private FacServicio _servicio;
         private Carta _correspondencia;
         private Marca _marca;
         private Patente _patente;
@@ -123,9 +123,9 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el Servicio aplicado a una instruccion de descuento
+        /// Propiedad que asigna u obtiene el Servicio de Facturacion aplicado a una instruccion de descuento
         /// </summary>
-        public virtual Servicio Servicio
+        public virtual FacServicio Servicio
         {
             get { return this._servicio; }
             set { this._servicio = value; }

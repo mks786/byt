@@ -612,6 +612,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 InstruccionOtros instruccionNoTipificadaFiltro = new InstruccionOtros();
                 instruccionNoTipificadaFiltro.Cod_MarcaOPatente = marca.Id;
+                instruccionNoTipificadaFiltro.AplicaA = "M";
 
                 IList<InstruccionOtros> instrucciones = 
                     this._instruccionOtrosServicios.ObtenerInstruccionesNoTipificadasPorFiltro(instruccionNoTipificadaFiltro);

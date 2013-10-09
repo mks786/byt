@@ -28,7 +28,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerInstruccionesNoTipificadas, instruccionOtros.Cod_MarcaOPatente));
+                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerInstruccionesNoTipificadas, instruccionOtros.Cod_MarcaOPatente, instruccionOtros.AplicaA));
                 instrucciones = query.List<InstruccionOtros>();
 
                 #region trace

@@ -8,6 +8,7 @@
     <id name="Id" column="CODIGO"/>
     <property name="Cod_MarcaOPatente" type="int" column="COPERACION"/>
     <property name="Descripcion" type="string" column="XINSTRUCCION"/>
+    <property name="AplicaA" type="string" column="APLICA"/>
     
     <many-to-one name="Correspondencia" class="Carta" lazy="false">
       <column name="CCARTA"/>

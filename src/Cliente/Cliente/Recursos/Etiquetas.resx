@@ -4131,4 +4131,13 @@ en Prensa:</value>
   <data name="lsvIdCodMaestroPlantilla" xml:space="preserve">
     <value>Código Maestro de Plantilla</value>
   </data>
+  <data name="lblNombreDestinatario" xml:space="preserve">
+    <value>Nombre Persona(s):</value>
+  </data>
+  <data name="lblPorcentajeDescuento" xml:space="preserve">
+    <value>Descuento (%):</value>
+  </data>
+  <data name="lblReporteDescripcion" xml:space="preserve">
+    <value>Descripción del Reporte:</value>
+  </data>
 </root>

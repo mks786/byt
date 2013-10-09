@@ -11,6 +11,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private int _id;
         private int cod_marcaOPatente;
         private string _descripcion;
+        private string _aplica;
         private Carta _correspondencia;
         private Marca _marca;
         private Patente _patente;
@@ -94,6 +95,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return this._descripcion; }
             set { this._descripcion = value; }
+        }
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene para que aplica la instruccion no tipificada, si a una Marca o una Patente
+        /// </summary>
+        public virtual String AplicaA
+        {
+            get { return this._aplica; }
+            set { this._aplica = value; }
         }
 
         

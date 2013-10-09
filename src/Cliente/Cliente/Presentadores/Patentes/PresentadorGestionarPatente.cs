@@ -300,13 +300,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     else
                         Interesados.Add(primerInteresado);
 
-                    if (((Patente)this._ventana.Patente).Interesado.Alerta != null)
+                    if (((Patente)this._ventana.Patente).Interesado != null)
                     {
-                        if (!((Patente)this._ventana.Patente).Interesado.Alerta.Equals(""))
+                        if (((Patente)this._ventana.Patente).Interesado.Alerta != null)
                         {
-                            alertaInteresado += "Alerta de Interesado: " + ((Patente)this._ventana.Patente).Interesado.Alerta;
-                            this._ventana.Mensaje(alertaInteresado, 2);
-                        }
+                            if (!((Patente)this._ventana.Patente).Interesado.Alerta.Equals(""))
+                            {
+                                alertaInteresado += "Alerta de Interesado: " + ((Patente)this._ventana.Patente).Interesado.Alerta;
+                                this._ventana.Mensaje(alertaInteresado, 2);
+                            }
+                        } 
                     }
                     
                     this._ventana.InteresadosSolicitud = Interesados;

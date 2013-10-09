@@ -216,7 +216,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     this._ventana.DesactivarVerListaContactos();
                 }
 
-
+                if ((!UsuarioLogeado.Rol.Id.Equals("ADMINISTRADOR")) && (!UsuarioLogeado.Rol.Id.Equals("OPR_CORRESPONDEN")))
+                {
+                    this._ventana.DesactivarBotonesParaModificar();
+                }
 
                 this._ventana.FocoPredeterminado();
 

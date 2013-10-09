@@ -78,6 +78,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.Marca = marca;
                 this._ventana.InstruccionEnvioEmail = (InstruccionCorrespondencia)instruccionEnvioEmails;
                 this._ventana.InstruccionEnvioOriginales = (InstruccionEnvioOriginales)instruccionEnvioOriginales;
+                this._ventana.AlertaEOriginales = (InstruccionEnvioOriginales)instruccionEnvioOriginales;
 
                 this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
@@ -328,7 +329,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     {
                         exitoso = this._instruccionCorrespondenciaServicios.InsertarOModificar(instruccion, UsuarioLogeado.Hash);
                         if (exitoso)
-                            this._ventana.Mensaje("La instruccion de Facturación de Envio de Email fue guardada exitosamente", 1);
+                            this._ventana.Mensaje("La instruccion de Facturación de Envio de Email fue guardada exitosamente", 2);
 
                     }
                     else
@@ -338,10 +339,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 {
                     InstruccionEnvioOriginales instruccion = CargarInstruccionEnvioOriginalesDeLaPantalla();
 
-                    exitoso = this._instruccionEnvioOriginalesServicios.InsertarOModificar(instruccion, UsuarioLogeado.Hash);
+                    if (instruccion.NombreInstruccion != null)
+                    {
+                        if (ValidarCorrespondencias(instruccion))
+                        {
+                            exitoso = this._instruccionEnvioOriginalesServicios.InsertarOModificar(instruccion, UsuarioLogeado.Hash); 
+                        }
+                        else
+                            this._ventana.Mensaje("El Asociado o Interesado ingresado no tiene Correspondencia asociada", 0);
+                    }
+                    else
+                        this._ventana.Mensaje("La Instrucción de Facturacion de Envío de Originales debe tener un Destinatario", 0);
 
                     if (exitoso)
-                        this._ventana.Mensaje("La instruccion de Facturación de Envio de Originales fue guardada exitosamente", 1);
+                        this._ventana.Mensaje("La instruccion de Facturación de Envio de Originales fue guardada exitosamente", 2);
 
                 }
 
@@ -378,6 +389,47 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
 
+        /// <summary>
+        /// Metodo que valida que el Asociado o el Interesado que este ingresado tenga su numero de correspondencia asociado
+        /// </summary>
+        /// <param name="instruccion">Instruccion de Envio de Originales de Facturacion a insertar o modificar</param>
+        /// <returns>True si el Asociado o Interesado tiene su numero de correspondencia asociado; False en caso contrario</returns>
+        public bool ValidarCorrespondencias(InstruccionEnvioOriginales instruccion)
+        {
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (((instruccion.Asociado != null) && (instruccion.CorrespAsociado == null)) ||
+                    ((instruccion.Interesado != null) && (instruccion.CorrespInteresado == null)))
+                {
+                    retorno = false;
+                }
+                else
+                    retorno = true;
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+
+            return retorno;
+
+        }
+
+
 
         /// <summary>
         /// Metodo que devuelve la instruccion de envios de originales de la pantalla
@@ -400,7 +452,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 instruccion.AplicadaA = ((InstruccionEnvioOriginales)this._ventana.InstruccionEnvioOriginales).AplicadaA;
                 instruccion.Concepto = ((InstruccionEnvioOriginales)this._ventana.InstruccionEnvioOriginales).Concepto;
 
-                instruccion.NombreInstruccion = this._ventana.NombreInstruccionEnvioOriginales != null ?
+                instruccion.NombreInstruccion = !this._ventana.NombreInstruccionEnvioOriginales.Equals("") ?
                     this._ventana.NombreInstruccionEnvioOriginales : null;
 
                 instruccion.Asociado = (this._ventana.Asociado != null) && (((Asociado)this._ventana.Asociado).Id != int.MinValue) ?
@@ -772,6 +824,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.Asociado);
                     this._ventana.AsociadoEnvioOriginales = ((Asociado)this._ventana.Asociado).Nombre;
                     this._ventana.IdAsociadoEnvioOriginales = ((Asociado)this._ventana.Asociado).Id.ToString();
+                    this._ventana.Domicilio_Asociado = ((Asociado)this._ventana.Asociado).Domicilio;
                     this._asociado = (Asociado)this._ventana.Asociado;
 
                     this._ventana.ConvertirEnteroMinimoABlanco();
@@ -855,6 +908,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     {
                         this._ventana.InteresadoEnvioOriginales = ((Interesado)this._ventana.Interesado).Nombre;
                         this._ventana.IdInteresadoEnvioOriginales = ((Interesado)this._ventana.Interesado).Id.ToString();
+                        this._ventana.Domicilio_Interesado = ((Interesado)this._ventana.Interesado).Domicilio;
                         this._interesado = (Interesado)this._ventana.Interesado;
                         this._ventana.ConvertirEnteroMinimoABlanco();
                     }
@@ -863,6 +917,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     {
                         this._ventana.InteresadoEnvioOriginales = String.Empty;
                         this._ventana.IdInteresadoEnvioOriginales = String.Empty;
+                        this._ventana.Domicilio_Interesado = String.Empty;
                     }
 
 

@@ -144,8 +144,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             if (opcion == 0)
                 MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            else
+            else if(opcion == 1)
                 MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            else if(opcion == 2)
+                MessageBox.Show(mensaje, "Información", MessageBoxButton.OK, MessageBoxImage.Information);
         } 
 
         #endregion

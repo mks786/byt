@@ -46,8 +46,8 @@
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="CodigoOperacion"
                                                   Content="{x:Static recurso:Etiquetas.lsvCodigo}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Servicio.Descripcion}" Width="180">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Servicio.Descripcion" 
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Servicio.Detalle_Esp}" Width="280">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Servicio.Detalle_Esp" 
                                                   Content="{x:Static recurso:Etiquetas.lsvServicio}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Descuento}" Width="120">

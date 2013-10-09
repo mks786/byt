@@ -11,7 +11,7 @@
     <property name="Descuento" type="int" column="DCTO"/>
     <property name="Observaciones" type="string" column="XOBSERVACION"/>
 
-    <many-to-one name="Servicio" class="Servicio" lazy="false">
+    <many-to-one name="Servicio" class="FacServicio" lazy="false">
       <column name="CSERVICIO"/>
     </many-to-one>
 

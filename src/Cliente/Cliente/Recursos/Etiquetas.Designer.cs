@@ -6096,6 +6096,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Nombre Persona(s):.
+        /// </summary>
+        public static string lblNombreDestinatario {
+            get {
+                return ResourceManager.GetString("lblNombreDestinatario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Nombre en español:.
         /// </summary>
         public static string lblNombreEspanol {
@@ -6483,6 +6492,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Descuento (%):.
+        /// </summary>
+        public static string lblPorcentajeDescuento {
+            get {
+                return ResourceManager.GetString("lblPorcentajeDescuento", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Por Vencer:.
         /// </summary>
         public static string lblPorVencer {
@@ -6740,6 +6758,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblReporteDeMarcaNombre {
             get {
                 return ResourceManager.GetString("lblReporteDeMarcaNombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Descripción del Reporte:.
+        /// </summary>
+        public static string lblReporteDescripcion {
+            get {
+                return ResourceManager.GetString("lblReporteDescripcion", resourceCulture);
             }
         }
         

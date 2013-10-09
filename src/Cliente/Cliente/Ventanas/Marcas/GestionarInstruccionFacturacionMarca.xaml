@@ -31,12 +31,14 @@
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="80"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -106,8 +108,15 @@
             </GroupBox>
             <!-- Fin Datos de la Marca -->
 
-            <!-- Datos Instruccion de Correspondencia por Envio de Emails -->
-            <GroupBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch">
+            <!-- Titulo de la Ventana -->
+            <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" 
+				FontSize="13" FontWeight="Bold">
+                <TextBlock Text="Instrucciones de Facturación"></TextBlock>
+            </Label>
+            <!-- Fin Titulo de la Ventana -->
+
+            <!-- Datos Instruccion de Facturacion por Envio de Emails -->
+            <GroupBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch">
                 <Grid Name="_gridEnvioDeEmails" DataContext="{Binding}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -153,11 +162,11 @@
                     <Button Grid.Column="0" Grid.Row="2" Name="_btnConsultarCorrespondencia" VerticalAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Width="108" Height="25" Click="_btnConsultarCorrespondencia_Click">
                         <TextBlock Text="{x:Static recurso:Etiquetas.btnCartaInstruccion}"/>
                     </Button>
-                    <custom:ByTTextBox Grid.Column="1" Grid.Row="2" Name="_txtIdCorrespondenciaInstruccion" VerticalAlignment="Center" HorizontalAlignment="Left" Width="80" Height="25" Text="{Binding Path=Correspondencia.Id}" SoloNumero="True"></custom:ByTTextBox>
+                    <custom:ByTTextBox Grid.Column="1" Grid.Row="2" Name="_txtIdCorrespondenciaInstruccion" VerticalAlignment="Center" HorizontalAlignment="Left" Width="80" Height="25" Text="{Binding Path=Correspondencia.Id}" SoloNumero="True" BorderBrush="LightGreen"></custom:ByTTextBox>
 
                     <!-- Datos de Nombre -->
                     <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblNombreInstruccion}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblNombreDestinatario}"/>
                     </Label>
                     <custom:ByTTextBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="8" Name="_txtNombreInstruccion" VerticalAlignment="Center" HorizontalAlignment="Left" Width="550" Height="25" Text="{Binding Path=NombreEmail}"></custom:ByTTextBox>
 
@@ -165,9 +174,21 @@
                     <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblParaEmailInstruccion}"/>
                     </Label>
-                    <custom:ByTTextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="8" Name="_txtParaEmailInstruccion"
+                    <!--<custom:ByTTextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="8" Name="_txtParaEmailInstruccion"
                                    VerticalAlignment="Center" HorizontalAlignment="Left" Width="550" Height="25" 
-                                   Text="{Binding Path=ParaEmail}"></custom:ByTTextBox>
+                                   Text="{Binding Path=ParaEmail}"></custom:ByTTextBox>-->
+                    <custom:ByTTextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="8" Name="_txtParaEmailInstruccion"
+								   VerticalAlignment="Center" HorizontalAlignment="Left" Width="550" Height="25"
+								   ToolTip="{Binding ElementName=_txtParaEmailInstruccion, Path=(Validation.Errors)[0].ErrorContent}">
+                        <TextBox.Text>
+                            <Binding Path="ParaEmail" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <reglas:Obligatorio ValidatesOnTargetUpdated="True" />
+                                    <reglas:CorreoElectronico ValidatesOnTargetUpdated="False" />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </custom:ByTTextBox>
 
 
                     <!-- Datos de CC del Email -->
@@ -180,18 +201,31 @@
 
                     <WrapPanel Grid.Row="6" Grid.ColumnSpan="8" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" 
                            Orientation="Horizontal">
-                        <Button Name="_btnModificar"  VerticalAlignment="Bottom" Height="25" Width="210" 
+                        <!--<Button Name="_btnModificar"  VerticalAlignment="Bottom" Height="25" Width="210" 
                             Click="_btnModificar_Click">
+                            <TextBlock Name="_txbModificar" Text="{x:Static recurso:Etiquetas.btnModificarEnvioEmails}"/>
+                        </Button>-->
+                        <Button Name="_btnModificar"  VerticalAlignment="Bottom" Height="25" Width="210" Click="_btnModificar_Click">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=_txtParaEmailInstruccion,
+										Path=(Validation.HasError)}" Value="True">
+                                            <Setter Property="IsEnabled" Value="False" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
                             <TextBlock Name="_txbModificar" Text="{x:Static recurso:Etiquetas.btnModificarEnvioEmails}"/>
                         </Button>
                     </WrapPanel>
                 </Grid>
             </GroupBox>
-            <!-- Fin Datos Instruccion de Correspondencia por Envio de Emails Facturacion -->
+            <!-- Fin Datos Instruccion de Facturacion por Envio de Emails -->
 
 
-            <!-- Datos Instruccion de Correspondencia por Envio de Originales Facturacion -->
-            <GroupBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch">
+            <!-- Datos Instruccion de Facturacion por Envio de Originales -->
+            <GroupBox Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch">
                 <Grid  Name="_gridEnvioOriginales" DataContext="{Binding}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -215,6 +249,8 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
                     <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Left">
@@ -228,7 +264,7 @@
 
 
                     <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblNombreInstruccion}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblPara}"/>
                     </Label>
                     <custom:ByTTextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="8" Name="_txtNombreEOriginales" VerticalAlignment="Center" HorizontalAlignment="Left" Width="560" Height="25" Text="{Binding Path=NombreInstruccion}">
                     </custom:ByTTextBox>
@@ -265,20 +301,21 @@
                         </Grid.RowDefinitions>
                         <!-- Codigo del Asociado -->
                         <custom:ByTTextBox IsReadOnly="True" Grid.Column="0" Grid.Row="1" Name="_txtIdAsociadoEOriginal"
-                                       VerticalAlignment="Center" MaxLength="255" Margin="0,2,5,0" Text="{Binding Path=Asociado.Id}">
+                                            VerticalAlignment="Center" MaxLength="255" Margin="0,2,5,0" 
+                                           Text="{Binding Path=Asociado.Id}" BorderBrush="LightGreen">
                         </custom:ByTTextBox>
 
                         <!-- Descripcion del Asociado -->
                         <custom:ByTTextBox Margin="0,2,5,0"  MaxLength="255" Grid.Column="1" Grid.Row="1" Name="_txtAsociadoEOriginal" 
-                                       VerticalAlignment="Center" Grid.ColumnSpan="6" IsReadOnly="False" 
+                                       VerticalAlignment="Center" Grid.ColumnSpan="6" IsReadOnly="False" BorderBrush="LightGreen"
                                        Text="{Binding Path=Asociado.Nombre}" MouseDoubleClick="_txtAsociadoEOriginal_GotFocus">
 
                         </custom:ByTTextBox>
 
                         <!-- Busqueda de un Asociado -->
 
-                        <Label Name="_lblIdAsociadoFiltrar" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"
-                           Visibility="Collapsed">
+                        <Label Name="_lblIdAsociadoFiltrar" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" 
+                               VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                         </Label>
                         <custom:ByTTextBox IsEnabled="True" SoloNumero="True" Grid.Column="1" Grid.Row="0" Name="_txtIdAsociadoFiltrar" 
@@ -331,26 +368,30 @@
                     </Button>
                     <custom:ByTTextBox Grid.Column="7" Grid.Row="4" Name="_txtIdCorrespondenciaAsociado" VerticalAlignment="Center" 
                                    HorizontalAlignment="Left" Width="80" Height="25" Text="{Binding Path=CorrespAsociado.Id}" 
-                                   SoloNumero="True"></custom:ByTTextBox>
+                                   SoloNumero="True" BorderBrush="LightGreen"></custom:ByTTextBox>
+
+                    <custom:ByTTextBox MaxLength="255" Grid.Column="1" Grid.Row="5" Name="_txtDomicilioAsociadoEOriginal" 
+								   VerticalAlignment="Center" Grid.ColumnSpan="7" IsReadOnly="False" 
+								   Text="{Binding Path=Asociado.Domicilio}" />
                     <!-- Fin Datos del Asociado -->
 
 
 
                     <!-- Datos del Interesado -->
-                    <Label Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                    <Label Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Left">
                         <TextBlock Text="Dirección de Interesado"></TextBlock>
                     </Label>
 
-                    <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                    <Label Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
                     </Label>
-                    <Button Grid.Column="0" Grid.Row="6" Name="_btnIrInteresadosEOriginal" IsDefault="False" Height="25"
+                    <Button Grid.Column="0" Grid.Row="7" Name="_btnIrInteresadosEOriginal" IsDefault="False" Height="25"
                         HorizontalAlignment="Right" Click="_btnIrInteresadosEOriginal_Click">
                         <TextBlock Text="{x:Static recurso:Etiquetas.btnInteresado}"/>
                     </Button>
 
 
-                    <Grid Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="5" VerticalAlignment="Center">
+                    <Grid Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="5" VerticalAlignment="Center">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
@@ -369,12 +410,13 @@
 
                         <!-- Codigo y nombre de Interesado -->
                         <custom:ByTTextBox IsReadOnly="True" Grid.Column="0" Grid.Row="1" Name="_txtIdInteresadoEOriginal" 
-                                       VerticalAlignment="Center" MaxLength="255" Margin="0,0,5,0" Text="{Binding Path=Interesado.Id}">
+                                       VerticalAlignment="Center" MaxLength="255" Margin="0,0,5,0" Text="{Binding Path=Interesado.Id}"
+                                       BorderBrush="LightGreen">
                         </custom:ByTTextBox>
 
                         <custom:ByTTextBox  MaxLength="255" Grid.Column="1" Grid.Row="1" Name="_txtInteresadoEOriginal" 
                                         VerticalAlignment="Center" Grid.ColumnSpan="6" IsReadOnly="True" 
-                                        Text="{Binding Path=Interesado.Nombre}" 
+                                        Text="{Binding Path=Interesado.Nombre}" BorderBrush="LightGreen"
                                         MouseDoubleClick="_txtInteresadoEOriginal_GotFocus"></custom:ByTTextBox>
 
                         <!-- Datos de busqueda para el Interesado -->
@@ -426,32 +468,36 @@
                         </ListView>
                     </Grid>
 
-                    <Button Grid.Column="6" Grid.Row="6" Name="_btnConsultarCorrespondenciaInteresado" VerticalAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Width="108" Height="25" Click="_btnConsultarCorrespondencia_Click">
+                    <Button Grid.Column="6" Grid.Row="7" Name="_btnConsultarCorrespondenciaInteresado" VerticalAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Width="108" Height="25" Click="_btnConsultarCorrespondencia_Click">
                         <TextBlock Text="{x:Static recurso:Etiquetas.btnCartaInstruccion}"/>
                     </Button>
-                    <custom:ByTTextBox Grid.Column="7" Grid.Row="6" Name="_txtIdCorrespondenciaInteresado" VerticalAlignment="Center" HorizontalAlignment="Left" Width="80" Height="25" Text="{Binding Path=CorrespInteresado.Id}" SoloNumero="True"></custom:ByTTextBox>
+                    <custom:ByTTextBox Grid.Column="7" Grid.Row="7" Name="_txtIdCorrespondenciaInteresado" VerticalAlignment="Center" HorizontalAlignment="Left" Width="80" Height="25" Text="{Binding Path=CorrespInteresado.Id}" SoloNumero="True" BorderBrush="LightGreen"></custom:ByTTextBox>
+
+                    <custom:ByTTextBox MaxLength="255" Grid.Column="1" Grid.Row="8" Name="_txtDomicilioInteresadoEOriginal" 
+								VerticalAlignment="Center" Grid.ColumnSpan="7" IsReadOnly="False" 
+								Text="{Binding Path=Interesado.Domicilio}" />
 
                     <!-- Fin Datos del Interesado -->
 
-                    <Label Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                    <Label Grid.Column="0" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblOtraDireccion}"/>
                     </Label>
-                    <custom:ByTTextBox Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="8" Name="_txtOtraDireccion"
+                    <custom:ByTTextBox Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="8" Name="_txtOtraDireccion" Margin="0,5,0,0"
                                        VerticalAlignment="Center" HorizontalAlignment="Left" Width="560" Height="45" 
                                        Text="{Binding Path=DireccionInstruccion}">
                     </custom:ByTTextBox>
 
 
-                    <Label Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                    <!--<Label Grid.Column="0" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblAlerta}"/>
                     </Label>
-                    <custom:ByTTextBox Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="8" Name="_txtAlerta"
+                    <custom:ByTTextBox Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="8" Name="_txtAlerta"
                                        VerticalAlignment="Center" HorizontalAlignment="Left" Width="560" Height="25" 
                                        Text="{Binding Path=Alerta}">
-                    </custom:ByTTextBox>
+                    </custom:ByTTextBox>-->
 
 
-                    <WrapPanel Grid.Row="9" Grid.ColumnSpan="9" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" 
+                    <WrapPanel Grid.Row="11" Grid.ColumnSpan="9" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" 
                                Orientation="Horizontal">
                         <Button Name="_btnModificarInstEnvioOriginales"  VerticalAlignment="Bottom" Height="25" Width="210" 
                                 Click="_btnModificar_Click">
@@ -464,9 +510,25 @@
 
                 </Grid>
             </GroupBox>
+            <!-- Fin Datos Instruccion de Facturacion por Envio de Originales -->
+            
+            <!-- Alerta de la Instruccion de Facturacion -->
+            <GroupBox Grid.Column="1" Grid.Row="5" Name="_grdAlerta" HorizontalAlignment="Stretch" Margin="0,5,0,0" 
+                      DataContext="{Binding}">
+                <WrapPanel Orientation="Horizontal" Margin="0,5,0,0">
+                    <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblAlerta}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtAlerta" VerticalAlignment="Center" HorizontalAlignment="Left" Width="560" Height="25"
+                                       Text="{Binding Path=Alerta}">
+                    </custom:ByTTextBox>
+                </WrapPanel>
+            </GroupBox>
+
+            <!-- Fin Alerta de la Instruccion de Facturacion-->
 
 
-            <WrapPanel Grid.Row="4" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" 
+            <WrapPanel Grid.Row="6" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" 
                        Orientation="Horizontal">
                 <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnRegresar_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnRegresar}"/>

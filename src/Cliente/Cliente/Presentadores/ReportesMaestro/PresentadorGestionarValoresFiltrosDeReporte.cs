@@ -98,8 +98,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this._ventana.TituloReporte = ((Reporte)this._ventana.Reporte).Idioma.Id.Equals("ES") ?
-                    ((Reporte)this._ventana.Reporte).TituloEspanol : ((Reporte)this._ventana.Reporte).TituloIngles;
+                //this._ventana.TituloReporte = ((Reporte)this._ventana.Reporte).Idioma.Id.Equals("ES") ?
+                //    ((Reporte)this._ventana.Reporte).TituloEspanol : ((Reporte)this._ventana.Reporte).TituloIngles;
+
+                this._ventana.TituloReporte = ((Reporte)this._ventana.Reporte).Descripcion;
 
                 this._listaDeCamposDelReporte = this._camposReporteRelacionServicios.ConsultarCamposDeReporte((Reporte)this._ventana.Reporte);
 
@@ -107,8 +109,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                     (new ListaDatosValores(Recursos.Etiquetas.cbiOperadoresDeReporte));
 
                 //Se recuperan los tipos de ordenamiento existentes para los reportes
+                ListaDatosValores ordenamientoVacio = new ListaDatosValores();
+                ordenamientoVacio.Id = Recursos.Etiquetas.cbiOrdenamientoReporte;
+                ordenamientoVacio.Valor = "NGN";
+
                 this._filtrosDeOrdenReporte = this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro
                     (new ListaDatosValores(Recursos.Etiquetas.cbiOrdenamientoReporte));
+                this._filtrosDeOrdenReporte.Insert(0, ordenamientoVacio);
                 this._ventana.TiposDeOrdenamiento = this._filtrosDeOrdenReporte;
 
                 //Se recuperan los campos del Reporte para hacer el ordenamiento
@@ -153,24 +160,55 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                 ListaDatosValores operadorSeleccionado = new ListaDatosValores();
                 OrdenReporte ordenReporte = new OrdenReporte();
                 IList<OrdenReporte> listaOrdenamientosReporte = new List<OrdenReporte>();
-                campoFiltroSeleccionado = ((CamposReporteRelacion)this._ventana.CampoDelReporte).Campo;
-                operadorSeleccionado = (ListaDatosValores)this._ventana.TipoDeOrdenamiento;
-                ordenReporte.Reporte = (Reporte)this._ventana.Reporte;
-                ordenReporte.Campo = campoFiltroSeleccionado;
-                ordenReporte.TipoOrdenamiento = operadorSeleccionado.Valor;
 
-                if (this._ventana.OrdenamientosReporte != null)
+                //campoFiltroSeleccionado = ((CamposReporteRelacion)this._ventana.CampoDelReporte).Campo;
+
+                if (this._ventana.CampoDelReporte != null)
                 {
-                    listaOrdenamientosReporte = (IList<OrdenReporte>)this._ventana.OrdenamientosReporte;
-                    listaOrdenamientosReporte.Add(ordenReporte);
-                    this._ventana.OrdenamientosReporte = null;
-                    this._ventana.OrdenamientosReporte = listaOrdenamientosReporte;
+                    campoFiltroSeleccionado = ((CamposReporteRelacion)this._ventana.CampoDelReporte).Campo;
                 }
                 else
+                    campoFiltroSeleccionado = null;
+
+
+                if (this._ventana.TipoDeOrdenamiento != null)
                 {
-                    listaOrdenamientosReporte.Add(ordenReporte);
-                    this._ventana.OrdenamientosReporte = listaOrdenamientosReporte;
+                    operadorSeleccionado = (ListaDatosValores)this._ventana.TipoDeOrdenamiento;
+                    ordenReporte.Reporte = (Reporte)this._ventana.Reporte;
+                    ordenReporte.Campo = campoFiltroSeleccionado;
+                    ordenReporte.TipoOrdenamiento = operadorSeleccionado.Valor;
                 }
+                else
+                    ordenReporte = null;
+
+                if ((campoFiltroSeleccionado != null) && (ordenReporte != null))
+                {
+                    if (!ordenReporte.TipoOrdenamiento.Equals("NGN"))
+                    {
+                        if (this._ventana.OrdenamientosReporte != null)
+                        {
+                            listaOrdenamientosReporte = (IList<OrdenReporte>)this._ventana.OrdenamientosReporte;
+                            listaOrdenamientosReporte.Add(ordenReporte);
+                            this._ventana.OrdenamientosReporte = null;
+                            this._ventana.OrdenamientosReporte = listaOrdenamientosReporte;
+                        }
+                        else
+                        {
+                            listaOrdenamientosReporte.Add(ordenReporte);
+                            this._ventana.OrdenamientosReporte = listaOrdenamientosReporte;
+                        }
+                        this._ventana.CampoDelReporte = null;
+                        this._ventana.TipoDeOrdenamiento = null;
+                    }
+                    else
+                    {
+                        this._ventana.Mensaje("Seleccione un tipo de ordenamiento válido para generar el Reporte", 0);
+                        this._ventana.CampoDelReporte = null;
+                        this._ventana.TipoDeOrdenamiento = null;
+                    }
+                }
+                else
+                    this._ventana.Mensaje("Debe seleccionar un Campo y un Tipo de Ordenamiento para agregarlo a la lista de Ordenamientos", 0);
 
 
 
@@ -280,14 +318,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                     exitoso = this._filtroReporteServicios.InsertarOModificar(filtro, UsuarioLogeado.Hash); 
                 }
 
-                queryResultante = ConstruirQuery(filtrosModificados, vistaReporte);
+                //Se verifica que existan ordenamiento para ejecutar el reporte
+                if (this._ventana.OrdenamientosReporte != null)
+                {
+                    queryResultante = ConstruirQuery(filtrosModificados, vistaReporte);
 
-                DataSet resultado = this._reporteServicios.EjecutarQuery(queryResultante);
+                    DataSet resultado = this._reporteServicios.EjecutarQuery(queryResultante);
 
-                if (resultado != null)
-                    this.Navegar(new VisualizarReporte(this._ventana, this._ventana.Reporte, resultado));
+                    if (resultado != null)
+                        this.Navegar(new VisualizarReporte(this._ventana, this._ventana.Reporte, resultado));
+                    else
+                        this._ventana.Mensaje("El resultado de su consulta es Vacio. Revise sus filtros", 1);
+                }
                 else
-                    this._ventana.Mensaje("El resultado de su consulta es Vacio. Revise sus filtros", 1);
+                    this._ventana.Mensaje("Debe elegir al menos un criterio de Ordenamiento", 0);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

@@ -2356,7 +2356,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select io from InstruccionOtros io left outer join fetch io.Correspondencia where io.Cod_MarcaOPatente = {0}.
+        ///   Busca una cadena traducida similar a Select io from InstruccionOtros io left outer join fetch io.Correspondencia where io.Cod_MarcaOPatente = {0} and io.AplicaA =  &apos;{1}&apos;.
         /// </summary>
         public static string ObtenerInstruccionesNoTipificadas {
             get {

@@ -43,9 +43,22 @@ namespace Trascend.Bolet.Servidor
             FiltroPlantillaServicios servicioPrueba = new FiltroPlantillaServicios();
             IList<FiltroPlantilla> filtros = servicioPrueba.ObtenerFiltrosDetallePlantilla(plantilla);
 
+            InstruccionDescuentoServicios servicioPrueba = new InstruccionDescuentoServicios();
+            InstruccionDescuento idc = new InstruccionDescuento();
+            idc.CodigoOperacion = 860000;
+            idc.AplicaA = "M";
+
+            IList<InstruccionDescuento> instrucciones = servicioPrueba.ObtenerInstruccionesDeDescuentoMarcaOPatente(idc);
+
+            InstruccionOtros instruccion = new InstruccionOtros();
+            InstruccionOtrosServicios servicioPrueba = new InstruccionOtrosServicios();
+            instruccion.Cod_MarcaOPatente = 860000;
+            instruccion.AplicaA = "M";
+            IList<InstruccionOtros> lista = servicioPrueba.ObtenerInstruccionesNoTipificadasPorFiltro(instruccion);
+
             Console.ReadLine();*/
 
-            
+
             #endregion
 
             Console.WriteLine("Se han cargado " + ConfiguracionServicios.CargarUsuarios() + " sesiones de archivo XML");

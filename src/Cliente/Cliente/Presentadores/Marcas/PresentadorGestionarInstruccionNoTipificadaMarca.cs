@@ -174,7 +174,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 {
                     if (!this._nuevaInstruccion)
                     {
-                        exitoso = this._instruccionOtrosServicios.InsertarOModificar(instruccionNoTipificada, UsuarioLogeado.Hash);
+                        if (instruccionNoTipificada.Correspondencia != null)
+                        {
+                            exitoso = this._instruccionOtrosServicios.InsertarOModificar(instruccionNoTipificada, UsuarioLogeado.Hash);
+                        }
+                        else
+                            this._ventana.Mensaje("La Instrucción no posee un número de Correspondencia válido", 0);
                     }
                     else
                     {
@@ -183,7 +188,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         nuevoValor = contador + 1;
                         instruccionNoTipificada.Id = nuevoValor;
 
-                        exitoso = this._instruccionOtrosServicios.InsertarOModificar(instruccionNoTipificada, UsuarioLogeado.Hash);
+                        if (instruccionNoTipificada.Correspondencia != null)
+                        {
+                            exitoso = this._instruccionOtrosServicios.InsertarOModificar(instruccionNoTipificada, UsuarioLogeado.Hash); 
+                        }
+                        else
+                            this._ventana.Mensaje("La Instrucción no posee un número de Correspondencia válido", 0);
                     }
                 }
                 else
@@ -249,8 +259,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         IList<Carta> cartas = this._cartaServicios.ObtenerCartasFiltro(carta);
                         instruccion.Correspondencia = cartas[0];
                     }
-                        
+
                 }
+                else
+                    instruccion.Correspondencia = null;
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

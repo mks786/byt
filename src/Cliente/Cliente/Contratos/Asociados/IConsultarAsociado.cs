@@ -88,5 +88,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
 
         void ArchivoNoEncontrado(string mensaje);
 
+        void DesactivarBotonesParaModificar();
+
     }
 }

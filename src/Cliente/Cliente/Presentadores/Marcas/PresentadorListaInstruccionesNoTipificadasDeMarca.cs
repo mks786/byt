@@ -72,6 +72,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 InstruccionOtros instruccionNoTipificadaFiltro = new InstruccionOtros();
                 instruccionNoTipificadaFiltro.Cod_MarcaOPatente = this._marca.Id;
+                instruccionNoTipificadaFiltro.AplicaA = "M";
 
                 IList<InstruccionOtros> listaInstruccionesNoTipificadas = 
                     this._instruccionOtrosServicios.ObtenerInstruccionesNoTipificadasPorFiltro(instruccionNoTipificadaFiltro);
@@ -157,6 +158,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             {
                 InstruccionOtros instruccion = new InstruccionOtros();
                 instruccion.Cod_MarcaOPatente = this._marca.Id;
+                instruccion.AplicaA = "M";
                 this.Navegar(new GestionarInstruccionNoTipificadaMarca(instruccion, this._marca, this._ventana, this._ventanaPadre));
             }
 

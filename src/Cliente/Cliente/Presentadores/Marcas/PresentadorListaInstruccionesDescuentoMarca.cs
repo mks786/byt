@@ -14,6 +14,7 @@ using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using Diginsoft.Bolet.ObjetosComunes.ContratosServicios;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {

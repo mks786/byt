@@ -601,8 +601,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             this._presentador.IrListaConectividad();
         }
 
-        
 
+        public void DesactivarBotonesParaModificar()
+        {
+            this._btnModificar.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
+        }
 
 
 

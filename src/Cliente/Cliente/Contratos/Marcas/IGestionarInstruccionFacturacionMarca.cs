@@ -36,6 +36,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         object InstruccionEnvioOriginales { get; set; }
 
+        object AlertaEOriginales { get; set; }
+
         string IdInstruccionEnvioOriginales { get; set; }
 
         string NombreInstruccionEnvioOriginales { get; set; }
@@ -51,6 +53,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         string AsociadoEnvioOriginales { get; set; }
 
         string IdCorrespondencia_Asociado { get; set; }
+
+        string Domicilio_Asociado { get; set; }
 
         //Datos del Asociado para Filtrar
 
@@ -69,6 +73,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         string InteresadoEnvioOriginales { get; set; }
 
         string IdCorrespondencia_Interesado { get; set; }
+
+        string Domicilio_Interesado { get; set; }
 
         //Datos del Interesado para filtrar
 

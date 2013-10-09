@@ -15,6 +15,7 @@ using Trascend.Bolet.Cliente.Ventanas.Cartas;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using Diginsoft.Bolet.ObjetosComunes.ContratosServicios;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
@@ -25,7 +26,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private IInstruccionDescuentoServicios _instruccionDescuentoServicios;
         private ICartaServicios _cartaServicios;
-        private IServicioServicios _servicioServicios;
+        //private IServicioServicios _servicioServicios;
+        private IFacServicioServicios _facServicioServicios;
 
         private bool _nuevaInstruccion = false;
         private Marca _marca;
@@ -60,8 +62,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InstruccionDescuentoServicios"]);
             this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
-            this._servicioServicios = (IServicioServicios)Activator.GetObject(typeof(IServicioServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ServicioServicios"]);
+            this._facServicioServicios = (IFacServicioServicios)Activator.GetObject(typeof(IFacServicioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FacServicioServicios"]);
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -87,7 +89,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarInstruccionNoTipificada,
                     Recursos.Ids.InstruccionNoTipificada);
 
-                IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
+                IList<FacServicio> servicios = this._facServicioServicios.ConsultarTodos();
                 this._ventana.Servicios = servicios;
                 if (((InstruccionDescuento)this._ventana.InstruccionDescuento).Servicio != null)
                 {
@@ -184,19 +186,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 {
                     if (instruccion.Descuento != 0)
                     {
-                        if (!this._nuevaInstruccion)
+                        if (instruccion.Correspondencia != null)
                         {
-                            exitoso = this._instruccionDescuentoServicios.InsertarOModificar(instruccion, UsuarioLogeado.Hash);
-                        }
-                        else
-                        {
-                            IList<InstruccionDescuento> instruccionesDeDescuento = this._instruccionDescuentoServicios.ConsultarTodos();
-                            contador = instruccionesDeDescuento.Count;
-                            nuevoValor = contador + 1;
-                            instruccion.Id = nuevoValor;
+                            if (!this._nuevaInstruccion)
+                            {
+                                exitoso = this._instruccionDescuentoServicios.InsertarOModificar(instruccion, UsuarioLogeado.Hash);
+                            }
+                            else
+                            {
+                                IList<InstruccionDescuento> instruccionesDeDescuento = this._instruccionDescuentoServicios.ConsultarTodos();
+                                contador = instruccionesDeDescuento.Count;
+                                nuevoValor = contador + 1;
+                                instruccion.Id = nuevoValor;
 
-                            exitoso = this._instruccionDescuentoServicios.InsertarOModificar(instruccion, UsuarioLogeado.Hash);
-                        } 
+                                exitoso = this._instruccionDescuentoServicios.InsertarOModificar(instruccion, UsuarioLogeado.Hash);
+                            }
+                        }
+                        else this._ventana.Mensaje("La Instrucción de Descuento debe tener una Correspondencia", 0);
                     }
                     else
                         this._ventana.Mensaje("La Instrucción de Descuento debe tener un Descuento", 0);
@@ -270,7 +276,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 instruccion.Descuento = !this._ventana.Descuento.Equals("") ? int.Parse(this._ventana.Descuento) : 0;
 
-                instruccion.Servicio = (this._ventana.Servicio != null) ? (Servicio)this._ventana.Servicio : null;
+                instruccion.Servicio = (this._ventana.Servicio != null) ? (FacServicio)this._ventana.Servicio : null;
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

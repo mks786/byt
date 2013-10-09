@@ -1176,7 +1176,7 @@
     <comment>Query que obtiene una instruccion de envio de originales de una marca o una patente especifica segun su codigo, aplicacion y concepto</comment>
   </data>
   <data name="ObtenerInstruccionesNoTipificadas" xml:space="preserve">
-    <value>Select io from InstruccionOtros io left outer join fetch io.Correspondencia where io.Cod_MarcaOPatente = {0}</value>
+    <value>Select io from InstruccionOtros io left outer join fetch io.Correspondencia where io.Cod_MarcaOPatente = {0} and io.AplicaA =  '{1}'</value>
     <comment>Query para obtener las instrucciones no tipificadas de una marca o una patente</comment>
   </data>
   <data name="ObtenerInstruccionesDescuentoMarcaOPatente" xml:space="preserve">
