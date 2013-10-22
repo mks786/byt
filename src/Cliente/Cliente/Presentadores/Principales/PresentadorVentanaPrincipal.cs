@@ -64,6 +64,7 @@ using Trascend.Bolet.Cliente.Ventanas.Corresponsales;
 using Trascend.Bolet.Cliente.Ventanas.TiposEmailAsociado;
 using Trascend.Bolet.Cliente.Ventanas.Inventores;
 using Trascend.Bolet.Cliente.Ventanas.Administracion.Gestiones_Automaticas;
+using Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes;
 using Trascend.Bolet.Cliente.Ventanas.Plantillas;
 using Trascend.Bolet.Cliente.Ventanas.ReportesMaestro;
 using System.Diagnostics;
@@ -2408,6 +2409,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                                 itemNivel4.Visibility = System.Windows.Visibility.Visible;
                                             break;
 
+                                        case "_fac_menuItemFacSeguimientoDeClientes":
+                                            if (objeto.Id.Equals(Recursos.Ids.fac_SeguimientoClientes))
+                                                itemNivel4.Visibility = System.Windows.Visibility.Visible;
+                                            break;
+
                                     }
                                 }
 
@@ -2438,6 +2444,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         {
 
             Navegar(new ConsultarCorreosParaGestionAutomatica());
+        }
+
+
+        /// <summary>
+        /// Metodo para iniciar subproceso de Seguimiento de Clientes presentando la ventana para consultar y filtrar la data original
+        /// de la vista FAC_PEND
+        /// </summary>
+        public void ConsultarSeguimientoDeClientes()
+        {
+            Navegar(new ConsultarSeguimientoDeClientes());
         }
 
 

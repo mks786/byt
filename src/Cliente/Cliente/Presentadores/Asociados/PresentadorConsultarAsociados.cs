@@ -394,7 +394,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
             if (!this._ventana.DomicilioAsociado.Equals(""))
             {
-                asociado.Domicilio = this._ventana.DomicilioAsociado;
+                asociado.Domicilio = this._ventana.DomicilioAsociado.ToUpper();
                 this._filtroValido = 2;
             }
 

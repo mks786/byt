@@ -86,6 +86,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                 primerDepartamento.Id = "NGN";
                 departamentos.Insert(0, primerDepartamento);
                 this._ventana.Departamentos = departamentos;
+                //--
+                if (!((Contacto)this._ventana.Contacto).Departamento.Equals(""))
+                {
+                    ListaDatosValores departamentoBuscado = new ListaDatosValores();
+                    departamentoBuscado.Id = Recursos.Etiquetas.cbiDepartamentoDeContactos;
+                    departamentoBuscado.Valor = ((Contacto)this._ventana.Contacto).Departamento;
+                    this._ventana.Departamento = BuscarDepartamentoContacto(departamentos,departamentoBuscado);
+                }
+                //--
+                
 
 
                 this._ventana.AsignarAsociado(this._contacto.Asociado.Id, this._contacto.Asociado.Nombre);

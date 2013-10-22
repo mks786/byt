@@ -458,7 +458,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
         /// <returns></returns>
         private StructReportePatente ObtenerEstructuraReportePatente(ReportePatente reportePatente, string tipo)
         {
-
+            //
             StructReportePatente retorno = new StructReportePatente();
 
             try
@@ -467,7 +467,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
 
                 if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Inventores1)))
                 {
-                    retorno.Inventores1 = reportePatente.Inventores1;
+                    if ((tipo.Equals("SolicitudVan")) || (tipo.Equals("DatosVan")))
+                    {
+                        retorno.Inventores1 = Environment.NewLine;
+                        retorno.Inventores1 += reportePatente.Inventores1;
+                    }
+                    else
+                    {
+                        retorno.Inventores1 = reportePatente.Inventores1;
+                    }
                 }
 
                 if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Inventores2)))
@@ -491,7 +499,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
                 }
                 else if ((tipo.Equals("Planilla")) && (!string.IsNullOrEmpty(_patente.Omision)))
                 {
-                    retorno.Omision1 = _patente.Omision;
+                    retorno.Omision1 = Environment.NewLine + _patente.Omision;
                 }
 
                 if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Omision2)))
@@ -501,8 +509,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
 
                 if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Resumen1)))
                 {
-                    retorno.Resumen1 = reportePatente.Resumen1;
-                    String resumen = _patente.Resumen;
+                    if (tipo.Equals("DatosVan"))
+                    {
+                        retorno.Resumen1 += Environment.NewLine;
+                        retorno.Resumen1 += reportePatente.Resumen1;
+                    }
+                    else
+                    {
+                        retorno.Resumen1 = reportePatente.Resumen1;
+                        String resumen = _patente.Resumen;
+                    }
                 }
 
                 if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Resumen2)))
@@ -510,7 +526,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
                     retorno.Resumen2 = reportePatente.Resumen2;
                 }
 
-                retorno.Sitio = ArmarSitio();
+                //Sitio
+                if (!tipo.Equals("SolicitudVan"))
+                {
+                    retorno.Sitio = ArmarSitio();
+                }
+                else
+                    retorno.Sitio = ArmarSitio("SolicitudVan");
 
                 //Anexo
                 //if (!string.IsNullOrEmpty(_patente.an))
@@ -582,7 +604,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
 
                 //retorno.FechaInscripcion = _patente.FechaInscripcion.Value.Day + "          " + _patente.FechaInscripcion.Value.ToString("MMMM") + "           " + _patente.FechaInscripcion.Value.Year.ToString().Substring(2, 2);
 
-                retorno.FechaInscripcion = _patente.FechaInscripcion.Value.Day + "          " + _patente.FechaInscripcion.Value.ToString("MMMM") + "                      " + _patente.FechaInscripcion.Value.Year.ToString();
+                //COdigo original antes del cambio del 15/10/2013
+                //retorno.FechaInscripcion = _patente.FechaInscripcion.Value.Day + "          " + _patente.FechaInscripcion.Value.ToString("MMMM") + "                      " + _patente.FechaInscripcion.Value.Year.ToString();
+
+                retorno.FechaInscripcion = _patente.FechaInscripcion.Value.Day + "        " + _patente.FechaInscripcion.Value.ToString("MMMM") + "            " + _patente.FechaInscripcion.Value.Year.ToString();
 
                 if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Inventores2)))
                     retorno.CamposVienen += reportePatente.Inventores2;
@@ -619,6 +644,55 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
 
             try
             {
+                //retorno += Environment.NewLine;
+
+                if (_patente.Interesado != null)
+                {
+                    retorno += _patente.Interesado.Nombre + Environment.NewLine;
+
+                    if (_patente.Interesado.Nacionalidad != null)
+                    {
+                        retorno += _patente.Interesado.Nacionalidad.Nacionalidad + Environment.NewLine;
+                    }
+
+                    if (!string.IsNullOrEmpty(_patente.Interesado.Ciudad))
+                    {
+                        retorno += _patente.Interesado.Ciudad;
+                    }
+
+                    if (!string.IsNullOrEmpty(_patente.Interesado.Estado))
+                    {
+                        retorno += ", " + _patente.Interesado.Estado;
+                    }
+
+                    if ((null != _patente.Interesado.Pais) && (!string.IsNullOrEmpty(_patente.Interesado.Pais.NombreEspanol)))
+                    {
+                        retorno += ", " + _patente.Interesado.Pais.NombreEspanol;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw;
+            }
+            return retorno;
+        }
+
+
+        /// <summary>
+        /// Metodo sobrecargado que recibe el tipo de reporte a armar
+        /// </summary>
+        /// <param name="tipo">Tipo de reporte a armar</param>
+        /// <returns>String con un espacio adicional</returns>
+        private string ArmarSitio(string tipo)
+        {
+            string retorno = string.Empty;
+
+            try
+            {
+                retorno += Environment.NewLine;
+
                 if (_patente.Interesado != null)
                 {
                     retorno += _patente.Interesado.Nombre + Environment.NewLine;

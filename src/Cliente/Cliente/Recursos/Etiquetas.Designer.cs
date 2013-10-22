@@ -503,6 +503,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Generar Datos.
+        /// </summary>
+        public static string btnGenerarDatosCrudos {
+            get {
+                return ResourceManager.GetString("btnGenerarDatosCrudos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Generar Gestiones.
         /// </summary>
         public static string btnGenerarGestiones {
@@ -1143,6 +1152,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Generar Resumen.
+        /// </summary>
+        public static string btnVerPivot {
+            get {
+                return ResourceManager.GetString("btnVerPivot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Ver Poder.
         /// </summary>
         public static string btnVerPoder {
@@ -1301,6 +1319,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string cbiCamposReporteMarca {
             get {
                 return ResourceManager.GetString("cbiCamposReporteMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a FAC_PEND_CAMPOVISTA.
+        /// </summary>
+        public static string cbiCamposVistaSeguimientoClientes {
+            get {
+                return ResourceManager.GetString("cbiCamposVistaSeguimientoClientes", resourceCulture);
             }
         }
         
@@ -1611,6 +1638,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a FAC_PEND_MES.
+        /// </summary>
+        public static string cbiMesSeguimientoClientes {
+            get {
+                return ResourceManager.GetString("cbiMesSeguimientoClientes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Natural.
         /// </summary>
         public static string cbiNatural {
@@ -1643,6 +1679,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string cbiOrdenamientoReporte {
             get {
                 return ResourceManager.GetString("cbiOrdenamientoReporte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a FAC_PEND_ORDEN.
+        /// </summary>
+        public static string cbiOrdenSeguimientoClientes {
+            get {
+                return ResourceManager.GetString("cbiOrdenSeguimientoClientes", resourceCulture);
             }
         }
         
@@ -2598,6 +2643,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string fac_menuItemFacRecurso {
             get {
                 return ResourceManager.GetString("fac_menuItemFacRecurso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Seguimiento de Clientes.
+        /// </summary>
+        public static string fac_menuItemFacSeguimientoDeClientes {
+            get {
+                return ResourceManager.GetString("fac_menuItemFacSeguimientoDeClientes", resourceCulture);
             }
         }
         
@@ -6551,6 +6605,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblProximoPasoIngles {
             get {
                 return ResourceManager.GetString("lblProximoPasoIngles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Desde:.
+        /// </summary>
+        public static string lblRangoInf {
+            get {
+                return ResourceManager.GetString("lblRangoInf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Hasta:.
+        /// </summary>
+        public static string lblRangoSup {
+            get {
+                return ResourceManager.GetString("lblRangoSup", resourceCulture);
             }
         }
         
@@ -11136,6 +11208,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Consultar Seguimiento de Clientes.
+        /// </summary>
+        public static string titleConsultarSeguimientoClientes {
+            get {
+                return ResourceManager.GetString("titleConsultarSeguimientoClientes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Consultar Tipo de base.
         /// </summary>
         public static string titleConsultarTipoBase {
@@ -12059,6 +12140,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleListaPoderes {
             get {
                 return ResourceManager.GetString("titleListaPoderes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Resumen de Datos - Seguimiento de Clientes.
+        /// </summary>
+        public static string titleListaResumenDatosSegClientes {
+            get {
+                return ResourceManager.GetString("titleListaResumenDatosSegClientes", resourceCulture);
             }
         }
         

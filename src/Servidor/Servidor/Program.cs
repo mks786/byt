@@ -29,35 +29,30 @@ namespace Trascend.Bolet.Servidor
             servicio.Autenticar(usuarioPrueba);
 
             #region Codigo de Prueba NO BORRAR - CONECTIVIDAD
+            /*
+            //AsociadoServicios asociadoServicios = new AsociadoServicios();
+            //Asociado asociado = new Asociado();
+            //asociado.Id = 24689;
+            FiltroDataCruda filtro = new FiltroDataCruda();
+            //filtro.Anio = 2013;
+            //filtro.Mes = 9;
+            filtro.Moneda = "US";
+            filtro.Ordenamiento = "ASC";
+            //filtro.Asociado = asociadoServicios.ConsultarAsociadoConTodo(asociado);
+            filtro.RangoSuperior = 10;*/
 
-            /*MaestroDePlantillaServicios servicioPrueba = new MaestroDePlantillaServicios();
-            MaestroDePlantilla mp = new MaestroDePlantilla();
-            Plantilla plantilla = new Plantilla();
-            plantilla.Id = 1;
-            mp.Plantilla = plantilla;
-            IList<MaestroDePlantilla> resultados = servicioPrueba.ObtenerMaestroDePlantillaFiltro(mp);*/
+            /*SeguimientoClientesServicios servicioPrueba = new SeguimientoClientesServicios();
+            DataTable datos = new DataTable();
 
-            /*MaestroDePlantilla plantilla = new MaestroDePlantilla();
-            plantilla.Id = 1;
+            FiltroDataCruda filtro = new FiltroDataCruda();
+            filtro.Moneda = "US";
+            filtro.Ordenamiento = "DESC";
+            filtro.RangoSuperior = 15;
 
-            FiltroPlantillaServicios servicioPrueba = new FiltroPlantillaServicios();
-            IList<FiltroPlantilla> filtros = servicioPrueba.ObtenerFiltrosDetallePlantilla(plantilla);
-
-            InstruccionDescuentoServicios servicioPrueba = new InstruccionDescuentoServicios();
-            InstruccionDescuento idc = new InstruccionDescuento();
-            idc.CodigoOperacion = 860000;
-            idc.AplicaA = "M";
-
-            IList<InstruccionDescuento> instrucciones = servicioPrueba.ObtenerInstruccionesDeDescuentoMarcaOPatente(idc);
-
-            InstruccionOtros instruccion = new InstruccionOtros();
-            InstruccionOtrosServicios servicioPrueba = new InstruccionOtrosServicios();
-            instruccion.Cod_MarcaOPatente = 860000;
-            instruccion.AplicaA = "M";
-            IList<InstruccionOtros> lista = servicioPrueba.ObtenerInstruccionesNoTipificadasPorFiltro(instruccion);
+            datos = servicioPrueba.ObtenerDataCruda(filtro);
 
             Console.ReadLine();*/
-
+            
 
             #endregion
 

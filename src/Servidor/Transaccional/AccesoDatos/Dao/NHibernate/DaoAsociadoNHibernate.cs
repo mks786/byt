@@ -100,7 +100,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 {
                     if (variosFiltros)
                         filtro += " and ";
-                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerAsociadoDomicilio, asociado.Domicilio);
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerAsociadoDomicilio, asociado.Domicilio.ToUpper());
                     variosFiltros = true;
                 }
 

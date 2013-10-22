@@ -889,6 +889,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
                 //Solicitud
                 this._txtAsociadoSolicitud.IsEnabled = value;
+                this._txtAsociadoInternacionalSolicitud.IsEnabled = value;
+                this._txtAsociadoInternacionalDatos.IsEnabled = value;
                 this._txtDescripcionSolicitud.IsEnabled = value;
                 this._txtIdAsociadoSolicitud.IsEnabled = value;
                 this._txtIdInteresadoSolicitud.IsEnabled = value;
@@ -972,6 +974,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._cbxPresentacionSolicitud.IsEnabled = value;
                 this._cbxTipoSolicitud.IsEnabled = value;
                 this._cbxPaisSolicitud.IsEnabled = value;
+                this._cbxPaisIntSolicitud.IsEnabled = value;
+                this._cbxPaisIntDatos.IsEnabled = value;
 
                 //Datos
                 this._cbxPresentacionDatos.IsEnabled = value;

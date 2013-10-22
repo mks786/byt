@@ -61,7 +61,7 @@
                 <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaBoletin}"/>
                 </Label>
-                <DatePicker Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left"  Name="_dpkFechaBoletin" Width="180" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFechaBoletin_SelectedDateChanged">
+                <DatePicker Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left"  Name="_dpkFechaBoletin" Width="180" Focusable="False" BorderBrush="{x:Null}">
                     <DatePicker.SelectedDate>
                         <Binding Path="FechaBoletin" UpdateSourceTrigger="PropertyChanged"/>
                     </DatePicker.SelectedDate>

@@ -824,7 +824,7 @@
     <comment>Filtro por DetallePago</comment>
   </data>
   <data name="FiltroObtenerAsociadoDomicilio" xml:space="preserve">
-    <value>a.Domicilio = '{0}'</value>
+    <value>upper(a.Domicilio) like '%{0}%'</value>
     <comment>Filtro por domicilio</comment>
   </data>
   <data name="FiltroObtenerAsociadoEtiqueta" xml:space="preserve">

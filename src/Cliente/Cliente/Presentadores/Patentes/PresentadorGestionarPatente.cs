@@ -516,8 +516,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                     if (null != _patente.AsociadoInternacional)
                     {
+                        Asociado primerAsociadoInternacional = new Asociado();
                         IList<Asociado> asociados = new List<Asociado>();
                         asociados.Add(_patente.AsociadoInternacional);
+                        asociados.Insert(0, primerAsociadoInternacional);
 
                         this._ventana.AsociadosInternacionales = asociados;
                         this._ventana.AsociadoInternacional = _patente.AsociadoInternacional;
@@ -3271,6 +3273,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     }
                     else
                     {
+                        this._ventana.TextoAsociadoInternacional = null;
                         this._ventana.AsociadoInternacional = null;
                         this._ventana.AsociadoInternacionalDatos = null;
                     }

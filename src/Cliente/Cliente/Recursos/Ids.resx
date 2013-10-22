@@ -1152,4 +1152,7 @@
   <data name="MaestroPlantilla" xml:space="preserve">
     <value>ENV_MAESTRO_PLANT</value>
   </data>
+  <data name="fac_SeguimientoClientes" xml:space="preserve">
+    <value>FAC_PEND</value>
+  </data>
 </root>

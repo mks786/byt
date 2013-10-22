@@ -77,7 +77,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDepartamento}"/>
                     </Label>
-                    <ComboBox Name="_cbxDepartamento" Width="200" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                    <ComboBox Name="_cbxDepartamento" Width="200" ItemsSource="{Binding}" SelectedIndex="0" DisplayMemberPath="Descripcion" >
                     </ComboBox>
 
                 </WrapPanel>

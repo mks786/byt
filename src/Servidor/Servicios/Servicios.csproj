@@ -92,6 +92,7 @@
     <Compile Include="Implementacion\PlantillaServicios.cs" />
     <Compile Include="Implementacion\RegistradorServicios.cs" />
     <Compile Include="Implementacion\ReporteServicios.cs" />
+    <Compile Include="Implementacion\SeguimientoClientesServicios.cs" />
     <Compile Include="Implementacion\TipoCajaServicios.cs" />
     <Compile Include="Implementacion\TipoDocumentoServicios.cs" />
     <Compile Include="Implementacion\TipoEmailAsociadoServicios.cs" />

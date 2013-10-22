@@ -4140,4 +4140,34 @@ en Prensa:</value>
   <data name="lblReporteDescripcion" xml:space="preserve">
     <value>Descripción del Reporte:</value>
   </data>
+  <data name="fac_menuItemFacSeguimientoDeClientes" xml:space="preserve">
+    <value>Seguimiento de Clientes</value>
+  </data>
+  <data name="lblRangoInf" xml:space="preserve">
+    <value>Desde:</value>
+  </data>
+  <data name="lblRangoSup" xml:space="preserve">
+    <value>Hasta:</value>
+  </data>
+  <data name="titleConsultarSeguimientoClientes" xml:space="preserve">
+    <value>Consultar Seguimiento de Clientes</value>
+  </data>
+  <data name="btnGenerarDatosCrudos" xml:space="preserve">
+    <value>Generar Datos</value>
+  </data>
+  <data name="cbiMesSeguimientoClientes" xml:space="preserve">
+    <value>FAC_PEND_MES</value>
+  </data>
+  <data name="cbiOrdenSeguimientoClientes" xml:space="preserve">
+    <value>FAC_PEND_ORDEN</value>
+  </data>
+  <data name="btnVerPivot" xml:space="preserve">
+    <value>Generar Resumen</value>
+  </data>
+  <data name="cbiCamposVistaSeguimientoClientes" xml:space="preserve">
+    <value>FAC_PEND_CAMPOVISTA</value>
+  </data>
+  <data name="titleListaResumenDatosSegClientes" xml:space="preserve">
+    <value>Resumen de Datos - Seguimiento de Clientes</value>
+  </data>
 </root>

@@ -484,7 +484,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a a.Domicilio = &apos;{0}&apos;.
+        ///   Busca una cadena traducida similar a upper(a.Domicilio) like &apos;%{0}%&apos;.
         /// </summary>
         public static string FiltroObtenerAsociadoDomicilio {
             get {
