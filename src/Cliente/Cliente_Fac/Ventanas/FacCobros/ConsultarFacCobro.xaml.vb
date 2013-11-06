@@ -53,6 +53,10 @@ Namespace Ventanas.FacCobros
                 _btnmodificarforma.IsEnabled = False
                 'Else
                 _cbxBanco.IsEnabled = value
+
+                _txtAsociado.IsEnabled = value
+
+
                 'End If
                 '_btnModificar.IsEnabled = value
                 '_btnEliminar.IsEnabled = value

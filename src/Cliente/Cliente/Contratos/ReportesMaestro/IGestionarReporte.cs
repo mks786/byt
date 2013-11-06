@@ -49,5 +49,7 @@ namespace Trascend.Bolet.Cliente.Contratos.ReportesMaestro
         void ActivarBotonValoresParaFiltros(bool valor);
 
         void MostarBotonesParaModificarReporte(bool valor);
+
+        void HabilitarComboVistas(bool habilitar);
     }
 }

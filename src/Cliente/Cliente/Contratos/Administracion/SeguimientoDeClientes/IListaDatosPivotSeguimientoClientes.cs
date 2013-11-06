@@ -15,5 +15,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Administracion.SeguimientoDeClientes
         void Mensaje(string mensaje, int opcion);
 
         void VisibilidadListaDetalle();
+
+        void FormatearDataGrid();
+
+        void ExportarDataGrid(String tipo);
     }
 }

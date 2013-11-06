@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.Administracion.SeguimientoDeClientes;
 using Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClientes;
+using System.Data;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
 {
@@ -96,8 +97,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
         /// <summary>
         /// Evento para seleccionar un registro del datagrid donde aparecen los datos
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void _lstResultados_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             
@@ -130,22 +129,110 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
 
                 object datoCelda = ExtractBoundValue(row, cell, indiceFila);
                 String datos = datoCelda.ToString();
-                //DataTable datos1 = CrearQuery(datos);
                 this._presentador.CargarDatosDetalle(datos);
-
-                /*if (datos1.Rows.Count > 0)
-                {
-                    ResultadoDetalle resultado = new ResultadoDetalle(datos1);
-                    resultado.Show();
-                }
-                else
-                {
-                    MessageBox.Show("No hay datos para esta seleccion", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }*/
 
             }
         }
 
+        
+        private void _btnExportarResumen_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBoxResult.Yes == System.Windows.MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmarExportarReporteAExcel),
+                    "Exportar Tabla Resumen", MessageBoxButton.YesNo, MessageBoxImage.Question))
+            {
+                this._presentador.ExportarExcel("Resumen");
+            }
+        }
+
+        private void _btnExportarDetalle_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBoxResult.Yes == System.Windows.MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmarExportarReporteAExcel),
+                    "Exportar Detalle Facturación", MessageBoxButton.YesNo, MessageBoxImage.Question))
+            {
+                this._presentador.ExportarExcel("Detalle");
+            }
+        }
+
+        #endregion
+
+        
+
+        
+
+        #region Metodos
+
+        public void Mensaje(string mensaje, int opcion)
+        {
+            if (opcion == 0)
+                MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (opcion == 1)
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            else
+                MessageBox.Show(mensaje, "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+
+        public void VisibilidadListaDetalle()
+        {
+            this._lstResultadosDetalle.Visibility= System.Windows.Visibility.Visible;
+        }
+
+
+        public void FormatearDataGrid()
+        {
+            DataGrid dataGrid = new DataGrid();
+            dataGrid = this._lstResultados;
+        }
+
+
+        /// <summary>
+        /// Metodo que devuelve el indice de la celda que se selecciono con el Mouse
+        /// </summary>
+        /// <param name="row">Fila donde se encuentra la celda</param>
+        /// <returns>Indice de la celda que fue seleccionada</returns>
+        private int FindRowIndex(DataGridRow row)
+        {
+            DataGrid dataGrid = ItemsControl.ItemsControlFromItemContainer(row) as DataGrid;
+
+            int index = dataGrid.ItemContainerGenerator.
+                IndexFromContainer(row);
+
+            return index;
+        }
+
+        /// <summary>
+        /// Metodo para recorrer el arbol del DataGrid. SE USA EN EL EVENTO PARA SELECCIONAR UNA CELDA DEL DATAGRID
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="parent"></param>
+        /// <returns></returns>
+        public static T GetVisualChild<T>(Visual parent) where T : Visual
+        {
+            T child = default(T);
+            int numVisuals = VisualTreeHelper.GetChildrenCount(parent);
+            for (int i = 0; i < numVisuals; i++)
+            {
+                Visual v = (Visual)VisualTreeHelper.GetChild(parent, i);
+                child = v as T;
+                if (child == null)
+                {
+                    child = GetVisualChild<T>(v);
+                }
+                if (child != null)
+                {
+                    break;
+                }
+            }
+            return child;
+        }
+
+        /// <summary>
+        /// Metodo que extrae la cadena a usar para generar el Query del detalle cuando se selecciona una celda del cuadro de Resumen
+        /// </summary>
+        /// <param name="row">Fila del DataGrid</param>
+        /// <param name="cell">Celda seleccionada</param>
+        /// <param name="indiceFila">Indice de la fila donde se encuentra la celda seleccionada</param>
+        /// <returns>Cadena con los filtros de la consulta para el Query del detalle</returns>
         private object ExtractBoundValue(DataGridRow row, DataGridCell cell, int indiceFila)
         {
             String headerColumn = String.Empty;
@@ -200,67 +287,89 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
 
         }
 
-
-        public static T GetVisualChild<T>(Visual parent) where T : Visual
+        /// <summary>
+        /// Metodo que exporta el contenido del datagrid a un archivo Excel 
+        /// </summary>
+        /// <param name="tipo">Tipo de Reporte</param>
+        public void ExportarDataGrid(String tipo)
         {
-            T child = default(T);
-            int numVisuals = VisualTreeHelper.GetChildrenCount(parent);
-            for (int i = 0; i < numVisuals; i++)
+
+            DataTable tablaDatos = new DataTable();
+
+
+            try
             {
-                Visual v = (Visual)VisualTreeHelper.GetChild(parent, i);
-                child = v as T;
-                if (child == null)
+                System.Windows.Forms.SaveFileDialog archivo = new System.Windows.Forms.SaveFileDialog();
+                archivo.Filter = "Excel (*.xls)|*.xls";
+
+                if (archivo.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    child = GetVisualChild<T>(v);
-                }
-                if (child != null)
-                {
-                    break;
+                    Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
+                    Microsoft.Office.Interop.Excel._Workbook workbook;
+                    Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+                    object misValue = System.Reflection.Missing.Value;
+
+                    workbook = app.Workbooks.Add(misValue);
+                    worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Worksheets.get_Item(1);
+
+                    if (tipo.Equals("Resumen"))
+                    {
+                        //tablaDatos = (DataTable)this._lstResultados.DataContext;
+                        DataView tabla1 = (DataView)this._lstResultados.ItemsSource;
+                        tablaDatos = tabla1.ToTable();
+                    }
+                    else if (tipo.Equals("Detalle"))
+                    {
+                        //tablaDatos = (DataTable)this._lstResultadosDetalle.DataContext;
+                        DataView tabla1 = (DataView)this._lstResultadosDetalle.ItemsSource;
+                        tablaDatos = tabla1.ToTable();
+                    }
+
+
+                    app.Range["A1", "Z1"].Merge();
+                    app.Range["A1", "Z1"].Value = this._presentador.ObtenerTituloReporte(tipo);
+                    app.Range["A1", "Z1"].Font.Bold = true;
+                    app.Range["A1", "Z1"].Font.Size = 12;
+
+
+                    for (int i = 0; i < tablaDatos.Columns.Count; i++)
+                    {
+                        worksheet.Range["A3"].Offset[0, i].Value = tablaDatos.Columns[i].ColumnName;
+                        worksheet.Range["A3"].Offset[0, i].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                        worksheet.Range["A3"].Offset[0, i].VerticalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                        worksheet.Range["A3"].Offset[0, i].Font.Bold = true;
+                        worksheet.Range["A3"].Offset[0, i].Font.ColorIndex = 2;
+                        worksheet.Range["A3"].Offset[0, i].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                        worksheet.Range["A3"].Offset[0, i].Cells.Interior.ColorIndex = 10;
+                    }
+
+                    for (int Idx = 0; Idx < tablaDatos.Rows.Count; Idx++)
+                    {
+                        worksheet.Range["A4"].Offset[Idx].Resize[1, tablaDatos.Columns.Count].Value = tablaDatos.Rows[Idx].ItemArray;
+                        //worksheet.Range["A4"].Offset[Idx].Resize[1, tablaDatos.Columns.Count].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                        worksheet.Range["A4"].Offset[Idx].Resize[1, tablaDatos.Columns.Count].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignGeneral;
+                        worksheet.Range["A4"].Offset[Idx].Resize[1, tablaDatos.Columns.Count].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+
+                    }
+
+                    app.Columns.AutoFit();
+
+                    workbook.SaveAs(archivo.FileName, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal);
+
+                    //workbook.Close(true);
+                    app.Visible = true;
+                    //app.Quit();
                 }
             }
-            return child;
-        }
+            catch (Exception ex)
+            {
 
-
-        /// <summary>
-        /// Metodo que devuelve el indice de la celda que se selecciono con el Mouse
-        /// </summary>
-        /// <param name="row">Fila donde se encuentra la celda</param>
-        /// <returns>Indice de la celda que fue seleccionada</returns>
-        private int FindRowIndex(DataGridRow row)
-        {
-            DataGrid dataGrid = ItemsControl.ItemsControlFromItemContainer(row) as DataGrid;
-
-            int index = dataGrid.ItemContainerGenerator.
-                IndexFromContainer(row);
-
-            return index;
+                throw;
+            }
         }
 
         #endregion
 
         
-
-        
-
-        #region Metodos
-
-        public void Mensaje(string mensaje, int opcion)
-        {
-            if (opcion == 0)
-                MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            else if (opcion == 1)
-                MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            else
-                MessageBox.Show(mensaje, "Información", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-
-        public void VisibilidadListaDetalle()
-        {
-            this._lstResultadosDetalle.Visibility= System.Windows.Visibility.Visible;
-        }
-
-        #endregion
     }
 }

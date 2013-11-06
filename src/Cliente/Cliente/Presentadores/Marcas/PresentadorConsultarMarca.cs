@@ -3177,20 +3177,49 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 retorno = retorno ?
                     this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinNumeroDePoder) == retorno : retorno;
 
-            if (((this._ventana.ClaseInternacional.Equals("")) && (this._ventana.ClaseNacional.Equals(""))) && (retorno))
-                retorno = retorno ?
-                    this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinClase) == retorno : retorno;
+            if (retorno)    
+            {
+                //if (((this._ventana.ClaseInternacional.Equals("")) && (this._ventana.ClaseNacional.Equals(""))) && (retorno))
+                //    retorno = retorno ?
+                //        this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinClase) == retorno : retorno;
 
-            if((null == marca.EtiquetaDescripcion) && (retorno))
-                retorno = retorno ?
-                    this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDescripcionDelSigno) == retorno : retorno;
-            else if ((marca.EtiquetaDescripcion.Equals("")) && (retorno))
-                retorno = retorno ?
-                    this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDescripcionDelSigno) == retorno : retorno;
+                if ((this._ventana.ClaseInternacional.Equals("")) && (this._ventana.ClaseNacional.Equals("")))
+                    retorno = retorno ?
+                        this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinClase) == retorno : retorno;
 
-            if ((null == marca.Distingue) || (marca.Distingue.Equals("")) && (retorno))
-                retorno = retorno ?
-                    this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDistingue) == retorno : retorno;
+
+                if (retorno)
+                {
+                    //if ((null == marca.EtiquetaDescripcion) && (retorno))
+                    //    retorno = retorno ?
+                    //        this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDescripcionDelSigno) == retorno : retorno;
+                    //else if ((marca.EtiquetaDescripcion.Equals("")) && (retorno))
+                    //    retorno = retorno ?
+                    //        this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDescripcionDelSigno) == retorno : retorno;
+                    if (null == marca.EtiquetaDescripcion)
+                        retorno = retorno ?
+                            this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDescripcionDelSigno) == retorno : retorno;
+                    else if (marca.EtiquetaDescripcion.Equals(""))
+                        retorno = retorno ?
+                            this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDescripcionDelSigno) == retorno : retorno;
+
+                    if (retorno)    
+                    {
+                        //if ((null == marca.Distingue) || (marca.Distingue.Equals("")) && (retorno))
+                        //    retorno = retorno ?
+                        //        this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDistingue) == retorno : retorno; 
+                        if (null == marca.Distingue)
+                            retorno = retorno ?
+                                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDistingue) == retorno : retorno; 
+                        else if(marca.Distingue.Equals(""))
+                            retorno = retorno ?
+                                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDistingue) == retorno : retorno;
+
+                    }
+  
+                }
+
+            }
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

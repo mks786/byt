@@ -44,12 +44,12 @@
         <GroupBox Grid.Column="0" Grid.Row="0" Margin="5">
             <StackPanel Name="_spFiltro" DataContext="{Binding}" VerticalAlignment="Center">
                 <!-- Moneda -->
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblMoneda}"/>
                     </Label>
-                    <ComboBox Name="_cbxMonedaSegClientes" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Descripcion"
-                              SelectedIndex="2">
+                    <ComboBox Name="_cbxMonedaSegClientes" Width="150" ItemsSource="{Binding}" 
+                              DisplayMemberPath="Descripcion" SelectedIndex="2">
                     </ComboBox>
                 </WrapPanel>
                 
@@ -72,7 +72,7 @@
                 </WrapPanel>-->
                 
                 <!-- Rango Desde Hasta -->
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblRangoInf}"/>
                     </Label>
@@ -85,18 +85,18 @@
                 </WrapPanel>
                 
                 <!-- Ordenamiento de los Registros -->
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblOrden}"/>
                     </Label>
-                    <ComboBox Name="_cbxOrdenamientoSegCliente" HorizontalAlignment="Left" Width="150" ItemsSource="{Binding}" 
-                              DisplayMemberPath="Descripcion" SelectedIndex="1" >
+                    <ComboBox Name="_cbxOrdenamientoSegCliente" HorizontalAlignment="Left" Width="150" 
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="1">
 
                     </ComboBox>
                 </WrapPanel>
                 
                 <!-- Informacion del Asociado y Busqueda del Asociado -->
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,0,0" Width="240">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,5,0,0" Width="240">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="84"/>
@@ -180,7 +180,7 @@
                 </WrapPanel>
                 
                 <!-- Filtros Año y Asociado para obtener la pivot -->
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,0,0">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,5,0,0">
                     <Label Name="_lblEjeXSegClientes" IsEnabled="False">
                         <!--<TextBlock Text="{x:Static recurso:Etiquetas.lblAno}"/>-->
                         Eje X:
@@ -188,7 +188,7 @@
                     <ComboBox Name="_cbxEjeXSegClientes" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" IsEnabled="False">
                     </ComboBox>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,0,0">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,5,0,0">
                     <Label Name="_lblEjeYSegClientes" IsEnabled="False">
                         <!--<TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>-->
                         Eje Y:
@@ -196,7 +196,7 @@
                     <ComboBox Name="_cbxEjeYSegClientes" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" IsEnabled="False">
                     </ComboBox>                    
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,0,0">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,5,0,0">
                     <Label Name="_lblEjeZSegClientes" IsEnabled="False">
                         <!--<TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>-->
                         Eje Z:
@@ -225,7 +225,7 @@
                             <GridViewColumnHeader Tag="CASOCIADO" Content="CASOCIADO"/>
                         </GridViewColumn>
 
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=ASOCIADO}" Width="300">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=ASOCIADO}" Width="Auto">
                             <GridViewColumnHeader Tag="ASOCIADO" Content="ASOCIADO"/>
                         </GridViewColumn>
 
@@ -233,11 +233,13 @@
                             <GridViewColumnHeader Tag="CMONEDA" Content="CMONEDA"/>
                         </GridViewColumn>
 
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=BSALDO}" Width="80">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=BSALDO, StringFormat= {}{0:N}, ConverterCulture=de-DE}" 
+                                        Width="100">
                             <GridViewColumnHeader Tag="BSALDO" Content="BSALDO"/>
                         </GridViewColumn>
 
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=BSALDO_BF}" Width="80">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=BSALDO_BF, StringFormat= {}{0:N}, ConverterCulture=de-DE}" 
+                                        Width="100">
                             <GridViewColumnHeader Tag="BSALDO_BF" Content="BSALDO_BF"/>
                         </GridViewColumn>
 
@@ -245,23 +247,15 @@
                             <GridViewColumnHeader Tag="NROGES" Content="NROGES"/>
                         </GridViewColumn>
 
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=ESTATUS}" Width="80">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=ESTATUS}" Width="Auto">
                             <GridViewColumnHeader Tag="ESTATUS" Content="ESTATUS"/>
                         </GridViewColumn>
 
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=DETALLE}" Width="80">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=DETALLE}" Width="Auto">
                             <GridViewColumnHeader Tag="DETALLE" Content="DETALLE"/>
                         </GridViewColumn>
 
-                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=TipoReferencia.Descripcion}" Width="200">
-                            <GridViewColumnHeader Tag="TipoReferencia.Descripcion" 
-                                                  Content="{x:Static recurso:Etiquetas.lsvReferido}"/>
-                        </GridViewColumn>
-
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=TipoCriterio.Descripcion}" Width="120">
-                            <GridViewColumnHeader Tag="TipoCriterio.Descripcion" 
-                                                  Content="{x:Static recurso:Etiquetas.lsvCriterio}"/>
-                        </GridViewColumn>-->
+                        
                     </GridView>
                 </ListView.View>
             </ListView>

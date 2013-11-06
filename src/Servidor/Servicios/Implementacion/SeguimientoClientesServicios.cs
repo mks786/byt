@@ -56,9 +56,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
                     oracleAdapter.Dispose();
                     con.Close();
                 }
-
-
-
+                
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
                     logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -107,19 +105,19 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
 
                 OracleConnection con = new OracleConnection(connectionString);
+                query = GenerarQueryDataCruda(filtro);
                 con.Open();
+                
 
                 if (con.State.ToString().Equals("Open"))
                 {
-                    query = GenerarQueryDataCruda(filtro);
+                    
                     OracleDataAdapter oracleAdapter = new OracleDataAdapter(query, con);
                     oracleAdapter.Fill(datos);
                     oracleAdapter.Dispose();
                     con.Close();
                 }
-
-
-
+                
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
                     logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -142,7 +140,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
 
         /// <summary>
-        /// Metodo que obtiene los datos crudos a filtrar a partir de la consulta de los saldos
+        /// Metodo que obtiene los datos crudos a filtrar a partir de la consulta de los saldos para generar la data pivotal
         /// </summary>
         /// <param name="filtro">Filtro de los saldos</param>
         /// <returns>DataTable con la data cruda</returns>
@@ -168,24 +166,24 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
                 CabeceraQuery = ConfigurationManager.AppSettings["CabSeguimientoClientesDataCruda"].ToString();
                 
-                aux.Append(CabeceraQuery);
-
-                cadenaAux += CabeceraQuerySaldos;
-
                 numeroFiltros = ObtenerCantidadFiltros(filtro);
 
                 if (filtro != null)
                 {
-                    if (numeroFiltros > 0)
+
+                    if (filtro.Asociado != null)
                     {
-                        
-                        if (filtro.Asociado != null)
-                        {
-                            if (variosFiltros)
-                                cadenaAux += " AND ";
-                            cadenaAux += "(CASOCIADO = " + ((Asociado)filtro.Asociado).Id.ToString() + ")";
-                            variosFiltros = true;
-                        }
+                        int indexLastCAsociado = CabeceraQuery.LastIndexOf("CASOCIADO");
+                        cadenaAux = CabeceraQuery.Remove(indexLastCAsociado);
+                        cadenaAux += "CASOCIADO = " + ((Asociado)filtro.Asociado).Id.ToString();
+                        queryStr = cadenaAux;
+                    }
+
+                    else if ((numeroFiltros > 0) && (filtro.RangoSuperior != 0))
+                    {
+
+                        aux.Append(CabeceraQuery);
+                        cadenaAux += CabeceraQuerySaldos;
 
                         if (filtro.Moneda != null)
                         {
@@ -201,20 +199,89 @@ namespace Trascend.Bolet.Servicios.Implementacion
                                 cadenaAux += " AND ";
                             cadenaAux += "(ROWNUM <=" + filtro.RangoSuperior.ToString() + ")";
                             variosFiltros = true;
+
                         }
 
-
-                        //cadenaAux += ") ORDER BY CASOCIADO " + filtro.Ordenamiento;
-                        cadenaAux += ")";
-                        aux.Append(cadenaAux);
+                        String asociados = ObtenerAsociadosAConsultar(cadenaAux);
+                        parametrosDetalle = asociados.Split('_');
+                        String asociadosIn = GenerarListaAsociadosParaConsulta(parametrosDetalle);
+                        aux.Append(asociadosIn);
+                        aux.Append(")");
+                        //cadenaAux += ")";
+                        //aux.Append(cadenaAux);
                         queryStr = aux.ToString();
+
                     }
 
                     else
                     {
+                        int indexWhere = CabeceraQuery.LastIndexOf("WHERE");
+                        cadenaAux = CabeceraQuery.Remove(indexWhere);
                         aux.Append(cadenaAux);
                         queryStr = aux.ToString();
                     }
+
+
+                    #region Codigo Original
+                    //if ((numeroFiltros > 0) && (filtro.RangoSuperior != 0))
+                    //{
+
+                    //    //Predomina el Asociado, si este es NULL se hace la otra consulta
+                    //    if (filtro.Asociado != null)
+                    //    {
+                    //        int indexLastCAsociado = CabeceraQuery.LastIndexOf("CASOCIADO");
+                    //        cadenaAux = CabeceraQuery.Remove(indexLastCAsociado);
+                    //        cadenaAux += "CASOCIADO = " + ((Asociado)filtro.Asociado).Id.ToString();
+                    //    }
+
+                    //    else if(filtro.RangoSuperior != 0) 
+                    //    {
+                    //        aux.Append(CabeceraQuery);
+
+                    //        cadenaAux += CabeceraQuerySaldos;
+
+                    //        if (filtro.Moneda != null)
+                    //        {
+                    //            if (variosFiltros)
+                    //                cadenaAux += " AND ";
+                    //            cadenaAux += "(CMONEDA ='" + filtro.Moneda + "')";
+                    //            variosFiltros = true;
+                    //        }
+
+                    //        if (filtro.RangoSuperior != 0)
+                    //        {
+                    //            if (variosFiltros)
+                    //                cadenaAux += " AND ";
+                    //            cadenaAux += "(ROWNUM <=" + filtro.RangoSuperior.ToString() + ")";
+                    //            variosFiltros = true;
+
+                    //        }
+
+                    //        String asociados = ObtenerAsociadosAConsultar(cadenaAux);
+                    //        parametrosDetalle = asociados.Split('_');
+                    //        String asociadosIn = GenerarListaAsociadosParaConsulta(parametrosDetalle);
+                    //        aux.Append(asociadosIn);
+                    //        aux.Append(")");
+
+
+
+                    //        cadenaAux += ")";
+                    //    }
+
+
+                    //    //aux.Append(cadenaAux);
+                    //    queryStr = aux.ToString();
+
+                    //}
+
+                    //else 
+                    //{
+                    //    int indexWhere = CabeceraQuery.LastIndexOf("WHERE");
+                    //    cadenaAux = CabeceraQuery.Remove(indexWhere);
+                    //    aux.Append(cadenaAux);
+                    //    queryStr = aux.ToString();
+                    //} 
+                    #endregion
 
 
                 }
@@ -231,6 +298,62 @@ namespace Trascend.Bolet.Servicios.Implementacion
             }
 
             return queryStr;
+        }
+
+        private string GenerarListaAsociadosParaConsulta(string[] parametrosDetalle)
+        {
+            String retorno = String.Empty;
+            String aux = String.Empty;
+            int longitudArray = parametrosDetalle.Length - 1;
+
+            for (int i = 0; i < longitudArray; i++)
+            {
+                if (i != longitudArray - 1)
+                    retorno += parametrosDetalle[i] + ",";
+                else if (i == longitudArray - 1)
+                    retorno += parametrosDetalle[i];
+
+            }
+
+            return retorno;
+        }
+
+
+        /// <summary>
+        /// Metodo que obtiene los valores de los campos a consultar en FAC_ASO_SALDO
+        /// </summary>
+        /// <param name="cadenaAux">Cabecera del Query</param>
+        /// <returns></returns>
+        private string ObtenerAsociadosAConsultar(string cadenaAux)
+        {
+            #region Datos de Conexion a la Base de Datos
+
+            String dataSource = ConfigurationManager.AppSettings["DataSourceADO"].ToString();
+            String userAdoDB = ConfigurationManager.AppSettings["UserAdoDB"].ToString();
+            String passwordAdoDB = ConfigurationManager.AppSettings["PasswordAdoDB"].ToString();
+            String connectionString = "Data Source=" + dataSource + " User Id=" + userAdoDB + ";Password=" + passwordAdoDB + ";";
+            String query = String.Empty;
+            String retorno = String.Empty;
+
+            #endregion
+
+            query = cadenaAux;
+            using (OracleConnection connection = new OracleConnection(connectionString))
+            {
+                OracleCommand command = new OracleCommand(query, connection);
+                connection.Open();
+                using (OracleDataReader reader = command.ExecuteReader())
+                {
+                    // Always call Read before accessing data. 
+                    while (reader.Read())
+                    {
+                        retorno += reader.GetInt32(0).ToString() + "_";
+                    }
+                }
+            }
+
+            return retorno;
+
         }
 
 

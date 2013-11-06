@@ -121,6 +121,45 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+
+        /// <summary>
+        /// Servicio que obtiene los campos para un reporte de una vista seleccionada en el cliente
+        /// NOTA: ESTE SERVICIO REEMPLAZA LOS SERVICIOS ANTERIORES
+        /// </summary>
+        /// <param name="nombreVista">Nombre de la vista seleccionada en el Cliente</param>
+        /// <returns>Lista de campos de la vista seleccionada</returns>
+        public IList<CamposReporte> ObtenerCamposPorVista(String nombreVista)
+        {
+            IList<CamposReporte> campos;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                campos = ControladorCamposReporte.ObtenerCamposPorVista(nombreVista);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
+
+            return campos;
+        }
+
+
         public CamposReporte ConsultarPorId(CamposReporte entidad)
         {
             throw new NotImplementedException();

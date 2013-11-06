@@ -20,5 +20,13 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// <returns>Lista de campos para el reporte de patente</returns>
         IList<CamposReporte> ObtenerCamposReportePatente();
 
+        /// <summary>
+        /// Servicio que obtiene los campos para un reporte de una vista seleccionada en el cliente
+        /// NOTA: ESTE SERVICIO REEMPLAZA LOS SERVICIOS ANTERIORES
+        /// </summary>
+        /// <param name="nombreVista">Nombre de la vista seleccionada en el Cliente</param>
+        /// <returns>Lista de campos de la vista seleccionada</returns>
+        IList<CamposReporte> ObtenerCamposPorVista(String nombreVista);
+
     }
 }

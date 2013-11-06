@@ -2149,6 +2149,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Select cr from CamposReporte cr where cr.TipoDeReporte = &apos;{0}&apos;.
+        /// </summary>
+        public static string ObtenerCamposDeReportePorVista {
+            get {
+                return ResourceManager.GetString("ObtenerCamposDeReportePorVista", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Select crr from CamposReporteRelacion crr where crr.Reporte.Id = {0} order by crr.PosicionCampo asc.
         /// </summary>
         public static string ObtenerCamposSeleccionadosDeReporte {

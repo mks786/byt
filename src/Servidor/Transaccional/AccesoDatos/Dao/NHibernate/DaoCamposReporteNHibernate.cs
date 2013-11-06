@@ -42,7 +42,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.exObtenerArchivoPorId);
+                throw new ApplicationException(Recursos.Errores.exObtenerCamposReporte);
             }
             finally
             {
@@ -79,7 +79,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.exObtenerArchivoPorId);
+                throw new ApplicationException(Recursos.Errores.exObtenerCamposReporte);
             }
             finally
             {
@@ -89,6 +89,43 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return retorno;
         }
 
+
+        /// <summary>
+        /// Metodo que obtiene todos los campos de una vista seleccionada en el cliente
+        /// </summary>
+        /// <param name="nombreVista">Nombre de la vista seleccionada en el cliente</param>
+        /// <returns>Lista de campos segun la vista seleccionada</returns>
+        public IList<CamposReporte> ObtenerCamposPorVista(string nombreVista)
+        {
+            IList<CamposReporte> retorno;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerCamposDeReportePorVista, nombreVista));
+                retorno = query.List<CamposReporte>();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.exObtenerCamposReporte);
+            }
+            finally
+            {
+                Session.Close();
+            }
+
+            return retorno;
+        }
 
     }
 }

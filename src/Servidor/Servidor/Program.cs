@@ -28,30 +28,12 @@ namespace Trascend.Bolet.Servidor
             usuarioPrueba.Id = "PRUEBA";
             servicio.Autenticar(usuarioPrueba);
 
-            #region Codigo de Prueba NO BORRAR - CONECTIVIDAD
-            /*
-            //AsociadoServicios asociadoServicios = new AsociadoServicios();
-            //Asociado asociado = new Asociado();
-            //asociado.Id = 24689;
-            FiltroDataCruda filtro = new FiltroDataCruda();
-            //filtro.Anio = 2013;
-            //filtro.Mes = 9;
-            filtro.Moneda = "US";
-            filtro.Ordenamiento = "ASC";
-            //filtro.Asociado = asociadoServicios.ConsultarAsociadoConTodo(asociado);
-            filtro.RangoSuperior = 10;*/
+            #region Codigo de Prueba NO BORRAR 
+            
+            
+            
 
-            /*SeguimientoClientesServicios servicioPrueba = new SeguimientoClientesServicios();
-            DataTable datos = new DataTable();
-
-            FiltroDataCruda filtro = new FiltroDataCruda();
-            filtro.Moneda = "US";
-            filtro.Ordenamiento = "DESC";
-            filtro.RangoSuperior = 15;
-
-            datos = servicioPrueba.ObtenerDataCruda(filtro);
-
-            Console.ReadLine();*/
+            //Console.ReadLine();
             
 
             #endregion

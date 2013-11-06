@@ -35,5 +35,16 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoObtenerCamposReporteDePatente();
         }
+
+
+        /// <summary>
+        /// Metodo para obtener el comando para recuperar todos los campos de una vista seleccionada en el Cliente
+        /// </summary>
+        /// <param name="nombreVista">Nombre de la vista seleccionada</param>
+        /// <returns>Comando para obtener todos los campos de una vista seleccionada en el cliente</returns>
+        public static ComandoBase<IList<CamposReporte>> ObtenerComandoObtenerCamposPorVista(string nombreVista)
+        {
+            return new ComandoObtenerCamposPorVista(nombreVista);
+        }
     }
 }

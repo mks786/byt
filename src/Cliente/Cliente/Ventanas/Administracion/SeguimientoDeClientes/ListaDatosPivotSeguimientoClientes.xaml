@@ -11,9 +11,9 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="70*"/>
-            <ColumnDefinition Width="550"/>
-            <ColumnDefinition Width="48*"/>
+            <ColumnDefinition Width="116*"/>
+            <ColumnDefinition Width="656"/>
+            <ColumnDefinition Width="28*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -36,35 +36,91 @@
             <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
                 <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,5,0,0">
                     <DataGrid HorizontalAlignment="Center"  VerticalAlignment="Top" 
-                  Name="_lstResultados" Height="250"   
-                  ItemsSource="{Binding}"                  
-                  ColumnHeaderHeight="30" AutoGenerateColumns="True"
-                  CanUserResizeColumns="False" CanUserAddRows="False"
-                  CanUserReorderColumns="True" CanUserResizeRows="False" 
-                  HorizontalContentAlignment="Center" MouseLeftButtonUp="_lstResultados_MouseLeftButtonUp">
-                        <DataGrid.ColumnHeaderStyle>
-                            <Style TargetType="{x:Type DataGridColumnHeader}">
-                                <Setter Property="FontWeight" Value="Bold" />
-                                <Setter Property="HorizontalAlignment" Value="Center" />
-                            </Style>
-                        </DataGrid.ColumnHeaderStyle>
+                      Name="_lstResultados" Height="250"   
+                      ItemsSource="{Binding}"                  
+                      ColumnHeaderHeight="30" AutoGenerateColumns="True"
+                      CanUserResizeColumns="False" CanUserAddRows="False"
+                      CanUserReorderColumns="True" CanUserResizeRows="False" 
+                      HorizontalContentAlignment="Center" MouseLeftButtonUp="_lstResultados_MouseLeftButtonUp">
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                </Style>
+                            </DataGrid.ColumnHeaderStyle>
                     </DataGrid>
                 </WrapPanel>
 
                 <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="10,5,0,0">
-                    <DataGrid HorizontalAlignment="Center"  VerticalAlignment="Top" 
-                  Name="_lstResultadosDetalle" Height="250" Visibility="Collapsed"   
-                  ItemsSource="{Binding}"                  
-                  ColumnHeaderHeight="30" AutoGenerateColumns="True"
-                  CanUserResizeColumns="False" CanUserAddRows="False"
-                  CanUserReorderColumns="True" CanUserResizeRows="False" 
-                  HorizontalContentAlignment="Center">
+                    <!--<DataGrid HorizontalAlignment="Center"  VerticalAlignment="Top" 
+                      Name="_lstResultadosDetalle" Height="250" Visibility="Collapsed"   
+                      ItemsSource="{Binding}"                  
+                      ColumnHeaderHeight="30" AutoGenerateColumns="True"
+                      CanUserResizeColumns="False" CanUserAddRows="False"
+                      CanUserReorderColumns="True" CanUserResizeRows="False" 
+                      HorizontalContentAlignment="Center">
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                </Style>
+                            </DataGrid.ColumnHeaderStyle>
+                    </DataGrid>-->
+                    <DataGrid HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="Collapsed"
+                              Name="_lstResultadosDetalle" ItemsSource="{Binding}" AutoGenerateColumns="False" 
+                              HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Auto"  Height="250"  
+                              GridLinesVisibility="All"
+                              >
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="{x:Type DataGridColumnHeader}">
                                 <Setter Property="FontWeight" Value="Bold" />
                                 <Setter Property="HorizontalAlignment" Value="Center" />
                             </Style>
                         </DataGrid.ColumnHeaderStyle>
+                        
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="IANULADA" Binding="{Binding Path=IANULADA}" Width="80" Block.TextAlignment="Center" />
+                            <DataGridTextColumn Header="CFACTURA" Binding="{Binding Path=CFACTURA}" Width="100"  />
+                            <DataGridTextColumn Header="FFACTURA" Binding="{Binding Path=FFACTURA, StringFormat={}{0:dd/MM/yyyy}}" 
+                                                Width="100"/>
+                            <DataGridTextColumn Header="CASOCIADO" Binding="{Binding Path=CASOCIADO}" Width="80"  />
+                            <DataGridTextColumn Header="CIDIOMA" Binding="{Binding Path=CIDIOMA}" Width="80"  />
+                            <DataGridTextColumn Header="CMONEDA" Binding="{Binding Path=CMONEDA}" Width="80"  />
+                            <DataGridTextColumn Header="XCASO" Binding="{Binding Path=XCASO}" Width="Auto"  />
+                            <DataGridTextColumn Header="XINICIAL" Binding="{Binding Path=XINICIAL}" Width="80"  />
+                            <DataGridTextColumn Header="PIMPUESTO" Binding="{Binding Path=PIMPUESTO}" Width="80"  />
+                            <DataGridTextColumn Header="PDESCUENTO" Binding="{Binding Path=PDESCUENTO}" Width="80"  />
+                            <DataGridTextColumn Header="CASOC_IMP" Binding="{Binding Path=CASOC_IMP}" Width="80"  />
+                            <DataGridTextColumn Header="CINTE_IMP" Binding="{Binding Path=CINTE_IMP}" Width="80"  />
+                            <DataGridTextColumn Header="XTERRERO" Binding="{Binding Path=XTERRERO}" Width="80"  />
+                            <DataGridTextColumn Header="XEMAIL" Binding="{Binding Path=XEMAIL}" Width="80"  />
+                            <DataGridTextColumn Header="CSENIAT" Binding="{Binding Path=CSENIAT}" Width="80"  />
+                            <DataGridTextColumn Header="FSENIAT" Binding="{Binding Path=FSENIAT, StringFormat={}{0:dd/MM/yyyy}}" 
+                                                Width="100"  />
+                            <DataGridTextColumn Header="PSENIAT" Binding="{Binding Path=PSENIAT}" Width="80"  />
+                            <DataGridTextColumn Header="IP" Binding="{Binding Path=IP}" Width="80"  />
+                            <DataGridTextColumn Header="XASOCIADO" Binding="{Binding Path=XASOCIADO}" Width="Auto"  />
+                            <DataGridTextColumn Header="XRIF" Binding="{Binding Path=XRIF}" Width="80"  />
+                            <DataGridTextColumn Header="XNIT" Binding="{Binding Path=XNIT}" Width="80"  />
+                            <DataGridTextColumn Header="FOPERACION" Binding="{Binding Path=FOPERACION, StringFormat={}{0:dd/MM/yyyy}}"
+                                                Width="100"  />
+                            <DataGridTextColumn Header="CPAIS" Binding="{Binding Path=CPAIS}" Width="80"  />
+                            <DataGridTextColumn Header="CODETI" Binding="{Binding Path=CODETI}" Width="80"  />
+                            <DataGridTextColumn Header="NCONTROL" Binding="{Binding Path=NCONTROL}" Width="80"  />
+                            <DataGridTextColumn Header="XOPERACION" Binding="{Binding Path=XOPERACION}" Width="Auto" Block.TextAlignment="Justify" />
+                            <DataGridTextColumn Header="MONTO" 
+                                                Binding="{Binding Path=MONTO, StringFormat= {}{0:N}, ConverterCulture=de-DE}" 
+                                                Width="80"  />
+                            <DataGridTextColumn Header="MONTO_BF" 
+                                                Binding="{Binding Path=MONTO_BF, StringFormat= {}{0:N}, ConverterCulture=de-DE}" 
+                                                Width="80"  />
+                            <DataGridTextColumn Header="DIAS" Binding="{Binding Path=DIAS}" Width="80"  />
+                            <DataGridTextColumn Header="EDOVEN" Binding="{Binding Path=EDOVEN}" Width="80"  />
+                            <DataGridTextColumn Header="EDONOT" Binding="{Binding Path=EDONOT}" Width="80"  />
+                            <DataGridTextColumn Header="AÑO" Binding="{Binding Path=AÑO}" Width="80"  />
+                            <DataGridTextColumn Header="MES" Binding="{Binding Path=MES}" Width="80"  />
+                        </DataGrid.Columns>
                     </DataGrid>
                 </WrapPanel>
 
@@ -94,8 +150,14 @@
         </GroupBox>
 
         <GroupBox Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
-            <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
-                
+            <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" 
+                       Orientation="Horizontal">
+                <Button Name="_btnExportarResumen" VerticalAlignment="Bottom" Height="25" Width="110" Click="_btnExportarResumen_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnExportarResumen}"/>
+                </Button>
+                <Button Name="_btnExportarDetalle" VerticalAlignment="Bottom" Height="25" Width="110" Click="_btnExportarDetalle_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnExportarDetalle}"/>
+                </Button>
                 <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="110" Click="_btnRegresar_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
                 </Button>

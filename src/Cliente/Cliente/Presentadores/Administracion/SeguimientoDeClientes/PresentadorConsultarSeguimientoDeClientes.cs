@@ -136,14 +136,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
 
                 IList<Moneda> monedas = this._monedaServicios.ConsultarTodos();
                 this._ventana.Monedas = monedas;
+                Moneda monedaPorDefecto = new Moneda();
+                monedaPorDefecto.Id = "US";
+                this._ventana.Moneda = this.BuscarMoneda(monedas, monedaPorDefecto);
 
-                //IList<ListaDatosValores> meses = 
-                //    this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiMesSeguimientoClientes));
-                //this._ventana.Meses = meses;
 
                 IList<ListaDatosValores> ordenes =
                     this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiOrdenSeguimientoClientes));
                 this._ventana.Ordenamientos = ordenes;
+                
 
                 IList<ListaDatosValores> camposVistaSeguimientoClientes = 
                     this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCamposVistaSeguimientoClientes));
@@ -393,15 +394,39 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
         public void LimpiarCampos()
         {
             this._ventana.TotalHits = "0";
+            this._ventana.Ordenamiento = null;
             this._ventana.EjeXSeleccionado = null;
             this._ventana.EjeYSeleccionado = null;
             this._ventana.EjeZSeleccionado = null;
             this._ventana.Asociado = null;
+            this._ventana.Asociados = null;
             this._ventana.IdAsociadoFiltrar = null;
+            this._ventana.NombreAsociadoFiltrar = null;
+            this._ventana.IdAsociado = null;
             this._ventana.DesactivarEjesPivot();
             this._ventana.Resultados = null;
             this._ventana.RangoSuperior = null;
-            
+
+            IList<Moneda> monedas = this._monedaServicios.ConsultarTodos();
+            this._ventana.Monedas = monedas;
+            Moneda monedaPorDefecto = new Moneda();
+            monedaPorDefecto.Id = "US";
+            this._ventana.Moneda = this.BuscarMoneda(monedas, monedaPorDefecto);
+
+            ListaDatosValores ordenamientoPorDefecto = new ListaDatosValores();
+            ordenamientoPorDefecto.Valor = "DESC";
+            this._ventana.Ordenamiento = this.BuscarListaDeDatosValores((IList<ListaDatosValores>)this._ventana.Ordenamientos, ordenamientoPorDefecto);
+
+            ListaDatosValores ejeXDefecto = new ListaDatosValores();
+            ejeXDefecto.Valor = "AÑO";
+            this._ventana.EjeXSeleccionado = this.BuscarListaDeDatosValores((IList<ListaDatosValores>)this._ventana.CamposEjeXPivot, ejeXDefecto);
+            ListaDatosValores ejeYDefecto = new ListaDatosValores();
+            ejeYDefecto.Valor = "CASOCIADO";
+            this._ventana.EjeYSeleccionado = this.BuscarListaDeDatosValores((IList<ListaDatosValores>)this._ventana.CamposEjeYPivot, ejeYDefecto);
+            ListaDatosValores ejeZDefecto = new ListaDatosValores();
+            ejeZDefecto.Valor = "MONTO";
+            this._ventana.EjeZSeleccionado = this.BuscarListaDeDatosValores((IList<ListaDatosValores>)this._ventana.CamposEjeZPivot, ejeZDefecto);
+
         }
 
         public void PredeterminarEjes()

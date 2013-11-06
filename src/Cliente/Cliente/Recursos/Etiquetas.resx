@@ -4170,4 +4170,10 @@ en Prensa:</value>
   <data name="titleListaResumenDatosSegClientes" xml:space="preserve">
     <value>Resumen de Datos - Seguimiento de Clientes</value>
   </data>
+  <data name="btnExportarDetalle" xml:space="preserve">
+    <value>Exportar Detalle</value>
+  </data>
+  <data name="btnExportarResumen" xml:space="preserve">
+    <value>Exportar Resumen</value>
+  </data>
 </root>

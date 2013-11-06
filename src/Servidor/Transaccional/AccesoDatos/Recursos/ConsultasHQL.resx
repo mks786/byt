@@ -1211,4 +1211,8 @@
     <value> upper(mp.Referido) = '{0}'</value>
     <comment>Filtro Referido - ObtenerMaestroDePlantillaFiltro</comment>
   </data>
+  <data name="ObtenerCamposDeReportePorVista" xml:space="preserve">
+    <value>Select cr from CamposReporte cr where cr.TipoDeReporte = '{0}'</value>
+    <comment>Obtiene los campos de un Reporte segun la vista seleccionada en el cliente</comment>
+  </data>
 </root>

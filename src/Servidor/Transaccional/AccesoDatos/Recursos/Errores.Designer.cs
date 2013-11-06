@@ -331,6 +331,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Ocurrió un error al obtener los campos para el tipo de Reporte seleccionado. Verique el tipo de Reporte o dirijase al Administrador..
+        /// </summary>
+        internal static string exObtenerCamposReporte {
+            get {
+                return ResourceManager.GetString("exObtenerCamposReporte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Ocurrió un error consultando las Cartas por filtro.
         /// </summary>
         internal static string exObtenerCarta {

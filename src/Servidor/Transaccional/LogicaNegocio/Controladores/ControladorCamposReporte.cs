@@ -116,5 +116,38 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             return retorno;
         }
 
+        /// <summary>
+        /// Metodo que obtiene los campos de la vista seleccionada en el cliente
+        /// </summary>
+        /// <param name="nombreVista">Nombre de la vista seleccionada</param>
+        /// <returns>Lista de campos de la vista</returns>
+        public static IList<CamposReporte> ObtenerCamposPorVista(string nombreVista)
+        {
+            IList<CamposReporte> retorno;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<IList<CamposReporte>> comando = FabricaComandosCamposReporte.ObtenerComandoObtenerCamposPorVista(nombreVista);
+                comando.Ejecutar();
+                retorno = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+
+            return retorno;
+        }
     }
 }

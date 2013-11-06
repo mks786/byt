@@ -1,26 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
-using System.Diagnostics;
-using System.IO;
+using System.Globalization;
 using System.Linq;
-using System.Net.Sockets;
-using System.Runtime.Remoting;
-using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Windows.Documents;
-using System.Windows.Input;
-using Diginsoft.Bolet.ObjetosComunes.ContratosServicios;
-using Diginsoft.Bolet.ObjetosComunes.Entidades;
 using NLog;
-using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.Administracion.SeguimientoDeClientes;
-using Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using System.Windows.Input;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClientes
 {
@@ -48,8 +40,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
 
                 this._ventana = ventana;
                 this._ventanaPadre = ventanaPadre;
-                
-
                 this._ejeX = (ListaDatosValores)ejeX;
                 this._ejeY = (ListaDatosValores)ejeY;
                 this._ejeZ = (ListaDatosValores)ejeZ;
@@ -75,6 +65,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
 
         public void CargarPagina()
         {
+
+            Mouse.OverrideCursor = Cursors.Wait;
+
             try
             {
                 #region trace
@@ -91,16 +84,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
                 this._datosCrudos = this._seguimientoClientesServicios.ObtenerDataCruda(this._filtroDataCruda);
                 this._SourceTable = this._datosCrudos;
                 this._Source = this._SourceTable.Rows.Cast<DataRow>();
-
-
-                //DataTable pivotData = PivotData("CASOCIADO", "MONTO_BF", AggregateFunction.Sum, "EDOVEN");
+                
                 DataTable pivotData = PivotData(ejeY, ejeZ, AggregateFunction.Sum, ejeX);
 
-                if (pivotData != null)
+                DataTable pivotData1 = FormatearDataTable(pivotData);
+
+                if (pivotData1 != null)
                 {
                     if (pivotData.Rows.Count > 0)
                     {
                         this._ventana.Resultados = pivotData.DefaultView;
+                        //this._ventana.FormatearDataGrid();
                         this._ventana.TotalHits = pivotData.Rows.Count.ToString();
                     }
                 }
@@ -117,9 +111,62 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+            
         }
 
         
+        /// <summary>
+        /// Metodo que formatea el DataTable resultante de la tabla pivot para presentarlo en la interfaz
+        /// </summary>
+        /// <param name="pivotData">Data Pivot original</param>
+        /// <returns>DataTable formateado</returns>
+        private DataTable FormatearDataTable(DataTable pivotData)
+        {
+            DataTable datosFormateados = pivotData;
+            String nombreColumna, valorColumna, nuevoValor, nombreColumnaY;
+            nombreColumna = valorColumna = nuevoValor = nombreColumnaY = String.Empty;
+            double numero;
+
+            nombreColumnaY = pivotData.Columns[0].ColumnName;
+
+            foreach (DataRow fila in pivotData.Rows)
+            {
+                foreach (DataColumn columna in datosFormateados.Columns)
+                {
+                    nombreColumna = columna.ColumnName;
+                    valorColumna = fila[nombreColumna].ToString();
+
+                    if ((!nombreColumna.Equals(nombreColumnaY)) && (!valorColumna.Equals("")))
+                    {
+                        numero = float.Parse(valorColumna);
+                        nuevoValor = numero.ToString("N", CultureInfo.CreateSpecificCulture("de-DE"));
+                        fila[nombreColumna] = nuevoValor;
+                    }
+                        
+                }
+            }
+
+            return datosFormateados;
+        }
+
+        /// <summary>
+        /// Metodo para saber si una cadena es numerica o no
+        /// </summary>
+        /// <returns>True si es numerica, False si es alfanumerica</returns>
+        private bool VerificarCadenaNumerica(String cadena)
+        {
+            bool retorno = false;
+
+            Regex patronNumerico = new Regex("[^0-9]");
+            retorno = patronNumerico.IsMatch(cadena);
+
+
+            return retorno;
+        }
 
 
         public void ActualizarTitulo()
@@ -297,9 +344,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
         /// <summary>
         /// Metodo que genera los datos de detalle
         /// </summary>
-        /// <param name="datos"></param>
+        /// <param name="datos">Datos que se usan para generar el Query en el servidor</param>
         public void CargarDatosDetalle(string datos)
         {
+
+            Mouse.OverrideCursor = Cursors.Wait;
+
             try
             {
                 #region trace
@@ -322,8 +372,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
                     this._ventana.Mensaje("No hay resultados para los datos seleccionados",0);
 
 
-
-
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -334,9 +382,57 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
         }
 
+        /// <summary>
+        /// Metodo que exporta el contenido del Resumen y/o del Detalle a un archivo Excel
+        /// </summary>
+        /// <param name="tipo">Tipo de Reporte a exportar</param>
+        public void ExportarExcel(string tipo)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            try
+            {
+                this._ventana.ExportarDataGrid(tipo);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorEjecucionReporte + ex.Message, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+        public String ObtenerTituloReporte(string tipo)
+        {
+            String tituloReporte = String.Empty;
+
+            if (tipo.Equals("Resumen"))
+                tituloReporte = "Reporte Resumen de Datos";
+            else if (tipo.Equals("Detalle"))
+                tituloReporte = "Reporte Detalle de Facturación por Asociado";
+
+            return tituloReporte;
+        }
     }
 
     public enum AggregateFunction

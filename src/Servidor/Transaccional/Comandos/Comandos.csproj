@@ -98,6 +98,7 @@
     <Compile Include="Comandos\ComandosCamposReporteRelacion\ComandoEliminarCamposReporte.cs" />
     <Compile Include="Comandos\ComandosCamposReporteRelacion\ComandoInsertarOModificarCamposReporte.cs" />
     <Compile Include="Comandos\ComandosCamposReporte\ComandoConsultarTodosCamposReporte.cs" />
+    <Compile Include="Comandos\ComandosCamposReporte\ComandoObtenerCamposPorVista.cs" />
     <Compile Include="Comandos\ComandosCamposReporte\ComandoObtenerCamposReporteDeMarca.cs" />
     <Compile Include="Comandos\ComandosCamposReporte\ComandoObtenerCamposReporteDePatente.cs" />
     <Compile Include="Comandos\ComandosCartaOut\ComandoConsultarCartasOutsFiltro.cs" />

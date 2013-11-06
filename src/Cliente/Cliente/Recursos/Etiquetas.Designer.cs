@@ -449,6 +449,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Exportar Detalle.
+        /// </summary>
+        public static string btnExportarDetalle {
+            get {
+                return ResourceManager.GetString("btnExportarDetalle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Exportar Resumen.
+        /// </summary>
+        public static string btnExportarResumen {
+            get {
+                return ResourceManager.GetString("btnExportarResumen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Exp. Recuperación.
         /// </summary>
         public static string btnExpRecuperacion {

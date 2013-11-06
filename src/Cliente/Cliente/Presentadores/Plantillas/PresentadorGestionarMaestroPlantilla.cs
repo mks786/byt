@@ -155,7 +155,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
             catch (System.Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
         }
 
@@ -313,7 +313,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
             catch (System.Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
         }
 

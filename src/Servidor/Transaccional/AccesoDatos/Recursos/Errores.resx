@@ -345,4 +345,7 @@
   <data name="exObtenerFiltroEncabezadoPlantilla" xml:space="preserve">
     <value>Ocurrió un error al obtener las Variables de Encabezado del Maestro de Plantilla seleccionado</value>
   </data>
+  <data name="exObtenerCamposReporte" xml:space="preserve">
+    <value>Ocurrió un error al obtener los campos para el tipo de Reporte seleccionado. Verique el tipo de Reporte o dirijase al Administrador.</value>
+  </data>
 </root>

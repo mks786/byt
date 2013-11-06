@@ -128,14 +128,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                     
                     this._ventana.IdReporte = this._reporteDeMarca.Id.ToString();
                     this._ventana.DescripcionReporte = this._reporteDeMarca.Descripcion;
-                    this._ventana.TituloReporte = !this._reporteDeMarca.TituloEspanol.Equals(String.Empty) ? this._reporteDeMarca.TituloEspanol : null;
-                    this._ventana.TituloReporteIngles = !this._reporteDeMarca.TituloIngles.Equals(String.Empty) ? this._reporteDeMarca.TituloIngles : null;
+                    //this._ventana.TituloReporte = !this._reporteDeMarca.TituloEspanol.Equals(String.Empty) ? this._reporteDeMarca.TituloEspanol : null;
+                    this._ventana.TituloReporte = this._reporteDeMarca.TituloEspanol != null ? this._reporteDeMarca.TituloEspanol : null;
+                    //this._ventana.TituloReporteIngles = !this._reporteDeMarca.TituloIngles.Equals(String.Empty) ? this._reporteDeMarca.TituloIngles : null;
+                    this._ventana.TituloReporteIngles = this._reporteDeMarca.TituloIngles != null ? this._reporteDeMarca.TituloIngles : null;
                     
                     CargarTipoDeReporte();
                     CargarCamposReporte(false);
                     CargarCamposReporteSeleccionado(); 
                     CargarUsuario();
                     CargarIdiomas(false);
+                    this._ventana.HabilitarComboVistas(false);
 
                     //Solo se mostraran los botones de Modificar y Modificacion de Filtros si el Usuario Logueado es el mismo que esta consultando
                     if (UsuarioLogeado.NombreCompleto.Equals(this._reporteDeMarca.Usuario))
@@ -264,10 +267,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
 
                     vista = this._reporteDeMarca.VistaReporte;
 
-                    if (vista.NombreVista.Equals("MARCAS"))
+                    /*if (vista.NombreVista.Equals("MARCAS"))
                         campos = this._camposReporteServicios.ObtenerCamposReporteDeMarca();
                     else if (vista.NombreVista.Equals("PATENTES"))
-                        campos = this._camposReporteServicios.ObtenerCamposReportePatente();
+                        campos = this._camposReporteServicios.ObtenerCamposReportePatente();*/
+
+                    campos = this._camposReporteServicios.ObtenerCamposPorVista(vista.NombreVistaBD);
 
                     listaDeCamposDelReporte = this._camposReporteDeMarcaServicios.ConsultarCamposDeReporte(this._reporteDeMarca);
                     foreach (CamposReporteRelacion item in listaDeCamposDelReporte)
@@ -881,12 +886,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
 
                 if (this._agregar)
                 {
-                    if (vista.NombreVista.Equals("MARCAS"))
+                    /*if (vista.NombreVista.Equals("MARCAS"))
                         campos = this._camposReporteServicios.ObtenerCamposReporteDeMarca();
                     else if (vista.NombreVista.Equals("PATENTES"))
-                        campos = this._camposReporteServicios.ObtenerCamposReportePatente();
+                        campos = this._camposReporteServicios.ObtenerCamposReportePatente();*/
 
-                    this._ventana.CamposReporte = campos;
+                    campos = this._camposReporteServicios.ObtenerCamposPorVista(vista.NombreVistaBD);
+
+                    if (campos.Count != 0)
+                    {
+                        this._ventana.CamposReporte = campos;
+                    }
+
+                    else
+                    {
+                        this._ventana.Mensaje("No hay campos para el tipo de Reporte seleccionado. Consulte con su Administrador", 1);
+                    }
+
+                    
                 }
 
 

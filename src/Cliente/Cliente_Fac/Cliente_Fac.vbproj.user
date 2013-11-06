@@ -6,4 +6,9 @@
   <PropertyGroup>
     <ReferencePath>C:\Archivos de programa\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\</ReferencePath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <StartAction>Project</StartAction>
+    <StartProgram>
+    </StartProgram>
+  </PropertyGroup>
 </Project>

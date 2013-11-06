@@ -1667,6 +1667,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         private void EliminarSesionesRestantes(string nombreDeImagen)
         {
 
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             IList<Process> procesos = Process.GetProcessesByName(nombreDeImagen);
             int id = Process.GetCurrentProcess().Id;
             //IList<Process> procesos1 = Process.GetProcesses();
@@ -1681,9 +1686,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                 }
                 catch (Exception ex)
                 {
-                    throw new ApplicationException();
+                    throw new ApplicationException(ex.Message);
                 }
             }
+
+            #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
         /// <summary>

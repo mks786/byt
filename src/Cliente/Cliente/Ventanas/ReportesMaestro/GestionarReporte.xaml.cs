@@ -288,6 +288,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.ReportesMaestro
             this._cbxTipoReporte.SelectedItem = _cbxTipoReporte.Items[0];
         }
 
+        public void HabilitarComboVistas(bool habilitar)
+        {
+            this._cbxTipoReporte.IsEnabled = habilitar;
+            this._cbxIdiomaReporte.IsEnabled = habilitar;
+        }
+
         #endregion
 
         
