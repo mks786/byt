@@ -1,20 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.Administracion.SeguimientoDeClientes;
 using Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClientes;
-using System.Data;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
 {
@@ -70,6 +64,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
         public string TotalHits
         {
             set { this._lblHits.Text = value; }
+        }
+
+        public string TotalHitsDetalle
+        {
+            set { this._lblHitsDetalle.Text = value; }
         }
 
         #endregion
@@ -129,7 +128,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
 
                 object datoCelda = ExtractBoundValue(row, cell, indiceFila);
                 String datos = datoCelda.ToString();
-                this._presentador.CargarDatosDetalle(datos);
+                if (datos.Contains("&"))
+                    this._presentador.CargarDatosDetalle(datos);
+                else
+                    this._presentador.ObtenerFacGestionesAsociado(datos);
 
             }
         }
@@ -152,6 +154,42 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
                 this._presentador.ExportarExcel("Detalle");
             }
         }
+
+
+        private void _lstResultadosDetalle_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            String numeroFactura = String.Empty;
+            DependencyObject dep = (DependencyObject)e.OriginalSource;
+
+            while ((dep != null) &&
+                    !(dep is DataGridCell) &&
+                    !(dep is System.Windows.Controls.Primitives.DataGridColumnHeader))
+            {
+                dep = VisualTreeHelper.GetParent(dep);
+            }
+
+            if (dep == null)
+                return;
+
+            //Se valida que se haya seleccionado una celda del DataGrid
+            if (dep is DataGridCell)
+            {
+                //Navegamos por el arbol de elementos del datagrid para obtener el elementos seleccionado
+                DataGridCell cell = dep as DataGridCell;
+                while ((dep != null) && !(dep is DataGridRow))
+                {
+                    dep = VisualTreeHelper.GetParent(dep);
+                }
+
+                //Se obtiene el DataRow del DataGrid seleccionado para sacar el elemento al que se le hizo click
+                DataGridRow row = dep as DataGridRow;
+                int indiceFila = FindRowIndex(row);
+                numeroFactura = ExtraerNumeroFactura(row, cell, indiceFila);
+                this._presentador.ConsultarFacFactura(numeroFactura);
+            }
+
+        }
+        
 
         #endregion
 
@@ -237,7 +275,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
         {
             String headerColumn = String.Empty;
             String valorColumnaCero = String.Empty;
+            String cadena = String.Empty;
+            string headerColCero = String.Empty;
+            string boundPropertyName = String.Empty;
             DataGridCell primeraCeldaFilaSeleccionada = null;
+            object valorDeColumnaCero, valorColumnaSeleccionada, data;
 
             //Para encontrar el primer elemento de la fila donde se encuentra la celda seleccionada
             if (row != null)
@@ -264,24 +306,34 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
             Binding binding = col.Binding as Binding;
             Binding bindingCeldaCero = columnaCero.Binding as Binding;
 
-            string headerColCero = bindingCeldaCero.Path.Path;
-            string boundPropertyName = binding.Path.Path;
+            headerColCero = bindingCeldaCero.Path.Path;
+            boundPropertyName = binding.Path.Path;
 
             //Se busca el objecto relacionado con la fila seleccionada
-            object data = row.Item;
+            data = row.Item;
 
             // Se extrae la propiedad de cada una de las celdas
             System.ComponentModel.PropertyDescriptorCollection properties = System.ComponentModel.TypeDescriptor.GetProperties(data);
 
             System.ComponentModel.PropertyDescriptor property = properties[boundPropertyName];
-            object value = property.GetValue(data);
+            //object value = property.GetValue(data);
+            valorColumnaSeleccionada = property.GetValue(data);
 
             System.ComponentModel.PropertyDescriptor property1 = properties[headerColCero];
-            object valor1 = property1.GetValue(data);
+            //object valor1 = property1.GetValue(data);
+            valorDeColumnaCero = property1.GetValue(data);
 
             //String cadena = headerColCero + "&" + valor1.ToString() + "&" + boundPropertyName + value.ToString();
-
-            String cadena = valor1.ToString() + "&" + boundPropertyName;
+            if (!boundPropertyName.Equals(headerColCero))
+            {
+                //cadena = valor1.ToString() + "&" + boundPropertyName;
+                cadena = valorDeColumnaCero.ToString() + "&" + boundPropertyName;
+            }
+            else
+            {
+                //cadena = valor1.ToString();
+                cadena = valorDeColumnaCero.ToString();
+            }
 
             return cadena;
 
@@ -291,7 +343,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
         /// Metodo que exporta el contenido del datagrid a un archivo Excel 
         /// </summary>
         /// <param name="tipo">Tipo de Reporte</param>
-        public void ExportarDataGrid(String tipo)
+        /// <param name="datosResumen">DataTable que trae el resumen de datos para cuando el tipo sea Resumen</param>
+        public void ExportarDataGrid(String tipo, DataTable datosResumen)
         {
 
             DataTable tablaDatos = new DataTable();
@@ -314,13 +367,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
 
                     if (tipo.Equals("Resumen"))
                     {
-                        //tablaDatos = (DataTable)this._lstResultados.DataContext;
-                        DataView tabla1 = (DataView)this._lstResultados.ItemsSource;
-                        tablaDatos = tabla1.ToTable();
+                        //DataView tabla1 = (DataView)this._lstResultados.ItemsSource;
+                        //tablaDatos = tabla1.ToTable();
+                        tablaDatos = datosResumen;
                     }
                     else if (tipo.Equals("Detalle"))
                     {
-                        //tablaDatos = (DataTable)this._lstResultadosDetalle.DataContext;
                         DataView tabla1 = (DataView)this._lstResultadosDetalle.ItemsSource;
                         tablaDatos = tabla1.ToTable();
                     }
@@ -363,13 +415,47 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }
 
+
+        /// <summary>
+        /// Metodo que extrae el numero de la factura desde DataGrid
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="cell"></param>
+        /// <param name="indiceFila"></param>
+        /// <returns></returns>
+        private string ExtraerNumeroFactura(DataGridRow row, DataGridCell cell, int indiceFila)
+        {
+
+            String cadena = String.Empty;
+            string boundPropertyName = String.Empty;
+            object valorColumnaSeleccionada, data;
+
+            DataGridBoundColumn col = cell.Column as DataGridBoundColumn;
+            //Aqui se sabe cual es header de la celda seleccionada y el de la primera celda de la fila a la que pertenece 
+            Binding binding = col.Binding as Binding;
+            boundPropertyName = binding.Path.Path;
+            //Para asegurar que el campo a elegir si no es CFACTURA se seleccione el campo CFACTURA
+            if (!boundPropertyName.Equals("CFACTURA"))
+                boundPropertyName = "CFACTURA";
+            //Se busca el objecto relacionado con la fila seleccionada
+            data = row.Item;
+            // Se extrae la propiedad de cada una de las celdas
+            System.ComponentModel.PropertyDescriptorCollection properties = System.ComponentModel.TypeDescriptor.GetProperties(data);
+            System.ComponentModel.PropertyDescriptor property = properties[boundPropertyName];
+            valorColumnaSeleccionada = property.GetValue(data);
+            cadena = valorColumnaSeleccionada.ToString();
+
+            return cadena;
+        }
+
+
         #endregion
 
         
+                
     }
 }

@@ -394,28 +394,67 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                 {
                     if (posicionCampo < camposDefinidosDelReporte.Count)
                     {
-                        if(((Reporte)this._ventana.Reporte).Idioma.Id.Equals("ES") && campo.Campo.Clase.Equals("NORMAL"))
-                            //cadenaCampos += campo.Campo.NombreCampo + ", ";
-                            cadenaCampos += campo.Campo.NombreCampo + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + ", ";
+                        if (((Reporte)this._ventana.Reporte).Idioma.Id.Equals("ES") && campo.Campo.Clase.Equals("NORMAL"))
+                        {   //cadenaCampos += campo.Campo.NombreCampo + ", ";
+                            if(!campo.Campo.TipoDeCampo.Equals("FECHA"))
+                                cadenaCampos += campo.Campo.NombreCampo + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + ", ";
+                            else
+                                cadenaCampos += "TO_CHAR(" + campo.Campo.NombreCampo + ",'DD/MM/YYY')" + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + ", ";
+                        }
                         else if (((Reporte)this._ventana.Reporte).Idioma.Id.Equals("IN") && campo.Campo.Clase.Equals("NORMAL"))
-                            cadenaCampos += campo.Campo.NombreCampo + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + ", ";
+                        {
+                            if (!campo.Campo.TipoDeCampo.Equals("FECHA"))
+                                cadenaCampos += campo.Campo.NombreCampo + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + ", ";
+                            else
+                                cadenaCampos += "TO_CHAR(" + campo.Campo.NombreCampo + ",'DD/MM/YYY')" + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + ", ";
+                        }
                         else if (((Reporte)this._ventana.Reporte).Idioma.Id.Equals("ES") && campo.Campo.Clase.Equals("ESPECIAL"))
-                            cadenaCampos += campo.Campo.AdicionalEspanol + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + ", ";
+                        {
+                            if (!campo.Campo.TipoDeCampo.Equals("FECHA"))
+                                cadenaCampos += campo.Campo.AdicionalEspanol + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + ", ";
+                            else
+                                cadenaCampos += "TO_CHAR(" + campo.Campo.NombreCampo + ",'DD/MM/YYY')" + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + ", ";
+                        }
                         else if (((Reporte)this._ventana.Reporte).Idioma.Id.Equals("IN") && campo.Campo.Clase.Equals("ESPECIAL"))
-                            cadenaCampos += campo.Campo.AdicionalIngles + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + ", ";
+                        {
+                            if (!campo.Campo.TipoDeCampo.Equals("FECHA"))
+                                cadenaCampos += campo.Campo.AdicionalIngles + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + ", ";
+                            else
+                                cadenaCampos += "TO_CHAR(" + campo.Campo.NombreCampo + ",'DD/MM/YYY')" + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + ", ";
+                        }
 
                     }
                     else if (posicionCampo == camposDefinidosDelReporte.Count)
                     {
-                        if(((Reporte)this._ventana.Reporte).Idioma.Id.Equals("ES") && campo.Campo.Clase.Equals("NORMAL"))
-                            cadenaCampos += campo.Campo.NombreCampo + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + " ";
+                        if (((Reporte)this._ventana.Reporte).Idioma.Id.Equals("ES") && campo.Campo.Clase.Equals("NORMAL"))
+                        {
+                            if (!campo.Campo.TipoDeCampo.Equals("FECHA"))
+                                cadenaCampos += campo.Campo.NombreCampo + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + " ";
+                            else
+                                cadenaCampos += "TO_CHAR(" + campo.Campo.NombreCampo + ",'DD/MM/YYY')" + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + " ";
+                        }
                         else if (((Reporte)this._ventana.Reporte).Idioma.Id.Equals("IN") && campo.Campo.Clase.Equals("NORMAL"))
-                            cadenaCampos += campo.Campo.NombreCampo + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + " ";
+                        {
+                            if (!campo.Campo.TipoDeCampo.Equals("FECHA"))
+                                cadenaCampos += campo.Campo.NombreCampo + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + " ";
+                            else
+                                cadenaCampos += "TO_CHAR(" + campo.Campo.NombreCampo + ",'DD/MM/YYY')" + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + " ";
+                        }
                         else if (((Reporte)this._ventana.Reporte).Idioma.Id.Equals("ES") && campo.Campo.Clase.Equals("ESPECIAL"))
-                            cadenaCampos += campo.Campo.AdicionalEspanol + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + " ";
+                        {
+                            if (!campo.Campo.TipoDeCampo.Equals("FECHA"))
+                                cadenaCampos += campo.Campo.AdicionalEspanol + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + " ";
+                            else
+                                cadenaCampos += "TO_CHAR(" + campo.Campo.NombreCampo + ",'DD/MM/YYY')" + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + " ";
+                        }
                         else if (((Reporte)this._ventana.Reporte).Idioma.Id.Equals("IN") && campo.Campo.Clase.Equals("ESPECIAL"))
-                            cadenaCampos += campo.Campo.AdicionalIngles + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + " ";
-                        //cadenaCampos += campo.Campo.NombreCampo + " ";
+                        {
+                            if (!campo.Campo.TipoDeCampo.Equals("FECHA"))
+                                cadenaCampos += campo.Campo.AdicionalIngles + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + " ";
+                            else
+                                cadenaCampos += "TO_CHAR(" + campo.Campo.NombreCampo + ",'DD/MM/YYY')" + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + " ";
+                            //cadenaCampos += campo.Campo.NombreCampo + " ";
+                        }
                     }
                     posicionCampo++;
                 }

@@ -55,6 +55,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Administracion.SeguimientoDeClientes
 
         object EjeZSeleccionado { get; set; }
 
+        string TotalUSD { get; set; }
+
+        string TotalBSF { get; set; }
+
         void Mensaje(string mensaje, int opcion);
 
         void ActivarEjesPivot();

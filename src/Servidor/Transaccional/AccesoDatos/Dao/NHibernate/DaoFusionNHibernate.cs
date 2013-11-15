@@ -72,6 +72,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerFusionFecha, fecha, fecha2);
                 }
                 IQuery query = Session.CreateQuery(cabecera + filtro);
+                //IQuery query = Session.CreateSQLQuery(cabecera + filtro);
                 Fusiones = query.List<Fusion>();
 
                 #region trace
@@ -82,7 +83,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.exObtenerFusionPorPatente);
+                throw new ApplicationException(Recursos.Errores.exObtenerFusionPorPatente + ": " + ex.Message);
             }
             finally
             {

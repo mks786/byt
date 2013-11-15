@@ -92,11 +92,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                double valorInicial = 0.00;
+
+
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarSeguimientoClientes, "");
 
                 this._ventana.TotalHits = "0";
 
                 this._ventana.RangoInferior = "1";
+
+                this._ventana.TotalUSD = valorInicial.ToString("N");
+
+                this._ventana.TotalBSF = valorInicial.ToString("N");
 
                 CargarCombos();
 
@@ -276,6 +283,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
                 {
                     this._ventana.Resultados = datos.DefaultView;
                     this._datosCrudos = datos;
+                    this._ventana.TotalUSD = CalcularTotalColumna("BSALDO",datos);
+                    this._ventana.TotalBSF = CalcularTotalColumna("BSALDO_BF", datos);
                     this._ventana.ActivarEjesPivot();
                     this._ventana.TotalHits = datos.Rows.Count.ToString();
                     this._ventana.Mensaje("Datos Origen generados, puede generar el Resumen. Elija los campos y presione Generar Resumen", 2);
@@ -302,6 +311,54 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
                 Mouse.OverrideCursor = null;
             }
 
+        }
+
+        
+        /// <summary>
+        /// Metodo que calculos los totales de las columnas BSALDO y BSALDO_BF para el resumen de totales generales al inicio del modulo
+        /// ESTE METODO NO PERTENECE AL PIVOT
+        /// </summary>
+        /// <param name="nombreColumna">Columna donde se encuentran los datos que se van a sumar</param>
+        /// <param name="data">DataTable con los datos</param>
+        /// <returns>Resultado de la sumatoria que se colocara en la ventana en el espacio de Totales</returns>
+        private string CalcularTotalColumna(string nombreColumna, DataTable data)
+        {
+            String total = String.Empty;
+            double sumaTotal = 0.00;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                foreach (DataRow fila in data.Rows)
+                {
+                    foreach (DataColumn columna in data.Columns)
+                    {
+                        String campo = columna.ColumnName;
+                        if (campo.Equals(nombreColumna))
+                        {
+                            double cantidad = Double.Parse(fila[campo].ToString());
+                            sumaTotal += cantidad;
+                        }
+                    }
+                }
+
+                total = sumaTotal.ToString("N");
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+
+            return total;
         }
 
 
@@ -406,6 +463,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
             this._ventana.DesactivarEjesPivot();
             this._ventana.Resultados = null;
             this._ventana.RangoSuperior = null;
+            double numeroInicial = 0.00;
+            this._ventana.TotalBSF = numeroInicial.ToString("N");
+            this._ventana.TotalUSD = numeroInicial.ToString("N");
 
             IList<Moneda> monedas = this._monedaServicios.ConsultarTodos();
             this._ventana.Monedas = monedas;

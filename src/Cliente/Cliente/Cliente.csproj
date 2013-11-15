@@ -118,6 +118,8 @@
     <Compile Include="Contratos\Administracion\Gestiones Automaticas\IGestionarDetallesCorreoOutlook.cs" />
     <Compile Include="Contratos\Administracion\SeguimientoDeClientes\IConsultarSeguimientoDeClientes.cs" />
     <Compile Include="Contratos\Administracion\SeguimientoDeClientes\IListaDatosPivotSeguimientoClientes.cs" />
+    <Compile Include="Contratos\Administracion\SeguimientoDeCobranzas\IConsultarSeguimientoDeCobranzas.cs" />
+    <Compile Include="Contratos\Administracion\SeguimientoDeCobranzas\IListaDatosPivotSeguimientoCobranzas.cs" />
     <Compile Include="Contratos\Agentes\IAgregarAgente.cs" />
     <Compile Include="Contratos\Agentes\IConsultarAgente.cs" />
     <Compile Include="Contratos\Agentes\IConsultarAgentes.cs" />
@@ -573,6 +575,8 @@
     <Compile Include="Presentadores\Administracion\Gestiones Automaticas\PresentadorGestionarDetallesCorreoOutlook.cs" />
     <Compile Include="Presentadores\Administracion\SeguimientoDeClientes\PresentadorConsultarSeguimientoDeClientes.cs" />
     <Compile Include="Presentadores\Administracion\SeguimientoDeClientes\PresentadorListaDatosPivotSeguimientoClientes.cs" />
+    <Compile Include="Presentadores\Administracion\SeguimientoDeCobranzas\PresentadorConsultarSeguimientoDeCobranzas.cs" />
+    <Compile Include="Presentadores\Administracion\SeguimientoDeCobranzas\PresentadorListaDatosPivotSeguimientoCobranzas.cs" />
     <Compile Include="Presentadores\Agentes\PresentadorAgregarAgente.cs" />
     <Compile Include="Presentadores\Agentes\PresentadorConsultarAgente.cs" />
     <Compile Include="Presentadores\Agentes\PresentadorConsultarAgentes.cs" />
@@ -1024,6 +1028,12 @@
     </Compile>
     <Compile Include="Ventanas\Administracion\SeguimientoDeClientes\ListaDatosPivotSeguimientoClientes.xaml.cs">
       <DependentUpon>ListaDatosPivotSeguimientoClientes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Administracion\SeguimientoDeCobranzas\ConsultarSeguimientoDeCobranzas.xaml.cs">
+      <DependentUpon>ConsultarSeguimientoDeCobranzas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Administracion\SeguimientoDeCobranzas\ListaDatosPivotSeguimientoCobranzas.xaml.cs">
+      <DependentUpon>ListaDatosPivotSeguimientoCobranzas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Agentes\AgregarAgente.xaml.cs">
       <DependentUpon>AgregarAgente.xaml</DependentUpon>
@@ -1771,6 +1781,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\Administracion\SeguimientoDeClientes\ListaDatosPivotSeguimientoClientes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Administracion\SeguimientoDeCobranzas\ConsultarSeguimientoDeCobranzas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Administracion\SeguimientoDeCobranzas\ListaDatosPivotSeguimientoCobranzas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

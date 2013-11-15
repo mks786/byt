@@ -220,25 +220,31 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                 CamposReporteRelacion campoModificar = (CamposReporteRelacion)this._ventana.CampoSeleccionadoReporteDeMarca;
                 bool exito = this._camposReporteDeMarcaServicios.InsertarOModificar(campoModificar,UsuarioLogeado.Hash);
 
-                
-                operadorSeleccionado = (ListaDatosValores)this._ventana.OperadorDeReporte;
-                filtroReporteDeMarca.Reporte = (Reporte)this._ventana.ReporteDeMarca;
-                //filtroReporteDeMarca.Id = ((ReporteDeMarca)this._ventana.FiltrosReporteDeMarca).Id;
-                filtroReporteDeMarca.Campo = campoFiltroSeleccionado;
-                filtroReporteDeMarca.Operador = operadorSeleccionado.Descripcion;
 
-                if (this._ventana.FiltrosReporteDeMarca != null)
+                if (this._ventana.OperadorDeReporte != null)
                 {
-                    listaFiltrosReporte = (IList<FiltroReporte>)this._ventana.FiltrosReporteDeMarca;
-                    listaFiltrosReporte.Add(filtroReporteDeMarca);
-                    this._ventana.FiltrosReporteDeMarca = null;
-                    this._ventana.FiltrosReporteDeMarca = listaFiltrosReporte;
+                    operadorSeleccionado = (ListaDatosValores)this._ventana.OperadorDeReporte;
+                    filtroReporteDeMarca.Reporte = (Reporte)this._ventana.ReporteDeMarca;
+                    //filtroReporteDeMarca.Id = ((ReporteDeMarca)this._ventana.FiltrosReporteDeMarca).Id;
+                    filtroReporteDeMarca.Campo = campoFiltroSeleccionado;
+                    filtroReporteDeMarca.Operador = operadorSeleccionado.Descripcion;
+
+                    if (this._ventana.FiltrosReporteDeMarca != null)
+                    {
+                        listaFiltrosReporte = (IList<FiltroReporte>)this._ventana.FiltrosReporteDeMarca;
+                        listaFiltrosReporte.Add(filtroReporteDeMarca);
+                        this._ventana.FiltrosReporteDeMarca = null;
+                        this._ventana.FiltrosReporteDeMarca = listaFiltrosReporte;
+                    }
+                    else
+                    {
+                        listaFiltrosReporte.Add(filtroReporteDeMarca);
+                        this._ventana.FiltrosReporteDeMarca = listaFiltrosReporte;
+                    }
                 }
                 else
-                {
-                    listaFiltrosReporte.Add(filtroReporteDeMarca);
-                    this._ventana.FiltrosReporteDeMarca = listaFiltrosReporte;
-                }
+                    this._ventana.Mensaje("Debe seleccionar un operador para agregar el campo filtro seleccionado", 0);
+                
                 
 
                 

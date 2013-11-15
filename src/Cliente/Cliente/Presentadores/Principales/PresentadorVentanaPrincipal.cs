@@ -65,6 +65,7 @@ using Trascend.Bolet.Cliente.Ventanas.TiposEmailAsociado;
 using Trascend.Bolet.Cliente.Ventanas.Inventores;
 using Trascend.Bolet.Cliente.Ventanas.Administracion.Gestiones_Automaticas;
 using Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes;
+using Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeCobranzas;
 using Trascend.Bolet.Cliente.Ventanas.Plantillas;
 using Trascend.Bolet.Cliente.Ventanas.ReportesMaestro;
 using System.Diagnostics;
@@ -2424,6 +2425,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                                 itemNivel4.Visibility = System.Windows.Visibility.Visible;
                                             break;
 
+                                        case "_fac_menuItemFacSeguimientoDeCobranzas":
+                                            if (objeto.Id.Equals(Recursos.Ids.fac_SeguimientoCobranza))
+                                                itemNivel4.Visibility = System.Windows.Visibility.Visible;
+                                            break;
+
                                     }
                                 }
 
@@ -2468,6 +2474,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
 
 
         /// <summary>
+        /// Metodo para iniciar subproceso de Seguimiento de Cobranzas presentando la ventana para consultar y filtrar la data original
+        /// de la vista SEG_COB
+        /// </summary>
+        public void ConsultarSeguimientoDeCobranzas()
+        {
+            Navegar(new ConsultarSeguimientoDeCobranzas());
+        }
+
+
+        /// <summary>
         /// Metodo para llamar a la ventana para las plantillas
         /// </summary>
         public void GestionarMaestroPlantilla()
@@ -2484,5 +2500,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         {
             Navegar(new ConsultarMaestrosPlantillas());
         }
+
+        
     }
 }

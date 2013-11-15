@@ -11,9 +11,8 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="116*"/>
-            <ColumnDefinition Width="656"/>
-            <ColumnDefinition Width="28*"/>
+            <ColumnDefinition Width="*"/>
+            
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -21,8 +20,387 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
-        <GroupBox Grid.Column="0" Grid.Row="0" Margin="5" Height="35" VerticalAlignment="Top">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+        <Grid Grid.Column="0" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <GroupBox Grid.Column="0" Grid.Row="0">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Width="Auto">
+
+                    <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,5,0,0">
+                        <Label>
+                            <TextBlock FontSize="15" Text="Cuadro de Resumen de Seguimiento de Clientes"/>
+                        </Label>
+                    </WrapPanel>
+
+                    <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,5,0,0">
+
+                        <Label>
+                            <!--<TextBlock FontSize="15" Text="{x:Static recurso:Etiquetas.lblTotalHits}"/>-->
+                            <TextBlock FontSize="13" Text="{x:Static recurso:Etiquetas.lblTotalHits}"/>
+                        </Label>
+                        <Label>
+                            <TextBlock FontSize="13" Name="_lblHits"/>
+                        </Label>
+                    </WrapPanel>
+
+                    <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,5,0,0">
+                        <DataGrid HorizontalAlignment="Center"  VerticalAlignment="Top" Name="_lstResultados" Height="250" 
+                              ItemsSource="{Binding}" ColumnHeaderHeight="30" AutoGenerateColumns="True" ColumnWidth="80" RowHeight="25"
+                              CanUserResizeColumns="False" CanUserAddRows="False" GridLinesVisibility="All" BorderBrush="Transparent"
+                              MouseLeftButtonUp="_lstResultados_MouseLeftButtonUp">
+
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                                                <TextBlock Text="{Binding}"
+                                                       Foreground="White" FontWeight="Bold" Background="Green" 
+                                                       HorizontalAlignment="Stretch" TextAlignment="Center" Padding="4">
+                                                </TextBlock>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+
+                                </Style>
+                            </DataGrid.ColumnHeaderStyle>
+                            <DataGrid.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="Block.TextAlignment" Value="Right"/>
+                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                </Style>
+                            </DataGrid.CellStyle>
+
+                        </DataGrid>
+                    </WrapPanel>
+                </StackPanel>
+                
+            </GroupBox>
+            
+            <GroupBox Grid.Column="0" Grid.Row="1">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Width="Auto">
+                    
+                    <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,5,0,0">
+                        <Label>
+                            <TextBlock FontSize="15" Text="Detalle Seguimiento de Clientes"/>
+                        </Label>
+                    </WrapPanel>
+
+                    <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,5,0,0">
+
+                        <Label>
+                            <!--<TextBlock FontSize="15" Text="{x:Static recurso:Etiquetas.lblTotalHits}"/>-->
+                            <TextBlock FontSize="13" Text="{x:Static recurso:Etiquetas.lblTotalHits}"/>
+                        </Label>
+                        <Label>
+                            <TextBlock FontSize="13" Name="_lblHitsDetalle"/>
+                        </Label>
+                    </WrapPanel>
+                    <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="10,5,0,0">
+                        <DataGrid HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="Collapsed"
+                              Name="_lstResultadosDetalle" ItemsSource="{Binding}" AutoGenerateColumns="False" 
+                              HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Auto"  Height="250"  
+                              GridLinesVisibility="All" MouseLeftButtonUp="_lstResultadosDetalle_MouseLeftButtonUp">
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                                                <TextBlock Text="{Binding}"
+                                                       Foreground="White" FontWeight="Bold" Background="Green" 
+                                                       HorizontalAlignment="Stretch" TextAlignment="Center" Padding="4">
+                                                </TextBlock>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+
+                                </Style>
+                            </DataGrid.ColumnHeaderStyle>
+
+                            <DataGrid.Columns>
+
+                                <DataGridTextColumn Header="IANULADA" Binding="{Binding Path=IANULADA}" Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="CFACTURA" Binding="{Binding Path=CFACTURA}" Width="100">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="FFACTURA" Binding="{Binding Path=FFACTURA, StringFormat={}{0:dd/MM/yyyy}}" 
+                                                Width="100">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="CASOCIADO" Binding="{Binding Path=CASOCIADO}" Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="CIDIOMA" Binding="{Binding Path=CIDIOMA}" Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="CMONEDA" Binding="{Binding Path=CMONEDA}" Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="XCASO" Binding="{Binding Path=XCASO}" Width="Auto">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Left" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="XINICIAL" Binding="{Binding Path=XINICIAL}" Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="PIMPUESTO" Binding="{Binding Path=PIMPUESTO}" Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="PDESCUENTO" Binding="{Binding Path=PDESCUENTO}" Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="CASOC_IMP" Binding="{Binding Path=CASOC_IMP}" Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="CINTE_IMP" Binding="{Binding Path=CINTE_IMP}" Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="XTERRERO" Binding="{Binding Path=XTERRERO}" Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="XEMAIL" Binding="{Binding Path=XEMAIL}" Width="80"/>
+
+                                <DataGridTextColumn Header="CSENIAT" Binding="{Binding Path=CSENIAT}" Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="FSENIAT" Binding="{Binding Path=FSENIAT, StringFormat={}{0:dd/MM/yyyy}}" 
+                                                Width="100">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="PSENIAT" Binding="{Binding Path=PSENIAT}" Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="IP" Binding="{Binding Path=IP}" Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="XASOCIADO" Binding="{Binding Path=XASOCIADO}" Width="Auto">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Left" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="XRIF" Binding="{Binding Path=XRIF}" Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="XNIT" Binding="{Binding Path=XNIT}" Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="FOPERACION" Binding="{Binding Path=FOPERACION, StringFormat={}{0:dd/MM/yyyy}}"
+                                                Width="100">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="CPAIS" Binding="{Binding Path=CPAIS}" Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="CODETI" Binding="{Binding Path=CODETI}" Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="NCONTROL" Binding="{Binding Path=NCONTROL}" Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="XOPERACION" Binding="{Binding Path=XOPERACION}" Width="400">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Left" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="MONTO" 
+                                                Binding="{Binding Path=MONTO, StringFormat= {}{0:N}, ConverterCulture=de-DE}" 
+                                                Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Right" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="MONTO_BF" 
+                                                Binding="{Binding Path=MONTO_BF, StringFormat= {}{0:N}, ConverterCulture=de-DE}" 
+                                                Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Right" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="DIAS" Binding="{Binding Path=DIAS}" Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="EDOVEN" Binding="{Binding Path=EDOVEN}" Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="EDONOT" Binding="{Binding Path=EDONOT}" Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="AÑO" Binding="{Binding Path=AÑO}" Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="MES" Binding="{Binding Path=MES}" Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </WrapPanel>
+                </StackPanel>
+            </GroupBox>
+            
+        </Grid>
+
+            <!--<GroupBox Grid.Column="0" Grid.Row="0" Margin="5" Height="35" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="Auto">
                 <Label>
                     <TextBlock FontSize="15" Text="{x:Static recurso:Etiquetas.lblTotalHits}"/>
                 </Label>
@@ -31,123 +409,337 @@
                 </Label>
 
             </StackPanel>
-        </GroupBox>
-        <GroupBox Grid.Column="1" Margin="5,5,0,5">
+        </GroupBox>-->
+        <!--<GroupBox Grid.Column="1" Margin="5,5,0,5">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
                 <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,5,0,0">
-                    <DataGrid HorizontalAlignment="Center"  VerticalAlignment="Top" 
-                      Name="_lstResultados" Height="250"   
-                      ItemsSource="{Binding}"                  
-                      ColumnHeaderHeight="30" AutoGenerateColumns="True"
-                      CanUserResizeColumns="False" CanUserAddRows="False"
-                      CanUserReorderColumns="True" CanUserResizeRows="False" 
-                      HorizontalContentAlignment="Center" MouseLeftButtonUp="_lstResultados_MouseLeftButtonUp">
-                            <DataGrid.ColumnHeaderStyle>
-                                <Style TargetType="{x:Type DataGridColumnHeader}">
-                                    <Setter Property="FontWeight" Value="Bold" />
-                                    <Setter Property="HorizontalAlignment" Value="Center" />
-                                </Style>
-                            </DataGrid.ColumnHeaderStyle>
+                    <DataGrid HorizontalAlignment="Center"  VerticalAlignment="Top" Name="_lstResultados" Height="250" 
+                              ItemsSource="{Binding}" ColumnHeaderHeight="30" AutoGenerateColumns="True" ColumnWidth="80" RowHeight="25"
+                              CanUserResizeColumns="False" CanUserAddRows="False" GridLinesVisibility="All" BorderBrush="Transparent"
+                              MouseLeftButtonUp="_lstResultados_MouseLeftButtonUp">
+                        
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                                            <TextBlock Text="{Binding}"
+                                                       Foreground="White" FontWeight="Bold" Background="Green" 
+                                                       HorizontalAlignment="Stretch" TextAlignment="Center" Padding="4">
+                                            </TextBlock>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Block.TextAlignment" Value="Right"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            </Style>
+                        </DataGrid.CellStyle>
+                        
                     </DataGrid>
                 </WrapPanel>
 
                 <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="10,5,0,0">
-                    <!--<DataGrid HorizontalAlignment="Center"  VerticalAlignment="Top" 
-                      Name="_lstResultadosDetalle" Height="250" Visibility="Collapsed"   
-                      ItemsSource="{Binding}"                  
-                      ColumnHeaderHeight="30" AutoGenerateColumns="True"
-                      CanUserResizeColumns="False" CanUserAddRows="False"
-                      CanUserReorderColumns="True" CanUserResizeRows="False" 
-                      HorizontalContentAlignment="Center">
-                            <DataGrid.ColumnHeaderStyle>
-                                <Style TargetType="{x:Type DataGridColumnHeader}">
-                                    <Setter Property="FontWeight" Value="Bold" />
-                                    <Setter Property="HorizontalAlignment" Value="Center" />
-                                </Style>
-                            </DataGrid.ColumnHeaderStyle>
-                    </DataGrid>-->
                     <DataGrid HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="Collapsed"
                               Name="_lstResultadosDetalle" ItemsSource="{Binding}" AutoGenerateColumns="False" 
                               HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Auto"  Height="250"  
-                              GridLinesVisibility="All"
-                              >
+                              GridLinesVisibility="All" MouseLeftButtonUp="_lstResultadosDetalle_MouseLeftButtonUp">
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="{x:Type DataGridColumnHeader}">
-                                <Setter Property="FontWeight" Value="Bold" />
-                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                                            <TextBlock Text="{Binding}"
+                                                       Foreground="White" FontWeight="Bold" Background="Green" 
+                                                       HorizontalAlignment="Stretch" TextAlignment="Center" Padding="4">
+                                            </TextBlock>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
                             </Style>
                         </DataGrid.ColumnHeaderStyle>
-                        
+
                         <DataGrid.Columns>
 
-                            <DataGridTextColumn Header="IANULADA" Binding="{Binding Path=IANULADA}" Width="80" Block.TextAlignment="Center" />
-                            <DataGridTextColumn Header="CFACTURA" Binding="{Binding Path=CFACTURA}" Width="100"  />
+                            <DataGridTextColumn Header="IANULADA" Binding="{Binding Path=IANULADA}" Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            
+                            <DataGridTextColumn Header="CFACTURA" Binding="{Binding Path=CFACTURA}" Width="100">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
                             <DataGridTextColumn Header="FFACTURA" Binding="{Binding Path=FFACTURA, StringFormat={}{0:dd/MM/yyyy}}" 
-                                                Width="100"/>
-                            <DataGridTextColumn Header="CASOCIADO" Binding="{Binding Path=CASOCIADO}" Width="80"  />
-                            <DataGridTextColumn Header="CIDIOMA" Binding="{Binding Path=CIDIOMA}" Width="80"  />
-                            <DataGridTextColumn Header="CMONEDA" Binding="{Binding Path=CMONEDA}" Width="80"  />
-                            <DataGridTextColumn Header="XCASO" Binding="{Binding Path=XCASO}" Width="Auto"  />
-                            <DataGridTextColumn Header="XINICIAL" Binding="{Binding Path=XINICIAL}" Width="80"  />
-                            <DataGridTextColumn Header="PIMPUESTO" Binding="{Binding Path=PIMPUESTO}" Width="80"  />
-                            <DataGridTextColumn Header="PDESCUENTO" Binding="{Binding Path=PDESCUENTO}" Width="80"  />
-                            <DataGridTextColumn Header="CASOC_IMP" Binding="{Binding Path=CASOC_IMP}" Width="80"  />
-                            <DataGridTextColumn Header="CINTE_IMP" Binding="{Binding Path=CINTE_IMP}" Width="80"  />
-                            <DataGridTextColumn Header="XTERRERO" Binding="{Binding Path=XTERRERO}" Width="80"  />
-                            <DataGridTextColumn Header="XEMAIL" Binding="{Binding Path=XEMAIL}" Width="80"  />
-                            <DataGridTextColumn Header="CSENIAT" Binding="{Binding Path=CSENIAT}" Width="80"  />
+                                                Width="100">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            
+                            <DataGridTextColumn Header="CASOCIADO" Binding="{Binding Path=CASOCIADO}" Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="CIDIOMA" Binding="{Binding Path=CIDIOMA}" Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="CMONEDA" Binding="{Binding Path=CMONEDA}" Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="XCASO" Binding="{Binding Path=XCASO}" Width="Auto">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Left" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="XINICIAL" Binding="{Binding Path=XINICIAL}" Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="PIMPUESTO" Binding="{Binding Path=PIMPUESTO}" Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="PDESCUENTO" Binding="{Binding Path=PDESCUENTO}" Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="CASOC_IMP" Binding="{Binding Path=CASOC_IMP}" Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="CINTE_IMP" Binding="{Binding Path=CINTE_IMP}" Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="XTERRERO" Binding="{Binding Path=XTERRERO}" Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            
+                            <DataGridTextColumn Header="XEMAIL" Binding="{Binding Path=XEMAIL}" Width="80"/>
+
+                            <DataGridTextColumn Header="CSENIAT" Binding="{Binding Path=CSENIAT}" Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
                             <DataGridTextColumn Header="FSENIAT" Binding="{Binding Path=FSENIAT, StringFormat={}{0:dd/MM/yyyy}}" 
-                                                Width="100"  />
-                            <DataGridTextColumn Header="PSENIAT" Binding="{Binding Path=PSENIAT}" Width="80"  />
-                            <DataGridTextColumn Header="IP" Binding="{Binding Path=IP}" Width="80"  />
-                            <DataGridTextColumn Header="XASOCIADO" Binding="{Binding Path=XASOCIADO}" Width="Auto"  />
-                            <DataGridTextColumn Header="XRIF" Binding="{Binding Path=XRIF}" Width="80"  />
-                            <DataGridTextColumn Header="XNIT" Binding="{Binding Path=XNIT}" Width="80"  />
+                                                Width="100">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="PSENIAT" Binding="{Binding Path=PSENIAT}" Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="IP" Binding="{Binding Path=IP}" Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="XASOCIADO" Binding="{Binding Path=XASOCIADO}" Width="Auto">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Left" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="XRIF" Binding="{Binding Path=XRIF}" Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="XNIT" Binding="{Binding Path=XNIT}" Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
                             <DataGridTextColumn Header="FOPERACION" Binding="{Binding Path=FOPERACION, StringFormat={}{0:dd/MM/yyyy}}"
-                                                Width="100"  />
-                            <DataGridTextColumn Header="CPAIS" Binding="{Binding Path=CPAIS}" Width="80"  />
-                            <DataGridTextColumn Header="CODETI" Binding="{Binding Path=CODETI}" Width="80"  />
-                            <DataGridTextColumn Header="NCONTROL" Binding="{Binding Path=NCONTROL}" Width="80"  />
-                            <DataGridTextColumn Header="XOPERACION" Binding="{Binding Path=XOPERACION}" Width="Auto" Block.TextAlignment="Justify" />
+                                                Width="100">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="CPAIS" Binding="{Binding Path=CPAIS}" Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="CODETI" Binding="{Binding Path=CODETI}" Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="NCONTROL" Binding="{Binding Path=NCONTROL}" Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="XOPERACION" Binding="{Binding Path=XOPERACION}" Width="Auto">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Left" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
                             <DataGridTextColumn Header="MONTO" 
                                                 Binding="{Binding Path=MONTO, StringFormat= {}{0:N}, ConverterCulture=de-DE}" 
-                                                Width="80"  />
+                                                Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Right" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
                             <DataGridTextColumn Header="MONTO_BF" 
                                                 Binding="{Binding Path=MONTO_BF, StringFormat= {}{0:N}, ConverterCulture=de-DE}" 
-                                                Width="80"  />
-                            <DataGridTextColumn Header="DIAS" Binding="{Binding Path=DIAS}" Width="80"  />
-                            <DataGridTextColumn Header="EDOVEN" Binding="{Binding Path=EDOVEN}" Width="80"  />
-                            <DataGridTextColumn Header="EDONOT" Binding="{Binding Path=EDONOT}" Width="80"  />
-                            <DataGridTextColumn Header="AÑO" Binding="{Binding Path=AÑO}" Width="80"  />
-                            <DataGridTextColumn Header="MES" Binding="{Binding Path=MES}" Width="80"  />
+                                                Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Right" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="DIAS" Binding="{Binding Path=DIAS}" Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="EDOVEN" Binding="{Binding Path=EDOVEN}" Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="EDONOT" Binding="{Binding Path=EDONOT}" Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="AÑO" Binding="{Binding Path=AÑO}" Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="MES" Binding="{Binding Path=MES}" Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            
                         </DataGrid.Columns>
                     </DataGrid>
                 </WrapPanel>
 
 
             </StackPanel>
-            <!-- <ListView Name="_lstResultados" ItemsSource="{Binding}" 
-                      SelectionMode="Single" 
-                      Style="{DynamicResource EstiloListView}">
-                <ListView.View>
-                    <GridView>
-
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=MaestroDePlantilla.Plantilla.Descripcion}" Width="230">
-                            <GridViewColumnHeader Tag="Plantilla.Descripcion" Content="{x:Static recurso:Etiquetas.lsvPlantilla}"/>
-                        </GridViewColumn>
-
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=NombreCampoFiltro}" Width="120">
-                            <GridViewColumnHeader Tag="NombreCampoFiltro" Content="{x:Static recurso:Etiquetas.lsvCampoVariable}"/>
-                        </GridViewColumn>
-
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=TipoDatoCampoFiltro}" Width="120">
-                            <GridViewColumnHeader Tag="TipoDatoCampoFiltro" Content="{x:Static recurso:Etiquetas.lsvTipoCampo}"/>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>-->
             
-        </GroupBox>
+            
+        </GroupBox>-->
 
         <GroupBox Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
             <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" 

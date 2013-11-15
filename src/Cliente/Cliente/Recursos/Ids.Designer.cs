@@ -2401,6 +2401,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a SEG_COB.
+        /// </summary>
+        public static string fac_SeguimientoCobranza {
+            get {
+                return ResourceManager.GetString("fac_SeguimientoCobranza", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a FAC_SERVICIOS.
         /// </summary>
         public static string fac_Servicio {
@@ -3108,6 +3117,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string Rol {
             get {
                 return ResourceManager.GetString("Rol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SEG_COB.
+        /// </summary>
+        public static string SeguimientoDeCobranzas {
+            get {
+                return ResourceManager.GetString("SeguimientoDeCobranzas", resourceCulture);
             }
         }
         

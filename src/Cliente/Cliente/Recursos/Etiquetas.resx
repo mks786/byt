@@ -4176,4 +4176,19 @@ en Prensa:</value>
   <data name="btnExportarResumen" xml:space="preserve">
     <value>Exportar Resumen</value>
   </data>
+  <data name="fac_menuItemFacSeguimientoDeCobranzas" xml:space="preserve">
+    <value>Seguimiento de Cobranzas</value>
+  </data>
+  <data name="titleConsultarSeguimientoCobranzas" xml:space="preserve">
+    <value>Consultar Seguimiento de Cobranzas</value>
+  </data>
+  <data name="lsvCantidadGestiones" xml:space="preserve">
+    <value>Total de Gestiones</value>
+  </data>
+  <data name="cbiCamposVistaSeguimientoCobranzas" xml:space="preserve">
+    <value>SEG_COB_CAMPOVISTA</value>
+  </data>
+  <data name="titleListaResumenDatosSegCobranza" xml:space="preserve">
+    <value>Resumen de Datos - Seguimiento de Cobranzas</value>
+  </data>
 </root>

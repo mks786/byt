@@ -29,9 +29,17 @@ namespace Trascend.Bolet.Servidor
             servicio.Autenticar(usuarioPrueba);
 
             #region Codigo de Prueba NO BORRAR 
-            
-            
-            
+            /*
+            Asociado asociado = new Asociado();
+            asociado.Id = 4;
+            FiltroDataCrudaCobranza filtro = new FiltroDataCrudaCobranza();
+            //filtro.Moneda = "US";
+            //filtro.Asociado = asociado;
+            //filtro.Ordenamiento = "DESC";
+            SeguimientoDeCobranzasServicios servicioPrueba = new SeguimientoDeCobranzasServicios();
+            DataTable datos = servicioPrueba.GenerarDatosResumenGeneral(filtro);
+            */
+
 
             //Console.ReadLine();
             

@@ -1350,6 +1350,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a SEG_COB_CAMPOVISTA.
+        /// </summary>
+        public static string cbiCamposVistaSeguimientoCobranzas {
+            get {
+                return ResourceManager.GetString("cbiCamposVistaSeguimientoCobranzas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a CARIBE.
         /// </summary>
         public static string cbiCaribe {
@@ -2670,6 +2679,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string fac_menuItemFacSeguimientoDeClientes {
             get {
                 return ResourceManager.GetString("fac_menuItemFacSeguimientoDeClientes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Seguimiento de Cobranzas.
+        /// </summary>
+        public static string fac_menuItemFacSeguimientoDeCobranzas {
+            get {
+                return ResourceManager.GetString("fac_menuItemFacSeguimientoDeCobranzas", resourceCulture);
             }
         }
         
@@ -7707,6 +7725,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Total de Gestiones.
+        /// </summary>
+        public static string lsvCantidadGestiones {
+            get {
+                return ResourceManager.GetString("lsvCantidadGestiones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Carta.
         /// </summary>
         public static string lsvCarta {
@@ -11235,6 +11262,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Consultar Seguimiento de Cobranzas.
+        /// </summary>
+        public static string titleConsultarSeguimientoCobranzas {
+            get {
+                return ResourceManager.GetString("titleConsultarSeguimientoCobranzas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Consultar Tipo de base.
         /// </summary>
         public static string titleConsultarTipoBase {
@@ -12167,6 +12203,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleListaResumenDatosSegClientes {
             get {
                 return ResourceManager.GetString("titleListaResumenDatosSegClientes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Resumen de Datos - Seguimiento de Cobranzas.
+        /// </summary>
+        public static string titleListaResumenDatosSegCobranza {
+            get {
+                return ResourceManager.GetString("titleListaResumenDatosSegCobranza", resourceCulture);
             }
         }
         

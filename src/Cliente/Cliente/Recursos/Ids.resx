@@ -1155,4 +1155,10 @@
   <data name="fac_SeguimientoClientes" xml:space="preserve">
     <value>FAC_PEND</value>
   </data>
+  <data name="fac_SeguimientoCobranza" xml:space="preserve">
+    <value>SEG_COB</value>
+  </data>
+  <data name="SeguimientoDeCobranzas" xml:space="preserve">
+    <value>SEG_COB</value>
+  </data>
 </root>

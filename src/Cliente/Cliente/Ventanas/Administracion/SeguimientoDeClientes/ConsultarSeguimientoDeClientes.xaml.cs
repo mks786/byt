@@ -189,6 +189,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
             set { this._cbxEjeZSegClientes.SelectedItem = value; }
         }
 
+        public string TotalUSD
+        {
+            get { return this._txtTotalDolares.Text; }
+            set { this._txtTotalDolares.Text = value; }
+        }
+
+        public string TotalBSF
+        {
+            get { return this._txtTotalBolivares.Text; }
+            set { this._txtTotalBolivares.Text = value; }
+        }
+
         #endregion
 
         #region Eventos

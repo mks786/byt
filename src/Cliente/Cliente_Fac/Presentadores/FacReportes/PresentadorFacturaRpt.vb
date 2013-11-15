@@ -317,16 +317,24 @@ Namespace Presentadores.FacReportes
 
         Public Sub lp_fecha_esc_n_bf(ByVal dfecha As Date, ByRef cfecha As String)
             Dim w_dia, w_mes, w_ano As Integer
+            Dim dia As String
+            dia = String.Empty
+
             w_mes = dfecha.Month
             w_dia = dfecha.Day
             w_ano = dfecha.Year
             If w_dia < 10 Then
-                w_dia = "0" & w_dia
+                'w_dia = "0" & w_dia
+                dia = "0" & w_dia.ToString
+            Else
+                dia = w_dia.ToString
             End If
             If w_mes < 10 Then
-                cfecha = "Caracas " & w_dia & "/0" & w_mes & "/" & w_ano
+                'cfecha = "Caracas " & w_dia & "/0" & w_mes & "/" & w_ano
+                cfecha = "Caracas " & dia & "/0" & w_mes & "/" & w_ano
             Else
-                cfecha = "Caracas " & w_dia & "/" & w_mes & "/" & w_ano
+                'cfecha = "Caracas " & w_dia & "/" & w_mes & "/" & w_ano
+                cfecha = "Caracas " & dia & "/" & w_mes & "/" & w_ano
             End If
         End Sub
 

@@ -62,6 +62,7 @@
     <Compile Include="ContratosServicios\IRegistradorServicios.cs" />
     <Compile Include="ContratosServicios\IReporteServicios.cs" />
     <Compile Include="ContratosServicios\ISeguimientoClientesServicios.cs" />
+    <Compile Include="ContratosServicios\ISeguimientoDeCobranzasServicios.cs" />
     <Compile Include="ContratosServicios\ITipoCajaServicios.cs" />
     <Compile Include="ContratosServicios\ITipoDocumentoServicios.cs" />
     <Compile Include="ContratosServicios\ITipoEmailAsociadoServicios.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Entidades\FacViGestionAsociado.cs" />
     <Compile Include="Entidades\FechaMarca.cs" />
     <Compile Include="Entidades\FiltroDataCruda.cs" />
+    <Compile Include="Entidades\FiltroDataCrudaCobranza.cs" />
     <Compile Include="Entidades\FiltroPlantilla.cs" />
     <Compile Include="Entidades\FiltroReporte.cs" />
     <Compile Include="Entidades\InstruccionCorrespondencia.cs" />
