@@ -218,6 +218,15 @@ Namespace Recursos
         End Property
         
         '''<summary>
+        '''  Busca una cadena traducida similar a Nueva Gestión.
+        '''</summary>
+        Public Shared ReadOnly Property btnNuevaGestion() As String
+            Get
+                Return ResourceManager.GetString("btnNuevaGestion", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Busca una cadena traducida similar a Nuevo Contacto.
         '''</summary>
         Public Shared ReadOnly Property btnNuevoContacto() As String

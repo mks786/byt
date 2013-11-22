@@ -28,11 +28,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
         /// <param name="ejeZ">Eje Z de la tabla Pivot</param>
         /// <param name="datos">DataTable con los datos crudos ya filtrados</param>
         /// <param name="ventanaPadre">Ventana que precede a esta ventana</param>
-        public ListaDatosPivotSeguimientoClientes(object filtroDataSaldos, object ejeX, object ejeY, object ejeZ, object ventanaPadre)
+        public ListaDatosPivotSeguimientoClientes(object filtroDataSaldos, object ejeX, object ejeY, object ejeZ, object totalGlobalUSD, object totalGlobalBSF, object ventanaPadre)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorListaDatosPivotSeguimientoClientes(this, filtroDataSaldos, ejeX, ejeY, ejeZ, ventanaPadre);
+            this._presentador = new PresentadorListaDatosPivotSeguimientoClientes(this, filtroDataSaldos, ejeX, ejeY, ejeZ, totalGlobalUSD, totalGlobalBSF, ventanaPadre);
         }
 
 
@@ -71,7 +71,37 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
             set { this._lblHitsDetalle.Text = value; }
         }
 
+        public string TotalDolares
+        {
+            get { return this._txtTotalDolares.Text; }
+            set { this._txtTotalDolares.Text = value; }
+        }
+
+        public string TotalBolivares
+        {
+            get { return this._txtTotalBolivares.Text; }
+            set { this._txtTotalBolivares.Text = value; }
+        }
+
+        public string TotalGlobalDolares
+        {
+            get { return this._txtTotalGlobalDolares.Text; }
+            set { this._txtTotalGlobalDolares.Text = value; }
+        }
+
+        public string TotalGlobalBolivares
+        {
+            get { return this._txtTotalGlobalBolivares.Text; }
+            set { this._txtTotalGlobalBolivares.Text = value; }
+        }
+
+        public string EjesResumen
+        {
+            set { this._lblEjesXY.Text = value; }
+        }
+
         #endregion
+
 
         #region Eventos
 
@@ -98,7 +128,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
         /// </summary>
         private void _lstResultados_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            
+            String[] parametrosQuery = null;
             DependencyObject dep = (DependencyObject)e.OriginalSource;
 
             while ((dep != null) &&
@@ -126,14 +156,82 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
                 DataGridRow row = dep as DataGridRow;
                 int indiceFila = FindRowIndex(row);
 
-                object datoCelda = ExtractBoundValue(row, cell, indiceFila);
-                String datos = datoCelda.ToString();
-                if (datos.Contains("&"))
-                    this._presentador.CargarDatosDetalle(datos);
+                DataView tablaDv = (DataView)this._lstResultados.ItemsSource;
+                DataTable tablaDatos = new DataTable();
+                tablaDatos = tablaDv.ToTable();
+                int cantidadRegistros = tablaDatos.Rows.Count;
+
+                if (indiceFila != cantidadRegistros - 1)
+                {
+                    object datoCelda = ExtractBoundValue(row, cell, indiceFila);
+                    String datos = datoCelda.ToString();
+                    if (datos.Contains("&"))
+                        this._presentador.CargarDatosDetalle(datos);
+                    else
+                        this._presentador.ObtenerFacGestionesAsociado(datos);
+                }
+
                 else
-                    this._presentador.ObtenerFacGestionesAsociado(datos);
+                {
+                    parametrosQuery = ExtraerColumnasDatosPorPeriodo(row, cell, indiceFila);
+                    this._presentador.ObtenerDetallesPorColumna(parametrosQuery, tablaDatos);
+
+                }
 
             }
+        }
+
+
+        /// <summary>
+        /// Metodo para extraer los headers para la consulta de los totales verticales (Totales por Periodo)
+        /// </summary>
+        /// <param name="row">Ultima fila seleccionada</param>
+        /// <param name="cell">Celda de la ultima fila seleccionada</param>
+        /// <param name="indiceFila">Indice de la ultima fila</param>
+        /// <returns>Cadena con los dos headers necesarios para realizar la consulta de totales verticales</returns>
+        private String[] ExtraerColumnasDatosPorPeriodo(DataGridRow row, DataGridCell cell, int indiceFila)
+        {
+            String headerColumn = String.Empty;
+            String valorColumnaCero = String.Empty;
+            String cadena = String.Empty;
+            string headerColCero = String.Empty;
+            string boundPropertyName = String.Empty;
+            DataGridCell primeraCeldaFilaSeleccionada = null;
+            object valorDeColumnaCero, valorColumnaSeleccionada, data;
+            String[] valoresCompuestosColumnaCero = null;
+
+            //Para encontrar el primer elemento de la fila donde se encuentra la celda seleccionada
+            if (row != null)
+            {
+                System.Windows.Controls.Primitives.DataGridCellsPresenter presenter =
+                    GetVisualChild<System.Windows.Controls.Primitives.DataGridCellsPresenter>(row);
+
+                if (presenter == null)
+                {
+                    this._lstResultados.ScrollIntoView(row, this._lstResultados.Columns[0]);
+                    presenter = GetVisualChild<System.Windows.Controls.Primitives.DataGridCellsPresenter>(row);
+                }
+
+                primeraCeldaFilaSeleccionada = (DataGridCell)presenter.ItemContainerGenerator.ContainerFromIndex(0);
+            }
+
+            // Se busca la columna a la que pertenece la celda seleccionada y la columna de la primera celda de la fila 
+            // de la columna seleccionada
+            DataGridBoundColumn col = cell.Column as DataGridBoundColumn;
+            DataGridBoundColumn columnaCero = primeraCeldaFilaSeleccionada.Column as DataGridBoundColumn;
+
+            //Aqui se sabe cual es header de la celda seleccionada y el de la primera celda de la fila a la que pertenece 
+            Binding binding = col.Binding as Binding;
+            Binding bindingCeldaCero = columnaCero.Binding as Binding;
+
+            headerColCero = bindingCeldaCero.Path.Path;
+            boundPropertyName = binding.Path.Path;
+
+            cadena = headerColCero.ToString() + "_" + boundPropertyName.ToString();
+          
+            String[] parametrosQuery = cadena.Split('_');
+
+            return parametrosQuery;
         }
 
         
@@ -189,15 +287,44 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
             }
 
         }
+
+
+        private void _lstResultados_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if (e.Column.Header.Equals("XASOCIADO"))
+            {
+                e.Column.Width = 300;
+                e.Column.CellStyle = newCellStyle();
+            }
+            else if(e.Column.Header.Equals("CASOCIADO"))
+            {
+                e.Column.Width = 100;
+                e.Column.CellStyle = newCellStyle();
+            }
+
+            
+        }
         
 
         #endregion
 
-        
-
-        
+               
 
         #region Metodos
+
+
+        public static Style newCellStyle()
+        {
+            //And here is the C# code to achieve the above
+            System.Windows.Style style = new Style(typeof(DataGridCell));
+            style.Setters.Add(new System.Windows.Setter
+            {
+                Property = Control.HorizontalAlignmentProperty,
+                Value = HorizontalAlignment.Stretch
+            });
+            return style;
+        }
+
 
         public void Mensaje(string mensaje, int opcion)
         {
@@ -280,6 +407,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
             string boundPropertyName = String.Empty;
             DataGridCell primeraCeldaFilaSeleccionada = null;
             object valorDeColumnaCero, valorColumnaSeleccionada, data;
+            String[] valoresCompuestosColumnaCero = null;
 
             //Para encontrar el primer elemento de la fila donde se encuentra la celda seleccionada
             if (row != null)
@@ -327,12 +455,28 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
             if (!boundPropertyName.Equals(headerColCero))
             {
                 //cadena = valor1.ToString() + "&" + boundPropertyName;
-                cadena = valorDeColumnaCero.ToString() + "&" + boundPropertyName;
+                if(headerColCero.Equals("CASOCIADO"))
+                    cadena = valorDeColumnaCero.ToString() + "&" + boundPropertyName;
+                else if (headerColCero.Equals("XASOCIADO"))
+                {
+                    valoresCompuestosColumnaCero = valorDeColumnaCero.ToString().Split('-');
+                    cadena = valoresCompuestosColumnaCero[0] + "&" + boundPropertyName;
+                }
+                else
+                    cadena = valorDeColumnaCero.ToString() + "&" + boundPropertyName;
             }
             else
             {
-                //cadena = valor1.ToString();
-                cadena = valorDeColumnaCero.ToString();
+                if (!valorDeColumnaCero.ToString().Contains("-"))
+                    cadena = valorDeColumnaCero.ToString();
+                else
+                {
+                    if(valoresCompuestosColumnaCero != null)
+                        valoresCompuestosColumnaCero = null;
+
+                    valoresCompuestosColumnaCero = valorDeColumnaCero.ToString().Split('-');
+                    cadena = valoresCompuestosColumnaCero[0];
+                }
             }
 
             return cadena;

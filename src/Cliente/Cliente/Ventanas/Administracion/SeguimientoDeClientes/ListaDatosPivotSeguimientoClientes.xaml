@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="800"
 	Title="ListaDatosPivotSeguimientoClientes" Loaded="Page_Loaded">
@@ -30,16 +31,20 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
-            <GroupBox Grid.Column="0" Grid.Row="0">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" Margin="-4,39,4,1" Grid.RowSpan="2" Grid.ColumnSpan="1">
+            <GroupBox Grid.Column="0" Grid.Row="0" Height="290" VerticalAlignment="Top">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Width="Auto">
 
-                    <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,5,0,0">
-                        <Label>
-                            <TextBlock FontSize="15" Text="Cuadro de Resumen de Seguimiento de Clientes"/>
-                        </Label>
-                    </WrapPanel>
+                        <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,5,0,0">
+                            <Label>
+                                <TextBlock FontSize="15" Text="Resumen de Seguimiento de Clientes: "/>
+                            </Label>
+                            <Label>
+                                <TextBlock FontSize="15" Name="_lblEjesXY"/>
+                            </Label>
+                        </WrapPanel>
 
-                    <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,5,0,0">
+                        <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,5,0,0">
 
                         <Label>
                             <!--<TextBlock FontSize="15" Text="{x:Static recurso:Etiquetas.lblTotalHits}"/>-->
@@ -50,12 +55,49 @@
                         </Label>
                     </WrapPanel>
 
-                    <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,5,0,0">
-                        <DataGrid HorizontalAlignment="Center"  VerticalAlignment="Top" Name="_lstResultados" Height="250" 
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0" Height="20">
+                            <Label Width="100">
+                                <TextBlock Text="Total Global USD:" FontSize="10" VerticalAlignment="Center"/>
+                            </Label>
+                            <custom:ByTTextBox Name="_txtTotalGlobalDolares" Width="90" MaxLength="12" IsEnabled="True" FontSize="12" FontWeight="Bold" 
+                                               VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+
+                            <Label>
+                                <TextBlock HorizontalAlignment="Right" Width="30" Text=" "/>
+                            </Label>
+                            <Label Width="100">
+                                <TextBlock Text="Total Gobal BsF.:" FontSize="10" VerticalAlignment="Center"/>
+                            </Label>
+                            <custom:ByTTextBox Name="_txtTotalGlobalBolivares" Width="90" MaxLength="12" IsEnabled="True" FontSize="12" FontWeight="Bold"
+                                               VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+
+                        </WrapPanel>
+
+
+
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0" Height="20">
+                            <Label Width="100">
+                                <TextBlock Text="Total Resumen USD:" FontSize="10" VerticalAlignment="Center"/>
+                            </Label>
+                            <custom:ByTTextBox Name="_txtTotalDolares" Width="90" MaxLength="12" IsEnabled="True" FontSize="12" FontWeight="Bold" 
+                                               VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+
+                            <Label>
+                                <TextBlock HorizontalAlignment="Right" Width="30" Text=" "/>
+                            </Label>
+                            <Label Width="100">
+                                <TextBlock Text="Total Resumen Bs.F:" FontSize="10" VerticalAlignment="Center"/>
+                            </Label>
+                            <custom:ByTTextBox Name="_txtTotalBolivares" Width="90" MaxLength="12" IsEnabled="True" FontSize="12" FontWeight="Bold"
+                                               VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+
+                        </WrapPanel>
+
+                        <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,5,0,0">
+                        <DataGrid HorizontalAlignment="Center"  VerticalAlignment="Top" Name="_lstResultados" Height="159" 
                               ItemsSource="{Binding}" ColumnHeaderHeight="30" AutoGenerateColumns="True" ColumnWidth="80" RowHeight="25"
                               CanUserResizeColumns="False" CanUserAddRows="False" GridLinesVisibility="All" BorderBrush="Transparent"
-                              MouseLeftButtonUp="_lstResultados_MouseLeftButtonUp">
-
+                              MouseLeftButtonUp="_lstResultados_MouseLeftButtonUp" AutoGeneratingColumn="_lstResultados_AutoGeneratingColumn">
                             <DataGrid.ColumnHeaderStyle>
                                 <Style TargetType="{x:Type DataGridColumnHeader}">
                                     <Setter Property="Template">
@@ -77,12 +119,15 @@
                                     <Setter Property="VerticalContentAlignment" Value="Center"/>
                                 </Style>
                             </DataGrid.CellStyle>
-
                         </DataGrid>
                     </WrapPanel>
+
+                    
+
                 </StackPanel>
                 
             </GroupBox>
+            </ScrollViewer>
             
             <GroupBox Grid.Column="0" Grid.Row="1">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Width="Auto">

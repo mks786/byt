@@ -28,6 +28,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
         private IAsociadoServicios _asociadoServicios;
         private IList<Asociado> _asociados;
         private IMonedaServicios _monedaServicios;
+        private IList<ListaDatosValores> _tiposSaldos;
+        private IList<ListaDatosValores> _departamentos;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
         private ISeguimientoClientesServicios _seguimientoClientesServicios;
         private DataTable _datosCrudos;
@@ -107,7 +109,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
 
                 CargarCombos();
 
-                PredeterminarEjes();
+                PredeterminarEjes(true);
                 
                 this._ventana.FocoPredeterminado();
 
@@ -147,6 +149,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
                 monedaPorDefecto.Id = "US";
                 this._ventana.Moneda = this.BuscarMoneda(monedas, monedaPorDefecto);
 
+                IList<ListaDatosValores> tiposSaldos = 
+                    this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiTipoSaldoSegClientes));
+                this._tiposSaldos = tiposSaldos;
+                this._ventana.TiposSaldos = tiposSaldos;
+                ListaDatosValores tipoSaldoPorDefecto = new ListaDatosValores();
+                tipoSaldoPorDefecto.Valor = "TODOS";
+                this._ventana.TipoSaldo = this.BuscarListaDeDatosValores(tiposSaldos, tipoSaldoPorDefecto);
+
+                IList<ListaDatosValores> departamentos =
+                    this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiDepartamentoSegClientes));
+                this._departamentos = departamentos;
+                this._ventana.Departamentos = departamentos;
+                ListaDatosValores departamentoPorDefecto = new ListaDatosValores();
+                departamentoPorDefecto.Valor = "TODOS";
+                this._ventana.Departamento = this.BuscarListaDeDatosValores(departamentos, departamentoPorDefecto);
 
                 IList<ListaDatosValores> ordenes =
                     this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiOrdenSeguimientoClientes));
@@ -258,9 +275,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
 
 
         /// <summary>
-        /// Metodo que realiza la consulta sobre la base de datos para obtener la Data Cruda segun el filtro dado 
+        /// Metodo que realiza la consulta sobre la base de datos para obtener la Data de los saldos de la vista FAC_ASO_SALDO 
         /// </summary>
-        public void ConsultarDataCruda()
+        public void ObtenerResumenGeneralSaldos()
         {
 
             Mouse.OverrideCursor = Cursors.Wait;
@@ -303,6 +320,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
             }
             catch (Exception ex)
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Cayo aqui:", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
@@ -315,7 +336,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
 
         
         /// <summary>
-        /// Metodo que calculos los totales de las columnas BSALDO y BSALDO_BF para el resumen de totales generales al inicio del modulo
+        /// Metodo que calcula los totales de las columnas BSALDO y BSALDO_BF para el resumen de totales generales al inicio del modulo
         /// ESTE METODO NO PERTENECE AL PIVOT
         /// </summary>
         /// <param name="nombreColumna">Columna donde se encuentran los datos que se van a sumar</param>
@@ -324,7 +345,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
         private string CalcularTotalColumna(string nombreColumna, DataTable data)
         {
             String total = String.Empty;
-            double sumaTotal = 0.00;
+            decimal sumaTotal =0;
             try
             {
                 #region trace
@@ -339,7 +360,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
                         String campo = columna.ColumnName;
                         if (campo.Equals(nombreColumna))
                         {
-                            double cantidad = Double.Parse(fila[campo].ToString());
+                            //double cantidad = Double.Parse(fila[campo].ToString());
+                            decimal cantidad = Decimal.Parse(fila[campo].ToString());
                             sumaTotal += cantidad;
                         }
                     }
@@ -380,9 +402,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
 
                 filtro.Moneda = this._ventana.Moneda != null ? ((Moneda)this._ventana.Moneda).Id : null;
 
-                //filtro.Anio = !this._ventana.Annio.Equals("") ? int.Parse(this._ventana.Annio) : 0;
+                filtro.TipoSaldo = this._ventana.TipoSaldo != null ? ((ListaDatosValores)this._ventana.TipoSaldo).Valor : "TODOS";
 
-                //filtro.Mes = this._ventana.Mes != null ? int.Parse(((ListaDatosValores)this._ventana.Mes).Valor) : 0;
+                filtro.Departamento = this._ventana.Departamento != null ? ((ListaDatosValores)this._ventana.Departamento).Valor : "TODOS";
 
                 filtro.RangoSuperior = !this._ventana.RangoSuperior.Equals("") ? int.Parse(this._ventana.RangoSuperior) : 0;
 
@@ -425,7 +447,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
                             
                             FiltroDataCruda filtro = ObtenerFiltroDeDataCrudaDeLaPantalla();
 
-                            this.Navegar(new ListaDatosPivotSeguimientoClientes(filtro, this._ventana.EjeXSeleccionado, this._ventana.EjeYSeleccionado, this._ventana.EjeZSeleccionado, this._ventana));
+                            this.Navegar(new ListaDatosPivotSeguimientoClientes(filtro, this._ventana.EjeXSeleccionado, this._ventana.EjeYSeleccionado, this._ventana.EjeZSeleccionado, this._ventana.TotalUSD, this._ventana.TotalBSF, this._ventana));
                         }
                         else
                             this._ventana.Mensaje("Debe seleccionar un campo para el eje Z", 0);
@@ -460,36 +482,40 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
             this._ventana.IdAsociadoFiltrar = null;
             this._ventana.NombreAsociadoFiltrar = null;
             this._ventana.IdAsociado = null;
-            this._ventana.DesactivarEjesPivot();
+            
             this._ventana.Resultados = null;
             this._ventana.RangoSuperior = null;
             double numeroInicial = 0.00;
             this._ventana.TotalBSF = numeroInicial.ToString("N");
             this._ventana.TotalUSD = numeroInicial.ToString("N");
+            this._ventana.TipoSaldo = null;
+            this._ventana.Departamento = null;
 
             IList<Moneda> monedas = this._monedaServicios.ConsultarTodos();
             this._ventana.Monedas = monedas;
             Moneda monedaPorDefecto = new Moneda();
             monedaPorDefecto.Id = "US";
             this._ventana.Moneda = this.BuscarMoneda(monedas, monedaPorDefecto);
-
+            
             ListaDatosValores ordenamientoPorDefecto = new ListaDatosValores();
             ordenamientoPorDefecto.Valor = "DESC";
             this._ventana.Ordenamiento = this.BuscarListaDeDatosValores((IList<ListaDatosValores>)this._ventana.Ordenamientos, ordenamientoPorDefecto);
 
-            ListaDatosValores ejeXDefecto = new ListaDatosValores();
-            ejeXDefecto.Valor = "AÑO";
-            this._ventana.EjeXSeleccionado = this.BuscarListaDeDatosValores((IList<ListaDatosValores>)this._ventana.CamposEjeXPivot, ejeXDefecto);
-            ListaDatosValores ejeYDefecto = new ListaDatosValores();
-            ejeYDefecto.Valor = "CASOCIADO";
-            this._ventana.EjeYSeleccionado = this.BuscarListaDeDatosValores((IList<ListaDatosValores>)this._ventana.CamposEjeYPivot, ejeYDefecto);
-            ListaDatosValores ejeZDefecto = new ListaDatosValores();
-            ejeZDefecto.Valor = "MONTO";
-            this._ventana.EjeZSeleccionado = this.BuscarListaDeDatosValores((IList<ListaDatosValores>)this._ventana.CamposEjeZPivot, ejeZDefecto);
+            ListaDatosValores tipoSaldoPorDefecto = new ListaDatosValores();
+            tipoSaldoPorDefecto.Valor = "TODOS";
+            this._ventana.TipoSaldo = this.BuscarListaDeDatosValores(this._tiposSaldos, tipoSaldoPorDefecto);
+
+            ListaDatosValores departamentoPorDefecto = new ListaDatosValores();
+            departamentoPorDefecto.Valor = "TODOS";
+            this._ventana.Departamento = this.BuscarListaDeDatosValores(this._departamentos, departamentoPorDefecto);
+
+            PredeterminarEjes(false);
+            this._ventana.DesactivarEjesPivot();
+            
 
         }
 
-        public void PredeterminarEjes()
+        public void PredeterminarEjes(bool iniciarVentana)
         {
             try
             {
@@ -498,9 +524,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                
                 IList<ListaDatosValores> camposVistaSeguimientoClientes =
-                    this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCamposVistaSeguimientoClientes));
-                this._ventana.CamposEjeXPivot = this._ventana.CamposEjeYPivot = this._ventana.CamposEjeZPivot = camposVistaSeguimientoClientes;
+                            this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCamposVistaSeguimientoClientes));
+
+
+                if (iniciarVentana)
+                {
+                    this._ventana.CamposEjeXPivot = this._ventana.CamposEjeYPivot = this._ventana.CamposEjeZPivot = camposVistaSeguimientoClientes; 
+                } 
+                
 
                 ListaDatosValores ejeX = new ListaDatosValores();
                 ejeX.Valor = "AÑO";

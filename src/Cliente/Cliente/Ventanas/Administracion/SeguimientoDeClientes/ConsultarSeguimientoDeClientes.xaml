@@ -67,7 +67,27 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblRangoSup}"/>
                         </Label>
                         <custom:ByTTextBox Name="_txtRangoSupSegCliente" Width="60" MaxLength="4" SoloNumero="True" Filtro="True"/>
+                    </WrapPanel >
+                    
+                    <!-- Filtro Tipos de Saldo -->
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,5,0,0">
+                        <Label>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoSaldo}"/>
+                        </Label>
+                        <ComboBox Name="_cbxTipoSaldoSegCliente" HorizontalAlignment="Left" Width="112" 
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion"/>
                     </WrapPanel>
+
+
+                    <!-- Filtro Departamentos -->
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,5,0,0">
+                        <Label>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblDepartamento}"/>
+                        </Label>
+                        <ComboBox Name="_cbxDepartamentoSegCliente" HorizontalAlignment="Left" Width="110" 
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion"/>
+                    </WrapPanel>
+
 
                     <!-- Ordenamiento de los Registros -->
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,5,0,0">
@@ -170,7 +190,7 @@
                             <!--<TextBlock Text="{x:Static recurso:Etiquetas.lblAno}"/>-->
                             Eje X:
                         </Label>
-                        <ComboBox Name="_cbxEjeXSegClientes" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" IsEnabled="False">
+                        <ComboBox Name="_cbxEjeXSegClientes" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Valor" IsEnabled="False">
                         </ComboBox>
                     </WrapPanel>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,5,0,0">
@@ -178,7 +198,7 @@
                             <!--<TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>-->
                             Eje Y:
                         </Label>
-                        <ComboBox Name="_cbxEjeYSegClientes" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" IsEnabled="False">
+                        <ComboBox Name="_cbxEjeYSegClientes" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Valor" IsEnabled="False">
                         </ComboBox>
                     </WrapPanel>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,5,0,0">
@@ -186,7 +206,7 @@
                             <!--<TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>-->
                             Eje Z:
                         </Label>
-                        <ComboBox Name="_cbxEjeZSegClientes" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" IsEnabled="False">
+                        <ComboBox Name="_cbxEjeZSegClientes" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Valor" IsEnabled="False">
                         </ComboBox>
                     </WrapPanel>
                     <Separator Margin="0,5,0,5"/>
@@ -276,13 +296,65 @@
                             <GridViewColumnHeader Tag="DETALLE" Content="DETALLE"/>
                         </GridViewColumn>
 
-                        
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=PORVENCER}" Width="100">
+                            <GridViewColumnHeader Tag="PORVENCER" Content="PORVENCER"/>
+                        </GridViewColumn>-->
+
+                        <GridViewColumn Header="PORVENCER" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=PORVENCER, StringFormat= {}{0:N}, ConverterCulture=de-DE}" 
+                                               TextAlignment="Right"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=VENCIDO}" Width="100">
+                            <GridViewColumnHeader Tag="VENCIDO" Content="VENCIDO"/>
+                        </GridViewColumn>-->
+
+                        <GridViewColumn Header="VENCIDO" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=VENCIDO, StringFormat= {}{0:N}, ConverterCulture=de-DE}" 
+                                               TextAlignment="Right"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=REPORTES}" Width="100">
+                            <GridViewColumnHeader Tag="REPORTES" Content="REPORTES"/>
+                        </GridViewColumn>-->
+
+                        <GridViewColumn Header="REPORTES" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=REPORTES, StringFormat= {}{0:N}, ConverterCulture=de-DE}" 
+                                               TextAlignment="Right"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=OTROS_DPTOS}" Width="100">
+                            <GridViewColumnHeader Tag="OTROS_DPTOS" Content="OTROS_DPTOS"/>
+                        </GridViewColumn>-->
+
+                        <GridViewColumn Header="OTROS_DPTOS" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=OTROS_DPTOS, StringFormat= {}{0:N}, ConverterCulture=de-DE}" 
+                                               TextAlignment="Right"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+
                     </GridView>
                 </ListView.View>
             </ListView>
         </GroupBox>
 
-        <GroupBox Grid.Column="1" Grid.Row="1" BorderBrush="{x:Null}">
+        <GroupBox Grid.Column="1" Grid.Row="1" BorderBrush="Transparent">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Height="58" Width="Auto">
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" Height="20">
                     <Label Width="100">

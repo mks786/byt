@@ -1651,4 +1651,7 @@
   <data name="lblCodigo1" xml:space="preserve">
     <value>Codigo</value>
   </data>
+  <data name="btnNuevaGestion" xml:space="preserve">
+    <value>Nueva Gestión</value>
+  </data>
 </root>

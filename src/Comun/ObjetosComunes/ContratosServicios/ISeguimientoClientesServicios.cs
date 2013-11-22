@@ -30,7 +30,17 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// <param name="ejeY">Parametro Y a consultar</param>
         /// <param name="cadenaFiltroDetalle">Datos a filtrar en la consulta</param>
         /// <returns>DataTable con el detalle de lo seleccionado</returns>
-        DataTable ObtenerDetalle(ListaDatosValores ejeX, ListaDatosValores ejeY, String cadenaFiltroDetalle);
+        DataTable ObtenerDetalle(ListaDatosValores ejeX, ListaDatosValores ejeY, String cadenaFiltroDetalle, FiltroDataCruda filtro);
+
+        /// <summary>
+        /// Servicio que obtiene los datos de detalle de los totales por columna
+        /// </summary>
+        /// <param name="filtro">Filtro para filtrar los datos</param>
+        /// <param name="ejeX">Eje X seleccionado</param>
+        /// <param name="ejeY">Eje Y seleccionado</param>
+        /// <param name="parametros">Parametros necesarios para el WHERE en la consulta</param>
+        /// <returns>DataTable con el detalle por columna</returns>
+        DataTable ObtenerDetalleDeTotales(FiltroDataCruda filtro, ListaDatosValores ejeX, ListaDatosValores ejeY, String[] parametros);
         
     }
 }

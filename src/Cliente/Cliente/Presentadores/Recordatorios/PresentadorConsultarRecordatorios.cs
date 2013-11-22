@@ -578,8 +578,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
 
             this._ventana.AnoFiltro = null;
             this._ventana.MesFiltro = null;
-            this._ventana.FechaDesdeFiltro = DateTime.MinValue;
-            this._ventana.FechaHastaFiltro = DateTime.MinValue;
+            this._ventana.FechaDesdeFiltro = DateTime.Today;
+            this._ventana.FechaHastaFiltro = DateTime.Today;
             this._ventana.Recordatorio = this._listaRecordatorios[0];
             this._ventana.AutomaticoFiltro = true;
             this._ventana.Resultado = null;

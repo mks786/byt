@@ -199,16 +199,29 @@
                         <Label Width="100">
                             <TextBlock Text="Observación"/>
                         </Label>
-                        <TextBox Name="_txtObservacion" Width="300" MaxLength="225" Focusable="True" 
+                        <!--<TextBox Name="_txtObservacion" Width="300" MaxLength="225" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" IsReadOnly="True" CharacterCasing="Upper">
                             <TextBox.Text>
+                                <Binding Path="Observacion" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>-->
+                                        <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
+                                    <!--</Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>-->
+
+                        <custom:ByTTextBox  Name="_txtObservacion" Width="300" MaxLength="500" Focusable="True" 
+                                            ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" 
+                                            IsReadOnly="True" CharacterCasing="Upper" Height="80">
+                            <custom:ByTTextBox.Text>
                                 <Binding Path="Observacion" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
                                         <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
                                     </Binding.ValidationRules>
                                 </Binding>
-                            </TextBox.Text>
-                        </TextBox>
+                            </custom:ByTTextBox.Text>
+                        </custom:ByTTextBox>
+
                     </WrapPanel>
 
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">

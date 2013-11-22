@@ -12,6 +12,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private int _mes;
         private int _rangoInferior;
         private int _rangoSuperior;
+        private string _tipoSaldo;
+        private string _departamento;
         private string _ordenamiento;
         private Asociado _asociado;
         private string _moneda;
@@ -70,6 +72,26 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return this._rangoSuperior; }
             set { this._rangoSuperior = value; }
+        }
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el tipo de Saldo al filtro a utilizar en la consulta para obtener la Data Cruda 
+        /// </summary>
+        public virtual string TipoSaldo
+        {
+            get { return this._tipoSaldo; }
+            set { this._tipoSaldo = value; }
+        }
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Departamento al filtro a utilizar en la consulta para obtener la Data Cruda 
+        /// </summary>
+        public virtual string Departamento
+        {
+            get { return this._departamento; }
+            set { this._departamento = value; }
         }
 
 

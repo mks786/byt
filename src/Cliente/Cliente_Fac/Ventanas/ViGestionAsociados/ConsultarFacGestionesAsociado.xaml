@@ -139,6 +139,9 @@
         <!--Botones Regresar-->
         <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" BorderBrush="{x:Null}">
             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
+                <Button Name="_btnNuevaGestion" Width="100" Click="_btnNuevaGestion_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnNuevaGestion}"/>
+                </Button>
                 <Button Name="_btnCancelar" Width="100" Click="_btnCancelar_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnCancelar}"/>
                 </Button>

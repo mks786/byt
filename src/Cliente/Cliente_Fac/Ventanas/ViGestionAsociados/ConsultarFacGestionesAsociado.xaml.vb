@@ -359,5 +359,9 @@ Namespace Ventanas.ViGestionAsociados
                 _txtAsociadoTipo.Text = value
             End Set
         End Property
+
+        Private Sub _btnNuevaGestion_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
+            Me._presentador.AgregarNuevaGestion()
+        End Sub
     End Class
 End Namespace

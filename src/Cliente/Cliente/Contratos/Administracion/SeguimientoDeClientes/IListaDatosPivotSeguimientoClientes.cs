@@ -15,6 +15,16 @@ namespace Trascend.Bolet.Cliente.Contratos.Administracion.SeguimientoDeClientes
 
         string TotalHitsDetalle { set; }
 
+        string TotalDolares { get; set; }
+
+        string TotalBolivares { get; set; }
+
+        string TotalGlobalDolares { get; set; }
+
+        string TotalGlobalBolivares { get; set; }
+
+        string EjesResumen { set; }
+
         void Mensaje(string mensaje, int opcion);
 
         void VisibilidadListaDetalle();

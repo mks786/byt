@@ -28,13 +28,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
         private ISeguimientoClientesServicios _seguimientoClientesServicios;
         private IAsociadoServicios _asociadoServicios;
         private IFacFacturaServicios _facFacturaServicios;
-        private DataTable _datosCrudos;
+        private DataTable _datosCrudos, _datosCrudosModificados;
         private DataTable _SourceTable = new DataTable();
         private IEnumerable<DataRow> _Source = new List<DataRow>();
         private ListaDatosValores _ejeX, _ejeY, _ejeZ;
         private FiltroDataCruda _filtroDataCruda;
         private DataTable _dataPivot;
-
+        private IList<String> _columnas = new List<String>();
+        private IList<Decimal> _sumatorias = new List<Decimal>();
+        private String _totalGlobalUSD, _totalGlobalBsF;
 
         /// <summary>
         /// Constructor por defecto que recibe el filtro, los ejes y una ventana Padre
@@ -45,7 +47,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
         /// <param name="ejeY"></param>
         /// <param name="ejeZ"></param>
         /// <param name="ventanaPadre"></param>
-        public PresentadorListaDatosPivotSeguimientoClientes (IListaDatosPivotSeguimientoClientes ventana, object filtro, object ejeX, object ejeY, object ejeZ, object ventanaPadre)
+        public PresentadorListaDatosPivotSeguimientoClientes (IListaDatosPivotSeguimientoClientes ventana, object filtro, object ejeX, object ejeY, object ejeZ, object totalGlobalUSD, object totalGlobalBSF, object ventanaPadre)
         {
             try
             {
@@ -59,6 +61,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
                 this._ejeX = (ListaDatosValores)ejeX;
                 this._ejeY = (ListaDatosValores)ejeY;
                 this._ejeZ = (ListaDatosValores)ejeZ;
+                this._totalGlobalUSD = totalGlobalUSD.ToString();
+                this._totalGlobalBsF = totalGlobalBSF.ToString();
                 this._filtroDataCruda = (FiltroDataCruda)filtro;
 
                 this._seguimientoClientesServicios = (ISeguimientoClientesServicios)Activator.GetObject(typeof(ISeguimientoClientesServicios),
@@ -99,13 +103,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
 
                 ActualizarTitulo();
 
-                String ejeX = ((ListaDatosValores)this._ejeX).Descripcion;
-                String ejeY = ((ListaDatosValores)this._ejeY).Descripcion;
-                String ejeZ = ((ListaDatosValores)this._ejeZ).Descripcion;
+                String ejeX = ((ListaDatosValores)this._ejeX).Valor;
+                String ejeY = ((ListaDatosValores)this._ejeY).Valor;
+                String ejeZ = ((ListaDatosValores)this._ejeZ).Valor;
 
                 this._ventana.TotalHitsDetalle = "0";
                 this._datosCrudos = this._seguimientoClientesServicios.ObtenerDataCruda(this._filtroDataCruda);
-                this._SourceTable = this._datosCrudos;
+
+                CalcularTotales(this._datosCrudos);
+
+                if (((ListaDatosValores)this._ejeY).Valor.Equals("XASOCIADO"))
+                {
+                    this._datosCrudosModificados = ModificarDatosCrudos(this._datosCrudos, ((ListaDatosValores)this._ejeY).Valor);
+                    this._SourceTable = this._datosCrudosModificados;
+                }
+                else
+                    this._SourceTable = this._datosCrudos;
+
+
                 this._Source = this._SourceTable.Rows.Cast<DataRow>();
                 
                 DataTable pivotData = PivotData(ejeY, ejeZ, AggregateFunction.Sum, ejeX);
@@ -117,7 +132,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
                     if (pivotData.Rows.Count > 0)
                     {
                         this._ventana.Resultados = pivotDataModificado.DefaultView;
-                        this._ventana.TotalHits = pivotDataModificado.Rows.Count.ToString();
+                        this._ventana.EjesResumen = ((ListaDatosValores)this._ejeY).Descripcion + " vs. " + ((ListaDatosValores)this._ejeX).Descripcion;
+                        this._ventana.TotalHits = (pivotDataModificado.Rows.Count - 1).ToString();
                     }
                 }
                
@@ -142,6 +158,108 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
 
         
         /// <summary>
+        /// Metodo que calcula los totales en dolares y bolivares fuertes para mostrar en la pantalla del Resumen. 
+        /// ESTOS TOTALES SE SACAN DE LA DATA CRUDA TOMANDO EN CUENTA LOS FILTROS
+        /// </summary>
+        /// <param name="dataTable">DataTable con los datos crudos</param>
+        private void CalcularTotales(DataTable datosCrudos)
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                //double totalUSD = 0, totalBSF = 0;
+                decimal totalUSD = 0, totalBSF = 0;
+
+                foreach (DataRow fila in datosCrudos.Rows)
+                {
+                    foreach (DataColumn columna in datosCrudos.Columns)
+                    {
+                        if(columna.ColumnName.Equals("MONTO"))
+                            //totalUSD += double.Parse(fila["MONTO"].ToString());
+                            totalUSD += Decimal.Parse(fila["MONTO"].ToString());
+                        else if (columna.ColumnName.Equals("MONTO_BF"))
+                            //totalBSF += double.Parse(fila["MONTO_BF"].ToString());
+                            totalBSF += Decimal.Parse(fila["MONTO_BF"].ToString());
+                    }
+                }
+
+                this._ventana.TotalDolares = totalUSD.ToString("N");
+                this._ventana.TotalBolivares = totalBSF.ToString("N");
+                this._ventana.TotalGlobalDolares = Decimal.Parse(this._totalGlobalUSD).ToString("N");
+                this._ventana.TotalGlobalBolivares = Decimal.Parse(this._totalGlobalBsF).ToString("N");
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo que modifica la data cruda segun el campo Y indicado
+        /// ESTE METODO SE USA PARA TRATAR LOS DATOS CRUDOS CUANDO EL CALCULO PIVOT DA ERROR EN ALGUNO DE SUS CAMPOS
+        /// </summary>
+        /// <param name="datosCrudosOriginales"></param>
+        /// <param name="nombreCampo"></param>
+        /// <returns></returns>
+        private DataTable ModificarDatosCrudos(DataTable datosCrudosOriginales, String nombreCampo)
+        {
+            
+            DataTable dataAux = datosCrudosOriginales;
+            String valorColumna, valorModificado;
+            
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (nombreCampo.Equals("XASOCIADO"))
+                {
+                    foreach (DataRow fila in dataAux.Rows)
+                    {
+                        foreach (DataColumn columna in dataAux.Columns)
+                        {
+                            if (columna.ColumnName.Equals(nombreCampo))
+                            {
+                                valorColumna = fila[nombreCampo].ToString();
+                                if (valorColumna.Contains("'"))
+                                {
+                                    valorModificado = valorColumna.Replace("'"," ");
+                                    //valorModificado = valorColumna;
+                                    fila[nombreCampo] = valorModificado;
+                                }
+
+                            }
+                        }
+                    }
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return dataAux;
+        }
+
+        
+        /// <summary>
         /// Metodo que formatea el DataTable resultante de la tabla pivot para presentarlo en la interfaz
         /// Este metodo calcula los totales, ordena los totales de mayor a menor y luego les da el formato para que 
         /// se representen en el DataGrid de la interfaz
@@ -152,14 +270,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
         {
             String nombreColumna, valorColumna, nuevoValor, nombreColumnaY;
             nombreColumna = valorColumna = nuevoValor = nombreColumnaY = String.Empty;
-            double numero, subtotal = 0;
+            decimal numero, subtotal = 0;
+            DataTable datosNuevos;
 
-            nombreColumnaY = pivotData.Columns[0].ColumnName;
-            DataTable datosFormateados = pivotData;
-            DataTable datosTotalizados = TotalizarDatos(datosFormateados,nombreColumnaY);
-            
-            #region CODIGO ORIGINAL COMENTADO - NO BORRAR
-            /*datosFormateados.Columns.Add("Total", typeof(string));
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                nombreColumnaY = pivotData.Columns[0].ColumnName;
+                DataTable datosFormateados = pivotData;
+
+                DataTable datosTotalizados = TotalizarDatos(datosFormateados, nombreColumnaY);
+
+                #region CODIGO ORIGINAL COMENTADO - NO BORRAR
+                /*datosFormateados.Columns.Add("Total", typeof(string));
 
             //Calculando la sumatoria y colocandola en la columna Total
             foreach (DataRow fila in datosFormateados.Rows)
@@ -188,37 +316,105 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
             datosFormateados.DefaultView.Sort = "Total desc";
             DataView TableView = datosFormateados.DefaultView;
             DataTable newTable = TableView.ToTable();*/
-            
-            #endregion
-            
-            //GENERAR DATATABLE CON TODO EN STRING PARA LLEVARLO AL DATAGRID
-            this._dataPivot = datosTotalizados;
 
-            DataTable datosNuevos = CopiarDatos(datosTotalizados);
+                #endregion
 
-            
-            
-            foreach (DataRow fila in datosNuevos.Rows)
-            {
-                foreach (DataColumn columna in datosNuevos.Columns)
+                //GENERAR DATATABLE CON TODO EN STRING PARA LLEVARLO AL DATAGRID
+                this._dataPivot = datosTotalizados;
+
+                //SE CALCULAN LOS TOTALES POR COLUMNA
+                CalcularTotalesPorColumna(datosTotalizados);
+
+                datosNuevos = CopiarDatos(datosTotalizados);
+
+                
+                
+                foreach (DataRow fila in datosNuevos.Rows)
                 {
-                    nombreColumna = columna.ColumnName;
-                    valorColumna = fila[nombreColumna].ToString();
-
-                    if ((!nombreColumna.Equals(nombreColumnaY)) && (!valorColumna.Equals("")))
+                    foreach (DataColumn columna in datosNuevos.Columns)
                     {
-                        numero = float.Parse(valorColumna);
-                        nuevoValor = numero.ToString("N", CultureInfo.CreateSpecificCulture("de-DE"));
-                        fila[nombreColumna] = nuevoValor;
-                    }
-                        
-                }
-            }
+                        nombreColumna = columna.ColumnName;
+                        valorColumna = fila[nombreColumna].ToString();
 
-            //this._dataPivot = datosNuevos;
+                        if ((!nombreColumna.Equals(nombreColumnaY)) && (!valorColumna.Equals("")))
+                        {
+                            numero = Decimal.Parse(valorColumna);
+                            nuevoValor = numero.ToString("N", CultureInfo.CreateSpecificCulture("de-DE"));
+                            fila[nombreColumna] = nuevoValor;
+                        }
+
+                    }
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
 
             return datosNuevos;
             //return datosFormateados;
+        }
+
+
+        /// <summary>
+        /// Metodo para calcular los totales por columna en el DataTable modificado
+        /// </summary>
+        /// <param name="datosTotalizados">DataTable modificado</param>
+        /// <returns>DataTable con los totales por filas y por columnas</returns>
+        private void CalcularTotalesPorColumna(DataTable datosTotalizados)
+        {
+            String nombrePrimeraColumna = String.Empty, nombreColumna = String.Empty;
+            //double sumatoria = 0;
+            decimal sumatoria = 0;
+            
+            
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                nombrePrimeraColumna = datosTotalizados.Columns[0].ColumnName;
+
+                foreach (DataColumn columna in datosTotalizados.Columns)
+                {
+                    nombreColumna = columna.ColumnName;
+                    if (!nombreColumna.Equals(nombrePrimeraColumna))
+                    {
+                        this._columnas.Add(nombreColumna);
+                        foreach (DataRow fila in datosTotalizados.Rows)
+                        {
+                            String dato = fila[nombreColumna].ToString();
+                            if ((dato != null) && (!dato.Equals("")))
+                                //sumatoria += double.Parse(fila[nombreColumna].ToString());
+                                sumatoria += Decimal.Parse(fila[nombreColumna].ToString());
+                        }
+                        this._sumatorias.Add(sumatoria);
+                        sumatoria = 0;
+                    }
+                        
+                }
+
+                
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            
         }
 
 
@@ -226,38 +422,75 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
         private DataTable CopiarDatos(DataTable datosTotalizados)
         {
             String[] nombreColumnas = null;
-            String cadena = String.Empty, nombreColumna = String.Empty, valorColumna = String.Empty;
+            String cadena = String.Empty, nombreColumna = String.Empty, valorColumna = String.Empty, primeraColumna = String.Empty;
             int contador = datosTotalizados.Columns.Count;
+            int posicion = 0;
             DataTable newTable = new DataTable();
 
-            for (int i = 0; i < contador; i++)
+            try
             {
-                cadena += datosTotalizados.Columns[i].ColumnName + "_";
-            }
 
-            nombreColumnas = cadena.Split('_');
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            for (int i = 0; i < nombreColumnas.Length; i++)
-            {
-                if (!nombreColumnas[i].Equals(""))
+                for (int i = 0; i < contador; i++)
                 {
-                    newTable.Columns.Add(nombreColumnas[i], typeof(string));
-                }
-            }
-
-            foreach (DataRow fila in datosTotalizados.Rows)
-            {
-                DataRow nuevaFila = newTable.NewRow();
-
-                foreach (DataColumn columna in datosTotalizados.Columns)
-                {
-                    nombreColumna = columna.ColumnName;
-                    valorColumna = fila[nombreColumna].ToString();
-                    nuevaFila[nombreColumna] = valorColumna;                    
-
+                    cadena += datosTotalizados.Columns[i].ColumnName + "_";
                 }
 
-                newTable.Rows.Add(nuevaFila);
+                nombreColumnas = cadena.Split('_');
+
+                for (int i = 0; i < nombreColumnas.Length; i++)
+                {
+                    if (!nombreColumnas[i].Equals(""))
+                    {
+                        newTable.Columns.Add(nombreColumnas[i], typeof(string));
+                    }
+                }
+
+                foreach (DataRow fila in datosTotalizados.Rows)
+                {
+                    DataRow nuevaFila = newTable.NewRow();
+
+                    foreach (DataColumn columna in datosTotalizados.Columns)
+                    {
+                        nombreColumna = columna.ColumnName;
+                        valorColumna = fila[nombreColumna].ToString();
+                        nuevaFila[nombreColumna] = valorColumna;
+
+                    }
+
+                    newTable.Rows.Add(nuevaFila);
+                }
+
+                primeraColumna = newTable.Columns[0].ColumnName;
+
+                //inserto una nueva fila con los totales
+                DataRow filaNueva = newTable.NewRow();
+
+                //filaNueva["CASOCIADO"] = "Totales Periodo";
+                filaNueva[primeraColumna] = "Totales Columna";
+                
+                foreach (String nombreDeColumna in this._columnas)
+                {
+                    String valor = this._sumatorias[posicion].ToString();
+                    filaNueva[nombreDeColumna] = valor;
+                    posicion++;
+                }
+
+                newTable.Rows.Add(filaNueva);
+                
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
             }
 
             return newTable;
@@ -265,44 +498,57 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
 
         
         /// <summary>
-        /// Metodo que genera un nuevo DataTable con la columna TOTAL y organiza los datos en forma descendente
+        /// Metodo que genera un nuevo DataTable con la columna TOTAL y organiza los datos en forma descendente, tomando en cuenta las
+        /// cantidades de la columna TOTAL para organizar los datos. 
         /// </summary>
         /// <param name="datosFormateados">Datos pivot originales</param>
-        /// <returns></returns>
+        /// <returns>DataTable con la una nueva columna TOTAL con la sumatoria por columna de las cantidades calculadas en el pivot original y ordenadas dichas cantidades de mayor a menor</returns>
         private DataTable TotalizarDatos(DataTable datosPivotOriginales, String nombreColumnaY)
         {
 
-            String nombreColumna, valorColumna;
-            float numero, subtotal = 0;
-            
-            datosPivotOriginales.Columns.Add("Total", typeof(float));
-
-            //Calculando la sumatoria y colocandola en la columna Total
-            foreach (DataRow fila in datosPivotOriginales.Rows)
+            try
             {
-                foreach (DataColumn columna in datosPivotOriginales.Columns)
-                {
-                    nombreColumna = columna.ColumnName;
-                    valorColumna = fila[nombreColumna].ToString();
+                String nombreColumna, valorColumna;
+                //float numero, subtotal = 0;
+                //double numero = 0, subtotal = 0;
+                decimal numero = 0, subtotal = 0;
 
-                    if ((!nombreColumna.Equals(nombreColumnaY)) && (!nombreColumna.Equals("Total")) && (!valorColumna.Equals("")))
+                //datosPivotOriginales.Columns.Add("Total", typeof(float));
+                //datosPivotOriginales.Columns.Add("Total", typeof(double));
+                datosPivotOriginales.Columns.Add("Total", typeof(Decimal));
+
+                //Calculando la sumatoria y colocandola en la columna Total
+                foreach (DataRow fila in datosPivotOriginales.Rows)
+                {
+                    foreach (DataColumn columna in datosPivotOriginales.Columns)
                     {
-                        numero = float.Parse(valorColumna);
-                        subtotal += numero;
+                        nombreColumna = columna.ColumnName;
+                        valorColumna = fila[nombreColumna].ToString();
+
+                        if ((!nombreColumna.Equals(nombreColumnaY)) && (!nombreColumna.Equals("Total")) && (!valorColumna.Equals("")))
+                        {
+                            //numero = double.Parse(valorColumna);
+                            numero = Decimal.Parse(valorColumna);
+                            subtotal += numero;
+                        }
+
                     }
+
+                    fila["Total"] = subtotal;
+                    subtotal = 0;
 
                 }
 
-                fila["Total"] = subtotal;
-                subtotal = 0;
+                datosPivotOriginales.DefaultView.Sort = "Total desc";
+                DataView TableView = datosPivotOriginales.DefaultView;
+                DataTable newTable = TableView.ToTable();
 
+                return newTable;
             }
-
-            datosPivotOriginales.DefaultView.Sort = "Total desc";
-            DataView TableView = datosPivotOriginales.DefaultView;
-            DataTable newTable = TableView.ToTable();
-
-            return newTable;
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
 
@@ -517,7 +763,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
 
                 //datosDetalle = this._seguimientoClientesServicios.ObtenerDetalle(this._filtroDataCruda, datos);
 
-                datosDetalle = this._seguimientoClientesServicios.ObtenerDetalle(this._ejeX, this._ejeY, datos);
+                datosDetalle = this._seguimientoClientesServicios.ObtenerDetalle(this._ejeX, this._ejeY, datos, this._filtroDataCruda);
 
                 if (datosDetalle.Rows.Count > 0)
                 {
@@ -692,6 +938,125 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
             #endregion
         }
 
+
+
+
+        public void ObtenerDetallesPorColumna(string[] parametrosQuery, DataTable tablaDatos)
+        {
+            
+            DataTable resultado;
+            String parametros = String.Empty;
+            String[] parametrosServicio = null;
+
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                String datosPrimeraColumna = ObtenerDatosPrimeraColumna(tablaDatos,parametrosQuery[0]);
+
+                parametros = datosPrimeraColumna + "_" + parametrosQuery[1];
+
+                parametrosServicio = parametros.Split('_');
+
+                resultado = this._seguimientoClientesServicios.ObtenerDetalleDeTotales(this._filtroDataCruda, this._ejeX, this._ejeY, parametrosServicio);
+
+                if (resultado.Rows.Count > 0)
+                {
+                    this._ventana.TotalHitsDetalle = resultado.Rows.Count.ToString();
+                    this._ventana.ResultadosDetalle = resultado.DefaultView;
+                    this._ventana.VisibilidadListaDetalle();
+                }
+                else
+                {
+                    this._ventana.TotalHitsDetalle = "0";
+                    this._ventana.Mensaje("No hay resultados para los datos seleccionados", 0);
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (System.Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+        }
+
+
+
+
+        private string ObtenerDatosPrimeraColumna(DataTable tablaDatos, string primeraColumna)
+        {
+
+            String retorno = String.Empty;
+            String cadena = String.Empty, valor = String.Empty, aux = String.Empty;
+            int contador = 1;
+            int cantidadRegistros = tablaDatos.Rows.Count;
+            String[] arrAux = null;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                foreach (DataRow fila in tablaDatos.Rows)
+                {
+                    if (!primeraColumna.Equals("XASOCIADO"))
+                    {
+                        valor = fila[primeraColumna].ToString();
+                    }
+                    else
+                    {
+                        valor = fila[primeraColumna].ToString();
+
+                        if (valor.Contains("-"))
+                        {
+                            arrAux = valor.Split('-');
+                            aux = arrAux[0];
+                            valor = String.Empty;
+                            valor = aux;
+                        }
+                        
+                    }
+                    if (!valor.Equals("Totales Columna"))
+                    {
+                        if (contador != cantidadRegistros - 1)
+                            cadena += valor + ",";
+                        else
+                            cadena += valor;
+                    }
+                    contador++;
+                }
+
+                retorno = cadena;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (System.Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+
+
+            return retorno;
+        }
 
 
     }

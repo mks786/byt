@@ -341,8 +341,8 @@ Namespace Presentadores.ViGestionAsociados
                 End If
                 '#End Region
 
-                'Me.Navegar(New ConsultarFacGestion(Me._ventana.FacGestionSeleccionado))
-                'Me.Navegar(New ConsultarFacGestion ())
+                Me.Navegar(New ConsultarFacGestion(Me._ventana.FacGestionSeleccionado))
+                'Me.Navegar(New ConsultarFacGestion())
                 '#Region "trace"
                 If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
                     logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
@@ -481,5 +481,27 @@ Namespace Presentadores.ViGestionAsociados
         '        'Me._ventana.Personas = Nothing
         '    End Try
         'End Sub
+
+        Public Sub AgregarNuevaGestion()
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                Me.Navegar(New AgregarFacGestion())
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
+            End Try
+        End Sub
+
     End Class
 End Namespace

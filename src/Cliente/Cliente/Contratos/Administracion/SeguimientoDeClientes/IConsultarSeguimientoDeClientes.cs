@@ -13,12 +13,14 @@ namespace Trascend.Bolet.Cliente.Contratos.Administracion.SeguimientoDeClientes
 
         object Moneda { get; set; }
 
-        //string Annio { get; set; }
+        object TiposSaldos { get; set; }
 
-        //object Meses { get; set; }
+        object TipoSaldo { get; set; }
+
+        object Departamentos { get; set; }
+
+        object Departamento { get; set; }
         
-        //object Mes { get; set; }
-
         string RangoInferior {set;}
 
         string RangoSuperior { get; set; }

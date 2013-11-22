@@ -4191,4 +4191,13 @@ en Prensa:</value>
   <data name="titleListaResumenDatosSegCobranza" xml:space="preserve">
     <value>Resumen de Datos - Seguimiento de Cobranzas</value>
   </data>
+  <data name="cbiDepartamentoSegClientes" xml:space="preserve">
+    <value>FAC_PEND_DEPARTAMENTOS</value>
+  </data>
+  <data name="cbiTipoSaldoSegClientes" xml:space="preserve">
+    <value>FAC_PEND_TIPOSALDO</value>
+  </data>
+  <data name="lblTipoSaldo" xml:space="preserve">
+    <value>Tipo de Saldo:</value>
+  </data>
 </root>

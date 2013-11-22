@@ -1593,6 +1593,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a FAC_PEND_DEPARTAMENTOS.
+        /// </summary>
+        public static string cbiDepartamentoSegClientes {
+            get {
+                return ResourceManager.GetString("cbiDepartamentoSegClientes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a ESCRITOPRIORIDADEXTRANJERA.
         /// </summary>
         public static string cbiDetallePrioridad {
@@ -1967,6 +1976,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string cbiTipoReproduccion {
             get {
                 return ResourceManager.GetString("cbiTipoReproduccion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a FAC_PEND_TIPOSALDO.
+        /// </summary>
+        public static string cbiTipoSaldoSegClientes {
+            get {
+                return ResourceManager.GetString("cbiTipoSaldoSegClientes", resourceCulture);
             }
         }
         
@@ -7406,6 +7424,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblTipoReproduccion {
             get {
                 return ResourceManager.GetString("lblTipoReproduccion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tipo de Saldo:.
+        /// </summary>
+        public static string lblTipoSaldo {
+            get {
+                return ResourceManager.GetString("lblTipoSaldo", resourceCulture);
             }
         }
         

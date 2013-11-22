@@ -29,6 +29,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
         private IReporteServicios _reporteDeMarcaServicios;
         private IVistaReporteServicios _vistaReporteServicios;
         private int _filtroValido;
+        private IList<Usuario> _usuarios;
 
         /// <summary>
         /// Constructor predeterminado que solamente recibe la ventana actual
@@ -187,7 +188,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
 
                 IList<Usuario> usuarios = this._usuarioServicios.ConsultarTodos();
                 usuarios = this.FiltrarUsuariosRepetidos(usuarios);
+                this._usuarios = usuarios;
                 this._ventana.Usuarios = usuarios;
+                this._ventana.Usuario = this.BuscarUsuarioPorIniciales(usuarios, UsuarioLogeado);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -355,7 +358,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                 this._ventana.TituloEnEspanol = null;
                 this._ventana.TituloEnIngles = null;
                 this._ventana.Idioma = null;
-                this._ventana.Usuario = null;
+                this._ventana.Usuario = this.BuscarUsuarioPorIniciales(this._usuarios,UsuarioLogeado);
                 this._ventana.TipoDeReporte = null;
                 
                 #region trace

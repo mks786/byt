@@ -66,23 +66,29 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
             set { this._cbxMonedaSegClientes.SelectedItem = value; }
         }
 
-        //public string Annio
-        //{
-        //    get { return this._txtAnoSegCliente.Text; }
-        //    set { this._txtAnoSegCliente.Text = value; }
-        //}
+        public object TiposSaldos
+        {
+            get { return this._cbxTipoSaldoSegCliente.DataContext; }
+            set { this._cbxTipoSaldoSegCliente.DataContext = value; }
+        }
 
-        //public object Meses
-        //{
-        //    get { return this._cbxMesSegCliente.DataContext; }
-        //    set { this._cbxMesSegCliente.DataContext = value; }
-        //}
+        public object TipoSaldo
+        {
+            get { return this._cbxTipoSaldoSegCliente.SelectedItem; }
+            set { this._cbxTipoSaldoSegCliente.SelectedItem = value; }
+        }
 
-        //public object Mes
-        //{
-        //    get { return this._cbxMesSegCliente.SelectedItem; }
-        //    set { this._cbxMesSegCliente.SelectedItem = value; }
-        //}
+        public object Departamentos
+        {
+            get { return this._cbxDepartamentoSegCliente.DataContext; }
+            set { this._cbxDepartamentoSegCliente.DataContext = value; }
+        }
+
+        public object Departamento
+        {
+            get { return this._cbxDepartamentoSegCliente.SelectedItem; }
+            set { this._cbxDepartamentoSegCliente.SelectedItem = value; }
+        }
 
         public string RangoInferior
         {
@@ -251,7 +257,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
         private void _btnConsultar_Click(object sender, RoutedEventArgs e)
         {
             this._btnConsultar.Focus();
-            this._presentador.ConsultarDataCruda();
+            this._presentador.ObtenerResumenGeneralSaldos();
             validarCamposVacios();
         }
 
@@ -358,7 +364,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
             this._btnConsultar.IsDefault = false;
             this._btnVerPivot.IsDefault = true;
             this._btnVerPivot.Focus();
-            this._presentador.PredeterminarEjes();
+            //this._presentador.PredeterminarEjes();
         }
 
         public void DesactivarEjesPivot()
