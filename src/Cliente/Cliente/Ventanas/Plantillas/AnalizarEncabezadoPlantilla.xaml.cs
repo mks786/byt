@@ -150,6 +150,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Plantillas
             this._txtComandoBatConsola.Visibility = System.Windows.Visibility.Collapsed;
             this._btnProbarBatEncabezado.Visibility = System.Windows.Visibility.Collapsed;
         }
+
+        public void AplicarVisibilidadControles()
+        {
+            this._lblMensajeAnalisisSQL.Visibility = System.Windows.Visibility.Collapsed;
+            this._lblMensajeAnalisisBAT.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtComandoConsola.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtComandoBatConsola.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnProbarEncabezado.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnVerScriptEncabezado.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
         #endregion
 
         

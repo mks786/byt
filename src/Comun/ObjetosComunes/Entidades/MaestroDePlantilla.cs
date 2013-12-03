@@ -19,6 +19,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Idioma _idioma;
         private ListaDatosValores _tipoReferencia;
         private ListaDatosValores _tipoCriterio;
+        private Usuario _usuario;
 
        
         #endregion
@@ -175,7 +176,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             get { return _tipoCriterio; }
             set { _tipoCriterio = value; }
         }
-        
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Usuario del Maestro de Plantilla
+        /// </summary>
+        public virtual Usuario Usuario
+        {
+            get { return _usuario; }
+            set { _usuario = value; }
+        }
 
         #endregion
     }

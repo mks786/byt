@@ -15,6 +15,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Administracion.SeguimientoDeCobranzas
 
         string TotalHitsDetalle { set; }
 
+        string EjesResumen { set; }
+
         void Mensaje(string mensaje, int opcion);
 
         void ExportarDataGrid(String tipo);

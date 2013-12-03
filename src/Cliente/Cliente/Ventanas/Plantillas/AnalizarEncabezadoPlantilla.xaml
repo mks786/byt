@@ -118,7 +118,7 @@
 
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" >
-                    <Label>
+                    <Label Name="_lblMensajeAnalisisSQL">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblMensajeAnalisisSQL}"/>
                     </Label>
                     

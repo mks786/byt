@@ -57,5 +57,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Plantillas
 
         void ActivarBotonVariables(bool valor);
 
+        void HabilitarComboUsuarios();
+
     }
 }

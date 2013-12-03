@@ -300,7 +300,7 @@
                             <Button Name="_btnContactosDatos" VerticalAlignment="Bottom" Height="25" Width="105" Click="_btnContactosDatos_Click">
                                 <TextBlock Name="_txbContactosDatos" Text="{x:Static recurso:Etiquetas.btnContactos}"/>
                             </Button>
-                            <Button Name="_btnGestionesDatos" VerticalAlignment="Bottom" Height="25" Width="105">
+                            <Button Name="_btnGestionesDatos" VerticalAlignment="Bottom" Height="25" Width="105" Click="_btnFacGestiones_Click">
                                 <TextBlock Name="_txbGestionesDatos" Text="{x:Static recurso:Etiquetas.btnGestiones}"/>
                             </Button>
                             <Button Name="_btnJustificacionesDatos" VerticalAlignment="Bottom" Height="25" Width="105" Click="_btnJustificacionesDatos_Click">
@@ -651,7 +651,7 @@
                             <Button Name="_btnContactosAdministracion" VerticalAlignment="Bottom" Height="25" Width="105" Click="_btnContactosDatos_Click">
                                 <TextBlock Name="_txbContactosAdministracion" Text="{x:Static recurso:Etiquetas.btnContactos}"/>
                             </Button>
-                            <Button Name="_btnGestionesAdministracion" VerticalAlignment="Bottom" Height="25" Width="105">
+                            <Button Name="_btnGestionesAdministracion" VerticalAlignment="Bottom" Height="25" Width="105" Click="_btnFacGestiones_Click">
                                 <TextBlock Name="_txbGestionesAdministracion" Text="{x:Static recurso:Etiquetas.btnGestiones}"/>
                             </Button>
                             <Button Name="_btnJustificacionesAdministracion" VerticalAlignment="Bottom" Height="25" Width="105" Click="_btnJustificacionesDatos_Click">

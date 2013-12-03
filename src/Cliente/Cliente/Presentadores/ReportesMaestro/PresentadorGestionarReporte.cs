@@ -138,7 +138,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                     CargarCamposReporteSeleccionado(); 
                     CargarUsuario();
                     CargarIdiomas(false);
-                    this._ventana.HabilitarComboVistas(false);
+
+                    if (((IList<CamposReporte>)this._ventana.CamposSeleccionados).Count != 0)
+                        this._ventana.HabilitarComboVistas(false);
+                    else
+                        this._ventana.HabilitarComboVistas(true);
 
                     //Solo se mostraran los botones de Modificar y Modificacion de Filtros si el Usuario Logueado es el mismo que esta consultando
                     if (UsuarioLogeado.NombreCompleto.Equals(this._reporteDeMarca.Usuario))
@@ -549,6 +553,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                         this._ventana.CamposSeleccionados = campos;
                     }
 
+                    if (!this._agregar)
+                    {
+                        if (((IList<CamposReporte>)this._ventana.CamposSeleccionados).Count == 0)
+                            this._ventana.HabilitarComboVistas(true);
+                    }
+
                 }
 
                 #region trace
@@ -903,7 +913,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                         this._ventana.Mensaje("No hay campos para el tipo de Reporte seleccionado. Consulte con su Administrador", 1);
                     }
 
-                    
+
+                }
+                else
+                {
+                    if (((IList<CamposReporte>)this._ventana.CamposSeleccionados).Count == 0)
+                    {
+                        campos = this._camposReporteServicios.ObtenerCamposPorVista(vista.NombreVistaBD);
+
+                        if (campos.Count != 0)
+                        {
+                            this._ventana.CamposReporte = campos;
+                        }
+
+                        else
+                        {
+                            this._ventana.Mensaje("No hay campos para el tipo de Reporte seleccionado. Consulte con su Administrador", 1);
+                        }
+                    }
                 }
 
 

@@ -115,17 +115,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Plantillas
             set { this._cbxCriterioPlantilla.SelectedItem = value; }
         }
 
-        //public object Departamentos
-        //{
-        //    get { return this._cbxDepartamentoPlantilla.DataContext; }
-        //    set { this._cbxDepartamentoPlantilla.DataContext = value; }
-        //}
+        public object Usuarios
+        {
+            get { return this._cbxUsuarioPlantilla.DataContext; }
+            set { this._cbxUsuarioPlantilla.DataContext = value; }
+        }
 
-        //public object Departamento
-        //{
-        //    get { return this._cbxDepartamentoPlantilla.SelectedItem; }
-        //    set { this._cbxDepartamentoPlantilla.SelectedItem = value; }
-        //}
+        public object Usuario
+        {
+            get { return this._cbxUsuarioPlantilla.SelectedItem; }
+            set { this._cbxUsuarioPlantilla.SelectedItem = value; }
+        }
 
         public object Encabezados
         {

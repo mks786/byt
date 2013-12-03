@@ -99,6 +99,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeCobra
 
                 this._ventana.TotalHits = "0";
 
+                this._ventana.TotalGestiones = "0";
+
                 InicializarCombos(false);
 
                 
@@ -290,12 +292,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeCobra
 
                 datos = this._seguimientoDeCobranzasServicios.GenerarDatosResumenGeneral(filtroParaConsultar);
 
+                String totalGestiones = CalcularTotalColumna("TOTAL_GES", datos);
+
                 if (datos.Rows.Count > 0)
                 {
                     this._ventana.Resultados = datos.DefaultView;
                     this._datosCrudos = datos;
                     this._ventana.ActivarEjesPivot();
                     this._ventana.TotalHits = datos.Rows.Count.ToString();
+                    this._ventana.TotalGestiones = totalGestiones;
                     this._ventana.Mensaje("Datos Origen generados, puede generar el Resumen. Elija los campos y presione Generar Resumen", 2);
                 }
                 else
@@ -360,6 +365,58 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeCobra
 
             return filtro;
         }
+
+        /// <summary>
+        /// Metodo que calcula el total vertical de cualquier columna numerica del Resumen General de Gestiones
+        /// </summary>
+        /// <param name="nombreColumna">Nombre de columna a totalizar</param>
+        /// <param name="data">Datos generados para poder hacer el calculo</param>
+        /// <returns>Sumatoria de Gestiones del Resumen General de Gestiones</returns>
+        private string CalcularTotalColumna(string nombreColumna, DataTable data)
+        {
+            String total = String.Empty;
+            decimal sumaTotal = 0, cantidad = 0;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                foreach (DataRow fila in data.Rows)
+                {
+                    foreach (DataColumn columna in data.Columns)
+                    {
+                        String campo = columna.ColumnName;
+                        if (campo.Equals(nombreColumna))
+                        {
+                            if (!string.IsNullOrWhiteSpace(fila[campo].ToString()))
+                            {
+                                cantidad = Decimal.Parse(fila[campo].ToString());
+                            }
+                            else
+                                cantidad = 0;
+                            sumaTotal += cantidad;
+                        }
+                    }
+                }
+
+                total = sumaTotal.ToString("N0");
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+
+            return total;
+        }
+
 
         /// <summary>
         /// Metodo para predeterminar los campos para generar la data pivot de Seguimiento de Cobranzas
@@ -433,6 +490,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeCobra
             this._ventana.Medios = null;
             this._ventana.Usuario = null;
             this._ventana.Usuarios = null;
+            this._ventana.TotalGestiones = "0";
 
             ListaDatosValores ordenamientoPorDefecto = new ListaDatosValores();
             ordenamientoPorDefecto.Valor = "DESC";

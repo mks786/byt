@@ -41,6 +41,15 @@ Namespace Ventanas.FacAsociadoMarcaPatentes
             End Set
         End Property
 
+        Public Property FacVistaFacCxpInternaSeleccionado() As Object Implements Contratos.FacAsociadoMarcaPatentes.IConsultarFacVistaFacturacionCxpInternas.FacVistaFacCxpInternaSeleccionado
+            Get
+                Return Me._lstResultados.SelectedItem
+            End Get
+            Set(value As Object)
+                _lstResultados.SelectedItem = value
+            End Set
+        End Property
+
         Public Property CurSortCol() As System.Windows.Controls.GridViewColumnHeader Implements Contratos.FacAsociadoMarcaPatentes.IConsultarFacVistaFacturacionCxpInternas.CurSortCol
             Get
                 Return _CurSortCol
@@ -111,6 +120,10 @@ Namespace Ventanas.FacAsociadoMarcaPatentes
 
         Public Sub FocoPredeterminado() Implements Contratos.IPaginaBaseFac.FocoPredeterminado
 
+        End Sub
+
+        Private Sub _lstResultados_MouseDoubleClick(sender As System.Object, e As System.Windows.Input.MouseButtonEventArgs)
+            Me._presentador.IrConsultarPagoInternacional()
         End Sub
     End Class
 End Namespace

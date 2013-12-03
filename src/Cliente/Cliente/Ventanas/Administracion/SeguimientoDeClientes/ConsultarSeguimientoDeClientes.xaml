@@ -221,7 +221,7 @@
             </GroupBox>
         </ScrollViewer>
 
-        <GroupBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Margin="5">
+        <GroupBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Margin="5" BorderThickness="0">
             <ListView Name="_lstResultados" ItemsSource="{Binding}" SelectionMode="Single" 
                        Style="{DynamicResource EstiloListView}" MouseDoubleClick="_lstResultados_MouseDoubleClick">
                 <ListView.View>
@@ -354,30 +354,50 @@
             </ListView>
         </GroupBox>
 
-        <GroupBox Grid.Column="1" Grid.Row="1" BorderBrush="Transparent">
+        <GroupBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="0">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Height="58" Width="Auto">
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" Height="20">
                     <Label Width="100">
                         <TextBlock Text="Total Dólares" FontSize="10" VerticalAlignment="Center"/>
                     </Label>
-
-                    <Label>
+                    <!--<Label>
                         <TextBlock HorizontalAlignment="Right" Width="30" Text=" "/>
-                    </Label>
+                    </Label>-->
                     <Label Width="100">
                         <TextBlock Text="Total Bolívares" FontSize="10" VerticalAlignment="Center"/>
+                    </Label>
+                    <Label Width="100">
+                        <TextBlock Text="Total por Vencer" FontSize="10" VerticalAlignment="Center"/>
+                    </Label>
+                    <Label Width="100">
+                        <TextBlock Text="Total Vencido" FontSize="10" VerticalAlignment="Center"/>
+                    </Label>
+                    <Label Width="100">
+                        <TextBlock Text="Total Reportes" FontSize="10" VerticalAlignment="Center"/>
+                    </Label>
+                    <Label Width="100">
+                        <TextBlock Text="Total Otros Departamentos" FontSize="10" VerticalAlignment="Center"/>
                     </Label>
 
                 </WrapPanel>
 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
                     <custom:ByTTextBox Name="_txtTotalDolares" Width="90" MaxLength="12" IsEnabled="True" FontSize="12" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Right">
-                        
                     </custom:ByTTextBox>
-                    <Label>
-                        <TextBlock HorizontalAlignment="Right" Width="43" Text=" "/>
-                    </Label>
-                    <custom:ByTTextBox Name="_txtTotalBolivares" Width="90" MaxLength="12" IsEnabled="True" FontSize="12" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Right">
+
+                    <custom:ByTTextBox Name="_txtTotalBolivares" Width="90" MaxLength="12" IsEnabled="True" FontSize="12" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Margin="10,0,0,0">
+                    </custom:ByTTextBox>
+
+                    <custom:ByTTextBox Name="_txtTotalPorVencer" Width="90" MaxLength="12" IsEnabled="True" FontSize="12" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Margin="10,0,0,0">
+                    </custom:ByTTextBox>
+
+                    <custom:ByTTextBox Name="_txtTotalVencido" Width="90" MaxLength="12" IsEnabled="True" FontSize="12" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Margin="10,0,0,0">
+                    </custom:ByTTextBox>
+
+                    <custom:ByTTextBox Name="_txtTotalReportes" Width="90" MaxLength="12" IsEnabled="True" FontSize="12" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Margin="10,0,0,0">
+                    </custom:ByTTextBox>
+
+                    <custom:ByTTextBox Name="_txtTotalOtrosDptos" Width="90" MaxLength="12" IsEnabled="True" FontSize="12" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Margin="10,0,0,0">
                     </custom:ByTTextBox>
 
                 </WrapPanel>

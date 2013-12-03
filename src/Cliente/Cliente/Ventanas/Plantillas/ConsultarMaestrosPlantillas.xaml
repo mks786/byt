@@ -91,6 +91,16 @@
                     </ComboBox>
                 </WrapPanel>
 
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblUsuarioLogueado}"/>
+                    </Label>
+                    <ComboBox Name="_cbxUsuarioPlantilla" HorizontalAlignment="Left" Width="180" ItemsSource="{Binding}" 
+                              DisplayMemberPath="NombreCompleto">
+
+                    </ComboBox>
+                </WrapPanel>
+
 
 
                 <Separator Margin="0,5,0,5"/>

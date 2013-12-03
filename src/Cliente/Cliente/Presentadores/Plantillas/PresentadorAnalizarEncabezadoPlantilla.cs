@@ -109,7 +109,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                 else
                     this._ventana.GestionarVisibilidadBat();
 
-
+                if (!UsuarioLogeado.Rol.Id.Equals("ADMINISTRADOR"))
+                {
+                    this._ventana.AplicarVisibilidadControles();
+                }
 
                 this._ventana.FocoPredeterminado();
 
@@ -256,6 +259,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                 String valorVariable = null;
                 EncabezadoPlantilla encabezado = (EncabezadoPlantilla)this._ventana.EncabezadoPlantilla;
                 IList<FiltroPlantilla> filtrosEncabezado = (IList<FiltroPlantilla>)this._ventana.Variables;
+
+                GuardarValoresFiltro(filtrosEncabezado);
                 
                 sb.Append(comandoConsola + " ");
                 sb.Append(usuario_password);
@@ -306,6 +311,41 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                 this.Navegar("Error al momento de ejecutar el SQL del Encabezado: " + ex.Message, true);
             }
 
+        }
+
+        
+        /// <summary>
+        /// Metodo que permite guardar los valores dados al filtro antes de ejecutar el SQL y/o el BAT
+        /// </summary>
+        /// <param name="filtrosEncabezado"></param>
+        private void GuardarValoresFiltro(IList<FiltroPlantilla> filtrosEncabezado)
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                bool retorno = false;
+
+                foreach (FiltroPlantilla filtro in filtrosEncabezado)
+                {
+                    retorno = this._filtroPlantillaServicios.InsertarOModificar(filtro, UsuarioLogeado.Hash);                   
+                }
+
+                if (retorno)
+                    this._ventana.MensajeAlerta("Filtros actualizados satisfactoriamente", 2);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
 
@@ -363,6 +403,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                 EncabezadoPlantilla encabezado = (EncabezadoPlantilla)this._ventana.EncabezadoPlantilla;
                 IList<FiltroPlantilla> filtrosEncabezado = (IList<FiltroPlantilla>)this._ventana.Variables;
                 encabezado.VariablesEncabezado = filtrosEncabezado;
+
+                GuardarValoresFiltro(filtrosEncabezado);
 
                 BatPlantilla batEncabezdo = encabezado.BatPlantilla;
 

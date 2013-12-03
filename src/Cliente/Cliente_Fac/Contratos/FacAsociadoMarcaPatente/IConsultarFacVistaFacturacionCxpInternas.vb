@@ -12,6 +12,7 @@ Namespace Contratos.FacAsociadoMarcaPatentes
 
         Property Resultados() As Object
 
+        Property FacVistaFacCxpInternaSeleccionado() As Object
 
         Property CurSortCol() As GridViewColumnHeader
 

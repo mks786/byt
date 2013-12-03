@@ -276,6 +276,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Plantillas
             this._btnAnalizarVariablesWhere_Detalle.IsEnabled = valor;
         }
 
+        public void HabilitarComboUsuarios()
+        {
+            this._cbxUsuario.IsEnabled = true;
+        }
+
+        
         #endregion
 
         

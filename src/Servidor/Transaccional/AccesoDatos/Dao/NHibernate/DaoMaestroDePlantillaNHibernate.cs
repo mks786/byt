@@ -49,6 +49,15 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
+
+                if ((null != maestroDePlantilla.Usuario) && (!maestroDePlantilla.Usuario.Id.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMaestroPlantillaUsuario, maestroDePlantilla.Usuario.Id);
+                    variosFiltros = true;
+                }
+                
                 if (!string.IsNullOrEmpty(maestroDePlantilla.Referido))
                 {
                     if (variosFiltros)

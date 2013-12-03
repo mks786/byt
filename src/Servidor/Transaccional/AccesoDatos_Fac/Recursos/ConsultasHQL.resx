@@ -696,8 +696,8 @@
   <data name="FiltroObtenerFacVistaFacturaServicioId" xml:space="preserve">
     <value>v.Id = {0}</value>
   </data>
-  <data name="FiltroObtenerFacVistaFacturacionCxpInternaCobrada" xml:space="preserve">
-    <value>Cobrada = '{0}'</value>
+  <data name="FiltroObtenerFacVistaFacturacionCxpInternaPagada" xml:space="preserve">
+    <value>Pagada = '{0}'</value>
   </data>
   <data name="FiltroObtenerFacVistaFacturaServicioTipo" xml:space="preserve">
     <value>v.Tipo = '{0}'</value>

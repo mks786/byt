@@ -105,7 +105,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
 
                 this._ventana.TotalUSD = valorInicial.ToString("N");
 
-                this._ventana.TotalBSF = valorInicial.ToString("N");
+                this._ventana.TotalBSF = this._ventana.TotalPorVencer = this._ventana.TotalVencido = this._ventana.TotalReportes = this._ventana.TotalOtrosDptos = valorInicial.ToString("N");
 
                 CargarCombos();
 
@@ -302,6 +302,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
                     this._datosCrudos = datos;
                     this._ventana.TotalUSD = CalcularTotalColumna("BSALDO",datos);
                     this._ventana.TotalBSF = CalcularTotalColumna("BSALDO_BF", datos);
+                    this._ventana.TotalPorVencer = CalcularTotalColumna("PORVENCER", datos);
+                    this._ventana.TotalVencido = CalcularTotalColumna("VENCIDO", datos);
+                    this._ventana.TotalReportes = CalcularTotalColumna("REPORTES", datos);
+                    this._ventana.TotalOtrosDptos = CalcularTotalColumna("OTROS_DPTOS", datos);
                     this._ventana.ActivarEjesPivot();
                     this._ventana.TotalHits = datos.Rows.Count.ToString();
                     this._ventana.Mensaje("Datos Origen generados, puede generar el Resumen. Elija los campos y presione Generar Resumen", 2);
@@ -345,7 +349,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
         private string CalcularTotalColumna(string nombreColumna, DataTable data)
         {
             String total = String.Empty;
-            decimal sumaTotal =0;
+            decimal sumaTotal =0, cantidad =0;
             try
             {
                 #region trace
@@ -361,7 +365,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
                         if (campo.Equals(nombreColumna))
                         {
                             //double cantidad = Double.Parse(fila[campo].ToString());
-                            decimal cantidad = Decimal.Parse(fila[campo].ToString());
+
+                            if (!string.IsNullOrWhiteSpace(fila[campo].ToString()))
+                            {
+                                cantidad = Decimal.Parse(fila[campo].ToString());
+                            }
+                            else
+                                cantidad = 0;
                             sumaTotal += cantidad;
                         }
                     }
@@ -488,6 +498,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
             double numeroInicial = 0.00;
             this._ventana.TotalBSF = numeroInicial.ToString("N");
             this._ventana.TotalUSD = numeroInicial.ToString("N");
+            this._ventana.TotalPorVencer = this._ventana.TotalVencido = this._ventana.TotalReportes = this._ventana.TotalOtrosDptos = numeroInicial.ToString("N");
             this._ventana.TipoSaldo = null;
             this._ventana.Departamento = null;
 

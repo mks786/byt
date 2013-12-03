@@ -27,9 +27,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Plantillas
 
         object Criterio { get; set; }
 
-        //object Departamentos { get; set; }
+        object Usuarios { get; set; }
 
-        //object Departamento { get; set; }
+        object Usuario { get; set; }
 
         object Encabezados { get; set; }
 

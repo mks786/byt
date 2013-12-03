@@ -3292,14 +3292,20 @@ namespace Trascend.Bolet.Cliente.Presentadores
                     this._FacVistaFacturacionCxpInternaServicios = (IFacVistaFacturacionCxpInternaServicios)Activator.GetObject(typeof(IFacVistaFacturacionCxpInternaServicios), ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FacVistaFacturacionCxpInternaServicios"]);
                     IList<FacVistaFacturacionCxpInterna> FacVistaFacturacionCxpInterna = null;
                     FacVistaFacturacionCxpInterna FacVistaFacturacionCxpInternaaux = new FacVistaFacturacionCxpInterna();
-                    FacVistaFacturacionCxpInternaaux.Asociado_o = asociado;
-                    FacVistaFacturacionCxpInternaaux.Cobrada = "NO";
+                    //FacVistaFacturacionCxpInternaaux.Asociado_o = asociado;
+                    FacVistaFacturacionCxpInternaaux.Asociado = asociado;
+                    FacVistaFacturacionCxpInternaaux.Pagada = "NO";
                     FacVistaFacturacionCxpInterna = this._FacVistaFacturacionCxpInternaServicios.ObtenerFacVistaFacturacionCxpInternasFiltro(FacVistaFacturacionCxpInternaaux);
 
                     double? monto = 0;
                     if (FacVistaFacturacionCxpInterna.Count > 0)
                     {
-                        for (int j = 1; j <= FacVistaFacturacionCxpInterna.Count - 1; j++)
+                        //for (int j = 1; j <= FacVistaFacturacionCxpInterna.Count - 1; j++)
+                        //{
+                        //    monto = monto + FacVistaFacturacionCxpInterna[j].Monto;
+                        //}
+
+                        for (int j = 0; j < FacVistaFacturacionCxpInterna.Count; j++)
                         {
                             monto = monto + FacVistaFacturacionCxpInterna[j].Monto;
                         }

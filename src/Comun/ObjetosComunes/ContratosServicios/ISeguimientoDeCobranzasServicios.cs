@@ -23,7 +23,22 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// <returns>DataTable con los datos crudos a usar antes del pivot</returns>
         DataTable ObtenerDataCruda(FiltroDataCrudaCobranza filtro);
 
-        
+        /// <summary>
+        /// Servicio que obtiene el detalle de los datos presentado en el cuadro Resumen
+        /// </summary>
+        /// <param name="filtroDetalle">Filtro utilizado para obtener la data cruda</param>
+        /// <param name="cadenaFiltroDetalle">Parametros necesarios para la consulta para obtener el detalle de las gestiones segun el cuadro Resumen</param>
+        /// <returns>DataTable con la informacion de detalle</returns>
         DataTable ObtenerDetalle(FiltroDataCrudaCobranza filtroDetalle, String cadenaFiltroDetalle);
+
+        /// <summary>
+        /// Servicio que obtiene el detalle por columna de los datos presentados en el cuadro Resumen
+        /// </summary>
+        /// <param name="filtro">Filtro utilizado para la data cruda usando tambien en este servicio</param>
+        /// <param name="ejeX">Parametro para el eje X utilizado en el cuadro Resumen</param>
+        /// <param name="ejeY">Parametro para el eje Y utilizado en el cuadro Resumen</param>
+        /// <param name="parametros">Parametros filtro para los ejes X y Y</param>
+        /// <returns>DataTable con los datos de detalle por columna</returns>
+        DataTable ObtenerDetalleDeTotales(FiltroDataCrudaCobranza filtro, ListaDatosValores ejeX, ListaDatosValores ejeY, String[] parametros);
     }
 }

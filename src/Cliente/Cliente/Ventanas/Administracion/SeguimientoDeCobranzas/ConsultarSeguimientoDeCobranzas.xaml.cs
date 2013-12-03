@@ -195,6 +195,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeCobranzas
             set { this._lstResultados.DataContext = value; }
         }
 
+        public string TotalGestiones
+        {
+            get { return this._txtTotalGestiones.Text; }
+            set { this._txtTotalGestiones.Text = value; }
+        }
 
 
         #endregion

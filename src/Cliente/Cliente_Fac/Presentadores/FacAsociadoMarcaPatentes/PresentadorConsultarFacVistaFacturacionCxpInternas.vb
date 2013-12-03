@@ -19,6 +19,8 @@ Imports Trascend.Bolet.ObjetosComunes.Entidades
 Imports Trascend.Bolet.ObjetosComunes.ContratosServicios
 Imports Trascend.Bolet.Cliente.Presentadores
 Imports Trascend.Bolet.Cliente.Ventanas.Principales
+Imports Diginsoft.Bolet.Cliente.Fac.Ventanas.FacInternacionales
+
 
 Namespace Presentadores.FacAsociadoMarcaPatentes
     Class PresentadorConsultarFacVistaFacturacionCxpInternas
@@ -28,6 +30,8 @@ Namespace Presentadores.FacAsociadoMarcaPatentes
 
         Private _ventana As IConsultarFacVistaFacturacionCxpInternas
         Private _FacVistaFacturacionCxpInternaservicios As IFacVistaFacturacionCxpInternaServicios
+        Private _FacFacturaProformaServicios As IFacFacturaProformaServicios
+        Private _FacInternacionalesServicios As IFacInternacionalServicios
         Private _asociado As Asociado
         ''' <summary>
         ''' Constructor Predeterminado
@@ -39,6 +43,8 @@ Namespace Presentadores.FacAsociadoMarcaPatentes
                 'Me._ventana.FacGestion  = New FacGestion ()
                 _asociado = Asociado
                 Me._FacVistaFacturacionCxpInternaservicios = DirectCast(Activator.GetObject(GetType(IFacVistaFacturacionCxpInternaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacVistaFacturacionCxpInternaServicios")), IFacVistaFacturacionCxpInternaServicios)
+                Me._FacFacturaProformaServicios = DirectCast(Activator.GetObject(GetType(IFacFacturaProformaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFacturaProformaServicios")), IFacFacturaProformaServicios)
+                Me._FacInternacionalesServicios = DirectCast(Activator.GetObject(GetType(IFacInternacionalServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacInternacionalServicios")), IFacInternacionalServicios)
                 'Me._asociadosServicios = DirectCast(Activator.GetObject(GetType(IAsociadoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("AsociadoServicios")), IAsociadoServicios)
                 'Me._facoperacionesServicios = DirectCast(Activator.GetObject(GetType(IFacOperacionServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacOperacionServicios")), IFacOperacionServicios)
                 ' Me._idiomasServicios = DirectCast(Activator.GetObject(GetType(IIdiomaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("IdiomaServicios")), IIdiomaServicios)
@@ -85,7 +91,7 @@ Namespace Presentadores.FacAsociadoMarcaPatentes
                 'Me._FacVistaFacturacionCxpInternas = Me._FacVistaFacturacionCxpInternaservicios.ConsultarTodos()
                 'Me._FacVistaFacturacionCxpInternas = Me._FacVistaFacturacionCxpInternaservicios.ObtenerFacVistaFacturacionCxpInternasFiltro(FacGestion Auxiliar)
 
-                Me._ventana.Resultados = Nothing
+                'Me._ventana.Resultados = Nothing
                 'Me._ventana.FacGestionFiltrar = New FacVistaFacturacionCxpInterna
 
                 'Dim Medios As IList(Of MediosGestion) = Me._MediosGestionServicios.ConsultarTodos()
@@ -164,8 +170,8 @@ Namespace Presentadores.FacAsociadoMarcaPatentes
 
                 FacVistaFacturacionCxpInternaAuxiliar.Asociado = _asociado
 
-                FacVistaFacturacionCxpInternaAuxiliar.Cobrada = "NO"
-
+                'FacVistaFacturacionCxpInternaAuxiliar.Cobrada = "NO"
+                FacVistaFacturacionCxpInternaAuxiliar.Pagada = "NO"
 
                 'If (filtroValido = True) Then
                 Dim FacVistaFacturacionCxpInternas As List(Of FacVistaFacturacionCxpInterna) = Me._FacVistaFacturacionCxpInternaservicios.ObtenerFacVistaFacturacionCxpInternasFiltro(FacVistaFacturacionCxpInternaAuxiliar)
@@ -221,5 +227,108 @@ Namespace Presentadores.FacAsociadoMarcaPatentes
             End If
             '#End Region
         End Sub
+
+        Public Sub IrConsultarPagoInternacional()
+
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                Dim facVistaFacturacionCxpInterno As FacVistaFacturacionCxpInterna =
+                    DirectCast(Me._ventana.FacVistaFacCxpInternaSeleccionado, FacVistaFacturacionCxpInterna)
+                Dim cproforma As Integer
+                If facVistaFacturacionCxpInterno.Id IsNot Nothing Then
+                    cproforma = facVistaFacturacionCxpInterno.Id.Value
+                    Dim proforma As FacFacturaProforma
+                    proforma = ConsultarProforma(cproforma)
+                    If proforma IsNot Nothing Then
+                        Dim internacional As FacInternacional
+                        internacional = buscar_facinternacional(proforma.Id)
+                        If internacional IsNot Nothing Then
+                            'aqui va la pantalla de facinternacionales Pago
+                            Me.Navegar(New FacInternacionalPago(proforma))
+                        Else
+                            MessageBox.Show("Debe realizar registro del pago", "", MessageBoxButton.OK)
+                            Mouse.OverrideCursor = Nothing
+                            Exit Sub
+                        End If
+                    Else
+
+                    End If
+                End If
+
+
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+            Catch ex As Exception
+                Mouse.OverrideCursor = Nothing
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
+
+            End Try
+
+        End Sub
+
+        Public Function ConsultarProforma(ByVal cproforma As Integer) As FacFacturaProforma
+            Dim proforma As FacFacturaProforma = Nothing
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                Dim FacFacturaProformaAuxiliar As New FacFacturaProforma()
+                FacFacturaProformaAuxiliar.Id = cproforma
+
+                Dim FacFacturaProformas As IList(Of FacFacturaProforma)
+                FacFacturaProformas = Me._FacFacturaProformaServicios.ObtenerFacFacturaProformasFiltro(FacFacturaProformaAuxiliar)
+
+                If FacFacturaProformas IsNot Nothing Then
+                    If FacFacturaProformas.Count > 0 Then
+                        proforma = FacFacturaProformas(0)
+                    Else
+                        proforma = Nothing
+                    End If
+                Else
+                    proforma = Nothing
+                End If
+
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                    '#End Region
+                End If
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
+            End Try
+
+            Return proforma
+        End Function
+
+        Public Function buscar_facinternacional(ByVal proforma As Integer) As FacInternacional
+            Dim facinternacionalaux As New FacInternacional
+            facinternacionalaux.Id = proforma
+            Dim facinternacionales As List(Of FacInternacional) = Me._FacInternacionalesServicios.ObtenerFacInternacionalesFiltro(facinternacionalaux)
+            If facinternacionales IsNot Nothing Then
+                If facinternacionales.Count > 0 Then
+                    Return (facinternacionales(0))
+                Else
+                    Return (Nothing)
+                End If
+            Else
+                Return (Nothing)
+            End If
+        End Function
+
+
     End Class
 End Namespace

@@ -121,7 +121,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
-        
+        /// <summary>
+        /// Servicio que obtiene el detalle de los datos presentado en el cuadro Resumen
+        /// </summary>
+        /// <param name="filtroDetalle">Filtro utilizado para obtener la data cruda</param>
+        /// <param name="cadenaFiltroDetalle">Parametros necesarios para la consulta para obtener el detalle de las gestiones segun el cuadro Resumen</param>
+        /// <returns>DataTable con la informacion de detalle</returns>
         public DataTable ObtenerDetalle(FiltroDataCrudaCobranza filtroDetalle, String cadenaFiltroDetalle)
         {
             DataTable retorno = new DataTable();
@@ -172,6 +177,67 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return retorno;
         }
 
+
+        /// <summary>
+        /// Servicio que obtiene el detalle por columna de los datos presentados en el cuadro Resumen
+        /// </summary>
+        /// <param name="filtro">Filtro utilizado para la data cruda usando tambien en este servicio</param>
+        /// <param name="ejeX">Parametro para el eje X utilizado en el cuadro Resumen</param>
+        /// <param name="ejeY">Parametro para el eje Y utilizado en el cuadro Resumen</param>
+        /// <param name="parametros">Parametros filtro para los ejes X y Y</param>
+        /// <returns>DataTable con los datos de detalle por columna</returns>
+        public DataTable ObtenerDetalleDeTotales(FiltroDataCrudaCobranza filtro, ListaDatosValores ejeX, ListaDatosValores ejeY, String[] parametros)
+        {
+            
+            DataTable retorno = new DataTable();
+            String query = String.Empty;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                OracleConnection con = GenerarConexionBD();
+                filtro.EjeX = ejeX.Valor;
+                filtro.EjeY = ejeY.Valor;
+
+                query = GenerarQueryDetalleTotales(filtro, parametros);
+
+                con.Open();
+
+                if (con.State.ToString().Equals("Open"))
+                {
+
+                    OracleDataAdapter oracleAdapter = new OracleDataAdapter(query, con);
+                    oracleAdapter.Fill(retorno);
+                    oracleAdapter.Dispose();
+                    con.Close();
+                }
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor + ": " + ex.Message);
+            }
+
+            return retorno;
+        }
+
+        
+
         
 
 
@@ -220,6 +286,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Metodo que parsea el query que se utiliza sobre la BD para obtener el Resumen General 
+        /// </summary>
+        /// <param name="filtro">Filtro seleccionado en la interfaz</param>
+        /// <returns>Query a utilizar para obtener los datos de Resumen General</returns>
         private String GenerarQueryResumenGeneral(FiltroDataCrudaCobranza filtro)
         {
 
@@ -315,6 +386,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return query;
         }
 
+
         /// <summary>
         /// Metodo que genera el query para obtener de la base de datos la data cruda para el pivot
         /// </summary>
@@ -381,6 +453,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
                     queryStr = aux.ToString();
 
+                    #region CODIGO ORIGINAL COMENTADO
                     //if (!string.IsNullOrWhiteSpace(filtro.Ordenamiento))
                     //{
                     //    int indiceOrden = cadenaWhere.LastIndexOf("ASC");
@@ -393,8 +466,8 @@ namespace Trascend.Bolet.Servicios.Implementacion
                     //{
                     //    cadenaQuery.Append(cadenaWhere);
                     //    query = cadenaQuery.ToString();
-                    //}
-
+                    //} 
+                    #endregion
                 }
                 else
                 {
@@ -423,7 +496,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// Metodo que genera el Query que se usara para obtener los datos de Detalle
         /// </summary>
         /// <param name="filtro">Filtro a utilizar que posee los ejes X y Y necesarios</param>
-        /// <param name="cadenaFiltroDetalle">Cadena con los datos necesarios para filtrar</param>
+        /// <param name="cadenaFiltroDetalle">Cadena con los datos necesarios para filtrar por los ejes X y Y</param>
         /// <returns>Cadena generada para con la consulta a aplicar en BD para obtener el Detalle</returns>
         private string GenerarQueryDetalle(FiltroDataCrudaCobranza filtro, string cadenaFiltroDetalle)
         {
@@ -473,20 +546,23 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
                     if(VerificarCadenaNumerica(valoresFiltros[0]))
                     {
-                        cadenaAux += filtro.EjeY + "=" + valoresFiltros[0] + " AND ";
+                        cadenaAux += filtro.EjeY + "=" + valoresFiltros[0];
                     }
                     else
                     {
-                        cadenaAux += filtro.EjeY + "= '" + valoresFiltros[0] + "' AND ";
+                        cadenaAux += filtro.EjeY + "= '" + valoresFiltros[0] + "'";
                     }
 
-                    if (VerificarCadenaNumerica(valoresFiltros[1]))
+                    if (!valoresFiltros[1].Equals("Total"))
                     {
-                        cadenaAux += filtro.EjeX + "=" + valoresFiltros[1];
-                    }
-                    else
-                    {
-                        cadenaAux += filtro.EjeX + "='" + valoresFiltros[1] + "'";
+                        if (VerificarCadenaNumerica(valoresFiltros[1]))
+                        {
+                            cadenaAux += " AND " + filtro.EjeX + "=" + valoresFiltros[1];
+                        }
+                        else
+                        {
+                            cadenaAux += " AND " + filtro.EjeX + "='" + valoresFiltros[1] + "'";
+                        } 
                     }
 
                     cadenaAux += " ORDER BY NRO_GESTION ASC";
@@ -513,7 +589,125 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
         }
 
+
+        private string GenerarQueryDetalleTotales(FiltroDataCrudaCobranza filtro, string[] parametros)
+        {
+            String queryStr = String.Empty, cadenaAux = String.Empty, cadenaWhere = "WHERE ";
+            String CabeceraQuery = String.Empty;
+            String[] valoresFiltros = null;
+            StringBuilder aux = new StringBuilder();
+            int numeroFiltros = 0;
+            bool variosFiltros = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                CabeceraQuery = ConfigurationManager.AppSettings["CabSeguimientoCobranzaDataCruda"].ToString();
+                aux.Append(CabeceraQuery);
+
+                //valoresFiltros = cadenaFiltroDetalle.Split('&');
+
+
+                if ((!string.IsNullOrWhiteSpace(filtro.EjeX)) && (!string.IsNullOrWhiteSpace(filtro.EjeY)))
+                {
+
+                    if (!string.IsNullOrWhiteSpace(filtro.Moneda))
+                    {
+                        cadenaAux += "CMONEDA = '" + filtro.Moneda + "' AND ";
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(filtro.Usuario))
+                    {
+                        cadenaAux += "USUARIO = '" + filtro.Usuario + "' AND ";
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(filtro.MedioGestion))
+                    {
+                        cadenaAux += "MEDIO_GES = '" + filtro.MedioGestion + "' AND ";
+                    }
+
+                    if (filtro.Asociado != null)
+                    {
+                        cadenaAux += "CODIGO = " + ((Asociado)filtro.Asociado).Id + " AND ";
+                    }
+
+                    if (!string.IsNullOrEmpty(parametros[0]))
+                    {
+                        //cadenaAux += filtro.EjeY + "=" + parametros[0];
+                        String valoresParseados = parametros[0].Replace('%', ',');
+                        cadenaAux += filtro.EjeY + " IN (" + valoresParseados + ") ";
+                    }
+                    //else
+                    //{
+                    //    cadenaAux += filtro.EjeY + "= '" + valoresFiltros[0] + "'";
+                    //}
+
+                    if (!parametros[1].Equals("Total"))
+                    {
+                        if (VerificarCadenaNumerica(parametros[1]))
+                        {
+                            cadenaAux += " AND " + filtro.EjeX + "=" + parametros[1];
+                        }
+                        else
+                        {
+                            cadenaAux += " AND " + filtro.EjeX + "='" + parametros[1] + "'";
+                        }
+                    }
+
+                    cadenaAux += " ORDER BY NRO_GESTION ASC";
+
+                    cadenaWhere += cadenaAux;
+
+                    aux.Append(cadenaWhere);
+
+                    queryStr = aux.ToString();
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return queryStr;
+        }
+
         
+        
+        private string ParsearValores(string cadenaParametros)
+        {
+            String valoresParseados = String.Empty;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                valoresParseados = cadenaParametros.Replace('%', ',');
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return valoresParseados;
+        }
+
 
 
         /// <summary>

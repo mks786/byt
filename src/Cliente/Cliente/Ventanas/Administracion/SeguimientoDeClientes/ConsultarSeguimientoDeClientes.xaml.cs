@@ -207,6 +207,31 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
             set { this._txtTotalBolivares.Text = value; }
         }
 
+        public string TotalPorVencer
+        {
+            get { return this._txtTotalPorVencer.Text; }
+            set { this._txtTotalPorVencer.Text = value; }
+        }
+
+        public string TotalVencido
+        {
+            get { return this._txtTotalVencido.Text; }
+            set { this._txtTotalVencido.Text = value; }
+        }
+
+        public string TotalReportes
+        {
+            get { return this._txtTotalReportes.Text; }
+            set { this._txtTotalReportes.Text = value; }
+        }
+
+        public string TotalOtrosDptos
+        {
+            get { return this._txtTotalOtrosDptos.Text; }
+            set { this._txtTotalOtrosDptos.Text = value; }
+        }
+    
+
         #endregion
 
         #region Eventos

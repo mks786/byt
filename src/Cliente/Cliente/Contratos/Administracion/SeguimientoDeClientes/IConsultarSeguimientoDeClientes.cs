@@ -61,6 +61,14 @@ namespace Trascend.Bolet.Cliente.Contratos.Administracion.SeguimientoDeClientes
 
         string TotalBSF { get; set; }
 
+        string TotalPorVencer { get; set; }
+
+        string TotalVencido { get; set; }
+
+        string TotalReportes { get; set; }
+
+        string TotalOtrosDptos { get; set; }
+
         void Mensaje(string mensaje, int opcion);
 
         void ActivarEjesPivot();

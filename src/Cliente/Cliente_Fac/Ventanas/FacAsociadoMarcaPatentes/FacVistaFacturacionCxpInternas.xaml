@@ -55,9 +55,12 @@
         <!--Resultados-->
         <GroupBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Margin="5">
             <ListView Name="_lstResultados" ItemsSource="{Binding}" SelectionMode="Single" 
-                       Style="{DynamicResource EstiloListView}">
+                       Style="{DynamicResource EstiloListView}" MouseDoubleClick="_lstResultados_MouseDoubleClick">
                 <ListView.View>
                     <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="No Proforma"/>
+                        </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Id}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Asociado.Id" Content="Cod/Asociado"/>
                         </GridViewColumn>

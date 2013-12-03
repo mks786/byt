@@ -29,10 +29,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
         private IDepartamentoServicios _departamentoServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
         private IMaestroDePlantillaServicios _maestroDePlantillaServicios;
+        private IUsuarioServicios _usuarioServicios;
         private int _filtroValido;
         private IList<ListaDatosValores> _listaReferidos;
         private IList<ListaDatosValores> _listaCriterios;
-
+        private IList<Usuario> _listaUsuarios;
 
 
         public PresentadorConsultarMaestrosPlantillas(IConsultarMaestrosPlantillas ventana)
@@ -54,6 +55,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
                 this._maestroDePlantillaServicios = (IMaestroDePlantillaServicios)Activator.GetObject(typeof(IMaestroDePlantillaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MaestroDePlantillaServicios"]);
+                this._usuarioServicios = (IUsuarioServicios)Activator.GetObject(typeof(IUsuarioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["UsuarioServicios"]);
                 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -92,6 +95,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
 
                 CargarCombos();
 
+                CargarUsuarios(false);
+
                 CargarArchivosEncabezado();
 
                 CargarArchivosDetalle();
@@ -113,6 +118,40 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
             finally
             {
                 Mouse.OverrideCursor = null;
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo que carga los usuarios en el combo correspondiente
+        /// </summary>
+        private void CargarUsuarios(bool recargar)
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (!recargar)
+                {   
+                    _listaUsuarios = this._usuarioServicios.ConsultarTodos();
+                    _listaUsuarios = this.FiltrarUsuariosRepetidos(_listaUsuarios);
+                    this._ventana.Usuarios = _listaUsuarios; 
+                }
+
+                this._ventana.Usuario = this.BuscarUsuarioPorIniciales(_listaUsuarios, UsuarioLogeado);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
 
@@ -141,8 +180,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                 this._ventana.Criterios = criterios;
                 this._listaCriterios = criterios;
 
-                //IList<Departamento> listaDepartamentos = this._departamentoServicios.ConsultarTodos();
-                //this._ventana.Departamentos = listaDepartamentos;
+                IList<Usuario> listaUsuarios = this._usuarioServicios.ConsultarTodos();
+                listaUsuarios = this.FiltrarUsuariosRepetidos(listaUsuarios);
+                this._ventana.Usuarios = listaUsuarios;
+                this._ventana.Usuario = this.BuscarUsuarioPorIniciales(listaUsuarios, UsuarioLogeado);
 
 
 
@@ -158,6 +199,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
+
+        
 
 
         /// <summary>
@@ -353,6 +397,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                 else
                     maestroPlantilla.Idioma = null;
 
+                if ((this._ventana.Usuario != null) && (!((Usuario)this._ventana.Usuario).Id.Equals("")))
+                {
+                    maestroPlantilla.Usuario = (Usuario)this._ventana.Usuario;
+                    this._filtroValido = 2;
+                }
+                else
+                    maestroPlantilla.Usuario = null;
+
                 if (this._ventana.Referido != null)
                 {
                     maestroPlantilla.Referido = ((ListaDatosValores)this._ventana.Referido).Valor;
@@ -418,6 +470,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                 this._ventana.Criterio = null;
                 this._ventana.Encabezado = null;
                 this._ventana.Detalle = null;
+
+                this._ventana.Usuario = null;
+                CargarUsuarios(true);
+                
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

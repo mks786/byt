@@ -34,7 +34,10 @@
 
                     <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,5,0,0">
                         <Label>
-                            <TextBlock FontSize="15" Text="Cuadro de Resumen de Seguimiento de Cobranzas"/>
+                            <TextBlock FontSize="15" Text="Resumen de Seguimiento de Cobranzas: "/>
+                        </Label>
+                        <Label>
+                            <TextBlock FontSize="15" Name="_lblEjesXY"/>
                         </Label>
                     </WrapPanel>
 
@@ -53,7 +56,8 @@
                         <DataGrid HorizontalAlignment="Center"  VerticalAlignment="Top" Name="_lstResultados" Height="250" 
                               ItemsSource="{Binding}" ColumnHeaderHeight="30" AutoGenerateColumns="True" ColumnWidth="80"
                               RowHeight="25" CanUserResizeColumns="False" CanUserAddRows="False" GridLinesVisibility="All" 
-                              BorderBrush="Transparent" MouseLeftButtonUp="_lstResultados_MouseLeftButtonUp">
+                              BorderBrush="Transparent" MouseLeftButtonUp="_lstResultados_MouseLeftButtonUp" 
+                              AutoGeneratingColumn="_lstResultados_AutoGeneratingColumn" >
 
                             <DataGrid.ColumnHeaderStyle>
                                 <Style TargetType="{x:Type DataGridColumnHeader}">
@@ -150,7 +154,7 @@
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
 
-                                <DataGridTextColumn Header="NRO_GESTION" Binding="{Binding Path=NRO_GESTION}" Width="80">
+                                <DataGridTextColumn Header="NRO_GESTION" Binding="{Binding Path=NRO_GESTION}" Width="100">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="TextAlignment" Value="Center" />
@@ -199,7 +203,7 @@
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
 
-                                <DataGridTextColumn Header="MEDIO_GES" Binding="{Binding Path=MEDIO_GES}" Width="80">
+                                <DataGridTextColumn Header="MEDIO_GES" Binding="{Binding Path=MEDIO_GES}" Width="Auto">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="TextAlignment" Value="Center" />

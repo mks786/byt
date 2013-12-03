@@ -18,7 +18,7 @@
         </Style>
     </Page.Resources>
 
-    <Grid Height="617">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="350"/>
             <ColumnDefinition Width="*"/>
@@ -27,6 +27,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
@@ -42,9 +43,9 @@
             </StackPanel>
         </GroupBox>
 
-        <ScrollViewer HorizontalScrollBarVisibility="Auto" Margin="-4,39,4,1" Grid.RowSpan="1" Grid.ColumnSpan="1">
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" Margin="-4,39,4,1" Grid.RowSpan="2" Grid.ColumnSpan="1">
 
-            <GroupBox Grid.Column="0" Grid.Row="0" Margin="5">
+            <GroupBox Grid.Column="0" Grid.Row="0" Margin="5" Grid.RowSpan="2">
                 <StackPanel Name="_spFiltro" DataContext="{Binding}" VerticalAlignment="Center">
                     <!-- Filtro Moneda -->
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,5,0,0">
@@ -172,21 +173,21 @@ HorizontalAlignment="Right" GotFocus="_btnConsultarAsociadoFocus" GotKeyboardFoc
                         <Label Name="_lblEjeXSegCobranzas" IsEnabled="False">
                             Eje X:
                         </Label>
-                        <ComboBox Name="_cbxEjeXSegCobranzas" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" IsEnabled="False">
+                        <ComboBox Name="_cbxEjeXSegCobranzas" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Valor" IsEnabled="False">
                         </ComboBox>
                     </WrapPanel>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,5,0,0">
                         <Label Name="_lblEjeYSegCobranzas" IsEnabled="False">
                             Eje Y:
                         </Label>
-                        <ComboBox Name="_cbxEjeYSegCobranzas" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" IsEnabled="False">
+                        <ComboBox Name="_cbxEjeYSegCobranzas" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Valor" IsEnabled="False">
                         </ComboBox>
                     </WrapPanel>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,5,0,0">
                         <Label Name="_lblEjeZSegCobranzas" IsEnabled="False">
                             Eje Z:
                         </Label>
-                        <ComboBox Name="_cbxEjeZSegCobranzas" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" IsEnabled="False">
+                        <ComboBox Name="_cbxEjeZSegCobranzas" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Valor" IsEnabled="False">
                         </ComboBox>
                     </WrapPanel>
                     <Separator Margin="0,5,0,5"/>
@@ -206,30 +207,64 @@ HorizontalAlignment="Right" GotFocus="_btnConsultarAsociadoFocus" GotKeyboardFoc
                 <ListView.View>
                     <GridView>
 
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=CODIGO}" Width="100">
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=CODIGO}" Width="100">
                             <GridViewColumnHeader Tag="CODIGO" Content="{x:Static recurso:Etiquetas.lsvCodigoAsociado}"/>
+                        </GridViewColumn>-->
+                        <GridViewColumn Header="{x:Static recurso:Etiquetas.lsvCodigoAsociado}" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=CODIGO}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=XASOCIADO}" Width="Auto">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=XASOCIADO}" Width="300">
                             <GridViewColumnHeader Tag="XASOCIADO" Content="{x:Static recurso:Etiquetas.lsvAsociado}"/>
                         </GridViewColumn>
 
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=TOTAL_GES}" Width="110">
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=TOTAL_GES}" Width="110">
                             <GridViewColumnHeader Tag="TOTAL_GES" Content="{x:Static recurso:Etiquetas.lsvCantidadGestiones}"/>
+                        </GridViewColumn>-->
+                        <GridViewColumn Header="{x:Static recurso:Etiquetas.lsvCantidadGestiones}" Width="110">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=TOTAL_GES}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
+                        
                     </GridView>
                 </ListView.View>
             </ListView>
         </GroupBox>
 
-        <Button Name="_btnLimpiarCampos" Grid.Column="1" Grid.Row="1" Margin="5" Width="100" HorizontalAlignment="Left" Click="_btnLimpiarCampos_Click">
+        <GroupBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="0">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Height="58" Width="Auto">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" Height="20">
+                    <Label Width="100">
+                        <TextBlock Text="Total Gestiones" FontSize="10" VerticalAlignment="Center"/>
+                    </Label>
+                </WrapPanel>
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
+                    <custom:ByTTextBox Name="_txtTotalGestiones" Width="90" MaxLength="12" IsEnabled="True" FontSize="12" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Right">
+                    </custom:ByTTextBox>
+                </WrapPanel>
+            </StackPanel>
+        </GroupBox>
+
+
+        <!--<Button Name="_btnLimpiarCampos" Grid.Column="1" Grid.Row="1" Margin="5" Width="100" HorizontalAlignment="Left" Click="_btnLimpiarCampos_Click">
             <TextBlock Text="{x:Static recurso:Etiquetas.btnLimpiarCampos}"/>
-        </Button>
+        </Button>-->
 
 
-        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
+        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" BorderBrush="{x:Null}" BorderThickness="0">
             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
-                <Button Grid.Row="0" Grid.Column="1" Name="_btnCancelar" Width="100" Click="_btnCancelar_Click">
+                <Button Name="_btnLimpiarCampos" Height="25" Width="100" HorizontalAlignment="Left" Click="_btnLimpiarCampos_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnLimpiarCampos}"/>
+                </Button>
+                <Button Name="_btnCancelar" Width="100" Click="_btnCancelar_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnCancelar}"/>
                 </Button>
             </StackPanel>

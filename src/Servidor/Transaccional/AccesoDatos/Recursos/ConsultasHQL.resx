@@ -1184,7 +1184,7 @@
     <comment>Query para obtener las Instrucciones de Descuento para una Marca o para una Patente</comment>
   </data>
   <data name="CabeceraObtenerMaestroPlantilla" xml:space="preserve">
-    <value>from MaestroDePlantilla mp left join fetch mp.Plantilla as plantilla left join fetch mp.Idioma as idioma where</value>
+    <value>Select mp from MaestroDePlantilla mp left join fetch mp.Plantilla as plantilla left join fetch mp.Idioma as idioma left join fetch mp.Usuario as usuario where</value>
     <comment>Cabecera para la consulta de Maestros de Plantilla por filtro</comment>
   </data>
   <data name="FiltroObtenerMaestroPlantillaCriterio" xml:space="preserve">
@@ -1214,5 +1214,9 @@
   <data name="ObtenerCamposDeReportePorVista" xml:space="preserve">
     <value>Select cr from CamposReporte cr where cr.TipoDeReporte = '{0}'</value>
     <comment>Obtiene los campos de un Reporte segun la vista seleccionada en el cliente</comment>
+  </data>
+  <data name="FiltroObtenerMaestroPlantillaUsuario" xml:space="preserve">
+    <value> usuario.Id = '{0}'</value>
+    <comment>Filtro para obtener el Maestro de Plantilla con el usuario del mismo</comment>
   </data>
 </root>

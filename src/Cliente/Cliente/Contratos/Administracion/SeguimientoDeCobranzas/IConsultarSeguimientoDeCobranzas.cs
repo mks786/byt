@@ -52,6 +52,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Administracion.SeguimientoDeCobranzas
 
         object Resultados { get; set; }
 
+        string TotalGestiones { get; set; }
+
         void Mensaje(string mensaje, int opcion);
 
         void ActivarEjesPivot();

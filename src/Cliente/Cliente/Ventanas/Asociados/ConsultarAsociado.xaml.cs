@@ -277,6 +277,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             this._btnConectividadDatos.Background = Brushes.LightGreen;
         }
 
+        public void pintarGestiones()
+        {
+            this._btnGestionesAdministracion.Background = Brushes.LightGreen;
+            this._btnGestionesDatos.Background = Brushes.LightGreen;
+        }
+
         public GridViewColumnHeader CurSortCol
         {
             get { return _CurSortCol; }
@@ -606,6 +612,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         {
             this._btnModificar.Visibility = System.Windows.Visibility.Collapsed;
             this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+        private void _btnFacGestiones_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.VerGestionesDeAsociado();
         }
 
 

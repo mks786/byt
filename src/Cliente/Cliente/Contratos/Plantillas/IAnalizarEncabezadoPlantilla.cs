@@ -22,5 +22,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Plantillas
         void MensajeAlerta(string mensaje, int opcion);
 
         void GestionarVisibilidadBat();
+
+        void AplicarVisibilidadControles();
+
     }
 }

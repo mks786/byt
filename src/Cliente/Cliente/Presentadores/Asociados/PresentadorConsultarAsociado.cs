@@ -23,6 +23,8 @@ using Trascend.Bolet.Cliente.Ventanas.Contactos;
 
 using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacReportes;
 using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacAsociadoMarcaPatentes;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.ViGestionAsociados;
+using Diginsoft.Bolet.ObjetosComunes.ContratosServicios;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 {
@@ -43,6 +45,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         private ICartaServicios _cartaServicios;
         private IListaDatosDominioServicios _listaDatosDominioServicios;
         private IDatosTransferenciaServicios _datosTransferenciaServicios;
+        private IFacGestionServicios _facGestionServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private IList<Auditoria> _auditorias;
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -91,6 +94,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
                 this._tipoEmailAsociadoServicios = (ITipoEmailAsociadoServicios)Activator.GetObject(typeof(ITipoEmailAsociadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoEmailAsociadoServicios"]);
+                this._facGestionServicios = (IFacGestionServicios)Activator.GetObject(typeof(IFacGestionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FacGestionServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -214,6 +219,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 else
                 {
                     this._ventana.DesactivarVerListaContactos();
+                }
+
+                FacGestion facGestionAuxiliar = new FacGestion();
+                facGestionAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
+                IList<FacGestion> gestionesAsociado = this._facGestionServicios.ObtenerFacGestionesFiltro(facGestionAuxiliar);
+                if (gestionesAsociado.Count > 0)
+                {
+                    this._ventana.pintarGestiones();
                 }
 
                 if ((!UsuarioLogeado.Rol.Id.Equals("ADMINISTRADOR")) && (!UsuarioLogeado.Rol.Id.Equals("OPR_CORRESPONDEN")) && (!UsuarioLogeado.Rol.Id.Equals("OPR_FACTURACION")))
@@ -856,6 +869,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     this._ventana.SaldoVencidoSolicitud = System.Convert.ToString(w_2);
                     this._ventana.SaldoPorVencerSolicitud = System.Convert.ToString(w_4);
                     this._ventana.TotalSolicitud = System.Convert.ToString(w_2 + w_4);
+                    this._ventana.MSaldoPendiente = System.Convert.ToString(msaldope);
 
                 }
                 else
@@ -863,10 +877,50 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     this._ventana.SaldoVencidoSolicitud = System.Convert.ToString(w_1);
                     this._ventana.SaldoPorVencerSolicitud = System.Convert.ToString(w_3);
                     this._ventana.TotalSolicitud = System.Convert.ToString(w_1 + w_3);
+                    this._ventana.MSaldoPendiente = System.Convert.ToString(msaldope);
                 }
             }
 
         }
 
+
+        public void VerGestionesDeAsociado()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Asociado asociadoAux = (Asociado)this._ventana.Asociado;
+                this.Navegar(new ConsultarFacGestionesAsociado(asociadoAux));
+                
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
     }
 }

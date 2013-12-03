@@ -37,11 +37,12 @@ Namespace Dao.NHibernate
             End If
 
 
-            If (FacVistaFacturacionCxpInterna IsNot Nothing) AndAlso (Not FacVistaFacturacionCxpInterna.Cobrada <> "") Then
+            'If (FacVistaFacturacionCxpInterna IsNot Nothing) AndAlso (Not FacVistaFacturacionCxpInterna.Cobrada <> "") Then
+            If (FacVistaFacturacionCxpInterna IsNot Nothing) AndAlso (Not FacVistaFacturacionCxpInterna.Pagada.Equals("")) Then
                 If variosFiltros Then
                     filtro += " and "
                 End If
-                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacVistaFacturacionCxpInternaCobrada, FacVistaFacturacionCxpInterna.Cobrada)
+                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacVistaFacturacionCxpInternaPagada, FacVistaFacturacionCxpInterna.Pagada)
                 variosFiltros = True
             End If
 

@@ -462,8 +462,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                 #endregion
 
                 listaUsuarios = this._usuarioServicios.ConsultarTodos();
+                listaUsuarios = this.FiltrarUsuariosRepetidos(listaUsuarios);
                 this._ventana.Usuarios = listaUsuarios;
-                this._ventana.Usuario = this.BuscarUsuarioPorIniciales(listaUsuarios, UsuarioLogeado);
+
+                if (this._nuevo)
+                {
+                    this._ventana.Usuario = this.BuscarUsuarioPorIniciales(listaUsuarios, UsuarioLogeado);
+                    this._ventana.HabilitarComboUsuarios();
+                }
+                else
+                {
+                    this._ventana.Usuario = this.BuscarUsuarioPorIniciales(listaUsuarios, ((MaestroDePlantilla)this._ventana.DatosMaestrosPlantilla).Usuario);
+
+                }
 
 
                 #region trace
@@ -807,6 +818,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Plantillas
                 maestroPlantilla.Criterio = this._ventana.Criterio != null ? ((ListaDatosValores)this._ventana.Criterio).Valor : null;
 
                 maestroPlantilla.Idioma = this._ventana.Idioma != null ? (Idioma)this._ventana.Idioma : null;
+
+                maestroPlantilla.Usuario = this._ventana.Usuario != null ? (Usuario)this._ventana.Usuario : UsuarioLogeado;
 
                 maestroPlantilla.SQL_Encabezado = this._ventana.ArchivoEncabezado != null ?
                     ((EncabezadoPlantilla)this._ventana.ArchivoEncabezado).NombreEncabezado : null;
