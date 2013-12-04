@@ -99,12 +99,99 @@ Namespace Ventanas.FacInternacionales
             End Set
         End Property
 
+#Region "AsociadosInternacionales"
+
+        Public Property NombreAsociadoInt() As String Implements Contratos.FacInternacionales.IConsultarFacInternacionalesProforma.NombreAsociadoInt
+            Get
+                Return Me._txtAsociadoInt.Text
+            End Get
+            Set(ByVal value As String)
+                Me._txtAsociadoInt.Text = value
+            End Set
+        End Property
+
+        Public Property idAsociadoIntFiltrar() As String Implements Contratos.FacInternacionales.IConsultarFacInternacionalesProforma.idAsociadoIntFiltrar
+            Get
+                Return Me._txtIdAsociadoInt.Text
+            End Get
+            Set(ByVal value As String)
+                Me._txtIdAsociadoInt.Text = value
+            End Set
+        End Property
+
+        Public Property NombreAsociadoIntFiltrar() As String Implements Contratos.FacInternacionales.IConsultarFacInternacionalesProforma.NombreAsociadoIntFiltrar
+            Get
+                Return Me._txtNombreAsociadoInt.Text
+            End Get
+            Set(ByVal value As String)
+                Me._txtNombreAsociadoInt.Text = value
+            End Set
+        End Property
+
+        Public Property AsociadosInternacionales As Object Implements Contratos.FacInternacionales.IConsultarFacInternacionalesProforma.AsociadosInternacionales
+            Get
+                Return Me._lstAsociadosInt.DataContext
+            End Get
+            Set(ByVal value As Object)
+                Me._lstAsociadosInt.DataContext = value
+            End Set
+        End Property
+
+        Public Property AsociadoInternacional As Object Implements Contratos.FacInternacionales.IConsultarFacInternacionalesProforma.AsociadoInternacional
+
+            Get
+                Return Me._lstAsociadosInt.SelectedItem
+            End Get
+            Set(ByVal value As Object)
+                Me._lstAsociadosInt.SelectedItem = value
+                Me._lstAsociadosInt.ScrollIntoView(value)
+            End Set
+        End Property
+
+#End Region
+
+        Public Property NumeroFactInternacional() As String Implements Contratos.FacInternacionales.IConsultarFacInternacionalesProforma.NumeroFactInternacional
+            Get
+                Return Me._txtNumeroFacInt.Text
+            End Get
+            Set(ByVal value As String)
+                Me._txtNumeroFacInt.Text = value
+            End Set
+        End Property
+
+        Public Property PaisesAsocInt() As Object Implements Contratos.FacInternacionales.IConsultarFacInternacionalesProforma.PaisesAsocInt
+            Get
+                Return Me._CbxPaisAsocInt.DataContext
+            End Get
+            Set(ByVal value As Object)
+                Me._CbxPaisAsocInt.DataContext = value
+            End Set
+        End Property
+
+        Public Property PaisAsocInt() As Object Implements Contratos.FacInternacionales.IConsultarFacInternacionalesProforma.PaisAsocInt
+            Get
+                Return Me._CbxPaisAsocInt.SelectedItem
+            End Get
+            Set(ByVal value As Object)
+                Me._CbxPaisAsocInt.SelectedItem = value
+            End Set
+        End Property
+
+        Public Property DetalleFacAsocInt() As String Implements Contratos.FacInternacionales.IConsultarFacInternacionalesProforma.DetalleFacAsocInt
+            Get
+                Return Me._txtDetalleFacAsocInt.Text
+            End Get
+            Set(ByVal value As String)
+                Me._txtDetalleFacAsocInt.Text = value
+            End Set
+        End Property
+
+
 #End Region
 
         Public Sub New()
             InitializeComponent()
             Me._cargada = False
-
             Me._presentador = New PresentadorConsultarFacInternacionalesProforma(Me)
         End Sub
 
@@ -261,6 +348,8 @@ Namespace Ventanas.FacInternacionales
             Me._lblasociado.Visibility = System.Windows.Visibility.Visible
         End Sub
 
+
+
         Private Sub _lstAsociados_MouseDoubleClick(ByVal sender As Object, ByVal e As MouseButtonEventArgs)
             If Me._lstAsociados.SelectedItem IsNot Nothing Then
                 Me._presentador.CambiarAsociado()
@@ -348,6 +437,50 @@ Namespace Ventanas.FacInternacionales
                 _lblHits.Text = value
             End Set
         End Property
+
+        Private Sub _txtAsociadoInt_MouseDoubleClick(sender As System.Object, e As System.Windows.Input.MouseButtonEventArgs)
+            ControlesMostrarAsociadoInternacional()
+        End Sub
+
+        Private Sub ControlesMostrarAsociadoInternacional()
+            Me._txtAsociadoInt.Visibility = System.Windows.Visibility.Collapsed
+            Me._lblasociado2Int.Visibility = System.Windows.Visibility.Collapsed
+            Me._lstAsociadosInt.Visibility = System.Windows.Visibility.Visible
+            Me._lstAsociadosInt.IsEnabled = True
+            Me._btnConsultarAsociadoInt.Visibility = System.Windows.Visibility.Visible
+            Me._txtIdAsociadoInt.Visibility = System.Windows.Visibility.Visible
+            Me._txtNombreAsociadoInt.Visibility = System.Windows.Visibility.Visible
+            Me._lblIdAsociadoIntFiltrar.Visibility = System.Windows.Visibility.Visible
+            Me._lblNombreAsociadoIntFiltrar.Visibility = System.Windows.Visibility.Visible
+            Me._lblasociadoInt.Visibility = System.Windows.Visibility.Visible
+        End Sub
+
+        Private Sub ControlesOcultarAsociadoInternacional()
+            Me._lstAsociadosInt.Visibility = System.Windows.Visibility.Collapsed
+            Me._btnConsultarAsociadoInt.Visibility = System.Windows.Visibility.Collapsed
+            Me._txtIdAsociadoInt.Visibility = System.Windows.Visibility.Collapsed
+            Me._txtNombreAsociadoInt.Visibility = System.Windows.Visibility.Collapsed
+            Me._lblasociadoInt.Visibility = System.Windows.Visibility.Collapsed
+            Me._txtAsociadoInt.Visibility = System.Windows.Visibility.Visible
+            Me._lblasociado2Int.Visibility = System.Windows.Visibility.Visible
+            Me._lblIdAsociadoIntFiltrar.Visibility = System.Windows.Visibility.Collapsed
+            Me._lblNombreAsociadoIntFiltrar.Visibility = System.Windows.Visibility.Collapsed
+        End Sub
+
+        Private Sub _btnConsultarAsociadoInt_Click(sender As System.Object, e As System.Windows.RoutedEventArgs)
+            Me._presentador.BuscarAsociadoInternacional()
+        End Sub
+
+        Private Sub _lstAsociadosInt_MouseDoubleClick(sender As System.Object, e As System.Windows.Input.MouseButtonEventArgs)
+            If Me._lstAsociadosInt.SelectedItem IsNot Nothing Then
+                Me._presentador.CambiarAsociadoInternacional()
+                ControlesOcultarAsociadoInternacional()
+            End If
+        End Sub
+
+
+
+
     End Class
 
 End Namespace

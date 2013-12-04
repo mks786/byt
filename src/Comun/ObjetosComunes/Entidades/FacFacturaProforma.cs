@@ -8,72 +8,82 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     {
         #region "Atributos"
 
-            private  int? _id;
-            private string _anulada;
-            private DateTime? _fechafactura; 
-            private  Asociado _asociado;
-            private  Idioma _idioma;
-            private  Moneda _moneda ;
-            private string _caso;
-            private string _inicial;
-            private double _impuesto;
-            private double _descuento;
-            private Asociado _asociadoimp;
-            private Interesado _interesadoimp;
-            private char _terrero;
-            private char _email;
-            private int? _seniat;
-            private DateTime? _fechaseniat;
-            private double _pseniat;
-            private char _ip;
-            private string _xasociado;
-            private string _rif;
-            private string _xnit;
-            private FacDetalleEnvio _detalleenvio;
-            private char _imulmon;
-            private Moneda _monedaimp;
-            private double _tasacambio;
-            private string _codeti;
-            private int? _numerocontrol;
-            private char _local;
-            private char _auto;    
-            private string _ourref;
-            private string _instruc;
-            private DateTime? _fechaecuota;
-            private string _xcausaRec;
-            private Carta _carta;
-            private string _codigodepartamento;            
-            private int? _codigosocio;
-            private double _msocio;
-            private double _mcia;
-            private string _condfac;
-            private double _msubtimpo;
-            private double _mdescuento;
-            private double _mtbimp;
-            private double _mtbexc;
-            private double _msubtotal;
-            private double _mtimp;
-            private double _mttotal;
-            private double _msubtimpobf;
-            private double _mdescuentobf;
-            private double _mtbimpbf;
-            private double _mtbexcbf;
-            private double _msubtotalbf;
-            private double _mtimpbf;
-            private double _mttotalbf;
-            private string _xasociado_o;
+        private int? _id;
+        private string _anulada;
+        private DateTime? _fechafactura;
+        private Asociado _asociado;
+        private Asociado _asociadoO;
+        private Idioma _idioma;
+        private Moneda _moneda;
+        private string _caso;
+        private string _inicial;
+        private double _impuesto;
+        private double _descuento;
+        private Asociado _asociadoimp;
+        private Interesado _interesadoimp;
+        private char _terrero;
+        private char _email;
+        private int? _seniat;
+        private DateTime? _fechaseniat;
+        private double _pseniat;
+        private char _ip;
+        private string _xasociado;
+        private string _rif;
+        private string _xnit;
+        private FacDetalleEnvio _detalleenvio;
+        private char _imulmon;
+        private Moneda _monedaimp;
+        private double _tasacambio;
+        private string _codeti;
+        private int? _numerocontrol;
+        private char _local;
+        private char _auto;
+        private string _ourref;
+        private string _instruc;
+        private DateTime? _fechaecuota;
+        private string _xcausaRec;
+        private Carta _carta;
+        private string _codigodepartamento;
+        private int? _codigosocio;
+        private double _msocio;
+        private double _mcia;
+        private string _condfac;
+        private double _msubtimpo;
+        private double _mdescuento;
+        private double _mtbimp;
+        private double _mtbexc;
+        private double _msubtotal;
+        private double _mtimp;
+        private double _mttotal;
+        private double _msubtimpobf;
+        private double _mdescuentobf;
+        private double _mtbimpbf;
+        private double _mtbexcbf;
+        private double _msubtotalbf;
+        private double _mtimpbf;
+        private double _mttotalbf;
+        private string _xasociado_o;
 
-            private bool _seleccion;
-            private bool _selecreg;
-            private bool _selecpag;
-            private int? _status;
-            private int? _accion;
-            private DateTime? _fechadesde;
-            private DateTime? _fechahasta;
-                    
-            private int? _p_mip;
-            private int? _bst;
+        private bool _seleccion;
+        private bool _selecreg;
+        private bool _selecpag;
+        private int? _status;
+        private int? _accion;
+        private DateTime? _fechadesde;
+        private DateTime? _fechahasta;
 
+        private int? _p_mip;
+        private int? _bst;
+
+        private String _numFacInternacional;
+        private double _montoFacInternacional;
+        private DateTime? _fechaFacAsocInt;
+        private Pais _paisAsocInt;
+        private string _detalleFacAsocInt;
+        private DateTime? _fechaRecepcionFacAsocInt;
+
+        private String _campoOrdenamiento;
+        private String _tipoOrdenamiento;
 
         #endregion
 
@@ -135,7 +145,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             }
             set
             {
-               this._id = value;
+                this._id = value;
             }
         }
 
@@ -175,6 +185,13 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             {
                 this._asociado = value;
             }
+        }
+
+        public virtual Asociado AsociadoO
+        {
+            get { return this._asociadoO; }
+
+            set { this._asociadoO = value; }
         }
 
         public virtual Idioma Idioma
@@ -320,7 +337,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
                 this._fechaseniat = value;
             }
         }
-        
+
         public virtual double PSeniat
         {
             get
@@ -929,6 +946,102 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set
             {
                 this._bst = value;
+            }
+        }
+
+        public virtual string NumeroFacInt
+        {
+            get
+            {
+                return this._numFacInternacional;
+            }
+            set
+            {
+                this._numFacInternacional = value;
+            }
+        }
+
+        public virtual double MontoFacInt
+        {
+            get
+            {
+                return this._montoFacInternacional;
+            }
+            set
+            {
+                this._montoFacInternacional = value;
+            }
+        }
+
+        public virtual DateTime? FechaFacAsocInt
+        {
+            get
+            {
+                return this._fechaFacAsocInt;
+            }
+            set
+            {
+                this._fechaFacAsocInt = value;
+            }
+        }
+
+        public virtual Pais PaisAsocInt
+        {
+            get
+            {
+                return this._paisAsocInt;
+            }
+            set
+            {
+                this._paisAsocInt = value;
+            }
+        }
+
+        public virtual string DetalleFacAsocInt
+        {
+            get
+            {
+                return this._detalleFacAsocInt;
+            }
+            set
+            {
+                this._detalleFacAsocInt = value;
+            }
+        }
+
+        public virtual DateTime? FechaRecepcionFacAsocInt
+        {
+            get
+            {
+                return this._fechaRecepcionFacAsocInt;
+            }
+            set
+            {
+                this._fechaRecepcionFacAsocInt = value;
+            }
+        }
+
+        public virtual string CampoOrdenamiento
+        {
+            get
+            {
+                return this._campoOrdenamiento;
+            }
+            set
+            {
+                this._campoOrdenamiento = value;
+            }
+        }
+
+        public virtual string TipoOrdenamiento
+        {
+            get
+            {
+                return this._tipoOrdenamiento;
+            }
+            set
+            {
+                this._tipoOrdenamiento = value;
             }
         }
 

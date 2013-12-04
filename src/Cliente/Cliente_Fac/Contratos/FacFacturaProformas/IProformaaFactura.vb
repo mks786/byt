@@ -66,5 +66,14 @@ Namespace Contratos.FacFacturaProformas
         Property ListaResultados() As ListView
 
         WriteOnly Property Count As Integer
+
+        Property Campos() As Object
+
+        Property CampoSeleccionado() As Object
+
+        Property Ordenamientos() As Object
+
+        Property Ordenamiento() As Object
+
     End Interface
 End Namespace

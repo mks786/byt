@@ -39,6 +39,8 @@ Namespace Presentadores.FacInternacionales
         Private _monedasServicios As IMonedaServicios
         Private _facOperacionProformasServicios As IFacOperacionProformaServicios
         Private _FacInternacionalesServicios As IFacInternacionalServicios
+        Private _PaisServicios As IPaisServicios
+        Private _datosInternacionales As Boolean
 
         ''' <summary>
         ''' Constructor Predeterminado
@@ -54,6 +56,7 @@ Namespace Presentadores.FacInternacionales
                 Me._monedasServicios = DirectCast(Activator.GetObject(GetType(IMonedaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("MonedaServicios")), IMonedaServicios)
                 Me._facOperacionProformasServicios = DirectCast(Activator.GetObject(GetType(IFacOperacionProformaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacOperacionProformaServicios")), IFacOperacionProformaServicios)
                 Me._FacInternacionalesServicios = DirectCast(Activator.GetObject(GetType(IFacInternacionalServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacInternacionalServicios")), IFacInternacionalServicios)
+                Me._PaisServicios = DirectCast(Activator.GetObject(GetType(IPaisServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("PaisServicios")), IPaisServicios)
             Catch ex As Exception
                 logger.[Error](ex.Message)
                 Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
@@ -94,6 +97,8 @@ Namespace Presentadores.FacInternacionales
                 '#End Region
 
                 ActualizarTitulo()
+
+                CargarPaises()
 
                 'Me._FacFacturaProformas = Me._FacFacturaProformaServicios.ConsultarTodos()
                 'Dim FacFacturaProformaAuxiliar As New FacFacturaProforma
@@ -214,7 +219,34 @@ Namespace Presentadores.FacInternacionales
                         proforma(i).SelecReg = False
                         proforma(i).Selecpag = False
                     End If
+
+                    ''' Asignacion de los datos de FacInternacional a los campos de FacFacturaProforma
+                    If internacional IsNot Nothing Then
+                        If internacional.Asociado_o IsNot Nothing Then
+                            proforma(i).AsociadoO = internacional.Asociado_o
+                        Else
+                            proforma(i).AsociadoO = Nothing
+                        End If
+
+                        If Not String.IsNullOrEmpty(internacional.Numerofactura) Then
+                            proforma(i).NumeroFacInt = internacional.Numerofactura
+                        Else
+                            proforma(i).NumeroFacInt = Nothing
+                        End If
+
+                        proforma(i).MontoFacInt = internacional.Monto
+                        proforma(i).FechaFacAsocInt = internacional.Fecha
+                        proforma(i).PaisAsocInt = internacional.Pais
+                        proforma(i).DetalleFacAsocInt = internacional.Detalle
+                        proforma(i).FechaRecepcionFacAsocInt = internacional.FechaRecepcion
+                    End If
+
                 Next
+
+
+
+
+
             Catch ex As Exception
                 logger.[Error](ex.Message)
                 Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
@@ -225,6 +257,9 @@ Namespace Presentadores.FacInternacionales
         ''' por pantalla
         ''' </summary>
         Public Sub Consultar()
+
+            Dim facProformas As New List(Of FacFacturaProforma)()
+
             Mouse.OverrideCursor = Cursors.Wait
             Try
                 '#Region "trace"
@@ -232,11 +267,11 @@ Namespace Presentadores.FacInternacionales
                     logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
                 End If
                 '#End Region
-
                 'Dim filtroValido As Boolean = False
                 'Dim filtroValido As Integer = 0
                 'Variable utilizada para limitar a que el filtro se ejecute solo cuando 
                 'dos filtros sean utilizados
+
                 Dim FacFacturaProformaAuxiliar As New FacFacturaProforma()
                 Dim FacFacturaProformasfiltro As FacFacturaProforma = DirectCast(_ventana.FacFacturaProformaFiltrar, FacFacturaProforma)
 
@@ -283,12 +318,66 @@ Namespace Presentadores.FacInternacionales
                 End If
                 FacFacturaProformaAuxiliar.Local = "I"
 
-                Dim FacFacturaProformas As IList(Of FacFacturaProforma)
-                FacFacturaProformas = Me._FacFacturaProformaServicios.ObtenerFacFacturaProformasFiltro(FacFacturaProformaAuxiliar)
-                Asignar_proforma(FacFacturaProformas)
-                Me._ventana.Resultados = Nothing
-                Me._ventana.Count = FacFacturaProformas.Count
-                Me._ventana.Resultados = FacFacturaProformas
+                If Me._ventana.AsociadoInternacional IsNot Nothing Then
+                    _datosInternacionales = True
+                ElseIf Not Me._ventana.NumeroFactInternacional.Equals("") Then
+                    _datosInternacionales = True
+                ElseIf Me._ventana.PaisAsocInt IsNot Nothing Then
+                    _datosInternacionales = True
+                ElseIf Not String.IsNullOrEmpty(Me._ventana.DetalleFacAsocInt) Then
+                    _datosInternacionales = True
+                End If
+
+
+
+                If Me._datosInternacionales Then
+
+                    Dim facturaInternacional As New FacInternacional()
+
+                    facturaInternacional = CargarDatosFacturaInternacional(facturaInternacional)
+
+
+                    'facturaInternacional.Asociado_o = DirectCast(Me._ventana.AsociadoInternacional, Asociado)
+
+                    Dim listaFacturasInternacionales As IList(Of FacInternacional)
+                    Dim proformas As New List(Of FacFacturaProforma)()
+                    Dim proformaAux As New FacFacturaProforma()
+
+                    listaFacturasInternacionales = Me._FacInternacionalesServicios.ObtenerFacInternacionalesFiltro(facturaInternacional)
+
+                    For Each facInternacional As FacInternacional In listaFacturasInternacionales
+                        Dim codigoProforma As Integer
+                        codigoProforma = facInternacional.Id
+                        proformaAux.Id = codigoProforma
+                        proformas = Me._FacFacturaProformaServicios.ObtenerFacFacturaProformasFiltro(proformaAux)
+                        'Asignar_proforma(proformas)
+                        Dim aux As FacFacturaProforma = proformas(0)
+                        facProformas.Add(aux)
+                    Next
+                    Asignar_proforma(facProformas)
+                    Me._ventana.Resultados = Nothing
+                    Me._ventana.Count = facProformas.Count
+                    Me._ventana.Resultados = facProformas
+
+
+                Else
+                    Dim FacFacturaProformas As IList(Of FacFacturaProforma)
+                    FacFacturaProformas = Me._FacFacturaProformaServicios.ObtenerFacFacturaProformasFiltro(FacFacturaProformaAuxiliar)
+                    Asignar_proforma(FacFacturaProformas)
+                    Me._ventana.Resultados = Nothing
+                    Me._ventana.Count = FacFacturaProformas.Count
+                    Me._ventana.Resultados = FacFacturaProformas
+                End If
+
+                'CODIGO ORIGINAL COMENTADO NO BORRAR
+                'Dim FacFacturaProformas As IList(Of FacFacturaProforma)
+                'FacFacturaProformas = Me._FacFacturaProformaServicios.ObtenerFacFacturaProformasFiltro(FacFacturaProformaAuxiliar)
+                'Asignar_proforma(FacFacturaProformas)
+                'Me._ventana.Resultados = Nothing
+                'Me._ventana.Count = FacFacturaProformas.Count
+                'Me._ventana.Resultados = FacFacturaProformas
+                'FIN CODIGO ORIGINAL COMENTADO NO BORRAR
+
                 'Else
                 '    Me._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto)
                 'End If
@@ -478,7 +567,7 @@ Namespace Presentadores.FacInternacionales
             Else
                 Me._ventana.Asociados = Nothing
                 Mouse.OverrideCursor = Nothing
-                MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")                
+                MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
                 Exit Sub
             End If
 
@@ -518,5 +607,131 @@ Namespace Presentadores.FacInternacionales
                 'Me._ventana.Personas = Nothing
             End Try
         End Sub
+
+
+        '''<sumary>
+        ''' Metodo para buscar un Asociado Internacional
+        '''</sumary>
+        Sub BuscarAsociadoInternacional()
+
+            Dim asociadoaux As New Asociado
+            Dim asociados As List(Of Asociado) = Nothing
+            Dim i As Boolean = False
+
+            Mouse.OverrideCursor = Cursors.Wait
+
+            If Not String.IsNullOrEmpty(Me._ventana.idAsociadoIntFiltrar) And Me._ventana.idAsociadoIntFiltrar <> "0" Then
+                asociadoaux.Id = Integer.Parse(Me._ventana.idAsociadoIntFiltrar)
+                i = True
+            End If
+
+            If Not String.IsNullOrEmpty(Me._ventana.NombreAsociadoIntFiltrar) Then
+                asociadoaux.Nombre = UCase(Me._ventana.NombreAsociadoIntFiltrar)
+                i = True
+            End If
+            If i = True Then
+                asociados = Me._asociadosServicios.ObtenerAsociadosFiltro(asociadoaux)
+            Else
+                Me._ventana.Asociados = Nothing
+                Mouse.OverrideCursor = Nothing
+                MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
+                Exit Sub
+            End If
+
+            Dim primerasociado As New Asociado()
+            primerasociado.Id = Integer.MinValue
+            asociados.Insert(0, primerasociado)
+
+            Me._ventana.AsociadosInternacionales = asociados
+
+            Mouse.OverrideCursor = Nothing
+
+        End Sub
+
+        '''<sumary>
+        ''' Metodo para cambiar un Asociado Internacional
+        '''</sumary>
+        Public Sub CambiarAsociadoInternacional()
+            Try
+                If DirectCast(Me._ventana.AsociadoInternacional, Asociado) IsNot Nothing Then
+                    If Me._ventana.AsociadoInternacional.id <> Integer.MinValue Then
+                        Me._ventana.NombreAsociadoInt = DirectCast(Me._ventana.AsociadoInternacional, Asociado).Id & " - " & DirectCast(Me._ventana.AsociadoInternacional, Asociado).Nombre
+                    Else
+                        Me._ventana.NombreAsociadoInt = Nothing
+                        Exit Sub
+                    End If
+                Else
+                    Exit Sub
+                End If
+            Catch e As ApplicationException
+
+            End Try
+        End Sub
+
+        '''<summary>
+        '''Metodo que recoge los valores para buscar una factura internacional
+        '''</summary>
+        Private Function CargarDatosFacturaInternacional(facturaInternacional As FacInternacional) As FacInternacional
+
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+
+
+            If Me._ventana.AsociadoInternacional IsNot Nothing Then
+                facturaInternacional.Asociado_o = DirectCast(Me._ventana.AsociadoInternacional, Asociado)
+            Else
+                facturaInternacional.Asociado_o = Nothing
+            End If
+
+            If Not String.IsNullOrEmpty(Me._ventana.NumeroFactInternacional) Then
+                facturaInternacional.Numerofactura = Me._ventana.NumeroFactInternacional
+            Else
+                facturaInternacional.Numerofactura = Nothing
+            End If
+
+            If Me._ventana.PaisesAsocInt IsNot Nothing Then
+                facturaInternacional.Pais = DirectCast(Me._ventana.PaisAsocInt, Pais)
+            Else
+                facturaInternacional.Pais = Nothing
+            End If
+
+            If Not String.IsNullOrEmpty(Me._ventana.DetalleFacAsocInt) Then
+                facturaInternacional.Detalle = Me._ventana.DetalleFacAsocInt
+            Else
+                facturaInternacional.Detalle = Nothing
+            End If
+
+            Return facturaInternacional
+
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+
+        End Function
+
+        Private Sub CargarPaises()
+
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+
+            Dim paises As IList(Of Pais) = Me._PaisServicios.ConsultarTodos()
+            Me._ventana.PaisesAsocInt = paises
+
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+
+        End Sub
+
     End Class
 End Namespace

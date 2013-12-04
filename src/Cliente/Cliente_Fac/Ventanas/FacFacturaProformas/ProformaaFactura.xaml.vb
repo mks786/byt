@@ -96,6 +96,44 @@ Namespace Ventanas.FacFacturaProformas
             End Set
         End Property
 
+        Public Property Campos As Object Implements Contratos.FacFacturaProformas.IProformaaFactura.Campos
+            Get
+                Return Me._CbxCampoOrden.DataContext
+            End Get
+            Set(ByVal value As Object)
+                Me._CbxCampoOrden.DataContext = value
+            End Set
+        End Property
+
+        Public Property CampoSeleccionado As Object Implements Contratos.FacFacturaProformas.IProformaaFactura.CampoSeleccionado
+            Get
+                Return Me._CbxCampoOrden.SelectedItem
+            End Get
+            Set(ByVal value As Object)
+                Me._CbxCampoOrden.SelectedItem = value
+            End Set
+        End Property
+
+        Public Property Ordenamientos As Object Implements Contratos.FacFacturaProformas.IProformaaFactura.Ordenamientos
+            Get
+                Return Me._CbxTipoOrdenamiento.DataContext
+            End Get
+            Set(ByVal value As Object)
+                Me._CbxTipoOrdenamiento.DataContext = value
+            End Set
+        End Property
+
+        Public Property OrdenamientoSeleccionado As Object Implements Contratos.FacFacturaProformas.IProformaaFactura.Ordenamiento
+            Get
+                Return Me._CbxTipoOrdenamiento.SelectedItem
+            End Get
+            Set(ByVal value As Object)
+                Me._CbxTipoOrdenamiento.SelectedItem = value
+            End Set
+        End Property
+
+        
+
 #End Region
 
         Public Sub New()

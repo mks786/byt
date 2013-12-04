@@ -219,7 +219,8 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                 carta.Id = cartaOut.NRelacion;
                 carta.Medio = "EML";
-                carta.Referencia = cartaOut.SubjectOrganizacion;
+                //carta.Referencia = cartaOut.SubjectOrganizacion;
+                carta.Referencia = cartaOut.Asunto;
                 carta.Resumen = resumen;
                 asignacion.Responsable = responsable;
                 carta.Asignaciones = new List<Asignacion>();

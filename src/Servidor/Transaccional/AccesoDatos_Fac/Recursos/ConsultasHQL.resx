@@ -768,4 +768,20 @@
   <data name="FiltroObtenerFacGestionCodigoResp" xml:space="preserve">
     <value>fg.CodigoResp = {0} </value>
   </data>
+  <data name="FiltroObtenerFacInternacionalAsociado_o" xml:space="preserve">
+    <value>fi.Asociado_o={0}</value>
+    <comment>Filtro para obtener una factura internacional por medio del campo Asociado_o</comment>
+  </data>
+  <data name="FiltroObtenerFacInternacionalDetalle" xml:space="preserve">
+    <value>fi.Detalle like '%{0}%'</value>
+    <comment>Filtro para obtener las Facturas Internacionales usando al campo Detalle en el filtro</comment>
+  </data>
+  <data name="FiltroObtenerFacInternacionalNumeroFactura" xml:space="preserve">
+    <value>fi.Numerofactura like '%{0}%'</value>
+    <comment>Filtro para obtener una factura internacional por medio del campo Numerofactura</comment>
+  </data>
+  <data name="FiltroObtenerFacInternacionalPais" xml:space="preserve">
+    <value>fi.Pais.Id = '{0}'</value>
+    <comment>Filtro para obtener una factura internacional por medio del campo Pais</comment>
+  </data>
 </root>

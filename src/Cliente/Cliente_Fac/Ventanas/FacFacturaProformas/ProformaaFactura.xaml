@@ -194,6 +194,26 @@
                 </WrapPanel>
 
                 <Separator Margin="0,5,0,5"/>
+                <!-- Organizacion de la consulta por Campo y por Ordenamiento -->
+                <Separator Margin="0,5,0,5"/>
+                <WrapPanel>
+                    <Label>
+                        Organizado por:
+                    </Label>
+                    <ComboBox Height="20" Name="_CbxCampoOrden" HorizontalAlignment="Left" Width="195"
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion">
+                    </ComboBox>
+                </WrapPanel>
+                <WrapPanel>
+                    <Label>
+                        Ordenado en forma:
+                    </Label>
+                    <ComboBox Height="20" Name="_CbxTipoOrdenamiento" HorizontalAlignment="Left" Width="175"
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion">
+                    </ComboBox>
+                </WrapPanel>
+
+                <Separator Margin="0,5,0,5"/>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,5">
                     <Button Name="_btnConsulta" Width="100" Click="_btnConsultar" >
                         <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
@@ -228,14 +248,14 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaEcuota, StringFormat={}{0:dd/MM/yyyy}}" Width="70">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaEcuota" Content="Fecha "/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaEcuota, StringFormat={}{0:dd/MM/yyyy}}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaEcuota" Content="Fecha Autorizacion"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.fac_LblProforma}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaFactura, StringFormat={}{0:dd/MM/yyyy}}" Width="70">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaFactura" Content="Fecha"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaFactura, StringFormat={}{0:dd/MM/yyyy}}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaFactura" Content="Fecha Proforma"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Ourref}" Width="180">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Ourref" Content="Nuestra Referencia"/>

@@ -20,7 +20,8 @@ Namespace Dao.NHibernate
             Dim cabecera As String = String.Format(Recursos.ConsultasHQL.CabeceraObtenerFacInternacional)
 
 
-            If (FacInternacional IsNot Nothing) AndAlso (Not FacInternacional.Id.Equals("")) Then
+            'If (FacInternacional IsNot Nothing) AndAlso (Not FacInternacional.Id.Equals("")) Then
+            If (FacInternacional IsNot Nothing) AndAlso (FacInternacional.Id IsNot Nothing) Then
                 If variosFiltros Then
                     filtro += " and "
                 End If
@@ -47,6 +48,48 @@ Namespace Dao.NHibernate
             '    filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacInternacionalAsociado, FacInternacional.Asociado.Id)
             '    variosFiltros = True
             'End If
+
+            If (FacInternacional.Asociado_o IsNot Nothing) AndAlso (Not FacInternacional.Asociado_o.Id.Equals("")) Then
+                If variosFiltros Then
+                    filtro += " and "
+                End If
+                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacInternacionalAsociado_o, FacInternacional.Asociado_o.Id)
+                variosFiltros = True
+            End If
+
+
+            If (Not String.IsNullOrEmpty(FacInternacional.Numerofactura)) Then
+                If variosFiltros Then
+                    filtro += " and "
+                End If
+                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacInternacionalNumeroFactura, FacInternacional.Numerofactura)
+                variosFiltros = True
+            End If
+
+            'If (FacInternacional.Monto <> 0) Then
+            '    If variosFiltros Then
+            '        filtro += " and "
+            '    End If
+            '    filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacInternacionalMonto, FacInternacional.Monto)
+            '    variosFiltros = True
+            'End If
+
+            If (FacInternacional.Pais IsNot Nothing) AndAlso (Not FacInternacional.Pais.Id.Equals("")) Then
+                If variosFiltros Then
+                    filtro += " and "
+                End If
+                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacInternacionalPais, FacInternacional.Pais.Id)
+                variosFiltros = True
+            End If
+
+            If (Not String.IsNullOrEmpty(FacInternacional.Detalle)) Then
+                If variosFiltros Then
+                    filtro += " and "
+                End If
+                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacInternacionalDetalle, FacInternacional.Detalle)
+                variosFiltros = True
+            End If
+
             'If (FacInternacional.Banco IsNot Nothing) AndAlso (Not FacInternacional.Banco.Id.Equals("")) Then
             '    If variosFiltros Then
             '        filtro += " and "

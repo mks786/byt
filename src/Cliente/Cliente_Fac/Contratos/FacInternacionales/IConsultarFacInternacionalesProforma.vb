@@ -18,6 +18,10 @@ Namespace Contratos.FacInternacionales
 
         Property Asociado() As Object
 
+        Property AsociadosInternacionales() As Object
+
+        Property AsociadoInternacional() As Object
+
         'Property Bancos() As Object
 
         'Property Banco() As Object
@@ -36,6 +40,20 @@ Namespace Contratos.FacInternacionales
 
         Property NombreAsociadoFiltrar() As String
 
+        Property idAsociadoIntFiltrar() As String
+
+        Property NombreAsociadoInt() As String
+
+        Property NombreAsociadoIntFiltrar() As String
+
+        Property NumeroFactInternacional() As String
+
+        Property PaisesAsocInt() As Object
+
+        Property PaisAsocInt() As Object
+
+        Property DetalleFacAsocInt() As String
+
         'ReadOnly Property Region() As String
 
         Property CurSortCol() As GridViewColumnHeader
@@ -44,6 +62,10 @@ Namespace Contratos.FacInternacionales
 
         Property ListaResultados() As ListView
 
+
+
         WriteOnly Property Count As Integer
+
+
     End Interface
 End Namespace

@@ -3943,7 +3943,7 @@ en Prensa:</value>
     <value>Valores Variables</value>
   </data>
   <data name="btnProbarBat" xml:space="preserve">
-    <value>Probar BAT</value>
+    <value>Ejecutar</value>
   </data>
   <data name="lblMensajeAnalisisSQL" xml:space="preserve">
     <value>Coloque los valores de las variables:</value>
@@ -4117,10 +4117,10 @@ en Prensa:</value>
     <value>Ejecutar Encabezado</value>
   </data>
   <data name="btnVariablesDetalle" xml:space="preserve">
-    <value>Variables Detalle</value>
+    <value>Detalle</value>
   </data>
   <data name="btnVariablesEncabezado" xml:space="preserve">
-    <value>Variables Encabezado</value>
+    <value>General</value>
   </data>
   <data name="lblMaestroPlantilla" xml:space="preserve">
     <value>Código Maestro de Plantilla:</value>

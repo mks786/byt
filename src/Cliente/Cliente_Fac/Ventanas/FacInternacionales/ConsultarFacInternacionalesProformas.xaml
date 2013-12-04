@@ -15,11 +15,11 @@
             <Setter Property="Text" Value="{x:Static recurso:Etiquetas.dpkText}" />
         </Style>
     </Page.Resources>
-    <Page.CommandBindings>        
+    <Page.CommandBindings>
         <!--<CommandBinding Command="desactivar_item" Executed="al_desactivar_item" />-->
         <CommandBinding Command="local:ConsultarFacInternacionalesProforma.Registrar_Item"  Executed="al_Registrar_Item" ></CommandBinding>
         <CommandBinding Command="local:ConsultarFacInternacionalesProforma.Pagar_Item"  Executed="al_Pagar_Item" ></CommandBinding>
-        <CommandBinding Command="local:ConsultarFacInternacionalesProforma.VerProforma_Item"  Executed="al_VerProforma_Item" ></CommandBinding>        
+        <CommandBinding Command="local:ConsultarFacInternacionalesProforma.VerProforma_Item"  Executed="al_VerProforma_Item" ></CommandBinding>
     </Page.CommandBindings>
 
 
@@ -67,8 +67,8 @@
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
                     <Label  Name ="_lblasociado" Visibility="Collapsed"  HorizontalAlignment="Right" VerticalAlignment="Top">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
-                    </Label>                    
-                </WrapPanel>                
+                    </Label>
+                </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" >
                     <Grid >
                         <Grid.ColumnDefinitions>
@@ -87,7 +87,7 @@
                         <Label  Name ="_lblasociado2"  Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
                         </Label>
-                        
+
                         <custom:ByTTextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3"  Name="_txtAsociado" VerticalAlignment="Center"                                     
                          HorizontalAlignment="Left" Width="200" Text="" MaxLength="255" MouseDoubleClick="_txtAsociado_MouseDoubleClick" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
 
@@ -215,6 +215,140 @@
                         </DatePicker.SelectedDate>
                     </DatePicker>
                 </WrapPanel>
+                
+                <!-- Informacion del Asociado Internacion -->
+                <Separator Margin="0,5,0,5"/>
+                <WrapPanel HorizontalAlignment="Left"  VerticalAlignment="Center">
+                    <Label>
+                        Informacion Internacional
+                    </Label>
+                </WrapPanel>
+                <WrapPanel>
+                    <Label  Name ="_lblasociadoInt" Visibility="Collapsed"  HorizontalAlignment="Right" VerticalAlignment="Top">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociadoInternacional}"/>
+                    </Label>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" >
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <!--<custom:ByTTextBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4"  Name="_txtAsociadoId" VerticalAlignment="Center"                                     
+                         HorizontalAlignment="Left" Width="50" Text="" MaxLength="255" GotFocus="_txtAsociado_GotFocus" GotKeyboardFocus="_txtAsociado_GotFocus" Height="20" FontSize="10"></custom:ByTTextBox>-->
+                        <Label  Name ="_lblasociado2Int"  Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociadoInternacional}"/>
+                        </Label>
+
+                        <custom:ByTTextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3"  Name="_txtAsociadoInt" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200" Text="" MaxLength="255"  Height="20" FontSize="10" IsReadOnly="True" BorderBrush="LightGreen" MouseDoubleClick="_txtAsociadoInt_MouseDoubleClick"></custom:ByTTextBox>
+
+                        <custom:ByTTextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4" Name="_txtIdAsociadoInt" VerticalAlignment="Center" HorizontalAlignment="Left" Width="80" MaxLength="8" SoloNumero="True" Visibility="Collapsed"  ></custom:ByTTextBox>
+
+                        <custom:ByTTextBox Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="4" Name="_txtNombreAsociadoInt" VerticalAlignment="Center" HorizontalAlignment="Left" Width="140" MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
+
+                        <Label Name="_lblIdAsociadoIntFiltrar" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                        </Label>
+                        <Label Name="_lblNombreAsociadoIntFiltrar" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
+                        </Label>
+
+                        <Button Name="_btnConsultarAsociadoInt" Width="55" IsDefault="False" Grid.Row="0" Grid.Column="4" Height="20" HorizontalAlignment="Right" Click="_btnConsultarAsociadoInt_Click" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                        </Button>
+
+                        <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="5" Name="_lstAsociadosInt" ItemsSource="{Binding}" 
+                      SelectionMode="Single" IsEnabled="False"
+                      Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150" MouseDoubleClick="_lstAsociadosInt_MouseDoubleClick" VerticalAlignment="Top">
+                            <ListView.View>
+                                <GridView>
+                                    <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="45">
+                                            <GridViewColumnHeader  Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                        </GridViewColumn>-->
+                                    <GridViewColumn Width="70">
+                                        <GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <Binding Path="Id" Converter="{StaticResource convertir}"/>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="350">
+                                        <GridViewColumnHeader  Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                </WrapPanel>
+
+                <WrapPanel HorizontalAlignment="Left"  VerticalAlignment="Center">
+                    <Label>
+                        <TextBlock Text="Numero Factura Asoc Internacional:"/>
+                    </Label>
+                    <TextBox Name="_txtNumeroFacInt" Width="130" MaxLength="12" Focusable="True" IsEnabled="True">
+                        <TextBox.Text>
+                            <Binding Path="NumeroFacInt" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </WrapPanel>
+
+                <WrapPanel HorizontalAlignment="Left"  VerticalAlignment="Center">
+                    <Label>
+                        <TextBlock Text="Pais Asoc Internacional:"/>
+                    </Label>
+                    <ComboBox Height="20" Name="_CbxPaisAsocInt" HorizontalAlignment="Left" Width="195"
+                              ItemsSource="{Binding}" DisplayMemberPath="NombreEspanol">
+                    </ComboBox>
+                </WrapPanel>
+
+                <WrapPanel HorizontalAlignment="Left"  VerticalAlignment="Center">
+                    <Label>
+                        <TextBlock Text="Detalle Asoc Internacional:"/>
+                    </Label>
+                    <TextBox Name="_txtDetalleFacAsocInt" Width="178" MaxLength="500" Focusable="True" IsEnabled="True">
+                        <TextBox.Text>
+                            <Binding Path="DetalleFacAsocInt" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </WrapPanel>
+
+
+                <!--<WrapPanel HorizontalAlignment="Left"  VerticalAlignment="Center">
+                    <Label>
+                        <TextBlock Text="Monto Factura Asoc Internacional:  "/>
+                    </Label>
+                    <TextBox Name="_txtMontoFacInt" Width="130" MaxLength="12" Focusable="True" IsEnabled="True">
+                        <TextBox.Text>
+                            <Binding Path="MontoFacInt" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </WrapPanel>-->
+
+                <!-- Fin Informacion del Asociado Internacional -->
 
                 <Separator Margin="0,5,0,5"/>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,5">
@@ -224,7 +358,7 @@
                 </WrapPanel>
                 <Separator Margin="0,5,0,5"/>
             </StackPanel>
-                                   
+
         </GroupBox>
 
         <!--Resultados-->
@@ -270,7 +404,7 @@
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Ourref}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Ourref" Content="Nuestra Referencia"/>
-                        </GridViewColumn>                        
+                        </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Id}" Width="60">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Asociado.Id" Content="Id Asociado"/>
                         </GridViewColumn>
@@ -279,11 +413,11 @@
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Caso}" Width="180">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Caso" Content="Caso"/>
-                        </GridViewColumn>                 
+                        </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Mttotal}" Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Mttotal" Content="Monto"/>
                         </GridViewColumn>
-                        
+
                         <!--<GridViewColumn Width="45" Header="">                           
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
@@ -291,7 +425,7 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>-->
-                        
+
                         <GridViewColumn Width="80" Header="">
                             <!--<GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>-->
                             <GridViewColumn.CellTemplate>
@@ -307,7 +441,79 @@
                                     <Button Name="Btn_Pago" Content="Pago"  Command="local:ConsultarFacInternacionalesProforma.Pagar_Item" CommandParameter="{Binding Id}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
-                        </GridViewColumn>                        
+                        </GridViewColumn>
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=AsociadoO.Id}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="AsociadoO.Id" Content="Id Asociado Int"/>
+                        </GridViewColumn>-->
+
+                        <GridViewColumn Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="AsociadoO.Id" Content="Id Asociado Int"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=AsociadoO.Id}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+
+                        <GridViewColumn Width="280">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="AsociadoO.Nombre" Content="Nombre Asociado Int"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=AsociadoO.Nombre}" TextAlignment="Justify"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="200">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="NumeroFacInt" Content="Num Fact Asociado Int"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=NumeroFacInt}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="110">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="MontoFacInt" Content="Monto Fac Asoc Int"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=MontoFacInt, StringFormat= {}{0:N}, ConverterCulture=de-DE}" TextAlignment="Right"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="130">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaFacAsocInt" Content="Fecha Fac Asoc Int"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=FechaFacAsocInt, StringFormat={}{0:dd/MM/yyyy}}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="PaisAsocInt.NombreEspanol" Content="Pais Asoc Int"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=PaisAsocInt.NombreEspanol}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="250">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="DetalleFacAsocInt" Content="Detalle Fac Int"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=DetalleFacAsocInt}" TextAlignment="Justify"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaRecepcionFacAsocInt" Content="Fecha Recepción Fac Asoc Int"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=FechaRecepcionFacAsocInt, StringFormat={}{0:dd/MM/yyyy}}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -323,7 +529,7 @@
                 <Button Name="_btnLimpiar" VerticalAlignment="Center" Width="100" Click="_btnLimpiar_Click" HorizontalAlignment="Right">Limpiar</Button>
             </StackPanel>
         </GroupBox>
-       
-        
+
+
     </Grid>
 </Page>

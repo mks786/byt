@@ -18,9 +18,9 @@ Namespace Recursos
     'StronglyTypedResourceBuilder generó automáticamente esta clase
     'a través de una herramienta como ResGen o Visual Studio.
     'Para agregar o quitar un miembro, edite el archivo .ResX y, a continuación, vuelva a ejecutar ResGen
-    'con la opción /str o vuelva a generar su proyecto de VS.
+    'con la opción /str o recompile su proyecto de VS.
     '''<summary>
-    '''  Clase de recurso con establecimiento inflexible de tipos, para buscar cadenas traducidas, etc.
+    '''  Clase de recurso fuertemente tipado, para buscar cadenas traducidas, etc.
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0"),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -52,7 +52,7 @@ Namespace Recursos
         
         '''<summary>
         '''  Reemplaza la propiedad CurrentUICulture del subproceso actual para todas las
-        '''  búsquedas de recursos mediante esta clase de recurso con establecimiento inflexible de tipos.
+        '''  búsquedas de recursos mediante esta clase de recurso fuertemente tipado.
         '''</summary>
         <Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
         Public Shared Property Culture() As Global.System.Globalization.CultureInfo
@@ -1289,11 +1289,47 @@ Namespace Recursos
         End Property
         
         '''<summary>
+        '''  Busca una cadena traducida similar a fi.Asociado_o={0}.
+        '''</summary>
+        Public Shared ReadOnly Property FiltroObtenerFacInternacionalAsociado_o() As String
+            Get
+                Return ResourceManager.GetString("FiltroObtenerFacInternacionalAsociado_o", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca una cadena traducida similar a fi.Detalle like &apos;%{0}%&apos;.
+        '''</summary>
+        Public Shared ReadOnly Property FiltroObtenerFacInternacionalDetalle() As String
+            Get
+                Return ResourceManager.GetString("FiltroObtenerFacInternacionalDetalle", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Busca una cadena traducida similar a fi.Id = {0}.
         '''</summary>
         Public Shared ReadOnly Property FiltroObtenerFacInternacionalId() As String
             Get
                 Return ResourceManager.GetString("FiltroObtenerFacInternacionalId", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca una cadena traducida similar a fi.Numerofactura like &apos;%{0}%&apos;.
+        '''</summary>
+        Public Shared ReadOnly Property FiltroObtenerFacInternacionalNumeroFactura() As String
+            Get
+                Return ResourceManager.GetString("FiltroObtenerFacInternacionalNumeroFactura", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca una cadena traducida similar a fi.Pais.Id = &apos;{0}&apos;.
+        '''</summary>
+        Public Shared ReadOnly Property FiltroObtenerFacInternacionalPais() As String
+            Get
+                Return ResourceManager.GetString("FiltroObtenerFacInternacionalPais", resourceCulture)
             End Get
         End Property
         

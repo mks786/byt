@@ -147,11 +147,44 @@ Namespace Dao.NHibernate
             End If
 
             Dim query As IQuery
+
             If (filtro = "") Then
-                query = Session.CreateQuery(cabecera & " order by fp.Id desc")
+                If (FacFacturaProforma.CampoOrdenamiento IsNot Nothing) Then
+
+                    If FacFacturaProforma.TipoOrdenamiento IsNot Nothing Then
+                        query = Session.CreateQuery(cabecera & " order by fp." & FacFacturaProforma.CampoOrdenamiento & " " & FacFacturaProforma.TipoOrdenamiento)
+                    Else
+                        query = Session.CreateQuery(cabecera & " order by fp." & FacFacturaProforma.CampoOrdenamiento & " desc")
+
+                    End If
+                Else
+                    If FacFacturaProforma.TipoOrdenamiento IsNot Nothing Then
+                        query = Session.CreateQuery(cabecera & " order by fp.Id " & FacFacturaProforma.TipoOrdenamiento)
+
+                    Else
+                        query = Session.CreateQuery(cabecera & " order by fp.Id desc")
+                    End If
+
+                End If
+                'query = Session.CreateQuery(cabecera & " order by fp.Id desc")
             Else
                 cabecera = cabecera & " Where "
-                cabecera = cabecera & filtro & " order by fp.Id desc"
+
+                If (FacFacturaProforma.CampoOrdenamiento IsNot Nothing) Then
+                    If FacFacturaProforma.TipoOrdenamiento IsNot Nothing Then
+                        cabecera = cabecera & filtro & " order by fp." & FacFacturaProforma.CampoOrdenamiento & " " & FacFacturaProforma.TipoOrdenamiento
+                    Else
+                        cabecera = cabecera & filtro & " order by fp." & FacFacturaProforma.CampoOrdenamiento & " desc"
+                    End If
+                Else
+                    If FacFacturaProforma.TipoOrdenamiento IsNot Nothing Then
+                        cabecera = cabecera & filtro & " order by fp.Id " & FacFacturaProforma.TipoOrdenamiento
+                    Else
+                        cabecera = cabecera & filtro & " order by fp.Id desc"
+                    End If
+
+                End If
+                'cabecera = cabecera & filtro & " order by fp.Id desc"
                 query = Session.CreateQuery(cabecera)
             End If
             FacFacturaProformas = query.List(Of FacFacturaProforma)()
