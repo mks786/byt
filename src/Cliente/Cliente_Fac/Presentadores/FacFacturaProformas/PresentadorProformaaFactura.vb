@@ -370,7 +370,8 @@ Namespace Presentadores.FacFacturaProformas
 
             'FacFacturaProforma.Accion = 1 'modificar sin el boton regresar
             FacFacturaProforma.Status = 1
-            Me.Navegar(New ConsultarFacFacturaPase(FacFacturaProforma))
+            'Me.Navegar(New ConsultarFacFacturaPase(FacFacturaProforma))
+            Me.Navegar(New ConsultarFacFacturaPase(FacFacturaProforma, Me._ventana))
             'Me.Navegar(New ConsultarFacFacturaProforma())
             '#Region "trace"
             If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then

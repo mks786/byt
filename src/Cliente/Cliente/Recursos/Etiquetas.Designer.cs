@@ -115,7 +115,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Ejecutar Encabezado.
+        ///   Busca una cadena traducida similar a Ejecutar General.
         /// </summary>
         public static string btnAnalizarQueryEncabezado {
             get {

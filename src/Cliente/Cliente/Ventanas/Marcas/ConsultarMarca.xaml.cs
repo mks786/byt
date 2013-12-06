@@ -403,8 +403,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._txtReferenciaAsocInt.IsEnabled = value;
                 this._txtReferenciaDatos.IsEnabled = value;
                 this._txtSaldoPorVencer.IsEnabled = value;
+                this._txtSaldoPorVencerDatos.IsEnabled = value;
                 this._txtSaldoVencido.IsEnabled = value;
+                this._txtSaldoVencidoDatos.IsEnabled = value;
                 this._txtTotalDeuda.IsEnabled = value;
+                this._txtTotalDeudaDatos.IsEnabled = value;
                 this._txtSituacionDescripcion.IsEnabled = value;
 
                 this._txtClaseInternacionalIDatos.IsEnabled = value;
@@ -504,6 +507,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._btnFM02Venen.IsEnabled = value;
                 this._btnGenCartel.IsEnabled = value;
                 this._btnImprimirEdoCuenta.IsEnabled = value;
+                this._btnImprimirEdoCuentaDatos.IsEnabled = value;
                 this._btnInfoAdicional.IsEnabled = value;
                 this._btnInfoAdicionalSolicitud.IsEnabled = value;
                 this._btnInfobol.IsEnabled = value;
@@ -535,6 +539,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._btnRenovacion.IsEnabled = value;
                 this._btnRevisarWeb.IsEnabled = value;
                 this._btnSaldo.IsEnabled = value;
+                this._btnSaldoDatos.IsEnabled = value;
                 this._btnVerExpediente.IsEnabled = value;
                 this._btnVerSolicitud.IsEnabled = value;
                 this._btnConflictoSolicitud.IsEnabled = value;
@@ -2719,9 +2724,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtSaldoVencido.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value)); }
         }
 
+        public string SaldoVencidoDatos
+        {
+            set { this._txtSaldoVencidoDatos.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value)); }
+        }
+
         public string SaldoPorVencerSolicitud
         {
             set { this._txtSaldoPorVencer.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value)); }
+        }
+
+        public string SaldoPorVencerDatos
+        {
+            set { this._txtSaldoPorVencerDatos.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value)); }
         }
 
         public string TotalSolicitud
@@ -2729,6 +2744,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtTotalDeuda.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value)); }
         }
 
+        public string TotalDatos
+        {
+            set { this._txtTotalDeudaDatos.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value)); }
+        }
 
         #region Propiedades de Marca de Origen
 

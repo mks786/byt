@@ -1772,7 +1772,7 @@
                         <Label Grid.Column="3" Grid.Row="24" Grid.ColumnSpan="1" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblStatusWEB}"/>
                         </Label>
-                        <ComboBox Visibility="Hidden" IsEnabled="False" Grid.Column="4" Grid.Row="24" Grid.ColumnSpan="2" Margin="3" Name="_cbxEstadoDatos" 
+                        <ComboBox Visibility="Visible" IsEnabled="True" Grid.Column="4" Grid.Row="24" Grid.ColumnSpan="2" Margin="3" Name="_cbxEstadoDatos" 
                               Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" >
                         </ComboBox>
 

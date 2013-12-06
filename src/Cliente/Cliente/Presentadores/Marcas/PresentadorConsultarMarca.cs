@@ -3933,15 +3933,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 {
 
                     this._ventana.SaldoVencidoSolicitud = System.Convert.ToString(w_2);
+                    this._ventana.SaldoVencidoDatos = System.Convert.ToString(w_2);
                     this._ventana.SaldoPorVencerSolicitud = System.Convert.ToString(w_4);
+                    this._ventana.SaldoPorVencerDatos = System.Convert.ToString(w_4);
                     this._ventana.TotalSolicitud = System.Convert.ToString(w_2 + w_4);
+                    this._ventana.TotalDatos = System.Convert.ToString(w_2 + w_4);
 
                 }
                 else
                 {
                     this._ventana.SaldoVencidoSolicitud = System.Convert.ToString(w_1);
+                    this._ventana.SaldoVencidoDatos = System.Convert.ToString(w_1);
                     this._ventana.SaldoPorVencerSolicitud = System.Convert.ToString(w_3);
+                    this._ventana.SaldoPorVencerDatos = System.Convert.ToString(w_3);
                     this._ventana.TotalSolicitud = System.Convert.ToString(w_1 + w_3);
+                    this._ventana.TotalDatos = System.Convert.ToString(w_1 + w_3);
                 }
             }
 

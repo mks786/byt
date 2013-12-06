@@ -301,9 +301,15 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string SaldoVencidoSolicitud { set; }
 
+        string SaldoVencidoDatos { set; }
+
         string SaldoPorVencerSolicitud { set; }
 
+        string SaldoPorVencerDatos { set; }
+
         string TotalSolicitud { set; }
+
+        string TotalDatos { set; }
         
 
         GridViewColumnHeader CurSortCol { get; set; }

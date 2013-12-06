@@ -96,7 +96,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.CartasOuts
 
                 CartaOut cartaOut = new CartaOut();
                 cartaOut.Status = 'T';
-                this._cartasOuts = this._cartaOutServicios.ObtenerCartasOutsFiltro(cartaOut);
+                //this._cartasOuts = this._cartaOutServicios.ObtenerCartasOutsFiltro(cartaOut);
+                this._cartasOuts = this._cartaOutServicios.ObtenerCartasOutsFiltroAdo(cartaOut);
                 this._ventana.Resultados = this._cartasOuts;
                 this._ventana.TotalHits = this._cartasOuts.Count.ToString();
                 this._ventana.ContadorTransferencia = "0";
@@ -247,26 +248,58 @@ namespace Trascend.Bolet.Cliente.Presentadores.CartasOuts
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                int contador = 1;
-
+                //int contador = 1;
+                int contador = 0;
                 bool exito = false;
+                IList<CartaOut> listaCartasOut = new List<CartaOut>();
 
                 Mouse.OverrideCursor = Cursors.Wait;
 
-                foreach (CartaOut cartaOut in this._cartasOuts)
+                #region CODIGO ORIGINAL COMENTADO NO BORRAR
+                //foreach (CartaOut cartaOut in this._cartasOuts)
+                //{
+                //    IList<CartaOut> listaCartasOut = new List<CartaOut>();
+                //    listaCartasOut.Add(cartaOut);
+                //    exito = this._cartaOutServicios.TransferirPlantilla(listaCartasOut, UsuarioLogeado.Hash);
+                //    if (exito)
+                //    {
+                //        this._ventana.ContadorTransferencia = (string.Format(" {0} Cartas transferidas", contador.ToString()));
+                //        contador++;
+
+                //    }
+
+                //} 
+                #endregion
+
+                //Nueva forma de hacerlo
+                if (this._cartasOuts.Count > 0)
                 {
-                    IList<CartaOut> listaCartasOut = new List<CartaOut>();
-                    listaCartasOut.Add(cartaOut);
-                    exito = this._cartaOutServicios.TransferirPlantilla(listaCartasOut, UsuarioLogeado.Hash);
-                    if (exito)
+                    foreach (CartaOut cartaOut in this._cartasOuts)
                     {
-                        this._ventana.ContadorTransferencia = (string.Format(" {0} Cartas transferidas", contador.ToString()));
-                        contador++;
-                        
+                        listaCartasOut.Add(cartaOut);
                     }
 
+                    contador = listaCartasOut.Count;
+                    exito = this._cartaOutServicios.TransferirPlantilla(listaCartasOut, UsuarioLogeado.Hash);
+
+                    //if (exito)
+                    //{
+                    //    this._ventana.ContadorTransferencia = (string.Format(" {0} Cartas transferidas", contador.ToString()));
+                    //}
                 }
 
+
+                #region CODIGO ORIGINAL COMENTADO -NO BORRAR
+                //if (exito)
+                //{
+                //    //contador++;
+                //    this._ventana.ContadorTransferencia = (string.Format(" {0} Cartas transferidas", contador.ToString()));
+
+
+                //}
+                
+                #endregion
+                
                 //if (this._cartaOutServicios.TransferirPlantilla(this._cartasOuts,UsuarioLogeado.Hash))
                 if (exito)
                 {

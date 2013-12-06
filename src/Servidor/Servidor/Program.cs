@@ -29,19 +29,15 @@ namespace Trascend.Bolet.Servidor
             servicio.Autenticar(usuarioPrueba);
 
             #region Codigo de Prueba NO BORRAR 
-            /*
-            Asociado asociado = new Asociado();
-            asociado.Id = 4;
-            FiltroDataCrudaCobranza filtro = new FiltroDataCrudaCobranza();
-            //filtro.Moneda = "US";
-            //filtro.Asociado = asociado;
-            //filtro.Ordenamiento = "DESC";
-            SeguimientoDeCobranzasServicios servicioPrueba = new SeguimientoDeCobranzasServicios();
-            DataTable datos = servicioPrueba.GenerarDatosResumenGeneral(filtro);
-            */
+            
+            /*CartaOut filtro = new CartaOut();
+            filtro.Status = 'T';
+            CartaOutServicios servicioPrueba = new CartaOutServicios();
+            //IList<CartaOut> lista = servicioPrueba.ObtenerCartasOutsFiltro(filtro);
+            IList<CartaOut> lista = servicioPrueba.ObtenerCartasOutsFiltroAdo(filtro);
 
 
-            //Console.ReadLine();
+            Console.ReadLine();*/
             
 
             #endregion

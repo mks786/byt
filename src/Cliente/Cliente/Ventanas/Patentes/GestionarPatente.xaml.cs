@@ -900,8 +900,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._txtNombreInteresadoSolicitud.IsEnabled = value;
                 this._txtPoderSolicitud.IsEnabled = value;
                 this._txtSaldoPorVencerSolicitud.IsEnabled = value;
+                this._txtSaldoPorVencerDatos.IsEnabled = value;
                 this._txtSaldoVencidoSolicitud.IsEnabled = value;
+                this._txtSaldoVencidoDatos.IsEnabled = value;
                 this._txtTotalSolicitud.IsEnabled = value;
+                this._txtTotalDatos.IsEnabled = value;
                 this._txtCasoSolicitud.IsEnabled = value;
                 this._txtPaisSolicitud.IsEnabled = value;
                 this._txtEstadoSolicitud.IsEnabled = value;
@@ -1007,6 +1010,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._btnConsultarInteresadoSolicitud.IsEnabled = value;
                 this._btnInfoAdicionalSolicitud.IsEnabled = value;
                 this._btnSaldosSolicitud.IsEnabled = value;
+                this._btnSaldosDatos.IsEnabled = value;
                 this._btnDisenoSolicitud.IsEnabled = value;
                 //this._btnDisenoReporteSolicitud.IsEnabled = value;
                 this._btnDocumentosSolicitud.IsEnabled = value;
@@ -1015,6 +1019,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._btnDisenoReporteSolicitud.IsEnabled = value;
                 this._btnInventoresSolicitud.IsEnabled = value;
                 this._btnImprimirEdoDeCuentaSolicitud.IsEnabled = value;
+                this._btnImprimirEdoDeCuentaDatos.IsEnabled = value;
 
                 //Datos
                 this._btnDisenoDatos.IsEnabled = value;
@@ -2337,15 +2342,31 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._txtSaldoVencidoSolicitud.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value)); }
         }
 
+        public string SaldoVencidoDatos
+        {
+            set { this._txtSaldoVencidoDatos.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value)); }
+        }
+
         public string SaldoPorVencerSolicitud
         {
 
             set { this._txtSaldoPorVencerSolicitud.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value)); }
         }
 
+        public string SaldoPorVencerDatos
+        {
+
+            set { this._txtSaldoPorVencerDatos.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value)); }
+        }
+
         public string TotalSolicitud
         {
             set { this._txtTotalSolicitud.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value)); }
+        }
+
+        public string TotalDatos
+        {
+            set { this._txtTotalDatos.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value)); }
         }
 
         private void _txtDescripcionSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)

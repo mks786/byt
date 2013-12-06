@@ -62,7 +62,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtNombre" Width="200" MaxLength="25" 
+                    <custom:ByTTextBox Name="_txtNombre" Width="200" MaxLength="4000" 
                              ToolTip="{Binding ElementName=_txtNombre, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="Nombre" UpdateSourceTrigger="PropertyChanged">

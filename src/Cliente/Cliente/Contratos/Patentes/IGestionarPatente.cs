@@ -266,9 +266,15 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         string SaldoVencidoSolicitud { set; }
 
+        string SaldoVencidoDatos { set; }
+
         string SaldoPorVencerSolicitud { set; }
 
+        string SaldoPorVencerDatos { set; }
+
         string TotalSolicitud { set; }
+
+        string TotalDatos { set; }
 
         void BorrarCeros();
 

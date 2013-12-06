@@ -866,6 +866,8 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPatente}"/>
@@ -1413,8 +1415,8 @@
                             <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblOrdPublicacion}"/>
                             </Label>
-                            <ComboBox  Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2" Name="_cbxOrdenPublicacionDatos" Height="20" 
-                                  ItemsSource="{Binding}" SelectedIndex="0">
+                            <ComboBox  Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="3" Name="_cbxOrdenPublicacionDatos" Height="20" 
+                                  ItemsSource="{Binding}" SelectedIndex="0" Width="120" HorizontalAlignment="Left">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock>
@@ -1432,8 +1434,8 @@
                             <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblBolPublicacion}"/>
                             </Label>
-                            <ComboBox   Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="2" Name="_cbxBoletinPublicacionDatos" Height="20" 
-                                   SelectedIndex="0" ItemsSource="{Binding}">
+                            <ComboBox   Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="3" Name="_cbxBoletinPublicacionDatos" Height="20" 
+                                   SelectedIndex="0" ItemsSource="{Binding}" Width="120" HorizontalAlignment="Left">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock>
@@ -1451,8 +1453,8 @@
                             <Label Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblBolConcesion}"/>
                             </Label>
-                            <ComboBox   Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="2" Name="_cbxBoletinConcesionDatos" Height="20" 
-                                  ItemsSource="{Binding}" SelectedIndex="0">
+                            <ComboBox   Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="3" Name="_cbxBoletinConcesionDatos" Height="20" 
+                                  ItemsSource="{Binding}" SelectedIndex="0" Width="120" HorizontalAlignment="Left">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock>
@@ -1759,6 +1761,51 @@
                                         HorizontalAlignment="Left" Click="_btnCertificadoDatos_Click" Margin="5,0,0,0">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.btnCertificado}"/>
                             </Button>
+
+                        </Grid>
+
+                        <Grid Grid.Column="1" Grid.Row="22" Grid.ColumnSpan="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Button  Name="_btnImprimirEdoDeCuentaDatos" Width="100" IsDefault="False" Grid.Row="0" Grid.Column="0" Height="25" HorizontalAlignment="Left"
+                                Click="_btnImprimirEdoCuentaSolicitud_Click">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.btnImprimirEdoCta}"/>
+                            </Button>
+
+                            <Button  Name="_btnSaldosDatos" IsDefault="False" Width="80" Grid.Row="0" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                                Click="_btnSaldoSolicitud_Click" Margin="5,0,0,0">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.btnSaldos}"/>
+                            </Button>
+
+                            <Label Name="_lblSaldoVencidoDatos" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblSaldoVencido}"/>
+                            </Label>
+                            <custom:ByTTextBox   Grid.Column="3" Grid.Row="0" Name="_txtSaldoVencidoDatos" HorizontalContentAlignment="Right" VerticalAlignment="Center" MaxLength="255"></custom:ByTTextBox>
+
+                            <Label Name="_lblSaldoPorVencerDatos" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblSaldoPorVencer}"/>
+                            </Label>
+                            <custom:ByTTextBox   Grid.Column="3" Grid.Row="1" Name="_txtSaldoPorVencerDatos" HorizontalContentAlignment="Right" VerticalAlignment="Center" 
+                                            MaxLength="255"></custom:ByTTextBox>
+
+                            <Label Name="_lblTotalDatos" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblTotal}"/>
+                            </Label>
+                            <custom:ByTTextBox   Grid.Column="3" Grid.Row="2" Name="_txtTotalDatos" HorizontalContentAlignment="Right" VerticalAlignment="Center" MaxLength="255"></custom:ByTTextBox>
 
                         </Grid>
 

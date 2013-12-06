@@ -4114,7 +4114,7 @@ en Prensa:</value>
     <value>Ejecutar Detalle</value>
   </data>
   <data name="btnAnalizarQueryEncabezado" xml:space="preserve">
-    <value>Ejecutar Encabezado</value>
+    <value>Ejecutar General</value>
   </data>
   <data name="btnVariablesDetalle" xml:space="preserve">
     <value>Detalle</value>
