@@ -35,6 +35,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         private ITipoClienteServicios _tipoClienteServicios;
         private IPaisServicios _paisServicios;
         private IListaDatosDominioServicios _listaDatosDominioServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
         private IList<Asociado> _asociados;
 
 
@@ -79,6 +80,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
                 this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -185,6 +188,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 primerTipoCliente.Id = "NGN";
                 tiposCLientes.Insert(0, primerTipoCliente);
                 this._ventana.TiposClientes = tiposCLientes;
+
+                IList<ListaDatosValores> origenClientes = 
+                    this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiOrigenClienteAsociado));
+                ListaDatosValores primerOrigenCliente = new ListaDatosValores();
+                primerOrigenCliente.Id = "NGN";
+                origenClientes.Insert(0, primerOrigenCliente);
+                this._ventana.OrigenesClientes = origenClientes;
 
                 IList<ListaDatosDominio> tiposPersona = this._listaDatosDominioServicios.ConsultarListaDatosDominioPorParametro(new ListaDatosDominio("PERSONA"));
                 ListaDatosDominio primerTipoPersona = new ListaDatosDominio();
@@ -434,6 +444,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 this._filtroValido = 2;
             }
 
+            if ((null != this._ventana.OrigenCliente) && (!((ListaDatosValores)this._ventana.OrigenCliente).Id.Equals("NGN")))
+            {
+                asociado.OrigenCliente = ((ListaDatosValores)this._ventana.OrigenCliente).Valor;
+                this._filtroValido = 2;
+            }
+
             if ((null != this._ventana.Tarifa) && (!((Tarifa)this._ventana.Tarifa).Id.Equals("NGN")))
             {
                 asociado.Tarifa = (Tarifa)this._ventana.Tarifa;
@@ -540,6 +556,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             this._ventana.Etiqueta = this.BuscarEtiqueta((IList<Etiqueta>)this._ventana.Etiquetas, new Etiqueta("NGN"));
 
             this._ventana.TipoPersona = ((IList<ListaDatosDominio>)this._ventana.TipoPersonas)[0];
+            this._ventana.OrigenCliente = ((IList<ListaDatosValores>)this._ventana.OrigenesClientes)[0];
             this._ventana.Idioma = this.BuscarIdioma((IList<Idioma>)this._ventana.Idiomas, new Idioma("NGN"));
             this._ventana.TipoCliente = this.BuscarTipoCliente((IList<TipoCliente>)this._ventana.TiposClientes, new TipoCliente("NGN"));
             this._ventana.Tarifa = this.BuscarTarifa((IList<Tarifa>)this._ventana.Tarifas, new Tarifa("NGN"));
@@ -553,4 +570,4 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
 
     }
-}
+} 

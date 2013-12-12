@@ -125,6 +125,13 @@
                     </Label>
                     <custom:ByTTextBox Name="_txtAlerta" Text="{Binding Path=Alerta}" Width="150" MaxLength="2000"/>
                 </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblOrigenCliente}"/>
+                    </Label>
+                    <ComboBox Name="_cbxOrigenCliente" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                    </ComboBox>
+                </WrapPanel>
                 <Separator Margin="0,5,0,5"/>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,5">
                     <Button Name="_btnConsultar" Width="100" IsDefault="True" Click="_btnConsultar_Click">

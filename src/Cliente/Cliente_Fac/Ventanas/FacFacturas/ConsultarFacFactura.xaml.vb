@@ -125,6 +125,18 @@ Namespace Ventanas.FacFacturas
 
         End Sub
 
+        Public Sub New(ByVal FacFactura As Object, ByVal ventanaPadre As Object)
+            InitializeComponent()
+            Me._cargada = False
+            Me._presentador = New PresentadorConsultarFacFactura(Me, FacFactura, ventanaPadre)
+            '_btnConsultarDepartamentoServicio2.Visibility = Windows.Visibility.Collapsed
+            ' _btnEliminarDepartamentoServicio2.Visibility = Windows.Visibility.Collapsed
+            _btnrecalcular.Visibility = Windows.Visibility.Collapsed
+            _btnagregarServicio2.Visibility = Windows.Visibility.Collapsed
+
+        End Sub
+
+
         Private Sub _btnCancelar_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
             Me._presentador.Cancelar()
         End Sub
@@ -1954,5 +1966,27 @@ Namespace Ventanas.FacFacturas
         End Sub
         Public Shared Mostrar_Detalle_Servicio As New RoutedCommand("Mostrar_Detalle_Servicio", GetType(ConsultarFacFactura))
 
+        Private Sub _btnIrAsociado_Click(sender As System.Object, e As System.Windows.RoutedEventArgs)
+
+            Dim parametro As String
+            parametro = String.Empty
+            If (DirectCast(sender, Button)).Name.Equals("_btnIrAsociadoFacFactura") Then
+                parametro = "_btnIrAsociadoFacFactura"
+            ElseIf (DirectCast(sender, Button)).Name.Equals("_btnIrAsociadoImpresion") Then
+                parametro = "_btnIrAsociadoImpresion"
+            End If
+            Me._presentador.ConsultarAsociado(parametro)
+
+        End Sub
+
+        Private Sub _btnIrInteresado_Click(sender As System.Object, e As System.Windows.RoutedEventArgs)
+            Me._presentador.ConsultarInteresadoFactura()
+        End Sub
+
+        Private Sub _txtSaldoPendiente_MouseDoubleClick(sender As System.Object, e As System.Windows.Input.MouseButtonEventArgs)
+
+            Me._presentador.ConsultarCobroFacFactura()
+
+        End Sub
     End Class
 End Namespace

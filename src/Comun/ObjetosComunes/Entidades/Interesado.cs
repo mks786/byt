@@ -26,6 +26,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _alerta;
         private IList<Poder> _poderes;
         private string _operacion;
+        private string _origenCliente;
 
         #endregion
 
@@ -184,6 +185,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _operacion; }
             set { _operacion = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Origen del Cliente
+        /// </summary>
+        public virtual string OrigenCliente
+        {
+            get { return _origenCliente; }
+            set { _origenCliente = value; }
         }
 
         #endregion

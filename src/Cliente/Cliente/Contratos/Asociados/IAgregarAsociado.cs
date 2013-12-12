@@ -49,6 +49,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
 
         string MSaldoPendiente { set; }
 
+        object OrigenClientes { get; set; }
+
+        object OrigenCliente { get; set; }
 
         void Mensaje(string mensaje);
     }

@@ -49,6 +49,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _observaciones;
         //nuevo mapeo para conectividad
         private IList<Conectividad> _conectividades;
+        private string _origenCliente;
 
         //Facturacion
         private string _valorquery;
@@ -587,6 +588,13 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             {
                 this._valorquery = value;
             }
+        }
+
+
+        public virtual string OrigenCliente
+        {
+            get { return _origenCliente; }
+            set { _origenCliente = value; }
         }
 
         

@@ -20,6 +20,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
         private IEstadoServicios _estadoServicios;
         private IInteresadoServicios _interesadoServicios;
         private IListaDatosDominioServicios _listaDatosDominioServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -46,6 +47,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["EstadoServicios"]);
                 this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -86,6 +89,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 this._ventana.TipoPersonas = tiposPersona;
                 this._ventana.Nacionalidades = paises;
                 this._ventana.Corporaciones = estados;
+
+                IList<ListaDatosValores> origenesClientes = 
+                    this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiOrigenClienteAsociado));
+                this._ventana.OrigenesClientes = origenesClientes;
+                ListaDatosValores origenClienteAux = new ListaDatosValores();
+                origenClienteAux.Valor = "BOLET";
+                this._ventana.OrigenCliente = this.BuscarListaDeDatosValores(origenesClientes, origenClienteAux);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -136,6 +146,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 interesado.Nacionalidad = (Pais)this._ventana.Nacionalidad;
                 interesado.Corporacion = (Estado)this._ventana.Corporacion;
                 interesado.TipoPersona = ((ListaDatosDominio)this._ventana.TipoPersona).Id[0];
+                interesado.OrigenCliente = ((ListaDatosValores)this._ventana.OrigenCliente).Valor;
                 interesado.Operacion = "CREATE";
 
                 //if ((interesado.Estado != null) && (!interesado.Estado.Equals("")))

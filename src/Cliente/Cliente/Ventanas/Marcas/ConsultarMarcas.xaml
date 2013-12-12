@@ -196,6 +196,13 @@
                             <custom:ByTTextBox Name="_txtPrimeraReferencia" Width="150" MaxLength="40" Filtro="True" 
                                        GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" Text="{Binding Path=PrimeraReferencia}"/>
                         </WrapPanel>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,49,0">
+                            <Label>
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblOrigenAsociado}"/>
+                            </Label>
+                            <ComboBox Name="_cbxOrigenAsociado" Width="130" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                            </ComboBox>
+                        </WrapPanel>
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,14,0">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -261,6 +268,13 @@
                                     </ListView.View>
                                 </ListView>
                             </Grid>
+                        </WrapPanel>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,49,0">
+                            <Label>
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblOrigenInteresado}"/>
+                            </Label>
+                            <ComboBox Name="_cbxOrigenInteresado" Width="120" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                            </ComboBox>
                         </WrapPanel>
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,14,0">
                             <Grid>

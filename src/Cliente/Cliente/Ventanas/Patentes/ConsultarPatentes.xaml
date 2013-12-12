@@ -182,6 +182,13 @@
                                 </ListView>
                             </Grid>
                         </WrapPanel>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,179,0">
+                            <Label>
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblOrigenAsociado}"/>
+                            </Label>
+                            <ComboBox Name="_cbxOrigenAsociado" Width="120" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                            </ComboBox>
+                        </WrapPanel>
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,14,0">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -247,6 +254,13 @@
                                     </ListView.View>
                                 </ListView>
                             </Grid>
+                        </WrapPanel>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,178,0">
+                            <Label>
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblOrigenInteresado}"/>
+                            </Label>
+                            <ComboBox Name="_cbxOrigenInteresado" Width="110" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                            </ComboBox>
                         </WrapPanel>
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                             <Label Name="_lblReferencia">

@@ -30,6 +30,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         private IListaDatosDominioServicios _listaDatosDominioServicios;
         private ITipoClienteServicios _tipoClienteServicios;
         private IPaisServicios _paisServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -67,6 +68,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
                 this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -140,6 +143,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
                 this._ventana.TiposClientes = this._tipoClienteServicios.ConsultarTodos();
 
+                IList<ListaDatosValores> origenDeClientes = 
+                    this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiOrigenClienteAsociado));
+                this._ventana.OrigenClientes = origenDeClientes;
+                ListaDatosValores origenPorDefecto = new ListaDatosValores();
+                origenPorDefecto.Valor = "BOLET";
+                this._ventana.OrigenCliente = this.BuscarListaDeDatosValores(origenDeClientes, origenPorDefecto);
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -199,6 +209,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     asociado.Tarifa = !((Tarifa)this._ventana.Tarifa).Id.Equals("NGN") ? (Tarifa)this._ventana.Tarifa : null;
                     asociado.Etiqueta = !((Etiqueta)this._ventana.Etiqueta).Id.Equals("NGN") ? (Etiqueta)this._ventana.Etiqueta : null;
                     asociado.DetallePago = !((DetallePago)this._ventana.DetallePago).Id.Equals("NGN") ? (DetallePago)this._ventana.DetallePago : null;
+                    asociado.OrigenCliente = this._ventana.OrigenCliente != null ? ((ListaDatosValores)this._ventana.OrigenCliente).Valor : null;
 
                     int? exitoso = this._asociadoServicios.InsertarOModificarAsociado(asociado, UsuarioLogeado.Hash);
 

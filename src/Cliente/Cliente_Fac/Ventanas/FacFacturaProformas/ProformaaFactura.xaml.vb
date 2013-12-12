@@ -132,9 +132,11 @@ Namespace Ventanas.FacFacturaProformas
             End Set
         End Property
 
-        
+
 
 #End Region
+
+#Region "Constructores de la Clase"
 
         Public Sub New()
             InitializeComponent()
@@ -142,6 +144,15 @@ Namespace Ventanas.FacFacturaProformas
 
             Me._presentador = New PresentadorProformaaFactura(Me)
         End Sub
+
+        Public Sub New(ByVal filtroFacFacturaProforma As Object)
+            InitializeComponent()
+            Me._cargada = False
+            Me._presentador = New PresentadorProformaaFactura(Me, filtroFacFacturaProforma)
+        End Sub
+
+#End Region
+
 
         Private Sub Page_Loaded(ByVal sender As Object, ByVal e As RoutedEventArgs)
             If Not EstaCargada Then
@@ -342,6 +353,14 @@ Namespace Ventanas.FacFacturaProformas
             Me._lblasociado.Visibility = System.Windows.Visibility.Visible
         End Sub
 
+
+        Public Sub ActivarListadoAsociados() Implements IProformaaFactura.ActivarListadoAsociados
+            If (Not Me._lstAsociados.IsEnabled) Then
+                Me._lstAsociados.IsEnabled = True
+            End If
+            '_lstAsociados.ScrollIntoView(_lstAsociados.Items.GetItemAt(1))
+
+        End Sub
         Private Sub _lstAsociados_MouseDoubleClick(ByVal sender As Object, ByVal e As MouseButtonEventArgs)
             If Me._lstAsociados.SelectedItem IsNot Nothing Then
                 Me._presentador.CambiarAsociado()
@@ -393,16 +412,22 @@ Namespace Ventanas.FacFacturaProformas
             End Set
         End Property
 
-        Public ReadOnly Property FechaFactura() As String Implements Contratos.FacFacturaProformas.IProformaaFactura.FechaFactura
+        Public Property FechaFactura() As String Implements Contratos.FacFacturaProformas.IProformaaFactura.FechaFactura
             Get
                 Return Me._dpkFechaFactura.SelectedDate.ToString()
             End Get
+            Set(ByVal value As String)
+                Me._dpkFechaFactura.SelectedDate = value
+            End Set
         End Property
 
-        Public ReadOnly Property Id() As String Implements Contratos.FacFacturaProformas.IProformaaFactura.Id
+        Public Property Id() As String Implements Contratos.FacFacturaProformas.IProformaaFactura.Id
             Get
                 Return Me._txtId.Text
             End Get
+            Set(ByVal value As String)
+                Me._txtId.Text = value
+            End Set
         End Property
 
         'Public ReadOnly Property CreditoSent As String Implements Contratos.FacFacturaProformas.IProformaaFactura.CreditoSent

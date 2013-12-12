@@ -71,9 +71,12 @@ Namespace Presentadores.FacFacturas
         Private _FacContadorServicios As IContadorFacServicios
         Private _FacInternacionalesServicios As IFacInternacionalServicios
         Private _DepartamentoServicios As IDepartamentoServicios
+        Private _filtroFacFacturaProforma As Object
+        Dim xoperacion As String
+
         'FacOperacionDetaProforma
         ''Private _FacFormaServicios As IFacFormaServicios
-        Dim xoperacion As String
+
         ''' <summary>
         ''' Constructor predeterminado
         ''' </summary>
@@ -163,13 +166,16 @@ Namespace Presentadores.FacFacturas
         ''' <param name="ventana">Página que satisface el contrato</param>
         ''' <param name="FacFacturaProforma">FacFacturaProforma a mostrar</param>
         ''' <param name="ventanaPadre">Ventana que precede a esta ventana</param>    
-        Public Sub New(ByVal ventana As IConsultarFacFacturaPase, ByVal FacFacturaOProforma As Object, ByVal ventanaPadre As Object)
+        Public Sub New(ByVal ventana As IConsultarFacFacturaPase, ByVal FacFacturaOProforma As Object, ByVal filtroFacFacturaProforma As Object, ByVal ventanaPadre As Object)
             Try
                 Me._ventana = ventana
                 Me._ventanaPadre = ventanaPadre
+                Me._filtroFacFacturaProforma = filtroFacFacturaProforma
+
                 'Me._ventana.FacFactura = FacFacturaProforma
 
                 'Me._ventana.FacFacturaProforma = New FacFacturaProforma()
+
                 Me._FacFacturaServicios = DirectCast(Activator.GetObject(GetType(IFacFacturaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFacturaServicios")), IFacFacturaServicios)
                 Me._FacFacturaProformaServicios = DirectCast(Activator.GetObject(GetType(IFacFacturaProformaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFacturaProformaServicios")), IFacFacturaProformaServicios)
                 Me._asociadosServicios = DirectCast(Activator.GetObject(GetType(IAsociadoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("AsociadoServicios")), IAsociadoServicios)
@@ -190,7 +196,6 @@ Namespace Presentadores.FacFacturas
                 Me._FacFactuDetaServicios = DirectCast(Activator.GetObject(GetType(IFacFactuDetalleServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFactuDetalleServicios")), IFacFactuDetalleServicios)
                 Me._FacFactuDetaProformasServicios = DirectCast(Activator.GetObject(GetType(IFacFactuDetaProformaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFactuDetaProformaServicios")), IFacFactuDetaProformaServicios)
                 Me._TarifaServiciosServicios = DirectCast(Activator.GetObject(GetType(ITarifaServicioServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("TarifaServicioServicios")), ITarifaServicioServicios)
-
                 Me._DocumentosMarcasServicios = DirectCast(Activator.GetObject(GetType(IDocumentosMarcaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("DocumentosMarcaServicios")), IDocumentosMarcaServicios)
                 Me._DocumentosPatentesServicios = DirectCast(Activator.GetObject(GetType(IDocumentosPatenteServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("DocumentosPatenteServicios")), IDocumentosPatenteServicios)
                 Me._DocumentosTraduccionesServicios = DirectCast(Activator.GetObject(GetType(IDocumentosTraduccionServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("DocumentosTraduccionServicios")), IDocumentosTraduccionServicios)
@@ -261,6 +266,7 @@ Namespace Presentadores.FacFacturas
 
                     'Me._asociados = Me._asociadosServicios.ConsultarTodos()
                     'Me._ventana.Asociados = Me._asociados
+
                     Dim asociadoaux As New Asociado
                     Dim asociado As List(Of Asociado)
                     If FacFactura.Asociado IsNot Nothing Then
@@ -361,6 +367,7 @@ Namespace Presentadores.FacFacturas
                     Else
                         'Me._ventana.Impuesto = Nothing
                     End If
+
                     'Me._ventana.PDescuento = 0
 
                     'esto es para determinar si la pantalla esta en formato de modificar o solo lectura
@@ -927,6 +934,7 @@ Namespace Presentadores.FacFacturas
                         Me._ventana.FacFactura = Nothing
                         Me._ventana.FacFactura = FacFactura
                         Me._ventana.Ocultar_Botones = True
+                        Me._ventanaPadre = Nothing
                         IrConsultarFacFactura()
 
 
@@ -967,7 +975,8 @@ Namespace Presentadores.FacFacturas
             If Me._ventanaPadre IsNot Nothing Then
                 Me.RegresarVentanaPadre()
             Else
-                Me.Navegar(New Diginsoft.Bolet.Cliente.Fac.Ventanas.FacFacturaProformas.ProformaaFactura())
+                'Me.Navegar(New Diginsoft.Bolet.Cliente.Fac.Ventanas.FacFacturaProformas.ProformaaFactura())
+                Me.Navegar(New Diginsoft.Bolet.Cliente.Fac.Ventanas.FacFacturaProformas.ProformaaFactura(Me._filtroFacFacturaProforma))
             End If
 
 
@@ -1214,7 +1223,7 @@ Namespace Presentadores.FacFacturas
             Else
                 Me._ventana.Asociados = Nothing
                 Mouse.OverrideCursor = Nothing
-                MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")                
+                MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
                 Exit Sub
             End If
 
@@ -1299,7 +1308,7 @@ Namespace Presentadores.FacFacturas
             Else
                 Me._ventana.AsociadosImp = Nothing
                 Mouse.OverrideCursor = Nothing
-                MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")                
+                MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
                 Exit Sub
             End If
 

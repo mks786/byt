@@ -46,6 +46,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         private IListaDatosDominioServicios _listaDatosDominioServicios;
         private IDatosTransferenciaServicios _datosTransferenciaServicios;
         private IFacGestionServicios _facGestionServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private IList<Auditoria> _auditorias;
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -96,6 +97,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoEmailAsociadoServicios"]);
                 this._facGestionServicios = (IFacGestionServicios)Activator.GetObject(typeof(IFacGestionServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FacGestionServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -154,6 +158,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 IList<TipoCliente> tiposClientes = this._tipoClienteServicios.ConsultarTodos();
                 this._ventana.TiposClientes = tiposClientes;
                 this._ventana.TipoCliente = this.BuscarTipoCliente(tiposClientes, asociado.TipoCliente);
+
+
+                IList<ListaDatosValores> origenClientes = 
+                    this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiOrigenClienteAsociado));
+                this._ventana.OrigenClientes = origenClientes;
+                ListaDatosValores origenAux = new ListaDatosValores();
+                if (asociado.OrigenCliente != null)
+                {
+                    origenAux.Valor = asociado.OrigenCliente;
+                    this._ventana.OrigenCliente = this.BuscarListaDeDatosValores(origenClientes, origenAux);
+                }
+                else
+                {
+                    origenAux.Valor = "BOLET";
+                    this._ventana.OrigenCliente = this.BuscarListaDeDatosValores(origenClientes, origenAux);
+                }
+                   
+
 
                 IList<Tarifa> tarifas = this._tarifaServicios.ConsultarTodos();
                 Tarifa primeraTarifa = new Tarifa();
@@ -323,6 +345,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     asociado.Idioma = (Idioma)this._ventana.Idioma;
                     asociado.Moneda = (Moneda)this._ventana.Moneda;
                     asociado.TipoCliente = (TipoCliente)this._ventana.TipoCliente;
+                    asociado.OrigenCliente = this._ventana.OrigenCliente != null ? ((ListaDatosValores)this._ventana.OrigenCliente).Valor : null;
 
                     if ((Tarifa)this._ventana.Tarifa != null)
                         asociado.Tarifa = !((Tarifa)this._ventana.Tarifa).Id.Equals("NGN") ? (Tarifa)this._ventana.Tarifa : null;

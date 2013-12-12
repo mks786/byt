@@ -130,7 +130,14 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         #endregion
 
+        object OrigenesAsociados { get; set; }
 
+        object OrigenAsociado { get; set; }
+
+        object OrigenesInteresados { get; set; }
+
+        object OrigenInteresado { get; set; }
+        
         void LimpiarCampos();
 
         bool TYREstaSeleccionado { get; set; }

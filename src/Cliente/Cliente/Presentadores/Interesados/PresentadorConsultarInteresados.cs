@@ -28,6 +28,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
         private IEstadoServicios _estadoServicios;
         private IInteresadoServicios _interesadoServicios;
         private IListaDatosDominioServicios _listaDatosDominioServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
         private IList<Interesado> _interesados;
 
         private int _filtroValido;
@@ -54,6 +55,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["EstadoServicios"]);
                 this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -136,6 +139,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 primerTipoPersona.Id = "NGN";
                 tiposPersona.Insert(0, primerTipoPersona);
                 this._ventana.TipoPersonas = tiposPersona;
+
+                IList<ListaDatosValores> origenClientes =
+                    this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiOrigenClienteAsociado));
+                ListaDatosValores primerOrigenCliente = new ListaDatosValores();
+                primerOrigenCliente.Id = "NGN";
+                origenClientes.Insert(0, primerOrigenCliente);
+                this._ventana.OrigenesClientes = origenClientes;
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -417,6 +427,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 this._filtroValido = 2;
             }
 
+            if ((null != this._ventana.OrigenCliente) && (!((ListaDatosValores)this._ventana.OrigenCliente).Id.Equals("NGN")))
+            {
+                interesado.OrigenCliente = ((ListaDatosValores)this._ventana.OrigenCliente).Valor;
+                this._filtroValido = 2;
+            }
+
             //if (!this._ventana.DomicilioAsociado.Equals(""))
             //{
             //    asociado.Domicilio = this._ventana.DomicilioAsociado;
@@ -547,6 +563,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
             this._ventana.TipoPersona = ((IList<ListaDatosDominio>)this._ventana.TipoPersonas)[0];
             this._ventana.Nacionalidad = ((IList<Pais>)this._ventana.Nacionalidades)[0];
             this._ventana.Corporacion = ((IList<Estado>)this._ventana.Corporaciones)[0];
+            this._ventana.OrigenCliente = ((IList<ListaDatosValores>)this._ventana.OrigenesClientes)[0];
 
             this._ventana.Resultados = _interesados;
             this._ventana.TotalHits = "0";

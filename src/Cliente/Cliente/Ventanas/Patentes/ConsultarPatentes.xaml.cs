@@ -375,6 +375,30 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         #endregion
 
+        public object OrigenesAsociados
+        {
+            get { return this._cbxOrigenAsociado.DataContext; }
+            set { this._cbxOrigenAsociado.DataContext = value; }
+        }
+
+        public object OrigenAsociado
+        {
+            get { return this._cbxOrigenAsociado.SelectedItem; }
+            set { this._cbxOrigenAsociado.SelectedItem = value; }
+        }
+
+        public object OrigenesInteresados
+        {
+            get { return this._cbxOrigenInteresado.DataContext; }
+            set { this._cbxOrigenInteresado.DataContext = value; }
+        }
+
+        public object OrigenInteresado
+        {
+            get { return this._cbxOrigenInteresado.SelectedItem; }
+            set { this._cbxOrigenInteresado.SelectedItem = value; }
+        }
+
         #endregion
 
 

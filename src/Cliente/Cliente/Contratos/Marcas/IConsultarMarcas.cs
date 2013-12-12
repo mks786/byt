@@ -174,5 +174,13 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         bool ConfirmarConsultaPorLocalidad(string localidadAConsultar);
 
         #endregion
+
+        object OrigenesAsociados { get; set; }
+
+        object OrigenAsociado { get; set; }
+
+        object OrigenesInteresados { get; set; }
+
+        object OrigenInteresado { get; set; }
     }
 }

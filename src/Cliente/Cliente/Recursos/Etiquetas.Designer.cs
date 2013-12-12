@@ -1728,6 +1728,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a FAC_ASOC_ORIGENCLIENTE.
+        /// </summary>
+        public static string cbiOrigenClienteAsociado {
+            get {
+                return ResourceManager.GetString("cbiOrigenClienteAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Otro.
         /// </summary>
         public static string cbiOtro {
@@ -6407,6 +6416,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblOrdPublicacion {
             get {
                 return ResourceManager.GetString("lblOrdPublicacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Origen del Asociado:.
+        /// </summary>
+        public static string lblOrigenAsociado {
+            get {
+                return ResourceManager.GetString("lblOrigenAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Origen del Cliente:.
+        /// </summary>
+        public static string lblOrigenCliente {
+            get {
+                return ResourceManager.GetString("lblOrigenCliente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Origen del Interesado:.
+        /// </summary>
+        public static string lblOrigenInteresado {
+            get {
+                return ResourceManager.GetString("lblOrigenInteresado", resourceCulture);
             }
         }
         

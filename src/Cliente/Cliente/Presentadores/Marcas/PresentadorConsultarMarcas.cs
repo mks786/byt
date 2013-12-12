@@ -202,6 +202,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.BoletinesPublicacion = boletines;
                 this._ventana.BoletinesConcesion = boletines;
 
+                IList<ListaDatosValores> origenAsociados =
+                    this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiOrigenClienteAsociado));
+                ListaDatosValores primerOrigenAsociado = new ListaDatosValores();
+                primerOrigenAsociado.Id = "NGN";
+                origenAsociados.Insert(0, primerOrigenAsociado);
+                this._ventana.OrigenesAsociados = origenAsociados;
+
+                IList<ListaDatosValores> origenInteresados =
+                    this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiOrigenClienteAsociado));
+                ListaDatosValores primerOrigenInteresado = new ListaDatosValores();
+                primerOrigenInteresado.Id = "NGN";
+                origenInteresados.Insert(0, primerOrigenInteresado);
+                this._ventana.OrigenesInteresados = origenInteresados;
+
                 this._ventana.TotalHits = "0";
                 this._ventana.FocoPredeterminado();
 
@@ -689,21 +703,58 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if ((null != this._ventana.Asociado) && (((Asociado)this._ventana.Asociado).Id != int.MinValue))
                 {
                     marcaAuxiliar.Asociado = new Asociado();
-                    marcaAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
+                    //marcaAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
+                    marcaAuxiliar.Asociado.Id = ((Asociado)this._ventana.Asociado).Id; 
                     _filtroValido = 2;
                 }
                 else
                     marcaAuxiliar.Asociado = null;
 
+                if ((null != this._ventana.OrigenAsociado) && (!((ListaDatosValores)this._ventana.OrigenAsociado).Id.Equals("NGN")))
+                {
+                    if (marcaAuxiliar.Asociado != null)
+                    {
+                        marcaAuxiliar.Asociado.OrigenCliente = ((ListaDatosValores)this._ventana.OrigenAsociado).Valor;
+                        _filtroValido = 2;
+                    }
+                    else
+                    {
+                        marcaAuxiliar.Asociado = new Asociado();
+                        marcaAuxiliar.Asociado.Id = int.MinValue;
+                        marcaAuxiliar.Asociado.OrigenCliente = ((ListaDatosValores)this._ventana.OrigenAsociado).Valor;
+                        _filtroValido = 2;
+                    }
+                }
+                
+                
+
 
                 if ((null != this._ventana.Interesado) && (((Interesado)this._ventana.Interesado).Id != int.MinValue))
                 {
                     marcaAuxiliar.Interesado = new Interesado();
-                    marcaAuxiliar.Interesado = (Interesado)this._ventana.Interesado;
+                    //marcaAuxiliar.Interesado = (Interesado)this._ventana.Interesado;
+                    marcaAuxiliar.Interesado.Id = ((Interesado)this._ventana.Interesado).Id;
                     _filtroValido = 2;
                 }
                 else
                     marcaAuxiliar.Interesado = null;
+
+                if ((null != this._ventana.OrigenInteresado) && (!((ListaDatosValores)this._ventana.OrigenInteresado).Id.Equals("NGN")))
+                {
+                    if (marcaAuxiliar.Interesado != null)
+                    {
+                        marcaAuxiliar.Interesado.OrigenCliente = ((ListaDatosValores)this._ventana.OrigenInteresado).Valor;
+                        _filtroValido = 2;
+                    }
+                    else
+                    {
+                        marcaAuxiliar.Interesado = new Interesado();
+                        marcaAuxiliar.Interesado.Id = int.MinValue;
+                        marcaAuxiliar.Interesado.OrigenCliente = ((ListaDatosValores)this._ventana.OrigenInteresado).Valor;
+                        _filtroValido = 2;
+                    }
+                }
+                
 
                 if ((null != this._ventana.Corresponsal) && (((Corresponsal)this._ventana.Corresponsal).Id != int.MinValue))
                 {
@@ -1111,33 +1162,35 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             bool retorno = false;
             //marcaAuxiliar.LocalidadMarca = ((ListaDatosValores)this._ventana.TipoBusqueda).Valor;
 
-                if (this._ventana.Id.Equals(""))
-                    if ((null == this._ventana.Asociado) || (((Asociado)this._ventana.Asociado).Id == int.MinValue))
+            if (this._ventana.Id.Equals(""))
+                if ((null == this._ventana.Asociado) || (((Asociado)this._ventana.Asociado).Id == int.MinValue))
+                    if ((null == this._ventana.OrigenAsociado) || ((ListaDatosValores)this._ventana.OrigenAsociado).Id.Equals("NGN"))
                         if ((null == this._ventana.Interesado) || (((Interesado)this._ventana.Interesado).Id == int.MinValue))
-                            if ((null == this._ventana.Corresponsal) ||(((Corresponsal)this._ventana.Corresponsal).Id == int.MinValue))
-                                if (this._ventana.DescripcionFiltrar.Equals(""))
-                                    if(this._ventana.Otros.Equals(""))
-                                        if (this._ventana.Fecha.Equals(""))
-                                            if (((TipoEstado)this._ventana.Detalle).Id.Equals("NGN"))
-                                                if (((Servicio)this._ventana.Servicio).Id.Equals("NGN"))
-                                                    if (this._ventana.ClaseInternacional.Equals(""))
-                                                        if (this._ventana.ClaseNacional.Equals(""))
-                                                            if (this._ventana.Distingue.Equals(""))
-                                                                if(this._ventana.DistingueEnIngles.Equals(""))
-                                                                    if (this._ventana.Solicitud.Equals(""))
-                                                                        if (null == marcaAuxiliar.PrimeraReferencia)
-                                                                            if (this._ventana.IdInternacional.Equals(string.Empty))
-                                                                                if (this._ventana.IdCorrelativoInternacional.Equals(string.Empty))
-                                                                                    if (this._ventana.Pais == null)
-                                                                                        if (this._ventana.ReferenciaAsociado.Equals(string.Empty))
-                                                                                            if (this._ventana.ReferenciaInteresado.Equals(string.Empty))
-                                                                                                if(!this._ventana.BoletinesEstaSeleccionado)
-                                                                                                    if(!this._ventana.IndicadoresEstaSeleccionado)
-                                                                                                        if(!this._ventana.PrioridadesEstaSeleccionado)
-                                                                                                            if(!this._ventana.TYREstaSeleccionado)
+                            if ((null == this._ventana.OrigenInteresado) || ((ListaDatosValores)this._ventana.OrigenInteresado).Id.Equals("NGN"))
+                                if ((null == this._ventana.Corresponsal) || (((Corresponsal)this._ventana.Corresponsal).Id == int.MinValue))
+                                    if (this._ventana.DescripcionFiltrar.Equals(""))
+                                        if (this._ventana.Otros.Equals(""))
+                                            if (this._ventana.Fecha.Equals(""))
+                                                if (((TipoEstado)this._ventana.Detalle).Id.Equals("NGN"))
+                                                    if (((Servicio)this._ventana.Servicio).Id.Equals("NGN"))
+                                                        if (this._ventana.ClaseInternacional.Equals(""))
+                                                            if (this._ventana.ClaseNacional.Equals(""))
+                                                                if (this._ventana.Distingue.Equals(""))
+                                                                    if (this._ventana.DistingueEnIngles.Equals(""))
+                                                                        if (this._ventana.Solicitud.Equals(""))
+                                                                            if (null == marcaAuxiliar.PrimeraReferencia)
+                                                                                if (this._ventana.IdInternacional.Equals(string.Empty))
+                                                                                    if (this._ventana.IdCorrelativoInternacional.Equals(string.Empty))
+                                                                                        if (this._ventana.Pais == null)
+                                                                                            if (this._ventana.ReferenciaAsociado.Equals(string.Empty))
+                                                                                                if (this._ventana.ReferenciaInteresado.Equals(string.Empty))
+                                                                                                    if (!this._ventana.BoletinesEstaSeleccionado)
+                                                                                                        if (!this._ventana.IndicadoresEstaSeleccionado)
+                                                                                                            if (!this._ventana.PrioridadesEstaSeleccionado)
+                                                                                                                if (!this._ventana.TYREstaSeleccionado)
                                                                                                                 {
-                                                                                                                   _soloLocalidad = true;
-                                                                                                                   retorno = _soloLocalidad;
+                                                                                                                    _soloLocalidad = true;
+                                                                                                                    retorno = _soloLocalidad;
                                                                                                                 }
 
                 if (marcaAuxiliar.LocalidadMarca.Equals("N"))
@@ -1215,6 +1268,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             this._ventana.ClaseNacional = null;
             this._ventana.ClaseInternacional = null;
             this._ventana.Servicio = this.BuscarServicio((IList<Servicio>)this._ventana.Servicios, new Servicio("NGN"));
+            this._ventana.OrigenAsociado = this.BuscarListaDeDatosValores((IList<ListaDatosValores>)this._ventana.OrigenesAsociados, new ListaDatosValores("NGN"));
+            this._ventana.OrigenInteresado = this.BuscarListaDeDatosValores((IList<ListaDatosValores>)this._ventana.OrigenesInteresados, new ListaDatosValores("NGN"));
             //this._ventana.Detalle = this.BuscarDetalle((IList<TipoEstado>)this._ventana.Detalles, new TipoEstado("NGN"));
             this._ventana.Detalle = ((IList<TipoEstado>)this._ventana.Detalles)[0];
 

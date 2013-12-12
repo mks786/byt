@@ -4,6 +4,7 @@ Imports System.ComponentModel
 Imports System.Configuration
 Imports System.Linq
 Imports System.Net.Sockets
+Imports System.Windows
 Imports System.Runtime.Remoting
 Imports System.Windows.Controls
 Imports System.Windows.Documents
@@ -38,6 +39,8 @@ Namespace Presentadores.FacFacturaProformas
         Private _idiomasServicios As IIdiomaServicios
         Private _monedasServicios As IMonedaServicios
         Private _listaDatosValoresServicios As IListaDatosValoresServicios
+        Private _filtroFacFacturaProforma As FacFacturaProforma
+
 
         ''' <summary>
         ''' Constructor Predeterminado
@@ -46,6 +49,23 @@ Namespace Presentadores.FacFacturaProformas
         Public Sub New(ByVal ventana As IProformaaFactura)
             Try
                 Me._ventana = ventana
+                Me._FacFacturaProformaServicios = DirectCast(Activator.GetObject(GetType(IFacFacturaProformaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFacturaProformaServicios")), IFacFacturaProformaServicios)
+                Me._asociadosServicios = DirectCast(Activator.GetObject(GetType(IAsociadoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("AsociadoServicios")), IAsociadoServicios)
+                Me._facbancosServicios = DirectCast(Activator.GetObject(GetType(IFacBancoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacBancoServicios")), IFacBancoServicios)
+                Me._idiomasServicios = DirectCast(Activator.GetObject(GetType(IIdiomaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("IdiomaServicios")), IIdiomaServicios)
+                Me._monedasServicios = DirectCast(Activator.GetObject(GetType(IMonedaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("MonedaServicios")), IMonedaServicios)
+                Me._listaDatosValoresServicios = DirectCast(Activator.GetObject(GetType(IListaDatosValoresServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("ListaDatosValoresServicios")), IListaDatosValoresServicios)
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
+            End Try
+        End Sub
+
+        Public Sub New(ByVal ventana As IProformaaFactura, ByVal filtroFacFacturaProforma As Object)
+            Try
+                Me._ventana = ventana
+                Me._filtroFacFacturaProforma = DirectCast(filtroFacFacturaProforma, FacFacturaProforma)
+
                 Me._FacFacturaProformaServicios = DirectCast(Activator.GetObject(GetType(IFacFacturaProformaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFacturaProformaServicios")), IFacFacturaProformaServicios)
                 Me._asociadosServicios = DirectCast(Activator.GetObject(GetType(IAsociadoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("AsociadoServicios")), IAsociadoServicios)
                 Me._facbancosServicios = DirectCast(Activator.GetObject(GetType(IFacBancoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacBancoServicios")), IFacBancoServicios)
@@ -79,6 +99,12 @@ Namespace Presentadores.FacFacturaProformas
                 ActualizarTitulo()
 
                 CargarCombosCamposOrdenamiento()
+                Consultar()
+                Me._ventana.FacFacturaProformaFiltrar = New FacFacturaProforma
+
+                Me._ventana.FocoPredeterminado()
+
+
                 'Me._FacFacturaProformas = Me._FacFacturaProformaServicios.ConsultarTodos()
                 'Dim FacFacturaProformaAuxiliar As New FacFacturaProforma
                 'FacFacturaProformaAuxiliar.Inicial = UsuarioLogeado.Iniciales
@@ -88,8 +114,7 @@ Namespace Presentadores.FacFacturaProformas
                 'FacFacturaProformas = Me._FacFacturaProformaServicios.ObtenerFacFacturaProformasFiltro(FacFacturaProformaAuxiliar)
 
                 'Me._ventana.Resultados = FacFacturaProformas
-                Consultar()
-                Me._ventana.FacFacturaProformaFiltrar = New FacFacturaProforma
+
                 'sumar(FacFacturaProformas)
 
                 'Comentado momentaneamente
@@ -117,7 +142,7 @@ Namespace Presentadores.FacFacturaProformas
                 'monedas.Insert(0, primeramoneda)
                 'Me._ventana.Monedas = monedas
 
-                Me._ventana.FocoPredeterminado()
+
 
                 '#Region "trace"
                 If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
@@ -260,6 +285,10 @@ Namespace Presentadores.FacFacturaProformas
                 Me._ventana.Count = FacFacturaProformas.Count
                 Me._ventana.Resultados = FacFacturaProformas
                 sumar(FacFacturaProformas)
+
+                'Asigno el filtro a la variable global para guardarla
+                Me._filtroFacFacturaProforma = FacFacturaProformaAuxiliar
+
                 'Else
                 '    Me._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto)
                 'End If
@@ -317,7 +346,7 @@ Namespace Presentadores.FacFacturaProformas
             Me._ventana.VerTipo = "1"
         End Sub
 
-        Public Sub Rechazar()            
+        Public Sub Rechazar()
             'If UsuarioLogeado.BAutorizar = True Then
             Mouse.OverrideCursor = Cursors.Wait
             Dim proforma As List(Of FacFacturaProforma) = Me._ventana.Resultados
@@ -352,7 +381,7 @@ Namespace Presentadores.FacFacturaProformas
                         IrConsultarFacFactura(proforma(i))
                     End If
                 Next
-                Consultar()
+                'Consultar()
             End If
             'MessageBox.Show("Autorizacion Satisfactoria")            
             Mouse.OverrideCursor = Nothing
@@ -369,10 +398,13 @@ Namespace Presentadores.FacFacturaProformas
             '#End Region
 
             'FacFacturaProforma.Accion = 1 'modificar sin el boton regresar
-            FacFacturaProforma.Status = 1
             'Me.Navegar(New ConsultarFacFacturaPase(FacFacturaProforma))
-            Me.Navegar(New ConsultarFacFacturaPase(FacFacturaProforma, Me._ventana))
+
+            FacFacturaProforma.Status = 1
+            Me.Navegar(New ConsultarFacFacturaPase(FacFacturaProforma, Me._filtroFacFacturaProforma, Me._ventana))
+
             'Me.Navegar(New ConsultarFacFacturaProforma())
+
             '#Region "trace"
             If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
                 logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
@@ -520,14 +552,26 @@ Namespace Presentadores.FacFacturaProformas
                 Dim listaTiposOrdenamiento As List(Of ListaDatosValores) = Nothing
                 Dim campoAux As New ListaDatosValores()
                 Dim orderAux As New ListaDatosValores()
-                campoAux.Valor = "FechaEcuota"
-                orderAux.Valor = "ASC"
+                If (Me._filtroFacFacturaProforma Is Nothing) Then
+                    campoAux.Valor = "FechaEcuota"
+                Else
+                    campoAux.Valor = Me._filtroFacFacturaProforma.CampoOrdenamiento
+                End If
+
+                If (Me._filtroFacFacturaProforma Is Nothing) Then
+                    orderAux.Valor = "DESC"
+                Else
+                    orderAux.Valor = Me._filtroFacFacturaProforma.TipoOrdenamiento
+                End If
+
 
 
                 listaCamposOrdenamiento =
                     Me._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(New ListaDatosValores(Recursos.Etiquetas.cbiCamposFiltroProforma))
                 Me._ventana.Campos = listaCamposOrdenamiento
                 Me._ventana.CampoSeleccionado = Me.BuscarListaDeDatosValores(listaCamposOrdenamiento, campoAux)
+
+
 
                 listaTiposOrdenamiento =
                     Me._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(New ListaDatosValores(Recursos.Etiquetas.cbiOrdenamientoReporte))
@@ -547,6 +591,65 @@ Namespace Presentadores.FacFacturaProformas
             End Try
 
         End Sub
+
+#Region "METODO CARGARFILTROSBUSQUEDA COMENTADO - NO BORRAR"
+
+        'Private Sub CargarFiltrosBusqueda()
+
+        '    Dim campoAux As New ListaDatosValores()
+        '    Dim orderAux As New ListaDatosValores()
+
+        '    Try
+
+        '        '#Region "trace"
+        '        If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+        '            logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+        '        End If
+        '        '#End Region
+
+        '        If (Me._filtroFacFacturaProforma.Id IsNot Nothing) Then
+        '            Me._ventana.Id = Me._filtroFacFacturaProforma.Id.Value.ToString()
+        '        End If
+
+        '        If (Me._filtroFacFacturaProforma.Asociado IsNot Nothing) Then
+
+        '            Dim asociados As New List(Of Asociado)
+        '            asociados.Add(Me._filtroFacFacturaProforma.Asociado)
+        '            Dim primerasociado As New Asociado()
+        '            primerasociado.Id = Integer.MinValue
+        '            asociados.Insert(0, primerasociado)
+        '            Me._ventana.Asociados = asociados
+        '            Dim asociadoBuscar As New Asociado()
+        '            asociadoBuscar = Me._filtroFacFacturaProforma.Asociado
+        '            Me._ventana.ActivarListadoAsociados()
+        '            'Me._ventana.Asociado = DirectCast(Me._ventana.Asociados, IList(Of Asociado))(1)
+        '            CambiarAsociado()
+        '        End If
+
+        '        If (Me._filtroFacFacturaProforma.FechaFactura IsNot Nothing) Then
+        '            Me._ventana.FechaFactura = Me._filtroFacFacturaProforma.FechaFactura.Value.ToString()
+        '        End If
+
+        '        CargarCombosCamposOrdenamiento()
+
+
+        '        '#Region "trace"
+        '        If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+        '            logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+        '        End If
+        '        '#End Region
+
+        '    Catch ex As Exception
+        '        logger.[Error](ex.Message)
+        '        Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
+
+        '    End Try
+
+
+        'End Sub
+
+#End Region
+
 
     End Class
 End Namespace

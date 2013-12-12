@@ -29,6 +29,7 @@
     <property name="Isf" column="ISP" type="char"/>
     <property name="Alerta" column="IALERTA" type="char"/>
     <property name="AlarmaDescripcion" column="XALERTA" type="string"/>
+    <property name="OrigenCliente" column="IORIGEN" type="string"/>
 
     <many-to-one name="Pais" class="Pais">
       <column name="CPAIS"/>

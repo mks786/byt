@@ -33,6 +33,8 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 #endregion
 
                 bool variosFiltros = false;
+                bool consultaSoloIdAsoc = false;
+                bool consultaSoloIdInt = false;
                 string filtro = "";
                 string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerMarca);
 
@@ -58,21 +60,41 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                    
                 }
 
-                if ((null != marca.Asociado) && (!marca.Asociado.Id.Equals("")))
+                //if ((null != marca.Asociado) && (!marca.Asociado.Id.Equals("")))
+                if ((null != marca.Asociado) && (marca.Asociado.Id != int.MinValue))
                 {
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaIdAsociado, marca.Asociado.Id);
+                    variosFiltros = true;                    
+                }
+
+                if ((null != marca.Asociado) && (!string.IsNullOrEmpty(marca.Asociado.OrigenCliente)) && (!marca.Asociado.OrigenCliente.Equals("NGN")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaOrigenAsociado, marca.Asociado.OrigenCliente);
                     variosFiltros = true;
                 }
 
-                if ((null != marca.Interesado) && (!marca.Interesado.Id.Equals("")))
+                //if ((null != marca.Interesado) && (!marca.Interesado.Id.Equals("")))
+                if ((null != marca.Interesado) && (marca.Interesado.Id != int.MinValue))
                 {
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaIdInteresado, marca.Interesado.Id);
                     variosFiltros = true;
                 }
+
+
+                if ((null != marca.Interesado) && (!string.IsNullOrEmpty(marca.Interesado.OrigenCliente)) && (!marca.Interesado.OrigenCliente.Equals("NGN")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaOrigenInteresado, marca.Interesado.OrigenCliente);
+                    variosFiltros = true;
+                }
+
 
                 if (!string.IsNullOrEmpty(marca.Fichas))
                 {
@@ -384,7 +406,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.exObtenerMarcasFiltro + flag);
+                throw new ApplicationException(Recursos.Errores.exObtenerMarcasFiltro + ": " + ex.Message);
             }
             finally
             {

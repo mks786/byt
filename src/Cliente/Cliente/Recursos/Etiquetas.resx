@@ -4200,4 +4200,16 @@ en Prensa:</value>
   <data name="lblTipoSaldo" xml:space="preserve">
     <value>Tipo de Saldo:</value>
   </data>
+  <data name="cbiOrigenClienteAsociado" xml:space="preserve">
+    <value>FAC_ASOC_ORIGENCLIENTE</value>
+  </data>
+  <data name="lblOrigenCliente" xml:space="preserve">
+    <value>Origen del Cliente:</value>
+  </data>
+  <data name="lblOrigenAsociado" xml:space="preserve">
+    <value>Origen del Asociado:</value>
+  </data>
+  <data name="lblOrigenInteresado" xml:space="preserve">
+    <value>Origen del Interesado:</value>
+  </data>
 </root>

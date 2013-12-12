@@ -95,6 +95,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Interesados
             set { this._txtEstado.Text = value; }
         }
 
+        public object OrigenesClientes
+        {
+            get { return this._cbxOrigenCliente.DataContext; }
+            set { this._cbxOrigenCliente.DataContext = value; }
+        }
+
+        public object OrigenCliente
+        {
+            get { return this._cbxOrigenCliente.SelectedItem; }
+            set { this._cbxOrigenCliente.SelectedItem = value; }
+        }
+
         #endregion
 
         public AgregarInteresado()

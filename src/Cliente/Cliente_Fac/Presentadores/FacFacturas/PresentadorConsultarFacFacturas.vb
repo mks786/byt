@@ -344,7 +344,12 @@ Namespace Presentadores.FacFacturas
             End If
             '#End Region
             'Me._ventana.FacFacturaSeleccionado.Accion = 2 'no modificar
-            Me.Navegar(New ConsultarFacFactura(Me._ventana.FacFacturaSeleccionado))
+
+            'ANTIGUA LLAMADA DONDE NO SE PASA A LA VENTANA PADRE
+            'Me.Navegar(New ConsultarFacFactura(Me._ventana.FacFacturaSeleccionado))
+
+            Me.Navegar(New ConsultarFacFactura(Me._ventana.FacFacturaSeleccionado, Me._ventana))
+
             'Me.Navegar(New ConsultarFacFactura())
             '#Region "trace"
             If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then

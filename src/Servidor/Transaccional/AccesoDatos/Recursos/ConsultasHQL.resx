@@ -860,7 +860,7 @@
     <comment>Filtro por Año</comment>
   </data>
   <data name="FiltroObtenerInteresadoAlerta" xml:space="preserve">
-    <value>i.Alerta = '{0}'</value>
+    <value>upper(i.Alerta) like '%{0}%'</value>
     <comment>Filtro por Alerta</comment>
   </data>
   <data name="FiltroObtenerInteresadoCi" xml:space="preserve">
@@ -1218,5 +1218,29 @@
   <data name="FiltroObtenerMaestroPlantillaUsuario" xml:space="preserve">
     <value> usuario.Id = '{0}'</value>
     <comment>Filtro para obtener el Maestro de Plantilla con el usuario del mismo</comment>
+  </data>
+  <data name="FiltroObtenerAsociadoOrigenCliente" xml:space="preserve">
+    <value>a.OrigenCliente = '{0}'</value>
+    <comment>Filtro para obtener los asociados por el campo OrigenCliente</comment>
+  </data>
+  <data name="FiltroObtenerInteresadoOrigenCliente" xml:space="preserve">
+    <value>i.OrigenCliente = '{0}'</value>
+    <comment>Filtro para obtener los interesados por el campo OrigenCliente</comment>
+  </data>
+  <data name="FiltroObtenerMarcaOrigenAsociado" xml:space="preserve">
+    <value>asociado.OrigenCliente = '{0}'</value>
+    <comment>Filtro para obtener marcas a partir del campo OrigenCliente del Asociado.</comment>
+  </data>
+  <data name="FiltroObtenerMarcaOrigenInteresado" xml:space="preserve">
+    <value>interesado.OrigenCliente = '{0}'</value>
+    <comment>Filtro para obtener marcas a partir del campo OrigenCliente del Interesado</comment>
+  </data>
+  <data name="FiltroObtenerPatenteOrigenAsociado" xml:space="preserve">
+    <value>asociado.OrigenCliente = '{0}'</value>
+    <comment>Filtro para obtener una Patente por el campo OrigenCliente del Asociado</comment>
+  </data>
+  <data name="FiltroObtenerPatenteOrigenInteresado" xml:space="preserve">
+    <value>interesado.OrigenCliente = '{0}'</value>
+    <comment>Filtro para obtener una Patente por el campo OrigenCliente del Interesado</comment>
   </data>
 </root>

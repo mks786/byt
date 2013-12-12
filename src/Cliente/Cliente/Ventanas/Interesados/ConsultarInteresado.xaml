@@ -59,6 +59,7 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="60"/>
                     <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
@@ -149,6 +150,11 @@
                 </Label>
                 <custom:ByTTextBox Grid.Column="1" Grid.Row="13" Name="_txtAlerta" VerticalAlignment="Center"  
                          HorizontalAlignment="Left" Width="180" Text="{Binding Path=Alerta}" IsEnabled="True"></custom:ByTTextBox>
+                <Label Grid.Column="0" Grid.Row="14" VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblOrigenCliente}"/>
+                </Label>
+                <ComboBox Grid.Column="1" Grid.Row="14" Name="_cbxOrigenCliente" HorizontalAlignment="Left" Width="180" Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                </ComboBox>
 
             </Grid>
         </GroupBox>

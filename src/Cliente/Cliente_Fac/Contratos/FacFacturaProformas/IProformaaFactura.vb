@@ -8,9 +8,9 @@ Namespace Contratos.FacFacturaProformas
 
         ReadOnly Property FacFacturaProformaSeleccionado() As Object
 
-        ReadOnly Property FechaFactura() As String
+        Property FechaFactura() As String
 
-        ReadOnly Property Id() As String
+        Property Id() As String
 
         Property Resultados() As Object
 
@@ -74,6 +74,8 @@ Namespace Contratos.FacFacturaProformas
         Property Ordenamientos() As Object
 
         Property Ordenamiento() As Object
+
+        Sub ActivarListadoAsociados()
 
     End Interface
 End Namespace

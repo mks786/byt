@@ -26,7 +26,7 @@ Namespace Dao.NHibernate
                 If variosFiltros Then
                     filtro += " and "
                 End If
-                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacCobroFacturaId, FacCobroFactura.Factura)
+                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacCobroFacturaFactura, FacCobroFactura.Factura)
                 variosFiltros = True
             End If
             'If (FacCobroFactura.Banco IsNot Nothing) AndAlso (Not FacCobroFactura.Banco.Id.Equals("")) Then

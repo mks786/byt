@@ -152,6 +152,14 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
+                if (!string.IsNullOrEmpty(asociado.OrigenCliente))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerAsociadoOrigenCliente, asociado.OrigenCliente);
+                    variosFiltros = true;
+                }
+
                 if ((null != asociado.Tarifa) && (!asociado.Tarifa.Id.Equals("")))
                 {
                     if (variosFiltros)

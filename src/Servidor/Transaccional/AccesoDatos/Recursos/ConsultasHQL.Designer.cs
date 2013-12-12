@@ -547,6 +547,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a a.OrigenCliente = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerAsociadoOrigenCliente {
+            get {
+                return ResourceManager.GetString("FiltroObtenerAsociadoOrigenCliente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a pais.Id = {0}.
         /// </summary>
         public static string FiltroObtenerAsociadoPais {
@@ -934,7 +943,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a i.Alerta = &apos;{0}&apos;.
+        ///   Busca una cadena traducida similar a upper(i.Alerta) like &apos;%{0}%&apos;.
         /// </summary>
         public static string FiltroObtenerInteresadoAlerta {
             get {
@@ -1011,6 +1020,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerInteresadoNombre {
             get {
                 return ResourceManager.GetString("FiltroObtenerInteresadoNombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a i.OrigenCliente = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerInteresadoOrigenCliente {
+            get {
+                return ResourceManager.GetString("FiltroObtenerInteresadoOrigenCliente", resourceCulture);
             }
         }
         
@@ -1362,6 +1380,24 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerMarcaNumeroCondiciones {
             get {
                 return ResourceManager.GetString("FiltroObtenerMarcaNumeroCondiciones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a asociado.OrigenCliente = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerMarcaOrigenAsociado {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMarcaOrigenAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a interesado.OrigenCliente = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerMarcaOrigenInteresado {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMarcaOrigenInteresado", resourceCulture);
             }
         }
         
@@ -1740,6 +1776,24 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerPatenteObservacion {
             get {
                 return ResourceManager.GetString("FiltroObtenerPatenteObservacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a asociado.OrigenCliente = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerPatenteOrigenAsociado {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPatenteOrigenAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a interesado.OrigenCliente = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerPatenteOrigenInteresado {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPatenteOrigenInteresado", resourceCulture);
             }
         }
         

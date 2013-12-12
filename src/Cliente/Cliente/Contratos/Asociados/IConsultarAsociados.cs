@@ -31,6 +31,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
 
         object TiposClientes { get; set; }
 
+        object OrigenesClientes { get; set; }
+
+        object OrigenCliente { get; set; }
+
         object Etiqueta { get; set; }
 
         object Etiquetas { get; set; }

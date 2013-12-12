@@ -244,5 +244,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             }
         }
 
+        public object OrigenClientes
+        {
+            get { return this._cbxOrigenClienteAdministracion.DataContext; }
+            set { this._cbxOrigenClienteAdministracion.DataContext = value; }
+        }
+
+        public object OrigenCliente
+        {
+            get { return this._cbxOrigenClienteAdministracion.SelectedItem; }
+            set { this._cbxOrigenClienteAdministracion.SelectedItem = value; }
+        }
+
     }
 }

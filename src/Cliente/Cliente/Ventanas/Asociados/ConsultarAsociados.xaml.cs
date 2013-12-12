@@ -147,6 +147,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             set { this._cbxTipoCliente.DataContext = value; }
         }
 
+        public object OrigenesClientes
+        {
+            get { return this._cbxOrigenCliente.DataContext; }
+            set { this._cbxOrigenCliente.DataContext = value; }
+        }
+
+        public object OrigenCliente
+        {
+            get { return this._cbxOrigenCliente.SelectedItem; }
+            set { this._cbxOrigenCliente.SelectedItem = value; }
+        }
+
         public object Etiqueta
         {
             get { return this._cbxEtiqueta.SelectedItem; }

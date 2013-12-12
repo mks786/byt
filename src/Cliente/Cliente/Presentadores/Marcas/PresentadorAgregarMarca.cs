@@ -540,7 +540,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     if (null != this._ventana.IdMarcaOrigenSolicitud && this._ventana.IdMarcaOrigenSolicitud != "")
                         marca.MarcaOrigen = int.Parse(this._ventana.IdMarcaOrigenSolicitud);
 
-                    if ((null != this._ventana.StatusWeb) && (!((StatusWeb)this._ventana.StatusWeb).Id.Equals("")))
+                    if ((null != this._ventana.StatusWeb) && (!((StatusWeb)this._ventana.StatusWeb).Id.Equals("NGN")))
                         marca.StatusWeb = (StatusWeb)this._ventana.StatusWeb;
                     else
                         marca.StatusWeb = null;

@@ -334,9 +334,13 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <Label Grid.Column="0" Grid.Row="0" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <!--<Label Grid.Column="0" Grid.Row="0" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top">
                                     <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
-                                </Label>
+                                </Label>-->
+                                <Button Grid.Column="0" Grid.Row="0" Name="_btnIrAsociadoFacFactura" IsDefault="False" Height="25" HorizontalAlignment="Right" Click="_btnIrAsociado_Click">
+                                    <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
+                                </Button>
+
                                 <!--<custom:ByTTextBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4"  Name="_txtAsociadoId" VerticalAlignment="Center"                                     
                          HorizontalAlignment="Left" Width="50" Text="" MaxLength="255" GotFocus="_txtAsociado_GotFocus" GotKeyboardFocus="_txtAsociado_GotFocus" Height="20" FontSize="10"></custom:ByTTextBox>-->
 
@@ -471,11 +475,15 @@
                                     <TextBlock  Grid.Column="0" Grid.Row="0" Width="60" Text="{x:Static recurso:Etiquetas.faclblImprimira}" VerticalAlignment="Center" />
                                 </Label>
 
-                                <Label Grid.Column="1" Grid.Row="0" Width="70" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <!--<Label Grid.Column="1" Grid.Row="0" Width="70" HorizontalAlignment="Left" VerticalAlignment="Top">
                                     <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
-                                </Label>
+                                </Label>-->
 
-                                <custom:ByTTextBox Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="4"  Name="_txtAsociadoImp" VerticalAlignment="Center"
+                                <Button Grid.Column="1" Grid.Row="0" Name="_btnIrAsociadoImpresion" IsDefault="False" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Click="_btnIrAsociado_Click">
+                                    <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
+                                </Button>
+
+                                <custom:ByTTextBox Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="4"  Name="_txtAsociadoImp" VerticalAlignment="Center" Margin="17,0,0,0"
                          HorizontalAlignment="Left" Width="290" Text="" MaxLength="255" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
                                 <custom:ByTTextBox Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="4" SoloNumero="True" Name="_txtIdAsociadoImp" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="40" MaxLength="8"  Visibility="Collapsed" KeyDown="_Consultar_Enter"  ></custom:ByTTextBox>
@@ -539,9 +547,12 @@
                                     <TextBlock  Grid.Column="0" Width="60"  Grid.Row="0" Text="" />
                                 </Label>
 
-                                <Label Grid.Column="1" Grid.Row="0" Width="70" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                <!--<Label Grid.Column="1" Grid.Row="0" Width="70" HorizontalAlignment="Right" VerticalAlignment="Top">
                                     <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
-                                </Label>
+                                </Label>-->
+                                <Button Grid.Column="1" Grid.Row="0" Width="70" Name="_btnInteresadoFacFactura" IsDefault="False" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top" Click="_btnIrInteresado_Click">
+                                    <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
+                                </Button>
 
                                 <custom:ByTTextBox Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="4"  Name="_txtInteresado" VerticalAlignment="Center"                                     
                          HorizontalAlignment="Left" Width="290" Text="" MaxLength="255" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
@@ -1025,7 +1036,7 @@
                                 <TextBlock Text="Saldo Pendiente:" VerticalAlignment="Center"/>
                             </Label>
                             <custom:ByTTextBox HorizontalContentAlignment="Right"  Name="_txtSaldoPendiente"  Height="20" IsEnabled="True" IsReadOnly="True"  Width="80" MaxLength="100" Focusable="True" HorizontalAlignment="Left" 
-                                                ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" >
+                                                ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" MouseDoubleClick="_txtSaldoPendiente_MouseDoubleClick">
                             </custom:ByTTextBox>
                             <Label Width="31" HorizontalAlignment="Left" >
                                 <TextBlock Text=" "/>
@@ -1795,7 +1806,7 @@
                 </GroupBox>
 
             </Grid>
-        </ScrollViewer>         
+        </ScrollViewer>
 
         <WrapPanel Name="_Wp_Salir"  Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Margin="5" Visibility="Collapsed" VerticalAlignment="Bottom">
             <Button Name="_btnSalir" VerticalAlignment="Center" Height="23" Width="80" Click="_btnSalir_Click" HorizontalAlignment="Right">Salir</Button>
@@ -1824,7 +1835,7 @@
 
 
         <WrapPanel Name="_Wp_Btn2" Grid.Column="1" Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Center">
-        
+
             <!--<Button Name="btnRecalcular_Nuevo" VerticalAlignment="Bottom" Height="40" Width="80"
                     Click="_btnRecalcular_Nuevo_Click" FontSize="10">
                 <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Name="_txtRecalcular_Nuevo" Text="Recalcular Statement"/>
@@ -1867,7 +1878,7 @@
                     Click="_btnEliminar_Click">
                 <TextBlock Name="_txbEliminar" Text="{x:Static recurso:Etiquetas.btnEliminar}"/>
             </Button>
-            <Button Name="_btnLimpiar" Visibility="Hidden" VerticalAlignment="Bottom" Height="25" Width="80" Click="_btnLimpiar_Click">Limpiar</Button>            
+            <Button Name="_btnLimpiar" Visibility="Hidden" VerticalAlignment="Bottom" Height="25" Width="80" Click="_btnLimpiar_Click">Limpiar</Button>
             <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="80"
                     Click="_btnRegresar_Click">
                 <TextBlock Name="_txbCancelar" Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
@@ -1879,7 +1890,7 @@
             <Button Name="_btnImprimirStatement" VerticalAlignment="Bottom" Height="40" Width="80"
                     Click="_btnImprimir">
                 <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Name="_txtImprimirStatement" Text=" Imprimir Statement"/>
-            </Button>            
+            </Button>
         </WrapPanel>
 
         <WrapPanel Grid.Column="0" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
@@ -1887,7 +1898,7 @@
                 <TextBlock Name="_txtMensajeError" Text="" Foreground="Red"/>
             </Label>
         </WrapPanel>
-        
+
         <custom:ByTTextBox  Name="_txtVerTipo" VerticalAlignment="Center" Visibility="Collapsed" 
                          HorizontalAlignment="Left" >
         </custom:ByTTextBox>

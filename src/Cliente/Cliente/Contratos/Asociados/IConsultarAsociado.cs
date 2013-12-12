@@ -84,6 +84,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
 
         bool? ChkVerContactos { get; }
 
+        object OrigenClientes { get; set; }
+
+        object OrigenCliente { get; set; }
+
         void Mensaje(string mensaje);
 
         void DesactivarVerListaContactos();

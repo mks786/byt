@@ -181,6 +181,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
                 this._txtDescuentoAdministracion.IsEnabled = value;
 
                 this._cbxTipoPersonaDatos.IsEnabled = value;
+                this._cbxOrigenClienteAdministracion.IsEnabled = value;
                 this._cbxPaisDatos.IsEnabled = value;
                 this._cbxIdiomaDatos.IsEnabled = value;
                 this._cbxMonedaDatos.IsEnabled = value;
@@ -317,6 +318,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         {
             MessageBox.Show(mensaje, "Alerta", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
+
+        public object OrigenClientes
+        {
+            get { return this._cbxOrigenClienteAdministracion.DataContext; }
+            set { this._cbxOrigenClienteAdministracion.DataContext = value; }
+        }
+
+        public object OrigenCliente
+        {
+            get { return this._cbxOrigenClienteAdministracion.SelectedItem; }
+            set { this._cbxOrigenClienteAdministracion.SelectedItem = value; }
+        }
+
         #endregion
 
         public ConsultarAsociado(object asociado, object ventanaPadre, bool volverRefresca)

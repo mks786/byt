@@ -59,7 +59,8 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteDescripcion, Patente.Descripcion);
                 }
 
-                if ((null != Patente.Asociado) && (!Patente.Asociado.Id.Equals("")))
+                //if ((null != Patente.Asociado) && (!Patente.Asociado.Id.Equals("")))
+                if ((null != Patente.Asociado) && (Patente.Asociado.Id != int.MinValue))
                 {
                     if (variosFiltros)
                         filtro += " and ";
@@ -67,11 +68,28 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
-                if ((null != Patente.Interesado) && (!Patente.Interesado.Id.Equals("")))
+                if ((null != Patente.Asociado) && (!string.IsNullOrEmpty(Patente.Asociado.OrigenCliente)) && (!Patente.Asociado.OrigenCliente.Equals("NGN")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteOrigenAsociado, Patente.Asociado.OrigenCliente);
+                    variosFiltros = true;
+                }
+
+                //if ((null != Patente.Interesado) && (!Patente.Interesado.Id.Equals("")))
+                if ((null != Patente.Interesado) && (Patente.Interesado.Id != int.MinValue))
                 {
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteIdInteresado, Patente.Interesado.Id);
+                    variosFiltros = true;
+                }
+
+                if ((null != Patente.Interesado) && (!string.IsNullOrEmpty(Patente.Interesado.OrigenCliente)) && (!Patente.Interesado.OrigenCliente.Equals("NGN")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteOrigenInteresado, Patente.Interesado.OrigenCliente);
                     variosFiltros = true;
                 }
 

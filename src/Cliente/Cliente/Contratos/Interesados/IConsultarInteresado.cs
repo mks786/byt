@@ -29,6 +29,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Interesados
 
         string Estado { get; set; }
 
+        object OrigenesClientes { get; set; }
+
+        object OrigenCliente { get; set; }
+
         void Mensaje(string mensaje, int opcion);
     }
 }

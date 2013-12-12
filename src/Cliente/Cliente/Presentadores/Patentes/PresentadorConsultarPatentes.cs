@@ -142,6 +142,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 this._ventana.TiposBusqueda = tiposBusqueda;
                 this._ventana.TipoBusqueda = this.BuscarTipoDeBusqueda(tiposBusqueda);
 
+                IList<ListaDatosValores> origenAsociados =
+                    this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiOrigenClienteAsociado));
+                ListaDatosValores primerOrigenAsociado = new ListaDatosValores();
+                primerOrigenAsociado.Id = "NGN";
+                origenAsociados.Insert(0, primerOrigenAsociado);
+                this._ventana.OrigenesAsociados = origenAsociados;
+
+                IList<ListaDatosValores> origenInteresados =
+                    this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiOrigenClienteAsociado));
+                ListaDatosValores primerOrigenInteresado = new ListaDatosValores();
+                primerOrigenInteresado.Id = "NGN";
+                origenInteresados.Insert(0, primerOrigenInteresado);
+                this._ventana.OrigenesInteresados = origenInteresados;
+
                 this._ventana.TotalHits = "0";
                 this._ventana.FocoPredeterminado();
 
@@ -570,19 +584,55 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                 if ((null != this._ventana.Asociado) && (((Asociado)this._ventana.Asociado).Id != int.MinValue))
                 {
-                    patenteAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
+                    //patenteAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
+                    patenteAuxiliar.Asociado = new Asociado();
+                    patenteAuxiliar.Asociado.Id = ((Asociado)this._ventana.Asociado).Id;
                     _filtroValido = 2;
                 }
                 else
                     patenteAuxiliar.Asociado = null;
 
+                if ((null != this._ventana.OrigenAsociado) && (!((ListaDatosValores)this._ventana.OrigenAsociado).Id.Equals("NGN")))
+                {
+                    if (patenteAuxiliar.Asociado != null)
+                    {
+                        patenteAuxiliar.Asociado.OrigenCliente = ((ListaDatosValores)this._ventana.OrigenAsociado).Valor;
+                        _filtroValido = 2;
+                    }
+                    else
+                    {
+                        patenteAuxiliar.Asociado = new Asociado();
+                        patenteAuxiliar.Asociado.Id = int.MinValue;
+                        patenteAuxiliar.Asociado.OrigenCliente = ((ListaDatosValores)this._ventana.OrigenAsociado).Valor;
+                        _filtroValido = 2;
+                    }
+                }
+
                 if ((null != this._ventana.Interesado) && (((Interesado)this._ventana.Interesado).Id != int.MinValue))
                 {
-                    patenteAuxiliar.Interesado = (Interesado)this._ventana.Interesado;
+                    //patenteAuxiliar.Interesado = (Interesado)this._ventana.Interesado;
+                    patenteAuxiliar.Interesado = new Interesado();
+                    patenteAuxiliar.Interesado.Id = ((Interesado)this._ventana.Interesado).Id; 
                     _filtroValido = 2;
                 }
                 else
                     patenteAuxiliar.Interesado = null;
+
+                if ((null != this._ventana.OrigenInteresado) && (!((ListaDatosValores)this._ventana.OrigenInteresado).Id.Equals("NGN")))
+                {
+                    if (patenteAuxiliar.Interesado != null)
+                    {
+                        patenteAuxiliar.Interesado.OrigenCliente = ((ListaDatosValores)this._ventana.OrigenInteresado).Valor;
+                        _filtroValido = 2;
+                    }
+                    else
+                    {
+                        patenteAuxiliar.Interesado = new Interesado();
+                        patenteAuxiliar.Interesado.Id = int.MinValue;
+                        patenteAuxiliar.Interesado.OrigenCliente = ((ListaDatosValores)this._ventana.OrigenInteresado).Valor;
+                        _filtroValido = 2;
+                    }
+                }
 
 
                 if (!this._ventana.NombrePatente.Equals(""))

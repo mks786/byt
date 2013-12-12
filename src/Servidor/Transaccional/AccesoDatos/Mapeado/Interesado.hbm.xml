@@ -14,6 +14,7 @@
     <property name="RegMercantil" column="XRMERCANTIL" type="string"/>
     <property name="Domicilio" column="XDOMICILIO" type="string"/>
     <property name="Alerta" column="XALERTA" type="string"/>
+    <property name="OrigenCliente" column="IORIGEN" type="string"/>
 
     <many-to-one name="Pais" class="Pais" lazy="false">
       <column name="CPAIS"/>

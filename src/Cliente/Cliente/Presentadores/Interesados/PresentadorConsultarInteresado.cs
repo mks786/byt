@@ -24,6 +24,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
         private IInteresadoServicios _interesadoServicios;
         private IPoderServicios _poderServicios;
         private IListaDatosDominioServicios _listaDatosDominioServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -55,6 +56,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PoderServicios"]);
                 this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -99,6 +102,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 IList<ListaDatosDominio> tiposPersona = this._listaDatosDominioServicios.ConsultarListaDatosDominioPorParametro(new ListaDatosDominio("PERSONA"));
                 this._ventana.TipoPersonas = tiposPersona;
                 this._ventana.TipoPersona = BuscarTipoPersona(interesado.TipoPersona, (IList<ListaDatosDominio>)this._ventana.TipoPersonas);
+
+                IList<ListaDatosValores> origenesClientes =
+                    this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiOrigenClienteAsociado));
+                this._ventana.OrigenesClientes = origenesClientes;
+                ListaDatosValores origenAux = new ListaDatosValores();
+                if (interesado.OrigenCliente != null)
+                {
+                    origenAux.Valor = interesado.OrigenCliente;
+                    this._ventana.OrigenCliente = this.BuscarListaDeDatosValores(origenesClientes, origenAux);
+                }
+                else
+                {
+                    origenAux.Valor = "BOLET";
+                    this._ventana.OrigenCliente = this.BuscarListaDeDatosValores(origenesClientes, origenAux);
+                }
 
                 this._ventana.FocoPredeterminado();
 
@@ -155,6 +173,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                     interesado.Corporacion = (Estado)this._ventana.Corporacion;
                     interesado.Operacion = "MODIFY";
                     interesado.TipoPersona = ((ListaDatosDominio)this._ventana.TipoPersona).Id[0];
+                    interesado.OrigenCliente = ((ListaDatosValores)this._ventana.OrigenCliente).Valor;
 
                     //if ((interesado.Estado != null) && (!interesado.Estado.Equals("")))
                     //{

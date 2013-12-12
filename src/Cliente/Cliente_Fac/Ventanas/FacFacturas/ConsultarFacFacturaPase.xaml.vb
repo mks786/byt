@@ -111,17 +111,22 @@ Namespace Ventanas.FacFacturas
         End Sub
 #End Region
 
+#Region "Constructores de la Clase"
+
         Public Sub New(ByVal FacFactura As Object)
             InitializeComponent()
             Me._cargada = False
             Me._presentador = New PresentadorConsultarFacFacturaPase(Me, FacFactura)
         End Sub
 
-        Public Sub New(ByVal FacFactura As Object, ventanaPadre As Object)
+        Public Sub New(ByVal FacFactura As Object, filtroFacFacturaProforma As Object, ventanaPadre As Object)
             InitializeComponent()
             Me._cargada = False
-            Me._presentador = New PresentadorConsultarFacFacturaPase(Me, FacFactura, ventanaPadre)
+            Me._presentador = New PresentadorConsultarFacFacturaPase(Me, FacFactura, filtroFacFacturaProforma, ventanaPadre)
         End Sub
+
+#End Region
+
 
         Private Sub _btnCancelar_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
             Me._presentador.Cancelar()

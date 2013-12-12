@@ -161,7 +161,15 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 {
                     if (variosFiltros)
                         filtro += " and ";
-                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoAlerta, interesado.Alerta);
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoAlerta, interesado.Alerta.ToUpper());
+                    variosFiltros = true;
+                }
+
+                if (!string.IsNullOrEmpty(interesado.OrigenCliente))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoOrigenCliente, interesado.OrigenCliente);
                     variosFiltros = true;
                 }
 
