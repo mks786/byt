@@ -5120,5 +5120,29 @@ Namespace Presentadores.FacFacturas
 
         End Sub
 
+        Sub ConsultarMarcasPatentes()
+
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                Me.Navegar(New ListaMarcasPatentesFacFacturas(Me._ventana))
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                    '#End Region
+                End If
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, True)
+
+            End Try
+
+        End Sub
+
     End Class
 End Namespace

@@ -760,5 +760,27 @@ Namespace Presentadores.FacGestiones
                 Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
             End Try
         End Sub
+
+        Sub AgregarNuevaGestion()
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                Me.Navegar(New AgregarFacGestion())
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
+            End Try
+        End Sub
+
     End Class
 End Namespace

@@ -1988,5 +1988,9 @@ Namespace Ventanas.FacFacturas
             Me._presentador.ConsultarCobroFacFactura()
 
         End Sub
+
+        Private Sub _btnOurref_Click(sender As System.Object, e As System.Windows.RoutedEventArgs)
+            Me._presentador.ConsultarMarcasPatentes()
+        End Sub
     End Class
 End Namespace

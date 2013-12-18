@@ -416,6 +416,15 @@ Namespace Recursos
         End Property
         
         '''<summary>
+        '''  Busca una cadena traducida similar a FACFACTURA_ELEMENTO.
+        '''</summary>
+        Public Shared ReadOnly Property cbiMarcaPatenteFacFacturas() As String
+            Get
+                Return ResourceManager.GetString("cbiMarcaPatenteFacFacturas", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Busca una cadena traducida similar a Marca Reg o Solicitud.
         '''</summary>
         Public Shared ReadOnly Property cbiMarcaRegSolicitud() As String

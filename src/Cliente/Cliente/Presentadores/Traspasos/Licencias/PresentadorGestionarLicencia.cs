@@ -737,22 +737,32 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
 
                         if (null != licencia.InteresadoLicenciatario)
                         {
-                            int? exitoso = this._licenciaServicios.InsertarOModificarLicencia(licencia,
-                                                                                              UsuarioLogeado.Hash);
-                            if ((!exitoso.Equals(null)) && (this._agregar == false))
+                            if (null != licencia.InteresadoLicenciante)
                             {
-                                this._marcaServicios.ActualizarDistingueDeMarca(licencia.Marca, distingueMarca);
-                                this._ventana.HabilitarCampos = false;
-                                this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
-                            }
-                            else if ((!exitoso.Equals(null)) && (this._agregar == true))
-                            {
-                                licencia.Id = exitoso.Value;
-                                this._marcaServicios.ActualizarDistingueDeMarca(licencia.Marca, distingueMarca);
-                                this.Navegar(new GestionarLicencia(licencia));
+                                if (null != licencia.PoderLicenciante)
+                                {
+                                    int? exitoso = this._licenciaServicios.InsertarOModificarLicencia(licencia,
+                                                                                                                                                  UsuarioLogeado.Hash);
+                                    if ((!exitoso.Equals(null)) && (this._agregar == false))
+                                    {
+                                        this._marcaServicios.ActualizarDistingueDeMarca(licencia.Marca, distingueMarca);
+                                        this._ventana.HabilitarCampos = false;
+                                        this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                                    }
+                                    else if ((!exitoso.Equals(null)) && (this._agregar == true))
+                                    {
+                                        licencia.Id = exitoso.Value;
+                                        this._marcaServicios.ActualizarDistingueDeMarca(licencia.Marca, distingueMarca);
+                                        this.Navegar(new GestionarLicencia(licencia));
+                                    }
+                                    else
+                                        this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
+                                }
+                                else
+                                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorPoderLicenciante, 1);
                             }
                             else
-                                this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
+                                this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinLicenciante, 1);
                         }
 
                         else

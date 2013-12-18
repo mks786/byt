@@ -521,6 +521,9 @@
         </GroupBox>
 
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
+            <Button Name="_btnNuevaGestion" Width="100" Click="_btnNuevaGestion_Click">
+                <TextBlock Text="{x:Static recurso:Etiquetas.btnNuevaGestion}"/>
+            </Button>
             <Button Name="_btnModificar"  VerticalAlignment="Bottom" Height="25" Width="60"
                     Click="_btnModificar_Click">
                 <Button.Style>

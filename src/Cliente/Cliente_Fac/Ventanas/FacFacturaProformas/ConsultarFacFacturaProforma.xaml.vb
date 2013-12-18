@@ -125,6 +125,12 @@ Namespace Ventanas.FacFacturaProformas
             Me._presentador = New PresentadorConsultarFacFacturaProforma(Me, FacFacturaProforma)
         End Sub
 
+        Public Sub New(ByVal FacFacturaProforma As Object, ByVal ventanaPadre As Object)
+            InitializeComponent()
+            Me._cargada = False
+            Me._presentador = New PresentadorConsultarFacFacturaProforma(Me, FacFacturaProforma, ventanaPadre)
+        End Sub
+
         Private Sub _btnCancelar_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
             Me._presentador.Cancelar()
         End Sub
@@ -2074,5 +2080,24 @@ Namespace Ventanas.FacFacturaProformas
                 End If
             End Set
         End Property
+
+        Private Sub _btnIrAsociado_Click(sender As System.Object, e As System.Windows.RoutedEventArgs)
+            Dim parametro As String
+            parametro = String.Empty
+            If (DirectCast(sender, Button)).Name.Equals("_btnIrAsociadoFacFacturaProforma") Then
+                parametro = "_btnIrAsociadoFacFacturaProforma"
+            ElseIf (DirectCast(sender, Button)).Name.Equals("_btnIrAsociadoImpresionProforma") Then
+                parametro = "_btnIrAsociadoImpresionProforma"
+            End If
+            Me._presentador.ConsultarAsociado(parametro)
+        End Sub
+
+        Private Sub _btnInteresadoFacFacturaProforma_Click(sender As System.Object, e As System.Windows.RoutedEventArgs)
+            Me._presentador.ConsultarInteresadoFacturaProforma()
+        End Sub
+
+        Private Sub _btnOurref_Click(sender As System.Object, e As System.Windows.RoutedEventArgs)
+            Me._presentador.ConsultarMarcasPatentes()
+        End Sub
     End Class
 End Namespace

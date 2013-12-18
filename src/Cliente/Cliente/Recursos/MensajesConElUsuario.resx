@@ -1444,4 +1444,10 @@
   <data name="ConfirmacionInsertarOModificarFecha" xml:space="preserve">
     <value>¿Desea agregar o modificar la Fecha?</value>
   </data>
+  <data name="ErrorPoderLicenciante" xml:space="preserve">
+    <value>Es necesario agregar el Poder del Licenciante</value>
+  </data>
+  <data name="ErrorSinLicenciante" xml:space="preserve">
+    <value>Es necesario agregar el Interesado Licenciante</value>
+  </data>
 </root>

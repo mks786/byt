@@ -1,0 +1,234 @@
+﻿<Page x:Class="Ventanas.FacFacturaProformas.ListaMarcasPatentesFacFacturaProforma"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
+      xmlns:conv="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Transformadores"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+      xmlns:recurso="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Recursos" Loaded="Page_Loaded">
+    <!--<Page.Resources>
+        <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
+        <conv:DosValresAUno x:Key="convertirADosValores"></conv:DosValresAUno>
+        <conv:DosValresAUno_2 x:Key="convertirADosValores_2"></conv:DosValresAUno_2>
+        <Style TargetType="{x:Type DatePickerTextBox}">
+            <Setter Property="Text" Value="{x:Static recurso:Etiquetas.facdpkText}" />
+        </Style>
+    </Page.Resources>-->
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="170"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+
+        <!--Área de Filtrado-->
+
+
+        <GroupBox Grid.Column="1" Grid.Row="1" Margin="5" Grid.ColumnSpan="2">
+            <WrapPanel Grid.Column="1" Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Left" >
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <!--<custom:ByTTextBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4"  Name="_txtMarca" VerticalAlignment="Center"
+                         HorizontalAlignment="Left" Width="100" Text="" MaxLength="255" Height="20"></custom:ByTTextBox>-->
+
+                    <WrapPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0">
+
+                        <Label HorizontalAlignment="Right" >
+                            <TextBlock Text="Buscar una:"/>
+                        </Label>
+                        <ComboBox Name="_cbxTiposABuscar" Width="130" ItemsSource="{Binding}" 
+                                  DisplayMemberPath="Descripcion" SelectionChanged="_cbxTiposABuscar_SelectionChanged">
+
+                        </ComboBox>
+
+                        <Label HorizontalAlignment="Right" >
+                            <TextBlock Text="Codigo:"/>
+                        </Label>
+                        <custom:ByTTextBox Grid.Column="1" Grid.Row="0"  Name="_txtIdElemento" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="100" MaxLength="255"  >
+                        </custom:ByTTextBox>
+
+                        <Label HorizontalAlignment="Right" >
+                            <TextBlock Text="  "/>
+                        </Label>
+
+                        <Label HorizontalAlignment="Right" >
+                            <TextBlock Text="Código Internacional:"/>
+                        </Label>
+                        <custom:ByTTextBox  Name="_txtIdInternacionalElemento"  VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="140" MaxLength="255" IsEnabled="False">
+                        </custom:ByTTextBox>
+
+                        <Label HorizontalAlignment="Right" >
+                            <TextBlock Text="  "/>
+                        </Label>
+
+                        <Label HorizontalAlignment="Right" >
+                            <TextBlock Text="Solicitud:"/>
+                        </Label>
+                        <custom:ByTTextBox Grid.Column="1" Grid.Row="0"  Name="_txtSolicitud" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="100" MaxLength="255"  CharacterCasing="Upper">
+                        </custom:ByTTextBox>
+
+                        <Label HorizontalAlignment="Right" >
+                            <TextBlock Text="  "/>
+                        </Label>
+
+                        <Label HorizontalAlignment="Right" >
+                            <TextBlock Text="Registro:"/>
+                        </Label>
+                        <custom:ByTTextBox  Name="_txtRegistro"  VerticalAlignment="Center" CharacterCasing="Upper"
+                         HorizontalAlignment="Left" Width="140" MaxLength="255" >
+                        </custom:ByTTextBox>
+
+                        <Label HorizontalAlignment="Right" >
+                            <TextBlock Text="  "/>
+                        </Label>
+
+                        <Button Name="_btnConsultar" Width="55"  Height="20" HorizontalAlignment="Left"
+                                Click="_btnConsultar_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                        </Button>
+
+                    </WrapPanel>
+
+                    <ListView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5" Name="_lstMarcas" ItemsSource="{Binding}" 
+                              SelectionMode="Single" Visibility="Visible" Style="{DynamicResource EstiloListView}" Height="150"
+                              VerticalAlignment="Top" BorderBrush="Transparent" BorderThickness="0"
+                              MouseDoubleClick="_lstMarcas_MouseDoubleClick">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="80">
+                                    <GridViewColumnHeader  Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="150">
+                                    <GridViewColumnHeader  Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvDescripcion}"/>
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoInscripcion}" Width="100">
+                                    <GridViewColumnHeader  Tag="CodigoInscripcion" Content="Solicitud"/>
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoRegistro}" Width="100">
+                                    <GridViewColumnHeader  Tag="CodigoRegistro" Content="Registro"/>
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoMarcaInternacional}" Width="100">
+                                    <GridViewColumnHeader  Tag="CodigoMarcaInternacional" Content="Cod Internacional"/>
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=CorrelativoExpediente}" Width="100">
+                                    <GridViewColumnHeader  Tag="CorrelativoExpediente" Content="Correlativo Exp"/>
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=PaisInternacional.NombreEspanol}" Width="100">
+                                    <GridViewColumnHeader  Tag="PaisInternacional.NombreEspanol" Content="Pais"/>
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Tipo}" Width="80">
+                                    <GridViewColumnHeader  Tag="Tipo" Content="Tipo"/>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Etiqueta" Width="55" >
+                                    <GridViewColumn.CellTemplate >
+                                        <DataTemplate>
+                                            <CheckBox Tag="Etiqueta"   IsChecked="{Binding Path=BEtiqueta}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <!--<GridViewColumn DisplayMemberBinding="{Binding Path=BEtiqueta}" Width="260">
+                                            <GridViewColumnHeader  Tag="BEtiqueta" Content="Etiqueta"/>
+                                        </GridViewColumn>-->
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=PrimeraReferencia}" Width="150">
+                                    <GridViewColumnHeader  Tag="PrimeraReferencia" Content="Caso"/>
+                                </GridViewColumn>
+
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <ListView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5" Name="_lstPatentes" ItemsSource="{Binding}" 
+                              SelectionMode="Single" Visibility="Collapsed" Style="{DynamicResource EstiloListView}" Height="150"
+                              VerticalAlignment="Top" BorderBrush="Transparent" BorderThickness="0" 
+                              MouseDoubleClick="_lstPatentes_MouseDoubleClick">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="80">
+                                    <GridViewColumnHeader  Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="150">
+                                    <GridViewColumnHeader  Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvDescripcion}"/>
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoInscripcion}" Width="80">
+                                    <GridViewColumnHeader  Tag="CodigoInscripcion" Content="Solicitud"/>
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoRegistro}" Width="80">
+                                    <GridViewColumnHeader  Tag="CodigoRegistro" Content="Registro"/>
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoPatenteInternacional}" Width="100">
+                                    <GridViewColumnHeader  Tag="CodigoPatenteInternacional" Content="Cod Internacional"/>
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=CorrelativoExpediente}" Width="100">
+                                    <GridViewColumnHeader  Tag="CorrelativoExpediente" Content="Correlativo Exp"/>
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=PaisInternacional.NombreEspanol}" Width="100">
+                                    <GridViewColumnHeader  Tag="PaisInternacional.NombreEspanol" Content="Pais"/>
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Tipo}" Width="80">
+                                    <GridViewColumnHeader  Tag="Tipo" Content="Tipo"/>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Etiqueta" Width="45" >
+                                    <GridViewColumn.CellTemplate >
+                                        <DataTemplate>
+                                            <CheckBox Tag="Etiqueta"   IsChecked="{Binding Path=BEtiqueta}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <!--<GridViewColumn DisplayMemberBinding="{Binding Path=BEtiqueta}" Width="260">
+                                            <GridViewColumnHeader  Tag="BEtiqueta" Content="Etiqueta"/>
+                                        </GridViewColumn>-->
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=PrimeraReferencia}" Width="150">
+                                    <GridViewColumnHeader  Tag="PrimeraReferencia" Content="Caso"/>
+                                </GridViewColumn>
+
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                </Grid>
+            </WrapPanel>
+
+
+
+        </GroupBox>
+
+
+        <!--Botones Regresar-->
+        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" BorderBrush="{x:Null}">
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <Button Name="_btnCancelar" Width="100" Click="_btnCancelar_Click" >
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
+                </Button>
+                <Button Name="_btnLimpiar" VerticalAlignment="Center" Width="100" HorizontalAlignment="Right" 
+                        Click="_btnLimpiar_Click">
+                    Limpiar
+                </Button>
+            </StackPanel>
+        </GroupBox>
+
+
+    </Grid>
+</Page>
+

@@ -1663,4 +1663,7 @@
   <data name="cbiOrdenamientoReporte" xml:space="preserve">
     <value>MYP_ORDEN_REP</value>
   </data>
+  <data name="cbiMarcaPatenteFacFacturas" xml:space="preserve">
+    <value>FACFACTURA_ELEMENTO</value>
+  </data>
 </root>

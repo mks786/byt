@@ -183,6 +183,8 @@
     <Compile Include="Contratos\FacBanco\IAgregarFacBanco.vb" />
     <Compile Include="Contratos\FacBanco\IConsultarFacBanco.vb" />
     <Compile Include="Contratos\FacBanco\IConsultarFacBancos.vb" />
+    <Compile Include="Contratos\FacFacturaProformas\IListaMarcasPatentesFacFacturaProforma.vb" />
+    <Compile Include="Contratos\FacFacturas\IListaMarcasPatentesFacFactura.vb" />
     <Compile Include="Contratos\FacTarifa\IAgregarFacTarifa.vb" />
     <Compile Include="Contratos\FacTarifa\IConsultarFacTarifa.vb" />
     <Compile Include="Contratos\FacTarifa\IConsultarFacTarifas.vb" />
@@ -361,6 +363,8 @@
     <Compile Include="Presentadores\FacBancos\PresentadorAgregarFacBanco.vb" />
     <Compile Include="Presentadores\FacBancos\PresentadorConsultarFacBanco.vb" />
     <Compile Include="Presentadores\FacBancos\PresentadorConsultarFacFacBancos.vb" />
+    <Compile Include="Presentadores\FacFacturaProformas\PresentadorListaMarcasPatentesFacFacturaProforma.vb" />
+    <Compile Include="Presentadores\FacFacturas\PresentadorListaMarcasPatentesFacFacturas.vb" />
     <Compile Include="Presentadores\FacTarifas\PresentadorAgregarFacTarifa.vb" />
     <Compile Include="Presentadores\FacTarifas\PresentadorConsultarFacTarifa.vb" />
     <Compile Include="Presentadores\FacTarifas\PresentadorConsultarFacTarifas.vb" />
@@ -586,6 +590,12 @@
     </Compile>
     <Compile Include="Ventanas\FacBancos\ConsultarFacBancos.xaml.vb">
       <DependentUpon>ConsultarFacBancos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacFacturaProformas\ListaMarcasPatentesFacFacturaProforma.xaml.vb">
+      <DependentUpon>ListaMarcasPatentesFacFacturaProforma.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\FacFacturas\ListaMarcasPatentesFacFacturas.xaml.vb">
+      <DependentUpon>ListaMarcasPatentesFacFacturas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\FacTarifas\AgregarFacTarifa.xaml.vb">
       <DependentUpon>AgregarFacTarifa.xaml</DependentUpon>
@@ -1112,6 +1122,14 @@
     <Page Include="Ventanas\FacBancos\ConsultarFacBancos.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\FacFacturaProformas\ListaMarcasPatentesFacFacturaProforma.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\FacFacturas\ListaMarcasPatentesFacFacturas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\FacTarifas\AgregarFacTarifa.xaml">
       <Generator>MSBuild:Compile</Generator>

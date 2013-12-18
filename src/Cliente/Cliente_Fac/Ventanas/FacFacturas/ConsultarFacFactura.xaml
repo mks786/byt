@@ -424,11 +424,14 @@
                         </WrapPanel>
 
                         <WrapPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
-                            <Label VerticalAlignment="Top" HorizontalContentAlignment="Left" Width="110" >
+                            <!--<Label VerticalAlignment="Top" HorizontalContentAlignment="Left" Width="110" >
                                 <TextBlock Text="{x:Static recurso:Etiquetas.faclblNuestraReferencia}" VerticalAlignment="Center" />
-                            </Label>
+                            </Label>-->
+                            <Button Name="_btnOurref" IsDefault="False" Height="20" HorizontalAlignment="Right" Click="_btnOurref_Click">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.faclblNuestraReferencia}" VerticalAlignment="Center"/>
+                            </Button>
                             <custom:ByTTextBox Grid.Row="7"  Grid.ColumnSpan="2" Grid.Column="1" VerticalAlignment="Top" HorizontalContentAlignment="Left" Width="320" Height="20" Name="_txtOurref" MaxLength="100" Focusable="True" 
-                    ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left" IsReadOnly="False">
+                    ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left" IsReadOnly="False" Margin="12,0,0,0">
                                 <custom:ByTTextBox.Text>
                                     <Binding Path="Ourref" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>

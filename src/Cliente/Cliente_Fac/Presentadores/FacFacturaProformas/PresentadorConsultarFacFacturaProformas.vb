@@ -286,7 +286,11 @@ Namespace Presentadores.FacFacturaProformas
             End If
             '#End Region
             Me._ventana.FacFacturaProformaSeleccionado.Accion = 2 'no modificar
-            Me.Navegar(New ConsultarFacFacturaProforma(Me._ventana.FacFacturaProformaSeleccionado))
+
+            'Me.Navegar(New ConsultarFacFacturaProforma(Me._ventana.FacFacturaProformaSeleccionado))
+
+            Me.Navegar(New ConsultarFacFacturaProforma(Me._ventana.FacFacturaProformaSeleccionado, Me._ventana))
+
             'Me.Navegar(New ConsultarFacFacturaProforma())
             '#Region "trace"
             If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then

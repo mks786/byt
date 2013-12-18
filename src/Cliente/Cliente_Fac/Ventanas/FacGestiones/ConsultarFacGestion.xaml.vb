@@ -562,5 +562,9 @@ Namespace Ventanas.FacGestiones
         Private Sub _btnAuditoria_Click(sender As Object, e As RoutedEventArgs)
             Me._presentador.Auditoria()
         End Sub
+
+        Private Sub _btnNuevaGestion_Click(sender As System.Object, e As System.Windows.RoutedEventArgs)
+            Me._presentador.AgregarNuevaGestion()
+        End Sub
     End Class
 End Namespace
