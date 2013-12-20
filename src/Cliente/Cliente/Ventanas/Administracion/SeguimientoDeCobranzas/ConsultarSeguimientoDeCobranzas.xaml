@@ -153,6 +153,13 @@ HorizontalAlignment="Right" GotFocus="_btnConsultarAsociadoFocus" GotKeyboardFoc
 
                         </ComboBox>
                     </WrapPanel>
+                    
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="14,5,0,0">
+                        <Label>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblAnio}"/>
+                        </Label>
+                        <custom:ByTTextBox Name="_txtAnioActualSegCobranza" Text="" Width="100" MaxLength="15" Height="25" HorizontalAlignment="Left" IsReadOnly="True" Margin="10,0,0,0"/>
+                    </WrapPanel>
 
                     <!-- Boton Consultar Consulta sobre la Data cruda -->
                     <Separator Margin="0,5,0,5"/>
@@ -173,21 +180,24 @@ HorizontalAlignment="Right" GotFocus="_btnConsultarAsociadoFocus" GotKeyboardFoc
                         <Label Name="_lblEjeXSegCobranzas" IsEnabled="False">
                             Eje X:
                         </Label>
-                        <ComboBox Name="_cbxEjeXSegCobranzas" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Valor" IsEnabled="False">
+                        <ComboBox Name="_cbxEjeXSegCobranzas" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Valor" 
+                                  IsEnabled="False">
                         </ComboBox>
                     </WrapPanel>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,5,0,0">
                         <Label Name="_lblEjeYSegCobranzas" IsEnabled="False">
                             Eje Y:
                         </Label>
-                        <ComboBox Name="_cbxEjeYSegCobranzas" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Valor" IsEnabled="False">
+                        <ComboBox Name="_cbxEjeYSegCobranzas" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Valor" 
+                                  IsEnabled="False">
                         </ComboBox>
                     </WrapPanel>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,5,0,0">
                         <Label Name="_lblEjeZSegCobranzas" IsEnabled="False">
                             Eje Z:
                         </Label>
-                        <ComboBox Name="_cbxEjeZSegCobranzas" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Valor" IsEnabled="False">
+                        <ComboBox Name="_cbxEjeZSegCobranzas" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Valor" 
+                                  IsEnabled="False">
                         </ComboBox>
                     </WrapPanel>
                     <Separator Margin="0,5,0,5"/>

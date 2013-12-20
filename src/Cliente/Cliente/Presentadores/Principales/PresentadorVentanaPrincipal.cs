@@ -1683,6 +1683,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                     if (proceso.Id != id)
                     {
                         this.EjecutarComandoDeConsola("/c " + "Taskkill /PID " + proceso.Id + " /F", "Cerrar sesiones restantes");
+                        //proceso.Kill();
                     }
                 }
                 catch (Exception ex)

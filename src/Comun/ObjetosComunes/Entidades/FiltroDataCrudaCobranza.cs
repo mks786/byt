@@ -15,6 +15,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _ordenamiento;
         private string _ejeX;
         private string _ejeY;
+        private int _anio;
 
         #endregion
 
@@ -96,6 +97,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return this._ejeY; }
             set { this._ejeY = value; }
+        }
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Año a usar para obtener el detalle
+        /// </summary>
+        public virtual int Anio
+        {
+            get { return this._anio; }
+            set { this._anio = value; }
         }
 
 

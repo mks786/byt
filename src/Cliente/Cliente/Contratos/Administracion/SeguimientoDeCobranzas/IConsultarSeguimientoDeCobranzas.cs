@@ -28,6 +28,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Administracion.SeguimientoDeCobranzas
 
         object Ordenamiento { get; set; }
 
+        String Anio { get; set; }
+
         string IdAsociado { get; set; }
 
         string IdAsociadoFiltrar { get; set; }

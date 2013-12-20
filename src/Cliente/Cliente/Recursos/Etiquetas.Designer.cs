@@ -4368,6 +4368,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         /// <summary>
         ///   Busca una cadena traducida similar a Año:.
         /// </summary>
+        public static string lblAnio {
+            get {
+                return ResourceManager.GetString("lblAnio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Año:.
+        /// </summary>
         public static string lblAno {
             get {
                 return ResourceManager.GetString("lblAno", resourceCulture);

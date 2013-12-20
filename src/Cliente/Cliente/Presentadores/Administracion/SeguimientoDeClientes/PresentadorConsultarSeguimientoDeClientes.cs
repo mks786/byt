@@ -551,7 +551,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
                 this._ventana.EjeXSeleccionado = this.BuscarListaDeDatosValores(camposVistaSeguimientoClientes, ejeX);
 
                 ListaDatosValores ejeY = new ListaDatosValores();
-                ejeY.Valor = "CASOCIADO";
+                ejeY.Valor = "XASOCIADO";
                 this._ventana.EjeYSeleccionado = this.BuscarListaDeDatosValores(camposVistaSeguimientoClientes, ejeY);
 
                 ListaDatosValores ejeZ = new ListaDatosValores();

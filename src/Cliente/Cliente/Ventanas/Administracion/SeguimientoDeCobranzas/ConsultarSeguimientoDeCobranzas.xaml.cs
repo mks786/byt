@@ -109,6 +109,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeCobranzas
             set { this._cbxOrdenamientoSegCobranzas.SelectedItem = value; }
         }
 
+        public String Anio
+        {
+            get { return this._txtAnioActualSegCobranza.Text; }
+            set { this._txtAnioActualSegCobranza.Text = value; }
+        }
+
         #endregion
 
 

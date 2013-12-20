@@ -17,7 +17,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private const String cabeceraDataResumenGeneral = "SELECT CODIGO,XASOCIADO,COUNT(NRO_GESTION) AS TOTAL_GES FROM SEG_COB ";
-        private const String filtroQueryDataResumenGeneral = "GROUP BY CODIGO,XASOCIADO ORDER BY TOTAL_GES ASC";
+        private const String filtroQueryDataResumenGeneral = "GROUP BY CODIGO,XASOCIADO,AÑO ORDER BY TOTAL_GES ASC";
 
         /// <summary>
         /// Servicio que consulta la vista SEG_COB para obtener los datos de resumen iniciales segun el filtro dado
@@ -343,6 +343,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
                         variosFiltros = true;
                     }
 
+                    if (filtro.Anio != 0)
+                    {
+                        if (variosFiltros)
+                            cadenaWhere += " AND ";
+                        cadenaWhere += "AÑO = " + filtro.Anio.ToString() + " ";
+                        variosFiltros = true;
+                    }
+
                     cadenaWhere += " " + filtroQueryDataResumenGeneral;
 
                     if (!string.IsNullOrWhiteSpace(filtro.Ordenamiento))
@@ -447,6 +455,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
                     }
 
 
+                    if (filtro.Anio != 0)
+                    {
+                        if (variosFiltros)
+                            cadenaAux += " AND ";
+                        cadenaAux += "AÑO = " + filtro.Anio.ToString() + " ";
+                        variosFiltros = true;
+                    }
+
                     cadenaWhere += cadenaAux + " ORDER BY CODIGO ASC";
 
                     aux.Append(cadenaWhere);
@@ -539,6 +555,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
                         cadenaAux += "MEDIO_GES = '" + filtro.MedioGestion + "' AND ";
                     }
 
+                    if (filtro.Anio != 0)
+                    {
+                        cadenaAux += "AÑO =" + filtro.Anio.ToString() + " AND ";
+                    }
+
                     if (filtro.Asociado != null)
                     {
                         cadenaAux += "CODIGO = " + ((Asociado)filtro.Asociado).Id + " AND ";
@@ -623,6 +644,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
                     if (!string.IsNullOrWhiteSpace(filtro.Usuario))
                     {
                         cadenaAux += "USUARIO = '" + filtro.Usuario + "' AND ";
+                    }
+
+                    if (filtro.Anio != 0)
+                    {
+                        cadenaAux += "AÑO =" + filtro.Anio.ToString() + " AND ";
                     }
 
                     if (!string.IsNullOrWhiteSpace(filtro.MedioGestion))

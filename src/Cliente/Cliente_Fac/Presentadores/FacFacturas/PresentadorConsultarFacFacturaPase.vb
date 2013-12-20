@@ -14,6 +14,10 @@ Imports Trascend.Bolet.ObjetosComunes.ContratosServicios
 Imports Trascend.Bolet.Cliente.Presentadores
 Imports Trascend.Bolet.Cliente.Ventanas.Principales
 Imports Diginsoft.Bolet.Cliente.Fac.Ventanas.FacGestiones
+Imports Trascend.Bolet.Cliente.Ventanas.Asociados
+Imports Trascend.Bolet.Cliente.Ventanas.Interesados
+
+
 Namespace Presentadores.FacFacturas
     Class PresentadorConsultarFacFacturaPase
         Inherits PresentadorBase
@@ -4690,6 +4694,92 @@ Namespace Presentadores.FacFacturas
                 End Set
             End Property
         End Class
+
+        Sub ConsultarAsociado(parametro As String)
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                Dim asociado As Asociado
+                If parametro.Equals("_btnIrAsociadoFacFactura") Then
+                    If DirectCast(Me._ventana.Asociado, Asociado) IsNot Nothing Then
+                        asociado = DirectCast(Me._ventana.Asociado, Asociado)
+                        Me.Navegar(New ConsultarAsociado(asociado, Me._ventana, False))
+                    End If
+                ElseIf parametro.Equals("_btnIrAsociadoImpresion") Then
+                    If DirectCast(Me._ventana.AsociadoImp, Asociado) IsNot Nothing Then
+                        asociado = DirectCast(Me._ventana.AsociadoImp, Asociado)
+                        Me.Navegar(New ConsultarAsociado(asociado, Me._ventana, False))
+                    End If
+                End If
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                    '#End Region
+                End If
+
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, True)
+
+            End Try
+        End Sub
+
+        Sub ConsultarInteresadoFactura()
+            Try
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                Dim interesado As Interesado
+
+                If DirectCast(Me._ventana.Interesado, Interesado) IsNot Nothing Then
+                    interesado = DirectCast(Me._ventana.Interesado, Interesado)
+                    Me.Navegar(New ConsultarInteresado(interesado, Me._ventana))
+                End If
+
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                    '#End Region
+                End If
+
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, True)
+
+            End Try
+        End Sub
+
+        Sub ConsultarMarcasPatentes()
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                Me.Navegar(New ListaMarcasPatentesFacFacturas(Me._ventana))
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                    '#End Region
+                End If
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, True)
+
+            End Try
+        End Sub
 
     End Class
 End Namespace

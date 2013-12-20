@@ -1930,5 +1930,24 @@ Namespace Ventanas.FacFacturas
                 End If
             End Set
         End Property
+
+        Private Sub _btnIrAsociado_Click(sender As System.Object, e As System.Windows.RoutedEventArgs)
+            Dim parametro As String
+            parametro = String.Empty
+            If (DirectCast(sender, Button)).Name.Equals("_btnIrAsociadoFacFactura") Then
+                parametro = "_btnIrAsociadoFacFactura"
+            ElseIf (DirectCast(sender, Button)).Name.Equals("_btnIrAsociadoImpresion") Then
+                parametro = "_btnIrAsociadoImpresion"
+            End If
+            Me._presentador.ConsultarAsociado(parametro)
+        End Sub
+
+        Private Sub _btnInteresadoFacFactura_Click(sender As System.Object, e As System.Windows.RoutedEventArgs)
+            Me._presentador.ConsultarInteresadoFactura()
+        End Sub
+
+        Private Sub _btnOurref_Click(sender As System.Object, e As System.Windows.RoutedEventArgs)
+            Me._presentador.ConsultarMarcasPatentes()
+        End Sub
     End Class
 End Namespace

@@ -4212,4 +4212,7 @@ en Prensa:</value>
   <data name="lblOrigenInteresado" xml:space="preserve">
     <value>Origen del Interesado:</value>
   </data>
+  <data name="lblAnio" xml:space="preserve">
+    <value>Año:</value>
+  </data>
 </root>

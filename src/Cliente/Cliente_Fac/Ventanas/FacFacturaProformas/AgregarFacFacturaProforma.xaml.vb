@@ -1910,5 +1910,24 @@ Namespace Ventanas.FacFacturaProformas
                 _txtServicioId.Focus()
             End If
         End Sub
+
+        Private Sub _btnIrAsociado_Click(sender As System.Object, e As System.Windows.RoutedEventArgs)
+            Dim parametro As String
+            parametro = String.Empty
+            If (DirectCast(sender, Button)).Name.Equals("_btnIrAsociadoFacFacturaProforma") Then
+                parametro = "_btnIrAsociadoFacFacturaProforma"
+            ElseIf (DirectCast(sender, Button)).Name.Equals("_btnIrAsociadoImpresionProforma") Then
+                parametro = "_btnIrAsociadoImpresionProforma"
+            End If
+            Me._presentador.ConsultarAsociado(parametro)
+        End Sub
+
+        Private Sub _btnInteresadoFacFacturaProforma_Click(sender As System.Object, e As System.Windows.RoutedEventArgs)
+            Me._presentador.ConsultarInteresadoFacturaProforma()
+        End Sub
+
+        Private Sub _btnOurref_Click(sender As System.Object, e As System.Windows.RoutedEventArgs)
+            Me._presentador.ConsultarMarcasPatentes()
+        End Sub
     End Class
 End Namespace

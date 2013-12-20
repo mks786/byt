@@ -101,10 +101,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeCobra
 
                 this._ventana.TotalGestiones = "0";
 
+                this._ventana.Anio = DateTime.Today.Year.ToString();
+
                 InicializarCombos(false);
 
-                
-                //PredeterminarEjes();
+                PredeterminarEjes();
 
                 this._ventana.FocoPredeterminado();
 
@@ -123,6 +124,50 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeCobra
                 Mouse.OverrideCursor = null;
             }
         }
+
+
+        /// <summary>
+        /// Metodo que establece los valores inciales de los campos de los ejes para la tabla pivotal
+        /// </summary>
+        /// <param name="iniciarVentana"></param>
+        public void PredeterminarEjes()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+
+                IList<ListaDatosValores> camposVistaSeguimientoCobranza =
+                            this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCamposVistaSeguimientoCobranzas));
+
+
+                ListaDatosValores ejeX = new ListaDatosValores();
+                ejeX.Valor = "MES";
+                this._ventana.EjeXSeleccionado = this.BuscarListaDeDatosValores(camposVistaSeguimientoCobranza, ejeX);
+
+                ListaDatosValores ejeY = new ListaDatosValores();
+                ejeY.Valor = "MEDIO_GES";
+                this._ventana.EjeYSeleccionado = this.BuscarListaDeDatosValores(camposVistaSeguimientoCobranza, ejeY);
+
+                ListaDatosValores ejeZ = new ListaDatosValores();
+                ejeZ.Valor = "NRO_GESTION";
+                this._ventana.EjeZSeleccionado = this.BuscarListaDeDatosValores(camposVistaSeguimientoCobranza, ejeZ);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+        }
+
 
         /// <summary>
         /// Metodo que inicializa los combos para los filtros de Resumen General
@@ -148,8 +193,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeCobra
 
                 IList<Usuario> usuarios = this._usuarioServicios.ConsultarTodos();
                 usuarios = this.FiltrarUsuariosRepetidos(usuarios);
+                Usuario primerUsuario = new Usuario();
+                primerUsuario.Id = "NGN";
+                usuarios.Insert(0, primerUsuario);
                 this._ventana.Usuarios = usuarios;
-                Usuario usuarioPorDefecto = UsuarioLogeado;
+                //Usuario usuarioPorDefecto = UsuarioLogeado;
+                Usuario usuarioPorDefecto = new Usuario();
+                usuarioPorDefecto.Iniciales = "FR";
                 this._ventana.Usuario = this.BuscarUsuarioPorIniciales(usuarios, usuarioPorDefecto);
 
                 IList<ListaDatosValores> ordenes =
@@ -344,13 +394,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeCobra
 
                 filtro.Moneda = this._ventana.Moneda != null ? ((Moneda)this._ventana.Moneda).Id : null;
 
-                filtro.Usuario = this._ventana.Usuario != null ? ((Usuario)this._ventana.Usuario).Iniciales : null;
+                filtro.Usuario = this._ventana.Usuario != null && !((Usuario)this._ventana.Usuario).Id.Equals("NGN") ? ((Usuario)this._ventana.Usuario).Iniciales : null;
 
                 filtro.MedioGestion = this._ventana.Medio != null ? ((MediosGestion)this._ventana.Medio).Descripcion : null;
 
                 filtro.Ordenamiento = this._ventana.Ordenamiento != null ? ((ListaDatosValores)this._ventana.Ordenamiento).Valor : "ASC";
 
                 filtro.Asociado = this._ventana.Asociado != null ? (Asociado)this._ventana.Asociado : null;
+
+                filtro.Anio = int.Parse(this._ventana.Anio);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -418,14 +470,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeCobra
         }
 
 
+        
         /// <summary>
-        /// Metodo para predeterminar los campos para generar la data pivot de Seguimiento de Cobranzas
+        /// Metodo que genera la tabla pivot a ser mostrada en la siguiente ventana, tomando en cuenta los valores de los ejes
         /// </summary>
-        public void PredeterminarEjes()
-        {
-            
-        }
-
         public void IrListaDatosPivot()
         {
             try
@@ -498,6 +546,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeCobra
 
             
             InicializarCombos(true);
+
+            PredeterminarEjes();
 
             this._ventana.DesactivarEjesPivot();
 

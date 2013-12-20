@@ -19,9 +19,10 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="60"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -33,11 +34,11 @@
         <!--Área de Filtrado-->
 
 
-        <GroupBox Grid.Column="1" Grid.Row="1" Margin="5" Grid.ColumnSpan="2">
-            <WrapPanel Grid.Column="1" Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Left" >
+        <GroupBox Grid.Column="1" Grid.Row="1" Margin="5" Grid.ColumnSpan="2" BorderThickness="0">
+            <WrapPanel Grid.Column="1" Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" >
                 <Grid >
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="150"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
@@ -50,12 +51,12 @@
                     <!--<custom:ByTTextBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4"  Name="_txtMarca" VerticalAlignment="Center"
                          HorizontalAlignment="Left" Width="100" Text="" MaxLength="255" Height="20"></custom:ByTTextBox>-->
 
-                    <WrapPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0">
+                    <WrapPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,0">
 
                         <Label HorizontalAlignment="Right" >
                             <TextBlock Text="Buscar una:"/>
                         </Label>
-                        <ComboBox Name="_cbxTiposABuscar" Width="130" ItemsSource="{Binding}" 
+                        <ComboBox Name="_cbxTiposABuscar" Width="90" ItemsSource="{Binding}" 
                                   DisplayMemberPath="Descripcion" SelectionChanged="_cbxTiposABuscar_SelectionChanged">
 
                         </ComboBox>
@@ -64,7 +65,7 @@
                             <TextBlock Text="Codigo:"/>
                         </Label>
                         <custom:ByTTextBox Grid.Column="1" Grid.Row="0"  Name="_txtIdElemento" VerticalAlignment="Center" 
-                         HorizontalAlignment="Left" Width="100" MaxLength="255"  >
+                         HorizontalAlignment="Left" Width="50" MaxLength="255"  >
                         </custom:ByTTextBox>
 
                         <Label HorizontalAlignment="Right" >
@@ -72,10 +73,10 @@
                         </Label>
 
                         <Label HorizontalAlignment="Right" >
-                            <TextBlock Text="Código Internacional:"/>
+                            <TextBlock Text="Código Int:"/>
                         </Label>
                         <custom:ByTTextBox  Name="_txtIdInternacionalElemento"  VerticalAlignment="Center" 
-                         HorizontalAlignment="Left" Width="140" MaxLength="255" IsEnabled="False">
+                         HorizontalAlignment="Left" Width="50" MaxLength="255" IsEnabled="False">
                         </custom:ByTTextBox>
 
                         <Label HorizontalAlignment="Right" >
@@ -86,7 +87,7 @@
                             <TextBlock Text="Solicitud:"/>
                         </Label>
                         <custom:ByTTextBox Grid.Column="1" Grid.Row="0"  Name="_txtSolicitud" VerticalAlignment="Center" 
-                         HorizontalAlignment="Left" Width="100" MaxLength="255"  CharacterCasing="Upper">
+                         HorizontalAlignment="Left" Width="80" MaxLength="255"  CharacterCasing="Upper">
                         </custom:ByTTextBox>
 
                         <Label HorizontalAlignment="Right" >
@@ -97,7 +98,7 @@
                             <TextBlock Text="Registro:"/>
                         </Label>
                         <custom:ByTTextBox  Name="_txtRegistro"  VerticalAlignment="Center" CharacterCasing="Upper"
-                         HorizontalAlignment="Left" Width="140" MaxLength="255" >
+                         HorizontalAlignment="Left" Width="80" MaxLength="255" >
                         </custom:ByTTextBox>
 
                         <Label HorizontalAlignment="Right" >
@@ -111,8 +112,8 @@
 
                     </WrapPanel>
 
-                    <ListView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5" Name="_lstMarcas" ItemsSource="{Binding}" 
-                              SelectionMode="Single" Visibility="Visible" Style="{DynamicResource EstiloListView}" Height="150"
+                    <ListView Grid.Row="1" Grid.ColumnSpan="5" Name="_lstMarcas" ItemsSource="{Binding}" 
+                              SelectionMode="Single" Visibility="Visible" Style="{DynamicResource EstiloListView}" Height="150" Width="800"
                               VerticalAlignment="Top" BorderBrush="Transparent" BorderThickness="0"
                               MouseDoubleClick="_lstMarcas_MouseDoubleClick">
                         <ListView.View>
@@ -160,7 +161,7 @@
                     </ListView>
 
                     <ListView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5" Name="_lstPatentes" ItemsSource="{Binding}" 
-                              SelectionMode="Single" Visibility="Collapsed" Style="{DynamicResource EstiloListView}" Height="150"
+                              SelectionMode="Single" Visibility="Collapsed" Style="{DynamicResource EstiloListView}" Height="150" Width="800"
                               VerticalAlignment="Top" BorderBrush="Transparent" BorderThickness="0" 
                               MouseDoubleClick="_lstPatentes_MouseDoubleClick">
                         <ListView.View>
@@ -171,10 +172,10 @@
                                 <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="150">
                                     <GridViewColumnHeader  Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvDescripcion}"/>
                                 </GridViewColumn>
-                                <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoInscripcion}" Width="80">
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoInscripcion}" Width="100">
                                     <GridViewColumnHeader  Tag="CodigoInscripcion" Content="Solicitud"/>
                                 </GridViewColumn>
-                                <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoRegistro}" Width="80">
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoRegistro}" Width="100">
                                     <GridViewColumnHeader  Tag="CodigoRegistro" Content="Registro"/>
                                 </GridViewColumn>
                                 <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoPatenteInternacional}" Width="100">
@@ -189,7 +190,7 @@
                                 <GridViewColumn DisplayMemberBinding="{Binding Path=Tipo}" Width="80">
                                     <GridViewColumnHeader  Tag="Tipo" Content="Tipo"/>
                                 </GridViewColumn>
-                                <GridViewColumn Header="Etiqueta" Width="45" >
+                                <GridViewColumn Header="Etiqueta" Width="55" >
                                     <GridViewColumn.CellTemplate >
                                         <DataTemplate>
                                             <CheckBox Tag="Etiqueta"   IsChecked="{Binding Path=BEtiqueta}" />
@@ -216,7 +217,7 @@
 
 
         <!--Botones Regresar-->
-        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" BorderBrush="{x:Null}">
+        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" BorderBrush="{x:Null}" BorderThickness="0">
             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
                 <Button Name="_btnCancelar" Width="100" Click="_btnCancelar_Click" >
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
