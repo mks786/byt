@@ -5,19 +5,19 @@ namespace Trascend.Bolet.Cliente.Contratos.Memorias
 {
     interface IListaMemorias : IPaginaBase
     {
-        string IdMemoria { get; }
+        //string IdMemoria { get; }
 
         object MemoriaSeleccionada { get; }
 
         object Memorias { get; set; }
 
-        object TipoMensaje { get; set; }
+        //object TipoMensaje { get; set; }
 
-        object TiposMensajes { get; set; }
+        //object TiposMensajes { get; set; }
 
-        object FormatosDocumentos { get; set; }
+        //object FormatosDocumentos { get; set; }
 
-        object FormatoDocumento { get; set; }
+        //object FormatoDocumento { get; set; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 
@@ -26,5 +26,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Memorias
         object ListaResultados { get; set; }
 
         string TotalHits { set; }
+
+        void Mensaje(string mensaje, int opcion);
     }
 }

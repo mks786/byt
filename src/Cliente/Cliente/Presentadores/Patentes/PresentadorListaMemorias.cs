@@ -15,6 +15,7 @@ using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Memorias;
+using System.IO;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Memorias
 {
@@ -32,16 +33,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Memorias
         private IListaDatosValoresServicios _listaDatosValoresServicios;
 
 
-        private IList<Memoria> _memorias;
-        private IList<ListaDatosValores> _tiposMensaje;
-        private ListaDatosValores _formatoDocumento;
+        //private IList<Memoria> _memorias;
+        //private IList<ListaDatosValores> _tiposMensaje;
+        //private ListaDatosValores _formatoDocumento;
 
 
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorListaMemorias(IListaMemorias ventana, object patente)
+        /// <param name="patente">Patente Consultada</param>
+        /// <param name="ventanaPadre">Ventana que precede a esta ventana</param>
+        public PresentadorListaMemorias(IListaMemorias ventana, object patente, object ventanaPadre)
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -50,6 +53,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Memorias
 
             this._ventana = ventana;
             this._patente = (Patente)patente;
+            this._ventanaPadre = ventanaPadre;
 
             this._patenteServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
                 ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
@@ -70,6 +74,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Memorias
         /// </summary>
         public void CargarPagina()
         {
+            
+            IList<Memoria> listaMemorias = new List<Memoria>();
+            int contador = 1;
             Mouse.OverrideCursor = Cursors.Wait;
 
             try
@@ -81,21 +88,58 @@ namespace Trascend.Bolet.Cliente.Presentadores.Memorias
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaMemorias,
                     "");
-                _memorias = this._memoriaServicios.ConsultarMemoriasPorPatente(this._patente);
-                this._ventana.Memorias = _memorias;
-                this._ventana.TotalHits = ((IList<Memoria>)this._ventana.Memorias).Count.ToString();
 
-                IList<ListaDatosValores> formatosDocs = this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaFormatoDoc));
-                ListaDatosValores primerFormato = new ListaDatosValores();
-                primerFormato.Id = "NGN";
-                formatosDocs.Insert(0, primerFormato);
-                this._ventana.FormatosDocumentos = formatosDocs;
+                #region CODIGO ORIGINAL COMENTADO
+                //_memorias = this._memoriaServicios.ConsultarMemoriasPorPatente(this._patente);
+                //this._ventana.Memorias = _memorias;
+                //this._ventana.TotalHits = ((IList<Memoria>)this._ventana.Memorias).Count.ToString();
 
-                _tiposMensaje = this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaTipoMensaje));
-                ListaDatosValores primerMensaje = new ListaDatosValores();
-                primerMensaje.Id = "NGN";
-                _tiposMensaje.Insert(0, primerMensaje);
-                this._ventana.TiposMensajes = _tiposMensaje;
+                //IList<ListaDatosValores> formatosDocs = this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaFormatoDoc));
+                //ListaDatosValores primerFormato = new ListaDatosValores();
+                //primerFormato.Id = "NGN";
+                //formatosDocs.Insert(0, primerFormato);
+                //this._ventana.FormatosDocumentos = formatosDocs;
+
+                //_tiposMensaje = this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaTipoMensaje));
+                //ListaDatosValores primerMensaje = new ListaDatosValores();
+                //primerMensaje.Id = "NGN";
+                //_tiposMensaje.Insert(0, primerMensaje);
+                //this._ventana.TiposMensajes = _tiposMensaje; 
+                #endregion
+
+                string rutaArchivo = ConfigurationManager.AppSettings["RutaMemoriaPatente"];
+                string nombreArchivo = 
+                    ConfigurationManager.AppSettings["NombreMemoriaPatente"] + this._patente.Id.ToString();
+                string[] archivos = Directory.GetFiles(rutaArchivo, nombreArchivo + ".*");
+
+                if (archivos.Length != 0)
+                {
+
+                    foreach (string archivo in archivos)
+                    {
+                        Memoria memoriaAux = new Memoria();
+                        memoriaAux.Id = contador;
+                        memoriaAux.Ruta = archivo;
+                        DateTime fileCreatedDate = File.GetCreationTime(archivo);
+                        memoriaAux.Fecha = fileCreatedDate;
+                        memoriaAux.Patente = this._patente;
+                        listaMemorias.Add(memoriaAux);
+                        contador++;
+                    }
+
+                    this._ventana.Memorias = listaMemorias;
+
+                    this._ventana.TotalHits = listaMemorias.Count.ToString();
+                }
+
+                else
+                {
+                    this._ventana.TotalHits = "0";
+                    this._ventana.Mensaje("La Patente no posee archivos de Memoria asociados", 0);
+                }
+
+                this._ventana.FocoPredeterminado();
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -193,56 +237,91 @@ namespace Trascend.Bolet.Cliente.Presentadores.Memorias
         }
 
 
-        public void Consultar()
+        #region CODIGO ORIGINAL COMENTADO
+        //public void Consultar()
+        //{
+        //    #region trace
+        //    if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+        //        logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+        //    #endregion
+
+        //    //Memoria memoria = new Memoria();
+
+        //    //memoria.Id = !this._ventana.IdMemoria.Equals("") ? int.Parse(this._ventana.IdMemoria) : 0;
+
+        //    //memoria.TipoDocumento = !((ListaDatosValores)this._ventana.FormatoDocumento).Id.Equals("NGN") ?
+        //    //            ((ListaDatosValores)this._ventana.FormatoDocumento).Valor[0] : (char?)null;
+        //    //memoria.TipoMensaje = !((ListaDatosValores)this._ventana.TipoMensaje).Id.Equals("NGN") ?
+        //    //    int.Parse(((ListaDatosValores)this._ventana.TipoMensaje).Valor) : 0;
+
+        //    //IEnumerable<Memoria> memoriasFiltradas = this._memorias;
+
+        //    //if (memoria.Id != 0)
+        //    //{
+        //    //    memoriasFiltradas = from m in memoriasFiltradas
+        //    //                        where m.Id == int.Parse(this._ventana.IdMemoria)
+        //    //                        select m;
+        //    //}
+
+        //    //if (memoria.TipoMensaje != 0)
+        //    //{
+        //    //    memoriasFiltradas = from m in memoriasFiltradas
+        //    //                        where m.TipoMensaje != null &&
+        //    //                        m.TipoMensaje == memoria.TipoMensaje
+        //    //                        select m;
+        //    //}
+
+        //    //if (!memoria.TipoDocumento.Equals(null))
+        //    //{
+        //    //    memoriasFiltradas = from m in memoriasFiltradas
+        //    //                        where m.TipoDocumento != null &&
+        //    //                        m.TipoDocumento == memoria.TipoDocumento
+        //    //                        select m;
+        //    //}
+
+
+        //    //this._ventana.ListaResultados = memoriasFiltradas.ToList<Memoria>();
+        //    //this._ventana.TotalHits = memoriasFiltradas.ToList<Memoria>().Count.ToString();
+
+        //    #region trace
+        //    if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+        //        logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+        //    #endregion
+        //} 
+        #endregion
+
+
+        /// <summary>
+        /// Metodo que abre un archivo de memoria seleccionado de la lista 
+        /// </summary>
+        public void AbrirArchivoMemoria()
         {
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
 
-            Memoria memoria = new Memoria();
+            String nombreArchivoMemoria = String.Empty;
 
-            memoria.Id = !this._ventana.IdMemoria.Equals("") ? int.Parse(this._ventana.IdMemoria) : 0;
-
-            memoria.TipoDocumento = !((ListaDatosValores)this._ventana.FormatoDocumento).Id.Equals("NGN") ?
-                        ((ListaDatosValores)this._ventana.FormatoDocumento).Valor[0] : (char?)null;
-            memoria.TipoMensaje = !((ListaDatosValores)this._ventana.TipoMensaje).Id.Equals("NGN") ?
-                int.Parse(((ListaDatosValores)this._ventana.TipoMensaje).Valor) : 0;
-
-            IEnumerable<Memoria> memoriasFiltradas = this._memorias;
-
-            if (memoria.Id != 0)
+            try
             {
-                memoriasFiltradas = from m in memoriasFiltradas
-                                    where m.Id == int.Parse(this._ventana.IdMemoria)
-                                    select m;
-            }
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            if (memoria.TipoMensaje != 0)
+                if (this._ventana.MemoriaSeleccionada != null)
+                {
+                    nombreArchivoMemoria = ((Memoria)this._ventana.MemoriaSeleccionada).Ruta;
+                    this.AbrirArchivoPorConsola(nombreArchivoMemoria, "Abriendo Archivo de Memoria de la Patente: " + this._patente.Id.ToString());
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
             {
-                memoriasFiltradas = from m in memoriasFiltradas
-                                    where m.TipoMensaje != null &&
-                                    m.TipoMensaje == memoria.TipoMensaje
-                                    select m;
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
-
-            if (!memoria.TipoDocumento.Equals(null))
-            {
-                memoriasFiltradas = from m in memoriasFiltradas
-                                    where m.TipoDocumento != null &&
-                                    m.TipoDocumento == memoria.TipoDocumento
-                                    select m;
-            }
-
-
-            this._ventana.ListaResultados = memoriasFiltradas.ToList<Memoria>();
-            this._ventana.TotalHits = memoriasFiltradas.ToList<Memoria>().Count.ToString();
-
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
         }
-
     }
 }

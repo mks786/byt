@@ -28,6 +28,8 @@ using Trascend.Bolet.Cliente.Ventanas.Poderes;
 
 using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacReportes;
 using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacAsociadoMarcaPatentes;
+using Diginsoft.Bolet.ObjetosComunes.ContratosServicios;
+using Diginsoft.Bolet.ObjetosComunes.Entidades;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
@@ -70,6 +72,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IInstruccionEnvioOriginalesServicios _instruccionEnvioOriginalesServicios;
         private IInstruccionOtrosServicios _instruccionOtrosServicios;
         private IInstruccionDescuentoServicios _instruccionDescuentoServicios;
+        private IFacVistaFacturaServicioServicios _facVistaFacturaServicioServicios;
 
 
         private IList<Asociado> _asociados;
@@ -178,6 +181,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InstruccionOtrosServicios"]);
                 this._instruccionDescuentoServicios = (IInstruccionDescuentoServicios)Activator.GetObject(typeof(IInstruccionDescuentoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InstruccionDescuentoServicios"]);
+                this._facVistaFacturaServicioServicios = 
+                    (IFacVistaFacturaServicioServicios)Activator.GetObject(typeof(IFacVistaFacturaServicioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FacVistaFacturaServicioServicios"]);
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -543,6 +550,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 if (certificado != null)
                     this._ventana.PintarCertificado();
+
+                FacVistaFacturaServicio facVistaFacServicio = new FacVistaFacturaServicio();
+                facVistaFacServicio.Id = this._marca.Id;
+                facVistaFacServicio.Tipo = "M";
+
+                IList<FacVistaFacturaServicio> listaFacturas = 
+                    this._facVistaFacturaServicioServicios.ObtenerFacVistaFacturaServiciosFiltro(facVistaFacServicio);
+
+                if (listaFacturas.Count > 0)
+                    this._ventana.PintarFacturacion();
 
 
                 #region Instrucciones de Correspondencia 

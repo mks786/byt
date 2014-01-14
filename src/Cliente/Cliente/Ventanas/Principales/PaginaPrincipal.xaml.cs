@@ -3,6 +3,8 @@ using Trascend.Bolet.Cliente.Contratos.Principales;
 using System.Windows.Media;
 using Trascend.Bolet.Cliente.Presentadores.Principales;
 using System;
+using System.Windows;
+using System.Windows.Threading;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Principales
 {
@@ -13,6 +15,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
     {
         private bool _cargada;
         private PresentadorPaginaPrincipal _presentador;
+
+        
+        DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        
+        
 
         #region IPaginaPrincipal
 
@@ -89,8 +96,43 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
+            //this._presentador.MostarPatentesPorVencerFechaPresentacion();
             this._presentador.CargarPagina();
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 3);
+            dispatcherTimer.Start();
+            
         }
+
+        public void Mensaje(string mensaje, int opcion)
+        {
+            if (opcion == 0)
+                MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (opcion == 1)
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            else if (opcion == 2)
+                MessageBox.Show(mensaje, "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            //Mensaje("Hola Dirimo", 2);
+            this._presentador.MostarPatentesPorVencerFechaPresentacion();
+            var dispatcherTimer = (DispatcherTimer)sender;
+            dispatcherTimer.Stop();
+        }
+
+        public bool ConfirmarAccion(string Titulo, string Mensaje)
+        {
+            bool retorno = false;
+            if (MessageBoxResult.Yes == MessageBox.Show(Mensaje,
+                    Titulo, MessageBoxButton.YesNo, MessageBoxImage.Question))
+                retorno = true;
+
+            return retorno;
+        }
+
 
     }
 }

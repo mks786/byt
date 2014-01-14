@@ -16,5 +16,6 @@
     <property name="FechaFactura" column="FFACTURA" type="DateTime"/>
     <property name="Proforma" column="PROFORMA" type="int"/>
     <property name="Tipo" column="ITIPO" type="string"/>
+    <property name="Saldo"  column="SALDO" type="double"/>
   </class>
 </hibernate-mapping>

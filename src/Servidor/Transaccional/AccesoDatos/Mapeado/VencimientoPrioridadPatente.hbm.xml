@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="VencimientoPrioridadPatente" table="PATENTE_RECORDAT" mutable="false">
+
+    <id name="Id" column="PATENTE" type ="int"/>
+
+    <property name="FechaSolicitud" column="FSOLICITUD" type="DateTime"/>
+    <property name="FechaVencimiento" column="FVENCIMIENTO" type="string"/>
+    <property name="FechaRecordatorio" column="FRECORDAT" type="string"/>
+    <property name="VencimientoDias" column="DIASVENC" type="int"/>
+
+  </class>
+</hibernate-mapping>

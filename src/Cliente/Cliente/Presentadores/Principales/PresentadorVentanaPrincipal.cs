@@ -1912,6 +1912,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                                     item3.Visibility = System.Windows.Visibility.Visible;
                                                 }
                                                 break;
+                                            case "_menuItemPatentesPrioridad" :
+                                                item3.Visibility = System.Windows.Visibility.Visible;
+                                                break;
                                         }
                                     }
                                     break;
@@ -2502,6 +2505,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
             Navegar(new ConsultarMaestrosPlantillas());
         }
 
-        
+
+        /// <summary>
+        /// Metodo que llama a la ventana para cambiar la contraseña de acceso al sistema
+        /// </summary>
+        public void IrCambiarClaveAcceso()
+        {
+            Navegar(new CambiarClaveAcceso(UsuarioLogeado));
+        }
+
+        public void IrListaPatentesPorVencerPrioridad()
+        {
+            Navegar(new ListaPatentesPrioridadVencida());
+        }
     }
 }

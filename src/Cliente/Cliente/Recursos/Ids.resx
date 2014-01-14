@@ -1161,4 +1161,10 @@
   <data name="SeguimientoDeCobranzas" xml:space="preserve">
     <value>SEG_COB</value>
   </data>
+  <data name="InteresadoPatente" xml:space="preserve">
+    <value>MYP_INTERESADOS_PAT</value>
+  </data>
+  <data name="PatentesVencPrioridad" xml:space="preserve">
+    <value>PATENTES_RECORDAT</value>
+  </data>
 </root>

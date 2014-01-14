@@ -376,5 +376,45 @@ namespace Trascend.Bolet.Servicios.Implementacion
                 throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
             }
         }
+
+
+        /// <summary>
+        /// Servicio que obtiene una lista de las patentes que tienen su prioridad proxima a vencer tomando en cuenta una duracion especifica
+        /// </summary>
+        /// <param name="cantidadDiasRecordatorio">Cantidad de dias usadas para el recordatorio</param>
+        /// <returns>Lista de patentes proximas a vencer dentro de los limites de la cantidad de dias de recordatorio</returns>
+        public IList<VencimientoPrioridadPatente> ObtenerPatentesPorVencerPrioridad(int cantidadDiasRecordatorio)
+        {
+
+            IList<VencimientoPrioridadPatente> patentesPorVencer;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                patentesPorVencer = ControladorPatente.ObtenerPatentesPorVencerPrioridad(cantidadDiasRecordatorio);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
+
+            return patentesPorVencer;
+        }
+
     }
 }

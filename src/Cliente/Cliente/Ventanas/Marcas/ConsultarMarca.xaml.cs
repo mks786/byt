@@ -1236,6 +1236,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
 
+        public void PintarFacturacion()
+        {
+            this._btnFacturacionDatos.Background = Brushes.LightGreen;
+        }
+
+
         public void PintarLblMarcaOrigen(bool confirmacion)
         {
             if(confirmacion)

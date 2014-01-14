@@ -132,6 +132,7 @@
                 <MenuItem Name="_menuItemGestionDePatentes" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemPatente}">
                     <MenuItem Visibility="Collapsed" Name="_menuItemPatentesConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemPatentesConsultar_Click"/>
                     <MenuItem Visibility="Collapsed" Name="_menuItemPatentesAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemPatentesAgregar_Click"/>
+                    <MenuItem Visibility="Collapsed" Name="_menuItemPatentesPrioridad" Header="{x:Static resx:Etiquetas.menuItemPrioridadPatente}" Click="_menuItemPatentesPrioridad_Click"/> 
                 </MenuItem>
                 <MenuItem Name="_menuItemAnualidadesPatentes" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemAnualidades}">
                         <MenuItem Name="_menuItemRenovacionesConsultarPatente" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemAnualidadesConsultarPatente_Click"/>  
@@ -351,6 +352,7 @@
                 <MenuItem Name="_menuItemUsuario" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemUsuario}">
                     <MenuItem Name="_menuItemUsuarioConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemUsuarioConsultar_Click"/>
                     <MenuItem Name="_menuItemUsuarioAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemUsuarioAgregar_Click"/>
+                    <MenuItem Name="_menuItemCambiarPassword" Header="{x:Static resx:Etiquetas.menuItemCambiarPassword}" Click="_menuItemCambiarPassword_Click"/>
                     <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
                 </MenuItem>
                 <MenuItem Name="_menuItemTipoEmailAsociado" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemTipoEmailAsociado}">

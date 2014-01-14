@@ -331,6 +331,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Select vpp from VencimientoPrioridadPatente vpp where .
+        /// </summary>
+        public static string CabeceraObtenerPatentesPorVencerPrioridad {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerPatentesPorVencerPrioridad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Select p from Poder p left join fetch p.Boletin as boletin left join fetch p.Interesado as interesado where .
         /// </summary>
         public static string CabeceraObtenerPoder {
@@ -1816,6 +1825,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a vpp.VencimientoDias &lt;= {0}.
+        /// </summary>
+        public static string FiltroObtenerPatentePorVencerPrioridadCantDias {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPatentePorVencerPrioridadCantDias", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a p.PrimeraReferencia like &apos;%{0}%&apos;.
         /// </summary>
         public static string FiltroObtenerPatenteReferencia {
@@ -2451,6 +2469,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string ObtenerInteresadosDeUnPoder {
             get {
                 return ResourceManager.GetString("ObtenerInteresadosDeUnPoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select ip from InteresadoPatente ip where ip.Id = {0}.
+        /// </summary>
+        public static string ObtenerInteresadosPorPatente {
+            get {
+                return ResourceManager.GetString("ObtenerInteresadosPorPatente", resourceCulture);
             }
         }
         

@@ -399,28 +399,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                             if(!campo.Campo.TipoDeCampo.Equals("FECHA"))
                                 cadenaCampos += campo.Campo.NombreCampo + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + ", ";
                             else
-                                cadenaCampos += "TO_CHAR(" + campo.Campo.NombreCampo + ",'DD/MM/YYY')" + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + ", ";
+                                cadenaCampos += "TO_CHAR(" + campo.Campo.NombreCampo + ",'DD/MM/YYYY')" + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + ", ";
                         }
                         else if (((Reporte)this._ventana.Reporte).Idioma.Id.Equals("IN") && campo.Campo.Clase.Equals("NORMAL"))
                         {
                             if (!campo.Campo.TipoDeCampo.Equals("FECHA"))
                                 cadenaCampos += campo.Campo.NombreCampo + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + ", ";
                             else
-                                cadenaCampos += "TO_CHAR(" + campo.Campo.NombreCampo + ",'DD/MM/YYY')" + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + ", ";
+                                cadenaCampos += "TO_CHAR(" + campo.Campo.NombreCampo + ",'DD/MM/YYYY')" + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + ", ";
                         }
                         else if (((Reporte)this._ventana.Reporte).Idioma.Id.Equals("ES") && campo.Campo.Clase.Equals("ESPECIAL"))
                         {
                             if (!campo.Campo.TipoDeCampo.Equals("FECHA"))
                                 cadenaCampos += campo.Campo.AdicionalEspanol + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + ", ";
                             else
-                                cadenaCampos += "TO_CHAR(" + campo.Campo.NombreCampo + ",'DD/MM/YYY')" + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + ", ";
+                                cadenaCampos += "TO_CHAR(" + campo.Campo.NombreCampo + ",'DD/MM/YYYY')" + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + ", ";
                         }
                         else if (((Reporte)this._ventana.Reporte).Idioma.Id.Equals("IN") && campo.Campo.Clase.Equals("ESPECIAL"))
                         {
                             if (!campo.Campo.TipoDeCampo.Equals("FECHA"))
                                 cadenaCampos += campo.Campo.AdicionalIngles + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + ", ";
                             else
-                                cadenaCampos += "TO_CHAR(" + campo.Campo.NombreCampo + ",'DD/MM/YYY')" + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + ", ";
+                                cadenaCampos += "TO_CHAR(" + campo.Campo.NombreCampo + ",'DD/MM/YYYY')" + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + ", ";
                         }
 
                     }
@@ -431,28 +431,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                             if (!campo.Campo.TipoDeCampo.Equals("FECHA"))
                                 cadenaCampos += campo.Campo.NombreCampo + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + " ";
                             else
-                                cadenaCampos += "TO_CHAR(" + campo.Campo.NombreCampo + ",'DD/MM/YYY')" + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + " ";
+                                cadenaCampos += "TO_CHAR(" + campo.Campo.NombreCampo + ",'DD/MM/YYYY')" + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + " ";
                         }
                         else if (((Reporte)this._ventana.Reporte).Idioma.Id.Equals("IN") && campo.Campo.Clase.Equals("NORMAL"))
                         {
                             if (!campo.Campo.TipoDeCampo.Equals("FECHA"))
                                 cadenaCampos += campo.Campo.NombreCampo + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + " ";
                             else
-                                cadenaCampos += "TO_CHAR(" + campo.Campo.NombreCampo + ",'DD/MM/YYY')" + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + " ";
+                                cadenaCampos += "TO_CHAR(" + campo.Campo.NombreCampo + ",'DD/MM/YYYY')" + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + " ";
                         }
                         else if (((Reporte)this._ventana.Reporte).Idioma.Id.Equals("ES") && campo.Campo.Clase.Equals("ESPECIAL"))
                         {
                             if (!campo.Campo.TipoDeCampo.Equals("FECHA"))
                                 cadenaCampos += campo.Campo.AdicionalEspanol + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + " ";
                             else
-                                cadenaCampos += "TO_CHAR(" + campo.Campo.NombreCampo + ",'DD/MM/YYY')" + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + " ";
+                                cadenaCampos += "TO_CHAR(" + campo.Campo.NombreCampo + ",'DD/MM/YYYY')" + " " + '\u0022' + campo.Campo.EncabezadoEspanol + '\u0022' + " ";
                         }
                         else if (((Reporte)this._ventana.Reporte).Idioma.Id.Equals("IN") && campo.Campo.Clase.Equals("ESPECIAL"))
                         {
                             if (!campo.Campo.TipoDeCampo.Equals("FECHA"))
                                 cadenaCampos += campo.Campo.AdicionalIngles + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + " ";
                             else
-                                cadenaCampos += "TO_CHAR(" + campo.Campo.NombreCampo + ",'DD/MM/YYY')" + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + " ";
+                                cadenaCampos += "TO_CHAR(" + campo.Campo.NombreCampo + ",'DD/MM/YYYY')" + " " + '\u0022' + campo.Campo.EncabezadoIngles + '\u0022' + " ";
                             //cadenaCampos += campo.Campo.NombreCampo + " ";
                         }
                     }

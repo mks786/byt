@@ -63,6 +63,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<InfoBolPatente> _infoBoles;
         private IList<Memoria> _memorias;
         private int _patenteMadre;
+        private InteresadoPatente _interesadosDePatente;
+        private string _prioridadPresentada;
 
 
         #region Internacional
@@ -656,6 +658,49 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             get { return _patenteMadre; }
             set { _patenteMadre = value; }
         }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene los Interesados vinculados a la Patente
+        /// NOTA: PUEDEN SER MAS DE UNO
+        /// </summary>
+        public virtual InteresadoPatente InteresadosDePatente
+        {
+            get { return _interesadosDePatente; }
+            set { _interesadosDePatente = value; }
+        }
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el status de presentacion de la prioridad
+        /// </summary>
+        public virtual string PrioridadPresentada
+        {
+            get { return _prioridadPresentada; }
+            set { _prioridadPresentada = value; }
+        }
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Check de Prioridad Presentada
+        /// </summary>
+        public virtual bool BPrioridadPresentada
+        {
+            get
+            {
+                if (this.PrioridadPresentada.Equals("SI"))
+                    return true;
+                else
+                    return false;
+            }
+            set
+            {
+                if (value)
+                    this.PrioridadPresentada = "SI";
+                else
+                    this.PrioridadPresentada = "NO";
+            }
+        }
+
 
 
         #region Internacional

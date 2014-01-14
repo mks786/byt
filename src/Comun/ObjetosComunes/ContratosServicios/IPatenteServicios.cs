@@ -45,5 +45,14 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// <param name="hash">hash del usuario que inserta</param>
         /// <returns>id de la patente recién insertada</returns>
         int? InsertarOModificarPatente(Patente Patente, int hash);
+
+
+        /// <summary>
+        /// Servicio que obtiene una lista de las patentes que tienen su prioridad proxima a vencer tomando en cuenta una duracion especifica
+        /// </summary>
+        /// <param name="cantidadDiasRecordatorio">Cantidad de dias usadas para el recordatorio</param>
+        /// <returns>Lista de patentes proximas a vencer dentro de los limites de la cantidad de dias de recordatorio</returns>
+        IList<VencimientoPrioridadPatente> ObtenerPatentesPorVencerPrioridad(int cantidadDiasRecordatorio);
+
     }
 }

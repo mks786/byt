@@ -344,6 +344,10 @@
                         <custom:ByTTextBox  MaxLength="40" Grid.Column="10" Grid.Row="3" Name="_txtEstadoSolicitud" VerticalAlignment="Center" 
                          Grid.ColumnSpan="2" Margin="3,0,0,0" Text="{Binding Path=Interesado.Estado}" IsReadOnly="True"></custom:ByTTextBox>
 
+                        <Button Grid.Column="12" Grid.Row="3" Grid.ColumnSpan="2" Name="_btnInteresadosPatente" IsDefault="False" Height="25" Width="100" HorizontalAlignment="Left" Click="_btnInteresadosPatente_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnInteresadosPatente}"/>
+                        </Button>
+
                         <Separator Margin="10 0" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="12" VerticalAlignment="Top"/>
 
                         <Grid Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="15" VerticalAlignment="Center">
@@ -827,17 +831,18 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="23*"/>
+                            <ColumnDefinition Width="34" />
+                            <ColumnDefinition Width="57*"/>
+                            <ColumnDefinition Width="57*"/>
+                            <ColumnDefinition Width="57*"/>
+                            <ColumnDefinition Width="57*"/>
+                            <ColumnDefinition Width="57*"/>
+                            <ColumnDefinition Width="57*"/>
+                            <ColumnDefinition Width="57*"/>
+                            <ColumnDefinition Width="57*"/>
+                            <ColumnDefinition Width="57*"/>
+                            <ColumnDefinition Width="57*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="0"/>
@@ -868,13 +873,14 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="10"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="957*" />
                         </Grid.RowDefinitions>
                         <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPatente}"/>
                         </Label>
                         <custom:ByTTextBox  Grid.Column="1" Grid.Row="1" Name="_txtIdDatos" VerticalAlignment="Center"  
                           MaxLength="255" Margin="0,0,5,0" IsReadOnly="True"
-                             ToolTip="{Binding ElementName=_txtIdDatos, Path=(Validation.Errors)[0].ErrorContent}">
+                             ToolTip="{Binding ElementName=_txtIdDatos, Path=(Validation.Errors)[0].ErrorContent}" Grid.ColumnSpan="2">
                             <custom:ByTTextBox.Text>
                                 <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
@@ -884,8 +890,8 @@
                             </custom:ByTTextBox.Text>
                         </custom:ByTTextBox>
 
-                        <custom:ByTTextBox  Grid.Column="2" Grid.Row="1" Name="_txtDescripcionDatos" VerticalAlignment="Center"  
-                            Grid.ColumnSpan="6" MaxLength="255" IsReadOnly="True"
+                        <custom:ByTTextBox  Grid.Column="3" Grid.Row="1" Name="_txtDescripcionDatos" VerticalAlignment="Center"  
+                            Grid.ColumnSpan="5" MaxLength="255" IsReadOnly="True"
                              ToolTip="{Binding ElementName=_txtDescripcionDatos, Path=(Validation.Errors)[0].ErrorContent}" MouseDoubleClick="_txtDescripcionDatos_MouseDoubleClick">
                             <custom:ByTTextBox.Text>
                                 <Binding Path="Descripcion" UpdateSourceTrigger="PropertyChanged">
@@ -980,7 +986,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnAsociado}"/>
                         </Button>
 
-                        <Grid Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="7">
+                        <Grid Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="8">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
@@ -1050,7 +1056,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnInteresado}"/>
                         </Button>
 
-                        <Grid Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="7">
+                        <Grid Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="8">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
@@ -1114,15 +1120,15 @@
                             </ListView>
                         </Grid>
 
-                        <custom:ByTTextBox  MaxLength="40" Grid.Column="8" Grid.Row="3" Name="_txtPaisDatos" VerticalAlignment="Center" 
+                        <custom:ByTTextBox  MaxLength="40" Grid.Column="9" Grid.Row="3" Name="_txtPaisDatos" VerticalAlignment="Center" 
                          Grid.ColumnSpan="2" Margin="3,0,0,0" Text="{Binding Path=Interesado.Ciudad}" IsReadOnly="True"></custom:ByTTextBox>
 
-                        <custom:ByTTextBox  MaxLength="40" Grid.Column="10" Grid.Row="3" Name="_txtEstadoDatos" VerticalAlignment="Center" 
+                        <custom:ByTTextBox  MaxLength="40" Grid.Column="11" Grid.Row="3" Name="_txtEstadoDatos" VerticalAlignment="Center" 
                          Grid.ColumnSpan="2" Margin="3,0,0,0" Text="{Binding Path=Interesado.Estado}" IsReadOnly="True"></custom:ByTTextBox>
 
-                        <Separator Margin="10 0" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="12" VerticalAlignment="Top"/>
+                        <Separator Margin="10,0" Grid.Row="4" Grid.ColumnSpan="13" VerticalAlignment="Top"/>
 
-                        <Grid Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="15" VerticalAlignment="Center">
+                        <Grid Grid.Row="4" Grid.ColumnSpan="13" VerticalAlignment="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
@@ -1226,7 +1232,7 @@
                          Grid.ColumnSpan="3" Text="{Binding Path=ReferenciaAsociadoInternacional}" ></custom:ByTTextBox>
                         </Grid>
 
-                        <Separator Margin="10 0" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="12" VerticalAlignment="Bottom"/>
+                        <Separator Margin="10,0" Grid.Row="4" Grid.ColumnSpan="13" VerticalAlignment="Bottom"/>
 
                         <!--Cuarta Fila-->
                         <Label Visibility="Collapsed" Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right" Name="_lblPoderDatos">
@@ -1236,9 +1242,9 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
                         </Button>
                         <custom:ByTTextBox  MaxLength="255" Grid.Column="1" Grid.Row="5" Name="_txtPoderDatos" VerticalAlignment="Center" BorderBrush="LightGreen"
-                         Grid.ColumnSpan="2" MouseDoubleClick="_txtPoderDatos_MouseDoubleClick" IsReadOnly="True" Text="{Binding Path=Poder.Id}"></custom:ByTTextBox>
+                         Grid.ColumnSpan="3" MouseDoubleClick="_txtPoderDatos_MouseDoubleClick" IsReadOnly="True" Text="{Binding Path=Poder.Id}" Margin="0,2"></custom:ByTTextBox>
 
-                        <ListView Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Grid.RowSpan="2" Name="_lstPoderesDatos" ItemsSource="{Binding}" 
+                        <ListView Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="3" Grid.RowSpan="9" Name="_lstPoderesDatos" ItemsSource="{Binding}" 
                       SelectionMode="Single" MouseDoubleClick="_lstPoderesDatos_MouseDoubleClick" Margin="0,5,0,0"
                       Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top">
                             <ListView.View>
@@ -1264,25 +1270,25 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <Label Grid.Column="3" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <Label Grid.Column="3" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right" Grid.ColumnSpan="2">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblCaso}"/>
                         </Label>
 
-                        <custom:ByTTextBox Grid.Column="4" Grid.ColumnSpan="1" Grid.Row="5" Name="_txtCasoDatos" VerticalAlignment="Center"
+                        <custom:ByTTextBox Grid.Column="5" Grid.Row="5" Name="_txtCasoDatos" VerticalAlignment="Center"
                          MaxLength="255" Margin="0,0,5,0"  Text="{Binding Path=PrimeraReferencia}"></custom:ByTTextBox>
 
 
-                        <Label Grid.Column="5" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <Label Grid.Column="6" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPrioridad}"/>
                         </Label>
-                        <custom:ByTTextBox Grid.Column="6" Grid.Row="5" Grid.ColumnSpan="2" Name="_txtPrioridadDatos" VerticalAlignment="Center"
+                        <custom:ByTTextBox Grid.Column="7" Grid.Row="5" Grid.ColumnSpan="2" Name="_txtPrioridadDatos" VerticalAlignment="Center"
                          MaxLength="255" Margin="0,0,5,0"  Text="{Binding Path=CPrioridad}"></custom:ByTTextBox>
 
 
-                        <Label Grid.Column="7" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <Label Grid.Column="8" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                         </Label>
-                        <DatePicker  Grid.Column="8" Grid.Row="5" Name="_dpkFechaPrioridadDatos" 
+                        <DatePicker  Grid.Column="9" Grid.Row="5" Name="_dpkFechaPrioridadDatos" 
                                     Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" Margin="0,0,5,0">
                             <DatePicker.SelectedDate>
                                 <Binding Path="FechaPrioridad" UpdateSourceTrigger="PropertyChanged"/>
@@ -1291,10 +1297,10 @@
 
 
 
-                        <Label Grid.Column="9" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <Label Grid.Column="9" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right" Grid.ColumnSpan="2">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPais}"/>
                         </Label>
-                        <ComboBox  Grid.Column="10" Grid.ColumnSpan="2" Grid.Row="5" Name="_cbxPaisDatos" Height="20" 
+                        <ComboBox  Grid.Column="11" Grid.ColumnSpan="2" Grid.Row="5" Name="_cbxPaisDatos" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="NombreEspanol" SelectedIndex="0" SelectionChanged="_cbxPaisDatos_SelectionChanged">
                         </ComboBox>
 
@@ -1322,39 +1328,39 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblOrden}"/>
                         </Label>
                         <custom:ByTTextBox Grid.Column="1" Grid.Row="10" Name="_txtOrdenDatos" VerticalAlignment="Center"
-                         MaxLength="255" Margin="0,0,5,0"  Text="{Binding Path=Orden}"></custom:ByTTextBox>
+                         MaxLength="255" Margin="0,0,5,0"  Text="{Binding Path=Orden}" Grid.ColumnSpan="2"></custom:ByTTextBox>
 
 
-                        <Label Grid.Column="2" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <Label Grid.Column="3" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                         </Label>
                         <DatePicker  Grid.Column="3" Grid.Row="10" Name="_dpkFechaOrdenDatos" 
-                                    Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" Margin="0,0,5,0">
+                                    Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" Margin="0,0,5,0" Grid.ColumnSpan="2">
                             <DatePicker.SelectedDate>
                                 <Binding Path="FechaOrden" UpdateSourceTrigger="PropertyChanged"/>
                             </DatePicker.SelectedDate>
                         </DatePicker>
 
 
-                        <Label Grid.Column="4" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <Label Grid.Column="5" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPresentacion}"/>
                         </Label>
-                        <ComboBox  Grid.Column="5" Grid.ColumnSpan="1" Grid.Row="10" Name="_cbxPresentacionDatos" Height="20" 
+                        <ComboBox  Grid.Column="6" Grid.Row="10" Name="_cbxPresentacionDatos" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" SelectionChanged="_cbxPresentacionDatos_SelectionChanged">
                         </ComboBox>
 
 
 
-                        <Label Grid.Column="6" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <Label Grid.Column="7" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblResumen}"/>
                         </Label>
-                        <custom:ByTTextBox  MaxLength="2000" Grid.Column="7" Grid.Row="10" Name="_txtResumenDatos" VerticalAlignment="Center"
-                                           Grid.ColumnSpan="2" Text="{Binding Path=Resumen}"></custom:ByTTextBox>
+                        <custom:ByTTextBox  MaxLength="2000" Grid.Column="8" Grid.Row="10" Name="_txtResumenDatos" VerticalAlignment="Center"
+                                           Grid.ColumnSpan="2" Text="{Binding Path=Resumen}" Height="22"></custom:ByTTextBox>
 
-                        <Label Grid.Column="9" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <Label Grid.Column="9" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right" Grid.ColumnSpan="2">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblTipo}"/>
                         </Label>
-                        <ComboBox  Grid.Column="10" Grid.ColumnSpan="2" Grid.Row="10" Name="_cbxTipoDatos" Height="20" 
+                        <ComboBox  Grid.Column="11" Grid.ColumnSpan="2" Grid.Row="10" Name="_cbxTipoDatos" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" SelectionChanged="_cbxTipoPatenteDatos_SelectionChanged">
                         </ComboBox>
 
@@ -1369,10 +1375,10 @@
 
                         <!--Fin Octava fila-->
 
-                        <Separator Margin="10,5,0,0" Grid.Column="0" Grid.Row="12" Grid.ColumnSpan="12" VerticalAlignment="Center"/>
+                        <Separator Margin="10,5,0,0" Grid.Row="12" Grid.ColumnSpan="13" VerticalAlignment="Center"/>
                         <!--Novena Fila-->
 
-                        <Grid Grid.Column="0" Grid.Row="13" Grid.ColumnSpan="4" Margin="0,5,0,0">
+                        <Grid Grid.Row="13" Grid.ColumnSpan="5" Margin="0,5,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
@@ -1383,6 +1389,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -1496,9 +1503,36 @@
 
                             <custom:ByTTextBox  Grid.Column="4" Grid.Row="7" Grid.ColumnSpan="2" Margin="3" Name="_txtFechaRenovacionDatos" VerticalAlignment="Center"  
                           Text=""></custom:ByTTextBox>
+
+                            <Label Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="3" VerticalAlignment="Center" 
+                                   HorizontalContentAlignment="Left" Name="_lblRecordatorioVencimientoDatos">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblRecordatorioPatente}"/>
+                            </Label>
+                            <custom:ByTTextBox  Grid.Column="4" Grid.Row="8" Name="_txtRecordatorioVencimientoDatos" 
+                                                VerticalAlignment="Center" HorizontalAlignment="Left" Text="" Width="50" IsReadOnly="True"></custom:ByTTextBox>
+
+                            <!--<Label Grid.Column="5" Grid.Row="8" Grid.ColumnSpan="2" VerticalAlignment="Center" 
+                                   HorizontalContentAlignment="Left" Name="_lblAplicaRecordatorioVencimientoDatos">
+                                <TextBlock Text="Aplica Recordatorio:"/>
+                            </Label>-->
+
+                            <CheckBox  Grid.Column="5" Grid.ColumnSpan="3" Grid.Row="8" VerticalAlignment="Center" 
+                              Name="_chkAplicaRecordatorioVencimientoDatos" IsChecked="{Binding Path=BPrioridadPresentada}">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.chkAplicaRecordatorioVencDatos}" />
+                            </CheckBox>
+
+                            <Label Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="3" VerticalAlignment="Center" 
+                                   HorizontalContentAlignment="center" Name="_lblFechaVencimientoPrioridadDatos" Width="160">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaVencimientoPrioridad}"/>
+                            </Label>
+
+                            <DatePicker  Grid.Column="4" Grid.Row="9" Grid.ColumnSpan="2" Margin="3" Name="_dpkFechaVencimientoPrioridadDatos" 
+                                    Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center">
+                            </DatePicker>
+
                         </Grid>
 
-                        <Grid Grid.Column="3" Grid.Row="13" Grid.ColumnSpan="10" HorizontalAlignment="Center">
+                        <Grid Grid.Column="4" Grid.Row="13" Grid.ColumnSpan="9" HorizontalAlignment="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
@@ -1622,7 +1656,7 @@
 
                         </Grid>-->
 
-                        <Grid Grid.Column="0" Grid.Row="14" Grid.ColumnSpan="10" HorizontalAlignment="Center">
+                        <Grid Grid.Row="14" Grid.ColumnSpan="10" HorizontalAlignment="Center" Margin="60,0,3,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
@@ -1680,9 +1714,9 @@
 
                         </Grid>
 
-                        <Separator Margin="10,5,0,0" Grid.Column="0" Grid.Row="16" Grid.ColumnSpan="12" VerticalAlignment="Center"/>
+                        <Separator Margin="10,5,0,0" Grid.Row="16" Grid.ColumnSpan="13" VerticalAlignment="Center"/>
 
-                        <CheckBox  Margin="3" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="17" VerticalAlignment="Center" 
+                        <CheckBox  Margin="3" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="17" VerticalAlignment="Center" 
                               Name="_chkRevisadoWeb" IsChecked="{Binding Path=BRev}">
                             <TextBlock Text="{x:Static recurso:Etiquetas.chkRevisadoWeb}" />
                         </CheckBox>
@@ -1694,10 +1728,10 @@
                                                VerticalAlignment="Center" Grid.ColumnSpan="2" Text="{Binding Path=CodigoExpediente}">
                         </custom:ByTTextBox>-->
 
-                        <Label Grid.Column="1" Grid.Row="18" Grid.ColumnSpan="1" VerticalAlignment="Center" Margin="0,5,0,0">
+                        <Label Grid.Column="1" Grid.Row="18" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="0,5,0,0">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblStatusWEB}"/>
                         </Label>
-                        <ComboBox  Grid.Column="2" Grid.Row="18" Grid.ColumnSpan="2" Name="_cbxEstatusWebDatos"  Margin="0,5,0,0"
+                        <ComboBox  Grid.Column="3" Grid.Row="18" Grid.ColumnSpan="2" Name="_cbxEstatusWebDatos"  Margin="0,5,0,0"
                               Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion">
                         </ComboBox>
 
@@ -1725,8 +1759,9 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnArchivo}"/>
                         </Button>-->
 
-                        <Grid Grid.Column="0" Grid.Row="20" Grid.ColumnSpan="10" HorizontalAlignment="Center">
+                        <Grid Grid.Row="20" Grid.ColumnSpan="11" HorizontalAlignment="Center" Margin="28,0">
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
@@ -1739,7 +1774,7 @@
 
                             <Button  Name="_btnVerMemoriaDatos" Width="100" IsDefault="False" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="0" Height="25" 
                                         HorizontalAlignment="Left" Click="_btnVerMemoriaDatos_Click" Margin="0,0,0,0">
-                                <TextBlock Text="{x:Static recurso:Etiquetas.btnVerMemoria}"/>
+                                <TextBlock Text="{x:Static recurso:Etiquetas.btnDetalleMemoria}"/>
                             </Button>
 
                             <Button  Name="_btnVerExpedienteDatos" Width="100" IsDefault="False" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="1" Height="25" 
@@ -1752,13 +1787,20 @@
                                 <TextBlock Text="{x:Static recurso:Etiquetas.btnFacturacion}"/>
                             </Button>
 
-                            <Button  Name="_btnVerMemoriaRutaDatos" Width="100" IsDefault="False" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="3" Height="25" 
-                                        HorizontalAlignment="Left" Click="_btnVerMemoriaRutaDatos_Click" Margin="5,0,0,0">
-                                <TextBlock Text="{x:Static recurso:Etiquetas.btnVerMemoria}"/>
+                            <Button  Name="_btnVerMemoriaRutaDatos" Width="105" IsDefault="False" Grid.Row="0" Grid.ColumnSpan="1"
+                                     Grid.Column="3" Height="25" HorizontalAlignment="Left" Click="_btnVerMemoriaRutaDatos_Click"
+                                     Margin="5,0,0,0">
+                                <!--<TextBlock Text="{x:Static recurso:Etiquetas.btnVerMemoria}"/>-->
+                                <TextBlock Text="{x:Static recurso:Etiquetas.btnMemoriaEspanol}"/>
                             </Button>
 
-                            <Button  Name="_btnCertificadoDatos" Width="100" IsDefault="False" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="4" Height="25" 
-                                        HorizontalAlignment="Left" Click="_btnCertificadoDatos_Click" Margin="5,0,0,0">
+                            <Button  Name="_btnVerMemoriaIngRutaDatos" Width="105" IsDefault="False" Grid.Row="0" Grid.ColumnSpan="1"
+                                     Grid.Column="4" Height="25" HorizontalAlignment="Left" Margin="5,0,0,0" Click="_btnVerMemoriaIngRutaDatos_Click">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.btnMemoriaIngles}"/>
+                            </Button>
+
+                            <Button  Name="_btnCertificadoDatos" Width="100" IsDefault="False" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="5"
+                                     Height="25" HorizontalAlignment="Left" Click="_btnCertificadoDatos_Click" Margin="5,0,0,0">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.btnCertificado}"/>
                             </Button>
 

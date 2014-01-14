@@ -385,5 +385,50 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         }
 
 
+        /// <summary>
+        /// Metodo que obtiene las patentes las cuales esta por vencer su prioridad de acuerdo a una cantidad de dias de recordatorio
+        /// </summary>
+        /// <param name="cantidadDiasRecordatorio">Cantidad de dias usadas para el recordatorio</param>
+        /// <returns>Lista de patentes que estan por vencer su prioridad</returns>
+        public IList<VencimientoPrioridadPatente> ObtenerPatentesPorVencerPrioridad(int cantidadDiasRecordatorio)
+        {
+            IList<VencimientoPrioridadPatente> patentesPrioridadVencida = new List<VencimientoPrioridadPatente>();
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                string filtro = "";
+                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerPatentesPorVencerPrioridad);
+
+                filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerPatentePorVencerPrioridadCantDias, cantidadDiasRecordatorio);
+
+                filtro += " order by vpp.VencimientoDias asc"; 
+
+                IQuery query = Session.CreateQuery(cabecera + filtro);
+                patentesPrioridadVencida = query.List<VencimientoPrioridadPatente>();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.exObtenerPatentesPorVencerPrioridad + ": " + ex.Message);
+            }
+            finally
+            {
+                Session.Close();
+            }
+
+            return patentesPrioridadVencida;
+        }
+
+
     }
 }

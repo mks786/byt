@@ -239,6 +239,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         void PintarAsociado(string tipo);
 
+        void PintarFacturacion();
+
         bool MensajeAlerta(string mensaje);
 
         void ArchivoNoEncontrado(string mensaje);

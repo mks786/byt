@@ -894,7 +894,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                 CargarTipoRenovacion(TipoDeRenovacion);
 
                 if (null != ((Marca)this._ventana.Marca).Asociado)
-                    this._ventana.PintarAsociado(((Marca)this._ventana.Marca).Asociado.TipoCliente.Id);
+                    if(((Marca)this._ventana.Marca).Asociado.TipoCliente != null)
+                        this._ventana.PintarAsociado(((Marca)this._ventana.Marca).Asociado.TipoCliente.Id);
 
                 //    IList<ListaDatosValores> tiposRenovacion = this._listaDatosValoresServicios.
                 //    ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiTipoRenovacion));

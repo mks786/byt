@@ -1450,4 +1450,16 @@
   <data name="ErrorSinLicenciante" xml:space="preserve">
     <value>Es necesario agregar el Interesado Licenciante</value>
   </data>
+  <data name="ConfirmacionCambioPassword" xml:space="preserve">
+    <value>ALERTA: Esta a punto de cambiar la contraseña de acceso. Desea modificarla?</value>
+  </data>
+  <data name="UsuarioNuevoPassword" xml:space="preserve">
+    <value>Ha modificado la contraseña de acceso al sistema</value>
+  </data>
+  <data name="AlertaPatenteAVencerNo" xml:space="preserve">
+    <value>Si desea verlas y generar el Reporte dirijase a la opcion Patentes-&gt;Patentes-&gt;Prioridad por Vencer.</value>
+  </data>
+  <data name="AlertaPatentesAVencer" xml:space="preserve">
+    <value>Existen Patentes próximas a vencerse. Desea ver el listado?.</value>
+  </data>
 </root>

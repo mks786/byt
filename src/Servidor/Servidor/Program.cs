@@ -34,11 +34,26 @@ namespace Trascend.Bolet.Servidor
             filtro.Status = 'T';
             CartaOutServicios servicioPrueba = new CartaOutServicios();
             //IList<CartaOut> lista = servicioPrueba.ObtenerCartasOutsFiltro(filtro);
-            IList<CartaOut> lista = servicioPrueba.ObtenerCartasOutsFiltroAdo(filtro);
+            IList<CartaOut> lista = servicioPrueba.ObtenerCartasOutsFiltroAdo(filtro);*/
+
+            //InteresadoPatenteServicios servicioPrueba = new InteresadoPatenteServicios();
+            //IList<InteresadoPatente> interesados = servicioPrueba.ConsultarTodos();
+
+            /*InteresadoPatenteServicios servicioPrueba = new InteresadoPatenteServicios();
+            PatenteServicios patenteServicios = new PatenteServicios();
+            Patente patente = new Patente();
+            patente = patenteServicios.ConsultarPatenteConTodo(new Patente(6000));
+            IList<InteresadoPatente> interesados = servicioPrueba.ConsultarInteresadosDePatente(patente);*/
+
+            /*int cantidadDias = 90;
+
+            PatenteServicios servicioPrueba = new PatenteServicios();
+
+            IList<VencimientoPrioridadPatente> patentesPorVencer = servicioPrueba.ObtenerPatentesPorVencerPrioridad(cantidadDias);*/
 
 
-            Console.ReadLine();*/
-            
+            //Console.ReadLine();
+
 
             #endregion
 

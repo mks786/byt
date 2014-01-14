@@ -70,6 +70,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Actualizar.
+        /// </summary>
+        public static string btnActualizar {
+            get {
+                return ResourceManager.GetString("btnActualizar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a &gt;&gt;.
         /// </summary>
         public static string btnAgregar {
@@ -368,6 +377,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Mem. Separadas.
+        /// </summary>
+        public static string btnDetalleMemoria {
+            get {
+                return ResourceManager.GetString("btnDetalleMemoria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Diseño.
         /// </summary>
         public static string btnDiseno {
@@ -445,6 +463,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string btnEnviarARecordatorios {
             get {
                 return ResourceManager.GetString("btnEnviarARecordatorios", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Exportar.
+        /// </summary>
+        public static string btnExportar {
+            get {
+                return ResourceManager.GetString("btnExportar", resourceCulture);
             }
         }
         
@@ -611,6 +638,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Otros Interesados.
+        /// </summary>
+        public static string btnInteresadosPatente {
+            get {
+                return ResourceManager.GetString("btnInteresadosPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Inventores.
         /// </summary>
         public static string btnInventores {
@@ -665,6 +701,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Reiniciar Contraseña.
+        /// </summary>
+        public static string btnLimpiarPassword {
+            get {
+                return ResourceManager.GetString("btnLimpiarPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Lista.
         /// </summary>
         public static string btnLista {
@@ -679,6 +724,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string btnMarcaOrigen {
             get {
                 return ResourceManager.GetString("btnMarcaOrigen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Memoria Español.
+        /// </summary>
+        public static string btnMemoriaEspanol {
+            get {
+                return ResourceManager.GetString("btnMemoriaEspanol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Memoria Inglés.
+        /// </summary>
+        public static string btnMemoriaIngles {
+            get {
+                return ResourceManager.GetString("btnMemoriaIngles", resourceCulture);
             }
         }
         
@@ -706,6 +769,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string btnModificarEnvioOriginales {
             get {
                 return ResourceManager.GetString("btnModificarEnvioOriginales", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Modificar Interesados.
+        /// </summary>
+        public static string btnModificarInteresadosPatente {
+            get {
+                return ResourceManager.GetString("btnModificarInteresadosPatente", resourceCulture);
             }
         }
         
@@ -1611,6 +1683,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a RECORDATORIO_PAT.
+        /// </summary>
+        public static string cbiDiasRecordatorioPresentacionPrioridad {
+            get {
+                return ResourceManager.GetString("cbiDiasRecordatorioPresentacionPrioridad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Divorciado(a).
         /// </summary>
         public static string cbiDivorciado {
@@ -2021,6 +2102,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string cbiViudo {
             get {
                 return ResourceManager.GetString("cbiViudo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Prioridad Presentada.
+        /// </summary>
+        public static string chkAplicaRecordatorioVencDatos {
+            get {
+                return ResourceManager.GetString("chkAplicaRecordatorioVencDatos", resourceCulture);
             }
         }
         
@@ -5132,6 +5222,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Datos de Interesados Adicionales:.
+        /// </summary>
+        public static string lblDatosInteresados {
+            get {
+                return ResourceManager.GetString("lblDatosInteresados", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Datos de la Patente:.
+        /// </summary>
+        public static string lblDatosPatente {
+            get {
+                return ResourceManager.GetString("lblDatosPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Departamento:.
         /// </summary>
         public static string lblDepartamento {
@@ -5741,6 +5849,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblFechaTermino {
             get {
                 return ResourceManager.GetString("lblFechaTermino", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Fecha Venc. Prioridad:.
+        /// </summary>
+        public static string lblFechaVencimientoPrioridad {
+            get {
+                return ResourceManager.GetString("lblFechaVencimientoPrioridad", resourceCulture);
             }
         }
         
@@ -6555,6 +6672,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Contraseña actual:.
+        /// </summary>
+        public static string lblPasswordActual {
+            get {
+                return ResourceManager.GetString("lblPasswordActual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Nueva contraseña:.
+        /// </summary>
+        public static string lblPasswordNuevo {
+            get {
+                return ResourceManager.GetString("lblPasswordNuevo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Patente:.
         /// </summary>
         public static string lblPatente {
@@ -6780,6 +6915,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Dias Venc. Prioridad:.
+        /// </summary>
+        public static string lblRecordatorioPatente {
+            get {
+                return ResourceManager.GetString("lblRecordatorioPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Referencia:.
         /// </summary>
         public static string lblReferencia {
@@ -6920,6 +7064,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblRenovarAntesDe {
             get {
                 return ResourceManager.GetString("lblRenovarAntesDe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Repetir nueva contraseña:.
+        /// </summary>
+        public static string lblRepitaNuevoPassword {
+            get {
+                return ResourceManager.GetString("lblRepitaNuevoPassword", resourceCulture);
             }
         }
         
@@ -8076,6 +8229,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Días Vencimiento.
+        /// </summary>
+        public static string lsvDiasRestantesRecordatorio {
+            get {
+                return ResourceManager.GetString("lsvDiasRestantesRecordatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Direccion.
         /// </summary>
         public static string lsvDireccion {
@@ -8337,7 +8499,16 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Fecha Vencimiento.
+        ///   Busca una cadena traducida similar a F. Solicitud.
+        /// </summary>
+        public static string lsvFechaSolicitud {
+            get {
+                return ResourceManager.GetString("lsvFechaSolicitud", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a F. Vencimiento.
         /// </summary>
         public static string lsvFechaVencimiento {
             get {
@@ -9062,6 +9233,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string menuItemBoletin {
             get {
                 return ResourceManager.GetString("menuItemBoletin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cambiar Contraseña.
+        /// </summary>
+        public static string menuItemCambiarPassword {
+            get {
+                return ResourceManager.GetString("menuItemCambiarPassword", resourceCulture);
             }
         }
         
@@ -9867,6 +10047,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Prioridad por Vencer.
+        /// </summary>
+        public static string menuItemPrioridadPatente {
+            get {
+                return ResourceManager.GetString("menuItemPrioridadPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Recordatorios.
         /// </summary>
         public static string menuItemRecordatorios {
@@ -10574,6 +10763,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleAnualidadCampos {
             get {
                 return ResourceManager.GetString("titleAnualidadCampos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cambiar Contraseña de Usuario.
+        /// </summary>
+        public static string titleCambiarPassword {
+            get {
+                return ResourceManager.GetString("titleCambiarPassword", resourceCulture);
             }
         }
         
@@ -12225,6 +12423,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Lista de Interesados de Patente.
+        /// </summary>
+        public static string titleListaInteresadosPatente {
+            get {
+                return ResourceManager.GetString("titleListaInteresadosPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Lista de Inventores de Patentes.
         /// </summary>
         public static string titleListaInventoresPatente {
@@ -12257,6 +12464,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleListaOperaciones {
             get {
                 return ResourceManager.GetString("titleListaOperaciones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Lista de Patentes por Vencer Prioridad.
+        /// </summary>
+        public static string titleListaPatentesVencPrioridad {
+            get {
+                return ResourceManager.GetString("titleListaPatentesVencPrioridad", resourceCulture);
             }
         }
         
@@ -12320,6 +12536,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titlePrincipal {
             get {
                 return ResourceManager.GetString("titlePrincipal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Patentes por Vencer su fecha de Prioridad.
+        /// </summary>
+        public static string titleTituloDelReportePatentesVencidas {
+            get {
+                return ResourceManager.GetString("titleTituloDelReportePatentesVencidas", resourceCulture);
             }
         }
         

@@ -297,5 +297,26 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
         string IdPatenteMadreDatosFiltrar { get; set; }
 
         void PintarArchivo();
+
+        void PintarBotonInteresadosDePatente(bool flag);
+
+        void MostrarBotonInteresadosDePatente(bool flag);
+
+        string DiasRecordatorioVencimiento { get; set; }
+
+        void ActivarRecordatorioPresentacionPrioridad(bool flag);
+
+        string FechaTopePresentacionPrioridad { get; set; }
+
+        void PintarBotonMemoriaEspanol(bool flag);
+
+        void PintarBotonMemoriaIngles(bool flag);
+
+        void PintarFacturacion();
+
+        bool ChkPrioridadPresentada { get; }
+
+        void PintarDetalleMemorias();
+
     }
 }

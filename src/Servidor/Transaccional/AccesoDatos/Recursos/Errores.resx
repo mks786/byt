@@ -348,4 +348,7 @@
   <data name="exObtenerCamposReporte" xml:space="preserve">
     <value>Ocurrió un error al obtener los campos para el tipo de Reporte seleccionado. Verique el tipo de Reporte o dirijase al Administrador.</value>
   </data>
+  <data name="exObtenerPatentesPorVencerPrioridad" xml:space="preserve">
+    <value>Ocurrió un error obteniendo las patentes por vencer su prioridad</value>
+  </data>
 </root>

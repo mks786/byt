@@ -1243,4 +1243,16 @@
     <value>interesado.OrigenCliente = '{0}'</value>
     <comment>Filtro para obtener una Patente por el campo OrigenCliente del Interesado</comment>
   </data>
+  <data name="ObtenerInteresadosPorPatente" xml:space="preserve">
+    <value>Select ip from InteresadoPatente ip where ip.Id = {0}</value>
+    <comment>Obtiene los interesados asociados a una patente especifica</comment>
+  </data>
+  <data name="CabeceraObtenerPatentesPorVencerPrioridad" xml:space="preserve">
+    <value>Select vpp from VencimientoPrioridadPatente vpp where </value>
+    <comment>Cabecera de la consulta para obtener las patentes que estan por vencerse su prioridad </comment>
+  </data>
+  <data name="FiltroObtenerPatentePorVencerPrioridadCantDias" xml:space="preserve">
+    <value>vpp.VencimientoDias &lt;= {0}</value>
+    <comment>Filtro de cantidad de dias del recordatorio para obtener las patentes que estan por vencer</comment>
+  </data>
 </root>

@@ -163,6 +163,10 @@
     <Compile Include="Contratos\Marcas\IListaInstruccionesDescuentoMarca.cs" />
     <Compile Include="Contratos\Marcas\IListaInstruccionesNoTipificadasDeMarca.cs" />
     <Compile Include="Contratos\Patentes\IGestionarArchivoDePatente.cs" />
+    <Compile Include="Contratos\Patentes\IGestionarInteresadosDePatente.cs" />
+    <Compile Include="Contratos\Patentes\IListaInteresadosPatente.cs" />
+    <Compile Include="Contratos\Patentes\IListaPatentesPrioridadVencida.cs" />
+    <Compile Include="Contratos\Patentes\IListaPatentesPrioridadVencidaStartUp.cs" />
     <Compile Include="Contratos\Plantillas\IAnalizarDetallePlantilla.cs" />
     <Compile Include="Contratos\Plantillas\IAnalizarEncabezadoPlantilla.cs" />
     <Compile Include="Contratos\Plantillas\IConsultarMaestrosPlantillas.cs" />
@@ -361,6 +365,7 @@
     <Compile Include="Contratos\Traspasos\Fusiones\IConsultarFusiones.cs" />
     <Compile Include="Contratos\Traspasos\Fusiones\IGestionarFusion.cs" />
     <Compile Include="Contratos\Usuarios\IAgregarUsuario.cs" />
+    <Compile Include="Contratos\Usuarios\ICambiarClaveAcceso.cs" />
     <Compile Include="Contratos\Usuarios\IConsultarUsuario.cs" />
     <Compile Include="Contratos\Usuarios\IConsultarUsuarios.cs" />
     <Compile Include="Contratos\IPaginaBase.cs" />
@@ -623,6 +628,10 @@
     <Compile Include="Presentadores\Marcas\PresentadorListaInstruccionesDescuentoMarca.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorListaInstruccionesNoTipificadasDeMarca.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorGestionarArchivoDePatente.cs" />
+    <Compile Include="Presentadores\Patentes\PresentadorGestionarInteresadosDePatente.cs" />
+    <Compile Include="Presentadores\Patentes\PresentadorListaInteresadosPatente.cs" />
+    <Compile Include="Presentadores\Patentes\PresentadorListaPatentesPrioridadVencida.cs" />
+    <Compile Include="Presentadores\Patentes\PresentadorListaPatentesPrioridadVencidaStartUp.cs" />
     <Compile Include="Presentadores\Plantillas\PresentadorAnalizarDetallePlantilla.cs" />
     <Compile Include="Presentadores\Plantillas\PresentadorAnalizarEncabezadoPlantilla.cs" />
     <Compile Include="Presentadores\Plantillas\PresentadorConsultarMaestrosPlantillas.cs" />
@@ -821,6 +830,7 @@
     <Compile Include="Presentadores\Traspasos\Fusiones\PresentadorConsultarFusiones.cs" />
     <Compile Include="Presentadores\Traspasos\Fusiones\PresentadorGestionarFusion.cs" />
     <Compile Include="Presentadores\Usuarios\PresentadorAgregarUsuario.cs" />
+    <Compile Include="Presentadores\Usuarios\PresentadorCambiarClaveAcceso.cs" />
     <Compile Include="Presentadores\Usuarios\PresentadorConsultarUsuarios.cs" />
     <Compile Include="Presentadores\Usuarios\PresentadorConsultarUsuario.cs" />
     <Compile Include="Recursos\Etiquetas.Designer.cs">
@@ -1163,6 +1173,18 @@
     </Compile>
     <Compile Include="Ventanas\Patentes\GestionarArchivoDePatente.xaml.cs">
       <DependentUpon>GestionarArchivoDePatente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Patentes\GestionarInteresadosDePatente.xaml.cs">
+      <DependentUpon>GestionarInteresadosDePatente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Patentes\ListaInteresadosPatente.xaml.cs">
+      <DependentUpon>ListaInteresadosPatente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Patentes\ListaPatentesPrioridadVencida.xaml.cs">
+      <DependentUpon>ListaPatentesPrioridadVencida.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Patentes\ListaPatentesPrioridadVencidaStartUp.xaml.cs">
+      <DependentUpon>ListaPatentesPrioridadVencidaStartUp.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Plantillas\AnalizarDetallePlantilla.xaml.cs">
       <DependentUpon>AnalizarDetallePlantilla.xaml</DependentUpon>
@@ -1751,6 +1773,9 @@
     <Compile Include="Ventanas\Traspasos\Fusiones\GestionarFusion.xaml.cs">
       <DependentUpon>GestionarFusion.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\Usuarios\CambiarClaveAcceso.xaml.cs">
+      <DependentUpon>CambiarClaveAcceso.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Usuarios\ConsultarUsuarios.xaml.cs">
       <DependentUpon>ConsultarUsuarios.xaml</DependentUpon>
     </Compile>
@@ -1981,6 +2006,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\Patentes\GestionarArchivoDePatente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Patentes\GestionarInteresadosDePatente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Patentes\ListaInteresadosPatente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Patentes\ListaPatentesPrioridadVencida.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Patentes\ListaPatentesPrioridadVencidaStartUp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2758,6 +2799,10 @@
     <Page Include="Ventanas\Traspasos\Fusiones\GestionarFusion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Usuarios\CambiarClaveAcceso.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\Usuarios\ConsultarUsuarios.xaml">
       <SubType>Designer</SubType>

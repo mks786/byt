@@ -296,6 +296,40 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         }
 
 
+        /// <summary>
+        /// Metodo que obtiene una lista de las patentes que tienen su prioridad proxima a vencer tomando en cuenta una duracion especifica
+        /// </summary>
+        /// <param name="cantidadDiasRecordatorio">Cantidad de dias usadas para el recordatorio</param>
+        /// <returns>Lista de patentes proximas a vencer dentro de los limites de la cantidad de dias de recordatorio</returns>
+        public static IList<VencimientoPrioridadPatente> ObtenerPatentesPorVencerPrioridad(int cantidadDiasRecordatorio)
+        {
+            IList<VencimientoPrioridadPatente> retorno;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<IList<VencimientoPrioridadPatente>> 
+                    comando = FabricaComandosPatente.ObtenerComandoConsultarPatentesPorVencerPrioridad(cantidadDiasRecordatorio);
+                comando.Ejecutar();
+                retorno = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+
+            return retorno;
+        }
     }
 }
 

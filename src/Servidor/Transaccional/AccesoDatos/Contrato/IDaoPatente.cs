@@ -26,5 +26,11 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
         /// <returns>Patente con todos los objetos que la componen</returns>
         Patente ObtenerPatenteConTodo(Patente Patente);
 
+        /// <summary>
+        /// Metodo que obtiene las patentes las cuales esta por vencer su prioridad de acuerdo a una cantidad de dias de recordatorio
+        /// </summary>
+        /// <param name="cantidadDiasRecordatorio">Cantidad de dias usadas para el recordatorio</param>
+        /// <returns>Lista de patentes que estan por vencer su prioridad</returns>
+        IList<VencimientoPrioridadPatente> ObtenerPatentesPorVencerPrioridad(int cantidadDiasRecordatorio);
     }
 }

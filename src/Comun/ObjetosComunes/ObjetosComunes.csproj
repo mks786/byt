@@ -57,6 +57,7 @@
     <Compile Include="ContratosServicios\IInstruccionDescuentoServicios.cs" />
     <Compile Include="ContratosServicios\IInstruccionEnvioOriginalesServicios.cs" />
     <Compile Include="ContratosServicios\IInstruccionOtrosServicios.cs" />
+    <Compile Include="ContratosServicios\IInteresadoPatenteServicios.cs" />
     <Compile Include="ContratosServicios\IMaestroDePlantillaServicios.cs" />
     <Compile Include="ContratosServicios\IPlantillaServicios.cs" />
     <Compile Include="ContratosServicios\IRegistradorServicios.cs" />
@@ -235,6 +236,7 @@
     <Compile Include="Entidades\InstruccionDescuento.cs" />
     <Compile Include="Entidades\InstruccionEnvioOriginales.cs" />
     <Compile Include="Entidades\InstruccionOtros.cs" />
+    <Compile Include="Entidades\InteresadoPatente.cs" />
     <Compile Include="Entidades\MaestroDePlantilla.cs" />
     <Compile Include="Entidades\OrdenReporte.cs" />
     <Compile Include="Entidades\Plantilla.cs" />
@@ -307,6 +309,7 @@
     <Compile Include="Entidades\Objeto.cs" />
     <Compile Include="Entidades\Rol.cs" />
     <Compile Include="Entidades\Usuario.cs" />
+    <Compile Include="Entidades\VencimientoPrioridadPatente.cs" />
     <Compile Include="Entidades\VistaReporte.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

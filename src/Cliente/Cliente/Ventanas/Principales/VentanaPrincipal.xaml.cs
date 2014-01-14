@@ -1244,6 +1244,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.IrConsultarInventores();
         }
 
+        private void _menuItemCambiarPassword_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrCambiarClaveAcceso();
+        }
+
+        private void _menuItemPatentesPrioridad_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrListaPatentesPorVencerPrioridad();
+        }
+
         
 
         

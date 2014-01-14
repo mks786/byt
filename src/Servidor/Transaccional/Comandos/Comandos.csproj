@@ -157,6 +157,9 @@
     <Compile Include="Comandos\ComandosInstruccionOtros\ComandoConsultarInstruccionesNoTipificadasPorCodigo.cs" />
     <Compile Include="Comandos\ComandosInstruccionOtros\ComandoConsultarTodasInstruccionesNoTipificadas.cs" />
     <Compile Include="Comandos\ComandosInstruccionOtros\ComandoInsertarOModificarInstruccionNoTipificada.cs" />
+    <Compile Include="Comandos\ComandosInteresadoPatente\ComandoConsultarInteresadosDePatente.cs" />
+    <Compile Include="Comandos\ComandosInteresadoPatente\ComandoConsultarTodosInteresadosDePatente.cs" />
+    <Compile Include="Comandos\ComandosInteresadoPatente\ComandoInsertarOModificarInteresadoPatente.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoConsultarInteresadoConTodo.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoConsultarInteresadosFiltro.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoConsultarTodosInteresados.cs" />
@@ -190,6 +193,7 @@
     <Compile Include="Comandos\ComandosOperacion\ComandoConsultarOperacionesFiltro.cs" />
     <Compile Include="Comandos\ComandosOperacion\ComandoConsultarOperacionesPorPatente.cs" />
     <Compile Include="Comandos\ComandosPatente\ComandoConsultarFechasPatente.cs" />
+    <Compile Include="Comandos\ComandosPatente\ComandoConsultarPatentesPorVencerPrioridad.cs" />
     <Compile Include="Comandos\ComandosPlanilla\ComandoEjecutarProcedimiento.cs" />
     <Compile Include="Comandos\ComandosOperacion\ComandoConsultarOperacionesPorMarcaYServicio.cs" />
     <Compile Include="Comandos\ComandosPlanilla\ComandoConsultarPlanillaPorUsuario.cs" />
@@ -488,6 +492,7 @@
     <Compile Include="Fabrica\FabricaComandosInstruccionDescuento.cs" />
     <Compile Include="Fabrica\FabricaComandosInstruccionEnvioOriginales.cs" />
     <Compile Include="Fabrica\FabricaComandosInstruccionOtros.cs" />
+    <Compile Include="Fabrica\FabricaComandosInteresadoPatente.cs" />
     <Compile Include="Fabrica\FabricaComandosMaestroDePlantilla.cs" />
     <Compile Include="Fabrica\FabricaComandosPlantilla.cs" />
     <Compile Include="Fabrica\FabricaComandosRegistrador.cs" />

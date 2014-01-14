@@ -448,6 +448,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Si desea verlas y generar el Reporte dirijase a la opcion Patentes-&gt;Patentes-&gt;Prioridad por Vencer..
+        /// </summary>
+        internal static string AlertaPatenteAVencerNo {
+            get {
+                return ResourceManager.GetString("AlertaPatenteAVencerNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Existen Patentes próximas a vencerse. Desea ver el listado?..
+        /// </summary>
+        internal static string AlertaPatentesAVencer {
+            get {
+                return ResourceManager.GetString("AlertaPatentesAVencer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Disculpe la Renovación debe tener al menos una Marca.
         /// </summary>
         internal static string AlertaRenovacionSinMarcas {
@@ -732,6 +750,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ClaseInternacionalNoExiste {
             get {
                 return ResourceManager.GetString("ClaseInternacionalNoExiste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALERTA: Esta a punto de cambiar la contraseña de acceso. Desea modificarla?.
+        /// </summary>
+        internal static string ConfirmacionCambioPassword {
+            get {
+                return ResourceManager.GetString("ConfirmacionCambioPassword", resourceCulture);
             }
         }
         
@@ -4054,6 +4081,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string UsuarioModificado {
             get {
                 return ResourceManager.GetString("UsuarioModificado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ha modificado la contraseña de acceso al sistema.
+        /// </summary>
+        internal static string UsuarioNuevoPassword {
+            get {
+                return ResourceManager.GetString("UsuarioNuevoPassword", resourceCulture);
             }
         }
     }

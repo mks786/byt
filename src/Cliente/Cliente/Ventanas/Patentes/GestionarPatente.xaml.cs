@@ -384,6 +384,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         }
 
 
+        public void PintarBotonInteresadosDePatente(bool flag)
+        {
+            if(flag)
+                this._btnInteresadosPatente.Background = Brushes.LightGreen;
+        }
+
+        
+
+
         #endregion
 
 
@@ -739,6 +748,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         }
 
 
+        public void PintarBotonMemoriaEspanol(bool flag)
+        {
+            if (flag)
+                this._btnVerMemoriaRutaDatos.Background = Brushes.LightGreen;
+        }
+
+
+        public void PintarBotonMemoriaIngles(bool flag)
+        {
+            if (flag)
+                this._btnVerMemoriaIngRutaDatos.Background = Brushes.LightGreen;
+        }
+
+
         public void PintarFechasDatos()
         {
             this._btnFechasDatos.Background = Brushes.LightGreen;
@@ -968,6 +991,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._dpkFechaBaseDatos.IsEnabled = value;
                 this._dpkFechaRegistroDatos.IsEnabled = value;
                 this._dpkFechaInscripcionDatos.IsEnabled = value;
+                
 
                 #endregion
 
@@ -997,6 +1021,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
                 this._chkMemoriaTraducidaSolicitud.IsEnabled = value;
                 this._chkRevisadoWeb.IsEnabled = value;
+                this._chkAplicaRecordatorioVencimientoDatos.IsEnabled = value;
 
                 #endregion
 
@@ -1037,6 +1062,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._btnVerSolicitudDatos.IsEnabled = value;
                 this._btnVerMemoriaDatos.IsEnabled = value;
                 this._btnVerMemoriaRutaDatos.IsEnabled = value;
+                this._btnVerMemoriaIngRutaDatos.IsEnabled = value;
                 this._btnVerExpedienteDatos.IsEnabled = value;
                 //this._btnArchivoDatos.IsEnabled = value;
                 this._btnFacturacionDatos.IsEnabled = value;
@@ -1538,6 +1564,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._btnVerExpedienteDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._btnFacturacionDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._btnVerMemoriaRutaDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnVerMemoriaIngRutaDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._btnCertificadoDatos.Visibility = System.Windows.Visibility.Collapsed;
 
             this._lblAnualidad.Visibility = System.Windows.Visibility.Collapsed;
@@ -2386,16 +2413,64 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._presentador.IrArchivo();
         }
 
-        
-
-        
-
-        
-
+        private void _btnInteresadosPatente_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrInteresadosDePatente();
+        }
 
 
+        public void MostrarBotonInteresadosDePatente(bool flag)
+        {
+            if (!flag)
+                this._btnInteresadosPatente.Visibility = System.Windows.Visibility.Collapsed;
+        }
 
 
+        public string DiasRecordatorioVencimiento
+        {
+            get { return this._txtRecordatorioVencimientoDatos.Text; }
+            set { this._txtRecordatorioVencimientoDatos.Text = value; }
+        }
+
+
+        public void ActivarRecordatorioPresentacionPrioridad(bool flag)
+        {
+            if (flag)
+                this._txtRecordatorioVencimientoDatos.IsEnabled = true;
+            else
+                this._txtRecordatorioVencimientoDatos.IsEnabled = false;
+        }
+
+
+        public string FechaTopePresentacionPrioridad
+        {
+            get { return this._dpkFechaVencimientoPrioridadDatos.Text; }
+            set { this._dpkFechaVencimientoPrioridadDatos.Text = value; }
+        }
+
+        private void _btnVerMemoriaIngRutaDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.VerMemoriaEnIngles();
+        }
+
+
+        public void PintarFacturacion()
+        {
+            this._btnFacturacionDatos.Background = Brushes.LightGreen;
+        }
+
+
+        public bool ChkPrioridadPresentada
+        {
+            get { return this._chkAplicaRecordatorioVencimientoDatos.IsChecked.Value; }
+            //set { this._chkVerContactos = value; }
+        }
+
+
+        public void PintarDetalleMemorias()
+        {
+            this._btnVerMemoriaDatos.Background = Brushes.LightGreen;
+        }
        
 
     }

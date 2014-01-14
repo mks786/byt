@@ -75,5 +75,15 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarFechasPatente(patente);
         }
+
+        /// <summary>
+        /// Metodo que devuelve el comando para obtener las patentes que estan por vencer de acuerdo a una prioridad
+        /// </summary>
+        /// <param name="cantidadDiasRecordatorio">Cantidad de dias usadas para el recordatorio</param>
+        /// <returns>ComandoConsultarPatentesPorVencerPrioridad</returns>
+        public static ComandoBase<IList<VencimientoPrioridadPatente>> ObtenerComandoConsultarPatentesPorVencerPrioridad(int cantidadDiasRecordatorio)
+        {
+            return new ComandoConsultarPatentesPorVencerPrioridad(cantidadDiasRecordatorio);
+        }
     }
 }

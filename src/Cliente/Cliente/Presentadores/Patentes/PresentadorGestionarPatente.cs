@@ -26,6 +26,8 @@ using Trascend.Bolet.Cliente.Ventanas.Asociados;
 using Trascend.Bolet.Cliente.Ventanas.Anualidades;
 using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacReportes;
 using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacAsociadoMarcaPatentes;
+using Diginsoft.Bolet.ObjetosComunes.ContratosServicios;
+using Diginsoft.Bolet.ObjetosComunes.Entidades;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 {
@@ -43,6 +45,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         private IPoderServicios _poderServicios;
         private IPaisServicios _paisServicios;
         private IListaDatosDominioServicios _listaDatosDominioServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
         private IInteresadoServicios _interesadoServicios;
         private IServicioServicios _servicioServicios;
         private ITipoEstadoServicios _tipoEstadoServicios;
@@ -57,6 +60,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         private IInventorServicios _inventorServicios;
         private IMemoriaServicios _memoriaServicios;
         private IArchivoServicios _archivoServicios;
+        private IInteresadoPatenteServicios _interesadoPatenteServicios;
+        private IFacVistaFacturaServicioServicios _facVistaFacturaServicioServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
@@ -119,8 +124,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
                 this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
                 this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
+                this._interesadoPatenteServicios = (IInteresadoPatenteServicios)Activator.GetObject(typeof(IInteresadoPatenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoPatenteServicios"]);
                 this._servicioServicios = (IServicioServicios)Activator.GetObject(typeof(IServicioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ServicioServicios"]);
                 this._tipoEstadoServicios = (ITipoEstadoServicios)Activator.GetObject(typeof(ITipoEstadoServicios),
@@ -149,6 +158,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MemoriaServicios"]);
                 this._archivoServicios = (IArchivoServicios)Activator.GetObject(typeof(IArchivoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ArchivoServicios"]);
+                this._facVistaFacturaServicioServicios =
+                    (IFacVistaFacturaServicioServicios)Activator.GetObject(typeof(IFacVistaFacturaServicioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FacVistaFacturaServicioServicios"]);
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -199,6 +212,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             Mouse.OverrideCursor = Cursors.Wait;
             Archivo archivoPatente = null;
             String alertaInteresado = String.Empty;
+            bool existeMemoria = false;
 
             try
             {
@@ -574,6 +588,73 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                         this._ventana.PintarArchivo();
                     }
 
+                    IList<InteresadoPatente> interesadosDePatente = 
+                        this._interesadoPatenteServicios.ConsultarInteresadosDePatente(this._patente);
+
+                    if (interesadosDePatente.Count > 0)
+                    {
+                        this._ventana.PintarBotonInteresadosDePatente(true);
+                    }
+
+                    IList<ListaDatosValores> listaValores = 
+                        this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiDiasRecordatorioPresentacionPrioridad));
+
+                    if (!this._patente.BPrioridadPresentada) 
+                    {
+                        if (this._patente.FechaInscripcion != null)
+                        {
+                            this._ventana.DiasRecordatorioVencimiento = listaValores[0].Valor;
+                            this._ventana.ActivarRecordatorioPresentacionPrioridad(true);
+                            DateTime fechaSolicitudPatente = (DateTime)this._patente.FechaInscripcion;
+                            DateTime fechaVencimientoPrioridad = ((DateTime)this._patente.FechaInscripcion).AddMonths(3);
+                            DateTime fechaRecordatorio = ((DateTime)this._patente.FechaInscripcion).AddMonths(2);
+                            this._ventana.FechaTopePresentacionPrioridad = fechaVencimientoPrioridad.ToString();
+                            //int diasDiferencia = ObtenerDiasRecordatorio(fechaRecordatorio, DateTime.Today);
+                            
+                            //fechatope = fechavencimiento - fecharecordatorio
+                            int diasDiferencia = ObtenerDiasRecordatorio(fechaVencimientoPrioridad, fechaRecordatorio);
+                            if ((diasDiferencia >= 0) && (diasDiferencia <= 30))
+                            {
+                                this._ventana.Mensaje("Faltan " + diasDiferencia.ToString() + " días para presentar la prioridad de la Patente " + this._patente.Id.ToString(), 1);
+                            } 
+                        }
+
+                    }
+                    else
+                        this._ventana.ActivarRecordatorioPresentacionPrioridad(false);
+
+                    existeMemoria = CargarMemoria("ES");
+
+                    if (existeMemoria)
+                    {
+                        this._ventana.PintarBotonMemoriaEspanol(true);
+                        existeMemoria = false;
+                    }
+
+                    existeMemoria = CargarMemoria("IN");
+
+                    if (existeMemoria)
+                    {
+                        this._ventana.PintarBotonMemoriaIngles(true);
+                        existeMemoria = false;
+                    }
+
+                    if (ValidarExistenciaArchivosDeMemorias())
+                        this._ventana.PintarDetalleMemorias();
+
+                    
+
+                    FacVistaFacturaServicio facVistaFacServicio = new FacVistaFacturaServicio();
+                    facVistaFacServicio.Id = this._patente.Id;
+                    facVistaFacServicio.Tipo = "P";
+
+                    IList<FacVistaFacturaServicio> listaFacturas =
+                        this._facVistaFacturaServicioServicios.ObtenerFacVistaFacturaServiciosFiltro(facVistaFacServicio);
+
+                    if (listaFacturas.Count > 0)
+                        this._ventana.PintarFacturacion();
+
+
                 }
                 else
                 {
@@ -588,6 +669,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this.CargarStatusWeb();
                     this.CargarBoletines();
                     CargarAsociadoInternacionalVacio();
+                    this._ventana.MostrarBotonInteresadosDePatente(false);
                 }
 
                 this._ventana.BorrarCeros();
@@ -609,6 +691,130 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             {
                 Mouse.OverrideCursor = null;
             }
+        }
+
+
+        /// <summary>
+        /// Metodo que valida si existen archivos de Memorias de cualquier tipo
+        /// </summary>
+        /// <returns>True si existen archivos de memoria en el directorio especificado en la configuracion; False en caso contrario</returns>
+        private bool ValidarExistenciaArchivosDeMemorias()
+        {
+
+            bool existe = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                string directorioMemoria = ConfigurationManager.AppSettings["RutaMemoriaPatente"];
+                string nombrePatronArchivo = ConfigurationManager.AppSettings["NombreMemoriaPatente"] + this._patente.Id.ToString();
+                string[] archivos = Directory.GetFiles(directorioMemoria, nombrePatronArchivo + ".*");
+
+                if (archivos.Length > 0)
+                    existe = true;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return existe;
+        }
+
+
+
+
+        /// <summary>
+        /// Metodo que determina si la Patente consultada posee archivos de Memoria en Español y en Ingles
+        /// </summary>
+        private bool CargarMemoria(String idiomaMemoria)
+        {
+
+            bool retorno = false;
+            string patronMemoria = String.Empty;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                string rutaArchivo = ConfigurationManager.AppSettings["RutaMemoriaPatente"];
+                DirectoryInfo dinfo = new DirectoryInfo(rutaArchivo);
+                if(idiomaMemoria.Equals("ES"))
+                    patronMemoria = ConfigurationManager.AppSettings["NombreMemoriaPatente"] + ((Patente)this._ventana.Patente).Id;
+                else if(idiomaMemoria.Equals("IN"))
+                    patronMemoria = ConfigurationManager.AppSettings["NombreMemoriaPatente"] + ((Patente)this._ventana.Patente).Id.ToString() + ".ING";
+                
+                foreach (FileInfo archivo in dinfo.GetFiles(patronMemoria + ".*"))
+                {
+                    String nombreArchivo = archivo.Name;
+                    int lastPoint = nombreArchivo.LastIndexOf('.');
+                    string nombreAux = nombreArchivo.Remove(lastPoint);
+                    if(nombreAux.Equals(patronMemoria))
+                    {
+                        retorno = true;
+                        break;
+                    }
+
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return retorno;
+        }
+
+
+        /// <summary>
+        /// Metodo que obtiene la diferencia de dias del Recordatorio de Presentacion de Prioridad de una Patente
+        /// </summary>
+        /// <param name="fechaRecordatorio">Fecha del Recordatorio</param>
+        /// <param name="dateTime">Fecha actual</param>
+        /// <returns>Numero de dias de diferencia</returns>
+        private int ObtenerDiasRecordatorio(DateTime fechaRecordatorio, DateTime dateTime)
+        {
+
+            int diasDiferencia = 0;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                TimeSpan ts = fechaRecordatorio - dateTime;
+                diasDiferencia = ts.Days;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+            return diasDiferencia;
         }
 
 
@@ -756,6 +962,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
             if (null != this._ventana.TipoPatenteDatos)
                 patente.Tipo = !((ListaDatosDominio)this._ventana.TipoPatenteDatos).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoPatenteDatos).Id : null;
+
+            if (this._ventana.ChkPrioridadPresentada)
+            {
+                patente.PrioridadPresentada = "SI";
+            }
+            else
+                patente.PrioridadPresentada = "NO";
 
             return patente;
 
@@ -1209,7 +1422,69 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 {
                     this.AbrirArchivoPorConsola(archivos[0], "Abriendo Archivo de Memoria de la Patente: " + ((Patente)this._ventana.Patente).Id);
                 }
-                else { this._ventana.ArchivoNoEncontrado(); }
+                //else { this._ventana.ArchivoNoEncontrado(); }
+                else
+                    this._ventana.Mensaje("La Patente no posee archivos de Memoria en Español asociados", 0);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (FileNotFoundException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(String.Format(Recursos.MensajesConElUsuario.ErrorArchivoMemoriaNoEncontrado, "Memoria"), true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+        
+        
+        /// <summary>
+        /// Metodo que permite ver la Memoria en Ingles de la Patente consultada 
+        /// </summary>
+        public void VerMemoriaEnIngles()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                string rutaArchivo = ConfigurationManager.AppSettings["RutaMemoriaPatente"];
+
+                string nombreArchivo = ConfigurationManager.AppSettings["NombreMemoriaPatente"] + ((Patente)this._ventana.Patente).Id.ToString() + ".ING";
+
+                string[] archivos = Directory.GetFiles(rutaArchivo, nombreArchivo + ".*");
+
+                if (archivos.Length > 0)
+                {
+                    this.AbrirArchivoPorConsola(archivos[0], "Abriendo Archivo de Memoria de la Patente: " + ((Patente)this._ventana.Patente).Id);
+                }
+                //else { this._ventana.ArchivoNoEncontrado(); }
+                else
+                    this._ventana.Mensaje("La Patente no posee archivos de Memoria en Inglés asociados", 0);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1250,7 +1525,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         public void VerMemoria()
         {
             //this.Navegar(new ConsultarMemoria(this._memoriaServicios.ConsultarMemoriasPorPatente((Patente)this._ventana.Patente)));
-            this.Navegar(new ListaMemorias(this._ventana.Patente));
+            this.Navegar(new ListaMemorias(this._ventana.Patente,this._ventana));
         }
 
 
@@ -2131,8 +2406,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             if (filtrarEn == 0)
             {
                 Interesado interesadoABuscar = new Interesado();
-                interesadoABuscar.Id = this._ventana.IdInteresadoSolicitudFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdInteresadoSolicitudFiltrar);
-                interesadoABuscar.Nombre = this._ventana.NombreInteresadoSolicitudFiltrar.Equals("") ? "" : this._ventana.NombreInteresadoSolicitudFiltrar.ToUpper();
+                interesadoABuscar.Id = this._ventana.IdInteresadoSolicitudFiltrar.Equals("") ? 0 : 
+                    int.Parse(this._ventana.IdInteresadoSolicitudFiltrar);
+                interesadoABuscar.Nombre = this._ventana.NombreInteresadoSolicitudFiltrar.Equals("") ? "" :
+                    this._ventana.NombreInteresadoSolicitudFiltrar.ToUpper();
 
                 IList<Interesado> interesadosFiltrados = new List<Interesado>();
                 if ((interesadoABuscar.Id != 0) || (!interesadoABuscar.Nombre.Equals("")))
@@ -3538,5 +3815,33 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         }
 
 
+        /// <summary>
+        /// Metodo que muestra la ventana con todos los interesados asociados a la patente
+        /// </summary>
+        public void IrInteresadosDePatente()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                //this.Navegar(new ListaInteresadosPatente(this._patente, this._ventana));
+                this.Navegar(new ListaInteresadosPatente(this._patente, this._ventana, this._ventanaPadre));
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ":" + ex.Message, true);
+            }
+        }
+
+        
     }
 }

@@ -81,6 +81,7 @@
     <Compile Include="Contrato\IDaoInstruccionDescuento.cs" />
     <Compile Include="Contrato\IDaoInstruccionEnvioOriginales.cs" />
     <Compile Include="Contrato\IDaoInstruccionOtros.cs" />
+    <Compile Include="Contrato\IDaoInteresadoPatente.cs" />
     <Compile Include="Contrato\IDaoMaestroDePlantilla.cs" />
     <Compile Include="Contrato\IDaoPlantilla.cs" />
     <Compile Include="Contrato\IDaoRegistrador.cs" />
@@ -188,6 +189,7 @@
     <Compile Include="Dao\NHibernate\DaoInstruccionDescuentoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoInstruccionEnvioOriginalesNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoInstruccionOtrosNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoInteresadoPatenteNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoMaestroDePlantillaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoPlantillaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoRegistradorNHibernate.cs" />
@@ -795,6 +797,16 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapeado\InstruccionDescuento.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\InteresadoPatente.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\VencimientoPrioridadPatente.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

@@ -77,6 +77,9 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=FechaFactura, StringFormat={}{0:dd/MM/yyyy}}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaFactura" Content="Fecha"/>
                         </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Saldo}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Saldo" Content="Saldo"/>
+                        </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Proforma}" Width="170">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Proforma" Content="Proforma"/>
                         </GridViewColumn>

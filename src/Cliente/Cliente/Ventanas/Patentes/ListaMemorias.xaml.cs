@@ -27,7 +27,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         public void FocoPredeterminado()
         {
-            this._txtId.Focus();
+            //this._txtId.Focus();
+            this._btnCancelar.Focus();
         }
 
 
@@ -48,40 +49,40 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._lstResultados.DataContext = value; }
         }
 
-        public string Id
-        {
-            get { return this._txtId.Text; }
-            set { this._txtId.Text = value; }
-        }
+        //public string Id
+        //{
+        //    get { return this._txtId.Text; }
+        //    set { this._txtId.Text = value; }
+        //}
 
-        public object TipoMensaje
-        {
-            get { return this._cbxTipo.SelectedItem; }
-            set { this._cbxTipo.SelectedItem = value; }
-        }
+        //public object TipoMensaje
+        //{
+        //    get { return this._cbxTipo.SelectedItem; }
+        //    set { this._cbxTipo.SelectedItem = value; }
+        //}
 
-        public object TiposMensajes
-        {
-            get { return this._cbxTipo.DataContext; }
-            set { this._cbxTipo.DataContext = value; }
-        }
+        //public object TiposMensajes
+        //{
+        //    get { return this._cbxTipo.DataContext; }
+        //    set { this._cbxTipo.DataContext = value; }
+        //}
 
-        public object FormatoDocumento
-        {
-            get { return this._cbxTipoFinal.SelectedItem; }
-            set { this._cbxTipoFinal.SelectedItem = value; }
-        }
+        //public object FormatoDocumento
+        //{
+        //    get { return this._cbxTipoFinal.SelectedItem; }
+        //    set { this._cbxTipoFinal.SelectedItem = value; }
+        //}
 
-        public object FormatosDocumentos
-        {
-            get { return this._cbxTipoFinal.DataContext; }
-            set { this._cbxTipoFinal.DataContext = value; }
-        }
+        //public object FormatosDocumentos
+        //{
+        //    get { return this._cbxTipoFinal.DataContext; }
+        //    set { this._cbxTipoFinal.DataContext = value; }
+        //}
 
-        public string IdMemoria
-        {
-            get { return this._txtId.Text; }
-        }
+        //public string IdMemoria
+        //{
+        //    get { return this._txtId.Text; }
+        //}
 
 
         public GridViewColumnHeader CurSortCol
@@ -113,7 +114,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorListaMemorias(this, patente);
+            this._presentador = new PresentadorListaMemorias(this, patente, null);
+
+        }
+
+        public ListaMemorias(object patente, object ventanaPadre)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorListaMemorias(this, patente, ventanaPadre);
 
         }
 
@@ -133,15 +142,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._presentador.Cancelar();
         }
 
-        private void _btnConsultar_Click(object sender, RoutedEventArgs e)
-        {
-            this._btnConsultar.Focus();
-            this._presentador.Consultar();
-        }
+        //private void _btnConsultar_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //this._btnConsultar.Focus();
+        //    //this._presentador.Consultar();
+        //}
 
         private void _lstResultados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            this._presentador.IrConsultarMemoria();
+            //this._presentador.IrConsultarMemoria();
+            this._presentador.AbrirArchivoMemoria();
         }
 
         private void _Ordenar_Click(object sender, RoutedEventArgs e)
@@ -149,25 +159,36 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader);
         }
 
+
+        public void Mensaje(string mensaje, int opcion)
+        {
+            if (opcion == 0)
+                MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (opcion == 1)
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            else if (opcion == 2)
+                MessageBox.Show(mensaje, "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
         /// <summary>
         /// Método que se encarga de posicionar el cursor en los campos del filto
         /// </summary>
-        private void validarCamposVacios()
-        {
-            bool todosCamposVacios = true;
-            if (!this._txtId.Text.Equals(""))
-            {
-                todosCamposVacios = false;
-                this._txtId.Focus();
-            }
+        //private void validarCamposVacios()
+        //{
+            //bool todosCamposVacios = true;
+            //if (!this._txtId.Text.Equals(""))
+            //{
+            //    todosCamposVacios = false;
+            //    this._txtId.Focus();
+            //}
 
-            if (todosCamposVacios)
-                this._txtId.Focus();
-        }
+            //if (todosCamposVacios)
+            //    this._txtId.Focus();
+        //}
 
-        private void _btnNuevaMemoria_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.IrAgregarMemoria();
-        }
+        //private void _btnNuevaMemoria_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //this._presentador.IrAgregarMemoria();
+        //}
     }
 }

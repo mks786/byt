@@ -20,6 +20,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
 
            private int? _accion;
+           private double _saldo;
 
         #endregion
 
@@ -191,6 +192,18 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set
             {
                 this._accion = value;
+            }
+        }
+
+        public virtual double Saldo
+        {
+            get
+            {
+                return this._saldo;
+            }
+            set
+            {
+                this._saldo = value;
             }
         }
         #endregion

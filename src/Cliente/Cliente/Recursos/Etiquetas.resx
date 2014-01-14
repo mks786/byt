@@ -2533,7 +2533,7 @@ en Prensa:</value>
     <value>Voucher:</value>
   </data>
   <data name="lsvFechaVencimiento" xml:space="preserve">
-    <value>Fecha Vencimiento</value>
+    <value>F. Vencimiento</value>
   </data>
   <data name="titleAnualidadCampos" xml:space="preserve">
     <value>Campos de Anualidad</value>
@@ -4214,5 +4214,80 @@ en Prensa:</value>
   </data>
   <data name="lblAnio" xml:space="preserve">
     <value>Año:</value>
+  </data>
+  <data name="btnActualizar" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
+  <data name="btnLimpiarPassword" xml:space="preserve">
+    <value>Reiniciar Contraseña</value>
+  </data>
+  <data name="lblPasswordActual" xml:space="preserve">
+    <value>Contraseña actual:</value>
+  </data>
+  <data name="lblPasswordNuevo" xml:space="preserve">
+    <value>Nueva contraseña:</value>
+  </data>
+  <data name="lblRepitaNuevoPassword" xml:space="preserve">
+    <value>Repetir nueva contraseña:</value>
+  </data>
+  <data name="menuItemCambiarPassword" xml:space="preserve">
+    <value>Cambiar Contraseña</value>
+  </data>
+  <data name="titleCambiarPassword" xml:space="preserve">
+    <value>Cambiar Contraseña de Usuario</value>
+  </data>
+  <data name="btnInteresadosPatente" xml:space="preserve">
+    <value>Otros Interesados</value>
+  </data>
+  <data name="btnModificarInteresadosPatente" xml:space="preserve">
+    <value>Modificar Interesados</value>
+  </data>
+  <data name="titleListaInteresadosPatente" xml:space="preserve">
+    <value>Lista de Interesados de Patente</value>
+  </data>
+  <data name="lblDatosInteresados" xml:space="preserve">
+    <value>Datos de Interesados Adicionales:</value>
+  </data>
+  <data name="lblDatosPatente" xml:space="preserve">
+    <value>Datos de la Patente:</value>
+  </data>
+  <data name="lblRecordatorioPatente" xml:space="preserve">
+    <value>Dias Venc. Prioridad:</value>
+  </data>
+  <data name="cbiDiasRecordatorioPresentacionPrioridad" xml:space="preserve">
+    <value>RECORDATORIO_PAT</value>
+  </data>
+  <data name="chkAplicaRecordatorioVencDatos" xml:space="preserve">
+    <value>Prioridad Presentada</value>
+  </data>
+  <data name="lblFechaVencimientoPrioridad" xml:space="preserve">
+    <value>Fecha Venc. Prioridad:</value>
+  </data>
+  <data name="menuItemPrioridadPatente" xml:space="preserve">
+    <value>Prioridad por Vencer</value>
+  </data>
+  <data name="btnExportar" xml:space="preserve">
+    <value>Exportar</value>
+  </data>
+  <data name="lsvDiasRestantesRecordatorio" xml:space="preserve">
+    <value>Días Vencimiento</value>
+  </data>
+  <data name="lsvFechaSolicitud" xml:space="preserve">
+    <value>F. Solicitud</value>
+  </data>
+  <data name="titleListaPatentesVencPrioridad" xml:space="preserve">
+    <value>Lista de Patentes por Vencer Prioridad</value>
+  </data>
+  <data name="titleTituloDelReportePatentesVencidas" xml:space="preserve">
+    <value>Patentes por Vencer su fecha de Prioridad</value>
+  </data>
+  <data name="btnMemoriaEspanol" xml:space="preserve">
+    <value>Memoria Español</value>
+  </data>
+  <data name="btnMemoriaIngles" xml:space="preserve">
+    <value>Memoria Inglés</value>
+  </data>
+  <data name="btnDetalleMemoria" xml:space="preserve">
+    <value>Mem. Separadas</value>
   </data>
 </root>

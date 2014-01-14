@@ -991,6 +991,16 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
 
 
         /// <summary>
+        /// Método que devuelve el DaoInteresadoPatente
+        /// </summary>
+        /// <returns>IDaoInteresadoPatente</returns>
+        public override IDaoInteresadoPatente ObtenerDaoInteresadoPatente()
+        {
+            return new DaoInteresadoPatenteNHibernate();
+        }
+
+
+        /// <summary>
         /// Método que devuelve el DaoFecha
         /// </summary>
         /// <returns>IDaoFecha</returns>
