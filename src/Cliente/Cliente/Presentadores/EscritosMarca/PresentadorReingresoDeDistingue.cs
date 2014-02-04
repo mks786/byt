@@ -145,7 +145,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             if (null != this._ventana.Boletin)
             {
                 StringLlleno += ((Boletin)this._ventana.Boletin).Id + "  ";
-                StringLlleno += ((Resolucion)this._ventana.Resolucion).Id + "  ";
+                if(null != this._ventana.Resolucion)
+                    StringLlleno += ((Resolucion)this._ventana.Resolucion).Id + "  ";
             }
             if (null != this._ventana.CantidadNumeral)
             {

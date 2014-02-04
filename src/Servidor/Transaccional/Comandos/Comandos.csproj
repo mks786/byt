@@ -167,6 +167,7 @@
     <Compile Include="Comandos\ComandosInteresado\ComandoInsertarOModificarInteresado.cs" />
     <Compile Include="Comandos\ComandosInternacional\ComandoConsultarPorId.cs" />
     <Compile Include="Comandos\ComandosInventor\ComandoConsultarInventoresPorPatente.cs" />
+    <Compile Include="Comandos\ComandosJustificacion\ComandoEliminarJustificacion.cs" />
     <Compile Include="Comandos\ComandosLicencia\ComandoConsultarLicenciasFiltro.cs" />
     <Compile Include="Comandos\ComandosMaestroDePlantilla\ComandoConsultarTodosMaestrosDePlantilla.cs" />
     <Compile Include="Comandos\ComandosMaestroDePlantilla\ComandoInsertarOModificarMaestroDePlantilla.cs" />

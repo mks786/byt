@@ -109,7 +109,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Memorias
 
                 string rutaArchivo = ConfigurationManager.AppSettings["RutaMemoriaPatente"];
                 string nombreArchivo = 
-                    ConfigurationManager.AppSettings["NombreMemoriaPatente"] + this._patente.Id.ToString();
+                    ConfigurationManager.AppSettings["NombreMemoriaPatente"] + this._patente.Id.ToString() + "?";
                 string[] archivos = Directory.GetFiles(rutaArchivo, nombreArchivo + ".*");
 
                 if (archivos.Length != 0)

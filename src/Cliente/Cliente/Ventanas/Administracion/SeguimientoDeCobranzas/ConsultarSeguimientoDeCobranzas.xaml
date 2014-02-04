@@ -158,7 +158,14 @@ HorizontalAlignment="Right" GotFocus="_btnConsultarAsociadoFocus" GotKeyboardFoc
                         <Label>
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAnio}"/>
                         </Label>
-                        <custom:ByTTextBox Name="_txtAnioActualSegCobranza" Text="" Width="100" MaxLength="15" Height="25" HorizontalAlignment="Left" IsReadOnly="True" Margin="10,0,0,0"/>
+                        <custom:ByTTextBox Name="_txtAnioActualSegCobranza" Text="" Width="100" MaxLength="15" Height="25" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                    </WrapPanel>
+
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="14,5,0,0">
+                        <Label>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblMes}"/>
+                        </Label>
+                        <custom:ByTTextBox Name="_txtMesActualSegCobranza" Text="" Width="100" MaxLength="15" Height="25" HorizontalAlignment="Left" Margin="10,0,0,0"/>
                     </WrapPanel>
 
                     <!-- Boton Consultar Consulta sobre la Data cruda -->

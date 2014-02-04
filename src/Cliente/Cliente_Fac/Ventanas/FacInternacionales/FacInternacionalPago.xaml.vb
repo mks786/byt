@@ -31,6 +31,16 @@ Namespace Ventanas.FacInternacionales
         Public Sub Mensaje(ByVal mensaje__1 As String) Implements Contratos.FacInternacionales.IFacInternacionalPago.Mensaje
             MessageBox.Show(mensaje__1, "Error", MessageBoxButton.OK, MessageBoxImage.[Error])
         End Sub
+
+        Public Property BISel() As Boolean Implements Contratos.FacInternacionales.IFacInternacionalPago.BISel
+            Get
+                Return Me._chkBISel.IsChecked
+            End Get
+            Set(ByVal value As Boolean)
+                Me._chkBISel.IsChecked = value
+            End Set
+        End Property
+
 #End Region
 
         Public Sub New(ByVal proforma As Object)

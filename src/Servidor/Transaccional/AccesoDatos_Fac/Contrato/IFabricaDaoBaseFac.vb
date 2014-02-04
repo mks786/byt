@@ -1,6 +1,7 @@
 ﻿Namespace Contrato
     Interface IFabricaDaoBaseFac
 
+        Function ObtenerDaoFacAsociadoIntConsolidadoCxPInt() As IDaoFacAsociadoIntConsolidadoCxPInt
 
         Function ObtenerDaoTasa() As IDaoTasa
 
@@ -103,6 +104,8 @@
         Function ObtenerDaoFacImpuesto() As IDaoFacImpuesto
 
         Function ObtenerDaoFacInternacional() As IDaoFacInternacional
+
+        Function ObtenerDaoFacInternacionalConsolidada() As IDaoFacInternacionalConsolidada
 
         Function ObtenerDaoFacInternacionalAnulada() As IDaoFacInternacionalAnulada
 

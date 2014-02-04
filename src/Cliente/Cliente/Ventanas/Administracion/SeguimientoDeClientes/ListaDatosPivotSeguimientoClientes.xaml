@@ -96,7 +96,7 @@
                         <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,5,0,0">
                         <DataGrid HorizontalAlignment="Center"  VerticalAlignment="Top" Name="_lstResultados" Height="159" 
                               ItemsSource="{Binding}" ColumnHeaderHeight="30" AutoGenerateColumns="True" ColumnWidth="80" RowHeight="25"
-                              CanUserResizeColumns="False" CanUserAddRows="False" GridLinesVisibility="All" BorderBrush="Transparent"
+                              CanUserResizeColumns="True" CanUserAddRows="False" GridLinesVisibility="All" BorderBrush="Transparent"
                               MouseLeftButtonUp="_lstResultados_MouseLeftButtonUp" AutoGeneratingColumn="_lstResultados_AutoGeneratingColumn">
                             <DataGrid.ColumnHeaderStyle>
                                 <Style TargetType="{x:Type DataGridColumnHeader}">

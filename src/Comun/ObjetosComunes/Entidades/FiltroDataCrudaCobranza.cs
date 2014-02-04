@@ -16,6 +16,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _ejeX;
         private string _ejeY;
         private int _anio;
+        private string _mes;
 
         #endregion
 
@@ -107,6 +108,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return this._anio; }
             set { this._anio = value; }
+        }
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Mes a usar para obtener el detalle
+        /// </summary>
+        public virtual String Mes
+        {
+            get { return this._mes; }
+            set { this._mes = value; }
         }
 
 

@@ -1259,6 +1259,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Se procede a realizar Consolidacion de Facturas?.
+        /// </summary>
+        internal static string ConfirmarConsolidacionCxPInternacional {
+            get {
+                return ResourceManager.GetString("ConfirmarConsolidacionCxPInternacional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a ¿Está seguro que desea obtener todas las Marca {0}?.
         /// </summary>
         internal static string ConfirmarConsultarMarcasPorLocalidad {
@@ -1282,6 +1291,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ConfirmarExportarReporteAExcel {
             get {
                 return ResourceManager.GetString("ConfirmarExportarReporteAExcel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Desea guardar los datos de consolidación mostrados?.
+        /// </summary>
+        internal static string ConfirmarGuardarDatosConsolidacion {
+            get {
+                return ResourceManager.GetString("ConfirmarGuardarDatosConsolidacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Existen datos de consolidacion guardados, desea recuperarlos?.
+        /// </summary>
+        internal static string ConfirmarHayDatosConsolidacionCxPInternacional {
+            get {
+                return ResourceManager.GetString("ConfirmarHayDatosConsolidacionCxPInternacional", resourceCulture);
             }
         }
         
@@ -1390,6 +1417,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ConfirmarModificarReporte {
             get {
                 return ResourceManager.GetString("ConfirmarModificarReporte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Desea registrar el pago correspondiente a las Facturas Internacionales consolidadas?.
+        /// </summary>
+        internal static string ConfirmarPagoConsolidadoCxPInt {
+            get {
+                return ResourceManager.GetString("ConfirmarPagoConsolidadoCxPInt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Desea autorizar las Facturas Internacionales seleccionadas?.
+        /// </summary>
+        internal static string ConfirmarSeleccionFacInternacional {
+            get {
+                return ResourceManager.GetString("ConfirmarSeleccionFacInternacional", resourceCulture);
             }
         }
         

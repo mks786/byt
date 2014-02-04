@@ -328,9 +328,14 @@ Namespace Presentadores.FacFacturas
                         Dim carta As List(Of Carta)
                         cartaaux.Id = FacFactura.Carta.Id
                         carta = Me._cartasServicios.ObtenerCartasFiltro(cartaaux)
-                        Me._ventana.Cartas = carta
-                        Me._ventana.Carta = carta(0)
-                        Me._ventana.NombreCarta = carta(0).Id & " - " & carta(0).Medio
+                        If carta.Count > 0 Then
+                            Me._ventana.Cartas = carta
+                            Me._ventana.Carta = carta(0)
+                            Me._ventana.NombreCarta = carta(0).Id & " - " & carta(0).Medio
+                        End If
+                        'Me._ventana.Cartas = carta
+                        'Me._ventana.Carta = carta(0)
+                        'Me._ventana.NombreCarta = carta(0).Id & " - " & carta(0).Medio
                     End If
 
                     If FacFactura.InteresadoImp IsNot Nothing Then

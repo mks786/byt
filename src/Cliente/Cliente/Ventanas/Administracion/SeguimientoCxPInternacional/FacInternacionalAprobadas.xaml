@@ -1,0 +1,173 @@
+﻿<Page x:Class="Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoCxPInternacional.FacInternacionalAprobadas"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
+      xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+	Title="FacInternacionalAprobadas" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Grid.Column="0" Grid.Row="0" Height="290" VerticalAlignment="Top">
+            <StackPanel  Orientation="Vertical" HorizontalAlignment="Stretch" Width="Auto">
+                <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock FontSize="15" Text="Facturas Seleccionadas para Consolidar: "/>
+                    </Label>
+                    <Label>
+                        <TextBlock FontSize="15" Name="_lblEjesXY"/>
+                    </Label>
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,5,0,0">
+
+                    <Label>
+                        <TextBlock FontSize="13" Text="{x:Static recurso:Etiquetas.lblTotalHits}"/>
+                    </Label>
+                    <Label>
+                        <TextBlock FontSize="13" Name="_lblHits"/>
+                    </Label>
+                </WrapPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,15,0,0" BorderThickness="0">
+            <ListView Name="_lstResultados" ItemsSource="{Binding}" SelectionMode="Extended" 
+                      Style="{DynamicResource EstiloListView}"
+                      MouseDoubleClick="_lstResultados_MouseDoubleClick">
+                <ListView.View>
+                    <GridView>
+
+                        <!--<GridViewColumn Header="Selec" Width="50" >
+                            <GridViewColumn.CellTemplate >
+                                <DataTemplate>
+                                    <CheckBox Tag="Aut"   IsChecked="{Binding Path=BIsel}" IsHitTestVisible="False" Focusable="False"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>-->
+
+                        <GridViewColumn Width="120">
+                            <GridViewColumnHeader Tag="Id" Content="Proforma"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Id}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="120">
+                            <GridViewColumnHeader Tag="Asociado_o.Id" Content="Cod Asociado"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Asociado_o.Id}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="250">
+                            <GridViewColumnHeader Tag="Asociado_o.Nombre" Content="Asociado"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Asociado_o.Nombre}" TextAlignment="Left"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+
+                        <GridViewColumn Width="80">
+                            <GridViewColumnHeader Tag="Numerofactura" Content="Factura"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Numerofactura}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="100">
+                            <GridViewColumnHeader Tag="Fecha" Content="Fecha Emisión"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Fecha, StringFormat={}{0:dd/MM/yyyy}}"
+                                               TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="100">
+                            <GridViewColumnHeader Tag="FechaRecepcion" 
+                                                  Content="Fecha Recepción"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=FechaRecepcion, StringFormat={}{0:dd/MM/yyyy}}" 
+                                               TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="110">
+                            <GridViewColumnHeader Tag="Monto" Content="Monto"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Monto, StringFormat= {}{0:N}, ConverterCulture=de-DE}" 
+                                               TextAlignment="Right"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="110">
+                            <GridViewColumnHeader Tag="DiasVencimiento" Content="Dias Vencimiento"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=DiasVencimiento}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+
+        <GroupBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Margin="5" BorderThickness="0">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="58" Width="Auto">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" Height="20">
+                    <Label Width="100">
+                        <TextBlock Text="Total Monto US$" FontSize="10" VerticalAlignment="Center"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtTotalMonto" Width="90" MaxLength="12" IsEnabled="True" FontSize="12" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Right">
+                    </custom:ByTTextBox>
+                </WrapPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Grid.ColumnSpan="3" Grid.Row="3" BorderBrush="{x:Null}">
+            <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" 
+                       Orientation="Horizontal">
+                <Button Name="_btnVerDatosConsolidar" VerticalAlignment="Bottom" Height="25" Width="110" 
+                        Click="_btnConsolidar_Click">
+                    <TextBlock Text="Ver Consolidado"/>
+                </Button>
+                <Button Name="_btnConsolidar" VerticalAlignment="Bottom" Height="25" Width="110" Click="_btnConsolidar_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnConsolidar}"/>
+                </Button>
+                <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="110" Click="_btnRegresar_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
+                </Button>
+            </WrapPanel>
+        </GroupBox>
+    </Grid>
+</Page>

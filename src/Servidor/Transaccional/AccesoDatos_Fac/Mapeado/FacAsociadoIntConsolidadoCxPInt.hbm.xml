@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="FacAsociadoIntConsolidadoCxPInt" table="FAC_CXP_INT_CONSOLIDA">
+    <id name="Id" column="REGNUM" />
+    <many-to-one  name="AsociadoInt" column="CASOCIADO_O" class="Asociado" lazy="false"/>
+    <property name="MontoConsolidado" column="MONTO" type="Double"/>
+    <property name="FormaPago" column="TIPOPAGO" type="string"/>
+  </class>
+  
+</hibernate-mapping>

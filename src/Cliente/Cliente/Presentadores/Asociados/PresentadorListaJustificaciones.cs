@@ -48,6 +48,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         }
 
 
+        public PresentadorListaJustificaciones(IListaJustificaciones ventana, object asociado, object ventanaPadre)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this._ventana = ventana;
+            this._ventanaPadre = ventanaPadre;
+            this._asociado = (Asociado)asociado;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -96,7 +114,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new ConsultarJustificacion(this._ventana.JustificacionSeleccionada));
+            //this.Navegar(new ConsultarJustificacion(this._ventana.JustificacionSeleccionada));
+            this.Navegar(new ConsultarJustificacion(this._ventana.JustificacionSeleccionada,this._ventana));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

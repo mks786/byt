@@ -196,7 +196,9 @@ Namespace Presentadores.ViGestionAsociados
             End If
             '#End Region
             Dim asociado As Asociado = DirectCast(Me._ventana.ViGestionAsociadoSeleccionado, ViGestionAsociado).Id
-            Me.Navegar(New ConsultarFacGestionesAsociado(asociado))
+            'Me.Navegar(New ConsultarFacGestionesAsociado(asociado)) CODIGO ORIGINAL COMENTADO
+            Me.Navegar(New ConsultarFacGestionesAsociado(asociado, Me._ventana))
+
             'Me.Navegar(New ConsultarViGestionAsociado())
             '#Region "trace"
             If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then

@@ -97,10 +97,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             //this._presentador.MostarPatentesPorVencerFechaPresentacion();
-            this._presentador.CargarPagina();
-            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 3);
-            dispatcherTimer.Start();
+            if (!EstaCargada)
+            {
+                this._presentador.CargarPagina();
+                EstaCargada = true;
+                if (this._presentador.EsUSuarioPatente())
+                {
+                    dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+                    dispatcherTimer.Interval = new TimeSpan(0, 0, 3);
+                    dispatcherTimer.Start();
+                }
+            
+            }
+
+            //dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            //dispatcherTimer.Interval = new TimeSpan(0, 0, 3);
+            //dispatcherTimer.Start();
             
         }
 

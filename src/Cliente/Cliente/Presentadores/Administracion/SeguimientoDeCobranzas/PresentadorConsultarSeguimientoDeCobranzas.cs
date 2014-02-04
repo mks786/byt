@@ -103,6 +103,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeCobra
 
                 this._ventana.Anio = DateTime.Today.Year.ToString();
 
+                if (DateTime.Today.Month < 10)
+                {
+                    this._ventana.Mes = "0" + DateTime.Today.Month.ToString();
+                }
+                else
+                    this._ventana.Mes = DateTime.Today.Month.ToString();
+               
+
                 InicializarCombos(false);
 
                 PredeterminarEjes();
@@ -403,6 +411,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeCobra
                 filtro.Asociado = this._ventana.Asociado != null ? (Asociado)this._ventana.Asociado : null;
 
                 filtro.Anio = int.Parse(this._ventana.Anio);
+
+                filtro.Mes = this._ventana.Mes;
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

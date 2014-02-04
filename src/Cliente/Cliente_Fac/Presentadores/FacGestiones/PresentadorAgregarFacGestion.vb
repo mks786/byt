@@ -39,7 +39,9 @@ Namespace Presentadores.FacGestiones
         Private _cartasServicios As ICartaServicios
         Private _MediosGestionServicios As IMediosGestionServicios
         Private _ConceptoGestionServicios As IConceptoGestionServicios
-        Private _TipoClienteServicios As ITipoClienteServicios        
+        Private _TipoClienteServicios As ITipoClienteServicios
+
+
         ''' <summary>
         ''' Constructor predeterminado
         ''' </summary>
@@ -74,6 +76,47 @@ Namespace Presentadores.FacGestiones
                 Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
             End Try
         End Sub
+
+
+        ''' <summary>
+        ''' Constructor predeterminado que recibe una ventana padre
+        ''' </summary>
+        ''' <param name="ventana">Página que satisface el contrato</param>
+        Public Sub New(ByVal ventana As IAgregarFacGestion, ByVal ventanaPadre As Object)
+            Try
+                Me._ventana = ventana
+                Me._ventanaPadre = ventanaPadre
+
+                'Me._ventana.FacGestion  = New FacGestion ()
+                Me._FacGestioneservicios = DirectCast(Activator.GetObject(GetType(IFacGestionServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacGestionServicios")), IFacGestionServicios)
+                Me._asociadosServicios = DirectCast(Activator.GetObject(GetType(IAsociadoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("AsociadoServicios")), IAsociadoServicios)
+                Me._facoperacionesServicios = DirectCast(Activator.GetObject(GetType(IFacOperacionServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacOperacionServicios")), IFacOperacionServicios)
+                ' Me._idiomasServicios = DirectCast(Activator.GetObject(GetType(IIdiomaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("IdiomaServicios")), IIdiomaServicios)
+                ' Me._monedasServicios = DirectCast(Activator.GetObject(GetType(IMonedaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("MonedaServicios")), IMonedaServicios)
+                Me._tasasServicios = DirectCast(Activator.GetObject(GetType(ITasaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("TasaServicios")), ITasaServicios)
+                ' Me._FacCreditoServicios = DirectCast(Activator.GetObject(GetType(IFacCreditoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacCreditoServicios")), IFacCreditoServicios)
+                ' Me._contadorfacServicios = DirectCast(Activator.GetObject(GetType(IContadorFacServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("ContadorFacServicios")), IContadorFacServicios)
+                '  Me._bancosServicios = DirectCast(Activator.GetObject(GetType(IFacBancoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacBancoServicios")), IFacBancoServicios)
+                '  Me._FacFormaServicios = DirectCast(Activator.GetObject(GetType(IFacFormaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFormaServicios")), IFacFormaServicios)               
+                '  Me._ListaDatosValoresServicios = DirectCast(Activator.GetObject(GetType(IListaDatosValoresServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("ListaDatosValoresServicios")), IListaDatosValoresServicios)
+                Me._cartasServicios = DirectCast(Activator.GetObject(GetType(ICartaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("CartaServicios")), ICartaServicios)
+                Me._MediosGestionServicios = DirectCast(Activator.GetObject(GetType(IMediosGestionServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("MediosGestionServicios")), IMediosGestionServicios)
+                Me._ConceptoGestionServicios = DirectCast(Activator.GetObject(GetType(IConceptoGestionServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("ConceptoGestionServicios")), IConceptoGestionServicios)
+                Me._TipoClienteServicios = DirectCast(Activator.GetObject(GetType(ITipoClienteServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("TipoClienteServicios")), ITipoClienteServicios)
+
+                Dim FacGestion As New FacGestion()
+                FacGestion.Inicial = UsuarioLogeado.Iniciales
+                FacGestion.FechaIngreso = FormatDateTime(Date.Now, DateFormat.ShortDate)
+                Me._ventana.FacGestion = FacGestion
+
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
+            End Try
+        End Sub
+
+
+
 
         ''' <summary>
         ''' Método que carga los datos iniciales a mostrar en la página

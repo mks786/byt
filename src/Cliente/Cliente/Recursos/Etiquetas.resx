@@ -4252,7 +4252,7 @@ en Prensa:</value>
     <value>Datos de la Patente:</value>
   </data>
   <data name="lblRecordatorioPatente" xml:space="preserve">
-    <value>Dias Venc. Prioridad:</value>
+    <value>Venc. Prioridad:</value>
   </data>
   <data name="cbiDiasRecordatorioPresentacionPrioridad" xml:space="preserve">
     <value>RECORDATORIO_PAT</value>
@@ -4289,5 +4289,32 @@ en Prensa:</value>
   </data>
   <data name="btnDetalleMemoria" xml:space="preserve">
     <value>Mem. Separadas</value>
+  </data>
+  <data name="fac_menuItemFacSeguimientoCxPInternacional" xml:space="preserve">
+    <value>Seguimiento CxP Internacional</value>
+  </data>
+  <data name="btnSeleccionarTodo" xml:space="preserve">
+    <value>Seleccionar Todo</value>
+  </data>
+  <data name="cbiVistaCxPInternacional" xml:space="preserve">
+    <value>FACCXPINT_CAMPOVISTA</value>
+  </data>
+  <data name="lblTipoDeuda" xml:space="preserve">
+    <value>Tipo de Deuda:</value>
+  </data>
+  <data name="titleConsultarSeguimientoCxPInternacional" xml:space="preserve">
+    <value>Consultar Seguimiento CxP Internacional</value>
+  </data>
+  <data name="titleListaResumenDatosSegCxPInternacional" xml:space="preserve">
+    <value>Resumen de Datos - Seguimiento de CxP Internacional</value>
+  </data>
+  <data name="btnConsolidar" xml:space="preserve">
+    <value>Consolidar</value>
+  </data>
+  <data name="cbiFacFormasDePagoCxPInt" xml:space="preserve">
+    <value>FAC_CXP_INT_FPAGO</value>
+  </data>
+  <data name="btnQuitarSeleccion" xml:space="preserve">
+    <value>Quitar Selección</value>
   </data>
 </root>

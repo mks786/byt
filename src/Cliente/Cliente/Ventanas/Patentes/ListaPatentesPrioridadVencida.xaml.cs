@@ -198,6 +198,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             }
         }
 
+        public void DeshabilitarBotonReportes()
+        {
+            this._btnExportarListado.IsEnabled = false;
+        }
+
         private DataTable ListViewToDataTable()
         {
             //ListView lvResults = e.Source as ListView;

@@ -126,6 +126,9 @@
     <Compile Include="Comandos\ComandosEtiqueta\ComandoEliminarEtiqueta.vb" />
     <Compile Include="Comandos\ComandosEtiqueta\ComandoInsertarOModificarEtiqueta.vb" />
     <Compile Include="Comandos\ComandosEtiqueta\ComandoVerificarExistenciaEtiqueta.vb" />
+    <Compile Include="Comandos\ComandosFacAsociadoIntConsolidadoCxPInt\ComandoConsultarTodosFacAsociadoIntConsolidadoCxPInt.vb" />
+    <Compile Include="Comandos\ComandosFacAsociadoIntConsolidadoCxPInt\ComandoEliminarFacAsociadoIntConsolidadoCxPInt.vb" />
+    <Compile Include="Comandos\ComandosFacAsociadoIntConsolidadoCxPInt\ComandoInsertarOModificarFacAsociadoConsolidadoCxPInt.vb" />
     <Compile Include="Comandos\ComandosFacBanco\ComandoConsultarFacBancosFiltro.vb" />
     <Compile Include="Comandos\ComandosFacBanco\ComandoConsultarTodosFacBancos.vb" />
     <Compile Include="Comandos\ComandosFacBanco\ComandoEliminarFacBanco.vb" />
@@ -181,6 +184,9 @@
     <Compile Include="Comandos\ComandosFacForma\ComandoEliminarFacForma.vb" />
     <Compile Include="Comandos\ComandosFacForma\ComandoInsertarOModificarFacForma.vb" />
     <Compile Include="Comandos\ComandosFacForma\ComandoVerificarExistenciaFacForma.vb" />
+    <Compile Include="Comandos\ComandosFacInternacionalConsolidada\ComandoConsultarTodosFacInternacionalConsolidada.vb" />
+    <Compile Include="Comandos\ComandosFacInternacionalConsolidada\ComandoEliminarFacInternacionalConsolidada.vb" />
+    <Compile Include="Comandos\ComandosFacInternacionalConsolidada\ComandoInsertarOModificarFacInternacionalConsolidada.vb" />
     <Compile Include="Comandos\ComandosFacJustificacion\ComandoConsultarTodosFacJustificaciones.vb" />
     <Compile Include="Comandos\ComandosFacJustificacion\ComandoEliminarFacJustificacion.vb" />
     <Compile Include="Comandos\ComandosFacJustificacion\ComandoInsertarOModificarFacJustificacion.vb" />
@@ -341,6 +347,8 @@
     <Compile Include="Comandos\ComandosFacTarifa\ComandoInsertarOModificarFacTarifa.vb" />
     <Compile Include="Comandos\ComandosFacTarifa\ComandoVerificarExistenciaFacTarifa.vb" />
     <Compile Include="Fabrica\FabricaComandosCarpetaGestionAutomatica.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacAsociadoIntConsolidadoCxPInt.vb" />
+    <Compile Include="Fabrica\FabricaComandosFacInternacionalConsolidada.vb" />
     <Compile Include="Fabrica\FabricaComandosFacTarifa.vb" />
     <Compile Include="Fabrica\FabricaComandosFacFacturaPendienteConGru.vb" />
     <Compile Include="Fabrica\FabricaComandosFacVistaFacturacionCxpInterna.vb" />

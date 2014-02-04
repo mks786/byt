@@ -37,6 +37,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Justificaciones
             {
                 this._dpkFecha.IsEnabled = value;
                 this._cbxConcepto.IsEnabled = value;
+                this._txtCodigoCarta.IsEnabled = value;
             }
         }
 
@@ -70,7 +71,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Justificaciones
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorConsultarJustificacion(this, justificacion);
+            this._presentador = new PresentadorConsultarJustificacion(this, justificacion,null);
+        }
+
+        public ConsultarJustificacion(object justificacion, object ventanaPadre)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorConsultarJustificacion(this, justificacion, ventanaPadre);
         }
 
         private void _dpkFecha_SelectedDateChanged(object sender, RoutedEventArgs e)
@@ -79,7 +87,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Justificaciones
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Regresar();
+            //this._presentador.Regresar();
+            this._presentador.RegresarVentanaPadre();
         }
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)
@@ -101,6 +110,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Justificaciones
                 this._presentador.CargarPagina();
                 EstaCargada = true;
             }
+        }
+
+        private void _txtCodigoCarta_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this._presentador.VerCarta();
         }
     }
 }

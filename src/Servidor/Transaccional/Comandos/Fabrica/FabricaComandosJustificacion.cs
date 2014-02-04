@@ -17,5 +17,15 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoInsertarOModificarJustificacion(justificacion);
         }
+
+        /// <summary>
+        /// Método que devuelve el Comando para eliminar una Justificacion
+        /// </summary>
+        /// <param name="justificacion">Justificacion a eliminar de la base de datos</param>
+        /// <returns>El Comando que permite eliminar una Justificacion de la base de datos</returns>
+        public static ComandoBase<bool> ObtenerComandoEliminar(Justificacion justificacion)
+        {
+            return new ComandoEliminarJustificacion(justificacion);
+        }
     }
 }

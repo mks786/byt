@@ -49,6 +49,14 @@ Namespace Ventanas.FacGestiones
             Me._presentador = New PresentadorAgregarFacGestion(Me)
         End Sub
 
+        Public Sub New(ByVal ventanaPadre As Object)
+            InitializeComponent()
+            Me._cargada = False
+            Me._presentador = New PresentadorAgregarFacGestion(Me, ventanaPadre)
+        End Sub
+
+
+
         Private Sub _btnCancelar_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
             Me._presentador.Cancelar()
         End Sub

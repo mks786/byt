@@ -784,4 +784,8 @@
     <value>fi.Pais.Id = '{0}'</value>
     <comment>Filtro para obtener una factura internacional por medio del campo Pais</comment>
   </data>
+  <data name="FiltroObtenerFacInternacionalRevisionAprobada" xml:space="preserve">
+    <value>fi.RevisionAprobada = '{0}'</value>
+    <comment>Filtro para obtener las facturas internacionales con el valor del campo ISEL</comment>
+  </data>
 </root>

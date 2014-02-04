@@ -25,6 +25,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private DateTime? _fecharecepcion;
 
         private bool _seleccion;
+        private string _revisionAprobada;
+        private int _diasVencimiento;
 
         #endregion
 
@@ -276,6 +278,36 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             {
                 this._seleccion = value;
             }
+        }
+
+        public virtual String RevisionAprobada
+        {
+            get { return this._revisionAprobada; }
+            set { this._revisionAprobada = value; }
+        }
+
+        public virtual bool BIsel
+        {
+            get
+            {
+                if (this.RevisionAprobada.ToUpper().Equals("SI"))
+                    return true;
+                else
+                    return false;
+            }
+            set
+            {
+                if (value)
+                    this.RevisionAprobada = "SI";
+                else
+                    this.RevisionAprobada = "FALSE";
+            }
+        }
+
+        public virtual int DiasVencimiento
+        {
+            get { return this._diasVencimiento; }
+            set { this._diasVencimiento = value; }
         }
 
         #endregion

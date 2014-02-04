@@ -1666,4 +1666,7 @@
   <data name="cbiMarcaPatenteFacFacturas" xml:space="preserve">
     <value>FACFACTURA_ELEMENTO</value>
   </data>
+  <data name="faclblSeleccionadoConsolidar" xml:space="preserve">
+    <value>Seleccionado para Consolidar:</value>
+  </data>
 </root>

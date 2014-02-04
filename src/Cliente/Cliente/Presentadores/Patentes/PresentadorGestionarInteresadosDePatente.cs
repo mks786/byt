@@ -29,12 +29,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         private InteresadoPatente _interesadoPatente;
         private object _ventanaGestionarPatente;
         private object _ventanaConsultarPatentes;
-       
+
+        private IList<Interesado> _listaInteresado1 = new List<Interesado>();
+        private IList<Interesado> _listaInteresado2 = new List<Interesado>();
+        private IList<Interesado> _listaInteresado3 = new List<Interesado>();
+               
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorGestionarInteresadosDePatente(IGestionarInteresadosDePatente ventana, object patente, object ventanaPadre, object ventanaGestionarPatente, object ventanaConsultarPatentes)
+        /// <param name="patente">Patente consultada</param>
+        /// <param name="ventanaConsultarPatentes">Ventana ConsultarPatentes</param>
+        /// <param name="ventanaGestionarPatente">Ventana GestionarPatente</param>
+        /// <param name="ventanaPadre">Ventana que precede a esta ventana</param>
+        public PresentadorGestionarInteresadosDePatente(IGestionarInteresadosDePatente ventana, 
+                                                        object patente, 
+                                                        object ventanaPadre, 
+                                                        object ventanaGestionarPatente, 
+                                                        object ventanaConsultarPatentes)
         {
             try
             {
@@ -68,9 +80,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         }
 
 
-        public PresentadorGestionarInteresadosDePatente
-            (IGestionarInteresadosDePatente ventana, object patente, object interesadoPatente, object ventanaPadre, object ventanaGestionarPatente, object ventanaConsultarPatentes)
-        {
+        /// <summary>
+        /// Constructor predeterminado que obtiene un interesado de una patente y una patente seleccionada
+        /// </summary>
+        /// <param name="ventana">Página que satisface el contrato</param>
+        /// <param name="patente">Patente consultada</param>
+        /// <param name="interesadoPatente">Interesado de la patente</param>
+        /// <param name="ventanaPadre">Ventana que precede a esta ventana</param>
+        /// <param name="ventanaGestionarPatente">Ventana GestionarPatente</param>
+        /// <param name="ventanaConsultarPatentes">Ventana ConsultarPatentes</param>
+        /// 
+        public PresentadorGestionarInteresadosDePatente (IGestionarInteresadosDePatente ventana, 
+                                                         object patente, 
+                                                         object interesadoPatente, 
+                                                         object ventanaPadre, 
+                                                         object ventanaGestionarPatente, 
+                                                         object ventanaConsultarPatentes)
+            {
+
             try
             {
                 #region trace
@@ -129,6 +156,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     interesadoPatente.Id = ((Patente)this._ventana.Patente).Id;
                     interesadoPatente.Interesado = ((Patente)this._ventana.Patente).Interesado;
                     this._interesadoPatente = interesadoPatente;
+                    CargarInteresadosAdicionales();
                 }
                    
                 
@@ -170,6 +198,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         /// </summary>
         private void CargarInteresadosAdicionales()
         {
+
+            Interesado primerInteresado1 = new Interesado();
+            primerInteresado1.Id = int.MinValue;
+            Interesado primerInteresado2 = new Interesado();
+            primerInteresado2.Id = int.MinValue;
+            Interesado primerInteresado3 = new Interesado();
+            primerInteresado3.Id = int.MinValue;
+
             try
             {
                 #region trace
@@ -181,18 +217,45 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 {
                     this._ventana.IdInteresado1 = ((Interesado)this._interesadoPatente.Interesado1).Id.ToString();
                     this._ventana.NombreInteresado1 = ((Interesado)this._interesadoPatente.Interesado1).Nombre;
+                    this._listaInteresado1.Add(primerInteresado1);
+                    this._listaInteresado1.Add(this._interesadoPatente.Interesado1);
+                    this._ventana.Interesados1 = this._listaInteresado1;
+                    this._ventana.Interesado1 = this.BuscarInteresado(this._listaInteresado1, this._interesadoPatente.Interesado1);
+                }
+                else
+                {
+                    this._listaInteresado1.Add(primerInteresado1);
+                    this._ventana.Interesados1 = this._listaInteresado1;
                 }
 
                 if (this._interesadoPatente.Interesado2 != null)
                 {
                     this._ventana.IdInteresado2 = ((Interesado)this._interesadoPatente.Interesado2).Id.ToString();
                     this._ventana.NombreInteresado2 = ((Interesado)this._interesadoPatente.Interesado2).Nombre;
+                    this._listaInteresado2.Add(primerInteresado2);
+                    this._listaInteresado2.Add(this._interesadoPatente.Interesado2);
+                    this._ventana.Interesados2 = this._listaInteresado2;
+                    this._ventana.Interesado2 = this.BuscarInteresado(this._listaInteresado2, this._interesadoPatente.Interesado2);
+                }
+                else
+                {
+                    this._listaInteresado2.Add(primerInteresado2);
+                    this._ventana.Interesados2 = this._listaInteresado2;
                 }
 
                 if (this._interesadoPatente.Interesado3 != null)
                 {
                     this._ventana.IdInteresado3 = ((Interesado)this._interesadoPatente.Interesado3).Id.ToString();
                     this._ventana.NombreInteresado3 = ((Interesado)this._interesadoPatente.Interesado3).Nombre;
+                    this._listaInteresado3.Add(primerInteresado3);
+                    this._listaInteresado3.Add(this._interesadoPatente.Interesado3);
+                    this._ventana.Interesados3 = this._listaInteresado3;
+                    this._ventana.Interesado3 = this.BuscarInteresado(this._listaInteresado3, this._interesadoPatente.Interesado3);
+                }
+                else
+                {
+                    this._listaInteresado3.Add(primerInteresado3);
+                    this._ventana.Interesados3 = this._listaInteresado3;
                 }
 
                 #region trace
@@ -333,7 +396,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                     this._interesadoPatente.Interesado2 = interesadoAux;
                 }
-                else if ((nombreListView.Equals("_lstInteresados3")) && (this._ventana.Interesado2 != null))
+                else if ((nombreListView.Equals("_lstInteresados3")) && (this._ventana.Interesado3 != null))
                 {
                     interesadoAux = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.Interesado3);
                     if (interesadoAux != null)

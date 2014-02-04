@@ -2837,6 +2837,15 @@ Namespace Recursos
         End Property
         
         '''<summary>
+        '''  Busca una cadena traducida similar a Seleccionado para Consolidar:.
+        '''</summary>
+        Public Shared ReadOnly Property faclblSeleccionadoConsolidar() As String
+            Get
+                Return ResourceManager.GetString("faclblSeleccionadoConsolidar", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Busca una cadena traducida similar a Seniat.
         '''</summary>
         Public Shared ReadOnly Property faclblSeniat() As String

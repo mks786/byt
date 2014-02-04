@@ -123,6 +123,10 @@ Namespace Fabrica
 
         Public MustOverride Function ObtenerDaoFacInternacional() As Contrato.IDaoFacInternacional Implements Contrato.IFabricaDaoBaseFac.ObtenerDaoFacInternacional
 
+        Public MustOverride Function ObtenerDaoFacAsociadoIntConsolidadoCxPInt() As Contrato.IDaoFacAsociadoIntConsolidadoCxPInt Implements Contrato.IFabricaDaoBaseFac.ObtenerDaoFacAsociadoIntConsolidadoCxPInt
+
+        Public MustOverride Function ObtenerDaoFacInternacionalConsolidada() As Contrato.IDaoFacInternacionalConsolidada Implements Contrato.IFabricaDaoBaseFac.ObtenerDaoFacInternacionalConsolidada
+
         Public MustOverride Function ObtenerDaoFacInternacionalAnulada() As Contrato.IDaoFacInternacionalAnulada Implements Contrato.IFabricaDaoBaseFac.ObtenerDaoFacInternacionalAnulada
 
         Public MustOverride Function ObtenerDaoFacAnuladaFisica() As Contrato.IDaoFacAnuladaFisica Implements Contrato.IFabricaDaoBaseFac.ObtenerDaoFacAnuladaFisica

@@ -197,5 +197,22 @@ Namespace Ventanas.ChequeRecidos
                 _lblHits.Text = value
             End Set
         End Property
+
+        Private Sub _btnCalcularMonto_Click(sender As System.Object, e As System.Windows.RoutedEventArgs)
+            Me._presentador.RecalcularMonto()
+        End Sub
+
+
+        Public Sub Mensaje(ByVal mensaje__1 As String, ByVal tipoMensaje As Integer) Implements Contratos.ChequeRecidos.IConsultarDepositoChequeRecidos.Mensaje
+            If (tipoMensaje = 0) Then
+                MessageBox.Show(mensaje__1, "Error", MessageBoxButton.OK, MessageBoxImage.[Error])
+            ElseIf (tipoMensaje = 1) Then
+                MessageBox.Show(mensaje__1, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning)
+            ElseIf (tipoMensaje = 2) Then
+                MessageBox.Show(mensaje__1, "Información", MessageBoxButton.OK, MessageBoxImage.Information)
+            End If
+
+        End Sub
+
     End Class
 End Namespace

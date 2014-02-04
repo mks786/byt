@@ -66,6 +66,7 @@ using Trascend.Bolet.Cliente.Ventanas.Inventores;
 using Trascend.Bolet.Cliente.Ventanas.Administracion.Gestiones_Automaticas;
 using Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes;
 using Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeCobranzas;
+using Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoCxPInternacional;
 using Trascend.Bolet.Cliente.Ventanas.Plantillas;
 using Trascend.Bolet.Cliente.Ventanas.ReportesMaestro;
 using System.Diagnostics;
@@ -2434,6 +2435,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                                 itemNivel4.Visibility = System.Windows.Visibility.Visible;
                                             break;
 
+                                        case "_fac_menuItemFacSeguimientoCxPInternacional":
+                                            if (objeto.Id.Equals(Recursos.Ids.fac_SeguimientoCxPInternacional))
+                                                itemNivel4.Visibility = System.Windows.Visibility.Visible;
+                                            break;
+
                                     }
                                 }
 
@@ -2517,6 +2523,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         public void IrListaPatentesPorVencerPrioridad()
         {
             Navegar(new ListaPatentesPrioridadVencida());
+        }
+
+        /// <summary>
+        /// Metodo que llama a la pantalla de Seguimiento de CxP Internacional
+        /// </summary>
+        public void IrSeguimientoCxPInternacional()
+        {
+            Navegar(new ConsultarSeguimientoCxPInternacional());
         }
     }
 }

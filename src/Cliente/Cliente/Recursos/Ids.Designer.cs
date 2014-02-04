@@ -2410,6 +2410,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a FAC_CXP_INT_VI.
+        /// </summary>
+        public static string fac_SeguimientoCxPInternacional {
+            get {
+                return ResourceManager.GetString("fac_SeguimientoCxPInternacional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a FAC_SERVICIOS.
         /// </summary>
         public static string fac_Servicio {

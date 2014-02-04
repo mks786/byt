@@ -293,7 +293,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeClientes
         {
             if (e.Column.Header.Equals("XASOCIADO"))
             {
-                e.Column.Width = 300;
+                //e.Column.Width = 300;
+                e.Column.Width = 200;
                 e.Column.CellStyle = newCellStyle();
             }
             else if(e.Column.Header.Equals("CASOCIADO"))

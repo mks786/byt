@@ -63,6 +63,7 @@
     <Compile Include="ContratosServicios\IRegistradorServicios.cs" />
     <Compile Include="ContratosServicios\IReporteServicios.cs" />
     <Compile Include="ContratosServicios\ISeguimientoClientesServicios.cs" />
+    <Compile Include="ContratosServicios\ISeguimientoCxPInternacionalServicios.cs" />
     <Compile Include="ContratosServicios\ISeguimientoDeCobranzasServicios.cs" />
     <Compile Include="ContratosServicios\ITipoCajaServicios.cs" />
     <Compile Include="ContratosServicios\ITipoDocumentoServicios.cs" />
@@ -180,6 +181,8 @@
     <Compile Include="Entidades\CorreoOutlook.cs" />
     <Compile Include="Entidades\DetallePlantilla.cs" />
     <Compile Include="Entidades\EncabezadoPlantilla.cs" />
+    <Compile Include="Entidades\FacAsociadoIntConsolidadoCxPInt.cs" />
+    <Compile Include="Entidades\FacInternacionalConsolidada.cs" />
     <Compile Include="Entidades\FacTarifa.cs" />
     <Compile Include="Entidades\FacVistaFacturaServicio.cs" />
     <Compile Include="Entidades\FacFacturaPendienteConGru.cs" />
@@ -230,6 +233,7 @@
     <Compile Include="Entidades\FechaMarca.cs" />
     <Compile Include="Entidades\FiltroDataCruda.cs" />
     <Compile Include="Entidades\FiltroDataCrudaCobranza.cs" />
+    <Compile Include="Entidades\FiltroDataCrudaCxPInternacional.cs" />
     <Compile Include="Entidades\FiltroPlantilla.cs" />
     <Compile Include="Entidades\FiltroReporte.cs" />
     <Compile Include="Entidades\InstruccionCorrespondencia.cs" />

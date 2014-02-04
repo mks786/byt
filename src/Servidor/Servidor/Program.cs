@@ -51,6 +51,38 @@ namespace Trascend.Bolet.Servidor
 
             IList<VencimientoPrioridadPatente> patentesPorVencer = servicioPrueba.ObtenerPatentesPorVencerPrioridad(cantidadDias);*/
 
+            /*FacInternacionalConsolidadaServicios pruebaServicio = new FacInternacionalConsolidadaServicios();
+            AsociadoServicios asociadoServicios = new AsociadoServicios();
+            FacInternacionalConsolidada fac = new FacInternacionalConsolidada();
+            fac.Id = 18954;
+            Asociado asociadoOAux = new Asociado(23157);
+            Asociado asociadoO = new Asociado();
+            asociadoO = asociadoServicios.ConsultarAsociadoConTodo(asociadoOAux);
+            Asociado asociadoAux = new Asociado(21208);
+            Asociado asociado = asociadoServicios.ConsultarAsociadoConTodo(asociadoAux);
+            fac.AsociadoInt = asociadoO;
+            fac.Asociado = asociado;
+
+            bool exitoso = pruebaServicio.InsertarOModificar(fac, 123);
+
+            FacInternacionalConsolidadaServicios servicioPrueba = new FacInternacionalConsolidadaServicios();
+            IList<FacInternacionalConsolidada> lista = servicioPrueba.ConsultarTodos();*/
+
+
+            /*AsociadoServicios asociadoServicio = new AsociadoServicios();
+            FacAsociadoIntConsolidadoCxPIntServicios servicioPrueba = new FacAsociadoIntConsolidadoCxPIntServicios();
+            FacAsociadoIntConsolidadoCxPInt facAsociado = new FacAsociadoIntConsolidadoCxPInt();
+
+            facAsociado.Id = 2;
+            facAsociado.AsociadoInt = asociadoServicio.ConsultarAsociadoConTodo(new Asociado(1292));
+            facAsociado.MontoConsolidado = 500;
+            facAsociado.FormaPago = "Deposito";
+
+            bool exito1 = servicioPrueba.Eliminar(facAsociado, 123);
+
+            //bool exito = servicioPrueba.InsertarOModificar(facAsociado, 123);
+
+            IList<FacAsociadoIntConsolidadoCxPInt> lista = servicioPrueba.ConsultarTodos();*/
 
             //Console.ReadLine();
 

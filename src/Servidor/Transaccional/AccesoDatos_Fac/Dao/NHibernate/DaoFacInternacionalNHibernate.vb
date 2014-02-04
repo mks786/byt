@@ -90,6 +90,15 @@ Namespace Dao.NHibernate
                 variosFiltros = True
             End If
 
+            'Filtro nuevo para el campo ISEL
+            If (Not String.IsNullOrEmpty(FacInternacional.RevisionAprobada)) Then
+                If variosFiltros Then
+                    filtro += " and "
+                End If
+                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacInternacionalRevisionAprobada, FacInternacional.RevisionAprobada)
+                variosFiltros = True
+            End If
+
             'If (FacInternacional.Banco IsNot Nothing) AndAlso (Not FacInternacional.Banco.Id.Equals("")) Then
             '    If variosFiltros Then
             '        filtro += " and "

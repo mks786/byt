@@ -22,5 +22,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
         void Mensaje(string mensaje, int opcion);
 
         void ExportarListadoDePatentesPorVencer(DataTable datos);
+
+        void DeshabilitarBotonReportes();
     }
 }

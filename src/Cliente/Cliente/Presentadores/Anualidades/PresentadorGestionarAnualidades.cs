@@ -392,6 +392,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
         public void Modificar()
         {
             Mouse.OverrideCursor = Cursors.Wait;
+            bool exitoso = false;
+
             try
             {
                 #region trace
@@ -411,8 +413,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 {
                     Patente patente = CargarPatenteDeLaPantalla();
 
+                    if (this._ventana.Situacion != null)
+                    {
+                        if (this._ventana.BoletinPublicacion != null)
+                        {
+                            if (this._ventana.BoletinConcesion != null)
+                            {
+                                exitoso = this._anualidadServicios.InsertarOModificarAnualidad(patente, UsuarioLogeado.Hash); 
+                            }
+                            else
+                                this._ventana.Mensaje("Seleccione el Boletín de Consesión para la Anualidad", 0);
+                        }
+                        else
+                            this._ventana.Mensaje("Seleccione el Boletín de Publicación para la Anualidad", 0);
+                    }
+                    else
+                        this._ventana.Mensaje("Seleccione una Situación para la Anualidad", 0);
 
-                    bool exitoso = this._anualidadServicios.InsertarOModificarAnualidad(patente, UsuarioLogeado.Hash);
 
                     if ((exitoso) && (this._agregar == false))
                         //this.Navegar(Recursos.MensajesConElUsuario.AnualidadModificada, false);
@@ -420,6 +437,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                     else if ((exitoso) && (this._agregar == true))
                         //this.Navegar(Recursos.MensajesConElUsuario.AnualidadInsertada, false);
                         this._ventana.HabilitarCampos = false;
+
                 }
 
                 #region trace

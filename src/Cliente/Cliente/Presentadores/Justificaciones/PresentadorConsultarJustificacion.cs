@@ -10,6 +10,7 @@ using Trascend.Bolet.Cliente.Ventanas.Asociados;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using Trascend.Bolet.Cliente.Ventanas.Cartas;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
 {
@@ -18,6 +19,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
         private IConsultarJustificacion _ventana;
         private IConceptoServicios _conceptoServicios;
         private IAsociadoServicios _asociadoServicios;
+        private ICartaServicios _cartaServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -25,7 +27,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorConsultarJustificacion(IConsultarJustificacion ventana, object justificacion)
+        public PresentadorConsultarJustificacion(IConsultarJustificacion ventana, object justificacion, object ventanaPadre)
         {
             try
             {
@@ -35,11 +37,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
                 #endregion
 
                 this._ventana = ventana;
+                this._ventanaPadre = ventanaPadre;
+
                 this._ventana.Justificacion = justificacion;
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
                 this._conceptoServicios = (IConceptoServicios)Activator.GetObject(typeof(IConceptoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ConceptoServicios"]);
+                this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -319,5 +326,40 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
         //        logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
         //    #endregion
         //}
+
+        public void VerCarta()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Justificacion justicacionAux = (Justificacion)this._ventana.Justificacion;
+
+                if (justicacionAux.Carta != null)
+                {
+                    Carta cartaAux = new Carta();
+                    cartaAux.Id = justicacionAux.Carta.Id;
+                    IList<Carta> cartas = this._cartaServicios.ObtenerCartasFiltro(cartaAux);
+                    if (cartas.Count > 0)
+                    {
+                        this.Navegar(new ConsultarCarta(cartas[0],this._ventana));
+                    }
+                    
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
     }
 }

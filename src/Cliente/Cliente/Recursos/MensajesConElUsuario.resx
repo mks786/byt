@@ -1462,4 +1462,19 @@
   <data name="AlertaPatentesAVencer" xml:space="preserve">
     <value>Existen Patentes próximas a vencerse. Desea ver el listado?.</value>
   </data>
+  <data name="ConfirmarPagoConsolidadoCxPInt" xml:space="preserve">
+    <value>Desea registrar el pago correspondiente a las Facturas Internacionales consolidadas?</value>
+  </data>
+  <data name="ConfirmarSeleccionFacInternacional" xml:space="preserve">
+    <value>Desea autorizar las Facturas Internacionales seleccionadas?</value>
+  </data>
+  <data name="ConfirmarConsolidacionCxPInternacional" xml:space="preserve">
+    <value>Se procede a realizar Consolidacion de Facturas?</value>
+  </data>
+  <data name="ConfirmarGuardarDatosConsolidacion" xml:space="preserve">
+    <value>Desea guardar los datos de consolidación mostrados?</value>
+  </data>
+  <data name="ConfirmarHayDatosConsolidacionCxPInternacional" xml:space="preserve">
+    <value>Existen datos de consolidacion guardados, desea recuperarlos?</value>
+  </data>
 </root>

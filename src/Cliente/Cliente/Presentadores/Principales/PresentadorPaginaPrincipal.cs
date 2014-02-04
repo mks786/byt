@@ -16,7 +16,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         private IPaginaPrincipal _ventana;
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private IPatenteServicios _patenteServicios;
-        private int _diasVencimientoPrioridad = 90;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
+        //private int _diasVencimientoPrioridad = 90;
+        private int _diasVencimientoPrioridad;
+
+
 
         public PresentadorPaginaPrincipal(IPaginaPrincipal ventana)
         {
@@ -24,6 +28,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
 
             this._patenteServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
+            this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
         }
 
         /// <summary>
@@ -71,11 +77,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
 
         /// <summary>
         /// Metodo que verifica si existen patentes con fecha de presentacion por vencer
+        /// ESTE METODO CONTROLA EL MENSAJE QUE APARECE 3 SEGUNDOS DESPUES DE INICIAR EL SISTEMA PARA AVISAR DE LAS PATENTES POR VENCER
         /// </summary>
         public void MostarPatentesPorVencerFechaPresentacion()
         {
 
             String titulo = "Patentes por Vencerse";
+            int cantDiasRecordatorio, diasDiferencia;
+            int cantidadPatentes = 0;
 
             try
             {
@@ -84,21 +93,43 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                IList<ListaDatosValores> listaValores =
+                        this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiDiasRecordatorioPresentacionPrioridad));
+
+                cantDiasRecordatorio = int.Parse(listaValores[0].Valor);
+                
+                //IList<VencimientoPrioridadPatente> listaPatentesPorVencerPrioridad = 
+                //    this._patenteServicios.ObtenerPatentesPorVencerPrioridad(this._diasVencimientoPrioridad);
+
                 IList<VencimientoPrioridadPatente> listaPatentesPorVencerPrioridad = 
-                    this._patenteServicios.ObtenerPatentesPorVencerPrioridad(this._diasVencimientoPrioridad);
+                    this._patenteServicios.ObtenerPatentesPorVencerPrioridad(cantDiasRecordatorio);
 
                 if (listaPatentesPorVencerPrioridad.Count > 0)
                 {
-                    if (this._ventana.ConfirmarAccion(titulo, Recursos.MensajesConElUsuario.AlertaPatentesAVencer))
+                    #region CODIGO ORIGINAL COMENTADO
+                    //if (this._ventana.ConfirmarAccion(titulo, Recursos.MensajesConElUsuario.AlertaPatentesAVencer))
+                    //{
+                    //    ListaPatentesPrioridadVencidaStartUp patentes = new ListaPatentesPrioridadVencidaStartUp();
+                    //    patentes.ShowDialog();
+                    //}
+                    //else
+                    //    this._ventana.Mensaje(Recursos.MensajesConElUsuario.AlertaPatenteAVencerNo, 2); 
+                    #endregion
+                    foreach (VencimientoPrioridadPatente item in listaPatentesPorVencerPrioridad)
+                    {
+                        diasDiferencia = ObtenerDiasDiferencia(item.FechaVencimiento, item.FechaRecordatorio);
+                        if (item.VencimientoDias <= diasDiferencia)
+                            cantidadPatentes++;
+                    }
+
+                    if (cantidadPatentes > 0)
                     {
                         ListaPatentesPrioridadVencidaStartUp patentes = new ListaPatentesPrioridadVencidaStartUp();
                         patentes.ShowDialog();
                     }
-                    else
-                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.AlertaPatenteAVencerNo, 2);
+                    
                 }
-                else
-                    this._ventana.Mensaje("No hay patentes por vencer", 2);
+                
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -110,6 +141,73 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                 this._ventana.MensajeError = Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message ;
                 logger.Error(ex.Message);
             }
+        }
+
+        private int ObtenerDiasDiferencia(string fechaVencimiento, string fechaRecordatorio)
+        {
+            int diferenciaDias = 0;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                DateTime fechaVence = new DateTime();
+
+                fechaVence = DateTime.Parse(fechaVencimiento);
+                DateTime fechaRecuerda = DateTime.Parse(fechaRecordatorio);
+                TimeSpan ts = fechaVence - fechaRecuerda;
+                diferenciaDias = ts.Days;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return diferenciaDias;
+        }
+
+
+        /// <summary>
+        /// Metodo que determina si el usuario logueado cumple con el rol de PATENTES para que el mensaje y el listado de patentes por 
+        /// vencer aparezca
+        /// </summary>
+        /// <returns></returns>
+        public bool EsUSuarioPatente()
+        {
+            bool existe = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (UsuarioLogeado.Rol.Id.Equals("OPR_PATENTE"))
+                {
+                    existe = true;
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                this._ventana.MensajeError = Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message;
+                logger.Error(ex.Message);
+            }
+
+            return existe;
         }
     }
 }

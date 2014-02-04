@@ -137,7 +137,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             if (null != this._ventana.Boletin)
             {
                 StringLlleno += ((Boletin)this._ventana.Boletin).Id + "  ";
-                StringLlleno += ((Resolucion)this._ventana.Resolucion).Id + "  ";
+                if(null != this._ventana.Resolucion)
+                    StringLlleno += ((Resolucion)this._ventana.Resolucion).Id + "  ";
             }
             if (null != this._ventana.CantidadNumeral)
             {
@@ -784,27 +785,62 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// </summary>
         public void ActualizarResoluciones()
         {
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
-
-            if (((Boletin)this._ventana.Boletin).Id != int.MinValue)
+            try
             {
-                IList<Resolucion> resoluciones = this._boletinServicios.ConsultarResolucionesDeBoletin((Boletin)this._ventana.Boletin);
-                this._ventana.Resoluciones = resoluciones;
-                this._ventana.Resolucion = resoluciones[0];
-            }
-            else
-            {
-                this._ventana.Resoluciones = null;
-                this._ventana.Resolucion = null;
-            }
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
+                #region CODIGO ORIGINAL COMENTADO
+                //if (((Boletin)this._ventana.Boletin).Id != int.MinValue)
+                //{
+                //    IList<Resolucion> resoluciones = this._boletinServicios.ConsultarResolucionesDeBoletin((Boletin)this._ventana.Boletin);
+                //    this._ventana.Resoluciones = resoluciones;
+                //    this._ventana.Resolucion = resoluciones[0];
+                //}
+                //else
+                //{
+                //    this._ventana.Resoluciones = null;
+                //    this._ventana.Resolucion = null;
+                //} 
+                #endregion
+
+                if (((Boletin)this._ventana.Boletin).Id != int.MinValue)
+                {
+                    IList<Resolucion> resoluciones = 
+                        this._boletinServicios.ConsultarResolucionesDeBoletin((Boletin)this._ventana.Boletin);
+
+                    if (resoluciones.Count != 0)
+                    {
+                        this._ventana.Resoluciones = resoluciones;
+                        this._ventana.Resolucion = resoluciones[0];
+                    }
+
+                    else
+                    {
+                        this._ventana.Resoluciones = null;
+                        this._ventana.Resolucion = null;
+                    }
+
+                    GenerarString();
+                }
+                else
+                {
+                    this._ventana.Resoluciones = null;
+                    this._ventana.Resolucion = null;
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
         }
 
         #endregion

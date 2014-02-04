@@ -24,7 +24,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         private PresentadorListaPatentesPrioridadVencidaStartUp _presentador;
         private bool _cargada;
 
-        
+        /// <summary>
+        /// Constructor por defecto
+        /// </summary>
         public ListaPatentesPrioridadVencidaStartUp()
         {
             InitializeComponent();

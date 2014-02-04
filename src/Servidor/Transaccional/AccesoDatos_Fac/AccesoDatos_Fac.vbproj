@@ -94,6 +94,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contrato\IDaoCarpetaGestionAutomatica.vb" />
+    <Compile Include="Contrato\IDaoFacAsociadoIntConsolidadoCxPInt.vb" />
+    <Compile Include="Contrato\IDaoFacInternacionalConsolidada.vb" />
     <Compile Include="Contrato\IDaoFacTarifa.vb" />
     <Compile Include="Contrato\IDaoFacFacturaPendienteConGru.vb" />
     <Compile Include="Contrato\IDaoFacVistaFacturacionCxpInterna.vb" />
@@ -161,6 +163,8 @@
     <Compile Include="Contrato\IDaoViGestionAsociado.vb" />
     <Compile Include="Contrato\IFabricaDaoBaseFac.vb" />
     <Compile Include="Dao\NHibernate\DaoCarpetaGestionAutomaticaNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacAsociadoIntConsolidadoCxPIntNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoFacInternacionalConsolidadaNHibernate.vb" />
     <Compile Include="Dao\NHibernate\DaoFacTarifaNHibernate.vb" />
     <Compile Include="Dao\NHibernate\DaoFacFacturaPendienteConGruNHibernate.vb" />
     <Compile Include="Dao\NHibernate\DaoFacVistaFacturacionCxpInternaNHibernate.vb" />
@@ -464,6 +468,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Mapeado\FacInternacionalConsolidada.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mapeado\FacTarifa.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -482,6 +489,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mapeado\FacVistaFacturacionCxpInterna.hbm.xml" />
     <EmbeddedResource Include="Mapeado\CarpetaGestionAutomatica.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\FacAsociadoIntConsolidadoCxPInt.hbm.xml" />
     <Content Include="Mapeado\FacFacturaTotal.xml" />
     <EmbeddedResource Include="Mapeado\FacFacturaTotalZ.hbm.xml" />
   </ItemGroup>

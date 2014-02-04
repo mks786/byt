@@ -449,7 +449,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new ListaJustificaciones(this._ventana.Asociado));
+            //this.Navegar(new ListaJustificaciones(this._ventana.Asociado));
+            this.Navegar(new ListaJustificaciones(this._ventana.Asociado,this._ventana));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

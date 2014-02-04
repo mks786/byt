@@ -313,6 +313,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Consolidar.
+        /// </summary>
+        public static string btnConsolidar {
+            get {
+                return ResourceManager.GetString("btnConsolidar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Consultar.
         /// </summary>
         public static string btnConsultar {
@@ -1017,6 +1026,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Quitar Selección.
+        /// </summary>
+        public static string btnQuitarSeleccion {
+            get {
+                return ResourceManager.GetString("btnQuitarSeleccion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Regresar.
         /// </summary>
         public static string btnRegresar {
@@ -1076,6 +1094,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string btnSeleccionar {
             get {
                 return ResourceManager.GetString("btnSeleccionar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Seleccionar Todo.
+        /// </summary>
+        public static string btnSeleccionarTodo {
+            get {
+                return ResourceManager.GetString("btnSeleccionarTodo", resourceCulture);
             }
         }
         
@@ -1710,6 +1737,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a FAC_CXP_INT_FPAGO.
+        /// </summary>
+        public static string cbiFacFormasDePagoCxPInt {
+            get {
+                return ResourceManager.GetString("cbiFacFormasDePagoCxPInt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Jurídica.
         /// </summary>
         public static string cbiJuridica {
@@ -2093,6 +2129,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string cbiTomo {
             get {
                 return ResourceManager.GetString("cbiTomo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a FACCXPINT_CAMPOVISTA.
+        /// </summary>
+        public static string cbiVistaCxPInternacional {
+            get {
+                return ResourceManager.GetString("cbiVistaCxPInternacional", resourceCulture);
             }
         }
         
@@ -2787,6 +2832,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string fac_menuItemFacRecurso {
             get {
                 return ResourceManager.GetString("fac_menuItemFacRecurso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Seguimiento CxP Internacional.
+        /// </summary>
+        public static string fac_menuItemFacSeguimientoCxPInternacional {
+            get {
+                return ResourceManager.GetString("fac_menuItemFacSeguimientoCxPInternacional", resourceCulture);
             }
         }
         
@@ -6915,7 +6969,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Dias Venc. Prioridad:.
+        ///   Busca una cadena traducida similar a Venc. Prioridad:.
         /// </summary>
         public static string lblRecordatorioPatente {
             get {
@@ -7487,6 +7541,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblTipoDetallePrioridad {
             get {
                 return ResourceManager.GetString("lblTipoDetallePrioridad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tipo de Deuda:.
+        /// </summary>
+        public static string lblTipoDeuda {
+            get {
+                return ResourceManager.GetString("lblTipoDeuda", resourceCulture);
             }
         }
         
@@ -11541,6 +11604,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Consultar Seguimiento CxP Internacional.
+        /// </summary>
+        public static string titleConsultarSeguimientoCxPInternacional {
+            get {
+                return ResourceManager.GetString("titleConsultarSeguimientoCxPInternacional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Consultar Tipo de base.
         /// </summary>
         public static string titleConsultarTipoBase {
@@ -12500,6 +12572,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleListaResumenDatosSegCobranza {
             get {
                 return ResourceManager.GetString("titleListaResumenDatosSegCobranza", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Resumen de Datos - Seguimiento de CxP Internacional.
+        /// </summary>
+        public static string titleListaResumenDatosSegCxPInternacional {
+            get {
+                return ResourceManager.GetString("titleListaResumenDatosSegCxPInternacional", resourceCulture);
             }
         }
         

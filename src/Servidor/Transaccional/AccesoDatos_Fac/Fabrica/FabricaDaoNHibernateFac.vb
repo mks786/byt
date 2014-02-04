@@ -232,6 +232,14 @@ Namespace Fabrica
             Return New DaoFacInternacionalNHibernate()
         End Function
 
+        Public Overrides Function ObtenerDaoFacAsociadoIntConsolidadoCxPInt() As IDaoFacAsociadoIntConsolidadoCxPInt
+            Return New DaoFacAsociadoIntConsolidadoCxPIntNHibernate()
+        End Function
+
+        Public Overrides Function ObtenerDaoFacInternacionalConsolidada() As IDaoFacInternacionalConsolidada
+            Return New DaoFacInternacionalConsolidadaNHibernate()
+        End Function
+
         Public Overrides Function ObtenerDaoFacInternacionalAnulada() As IDaoFacInternacionalAnulada
             Return New DaoFacInternacionalAnuladaNHibernate()
         End Function

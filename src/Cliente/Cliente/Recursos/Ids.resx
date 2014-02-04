@@ -1167,4 +1167,7 @@
   <data name="PatentesVencPrioridad" xml:space="preserve">
     <value>PATENTES_RECORDAT</value>
   </data>
+  <data name="fac_SeguimientoCxPInternacional" xml:space="preserve">
+    <value>FAC_CXP_INT_VI</value>
+  </data>
 </root>

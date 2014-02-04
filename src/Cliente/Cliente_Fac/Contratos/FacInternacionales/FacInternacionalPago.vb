@@ -48,6 +48,8 @@ Namespace Contratos.FacInternacionales
 
         Property Bancos() As Object
 
+        Property BISel() As Boolean
+
         'Property B1() As Boolean
 
         'Property B2() As Boolean

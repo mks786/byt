@@ -1254,6 +1254,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.IrListaPatentesPorVencerPrioridad();
         }
 
+        private void _fac_menuItemFacSeguimientoCxPInternacional_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrSeguimientoCxPInternacional();
+        }
+
         
 
         

@@ -116,6 +116,12 @@
     <Compile Include="Contratos\Abandonos\IGestionarAbandono.cs" />
     <Compile Include="Contratos\Administracion\Gestiones Automaticas\IConsultarCorreosParaGestionAutomatica.cs" />
     <Compile Include="Contratos\Administracion\Gestiones Automaticas\IGestionarDetallesCorreoOutlook.cs" />
+    <Compile Include="Contratos\Administracion\SeguimientoCxPInternacional\IFacInternacionalAprobadas.cs" />
+    <Compile Include="Contratos\Administracion\SeguimientoCxPInternacional\IConsultarSeguimientoCxPInternacional.cs" />
+    <Compile Include="Contratos\Administracion\SeguimientoCxPInternacional\IFacInternacionalConsolidadas.cs" />
+    <Compile Include="Contratos\Administracion\SeguimientoCxPInternacional\IFacInternacionalPagadasConsolidadas.cs" />
+    <Compile Include="Contratos\Administracion\SeguimientoCxPInternacional\IListaDatosPivotSeguimientoCxPInternacional.cs" />
+    <Compile Include="Contratos\Administracion\SeguimientoCxPInternacional\IRegistroPagoConsolidadoCxPInternacional.cs" />
     <Compile Include="Contratos\Administracion\SeguimientoDeClientes\IConsultarSeguimientoDeClientes.cs" />
     <Compile Include="Contratos\Administracion\SeguimientoDeClientes\IListaDatosPivotSeguimientoClientes.cs" />
     <Compile Include="Contratos\Administracion\SeguimientoDeCobranzas\IConsultarSeguimientoDeCobranzas.cs" />
@@ -578,6 +584,12 @@
     <Compile Include="Presentadores\Abandonos\PresentadorGestionarAbandono.cs" />
     <Compile Include="Presentadores\Administracion\Gestiones Automaticas\PresentadorConsultarCorreosParaGestionAutomatica.cs" />
     <Compile Include="Presentadores\Administracion\Gestiones Automaticas\PresentadorGestionarDetallesCorreoOutlook.cs" />
+    <Compile Include="Presentadores\Administracion\SeguimientoCxPInternacional\PresentadorConsultarSeguimientoCxPInternacional.cs" />
+    <Compile Include="Presentadores\Administracion\SeguimientoCxPInternacional\PresentadorFacInternacionalAprobadas.cs" />
+    <Compile Include="Presentadores\Administracion\SeguimientoCxPInternacional\PresentadorFacInternacionalConsolidadas.cs" />
+    <Compile Include="Presentadores\Administracion\SeguimientoCxPInternacional\PresentadorFacInternacionalPagadasConsolidadas.cs" />
+    <Compile Include="Presentadores\Administracion\SeguimientoCxPInternacional\PresentadorListaDatosPivotSeguimientoCxPInternacional.cs" />
+    <Compile Include="Presentadores\Administracion\SeguimientoCxPInternacional\PresentadorRegistroPagoConsolidadoCxPInternacional.cs" />
     <Compile Include="Presentadores\Administracion\SeguimientoDeClientes\PresentadorConsultarSeguimientoDeClientes.cs" />
     <Compile Include="Presentadores\Administracion\SeguimientoDeClientes\PresentadorListaDatosPivotSeguimientoClientes.cs" />
     <Compile Include="Presentadores\Administracion\SeguimientoDeCobranzas\PresentadorConsultarSeguimientoDeCobranzas.cs" />
@@ -1032,6 +1044,24 @@
     </Compile>
     <Compile Include="Ventanas\Administracion\Gestiones Automaticas\GestionarDetallesCorreoOutlook.xaml.cs">
       <DependentUpon>GestionarDetallesCorreoOutlook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Administracion\SeguimientoCxPInternacional\ConsultarSeguimientoCxPInternacional.xaml.cs">
+      <DependentUpon>ConsultarSeguimientoCxPInternacional.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Administracion\SeguimientoCxPInternacional\FacInternacionalAprobadas.xaml.cs">
+      <DependentUpon>FacInternacionalAprobadas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Administracion\SeguimientoCxPInternacional\FacInternacionalConsolidadas.xaml.cs">
+      <DependentUpon>FacInternacionalConsolidadas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Administracion\SeguimientoCxPInternacional\FacInternacionalPagadasConsolidadas.xaml.cs">
+      <DependentUpon>FacInternacionalPagadasConsolidadas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Administracion\SeguimientoCxPInternacional\ListaDatosPivotSeguimientoCxPInternacional.xaml.cs">
+      <DependentUpon>ListaDatosPivotSeguimientoCxPInternacional.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Administracion\SeguimientoCxPInternacional\RegistroPagoConsolidadoCxPInternacional.xaml.cs">
+      <DependentUpon>RegistroPagoConsolidadoCxPInternacional.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Administracion\SeguimientoDeClientes\ConsultarSeguimientoDeClientes.xaml.cs">
       <DependentUpon>ConsultarSeguimientoDeClientes.xaml</DependentUpon>
@@ -1798,6 +1828,30 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\Administracion\Gestiones Automaticas\GestionarDetallesCorreoOutlook.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Administracion\SeguimientoCxPInternacional\ConsultarSeguimientoCxPInternacional.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Administracion\SeguimientoCxPInternacional\FacInternacionalAprobadas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Administracion\SeguimientoCxPInternacional\FacInternacionalConsolidadas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Administracion\SeguimientoCxPInternacional\FacInternacionalPagadasConsolidadas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Administracion\SeguimientoCxPInternacional\ListaDatosPivotSeguimientoCxPInternacional.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Administracion\SeguimientoCxPInternacional\RegistroPagoConsolidadoCxPInternacional.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

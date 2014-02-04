@@ -1334,6 +1334,15 @@ Namespace Recursos
         End Property
         
         '''<summary>
+        '''  Busca una cadena traducida similar a fi.RevisionAprobada = &apos;{0}&apos;.
+        '''</summary>
+        Public Shared ReadOnly Property FiltroObtenerFacInternacionalRevisionAprobada() As String
+            Get
+                Return ResourceManager.GetString("FiltroObtenerFacInternacionalRevisionAprobada", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Busca una cadena traducida similar a oa.CodigoOperacion = {0}.
         '''</summary>
         Public Shared ReadOnly Property FiltroObtenerFacOperacionAnuladaCodigoOperacion() As String

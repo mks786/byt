@@ -206,10 +206,13 @@
             </ListView>
         </GroupBox>
 
-        <GroupBox Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
+        <GroupBox Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}" BorderThickness="0">
             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom">
                 <Button Name="_btnSeleccionar" Width="130">
                     <TextBlock Text="Seleccionar Todos"/>
+                </Button>
+                <Button Name="_btnCalcularMonto" Width="130" Click="_btnCalcularMonto_Click">
+                    <TextBlock Text="Recalcular Monto"/>
                 </Button>
             </StackPanel>
         </GroupBox>

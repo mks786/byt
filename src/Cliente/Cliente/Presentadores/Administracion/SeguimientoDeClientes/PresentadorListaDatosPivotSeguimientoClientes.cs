@@ -868,7 +868,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoDeClien
             {
                 idAsociado = int.Parse(datos);
                 asociado = this._asociadoServicios.ConsultarAsociadoConTodo(new Asociado(idAsociado));
-                this.Navegar(new ConsultarFacGestionesAsociado(asociado));
+                this.Navegar(new ConsultarFacGestionesAsociado(asociado,this._ventana));
 
             }
             catch (Exception ex)

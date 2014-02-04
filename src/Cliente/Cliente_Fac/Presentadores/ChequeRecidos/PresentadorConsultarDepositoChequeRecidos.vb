@@ -76,12 +76,14 @@ Namespace Presentadores.ChequeRecidos
                 Me._ChequeRecidos = Me._ChequeRecidoServicios.ObtenerChequeRecidosFiltro(ChequeRecidoAuxiliar)
                 ChequeRecidoselect = convertir_ChequeRecidoSelec(Me._ChequeRecidos)
 
+
+
                 Me._ventana.Count = ChequeRecidoselect.Count
                 Me._ventana.Resultados = ChequeRecidoselect
                 Dim chequevacio As New ChequeRecido
                 chequevacio.FechaDeposito = Date.Now
                 Me._ventana.ChequeRecidoFiltrar = chequevacio
-
+                seleccionar(True)
 
                 'Dim asociados As IList(Of Asociado) = Me._asociadosServicios.ConsultarTodos()
                 'Dim primeraasociado As New Asociado()
@@ -332,6 +334,47 @@ Namespace Presentadores.ChequeRecidos
 
             Return ChequeRecido2
         End Function
+
+        ''' Metodo para recalcular el monto a depositar segun lo marcado 
+        Public Sub RecalcularMonto()
+            Try
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+
+                Me._ventana.Mensaje("Se procederá a Recalcular el monto de los Depósitos", 2)
+
+                Dim ChequeRecidoSelec As New List(Of ChequeRecidoSelec)
+                Dim sumatoria As Double
+                Dim seleccion As Integer
+                sumatoria = 0
+                seleccion = 0
+                ChequeRecidoSelec = DirectCast(_ventana.Resultados, List(Of ChequeRecidoSelec))
+
+                For Each item As ChequeRecidoSelec In ChequeRecidoSelec
+
+                    If (item.Seleccion) Then
+                        sumatoria += item.Monto
+                        seleccion = seleccion + 1
+                    End If
+                Next
+
+                Me._ventana.NReg = seleccion.ToString()
+                Me._ventana.Tmonto = sumatoria.ToString()
+
+                'Me._ventana.Mensaje("Depositos marcados: " + Me._ventana.NReg, 2)
+
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
+
+            End Try
+
+        End Sub
 
     End Class
 

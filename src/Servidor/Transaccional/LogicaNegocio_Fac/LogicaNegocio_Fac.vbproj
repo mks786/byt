@@ -82,6 +82,7 @@
     <Compile Include="Controladores\ControladorDocumentosPatente.vb" />
     <Compile Include="Controladores\ControladorDocumentosTraduccion.vb" />
     <Compile Include="Controladores\ControladorEtiqueta.vb" />
+    <Compile Include="Controladores\ControladorFacAsociadoIntConsolidadoCxPInt.vb" />
     <Compile Include="Controladores\ControladorFacBanco.vb" />
     <Compile Include="Controladores\ControladorFacCobro.vb" />
     <Compile Include="Controladores\ControladorFacCobroFactura.vb" />
@@ -94,6 +95,7 @@
     <Compile Include="Controladores\ControladorFacFacturaTotal.vb" />
     <Compile Include="Controladores\ControladorFacFacturaTotalZ.vb" />
     <Compile Include="Controladores\ControladorFacForma.vb" />
+    <Compile Include="Controladores\ControladorFacInternacionalConsolidada.vb" />
     <Compile Include="Controladores\ControladorFacJustificacion.vb" />
     <Compile Include="Controladores\ControladorFacOperacion.vb" />
     <Compile Include="Controladores\ControladorFacOperacionAnulada.vb" />

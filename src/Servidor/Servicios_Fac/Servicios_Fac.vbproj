@@ -75,6 +75,8 @@
       <DependentUpon>MensajesAlServidor.resx</DependentUpon>
     </Compile>
     <Compile Include="Implementacion\CarpetaGestionAutomaticaServicios.vb" />
+    <Compile Include="Implementacion\FacAsociadoIntConsolidadoCxPIntServicios.vb" />
+    <Compile Include="Implementacion\FacInternacionalConsolidadaServicios.vb" />
     <Compile Include="Implementacion\FacTarifaServicios.vb" />
     <Compile Include="Implementacion\FacFacturaPendienteConGruServicios.vb" />
     <Compile Include="Implementacion\FacVistaFacturacionCxpInternaServicios.vb" />

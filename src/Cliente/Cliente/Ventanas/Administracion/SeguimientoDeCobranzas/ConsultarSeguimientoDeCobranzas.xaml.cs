@@ -115,6 +115,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeCobranzas
             set { this._txtAnioActualSegCobranza.Text = value; }
         }
 
+        public String Mes
+        {
+            get { return this._txtMesActualSegCobranza.Text; }
+            set { this._txtMesActualSegCobranza.Text = value; }
+        }
+
         #endregion
 
 

@@ -712,7 +712,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                 string directorioMemoria = ConfigurationManager.AppSettings["RutaMemoriaPatente"];
                 string nombrePatronArchivo = ConfigurationManager.AppSettings["NombreMemoriaPatente"] + this._patente.Id.ToString();
-                string[] archivos = Directory.GetFiles(directorioMemoria, nombrePatronArchivo + ".*");
+                //string[] archivos = Directory.GetFiles(directorioMemoria, nombrePatronArchivo + ".*");
+                string[] archivos = Directory.GetFiles(directorioMemoria, nombrePatronArchivo+"?.*");
 
                 if (archivos.Length > 0)
                     existe = true;

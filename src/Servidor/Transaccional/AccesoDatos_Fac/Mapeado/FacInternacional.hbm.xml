@@ -18,6 +18,7 @@
     <many-to-one  name="Banco" column="CBANCO" class="FacBanco" lazy="false"/>
     <!--<many-to-one name="Factura" column="CFACTURA" class="FacFactura"/>-->
     <property name="Factura" column="CFACTURA" type="int"/>
-    <property name="FechaRecepcion" column="FRECEPCION" type="DateTime"/>   
+    <property name="FechaRecepcion" column="FRECEPCION" type="DateTime"/>
+    <property name="RevisionAprobada" column="ISEL" type="String"/>
   </class>
 </hibernate-mapping>

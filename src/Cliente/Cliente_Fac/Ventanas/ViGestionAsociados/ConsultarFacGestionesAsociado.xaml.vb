@@ -105,6 +105,15 @@ Namespace Ventanas.ViGestionAsociados
             Me._presentador = New PresentadorConsultarFacGestionesAsociado(Me, Asociado)
         End Sub
 
+        ' Constuctor predeterminado que carga una ventanaPadre
+        Public Sub New(ByVal Asociado As Object, ByVal ventanaPadre As Object)
+            InitializeComponent()
+            Me._cargada = False
+
+            Me._presentador = New PresentadorConsultarFacGestionesAsociado(Me, Asociado, ventanaPadre)
+        End Sub
+
+
         Private Sub Page_Loaded(ByVal sender As Object, ByVal e As RoutedEventArgs)
             If Not EstaCargada Then
                 Me._presentador.CargarPagina()
@@ -124,7 +133,8 @@ Namespace Ventanas.ViGestionAsociados
         End Sub
 
         Private Sub _btnRegresar_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
-            Me._presentador.Regresar()
+            'Me._presentador.Regresar()
+            Me._presentador.RegresarVentanaPadre()
         End Sub
 
         'Private Sub _btnConsultar_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)

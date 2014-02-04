@@ -577,6 +577,7 @@
                         <MenuItem Name="_fac_menuItemFacGestionAutomatica" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItem_FacGestionAutomatica}" Click="_fac_menuItemFacGestionAutomatica_Click"/>
                         <MenuItem Name="_fac_menuItemFacSeguimientoDeClientes" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemFacSeguimientoDeClientes}" Click="_fac_menuItemFacSeguimientoDeClientes_Click"/> 
                         <MenuItem Name="_fac_menuItemFacSeguimientoDeCobranzas" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemFacSeguimientoDeCobranzas}" Click="_fac_menuItemFacSeguimientoDeCobranzas_Click"/>
+                        <MenuItem Name="_fac_menuItemFacSeguimientoCxPInternacional" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.fac_menuItemFacSeguimientoCxPInternacional}" Click="_fac_menuItemFacSeguimientoCxPInternacional_Click"/>
                         
                     </MenuItem>
 
