@@ -44,11 +44,28 @@ namespace Trascend.Bolet.Cliente.Ventanas.DatosTransferencias
             this._presentador = new PresentadorAgregarDatosTransferencia(this, asociado);
         }
 
+        public AgregarDatosTransferencia(object asociado, object ventanaPadre)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorAgregarDatosTransferencia(this, asociado,ventanaPadre,null);
+        }
+
+
+        public AgregarDatosTransferencia(object asociado, object ventanaPadre, object ventanaConsultarAsociado)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorAgregarDatosTransferencia(this, asociado, ventanaPadre, ventanaConsultarAsociado);
+        }
+
+
+
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            if (true)
-                this._presentador.Regresar();
-            else
+            //if (true)
+            //    this._presentador.Regresar();
+            //else
                 this._presentador.Cancelar();
         }
 

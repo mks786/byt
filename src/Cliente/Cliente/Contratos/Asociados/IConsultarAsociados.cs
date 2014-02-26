@@ -68,5 +68,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
         void Mensaje(string mensaje, int opcion);
 
         string EmailAsociado { get; set; }
+
+        object Conceptos { get; set; }
+
+        object Concepto { get; set; }
     }
 }

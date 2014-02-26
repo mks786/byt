@@ -101,6 +101,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.Gestiones_Automati
             CargarConceptosGestion();
             CargarUsuarioLogueado();
             CargarCarpetasOutlookDeUsuario();
+            CargarComboUsuarios();
 
             this._ventana.FocoPredeterminado();
 
@@ -110,6 +111,32 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.Gestiones_Automati
             #endregion
 
 
+        }
+
+        private void CargarComboUsuarios()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                IList<Usuario> _usuarios = this._usuarioServicios.ConsultarTodos();
+                IList<Usuario> _usuariosDepurados = this.FiltrarUsuariosRepetidos(_usuarios);
+                this._ventana.Usuarios = _usuariosDepurados;
+                this._ventana.Usuario = this.BuscarUsuarioPorIniciales(_usuariosDepurados, UsuarioLogeado);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (System.Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
         }
 
         public void ActualizarTitulo()
@@ -482,7 +509,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.Gestiones_Automati
                             gestionNueva.ConceptoGestion = (this._ventana.Concepto != null) ? ((ConceptoGestion)this._ventana.Concepto).Id : null;
                             gestionNueva.FechaGestion = DateTime.Today;
                             gestionNueva.FechaIngreso = DateTime.Today;
-                            gestionNueva.Inicial = UsuarioLogeado.Iniciales;
+                            //gestionNueva.Inicial = UsuarioLogeado.Iniciales;
+                            gestionNueva.Inicial = ((Usuario)this._ventana.Usuario).Iniciales;
                             gestionNueva.Observacion = this._ventana.DetalleGestion;
                             gestionNueva.Operacion = "CREATE";
 

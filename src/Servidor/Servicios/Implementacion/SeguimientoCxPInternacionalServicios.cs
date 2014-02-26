@@ -421,6 +421,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
                         CabeceraQuery += " CASOCIADO_O IN (" + _asociadosStr + ")";
                         //variosFiltros = true;
                     }
+                    else if (filtro.TipoDeuda.Equals("VENCIDO"))
+                    {
+                        CabeceraQuery += " (VENCIDA = 'SI') ";
+                    }
+                    else if (filtro.TipoDeuda.Equals("PORVENCER"))
+                    {
+                        CabeceraQuery += " (VENCIDA = 'NO') ";
+                    }
 
                     else //ESTA OPCION CUANDO NO HAY NADA SELECCIONADO NI UN RANGO SUPERIOR
                     {
@@ -432,12 +440,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
                     
                     aux.Append(CabeceraQuery);
 
-                    //if(filtro.EjeX.Equals("ANOFAC") && filtro.RangoSuperior != 0)
-                    //{
-                    //    cadenaAux += " AND (ANOFAC IS NOT NULL) ";
-                    //    aux.Append(cadenaAux);
-                    //}
-
+                    
                     cadenaAux = " ORDER BY CASOCIADO_O DESC";
                     aux.Append(cadenaAux);
                     queryStr = aux.ToString();

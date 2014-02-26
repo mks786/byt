@@ -5,8 +5,8 @@
 
   <class name="DatosTransferencia" table="FAC_ASO_TRANF">
     <composite-id>
-      <key-property name="Id" column="`NSECUEN`" />
-      <key-many-to-one name="Asociado" column="CASOCIADO" class="Asociado"/>
+      <key-property name="Id" column="NSECUEN" />
+      <key-many-to-one name="Asociado" column="CASOCIADO" class="Asociado" lazy="false"/>
     </composite-id>
 
     <property name="Aba" type="String" column="`ABA`"/>

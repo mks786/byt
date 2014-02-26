@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using Trascend.Bolet.Cliente.Ventanas.Asociados;
 using System.Text.RegularExpressions;
 using Trascend.Bolet.ControlesByT.Ventanas;
-
+using Trascend.Bolet.Cliente.Ventanas.Cartas;
 using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacReportes;
 using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacAsociadoMarcaPatentes;
 
@@ -31,6 +31,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         private ITipoClienteServicios _tipoClienteServicios;
         private IPaisServicios _paisServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
+        private ICartaServicios _cartaServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -70,6 +71,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
                 this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
+                this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -150,6 +153,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 origenPorDefecto.Valor = "BOLET";
                 this._ventana.OrigenCliente = this.BuscarListaDeDatosValores(origenDeClientes, origenPorDefecto);
 
+                this._ventana.CartaDomicilioDatos = String.Empty;
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -210,6 +215,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     asociado.Etiqueta = !((Etiqueta)this._ventana.Etiqueta).Id.Equals("NGN") ? (Etiqueta)this._ventana.Etiqueta : null;
                     asociado.DetallePago = !((DetallePago)this._ventana.DetallePago).Id.Equals("NGN") ? (DetallePago)this._ventana.DetallePago : null;
                     asociado.OrigenCliente = this._ventana.OrigenCliente != null ? ((ListaDatosValores)this._ventana.OrigenCliente).Valor : null;
+                    if (!String.IsNullOrEmpty(this._ventana.CartaDomicilioDatos))
+                    {
+                        asociado.CartaDomicilio = Int32.Parse(this._ventana.CartaDomicilioDatos);
+                    }
 
                     int? exitoso = this._asociadoServicios.InsertarOModificarAsociado(asociado, UsuarioLogeado.Hash);
 
@@ -361,5 +370,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             }
 
         }
+
+
+        public void ConsultarCorrespondenciaDeDomicilio()
+        {
+            if (!string.IsNullOrEmpty(this._ventana.CartaDomicilioDatos))
+            {
+                Carta correspondencia = new Carta();
+                correspondencia.Id = Int32.Parse(this._ventana.CartaDomicilioDatos);
+                IList<Carta> listaCorrespondencias = this._cartaServicios.ObtenerCartasFiltro(correspondencia);
+                if (listaCorrespondencias.Count > 0)
+                {
+                    Navegar(new ConsultarCarta(listaCorrespondencias[0], this._ventana));
+                }
+                else
+                    this._ventana.Mensaje("La Correspondencia de Domicilio no existe");
+            }
+        }
+
     }
 }

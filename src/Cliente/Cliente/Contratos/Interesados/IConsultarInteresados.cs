@@ -41,6 +41,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Interesados
 
         object OrigenCliente { get; set; }
 
+        object Idiomas { get; set; }
+
+        object Idioma { get; set; }
+
         void Mensaje(string mensaje, int opcion);
     }
 }

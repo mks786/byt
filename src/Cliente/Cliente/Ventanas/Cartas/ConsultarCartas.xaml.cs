@@ -536,5 +536,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             this._presentador.ElegirCarta(cartaAElegir, listaCartas);
         }
 
+        private void _btnEliminarCartas_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBoxResult.Yes == System.Windows.MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmarEliminarCartasSeleccionadas),
+                            "Eliminar Cartas", MessageBoxButton.YesNo, MessageBoxImage.Question))
+            {
+                this._presentador.IrEliminarCartasSeleccionadas(); 
+            }
+            
+        }
+
+        public void HabilitarBotonEliminarCartas()
+        {
+            
+            this._btnEliminarCartas.Visibility = System.Windows.Visibility.Visible;
+        }
+
     }
 }

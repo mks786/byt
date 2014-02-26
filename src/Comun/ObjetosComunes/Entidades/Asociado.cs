@@ -50,6 +50,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         //nuevo mapeo para conectividad
         private IList<Conectividad> _conectividades;
         private string _origenCliente;
+        private int _cartaDomicilio;
 
         //Facturacion
         private string _valorquery;
@@ -597,8 +598,12 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _origenCliente = value; }
         }
 
-        
-        
+
+        public virtual int CartaDomicilio
+        {
+            get { return _cartaDomicilio; }
+            set { _cartaDomicilio = value; }
+        }
 
 
         #endregion

@@ -773,6 +773,11 @@
                             <TextBlock Name="_txbCarpeta" Text="{x:Static recurso:Etiquetas.btnCarpeta}"/>
                         </Button>
 
+                        <Button Name="_btnVerPlanilla" Grid.Row="0" Grid.Column="6" VerticalAlignment="Bottom" Height="25" Width="90" 
+                                Click="_btnVerPlanilla_Click">
+                            <TextBlock Name="_txbVerPlanilla" Text="{x:Static recurso:Etiquetas.btnVerPlanilla}"/>
+                        </Button>
+
                     </Grid>
                 </WrapPanel>
 

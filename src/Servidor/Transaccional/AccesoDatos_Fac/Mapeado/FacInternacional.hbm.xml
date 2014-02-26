@@ -20,5 +20,6 @@
     <property name="Factura" column="CFACTURA" type="int"/>
     <property name="FechaRecepcion" column="FRECEPCION" type="DateTime"/>
     <property name="RevisionAprobada" column="ISEL" type="String"/>
+    <property name="SustituirProforma" column="ISUS" type="String"/>
   </class>
 </hibernate-mapping>

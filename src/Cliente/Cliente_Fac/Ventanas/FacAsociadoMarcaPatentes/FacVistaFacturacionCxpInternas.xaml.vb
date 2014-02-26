@@ -7,6 +7,8 @@ Imports Diginsoft.Bolet.Cliente.Fac.Presentadores.FacAsociadoMarcaPatentes
 Imports Diginsoft.Bolet.Cliente.Fac.Contratos
 Imports Trascend.Bolet.Cliente.Ayuda
 Imports Trascend.Bolet.ControlesByT
+Imports System.Data
+
 Namespace Ventanas.FacAsociadoMarcaPatentes
     ''' <summary>
     ''' Interaction logic for ConsultarObjetos.xaml
@@ -125,5 +127,83 @@ Namespace Ventanas.FacAsociadoMarcaPatentes
         Private Sub _lstResultados_MouseDoubleClick(sender As System.Object, e As System.Windows.Input.MouseButtonEventArgs)
             Me._presentador.IrConsultarPagoInternacional()
         End Sub
+
+        Private Sub _btnExportar_Click(sender As System.Object, e As System.Windows.RoutedEventArgs)
+            Me._presentador.ExportarFacturasExcel()
+        End Sub
+
+        Public Sub Mensaje(ByVal mensaje__1 As String, ByVal tipoMensaje As Integer) Implements Contratos.FacAsociadoMarcaPatentes.IConsultarFacVistaFacturacionCxpInternas.Mensaje
+
+            If (tipoMensaje = 0) Then
+                MessageBox.Show(mensaje__1, "Error", MessageBoxButton.OK, MessageBoxImage.[Error])
+            ElseIf (tipoMensaje = 1) Then
+                MessageBox.Show(mensaje__1, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning)
+            ElseIf (tipoMensaje = 2) Then
+                MessageBox.Show(mensaje__1, "Información", MessageBoxButton.OK, MessageBoxImage.Information)
+            End If
+
+        End Sub
+
+
+        Public Sub ExportarListView(ByVal datos As DataTable) Implements Contratos.FacAsociadoMarcaPatentes.IConsultarFacVistaFacturacionCxpInternas.ExportarListView
+
+            Dim tablaDatos As New DataTable()
+            tablaDatos = datos
+            Try
+
+                Dim archivo As New Microsoft.Win32.SaveFileDialog()
+                archivo.Filter = "Excel (*.xls)|*.xls"
+                archivo.DefaultExt = ".xls"
+
+
+                If archivo.ShowDialog() = True Then
+
+                    Dim xlObject As Microsoft.Office.Interop.Excel.Application = Nothing
+                    Dim xlWB As Microsoft.Office.Interop.Excel.Workbook = Nothing
+                    Dim xlSh As Microsoft.Office.Interop.Excel.Worksheet = Nothing
+                    Dim rg As Microsoft.Office.Interop.Excel.Range = Nothing
+                    xlObject = New Microsoft.Office.Interop.Excel.Application()
+                    xlObject.AlertBeforeOverwriting = False
+                    xlObject.DisplayAlerts = False
+                    xlWB = xlObject.Workbooks.Add(Type.Missing)
+                    xlSh = DirectCast(xlObject.ActiveWorkbook.ActiveSheet, Microsoft.Office.Interop.Excel.Worksheet)
+
+                    xlObject.Range("A1", "Z1").Merge()
+                    xlObject.Range("A1", "Z1").Value = Me._presentador.ObtenerTituloReporte()
+                    xlObject.Range("A1", "Z1").Font.Bold = True
+                    xlObject.Range("A1", "Z1").Font.Size = 12
+
+                    For i As Integer = 0 To tablaDatos.Columns.Count - 1
+                        xlSh.Range("A3").Offset(0, i).Value = tablaDatos.Columns(i).ColumnName
+                        xlSh.Range("A3").Offset(0, i).HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter
+                        xlSh.Range("A3").Offset(0, i).VerticalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter
+                        xlSh.Range("A3").Offset(0, i).Font.Bold = True
+                        xlSh.Range("A3").Offset(0, i).Font.ColorIndex = 2
+                        xlSh.Range("A3").Offset(0, i).Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous
+                        xlSh.Range("A3").Offset(0, i).Cells.Interior.ColorIndex = 10
+                    Next
+
+                    For Idx As Integer = 0 To tablaDatos.Rows.Count - 1
+                        xlSh.Range("A4").Offset(Idx).Resize(1, tablaDatos.Columns.Count).Value = tablaDatos.Rows(Idx).ItemArray
+                        'worksheet.Range["A4"].Offset[Idx].Resize[1, tablaDatos.Columns.Count].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                        xlSh.Range("A4").Offset(Idx).Resize(1, tablaDatos.Columns.Count).HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignGeneral
+
+                        xlSh.Range("A4").Offset(Idx).Resize(1, tablaDatos.Columns.Count).Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous
+                    Next
+
+
+                    xlObject.Columns.AutoFit()
+
+                    xlWB.SaveAs(archivo.FileName, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal)
+                    xlObject.Visible = True
+
+                End If
+
+            Catch ex As Exception
+                Throw
+            End Try
+        End Sub
+
+
     End Class
 End Namespace

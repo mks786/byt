@@ -25,6 +25,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
         private IPoderServicios _poderServicios;
         private IListaDatosDominioServicios _listaDatosDominioServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
+        private IIdiomaServicios _idiomaServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -58,6 +59,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
                 this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
+                this._idiomaServicios = (IIdiomaServicios)Activator.GetObject(typeof(IIdiomaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["IdiomaServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -118,6 +121,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                     this._ventana.OrigenCliente = this.BuscarListaDeDatosValores(origenesClientes, origenAux);
                 }
 
+                IList<Idioma> idiomas = this._idiomaServicios.ConsultarTodos();
+                Idioma primerIdioma = new Idioma();
+                primerIdioma.Id = "NGN";
+                idiomas.Insert(0,primerIdioma);
+                this._ventana.Idiomas = idiomas;
+                if (interesado.Idioma != null)
+                {
+                    this._ventana.Idioma = this.BuscarIdioma(idiomas, interesado.Idioma);
+                }
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -174,6 +187,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                     interesado.Operacion = "MODIFY";
                     interesado.TipoPersona = ((ListaDatosDominio)this._ventana.TipoPersona).Id[0];
                     interesado.OrigenCliente = ((ListaDatosValores)this._ventana.OrigenCliente).Valor;
+
+                    if (this._ventana.Idioma != null)
+                    {
+                        if (!((Idioma)this._ventana.Idioma).Id.Equals("NGN"))
+                        {
+                            interesado.Idioma = (Idioma)this._ventana.Idioma;
+                        }
+                        else
+                            interesado.Idioma = null;
+                    }
 
                     //if ((interesado.Estado != null) && (!interesado.Estado.Equals("")))
                     //{

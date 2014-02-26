@@ -32,7 +32,7 @@
             </Grid.RowDefinitions>
 
             <ScrollViewer HorizontalScrollBarVisibility="Auto" Margin="-4,39,4,1" Grid.RowSpan="2" Grid.ColumnSpan="1">
-                <GroupBox Grid.Column="0" Grid.Row="0" Height="290" VerticalAlignment="Top">
+                <GroupBox Grid.Column="0" Grid.Row="0" Height="290" VerticalAlignment="Top" BorderThickness="0">
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Width="Auto">
 
                         <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,5,0,0">
@@ -454,7 +454,7 @@
 
         </Grid>
 
-        <GroupBox Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
+        <GroupBox Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}" BorderThickness="0">
             <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" 
                        Orientation="Horizontal">
                 <Button Name="_btnConsolidarPago" VerticalAlignment="Bottom" Height="25" Width="110" Click="_btnConsolidarPago_Click">

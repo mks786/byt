@@ -403,6 +403,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         }
 
 
+
+
+
         /// <summary>
         /// Constructor para la consulta desde operaciones
         /// </summary>
@@ -999,6 +1002,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         private void _cbxTipoR_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             this._cbxTipoR.SelectedIndex = _cbxTipoR.SelectedIndex;
+        }
+
+        private void _btnNuevaRenovacion_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.NuevaRenovacionMarca();
+        }
+
+        public void MostrarBotonNuevaRenovacion()
+        {
+            this._btnNuevaRenovacion.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        public void HabilitarBotonNuevaRenovacion()
+        {
+            this._btnNuevaRenovacion.IsEnabled = true;
         }
 
     }

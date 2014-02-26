@@ -43,6 +43,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Interesados
                 this._txtEstado.IsEnabled = value;
                 this._cbxPais.IsEnabled = value;
                 this._cbxNacionalidad.IsEnabled = value;
+                this._cbxIdioma.IsEnabled = value;
                 this._cbxCorporacion.IsEnabled = value;
                 this._cbxOrigenCliente.IsEnabled = value;
                 this._txtRegMercantil.IsEnabled = value;
@@ -131,6 +132,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Interesados
         {
             get { return this._cbxOrigenCliente.SelectedItem; }
             set { this._cbxOrigenCliente.SelectedItem = value; }
+        }
+
+        public object Idiomas
+        {
+            get { return this._cbxIdioma.DataContext; }
+            set { this._cbxIdioma.DataContext = value; }
+        }
+
+        public object Idioma
+        {
+            get { return this._cbxIdioma.SelectedItem; }
+            set { this._cbxIdioma.SelectedItem = value; }
         }
 
         #endregion

@@ -30,59 +30,18 @@ namespace Trascend.Bolet.Servidor
 
             #region Codigo de Prueba NO BORRAR 
             
-            /*CartaOut filtro = new CartaOut();
-            filtro.Status = 'T';
-            CartaOutServicios servicioPrueba = new CartaOutServicios();
-            //IList<CartaOut> lista = servicioPrueba.ObtenerCartasOutsFiltro(filtro);
-            IList<CartaOut> lista = servicioPrueba.ObtenerCartasOutsFiltroAdo(filtro);*/
+            /*InteresadoServicios servicioPrueba = new InteresadoServicios();
+            IdiomaServicios idiomaServicios = new IdiomaServicios();
+            Interesado interesado = new Interesado();
+            Idioma idioma;
+            
+            //Interesado interesadoConTodo = servicioPrueba.ConsultarInteresadoConTodo(interesado);
+            IList<Idioma> idiomas = idiomaServicios.ConsultarTodos();
+            idioma = idiomas[1];
+            interesado.Id = 32358;
+            interesado.Idioma = idioma;
+            IList<Interesado> interesados = servicioPrueba.ObtenerInteresadosFiltro(interesado);*/
 
-            //InteresadoPatenteServicios servicioPrueba = new InteresadoPatenteServicios();
-            //IList<InteresadoPatente> interesados = servicioPrueba.ConsultarTodos();
-
-            /*InteresadoPatenteServicios servicioPrueba = new InteresadoPatenteServicios();
-            PatenteServicios patenteServicios = new PatenteServicios();
-            Patente patente = new Patente();
-            patente = patenteServicios.ConsultarPatenteConTodo(new Patente(6000));
-            IList<InteresadoPatente> interesados = servicioPrueba.ConsultarInteresadosDePatente(patente);*/
-
-            /*int cantidadDias = 90;
-
-            PatenteServicios servicioPrueba = new PatenteServicios();
-
-            IList<VencimientoPrioridadPatente> patentesPorVencer = servicioPrueba.ObtenerPatentesPorVencerPrioridad(cantidadDias);*/
-
-            /*FacInternacionalConsolidadaServicios pruebaServicio = new FacInternacionalConsolidadaServicios();
-            AsociadoServicios asociadoServicios = new AsociadoServicios();
-            FacInternacionalConsolidada fac = new FacInternacionalConsolidada();
-            fac.Id = 18954;
-            Asociado asociadoOAux = new Asociado(23157);
-            Asociado asociadoO = new Asociado();
-            asociadoO = asociadoServicios.ConsultarAsociadoConTodo(asociadoOAux);
-            Asociado asociadoAux = new Asociado(21208);
-            Asociado asociado = asociadoServicios.ConsultarAsociadoConTodo(asociadoAux);
-            fac.AsociadoInt = asociadoO;
-            fac.Asociado = asociado;
-
-            bool exitoso = pruebaServicio.InsertarOModificar(fac, 123);
-
-            FacInternacionalConsolidadaServicios servicioPrueba = new FacInternacionalConsolidadaServicios();
-            IList<FacInternacionalConsolidada> lista = servicioPrueba.ConsultarTodos();*/
-
-
-            /*AsociadoServicios asociadoServicio = new AsociadoServicios();
-            FacAsociadoIntConsolidadoCxPIntServicios servicioPrueba = new FacAsociadoIntConsolidadoCxPIntServicios();
-            FacAsociadoIntConsolidadoCxPInt facAsociado = new FacAsociadoIntConsolidadoCxPInt();
-
-            facAsociado.Id = 2;
-            facAsociado.AsociadoInt = asociadoServicio.ConsultarAsociadoConTodo(new Asociado(1292));
-            facAsociado.MontoConsolidado = 500;
-            facAsociado.FormaPago = "Deposito";
-
-            bool exito1 = servicioPrueba.Eliminar(facAsociado, 123);
-
-            //bool exito = servicioPrueba.InsertarOModificar(facAsociado, 123);
-
-            IList<FacAsociadoIntConsolidadoCxPInt> lista = servicioPrueba.ConsultarTodos();*/
 
             //Console.ReadLine();
 

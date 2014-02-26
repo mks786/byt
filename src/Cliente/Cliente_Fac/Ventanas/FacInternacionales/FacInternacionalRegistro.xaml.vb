@@ -200,6 +200,15 @@ Namespace Ventanas.FacInternacionales
             End Set
         End Property
 
+        Public Property NumeroFactura() As String Implements Contratos.FacInternacionales.IFacInternacionalRegistro.NumeroFactura
+            Get
+                Return Me._txtNumerofactura.Text
+            End Get
+            Set(value As String)
+                Me._txtNumerofactura.Text = value
+            End Set
+        End Property
+
         'Public ReadOnly Property TipoSel As Object Implements Contratos.FacInternacionales.IFacInternacionalRegistro.TipoSel
         '    Get
         '        Return _cbxTipoSel.Text
@@ -334,6 +343,15 @@ Namespace Ventanas.FacInternacionales
         Public WriteOnly Property SetTipoPago() As String Implements Contratos.FacInternacionales.IFacInternacionalRegistro.SetTipoPago
             Set(ByVal value As String)
                 Me._cbxTipoPago.Text = value
+            End Set
+        End Property
+
+        Public Property BSustProforma As Boolean Implements Contratos.FacInternacionales.IFacInternacionalRegistro.BSustProforma
+            Get
+                Return Me._chkBSustProforma.IsChecked
+            End Get
+            Set(ByVal value As Boolean)
+                Me._chkBSustProforma.IsChecked = value
             End Set
         End Property
 

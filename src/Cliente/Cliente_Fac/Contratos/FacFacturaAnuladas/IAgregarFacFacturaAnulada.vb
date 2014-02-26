@@ -26,6 +26,8 @@ Namespace Contratos.FacFacturaAnuladas
 
         ReadOnly Property BDesg As Boolean
 
+        Property BSusFact As Boolean
+
         ReadOnly Property Factura() As String
         'Property Persona() As Object
 
@@ -49,5 +51,8 @@ Namespace Contratos.FacFacturaAnuladas
         Property MensajeErrorCobro() As String
 
         Sub Mensaje(ByVal mensaje__1 As String)
+
+        Sub HabilitarCheckSustituyeFactura(ByVal valor As Boolean)
+
     End Interface
 End Namespace

@@ -27,5 +27,15 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoEliminarJustificacion(justificacion);
         }
+
+        /// <summary>
+        /// Metodo que devuelve el Comando para obtener justificaciones por Concepto
+        /// </summary>
+        /// <param name="justificacion">Justificacion usada como filtro</param>
+        /// <returns>El Comando que permite obtener un conjunto de justificaciones por Concepto</returns>
+        public static ComandoBase<IList<Justificacion>> ObtenerComandoConsultarJustificacionesPorConcepto(Justificacion justificacion)
+        {
+            return new ComandoConsultarJustificacionesPorConcepto(justificacion);
+        }
     }
 }

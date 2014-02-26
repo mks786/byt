@@ -28,6 +28,10 @@
       <column name="CESTADO"/>
     </many-to-one>
 
+    <many-to-one name="Idioma" class="Idioma" lazy="false">
+      <column name="CIDIOMA"/>
+    </many-to-one>
+
     <bag name="Poderes">
       <key column="CPODER"/>
       <one-to-many class="Poder" not-found="ignore"/>

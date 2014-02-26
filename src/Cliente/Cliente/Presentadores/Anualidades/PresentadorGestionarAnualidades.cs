@@ -996,6 +996,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 aux.Situacion = ((ListaDatosDominio)this._ventana.ISituacion).Id;
                 aux = LlenarSituacionAutogenerada(aux);
             }
+            else
+            {
+                this._ventana.Mensaje("Debe seleccionar una Situación para la anualidad", 0);
+                return false;
+            }
             if (this._ventana.Factura != "")
                 aux.Factura = int.Parse(this._ventana.Factura);
             aux.IFactura = "T";

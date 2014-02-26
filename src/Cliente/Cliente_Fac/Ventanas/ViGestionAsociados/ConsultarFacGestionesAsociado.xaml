@@ -7,7 +7,7 @@
       xmlns:local="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Ventanas.ViGestionAsociados"
       mc:Ignorable="d" 
       xmlns:reglas="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Validaciones"    
-      xmlns:conv="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Transformadores"      
+      xmlns:conv="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Transformadores"
       d:DesignHeight="550" d:DesignWidth="800"
       xmlns:recurso="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Recursos" Loaded="Page_Loaded" Height="Auto" Width="1000">
     <Page.Resources>
@@ -65,9 +65,12 @@
                         DataContext="{Binding}">
 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Center">
-                    <Label>
+                    <!--<Label>
                         <TextBlock Text="Asociado:"/>
-                    </Label>
+                    </Label>-->
+                    <Button Name="_btnAsociado" IsDefault="False" Height="25" Click="_btnAsociado_Click">
+                        <TextBlock Text="Asociado:"/>
+                    </Button>
                     <custom:ByTTextBox  Name="_txtAsociado" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="200" ></custom:ByTTextBox>
                     <custom:ByTTextBox  Name="_txtAsociadoDomicilio" VerticalAlignment="Center" 
@@ -94,11 +97,17 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=FechaGestion, StringFormat={}{0:dd/MM/yyyy}}" Width="90">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaGestion" Content="Fecha Gestion"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Medio}" Width="50">
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Medio}" Width="50">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Medio" Content="Medio"/>
+                        </GridViewColumn>-->
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=MedioGes}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="MedioGes" Content="Medio"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=ConceptoGestion}" Width="60">
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=ConceptoGestion}" Width="60">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="ConceptoGestion" Content="Concepto"/>
+                        </GridViewColumn>-->
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=ConceptoGes}" Width="190">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="ConceptoGes" Content="Concepto"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Observacion}" Width="200">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Observacion" Content="Observacion"/>
@@ -141,6 +150,9 @@
             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
                 <Button Name="_btnNuevaGestion" Width="100" Click="_btnNuevaGestion_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnNuevaGestion}"/>
+                </Button>
+                <Button Name="_btnExportarGestiones" Width="100" Click="_btnExportarGestiones_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnExportarGestiones}"/>
                 </Button>
                 <Button Name="_btnCancelar" Width="100" Click="_btnCancelar_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnCancelar}"/>

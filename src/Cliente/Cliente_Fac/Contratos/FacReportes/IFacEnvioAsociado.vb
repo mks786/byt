@@ -46,6 +46,10 @@ Namespace Contratos.FacReportes
 
         Property B3() As Boolean
 
+        Property CondicionDiasCredito As Object
+
+        Property CondicionesDiasCredito As Object
+
         ' WriteOnly Property CrystalViewer() As Object
 
     End Interface

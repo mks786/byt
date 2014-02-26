@@ -246,6 +246,15 @@
                     </ComboBox>
                 </WrapPanel>
 
+                <WrapPanel HorizontalAlignment="Left" Margin="5" VerticalAlignment="Center">
+                    <Label VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Right">
+                        <TextBlock Width="110" Text="Días de Crédito: "/>
+                    </Label>
+                    <ComboBox Height="20" Name="_cbxDiasCredito" HorizontalAlignment="Left" Width="230" 
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
+                    </ComboBox>
+                </WrapPanel>
+
                 <WrapPanel  HorizontalAlignment="Left" Margin="5" VerticalAlignment="Center">
                     <Label VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Right">
                         <TextBlock Width="110" Text="Reporte"/>

@@ -431,5 +431,15 @@ Namespace Ventanas.FacPagoBolivias
                 _txtMontoRec.Text = _presentador.SetFormatoDouble2(value)
             End Set
         End Property
+
+        Public Property FechaPagoBolivia() As String Implements Contratos.FacPagoBolivias.IConsultarFacPagoBolivia.FechaPagoBolivia
+            Get
+                Return _dpkFechaPago.Text()
+            End Get
+            Set(ByVal value As String)
+                _dpkFechaPago.Text = value
+            End Set
+        End Property
+
     End Class
 End Namespace

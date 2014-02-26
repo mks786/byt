@@ -297,6 +297,13 @@
                       Style="{DynamicResource EstiloListView}">
                 <ListView.View>
                     <GridView>
+                        <GridViewColumn Header=">>" Width="80">
+                            <GridViewColumn.CellTemplate >
+                                <DataTemplate>
+                                    <CheckBox Tag="BEliminarCarta"   IsChecked="{Binding Path=BEliminarCarta}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                         </GridViewColumn>
@@ -348,13 +355,21 @@
             </DataGrid>-->
         </GroupBox>
 
-        <Button Name="_btnLimpiarCampos" Grid.Column="1" Grid.Row="1" Margin="5" Width="100" HorizontalAlignment="Left" Click="_btnLimpiarCampos_Click">
+        
+        <!--<Button Name="_btnLimpiarCampos" Grid.Column="1" Grid.Row="1" Margin="5" Width="100" HorizontalAlignment="Left" Click="_btnLimpiarCampos_Click">
             <TextBlock Text="{x:Static recurso:Etiquetas.btnLimpiarCampos}"/>
-        </Button>
+        </Button>-->
+        
 
         <!--Botones Aceptar|Cancelar-->
         <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
+                <Button Name="_btnEliminarCartas" Width="100" Visibility="Collapsed" Click="_btnEliminarCartas_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnEliminarCartas}"/>
+                </Button>
+                <Button Name="_btnLimpiarCampos" Width="100" Click="_btnLimpiarCampos_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnLimpiarCampos}"/>
+                </Button>
                 <Button Name="_btnCancelar" Width="100" Click="_btnCancelar_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnCancelar}"/>
                 </Button>

@@ -1,6 +1,8 @@
 ﻿Imports System.Windows.Controls
 Imports Trascend.Bolet.Cliente.Ayuda
 Imports Diginsoft.Bolet.Cliente.Fac.Contratos
+Imports System.Data
+
 Namespace Contratos.ViGestionAsociados
     Interface IConsultarFacGestionesAsociado
         Inherits IPaginaBaseFac
@@ -65,5 +67,10 @@ Namespace Contratos.ViGestionAsociados
         Property ListaResultados() As ListView
 
         'WriteOnly Property Count As Integer
+
+        Sub ExportarListView(ByVal datos As DataTable)
+
+        Sub Mensaje(mensaje As String, tipo As Integer)
+
     End Interface
 End Namespace

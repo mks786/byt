@@ -346,6 +346,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
                 this._ventana.FocoPredeterminado();
 
+                CalcularSaldos();
+
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -360,6 +362,73 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             {
                 Mouse.OverrideCursor = null;
             }
+        }
+
+
+        /// <summary>
+        /// Metodo que calcula los saldos
+        /// </summary>
+        public void CalcularSaldos()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if ((Asociado)this._ventana.AsociadoSolicitud != null)
+                {
+                    if (((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue)
+                    {
+                        Asociado Asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
+
+                        double? w_1, w_2, w_3, w_4, w_5, w_6, msaldope;
+                        w_1 = 0;
+                        w_2 = 0;
+                        w_3 = 0;
+                        w_4 = 0;
+                        w_5 = 0;
+                        w_6 = 0;
+                        msaldope = 0;
+                        string moneda = "";
+                        int casociado = Asociado.Id;
+                        int? dias = 30;
+                        CalcularSaldosAsociado(casociado, dias, ref w_1, ref w_2, ref w_3, ref w_4, ref w_5, ref w_6, ref msaldope, ref  moneda);
+
+                        if (moneda == "US")
+                        {
+                            this._ventana.SaldoVencido = System.Convert.ToString(w_2);
+                            this._ventana.SaldoPorVencer = System.Convert.ToString(w_4);
+                            this._ventana.Total = System.Convert.ToString(w_2 + w_4);
+                        }
+                        else
+                        {
+                            this._ventana.SaldoVencido = System.Convert.ToString(w_1);
+                            this._ventana.SaldoPorVencer = System.Convert.ToString(w_3);
+                            this._ventana.Total = System.Convert.ToString(w_1 + w_3);
+                        }
+                    }
+                    else
+                    {
+                        this._ventana.SaldoVencido = null;
+                        this._ventana.SaldoPorVencer = null;
+                        this._ventana.Total = null;
+                    }
+                    
+                }
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
         }
 
 
@@ -1368,6 +1437,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 }
                 else
                     this._ventana.PintarAsociado("5");
+
+                CalcularSaldos();
             }
             catch (ApplicationException e)
             {

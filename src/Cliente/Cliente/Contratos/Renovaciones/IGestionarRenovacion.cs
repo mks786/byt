@@ -128,6 +128,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
 
         void BorrarCerosInternacional();
 
+        void MostrarBotonNuevaRenovacion();
+
+        void HabilitarBotonNuevaRenovacion();
 
     }
 }

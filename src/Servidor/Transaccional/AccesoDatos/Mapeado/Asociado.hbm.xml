@@ -30,6 +30,7 @@
     <property name="Alerta" column="IALERTA" type="char"/>
     <property name="AlarmaDescripcion" column="XALERTA" type="string"/>
     <property name="OrigenCliente" column="IORIGEN" type="string"/>
+    <property name="CartaDomicilio" column="CCARTAD" type="int"/>
 
     <many-to-one name="Pais" class="Pais">
       <column name="CPAIS"/>
@@ -93,7 +94,7 @@
       <one-to-many class="Contacto" not-found="ignore"/>
     </bag>-->
 
-    <bag name="Justificaciones" table="FAC_ASO_JUST">
+    <bag name="Justificaciones" table="FAC_ASO_JUST" lazy="false">
       <key column="CASOCIADO"/>
       <composite-element class="Justificacion">
         <parent name="Asociado"/>

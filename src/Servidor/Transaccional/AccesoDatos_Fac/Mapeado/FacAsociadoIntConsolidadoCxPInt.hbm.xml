@@ -8,6 +8,9 @@
     <many-to-one  name="AsociadoInt" column="CASOCIADO_O" class="Asociado" lazy="false"/>
     <property name="MontoConsolidado" column="MONTO" type="Double"/>
     <property name="FormaPago" column="TIPOPAGO" type="string"/>
+    <property name="NumeroSecuenciaTransferencia" column="DATOTRANS" type="int"/>
+    <property name="Beneficiario" column="XBENEFICIARIO" type="string"/>
+    <property name="DatosBancariosStr" column="ITRANSFERENCIA" type="string"/>
   </class>
   
 </hibernate-mapping>

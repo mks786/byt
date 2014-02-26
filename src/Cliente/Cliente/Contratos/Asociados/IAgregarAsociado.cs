@@ -54,5 +54,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
         object OrigenCliente { get; set; }
 
         void Mensaje(string mensaje);
+
+        string CartaDomicilioDatos { get; set; }
     }
 }

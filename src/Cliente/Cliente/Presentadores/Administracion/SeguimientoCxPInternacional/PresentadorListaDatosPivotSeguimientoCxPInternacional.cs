@@ -40,6 +40,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
         private IList<FacInternacional> _facturasDetalle = new List<FacInternacional>();
         private String _totalGlobalUSD;
 
+        /// <summary>
+        /// Constructor predeterminado de la clase
+        /// </summary>
+        /// <param name="ventana">Ventana actual</param>
+        /// <param name="filtro">Estructura de datos con los filtros utilizados para generar la data</param>
+        /// <param name="ejeX">Eje X de filtrado</param>
+        /// <param name="ejeY">Eje Y de filtrado</param>
+        /// <param name="ejeZ">Eje Z de filtrado</param>
+        /// <param name="totalGlobalUSD">Total de moneda internacional a mostrar en la ventana</param>
+        /// <param name="ventanaPadre">Ventana que precede a esta ventana</param>
         public PresentadorListaDatosPivotSeguimientoCxPInternacional(IListaDatosPivotSeguimientoCxPInternacional ventana, 
                                                                      object filtro, 
                                                                      object ejeX, 
@@ -113,14 +123,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
 
                 this._datosCrudos = this._seguimientoCxPInternacionalServicios.ObtenerDataCruda(this._filtroDataCruda);
 
-               CalcularTotales(this._datosCrudos);
-
-                //if (((ListaDatosValores)this._ejeY).Valor.Equals("XASOCIADO"))
-                //{
-                //    this._datosCrudosModificados = ModificarDatosCrudos(this._datosCrudos, ((ListaDatosValores)this._ejeY).Valor);
-                //    this._SourceTable = this._datosCrudosModificados;
-                //}
-                //else
+                CalcularTotales(this._datosCrudos);
+                                
                 this._SourceTable = this._datosCrudos;
 
 

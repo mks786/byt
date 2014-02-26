@@ -95,7 +95,10 @@
 
         <!--Botones Regresar-->
         <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
-            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
+                <Button Name="_btnExportar" VerticalAlignment="Bottom" Height="25" Width="110" Click="_btnExportar_Click">
+                    <TextBlock Text="Exportar Facturas"/>
+                </Button>
                 <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="90"
                     Click="_btnRegresar_Click">
                     <TextBlock Name="_txbCancelar" Text="{x:Static recurso:Etiquetas.btnRegresar}"/>

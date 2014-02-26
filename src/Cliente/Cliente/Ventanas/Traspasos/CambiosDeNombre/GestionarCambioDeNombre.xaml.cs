@@ -528,6 +528,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
             this._btnPlanilla.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanillaVan.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanillaVienen.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnVerPlanilla.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)
@@ -1062,5 +1063,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
         }
 
         #endregion
+
+        private void _btnVerPlanilla_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVerPlanilla();
+        }
+
+        public void ArchivoNoEncontrado(string mensaje)
+        {
+            MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        public void PintarVerPlanilla()
+        {
+            this._btnVerPlanilla.Background = Brushes.LightGreen;
+        }
     }
 }

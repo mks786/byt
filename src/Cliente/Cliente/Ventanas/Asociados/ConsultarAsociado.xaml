@@ -95,7 +95,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblDomicilio}"/>
                         </Label>
                         <custom:ByTTextBox VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" AcceptsReturn="True" Grid.Column="2" Grid.Row="2" Name="_txtDomicilioDatos" VerticalAlignment="Center"
-                         Height="75" SpellCheck.IsEnabled="True" MaxLength="255" Grid.ColumnSpan="4" Margin="0,0,20,0"
+                         Height="75" SpellCheck.IsEnabled="True" MaxLength="255" Grid.ColumnSpan="2" Margin="0,0,20,0"
                          ToolTip="{Binding ElementName=_txtDomicilioDatos, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True">
                             <custom:ByTTextBox.Text>
                                 <Binding Path="Domicilio" UpdateSourceTrigger="PropertyChanged">
@@ -105,6 +105,20 @@
                                 </Binding>
                             </custom:ByTTextBox.Text>
                         </custom:ByTTextBox>
+
+                        <!--<Label Grid.Column="4" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                            <TextBlock Text="Carta Domicilio:"/>
+                        </Label>-->
+                        <Button Grid.Column="4" Grid.Row="2" Name="_btnCartaDomicilioDatos" IsDefault="False" Height="25"
+                                HorizontalAlignment="Right" VerticalAlignment="Center" Click="_btnCartaDomicilioDatos_Click">
+                            <TextBlock Text="Carta Domicilio:"/>
+                        </Button>
+                        <custom:ByTTextBox TextWrapping="Wrap" AcceptsReturn="True" Grid.Column="5" Grid.Row="2" 
+                                           Name="_txtCartaDomicilioDatos" VerticalAlignment="Center" SpellCheck.IsEnabled="True" 
+                                           MaxLength="255" Margin="3,0,20,0" IsEnabled="True" BorderBrush="LightGreen"
+                                           Text="{Binding Path=CartaDomicilio}">
+                        </custom:ByTTextBox>
+                        
 
                         <Label Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPais}"/>

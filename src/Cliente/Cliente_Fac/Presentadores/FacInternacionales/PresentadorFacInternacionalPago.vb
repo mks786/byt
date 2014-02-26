@@ -206,8 +206,14 @@ Namespace Presentadores.FacInternacionales
                     'Exit Sub
                 End If
 
-                If DirectCast(Me._ventana.Banco, FacBanco) IsNot Nothing And DirectCast(Me._ventana.Banco, FacBanco).Id > Integer.MinValue Then
-                    Facinternacional.Banco = If(Not DirectCast(Me._ventana.Banco, FacBanco).Id.Equals("NGN"), DirectCast(Me._ventana.Banco, FacBanco), Nothing)
+                'If DirectCast(Me._ventana.Banco, FacBanco) IsNot Nothing And DirectCast(Me._ventana.Banco, FacBanco).Id > Integer.MinValue Then
+                '    Facinternacional.Banco = If(Not DirectCast(Me._ventana.Banco, FacBanco).Id.Equals("NGN"), DirectCast(Me._ventana.Banco, FacBanco), Nothing)
+                'End If
+
+                If DirectCast(Me._ventana.Banco, FacBanco) IsNot Nothing Then
+                    If DirectCast(Me._ventana.Banco, FacBanco).Id <> Integer.MinValue Then
+                        Facinternacional.Banco = DirectCast(Me._ventana.Banco, FacBanco)
+                    End If
                 End If
 
                 Facinternacional.TipoPago = Me._ventana.GetTipoPago

@@ -23,7 +23,12 @@
       <key column="CPODER"/>
       <many-to-many column="CAGENTE" class="Agente" not-found="ignore"/>
     </bag>
+
+    <property name="FechaVencimiento" column="FVENCIMIENTO" type="DateTime"/>
+    
   </class>
+
+  
 
 </hibernate-mapping>
 

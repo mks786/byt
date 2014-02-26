@@ -4,8 +4,11 @@ Namespace Contratos.FacReportes
     Interface IPendientesRpt
         Inherits IPaginaBaseFac
 
-        Sub Mensaje(ByVal mensaje__1 As String)
+        Property CondicionDiasCredito As Object
 
+        Property CondicionesDiasCredito As Object
+
+        Sub Mensaje(ByVal mensaje__1 As String)
 
         Property Fecha1() As String
 

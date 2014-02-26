@@ -39,6 +39,8 @@ Namespace Presentadores.FacReportes
         Private _FacCobroFacturas As IFacCobroFacturaServicios
         Private _PaisServicios As IPaisServicios
         Private _usuarioServicios As IUsuarioServicios
+        Private _ListaDatosValoresServicios As IListaDatosValoresServicios
+
 
         Private Shared _paginaPrincipal As PaginaPrincipal = PaginaPrincipal.ObtenerInstancia
         Private Shared logger As Logger = LogManager.GetCurrentClassLogger()
@@ -57,6 +59,7 @@ Namespace Presentadores.FacReportes
                 Me._FacCobroFacturas = DirectCast(Activator.GetObject(GetType(IFacCobroFacturaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacCobroFacturaServicios")), IFacCobroFacturaServicios)
                 Me._PaisServicios = DirectCast(Activator.GetObject(GetType(IPaisServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("PaisServicios")), IPaisServicios)
                 Me._usuarioServicios = DirectCast(Activator.GetObject(GetType(IUsuarioServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("usuarioServicios")), IUsuarioServicios)
+                Me._ListaDatosValoresServicios = DirectCast(Activator.GetObject(GetType(IListaDatosValoresServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("ListaDatosValoresServicios")), IListaDatosValoresServicios)
 
             Catch ex As Exception
                 logger.[Error](ex.Message)
@@ -110,6 +113,10 @@ Namespace Presentadores.FacReportes
 
                 Me._ventana.FechaCorte = FormatDateTime(Date.Now, DateFormat.ShortDate)
                 Me._ventana.FechaEnvio = FormatDateTime(Date.Now, DateFormat.ShortDate)
+
+                Dim condicionesDiasCredito As IList(Of ListaDatosValores) =
+                    Me._ListaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(New ListaDatosValores(Recursos.Etiquetas.cbiCondicionesDiasCreditoAsociados))
+                Me._ventana.CondicionesDiasCredito = condicionesDiasCredito
 
                 Me._ventana.FocoPredeterminado()
 
@@ -611,6 +618,12 @@ Namespace Presentadores.FacReportes
             'para generar el FacOperacion
             Dim FacOperacionaux As New FacOperacion
             operacionaux.ValorQuery = ""
+            Dim tipo As Integer
+            If (nc.Equals("ND")) Then
+                tipo = 1
+            End If
+            Dim cantidadDias As Integer
+
             Try
                 'If Me._ventana.Fecha1 IsNot Nothing And Me._ventana.Fecha1.ToString <> "" And Me._ventana.Fecha2 IsNot Nothing And Me._ventana.Fecha2.ToString <> "" Then
                 '    operacionaux.ValorQuery = "Select o from FacOperacion o left join fetch o.Asociado as Asociado left join fetch o.Moneda as Moneda left join fetch o.Idioma as Idioma"
@@ -656,6 +669,35 @@ Namespace Presentadores.FacReportes
                 End If
 
                 Dim operaciones As List(Of FacOperacion) = _FacOperacionServicios.ObtenerFacOperacionesFiltro(operacionaux)
+
+                If tipo = 1 Then
+
+                    If (Me._ventana.CondicionDiasCredito IsNot Nothing) Then
+                        Dim Asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
+                        If Asociado.DiaCredito <> 0 Then
+                            Dim opcionDiasCredito As ListaDatosValores = DirectCast(Me._ventana.CondicionDiasCredito, ListaDatosValores)
+                            If (opcionDiasCredito.Valor.Equals("1")) Then
+                                Dim operacionesFiltradas As List(Of FacOperacion) = operaciones
+                                operaciones = New List(Of FacOperacion)()
+                                Dim operacionesAux As List(Of FacOperacion) = New List(Of FacOperacion)()
+                                For Each operacion As FacOperacion In operacionesFiltradas
+                                    cantidadDias = ObtenerDiferenciaDias(DateTime.Today, operacion.FechaOperacion)
+                                    If (cantidadDias > Asociado.DiaCredito) Then
+                                        operacionesAux.Add(operacion)
+                                    End If
+                                Next
+                                If (operacionesAux.Count > 0) Then
+                                    'operaciones = Nothing
+                                    operaciones = operacionesAux
+                                End If
+
+                            End If
+
+                        End If
+                    End If
+                End If
+
+
                 If operaciones.Count >= 0 Then
                     Return (operaciones)
                 Else
@@ -680,6 +722,11 @@ Namespace Presentadores.FacReportes
             'para generar el FacOperacion
             Dim FacOperacionaux As New FacOperacionPais
             operacionaux.ValorQuery = ""
+            Dim tipo As Integer
+            If nc.Equals("ND") Then
+                tipo = 1
+            End If
+            Dim cantidadDias As Integer
 
             Try
                 'If Me._ventana.Fecha1 IsNot Nothing And Me._ventana.Fecha1.ToString <> "" And Me._ventana.Fecha2 IsNot Nothing And Me._ventana.Fecha2.ToString <> "" Then
@@ -732,6 +779,35 @@ Namespace Presentadores.FacReportes
                 End If
 
                 Dim operaciones As List(Of FacOperacionPais) = _FacOperacionpaisServicios.ObtenerFacOperacionPaisesFiltro(operacionaux)
+
+                If tipo = 1 Then
+
+                    If (Me._ventana.CondicionDiasCredito IsNot Nothing) Then
+                        Dim Asociado As Asociado = DirectCast(Me._ventana.Asociado, Asociado)
+                        If Asociado.DiaCredito <> 0 Then
+                            Dim opcionDiasCredito As ListaDatosValores = DirectCast(Me._ventana.CondicionDiasCredito, ListaDatosValores)
+                            If (opcionDiasCredito.Valor.Equals("1")) Then
+                                Dim operacionesFiltradas As List(Of FacOperacionPais) = operaciones
+                                operaciones = New List(Of FacOperacionPais)()
+                                Dim operacionesAux As List(Of FacOperacionPais) = New List(Of FacOperacionPais)()
+                                For Each operacion As FacOperacionPais In operacionesFiltradas
+                                    cantidadDias = ObtenerDiferenciaDias(DateTime.Today, operacion.FechaOperacion)
+                                    If (cantidadDias > Asociado.DiaCredito) Then
+                                        operacionesAux.Add(operacion)
+                                    End If
+                                Next
+                                If (operacionesAux.Count > 0) Then
+                                    'operaciones = Nothing
+                                    operaciones = operacionesAux
+                                End If
+
+                            End If
+
+                        End If
+                    End If
+                End If
+
+
                 If operaciones.Count >= 0 Then
                     Return (operaciones)
                 Else
@@ -750,6 +826,34 @@ Namespace Presentadores.FacReportes
             End Try
 
         End Function
+
+        Private Function ObtenerDiferenciaDias(FechaActual As Date, FechaOperacion As Date) As Integer
+            Dim diferenciaDias As Integer
+
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+
+                Dim today As DateTime = DateTime.Today
+                Dim ts As TimeSpan = today - FechaOperacion
+                diferenciaDias = ts.Days
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+            Catch ex As Exception
+                Throw
+            End Try
+
+            Return diferenciaDias
+
+        End Function
+
+
 
         Public Function consultar_cobro_factura(ByVal factura As Integer) As Boolean
             Dim faccobrofacturaAuxiliar As New FacCobroFactura()
@@ -772,7 +876,12 @@ Namespace Presentadores.FacReportes
             Dim monto As Double = 0
             Dim facOperacion As List(Of FacOperacion) = Buscar_Operacion("NC", idasociado)
             For i As Integer = 0 To facOperacion.Count - 1
-                monto = monto + (facOperacion(i).Saldo * -1)
+                If (facOperacion(i).Moneda.Id.Equals("US")) Then
+                    monto = monto + (facOperacion(i).Saldo * -1)
+                Else
+                    monto = monto + (facOperacion(i).SaldoBf * -1)
+                End If
+                'monto = monto + (facOperacion(i).Saldo * -1)
             Next
             Return (monto)
         End Function

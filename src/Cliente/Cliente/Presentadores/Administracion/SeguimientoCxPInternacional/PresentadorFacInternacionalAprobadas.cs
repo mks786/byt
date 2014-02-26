@@ -9,15 +9,16 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacFacturas;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacInternacionales;
 using Diginsoft.Bolet.Cliente.Fac.Ventanas.ViGestionAsociados;
 using Diginsoft.Bolet.ObjetosComunes.ContratosServicios;
 using NLog;
 using Trascend.Bolet.Cliente.Contratos.Administracion.SeguimientoCxPInternacional;
+using Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoCxPInternacional;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
-using Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoCxPInternacional;
-using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacInternacionales;
+
 
 namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInternacional
 {
@@ -34,6 +35,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
         private IFacAsociadoIntConsolidadoCxPIntServicios _facAsociadosIntConsolidadoCxPIntServicios;
         private IFacFacturaProformaServicios _facFacturaProformaServicios;
         private IList<FacInternacional> _proformasAprobadas;
+        private IList<FacInternacional> _listaProformasAnterior;
+        private FacInternacional _facturaActualizada;
+        private IList<FacInternacional> _listaFacturasAprobadas = new List<FacInternacional>();
 
         /// <summary>
         /// Constructor predeterminado que recibe una ventana padre
@@ -103,13 +107,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
 
                 IList<FacInternacional> facturasInt = this._proformasAprobadas.OrderByDescending(o => o.DiasVencimiento).ToList();
 
-                this._ventana.FacturasAutorizadas = facturasInt;
+                this._listaFacturasAprobadas = facturasInt;
 
-                
+                this._ventana.FacturasAutorizadas = facturasInt;
+                                
                 CalcularMontoTotalAprobado();
 
                 this._ventana.TotalHits = this._proformasAprobadas.Count.ToString();
-                
+                                               
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -130,9 +135,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
         }
 
         
-
-        
-
         public void ActualizarTitulo()
         {
             this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaResumenDatosSegCxPInternacional,
@@ -263,57 +265,60 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
                 #endregion
 
                 
+                //Verifico si hay registros en la tabla FAC_CXP_INT_ISEL y borro su contenido             
+                IList<FacInternacionalConsolidada> listaTablaTemporal =
+                this._facInternacionalConsolidadaServicios.ConsultarTodos();
 
-                if (this._ventana.FacturasSeleccionadas != null)
+                IList<FacAsociadoIntConsolidadoCxPInt> listaDatosConsolidados = 
+                    this._facAsociadosIntConsolidadoCxPIntServicios.ConsultarTodos();
+
+                if (listaTablaTemporal.Count > 0) //Borro el contenido de la tabla ISEL
                 {
-                    IList<FacInternacionalConsolidada> listaTablaTemporal =
-                    this._facInternacionalConsolidadaServicios.ConsultarTodos();
+                    BorrarContenidoTablaTemporal(listaTablaTemporal);
+                }
 
-                    if (listaTablaTemporal.Count > 0)
+                if (listaDatosConsolidados.Count > 0)
+                {
+                    BorrarDatosConsolidadosGuardados(listaDatosConsolidados);
+                }
+
+                //ESTAS SON TODAS LAS FACTURAS QUE SE ENCUENTRAN EN LA VENTANA
+                _listaFacturasConsolidar = (IList<FacInternacional>)this._ventana.FacturasAutorizadas;
+
+                if (_listaFacturasConsolidar.Count > 0)
+                {
+                    foreach (FacInternacional item in _listaFacturasConsolidar)
                     {
-                        BorrarContenidoTablaTemporal(listaTablaTemporal);
-                    }
+                        FacInternacionalConsolidada facConsolidadaAux = new FacInternacionalConsolidada();
+                        facConsolidadaAux.Id = item.Id.Value;
+                        facConsolidadaAux.AsociadoInt = item.Asociado_o;
+                        facConsolidadaAux.Asociado = item.Asociado;
 
-                    System.Collections.IList items = (System.Collections.IList)this._ventana.FacturasSeleccionadas;
-                    var collection = items.Cast<FacInternacional>();
-                    _listaFacturasConsolidar = collection.ToList<FacInternacional>();
+                        exitoso = 
+                            this._facInternacionalConsolidadaServicios.InsertarOModificar(facConsolidadaAux, UsuarioLogeado.Hash);
 
-                    if (_listaFacturasConsolidar.Count > 0)
-                    {
-                        foreach (FacInternacional item in _listaFacturasConsolidar)
+                        if (exitoso)
                         {
-                            FacInternacionalConsolidada facConsolidadaAux = new FacInternacionalConsolidada();
-                            facConsolidadaAux.Id = item.Id.Value;
-                            facConsolidadaAux.AsociadoInt = item.Asociado_o;
-                            facConsolidadaAux.Asociado = item.Asociado;
-
-                            exitoso = 
-                                this._facInternacionalConsolidadaServicios.InsertarOModificar(facConsolidadaAux, UsuarioLogeado.Hash);
-
-                            if (exitoso)
-                            {
-                                exitoso = false;
-                                _listaProformasConsolidadas.Add(facConsolidadaAux);
-                                continue;
-                            }
-                            else
-                            {
-                                this._ventana.Mensaje("Se produjo un error al intentar guardar la proforma: " + facConsolidadaAux.Id.ToString(), 0);
-                                break;
-                            }
+                            exitoso = false;
+                            _listaProformasConsolidadas.Add(facConsolidadaAux);
+                            continue;
                         }
-
-                        //SE LLAMA A LA VENTANA QUE CONSOLIDA LOS DATOS PARA REGISTRAR LOS PAGOS A CXP
-                        if (nombreBoton.Equals("_btnConsolidar"))
-                            this.Navegar(new FacInternacionalConsolidadas(_listaProformasConsolidadas,false,this._ventana));
-                        else if (nombreBoton.Equals("_btnVerDatosConsolidar"))
-                            this.Navegar(new FacInternacionalConsolidadas(_listaProformasConsolidadas,true,this._ventana));
+                        else
+                        {
+                            this._ventana.Mensaje("Se produjo un error al intentar guardar la proforma: " + facConsolidadaAux.Id.ToString(), 0);
+                            break;
+                        }
                     }
-                    else
-                        this._ventana.Mensaje("Debe seleccionar al menos una Proforma para consolidar", 0);
+
+                    //SE LLAMA A LA VENTANA QUE CONSOLIDA LOS DATOS PARA REGISTRAR LOS PAGOS A CXP
+                    if (nombreBoton.Equals("_btnConsolidar"))
+                        this.Navegar(new FacInternacionalConsolidadas(_listaProformasConsolidadas,false,this._ventana));
+                    else if (nombreBoton.Equals("_btnVerDatosConsolidar"))
+                        this.Navegar(new FacInternacionalConsolidadas(_listaProformasConsolidadas,true,this._ventana));
                 }
                 else
                     this._ventana.Mensaje("Debe seleccionar al menos una Proforma para consolidar", 0);
+                
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -326,6 +331,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
         }
+
+        
 
 
         /// <summary>
@@ -347,6 +354,39 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
                 foreach (FacInternacionalConsolidada registro in listaTablaTemporal)
                 {
                     exitoso = this._facInternacionalConsolidadaServicios.Eliminar(registro, UsuarioLogeado.Hash);
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo que borra el contenido de la tabla FAC_CXP_INT_CONSOLIDA
+        /// ESTE METODO SE EJECUTA CUANDO NO HAY DATOS DE CONSOLIDACION O CUANDO SE REINICIA EL PROCESO DE CONSOLIDACION
+        /// </summary>
+        /// <param name="listaDatosConsolidados">Registros que se encuentran guardados en la tabla FAC_CXP_INT_CONSOLIDA</param>
+        private void BorrarDatosConsolidadosGuardados(IList<FacAsociadoIntConsolidadoCxPInt> listaDatosConsolidados)
+        {
+            bool exitoso = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                foreach (FacAsociadoIntConsolidadoCxPInt registro in listaDatosConsolidados)
+                {
+                    exitoso = this._facAsociadosIntConsolidadoCxPIntServicios.Eliminar(registro, UsuarioLogeado.Hash);
                 }
 
                 #region trace
@@ -389,7 +429,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
                         IList<FacFacturaProforma> listaProformas =
                             this._facFacturaProformaServicios.ObtenerFacFacturaProformasFiltro(facFacturaProforma);
                         if (listaProformas.Count > 0)
+                        {
+                            this._ventana.Mensaje("Presione el boton Actualizar para refrescar el listado de Facturas seleccionadas y reiniciar los datos de Consolidación", 2);
+                            this._listaProformasAnterior = (IList<FacInternacional>)this._ventana.FacturasAutorizadas;
+                            this._facturaActualizada = facturaInternacional;
+                            this._ventana.HabilitarBotonActualizar(true);
                             this.Navegar(new FacInternacionalPago(listaProformas[0]));
+                        }
 
                     }
                     else
@@ -442,8 +488,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
 
         /// <summary>
         /// Metodo que carga los datos de consolidacion que existen en la tabla FAC_CXP_INT_CONSOLIDA
+        /// <param name="botonPresionado">Boton presionado en la interfaz</param>
         /// </summary>
-        public void CargarDatosConsolidacion()
+        public void CargarDatosConsolidacion(String botonPresionado)
         {
 
             Mouse.OverrideCursor = Cursors.Wait;
@@ -460,7 +507,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
                 IList<FacInternacionalConsolidada> listaFacInternacionalesAprobadas = this._facInternacionalConsolidadaServicios.ConsultarTodos();
 
                 if ((facturacionAsociadosIntCargados.Count > 0) && (listaFacInternacionalesAprobadas.Count > 0))
-                    this.Navegar(new FacInternacionalConsolidadas(facturacionAsociadosIntCargados, listaFacInternacionalesAprobadas, false, true, this._ventana));
+                    if (botonPresionado.Equals("_btnVerDatosConsolidar"))
+                        this.Navegar(new FacInternacionalConsolidadas(facturacionAsociadosIntCargados, listaFacInternacionalesAprobadas, true, true, this._ventana));
+                    else
+                        this.Navegar(new FacInternacionalConsolidadas(facturacionAsociadosIntCargados, listaFacInternacionalesAprobadas, false, true, this._ventana));
                 else
                     this._ventana.Mensaje("Hay inconsistencia de datos entre los datos guardados consolidar y las facturas seleccionadas", 0);
 
@@ -479,5 +529,184 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
                 Mouse.OverrideCursor = null;
             }
         }
+
+        /// <summary>
+        /// Metodo que actualiza el lista de Facturas Internacionales Aprobadas para Consolidacion
+        /// </summary>
+        public void ActualizarListadoFacturasAprobadas()
+        {
+
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                //Hacer una lista sin la factura actualizada
+                this._listaProformasAnterior.Remove(this._facturaActualizada);
+                this._ventana.FacturasAutorizadas = null;
+                this._ventana.FacturasAutorizadas = this._listaProformasAnterior;
+                
+                //Actualizar la tabla FAC_CXP_INT_ISEL
+                FacInternacionalConsolidada facturaEliminar = new FacInternacionalConsolidada();
+                facturaEliminar.Asociado = this._facturaActualizada.Asociado;
+                facturaEliminar.AsociadoInt = this._facturaActualizada.Asociado_o;
+                facturaEliminar.Id = this._facturaActualizada.Id.Value;
+                bool exitoso = this._facInternacionalConsolidadaServicios.Eliminar(facturaEliminar, UsuarioLogeado.Hash);
+
+                //Borrar el contenido de la tabla FAC_CXP_INT_CONSOLIDA para reiniciar el proceso de Consolidacion
+                IList<FacAsociadoIntConsolidadoCxPInt> datosConsolidados = this._facAsociadosIntConsolidadoCxPIntServicios.ConsultarTodos();
+                if (datosConsolidados.Count > 0)
+                {
+                    foreach (FacAsociadoIntConsolidadoCxPInt datoConsolidado in datosConsolidados)
+                    {
+                        bool eliminado = this._facAsociadosIntConsolidadoCxPIntServicios.Eliminar(datoConsolidado, UsuarioLogeado.Hash);
+                    }
+                }
+
+                if (exitoso)
+                {
+                    this._ventana.Mensaje("Listado de Facturas actualizado", 2);
+                    this._ventana.TotalHits = this._listaProformasAnterior.Count.ToString();
+                    this._ventana.HabilitarBotonActualizar(false);
+                }
+
+                
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (System.Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo que exporta el contenido del Listview que muestra las facturas seleccionadas a Excel
+        /// </summary>
+        public void ExportarFacturasSeleccionadasExcel()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                DataTable datosExportar = CrearDataTableExportacion();
+                datosExportar = LlenarDataTable(datosExportar, this._listaFacturasAprobadas);
+                String tituloReporte = "Facturas Internacionales Aprobadas para Consolidación";
+
+                if (this._ventana.ExportarListadoFacturasAprobadas(tituloReporte, datosExportar))
+                    this._ventana.Mensaje("Datos exportados con éxito", 2);
+                
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (System.Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+        }
+
+        
+        /// <summary>
+        /// Metodo que crea el DataTable con todos los campos que se van a mostrar en la hoja de Excel
+        /// </summary>
+        /// <returns>DataTable inicializado con las columnas ya preparadas para luego ser llenado</returns>
+        private DataTable CrearDataTableExportacion()
+        {
+
+            DataTable datos = new DataTable();
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                datos.Columns.Add("Proforma", typeof(int));
+                datos.Columns.Add("Cod Asociado", typeof(int));
+                datos.Columns.Add("Asociado", typeof(string));
+                datos.Columns.Add("Factura", typeof(string));
+                datos.Columns.Add("Fecha Emision", typeof(DateTime));
+                datos.Columns.Add("Fecha Recepcion", typeof(DateTime));
+                datos.Columns.Add("Monto", typeof(double));
+                datos.Columns.Add("Dias Vencimiento", typeof(int));
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return datos;
+        }
+
+
+        private DataTable LlenarDataTable(DataTable datosExportar, IList<FacInternacional> listaFacturasAprobadas)
+        {
+
+            DataTable datos = datosExportar;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                foreach (FacInternacional  facturaAprobada in listaFacturasAprobadas)
+                {
+                    DataRow filaNueva = datos.NewRow();
+                    filaNueva["Proforma"] = facturaAprobada.Id.Value;
+                    filaNueva["Cod Asociado"] = facturaAprobada.Asociado_o.Id;
+                    filaNueva["Asociado"] = facturaAprobada.Asociado_o.Nombre;
+                    filaNueva["Factura"] = facturaAprobada.Numerofactura;
+                    filaNueva["Fecha Emision"] = facturaAprobada.Fecha;
+                    if(facturaAprobada.FechaRecepcion != null)
+                    {
+                        filaNueva["Fecha Recepcion"] = facturaAprobada.FechaRecepcion;
+                    }
+                    filaNueva["Monto"] = facturaAprobada.Monto;
+                    filaNueva["Dias Vencimiento"] = facturaAprobada.DiasVencimiento;
+                    
+                    datos.Rows.Add(filaNueva);
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return datos;
+        }
+
     }
 }

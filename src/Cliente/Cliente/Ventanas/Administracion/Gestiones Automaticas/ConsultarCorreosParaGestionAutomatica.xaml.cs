@@ -155,6 +155,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.Gestiones_Automaticas
         }
 
 
+        public object Usuarios
+        {
+            get { return this._cbxUsuarios.DataContext; }
+            set { this._cbxUsuarios.DataContext = value; }
+        }
+
+
+        public object Usuario
+        {
+            get { return this._cbxUsuarios.SelectedItem; }
+            set { this._cbxUsuarios.SelectedItem = value; }
+        }
+
+
         
         public string TotalHits
         {

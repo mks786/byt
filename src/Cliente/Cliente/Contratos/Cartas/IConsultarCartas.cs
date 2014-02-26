@@ -70,5 +70,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
         string NombreContacto { set; }
 
         string AsociadoNoRegistrado { get; set; }
+
+        void HabilitarBotonEliminarCartas();
     }
 }

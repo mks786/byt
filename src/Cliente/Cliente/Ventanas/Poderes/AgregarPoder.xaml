@@ -53,6 +53,7 @@
                     <RowDefinition Height="85"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="150"/>
+                    <RowDefinition Height="30"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
@@ -100,9 +101,22 @@
                 <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
                 </Label>
-                <custom:ByTTextBox Grid.Column="1" Grid.Row="4" Name="_txtNombreInteresado" VerticalAlignment="Center" 
+                <!--<custom:ByTTextBox Grid.Column="1" Grid.Row="4" Name="_txtNombreInteresado" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="180" Text="" MaxLength="255" BorderBrush="LightGreen" IsReadOnly="True"
-                         MouseDoubleClick="_txtNombreInteresado_MouseDoubleClick"  ></custom:ByTTextBox>
+                         MouseDoubleClick="_txtNombreInteresado_MouseDoubleClick"  ></custom:ByTTextBox>-->
+
+                <custom:ByTTextBox Grid.Column="1" Grid.Row="4" Name="_txtNombreInteresado" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="180" MaxLength="255" IsReadOnly="True"
+						 ToolTip="{Binding ElementName=_txtInteresadoNombre, Path=(Validation.Errors)[0].ErrorContent}"
+                         MouseDoubleClick="_txtNombreInteresado_MouseDoubleClick">
+                    <custom:ByTTextBox.Text>
+                        <Binding Path="Interesado.Nombre" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <reglas:Obligatorio ValidatesOnTargetUpdated="True" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </custom:ByTTextBox.Text>
+                </custom:ByTTextBox>
 
                 <Label Name="_lblIdInteresadoFiltrar"  Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top" 
                                Visibility="Collapsed" Margin="0,0,0,0">
@@ -201,6 +215,17 @@
                     </ListView.View>
                 </ListView>
 
+                <Label Grid.Column="0" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                    <TextBlock Text="Fecha de Vencimiento:"/>
+                </Label>
+
+                <DatePicker  Grid.Column="1" Grid.Row="10" Width="150" Name="_dpkFechaVencimiento" Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" >
+                    <DatePicker.SelectedDate>
+                        <Binding Path="FechaVencimiento" UpdateSourceTrigger="PropertyChanged" StringFormat="{}{0:dd/MM/yyyy}"/>
+                    </DatePicker.SelectedDate>
+                </DatePicker>
+
+
             </Grid>
         </GroupBox>
 
@@ -211,6 +236,9 @@
                     <Style TargetType="Button">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding ElementName=_txtNumPoder,Path=(Validation.HasError)}" Value="True">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=_txtInteresadoNombre,Path=(Validation.HasError)}" Value="True">
                                 <Setter Property="IsEnabled" Value="False" />
                             </DataTrigger>
                         </Style.Triggers>

@@ -105,7 +105,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 {
 
                     cartasOut[index].Status = 'M';
-
+                    carta.DescripcionResumen = "INFORMACION";
                     Session.SaveOrUpdate(cartasOut[index]);
                     Session.SaveOrUpdate(carta);
 

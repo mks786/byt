@@ -1477,4 +1477,31 @@
   <data name="ConfirmarHayDatosConsolidacionCxPInternacional" xml:space="preserve">
     <value>Existen datos de consolidacion guardados, desea recuperarlos?</value>
   </data>
+  <data name="AlertaCambiarStatusFacCxPInternacional" xml:space="preserve">
+    <value>Desea cambiar el status de la Factura?. Si su respuesta es Si debe Consolidar nuevamente.</value>
+  </data>
+  <data name="AlertaVistaPreviaConsolidacionCxPInt" xml:space="preserve">
+    <value>Hay datos cargados para generar la vista previa de Consolidación. Desea verlos?. Si su respuesta es No se generarán los datos previos desde cero. </value>
+  </data>
+  <data name="AlertaPoderSinInteresado" xml:space="preserve">
+    <value>El Poder debe tener un Interesado</value>
+  </data>
+  <data name="ConfirmarEliminarCartasSeleccionadas" xml:space="preserve">
+    <value>Desea eliminar las correspondencias seleccionadas?</value>
+  </data>
+  <data name="ErrorPlanillaPdfCesionNoEncontrada" xml:space="preserve">
+    <value>Disculpe, la Planilla de la Cesion {0} no existe</value>
+  </data>
+  <data name="ErrorPlanillaPdfCambioDomicilioNoEncontrada" xml:space="preserve">
+    <value>Disculpe, la Planilla del Cambio de Domicilio {0} no existe</value>
+  </data>
+  <data name="ErrorPlanillaPdfCambioNombreNoEncontrada" xml:space="preserve">
+    <value>Disculpe, la Planilla del Cambio de Nombre {0} no existe</value>
+  </data>
+  <data name="ErrorPlanillaPdfFusionNoEncontrada" xml:space="preserve">
+    <value>Disculpe, la Planilla de la Fusión {0} no existe</value>
+  </data>
+  <data name="ErrorPlanillaPdfLicenciaNoEncontrada" xml:space="preserve">
+    <value>Disculpe, la Planilla de la Licencia {0} no existe</value>
+  </data>
 </root>

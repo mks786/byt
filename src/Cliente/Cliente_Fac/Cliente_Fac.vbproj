@@ -104,6 +104,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\lib\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic.Compatibility" />
     <Reference Include="Microsoft.VisualBasic.Compatibility.Data" />
     <Reference Include="NHibernate, Version=3.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
@@ -313,6 +316,7 @@
     <Compile Include="Contratos\TarifaServicios\IAgregarTarifaServicio.vb" />
     <Compile Include="Contratos\TarifaServicios\IConsultarTarifaServicio.vb" />
     <Compile Include="Contratos\TarifaServicios\IConsultarTarifaServicios.vb" />
+    <Compile Include="Contratos\TarifaServicios\IRecalcularTarifaServicios.vb" />
     <Compile Include="Contratos\Tasas\IAgregarTasa.vb" />
     <Compile Include="Contratos\Tasas\IConsultarTasa.vb" />
     <Compile Include="Contratos\Tasas\IConsultarTasas.vb" />
@@ -478,6 +482,7 @@
     <Compile Include="Presentadores\TarifaServicios\PresentadorAgregarTarifaServicio.vb" />
     <Compile Include="Presentadores\TarifaServicios\PresentadorConsultarTarifaServicio.vb" />
     <Compile Include="Presentadores\TarifaServicios\PresentadorConsultarTarifaServicios.vb" />
+    <Compile Include="Presentadores\TarifaServicios\PresentadorRecalcularTarifaServicios.vb" />
     <Compile Include="Presentadores\Tasas\PresentadorAgregarTasa.vb" />
     <Compile Include="Presentadores\Tasas\PresentadorConsultarTasa.vb" />
     <Compile Include="Presentadores\Tasas\PresentadorConsultarTasas.vb" />
@@ -944,6 +949,9 @@
     </Compile>
     <Compile Include="Ventanas\TarifaServicios\ConsultarTarifaServicios.xaml.vb">
       <DependentUpon>ConsultarTarifaServicios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TarifaServicios\RecalcularTarifaServicios.xaml.vb">
+      <DependentUpon>RecalcularTarifaServicios.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Tasas\AgregarTasa.xaml.vb">
       <DependentUpon>AgregarTasa.xaml</DependentUpon>
@@ -1595,6 +1603,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Ventanas\TarifaServicios\RecalcularTarifaServicios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Ventanas\Tasas\AgregarTasa.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1708,7 +1720,17 @@
   <ItemGroup>
     <Compile Include="Transformadores\DosValoresAUno.vb" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>

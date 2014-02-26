@@ -89,6 +89,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
 
                 this._ventana.FacturasConsolidadas = this._facAsociadoConsolidadas.FacturasIntConsolidadas;
 
+                IList<FacInternacional> listaFacturasConsolidadas = this._facAsociadoConsolidadas.FacturasIntConsolidadas;
+
+                this._ventana.TotalMontoConsolidado = CalcularMontoTotalConsolidar(listaFacturasConsolidadas).ToString("N");
+
+                this._ventana.TotalHits = listaFacturasConsolidadas.Count.ToString();
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -106,6 +112,43 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
                 Mouse.OverrideCursor = null;
             }
 
+        }
+
+
+        /// <summary>
+        /// Metodo que devuelve el resultado de la sumatoria de los montos de una serie de facturas internacionales consolidadas
+        /// </summary>
+        /// <param name="listaFacturasConsolidadas">Lista de facturas internacionales consolidadas</param>
+        /// <returns>Monto total a consolidar de ese asociado en particular</returns>
+        private Double CalcularMontoTotalConsolidar(IList<FacInternacional> listaFacturasConsolidadas)
+        {
+
+            double montoTotal = 0;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                foreach (FacInternacional factura in listaFacturasConsolidadas)
+                {
+                    montoTotal += factura.Monto;                    
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+
+            return montoTotal;
         }
 
 

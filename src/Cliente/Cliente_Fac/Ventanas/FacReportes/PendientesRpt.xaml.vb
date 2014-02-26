@@ -217,6 +217,26 @@ Namespace Ventanas.FacReportes
             End Set
         End Property
 
+        Public Property CondicionDiasCredito As Object Implements Contratos.FacReportes.IPendientesRpt.CondicionDiasCredito
+            Get
+                Return Me._cbxDiasCredito.SelectedItem
+            End Get
+            Set(ByVal value As Object)
+                Me._cbxDiasCredito.SelectedItem = value
+            End Set
+        End Property
+
+        Public Property CondicionesDiasCredito As Object Implements Contratos.FacReportes.IPendientesRpt.CondicionesDiasCredito
+            Get
+                Return Me._cbxDiasCredito.DataContext
+            End Get
+            Set(ByVal value As Object)
+                Me._cbxDiasCredito.DataContext = value
+            End Set
+        End Property
+
+
+
         Public Property Asociado2 As Object Implements Contratos.FacReportes.IPendientesRpt.Asociado2
 
             Get

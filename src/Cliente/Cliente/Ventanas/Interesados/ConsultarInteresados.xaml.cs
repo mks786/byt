@@ -140,6 +140,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Interesados
             set { this._cbxOrigenCliente.SelectedItem = value; }
         }
 
+        public object Idiomas
+        {
+            get { return this._cbxIdioma.DataContext; }
+            set { this._cbxIdioma.DataContext = value; }
+        }
+
+        public object Idioma
+        {
+            get { return this._cbxIdioma.SelectedItem; }
+            set { this._cbxIdioma.SelectedItem = value; }
+        }
 
         #endregion
 
@@ -246,6 +257,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Interesados
             {
                 todosCamposVacios = false;
                 this._cbxCorporacion.Focus();
+            }
+
+            if ((this._cbxIdioma.SelectedIndex != 0) && (this._cbxIdioma.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxIdioma.Focus();
             }
 
             if (!this._txtCi.Text.Equals(""))

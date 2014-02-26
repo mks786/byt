@@ -40,5 +40,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Poderes
         SortAdorner CurAdorner { get; set; }
 
         ListView ListaResultados { get; set; }
+
+        void Mensaje(string mensaje, int opcion);
     }
 }

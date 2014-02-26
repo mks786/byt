@@ -56,8 +56,9 @@
                 <RowDefinition Height="65"/>
                 <RowDefinition Height="65"/>
                 <RowDefinition Height="65"/>
-                <RowDefinition Height="65"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="65"/>
                 <RowDefinition Height="65"/>
             </Grid.RowDefinitions>
 
@@ -97,11 +98,12 @@
                 </Label>
                 <custom:ByTTextBox Name="_txtDetalleGestion" Text="" Width="185" MaxLength="500" Height="25" HorizontalAlignment="Left" Margin="5,5,0,0" />
             </WrapPanel>
-            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,20,12,16" Grid.Row="3" Grid.Column="0" Width="252">
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,20,12,16" Grid.Row="4" Grid.Column="0" Width="252">
                 <Label  Name="_lblUsuarioGestion" >
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblUsuarioLogueado}"/>
                 </Label>
                 <custom:ByTTextBox Name="_txtUsuarioGestion" Text="" Width="180" MaxLength="15" Height="25" HorizontalAlignment="Left" Margin="5,5,0,0" IsEnabled="False" />
+                
             </WrapPanel>
             <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,20,12,16" Grid.Row="4" Grid.Column="0" Width="252">
                 <Label  Name="_lblAsociadoGestion" >
@@ -111,7 +113,7 @@
             </WrapPanel>-->
             
             <!-- Datos del Asociado -->
-            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,20,12,16" Grid.Row="4" Grid.Column="0" Width="252">
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,20,12,16" Grid.Row="3" Grid.Column="0" Width="252">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="84"/>
@@ -183,6 +185,14 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblCarpetaGestion}"/>
                 </Label>
                 <ComboBox Name="_cbxCarpetaGestion" Width="140" ItemsSource="{Binding}" DisplayMemberPath="Carpeta" SelectedIndex="0" >
+                </ComboBox>
+            </WrapPanel>
+
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,20,12,16" Grid.Row="6" Grid.Column="0" Width="252">
+                <Label  Name="_lblGestionAplicadaA" >
+                    <TextBlock Text="Aplicar a: "/>
+                </Label>
+                <ComboBox Name="_cbxUsuarios" Width="180" ItemsSource="{Binding}" DisplayMemberPath="NombreCompleto">
                 </ComboBox>
             </WrapPanel>
 

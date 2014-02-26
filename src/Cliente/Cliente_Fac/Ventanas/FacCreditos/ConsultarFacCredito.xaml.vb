@@ -195,6 +195,16 @@ Namespace Ventanas.FacCreditos
             End Set
         End Property
 
+        Public Property CobroSeleccionado() As Object Implements Contratos.FacCreditos.IConsultarFacCredito.CobroSeleccionado
+            Get
+                Return Me._lstResultadosFormas.SelectedItem
+            End Get
+            Set(value As Object)
+                Me._lstResultadosFormas.SelectedItem = value
+            End Set
+        End Property
+
+
         Public Property ListaResultados() As System.Windows.Controls.ListView Implements Contratos.FacCreditos.IConsultarFacCredito.ListaResultados
             Get
                 Return Me._lstResultadosFormas
@@ -333,5 +343,8 @@ Namespace Ventanas.FacCreditos
             'Return Replace(value.ToString("C2", New System.Globalization.CultureInfo("en-us")).Remove(0, 1), ",", "")
         End Function
 
+        Private Sub _lstResultadosFormas_MouseDoubleClick(sender As System.Object, e As System.Windows.Input.MouseButtonEventArgs)
+            Me._presentador.ConsultarCobroSeleccionado()
+        End Sub
     End Class
 End Namespace

@@ -21,6 +21,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _operacion;
         private string _mostrarAgentes;
         private IList<Agente> _agentes;
+        private DateTime? _fechaVencimiento; 
 
         #endregion
 
@@ -141,6 +142,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return this._agentes; }
             set { this._agentes = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la fecha de vencimiento del poder
+        /// </summary>
+        public virtual DateTime? FechaVencimiento
+        {
+            get { return this._fechaVencimiento; }
+            set { this._fechaVencimiento = value; }
         }
 
         #endregion

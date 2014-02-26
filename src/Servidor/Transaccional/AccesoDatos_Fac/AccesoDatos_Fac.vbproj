@@ -489,7 +489,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mapeado\FacVistaFacturacionCxpInterna.hbm.xml" />
     <EmbeddedResource Include="Mapeado\CarpetaGestionAutomatica.hbm.xml" />
-    <EmbeddedResource Include="Mapeado\FacAsociadoIntConsolidadoCxPInt.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\FacAsociadoIntConsolidadoCxPInt.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Content Include="Mapeado\FacFacturaTotal.xml" />
     <EmbeddedResource Include="Mapeado\FacFacturaTotalZ.hbm.xml" />
   </ItemGroup>

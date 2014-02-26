@@ -117,7 +117,7 @@
 
         <!--Resultados-->
         <GroupBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Margin="5">
-            <ListView Name="_lstResultados" ItemsSource="{Binding}" SelectionMode="Single" 
+            <ListView Name="_lstResultados" ItemsSource="{Binding}" SelectionMode="Extended" 
                       MouseDoubleClick="_lstResultados_MouseDoubleClick" Style="{DynamicResource EstiloListView}">
                 <ListView.View>
                     <GridView>
@@ -146,7 +146,10 @@
 
         <!--Botones Regresar-->
         <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
-            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
+                <Button Name="_btnCalcularTarifas" Width="100" Click="_btnCalcularTarifas_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnCalcularTarifas}"/>
+                </Button>
                 <Button Name="_btnCancelar" Width="100" Click="_btnCancelar_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnCancelar}"/>
                 </Button>

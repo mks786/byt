@@ -27,6 +27,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<Poder> _poderes;
         private string _operacion;
         private string _origenCliente;
+        private Idioma _idioma;
 
         #endregion
 
@@ -194,6 +195,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _origenCliente; }
             set { _origenCliente = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Idioma del Cliente
+        /// </summary>
+        public virtual Idioma Idioma
+        {
+            get { return _idioma; }
+            set { _idioma = value; }
         }
 
         #endregion

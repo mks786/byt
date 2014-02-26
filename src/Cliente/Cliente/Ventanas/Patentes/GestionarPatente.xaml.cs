@@ -309,15 +309,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             }
             else if (tipo.Equals("2"))
             {
-                color = Brushes.LightBlue;
+                //color = Brushes.LightBlue;
+                color = Brushes.DeepSkyBlue;
             }
             else if (tipo.Equals("3"))
             {
-                color = Brushes.LightYellow;
+                //color = Brushes.LightYellow;
+                color = Brushes.Red;
             }
             else if (tipo.Equals("4"))
             {
-                color = Brushes.Pink;
+                //color = Brushes.Pink;
+                color = Brushes.OrangeRed;
             }
             else color = Brushes.Transparent;
 

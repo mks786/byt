@@ -326,6 +326,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 this._txtNombreInteresadoSolicitud.IsEnabled = value;
                 this._txtOtrosImp.IsEnabled = value;
                 this._txtCaso.IsEnabled = value;
+                this._txtSaldoVencido.IsEnabled = value;
+                this._txtSaldoPorVencer.IsEnabled = value;
+                this._txtTotalDeuda.IsEnabled = value;
 
 
                 #endregion
@@ -1013,15 +1016,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             }
             else if (tipo.Equals("2"))
             {
-                color = Brushes.LightBlue;
+                //color = Brushes.LightBlue;
+                color = Brushes.DeepSkyBlue;
             }
             else if (tipo.Equals("3"))
             {
-                color = Brushes.LightYellow;
+                //color = Brushes.LightYellow;
+                color = Brushes.Red;
             }
             else if (tipo.Equals("4"))
             {
-                color = Brushes.Pink;
+                //color = Brushes.Pink;
+                color = Brushes.OrangeRed;
             }
             else color = Brushes.White;
 
@@ -1745,7 +1751,32 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             this._presentador.IrVentanaInteresado();
         }
 
-        
+
+        #region Propiedades y Eventos Rutina de Saldos
+
+        public string SaldoVencido
+        {
+            set { this._txtSaldoVencido.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value)); }
+        }
+
+        public string SaldoPorVencer
+        {
+            set { this._txtSaldoPorVencer.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value)); }
+        }
+
+        public string Total
+        {
+            set { this._txtTotalDeuda.Text = _presentador.SetFormatoDouble2(System.Convert.ToDouble(value)); }
+        }
+
+        private void _btnSaldo_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.CalcularSaldos();
+        }
+
+        #endregion
+
+
 
 
     }

@@ -96,5 +96,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
 
         void DesactivarBotonesParaModificar();
 
+        void PintarBotonesCxPInternacional();
+
+        string CartaDomicilioDatos { get; set; }
+
     }
 }

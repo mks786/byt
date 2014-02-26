@@ -161,6 +161,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
                 this._txtNombreDatos.IsEnabled = value;
                 this._txtNombreAdministracion.IsEnabled = value;
                 this._txtDomicilioDatos.IsEnabled = value;
+                this._txtCartaDomicilioDatos.IsEnabled = value;
                 this._txtTelefono1Datos.IsEnabled = value;
                 this._txtTelefono2Datos.IsEnabled = value;
                 this._txtTelefono3Datos.IsEnabled = value;
@@ -633,7 +634,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             this._presentador.VerGestionesDeAsociado();
         }
 
+        public void PintarBotonesCxPInternacional()
+        {
+            this._btnCXPINTAdministracion.Background = Brushes.LightGreen;
+            this._btnCXPINTDatos.Background = Brushes.LightGreen;
+        }
 
+        public string CartaDomicilioDatos
+        {
+            get { return this._txtCartaDomicilioDatos.Text; }
+            set { this._txtCartaDomicilioDatos.Text = value; }
+        }
+
+        private void _btnCartaDomicilioDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarCorrespondenciaDeDomicilio();
+        }
 
 
         

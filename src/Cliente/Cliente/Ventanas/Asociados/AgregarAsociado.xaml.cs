@@ -256,5 +256,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             set { this._cbxOrigenClienteAdministracion.SelectedItem = value; }
         }
 
+
+        public string CartaDomicilioDatos
+        {
+            get { return this._txtCartaDomicilioDatos.Text; }
+            set { this._txtCartaDomicilioDatos.Text = value; }
+        }
+
+        private void _btnCartaDomicilioDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarCorrespondenciaDeDomicilio();
+        }
+
     }
 }

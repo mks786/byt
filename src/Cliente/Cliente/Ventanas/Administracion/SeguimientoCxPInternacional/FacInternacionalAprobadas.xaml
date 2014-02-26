@@ -157,6 +157,13 @@
         <GroupBox Grid.ColumnSpan="3" Grid.Row="3" BorderBrush="{x:Null}">
             <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" 
                        Orientation="Horizontal">
+                <Button Name="_btnActualizarFactInternacional" VerticalAlignment="Bottom" Height="25" Width="110" IsEnabled="False" 
+                        Click="_btnActualizarFactInternacional_Click">
+                    <TextBlock Text="Actualizar"/>
+                </Button>
+                <Button Name="_btnExportar" VerticalAlignment="Bottom" Height="25" Width="110" Click="_btnExportar_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnExportar}"/>
+                </Button>
                 <Button Name="_btnVerDatosConsolidar" VerticalAlignment="Bottom" Height="25" Width="110" 
                         Click="_btnConsolidar_Click">
                     <TextBlock Text="Ver Consolidado"/>

@@ -343,6 +343,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
                     ValidarCesionario();
 
+                    if (System.IO.File.Exists(ConfigurationManager.AppSettings["RutaPlanillaPDFCesionMarca"].ToString() + ((Cesion)this._ventana.Cesion).Id + ".pdf"))
+                    {
+                        this._ventana.PintarVerPlanilla();
+                    }
+
                 }
                 else
                 {
@@ -362,6 +367,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     CargarApoderado("Cedente");
 
                     CargaBoletines();
+
+                    
                 }
 
                 this._ventana.FocoPredeterminado();
@@ -3173,6 +3180,40 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             {
                 Asociado asociado = ((Marca)this._ventana.Marca).Asociado.Id != int.MinValue ? ((Marca)this._ventana.Marca).Asociado : null;
                 Navegar(new ConsultarAsociado(asociado, this._ventana, false));
+            }
+        }
+
+        /// <summary>
+        /// Metodo que abre el pdf de la planilla 
+        /// </summary>
+        public void IrVerPlanilla()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                String ruta = ConfigurationManager.AppSettings["RutaPlanillaPDFCesionMarca"].ToString() + ((Cesion)this._ventana.Cesion).Id + ".pdf";
+                System.Diagnostics.Process.Start(ruta);
+
+                //System.Diagnostics.Process.Start(ConfigurationManager.AppSettings["RutaPlanillaPDFCesionMarca"].ToString() + "." + ((Cesion)this._ventana.Cesion).Id + ".pdf");
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Win32Exception ex)
+            {
+                logger.Error(ex.Message);
+                this._ventana.ArchivoNoEncontrado(string.Format(Recursos.MensajesConElUsuario.ErrorPlanillaPdfCesionNoEncontrada, ((Cesion)this._ventana.Cesion).Id.ToString()));
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
     }

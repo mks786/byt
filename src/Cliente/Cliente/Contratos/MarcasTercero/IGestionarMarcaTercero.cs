@@ -224,5 +224,11 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         void ConvertirEnteroMinimoABlanco();
 
+        string SaldoVencido { set; }
+
+        string SaldoPorVencer { set; }
+
+        string Total { set; }
+
     }
 }

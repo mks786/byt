@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Windows.Controls;
@@ -11,6 +12,7 @@ using Trascend.Bolet.Cliente.Ventanas.DatosTransferencias;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.EmailsAsociado;
+using Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoCxPInternacional;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 {
@@ -19,8 +21,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
         private IListaDatosTransferencia _ventana;
         private Asociado _asociado;
+        private IList<FacAsociadoIntConsolidadoCxPInt> _datosConsolidadosTodos;
+        private bool _soloVerConsolidado;
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+        private bool _consolida;
+        private object _ventanaFacAprobadas;
 
 
         /// <summary>
@@ -43,6 +50,62 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             #endregion
         }
 
+        /// <summary>
+        /// Constructor predeterminado que recibe una ventana padre
+        /// </summary>
+        /// <param name="ventana"></param>
+        /// <param name="asociado"></param>
+        /// <param name="ventanaPadre"></param>
+        public PresentadorListaDatosTransferencia(IListaDatosTransferencia ventana, object asociado, object ventanaPadre)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this._ventana = ventana;
+            this._ventanaPadre = ventanaPadre;
+            this._asociado = (Asociado)asociado;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+        /// <summary>
+        /// Constructor predeterminado que acepta una ventana padre y un status de consolidacion
+        /// </summary>
+        /// <param name="ventana"></param>
+        /// <param name="asociado"></param>
+        /// <param name="ventanaPadre"></param>
+        /// <param name="consolida"></param>
+        public PresentadorListaDatosTransferencia(IListaDatosTransferencia ventana, 
+                                                  object asociado, 
+                                                  object datosConsolidados, 
+                                                  object ventanaPadre, 
+                                                  bool consolida, 
+                                                  bool soloVerConsolidado,
+                                                  object ventanaFacAprobadas)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this._ventana = ventana;
+            this._ventanaPadre = ventanaPadre;
+            this._ventanaFacAprobadas = ventanaFacAprobadas;
+            this._consolida = consolida;
+            this._soloVerConsolidado = soloVerConsolidado;
+            this._datosConsolidadosTodos = (IList<FacAsociadoIntConsolidadoCxPInt>)datosConsolidados;
+            this._asociado = (Asociado)asociado;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -63,6 +126,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
                 this._ventana.DatosTransferencias = this._asociado.DatosTransferencias;
                 this._ventana.TotalHits = this._asociado.DatosTransferencias.Count.ToString();
+
+                if (this._consolida)
+                {
+                    this._ventana.PresentarBotonSeleccionarDatos();
+                }
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -114,7 +183,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new AgregarDatosTransferencia(this._asociado));
+            //this.Navegar(new AgregarDatosTransferencia(this._asociado));
+            this.Navegar(new AgregarDatosTransferencia(this._asociado, this._ventana, this._ventanaPadre));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -157,5 +227,52 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             #endregion
         }
 
+
+        /// <summary>
+        /// Metodo que sirve para seleccionar los datos de transferencia para el proceso de consolidacion
+        /// </summary>
+        public void SeleccionarDatosTransferenciaConsolidacion()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                DatosTransferencia datoSeleccionado = (DatosTransferencia)this._ventana.DatosTransferenciaSeleccionada;
+
+                Asociado asociado = datoSeleccionado.Asociado;
+
+                foreach (FacAsociadoIntConsolidadoCxPInt item in _datosConsolidadosTodos)
+                {
+                    if (item.AsociadoInt.Id == asociado.Id)
+                    {
+                        item.DatosTransferencia = datoSeleccionado;
+                        item.DatosBancariosStr = datoSeleccionado.BancoBenef + Environment.NewLine + datoSeleccionado.Direccion +
+                                    Environment.NewLine + datoSeleccionado.Cuenta + Environment.NewLine + datoSeleccionado.Aba +
+                                    Environment.NewLine + datoSeleccionado.Swif;
+                        item.FormaPago = "Transferencia";
+                        item.NumeroSecuenciaTransferencia = datoSeleccionado.Id;
+                        break;
+                    }
+                    else
+                        continue;
+
+                }
+
+                this.Navegar(new FacInternacionalConsolidadas(_datosConsolidadosTodos, this._soloVerConsolidado, true, true,this._ventanaFacAprobadas));
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
     }
 }

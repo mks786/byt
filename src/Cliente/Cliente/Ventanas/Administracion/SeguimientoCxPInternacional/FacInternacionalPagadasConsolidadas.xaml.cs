@@ -57,6 +57,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoCxPInternaci
             set { this._lstResultados.SelectedItem = value; }
         }
 
+        public string TotalMontoConsolidado
+        {
+            get { return this._txtTotalMontoConsolidado.Text; }
+            set { this._txtTotalMontoConsolidado.Text = value; }
+        }
+
+        public string TotalHits
+        {
+            set { this._lblHits.Text = value; }
+        }
+
         #endregion
 
         #region Eventos

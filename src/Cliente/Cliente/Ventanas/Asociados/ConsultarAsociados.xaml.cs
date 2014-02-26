@@ -351,6 +351,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
                 this._cbxDetallePago.Focus();
             }
 
+            if ((this._cbxConcepto.SelectedIndex != 0) && (this._cbxConcepto.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxConcepto.Focus();
+            }
+
             if (todosCamposVacios)
             {
                 this._txtId.Focus();
@@ -360,6 +366,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.LimpiarCampos();
+        }
+
+
+        public object Conceptos
+        {
+            get {return this._cbxConcepto.DataContext; }
+            set { this._cbxConcepto.DataContext = value; }
+        }
+
+        public object Concepto
+        {
+            get { return this._cbxConcepto.SelectedItem; }
+            set { this._cbxConcepto.SelectedItem = value; }
         }
     }
 }

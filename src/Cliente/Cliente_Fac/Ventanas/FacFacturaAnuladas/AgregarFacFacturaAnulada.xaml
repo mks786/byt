@@ -159,6 +159,14 @@
                         </Grid>
                     </WrapPanel>
                     <!--***************Fin Asociado-->
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <CheckBox  Name="_chkSustFac" VerticalAlignment="Center" IsEnabled="False"
+                         HorizontalAlignment="Right" IsChecked="{Binding Path=BSustFac}">
+                        </CheckBox>
+                        <Label VerticalAlignment="Center" HorizontalContentAlignment="Left">
+                            <TextBlock Text="Sustituye Factura?"/>
+                        </Label>
+                    </WrapPanel>                    
 
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" >
                         <CheckBox  Name="_chkImodpr" VerticalAlignment="Center" 

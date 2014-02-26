@@ -16,5 +16,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
         ListView ListaResultados { get; set; }
 
         string TotalHits { set; }
+
+        void PresentarBotonSeleccionarDatos();
     }
 }

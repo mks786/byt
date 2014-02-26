@@ -6,6 +6,8 @@ Namespace Contratos.FacInternacionales
 
         Property FacInternacional() As Object
 
+        Property BSustProforma As Boolean
+
         Sub Mensaje(ByVal mensaje__1 As String)
 
         Property Fecha() As Object
@@ -51,6 +53,9 @@ Namespace Contratos.FacInternacionales
         'Property B3() As Boolean
 
         ' WriteOnly Property CrystalViewer() As Object
+
+        Property NumeroFactura As String
+
 
     End Interface
 End Namespace

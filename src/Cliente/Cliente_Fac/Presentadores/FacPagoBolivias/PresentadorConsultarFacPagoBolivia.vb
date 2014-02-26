@@ -127,6 +127,8 @@ Namespace Presentadores.FacPagoBolivias
                 'Me._ventana.Banco = FacCredito.Banco
                 Me._ventana.Banco = Me.BuscarBancoG(bancospag, FacPagoBolivia.BancoPag)
 
+                Me._ventana.FechaPagoBolivia = Date.Today
+
                 Me._ventana.FocoPredeterminado()
                 Me._ventana.HabilitarCampos = False
                 '#Region "trace"

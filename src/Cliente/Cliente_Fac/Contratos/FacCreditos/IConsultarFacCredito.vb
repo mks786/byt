@@ -41,5 +41,8 @@ Namespace Contratos.FacCreditos
         Property Resultados() As Object
 
         Property ListaResultados() As ListView
+
+        Property CobroSeleccionado() As Object
+
     End Interface
 End Namespace

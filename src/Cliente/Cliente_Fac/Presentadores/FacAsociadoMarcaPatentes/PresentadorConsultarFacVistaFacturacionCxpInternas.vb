@@ -20,6 +20,8 @@ Imports Trascend.Bolet.ObjetosComunes.ContratosServicios
 Imports Trascend.Bolet.Cliente.Presentadores
 Imports Trascend.Bolet.Cliente.Ventanas.Principales
 Imports Diginsoft.Bolet.Cliente.Fac.Ventanas.FacInternacionales
+Imports System.Data
+
 
 
 Namespace Presentadores.FacAsociadoMarcaPatentes
@@ -32,6 +34,8 @@ Namespace Presentadores.FacAsociadoMarcaPatentes
         Private _FacVistaFacturacionCxpInternaservicios As IFacVistaFacturacionCxpInternaServicios
         Private _FacFacturaProformaServicios As IFacFacturaProformaServicios
         Private _FacInternacionalesServicios As IFacInternacionalServicios
+        Private _listaFacturasPorPagar As List(Of FacVistaFacturacionCxpInterna) = New List(Of FacVistaFacturacionCxpInterna)()
+
         Private _asociado As Asociado
         ''' <summary>
         ''' Constructor Predeterminado
@@ -168,7 +172,9 @@ Namespace Presentadores.FacAsociadoMarcaPatentes
 
                 Dim FacVistaFacturacionCxpInternaAuxiliar As New FacVistaFacturacionCxpInterna()
 
-                FacVistaFacturacionCxpInternaAuxiliar.Asociado = _asociado
+                'FacVistaFacturacionCxpInternaAuxiliar.Asociado = _asociado
+                FacVistaFacturacionCxpInternaAuxiliar.Asociado_o = _asociado
+
 
                 'FacVistaFacturacionCxpInternaAuxiliar.Cobrada = "NO"
                 FacVistaFacturacionCxpInternaAuxiliar.Pagada = "NO"
@@ -177,6 +183,7 @@ Namespace Presentadores.FacAsociadoMarcaPatentes
                 Dim FacVistaFacturacionCxpInternas As List(Of FacVistaFacturacionCxpInterna) = Me._FacVistaFacturacionCxpInternaservicios.ObtenerFacVistaFacturacionCxpInternasFiltro(FacVistaFacturacionCxpInternaAuxiliar)
                 Me._ventana.Resultados = Nothing
                 Me._ventana.Count = FacVistaFacturacionCxpInternas.Count
+                Me._listaFacturasPorPagar = FacVistaFacturacionCxpInternas
                 Me._ventana.Resultados = FacVistaFacturacionCxpInternas
                 Mouse.OverrideCursor = Nothing
 
@@ -327,6 +334,144 @@ Namespace Presentadores.FacAsociadoMarcaPatentes
             Else
                 Return (Nothing)
             End If
+        End Function
+
+        ''' Metodo para exportar un conjunto de Facturas a Excel
+        Public Sub ExportarFacturasExcel()
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                Dim datos As DataTable = New DataTable()
+                '''Dim listaFacturas As List(Of FacVistaFacturacionCxpInterna) = DirectCast(Me._ventana.Resultados, List(Of FacVistaFacturacionCxpInterna))
+                datos = CrearColumnasDataTable()
+                datos = LlenarDataTable(datos, Me._listaFacturasPorPagar)
+
+                If datos.Rows.Count > 0 Then
+                    Me._ventana.ExportarListView(datos)
+                Else
+                    Me._ventana.Mensaje("No hay registros para exportar", 0)
+                End If
+
+
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, True)
+            End Try
+        End Sub
+
+        Private Function CrearColumnasDataTable() As DataTable
+
+            Dim datos As DataTable = New DataTable()
+
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                datos.Columns.Add("No Proforma", GetType(System.Int32))
+                datos.Columns.Add("Cod Asociado", GetType(System.Int32))
+                datos.Columns.Add("Asociado", GetType(System.String))
+                datos.Columns.Add("No Factura", GetType(System.String))
+                datos.Columns.Add("Monto", GetType(System.Double))
+                datos.Columns.Add("Fecha Factura", GetType(System.DateTime))
+                datos.Columns.Add("Pais", GetType(System.String))
+                datos.Columns.Add("Detalle", GetType(System.String))
+                datos.Columns.Add("Fecha Recepcion", GetType(System.DateTime))
+                datos.Columns.Add("Dias Vencida", GetType(System.Int32))
+
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, True)
+            End Try
+
+            Return datos
+
+        End Function
+
+        Private Function LlenarDataTable(datos As DataTable, listaFacturas As List(Of FacVistaFacturacionCxpInterna)) As DataTable
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                For Each factura As FacVistaFacturacionCxpInterna In listaFacturas
+                    Dim filaNueva As DataRow = datos.NewRow()
+                    filaNueva("No Proforma") = factura.Id
+                    filaNueva("Cod Asociado") = factura.Asociado_o.Id
+                    filaNueva("Asociado") = factura.Asociado_o.Nombre
+                    filaNueva("No Factura") = factura.NumeroFactura
+                    filaNueva("Monto") = factura.Monto
+                    filaNueva("Fecha Factura") = factura.FechaFactura
+                    filaNueva("Pais") = factura.Pais
+                    filaNueva("Detalle") = factura.Detalle
+                    If (factura.FechaRecepcion IsNot Nothing) Then
+                        filaNueva("Fecha Recepcion") = factura.FechaRecepcion
+                    Else
+                        filaNueva("Fecha Recepcion") = System.DBNull.Value
+                    End If
+                    filaNueva("Dias Vencida") = factura.DiasVencida
+                    datos.Rows.Add(filaNueva)
+                Next
+
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, True)
+            End Try
+
+            Return datos
+        End Function
+
+        Public Function ObtenerTituloReporte() As String
+
+            Dim tituloReporte As String = String.Empty
+
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                tituloReporte = "Reporte de Facturas Por Pagar Asociado: " + _asociado.Nombre
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, True)
+            End Try
+
+            Return tituloReporte
+
         End Function
 
 

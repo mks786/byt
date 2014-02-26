@@ -69,6 +69,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
 
         #endregion
 
+        /// <summary>
+        /// Constructor predeterminado que recibe solo un Asociado
+        /// </summary>
+        /// <param name="asociado">Asociado</param>
         public ListaDatosTransferencias(object asociado)
         {
             InitializeComponent();
@@ -76,6 +80,39 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             this._presentador = new PresentadorListaDatosTransferencia(this, asociado);
 
         }
+
+        /// <summary>
+        /// Constructor predeterminado que recibe un asociado y una ventana padre
+        /// </summary>
+        /// <param name="asociado">Asociado</param>
+        /// <param name="ventanaPadre">Ventana padre</param>
+        public ListaDatosTransferencias(object asociado, object ventanaPadre)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorListaDatosTransferencia(this, asociado, ventanaPadre);
+
+        }
+
+        /// <summary>
+        /// Constructor predeterminado que se llama desde la ventana de listado de Datos de Consolidacion para cambiar los datos de 
+        /// transferencia de un Asociado Internacional. 
+        /// </summary>
+        /// <param name="asociado">Asociado Internacional</param>
+        /// <param name="datosConsolidados">Datos de consolidacion</param>
+        /// <param name="ventanaPadre">Ventana que precede a esta ventana</param>
+        /// <param name="consolida">Bandera para indicar si viene de la ventana de consolidacion</param>
+        /// <param name="soloVerConsolidado">Bandera que indica que viene de la ventana que muestra los datos de consolidacion mas no lo ejecuta</param>
+        /// <param name="ventanaFacAprobadas">Ventana anterior a la ventana de Consolidacion</param>
+        public ListaDatosTransferencias(object asociado, object datosConsolidados, object ventanaPadre, bool consolida, bool soloVerConsolidado, object ventanaFacAprobadas)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorListaDatosTransferencia(this, asociado, datosConsolidados, ventanaPadre,consolida, soloVerConsolidado,ventanaFacAprobadas);
+
+        }
+
+
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -93,7 +130,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Regresar();
+            //this._presentador.Regresar();
+            this._presentador.RegresarVentanaPadre();
         }
 
         private void _btnAgregar_Click(object sender, RoutedEventArgs e)
@@ -104,6 +142,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         private void _lstResultados_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             this._presentador.IrConsultarDatosTransferencia();
+        }
+
+
+        public void PresentarBotonSeleccionarDatos()
+        {
+            this._btnSeleccionarDatosTransferencia.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void _btnSeleccionarDatosTransferencia_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.SeleccionarDatosTransferenciaConsolidacion();
         }
     }
 }

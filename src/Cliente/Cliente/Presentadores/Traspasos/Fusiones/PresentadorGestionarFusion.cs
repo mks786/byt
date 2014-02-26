@@ -379,6 +379,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                         }
                     }
 
+                    if (System.IO.File.Exists(ConfigurationManager.AppSettings["RutaPlanillaPDFFusionMarca"].ToString() + ((Fusion)this._ventana.Fusion).Id + ".pdf"))
+                    {
+                        this._ventana.PintarVerPlanilla();
+                    }
+
                     this._ventana.FocoPredeterminado();
 
                 }
@@ -2593,5 +2598,37 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             }
         }
 
+
+        /// <summary>
+        /// Metodo que abre el pdf de la planilla 
+        /// </summary>
+        public void IrVerPlanilla()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                String ruta = ConfigurationManager.AppSettings["RutaPlanillaPDFFusionMarca"].ToString() + ((Fusion)this._ventana.Fusion).Id + ".pdf";
+                System.Diagnostics.Process.Start(ruta);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Win32Exception ex)
+            {
+                logger.Error(ex.Message);
+                this._ventana.ArchivoNoEncontrado(string.Format(Recursos.MensajesConElUsuario.ErrorPlanillaPdfFusionNoEncontrada, ((Fusion)this._ventana.Fusion).Id.ToString()));
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
     }
 }

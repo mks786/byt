@@ -140,5 +140,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeNombre
         void EsMarcaNacional(bool marcaNacional);
 
         string TipoClase { set; }
+
+        void ArchivoNoEncontrado(string mensaje);
+
+        void PintarVerPlanilla();
     }
 }

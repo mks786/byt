@@ -643,6 +643,10 @@
                     Click="_btnEliminar_Click">
                 <TextBlock Name="_txbEliminar" Text="{x:Static recurso:Etiquetas.btnEliminar}"/>
             </Button>
+            <Button Name="_btnNuevaRenovacion" VerticalAlignment="Bottom" Height="25" Width="105" Visibility="Collapsed" IsEnabled="False"
+                    Click="_btnNuevaRenovacion_Click">
+                <TextBlock Name="_txbNuevaRenovacion" Text="Nueva Renovación"/>
+            </Button>
             <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="90"
                     Click="_btnRegresar_Click">
                 <TextBlock Name="_txbRegresar" Text="{x:Static recurso:Etiquetas.btnRegresar}"/>

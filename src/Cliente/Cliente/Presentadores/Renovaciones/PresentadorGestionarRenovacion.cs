@@ -52,6 +52,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
         private bool _vieneDeConsultarMarca = false;
         private object _ventanaConsultarMarca;
 
+        private bool _nueva = false;
+
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
@@ -67,6 +69,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                     this._ventana.HabilitarCampos = true;
                     this._ventana.Renovacion = renovacion;
                     _agregar = false;
+                    _nueva = ((Renovacion)renovacion).Nueva;
+
                 }
                 else
                 {
@@ -252,6 +256,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                     this._ventana.Agente = ((Renovacion)renovacion).Agente;
                     this._ventana.Poder = renovacion.Poder;
 
+                    #region CODIGO COMENTADO NO BORRAR
                     //IList<ListaDatosValores> tiposRenovacion = this._listaDatosValoresServicios.
                     //    ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiTipoRenovacion));
                     //ListaDatosValores primerTipo = new ListaDatosValores();
@@ -259,7 +264,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                     //primerTipo.Valor = "NGN";
                     //tiposRenovacion.Insert(0, primerTipo);
                     //this._ventana.TiposRenovaciones = tiposRenovacion;
-                    //this._ventana.TipoRenovacion = this.BuscarTipoRenovacion(tiposRenovacion,renovacion.TipoRenovacion);
+                    //this._ventana.TipoRenovacion = this.BuscarTipoRenovacion(tiposRenovacion,renovacion.TipoRenovacion); 
+                    #endregion
 
                     CargarMarca();
 
@@ -285,6 +291,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
 
                     ValidarSiEsMarcaNacional();
 
+                    if (_nueva && !_vieneDeConsultarMarca)
+                    {
+                        this._ventana.MostrarBotonNuevaRenovacion();
+                        this._ventana.HabilitarBotonNuevaRenovacion();
+                    }
+
+                    #region CODIGO COMENTADO NO BORRAR
                     //if (((Marca)this._ventana.Marca).LocalidadMarca != null)
                     //{
                     //    this._ventana.EsMarcaNacional(!((Marca)this._ventana.Marca).LocalidadMarca.Equals("I"));
@@ -311,7 +324,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                     //    _esMarcaNacional = true;
                     //    this._ventana.EsMarcaNacional(_esMarcaNacional);
                     //    this._ventana.BorrarCerosInternacional();
-                    //}
+                    //} 
+                    #endregion
 
 
                 }
@@ -333,10 +347,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
 
                     CargarPoder();
 
+                    if(!_vieneDeConsultarMarca)
+                        this._ventana.MostrarBotonNuevaRenovacion();
+
                     //ActualizarFechaProxima();
 
                     this._ventana.ConvertirEnteroMinimoABlanco();
                     this._ventana.BorrarCeros();
+
 
                 }
 
@@ -545,6 +563,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                                 marcaAuxiliar.FechaRenovacion = marcaAuxiliar.FechaRenovacion != null ? ((DateTime)marcaAuxiliar.FechaRenovacion).AddYears(tiempoConfiguracion) : System.DateTime.Now;
                                 marcaAuxiliar.Operacion = "MODIFY";
                                 marcaAuxiliar.Recordatorio = 0;
+                                marcaAuxiliar.NumeroCondiciones = 0;
 
                                 marcaExitoso = this._marcaServicios.InsertarOModificar(marcaAuxiliar, UsuarioLogeado.Hash);
                                 if (marcaExitoso)
@@ -556,7 +575,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                                 if (this._vieneDeConsultarMarca)
                                     this.Navegar(new ConsultarRenovaciones(this._ventana.Marca, this._ventanaConsultarMarca));
                                 else
+                                {
+                                    renovacion.Nueva = true;
                                     this.Navegar(new GestionarRenovacion(renovacion, null));
+                                }
                                 //this._ventana.HabilitarCampos = false;
                             }
                             else
@@ -2474,6 +2496,32 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
         public void EscribirPeriodoDeGracia()
         {
             this._ventana.PeriodoDeGracia = ConfigurationManager.AppSettings["TextoPeriodoDeGracia"].ToString();
+        }
+
+        /// <summary>
+        /// Metodo para llamar a una nueva Renovacion de Marca
+        /// </summary>
+        public void NuevaRenovacionMarca()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                this.Navegar(new GestionarRenovacion(null, null));
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
         }
     }
 }

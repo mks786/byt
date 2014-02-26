@@ -120,6 +120,13 @@
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblConcepto}"/>
+                    </Label>
+                    <ComboBox Name="_cbxConcepto" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                    </ComboBox>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblEmail}"/>
                     </Label>
                     <custom:ByTTextBox Name="_txtEmail" Width="150" MaxLength="255"  Text="{Binding Path=Email}"/>

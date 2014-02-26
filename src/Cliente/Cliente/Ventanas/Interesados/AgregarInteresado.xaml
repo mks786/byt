@@ -29,7 +29,7 @@
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="10"/>
@@ -43,6 +43,7 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
@@ -106,44 +107,51 @@
                 </ComboBox>
 
                 <Label Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                    <TextBlock Text="{x:Static recurso:Etiquetas.lblCorporacion}"/>
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblIdioma}"/>
                 </Label>
-                <ComboBox Grid.Column="2" Grid.Row="7"  Name="_cbxCorporacion" HorizontalAlignment="Left" Width="180" Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                <ComboBox Grid.Column="2" Grid.Row="7"  Name="_cbxIdioma" HorizontalAlignment="Left" Width="180" Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                 </ComboBox>
+                
 
                 <Label Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                    <TextBlock Text="{x:Static recurso:Etiquetas.lblCi}"/>
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblCorporacion}"/>
                 </Label>
-                <custom:ByTTextBox Grid.Column="1" Grid.Row="8" Name="_txtCi" VerticalAlignment="Center"  
-                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Ci}"></custom:ByTTextBox>
+                <ComboBox Grid.Column="2" Grid.Row="8"  Name="_cbxCorporacion" HorizontalAlignment="Left" Width="180" Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                </ComboBox>
 
                 <Label Grid.Column="0" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                    <TextBlock Text="{x:Static recurso:Etiquetas.lblRMercantil}"/>
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblCi}"/>
                 </Label>
-                <custom:ByTTextBox Grid.Column="1" Grid.Row="9" Name="_txtRMercantil" VerticalAlignment="Center"  
-                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=RMercantil}"></custom:ByTTextBox>
+                <custom:ByTTextBox Grid.Column="1" Grid.Row="9" Name="_txtCi" VerticalAlignment="Center"  
+                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Ci}"></custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblRMercantil}"/>
+                </Label>
+                <custom:ByTTextBox Grid.Column="1" Grid.Row="10" Name="_txtRMercantil" VerticalAlignment="Center"  
+                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=RMercantil}"></custom:ByTTextBox>
+
+                <Label Grid.Column="0" Grid.Row="11" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblRegMercantil}"/>
                 </Label>
-                <custom:ByTTextBox Grid.Column="1" Grid.Row="10" Name="_txtRegMercantil" VerticalAlignment="Center"  
+                <custom:ByTTextBox Grid.Column="1" Grid.Row="11" Name="_txtRegMercantil" VerticalAlignment="Center"  
                          HorizontalAlignment="Left" Width="180" Text="{Binding Path=RegMercantil}"></custom:ByTTextBox>
                 
-                <Label Grid.Column="0" Grid.Row="11" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                <Label Grid.Column="0" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblDomicilio}"/>
                 </Label>
-                <custom:ByTTextBox Grid.Column="1" Grid.Row="11" Name="_txtDomicilio" VerticalAlignment="Center"  
+                <custom:ByTTextBox Grid.Column="1" Grid.Row="12" Name="_txtDomicilio" VerticalAlignment="Center"  
                          HorizontalAlignment="Left" Width="180" Text="{Binding Path=Domicilio}" MaxLength="510" CharacterCasing="Upper"></custom:ByTTextBox>
 
-                <Label Grid.Column="0" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                <Label Grid.Column="0" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblAlerta}"/>
                 </Label>
-                <custom:ByTTextBox Grid.Column="1" Grid.Row="12" Name="_txtAlerta" VerticalAlignment="Center"  
+                <custom:ByTTextBox Grid.Column="1" Grid.Row="13" Name="_txtAlerta" VerticalAlignment="Center"  
                          HorizontalAlignment="Left" Width="180" Text="{Binding Path=Alerta}"></custom:ByTTextBox>
-                <Label Grid.Column="0" Grid.Row="13" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <Label Grid.Column="0" Grid.Row="14" VerticalAlignment="Center" HorizontalAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblOrigenCliente}"/>
                 </Label>
-                <ComboBox Grid.Column="1" Grid.Row="13" Name="_cbxOrigenCliente" HorizontalAlignment="Left" Width="180" Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                <ComboBox Grid.Column="1" Grid.Row="14" Name="_cbxOrigenCliente" HorizontalAlignment="Left" Width="180" Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
                 </ComboBox>
 
             </Grid>

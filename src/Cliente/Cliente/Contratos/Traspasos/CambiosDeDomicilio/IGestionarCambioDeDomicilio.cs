@@ -146,5 +146,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeDomicilio
         bool AsientoLibro { get; set; }
 
         void CambiarCheckAsientoLibro(bool valor);
+
+        void ArchivoNoEncontrado(string mensaje);
+
+        void PintarVerPlanilla();
     }
 }

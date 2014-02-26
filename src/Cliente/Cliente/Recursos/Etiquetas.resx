@@ -4317,4 +4317,13 @@ en Prensa:</value>
   <data name="btnQuitarSeleccion" xml:space="preserve">
     <value>Quitar Selección</value>
   </data>
+  <data name="btnSeleccionarDatoTransferencia" xml:space="preserve">
+    <value>Seleccionar Transferencia</value>
+  </data>
+  <data name="btnEliminarCartas" xml:space="preserve">
+    <value>Eliminar Cartas</value>
+  </data>
+  <data name="btnVerPlanilla" xml:space="preserve">
+    <value>Ver Planilla</value>
+  </data>
 </root>

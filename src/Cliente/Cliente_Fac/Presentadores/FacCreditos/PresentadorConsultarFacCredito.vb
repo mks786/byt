@@ -5,6 +5,7 @@ Imports System.Windows.Input
 Imports NLog
 Imports Diginsoft.Bolet.Cliente.Fac.Contratos.FacCreditos
 Imports Diginsoft.Bolet.Cliente.Fac.Ventanas.FacCreditos
+Imports Diginsoft.Bolet.Cliente.Fac.Ventanas.FacCobros
 Imports Diginsoft.Bolet.ObjetosComunes.ContratosServicios
 Imports Diginsoft.Bolet.ObjetosComunes.Entidades
 Imports Trascend.Bolet.ObjetosComunes.Entidades
@@ -27,6 +28,7 @@ Namespace Presentadores.FacCreditos
         Private _idiomasServicios As IIdiomaServicios
         Private _monedasServicios As IMonedaServicios
         Private _tasasServicios As ITasaServicios
+        Private _facCobroServicios As IFacCobroServicios
         Private _asociados As IList(Of Asociado)
         Private _FacFormas As IList(Of FacForma)
         Private _faccredito As FacCredito
@@ -49,6 +51,7 @@ Namespace Presentadores.FacCreditos
                 Me._monedasServicios = DirectCast(Activator.GetObject(GetType(IMonedaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("MonedaServicios")), IMonedaServicios)
                 Me._tasasServicios = DirectCast(Activator.GetObject(GetType(ITasaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("TasaServicios")), ITasaServicios)
                 Me._formasServicios = DirectCast(Activator.GetObject(GetType(IFacFormaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFormaServicios")), IFacFormaServicios)
+                Me._facCobroServicios = DirectCast(Activator.GetObject(GetType(IFacCobroServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacCobroServicios")), IFacCobroServicios)
             Catch ex As Exception
                 logger.[Error](ex.Message)
                 Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
@@ -93,6 +96,8 @@ Namespace Presentadores.FacCreditos
                 Me._FacFormas = Me._formasServicios.ObtenerFacFormasFiltro(FacFormaAuxiliar)
                 Me._ventana.Resultados = Me._FacFormas
 
+                
+
                 Dim bancos As IList(Of FacBanco) = Me._bancosServicios.ObtenerFacBancosFiltro(Nothing)
                 Me._ventana.Bancos = bancos
                 'Me._ventana.Banco = FacCredito.Banco
@@ -110,6 +115,27 @@ Namespace Presentadores.FacCreditos
                 Me._ventana.BCredito = FacCredito.BCredito
 
                 Me._ventana.BCreditoBf = FacCredito.BCreditoBf
+
+                Dim facOperacionAux As FacOperacion = New FacOperacion()
+                facOperacionAux.CodigoOperacion = FacCredito.Id
+                facOperacionAux.Id = "NC"
+                Dim facOperaciones As List(Of FacOperacion) = Me._facoperacionesServicios.ObtenerFacOperacionesFiltro(facOperacionAux)
+
+                If (facOperaciones.Count > 0) Then
+                    Me._ventana.BSaldo = facOperaciones(0).Saldo.ToString()
+                Else
+                    Me._ventana.BSaldo = "0"
+                End If
+
+
+                'If (Me._FacFormas.Count > 0) Then
+                '    Me._ventana.BSaldo = "0"
+                'Else
+                '    Me._ventana.BSaldo = Me._ventana.BCredito.ToString()
+
+                'End If
+
+
 
                 Me._ventana.FocoPredeterminado()
 
@@ -416,6 +442,44 @@ Namespace Presentadores.FacCreditos
             Catch e As ApplicationException
                 'Me._ventana.Personas = Nothing
             End Try
+        End Sub
+
+        Public Sub ConsultarCobroSeleccionado()
+
+            Dim FacForma As FacForma = New FacForma()
+
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                If (Me._ventana.CobroSeleccionado IsNot Nothing) Then
+                    FacForma = DirectCast(Me._ventana.CobroSeleccionado, FacForma)
+                    If (FacForma.Cobro IsNot Nothing) Then
+                        Dim cobro As FacCobro = FacForma.Cobro
+                        Dim listacobros As List(Of FacCobro) = Me._facCobroServicios.ObtenerFacCobrosFiltro(cobro)
+                        If (listacobros.Count > 0) Then
+                            Dim FacCobro As FacCobro = listacobros(0)
+                            Me.Navegar(New ConsultarFacCobro(FacCobro))
+                        End If
+
+                    End If
+                End If
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                    '#End Region
+                End If
+
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, True)
+
+            End Try
+
         End Sub
 
     End Class

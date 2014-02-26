@@ -25,6 +25,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.DatosTransferencias
         private IAsociadoServicios _asociadoServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+        private object _ventanaConsultarAsociado;
 
 
         /// <summary>
@@ -36,6 +37,36 @@ namespace Trascend.Bolet.Cliente.Presentadores.DatosTransferencias
             try
             {
                 this._ventana = ventana;
+                DatosTransferencia datosTransferencia = new DatosTransferencia();
+                datosTransferencia.Asociado = (Asociado)asociado;
+                this._ventana.DatosTransferencia = datosTransferencia;
+                this._datosTransferenciaServicios = (IDatosTransferenciaServicios)Activator.GetObject(typeof(IDatosTransferenciaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["DatosTransferenciaServicios"]);
+                this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+        /// <summary>
+        /// Constructor predeterminado que recibe una ventana padre y la ventana anterior a esa ventana padre
+        /// </summary>
+        /// <param name="ventana">Ventana actual</param>
+        /// <param name="asociado">Asociado a relacionar con los nuevos datos de transferencia</param>
+        /// <param name="ventanaPadre">Ventana anterior a esta ventana</param>
+        /// <param name="ventanaConsultarAsociado">Ventana de Consultar Asociado</param>
+        public PresentadorAgregarDatosTransferencia(IAgregarDatosTransferencia ventana, object asociado, object ventanaPadre, object ventanaConsultarAsociado)
+        {
+            try
+            {
+                this._ventana = ventana;
+                this._ventanaPadre = ventanaPadre;
+                this._ventanaConsultarAsociado = ventanaConsultarAsociado;
+
                 DatosTransferencia datosTransferencia = new DatosTransferencia();
                 datosTransferencia.Asociado = (Asociado)asociado;
                 this._ventana.DatosTransferencia = datosTransferencia;
@@ -116,15 +147,29 @@ namespace Trascend.Bolet.Cliente.Presentadores.DatosTransferencias
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                int codigoActual, nuevoCodigo;
                 DatosTransferencia datosTransferencia = (DatosTransferencia)this._ventana.DatosTransferencia;
 
-                datosTransferencia.Id = 1;
+                Asociado asociado = datosTransferencia.Asociado;
+                IList<DatosTransferencia> cuentasAsociado = this._datosTransferenciaServicios.ConsultarDatosTransferenciaPorAsociado(asociado);
+
+                if (cuentasAsociado.Count > 0)
+                {
+                    codigoActual = cuentasAsociado.Count;
+                    nuevoCodigo = codigoActual + 1;
+                    datosTransferencia.Id = nuevoCodigo;
+                }
+                else
+                {
+                    datosTransferencia.Id = 1;
+                }
 
                 bool exitoso = this._datosTransferenciaServicios.InsertarOModificar(datosTransferencia, UsuarioLogeado.Hash);
                 if (exitoso)
                 {
                     ((DatosTransferencia)this._ventana.DatosTransferencia).Asociado.DatosTransferencias.Add(datosTransferencia);
-                    this.Navegar(new ListaDatosTransferencias(((DatosTransferencia)this._ventana.DatosTransferencia).Asociado));
+                    //this.Navegar(new ListaDatosTransferencias(((DatosTransferencia)this._ventana.DatosTransferencia).Asociado));
+                    this.Navegar(new ListaDatosTransferencias(((DatosTransferencia)this._ventana.DatosTransferencia).Asociado, this._ventanaConsultarAsociado));
                 }
 
                 #region trace

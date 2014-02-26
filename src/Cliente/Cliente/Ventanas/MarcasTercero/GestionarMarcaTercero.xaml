@@ -712,23 +712,48 @@
 
                     <!--Final Situacion y detalle Fila-->
 
+                    <!--Zona de Saldos-->
+
+                    <Label Grid.Column="1" Grid.Row="25" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblSaldoVencido}"/>
+                    </Label>
+                    <custom:ByTTextBox MaxLength="255" Grid.Column="2" Grid.Row="25" Name="_txtSaldoVencido" 
+                                       HorizontalContentAlignment="Right" VerticalAlignment="Center" Grid.ColumnSpan="1">
+                    </custom:ByTTextBox>
+                    <Label Grid.Column="1" Grid.Row="26" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblSaldoPorVencer}"/>
+                    </Label>
+                    <custom:ByTTextBox  MaxLength="255" Grid.Column="2" Grid.Row="26" Name="_txtSaldoPorVencer" 
+                                        HorizontalContentAlignment="Right"  VerticalAlignment="Center" Grid.ColumnSpan="1">
+                    </custom:ByTTextBox>
+                    <Button  Name="_btnSaldo" VerticalAlignment="Center" Grid.Column="3" Grid.Row="26" Grid.ColumnSpan="2" 
+                             Height="22" Width="90" Click="_btnSaldo_Click">Saldo</Button>
+                    <Label Grid.Column="1" Grid.Row="27" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTotalDeuda}"/>
+                    </Label>
+                    <custom:ByTTextBox  MaxLength="255" Grid.Column="2" Grid.Row="27" Name="_txtTotalDeuda" 
+                                        HorizontalContentAlignment="Right"  VerticalAlignment="Center" Grid.ColumnSpan="1">
+                    </custom:ByTTextBox>
+
+                    <!--Final Zona de Saldos-->
+
                     <!-- Botones Fila-->
-                    <Button IsEnabled="False" Grid.Column="2" Grid.Row="26" Grid.ColumnSpan="1" Name="_btnInfoAdicionalTerceros" Margin="8,0,0,0" Height="25" Click="_btnInfoAdicionalTerceros_Click">
+                    <Button IsEnabled="False" Grid.Column="2" Grid.Row="28" Grid.ColumnSpan="1" Name="_btnInfoAdicionalTerceros" Margin="8,0,0,0" Height="25" Click="_btnInfoAdicionalTerceros_Click">
                         <TextBlock Name="_txbInfoAdicionalTerceros" Text="{x:Static recurso:Etiquetas.btnInfoAdicionalTerceros}" HorizontalAlignment="Center"/>
                     </Button>
-                    <Button IsEnabled="False" Grid.Column="3" Grid.Row="26" Grid.ColumnSpan="1" Name="_btnInfoAdicional" Margin="8,0,0,0"
+                    <Button IsEnabled="False" Grid.Column="3" Grid.Row="28" Grid.ColumnSpan="1" Name="_btnInfoAdicional" Margin="8,0,0,0"
                             Height="25" Click="_btnInfoAdicional_Click">
                         <TextBlock Name="_txbInfoAdicional" Text="{x:Static recurso:Etiquetas.btnInfoAdicional}"/>
                     </Button>
-                    <Button IsEnabled="False" Grid.Column="4" Grid.Row="26" Grid.ColumnSpan="1" Name="_btnInfobol" Margin="8,0,0,0"
+                    <Button IsEnabled="False" Grid.Column="4" Grid.Row="28" Grid.ColumnSpan="1" Name="_btnInfobol" Margin="8,0,0,0"
                             Height="25" Click="_btnInfobol_Click">
                         <TextBlock Name="_txbInfobol" Text="{x:Static recurso:Etiquetas.btnInfoBol}"/>
                     </Button>
-                    <Button IsEnabled="False" Grid.Column="5" Grid.Row="26" Grid.ColumnSpan="1" Name="_btnExpediente" Margin="8,0,0,0"
+                    <Button IsEnabled="False" Grid.Column="5" Grid.Row="28" Grid.ColumnSpan="1" Name="_btnExpediente" Margin="8,0,0,0"
                             Height="25" Click="_btnExpediente_Click">
                         <TextBlock Name="_txbExpediente" Text="{x:Static recurso:Etiquetas.btnVerExpediente}"/>
                     </Button>
-                    <Button IsEnabled="False" Grid.Column="6" Grid.Row="26" Grid.ColumnSpan="1" Name="_btnAuditoriaDatos" Margin="8,0,0,0"
+                    <Button IsEnabled="False" Grid.Column="6" Grid.Row="28" Grid.ColumnSpan="1" Name="_btnAuditoriaDatos" Margin="8,0,0,0"
                             Height="25" Click="_btnAuditoriaDatos_Click">
                         <TextBlock Name="_txbAuditoria" Text="{x:Static recurso:Etiquetas.btnAuditoria}"/>
                     </Button>

@@ -6,7 +6,7 @@
   <class name="TarifaServicio" table="FAC_TARIFAS_SERV">
     <composite-id>
       <key-property name="Id" column="COD_SER"/>
-      <key-many-to-one  name="Tarifa" column="COD_TAR" class="Tarifa2"/>      
+      <key-many-to-one  name="Tarifa" column="COD_TAR" class="Tarifa2" lazy="false"/>      
     </composite-id>
     <property name="Mont_Us" column="MONTO_US" type="Double"/>
     <property name="Mont_Bs" column="MONTO_BS" type="Double"/>

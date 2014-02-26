@@ -20,6 +20,10 @@ Imports Trascend.Bolet.ObjetosComunes.Entidades
 Imports Trascend.Bolet.ObjetosComunes.ContratosServicios
 Imports Trascend.Bolet.Cliente.Presentadores
 Imports Trascend.Bolet.Cliente.Ventanas.Principales
+Imports Trascend.Bolet.Cliente.Ventanas.Asociados
+Imports System.Data
+
+
 
 Namespace Presentadores.ViGestionAsociados
     Class PresentadorConsultarFacGestionesAsociado
@@ -270,6 +274,10 @@ Namespace Presentadores.ViGestionAsociados
                 If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
                     logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
                 End If
+
+                Dim codigoConcepto As String
+                Dim codigoMedio As String
+
                 '#End Region
                 Mouse.OverrideCursor = Cursors.Wait
                 'Dim filtroValido As Boolean = False
@@ -277,6 +285,10 @@ Namespace Presentadores.ViGestionAsociados
                 'Variable utilizada para limitar a que el filtro se ejecute solo cuando 
                 'dos filtros sean utilizados
                 Dim FacGestionAuxiliar As New FacGestion()
+
+                Dim MediosGestion As IList(Of MediosGestion) = Me._MediosGestionServicios.ConsultarTodos()
+                Dim ConceptosGestion As IList(Of ConceptoGestion) = Me._ConceptoGestionServicios.ConsultarTodos()
+
                 ' Dim FacGestiones As FacGestion = DirectCast(_ventana.FacGestionFiltrar, FacGestion)
 
                 'If Me._ventana.Id IsNot Nothing And Me._ventana.Id <> "" Then
@@ -314,9 +326,28 @@ Namespace Presentadores.ViGestionAsociados
 
                 'If (filtroValido = True) Then
                 Dim facgestiones As List(Of FacGestion) = Me._FacGestioneservicios.ObtenerFacGestionesFiltro(FacGestionAuxiliar)
+
+                For Each gestion As FacGestion In facgestiones
+
+                    codigoConcepto = gestion.ConceptoGestion
+                    Dim objConceptoGestion = New ConceptoGestion()
+                    objConceptoGestion.Id = codigoConcepto
+                    Dim resultadoConcepto As ConceptoGestion = Me.BuscarConceptoGestion(ConceptosGestion, objConceptoGestion)
+                    gestion.ConceptoGes = resultadoConcepto.Id + " - " + resultadoConcepto.Descripcion
+
+                    codigoMedio = gestion.Medio
+                    Dim objMedioGestion = New MediosGestion()
+                    objMedioGestion.Id = codigoMedio
+                    Dim resultadoMedio As MediosGestion = Me.BuscarMediosGestion(MediosGestion, objMedioGestion)
+                    gestion.MedioGes = resultadoMedio.Id + " - " + resultadoMedio.Descripcion
+                Next
+
+
+
                 Me._ventana.Resultados = Nothing
                 'Me._ventana.Count = facgestiones.Count
                 Me._ventana.Resultados = facgestiones
+
                 Mouse.OverrideCursor = Nothing
                 'Else
                 '    Me._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto)
@@ -545,6 +576,179 @@ Namespace Presentadores.ViGestionAsociados
                 Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
             End Try
         End Sub
+
+
+        Public Sub IrConsultarAsociado()
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                Dim asociado As Asociado
+                asociado = Me._asociado
+
+                Me.Navegar(New ConsultarAsociado(asociado, Me._ventana, False))
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, True)
+            End Try
+
+        End Sub
+
+        ''' Metodo que exporta las gestiones mostradas en pantalla a Excel
+        Public Sub ExportarGestionesExcel()
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                Dim datos As DataTable = New DataTable()
+                Dim listaGestiones As List(Of FacGestion) = DirectCast(Me._ventana.Resultados, List(Of FacGestion))
+                datos = CrearColumnasDataTable()
+                datos = LlenarDataTable(datos, listaGestiones)
+
+                If datos.Rows.Count > 0 Then
+                    Me._ventana.ExportarListView(datos)
+                Else
+                    Me._ventana.Mensaje("No hay registros para exportar", 0)
+                End If
+
+
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, True)
+            End Try
+
+        End Sub
+
+        Function ObtenerTituloReporte() As String
+
+            Dim TituloReporte As String
+
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                TituloReporte = String.Empty
+                Dim Asociado As Asociado = Me._asociado
+                TituloReporte = "Gestiones de Cobranza Asociado: " + Asociado.Nombre
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, True)
+            End Try
+
+            Return TituloReporte
+
+        End Function
+
+
+        Private Function CrearColumnasDataTable() As DataTable
+
+            Dim datos As DataTable = New DataTable()
+
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                datos.Columns.Add("No Gestion", GetType(System.Int32))
+                datos.Columns.Add("Fecha Gestion", GetType(System.DateTime))
+                datos.Columns.Add("Medio", GetType(System.String))
+                datos.Columns.Add("Concepto", GetType(System.String))
+                datos.Columns.Add("Observacion", GetType(System.String))
+                datos.Columns.Add("Iniciales", GetType(System.String))
+                datos.Columns.Add("Gestion", GetType(System.Int32))
+                datos.Columns.Add("Respuesta", GetType(System.Int32))
+                datos.Columns.Add("Fecha Ingreso", GetType(System.DateTime))
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, True)
+            End Try
+
+            Return datos
+
+        End Function
+
+        Private Function LlenarDataTable(datos As DataTable, listaGestiones As List(Of FacGestion)) As DataTable
+
+
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                For Each gestion As FacGestion In listaGestiones
+                    Dim filaNueva As DataRow = datos.NewRow()
+                    filaNueva("No Gestion") = gestion.Id
+                    filaNueva("Fecha Gestion") = gestion.FechaGestion
+                    filaNueva("Medio") = gestion.MedioGes
+                    filaNueva("Concepto") = gestion.ConceptoGes
+                    filaNueva("Observacion") = gestion.Observacion
+                    filaNueva("Iniciales") = gestion.Inicial
+                    If (gestion.CodigoResp IsNot Nothing) Then
+                        filaNueva("Gestion") = gestion.CodigoResp
+                    End If
+                    If (gestion.Respuesta IsNot Nothing) Then
+                        filaNueva("Respuesta") = gestion.Respuesta
+                    End If
+                    If (gestion.FechaIngreso IsNot Nothing) Then
+                        filaNueva("Fecha Ingreso") = gestion.FechaIngreso
+                    End If
+
+
+                    datos.Rows.Add(filaNueva)
+                Next
+
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, True)
+            End Try
+
+            Return datos
+        End Function
+
+        
 
     End Class
 End Namespace

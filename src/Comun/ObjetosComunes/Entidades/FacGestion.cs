@@ -30,6 +30,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         private int? _Status;
 
+        private string _medioGes;
+        private string _conceptoGes;
+
+
         #endregion
 
         #region "Constructores"
@@ -290,6 +294,20 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _operacion; }
             set { _operacion = value; }
+        }
+
+
+        public virtual string MedioGes
+        {
+            get { return this._medioGes; }
+            set { this._medioGes = value; }
+        }
+
+
+        public virtual string ConceptoGes
+        {
+            get { return this._conceptoGes; }
+            set { this._conceptoGes = value; }
         }
 
         #endregion

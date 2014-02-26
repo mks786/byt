@@ -29,6 +29,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
         private IInteresadoServicios _interesadoServicios;
         private IListaDatosDominioServicios _listaDatosDominioServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
+        private IIdiomaServicios _idiomaServicios;
         private IList<Interesado> _interesados;
 
         private int _filtroValido;
@@ -57,6 +58,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
                 this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
+                this._idiomaServicios = (IIdiomaServicios)Activator.GetObject(typeof(IIdiomaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["IdiomaServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -146,6 +149,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 primerOrigenCliente.Id = "NGN";
                 origenClientes.Insert(0, primerOrigenCliente);
                 this._ventana.OrigenesClientes = origenClientes;
+
+                IList<Idioma> idiomas = this._idiomaServicios.ConsultarTodos();
+                Idioma primerIdioma = new Idioma();
+                primerIdioma.Id = "NGN";
+                idiomas.Insert(0, primerIdioma);
+                this._ventana.Idiomas = idiomas;
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -433,6 +442,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 this._filtroValido = 2;
             }
 
+            if ((null != this._ventana.Idioma) && (!((Idioma)this._ventana.Idioma).Id.Equals("NGN")))
+            {
+                interesado.Idioma = (Idioma)this._ventana.Idioma;
+                this._filtroValido = 2;
+            }
+
+            #region CODIGO ORIGINAL COMENTADO
             //if (!this._ventana.DomicilioAsociado.Equals(""))
             //{
             //    asociado.Domicilio = this._ventana.DomicilioAsociado;
@@ -485,7 +501,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
             //{
             //    asociado.DetallePago = (DetallePago)this._ventana.DetallePago;
             //    this._filtroValido = 2;
-            //}
+            //} 
+            #endregion
 
             return interesado;
             #region trace
@@ -564,7 +581,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
             this._ventana.Nacionalidad = ((IList<Pais>)this._ventana.Nacionalidades)[0];
             this._ventana.Corporacion = ((IList<Estado>)this._ventana.Corporaciones)[0];
             this._ventana.OrigenCliente = ((IList<ListaDatosValores>)this._ventana.OrigenesClientes)[0];
-
+            this._ventana.Idioma = ((IList<Idioma>)this._ventana.Idioma)[0];
             this._ventana.Resultados = _interesados;
             this._ventana.TotalHits = "0";
 

@@ -90,6 +90,14 @@
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblIdioma}"/>
+                    </Label>
+                    <ComboBox Name="_cbxIdioma" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                    </ComboBox>
+                </WrapPanel>
+                
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCorporacion}"/>
                     </Label>
                     <ComboBox Name="_cbxCorporacion" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
@@ -168,6 +176,9 @@
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Pais.NombreEspanol}" Width="180" >
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Pais" Content="{x:Static recurso:Etiquetas.lsvPais}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Idioma.Descripcion}" Width="120" >
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Idioma" Content="{x:Static recurso:Etiquetas.lsvIdioma}"/>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>

@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Ayuda;
+using System.Data;
 using System;
 
 namespace Trascend.Bolet.Cliente.Contratos.Administracion.SeguimientoCxPInternacional
@@ -12,8 +13,14 @@ namespace Trascend.Bolet.Cliente.Contratos.Administracion.SeguimientoCxPInternac
 
         string TotalMontoConsolidado { get; set; }
 
+        string TotalHits { set; }
+
         void HabilitarListaSoloVer();
 
         void HabilitarBotonModificar();
+
+        void Mensaje(string mensaje, int opcion);
+
+        void ExportarDatosConsolidadosExcel(String tipo, DataTable datosResumen);
     }
 }

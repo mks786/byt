@@ -33,6 +33,28 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             this._asociado = asociado;
         }
 
+        public override bool Equals(object obj)
+        {
+            
+            if (obj == null)
+                return false;
+            var t = obj as Justificacion;
+            if (t == null)
+                return false;
+            if ((Asociado.Id == (t.Asociado.Id)) && (Carta.Id == (t.Carta.Id)))
+                return true;
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
 
         #endregion
 

@@ -348,6 +348,25 @@ Namespace Ventanas.FacReportes
                 _chkB3.IsChecked = value
             End Set
         End Property
+
+        Public Property CondicionDiasCredito As Object Implements Contratos.FacReportes.IFacEnvioAsociado.CondicionDiasCredito
+            Get
+                Return Me._cbxDiasCredito.SelectedItem
+            End Get
+            Set(ByVal value As Object)
+                Me._cbxDiasCredito.SelectedItem = value
+            End Set
+        End Property
+
+        Public Property CondicionesDiasCredito As Object Implements Contratos.FacReportes.IFacEnvioAsociado.CondicionesDiasCredito
+            Get
+                Return Me._cbxDiasCredito.DataContext
+            End Get
+            Set(ByVal value As Object)
+                Me._cbxDiasCredito.DataContext = value
+            End Set
+        End Property
+
     End Class
 
 End Namespace

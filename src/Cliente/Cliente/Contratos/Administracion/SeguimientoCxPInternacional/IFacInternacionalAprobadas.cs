@@ -16,5 +16,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Administracion.SeguimientoCxPInternac
         string TotalHits { set; }
 
         void Mensaje(string mensaje, int opcion);
+
+        void HabilitarBotonActualizar(bool estado);
+
+        bool ExportarListadoFacturasAprobadas(string tituloReporte, System.Data.DataTable datosExportar);
     }
 }

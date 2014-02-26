@@ -55,7 +55,7 @@
                 <Separator Margin="0,0,0,5"/>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">               
                 <ListView Name="_lstResultadosFormas" ItemsSource="{Binding}"  SelectionMode="Single" 
-                       Style="{DynamicResource EstiloListView}">
+                       Style="{DynamicResource EstiloListView}" MouseDoubleClick="_lstResultadosFormas_MouseDoubleClick">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Cobro.Id}" Width="45">

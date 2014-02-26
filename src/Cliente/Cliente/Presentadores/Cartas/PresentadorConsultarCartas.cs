@@ -248,6 +248,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     _cartasReordenadas = (IList<Carta>)this._ventana.Resultados;
                     this._ventana.TotalHits = _cartasYaConsultadas.Count.ToString();
                 }
+
+                if ((UsuarioLogeado.Rol.Id.Equals("ADMINISTRADOR")) || (UsuarioLogeado.Rol.Id.Equals("OPR_CORRESPONDEN")))
+                {
+                    this._ventana.HabilitarBotonEliminarCartas();
+                }
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -452,6 +458,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 {
                     this._cartas = new List<Carta>();
                     this._cartas = this._cartaServicios.ObtenerCartasFiltro(cartaAuxiliar);
+                    foreach (Carta item in this._cartas)
+                    {
+                        item.EliminarCarta = "NO";
+                    }
                     this._ventana.Resultados = this._cartas;
                     this._ventana.TotalHits = this._cartas.Count.ToString();
 
@@ -462,8 +472,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 //si responsable fue activado se consultan todas las cartas de cada una de sus asignaciones
                 if ((filtroValido != 0) && (_responsable))
                 {
-                    this._ventana.Resultados = _cartasDeUnResponsable;
+                    foreach (Carta item in this._cartasDeUnResponsable)
+                    {
+                        item.EliminarCarta = "NO";
+                    }
 
+                    this._ventana.Resultados = _cartasDeUnResponsable;
+                    
                     this._ventana.TotalHits = _cartasDeUnResponsable.Count.ToString();
                     if (_cartasDeUnResponsable.Count == 0)
                         this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
@@ -786,6 +801,54 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             {
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+        /// <summary>
+        /// Metodo que elimina aquella correspondencia que contenga el campo Check en True
+        /// </summary>
+        public void IrEliminarCartasSeleccionadas()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                IList<Carta> listaCartas1 = (IList<Carta>)this._ventana.Resultados;
+                IList<Carta> cartasEliminar = new List<Carta>();
+                
+                foreach (Carta carta in listaCartas1)
+                {
+                    if (carta.BEliminarCarta)
+                    {
+                        cartasEliminar.Add(carta);
+                        bool exitoso = this._cartaServicios.Eliminar(carta, UsuarioLogeado.Hash);
+                    }
+                }
+
+                this._ventana.Resultados = null;
+
+                foreach (Carta carta in cartasEliminar)
+                {
+                    listaCartas1.Remove(carta);
+                }
+
+                this._ventana.Resultados = listaCartas1;
+
+                this._ventana.Mensaje("La(s) carta(s) seleccionada(s) fueron eliminadas", 2);
+                
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message,  true);
             }
         }
     }

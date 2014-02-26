@@ -27,6 +27,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private bool _seleccion;
         private string _revisionAprobada;
         private int _diasVencimiento;
+        private string _sustituirProforma;
 
         #endregion
 
@@ -300,7 +301,42 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
                 if (value)
                     this.RevisionAprobada = "SI";
                 else
-                    this.RevisionAprobada = "FALSE";
+                    this.RevisionAprobada = "NO";
+            }
+        }
+
+        public virtual String SustituirProforma
+        {
+            get { return this._sustituirProforma; }
+            //set { this._sustituirProforma = value; }
+            set
+            {
+                if (value != null)
+                {
+                    this._sustituirProforma = value;
+                }
+                else
+                    this._sustituirProforma = "NO";
+            }
+        }
+
+        public virtual bool BSustProforma
+        {
+            get
+            {
+                if (this.SustituirProforma.ToUpper().Equals("SI"))
+                    return true;
+                else if (String.IsNullOrEmpty(this.SustituirProforma))
+                    return false;
+                else
+                    return false;
+            }
+            set
+            {
+                if (value)
+                    this.SustituirProforma = "SI";
+                else
+                    this.SustituirProforma = "NO";
             }
         }
 

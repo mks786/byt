@@ -62,7 +62,8 @@ Namespace Ventanas.TarifaServicios
 
         Public ReadOnly Property TarifaServicioSeleccionado() As Object Implements Contratos.TarifaServicios.IConsultarTarifaServicios.TarifaServicioSeleccionado
             Get
-                Return Me._lstResultados.SelectedItem
+                'Return Me._lstResultados.SelectedItem
+                Return Me._lstResultados.SelectedItems
             End Get
         End Property
 
@@ -168,7 +169,10 @@ Namespace Ventanas.TarifaServicios
         End Sub
 
         Private Sub _lstResultados_MouseDoubleClick(ByVal sender As Object, ByVal e As MouseButtonEventArgs)
-            If Me._lstResultados.SelectedItem IsNot Nothing Then
+            'If Me._lstResultados.SelectedItems IsNot Nothing Then
+            '    Me._presentador.IrConsultarTarifaServicio()
+            'End If
+            If Me._lstResultados.SelectedItems IsNot Nothing And Me._lstResultados.SelectedItems.Count = 1 Then
                 Me._presentador.IrConsultarTarifaServicio()
             End If
         End Sub
@@ -182,5 +186,13 @@ Namespace Ventanas.TarifaServicios
                 _lblHits.Text = value
             End Set
         End Property
+
+        Private Sub _btnCalcularTarifas_Click(sender As System.Object, e As System.Windows.RoutedEventArgs)
+            If Me._lstResultados.SelectedItems.Count > 0 Then
+                Dim cantidadItems As Integer = Me._lstResultados.SelectedItems.Count
+                Me._presentador.CalcularTarifasDeServicio(cantidadItems)
+            End If
+            'Me._presentador.CalcularTarifasDeServicio()
+        End Sub
     End Class
 End Namespace

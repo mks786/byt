@@ -196,8 +196,13 @@ Namespace Presentadores.TarifaServicios
             End If
             '#End Region
 
-            Me.Navegar(New ConsultarTarifaServicio(Me._ventana.TarifaServicioSeleccionado))
-            '        Me.Navegar(New ConsultarTarifaServicio())
+            Dim tarifaServicioSeleccionado As TarifaServicio = DirectCast(Me._ventana.TarifaServicioSeleccionado(0), TarifaServicio)
+
+            'Me.Navegar(New ConsultarTarifaServicio(Me._ventana.TarifaServicioSeleccionado)) -- CODIGO ORIGINAL COMENTADO NO BORRAR
+
+            Me.Navegar(New ConsultarTarifaServicio(tarifaServicioSeleccionado))
+
+
             '#Region "trace"
             If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
                 logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
@@ -241,5 +246,45 @@ Namespace Presentadores.TarifaServicios
             End If
             '#End Region
         End Sub
+
+        Public Sub CalcularTarifasDeServicio(ByVal cantidadRegistros As Integer)
+
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                Dim listaTarifaServicios As List(Of TarifaServicio) = New List(Of TarifaServicio)()
+
+                For index = 0 To cantidadRegistros - 1
+                    Dim TarifaServicio As TarifaServicio = DirectCast(Me._ventana.TarifaServicioSeleccionado(index), TarifaServicio)
+                    listaTarifaServicios.Add(TarifaServicio)
+                Next
+
+
+                If listaTarifaServicios.Count > 0 Then
+                    Dim ventanaRecalcular As RecalcularTarifaServicios = New RecalcularTarifaServicios(listaTarifaServicios)
+                    ventanaRecalcular.ShowDialog()
+                End If
+
+
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, True)
+            End Try
+
+        End Sub
+
+        
+
     End Class
 End Namespace

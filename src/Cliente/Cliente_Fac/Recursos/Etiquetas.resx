@@ -1669,4 +1669,13 @@
   <data name="faclblSeleccionadoConsolidar" xml:space="preserve">
     <value>Seleccionado para Consolidar:</value>
   </data>
+  <data name="btnExportarGestiones" xml:space="preserve">
+    <value>Exportar Gestiones</value>
+  </data>
+  <data name="cbiCondicionesDiasCreditoAsociados" xml:space="preserve">
+    <value>ESTADOCUENTAIMPRIMIR</value>
+  </data>
+  <data name="btnCalcularTarifas" xml:space="preserve">
+    <value>Calcular Tarifas</value>
+  </data>
 </root>

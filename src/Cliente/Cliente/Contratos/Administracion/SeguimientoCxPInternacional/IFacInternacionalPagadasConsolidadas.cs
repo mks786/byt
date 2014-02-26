@@ -11,5 +11,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Administracion.SeguimientoCxPInternac
 
         object FacturaConsolidada { get; set; }
 
+        string TotalMontoConsolidado { get; set; }
+
+        string TotalHits { set; }
+
     }
 }

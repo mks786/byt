@@ -50,5 +50,11 @@ Namespace Contratos.FacPagoBolivias
         Property MontoRec As Double
 
         Property TextoBotonModificar() As String
+
+        Property FechaPagoBolivia As String
+
+
+
+
     End Interface
 End Namespace

@@ -41,11 +41,11 @@
       <column name="CODRES"/>
     </many-to-one>
 
-    <bag name="Justificaciones" table="FAC_ASO_JUST">
+    <bag name="Justificaciones" table="FAC_ASO_JUST" lazy="false">
       <key column="CCARTA"/>
       <composite-element class="Justificacion">
         <parent name="Carta"/>
-        <many-to-one name="Asociado" class="Asociado" column="CASOCIADO"/>
+        <many-to-one name="Asociado" class="Asociado" column="CASOCIADO" lazy="false"/>
         <property name="Fecha" column="FECHA" type="DateTime"/>
         <many-to-one name="Concepto" class="Concepto">
           <column name="CCONCEPTO"/>

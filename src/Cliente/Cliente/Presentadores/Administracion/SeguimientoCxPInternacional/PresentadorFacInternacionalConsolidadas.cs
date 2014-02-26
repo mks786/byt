@@ -17,6 +17,7 @@ using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoCxPInternacional;
+using Trascend.Bolet.Cliente.Ventanas.Asociados;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInternacional
 {
@@ -38,6 +39,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
         private IList<FacAsociadoIntConsolidadoCxPInt> _asociadosConsolidados;
         private bool _soloVer;
         private bool _datosConsolidados;
+        private bool _datosModificados;
 
 
         /// <summary>
@@ -207,6 +209,67 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
             }
         }
 
+
+        /// <summary>
+        /// Constructor por defecto que recibe la lista modificada de los datos de consolidacion y banderas de confirmacion
+        /// </summary>
+        /// <param name="ventana">Ventana actual</param>
+        /// <param name="listaFacAsociadoIntCxPInternacional">Lista de datos consolidados</param>
+        /// <param name="soloVer">Modo SOLO VER que identifica si se carga la ventana de ver los datos o la ventana que muestra los datos consolidados definitivos</param>
+        /// <param name="datosModificados">Bandera que indica si hubo modificaciones en los datos</param>
+        /// <param name="refrescaVentana">Bandera de referencia para indicar si se refresco la ventana o no</param>
+        /// <param name="ventanaPadre">Ventana de Facturas Internacionales seleccionadas para consolidar</param>
+        public PresentadorFacInternacionalConsolidadas(IFacInternacionalConsolidadas ventana,
+                                                        object listaFacAsociadoIntCxPInternacional,
+                                                        bool soloVer,
+                                                        bool datosModificados,
+                                                        bool refrescaVentana, 
+                                                        object ventanaPadre)
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                this._ventana = ventana;
+                this._ventanaPadre = ventanaPadre;
+                this._asociadosConsolidados = (IList<FacAsociadoIntConsolidadoCxPInt>)listaFacAsociadoIntCxPInternacional;
+                this._soloVer = soloVer;
+                this._datosModificados = datosModificados;
+                
+                //this._proformasAprobadas = (IList<FacInternacional>)proformasAprobadas;
+
+                this._seguimientoCxPInternacionalServicios =
+                    (ISeguimientoCxPInternacionalServicios)Activator.GetObject(typeof(ISeguimientoCxPInternacionalServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["SeguimientoCxPInternacionalServicios"]);
+                this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
+                this._facInternacionalServicios = (IFacInternacionalServicios)Activator.GetObject(typeof(IFacInternacionalServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FacInternacionalServicios"]);
+                this._facInternacionalConsolidadaServicios = (IFacInternacionalConsolidadaServicios)Activator.GetObject(typeof(IFacInternacionalConsolidadaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FacInternacionalConsolidadaServicios"]);
+                this._datosTransferenciaServicios = (IDatosTransferenciaServicios)Activator.GetObject(typeof(IDatosTransferenciaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["DatosTransferenciaServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
+                this._facAsociadosIntConsolidadoCxPIntServicios = (IFacAsociadoIntConsolidadoCxPIntServicios)Activator.GetObject(typeof(IFacAsociadoIntConsolidadoCxPIntServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FacAsociadoIntConsolidadoCxPIntServicios"]);
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (System.Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
         
 
         /// <summary>
@@ -226,14 +289,41 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
 
                 ActualizarTitulo();
 
-                IList<FacInternacionalConsolidada> facturasIntAprobadas = this._facCxPAprobadas.OrderBy(o => o.AsociadoInt.Id).ToList();
+                if (!this._datosModificados)
+                {
+                    IList<FacInternacionalConsolidada> facturasIntAprobadas = this._facCxPAprobadas.OrderBy(o => o.AsociadoInt.Id).ToList();
 
-                //ConsolidarFacturasInternacionales(this._facCxPAprobadas);
-                ConsolidarFacturasInternacionales(facturasIntAprobadas);
+                    //ConsolidarFacturasInternacionales(this._facCxPAprobadas);
+                    ConsolidarFacturasInternacionales(facturasIntAprobadas);
 
-                this._ventana.TotalMontoConsolidado = CalcularMontoTotalConsolidacion(this._asociadosConsolidados).ToString("N");
+                    this._ventana.TotalMontoConsolidado = CalcularMontoTotalConsolidacion(this._asociadosConsolidados).ToString("N");
 
-                this._ventana.FocoPredeterminado();
+                    this._ventana.FocoPredeterminado();
+                }
+                else
+                {
+                    if (this._soloVer)
+                    {
+                        this._ventana.HabilitarListaSoloVer();
+                        this._ventana.HabilitarBotonModificar();
+                        this._ventana.FacturasAprobadasSoloVer = this._asociadosConsolidados;
+                        this._ventana.TotalMontoConsolidado = CalcularMontoTotalConsolidacion(this._asociadosConsolidados).ToString("N");
+                    }
+                    else
+                    {
+                    }
+                }
+
+                #region CODIGO ORIGINAL COMENTADO NO BORRAR
+                //IList<FacInternacionalConsolidada> facturasIntAprobadas = this._facCxPAprobadas.OrderBy(o => o.AsociadoInt.Id).ToList();
+
+                ////ConsolidarFacturasInternacionales(this._facCxPAprobadas);
+                //ConsolidarFacturasInternacionales(facturasIntAprobadas);
+
+                //this._ventana.TotalMontoConsolidado = CalcularMontoTotalConsolidacion(this._asociadosConsolidados).ToString("N");
+
+                //this._ventana.FocoPredeterminado(); 
+                #endregion
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -302,6 +392,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
             String _strAsociadosIntCodigos = String.Empty;
             int codigoAsociadoInt, codigoAsocAnt = 0;
             double sumatoria = 0;
+            int contador = 0;
 
             try
             {
@@ -328,7 +419,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
                     facturasInternacionales.Add(resultado[0]);
                 }
 
-
+                //PROCESO DE CONSOLIDACION: LA BANDERA _datosConsolidados ES PARA VERIFICAR SI EXISTEN DATOS EN LA TABLA FAC_CXP_INT_CONSOLIDA
+                //SI NO LOS HAY HACE LA PRIMERA PARTE DEL IF SINO HACE EL ELSE
                 //Lleno cada uno de los objetos Asociado Internacional Consolidado con sus datos restantes
                 if (!this._datosConsolidados)
                 {
@@ -372,8 +464,35 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
                         if (datosTransferenciaAsocInt.Count > 0)
                         {
                             item1.DatosTransferencia = datosTransferenciaAsocInt[0];
+
+                            if (item1.DatosTransferencia != null)
+                            {
+                                if (item1.DatosTransferencia.Beneficiario != null)
+                                {
+                                    item1.Beneficiario = item1.DatosTransferencia.Beneficiario;
+                                }
+
+                                ListaDatosValores operacionTransferenciaBuscar = new ListaDatosValores();
+                                operacionTransferenciaBuscar.Valor = "Transferencia";
+                                ListaDatosValores valorEncontrado = this.BuscarListaDeDatosValores(formasDePago, operacionTransferenciaBuscar);
+                                item1.FormaPago = valorEncontrado.Valor;
+                                item1.DatosBancariosStr = datosTransferenciaAsocInt[0].BancoBenef + Environment.NewLine + datosTransferenciaAsocInt[0].Direccion +
+                                    Environment.NewLine + datosTransferenciaAsocInt[0].Cuenta + Environment.NewLine + datosTransferenciaAsocInt[0].Aba +
+                                    Environment.NewLine + datosTransferenciaAsocInt[0].Swif;
+                                item1.NumeroSecuenciaTransferencia = item1.DatosTransferencia.Id;
+                            }
                         }
-                        if (item1.DatosTransferencia != null)
+                        else
+                        {
+                            item1.Beneficiario = item1.AsociadoInt.Nombre;
+                            ListaDatosValores operacionTransferenciaBuscar = new ListaDatosValores();
+                            operacionTransferenciaBuscar.Valor = "Cheque";
+                            ListaDatosValores valorEncontrado = this.BuscarListaDeDatosValores(formasDePago, operacionTransferenciaBuscar);
+                            item1.FormaPago = valorEncontrado.Valor;
+                        }   
+
+                        #region CODIGO ORIGINAL COMENTADO
+                        /*if (item1.DatosTransferencia != null)
                         {
                             if (item1.DatosTransferencia.Beneficiario != null)
                             {
@@ -387,16 +506,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
                             item1.DatosBancariosStr = datosTransferenciaAsocInt[0].BancoBenef + Environment.NewLine + datosTransferenciaAsocInt[0].Direccion +
                                 Environment.NewLine + datosTransferenciaAsocInt[0].Cuenta + Environment.NewLine + datosTransferenciaAsocInt[0].Aba +
                                 Environment.NewLine + datosTransferenciaAsocInt[0].Swif;
-                        }
-
-
+                        }*/
+                        
+                        #endregion
 
                         sumatoria = 0;
                     }
 
                     this._asociadosConsolidados = asociadosIntConsolidado;
                 }
-                else
+                else //CUANDO EXISTEN DATOS CONSOLIDADOS GUARDADOS
                 {
                     foreach (FacAsociadoIntConsolidadoCxPInt datoConsolidado in this._asociadosConsolidados)
                     {
@@ -418,9 +537,58 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
                             this._datosTransferenciaServicios.ConsultarDatosTransferenciaPorAsociado(datoConsolidado.AsociadoInt);
                         if (datosTransferenciaAsocInt.Count > 0)
                         {
-                            datoConsolidado.DatosTransferencia = datosTransferenciaAsocInt[0];
+                            if (datoConsolidado.NumeroSecuenciaTransferencia != 0)
+                            {
+                                foreach (DatosTransferencia  transferencia in datosTransferenciaAsocInt)
+                                {
+                                    if (transferencia.Id == datoConsolidado.NumeroSecuenciaTransferencia)
+                                    {
+                                        datoConsolidado.DatosTransferencia = transferencia;
+                                        break;
+                                    }
+                                    contador++;
+                                }
+                            }
+                            //datoConsolidado.DatosTransferencia = datosTransferenciaAsocInt[0];
+                            if (datoConsolidado.DatosTransferencia != null)
+                            {
+                                if (datoConsolidado.DatosTransferencia.Beneficiario != null)
+                                {
+                                    if(datoConsolidado.Beneficiario.Equals(datoConsolidado.DatosTransferencia.Beneficiario))
+                                        datoConsolidado.Beneficiario = datoConsolidado.DatosTransferencia.Beneficiario;
+                                }
+
+                                ListaDatosValores operacionTransferenciaBuscar = new ListaDatosValores();
+                                operacionTransferenciaBuscar.Valor = datoConsolidado.FormaPago;
+                                ListaDatosValores valorEncontrado = this.BuscarListaDeDatosValores(formasDePago, operacionTransferenciaBuscar);
+                                datoConsolidado.FormaPago = valorEncontrado.Valor;
+                                if (datoConsolidado.DatosBancariosStr.Equals(String.Empty))
+                                {
+                                    datoConsolidado.DatosBancariosStr = datosTransferenciaAsocInt[contador].BancoBenef + Environment.NewLine + datosTransferenciaAsocInt[contador].Direccion +
+                                    Environment.NewLine + datosTransferenciaAsocInt[contador].Cuenta + Environment.NewLine + datosTransferenciaAsocInt[contador].Aba +
+                                    Environment.NewLine + datosTransferenciaAsocInt[contador].Swif;
+                                }
+                                
+                                //datoConsolidado.DatosBancariosStr = datosTransferenciaAsocInt[0].BancoBenef + Environment.NewLine + datosTransferenciaAsocInt[0].Direccion +
+                                //    Environment.NewLine + datosTransferenciaAsocInt[0].Cuenta + Environment.NewLine + datosTransferenciaAsocInt[0].Aba +
+                                //    Environment.NewLine + datosTransferenciaAsocInt[0].Swif;
+                            }
+
+                            contador = 0;
                         }
-                        if (datoConsolidado.DatosTransferencia != null)
+                        else
+                        {
+                            if(datoConsolidado.Beneficiario.Equals(datoConsolidado.AsociadoInt.Nombre))
+                                datoConsolidado.Beneficiario = datoConsolidado.AsociadoInt.Nombre;
+
+                            ListaDatosValores operacionTransferenciaBuscar = new ListaDatosValores();
+                            operacionTransferenciaBuscar.Valor = datoConsolidado.FormaPago;
+                            ListaDatosValores valorEncontrado = this.BuscarListaDeDatosValores(formasDePago, operacionTransferenciaBuscar);
+                            datoConsolidado.FormaPago = valorEncontrado.Valor;
+                        }
+
+                        #region CODIGO ORIGINAL COMENTADO
+                        /*if (datoConsolidado.DatosTransferencia != null)
                         {
                             if (datoConsolidado.DatosTransferencia.Beneficiario != null)
                             {
@@ -434,7 +602,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
                             datoConsolidado.DatosBancariosStr = datosTransferenciaAsocInt[0].BancoBenef + Environment.NewLine + datosTransferenciaAsocInt[0].Direccion +
                                 Environment.NewLine + datosTransferenciaAsocInt[0].Cuenta + Environment.NewLine + datosTransferenciaAsocInt[0].Aba +
                                 Environment.NewLine + datosTransferenciaAsocInt[0].Swif;
-                        }
+                        }*/
+                        
+                        #endregion
 
                     }
 
@@ -447,6 +617,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
                 if (!this._soloVer)
                 {
                     this._ventana.FacturasAprobadas = asociadosIntConsolidado;
+                    this._ventana.TotalHits = asociadosIntConsolidado.Count.ToString();
                     
                 }
                 else
@@ -454,6 +625,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
                     this._ventana.HabilitarListaSoloVer();
                     this._ventana.HabilitarBotonModificar();
                     this._ventana.FacturasAprobadasSoloVer = asociadosIntConsolidado;
+                    this._ventana.TotalHits = asociadosIntConsolidado.Count.ToString();
                 }
 
                 #region trace
@@ -568,6 +740,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
         {
 
             Mouse.OverrideCursor = Cursors.Wait;
+
             bool exitoso = false;
             int contadorId = 1;
 
@@ -601,6 +774,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
                             continue;
                         }
                     }
+
+                    this._ventana.Mensaje("Se han guardado los datos de Consolidación exitosamente", 2);
                 }
 
                 #region trace
@@ -653,6 +828,198 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
             {
                 throw;
             }
+        }
+
+
+        /// <summary>
+        /// Metodo que toma el codigo del Asociado Internacional seleccionado y muestra sus datos de transferencia
+        /// </summary>
+        /// <param name="objeto">Objeto que contiene todos los datos de la transaccion de consolidacion de un Asociado Internacional</param>
+        public void VerDatosTransferenciaAsociado(object datosConsolidacionAsociado)
+        {
+
+            IList<FacAsociadoIntConsolidadoCxPInt> consolida;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                FacAsociadoIntConsolidadoCxPInt datosConsolidacionSeleccionado = (FacAsociadoIntConsolidadoCxPInt)datosConsolidacionAsociado;
+                Asociado asociadoInternacional = datosConsolidacionSeleccionado.AsociadoInt;
+
+                IList<DatosTransferencia> transferencias = this._datosTransferenciaServicios.ConsultarDatosTransferenciaPorAsociado(asociadoInternacional);
+                asociadoInternacional.DatosTransferencias = transferencias;
+
+                if (_soloVer)
+                {
+                    consolida = (IList<FacAsociadoIntConsolidadoCxPInt>)this._ventana.FacturasAprobadasSoloVer;
+                }
+                else
+                {
+                    consolida = (IList<FacAsociadoIntConsolidadoCxPInt>)this._ventana.FacturasAprobadas;
+                }
+
+                             
+                
+                this.Navegar(new ListaDatosTransferencias(asociadoInternacional,consolida, this._ventana,true,this._soloVer,this._ventanaPadre));
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (System.Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo que exporta los datos de consolidacion a una hoja Excel
+        /// </summary>
+        public void ExportarExcelDatosConsolidados()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+                IList<FacAsociadoIntConsolidadoCxPInt> datosConsolidadosPresentados;
+                DataTable datosExportar = CrearDataTableExportacion();
+                String titulo = String.Empty;
+
+                if (this._soloVer)
+                {
+                    datosConsolidadosPresentados = (IList<FacAsociadoIntConsolidadoCxPInt>)this._ventana.FacturasAprobadasSoloVer;
+                    titulo = "Preview";
+                }
+                else
+                {
+                    datosConsolidadosPresentados = (IList<FacAsociadoIntConsolidadoCxPInt>)this._ventana.FacturasAprobadas;
+                    titulo = "Definitivo";
+                }
+
+                datosExportar = LlenarDataTableExportacion(datosConsolidadosPresentados, datosExportar);
+
+                this._ventana.ExportarDatosConsolidadosExcel(titulo, datosExportar);
+
+                this._ventana.Mensaje("Datos de Consolidación exportados con éxito", 2);
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (System.Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+        }
+
+        private DataTable LlenarDataTableExportacion(IList<FacAsociadoIntConsolidadoCxPInt> datosConsolidadosPresentados, 
+                                                     DataTable datosExportar)
+        {
+
+            DataTable datos = datosExportar;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                foreach (FacAsociadoIntConsolidadoCxPInt item in datosConsolidadosPresentados)
+                {
+                    DataRow filaNueva = datos.NewRow();
+                    filaNueva["Asociado No"] = item.AsociadoInt.Id;
+                    filaNueva["Asociado"] = item.AsociadoInt.Nombre;
+                    filaNueva["Monto"] = item.MontoConsolidado;
+                    filaNueva["Forma Pago"] = item.FormaPago;
+
+                    if (!String.IsNullOrEmpty(item.DatosBancariosStr))
+                        filaNueva["Datos Bancarios"] = item.DatosBancariosStr;
+
+                    if(item.DatosTransferencia != null)
+                        filaNueva["Beneficiario"] = item.DatosTransferencia.Beneficiario;
+                    else
+                        filaNueva["Beneficiario"] = item.AsociadoInt.Nombre;
+
+                    datos.Rows.Add(filaNueva);
+                    
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return datos;
+        }
+
+        /// <summary>
+        /// Metodo que crea el DataTable necesario para mostrar los datos de Consolidacion en una hoja Excel
+        /// </summary>
+        /// <returns></returns>
+        private DataTable CrearDataTableExportacion()
+        {
+
+            DataTable datos = new DataTable();
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                datos.Columns.Add("Asociado No", typeof(int));
+                datos.Columns.Add("Asociado", typeof(string));
+                datos.Columns.Add("Monto", typeof(double));
+                datos.Columns.Add("Forma Pago", typeof(string));
+                datos.Columns.Add("Datos Bancarios", typeof(string));
+                datos.Columns.Add("Beneficiario", typeof(string));
+                
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return datos;
+        }
+
+
+        public String ObtenerTituloReporte(string tipo)
+        {
+            String titulo = String.Empty;
+
+            if (tipo.Equals("Preview"))
+            {
+                titulo = "Datos Consolidados - Vista Previa";
+            }
+            else
+                titulo = "Datos Consolidados Definitivos";
+
+            return titulo;
         }
     }
 }

@@ -36,8 +36,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         private IPaisServicios _paisServicios;
         private IListaDatosDominioServicios _listaDatosDominioServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
+        private IConceptoServicios _conceptoServicios;
+        private IJustificacionServicios _justificacionServicios;
         private IList<Asociado> _asociados;
-
+        private bool _porConcepto = false;
 
         private Asociado _asociadoPrecargado;
 
@@ -82,6 +84,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
                 this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
+                this._conceptoServicios = (IConceptoServicios)Activator.GetObject(typeof(IConceptoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ConceptoServicios"]);
+                this._justificacionServicios = (IJustificacionServicios)Activator.GetObject(typeof(IJustificacionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["JustificacionServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -202,6 +208,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 tiposPersona.Insert(0, primerTipoPersona);
                 this._ventana.TipoPersonas = tiposPersona;
 
+                Concepto primerConcepto = new Concepto();
+                primerConcepto.Id = "NGN";
+                IList<Concepto> conceptos = this._conceptoServicios.ConsultarTodos();
+                conceptos.Insert(0, primerConcepto);
+                this._ventana.Conceptos = conceptos;
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -250,10 +262,60 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 #endregion
 
                 this._filtroValido = 0;
+                IList<Asociado> _asociadosConsultados = new List<Asociado>();
 
                 Asociado asociado = this.CargarDatosFiltro();
 
-                if (this._filtroValido >= 2)
+                if (this._ventana.Concepto != null)
+                {
+                    if (_filtroValido == 0)
+                    {
+                        Concepto conceptoAux = (Concepto)this._ventana.Concepto;
+                        Justificacion justificacionAux = new Justificacion();
+                        justificacionAux.Concepto = conceptoAux;
+
+                        IList<Justificacion> justificaciones =
+                            this._justificacionServicios.ObtenerJustificacionesPorConcepto(justificacionAux);
+
+                        IList<Asociado> Asociado;
+                        foreach (Justificacion justifica in justificaciones)
+                        {
+                            Asociado = this._asociadoServicios.ObtenerAsociadosFiltro(new Asociado(justifica.Asociado.Id));
+                            _asociadosConsultados.Add(Asociado[0]);
+
+                        }
+
+                        this._asociados = _asociadosConsultados;
+                        this._porConcepto = true;
+                        this._filtroValido = 2;
+
+                    }
+                    else
+                    {
+                        IList<Asociado> _listaAsociados = this._asociadoServicios.ObtenerAsociadosFiltro(asociado);
+                        this._porConcepto = true;
+                        Concepto conceptoAux = (Concepto)this._ventana.Concepto;
+
+                        foreach (Asociado item in _listaAsociados)
+                        {
+                            if (item.Justificaciones.Count > 0)
+                            {
+                                foreach (Justificacion justificacion in item.Justificaciones)
+                                {
+                                    if (justificacion.Concepto.Id.Equals(conceptoAux.Id))
+                                    {
+                                        _asociadosConsultados.Add(item);
+                                    }
+                                }
+                            }
+                        }
+
+                        this._asociados = _asociadosConsultados;
+
+                    }
+                }
+
+                if ((this._filtroValido >= 2) && (!this._porConcepto))
                 {
                     IEnumerable<Asociado> asociadosFiltrados = this._asociadoServicios.ObtenerAsociadosFiltro(asociado);
 
@@ -264,9 +326,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                         this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
 
                 }
+                else if ((this._filtroValido >= 2) && (this._porConcepto))
+                {
+                    this._ventana.Resultados = this._asociados;
+                    this._ventana.TotalHits = this._asociados.Count.ToString();
+
+                    if(this._asociados.Count == 0)
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                }
+                
                 else
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto, 0);
 
+                #region CODIGO ORIGINAL COMENTADO - NO BORRAR
                 //IEnumerable<Asociado> asociadosFiltrados = this._asociados;
 
                 //if (!string.IsNullOrEmpty(this._ventana.Id))
@@ -364,7 +436,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
 
                 //this._ventana.Resultados = asociadosFiltrados.ToList<Asociado>();
-                //this._ventana.TotalHits = asociadosFiltrados.ToList<Asociado>().Count.ToString();
+                //this._ventana.TotalHits = asociadosFiltrados.ToList<Asociado>().Count.ToString(); 
+                #endregion
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -561,6 +634,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             this._ventana.TipoCliente = this.BuscarTipoCliente((IList<TipoCliente>)this._ventana.TiposClientes, new TipoCliente("NGN"));
             this._ventana.Tarifa = this.BuscarTarifa((IList<Tarifa>)this._ventana.Tarifas, new Tarifa("NGN"));
             this._ventana.DetallePago = this.BuscarDetallePago((IList<DetallePago>)this._ventana.DetallesPagos, new DetallePago("NGN"));
+            //this._ventana.Concepto = this.BuscarConcepto((IList<Concepto>)this._ventana.Conceptos, new Concepto("NGN"));
+            this._ventana.Concepto = null;
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

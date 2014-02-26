@@ -31,7 +31,7 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
-        <GroupBox Grid.Column="0" Grid.Row="0" Margin="5" Height="35" VerticalAlignment="Top">
+        <GroupBox Grid.Column="0" Grid.Row="0" Margin="5" Height="35" VerticalAlignment="Top" BorderThickness="0">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Label>
                     <TextBlock FontSize="15" Text="{x:Static recurso:Etiquetas.lblTotalHits}"/>
@@ -43,7 +43,7 @@
             </StackPanel>
         </GroupBox>
         <ScrollViewer HorizontalScrollBarVisibility="Auto" Margin="-4,39,4,1" Grid.RowSpan="2" Grid.ColumnSpan="1">
-            <GroupBox Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="5">
+            <GroupBox Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="5" BorderThickness="0">
                 <StackPanel Name="_spFiltro" DataContext="{Binding}" VerticalAlignment="Center">
                     <!-- Moneda -->
                     <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,5,0,0">
@@ -291,7 +291,7 @@
             </StackPanel>
         </GroupBox>
 
-        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" BorderBrush="{x:Null}">
+        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" BorderBrush="{x:Null}" BorderThickness="0">
             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
                 <Button Name="_btnLimpiarCampos" Width="100" HorizontalAlignment="Left" Height="25" Click="_btnLimpiarCampos_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnLimpiarCampos}"/>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="Justificacion" table="FAC_ASO_JUST">
+
+    <composite-id>
+      <key-many-to-one name="Asociado" column="CASOCIADO" class="Asociado"/>
+      <key-many-to-one name="Carta" column="CCARTA" class="Carta"/>
+    </composite-id>
+
+    <property name="Fecha" type="DateTime" column="FECHA"/>
+        
+    <many-to-one name="Concepto" class="Concepto" lazy="false">
+      <column name="CCONCEPTO"/>
+    </many-to-one>
+
+  </class>
+</hibernate-mapping> 

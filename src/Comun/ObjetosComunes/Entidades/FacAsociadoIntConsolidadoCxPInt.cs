@@ -19,6 +19,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<FacInternacional> _facturasIntConsolidadas;
         private IList<ListaDatosValores> _formasDePago;
         private string _datosBancariosStr;
+        private int _numeroSecuenciaTransferencia;
 
         #endregion
 
@@ -127,6 +128,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return this._datosBancariosStr; }
             set { this._datosBancariosStr = value; }
+        }
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el numero de secuencia de datos de transferencia del Asociado Internacional
+        /// </summary>
+        public virtual int NumeroSecuenciaTransferencia
+        {
+            get { return this._numeroSecuenciaTransferencia; }
+            set { this._numeroSecuenciaTransferencia = value; }
         }
         
 

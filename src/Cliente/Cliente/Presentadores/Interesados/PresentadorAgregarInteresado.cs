@@ -21,6 +21,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
         private IInteresadoServicios _interesadoServicios;
         private IListaDatosDominioServicios _listaDatosDominioServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
+        private IIdiomaServicios _idiomaServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -49,6 +50,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
                 this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
+                this._idiomaServicios = (IIdiomaServicios)Activator.GetObject(typeof(IIdiomaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["IdiomaServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -96,6 +99,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 ListaDatosValores origenClienteAux = new ListaDatosValores();
                 origenClienteAux.Valor = "BOLET";
                 this._ventana.OrigenCliente = this.BuscarListaDeDatosValores(origenesClientes, origenClienteAux);
+
+                IList<Idioma> idiomas = this._idiomaServicios.ConsultarTodos();
+                Idioma primerIdioma = new Idioma();
+                primerIdioma.Id = "NGN";
+                idiomas.Insert(0, primerIdioma);
+                this._ventana.Idiomas = idiomas;
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -147,6 +156,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 interesado.Corporacion = (Estado)this._ventana.Corporacion;
                 interesado.TipoPersona = ((ListaDatosDominio)this._ventana.TipoPersona).Id[0];
                 interesado.OrigenCliente = ((ListaDatosValores)this._ventana.OrigenCliente).Valor;
+                interesado.Idioma = !((Idioma)this._ventana.Idioma).Id.Equals("NGN") ? (Idioma)this._ventana.Idioma : null;
                 interesado.Operacion = "CREATE";
 
                 //if ((interesado.Estado != null) && (!interesado.Estado.Equals("")))

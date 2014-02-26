@@ -491,5 +491,20 @@ Namespace Ventanas.FacFacturaAnuladas
                 Me._cbxLocal.Text = value
             End Set
         End Property
+
+        Public Property BSusFact As Boolean Implements Contratos.FacFacturaAnuladas.IAgregarFacFacturaAnulada.BSusFact
+            Get
+                Return _chkSustFac.IsChecked
+            End Get
+            Set(value As Boolean)
+                Me._chkSustFac.IsChecked = value
+            End Set
+        End Property
+
+        Public Sub HabilitarCheckSustituyeFactura(ByVal valor As Boolean) Implements Contratos.FacFacturaAnuladas.IAgregarFacFacturaAnulada.HabilitarCheckSustituyeFactura
+            Me._chkSustFac.IsEnabled = valor
+        End Sub
+
+
     End Class
 End Namespace

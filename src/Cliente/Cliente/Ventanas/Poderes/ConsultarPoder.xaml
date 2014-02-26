@@ -57,6 +57,7 @@
                     <RowDefinition Height="85"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="150"/>
+                    <RowDefinition Height="30"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
@@ -204,6 +205,16 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
+
+                <Label Grid.Column="0" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                    <TextBlock Text="Fecha de Vencimiento:"/>
+                </Label>
+
+                <DatePicker  Grid.Column="1" Grid.Row="10" Width="150" Name="_dpkFechaVencimiento" Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" >
+                    <DatePicker.SelectedDate>
+                        <Binding Path="FechaVencimiento" UpdateSourceTrigger="PropertyChanged" StringFormat="{}{0:dd/MM/yyyy}"/>
+                    </DatePicker.SelectedDate>
+                </DatePicker>
 
             </Grid>
         </GroupBox>

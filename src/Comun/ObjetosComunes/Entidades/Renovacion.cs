@@ -38,6 +38,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Poder _poder;
         private Marca _marca;
         private ListaDatosValores _tipoRenovacion;
+        private bool _nueva;
 
         #endregion
 
@@ -350,6 +351,17 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _tipoRenovacion; }
             set { _tipoRenovacion = value; }
+        }
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la propiedad NUEVA que se usara para mostrar el boton de NUEVA RENOVACION despues de haber
+        /// creado previamente una renovacion
+        /// </summary>
+        public virtual bool Nueva
+        {
+            get { return _nueva; }
+            set { _nueva = value; }
         }
 
         #endregion

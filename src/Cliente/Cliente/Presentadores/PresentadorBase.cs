@@ -3292,8 +3292,8 @@ namespace Trascend.Bolet.Cliente.Presentadores
                     this._FacVistaFacturacionCxpInternaServicios = (IFacVistaFacturacionCxpInternaServicios)Activator.GetObject(typeof(IFacVistaFacturacionCxpInternaServicios), ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FacVistaFacturacionCxpInternaServicios"]);
                     IList<FacVistaFacturacionCxpInterna> FacVistaFacturacionCxpInterna = null;
                     FacVistaFacturacionCxpInterna FacVistaFacturacionCxpInternaaux = new FacVistaFacturacionCxpInterna();
-                    //FacVistaFacturacionCxpInternaaux.Asociado_o = asociado;
-                    FacVistaFacturacionCxpInternaaux.Asociado = asociado;
+                    FacVistaFacturacionCxpInternaaux.Asociado_o = asociado;
+                    //FacVistaFacturacionCxpInternaaux.Asociado = asociado;
                     FacVistaFacturacionCxpInternaaux.Pagada = "NO";
                     FacVistaFacturacionCxpInterna = this._FacVistaFacturacionCxpInternaServicios.ObtenerFacVistaFacturacionCxpInternasFiltro(FacVistaFacturacionCxpInternaaux);
 

@@ -139,6 +139,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
             set { this._lstInteresados = value; }
         }
 
+        
+
         #endregion
 
         public AgregarPoder()
@@ -273,6 +275,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
         {
             _presentador.EliminarAgente();
 
+        }
+
+        public void Mensaje(string mensaje, int opcion)
+        {
+            if (opcion == 0)
+                MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (opcion == 1)
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            else if (opcion == 2)
+                MessageBox.Show(mensaje, "Información", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

@@ -47,6 +47,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         private IDatosTransferenciaServicios _datosTransferenciaServicios;
         private IFacGestionServicios _facGestionServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
+        private IFacVistaFacturacionCxpInternaServicios _facVistaFacturacionCxpInternaServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private IList<Auditoria> _auditorias;
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -99,7 +100,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FacGestionServicios"]);
                 this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
-
+                this._facVistaFacturacionCxpInternaServicios = (IFacVistaFacturacionCxpInternaServicios)Activator.GetObject(typeof(IFacVistaFacturacionCxpInternaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FacVistaFacturacionCxpInternaServicios"]);
+                
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -256,6 +259,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     this._ventana.DesactivarBotonesParaModificar();
                 }
 
+                
+                IList<FacVistaFacturacionCxpInterna> FacVistaFacturacionCxpInterna = null;
+                FacVistaFacturacionCxpInterna FacVistaFacturacionCxpInternaaux = new FacVistaFacturacionCxpInterna();
+                FacVistaFacturacionCxpInternaaux.Asociado_o = asociado;
+                FacVistaFacturacionCxpInternaaux.Pagada = "NO";
+                FacVistaFacturacionCxpInterna = 
+                    this._facVistaFacturacionCxpInternaServicios.ObtenerFacVistaFacturacionCxpInternasFiltro(FacVistaFacturacionCxpInternaaux);
+
+                if (FacVistaFacturacionCxpInterna.Count > 0)
+                    this._ventana.PintarBotonesCxPInternacional();
+
+                if (asociado.CartaDomicilio == 0)
+                    this._ventana.CartaDomicilioDatos = String.Empty;
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -355,6 +372,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
                     if ((DetallePago)this._ventana.DetallePago != null)
                         asociado.DetallePago = !((DetallePago)this._ventana.DetallePago).Id.Equals("NGN") ? (DetallePago)this._ventana.DetallePago : null;
+
+                    if (!String.IsNullOrEmpty(this._ventana.CartaDomicilioDatos))
+                        asociado.CartaDomicilio = Int32.Parse(this._ventana.CartaDomicilioDatos);
+
 
                     int? exitoso = this._asociadoServicios.InsertarOModificarAsociado(asociado, UsuarioLogeado.Hash);
 
@@ -489,7 +510,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new ListaDatosTransferencias(this._ventana.Asociado));
+            //this.Navegar(new ListaDatosTransferencias(this._ventana.Asociado));
+            this.Navegar(new ListaDatosTransferencias(this._ventana.Asociado,this._ventana));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -652,6 +674,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                         new Carta(((ContactosDelAsociadoVista)this._ventana.ContactoSeleccionado).UltimaCartaEntrada))[0];
                     Navegar(new ConsultarCarta(ultimaCorrespondenciaEntrada, this._ventana));
                 }
+            }
+        }
+
+
+        public void ConsultarCorrespondenciaDeDomicilio()
+        {
+            if (!string.IsNullOrEmpty(this._ventana.CartaDomicilioDatos))
+            {
+                Carta correspondencia = new Carta();
+                correspondencia.Id = Int32.Parse(this._ventana.CartaDomicilioDatos);
+                IList<Carta> listaCorrespondencias = this._cartaServicios.ObtenerCartasFiltro(correspondencia);
+                if (listaCorrespondencias.Count > 0)
+                {
+                    Navegar(new ConsultarCarta(listaCorrespondencias[0], this._ventana));
+                }
+                else
+                    this._ventana.Mensaje("La Correspondencia de Domicilio no existe");
             }
         }
 
@@ -870,6 +909,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
         public void CalcularSaldos()
         {
+
+            Decimal saldoPendiente;
+
             if ((Asociado)this._ventana.Asociado != null)
             {
                 Asociado Asociado = ((Asociado)this._ventana.Asociado).Id != int.MinValue ? (Asociado)this._ventana.Asociado : null;
@@ -893,7 +935,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     this._ventana.SaldoVencidoSolicitud = System.Convert.ToString(w_2);
                     this._ventana.SaldoPorVencerSolicitud = System.Convert.ToString(w_4);
                     this._ventana.TotalSolicitud = System.Convert.ToString(w_2 + w_4);
-                    this._ventana.MSaldoPendiente = System.Convert.ToString(msaldope);
+                    //this._ventana.MSaldoPendiente = System.Convert.ToString(msaldope);
+                    saldoPendiente = System.Convert.ToDecimal(msaldope);
+                    this._ventana.MSaldoPendiente = saldoPendiente.ToString("N");
 
                 }
                 else
@@ -901,7 +945,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     this._ventana.SaldoVencidoSolicitud = System.Convert.ToString(w_1);
                     this._ventana.SaldoPorVencerSolicitud = System.Convert.ToString(w_3);
                     this._ventana.TotalSolicitud = System.Convert.ToString(w_1 + w_3);
-                    this._ventana.MSaldoPendiente = System.Convert.ToString(msaldope);
+                    //this._ventana.MSaldoPendiente = System.Convert.ToString(msaldope);
+                    saldoPendiente = System.Convert.ToDecimal(msaldope);
+                    this._ventana.MSaldoPendiente = saldoPendiente.ToString("N");
                 }
             }
 

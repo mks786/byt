@@ -221,6 +221,37 @@ Namespace Presentadores.FacInternacionales
                     'Exit Sub
                 End If
 
+                'If Me._ventana.BSustProforma Then
+                '    Facinternacional.BSustProforma = Me._ventana.BSustProforma
+                'End If
+
+                If (Me._ventana.NumeroFactura IsNot Nothing) And (Not Me._ventana.NumeroFactura.Equals(String.Empty)) Then
+
+                    Dim FacturaAuxiliar As FacInternacional = New FacInternacional()
+                    FacturaAuxiliar.Numerofactura = Me._ventana.NumeroFactura
+                    FacturaAuxiliar.Asociado_o = DirectCast(Me._ventana.Asociado2, Asociado)
+
+                    Dim facturas As List(Of FacInternacional) = Me._FacInternacionalesServicios.ObtenerFacInternacionalesFiltro(FacturaAuxiliar)
+                    If facturas.Count > 0 Then
+                        If Not Me._ventana.BSustProforma Then
+                            Mouse.OverrideCursor = Nothing
+                            Me._ventana.Mensaje("El número de Factura ingresado ya se encuentra registrado")
+                            Exit Sub
+                        End If
+                            'Mouse.OverrideCursor = Nothing
+                            'Me._ventana.Mensaje("El número de Factura ingresado ya se encuentra registrado")
+                        'Exit Sub
+                    Else
+                        If Not Me._ventana.BSustProforma Then
+                            Mouse.OverrideCursor = Nothing
+                            Me._ventana.Mensaje("El número de Factura ingresado ya se encuentra registrado")
+                            Exit Sub
+                        End If
+                    End If
+                End If
+
+                Facinternacional.BSustProforma = False
+
                 Dim exitoso As Boolean = _FacInternacionalesServicios.InsertarOModificar(Facinternacional, UsuarioLogeado.Hash)
 
                 If exitoso Then

@@ -53,6 +53,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
                 this._btnAgregarAgente.IsEnabled = value;
                 this._btnQuitarAgente.IsEnabled = value;
                 this._lstAgentes.IsEnabled = value;
+                this._dpkFechaVencimiento.IsEnabled = value;
             }
         }
 

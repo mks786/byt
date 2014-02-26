@@ -223,7 +223,7 @@
     <comment>Filtro por Asociado</comment>
   </data>
   <data name="ObtenerInteresadoConTodo" xml:space="preserve">
-    <value>Select distinct(i) from Interesado i left join fetch i.Pais left join fetch i.Nacionalidad where i.Id = '{0}' order by i.Id</value>
+    <value>Select distinct(i) from Interesado i left join fetch i.Pais left join fetch i.Nacionalidad left join fetch i.Idioma where i.Id = '{0}' order by i.Id</value>
     <comment>Selecciona el asociado con todas sus objetos</comment>
   </data>
   <data name="ObtenerMarcaConTodo" xml:space="preserve">
@@ -285,7 +285,7 @@
     <comment>Filtro por Marca</comment>
   </data>
   <data name="CabeceraObtenerInteresado" xml:space="preserve">
-    <value>Select i from Interesado i left outer join i.Pais as pais left outer join i.Corporacion as corporacion where </value>
+    <value>Select i from Interesado i left outer join i.Pais as pais left outer join i.Corporacion as corporacion left outer join i.Idioma as idioma where </value>
     <comment>Cabecera del query para el filtro de interesados</comment>
   </data>
   <data name="FiltroObtenerInteresadoId" xml:space="preserve">
@@ -1254,5 +1254,13 @@
   <data name="FiltroObtenerPatentePorVencerPrioridadCantDias" xml:space="preserve">
     <value>vpp.VencimientoDias &lt;= {0}</value>
     <comment>Filtro de cantidad de dias del recordatorio para obtener las patentes que estan por vencer</comment>
+  </data>
+  <data name="ObtenerJustificacionesPorConcepto" xml:space="preserve">
+    <value>Select j from Justificacion j where j.Concepto.Id = '{0}'</value>
+    <comment>Consulta para obtener justificaciones por Concepto</comment>
+  </data>
+  <data name="FiltroObtenerInteresadoIdioma" xml:space="preserve">
+    <value>idioma.Id = '{0}'</value>
+    <comment>Filtro para obtener un interesado por la propiedad Idioma</comment>
   </data>
 </root>

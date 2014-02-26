@@ -34,6 +34,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoCxPInternaci
             this._presentador = new PresentadorFacInternacionalAprobadas(this, proformasAprobadas, ventanaPadre);
         }
 
+
+
         #region IFacInternacionalAprobadas
 
         public bool EstaCargada
@@ -110,31 +112,78 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoCxPInternaci
                         if (MessageBoxResult.Yes == System.Windows.MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmarHayDatosConsolidacionCxPInternacional),
                             "Consolidar CxP Internacional", MessageBoxButton.YesNo, MessageBoxImage.Question))
                         {
-                            this._presentador.CargarDatosConsolidacion();
+                            Mouse.OverrideCursor = Cursors.Wait;
+                            this._presentador.CargarDatosConsolidacion(nombreBoton);
+                            Mouse.OverrideCursor = null;
                         }
                         else
                         {
+                            Mouse.OverrideCursor = Cursors.Wait;
                             this._presentador.IrConsolidarFacturasSeleccionadas(nombreBoton);
+                            Mouse.OverrideCursor = null;
                         }
                     }
-                    //this._presentador.IrConsolidarFacturasSeleccionadas(nombreBoton);
+                    else
+                    {
+                        Mouse.OverrideCursor = Cursors.Wait;
+                        this._presentador.IrConsolidarFacturasSeleccionadas(nombreBoton);
+                        Mouse.OverrideCursor = null;
+                    }
 
-                } 
+                }
             }
-            else
-                this._presentador.IrConsolidarFacturasSeleccionadas(nombreBoton);
+            else if(nombreBoton.Equals("_btnVerDatosConsolidar"))
+            {
+                hayDatos = this._presentador.VerificarFacAsociadoConsolidadoGuardado();
+
+                if (hayDatos)
+                {
+                    if (MessageBoxResult.Yes == System.Windows.MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.AlertaVistaPreviaConsolidacionCxPInt),
+                        "Vista Previa de Consolidación", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                    {
+                        Mouse.OverrideCursor = Cursors.Wait;
+                        this._presentador.CargarDatosConsolidacion(nombreBoton);
+                        Mouse.OverrideCursor = null;
+                    }
+                    else
+                    {
+                        Mouse.OverrideCursor = Cursors.Wait;
+                        this._presentador.IrConsolidarFacturasSeleccionadas(nombreBoton);
+                        Mouse.OverrideCursor = null;
+                    }
+                }
+                else
+                {
+                    Mouse.OverrideCursor = Cursors.Wait;
+                    this._presentador.IrConsolidarFacturasSeleccionadas(nombreBoton);
+                    Mouse.OverrideCursor = null;
+                }
+            }
+            
         }
 
         private void _lstResultados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            this._presentador.RegistrarPago();
+            if (MessageBoxResult.Yes == System.Windows.MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.AlertaCambiarStatusFacCxPInternacional),
+                            "Actualizar Status Factura Internacional", MessageBoxButton.YesNo, MessageBoxImage.Question))
+            {
+                this._presentador.RegistrarPago();
+            }
+            
+        }
+
+        private void _btnActualizarFactInternacional_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ActualizarListadoFacturasAprobadas();
+        }
+
+        private void _btnExportar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ExportarFacturasSeleccionadasExcel();
         }
 
         #endregion
 
-        
-
-        
 
         #region Metodos
 
@@ -148,7 +197,87 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoCxPInternaci
                 MessageBox.Show(mensaje, "Información", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        public void HabilitarBotonActualizar(bool estado)
+        {
+            this._btnActualizarFactInternacional.IsEnabled = estado;
+        }
+
+
+        public bool ExportarListadoFacturasAprobadas(string tituloReporte, DataTable datosExportar)
+        {
+            bool retorno = false;
+
+            DataTable tablaDatos = datosExportar;
+
+            try
+            {
+                System.Windows.Forms.SaveFileDialog archivo = new System.Windows.Forms.SaveFileDialog();
+                archivo.FileName = "FacInternacionalAprobadas";
+                archivo.Filter = "Excel (*.xls)|*.xls";
+
+                if (archivo.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
+                    Microsoft.Office.Interop.Excel._Workbook workbook;
+                    Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+                    object misValue = System.Reflection.Missing.Value;
+
+                    workbook = app.Workbooks.Add(misValue);
+                    worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Worksheets.get_Item(1);
+
+                    app.Range["A1", "Z1"].Merge();
+                    app.Range["A1", "Z1"].Value = tituloReporte;
+                    app.Range["A1", "Z1"].Font.Bold = true;
+                    app.Range["A1", "Z1"].Font.Size = 12;
+
+
+                    for (int i = 0; i < tablaDatos.Columns.Count; i++)
+                    {
+                        worksheet.Range["A3"].Offset[0, i].Value = tablaDatos.Columns[i].ColumnName;
+                        worksheet.Range["A3"].Offset[0, i].HorizontalAlignment =
+                            Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                        worksheet.Range["A3"].Offset[0, i].VerticalAlignment =
+                            Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                        worksheet.Range["A3"].Offset[0, i].Font.Bold = true;
+                        worksheet.Range["A3"].Offset[0, i].Font.ColorIndex = 2;
+                        worksheet.Range["A3"].Offset[0, i].Borders.LineStyle =
+                            Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                        worksheet.Range["A3"].Offset[0, i].Cells.Interior.ColorIndex = 10;
+                    }
+
+                    for (int Idx = 0; Idx < tablaDatos.Rows.Count; Idx++)
+                    {
+                        worksheet.Range["A4"].Offset[Idx].Resize[1, tablaDatos.Columns.Count].Value =
+                            tablaDatos.Rows[Idx].ItemArray;
+                        worksheet.Range["A4"].Offset[Idx].Resize[1, tablaDatos.Columns.Count].HorizontalAlignment =
+                            Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignGeneral;
+                        worksheet.Range["A4"].Offset[Idx].Resize[1, tablaDatos.Columns.Count].Borders.LineStyle =
+                            Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+
+                    }
+
+                    app.Columns.AutoFit();
+                    workbook.SaveAs(archivo.FileName, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal);
+                    app.Visible = true;
+
+                    retorno = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw;
+            }
+
+
+            return retorno;
+        }
+
         #endregion
+
+        
+
+        
 
         
 

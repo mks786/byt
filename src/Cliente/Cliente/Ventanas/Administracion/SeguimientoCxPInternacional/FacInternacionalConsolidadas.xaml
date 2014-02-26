@@ -18,12 +18,33 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
-        <GroupBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,15,0,0" BorderThickness="0" Width="Auto">
+        <GroupBox Grid.Column="0" Grid.Row="0" Height="290" VerticalAlignment="Top">
+            <StackPanel  Orientation="Vertical" HorizontalAlignment="Stretch" Width="Auto">
+                <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock FontSize="15" Text="Datos Consolidados por Asociado "/>
+                    </Label>
+                    
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,5,0,0">
+
+                    <Label>
+                        <TextBlock FontSize="13" Text="{x:Static recurso:Etiquetas.lblTotalHits}"/>
+                    </Label>
+                    <Label>
+                        <TextBlock FontSize="13" Name="_lblHits"/>
+                    </Label>
+                </WrapPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,15,0,0" BorderThickness="0" Width="Auto">
             <StackPanel>
                 <StackPanel.Resources>
                     
@@ -42,8 +63,11 @@
                 </StackPanel.Resources>
 
 
+                <!-- Lista de los datos a consolidar formalmente -->
                 <ListView Name="_lstResultados" ItemsSource="{Binding}"  
-                          Style="{DynamicResource EstiloListView}">
+                          Style="{DynamicResource EstiloListView}"
+                          Height="550"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto">
 
                     <ListView.View>
                         <GridView>
@@ -86,7 +110,7 @@
                                         <!--<TextBox Text="{Binding Path=DatosBancariosStr}" Height="40" />-->
                                         <custom:ByTTextBox MaxLength="12" IsEnabled="True" FontSize="12"  
                                                            HorizontalContentAlignment="Left" 
-                                                           IsReadOnly="False" Height="40" 
+                                                           Height="40" 
                                                            Text="{Binding Path=DatosBancariosStr}">
                                         </custom:ByTTextBox>
                                     </DataTemplate>
@@ -125,8 +149,11 @@
                 </ListView>
 
 
+                <!-- Lista de Datos Consolidados para VER DATOS -->
                 <ListView Name="_lstResultados1" ItemsSource="{Binding}"  
-                          Style="{DynamicResource EstiloListView}" Visibility="Collapsed">
+                          Style="{DynamicResource EstiloListView}" Visibility="Collapsed"
+                          Height="550"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto">
 
                     <ListView.View>
                         <GridView>
@@ -167,11 +194,21 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <!--<TextBox Text="{Binding Path=DatosBancariosStr}" Height="40" />-->
-                                        <custom:ByTTextBox MaxLength="12" IsEnabled="True" FontSize="12"  
+                                        <custom:ByTTextBox MaxLength="5000" IsEnabled="True" FontSize="12"  
                                                            HorizontalContentAlignment="Left" 
-                                                           IsReadOnly="False" Height="40" 
+                                                           IsReadOnly="False"   Height="40" 
                                                            Text="{Binding Path=DatosBancariosStr}">
                                         </custom:ByTTextBox>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Header="Pago" Width="40">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button CommandParameter="{Binding}" Height="25" Click="DatosDeTransferenciaAsociado_Click">
+                                            <TextBlock Background="Aqua" Text="DT" FontWeight="Bold" />
+                                        </Button>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -197,8 +234,9 @@
                             <!--<GridViewColumn Header="Pago" Width="100">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Content="Registrar Pago" Click="RegistrarPagoConsolidado_Click" 
-                                                CommandParameter="{Binding}"/>
+                                        <Button CommandParameter="{Binding}">
+                                            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" Text="Actualizar Dato Transferencia"/> 
+                                        </Button>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>-->
@@ -212,9 +250,9 @@
             </StackPanel>
         </GroupBox>
 
-        <GroupBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="5" BorderThickness="0">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="58" Width="Auto">
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" Height="20">
+        <GroupBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Margin="5" BorderThickness="0">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="28" Width="Auto">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" Height="20" VerticalAlignment="Center">
                     <Label Width="100">
                         <TextBlock Text="Total Monto US$" FontSize="10" VerticalAlignment="Center"/>
                     </Label>
@@ -224,7 +262,7 @@
             </StackPanel>
         </GroupBox>
 
-        <GroupBox Grid.ColumnSpan="3" Grid.Row="2" BorderBrush="{x:Null}" BorderThickness="0">
+        <GroupBox Grid.ColumnSpan="3" Grid.Row="3" BorderBrush="{x:Null}" BorderThickness="0">
             <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" 
                        Orientation="Horizontal">
                 
@@ -233,8 +271,9 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnModificar}"/>
                 </Button>
                 
-                <Button Name="_btnExportarResumen" VerticalAlignment="Bottom" Height="25" Width="110">
-                    <TextBlock Text="{x:Static recurso:Etiquetas.btnExportarResumen}"/>
+                <Button Name="_btnExportarResumen" VerticalAlignment="Bottom" Height="25" Width="110" 
+                        Click="_btnExportarResumen_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnExportar}"/>
                 </Button>
                 
                 <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="110" Click="_btnRegresar_Click">

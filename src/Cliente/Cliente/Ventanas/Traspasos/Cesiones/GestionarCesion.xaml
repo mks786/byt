@@ -922,7 +922,8 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblOtros}"/>
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Name="_txtOtrosCesion" 
-                                            VerticalAlignment="Center" MaxLength="4000" Text="{Binding Path=OtrosS1}"></custom:ByTTextBox>
+                                            VerticalAlignment="Center" MaxLength="4000" Height="30" 
+                                            Text="{Binding Path=OtrosS1}"></custom:ByTTextBox>
 
 
                         <Label Name="_lblReferenciaCesion" Grid.Row="0" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center">
@@ -1023,6 +1024,11 @@
                         <Button Name="_btnPlanillaVienen" Grid.Row="0" Grid.Column="5" VerticalAlignment="Bottom" Height="25" Width="90"
                     Click="_btnPlanillaVienen_Click">
                             <TextBlock Name="_txbPlanillaVienen" Text="{x:Static recurso:Etiquetas.btnPlanillaVienen}"/>
+                        </Button>
+
+                        <Button Name="_btnVerPlanilla" Grid.Row="0" Grid.Column="6" VerticalAlignment="Bottom" Height="25" Width="90" 
+                                Click="_btnVerPlanilla_Click">
+                            <TextBlock Name="_txbVerPlanilla" Text="{x:Static recurso:Etiquetas.btnVerPlanilla}"/>
                         </Button>
 
                     </Grid>

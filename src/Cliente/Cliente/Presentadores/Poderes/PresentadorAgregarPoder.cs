@@ -168,6 +168,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
         /// </summary>
         public void Aceptar()
         {
+
+            int? exitoso = null;
+
             try
             {
                 #region trace
@@ -186,16 +189,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
 
                 poder.Agentes = this._apoderados;
 
-                int? exitoso = this._poderServicios.InsertarOModificarPoder(poder,UsuarioLogeado.Hash);
+                if (poder.Interesado != null)
+                {
+                    exitoso = this._poderServicios.InsertarOModificarPoder(poder, UsuarioLogeado.Hash);
 
-                if (exitoso != null)
-                    if (this._ventana.ConInteresado)
-                        this.Navegar(new ConsultarInteresado(poder.Interesado, null));
-                    else
-                    {
-                        poder.Id = exitoso.Value;
-                        this.Navegar(new ConsultarPoder(poder,null));
-                    }
+
+                    if (exitoso != null)
+                        if (this._ventana.ConInteresado)
+                            this.Navegar(new ConsultarInteresado(poder.Interesado, null));
+                        else
+                        {
+                            poder.Id = exitoso.Value;
+                            this.Navegar(new ConsultarPoder(poder, null));
+                        }
+                }
+                else
+                    this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.AlertaPoderSinInteresado), 0);
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

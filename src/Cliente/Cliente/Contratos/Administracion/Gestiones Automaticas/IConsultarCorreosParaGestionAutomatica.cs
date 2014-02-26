@@ -38,6 +38,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Administracion.Gestiones_Automaticas
 
         object Asociado { get; set; }
 
+        object Usuarios { get; set; }
+
+        object Usuario { get; set; }
+
         string TotalHits { set; }
 
         void Mensaje(string mensaje, int opcion);

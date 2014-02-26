@@ -1254,60 +1254,87 @@ Namespace Presentadores.FacFacturaProformas
         End Sub
 
         Public Sub focus()
-            If DirectCast(Me._ventana.FacFactuDetaProforma_Seleccionado, FacFactuDetaProforma) IsNot Nothing Then
-                Dim detalle_proforma As FacFactuDetaProforma = DirectCast(Me._ventana.FacFactuDetaProforma_Seleccionado, FacFactuDetaProforma)
 
-                If Not IsNumeric(Me._ventana.Pu) Then
-                    Me._ventana.Pu = 0
-                End If
-                If Not IsNumeric(Me._ventana.NCantidad) Then
-                    Me._ventana.NCantidad = 0
-                End If
-                If Not IsNumeric(Me._ventana.Descuento) Then
-                    Me._ventana.Descuento = 0
-                End If
-                If Not IsNumeric(Me._ventana.BDetalle) Then
-                    Me._ventana.BDetalle = 0
-                End If
+            Try
+                If DirectCast(Me._ventana.FacFactuDetaProforma_Seleccionado, FacFactuDetaProforma) IsNot Nothing Then
+                    Dim detalle_proforma As FacFactuDetaProforma = DirectCast(Me._ventana.FacFactuDetaProforma_Seleccionado, FacFactuDetaProforma)
 
-                Me._ventana.BDetalle = (Me._ventana.Pu * Me._ventana.NCantidad)
-                detalle_proforma.BDetalle = Me._ventana.BDetalle
-                detalle_proforma.Pu = Me._ventana.Pu
-                detalle_proforma.Descuento = Me._ventana.Descuento
-                Dim moneda As Moneda = DirectCast(Me._ventana.Moneda, Moneda)
-                Dim idmoneda As String
-                If moneda IsNot Nothing Then
-                    idmoneda = moneda.Id
-                Else
-                    idmoneda = ""
-                End If
-                If Me._ventana.Pu <> 0 Then
+                    If Not IsNumeric(Me._ventana.Pu) Then
+                        Me._ventana.Pu = 0
+                    End If
+                    If Not IsNumeric(Me._ventana.NCantidad) Then
+                        Me._ventana.NCantidad = 0
+                    End If
+
+                    'If Not Me._ventana.Descuento.ToString().Equals("") Then
+                    If Not IsNumeric(Me._ventana.Descuento) Then
+                        Me._ventana.Descuento = 0
+                    End If
+                    'Else
+                    '    Me._ventana.Descuento = "0"
+                    'End If
+
+                    'If Not IsNumeric(Me._ventana.Descuento) Then
+                    '    Me._ventana.Descuento = 0
+                    'End If
+                    If Not IsNumeric(Me._ventana.BDetalle) Then
+                        Me._ventana.BDetalle = 0
+                    End If
+
+                    Me._ventana.BDetalle = (Me._ventana.Pu * Me._ventana.NCantidad)
+                    detalle_proforma.BDetalle = Me._ventana.BDetalle
+                    detalle_proforma.Pu = Me._ventana.Pu
+                    detalle_proforma.Descuento = Me._ventana.Descuento
+                    Dim moneda As Moneda = DirectCast(Me._ventana.Moneda, Moneda)
+                    Dim idmoneda As String
                     If moneda IsNot Nothing Then
-                        If moneda.Id = "BF" Then
-                            detalle_proforma.Pu = Me._ventana.Pu
-                            detalle_proforma.PuBf = Me._ventana.Pu
-                        Else
-                            If moneda.Id = "US" Then
-                                Dim tasa As Tasa = buscar_tasa(Date.Now, "")
-                                If tasa IsNot Nothing Then
-                                    detalle_proforma.PuBf = (Me._ventana.Pu * tasa.Tasabf)
-                                    detalle_proforma.PuBf = detalle_proforma.PuBf
+                        idmoneda = moneda.Id
+                    Else
+                        idmoneda = ""
+                    End If
+                    If Me._ventana.Pu <> 0 Then
+                        If moneda IsNot Nothing Then
+                            If moneda.Id = "BF" Then
+                                detalle_proforma.Pu = Me._ventana.Pu
+                                detalle_proforma.PuBf = Me._ventana.Pu
+                            Else
+                                If moneda.Id = "US" Then
+                                    Dim tasa As Tasa = buscar_tasa(Date.Now, "")
+                                    If tasa IsNot Nothing Then
+                                        detalle_proforma.PuBf = (Me._ventana.Pu * tasa.Tasabf)
+                                        detalle_proforma.PuBf = detalle_proforma.PuBf
+                                    End If
                                 End If
-                            End If
 
+                            End If
                         End If
                     End If
-                End If
-                detalle_proforma.BDetalleBf = (detalle_proforma.PuBf * Me._ventana.NCantidad)
-                detalle_proforma.NCantidad = Me._ventana.NCantidad
-                'Dim guardar As Boolean = _FacFactuDetaProformasServicios.InsertarOModificar(detalle_proforma, UsuarioLogeado.Hash)
-                If moneda IsNot Nothing Then
-                    recalcular(moneda.Id)
-                Else
+                    detalle_proforma.BDetalleBf = (detalle_proforma.PuBf * Me._ventana.NCantidad)
+                    detalle_proforma.NCantidad = Me._ventana.NCantidad
+                    'Dim guardar As Boolean = _FacFactuDetaProformasServicios.InsertarOModificar(detalle_proforma, UsuarioLogeado.Hash)
+                    If moneda IsNot Nothing Then
+                        recalcular(moneda.Id)
+                    Else
 
-                    recalcular("")
+                        recalcular("")
+                    End If
                 End If
-            End If
+            Catch ex As ApplicationException
+                logger.[Error](ex.Message)
+                Me.Navegar(ex.Message, True)
+            Catch ex As RemotingException
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, True)
+            Catch ex As SocketException
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, True)
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
+            End Try
+
+
+            
         End Sub
 
         Public Sub focus2()

@@ -45,6 +45,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<Asignacion> _asignaciones;
         private IList<Anexo> _anexosConfirmacion;
         private string _operacion;
+        private string _eliminarCarta;
 
         #endregion
 
@@ -348,6 +349,38 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _fechaAltDate; }
             set { _fechaAltDate = value; }
+        }
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el campo para saber si se elimina la Carta desde el Cliente
+        /// </summary>
+        public virtual string EliminarCarta
+        {
+            get { return this._eliminarCarta; }
+            set { this._eliminarCarta = value; }
+           
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la bandera para saber si se elimina o no la Carta Seleccionada
+        /// </summary>
+        public virtual bool BEliminarCarta
+        {
+            get
+            {
+                if (this.EliminarCarta.ToUpper().Equals("SI"))
+                    return true;
+                else
+                    return false;
+            }
+            set
+            {
+                if (value)
+                    this.EliminarCarta = "SI";
+                else
+                    this.EliminarCarta = "NO";
+            }
         }
 
         #endregion

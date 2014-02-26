@@ -1690,7 +1690,15 @@ Namespace Ventanas.FacFacturaProformas
 
         Public Property Descuento As Double Implements Contratos.FacFacturaProformas.IConsultarFacFacturaProforma.Descuento
             Get
-                Return GetFormatoDouble(Me._txtDescuento.Text)
+                Dim cadena As String
+                If ((Me._txtDescuento.Text IsNot Nothing) And (Not Me._txtDescuento.Text.Equals(""))) Then
+                    cadena = Me._txtDescuento.Text
+                Else
+                    cadena = "0"
+                End If
+                Return GetFormatoDouble(cadena)
+                'Return GetFormatoDouble(Me._txtDescuento.Text) CODIGO ORIGINAL COMENTADO
+
             End Get
             Set(ByVal value As Double)
                 Me._txtDescuento.Text = SetFormatoDouble(value)

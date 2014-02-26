@@ -124,6 +124,13 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
+                if ((null != interesado.Idioma) && (!interesado.Idioma.Id.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoIdioma, ((Idioma)interesado.Idioma).Id);
+                }
+
                 if ((null != interesado.Corporacion) && (!((Estado)interesado.Corporacion).Id.Equals("")))
                 {
                     if (variosFiltros)
