@@ -4326,4 +4326,10 @@ en Prensa:</value>
   <data name="btnVerPlanilla" xml:space="preserve">
     <value>Ver Planilla</value>
   </data>
+  <data name="btnRegistrarContactoCxP" xml:space="preserve">
+    <value>Reg. Contacto CxP</value>
+  </data>
+  <data name="lblFrecuenciaPago" xml:space="preserve">
+    <value>Días de Pago:</value>
+  </data>
 </root>

@@ -1,18 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Globalization;
 using System.Linq;
+using System.Net.Sockets;
+using System.Runtime.Remoting;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+
 using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacFacturas;
 using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacInternacionales;
 using Diginsoft.Bolet.Cliente.Fac.Ventanas.ViGestionAsociados;
 using Diginsoft.Bolet.ObjetosComunes.ContratosServicios;
+
 using NLog;
+
+using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.Administracion.SeguimientoCxPInternacional;
 using Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoCxPInternacional;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
@@ -105,7 +112,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
 
                 CalcularDiasVencimiento();
 
-                IList<FacInternacional> facturasInt = this._proformasAprobadas.OrderByDescending(o => o.DiasVencimiento).ToList();
+                //IList<FacInternacional> facturasInt = this._proformasAprobadas.OrderByDescending(o => o.DiasVencimiento).ToList();
+
+                IList<FacInternacional> facturasInt = this._proformasAprobadas.OrderBy(o => o.Asociado_o.Id).ThenBy(o => o.Id).ToList();
 
                 this._listaFacturasAprobadas = facturasInt;
 
@@ -706,6 +715,41 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
             }
 
             return datos;
+        }
+
+
+        /// <summary>
+        /// Método que ordena una columna
+        /// </summary>
+        public void OrdenarColumna(GridViewColumnHeader column)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            String field = column.Tag as String;
+
+            if (this._ventana.CurSortCol != null)
+            {
+                AdornerLayer.GetAdornerLayer(this._ventana.CurSortCol).Remove(this._ventana.CurAdorner);
+                this._ventana.ListaResultados.Items.SortDescriptions.Clear();
+            }
+
+            ListSortDirection newDir = ListSortDirection.Ascending;
+            if (this._ventana.CurSortCol == column && this._ventana.CurAdorner.Direction == newDir)
+                newDir = ListSortDirection.Descending;
+
+            this._ventana.CurSortCol = column;
+            this._ventana.CurAdorner = new SortAdorner(this._ventana.CurSortCol, newDir);
+            AdornerLayer.GetAdornerLayer(this._ventana.CurSortCol).Add(this._ventana.CurAdorner);
+            this._ventana.ListaResultados.Items.SortDescriptions.Add(
+                new SortDescription(field, newDir));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
     }

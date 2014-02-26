@@ -130,6 +130,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoCxPInternaci
         {
             String[] parametrosQuery = null;
             DependencyObject dep = (DependencyObject)e.OriginalSource;
+            String ejeYSeleccionado = String.Empty;
+            DataView tablaDv;
+            DataTable tablaDatos;
+            int cantidadRegistros = 0;
 
             while ((dep != null) &&
                     !(dep is DataGridCell) &&
@@ -156,14 +160,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoCxPInternaci
                 DataGridRow row = dep as DataGridRow;
                 int indiceFila = FindRowIndex(row);
 
-                DataView tablaDv = (DataView)this._lstResultados.ItemsSource;
-                DataTable tablaDatos = new DataTable();
+                tablaDv = (DataView)this._lstResultados.ItemsSource;
+                tablaDatos = new DataTable();
                 tablaDatos = tablaDv.ToTable();
-                int cantidadRegistros = tablaDatos.Rows.Count;
+                cantidadRegistros = tablaDatos.Rows.Count;
+
+                ejeYSeleccionado = this._presentador.ObtenerEjeYSeleccionado();
+                               
 
                 if (indiceFila != cantidadRegistros - 1)
                 {
-                    object datoCelda = ExtractBoundValue(row, cell, indiceFila);
+                    //object datoCelda = ExtractBoundValue(row, cell, indiceFila);
+                    object datoCelda = ExtractBoundValue(row, cell, indiceFila, ejeYSeleccionado);
                     String datos = datoCelda.ToString();
                     if (datos.Contains("&"))
                         this._presentador.CargarDatosDetalle(datos);
@@ -375,8 +383,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoCxPInternaci
         /// <param name="row">Fila del DataGrid</param>
         /// <param name="cell">Celda seleccionada</param>
         /// <param name="indiceFila">Indice de la fila donde se encuentra la celda seleccionada</param>
+        /// <param name="ejeYSeleccionado">Eje Y seleccionado para hacer el pivot</param>
         /// <returns>Cadena con los filtros de la consulta para el Query del detalle</returns>
-        private object ExtractBoundValue(DataGridRow row, DataGridCell cell, int indiceFila)
+        private object ExtractBoundValue(DataGridRow row, DataGridCell cell, int indiceFila, String ejeYSeleccionado)
         {
             String headerColumn = String.Empty;
             String valorColumnaCero = String.Empty;
@@ -441,19 +450,26 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoCxPInternaci
                 //    cadena = valoresCompuestosColumnaCero[0] + "&" + boundPropertyName;
                 //}
                 //else
-                    cadena = valorDeColumnaCero.ToString() + "&" + boundPropertyName;
+                        cadena = valorDeColumnaCero.ToString() + "&" + boundPropertyName;
             }
             else
             {
-                if (!valorDeColumnaCero.ToString().Contains("-"))
-                    cadena = valorDeColumnaCero.ToString();
+                if (!boundPropertyName.Equals(ejeYSeleccionado))
+                {
+                    if (!valorDeColumnaCero.ToString().Contains("-"))
+                        cadena = valorDeColumnaCero.ToString();
+                    else
+                    {
+                        if (valoresCompuestosColumnaCero != null)
+                            valoresCompuestosColumnaCero = null;
+
+                        valoresCompuestosColumnaCero = valorDeColumnaCero.ToString().Split('-');
+                        cadena = valoresCompuestosColumnaCero[0];
+                    }
+                }
                 else
                 {
-                    if (valoresCompuestosColumnaCero != null)
-                        valoresCompuestosColumnaCero = null;
-
-                    valoresCompuestosColumnaCero = valorDeColumnaCero.ToString().Split('-');
-                    cadena = valoresCompuestosColumnaCero[0];
+                    cadena = String.Empty;
                 }
             }
 

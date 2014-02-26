@@ -61,7 +61,7 @@
                         </GridViewColumn>-->
 
                         <GridViewColumn Width="120">
-                            <GridViewColumnHeader Tag="Id" Content="Proforma"/>
+                            <GridViewColumnHeader Tag="Id" Content="Proforma" Click="_Ordenar_Click"/>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=Id}" TextAlignment="Center"/>
@@ -70,7 +70,7 @@
                         </GridViewColumn>
 
                         <GridViewColumn Width="120">
-                            <GridViewColumnHeader Tag="Asociado_o.Id" Content="Cod Asociado"/>
+                            <GridViewColumnHeader Tag="Asociado_o.Id" Content="Cod Asociado" Click="_Ordenar_Click"/>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=Asociado_o.Id}" TextAlignment="Center"/>
@@ -79,7 +79,7 @@
                         </GridViewColumn>
 
                         <GridViewColumn Width="250">
-                            <GridViewColumnHeader Tag="Asociado_o.Nombre" Content="Asociado"/>
+                            <GridViewColumnHeader Tag="Asociado_o.Nombre" Content="Asociado" Click="_Ordenar_Click"/>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=Asociado_o.Nombre}" TextAlignment="Left"/>
@@ -89,7 +89,7 @@
 
 
                         <GridViewColumn Width="80">
-                            <GridViewColumnHeader Tag="Numerofactura" Content="Factura"/>
+                            <GridViewColumnHeader Tag="Numerofactura" Content="Factura" Click="_Ordenar_Click"/>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=Numerofactura}" TextAlignment="Center"/>
@@ -98,7 +98,7 @@
                         </GridViewColumn>
 
                         <GridViewColumn Width="100">
-                            <GridViewColumnHeader Tag="Fecha" Content="Fecha Emisión"/>
+                            <GridViewColumnHeader Tag="Fecha" Content="Fecha Emisión" Click="_Ordenar_Click"/>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=Fecha, StringFormat={}{0:dd/MM/yyyy}}"
@@ -109,7 +109,7 @@
 
                         <GridViewColumn Width="100">
                             <GridViewColumnHeader Tag="FechaRecepcion" 
-                                                  Content="Fecha Recepción"/>
+                                                  Content="Fecha Recepción" Click="_Ordenar_Click"/>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=FechaRecepcion, StringFormat={}{0:dd/MM/yyyy}}" 
@@ -119,7 +119,7 @@
                         </GridViewColumn>
 
                         <GridViewColumn Width="110">
-                            <GridViewColumnHeader Tag="Monto" Content="Monto"/>
+                            <GridViewColumnHeader Tag="Monto" Content="Monto" Click="_Ordenar_Click"/>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=Monto, StringFormat= {}{0:N}, ConverterCulture=de-DE}" 
@@ -129,7 +129,7 @@
                         </GridViewColumn>
 
                         <GridViewColumn Width="110">
-                            <GridViewColumnHeader Tag="DiasVencimiento" Content="Dias Vencimiento"/>
+                            <GridViewColumnHeader Tag="DiasVencimiento" Content="Dias Vencimiento" Click="_Ordenar_Click"/>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=DiasVencimiento}" TextAlignment="Center"/>

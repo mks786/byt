@@ -167,6 +167,9 @@
                 <Button Name="_btnVerEnviada" Height="25" Width="120" Click="_btnVerEnviada_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnVerUltEnviada}"/>
                 </Button>
+                <Button Name="_btnRegistrarCxP" Height="25" Width="120" Click="_btnRegistrarCxP_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnRegistrarContactoCxP}"/>
+                </Button>
             </WrapPanel>
         </GroupBox>
 

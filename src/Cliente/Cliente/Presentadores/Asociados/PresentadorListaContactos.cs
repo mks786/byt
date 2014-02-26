@@ -241,5 +241,41 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         //    }
         //}
 
+        /// <summary>
+        /// Metodo para registrar el Contacto seleccionado como Contacto CxP
+        /// </summary>
+        public void IrRegistrarContactoCxP()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (this._ventana.ContactoSeleccionado != null)
+                {
+                    Contacto contactoARegistrar = new Contacto(((ContactosDelAsociadoVista)this._ventana.ContactoSeleccionado).Contacto);
+                    contactoARegistrar.Asociado = this._asociado;
+                    Contacto contacto = this._contactoServicios.ConsultarPorId(contactoARegistrar);
+                    contacto.Asociado = this._asociado;
+                    ContactoCxP contactoCxP = new ContactoCxP();
+                    contactoCxP.Asociado = this._asociado;
+                    contactoCxP.Id = contacto.Id;
+
+                    //this.Navegar(new ConsultarContacto(contacto, this._ventana));
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+        }
     }
 }

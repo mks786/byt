@@ -1,14 +1,15 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.Administracion.SeguimientoCxPInternacional;
 using Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInternacional;
-using System.Collections.Generic;
-using System.Collections;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoCxPInternacional
 {
@@ -20,6 +21,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoCxPInternaci
 
         private bool _cargada;
         private PresentadorFacInternacionalAprobadas _presentador;
+        private GridViewColumnHeader _CurSortCol = null;
+        private SortAdorner _CurAdorner = null;
 
 
         /// <summary>
@@ -70,6 +73,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoCxPInternaci
         public string TotalHits
         {
             set { this._lblHits.Text = value; }
+        }
+
+        public GridViewColumnHeader CurSortCol
+        {
+            get { return _CurSortCol; }
+            set { _CurSortCol = value; }
+        }
+
+
+        public SortAdorner CurAdorner
+        {
+            get { return _CurAdorner; }
+            set { _CurAdorner = value; }
+        }
+
+        public ListView ListaResultados
+        {
+            get { return this._lstResultados; }
+            set { this._lstResultados = value; }
         }
 
         #endregion
@@ -180,6 +202,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoCxPInternaci
         private void _btnExportar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.ExportarFacturasSeleccionadasExcel();
+        }
+
+        private void _Ordenar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader);
         }
 
         #endregion

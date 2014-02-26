@@ -144,6 +144,7 @@
     <Compile Include="Contratos\Cartas\IAgregarCarta.cs" />
     <Compile Include="Contratos\Cartas\IConsultarCartas.cs" />
     <Compile Include="Contratos\Cartas\IConsultarCarta.cs" />
+    <Compile Include="Contratos\ContactosCxP\IAgregarContactoCxP.cs" />
     <Compile Include="Contratos\Contactos\IAgregarContacto.cs" />
     <Compile Include="Contratos\Contactos\IConsultarContactos.cs" />
     <Compile Include="Contratos\Contactos\IConsultarContacto.cs" />
@@ -1135,6 +1136,9 @@
     <Compile Include="Ventanas\Cartas\ConsultarCarta.xaml.cs">
       <DependentUpon>ConsultarCarta.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\ContactosCxP\AgregarContactoCxP.xaml.cs">
+      <DependentUpon>AgregarContactoCxP.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Contactos\ConsultarContactos.xaml.cs">
       <DependentUpon>ConsultarContactos.xaml</DependentUpon>
     </Compile>
@@ -1954,6 +1958,10 @@
     <Page Include="Ventanas\Cartas\ConsultarCarta.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\ContactosCxP\AgregarContactoCxP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\Contactos\ConsultarContactos.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -3369,6 +3377,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\buscar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Presentadores\ContactosCxP\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

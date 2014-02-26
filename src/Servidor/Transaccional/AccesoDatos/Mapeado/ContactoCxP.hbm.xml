@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+  <class name="ContactoCxP" table="FAC_CONTACTO_CXP">
+
+    <composite-id>
+      <key-property name="Id" column="CCONTACTO"/>
+      <key-many-to-one name="Asociado" column="CASOCIADO" class="Asociado"/>
+    </composite-id>
+
+    <property name="FrecuenciaPago" type="String" column="IDIASPAGO"/>
+    <property name="ModoPago" type="String" column="IMODPAGO"/>
+    <property name="Observacion" type="String" column="XOBSERVACION"/>
+    
+
+    <!--<many-to-one name="Carta" class="Carta">
+      <column name="CCORRESPONDENCIA"/>
+    </many-to-one>-->
+
+    <!--<many-to-one name="Asociado" class="Asociado">
+      <column name="CASOCIADO"/>
+    </many-to-one>-->
+  </class>
+</hibernate-mapping>

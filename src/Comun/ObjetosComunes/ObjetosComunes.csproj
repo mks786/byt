@@ -158,6 +158,7 @@
     <Compile Include="Entidades\Concepto.cs" />
     <Compile Include="Entidades\Conectividad.cs" />
     <Compile Include="Entidades\Contacto.cs" />
+    <Compile Include="Entidades\ContactoCxP.cs" />
     <Compile Include="Entidades\Contador.cs" />
     <Compile Include="Entidades\ContadorAuditoria.cs" />
     <Compile Include="Entidades\Asociado.cs" />

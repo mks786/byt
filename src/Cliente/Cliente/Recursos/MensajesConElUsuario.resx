@@ -1504,4 +1504,7 @@
   <data name="ErrorPlanillaPdfLicenciaNoEncontrada" xml:space="preserve">
     <value>Disculpe, la Planilla de la Licencia {0} no existe</value>
   </data>
+  <data name="ConfirmarRegistroContactoCxp" xml:space="preserve">
+    <value>Desea registrar el contacto seleccionado como Contacto CxP del Asociado?</value>
+  </data>
 </root>

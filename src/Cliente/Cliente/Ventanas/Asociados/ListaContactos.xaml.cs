@@ -123,6 +123,31 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             this._presentador.ConsultarUltimaCorrespondenciaEntrada();
         }
 
+        private void _btnRegistrarCxP_Click(object sender, RoutedEventArgs e)
+        {
+            if (this._lstResultados.SelectedItem != null)
+            {
+                if (MessageBoxResult.Yes == System.Windows.MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmarRegistroContactoCxp),
+                    "Registro de Contacto CxP", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                {
+                    this._presentador.IrRegistrarContactoCxP();
+                }
+            }
+            else
+                Mensaje("Debe seleccionar un contacto para registrarlo como Contacto CxP", 0);
+                
+        }
+
+        public void Mensaje(string mensaje, int opcion)
+        {
+            if (opcion == 0)
+                MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (opcion == 1)
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            else
+                MessageBox.Show(mensaje, "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
         //private void _btnSeleccionar_Click(object sender, RoutedEventArgs e)
         //{
         //    this._presentador.SeleccionarContacto();

@@ -1164,7 +1164,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
             return retorno;
         }
 
-        
+
+        /// <summary>
+        /// Metodo que obtiene el nombre del eje Y seleccionado
+        /// </summary>
+        /// <returns>Nombre del eje Y seleccionado</returns>
+        public string ObtenerEjeYSeleccionado()
+        {
+            String retorno = String.Empty;
+
+            if (this._ejeY != null)
+            {
+                ListaDatosValores ejeSeleccionado = (ListaDatosValores)this._ejeY;
+                retorno = ejeSeleccionado.Descripcion;
+            }
+
+            return retorno;
+        }
     }
 
     //Enumeracion para seleccionar la fucion de agregacion para generar la data pivot

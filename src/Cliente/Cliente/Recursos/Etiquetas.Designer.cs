@@ -1044,6 +1044,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Reg. Contacto CxP.
+        /// </summary>
+        public static string btnRegistrarContactoCxP {
+            get {
+                return ResourceManager.GetString("btnRegistrarContactoCxP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Regresar.
         /// </summary>
         public static string btnRegresar {
@@ -5993,6 +6002,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblFormato {
             get {
                 return ResourceManager.GetString("lblFormato", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Días de Pago:.
+        /// </summary>
+        public static string lblFrecuenciaPago {
+            get {
+                return ResourceManager.GetString("lblFrecuenciaPago", resourceCulture);
             }
         }
         

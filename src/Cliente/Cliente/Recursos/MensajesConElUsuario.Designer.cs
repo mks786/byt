@@ -1466,6 +1466,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Desea registrar el contacto seleccionado como Contacto CxP del Asociado?.
+        /// </summary>
+        internal static string ConfirmarRegistroContactoCxp {
+            get {
+                return ResourceManager.GetString("ConfirmarRegistroContactoCxp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Desea autorizar las Facturas Internacionales seleccionadas?.
         /// </summary>
         internal static string ConfirmarSeleccionFacInternacional {
