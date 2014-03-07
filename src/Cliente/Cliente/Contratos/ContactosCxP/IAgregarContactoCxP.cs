@@ -14,5 +14,7 @@ namespace Trascend.Bolet.Cliente.Contratos.ContactosCxP
         object FormaDePago { get; set; }
 
         void Mensaje(string mensaje, int opcion);
+
+        void HabilitarBotonEliminar(bool flag);
     }
 }

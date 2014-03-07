@@ -101,7 +101,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.ContactosCxP
 
         private void _btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-
+            if (MessageBoxResult.Yes == System.Windows.MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.AlertaEliminarContactoCxP),
+                    "Eliminar Contacto CxP", MessageBoxButton.YesNo, MessageBoxImage.Question))
+            {
+                this._presentador.Eliminar();
+            }
         }
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
@@ -109,6 +113,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.ContactosCxP
             this._presentador.RegresarVentanaPadre();
         }
 
+        
         #endregion
 
         
@@ -123,6 +128,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.ContactosCxP
                 MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             else
                 MessageBox.Show(mensaje, "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        public void HabilitarBotonEliminar(bool flag)
+        {
+            if (flag)
+                this._btnEliminar.IsEnabled = true;
+            else
+                this._btnEliminar.IsEnabled = false;
         }
 
         #endregion

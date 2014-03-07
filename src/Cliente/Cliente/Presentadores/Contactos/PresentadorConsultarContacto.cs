@@ -11,6 +11,7 @@ using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Asociados;
 using System.Collections.Generic;
 using Trascend.Bolet.Cliente.Ventanas.Cartas;
+using Trascend.Bolet.Cliente.Ventanas.Auditorias;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Contactos
 {
@@ -26,6 +27,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private Contacto _contacto;
+        private IList<Auditoria> _auditorias;
 
 
         /// <summary>
@@ -101,6 +103,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                 this._ventana.AsignarAsociado(this._contacto.Asociado.Id, this._contacto.Asociado.Nombre);
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarContacto,
                     Recursos.Ids.ConsultarContacto);
+
+                Auditoria auditoria = new Auditoria();
+                auditoria.Fk = ((Contacto)this._ventana.Contacto).Id;
+                auditoria.Tabla = "FAC_ASOCIADOS";
+                IList<Auditoria> auditorias = this._contactoServicios.AuditoriaPorFkyTabla(auditoria);
+                if (auditorias.Count > 0)
+                {
+                    this._ventana.PintarAuditoria();
+                }
+
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -263,5 +276,51 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
         }
 
 
+        /// <summary>
+        /// Metodo que muestra la auditoria para un Contacto consultado
+        /// </summary>
+        public void Auditoria()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+
+                Auditoria auditoria = new Auditoria();
+                auditoria.Fk = ((Contacto)this._ventana.Contacto).Id;
+                auditoria.Tabla = "FAC_ASOCIADOS";
+                this._auditorias = this._contactoServicios.AuditoriaPorFkyTabla(auditoria);
+                this.Navegar(new ListaAuditorias(_auditorias));
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
     }
 }

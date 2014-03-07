@@ -83,9 +83,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.ContactosCxP
 
                 if (!this._nuevoContacto)
                 {
-                    switch (contactoCxP.ModoPago) 
+                    switch (contactoCxP.ModoPago)
                     {
-                        case "D" : 
+                        case "D":
                             formaPago.Valor = "Deposito";
                             break;
                         case "C":
@@ -97,6 +97,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.ContactosCxP
                     }
 
                     this._ventana.FormaDePago = this.BuscarListaDeDatosValores(formasPago, formaPago);
+                }
+                else
+                {
+                    this._ventana.HabilitarBotonEliminar(false);
                 }
 
                 
@@ -177,6 +181,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.ContactosCxP
                             if (exitoso)
                             {
                                 this._ventana.Mensaje("Registro de Contacto CxP exitoso", 2);
+
+                                if (this._nuevoContacto)
+                                    this._ventana.HabilitarBotonEliminar(true);
                             }
 
                         }
@@ -195,6 +202,69 @@ namespace Trascend.Bolet.Cliente.Presentadores.ContactosCxP
 
 
                
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo para eliminar un ContactoCxP
+        /// </summary>
+        public void Eliminar()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Mouse.OverrideCursor = Cursors.Wait;
+                bool exitoso = false;
+                ContactoCxP contactoCxP = new ContactoCxP();
+                contactoCxP = (ContactoCxP)this._ventana.ContactoCxP;
+
+                exitoso = this._contactoCxPServicios.Eliminar(contactoCxP, UsuarioLogeado.Hash);
+
+                if (exitoso)
+                {
+                    this._ventana.Mensaje("Contacto CxP borrado", 2);
+                    this.RegresarVentanaPadre();
+                }
+                else
+                {
+                    this._ventana.Mensaje("Se originó un error al eliminar el Contacto CxP", 0);
+                }
+
+                
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

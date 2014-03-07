@@ -119,6 +119,7 @@
     <Compile Include="Comandos\ComandosCesion\ComandoVerificarExistenciaCesion.cs" />
     <Compile Include="Comandos\ComandosContactoCxP\ComandoConsultarContactoCxPFiltro.cs" />
     <Compile Include="Comandos\ComandosContactoCxP\ComandoConsultarTodosContactoCxP.cs" />
+    <Compile Include="Comandos\ComandosContactoCxP\ComandoEliminarContactoCxP.cs" />
     <Compile Include="Comandos\ComandosContactoCxP\ComandoInsertarOModificarContactoCxP.cs" />
     <Compile Include="Comandos\ComandosContacto\ComandoConsultarContactoPorId.cs" />
     <Compile Include="Comandos\ComandosContacto\ComandoConsultarContactosFiltro.cs" />

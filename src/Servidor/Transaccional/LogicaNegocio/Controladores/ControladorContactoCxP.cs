@@ -114,5 +114,39 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return retorno;
         }
+
+        /// <summary>
+        /// Metodo para eliminar un ContactoCxP especifico
+        /// </summary>
+        /// <param name="contactoCxP">ContactoCxP a eliminar</param>
+        /// <param name="hash">Hash del usuario logueado</param>
+        /// <returns>True si la operacion fue realizada con exito; False, en caso contrario</returns>
+        public static bool Eliminar(ContactoCxP contactoCxP, int hash)
+        {
+            bool exitoso = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<bool> comando = FabricaComandosContactoCxP.ObtenerComandoEliminarContactoCxP(contactoCxP);
+                comando.Ejecutar();
+                exitoso = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            return exitoso;
+        }
     }
 }

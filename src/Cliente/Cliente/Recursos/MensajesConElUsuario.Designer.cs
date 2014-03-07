@@ -286,6 +286,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Confirma eliminar Contacto CxP?. Al eliminar el Contacto CxP los datos se perderán. .
+        /// </summary>
+        internal static string AlertaEliminarContactoCxP {
+            get {
+                return ResourceManager.GetString("AlertaEliminarContactoCxP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Disculpe el Escrito debe tener un agente seleccionado.
         /// </summary>
         internal static string AlertaEscritoSinAgente {

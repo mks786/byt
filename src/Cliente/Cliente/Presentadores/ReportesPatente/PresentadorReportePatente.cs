@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Net.Sockets;
 using System.Runtime.Remoting;
@@ -22,6 +23,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
         private IReportePatente _ventana;
         private IReportePatenteServicios _reportePatenteServicios;
         private IPatenteServicios _patenteServicios;
+        private IInteresadoPatenteServicios _interesadoPatenteServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -47,6 +49,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ReportePatenteServicios"]);
                 this._patenteServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
+                this._interesadoPatenteServicios = (IInteresadoPatenteServicios)Activator.GetObject(typeof(IInteresadoPatenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoPatenteServicios"]);
                 CargarPagina();
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -693,7 +697,160 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
             {
                 retorno += Environment.NewLine;
 
-                if (_patente.Interesado != null)
+                IList<InteresadoPatente> interesadosDeLaPatente = this._interesadoPatenteServicios.ConsultarInteresadosDePatente(this._patente);
+
+                if (interesadosDeLaPatente.Count > 0)
+                {
+                    InteresadoPatente interesadoPatente = interesadosDeLaPatente[0];
+
+                    if (interesadoPatente.Interesado != null)
+                    {
+                        Interesado interesado0 = interesadoPatente.Interesado;
+
+                        retorno += interesado0.Nombre;
+
+                        if (interesado0.Nacionalidad != null)
+                        {
+                            retorno += ", " + interesado0.Nacionalidad.Nacionalidad;
+                        }
+
+                        if (!string.IsNullOrEmpty(interesado0.Ciudad))
+                        {
+                            retorno += ", " + interesado0.Ciudad;
+                        }
+
+                        if (!string.IsNullOrEmpty(interesado0.Estado))
+                        {
+                            retorno += ", " + interesado0.Estado;
+                        }
+
+                        if ((null != interesado0.Pais) && (!string.IsNullOrEmpty(interesado0.Pais.NombreEspanol)))
+                        {
+                            retorno += ", " + interesado0.Pais.NombreEspanol;
+                        }
+                    }
+
+                    if (interesadoPatente.Interesado1 != null)
+                    {
+                        retorno += Environment.NewLine;
+
+                        Interesado interesado1 = interesadoPatente.Interesado1;
+
+                        retorno += interesado1.Nombre;
+
+                        if (interesado1.Nacionalidad != null)
+                        {
+                            retorno += ", " + interesado1.Nacionalidad.Nacionalidad;
+                        }
+
+                        if (!string.IsNullOrEmpty(interesado1.Ciudad))
+                        {
+                            retorno += ", " + interesado1.Ciudad;
+                        }
+
+                        if (!string.IsNullOrEmpty(interesado1.Estado))
+                        {
+                            retorno += ", " + interesado1.Estado;
+                        }
+
+                        if ((null != interesado1.Pais) && (!string.IsNullOrEmpty(interesado1.Pais.NombreEspanol)))
+                        {
+                            retorno += ", " + interesado1.Pais.NombreEspanol;
+                        }
+                    }
+
+                    if (interesadoPatente.Interesado2 != null)
+                    {
+                        retorno += Environment.NewLine;
+
+                        Interesado interesado2 = interesadoPatente.Interesado2;
+
+                        retorno += interesado2.Nombre;
+
+                        if (interesado2.Nacionalidad != null)
+                        {
+                            retorno += ", " + interesado2.Nacionalidad.Nacionalidad;
+                        }
+
+                        if (!string.IsNullOrEmpty(interesado2.Ciudad))
+                        {
+                            retorno += ", " + interesado2.Ciudad;
+                        }
+
+                        if (!string.IsNullOrEmpty(interesado2.Estado))
+                        {
+                            retorno += ", " + interesado2.Estado;
+                        }
+
+                        if ((null != interesado2.Pais) && (!string.IsNullOrEmpty(interesado2.Pais.NombreEspanol)))
+                        {
+                            retorno += ", " + interesado2.Pais.NombreEspanol;
+                        }
+                    }
+
+
+                    if (interesadoPatente.Interesado3 != null)
+                    {
+                        retorno += Environment.NewLine;
+
+                        Interesado interesado3 = interesadoPatente.Interesado3;
+
+                        retorno += interesado3.Nombre;
+
+                        if (interesado3.Nacionalidad != null)
+                        {
+                            retorno += ", " + interesado3.Nacionalidad.Nacionalidad;
+                        }
+
+                        if (!string.IsNullOrEmpty(interesado3.Ciudad))
+                        {
+                            retorno += ", " + interesado3.Ciudad;
+                        }
+
+                        if (!string.IsNullOrEmpty(interesado3.Estado))
+                        {
+                            retorno += ", " + interesado3.Estado;
+                        }
+
+                        if ((null != interesado3.Pais) && (!string.IsNullOrEmpty(interesado3.Pais.NombreEspanol)))
+                        {
+                            retorno += ", " + interesado3.Pais.NombreEspanol;
+                        }
+                    }
+
+                }
+                else
+                {
+                    if (_patente.Interesado != null)
+                    {
+                        //retorno += _patente.Interesado.Nombre + Environment.NewLine;
+                        retorno += _patente.Interesado.Nombre + ", ";
+
+                        if (_patente.Interesado.Nacionalidad != null)
+                        {
+                            //retorno += _patente.Interesado.Nacionalidad.Nacionalidad + Environment.NewLine;
+                            retorno += _patente.Interesado.Nacionalidad.Nacionalidad + " ";
+                        }
+
+                        if (!string.IsNullOrEmpty(_patente.Interesado.Ciudad))
+                        {
+                            retorno += _patente.Interesado.Ciudad;
+                        }
+
+                        if (!string.IsNullOrEmpty(_patente.Interesado.Estado))
+                        {
+                            retorno += ", " + _patente.Interesado.Estado;
+                        }
+
+                        if ((null != _patente.Interesado.Pais) && (!string.IsNullOrEmpty(_patente.Interesado.Pais.NombreEspanol)))
+                        {
+                            retorno += ", " + _patente.Interesado.Pais.NombreEspanol;
+                        }
+                    }
+                }
+
+                #region CODIGO ORIGINAL COMENTADO - NO BORRAR
+                /*if (_patente.Interesado != null)
                 {
                     retorno += _patente.Interesado.Nombre + Environment.NewLine;
 
@@ -716,7 +873,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
                     {
                         retorno += ", " + _patente.Interesado.Pais.NombreEspanol;
                     }
-                }
+                }*/
+                
+                #endregion
             }
             catch (Exception ex)
             {

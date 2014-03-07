@@ -38,5 +38,15 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarContactoCxPFiltro(contactoCxP);
         }
+
+        /// <summary>
+        /// Metodo que obtiene el comando para eliminar un contacto cxp
+        /// </summary>
+        /// <param name="contactoCxP">ContactoCxP a eliminar</param>
+        /// <returns>Comando para eliminar un contacto cxp</returns>
+        public static ComandoBase<bool> ObtenerComandoEliminarContactoCxP(ContactoCxP contactoCxP)
+        {
+            return new ComandoEliminarContactoCxP(contactoCxP);
+        }
     }
 }

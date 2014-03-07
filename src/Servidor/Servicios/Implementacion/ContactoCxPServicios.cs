@@ -117,9 +117,40 @@ namespace Trascend.Bolet.Servicios.Implementacion
             }
         }
 
-        public bool Eliminar(ContactoCxP entidad, int hash)
+        /// <summary>
+        /// Servicio para eliminar un ContactoCxP especifico
+        /// </summary>
+        /// <param name="contactoCxP">ContactoCxP a eliminar</param>
+        /// <param name="hash">Hash del usuario logueado</param>
+        /// <returns>True si la operacion fue realizada con exito; False, en caso contrario</returns>
+        public bool Eliminar(ContactoCxP contactoCxP, int hash)
         {
-            throw new NotImplementedException();
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                bool exitoso = ControladorContactoCxP.Eliminar(contactoCxP, hash);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                return exitoso;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
         }
 
         public bool VerificarExistencia(ContactoCxP entidad)

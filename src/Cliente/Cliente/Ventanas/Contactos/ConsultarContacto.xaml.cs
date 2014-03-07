@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Contratos.Contactos;
 using Trascend.Bolet.Cliente.Presentadores.Contactos;
+using System.Windows.Media;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Contactos
 {
@@ -152,6 +153,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
             {
                 this._presentador.ConsultarCarta();
             }
+        }
+
+        private void _btnAuditoria_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.Auditoria();
+        }
+
+
+        public void PintarAuditoria()
+        {
+            this._btnAuditoria.Background = Brushes.LightGreen;
         }
     }
 }

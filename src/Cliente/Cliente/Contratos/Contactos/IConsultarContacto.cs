@@ -25,5 +25,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Contactos
         void mensaje(string mensaje);
 
         void AsignarAsociado(int id, string nombre);
+
+        void PintarAuditoria();
     }
 }
