@@ -13,7 +13,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _conCopia;
         private string _conCopiaOCulta;
         private string _asunto;
-        private DateTime? _fechaCorreo;
+        //private DateTime? _fechaCorreo;
+        private string _fechaCorreo;
         private DateTime? _fechaIngreso;
         private string _fecha;
         private string _cuerpo;
@@ -103,7 +104,12 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el FechaCorreo de la CartaOut
         /// </summary>
-        public virtual DateTime? FechaCorreo
+        //public virtual DateTime? FechaCorreo
+        //{
+        //    get { return _fechaCorreo; }
+        //    set { _fechaCorreo = value; }
+        //}
+        public virtual string FechaCorreo
         {
             get { return _fechaCorreo; }
             set { _fechaCorreo = value; }

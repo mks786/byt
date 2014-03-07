@@ -348,6 +348,12 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         public abstract IDaoContacto ObtenerDaoContacto();
 
         /// <summary>
+        /// Método que devuelve el DaoContactoCxP del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoContactoCxP</returns>
+        public abstract IDaoContactoCxP ObtenerDaoContactoCxP();
+
+        /// <summary>
         /// Método que devuelve el DaoCarta del manejador que se esté utilizando
         /// </summary>
         /// <returns>IDaoCarta</returns>

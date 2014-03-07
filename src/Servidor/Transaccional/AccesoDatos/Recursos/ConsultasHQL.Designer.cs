@@ -223,6 +223,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Select c from ContactoCxP c left outer join fetch c.Asociado as asociado where .
+        /// </summary>
+        public static string CabeceraObtenerContactoCxP {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerContactoCxP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Select f from Fusion f left join fetch f.Marca as marca left join fetch f.InteresadoEntre as interesadoEntre left join fetch f.InteresadoSobreviviente as interesadoSobreviviente left join fetch f.Agente as agente left join fetch f.Poder as poder where .
         /// </summary>
         public static string CabeceraObtenerFusion {
@@ -412,6 +421,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a c.Asociado.Id = {0}.
+        /// </summary>
+        public static string FiltroAsociadoContactoCxP {
+            get {
+                return ResourceManager.GetString("FiltroAsociadoContactoCxP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a upper(c.Email) like &apos;%{0}%&apos;.
         /// </summary>
         public static string FiltroCorreoContacto {
@@ -444,6 +462,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroIdContacto {
             get {
                 return ResourceManager.GetString("FiltroIdContacto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a c.Id = {0}.
+        /// </summary>
+        public static string FiltroIdContactoCxP {
+            get {
+                return ResourceManager.GetString("FiltroIdContactoCxP", resourceCulture);
             }
         }
         

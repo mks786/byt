@@ -1263,4 +1263,16 @@
     <value>idioma.Id = '{0}'</value>
     <comment>Filtro para obtener un interesado por la propiedad Idioma</comment>
   </data>
+  <data name="CabeceraObtenerContactoCxP" xml:space="preserve">
+    <value>Select c from ContactoCxP c left outer join fetch c.Asociado as asociado where </value>
+    <comment>Cabecera para obtener Contactos CxP por filtro</comment>
+  </data>
+  <data name="FiltroAsociadoContactoCxP" xml:space="preserve">
+    <value>c.Asociado.Id = {0}</value>
+    <comment>Filtro para obtener ContactoCxP por Id de Asociado</comment>
+  </data>
+  <data name="FiltroIdContactoCxP" xml:space="preserve">
+    <value>c.Id = {0}</value>
+    <comment>Filtro para obtener ContactoCxP por Id</comment>
+  </data>
 </root>

@@ -551,6 +551,16 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
 
 
         /// <summary>
+        /// Método que devuelve el DaoContactoCxP
+        /// </summary>
+        /// <returns>IDaoContactoCxP</returns>
+        public override IDaoContactoCxP ObtenerDaoContactoCxP()
+        {
+            return new DaoContactoCxPNHibernate();
+        }
+
+
+        /// <summary>
         /// Método que devuelve el DaoCarta
         /// </summary>
         /// <returns>IDaoCarta</returns>

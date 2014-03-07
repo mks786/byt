@@ -620,6 +620,7 @@
     <Compile Include="Presentadores\Cartas\PresentadorConsultarCarta.cs" />
     <Compile Include="Presentadores\Cartas\PresentadorAgregarCarta.cs" />
     <Compile Include="Presentadores\Cartas\PresentadorConsultarCartas.cs" />
+    <Compile Include="Presentadores\ContactosCxP\PresentadorAgregarContactoCxP.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorAgregarContacto.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorConsultarContactos.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorConsultarContacto.cs" />
@@ -3378,9 +3379,7 @@
   <ItemGroup>
     <Resource Include="images\buscar.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Presentadores\ContactosCxP\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

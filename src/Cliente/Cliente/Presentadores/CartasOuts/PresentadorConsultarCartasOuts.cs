@@ -98,6 +98,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.CartasOuts
                 cartaOut.Status = 'T';
                 //this._cartasOuts = this._cartaOutServicios.ObtenerCartasOutsFiltro(cartaOut);
                 this._cartasOuts = this._cartaOutServicios.ObtenerCartasOutsFiltroAdo(cartaOut);
+
+                IList<CartaOut> cartasOrdenadas = this._cartasOuts.OrderBy(o => o.NRelacion).ToList();
+
+                this._cartasOuts = null;
+                this._cartasOuts = cartasOrdenadas;
+
                 this._ventana.Resultados = this._cartasOuts;
                 this._ventana.TotalHits = this._cartasOuts.Count.ToString();
                 this._ventana.ContadorTransferencia = "0";
@@ -163,9 +169,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.CartasOuts
                     DateTime fechaCarta = DateTime.Parse(this._ventana.Fecha);
                     cartaAuxiliar.Fecha = fechaCarta.ToShortDateString();
                 }
-                    this._cartasOuts = this._cartaOutServicios.ObtenerCartasOutsFiltro(cartaAuxiliar);
-                    this._ventana.Resultados = this._cartasOuts;
-                    this._ventana.TotalHits = this._cartasOuts.Count.ToString();
+                this._cartasOuts = this._cartaOutServicios.ObtenerCartasOutsFiltro(cartaAuxiliar);
+
+                IList<CartaOut> cartasOrdenadas = this._cartasOuts.OrderBy(o => o.NRelacion).ToList();
+
+                this._cartasOuts = null;
+                this._cartasOuts = cartasOrdenadas;
+
+                this._ventana.Resultados = this._cartasOuts;
+                this._ventana.TotalHits = this._cartasOuts.Count.ToString();
                 
         
                 #region trace

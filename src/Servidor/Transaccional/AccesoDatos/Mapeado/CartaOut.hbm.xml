@@ -8,7 +8,8 @@
     <property name="ConCopia" type="string" column="XCC"/>
     <property name="ConCopiaOCulta" type="string" column="XCCO"/>
     <property name="Asunto" type="string" column="SUBJECT"/>
-    <property name="FechaCorreo" type="DateTime" column="FECHA_COR"/>
+    <!--<property name="FechaCorreo" type="DateTime" column="FECHA_COR"/>-->
+    <property name="FechaCorreo" type="string" column="FECHA_COR"/>
     <property name="FechaIngreso" type="DateTime" column="FECHA_ING"/>
     <property name="Fecha" type="string" column="FECHA"/>
     <property name="Cuerpo" type="AnsiString" column="CUERPO"/>

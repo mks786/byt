@@ -73,6 +73,7 @@
     <Compile Include="Contrato\IDaoCamposReporte.cs" />
     <Compile Include="Contrato\IDaoCamposReporteRelacion.cs" />
     <Compile Include="Contrato\IDaoCertificadoMarca.cs" />
+    <Compile Include="Contrato\IDaoContactoCxP.cs" />
     <Compile Include="Contrato\IDaoEmailAsociado.cs" />
     <Compile Include="Contrato\IDaoFechaMarca.cs" />
     <Compile Include="Contrato\IDaoFiltroPlantilla.cs" />
@@ -181,6 +182,7 @@
     <Compile Include="Dao\NHibernate\DaoCamposReporteRelacionNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCamposReporteNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCertificadoMarcaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoContactoCxPNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoEmailAsociadoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoFechaMarcaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoFiltroPlantillaNHibernate.cs" />
@@ -814,7 +816,9 @@
     <EmbeddedResource Include="Mapeado\Justificacion.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Mapeado\ContactoCxP.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\ContactoCxP.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -10,6 +10,7 @@ using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Asociados;
 using Trascend.Bolet.Cliente.Ventanas.Contactos;
+using Trascend.Bolet.Cliente.Ventanas.ContactosCxP;
 using Trascend.Bolet.Cliente.Ventanas.Justificaciones;
 using System.Collections.Generic;
 using System.Windows.Controls;
@@ -30,6 +31,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
         private IAsociadoServicios _asociadoServicios;
         private IContactoServicios _contactoServicios;
+        private IContactoCxPServicios _contactoCxPServicios;
         private ICartaServicios _cartaServicios;
 
 
@@ -53,6 +55,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
             this._contactoServicios = (IContactoServicios)Activator.GetObject(typeof(IContactoServicios),
                 ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ContactoServicios"]);
+
+            this._contactoCxPServicios = (IContactoCxPServicios)Activator.GetObject(typeof(IContactoCxPServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ContactoCxPServicios"]);
 
             this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
                 ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
@@ -226,6 +231,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
 
 
+        #region CODIGO ORIGINAL COMENTADO - NO BORRAR
         //public void SeleccionarContacto()
         //{
         //    Contacto contactoAConsultar = new Contacto(((ContactosDelAsociadoVista)this._ventana.ContactoSeleccionado).Contacto);
@@ -234,12 +240,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         //    if (null != ((ContactosDelAsociadoVista)this._ventana.ContactoSeleccionado))
         //    {
         //        IList<Asociado> asociados = this._asociadoServicios.ObtenerAsociadosFiltro(new Asociado(((ContactosDelAsociadoVista)this._ventana.ContactoSeleccionado).Asociado));
-                
+
         //        //((ConsultarCarta)this._ventanaPadre).SeleccionarContactoYAsociado(asociados[0], this._ventana.ContactoSeleccionado);
         //        ((ConsultarCarta)this._ventanaPadre).SeleccionarContactoYAsociado(asociados[0], contactoAConsultar);
         //        RegresarVentanaPadre();
         //    }
-        //}
+        //} 
+        #endregion
 
         /// <summary>
         /// Metodo para registrar el Contacto seleccionado como Contacto CxP
@@ -255,15 +262,36 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
                 if (this._ventana.ContactoSeleccionado != null)
                 {
-                    Contacto contactoARegistrar = new Contacto(((ContactosDelAsociadoVista)this._ventana.ContactoSeleccionado).Contacto);
+                    //Recogiendo los datos del Contacto seleccionado
+                    Contacto contactoARegistrar = new Contacto();
                     contactoARegistrar.Asociado = this._asociado;
-                    Contacto contacto = this._contactoServicios.ConsultarPorId(contactoARegistrar);
+                    contactoARegistrar.Id = ((ContactosDelAsociadoVista)this._ventana.ContactoSeleccionado).Contacto;
+                    IList<Contacto> contactosEncontrados = this._contactoServicios.ConsultarContactosFiltro(contactoARegistrar);
+                    Contacto contacto = contactosEncontrados[0];
                     contacto.Asociado = this._asociado;
+
+                    
+                    //Creando el objeto ContactoCxP
                     ContactoCxP contactoCxP = new ContactoCxP();
                     contactoCxP.Asociado = this._asociado;
                     contactoCxP.Id = contacto.Id;
 
-                    //this.Navegar(new ConsultarContacto(contacto, this._ventana));
+                    //Verificando si el ContactoCxP existe para saber si crear uno nuevo o actualizar el ya existente o si se va a eliminar 
+                    IList<ContactoCxP> listaContactosCxP = this._contactoCxPServicios.ConsultarContactoCxPFiltro(contactoCxP);
+                    if (listaContactosCxP.Count > 0)
+                    {
+                        contactoCxP = new ContactoCxP();
+                        contactoCxP = listaContactosCxP[0];
+                        contactoCxP.ContactoAsociado = contacto;
+                        this.Navegar(new AgregarContactoCxP(contactoCxP, this._ventana, false));
+                    }
+                    else
+                    {
+                        contactoCxP.ContactoAsociado = contacto;
+                        this.Navegar(new AgregarContactoCxP(contactoCxP, this._ventana, true));
+                    }
+
+                    
                 }
 
                 #region trace

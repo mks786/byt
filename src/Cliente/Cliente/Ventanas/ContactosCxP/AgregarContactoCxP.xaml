@@ -8,7 +8,7 @@
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="800"
-	Title="AgregarContactoCxP">
+	Title="AgregarContactoCxP" Loaded="Page_Loaded">
 
     <Page.Resources>
         <Style x:Key="ElementInError" TargetType="{x:Type FrameworkElement}">
@@ -43,16 +43,17 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
                     </Label>
                     <custom:ByTTextBox Name="_txtIdAsociado" Width="40" MaxLength="400" IsReadOnly="True" 
-                                       Text="{Binding Path=Asociado.Id}" />
+                                       Text="{Binding Path=Asociado.Id}" IsEnabled="False" />
                     <custom:ByTTextBox Name="_txtNombreAsociado" Width="160" MaxLength="30"  Text="{Binding Path= Asociado.Nombre}" 
-                                       IsReadOnly="True" />
+                                       IsReadOnly="True" IsEnabled="False" FontSize="10" />
                 </WrapPanel>
                 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNumero}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtNumero" Width="200" MaxLength="25" Text="{Binding Path=Id}" IsReadOnly="True"/>
+                    <custom:ByTTextBox Name="_txtNumero" Width="200" MaxLength="25" Text="{Binding Path=Id}" IsReadOnly="True" 
+                                       IsEnabled="False"/>
                                             
                 </WrapPanel>
                 
@@ -60,21 +61,24 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtNombre" Width="200" MaxLength="4000" Text="{Binding Path=ContactoAsociado.Nombre}"/>
+                    <custom:ByTTextBox Name="_txtNombre" Width="200" MaxLength="4000" Text="{Binding Path=ContactoAsociado.Nombre}" 
+                                       IsReadOnly="True" IsEnabled="False"/>
                 </WrapPanel>
                 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTelefono}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtTelefono" Width="200" MaxLength="30"  Text="{Binding Path=ContactoAsociado.Telefono}"/>
+                    <custom:ByTTextBox Name="_txtTelefono" Width="200" MaxLength="30"  Text="{Binding Path=ContactoAsociado.Telefono}" 
+                                       IsReadOnly="True" IsEnabled="False" />
                 </WrapPanel>
                 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFax}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtFax" Width="200" MaxLength="255"  Text="{Binding Path=ContactoAsociado.Fax}" />
+                    <custom:ByTTextBox Name="_txtFax" Width="200" MaxLength="255"  Text="{Binding Path=ContactoAsociado.Fax}" 
+                                       IsReadOnly="True" IsEnabled="False" />
                 </WrapPanel>
                 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
@@ -114,7 +118,7 @@
         </GroupBox>
 
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
-            <Button IsDefault="True" Name="_btnAceptar" VerticalAlignment="Bottom" Height="25" Width="90">
+            <Button IsDefault="True" Name="_btnAceptar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnAceptar_Click">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
@@ -126,7 +130,11 @@
                 </Button.Style>
                 <TextBlock Name="_txbAceptar" Text="{x:Static recurso:Etiquetas.btnAceptar}"/>
             </Button>
-            <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="90">
+            <Button Name="_btnEliminar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnEliminar_Click" 
+                    Visibility="Collapsed">
+                <TextBlock Name="_txbEliminar" Text="{x:Static recurso:Etiquetas.btnEliminar}"/>
+            </Button>
+            <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnRegresar_Click">
                 <TextBlock Name="_txbCancelar" Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
             </Button>
         </WrapPanel>

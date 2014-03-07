@@ -30,20 +30,20 @@ namespace Trascend.Bolet.Servidor
 
             #region Codigo de Prueba NO BORRAR 
             
-            /*InteresadoServicios servicioPrueba = new InteresadoServicios();
-            IdiomaServicios idiomaServicios = new IdiomaServicios();
-            Interesado interesado = new Interesado();
-            Idioma idioma;
+            //AsociadoServicios asociadoServicio = new AsociadoServicios();
+            //Asociado filtro = new Asociado();
+            //filtro.Id = 4;
+            //Asociado asociado = asociadoServicio.ConsultarAsociadoConTodo(filtro);
+
+            //ContactoCxP contacto = new ContactoCxP();
+            //contacto.Asociado = asociado;
+            //contacto.Id = 4;
+
+            // ContactoCxPServicios servicioPrueba = new ContactoCxPServicios();
+
+            // IList<ContactoCxP> contactos = servicioPrueba.ConsultarContactoCxPFiltro(contacto);
             
-            //Interesado interesadoConTodo = servicioPrueba.ConsultarInteresadoConTodo(interesado);
-            IList<Idioma> idiomas = idiomaServicios.ConsultarTodos();
-            idioma = idiomas[1];
-            interesado.Id = 32358;
-            interesado.Idioma = idioma;
-            IList<Interesado> interesados = servicioPrueba.ObtenerInteresadosFiltro(interesado);*/
-
-
-            //Console.ReadLine();
+             //Console.ReadLine();
 
 
             #endregion

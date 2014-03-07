@@ -54,6 +54,7 @@
     <Compile Include="Controladores\ControladorCamposReporte.cs" />
     <Compile Include="Controladores\ControladorCamposReporteRelacion.cs" />
     <Compile Include="Controladores\ControladorCertificadoMarca.cs" />
+    <Compile Include="Controladores\ControladorContactoCxP.cs" />
     <Compile Include="Controladores\ControladorCorresponsal.cs" />
     <Compile Include="Controladores\ControladorEstado.cs" />
     <Compile Include="Controladores\ControladorEstadoMarca.cs" />

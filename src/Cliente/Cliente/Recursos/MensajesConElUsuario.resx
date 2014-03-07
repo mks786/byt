@@ -1507,4 +1507,7 @@
   <data name="ConfirmarRegistroContactoCxp" xml:space="preserve">
     <value>Desea registrar el contacto seleccionado como Contacto CxP del Asociado?</value>
   </data>
+  <data name="AlertaAgregarOModificarContactoCxP" xml:space="preserve">
+    <value>Se procede a registrar el Contacto como Contacto CxP?</value>
+  </data>
 </root>

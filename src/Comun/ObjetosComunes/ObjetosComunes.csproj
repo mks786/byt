@@ -49,6 +49,7 @@
     <Compile Include="ContratosServicios\ICamposReporteRelacionServicios.cs" />
     <Compile Include="ContratosServicios\ICamposReporteServicios.cs" />
     <Compile Include="ContratosServicios\ICertificadoMarcaServicios.cs" />
+    <Compile Include="ContratosServicios\IContactoCxPServicios.cs" />
     <Compile Include="ContratosServicios\IEmailAsociadoServicios.cs" />
     <Compile Include="ContratosServicios\IFechaMarcaServicios.cs" />
     <Compile Include="ContratosServicios\IFiltroPlantillaServicios.cs" />

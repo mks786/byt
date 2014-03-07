@@ -133,6 +133,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Se procede a registrar el Contacto como Contacto CxP?.
+        /// </summary>
+        internal static string AlertaAgregarOModificarContactoCxP {
+            get {
+                return ResourceManager.GetString("AlertaAgregarOModificarContactoCxP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Desea cambiar el status de la Factura?. Si su respuesta es Si debe Consolidar nuevamente..
         /// </summary>
         internal static string AlertaCambiarStatusFacCxPInternacional {

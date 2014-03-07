@@ -117,6 +117,9 @@
     <Compile Include="Comandos\ComandosCesion\ComandoEliminarCesion.cs" />
     <Compile Include="Comandos\ComandosCesion\ComandoInsertarOModificarCesion.cs" />
     <Compile Include="Comandos\ComandosCesion\ComandoVerificarExistenciaCesion.cs" />
+    <Compile Include="Comandos\ComandosContactoCxP\ComandoConsultarContactoCxPFiltro.cs" />
+    <Compile Include="Comandos\ComandosContactoCxP\ComandoConsultarTodosContactoCxP.cs" />
+    <Compile Include="Comandos\ComandosContactoCxP\ComandoInsertarOModificarContactoCxP.cs" />
     <Compile Include="Comandos\ComandosContacto\ComandoConsultarContactoPorId.cs" />
     <Compile Include="Comandos\ComandosContacto\ComandoConsultarContactosFiltro.cs" />
     <Compile Include="Comandos\ComandosCorresponsal\ComandoConsultarTodosCorresponsables.cs" />
@@ -486,6 +489,7 @@
     <Compile Include="Fabrica\FabricaComandosCamposReporte.cs" />
     <Compile Include="Fabrica\FabricaComandosCamposReporteRelacion.cs" />
     <Compile Include="Fabrica\FabricaComandosCertificadoMarca.cs" />
+    <Compile Include="Fabrica\FabricaComandosContactoCxP.cs" />
     <Compile Include="Fabrica\FabricaComandosEmailAsociado.cs" />
     <Compile Include="Fabrica\FabricaComandosFechaMarca.cs" />
     <Compile Include="Fabrica\FabricaComandosFiltroPlantilla.cs" />

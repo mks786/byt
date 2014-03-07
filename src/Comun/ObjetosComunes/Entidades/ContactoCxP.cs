@@ -48,7 +48,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             if (obj == null)
                 return false;
-            var t = obj as Contacto;
+            var t = obj as ContactoCxP;
             if (t == null)
                 return false;
             if ((Id == (t.Id)) && (Asociado.Id == (t.Asociado.Id)))

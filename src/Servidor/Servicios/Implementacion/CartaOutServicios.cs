@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using NLog;
 using Trascend.Bolet.LogicaNegocio.Controladores;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
@@ -376,12 +377,20 @@ namespace Trascend.Bolet.Servicios.Implementacion
                 {
                     logger.Trace("Correo de IDX: " + registro["Id"].ToString() + " a procesar");
                     CartaOut cartaOutAux = new CartaOut();
+                    Console.WriteLine("Codigo de correo: " + registro["NRelacion"].ToString());
                     cartaOutAux.Id= registro["Id"].ToString();
                     cartaOutAux.From = registro["From"].ToString();
                     cartaOutAux.ConCopia = registro["ConCopia"].ToString();
                     cartaOutAux.ConCopiaOCulta = registro["ConCopiaOculta"].ToString();
                     cartaOutAux.Asunto = registro["Asunto"].ToString();
-                    cartaOutAux.FechaCorreo = DateTime.Parse(registro["FechaCorreo"].ToString());
+
+                    /*DateTime variable = new DateTime();
+                    TransformarFechaString(registro["FechaCorreo"].ToString(), out variable);
+                    cartaOutAux.FechaCorreo = variable;*/
+
+                    //cartaOutAux.FechaCorreo = DateTime.Parse(registro["FechaCorreo"].ToString());
+                    cartaOutAux.FechaCorreo = registro["FechaCorreo"].ToString();
+
                     cartaOutAux.FechaIngreso = DateTime.Parse(registro["FechaIngreso"].ToString());
                     cartaOutAux.Fecha = registro["Fecha"].ToString();
                     cartaOutAux.Cuerpo = registro["Cuerpo"].ToString();
@@ -417,6 +426,49 @@ namespace Trascend.Bolet.Servicios.Implementacion
             }
 
             return cartasOut;
+        }
+
+        /// <summary>
+        /// Metodo que toma la fecha de COR_MAIL_OUT y la transforma a un objeto tipo DateTime
+        /// ESTE METODO SE USA PARA ELIMINAR CUALQUIER EXCEPCION DE FORMATO TIPO FECHA A LA HORA DE ASIGNAR LOS VALORES PARA
+        /// LOS CAMPOS: FechaCorreo
+        /// </summary>
+        /// <param name="fechaStr">String con la fecha completa</param>
+        /// <returns>Objeto DateTime con el valor de la fecha</returns>
+        private void TransformarFechaString(string fechaStr, out DateTime fechaResultante)
+        {
+            String cadenaFecha = String.Empty, strDateStarted = String.Empty;
+            String[] componentesFecha = null;
+            int coma;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                componentesFecha = fechaStr.Split(' ');
+                if(componentesFecha[1].Length == 1)
+                    cadenaFecha = componentesFecha[0] + " " + componentesFecha[2] + " " + "0" + componentesFecha[1] + " " + componentesFecha[4] + " " + componentesFecha[3];
+                else
+                    cadenaFecha = componentesFecha[0] + " " + componentesFecha[2] + " " + componentesFecha[1] + " " + componentesFecha[4] + " " + componentesFecha[3];
+
+                coma = cadenaFecha.IndexOf(",");
+                strDateStarted = cadenaFecha.Remove(coma, 1);
+                //string strDateStarted = "Thu Jan 03 15:04:29 2013";
+                DateTime.TryParseExact(strDateStarted, new string[] { "ddd MMM dd HH:mm:ss yyyy" }, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out fechaResultante);
+                
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            
         }
 
         #endregion
