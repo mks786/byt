@@ -1259,6 +1259,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.IrSeguimientoCxPInternacional();
         }
 
+        private void _menuItemCadenaDeCambiosGestionar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrGestionarCadenaDeCambios();
+        }
+
+        private void _menuItemCadenaDeCambiosConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrConsultarCadenaDeCambios();
+        }
+
         
 
         

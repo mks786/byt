@@ -1274,6 +1274,30 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+        /// <summary>
+        /// Metodo para buscar un Contacto del Asociado Vista 
+        /// </summary>
+        /// <param name="contactos">Lista de Contactos Asociados Vista</param>
+        /// <param name="contactoBuscado">Id del contacto a buscar</param>
+        /// <returns>Contacto del Asociado Vista encontrado</returns>
+        public ContactosDelAsociadoVista BuscarContactoAsociadoVista(IList<ContactosDelAsociadoVista> contactos, string contactoBuscado)
+        {
+            ContactosDelAsociadoVista retorno = null;
+
+            if (contactoBuscado != null)
+                foreach (ContactosDelAsociadoVista contacto in contactos)
+                {
+                    if (contacto.Id.Equals(contactoBuscado))
+                    {
+                        retorno = contacto;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+
 
         /// <summary>
         /// Método que busca un Resumen dentro de una lista de Resumenes

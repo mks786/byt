@@ -372,7 +372,12 @@
                     <MenuItem Name="_menuItemGeneradorReporteMarcaGestionar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemGeneradorReporteMarcaGestionar_Click" />
                 </MenuItem>
 
-            </MenuItem>
+                <MenuItem Name="_menuItemCadenaDeCambios" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemCadenaDeCambios}">
+                <MenuItem Name="_menuItemCadenaDeCambiosConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemCadenaDeCambiosConsultar_Click"/>
+                    <MenuItem Name="_menuItemCadenaDeCambiosGestionar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemCadenaDeCambiosGestionar_Click"/>
+                </MenuItem>
+                
+                </MenuItem>
             
             <!--Facturacion-->
             <MenuItem Name="_menuItemAdministracion" Header="Administración">

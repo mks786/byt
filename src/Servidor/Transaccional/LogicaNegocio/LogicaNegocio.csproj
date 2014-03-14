@@ -50,6 +50,7 @@
     <Compile Include="Controladores\ControladorAnexo.cs" />
     <Compile Include="Controladores\ControladorArchivo.cs" />
     <Compile Include="Controladores\ControladorBusqueda.cs" />
+    <Compile Include="Controladores\ControladorCadenaDeCambios.cs" />
     <Compile Include="Controladores\ControladorCaja.cs" />
     <Compile Include="Controladores\ControladorCamposReporte.cs" />
     <Compile Include="Controladores\ControladorCamposReporteRelacion.cs" />

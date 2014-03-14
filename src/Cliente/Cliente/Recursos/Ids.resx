@@ -1170,4 +1170,10 @@
   <data name="fac_SeguimientoCxPInternacional" xml:space="preserve">
     <value>FAC_CXP_INT_VI</value>
   </data>
+  <data name="ContactoCxP" xml:space="preserve">
+    <value>FAC_CONTACTOS_CXP</value>
+  </data>
+  <data name="CadenaDeCambios" xml:space="preserve">
+    <value>MYP_CADCAMBIOS</value>
+  </data>
 </root>

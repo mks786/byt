@@ -4327,9 +4327,63 @@ en Prensa:</value>
     <value>Ver Planilla</value>
   </data>
   <data name="btnRegistrarContactoCxP" xml:space="preserve">
-    <value>Reg. Contacto CxP</value>
+    <value>Reg. Contacto CxC</value>
   </data>
   <data name="lblFrecuenciaPago" xml:space="preserve">
     <value>Días de Pago:</value>
+  </data>
+  <data name="lblFechaCierreExp" xml:space="preserve">
+    <value>Fecha Cierre Exp:</value>
+  </data>
+  <data name="btnListaContactosCxCAsociados" xml:space="preserve">
+    <value>Ver Contactos CxC</value>
+  </data>
+  <data name="titleListaContactosCxP" xml:space="preserve">
+    <value>Contactos Cuentas por Cobrar Bolet</value>
+  </data>
+  <data name="lsvFormaPagoContactoCxC" xml:space="preserve">
+    <value>Forma de Pago</value>
+  </data>
+  <data name="lsvFrecuenciaPago" xml:space="preserve">
+    <value>Frecuencia Pago</value>
+  </data>
+  <data name="cbiTipoCadenaCambios" xml:space="preserve">
+    <value>MYP_CADCAMBIOS_TIPO</value>
+  </data>
+  <data name="lblAplicadaCadenaCambio" xml:space="preserve">
+    <value>Código de Marca/Patente:</value>
+  </data>
+  <data name="lblFechaCadCambio" xml:space="preserve">
+    <value>Fecha Cadena Cambio:</value>
+  </data>
+  <data name="lblIdCadenaCambios" xml:space="preserve">
+    <value>Código Cadena de Cambio:</value>
+  </data>
+  <data name="lblTipoCadenaCambio" xml:space="preserve">
+    <value>Tipo Cadena de Cambio:</value>
+  </data>
+  <data name="menuItemCadenaDeCambios" xml:space="preserve">
+    <value>Cadena de Cambios</value>
+  </data>
+  <data name="titleGestionarCadenaDeCambios" xml:space="preserve">
+    <value>Cadena de Cambios</value>
+  </data>
+  <data name="lblCodigoOperacionCadenaCambios" xml:space="preserve">
+    <value>Código de Marca o Patente:</value>
+  </data>
+  <data name="lsvCodigoOperacion" xml:space="preserve">
+    <value>Código Marca/Patente</value>
+  </data>
+  <data name="lsvTipoOperacionCadenaCambios" xml:space="preserve">
+    <value>Tipo Cadena Cambio</value>
+  </data>
+  <data name="titleConsultarCadenaDeCambios" xml:space="preserve">
+    <value>Consulta de Cadenas de Cambios</value>
+  </data>
+  <data name="btnCadenaCambios" xml:space="preserve">
+    <value>Cad. Cambios:</value>
+  </data>
+  <data name="lblCadenaCambios" xml:space="preserve">
+    <value>Cad. Cambios:</value>
   </data>
 </root>

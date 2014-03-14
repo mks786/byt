@@ -69,6 +69,7 @@
     <Compile Include="Comandos\ComandosAsignacion\ComandoEliminarAsignacionesPorCarta.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoConsultarAsociadoConTodo.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoConsultarAsociadosFiltro.cs" />
+    <Compile Include="Comandos\ComandosAsociado\ComandoConsultarContactosCxPAsociado.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoConsultarContactosDelAsociado.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoEjecutarProcedimiento.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoVerificarCartasDeAsociado.cs" />
@@ -81,6 +82,8 @@
     <Compile Include="Comandos\ComandosBusqueda\ComandoEliminarBusqueda.cs" />
     <Compile Include="Comandos\ComandosBusqueda\ComandoInsertarOModificarBusqueda.cs" />
     <Compile Include="Comandos\ComandosBusqueda\ComandoVerificarExistenciaBusqueda.cs" />
+    <Compile Include="Comandos\ComandosCadenaDeCambios\ComandoConsultarCadenasCambiosFiltro.cs" />
+    <Compile Include="Comandos\ComandosCadenaDeCambios\ComandoInsertarOModificarCadenaDeCambios.cs" />
     <Compile Include="Comandos\ComandosCaja\ComandoConsultarTodosCajas.cs" />
     <Compile Include="Comandos\ComandosCambioDeDomicilio\ComandoConsultarCambiosDeDomicilioFiltro.cs" />
     <Compile Include="Comandos\ComandosCambioDeDomicilio\ComandoConsultarTodosCambioDeDomicilio.cs" />
@@ -486,6 +489,7 @@
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
     <Compile Include="Fabrica\FabricaComandosAlmacen.cs" />
     <Compile Include="Fabrica\FabricaComandosArchivo.cs" />
+    <Compile Include="Fabrica\FabricaComandosCadenaDeCambios.cs" />
     <Compile Include="Fabrica\FabricaComandosCaja.cs" />
     <Compile Include="Fabrica\FabricaComandosCamposReporte.cs" />
     <Compile Include="Fabrica\FabricaComandosCamposReporteRelacion.cs" />

@@ -640,10 +640,15 @@
                             Height="25" Width="90">Conflicto</Button>
                         
                         <!--Expediente Traspaso Renovacion-->
-                        <Label Grid.Column="10" Grid.Row="12" HorizontalContentAlignment="Right" Name="_lblExpTraspasoRenovacionSolicitud">
+                        <!--<Label Grid.Column="10" Grid.Row="12" HorizontalContentAlignment="Right" Name="_lblExpTraspasoRenovacionSolicitud">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblMarcaExpTraspasoRenovacion}"/>
-                        </Label>
-                        <custom:ByTTextBox IsReadOnly="True" Grid.Column="11" Grid.Row="12" Name="_txtIdExpedienteTraspasoRenovacionSolicitud" VerticalAlignment="Center" Width="85" MaxLength="255" Margin="0,0,5,0">
+                        </Label>-->
+                        <Button Grid.Column="10" Grid.Row="12" HorizontalAlignment="Right" Margin="8,0,0,0" Height="25" Name="_btnExptyrSolicitud" Click="_btnExptyr_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblExpCamPend}"/>
+                        </Button>
+                        <custom:ByTTextBox IsReadOnly="False" Grid.Column="11" Grid.Row="12" 
+                                           Name="_txtIdExpedienteTraspasoRenovacionSolicitud" VerticalAlignment="Center" Width="85" 
+                                           MaxLength="255" Margin="0,0,5,0" Text="{Binding Path=ExpTraspasoRenovacion}">
                         </custom:ByTTextBox>
                         
                         
@@ -1056,12 +1061,14 @@
                             <!--22-->
                             <RowDefinition Height="25"/>
                             <!--23-->
-                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="28"/>
                             <!--24-->
                             <RowDefinition Height="25"/>
                             <!--25-->
                             <RowDefinition Height="25"/>
                             <!--26-->
+                            <RowDefinition Height="25"/>
+                            <!--27-->
                             <RowDefinition Height="28"/>
                         </Grid.RowDefinitions>
 
@@ -1978,31 +1985,46 @@
                         <ComboBox  Grid.Column="7" Grid.Row="21" Grid.ColumnSpan="2" Name="_cbxCondiciones" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                         </ComboBox>
+                        <Button Grid.Column="6" Grid.Row="22" Margin="8,0,0,0" Height="25" Name="_btnExptyrDatos"
+                                Click="_btnExptyr_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblExpCamPend}"/>
+                        </Button>
+                        <custom:ByTTextBox  Grid.Column="7" Grid.Row="22" Grid.ColumnSpan="1" Margin="3" Name="_txtExptyr" VerticalAlignment="Center" IsReadOnly="False" Text="{Binding Path=ExpTraspasoRenovacion}"></custom:ByTTextBox>
+                        <Label Grid.Column="8" Grid.Row="22" VerticalAlignment="Center" Margin="6,0,0,0" Grid.ColumnSpan="1">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaCierreExp}"/>
+                        </Label>
+                        <DatePicker Grid.Column="9" Grid.Row="22" Grid.ColumnSpan="1" Name="_txtFechaCierreExpDatos" Focusable="False"
+                                    BorderBrush="{x:Null}" Margin="8,0,0,0">
+                            <DatePicker.SelectedDate>
+                                <Binding Path="FechaCierreExpediente" UpdateSourceTrigger="PropertyChanged" 
+                                         StringFormat="{}{0:dd/MM/yyyy}"/>
+                            </DatePicker.SelectedDate>
+                        </DatePicker>
 
                         <!--Nuevo-->
-                        <Label Grid.Column="9" Grid.Row="21" Grid.ColumnSpan="1" VerticalAlignment="Center">
+                        <!--<Label Grid.Column="9" Grid.Row="21" Grid.ColumnSpan="1" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblExpCamPend}"/>
-                        </Label>
-                        <custom:ByTTextBox  Grid.Column="10" Grid.Row="21" Grid.ColumnSpan="1" Margin="3" Name="_txtExptyr" VerticalAlignment="Center" IsReadOnly="False" Text="{Binding Path=ExpTraspasoRenovacion}"></custom:ByTTextBox>
+                        </Label>-->
+                        <!--<custom:ByTTextBox  Grid.Column="10" Grid.Row="21" Grid.ColumnSpan="1" Margin="3" Name="_txtExptyr" VerticalAlignment="Center" IsReadOnly="False" Text="{Binding Path=ExpTraspasoRenovacion}"></custom:ByTTextBox>-->
                         <!--Fin Nuevo-->
 
-                        <Separator Margin="10 0" Grid.Column="6" Grid.Row="21" Grid.ColumnSpan="5" VerticalAlignment="bottom"/>
+                        <Separator Margin="10 0" Grid.Column="6" Grid.Row="22" Grid.ColumnSpan="5" VerticalAlignment="bottom"/>
                         <!--Fin Fila Catorce-->
 
                         <!--Fila Quince-->
-                        <Button  Grid.Column="6" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnInfoAdicional" Margin="8,0,0,0"
+                        <Button  Grid.Column="6" Grid.Row="23" Grid.ColumnSpan="1" Name="_btnInfoAdicional" Margin="8,0,0,0"
                             Height="25" Click="_btnInfoAdicional_Click">
                             <TextBlock Name="_txbInfoAdicional" Text="{x:Static recurso:Etiquetas.btnInfoAdicional}"/>
                         </Button>
-                        <Button  Grid.Column="7" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnInfobol" Margin="8,0,0,0"
+                        <Button  Grid.Column="7" Grid.Row="23" Grid.ColumnSpan="1" Name="_btnInfobol" Margin="8,0,0,0"
                             Height="25" Click="_btnInfobol_Click">
                             <TextBlock Name="_txbInfobol" Text="{x:Static recurso:Etiquetas.btnInfoBol}"/>
                         </Button>
-                        <Button  Grid.Column="9" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnBusquedaDatos" Margin="8,0,0,0"
+                        <Button  Grid.Column="9" Grid.Row="23" Grid.ColumnSpan="1" Name="_btnBusquedaDatos" Margin="8,0,0,0"
                             Height="25" Click="_btnBusqueda_Click">
                             <TextBlock Name="_txbBusquedas" Text="{x:Static recurso:Etiquetas.btnBusqueda}"/>
                         </Button>
-                        <Button  Grid.Column="10" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnArchivoDatos" Margin="8,0,0,0"
+                        <Button  Grid.Column="10" Grid.Row="23" Grid.ColumnSpan="1" Name="_btnArchivoDatos" Margin="8,0,0,0"
                             Height="25" Click="_btnArchivoDatos_Click">
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnArchivo}"/>
                         </Button>
@@ -2016,32 +2038,53 @@
                         </custom:ByTTextBox>-->
                         <Button  Name="_btnImprimirEdoCuentaDatos" Click="_btnImprimirEdoCuenta_Click" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="23" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="50" Width="90">
                             <TextBlock VerticalAlignment="Center">
-                            Imprmir <LineBreak/>
+                            Imprimir <LineBreak/>
                             Edo. Cuenta
                             </TextBlock>
                         </Button>
-                        <Label Grid.Column="3" Grid.Row="23" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <Label Grid.Column="3" Grid.Row="24" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblSaldoVencido}"/>
                         </Label>
-                        <custom:ByTTextBox  MaxLength="255" Grid.Column="4" Grid.Row="23" Name="_txtSaldoVencidoDatos" HorizontalContentAlignment="Right" VerticalAlignment="Center" Grid.ColumnSpan="2"></custom:ByTTextBox>
-                        <Label Grid.Column="3" Grid.Row="24" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <custom:ByTTextBox  MaxLength="255" Grid.Column="4" Grid.Row="24" Name="_txtSaldoVencidoDatos" HorizontalContentAlignment="Right" VerticalAlignment="Center" Grid.ColumnSpan="2"></custom:ByTTextBox>
+                        <Label Grid.Column="3" Grid.Row="25" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblSaldoPorVencer}"/>
                         </Label>
-                        <custom:ByTTextBox  MaxLength="255" Grid.Column="4" Grid.Row="24" Name="_txtSaldoPorVencerDatos" HorizontalContentAlignment="Right"  VerticalAlignment="Center" 
+                        <custom:ByTTextBox  MaxLength="255" Grid.Column="4" Grid.Row="25" Name="_txtSaldoPorVencerDatos" HorizontalContentAlignment="Right"  VerticalAlignment="Center" 
                          Grid.ColumnSpan="2"></custom:ByTTextBox>
-                        <Button  Name="_btnSaldoDatos"  Click="_btnSaldo_Click"  VerticalAlignment="Top" Grid.Column="1" Grid.Row="25" Grid.ColumnSpan="2" 
+
+                        <!--<Label Grid.Column="6" Grid.Row="24" VerticalAlignment="Center" Margin="8,0,0,0">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblExpCamPend}"/>
+                        </Label>-->
+                        <!--<Button Grid.Column="6" Grid.Row="22" Margin="8,0,0,0" Height="25" Name="_btnExptyrDatos" Click="_btnExptyr_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblExpCamPend}"/>
+                        </Button>-->
+                        <!--<custom:ByTTextBox  Grid.Column="7" Grid.Row="25" Grid.ColumnSpan="1" Margin="3" Name="_txtExptyr" VerticalAlignment="Center" IsReadOnly="False" Text="{Binding Path=ExpTraspasoRenovacion}"></custom:ByTTextBox>-->
+
+                        <!--<Label Grid.Column="8" Grid.Row="25" VerticalAlignment="Center" Margin="6,0,0,0" Grid.ColumnSpan="1">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaCierreExp}"/>
+                        </Label>-->
+                        <!--<DatePicker Grid.Column="9" Grid.Row="25" Grid.ColumnSpan="1" Name="_txtFechaCierreExpDatos" Focusable="False"
+                                    BorderBrush="{x:Null}" Margin="8,0,0,0">
+                            <DatePicker.SelectedDate>
+                                <Binding Path="FechaCierreExpediente" UpdateSourceTrigger="PropertyChanged" 
+                                         StringFormat="{}{0:dd/MM/yyyy}"/>
+                            </DatePicker.SelectedDate>
+                        </DatePicker>-->
+                        
+
+                        <Button  Name="_btnSaldoDatos"  Click="_btnSaldo_Click"  VerticalAlignment="Top" Grid.Column="1" Grid.Row="26" Grid.ColumnSpan="2" 
                             Height="22" Width="90">Saldo</Button>
-                        <Label Grid.Column="3" Grid.Row="25" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <Label Grid.Column="3" Grid.Row="26" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblTotalDeuda}"/>
                         </Label>
-                        <custom:ByTTextBox  MaxLength="255" Grid.Column="4" Grid.Row="25" Name="_txtTotalDeudaDatos" HorizontalContentAlignment="Right"  VerticalAlignment="Center" 
+                        <custom:ByTTextBox  MaxLength="255" Grid.Column="4" Grid.Row="26" Name="_txtTotalDeudaDatos" HorizontalContentAlignment="Right"  VerticalAlignment="Center" 
                          Grid.ColumnSpan="2"></custom:ByTTextBox>
                         
-                        <Button  Grid.Column="6" Grid.Row="23" Grid.ColumnSpan="1" Name="_btnGenCartel" Margin="8,0,0,0"
+                        <Button  Grid.Column="6" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnGenCartel" Margin="8,0,0,0"
                             Height="25" Click="_btnGenCartel_Click">
                             <TextBlock Name="_txbGenCartel" Text="{x:Static recurso:Etiquetas.btnGenCartel}"/>
                         </Button>
-                        <Button  Grid.Column="7" Grid.Row="23" Grid.ColumnSpan="1" Name="_btnAnaqua" Margin="8,0,0,0"
+                        <Button  Grid.Column="7" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnAnaqua" Margin="8,0,0,0"
                             Height="25" Click="_btnAnaqua_Click">
                             <TextBlock Name="_txbAnaqua" Text="{x:Static recurso:Etiquetas.btnAnaqua}"/>
                         </Button>
@@ -2049,42 +2092,42 @@
                         <Separator Margin="10 0" Grid.Column="6" Grid.Row="23" Grid.ColumnSpan="5" VerticalAlignment="Bottom"/>
                         <!--Fila Dieciocho-->
 
-                        <Button  Grid.Column="1" Grid.Row="26" Grid.ColumnSpan="1" Name="_btnRevisarWeb" Margin="8,0,0,0"
+                        <Button  Grid.Column="1" Grid.Row="27" Grid.ColumnSpan="1" Name="_btnRevisarWeb" Margin="8,0,0,0"
                             Height="25">
                             <TextBlock Name="_txbRevisarWeb" Text="{x:Static recurso:Etiquetas.btnRevisarWeb}"/>
                         </Button>
-                        <Label Grid.Column="3" Grid.Row="26" Grid.ColumnSpan="1" VerticalAlignment="Center">
+                        <Label Grid.Column="3" Grid.Row="27" Grid.ColumnSpan="1" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblStatusWEB}"/>
                         </Label>
-                        <ComboBox  Grid.Column="4" Grid.Row="26" Grid.ColumnSpan="2" Name="_cbxEstadoDatos" 
+                        <ComboBox  Grid.Column="4" Grid.Row="27" Grid.ColumnSpan="2" Name="_cbxEstadoDatos" 
                               Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" >
                         </ComboBox>
 
-                        <Button  Grid.Column="8" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnAuditoria" Margin="8,0,0,0"
+                        <Button  Grid.Column="8" Grid.Row="23" Grid.ColumnSpan="1" Name="_btnAuditoria" Margin="8,0,0,0"
                             Height="25" Click="_btnAuditoria_Click">
                             <TextBlock Name="_txbAuditoria" Text="{x:Static recurso:Etiquetas.btnAuditoria}"/>
                         </Button>
 
-                        <Button  Grid.Column="8" Grid.Row="23" Grid.ColumnSpan="1" Name="_btnOperacionesDatos" Margin="8,0,0,0"
+                        <Button  Grid.Column="8" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnOperacionesDatos" Margin="8,0,0,0"
                             Height="25" Click="_btnOperacionesDatos_Click">
                             <TextBlock Name="_txbOperaciones" Text="{x:Static recurso:Etiquetas.btnOperaciones}"/>
                         </Button>
 
-                        <Button  Grid.Column="9" Grid.Row="23" Grid.ColumnSpan="1" Click="_btnFacturacionDatos_Click" Name="_btnFacturacionDatos" Margin="8,0,0,0"
+                        <Button  Grid.Column="9" Grid.Row="24" Grid.ColumnSpan="1" Click="_btnFacturacionDatos_Click" Name="_btnFacturacionDatos" Margin="8,0,0,0"
                             Height="25">
                             <TextBlock Name="_txbFacturacion" Text="{x:Static recurso:Etiquetas.btnFacturacion}"/>
                         </Button>
 
-                        <Button  Grid.Column="10" Grid.Row="23" Grid.ColumnSpan="1" Name="_btnCertificados" Margin="8,0,0,0"
+                        <Button  Grid.Column="10" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnCertificados" Margin="8,0,0,0"
                             Height="25" Click="_btnCertificados_Click">
                             <TextBlock Name="_txbCertificados" Text="{x:Static recurso:Etiquetas.btnCertificado}"/>
                         </Button>
 
-                        <Button  Grid.Column="7" Grid.Row="26" Grid.ColumnSpan="1" Name="_btnVerSolicitud" Margin="8,2,0,0"
+                        <Button  Grid.Column="7" Grid.Row="27" Grid.ColumnSpan="1" Name="_btnVerSolicitud" Margin="8,2,0,0"
                             Height="25" Click="_btnVerSolicitud_Click">
                             <TextBlock Name="_txbVerDoc" Text="{x:Static recurso:Etiquetas.btnVerSolicitud}"/>
                         </Button>
-                        <Button  Grid.Column="8" Grid.Row="26" Grid.ColumnSpan="1" Name="_btnVerExpediente" Margin="8,2,0,0"
+                        <Button  Grid.Column="8" Grid.Row="27" Grid.ColumnSpan="1" Name="_btnVerExpediente" Margin="8,2,0,0"
                             Height="25" Click="_btnVerExpediente_Click">
                             <TextBlock Name="_txbVerExp" Text="{x:Static recurso:Etiquetas.btnVerExpediente}"/>
                         </Button>

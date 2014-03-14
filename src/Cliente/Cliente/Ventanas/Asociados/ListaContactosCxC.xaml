@@ -1,0 +1,136 @@
+﻿<Page x:Class="Trascend.Bolet.Cliente.Ventanas.Asociados.ListaContactosCxC"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+      xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
+      xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
+	Title="ListaContactosCxC" Loaded="Page_Loaded">
+    <Page.Resources>
+        <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
+        <Style x:Key="ElementInError" TargetType="{x:Type FrameworkElement}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip"
+                    Value="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={x:Static RelativeSource.Self}}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+    
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="700"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Grid.Column="0" Grid.Row="0" Margin="5" Height="35" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label>
+                    <TextBlock FontSize="15" Text="{x:Static recurso:Etiquetas.lblTotalHits}"/>
+                </Label>
+                <Label>
+                    <TextBlock FontSize="15" Name="_lblHits"/>
+                </Label>
+
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"  Margin="5">
+            <ListView Name="_lstResultados" ItemsSource="{Binding}" 
+                      SelectionMode="Single" Style="{DynamicResource EstiloListView}"
+                      MouseDoubleClick="_lstResultados_MouseDoubleClick">
+                <ListView.View>
+                    <GridView>
+                        
+                        <GridViewColumn Width="100">
+                            <GridViewColumnHeader Tag="ContactoAsociadoVista.Id" Content="{x:Static recurso:Etiquetas.lsvId}"
+                                                  Click="_Ordenar_Click"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=ContactoAsociadoVista.Id}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        
+                        <GridViewColumn Width="220">
+                            <GridViewColumnHeader Tag="ContactoAsociadoVista.Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}" 
+                                                  Click="_Ordenar_Click"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=ContactoAsociadoVista.Nombre}" TextAlignment="Left"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="180">
+                            <GridViewColumnHeader Tag="ContactoAsociado.Telefono" Content="{x:Static recurso:Etiquetas.lsvTelefono}" 
+                                                  Click="_Ordenar_Click"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=ContactoAsociado.Telefono}" TextAlignment="Left"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="180">
+                            <GridViewColumnHeader Tag="ContactoAsociado.Fax" Content="{x:Static recurso:Etiquetas.lsvFax}" 
+                                                  Click="_Ordenar_Click"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=ContactoAsociado.Fax}" TextAlignment="Left"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="180">
+                            <GridViewColumnHeader Tag="FrecuenciaPago" Content="{x:Static recurso:Etiquetas.lsvFrecuenciaPago}" 
+                                                  Click="_Ordenar_Click"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=FrecuenciaPago}" TextAlignment="Left"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="150">
+                            <GridViewColumnHeader Tag="ModoPago" Content="{x:Static recurso:Etiquetas.lsvFormaPagoContactoCxC}" 
+                                                  Click="_Ordenar_Click"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=ModoPagoDescripcion}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="200">
+                            <GridViewColumnHeader Tag="Observacion" Content="{x:Static recurso:Etiquetas.lsvObservacion}" 
+                                                  Click="_Ordenar_Click"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Observacion}" TextAlignment="Left"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}" BorderThickness="0">
+
+            <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
+                <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="110" Click="_btnRegresar_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
+                </Button>
+            </WrapPanel>
+        </GroupBox>
+    </Grid>
+</Page>

@@ -170,6 +170,9 @@
                 <Button Name="_btnRegistrarCxP" Height="25" Width="120" Click="_btnRegistrarCxP_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnRegistrarContactoCxP}"/>
                 </Button>
+                <Button Name="_btnVerContactosCxC" Height="25" Width="120" Click="_btnVerContactosCxC_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnListaContactosCxCAsociados}"/>
+                </Button>
             </WrapPanel>
         </GroupBox>
 

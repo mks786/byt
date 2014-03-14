@@ -69,6 +69,7 @@ using Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoDeCobranzas;
 using Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoCxPInternacional;
 using Trascend.Bolet.Cliente.Ventanas.Plantillas;
 using Trascend.Bolet.Cliente.Ventanas.ReportesMaestro;
+using Trascend.Bolet.Cliente.Ventanas.CadenaDeCambio;
 using System.Diagnostics;
 using System.Collections.Generic;
 
@@ -2013,6 +2014,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                     if (objeto.Id.Equals(Recursos.Ids.GeneradorReporteMarca))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
+                                case "_menuItemCadenaDeCambios":
+                                    if (objeto.Id.Equals(Recursos.Ids.CadenaDeCambios))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+
 
 
                                 #endregion
@@ -2531,6 +2537,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         public void IrSeguimientoCxPInternacional()
         {
             Navegar(new ConsultarSeguimientoCxPInternacional());
+        }
+
+        public void IrGestionarCadenaDeCambios()
+        {
+            Navegar(new GestionarCadenaDeCambios(null,null));
+        }
+
+        public void IrConsultarCadenaDeCambios()
+        {
+            Navegar(new ConsultarCadenasDeCambios());
         }
     }
 }

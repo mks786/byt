@@ -22,7 +22,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.ContactosCxP
         private IListaDatosValoresServicios _listaDatosValoresServicios;
         private Asociado _asociado;
         private bool _nuevoContacto;
+        private IList<ContactosDelAsociadoVista> _contactosAsociadoVista;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+        private object _ventanaListaContactos;
 
         /// <summary>
         /// Presentador predeterminado que recibe una entidad ContactoCxP y una ventana padre
@@ -30,7 +32,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.ContactosCxP
         /// <param name="contactoCxP">Contacto CxP</param>
         /// <param name="ventanaPadre">Ventana padre</param>
         /// </summary>
-        public PresentadorAgregarContactoCxP(IAgregarContactoCxP ventana, object contactoCxP, bool nuevoContacto, object ventanaPadre)
+        public PresentadorAgregarContactoCxP(IAgregarContactoCxP ventana, 
+                                             object contactoCxP, 
+                                             bool nuevoContacto, 
+                                             object ventanaPadre, 
+                                             object contactosAsociado,
+                                             object ventanaListaContactos)
         {
             try
             {
@@ -38,6 +45,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.ContactosCxP
                 this._ventanaPadre = ventanaPadre;
                 this._ventana.ContactoCxP = (ContactoCxP)contactoCxP;
                 this._nuevoContacto = nuevoContacto;
+                if((contactosAsociado != null) && !nuevoContacto)
+                    this._contactosAsociadoVista = (IList<ContactosDelAsociadoVista>)contactosAsociado;
+                if (ventanaListaContactos != null)
+                    this._ventanaListaContactos = ventanaListaContactos;
 
                 this._contactoServicios = (IContactoServicios)Activator.GetObject(typeof(IContactoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ContactoServicios"]);
@@ -184,6 +195,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.ContactosCxP
 
                                 if (this._nuevoContacto)
                                     this._ventana.HabilitarBotonEliminar(true);
+                                else
+                                    this.Navegar(new ListaContactosCxC(contactoCxP.Asociado, this._contactosAsociadoVista, this._ventanaListaContactos));
                             }
 
                         }

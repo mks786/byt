@@ -73,5 +73,12 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// <param name="parametro">Nombre del Package</param>
         /// <returns>Si se ejecuto con exito o no la actualizacion</returns>
         bool ActualizarConectividadAsociados(ParametroProcedimiento parametro);
+
+        /// <summary>
+        /// Servicio que obtiene los contactos de cuentas por cobrar Bolet de un Asociado especifico
+        /// </summary>
+        /// <param name="asociado">Asociado consultado</param>
+        /// <returns>Lista de Asociado Cuentas por Cobrar Bolet</returns>
+        IList<ContactoCxP> ConsultarContactosCxPAsociado(Asociado asociado);
     }
 }

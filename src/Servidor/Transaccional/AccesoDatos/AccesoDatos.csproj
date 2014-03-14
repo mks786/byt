@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Contrato\IDaoAlmacen.cs" />
     <Compile Include="Contrato\IDaoArchivo.cs" />
+    <Compile Include="Contrato\IDaoCadenaDeCambios.cs" />
     <Compile Include="Contrato\IDaoCaja.cs" />
     <Compile Include="Contrato\IDaoCamposReporte.cs" />
     <Compile Include="Contrato\IDaoCamposReporteRelacion.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
     <Compile Include="Dao\NHibernate\DaoAlmacenNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoArchivoNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoCadenaDeCambiosNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCajaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCamposReporteRelacionNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCamposReporteNHibernate.cs" />
@@ -817,6 +819,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapeado\ContactoCxP.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\CadenaDeCambios.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

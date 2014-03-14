@@ -132,5 +132,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
 
         void HabilitarBotonNuevaRenovacion();
 
+        void PintarVerPlanilla();
+
+        void ArchivoNoEncontrado(string mensaje);
+
     }
 }

@@ -60,6 +60,7 @@
     <Compile Include="Implementacion\ArchivoServicios.cs" />
     <Compile Include="Implementacion\AsociadoServicios.cs" />
     <Compile Include="Implementacion\BusquedaServicios.cs" />
+    <Compile Include="Implementacion\CadenaDeCambiosServicios.cs" />
     <Compile Include="Implementacion\CajaServicios.cs" />
     <Compile Include="Implementacion\CamposReporteRelacionServicios.cs" />
     <Compile Include="Implementacion\CamposReporteServicios.cs" />

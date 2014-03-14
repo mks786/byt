@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Controls;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ayuda;
@@ -146,6 +147,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
                 MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             else
                 MessageBox.Show(mensaje, "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void _btnVerContactosCxC_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrListaContactosCxC();
+        }
+
+        public void PintarBotonListaContactosCxC()
+        {
+            this._btnVerContactosCxC.Background = Brushes.LightGreen;
         }
 
         //private void _btnSeleccionar_Click(object sender, RoutedEventArgs e)

@@ -132,6 +132,7 @@
     <Compile Include="Contratos\Anualidades\IConsultarAnualidades.cs" />
     <Compile Include="Contratos\Anualidades\IGestionarAnualidades.cs" />
     <Compile Include="Contratos\Asociados\IListaConectividad.cs" />
+    <Compile Include="Contratos\Asociados\IListaContactosCxC.cs" />
     <Compile Include="Contratos\Asociados\IListaEmails.cs" />
     <Compile Include="Contratos\Asociados\IListaDatosTransferencia.cs" />
     <Compile Include="Contratos\Asociados\IListaContactos.cs" />
@@ -140,6 +141,8 @@
     <Compile Include="Contratos\Asociados\IAgregarAsociado.cs" />
     <Compile Include="Contratos\Asociados\IConsultarAsociado.cs" />
     <Compile Include="Contratos\Asociados\IConsultarAsociados.cs" />
+    <Compile Include="Contratos\CadenaDeCambio\IConsultarCadenasDeCambios.cs" />
+    <Compile Include="Contratos\CadenaDeCambio\IGestionarCadenaDeCambios.cs" />
     <Compile Include="Contratos\Cartas\IConsultarContactosPorAsociado.cs" />
     <Compile Include="Contratos\Cartas\IAgregarCarta.cs" />
     <Compile Include="Contratos\Cartas\IConsultarCartas.cs" />
@@ -608,6 +611,7 @@
     <Compile Include="Presentadores\Anualidades\PresentadorConsultarAnualidades.cs" />
     <Compile Include="Presentadores\Anualidades\PresentadorGestionarAnualidades.cs" />
     <Compile Include="Presentadores\Asociados\PresentadorListaConectividad.cs" />
+    <Compile Include="Presentadores\Asociados\PresentadorListaContactosCxC.cs" />
     <Compile Include="Presentadores\Asociados\PresentadorListaEmails.cs" />
     <Compile Include="Presentadores\Asociados\PresentadorListaDatosTransferencia.cs" />
     <Compile Include="Presentadores\Asociados\PresentadorListaContactos.cs" />
@@ -616,6 +620,8 @@
     <Compile Include="Presentadores\Asociados\PresentadorAgregarAsociado.cs" />
     <Compile Include="Presentadores\Asociados\PresentadorConsultarAsociado.cs" />
     <Compile Include="Presentadores\Asociados\PresentadorConsultarAsociados.cs" />
+    <Compile Include="Presentadores\CadenaDeCambio\PresentadorConsultarCadenasDeCambios.cs" />
+    <Compile Include="Presentadores\CadenaDeCambio\PresentadorGestionarCadenaDeCambios.cs" />
     <Compile Include="Presentadores\Cartas\PresentadorConsultarContactosPorAsociado.cs" />
     <Compile Include="Presentadores\Cartas\PresentadorConsultarCarta.cs" />
     <Compile Include="Presentadores\Cartas\PresentadorAgregarCarta.cs" />
@@ -1107,6 +1113,9 @@
     <Compile Include="Ventanas\Asociados\ListaConectividad.xaml.cs">
       <DependentUpon>ListaConectividad.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\Asociados\ListaContactosCxC.xaml.cs">
+      <DependentUpon>ListaContactosCxC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Asociados\ListaEmails.xaml.cs">
       <DependentUpon>ListaEmails.xaml</DependentUpon>
     </Compile>
@@ -1124,6 +1133,12 @@
     </Compile>
     <Compile Include="Ventanas\Base\Comodin.xaml.cs">
       <DependentUpon>Comodin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\CadenaDeCambio\ConsultarCadenasDeCambios.xaml.cs">
+      <DependentUpon>ConsultarCadenasDeCambios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\CadenaDeCambio\GestionarCadenaDeCambios.xaml.cs">
+      <DependentUpon>GestionarCadenaDeCambios.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\CartasOuts\ConsultarCartasOuts.xaml.cs">
       <DependentUpon>ConsultarCartasOuts.xaml</DependentUpon>
@@ -1920,6 +1935,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Ventanas\Asociados\ListaContactosCxC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Ventanas\Asociados\ListaEmails.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1941,6 +1960,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\Base\Comodin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\CadenaDeCambio\ConsultarCadenasDeCambios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\CadenaDeCambio\GestionarCadenaDeCambios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

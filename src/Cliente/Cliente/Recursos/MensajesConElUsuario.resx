@@ -1513,4 +1513,13 @@
   <data name="AlertaEliminarContactoCxP" xml:space="preserve">
     <value>Confirma eliminar Contacto CxP?. Al eliminar el Contacto CxP los datos se perderán. </value>
   </data>
+  <data name="ErrorPlanillaPdfRenovacionNoEncontrada" xml:space="preserve">
+    <value>Disculpe, la Planilla de la Renovación {0} no existe</value>
+  </data>
+  <data name="ErrorExpedienteTyRMarcaNoExiste" xml:space="preserve">
+    <value>Disculpe, el archivo PDF del Expediente {0} no existe</value>
+  </data>
+  <data name="AlertaAgregarOModificarCadenaCambios" xml:space="preserve">
+    <value>Desea guardar los datos de la Cadena de Cambios?</value>
+  </data>
 </root>

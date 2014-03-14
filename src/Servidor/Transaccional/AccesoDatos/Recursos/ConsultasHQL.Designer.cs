@@ -124,6 +124,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Select c from CadenaDeCambios c where .
+        /// </summary>
+        public static string CabeceraObtenerCadenaDeCambios {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerCadenaDeCambios", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Select c from CambioDeDomicilio c left join fetch c.Marca as marca left join fetch c.InteresadoActual as interesadoActual left join fetch c.InteresadoAnterior as interesadoAnterior left join fetch c.Agente as agente  left join fetch c.Poder as poder where .
         /// </summary>
         public static string CabeceraObtenerCambioDeDomicilio {
@@ -624,6 +633,42 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerAsociadoTipoPersona {
             get {
                 return ResourceManager.GetString("FiltroObtenerAsociadoTipoPersona", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a c.CodigoOperacion = {0}.
+        /// </summary>
+        public static string FiltroObtenerCadenaCambiosCodigoOperacion {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCadenaCambiosCodigoOperacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a c.FechaCadenaCambio = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerCadenaCambiosFecha {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCadenaCambiosFecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a c.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerCadenaCambiosId {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCadenaCambiosId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a c.TipoCambio = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerCadenaCambiosTipoCambio {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCadenaCambiosTipoCambio", resourceCulture);
             }
         }
         
@@ -1276,7 +1321,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a m.ExpTraspasoRenovacion = &apos;{0}&apos;.
+        ///   Busca una cadena traducida similar a m.ExpTraspasoRenovacion like &apos;%{0}%&apos;.
         /// </summary>
         public static string FiltroObtenerMarcaExpTraspasoRenovacion {
             get {
@@ -2298,6 +2343,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string ObtenerContactoPorId {
             get {
                 return ResourceManager.GetString("ObtenerContactoPorId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select c from ContactoCxP c where c.Asociado.Id = {0}.
+        /// </summary>
+        public static string ObtenerContactosCxPAsociado {
+            get {
+                return ResourceManager.GetString("ObtenerContactosCxPAsociado", resourceCulture);
             }
         }
         

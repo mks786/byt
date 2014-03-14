@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="ContratosServicios\IAlmacenServicios.cs" />
     <Compile Include="ContratosServicios\IArchivoServicios.cs" />
+    <Compile Include="ContratosServicios\ICadenaDeCambiosServicios.cs" />
     <Compile Include="ContratosServicios\ICajaServicios.cs" />
     <Compile Include="ContratosServicios\ICamposReporteRelacionServicios.cs" />
     <Compile Include="ContratosServicios\ICamposReporteServicios.cs" />
@@ -152,6 +153,7 @@
     <Compile Include="Entidades\Agente.cs" />
     <Compile Include="Entidades\BatPlantilla.cs" />
     <Compile Include="Entidades\Busqueda.cs" />
+    <Compile Include="Entidades\CadenaDeCambios.cs" />
     <Compile Include="Entidades\Caja.cs" />
     <Compile Include="Entidades\CamposReporte.cs" />
     <Compile Include="Entidades\CamposReporteRelacion.cs" />

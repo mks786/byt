@@ -297,6 +297,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                         this._ventana.HabilitarBotonNuevaRenovacion();
                     }
 
+                    if (System.IO.File.Exists(ConfigurationManager.AppSettings["RutaPlanillaPDFRenovacionMarca"].ToString() + ((Renovacion)this._ventana.Renovacion).Id + ".pdf"))
+                    {
+                        this._ventana.PintarVerPlanilla();
+                    }
+
                     #region CODIGO COMENTADO NO BORRAR
                     //if (((Marca)this._ventana.Marca).LocalidadMarca != null)
                     //{
@@ -2521,6 +2526,38 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             {
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+        }
+
+        /// <summary>
+        /// Metodo que presenta el archivo pdf de la planilla
+        /// </summary>
+        public void IrVerPlanilla()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                String ruta = ConfigurationManager.AppSettings["RutaPlanillaPDFRenovacionMarca"].ToString() + ((Renovacion)this._ventana.Renovacion).Id.ToString() + ".pdf";
+                System.Diagnostics.Process.Start(ruta);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Win32Exception ex)
+            {
+                logger.Error(ex.Message);
+                this._ventana.ArchivoNoEncontrado(string.Format(Recursos.MensajesConElUsuario.ErrorPlanillaPdfRenovacionNoEncontrada, ((Renovacion)this._ventana.Renovacion).Id.ToString()));
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
     }

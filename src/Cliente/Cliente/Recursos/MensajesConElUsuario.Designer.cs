@@ -133,6 +133,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Desea guardar los datos de la Cadena de Cambios?.
+        /// </summary>
+        internal static string AlertaAgregarOModificarCadenaCambios {
+            get {
+                return ResourceManager.GetString("AlertaAgregarOModificarCadenaCambios", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Se procede a registrar el Contacto como Contacto CxP?.
         /// </summary>
         internal static string AlertaAgregarOModificarContactoCxP {
@@ -1790,6 +1799,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Disculpe, el archivo PDF del Expediente {0} no existe.
+        /// </summary>
+        internal static string ErrorExpedienteTyRMarcaNoExiste {
+            get {
+                return ResourceManager.GetString("ErrorExpedienteTyRMarcaNoExiste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Disculpe debe llenar al menos 1 filtro para la consulta.
         /// </summary>
         internal static string ErrorFiltroIncompleto {
@@ -1948,6 +1966,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ErrorPlanillaPdfLicenciaNoEncontrada {
             get {
                 return ResourceManager.GetString("ErrorPlanillaPdfLicenciaNoEncontrada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Disculpe, la Planilla de la Renovación {0} no existe.
+        /// </summary>
+        internal static string ErrorPlanillaPdfRenovacionNoEncontrada {
+            get {
+                return ResourceManager.GetString("ErrorPlanillaPdfRenovacionNoEncontrada", resourceCulture);
             }
         }
         

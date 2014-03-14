@@ -192,6 +192,14 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// <returns>IDaoArchivo</returns>
         public abstract IDaoArchivo ObtenerDaoArchivo();
 
+
+        /// <summary>
+        /// Método que devuelve el DaoCaja del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoCadenaDeCambios</returns>
+        public abstract IDaoCadenaDeCambios ObtenerDaoCadenaDeCambios();
+
+
         /// <summary>
         /// Método que devuelve el DaoInstruccionEnvioOriginales del manejador que se esté utilizando
         /// </summary>

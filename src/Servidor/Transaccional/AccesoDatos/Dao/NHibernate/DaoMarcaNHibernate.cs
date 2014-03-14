@@ -268,7 +268,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 {
                     if (variosFiltros)
                         filtro += " and ";
-                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaExpTraspasoRenovacion, marca.ExpTraspasoRenovacion);
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaExpTraspasoRenovacion, marca.ExpTraspasoRenovacion.ToUpper());
                     variosFiltros = true;
                 }
 

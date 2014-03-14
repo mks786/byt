@@ -30,20 +30,15 @@ namespace Trascend.Bolet.Servidor
 
             #region Codigo de Prueba NO BORRAR 
             
-            //AsociadoServicios asociadoServicio = new AsociadoServicios();
-            //Asociado filtro = new Asociado();
-            //filtro.Id = 4;
-            //Asociado asociado = asociadoServicio.ConsultarAsociadoConTodo(filtro);
+            /*CadenaDeCambiosServicios servicioPrueba = new CadenaDeCambiosServicios();
+            CadenaDeCambios cadenaCambiosFiltro = new CadenaDeCambios();
+            cadenaCambiosFiltro.TipoCambio = "M";
+            cadenaCambiosFiltro.CodigoOperacion = 860000;
 
-            //ContactoCxP contacto = new ContactoCxP();
-            //contacto.Asociado = asociado;
-            //contacto.Id = 4;
+            IList<CadenaDeCambios> cadenasCambios = servicioPrueba.ObtenerCadenasCambioFiltro(cadenaCambiosFiltro);*/
 
-            // ContactoCxPServicios servicioPrueba = new ContactoCxPServicios();
 
-            // IList<ContactoCxP> contactos = servicioPrueba.ConsultarContactoCxPFiltro(contacto);
-            
-             //Console.ReadLine();
+            //Console.ReadLine();
 
 
             #endregion

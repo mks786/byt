@@ -39,7 +39,6 @@
                 <Label>
                     <TextBlock FontSize="15" Name="_lblHits"/>
                 </Label>
-
             </StackPanel>
         </GroupBox>
 

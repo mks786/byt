@@ -6,7 +6,7 @@
 
     <composite-id>
       <key-property name="Id" column="CCONTACTO"/>
-      <key-many-to-one name="Asociado" column="CASOCIADO" class="Asociado"/>
+      <key-many-to-one name="Asociado" column="CASOCIADO" class="Asociado" lazy="false"/>
     </composite-id>
 
     <property name="FrecuenciaPago" type="String" column="IDIASPAGO"/>

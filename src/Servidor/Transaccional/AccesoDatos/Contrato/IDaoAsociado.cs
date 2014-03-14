@@ -52,5 +52,11 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
         /// <returns>true si se ejecto, de lo contrario false</returns>
         bool EjecutarProcedimiento(ParametroProcedimiento parametro);
 
+        /// <summary>
+        /// Metodo que obtiene los contactos Cuentas por Cobrar Bolet
+        /// </summary>
+        /// <param name="asociado">Asociado consultado</param>
+        /// <returns>Lista de contactos cuentas por cobrar Bolet</returns>
+        IList<ContactoCxP> ObtenerContactosCxPDelAsociado(Asociado asociado);
     }
 }

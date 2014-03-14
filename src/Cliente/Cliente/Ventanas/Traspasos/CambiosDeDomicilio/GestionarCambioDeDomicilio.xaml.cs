@@ -203,6 +203,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
                 this._btnConsultarMarca.IsEnabled = value;
                 this._dpkFechaDomicilio.IsEnabled = value;
                 this._chkEtiqueta.IsEnabled = value;
+                this._txtCadenaCambios.IsEnabled = value;
+                this._btnConsultarCadenaCambios.IsEnabled = value;
 
                 _btnConsultarInteresadoAnterior.IsEnabled = value;
                 _txtNombreInteresadoAnterior.IsEnabled = value;
@@ -402,6 +404,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
             set { this._lstPoderes.SelectedItem = value; }
         }
 
+
+        public string IdCadenaDeCambios
+        {
+            get { return this._txtCadenaCambios.Text; }
+            set { this._txtCadenaCambios.Text = value; }
+        }
+
         public void Mensaje(string mensaje, int opcion)
         {
             if (opcion == 0)
@@ -424,6 +433,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
             }
         }
 
+        
         #endregion
 
         public GestionarCambioDeDomicilio(object cambioDeDomicilio)
@@ -687,6 +697,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
             this._txtAsociado.Visibility = (System.Windows.Visibility)value;
             this._txtIdAsociado.Visibility = (System.Windows.Visibility)value;
             this._btnIrAsociados.Visibility = (System.Windows.Visibility)value;
+            this._btnConsultarCadenaCambios.Visibility = (System.Windows.Visibility)value;
+            this._txtCadenaCambios.Visibility = (System.Windows.Visibility)value;
         }
 
         private void _txtMarcaFiltrar_GotFocus(object sender, RoutedEventArgs e)
@@ -1073,6 +1085,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
         public void PintarVerPlanilla()
         {
             this._btnVerPlanilla.Background = Brushes.LightGreen;
+        }
+
+        
+
+        private void _btnConsultarCadenaCambios_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrConsultarCadenaDeCambios();
         }
 
     }

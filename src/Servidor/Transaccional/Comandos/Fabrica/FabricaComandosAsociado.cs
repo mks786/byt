@@ -71,5 +71,10 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoEjecutarProcedimiento(parametro);
         }
+
+        public static ComandoBase<IList<ContactoCxP>> ObtenerComandoContactosCxPAsociado(Asociado asociado)
+        {
+            return new ComandoConsultarContactosCxPAsociado(asociado);
+        }
     }
 }

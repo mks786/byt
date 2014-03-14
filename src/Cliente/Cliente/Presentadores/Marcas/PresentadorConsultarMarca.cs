@@ -562,6 +562,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.PintarFacturacion();
 
 
+                String mensaje = String.Format("La marca {0} ", this._marca.Id.ToString());
+                String cadenaMensaje = String.Empty;
+                bool flag = false;
+
                 #region Instrucciones de Correspondencia 
 
                 InstruccionCorrespondencia instruccionEnvioEmails = new InstruccionCorrespondencia();
@@ -582,7 +586,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 {
                     this._ventana.PintarIconoBotonCorrespondencia();
                 }
- 
+
+                if(instruccion != null) 
+                {
+                    flag = true;
+                    cadenaMensaje += " tiene Instrucción de Correspondencia por Envío de Email";
+                }
+
+                if (instruccionEO != null)
+                {
+                    if (flag)
+                    {
+                        cadenaMensaje += ", " + " tiene Instrucción de Correspondencia por Envío de Originales ";
+                        flag = false;
+                    }
+                    else
+                        cadenaMensaje += " tiene Instrucción de Correspondencia por Envío de Originales ";
+                }
+
+                 
                 #endregion
 
 
@@ -607,6 +629,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.PintarIconoBotonFacturacion();
                 }
 
+                if (instruccionFac != null)
+                {
+                    cadenaMensaje += " tiene Instrucción de Facturación por Envío de Email ";
+                    flag = true;
+                }
+
+                if (instruccionFac_EO != null)
+                {
+                    if (flag)
+                    {
+                        cadenaMensaje += "," + " tiene Instrucción de Facturación por Envío de Originales ";
+                    }
+                    else
+                    {
+                        cadenaMensaje += " tiene Instrucción de Facturación por Envío de Originales ";
+                        flag = true;
+                    }
+                }
+
                 #endregion
 
                 #region Instrucciones de Descuento de Marca
@@ -621,6 +662,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if (instruccionesD.Count > 0)
                 {
                     this._ventana.PintarIconoBotonDescuento();
+                    if (flag)
+                    {
+                        cadenaMensaje += "," + String.Format(" tiene {0} Instruccion(es) de Descuento ", instruccionesD.Count.ToString());
+                    }
+                    else
+                    {
+                        cadenaMensaje += String.Format(" tiene {0} Instruccion(es) de Descuento ", instruccionesD.Count.ToString());
+                        flag = true;
+                    }
                 }
 
                 #endregion
@@ -637,6 +687,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if (instrucciones.Count > 0)
                 {
                     this._ventana.PintarIconoBotonOtros();
+                    if(flag)
+                        cadenaMensaje += "," + String.Format(" tiene {0} Instruccion(es) de Otro tipo ", instrucciones.Count.ToString());
+                    else
+                        cadenaMensaje += String.Format(" tiene {0} Instruccion(es) de Otro tipo ", instrucciones.Count.ToString());
                 }
 
                 #endregion
@@ -747,6 +801,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.FocoPredeterminado();
 
                 CalcularSaldos();
+
+                if ((instruccion != null || instruccionEO != null) || (instruccionFac != null || instruccionFac_EO != null) || 
+                    (instruccionesD.Count > 0) || (instrucciones.Count > 0))
+                {
+                    this._ventana.Mensaje(mensaje + cadenaMensaje, 2); 
+                }
+
+                if (this._marca.ExpTraspasoRenovacion != null)
+                {
+                    String ruta = ConfigurationManager.AppSettings["RutaExpedienteTyRMarca"].ToString() + this._marca.ExpTraspasoRenovacion + ".pdf";
+                    if (File.Exists(ruta))
+                        this._ventana.PintarBotonExpTyR();
+                }
+                
+
+                
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -4297,6 +4367,57 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
+        }
+
+        /// <summary>
+        /// Metodo que presenta el pdf del Expediente TyR de una Marca especifica consultada
+        /// </summary>
+        public void VerExpedienteTyR(String botonPresionado)
+        {
+
+            String ruta = String.Empty;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                switch (botonPresionado)
+                {
+                    case "_btnExptyrSolicitud" :
+                        if ((this._ventana.IdExpTraspasoRenovacionSolicitud != null) && (!this._ventana.IdExpTraspasoRenovacionSolicitud.Equals(String.Empty)))
+                        {
+                            ruta = ConfigurationManager.AppSettings["RutaExpedienteTyRMarca"].ToString() + this._ventana.IdExpTraspasoRenovacionSolicitud + ".pdf";
+                            System.Diagnostics.Process.Start(ruta);
+                        }
+                        break;
+                    case "_btnExptyrDatos" :
+                        if ((this._ventana.IdExpTraspasoRenovacionDatos != null) && (!this._ventana.IdExpTraspasoRenovacionDatos.Equals(String.Empty)))
+                        {
+                            ruta = ConfigurationManager.AppSettings["RutaExpedienteTyRMarca"].ToString() + this._ventana.IdExpTraspasoRenovacionDatos + ".pdf";
+                            System.Diagnostics.Process.Start(ruta);
+                        }
+                        break;
+                }
+
+                
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Win32Exception ex)
+            {
+                logger.Error(ex.Message);
+                this._ventana.ArchivoNoEncontrado(string.Format(Recursos.MensajesConElUsuario.ErrorExpedienteTyRMarcaNoExiste, this._ventana.IdExpTraspasoRenovacionDatos));
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
         }
     }
 }

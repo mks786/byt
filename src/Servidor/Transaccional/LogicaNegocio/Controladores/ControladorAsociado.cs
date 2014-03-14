@@ -307,6 +307,40 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             return retorno;
         }
 
+        /// <summary>
+        /// Metodo que obtiene los contactos de cuentas por cobrar Bolet de un Asociado especifico
+        /// </summary>
+        /// <param name="asociado">Asociado consultado</param>
+        /// <returns>Lista de Asociado Cuentas por Cobrar Bolet</returns>
+        public static IList<ContactoCxP> ConsultarContactosCxPAsociado(Asociado asociado)
+        {
+            IList<ContactoCxP> retorno;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<IList<ContactoCxP>> comando = FabricaComandosAsociado.ObtenerComandoContactosCxPAsociado(asociado);
+                comando.Ejecutar();
+                retorno = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+
+            return retorno;
+        }
+
         public static IList<EmailAsociado> ConsultarEmailsDelAsociado(Asociado asociado)
         {
             IList<EmailAsociado> retorno;
@@ -348,6 +382,8 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return false;
         }
+
+        
     }
 }
 

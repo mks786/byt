@@ -599,8 +599,13 @@
                                   Height="32" HorizontalAlignment="Left" IsChecked="{Binding Path=BActa}" Name="_chkAsientoEnLibro" VerticalAlignment="Center"
                                   />
 
-                        <Button IsEnabled="True" Name="_btnSolicitud" Width="65" IsDefault="False" Grid.Row="3" Grid.Column="3" Height="25" 
-                    HorizontalAlignment="Right" Margin="0,5,0,0" Click="_btnSolicitud_Click" Visibility="Visible">
+                        <Button IsEnabled="True" Name="_btnVerPlanilla" Width="65" IsDefault="False" Grid.Row="3" Grid.Column="2" 
+                                Height="25" HorizontalAlignment="Right" Margin="0,5,0,0" Click="_btnVerPlanilla_Click">
+                            <TextBlock Name="_txbVerPlanilla" Text="{x:Static recurso:Etiquetas.btnVerPlanilla}"/>
+                        </Button>
+
+                        <Button IsEnabled="True" Name="_btnSolicitud" Width="65" IsDefault="False" Grid.Row="3" Grid.Column="3" 
+                                Height="25" HorizontalAlignment="Right" Margin="0,5,0,0" Click="_btnSolicitud_Click" Visibility="Visible">
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnSolicitud}"/>
                         </Button>
 

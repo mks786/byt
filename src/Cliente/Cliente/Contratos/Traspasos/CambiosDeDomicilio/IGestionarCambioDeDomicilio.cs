@@ -150,5 +150,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeDomicilio
         void ArchivoNoEncontrado(string mensaje);
 
         void PintarVerPlanilla();
+
+        string IdCadenaDeCambios { get; set; }
     }
 }

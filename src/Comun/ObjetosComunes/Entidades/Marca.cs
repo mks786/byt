@@ -69,6 +69,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<InstruccionDeRenovacion> _instruccionesDeRenovacion;
         private int? _recordatorio;
         private string _propiedadDistingue;
+        private DateTime? _fechaCierreExpediente;
         
 
         #region Internacional
@@ -816,6 +817,14 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
 
+        /// <summary>
+        /// Propiedad que asigna u obtiene la Fecha de Cierre de Expediente TyR
+        /// </summary>
+        public virtual DateTime? FechaCierreExpediente
+        {
+            get { return _fechaCierreExpediente; }
+            set { _fechaCierreExpediente = value; }
+        }
        
 
         #endregion

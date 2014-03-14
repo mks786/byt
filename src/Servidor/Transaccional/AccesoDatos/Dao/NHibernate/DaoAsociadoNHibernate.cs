@@ -303,6 +303,50 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
 
         /// <summary>
+        /// Metodo que obtiene los contactos Cuentas por Cobrar Bolet
+        /// </summary>
+        /// <param name="asociado">Asociado consultado</param>
+        /// <returns>Lista de contactos cuentas por cobrar Bolet</returns>
+        public IList<ContactoCxP> ObtenerContactosCxPDelAsociado(Asociado asociado)
+        {
+            IList<ContactoCxP> recordatorios = null;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                string filtro = "";
+
+
+                string cabecera = string.Format(Recursos.ConsultasHQL.ObtenerContactosCxPAsociado, asociado.Id);
+
+                IQuery query = Session.CreateQuery(cabecera + filtro);
+                recordatorios = query.List<ContactoCxP>();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.exObtenerMarcasPorFechaRenovacion);
+            }
+            finally
+            {
+                Session.Close();
+            }
+            return recordatorios;
+        }
+
+
+
+
+        /// <summary>
         /// Método que consulta los contactos de un asociado a traves de una vista
         /// </summary>
         /// <param name="asociado"></param>

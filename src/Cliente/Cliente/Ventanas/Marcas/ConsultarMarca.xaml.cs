@@ -305,6 +305,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
 
+
+
         public bool EstaCargada
         {
             get { return this._cargada; }
@@ -419,6 +421,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._lblIdentMarcaOrigenSolicitud.IsEnabled = value;
                 //this._txtIdExpedienteTraspasoRenovacionDatos.IsEnabled = value;
                 this._txtIdExpedienteTraspasoRenovacionSolicitud.IsEnabled = value;
+                this._txtFechaCierreExpDatos.IsEnabled = value;
 
                 #endregion
 
@@ -2877,34 +2880,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.IrListaInstruccionesDeDescuento();
         }
 
-        
+        private void _btnExptyr_Click(object sender, RoutedEventArgs e)
+        {
+            String nombreBoton = String.Empty;
 
-        
+            Button botonPresionado = (Button)sender;
+            nombreBoton = botonPresionado.Name;
+            this._presentador.VerExpedienteTyR(nombreBoton);
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        public void PintarBotonExpTyR()
+        {
+            this._btnExptyrDatos.Background = Brushes.LightGreen;
+            this._btnExptyrSolicitud.Background = Brushes.LightGreen;
+        }
 
 
     }

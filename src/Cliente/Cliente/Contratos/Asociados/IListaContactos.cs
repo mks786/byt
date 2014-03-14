@@ -18,5 +18,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
         string TotalHits { set; }
 
         void Mensaje(string mensaje, int opcion);
+
+        void PintarBotonListaContactosCxC();
     }
 }

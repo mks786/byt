@@ -12,8 +12,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Asociado _asociado;
         private String _frecuenciaPago;
         private String _modoPago;
+        private String _modoPagoDescripcion;
         private String _observacion;
         private Contacto _contactoAsociado;
+        private ContactosDelAsociadoVista _contactoAsociadoVista;
 
         #endregion
 
@@ -115,6 +117,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
 
         /// <summary>
+        /// Propiedad que asigna y obtiene la descripcion completa del modo de pago para el contacto cxp
+        /// </summary>
+        public virtual String ModoPagoDescripcion
+        {
+            get { return _modoPagoDescripcion; }
+            set { _modoPagoDescripcion = value; }
+        }
+
+
+        /// <summary>
         /// Propiedad que asigna y obtiene un campo de observaciones para el contacto cxp
         /// </summary>
         public virtual String Observacion
@@ -131,6 +143,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _contactoAsociado; }
             set { _contactoAsociado = value; }
+        }
+
+
+        /// <summary>
+        /// Propiedad que asigna y obtiene el contacto del asociado Vista que es tambien contacto cxp
+        /// </summary>
+        public virtual ContactosDelAsociadoVista ContactoAsociadoVista
+        {
+            get { return _contactoAsociadoVista; }
+            set { _contactoAsociadoVista = value; }
         }
 
 

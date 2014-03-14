@@ -1040,7 +1040,7 @@
     <value>Select e from EmailAsociado e left outer join fetch e.Asociado left join fetch e.TipoEmailAsociado where e.Asociado.Id = {0}</value>
   </data>
   <data name="FiltroObtenerMarcaExpTraspasoRenovacion" xml:space="preserve">
-    <value>m.ExpTraspasoRenovacion = '{0}'</value>
+    <value>m.ExpTraspasoRenovacion like '%{0}%'</value>
     <comment>Filtro para obtener la marca segun el numero de Expediente de Traspaso Renovacion</comment>
   </data>
   <data name="FiltroObtenerMarcaFechaInscripcion" xml:space="preserve">
@@ -1274,5 +1274,29 @@
   <data name="FiltroIdContactoCxP" xml:space="preserve">
     <value>c.Id = {0}</value>
     <comment>Filtro para obtener ContactoCxP por Id</comment>
+  </data>
+  <data name="ObtenerContactosCxPAsociado" xml:space="preserve">
+    <value>Select c from ContactoCxP c where c.Asociado.Id = {0}</value>
+    <comment>Consulta HQL para obtener los Contactos CxP (Cuentas por Cobrar Bolet) de un Asociado especifico</comment>
+  </data>
+  <data name="CabeceraObtenerCadenaDeCambios" xml:space="preserve">
+    <value>Select c from CadenaDeCambios c where </value>
+    <comment>Cabecera para obtener Cadenas de Cambios por filtro</comment>
+  </data>
+  <data name="FiltroObtenerCadenaCambiosCodigoOperacion" xml:space="preserve">
+    <value>c.CodigoOperacion = {0}</value>
+    <comment>Filtro para obtener cadenas de cambios por Codigo de Operacion de la Cadena de Cambios</comment>
+  </data>
+  <data name="FiltroObtenerCadenaCambiosFecha" xml:space="preserve">
+    <value>c.FechaCadenaCambio = '{0}'</value>
+    <comment>Filtro para obtener cadenas de cambios por Fecha de Cadena de Cambios</comment>
+  </data>
+  <data name="FiltroObtenerCadenaCambiosId" xml:space="preserve">
+    <value>c.Id = {0}</value>
+    <comment>Filtro para obtener cadenas de cambios por Id</comment>
+  </data>
+  <data name="FiltroObtenerCadenaCambiosTipoCambio" xml:space="preserve">
+    <value>c.TipoCambio = '{0}'</value>
+    <comment>Filtro para obtener cadenas de cambios por Tipo de Cadena de Cambios</comment>
   </data>
 </root>

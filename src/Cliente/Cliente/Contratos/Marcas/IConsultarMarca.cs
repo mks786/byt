@@ -340,5 +340,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         void PintarCertificado();
 
+        void PintarBotonExpTyR();
+
     }
 }

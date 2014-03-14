@@ -1723,15 +1723,34 @@
                         </ComboBox>
 
                         <!--Nuevo-->
-                        <Label Grid.Column="9" Grid.Row="21" Grid.ColumnSpan="1" VerticalAlignment="Center">
+                        <!--<Label Grid.Column="9" Grid.Row="21" Grid.ColumnSpan="1" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblExpCamPend}"/>
-                        </Label>
-                        <custom:ByTTextBox  Grid.Column="10" Grid.Row="21" Grid.ColumnSpan="1" Margin="3" Name="_txtExptyr" VerticalAlignment="Center"  
-                          Text=""></custom:ByTTextBox>
+                        </Label>-->
+                        <!--<custom:ByTTextBox  Grid.Column="10" Grid.Row="21" Grid.ColumnSpan="1" Margin="3" Name="_txtExptyr" VerticalAlignment="Center"  
+                          Text=""></custom:ByTTextBox>-->
                         <!--Fin Nuevo-->
 
                         <Separator Margin="10 0" Grid.Column="6" Grid.Row="21" Grid.ColumnSpan="5" VerticalAlignment="bottom"/>
                         <!--Fin Fila Catorce-->
+
+                        <Label Grid.Column="6" Grid.Row="22" Grid.ColumnSpan="1" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblExpCamPend}"/>
+                        </Label>
+                        <custom:ByTTextBox  Grid.Column="7" Grid.Row="22" Grid.ColumnSpan="1" Margin="3" Name="_txtExptyr" 
+                                            VerticalAlignment="Center" Text="{Binding Path=ExpTraspasoRenovacion}">
+                        </custom:ByTTextBox>
+
+                        <!--<Label Grid.Column="8" Grid.Row="22" VerticalAlignment="Center" Margin="6,0,0,0" Grid.ColumnSpan="1">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaCierreExp}"/>
+                        </Label>
+                        <DatePicker Grid.Column="9" Grid.Row="22" Grid.ColumnSpan="1" Name="_txtFechaCierreExpDatos" Focusable="False"
+                                    BorderBrush="{x:Null}" Margin="8,0,0,0">
+                            <DatePicker.SelectedDate>
+                                <Binding Path="FechaCierreExpediente" UpdateSourceTrigger="PropertyChanged" 
+                                         StringFormat="{}{0:dd/MM/yyyy}"/>
+                            </DatePicker.SelectedDate>
+                        </DatePicker>-->
+
 
                         <!--Fila Quince-->
                         <Button Visibility="Hidden" Grid.Column="6" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnInfoAdicional" Margin="3"

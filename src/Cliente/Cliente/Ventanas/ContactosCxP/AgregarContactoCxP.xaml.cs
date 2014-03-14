@@ -69,10 +69,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.ContactosCxP
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorAgregarContactoCxP(this, contactoCxP, nuevoContacto, ventanaPadre);
-        } 
+            this._presentador = new PresentadorAgregarContactoCxP(this, contactoCxP, nuevoContacto, ventanaPadre,null,null);
+        }
 
-        
+        public AgregarContactoCxP(object contactoCxP, object contactosAsociado, object ventanaPadre, object ventanaListaContactos, bool nuevoContacto)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorAgregarContactoCxP(this, contactoCxP, nuevoContacto, ventanaPadre,contactosAsociado,ventanaListaContactos);
+        }
 
         #endregion
 

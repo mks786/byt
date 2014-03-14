@@ -34,6 +34,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         private IContactoCxPServicios _contactoCxPServicios;
         private ICartaServicios _cartaServicios;
 
+        private IList<ContactosDelAsociadoVista> _contactosAsociado;
+
 
         /// <summary>
         /// Constructor Predeterminado
@@ -86,8 +88,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaContactos,
                     Recursos.Ids.Contacto);
                 IList<ContactosDelAsociadoVista> contactos = this._asociadoServicios.ConsultarContactosDelAsociado(_asociado, true);
+                this._contactosAsociado = contactos;
                 this._ventana.Contactos = contactos;
                 this._ventana.TotalHits = contactos.Count.ToString();
+
+                IList<ContactoCxP> contactosPorCobrarBolet = this._asociadoServicios.ConsultarContactosCxPAsociado(this._asociado);
+                if (contactosPorCobrarBolet.Count > 0)
+                    this._ventana.PintarBotonListaContactosCxC();
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -280,10 +288,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     IList<ContactoCxP> listaContactosCxP = this._contactoCxPServicios.ConsultarContactoCxPFiltro(contactoCxP);
                     if (listaContactosCxP.Count > 0)
                     {
-                        contactoCxP = new ContactoCxP();
+                        /*contactoCxP = new ContactoCxP();
                         contactoCxP = listaContactosCxP[0];
                         contactoCxP.ContactoAsociado = contacto;
-                        this.Navegar(new AgregarContactoCxP(contactoCxP, this._ventana, false));
+                        this.Navegar(new AgregarContactoCxP(contactoCxP, this._ventana, false));*/
+                        this._ventana.Mensaje("El Contacto Cuentas por Cobrar ya se encuentra registrado, presione el boton Ver Contactos CxC para modificarlo", 2);
                     }
                     else
                     {
@@ -292,6 +301,47 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     }
 
                     
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo que muestra la lista de los ContactosCxP (Cuentas x Cobrar) creados
+        /// NOTA: INICIALMENTE SEGUN REQUERIMIENTOS DEL CLIENTE, ESTE HABIA DICHO QUE SE MANEJARIAN LOS CONTACTOS CxP 
+        /// PERO, EN REALIDAD SON CONTACTOS CxC SEGUN RECTIFICACION DEL CLIENTE. 
+        /// SE DEBE CAMBIAR EL NOMBRE DE LA ENTIDAD PUES ESTA ERRADO
+        /// </summary>
+        public void IrListaContactosCxC()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Asociado asociado = this._asociado;
+
+                IList<ContactoCxP> contactosCxP = this._asociadoServicios.ConsultarContactosCxPAsociado(this._asociado);
+
+                if (contactosCxP.Count > 0)
+                {
+                    this.Navegar(new ListaContactosCxC(this._asociado, this._contactosAsociado, this._ventana));
+                }
+                else
+                {
+                    this._ventana.Mensaje("El Asociado no cuenta con Contactos CxC", 0);
                 }
 
                 #region trace

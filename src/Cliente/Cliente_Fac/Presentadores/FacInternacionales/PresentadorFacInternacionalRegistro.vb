@@ -241,12 +241,12 @@ Namespace Presentadores.FacInternacionales
                             'Mouse.OverrideCursor = Nothing
                             'Me._ventana.Mensaje("El número de Factura ingresado ya se encuentra registrado")
                         'Exit Sub
-                    Else
-                        If Not Me._ventana.BSustProforma Then
-                            Mouse.OverrideCursor = Nothing
-                            Me._ventana.Mensaje("El número de Factura ingresado ya se encuentra registrado")
-                            Exit Sub
-                        End If
+                        'Else
+                        '    If Not Me._ventana.BSustProforma Then
+                        '        Mouse.OverrideCursor = Nothing
+                        '        Me._ventana.Mensaje("El número de Factura ingresado ya se encuentra registrado")
+                        '        Exit Sub
+                        '    End If
                     End If
                 End If
 

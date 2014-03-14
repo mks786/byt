@@ -299,6 +299,16 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
 
 
         /// <summary>
+        /// Método que devuelve el DaoCadenaDeCambios
+        /// </summary>
+        /// <returns>IDaoCadenaDeCambios</returns>
+        public override IDaoCadenaDeCambios ObtenerDaoCadenaDeCambios()
+        {
+            return new DaoCadenaDeCambiosNHibernate();
+        }
+
+
+        /// <summary>
         /// Método que devuelve el DaoInstruccionEnvioOriginales
         /// </summary>
         /// <returns>IDaoInstruccionEnvioOriginales</returns>

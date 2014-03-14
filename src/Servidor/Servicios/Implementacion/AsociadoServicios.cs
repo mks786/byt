@@ -335,6 +335,43 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que obtiene los contactos de cuentas por cobrar Bolet de un Asociado especifico
+        /// </summary>
+        /// <param name="asociado">Asociado consultado</param>
+        /// <returns>Lista de Asociado Cuentas por Cobrar Bolet</returns>
+        public IList<ContactoCxP> ConsultarContactosCxPAsociado(Asociado asociado)
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                //IList<ContactosDelAsociadoVista> retorno = ControladorAsociado.ConsultarContactosDelAsociado(asociado, todos);
+                IList<ContactoCxP> retorno = ControladorAsociado.ConsultarContactosCxPAsociado(asociado);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                return retorno;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
+        }
+
+
         public IList<EmailAsociado> ConsultarEmailsDelAsociado(Asociado asociado)
         {
             try

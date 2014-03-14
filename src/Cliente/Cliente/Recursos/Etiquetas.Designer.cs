@@ -232,6 +232,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Cad. Cambios:.
+        /// </summary>
+        public static string btnCadenaCambios {
+            get {
+                return ResourceManager.GetString("btnCadenaCambios", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Cancelar.
         /// </summary>
         public static string btnCancelar {
@@ -737,6 +746,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Ver Contactos CxC.
+        /// </summary>
+        public static string btnListaContactosCxCAsociados {
+            get {
+                return ResourceManager.GetString("btnListaContactosCxCAsociados", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Marca Origen.
         /// </summary>
         public static string btnMarcaOrigen {
@@ -1044,7 +1062,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Reg. Contacto CxP.
+        ///   Busca una cadena traducida similar a Reg. Contacto CxC.
         /// </summary>
         public static string btnRegistrarContactoCxP {
             get {
@@ -2021,6 +2039,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string cbiTipoBusqueda {
             get {
                 return ResourceManager.GetString("cbiTipoBusqueda", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a MYP_CADCAMBIOS_TIPO.
+        /// </summary>
+        public static string cbiTipoCadenaCambios {
+            get {
+                return ResourceManager.GetString("cbiTipoCadenaCambios", resourceCulture);
             }
         }
         
@@ -4600,6 +4627,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Código de Marca/Patente:.
+        /// </summary>
+        public static string lblAplicadaCadenaCambio {
+            get {
+                return ResourceManager.GetString("lblAplicadaCadenaCambio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Apoderado:.
         /// </summary>
         public static string lblApoderado {
@@ -4795,6 +4831,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblByt {
             get {
                 return ResourceManager.GetString("lblByt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cad. Cambios:.
+        /// </summary>
+        public static string lblCadenaCambios {
+            get {
+                return ResourceManager.GetString("lblCadenaCambios", resourceCulture);
             }
         }
         
@@ -5110,6 +5155,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblCodigoMarcaOPatente {
             get {
                 return ResourceManager.GetString("lblCodigoMarcaOPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Código de Marca o Patente:.
+        /// </summary>
+        public static string lblCodigoOperacionCadenaCambios {
+            get {
+                return ResourceManager.GetString("lblCodigoOperacionCadenaCambios", resourceCulture);
             }
         }
         
@@ -5790,6 +5844,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Fecha Cadena Cambio:.
+        /// </summary>
+        public static string lblFechaCadCambio {
+            get {
+                return ResourceManager.GetString("lblFechaCadCambio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Fecha Cierre Exp:.
+        /// </summary>
+        public static string lblFechaCierreExp {
+            get {
+                return ResourceManager.GetString("lblFechaCierreExp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Fecha Consig Diseño:.
         /// </summary>
         public static string lblFechaConsigDiseno {
@@ -6065,6 +6137,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblIdAnaqua {
             get {
                 return ResourceManager.GetString("lblIdAnaqua", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Código Cadena de Cambio:.
+        /// </summary>
+        public static string lblIdCadenaCambios {
+            get {
+                return ResourceManager.GetString("lblIdCadenaCambios", resourceCulture);
             }
         }
         
@@ -7491,6 +7572,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Tipo Cadena de Cambio:.
+        /// </summary>
+        public static string lblTipoCadenaCambio {
+            get {
+                return ResourceManager.GetString("lblTipoCadenaCambio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Tipo de Caja:.
         /// </summary>
         public static string lblTipoCaja {
@@ -8202,6 +8292,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Código Marca/Patente.
+        /// </summary>
+        public static string lsvCodigoOperacion {
+            get {
+                return ResourceManager.GetString("lsvCodigoOperacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Codigo País.
         /// </summary>
         public static string lsvCodigoPais {
@@ -8643,11 +8742,29 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Forma de Pago.
+        /// </summary>
+        public static string lsvFormaPagoContactoCxC {
+            get {
+                return ResourceManager.GetString("lsvFormaPagoContactoCxC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Formato.
         /// </summary>
         public static string lsvFormato {
             get {
                 return ResourceManager.GetString("lsvFormato", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Frecuencia Pago.
+        /// </summary>
+        public static string lsvFrecuenciaPago {
+            get {
+                return ResourceManager.GetString("lsvFrecuenciaPago", resourceCulture);
             }
         }
         
@@ -9183,6 +9300,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Tipo Cadena Cambio.
+        /// </summary>
+        public static string lsvTipoOperacionCadenaCambios {
+            get {
+                return ResourceManager.GetString("lsvTipoOperacionCadenaCambios", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Titulo en Español.
         /// </summary>
         public static string lsvTituloReporteEsp {
@@ -9341,6 +9467,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string menuItemBoletin {
             get {
                 return ResourceManager.GetString("menuItemBoletin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cadena de Cambios.
+        /// </summary>
+        public static string menuItemCadenaDeCambios {
+            get {
+                return ResourceManager.GetString("menuItemCadenaDeCambios", resourceCulture);
             }
         }
         
@@ -11037,6 +11172,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Consulta de Cadenas de Cambios.
+        /// </summary>
+        public static string titleConsultarCadenaDeCambios {
+            get {
+                return ResourceManager.GetString("titleConsultarCadenaDeCambios", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Consultar Cambios de Peticionario de Marcas.
         /// </summary>
         public static string titleConsultarCambioPeticionarios {
@@ -12180,6 +12324,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Cadena de Cambios.
+        /// </summary>
+        public static string titleGestionarCadenaDeCambios {
+            get {
+                return ResourceManager.GetString("titleGestionarCadenaDeCambios", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Gestionar Cambio de Domicilio  de Marcas.
         /// </summary>
         public static string titleGestionarCambioDeDomicilio {
@@ -12446,6 +12599,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleListaContactos {
             get {
                 return ResourceManager.GetString("titleListaContactos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Contactos Cuentas por Cobrar Bolet.
+        /// </summary>
+        public static string titleListaContactosCxP {
+            get {
+                return ResourceManager.GetString("titleListaContactosCxP", resourceCulture);
             }
         }
         

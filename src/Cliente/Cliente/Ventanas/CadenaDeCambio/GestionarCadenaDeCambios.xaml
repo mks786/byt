@@ -1,0 +1,107 @@
+﻿<Page x:Class="Trascend.Bolet.Cliente.Ventanas.CadenaDeCambio.GestionarCadenaDeCambios"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
+      xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
+      xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
+      xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+	Title="GestionarCadenasDeCambios" Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <conv:DosValresAUno x:Key="convertirADosValores"></conv:DosValresAUno>
+        <Style x:Key="ElementInError" TargetType="{x:Type FrameworkElement}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip"
+                    Value="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={x:Static RelativeSource.Self}}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type DatePickerTextBox}">
+            <Setter Property="Text" Value="{x:Static recurso:Etiquetas.dpkText}" />
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Grid.Row="1" Grid.Column="1" >
+            <StackPanel  Name="_gridDatos"  VerticalAlignment="Center"  HorizontalAlignment="Center"
+                        DataContext="{Binding}">
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblIdCadenaCambios}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtIdCadenaCambios" Width="80" MaxLength="400"
+                                       Text="{Binding Path=Id}" IsEnabled="False" />
+                </WrapPanel>
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoCadenaCambio}"/>
+                    </Label>
+                    <ComboBox Name="_cbxTipoCadenaCambios" Width="110" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" 
+                              Margin="14,0,0,0">
+                    </ComboBox>
+                </WrapPanel>
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblAplicadaCadenaCambio}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtAplicaCadenaCambios" Width="80" MaxLength="400" IsReadOnly="False" 
+                                       Text="{Binding Path=CodigoOperacion}" Margin="5,0,0,0" SoloNumero="True"/>
+                    <Button Name="_btnConsultarCodigoOperacion" Width="35" Margin="5,0,0,0" Click="_btnConsultarCodigoOperacion_Click">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.btnAgregar}"/>
+                    </Button>
+                </WrapPanel>
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaCadCambio}"/>
+                    </Label>
+                    <DatePicker Grid.Column="9" Grid.Row="24" Grid.ColumnSpan="1" Name="_txtFechaCadenaCambios" Focusable="False"
+                                    BorderBrush="{x:Null}" Margin="8,0,0,0">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="FechaCadenaCambio" UpdateSourceTrigger="PropertyChanged" 
+                                         StringFormat="{}{0:dd/MM/yyyy}"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                </WrapPanel>
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblObservacion}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtObservacion" Width="200" Height="70" MaxLength="255"  
+                                       Text="{Binding Path=Observaciones}" />
+                </WrapPanel>
+
+            </StackPanel>
+        </GroupBox>
+
+        <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
+            <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnAceptar_Click">
+                <TextBlock Name="_txbAceptar" Text="{x:Static recurso:Etiquetas.btnAceptar}"/>
+            </Button>
+            <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnRegresar_Click">
+                <TextBlock Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
+            </Button>
+        </WrapPanel>
+
+    </Grid>
+</Page>
