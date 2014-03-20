@@ -89,6 +89,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     operacion.Interno = fusion.Id;
                     operacion.Interesado = fusion.InteresadoSobreviviente;
                     operacion.Servicio = new Servicio("FU");
+                    operacion.CadenaDeCambios = fusion.CadenaDeCambios;
 
                     ComandoBase<bool> comandoOperacion = FabricaComandosOperacion.ObtenerComandoInsertarOModificar(operacion);
 
@@ -132,7 +133,21 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 else
                 {
                     ComandoBase<bool> comando = FabricaComandosFusion.ObtenerComandoInsertarOModificar(fusion);
+
+                    Operacion operacionAux = new Operacion();
+                    operacionAux.Interno = fusion.Id;
+                    operacionAux.Servicio = new Servicio("FU");
+                    operacionAux.Aplicada = 'M';
+                    operacionAux.Marca = fusion.Marca;
+
+                    IList<Operacion> operaciones = ControladorOperacion.ConsultarOperacionesFiltro(operacionAux);
+                    Operacion operacion = operaciones[0];
+                    operacion.CadenaDeCambios = fusion.CadenaDeCambios;
+
+                    ComandoBase<bool> comandoOperacion = FabricaComandosOperacion.ObtenerComandoInsertarOModificar(operacion);
+
                     comando.Ejecutar();
+                    comandoOperacion.Ejecutar();
 
                     ComandoBase<bool> comandoFMT = FabricaComandosFusionMarcaTercero.ObtenerComandoInsertarOModificar(fusion.FusionMarcaTercero);
                     comandoFMT.Ejecutar();

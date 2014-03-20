@@ -44,5 +44,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeNombre
         void Mensaje(string mensaje, int opcion);
 
         string TotalHits { set; }
+
+        string IdCadenaCambios { get; set; }
     }
 }

@@ -51,6 +51,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
         private IStatusWebServicios _statusWebServicios;
         private ICambioDeDomicilioServicios _cambioDeDomicilioServicios;
         private ICadenaDeCambiosServicios _cadenaDeCambiosServicios;
+        private IInstruccionCorrespondenciaServicios _instruccionCorrespondenciaServicios;
+        private IInstruccionEnvioOriginalesServicios _instruccionEnvioOriginalesServicios;
+        private IInstruccionDescuentoServicios _instruccionDescuentoServicios;
+        private IInstruccionOtrosServicios _instruccionOtrosServicios;
 
 
         private IList<Asociado> _asociados;
@@ -148,6 +152,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioDeDomicilioServicios"]);
                 this._cadenaDeCambiosServicios = (ICadenaDeCambiosServicios)Activator.GetObject(typeof(ICadenaDeCambiosServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CadenaDeCambiosServicios"]);
+                this._instruccionCorrespondenciaServicios = (IInstruccionCorrespondenciaServicios)Activator.GetObject(typeof(IInstruccionCorrespondenciaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InstruccionCorrespondenciaServicios"]);
+                this._instruccionEnvioOriginalesServicios = (IInstruccionEnvioOriginalesServicios)Activator.GetObject(typeof(IInstruccionEnvioOriginalesServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InstruccionEnvioOriginalesServicios"]);
+                this._instruccionDescuentoServicios = (IInstruccionDescuentoServicios)Activator.GetObject(typeof(IInstruccionDescuentoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InstruccionDescuentoServicios"]);
+                this._instruccionOtrosServicios = (IInstruccionOtrosServicios)Activator.GetObject(typeof(IInstruccionOtrosServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InstruccionOtrosServicios"]);
 
                 #endregion
             }
@@ -243,7 +255,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioDeDomicilioServicios"]);
                 this._cadenaDeCambiosServicios = (ICadenaDeCambiosServicios)Activator.GetObject(typeof(ICadenaDeCambiosServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CadenaDeCambiosServicios"]);
-
+                this._instruccionCorrespondenciaServicios = (IInstruccionCorrespondenciaServicios)Activator.GetObject(typeof(IInstruccionCorrespondenciaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InstruccionCorrespondenciaServicios"]);
+                this._instruccionEnvioOriginalesServicios = (IInstruccionEnvioOriginalesServicios)Activator.GetObject(typeof(IInstruccionEnvioOriginalesServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InstruccionEnvioOriginalesServicios"]);
+                this._instruccionDescuentoServicios = (IInstruccionDescuentoServicios)Activator.GetObject(typeof(IInstruccionDescuentoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InstruccionDescuentoServicios"]);
+                this._instruccionOtrosServicios = (IInstruccionOtrosServicios)Activator.GetObject(typeof(IInstruccionOtrosServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InstruccionOtrosServicios"]);
 
                 #endregion
             }
@@ -324,6 +343,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                         this._ventana.EsMarcaNacional(true);
                         this._ventana.BorrarCerosInternacional();
                     }
+
+                    this._ventana.IdCadenaDeCambios = cambioDeDomicilio.CadenaDeCambios.ToString();
 
                     CargarMarca();
 
@@ -486,6 +507,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             if (null != this._ventana.Boletin)
                 cambioDeDomicilio.BoletinPublicacion = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? (Boletin)this._ventana.Boletin : null;
 
+            if ((null != this._ventana.IdCadenaDeCambios) && (!this._ventana.IdCadenaDeCambios.Equals(String.Empty)) && (!this._ventana.IdCadenaDeCambios.Equals("0")))
+                cambioDeDomicilio.CadenaDeCambios = int.Parse(this._ventana.IdCadenaDeCambios);
+            else
+                cambioDeDomicilio.CadenaDeCambios = null;
+
             return cambioDeDomicilio;
         }
 
@@ -551,6 +577,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                         if (cambioDeDomicilio.Marca.Anaqua != null)
                             cambioDeDomicilio.Marca.Anaqua =
                                 this._anaquaServicios.ConsultarPorId(cambioDeDomicilio.Marca.Anaqua);
+                        
 
                         if (null != cambioDeDomicilio.InteresadoActual)
                         {
@@ -998,7 +1025,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
         {
             Mouse.OverrideCursor = Cursors.Wait;
 
-            bool retorno = false;
+            bool retorno = false, flag = false;
+            String cadenaMensaje = String.Empty;
 
             try
             {
@@ -1066,6 +1094,111 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                         this._ventana.PintarAsociado("5");
 
                     retorno = true;
+
+                    #region Instrucciones de Correspondencia
+
+                    InstruccionCorrespondencia instruccionEnvioEmails = new InstruccionCorrespondencia();
+                    InstruccionCorrespondencia instruccion = null;
+                    instruccionEnvioEmails.Id = ((Marca)this._ventana.Marca).Id;
+                    instruccionEnvioEmails.AplicadaA = "M";
+                    instruccionEnvioEmails.Concepto = "C";
+
+                    InstruccionEnvioOriginales instruccionEnvioOriginales = new InstruccionEnvioOriginales();
+                    InstruccionEnvioOriginales instruccionEO = null;
+                    instruccionEnvioOriginales.Id = ((Marca)this._ventana.Marca).Id;
+                    instruccionEnvioOriginales.AplicadaA = "M";
+                    instruccionEnvioOriginales.Concepto = "C";
+
+                    instruccion = this._instruccionCorrespondenciaServicios.ObtenerInstruccionCorrespondencia(instruccionEnvioEmails);
+                    instruccionEO = this._instruccionEnvioOriginalesServicios.ObtenerInstruccionEnvioOriginales(instruccionEnvioOriginales);
+                    
+                    if (instruccion != null)
+                    {
+                        flag = true;
+                        cadenaMensaje += " tiene Instrucción de Correspondencia por Envío de Email";
+
+                    }
+
+                    if (instruccionEO != null)
+                    {
+                        if (flag)
+                            cadenaMensaje += ", ";
+                        cadenaMensaje += "tiene Instrucción de Correspondencia por Envío de Originales";
+                    }
+                    
+                    #endregion
+
+                    #region Instrucciones de Facturacion
+
+                    InstruccionCorrespondencia instruccionFacEnvioEmails = new InstruccionCorrespondencia();
+                    InstruccionCorrespondencia instruccionFac = null;
+                    instruccionEnvioEmails.Id = ((Marca)this._ventana.Marca).Id;
+                    instruccionEnvioEmails.AplicadaA = "M";
+                    instruccionEnvioEmails.Concepto = "F";
+
+                    InstruccionEnvioOriginales instruccionFacEnvioOriginales = new InstruccionEnvioOriginales();
+                    InstruccionEnvioOriginales instruccionFac_EO = null;
+                    instruccionFacEnvioOriginales.Id = ((Marca)this._ventana.Marca).Id;
+                    instruccionFacEnvioOriginales.AplicadaA = "M";
+                    instruccionFacEnvioOriginales.Concepto = "F";
+
+                    instruccionFac = this._instruccionCorrespondenciaServicios.ObtenerInstruccionCorrespondencia(instruccionFacEnvioEmails);
+                    instruccionFac_EO = this._instruccionEnvioOriginalesServicios.ObtenerInstruccionEnvioOriginales(instruccionFacEnvioOriginales);
+                    
+                    if (instruccionFac != null)
+                    {
+                        if (flag)
+                            cadenaMensaje += ", ";
+                        cadenaMensaje += "tiene Instrucción de Facturación por Envío de Email";
+                    }
+
+                    if (instruccionFac_EO != null)
+                    {
+                        if (flag)
+                            cadenaMensaje += ", ";
+                        cadenaMensaje += "tiene Instrucción de Facturación por Envío de Originales";
+                    }
+
+                    #endregion
+
+                    #region Instrucciones de Descuento de Marca
+
+                    InstruccionDescuento instruccionDescuentoFiltro = new InstruccionDescuento();
+                    instruccionDescuentoFiltro.CodigoOperacion = ((Marca)this._ventana.Marca).Id;
+                    instruccionDescuentoFiltro.AplicaA = "M";
+
+                    IList<InstruccionDescuento> instruccionesD =
+                        this._instruccionDescuentoServicios.ObtenerInstruccionesDeDescuentoMarcaOPatente(instruccionDescuentoFiltro);
+
+                    if (instruccionesD.Count > 0)
+                    {
+                        if (flag)
+                            cadenaMensaje += ", ";
+                        cadenaMensaje += String.Format(" tiene {0} Instruccion(es) de Descuento", instruccionesD.Count.ToString());
+                    }
+
+                    #endregion
+
+                    #region Instrucciones No Tipificadas  De Marca
+
+                    InstruccionOtros instruccionNoTipificadaFiltro = new InstruccionOtros();
+                    instruccionNoTipificadaFiltro.Cod_MarcaOPatente = ((Marca)this._ventana.Marca).Id;
+                    instruccionNoTipificadaFiltro.AplicaA = "M";
+
+                    IList<InstruccionOtros> instrucciones =
+                        this._instruccionOtrosServicios.ObtenerInstruccionesNoTipificadasPorFiltro(instruccionNoTipificadaFiltro);
+
+                    if (instrucciones.Count > 0)
+                    {
+                        if (flag)
+                            cadenaMensaje += ", ";
+                        cadenaMensaje += String.Format(" tiene {0} Instruccion(es) de Otro tipo", instrucciones.Count.ToString());
+                    }
+
+                    #endregion
+
+                    if (cadenaMensaje.Length > 0)
+                        this._ventana.Mensaje(string.Format("La Marca {0}", ((Marca)this._ventana.Marca).Id.ToString()) + cadenaMensaje, 2);
                 }
 
                 this._ventana.BorrarCerosInternacional();
@@ -2356,16 +2489,67 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                         CadenaDeCambios cadenaCambiosAux = new CadenaDeCambios();
                         cadenaCambiosAux.TipoCambio = "M";
                         cadenaCambiosAux.CodigoOperacion = ((Marca)this._ventana.Marca).Id;
+                        cadenaCambiosAux.Id = int.Parse(this._ventana.IdCadenaDeCambios);
                         IList<CadenaDeCambios> cadenasDeCambios = this._cadenaDeCambiosServicios.ObtenerCadenasCambioFiltro(cadenaCambiosAux);
                         if (cadenasDeCambios.Count > 0)
                         {
                             this.Navegar(new GestionarCadenaDeCambios(cadenasDeCambios[0], this._ventana));
                         }
+                        else
+                        {
+                            this._ventana.Mensaje("La Cadena de Cambios especificada no existe", 0);
+                            this._ventana.IdCadenaDeCambios = String.Empty;
+                        }
                     }
+                    else
+                    {
+                        Marca marcaCambioDomicilio = (Marca)this._ventana.Marca;
+                        this.Navegar(new ListadoCadenasDeCambios(marcaCambioDomicilio, "M", this._ventana));
+                    }
+                    
                 }
                 else
                     this._ventana.Mensaje("Debe agregar una Marca para ver sus Cadenas de Cambios asociadas", 0);
 
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+        }
+
+        /// <summary>
+        /// Metodo que consulta la marca seleccionada en el Cambio de Domicilio
+        /// </summary>
+        public void IrConsultarMarca()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (!this._ventana.IdMarca.Equals(String.Empty))
+                {
+                    Marca marcaAux = new Marca();
+                    marcaAux.Id = int.Parse(this._ventana.IdMarca);
+                    IList<Marca> marcas = this._marcaServicios.ObtenerMarcasFiltro(marcaAux);
+                    if (marcas.Count > 0)
+                    {
+                        this.Navegar(new ConsultarMarca(marcas[0], this._ventana));
+                    }
+                    else
+                        this._ventana.Mensaje("La Marca no existe", 0);
+                }
+                else
+                    this._ventana.Mensaje("Debe seleccionar una Marca para poder consultarla", 0);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

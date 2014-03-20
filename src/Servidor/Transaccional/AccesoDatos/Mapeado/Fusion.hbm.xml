@@ -46,6 +46,8 @@
       <column name="CPODER"/>
     </many-to-one>
 
+    <property name="CadenaDeCambios" column="CCAMBIO" type="int"/>
+
     <!--<many-to-one name="FusionMarcaTercero" class="FusionMarcaTercero">
       <column name="CTERCERO"/>
     </many-to-one>-->

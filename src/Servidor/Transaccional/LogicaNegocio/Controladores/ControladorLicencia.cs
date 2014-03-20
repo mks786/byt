@@ -87,6 +87,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     operacion.CodigoAplicada = licencia.Marca.Id;
                     operacion.Interno = licencia.Id;
                     operacion.Servicio = new Servicio("LU");
+                    operacion.CadenaDeCambios = licencia.CadenaDeCambios;
 
                     ComandoBase<bool> comandoOperacion = FabricaComandosOperacion.ObtenerComandoInsertarOModificar(operacion);
 
@@ -112,7 +113,21 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 else
                 {
                     ComandoBase<bool> comando = FabricaComandosLicencia.ObtenerComandoInsertarOModificar(licencia);
+
+                    Operacion operacionAux = new Operacion();
+                    operacionAux.Interno = licencia.Id;
+                    operacionAux.Servicio = new Servicio("LU");
+                    operacionAux.Aplicada = 'M';
+                    operacionAux.Marca = licencia.Marca;
+
+                    IList<Operacion> operaciones = ControladorOperacion.ConsultarOperacionesFiltro(operacionAux);
+                    Operacion operacion = operaciones[0];
+                    operacion.CadenaDeCambios = licencia.CadenaDeCambios;
+
+                    ComandoBase<bool> comandoOperacion = FabricaComandosOperacion.ObtenerComandoInsertarOModificar(operacion);
+
                     comando.Ejecutar();
+                    comandoOperacion.Ejecutar();
                     exitoso = comando.Receptor.ObjetoAlmacenado;
                 }
 

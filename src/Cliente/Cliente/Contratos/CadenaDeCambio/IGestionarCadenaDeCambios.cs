@@ -21,6 +21,10 @@ namespace Trascend.Bolet.Cliente.Contratos.CadenaDeCambio
 
         bool HabilitarCampos { set; }
 
+        string IdCarta { get; set; }
+
         void Mensaje(string mensaje, int opcion);
+
+        void MostarBotonOperaciones();
     }
 }

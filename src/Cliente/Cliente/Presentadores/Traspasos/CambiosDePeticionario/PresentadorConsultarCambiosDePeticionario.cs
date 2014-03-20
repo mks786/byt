@@ -180,6 +180,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                     CambioPeticionarioAuxiliar.FechaPeticionario = fechaCambioPeticionario;
                 }
 
+                if (this._ventana.IdCadenaCambios != null)
+                {
+                    if (!this._ventana.IdCadenaCambios.Equals(String.Empty))
+                    {
+                        filtroValido = 2;
+                        CambioPeticionarioAuxiliar.CadenaDeCambios = int.Parse(this._ventana.IdCadenaCambios);
+                    }
+                }
+
                 if (filtroValido >= 2)
                 {
                     this._cambiosDePeticionario = this._cambiosDePeticionarioServicios.ObtenerCambioPeticionarioFiltro(CambioPeticionarioAuxiliar);

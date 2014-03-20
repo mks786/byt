@@ -127,13 +127,21 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <!--<GridViewColumn Header="{x:Static recurso:Etiquetas.lsvObservacion}" Width="120">
+                        <GridViewColumn Header="{x:Static recurso:Etiquetas.lsvCarta}" Width="120">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Path=TipoCambioDescripcion}" TextAlignment="Center"/>
+                                    <TextBlock Text="{Binding Path=Carta.Id}" TextAlignment="Center"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
-                        </GridViewColumn>-->
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="{x:Static recurso:Etiquetas.lsvObservacion}" Width="380">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Observaciones}" TextAlignment="Left"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
 
                     </GridView>
                 </ListView.View>

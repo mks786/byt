@@ -72,7 +72,7 @@
                     <Separator Margin="0,5,0,5"/>
 
                     <!--Marca-->
-                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,180,0">
                         <Grid Margin="0,0,-160,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="84"/>
@@ -138,6 +138,13 @@
                         </Grid>
                     </WrapPanel>
 
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                        <Label VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblCadCambios}"/>
+                        </Label>
+                        <custom:ByTTextBox Name="_txtCadenaCambios" Width="150" MaxLength="8" SoloNumero="True" Filtro="True"/>
+                    </WrapPanel>
+
                     <!--<Separator Margin="0,5,0,5"/>-->
 
                     <!--Interesado-->
@@ -198,11 +205,19 @@
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Fecha" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock>
+                                    <TextBlock TextAlignment="Center">
                                         <TextBlock.Text>
                                             <Binding Path="Fecha" StringFormat="{}{0:dd/MM/yyyy}"/>
                                         </TextBlock.Text>
                                     </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="110">
+                            <GridViewColumnHeader Tag="CadenaDeCambio" Content="Cadena de Cambios" Click="_Ordenar_Click"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=CadenaDeCambios}" TextAlignment="Center"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

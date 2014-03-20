@@ -48,6 +48,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private ICambioPeticionarioServicios _peticionarioServicios;
         private IOperacionServicios _operacionServicios;
 
+        private bool _usarOperaciones;
+        private IList<Operacion> _operaciones = new List<Operacion>();
 
         /// <summary>
         /// Constructor Predeterminado
@@ -134,7 +136,47 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+        //
+        public PresentadorListaOperaciones(IListaOperaciones ventana, object operaciones, object ventanaPadre, bool usarOperaciones)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
+            this._ventana = ventana;
+            this._ventanaPadre = ventanaPadre;
+            this._usarOperaciones = usarOperaciones;
+            this._operaciones = (IList<Operacion>)operaciones;
+
+            #region Servicios
+
+            this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
+            this._licenciaServicios = (ILicenciaServicios)Activator.GetObject(typeof(ILicenciaServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["LicenciaServicios"]);
+            this._cesionServicios = (ICesionServicios)Activator.GetObject(typeof(ICesionServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CesionServicios"]);
+            this._fusionServicios = (IFusionServicios)Activator.GetObject(typeof(IFusionServicios),
+                 ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FusionServicios"]);
+            this._cambioDomicilioServicios = (ICambioDeDomicilioServicios)Activator.GetObject(typeof(ICambioDeDomicilioServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioDeDomicilioServicios"]);
+            this._renovacionServicios = (IRenovacionServicios)Activator.GetObject(typeof(IRenovacionServicios),
+                  ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["RenovacionServicios"]);
+            this._cambioNombreServicios = (ICambioDeNombreServicios)Activator.GetObject(typeof(ICambioDeNombreServicios),
+                   ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioDeNombreServicios"]);
+            this._peticionarioServicios = (ICambioPeticionarioServicios)Activator.GetObject(typeof(ICambioPeticionarioServicios),
+                  ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioPeticionarioServicios"]);
+            this._operacionServicios = (IOperacionServicios)Activator.GetObject(typeof(IOperacionServicios),
+                  ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["OperacionServicios"]);
+
+            #endregion
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
 
 
         /// <summary>
@@ -154,8 +196,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaOperaciones,
                     Recursos.Ids.Operacion);
 
-                this._ventana.Operaciones = ((Marca)this._marca).Operaciones;
-                this._ventana.TotalHits = ((Marca)this._marca).Operaciones.Count.ToString();
+                if (!this._usarOperaciones)
+                {
+                    this._ventana.Operaciones = ((Marca)this._marca).Operaciones;
+                    this._ventana.TotalHits = ((Marca)this._marca).Operaciones.Count.ToString();
+                }
+                else
+                {
+                    this._ventana.Operaciones = this._operaciones;
+                    this._ventana.TotalHits = this._operaciones.Count.ToString();
+                }
+                //this._ventana.TotalHits = ((Marca)this._marca).Operaciones.Count.ToString();
                 this._ventana.FocoPredeterminado();
 
                 #region trace

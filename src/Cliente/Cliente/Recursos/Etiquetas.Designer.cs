@@ -755,6 +755,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Marca:.
+        /// </summary>
+        public static string btnMarca {
+            get {
+                return ResourceManager.GetString("btnMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Marca Origen.
         /// </summary>
         public static string btnMarcaOrigen {
@@ -1310,6 +1319,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string btnVerMemoria {
             get {
                 return ResourceManager.GetString("btnVerMemoria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ver Operaciones.
+        /// </summary>
+        public static string btnVerOperaciones {
+            get {
+                return ResourceManager.GetString("btnVerOperaciones", resourceCulture);
             }
         }
         
@@ -4831,6 +4849,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblByt {
             get {
                 return ResourceManager.GetString("lblByt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cadena de Cambios:.
+        /// </summary>
+        public static string lblCadCambios {
+            get {
+                return ResourceManager.GetString("lblCadCambios", resourceCulture);
             }
         }
         
@@ -12617,6 +12644,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleListaDatosTransferencia {
             get {
                 return ResourceManager.GetString("titleListaDatosTransferencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Lista de Cadenas de Cambios.
+        /// </summary>
+        public static string titleListaDeCadenasDeCambios {
+            get {
+                return ResourceManager.GetString("titleListaDeCadenasDeCambios", resourceCulture);
             }
         }
         

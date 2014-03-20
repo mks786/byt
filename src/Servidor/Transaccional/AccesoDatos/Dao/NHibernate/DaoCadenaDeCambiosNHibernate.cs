@@ -68,7 +68,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 }
 
                 
-                filtro += " order by c.CodigoOperacion asc, c.Id asc";
+                filtro += " order by c.FechaCadenaCambio desc";
 
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 cadenasDeCambios = query.List<CadenaDeCambios>();

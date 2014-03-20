@@ -279,6 +279,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
                 this._txtIdPoderFiltrar.IsEnabled = value;
                 this._dpkFechaPoderFiltrar.IsEnabled = value;
 
+                this._txtCadenaCambios.IsEnabled = value;
+                this._btnConsultarCadenaCambios.IsEnabled = value;
+                this._btnIrMarcas.IsEnabled = value;
+                this._txtObservacionFusion.IsEnabled = value;
+                this._txtReferenciaFusion.IsEnabled = value;
+                this._txtAnexoFusion.IsEnabled = value;
+                this._txtComentarioFusion.IsEnabled = value;
+                this._chkAsientoEnLibro.IsEnabled = value;
+
                 #region Internacional
 
                 this._txtIdMarcaInt.IsEnabled = value;
@@ -493,6 +502,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         {
             get { return this._chkAsientoEnLibro.IsChecked.Value; }
             
+        }
+
+        public string IdCadenaDeCambios
+        {
+            get { return this._txtCadenaCambios.Text; }
+            set { this._txtCadenaCambios.Text = value; }
         }
 
         #endregion
@@ -774,6 +789,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             this._lblAsociado.Visibility = (System.Windows.Visibility)value;
             this._txtAsociado.Visibility = (System.Windows.Visibility)value;
             this._txtIdAsociado.Visibility = (System.Windows.Visibility)value;
+            this._btnIrMarcas.Visibility = (System.Windows.Visibility)value;
+            this._btnConsultarCadenaCambios.Visibility = (System.Windows.Visibility)value;
+            this._txtCadenaCambios.Visibility = (System.Windows.Visibility)value;
         }
 
         private void _txtMarcaFiltrar_GotFocus(object sender, RoutedEventArgs e)
@@ -1171,6 +1189,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         public void PintarVerPlanilla()
         {
             this._btnVerPlanilla.Background = Brushes.LightGreen;
+        }
+
+        private void _btnConsultarCadenaCambios_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrConsultarCadenaDeCambios();
+        }
+
+        private void _btnIrMarcas_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrConsultarMarca();
         }
 
     }

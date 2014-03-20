@@ -4386,4 +4386,16 @@ en Prensa:</value>
   <data name="lblCadenaCambios" xml:space="preserve">
     <value>Cad. Cambios:</value>
   </data>
+  <data name="btnMarca" xml:space="preserve">
+    <value>Marca:</value>
+  </data>
+  <data name="lblCadCambios" xml:space="preserve">
+    <value>Cadena de Cambios:</value>
+  </data>
+  <data name="titleListaDeCadenasDeCambios" xml:space="preserve">
+    <value>Lista de Cadenas de Cambios</value>
+  </data>
+  <data name="btnVerOperaciones" xml:space="preserve">
+    <value>Ver Operaciones</value>
+  </data>
 </root>

@@ -32,6 +32,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 bool variosFiltros = false;
                 string filtro = "";
                 string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerCambioDeDomicilio);
+
                 if ((null != cambioDeDomicilio) && (cambioDeDomicilio.Id != 0))
                 {
                     filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioDeDomicilioId, cambioDeDomicilio.Id);
@@ -42,6 +43,13 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioDeDomicilioIdMarca, cambioDeDomicilio.Marca.Id);
+                    variosFiltros = true;
+                }
+                if (null != cambioDeDomicilio.CadenaDeCambios)
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioDeDomicilioCadenaDeCambios, cambioDeDomicilio.CadenaDeCambios);
                     variosFiltros = true;
                 }
                 //if ((null != cambioDeDomicilio.Interesado) && (!cambioDeDomicilio.Interesado.Id.Equals("")))

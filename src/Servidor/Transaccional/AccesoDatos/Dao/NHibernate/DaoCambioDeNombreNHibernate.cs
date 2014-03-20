@@ -45,6 +45,14 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioDeNombreIdMarca, cambioDeNombre.Marca.Id);
                     variosFiltros = true;
                 }
+                if (null != cambioDeNombre.CadenaDeCambios)
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioDeNombreCadenaDeCambios, cambioDeNombre.CadenaDeCambios);
+                    variosFiltros = true;
+                }
+
                 //if ((null != cambioDeDomicilio.Interesado) && (!cambioDeDomicilio.Interesado.Id.Equals("")))
                 //{
                 //    if (variosFiltros)

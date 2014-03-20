@@ -52,6 +52,8 @@
       <column name="CPODER"/>
     </many-to-one>
 
+    <property name="CadenaDeCambios" column="CCAMBIO" type="int"/>
+
 
   </class>
 </hibernate-mapping>

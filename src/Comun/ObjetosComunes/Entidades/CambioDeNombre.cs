@@ -37,7 +37,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Marca _marca;
         private DateTime? _fechaPublicacion;
         private DateTime? _fecha;
-
+        private int? _cadenaDeCambios;
 
         #endregion
 
@@ -340,6 +340,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
                 else
                     this.Acta = 'F';
             }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la Cadena de Cambios del Cambio de Nombre
+        /// </summary>
+        public virtual int? CadenaDeCambios
+        {
+            get { return _cadenaDeCambios; }
+            set { _cadenaDeCambios = value; }
         }
 
         #endregion

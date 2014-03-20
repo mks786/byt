@@ -113,6 +113,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
             set { this._lblHits.Text = value; }
         }
 
+        public string IdCadenaCambios
+        {
+            get { return this._txtCadenaCambios.Text; }
+            set { this._txtCadenaCambios.Text = value; }
+        }
+
         #endregion
 
         /// <summary>
@@ -187,6 +193,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
             {
                 todosCamposVacios = false;
                 this._dpkFecha.Focus();
+            }
+
+            if (!this._txtCadenaCambios.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtCadenaCambios.Focus();
             }
 
             if (todosCamposVacios)

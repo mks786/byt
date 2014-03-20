@@ -21,6 +21,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Marca _marca;
         private MarcaTercero _marcaTercero;
         private Patente _patente;
+        private int? _cadenaDeCambios;
 
         #endregion
 
@@ -184,6 +185,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _patente; }
             set { _patente = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la Cadena de Cambios de la Operacion
+        /// </summary>
+        public virtual int? CadenaDeCambios
+        {
+            get { return _cadenaDeCambios; }
+            set { _cadenaDeCambios = value; }
         }
 
         #endregion

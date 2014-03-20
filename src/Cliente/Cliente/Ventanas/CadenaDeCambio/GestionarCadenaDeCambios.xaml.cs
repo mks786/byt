@@ -25,6 +25,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.CadenaDeCambio
         private PresentadorGestionarCadenaDeCambios _presentador;
         private bool _cargada;
 
+        /// <summary>
+        /// Constructor predeterminado
+        /// </summary>
+        /// <param name="cadenaCambios">Cadena de Cambios a mostrar en pantalla</param>
+        /// <param name="ventanaPadre">Ventana que precede a esta ventana</param>
         public GestionarCadenaDeCambios(object cadenaCambios, object ventanaPadre)
         {
             InitializeComponent();
@@ -85,11 +90,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.CadenaDeCambio
         {
             set
             {
-                this._txtIdCadenaCambios.IsEnabled = value;
+                //this._txtIdCadenaCambios.IsEnabled = value;
                 this._txtAplicaCadenaCambios.IsEnabled = value;
                 this._btnConsultarCodigoOperacion.IsEnabled = value;
                 this._cbxTipoCadenaCambios.IsEnabled = value;
+                this._txtIdCorrespondencia.IsEnabled = value;
+                this._btnVerCorrespondencia.IsEnabled = value;
             }
+        }
+
+        public string IdCarta
+        {
+            get { return this._txtIdCorrespondencia.Text; }
+            set { this._txtIdCorrespondencia.Text = value; }
         }
 
         #endregion
@@ -124,6 +137,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.CadenaDeCambio
             this._presentador.IrConsultarCodigoOperacion();
         }
 
+        private void _btnOperaciones_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVerOperaciones();
+        }
+
+        private void _btnVerCorrespondencia_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarCarta();
+        }
+
         #endregion
 
         #region Metodos
@@ -138,7 +161,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.CadenaDeCambio
                 MessageBox.Show(mensaje, "Información", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        public void MostarBotonOperaciones()
+        {
+            this._btnOperaciones.Visibility = System.Windows.Visibility.Visible;
+        }
+
         #endregion
+
 
     }
 }

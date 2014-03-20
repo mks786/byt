@@ -12,6 +12,10 @@
 
     <property name="FechaCadenaCambio" type="DateTime" column="FCCAMBIO"/>
     <property name="Observaciones" type="String" column="OBSERVACION"/>
+
+    <many-to-one name="Carta" class="Carta">
+      <column name="CCARTA"/>
+    </many-to-one>
     
   </class>
 </hibernate-mapping>

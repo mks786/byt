@@ -167,5 +167,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones
         void ArchivoNoEncontrado(string mensaje);
 
         void PintarVerPlanilla();
+
+        string IdCadenaDeCambios { get; set; }
     }
 }

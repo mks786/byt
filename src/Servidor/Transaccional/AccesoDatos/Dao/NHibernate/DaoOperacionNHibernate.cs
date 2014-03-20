@@ -189,6 +189,14 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
+                if (null != operacion.CadenaDeCambios)
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerOperacionCadenaCambios, operacion.CadenaDeCambios);
+                    variosFiltros = true;
+                }
+
                 if ((null != operacion.Fecha) && (!operacion.Fecha.Equals(DateTime.MinValue)))
                 {
                     if (variosFiltros)

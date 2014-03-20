@@ -44,6 +44,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         private ICambioPeticionarioPatenteServicios _peticionarioServicios;
         private IOperacionServicios _operacionServicios;
 
+        private bool _usarOperaciones;
+        private IList<Operacion> _operaciones = new List<Operacion>();
+
 
         /// <summary>
         /// Constructor Predeterminado
@@ -133,6 +136,46 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         }
 
 
+        //
+        public PresentadorListaOperaciones(IListaOperaciones ventana, object operaciones, object ventanaPadre, bool usarOperaciones)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this._ventana = ventana;
+            this._ventanaPadre = ventanaPadre;
+            this._usarOperaciones = usarOperaciones;
+            this._operaciones = (IList<Operacion>)operaciones;
+
+            #region Servicios
+
+            this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
+            this._licenciaServicios = (ILicenciaPatenteServicios)Activator.GetObject(typeof(ILicenciaPatenteServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["LicenciaPatenteServicios"]);
+            this._cesionServicios = (ICesionPatenteServicios)Activator.GetObject(typeof(ICesionPatenteServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CesionPatenteServicios"]);
+            this._fusionServicios = (IFusionPatenteServicios)Activator.GetObject(typeof(IFusionPatenteServicios),
+                 ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FusionPatenteServicios"]);
+            this._cambioDomicilioServicios = (ICambioDeDomicilioPatenteServicios)Activator.GetObject(typeof(ICambioDeDomicilioPatenteServicios),
+                  ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioDeDomicilioPatenteServicios"]);
+            this._cambioNombreServicios = (ICambioDeNombrePatenteServicios)Activator.GetObject(typeof(ICambioDeNombrePatenteServicios),
+                   ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioDeNombrePatenteServicios"]);
+            this._peticionarioServicios = (ICambioPeticionarioPatenteServicios)Activator.GetObject(typeof(ICambioPeticionarioPatenteServicios),
+                  ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioPeticionarioPatenteServicios"]);
+            this._operacionServicios = (IOperacionServicios)Activator.GetObject(typeof(IOperacionServicios),
+                  ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["OperacionServicios"]);
+
+            #endregion
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
 
 
 
@@ -153,8 +196,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaOperaciones,
                     Recursos.Ids.Operacion);
 
-                this._ventana.Operaciones = ((Patente)this._patente).Operaciones;
-                this._ventana.TotalHits = ((Patente)this._patente).Operaciones.Count.ToString();
+                //this._ventana.Operaciones = ((Patente)this._patente).Operaciones;
+                //this._ventana.TotalHits = ((Patente)this._patente).Operaciones.Count.ToString();
+                if (!this._usarOperaciones)
+                {
+                    this._ventana.Operaciones = ((Patente)this._patente).Operaciones;
+                    this._ventana.TotalHits = ((Patente)this._patente).Operaciones.Count.ToString();
+                }
+                else
+                {
+                    this._ventana.Operaciones = this._operaciones;
+                    this._ventana.TotalHits = this._operaciones.Count.ToString();
+                }
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace

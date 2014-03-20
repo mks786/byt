@@ -91,10 +91,26 @@
                                        Text="{Binding Path=Observaciones}" />
                 </WrapPanel>
 
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0" >
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCorrespondencia}"/>
+                    </Label>
+                    <custom:ByTTextBox IsEnabled="True" Name="_txtIdCorrespondencia" Text="{Binding Path=Carta.Id}" Width="130"
+                                       MaxLength="8"/>
+                    <Button Name="_btnVerCorrespondencia" VerticalAlignment="Bottom" Height="25" Width="30" 
+                            Click="_btnVerCorrespondencia_Click">
+                        <TextBlock Name="_txbVerCorrespondencia" Text="{x:Static recurso:Etiquetas.btnAgregar}"/>
+                    </Button>
+                </WrapPanel>
+
             </StackPanel>
         </GroupBox>
 
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
+            <Button Name="_btnOperaciones"  VerticalAlignment="Bottom" Height="25" Width="110" Visibility="Collapsed"
+                    Click="_btnOperaciones_Click">
+                <TextBlock Name="_txbOperaciones" Text="{x:Static recurso:Etiquetas.btnVerOperaciones}"/>
+            </Button>
             <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnAceptar_Click">
                 <TextBlock Name="_txbAceptar" Text="{x:Static recurso:Etiquetas.btnAceptar}"/>
             </Button>

@@ -63,6 +63,8 @@
     <many-to-one name="PoderLicenciante" class="Poder">
       <column name="CPODER_LICENCIANTE"/>
     </many-to-one>
+
+    <property name="CadenaDeCambios" column="CCAMBIO" type="int"/>
     
   </class>
 </hibernate-mapping>

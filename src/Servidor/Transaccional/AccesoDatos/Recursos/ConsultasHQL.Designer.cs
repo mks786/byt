@@ -124,7 +124,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select c from CadenaDeCambios c where .
+        ///   Busca una cadena traducida similar a Select c from CadenaDeCambios c left join fetch c.Carta as carta where .
         /// </summary>
         public static string CabeceraObtenerCadenaDeCambios {
             get {
@@ -673,6 +673,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a c.CadenaDeCambios = {0}.
+        /// </summary>
+        public static string FiltroObtenerCambioDeDomicilioCadenaDeCambios {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCambioDeDomicilioCadenaDeCambios", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a c.Id = {0}.
         /// </summary>
         public static string FiltroObtenerCambioDeDomicilioId {
@@ -718,6 +727,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a c.CadenaDeCambios = {0}.
+        /// </summary>
+        public static string FiltroObtenerCambioDeNombreCadenaDeCambios {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCambioDeNombreCadenaDeCambios", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a c.Id = {0}.
         /// </summary>
         public static string FiltroObtenerCambioDeNombreId {
@@ -759,6 +777,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerCambioDeNombrePatenteId {
             get {
                 return ResourceManager.GetString("FiltroObtenerCambioDeNombrePatenteId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a c.CadenaDeCambios = {0}.
+        /// </summary>
+        public static string FiltroObtenerCambioPeticionarioCadenaDeCambios {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCambioPeticionarioCadenaDeCambios", resourceCulture);
             }
         }
         
@@ -952,6 +979,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a c.CadenaDeCambios= {0}.
+        /// </summary>
+        public static string FiltroObtenerCesionCadenaDeCambios {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCesionCadenaDeCambios", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a patente.Id = {0}.
         /// </summary>
         public static string FiltroObtenerCesiondPatente {
@@ -984,6 +1020,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerCesionIdMarca {
             get {
                 return ResourceManager.GetString("FiltroObtenerCesionIdMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a f.CadenaDeCambios ={0}.
+        /// </summary>
+        public static string FiltroObtenerFusionCadenaDeCambios {
+            get {
+                return ResourceManager.GetString("FiltroObtenerFusionCadenaDeCambios", resourceCulture);
             }
         }
         
@@ -1146,6 +1191,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerInteresadoTipoPersona {
             get {
                 return ResourceManager.GetString("FiltroObtenerInteresadoTipoPersona", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a l.CadenaDeCambios = {0}.
+        /// </summary>
+        public static string FiltroObtenerLicenciaCadenaDeCambios {
+            get {
+                return ResourceManager.GetString("FiltroObtenerLicenciaCadenaDeCambios", resourceCulture);
             }
         }
         
@@ -1677,6 +1731,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerMarcaXDistingue {
             get {
                 return ResourceManager.GetString("FiltroObtenerMarcaXDistingue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a o.CadenaDeCambios = {0}.
+        /// </summary>
+        public static string FiltroObtenerOperacionCadenaCambios {
+            get {
+                return ResourceManager.GetString("FiltroObtenerOperacionCadenaCambios", resourceCulture);
             }
         }
         

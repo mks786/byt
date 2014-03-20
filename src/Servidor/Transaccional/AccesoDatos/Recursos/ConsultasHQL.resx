@@ -1280,7 +1280,7 @@
     <comment>Consulta HQL para obtener los Contactos CxP (Cuentas por Cobrar Bolet) de un Asociado especifico</comment>
   </data>
   <data name="CabeceraObtenerCadenaDeCambios" xml:space="preserve">
-    <value>Select c from CadenaDeCambios c where </value>
+    <value>Select c from CadenaDeCambios c left join fetch c.Carta as carta where </value>
     <comment>Cabecera para obtener Cadenas de Cambios por filtro</comment>
   </data>
   <data name="FiltroObtenerCadenaCambiosCodigoOperacion" xml:space="preserve">
@@ -1298,5 +1298,33 @@
   <data name="FiltroObtenerCadenaCambiosTipoCambio" xml:space="preserve">
     <value>c.TipoCambio = '{0}'</value>
     <comment>Filtro para obtener cadenas de cambios por Tipo de Cadena de Cambios</comment>
+  </data>
+  <data name="FiltroObtenerCambioDeDomicilioCadenaDeCambios" xml:space="preserve">
+    <value>c.CadenaDeCambios = {0}</value>
+    <comment>Filtro para obtener Cambios de Domicilio usando el campo Cadena de Cambios</comment>
+  </data>
+  <data name="FiltroObtenerCambioDeNombreCadenaDeCambios" xml:space="preserve">
+    <value>c.CadenaDeCambios = {0}</value>
+    <comment>Filtro para obtener Cambios de Nombre por el Id de la Cadena de Cambios</comment>
+  </data>
+  <data name="FiltroObtenerCesionCadenaDeCambios" xml:space="preserve">
+    <value>c.CadenaDeCambios= {0}</value>
+    <comment>Filtro para obtener Cesiones por el campo de la Cadena de Cambios</comment>
+  </data>
+  <data name="FiltroObtenerFusionCadenaDeCambios" xml:space="preserve">
+    <value>f.CadenaDeCambios ={0}</value>
+    <comment>Filtro para obtener Fusiones por el campo de la Cadena de Cambios</comment>
+  </data>
+  <data name="FiltroObtenerCambioPeticionarioCadenaDeCambios" xml:space="preserve">
+    <value>c.CadenaDeCambios = {0}</value>
+    <comment>Filtro para obtener Cambios de Peticionario a partir del campo CadenaDeCambios</comment>
+  </data>
+  <data name="FiltroObtenerLicenciaCadenaDeCambios" xml:space="preserve">
+    <value>l.CadenaDeCambios = {0}</value>
+    <comment>Filtro para obtener Licencias de Uso a partir del campo CadenaDeCambios</comment>
+  </data>
+  <data name="FiltroObtenerOperacionCadenaCambios" xml:space="preserve">
+    <value>o.CadenaDeCambios = {0}</value>
+    <comment>Filtro para obtener Operaciones con el campo Cadena de Cambios</comment>
   </data>
 </root>

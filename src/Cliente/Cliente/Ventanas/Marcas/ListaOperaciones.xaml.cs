@@ -88,6 +88,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
 
+        public ListaOperaciones(object operaciones, object ventanaPadre, bool usarOperaciones)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorListaOperaciones(this, operaciones, ventanaPadre, usarOperaciones);
+        }
+
+
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {

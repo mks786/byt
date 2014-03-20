@@ -27,7 +27,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Asociado _asociado;
         private Agente _agenteActual;
         private Agente _agenteAnterior;
-        private Marca _marca;                                      
+        private Marca _marca;
+        private int? _cadenaDeCambios;                             
 
         #endregion
 
@@ -247,6 +248,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
                 else
                     this.Acta = 'F';
             }
+        }
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la Cadena de Cambios del Cambio de Peticionario
+        /// </summary>
+        public virtual int? CadenaDeCambios
+        {
+            get { return _cadenaDeCambios; }
+            set { _cadenaDeCambios = value; }
         }
   
         #endregion

@@ -359,7 +359,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 //carta.Id = ((InstruccionDeRenovacion)this._ventana.InstruccionDeRenovacion).Carta.Id;
 
                 IList<Carta> cartas = this._cartaServicios.ObtenerCartasFiltro(carta);
-                Navegar(new ConsultarCarta(cartas[0], this._ventana)); 
+                if (cartas.Count > 0)
+                {
+                    Navegar(new ConsultarCarta(cartas[0], this._ventana));
+                }
+                else
+                    this._ventana.Alerta();
             }
         }
 

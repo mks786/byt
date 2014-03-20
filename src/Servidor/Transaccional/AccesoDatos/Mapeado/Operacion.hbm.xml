@@ -28,6 +28,8 @@
       <column name="CBOLETIN"/>
     </many-to-one>
 
+    <property name="CadenaDeCambios" column="CCAMBIO" type="int"/>
+
   </class>
 </hibernate-mapping>
 

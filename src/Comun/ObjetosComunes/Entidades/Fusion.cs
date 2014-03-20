@@ -28,6 +28,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Interesado _interesadoEntre;
         private Interesado _interesadoSobreviviente;
         private FusionMarcaTercero _fusionMarcaTercero;
+        private int? _cadenaDeCambios;
 
         #endregion
 
@@ -222,6 +223,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _fusionMarcaTercero; }
             set { _fusionMarcaTercero = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la Cadena de Cambios de la Fusion
+        /// </summary>
+        public virtual int? CadenaDeCambios
+        {
+            get { return _cadenaDeCambios; }
+            set { _cadenaDeCambios = value; }
         }
 
         #endregion

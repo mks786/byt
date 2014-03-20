@@ -41,7 +41,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Boletin _boletinPublicacion;       
         private Agente _agenteCedente;
         private Agente _agenteCesionario;
-
+        private int? _cadenaDeCambios;
 
         #endregion
 
@@ -378,6 +378,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _agenteCesionario; }
             set { _agenteCesionario = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la Cadena de Cambios de la Cesion
+        /// </summary>
+        public virtual int? CadenaDeCambios
+        {
+            get { return _cadenaDeCambios; }
+            set { _cadenaDeCambios = value; }
         }
 
         #endregion

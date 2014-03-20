@@ -192,6 +192,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     FusionAuxiliar.FechaPublicacion = fechaPublicacion;
                 }
 
+                if (this._ventana.IdCadenaCambios != null)
+                {
+                    if (!this._ventana.IdCadenaCambios.Equals(String.Empty))
+                    {
+                        filtroValido = 2;
+                        FusionAuxiliar.CadenaDeCambios = int.Parse(this._ventana.IdCadenaCambios);
+                    }
+                }
+
                 if (filtroValido >= 2)
                 {
                     this._fusiones = this._fusionServicios.ObtenerFusionFiltro(FusionAuxiliar);
@@ -240,7 +249,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
             if (this._ventana.FusionSeleccionada != null)
             {
-                Fusion fusion = this._fusionServicios.ConsultarPorId((Fusion)this._ventana.FusionSeleccionada);
+                //Fusion fusion = this._fusionServicios.ConsultarPorId((Fusion)this._ventana.FusionSeleccionada);
+                Fusion fusionAux = new Fusion();
+                fusionAux.Id = ((Fusion)this._ventana.FusionSeleccionada).Id;
+                IList<Fusion> fusionesConsultadas = this._fusionServicios.ObtenerFusionFiltro(fusionAux);
+                Fusion fusion = fusionesConsultadas[0];
                 this.Navegar(new GestionarFusion(fusion,this._ventana));
             }
 
@@ -381,6 +394,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             this._ventana.FusionSeleccionada = null;
             this._ventana.Marca = null;
             this._ventana.Marcas = null;
+            this._ventana.IdCadenaCambios = null;
 
             this._ventana.Resultados = null;
             this._ventana.TotalHits = "0";

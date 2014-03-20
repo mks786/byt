@@ -180,6 +180,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     LicenciaAuxiliar.Fecha = fechaLicencia;
                 }
 
+                if (this._ventana.IdCadenaCambios != null)
+                {
+                    if (!this._ventana.IdCadenaCambios.Equals(String.Empty))
+                    {
+                        filtroValido = 2;
+                        LicenciaAuxiliar.CadenaDeCambios = int.Parse(this._ventana.IdCadenaCambios);
+                    }
+                }
+
                 if (filtroValido >= 2)
                 {
                     this._licencias = this._licenciaServicios.ObtenerLicenciaFiltro(LicenciaAuxiliar);
@@ -385,6 +394,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             this._ventana.LicenciaSeleccionada = null;
             this._ventana.Marca = null;
             this._ventana.Marcas = null;
+            this._ventana.IdCadenaCambios = null;
 
             this._ventana.Resultados = null;
             this._ventana.TotalHits = "0";

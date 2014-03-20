@@ -13,7 +13,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="540"/>
+            <ColumnDefinition Width="650"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
@@ -40,11 +40,11 @@
                       Style="{DynamicResource EstiloListView}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Width="100">
+                        <GridViewColumn Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Fecha" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock>
+                                    <TextBlock TextAlignment="Center">
                                         <TextBlock.Text>
                                             <Binding Path="Fecha" StringFormat="{}{0:dd/MM/yyyy}"/>
                                         </TextBlock.Text>
@@ -52,15 +52,43 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Servicio.Descripcion}" Width="120">
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Servicio.Descripcion}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Servicio.Descripcion" Content="{x:Static recurso:Etiquetas.lsvOperacion}"/>
+                        </GridViewColumn>-->
+                        <GridViewColumn Width="120">
+                            <GridViewColumnHeader Tag="Servicio.Descripcion" Content="{x:Static recurso:Etiquetas.lsvOperacion}" 
+                                                  Click="_Ordenar_Click"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Servicio.Descripcion}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvDescripcion}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Interno}" Width="150">
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Interno}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Interno" Content="{x:Static recurso:Etiquetas.lsvCodigoInternoOperaciones}"/>
+                        </GridViewColumn>-->
+                        <GridViewColumn Width="150">
+                            <GridViewColumnHeader Tag="Interno" Content="{x:Static recurso:Etiquetas.lsvCodigoInternoOperaciones}" 
+                                                  Click="_Ordenar_Click"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Interno}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
+                        
+                        <GridViewColumn Width="110">
+                            <GridViewColumnHeader Tag="CadenaDeCambio" Content="Cadena de Cambios" Click="_Ordenar_Click"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=CadenaDeCambios}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        
                     </GridView>
                 </ListView.View>
             </ListView>

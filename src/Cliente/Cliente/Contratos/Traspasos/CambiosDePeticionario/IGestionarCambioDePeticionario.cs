@@ -174,5 +174,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDePeticionario
         void EsMarcaNacional(bool marcaNacional);
 
         string TipoClase { set; }
+
+        string IdCadenaDeCambios { get; set; }
     }
 }

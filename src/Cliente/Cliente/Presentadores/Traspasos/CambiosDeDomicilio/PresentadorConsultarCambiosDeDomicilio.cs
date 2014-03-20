@@ -192,6 +192,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     CambioDeDomicilioAuxiliar.FechaPublicacion = fechaPublicacion;
                 }
 
+                if (this._ventana.IdCadenaCambios != null)
+                {
+                    if (!this._ventana.IdCadenaCambios.Equals(String.Empty))
+                    {
+                        filtroValido = 2;
+                        CambioDeDomicilioAuxiliar.CadenaDeCambios = int.Parse(this._ventana.IdCadenaCambios);
+                    }
+                }
+
                 if (filtroValido >= 2)
                 {
                     this._cambiosDeDomicilio = this._cambioDeDomicilioServicios.ObtenerCambioDeDomicilioFiltro(CambioDeDomicilioAuxiliar);
@@ -353,6 +362,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             this._ventana.CambioDeDomicilioSeleccionada = null;
             this._ventana.Marca = null;
             this._ventana.Marcas = null;
+            this._ventana.IdCadenaCambios = null;
 
             this._ventana.Resultados = null;
             this._ventana.TotalHits = "0";

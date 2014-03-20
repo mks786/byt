@@ -377,6 +377,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
                 this._chkAsientoEnLibro.IsEnabled = value;
                 this._cbxBoletin.IsEnabled = value;
 
+                this._btnConsultarCadenaCambios.IsEnabled = value;
+                this._btnIrAsociados.IsEnabled = value;
+                this._txtCadenaCambios.IsEnabled = value;
+
+
                 #region Internacional
 
                 this._txtIdMarcaInt.IsEnabled = value;
@@ -495,6 +500,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
                 MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             else
                 MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
+
+        public string IdCadenaDeCambios
+        {
+            get { return this._txtCadenaCambios.Text; }
+            set { this._txtCadenaCambios.Text = value; }
         }
 
         #endregion
@@ -818,6 +829,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             this._txtAsociado.Visibility = (System.Windows.Visibility)value;
             this._txtIdAsociado.Visibility = (System.Windows.Visibility)value;
             this._txtIdMarca.Visibility = (System.Windows.Visibility)value;
+            this._btnIrMarcas.Visibility = (System.Windows.Visibility)value;
+            this._btnConsultarCadenaCambios.Visibility = (System.Windows.Visibility)value;
+            this._txtCadenaCambios.Visibility = (System.Windows.Visibility)value;
         }
 
         private void GestionarVisibilidadFiltroMarca(object value)
@@ -1366,6 +1380,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         public void PintarVerPlanilla()
         {
             this._btnVerPlanilla.Background = Brushes.LightGreen;
+        }
+
+        private void _btnConsultarCadenaCambios_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrConsultarCadenaDeCambios();
+        }
+
+        private void _btnIrMarcas_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrConsultarMarca();
         }
     }
 }

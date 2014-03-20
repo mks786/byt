@@ -190,6 +190,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     CambioDeNombreAuxiliar.FechaPublicacion = fechaPublicacion;
                 }
 
+                if (this._ventana.IdCadenaCambios != null)
+                {
+                    if (!this._ventana.IdCadenaCambios.Equals(String.Empty))
+                    {
+                        filtroValido = 2;
+                        CambioDeNombreAuxiliar.CadenaDeCambios = int.Parse(this._ventana.IdCadenaCambios);
+                    }
+                }
+
                 if (filtroValido >= 2)
                 {
                     this._cambiosDeNombre = this._cambioDeNombreServicios.ObtenerCambioDeNombreFiltro(CambioDeNombreAuxiliar);
@@ -351,6 +360,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             this._ventana.CambioDeNombreSeleccionada = null;
             this._ventana.Marca = null;
             this._ventana.Marcas = null;
+            this._ventana.IdCadenaCambios = null;
 
             this._ventana.Resultados = null;
             this._ventana.TotalHits = "0";

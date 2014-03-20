@@ -43,6 +43,13 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCesionIdMarca, cesion.Marca.Id);
                     variosFiltros = true;
                 }
+                if (null != cesion.CadenaDeCambios)
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCesionCadenaDeCambios, cesion.CadenaDeCambios);
+                    variosFiltros = true;
+                }
                 //if ((null != fusion.Interesado) && (!fusion.Interesado.Id.Equals("")))
                 //{
                 //    if (variosFiltros)

@@ -219,7 +219,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
 
                 this._txtDescripcionServicio.IsEnabled = value;
 
-                this._txtDescripcionOperacion.IsEnabled = value;                
+                this._txtDescripcionOperacion.IsEnabled = value;
+                this._btnIrMarcas.IsEnabled = value;
             }
         }
 
@@ -384,10 +385,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
         
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            if (this.TextoBotonRegresar == Recursos.Etiquetas.btnRegresar)
-                this._presentador.Regresar();
-            else if (this.TextoBotonRegresar == Recursos.Etiquetas.btnCancelar)
-                this._presentador.Cancelar();
+            //if (this.TextoBotonRegresar == Recursos.Etiquetas.btnRegresar)
+            //    this._presentador.Regresar();
+            //else if (this.TextoBotonRegresar == Recursos.Etiquetas.btnCancelar)
+            //    this._presentador.Cancelar();
+            this._presentador.RegresarVentanaPadre();
         }
 
         
@@ -648,6 +650,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
 
         
         #endregion       
+
+        private void _btnIrMarcas_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrConsultarMarca();
+        }
 
     }
 }

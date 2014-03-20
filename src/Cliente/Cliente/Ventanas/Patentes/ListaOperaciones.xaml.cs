@@ -87,6 +87,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         }
 
+        /// <summary>
+        /// Constructor predeterminado que recibe una lista de operaciones 
+        /// </summary>
+        /// <param name="operaciones">Lista de Operaciones</param>
+        /// <param name="ventanaPadre">Ventana padre</param>
+        /// <param name="usarOperaciones">Bandera para saber si se usa la lista de operaciones o la Patente</param>
+        public ListaOperaciones(object operaciones, object ventanaPadre, bool usarOperaciones)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorListaOperaciones(this, operaciones, ventanaPadre, usarOperaciones);
+        }
+
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             if (!EstaCargada)

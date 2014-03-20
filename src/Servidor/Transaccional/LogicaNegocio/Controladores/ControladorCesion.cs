@@ -91,6 +91,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     operacion.Interno = cesion.Id;
                     operacion.Interesado = cesion.Cesionario;
                     operacion.Servicio = new Servicio("CS");
+                    operacion.CadenaDeCambios = cesion.CadenaDeCambios;
 
                     ComandoBase<bool> comandoOperacion = FabricaComandosOperacion.ObtenerComandoInsertarOModificar(operacion);
 
@@ -120,7 +121,22 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 else
                 {
                     ComandoBase<bool> comando = FabricaComandosCesion.ObtenerComandoInsertarOModificar(cesion);
+
+                    Operacion operacionAux = new Operacion();
+                    operacionAux.Interno = cesion.Id;
+                    operacionAux.Servicio = new Servicio("CS");
+                    operacionAux.Aplicada = 'M';
+                    operacionAux.Marca = cesion.Marca;
+
+                    IList<Operacion> operaciones = ControladorOperacion.ConsultarOperacionesFiltro(operacionAux);
+                    Operacion operacion = operaciones[0];
+                    operacion.CadenaDeCambios = cesion.CadenaDeCambios;
+
+                    ComandoBase<bool> comandoOperacion = FabricaComandosOperacion.ObtenerComandoInsertarOModificar(operacion);
+                    
                     comando.Ejecutar();
+                    comandoOperacion.Ejecutar();
+
                     exitoso = comando.Receptor.ObjetoAlmacenado;
                 }
 

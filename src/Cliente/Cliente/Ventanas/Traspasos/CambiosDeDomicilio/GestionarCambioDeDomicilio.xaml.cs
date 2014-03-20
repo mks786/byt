@@ -205,6 +205,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
                 this._chkEtiqueta.IsEnabled = value;
                 this._txtCadenaCambios.IsEnabled = value;
                 this._btnConsultarCadenaCambios.IsEnabled = value;
+                this._btnIrMarcas.IsEnabled = value;
+                this._btnIrAsociados.IsEnabled = value;
 
                 _btnConsultarInteresadoAnterior.IsEnabled = value;
                 _txtNombreInteresadoAnterior.IsEnabled = value;
@@ -247,6 +249,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
                 _lblIdPoderFiltrar.IsEnabled = value;
                 _txtIdPoderFiltrar.IsEnabled = value;
                 _dpkFechaPoderFiltrar.IsEnabled = value;
+
+                _txtOtros.IsEnabled = value;
+                _txtAnexo.IsEnabled = value;
+                _txtComentario.IsEnabled = value;
+                _txtReferencia.IsEnabled = value;
+                _txtObservacion.IsEnabled = value;
+                _txtBoletinPub.IsEnabled = value;
+                _cbxAsientoLibros.IsEnabled = value;
 
                 #region Internacional
 
@@ -699,6 +709,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
             this._btnIrAsociados.Visibility = (System.Windows.Visibility)value;
             this._btnConsultarCadenaCambios.Visibility = (System.Windows.Visibility)value;
             this._txtCadenaCambios.Visibility = (System.Windows.Visibility)value;
+            this._btnIrMarcas.Visibility = (System.Windows.Visibility)value;
         }
 
         private void _txtMarcaFiltrar_GotFocus(object sender, RoutedEventArgs e)
@@ -1092,6 +1103,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
         private void _btnConsultarCadenaCambios_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrConsultarCadenaDeCambios();
+        }
+
+        private void _btnIrMarcas_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrConsultarMarca();
         }
 
     }

@@ -180,6 +180,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     CesionAuxiliar.FechaCesion = fechaCesion;
                 }
 
+                if (this._ventana.IdCadenaCambios != null)
+                {
+                    if (!this._ventana.IdCadenaCambios.Equals(String.Empty))
+                    {
+                        filtroValido = 2;
+                        CesionAuxiliar.CadenaDeCambios = int.Parse(this._ventana.IdCadenaCambios);
+                    }
+                }
+
                 if (filtroValido >= 2)
                 {
                     this._cesiones = this._cesionServicios.ObtenerCesionFiltro(CesionAuxiliar);
@@ -373,6 +382,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             this._ventana.CesionSeleccionada = null;
             this._ventana.Marca = null;
             this._ventana.Marcas = null;
+            this._ventana.IdCadenaCambios = null;
 
             this._ventana.Resultados = null;
             this._ventana.TotalHits = "0";

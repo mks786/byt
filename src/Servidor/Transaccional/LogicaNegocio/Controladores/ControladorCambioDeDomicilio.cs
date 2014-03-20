@@ -90,6 +90,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     operacion.Interno = cambioDeDomicilio.Id;
                     operacion.Interesado = cambioDeDomicilio.InteresadoActual;
                     operacion.Servicio = new Servicio("CD");
+                    operacion.CadenaDeCambios = cambioDeDomicilio.CadenaDeCambios;
 
                     ComandoBase<bool> comandoOperacion = FabricaComandosOperacion.ObtenerComandoInsertarOModificar(operacion);
 
@@ -115,7 +116,21 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 else
                 {
                     ComandoBase<bool> comando = FabricaComandosCambioDeDomicilio.ObtenerComandoInsertarOModificar(cambioDeDomicilio);
+                    
+                    Operacion operacionAux = new Operacion();
+                    operacionAux.Interno = cambioDeDomicilio.Id;
+                    operacionAux.Servicio = new Servicio("CD");
+                    operacionAux.Aplicada = 'M';
+                    operacionAux.Marca = cambioDeDomicilio.Marca;
+                    IList<Operacion> operaciones = ControladorOperacion.ConsultarOperacionesFiltro(operacionAux);
+                    Operacion operacion = operaciones[0];
+                    operacion.CadenaDeCambios = cambioDeDomicilio.CadenaDeCambios;
+
+                    ComandoBase<bool> comandoOperacion = FabricaComandosOperacion.ObtenerComandoInsertarOModificar(operacion);
+                    
                     comando.Ejecutar();
+                    comandoOperacion.Ejecutar();
+
                     exitoso = comando.Receptor.ObjetoAlmacenado;
 
                 }

@@ -109,17 +109,29 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <Label Grid.Column="0" Grid.Row="0">
+                        <!--<Label Grid.Column="0" Grid.Row="0">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
-                        </Label>
+                        </Label>-->
+                        <Button Grid.Column="0" Grid.Row="0" Name="_btnIrMarcas" IsDefault="False" Height="25" 
+                                HorizontalAlignment="Right" Click="_btnIrMarcas_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnMarca}"/>
+                        </Button>
 
                         <custom:ByTTextBox Name="_txtIdMarca" MaxLength="40" Text="" IsEnabled="False" IsReadOnly="True" IsTabStop="False"
                              VerticalContentAlignment="Center" Margin="0,0,6,0" Grid.ColumnSpan="1" Grid.Column="1"
                              Grid.Row="0" MouseDoubleClick="_txtNombreMarca_MouseDoubleClick" BorderBrush="LightGreen"/>
 
-                        <custom:ByTTextBox Name="_txtNombreMarca" MaxLength="40"  Text="" IsEnabled="False" IsReadOnly="True" IsTabStop="False"
-                             VerticalContentAlignment="Center" Margin="0,0,0,0" Grid.ColumnSpan="5" Grid.Column="2"
-                             Grid.Row="0" MouseDoubleClick="_txtNombreMarca_MouseDoubleClick" BorderBrush="LightGreen"/>
+                        <custom:ByTTextBox Name="_txtNombreMarca" MaxLength="40"  Text="" IsEnabled="False" IsReadOnly="True"
+                                           IsTabStop="False" VerticalContentAlignment="Center" Margin="0,0,0,0" Grid.ColumnSpan="3" 
+                                           Grid.Column="2" Grid.Row="0" MouseDoubleClick="_txtNombreMarca_MouseDoubleClick" 
+                                           BorderBrush="LightGreen"/>
+
+                        <Button Grid.Column="5" Grid.Row="0" Name="_btnConsultarCadenaCambios" IsDefault="False" Height="25"
+                                HorizontalAlignment="Right" Width="80" Click="_btnConsultarCadenaCambios_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnCadenaCambios}"/>
+                        </Button>
+                        <custom:ByTTextBox Grid.Column="6" Grid.Row="0" Name="_txtCadenaCambios" MaxLength="8" Text="" IsEnabled="True" 
+                                           IsTabStop="False" VerticalAlignment="Center" Margin="0,0,0,0" BorderBrush="LightGreen"/>
 
                         <!--Datos de carga de Marca-->
                         <Label Name="_lblIdMarca" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">

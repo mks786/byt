@@ -9,6 +9,7 @@ using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.Cliente.Ventanas.Patentes;
+using Trascend.Bolet.Cliente.Ventanas.Cartas;
 
 namespace Trascend.Bolet.Cliente.Presentadores.CadenaDeCambio
 {
@@ -21,6 +22,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.CadenaDeCambio
         private IListaDatosValoresServicios _listaDatosValoresServicios;
         private IMarcaServicios _marcaServicios;
         private IPatenteServicios _patenteServicios;
+        private ICartaServicios _cartaServicios;
+        private IOperacionServicios _operacionServicios;
         private IGestionarCadenaDeCambios _ventana;
         private bool _agregar = false;
 
@@ -59,6 +62,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.CadenaDeCambio
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
                 this._patenteServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
+                this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
+                this._operacionServicios = (IOperacionServicios)Activator.GetObject(typeof(IOperacionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["OperacionServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -110,7 +117,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.CadenaDeCambio
                     tipoCadenaCambios.Descripcion = ((CadenaDeCambios)this._ventana.CadenaDeCambios).TipoCambioDescripcion;
                     tipoCadenaCambios.Valor = ((CadenaDeCambios)this._ventana.CadenaDeCambios).TipoCambio;
                     this._ventana.TipoCadenaCambios = this.BuscarListaDeDatosValores(tiposCadenaCambios, tipoCadenaCambios);
+                    this._ventana.MostarBotonOperaciones();
                 }
+
 
                 this._ventana.FocoPredeterminado();
 
@@ -146,19 +155,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.CadenaDeCambio
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                CadenaDeCambios cadenaCambiosPantalla = (CadenaDeCambios)this._ventana.CadenaDeCambios;
-
+                CadenaDeCambios cadenaCambiosPantalla = ObtenerCadenaDeCambiosPantalla();
+                
                 if(this._ventana.TipoCadenaCambios != null)
                 {
                     if (this._agregar)
                     {
                         cadenaCambiosFiltro.CodigoOperacion = cadenaCambiosPantalla.CodigoOperacion;
                         cadenaCambiosFiltro.TipoCambio = ((ListaDatosValores)this._ventana.TipoCadenaCambios).Valor;
-
+                        
                         IList<CadenaDeCambios> cadenasCambios = this._cadenaDeCambiosServicios.ObtenerCadenasCambioFiltro(cadenaCambiosFiltro);
                         if (cadenasCambios.Count > 0)
                         {
-                            idContador++;
+                            idContador = cadenasCambios.Count;
+                            idContador++; 
                             cadenaCambiosPantalla.Id = idContador;
                             cadenaCambiosPantalla.TipoCambio = cadenaCambiosFiltro.TipoCambio;
                         }
@@ -195,6 +205,54 @@ namespace Trascend.Bolet.Cliente.Presentadores.CadenaDeCambio
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
+        }
+
+
+        /// <summary>
+        /// Metodo que obtiene la cadena de camhios de se encuentra en la pantalla
+        /// </summary>
+        /// <returns></returns>
+        private CadenaDeCambios ObtenerCadenaDeCambiosPantalla()
+        {
+
+            CadenaDeCambios cadenaCambios = new CadenaDeCambios();
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                cadenaCambios = (CadenaDeCambios)this._ventana.CadenaDeCambios;
+
+                if (!this._ventana.IdCarta.Equals(String.Empty))
+                {
+                    Carta carta = new Carta();
+                    carta.Id = int.Parse(this._ventana.IdCarta);
+                    IList<Carta> cartas = this._cartaServicios.ObtenerCartasFiltro(carta);
+                    if (cartas.Count > 0)
+                    {
+                        cadenaCambios.Carta = cartas[0];
+                    }
+                    else
+                        cadenaCambios.Carta = null;
+                }
+                else
+                    cadenaCambios.Carta = null;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+
+            return cadenaCambios;
         }
 
 
@@ -247,6 +305,99 @@ namespace Trascend.Bolet.Cliente.Presentadores.CadenaDeCambio
                 }
                 else
                     this._ventana.Mensaje("Para poder consultar el Código de Operación necesita definir el tipo de cadena de cambios", 0);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+        }
+
+        /// <summary>
+        /// Metodo que muestra el detalle de una Carta de una Cadena de Cambios
+        /// </summary>
+        public void ConsultarCarta()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (!this._ventana.IdCarta.Equals(String.Empty))
+                {
+                    Carta cartaAux = new Carta();
+                    cartaAux.Id = int.Parse(this._ventana.IdCarta);
+                    IList<Carta> cartas = this._cartaServicios.ObtenerCartasFiltro(cartaAux);
+                    if (cartas.Count > 0)
+                    {
+                        Carta cartaCadenaDeCambio = cartas[0];
+                        this.Navegar(new ConsultarCarta(cartaCadenaDeCambio, this._ventana));
+                    }
+                    else
+                        this._ventana.Mensaje("La Carta para esta Cadena de Cambios no existe", 0);
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo que muestra la lista de Operaciones que implica esa cadena de cambios
+        /// </summary>
+        public void IrVerOperaciones()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                CadenaDeCambios cadenaCambios = ObtenerCadenaDeCambiosPantalla();
+
+                Operacion operacionAux = new Operacion();
+                operacionAux.CadenaDeCambios = cadenaCambios.Id;
+                operacionAux.CodigoAplicada = cadenaCambios.CodigoOperacion;
+                operacionAux.Servicio = new Servicio("");
+
+                if (cadenaCambios.TipoCambio.Equals("M"))
+                {
+                    operacionAux.Aplicada = 'M';
+                    operacionAux.Marca = new Marca(cadenaCambios.CodigoOperacion);
+                }
+                else if (cadenaCambios.TipoCambio.Equals("P"))
+                {
+                    operacionAux.Aplicada = 'P';
+                    operacionAux.Patente = new Patente(cadenaCambios.CodigoOperacion);
+                }
+
+                IList<Operacion> operaciones = this._operacionServicios.ObtenerOperacionFiltro(operacionAux);
+                if (operaciones.Count > 0)
+                {
+                    if (cadenaCambios.TipoCambio.Equals("M"))
+                        this.Navegar(new Trascend.Bolet.Cliente.Ventanas.Marcas.ListaOperaciones(operaciones, this._ventana, true));
+                    else if (cadenaCambios.TipoCambio.Equals("P"))
+                        this.Navegar(new Trascend.Bolet.Cliente.Ventanas.Patentes.ListaOperaciones(operaciones,this._ventana,true));
+                }
+                else
+                    this._ventana.Mensaje("No existen operaciones para esta Cadena de Cambios", 0);
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

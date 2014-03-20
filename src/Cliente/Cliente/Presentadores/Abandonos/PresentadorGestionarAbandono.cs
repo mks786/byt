@@ -16,6 +16,7 @@ using Trascend.Bolet.Cliente.Ventanas.Abandonos;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
+using Trascend.Bolet.Cliente.Ventanas.Marcas;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
 {
@@ -101,7 +102,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
         }
 
@@ -179,7 +180,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
             finally
             {
@@ -304,7 +305,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
             finally
             {
@@ -356,7 +357,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
             finally
             {
@@ -996,5 +997,42 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
 
         #endregion
 
+        /// <summary>
+        /// Metodo para consultar la marca a abandonar
+        /// </summary>
+        public void IrConsultarMarca()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (this._ventana.Marca != null)
+                {
+                    Marca marcaAux = new Marca();
+                    marcaAux.Id = ((Marca)this._ventana.Marca).Id;
+                    IList<Marca> marcas = this._marcaServicios.ObtenerMarcasFiltro(marcaAux);
+                    if (marcas.Count > 0)
+                    {
+                        Marca marca = marcas[0];
+                        this.Navegar(new ConsultarMarca(marca, this._ventana));
+                    }
+                    else
+                        this._ventana.Mensaje("La Marca no existe", 0);
+                }
+               
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+        }
     }
 }

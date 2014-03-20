@@ -16,6 +16,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private int _codigoOperacion;
         private DateTime? _fechaCadenaCambio;
         private String _observaciones;
+        private Carta _carta;
 
         #endregion
 
@@ -134,6 +135,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return this._observaciones; }
             set { this._observaciones = value; }
+        }
+
+
+        /// <summary>
+        /// Propiedad que asigna la Carta de la Cadena de Cambios 
+        /// </summary>
+        public virtual Carta Carta
+        {
+            get { return this._carta; }
+            set { this._carta = value; }
         }
 
 

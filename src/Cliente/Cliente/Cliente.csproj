@@ -143,6 +143,7 @@
     <Compile Include="Contratos\Asociados\IConsultarAsociados.cs" />
     <Compile Include="Contratos\CadenaDeCambio\IConsultarCadenasDeCambios.cs" />
     <Compile Include="Contratos\CadenaDeCambio\IGestionarCadenaDeCambios.cs" />
+    <Compile Include="Contratos\CadenaDeCambio\IListadoCadenasDeCambios.cs" />
     <Compile Include="Contratos\Cartas\IConsultarContactosPorAsociado.cs" />
     <Compile Include="Contratos\Cartas\IAgregarCarta.cs" />
     <Compile Include="Contratos\Cartas\IConsultarCartas.cs" />
@@ -622,6 +623,7 @@
     <Compile Include="Presentadores\Asociados\PresentadorConsultarAsociados.cs" />
     <Compile Include="Presentadores\CadenaDeCambio\PresentadorConsultarCadenasDeCambios.cs" />
     <Compile Include="Presentadores\CadenaDeCambio\PresentadorGestionarCadenaDeCambios.cs" />
+    <Compile Include="Presentadores\CadenaDeCambio\PresentadorListadoCadenasDeCambios.cs" />
     <Compile Include="Presentadores\Cartas\PresentadorConsultarContactosPorAsociado.cs" />
     <Compile Include="Presentadores\Cartas\PresentadorConsultarCarta.cs" />
     <Compile Include="Presentadores\Cartas\PresentadorAgregarCarta.cs" />
@@ -1139,6 +1141,9 @@
     </Compile>
     <Compile Include="Ventanas\CadenaDeCambio\GestionarCadenaDeCambios.xaml.cs">
       <DependentUpon>GestionarCadenaDeCambios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\CadenaDeCambio\ListadoCadenasDeCambios.xaml.cs">
+      <DependentUpon>ListadoCadenasDeCambios.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\CartasOuts\ConsultarCartasOuts.xaml.cs">
       <DependentUpon>ConsultarCartasOuts.xaml</DependentUpon>
@@ -1968,6 +1973,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\CadenaDeCambio\GestionarCadenaDeCambios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\CadenaDeCambio\ListadoCadenasDeCambios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
