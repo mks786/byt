@@ -186,9 +186,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                Usuario primerUsuario = new Usuario();
+                primerUsuario.Id = "NGN";
                 IList<Usuario> usuarios = this._usuarioServicios.ConsultarTodos();
                 usuarios = this.FiltrarUsuariosRepetidos(usuarios);
                 this._usuarios = usuarios;
+                this._usuarios.Insert(0, primerUsuario);
                 this._ventana.Usuarios = usuarios;
                 this._ventana.Usuario = this.BuscarUsuarioPorIniciales(usuarios, UsuarioLogeado);
 

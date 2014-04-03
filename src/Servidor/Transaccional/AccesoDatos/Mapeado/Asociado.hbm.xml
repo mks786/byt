@@ -32,11 +32,11 @@
     <property name="OrigenCliente" column="IORIGEN" type="string"/>
     <property name="CartaDomicilio" column="CCARTAD" type="int"/>
 
-    <many-to-one name="Pais" class="Pais">
+    <many-to-one name="Pais" class="Pais" lazy="false">
       <column name="CPAIS"/>
     </many-to-one>
 
-    <many-to-one name="Idioma" class="Idioma">
+    <many-to-one name="Idioma" class="Idioma" lazy="false">
       <column name="CIDIOMA"/>
     </many-to-one>
 
@@ -77,7 +77,7 @@
       </composite-element>
     </bag>
 
-    <bag name="Contactos" table="FAC_CONTACTOS" inverse="true" generic="true">
+    <bag name="Contactos" table="FAC_CONTACTOS" inverse="true" generic="true" lazy="false">
       <key column="CNUMERO"/>
       <composite-element class="Contacto">
         <many-to-one name="Asociado" class="Asociado" column="CASOCIADO"/>

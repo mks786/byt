@@ -42,6 +42,7 @@ Namespace Presentadores.FacFacturas
         Private _cartasServicios As ICartaServicios
         Private _guiasServicios As IGuiaServicios
         Private _detalleenviosServicios As IFacDetalleEnvioServicios
+        Private _ListaDatosValoresServicios As IListaDatosValoresServicios
         ''' <summary>
         ''' Constructor Predeterminado
         ''' </summary>
@@ -57,6 +58,7 @@ Namespace Presentadores.FacFacturas
                 Me._guiasServicios = DirectCast(Activator.GetObject(GetType(IGuiaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("guiaServicios")), IGuiaServicios)
                 Me._detalleenviosServicios = DirectCast(Activator.GetObject(GetType(IFacDetalleEnvioServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("DetalleEnvioServicios")), IFacDetalleEnvioServicios)
                 Me._cartasServicios = DirectCast(Activator.GetObject(GetType(ICartaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("CartaServicios")), ICartaServicios)
+                Me._ListaDatosValoresServicios = DirectCast(Activator.GetObject(GetType(IListaDatosValoresServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("ListaDatosValoresServicios")), IListaDatosValoresServicios)
             Catch ex As Exception
                 logger.[Error](ex.Message)
                 Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
@@ -106,6 +108,13 @@ Namespace Presentadores.FacFacturas
                 primerguias.Id = ""
                 guias.Insert(0, primerguias)
                 Me._ventana.Guias = guias
+
+                Dim origenesFactura As IList(Of ListaDatosValores) = Me._ListaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(New ListaDatosValores(Recursos.Etiquetas.cbiOrigenClienteAsociado))
+                Dim primerOrigenFactura As ListaDatosValores = New ListaDatosValores()
+                primerOrigenFactura.Valor = "NGN"
+                origenesFactura.Insert(0, primerOrigenFactura)
+                Me._ventana.OrigenesFactura = origenesFactura
+
                 'sumar(FacFacturas)
 
                 'Me._asociados = Me._asociadosServicios.ConsultarTodos()
@@ -288,6 +297,11 @@ Namespace Presentadores.FacFacturas
                     End If
                 End If                
 
+                If Me._ventana.OrigenFactura IsNot Nothing Then
+                    If DirectCast(Me._ventana.OrigenFactura, ListaDatosValores).Valor <> "NGN" Then
+                        FacFacturaAuxiliar.OrigenFactura = DirectCast(Me._ventana.OrigenFactura, ListaDatosValores).Descripcion
+                    End If
+                End If
 
 
 

@@ -128,7 +128,19 @@
                                 </custom:ByTTextBox.Text>
                             </custom:ByTTextBox>
                         </WrapPanel>
-                    
+
+
+                        <!--<WrapPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
+                            <Label VerticalAlignment="Top" HorizontalContentAlignment="Left">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblOrigenProforma}" VerticalAlignment="Center" />
+                            </Label>
+                            <ComboBox Name="_cbxOrigenMarcaSolicitud" Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" 
+                                      SelectedIndex="0" Width="50" >
+                            </ComboBox>
+                        </WrapPanel>-->
+
+
+
                         <WrapPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
                             <Label  VerticalAlignment="Top" HorizontalContentAlignment="Left">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.faclblFecha}" VerticalAlignment="Center" />
@@ -154,6 +166,15 @@
                                     </Binding>
                                 </custom:ByTTextBox.Text>
                             </custom:ByTTextBox>
+                        </WrapPanel>
+
+                        <WrapPanel Grid.Row="3" Grid.Column="2" Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
+                            <Label VerticalAlignment="Top" HorizontalContentAlignment="Left">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblOrigenProforma}" VerticalAlignment="Center" />
+                            </Label>
+                            <ComboBox Name="_cbxOrigenProforma" Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" 
+                                      SelectedIndex="0" Width="70" >
+                            </ComboBox>
                         </WrapPanel>
 
                         <WrapPanel Grid.Row="5" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Orientation="Horizontal" Height="40" HorizontalAlignment="Left" Margin="0,0,0,0">

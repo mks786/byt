@@ -16,6 +16,7 @@ using Trascend.Bolet.Cliente.Ventanas.AbandonosPatente;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
+using Trascend.Bolet.Cliente.Ventanas.Patentes;
 
 namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
 {
@@ -48,12 +49,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorGestionarAbandonoPatente(IGestionarAbandonoPatente ventana, object abandono)
+        public PresentadorGestionarAbandonoPatente(IGestionarAbandonoPatente ventana, object abandono, object ventanaPadre)
         {
             try
             {
 
                 this._ventana = ventana;
+                this._ventanaPadre = ventanaPadre;
 
                 if (abandono != null)
                 {
@@ -100,7 +102,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
         }
 
@@ -177,7 +179,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
             finally
             {
@@ -286,7 +288,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
             finally
             {
@@ -338,7 +340,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
             finally
             {
@@ -894,6 +896,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
 
             if (((Operacion)this._ventana.Operacion).Asociado != null)
             {
+
+                Asociado asociadoOperacion = new Asociado();
+                asociadoOperacion.Id = ((Operacion)this._ventana.Operacion).Asociado.Id;
+                asociadoOperacion = this._asociadoServicios.ConsultarAsociadoConTodo(asociadoOperacion);
+                ((Operacion)this._ventana.Operacion).Asociado = asociadoOperacion;
+
                 this._asociados.Add(((Operacion)this._ventana.Operacion).Asociado);
                 this._ventana.AsociadosFiltrados = this._asociados;
                 this._ventana.AsociadoFiltrado = ((Operacion)this._ventana.Operacion).Asociado;
@@ -986,5 +994,42 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
         #endregion
 
 
+        /// <summary>
+        /// Metodo que consulta una Patente a abandonar
+        /// </summary>
+        public void IrConsultarPatente()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (this._ventana.Patente != null)
+                {
+                    Patente patenteAux = new Patente();
+                    patenteAux.Id = ((Patente)this._ventana.Patente).Id;
+                    IList<Patente> patentes = this._patenteServicios.ObtenerPatentesFiltro(patenteAux);
+                    if (patentes.Count > 0)
+                    {
+                        Patente patente = patentes[0];
+                        this.Navegar(new GestionarPatente(patente, this._ventana));
+                    }
+                    else
+                        this._ventana.Mensaje("La Patente no existe", 0);
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+        }
     }
 }

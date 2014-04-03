@@ -5,8 +5,8 @@
 
   <class name="FacDepartamentoServicio" table="FAC_SERVICIOS_DPTO">
     <composite-id>      
-      <key-many-to-one name="Id" column="CODDPTO" class="Departamento"/>
-      <key-many-to-one name="Servicio" column="COD_SER" class="FacServicio"/>
+      <key-many-to-one name="Id" column="CODDPTO" class="Departamento" lazy="false"/>
+      <key-many-to-one name="Servicio" column="COD_SER" class="FacServicio" lazy="false"/>
     </composite-id>
   </class>
 </hibernate-mapping>

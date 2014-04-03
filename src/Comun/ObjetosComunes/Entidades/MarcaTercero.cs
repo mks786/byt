@@ -83,6 +83,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _faxtercerointeresado;
         private string _telefonotercerointeresado;
         private string _comentariotercerointeresado;
+        private string _origenMarcaTercero;
 
         #endregion
 
@@ -834,6 +835,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _comentariotercerointeresado; }
             set { _comentariotercerointeresado = value; }
+        }
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Origen de la Marca a Tercero
+        /// </summary>
+        public virtual string OrigenMarcaTercero
+        {
+            get { return _origenMarcaTercero; }
+            set { _origenMarcaTercero = value; }
         }
 
 

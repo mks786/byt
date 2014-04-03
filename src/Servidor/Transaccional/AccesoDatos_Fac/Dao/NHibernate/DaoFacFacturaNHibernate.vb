@@ -189,6 +189,14 @@ Namespace Dao.NHibernate
                 variosFiltros = True
             End If
 
+            If Not String.IsNullOrEmpty(FacFactura.OrigenFactura) Then
+                If variosFiltros Then
+                    filtro += " and "
+                End If
+                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacFacturaOrigenFactura, FacFactura.OrigenFactura)
+                variosFiltros = True
+            End If
+
             'If (FacFactura.FechaReg IsNot Nothing) AndAlso (Not FacFactura.FechaReg.Equals(DateTime.MinValue)) Then
             '    If variosFiltros Then
             '        filtro += " and "

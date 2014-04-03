@@ -68,6 +68,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         private IList<Auditoria> _auditorias;
         private IList<Marca> _marcas;
         private IList<MarcaBaseTercero> _marcasBaseTercero;
+        private IList<ListaDatosValores> _origenesMarcaTercero;
 
         //private object _ventanaPadre = null; 
 
@@ -202,6 +203,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarMarcaTercero, "");
 
+                #region Origen de Marca Tercero
+
+                this._origenesMarcaTercero =
+                            this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiOrigenClienteAsociado));
+                
+                
+                #endregion
+
                 if (_agregar == false)
                 {
                     MarcaTercero marcaTercero = (MarcaTercero)this._ventana.MarcaTercero;
@@ -334,6 +343,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     if (null != this._auditorias && this._auditorias.Count > 0)
                         this._ventana.PintarAuditoria();
 
+                    ListaDatosValores primerOrigenMarcaTercero = new ListaDatosValores();
+                    primerOrigenMarcaTercero.Id = "NGN";
+                    this._origenesMarcaTercero.Insert(0, primerOrigenMarcaTercero);
+                    this._ventana.OrigenesMarcaTercero = this._origenesMarcaTercero;
+                    ListaDatosValores origenPredeterminado = new ListaDatosValores();
+
+                    if (!string.IsNullOrEmpty(marcaTercero.OrigenMarcaTercero))
+                    {
+                        origenPredeterminado.Valor = marcaTercero.OrigenMarcaTercero;
+                    }
+                    else
+                        origenPredeterminado.Valor = "";
+
+                    this._ventana.OrigenMarcaTercero = this.BuscarListaDeDatosValores(this._origenesMarcaTercero, origenPredeterminado);
+                    
+
                     this._ventana.BorrarCeros();
                 }
                 else
@@ -342,6 +367,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     CargaComboBox();
                     CargaComboBoxByt();
                     CargarTipoBaseCombo();
+                    this._ventana.OrigenesMarcaTercero = this._origenesMarcaTercero;
+                    ListaDatosValores origenPredeterminado = new ListaDatosValores();
+                    origenPredeterminado.Valor = "BOLET";
+                    this._ventana.OrigenMarcaTercero = this.BuscarListaDeDatosValores(this._origenesMarcaTercero, origenPredeterminado);
                 }
 
                 this._ventana.FocoPredeterminado();
@@ -657,8 +686,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             //--
             if (!string.IsNullOrEmpty(this._ventana.Anexo))
                 marcaTercero.Anexo = int.Parse(this._ventana.Anexo);
-            
 
+            if ((null != this._ventana.OrigenMarcaTercero) && (!((ListaDatosValores)this._ventana.OrigenMarcaTercero).Id.Equals("NGN")))
+            {
+                marcaTercero.OrigenMarcaTercero = ((ListaDatosValores)this._ventana.OrigenMarcaTercero).Valor;
+            }
+            else
+                marcaTercero.OrigenMarcaTercero = null;
+
+
+            #region CODIGO ORIGINAL COMENTADO
             //--
 
             //if (null != this._ventana.StatusWeb)
@@ -676,11 +713,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             //if (null != this._ventana.TipoMarcaTerceroDatos)
             //    marcaTercero.Tipo = !((ListaDatosDominio)this._ventana.TipoMarcaTerceroDatos).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoMarcaTerceroDatos).Id : null;
 
-           
+
 
 
             //if (string.IsNullOrEmpty(this._ventana.IdNacional
-            //   marcaTercero.Nacional = null;
+            //   marcaTercero.Nacional = null; 
+            #endregion
 
 
             return marcaTercero;

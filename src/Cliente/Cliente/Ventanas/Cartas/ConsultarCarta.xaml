@@ -244,12 +244,12 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblPersona}"/>
                 </Label>-->
                 <Button Grid.Column="5" Grid.Row="4" Name="_btnIrPersona" VerticalAlignment="Center" Height="25" 
-                    Click="_btnIrPersona_Click">
+                    Click="_btnIrPersona_Click" Margin="2,0,0,0">
                     <TextBlock Name="_txbAbrirCorrespondencia" Text="{x:Static recurso:Etiquetas.lblPersona}"/>
                 </Button>
                 <!--<Button  Grid.Column="1"   Grid.Row="5"  Name="_btnPersona" VerticalAlignment="Center" Height="25" Width="90" Click="_btnPersona_Click">Persona: </Button>-->
-                <ComboBox  IsEnabled="True" Grid.Column="6" Grid.Row="4" Grid.ColumnSpan="4" Name="_cbxContacto"  Height="20" ItemsSource="{Binding}"
-                      DisplayMemberPath="Nombre" SelectedIndex="0" VerticalAlignment="Top">
+                <ComboBox  IsEnabled="True" Grid.Column="6" Grid.Row="4" Grid.ColumnSpan="4" Name="_cbxContacto"  Height="20" 
+                           ItemsSource="{Binding}" DisplayMemberPath="Nombre" SelectedIndex="0" Margin="2,0,0,0">
                 </ComboBox>
                 <Label Grid.Column="1" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblReferencia}"/>

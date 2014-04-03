@@ -36,6 +36,8 @@ Namespace Presentadores.FacFacturaProformas
         Private _facbancosServicios As IFacBancoServicios
         Private _idiomasServicios As IIdiomaServicios
         Private _monedasServicios As IMonedaServicios
+        Private _ListaDatosValoresServicios As IListaDatosValoresServicios
+        Private _fitroValido As Integer
 
         ''' <summary>
         ''' Constructor Predeterminado
@@ -49,6 +51,8 @@ Namespace Presentadores.FacFacturaProformas
                 Me._facbancosServicios = DirectCast(Activator.GetObject(GetType(IFacBancoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacBancoServicios")), IFacBancoServicios)
                 Me._idiomasServicios = DirectCast(Activator.GetObject(GetType(IIdiomaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("IdiomaServicios")), IIdiomaServicios)
                 Me._monedasServicios = DirectCast(Activator.GetObject(GetType(IMonedaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("MonedaServicios")), IMonedaServicios)
+                Me._ListaDatosValoresServicios = DirectCast(Activator.GetObject(GetType(IListaDatosValoresServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("ListaDatosValoresServicios")), IListaDatosValoresServicios)
+
             Catch ex As Exception
                 logger.[Error](ex.Message)
                 Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
@@ -85,6 +89,12 @@ Namespace Presentadores.FacFacturaProformas
                 'Me._ventana.Resultados = FacFacturaProformas
                 'Consultar()
                 Me._ventana.FacFacturaProformaFiltrar = New FacFacturaProforma
+
+                Dim origenesProforma As IList(Of ListaDatosValores) = Me._ListaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(New ListaDatosValores(Recursos.Etiquetas.cbiOrigenClienteAsociado))
+                Dim primerOrigenProforma As ListaDatosValores = New ListaDatosValores()
+                primerOrigenProforma.Valor = "NGN"
+                origenesProforma.Insert(0, primerOrigenProforma)
+                Me._ventana.OrigenesProforma = origenesProforma
                 'sumar(FacFacturaProformas)
 
                 'Me._asociados = Me._asociadosServicios.ConsultarTodos()
@@ -139,7 +149,7 @@ Namespace Presentadores.FacFacturaProformas
             End If
             '#End Region
 
-            Me.Navegar(New ConsultarFacFacturaProformas())
+            Me.Navegar(New ConsultarFacFacturaProformasTodas())
             'Me.Navegar(New ConsultarFacCobro())
             '#Region "trace"
             If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
@@ -289,6 +299,13 @@ Namespace Presentadores.FacFacturaProformas
 
                 If Me._ventana.Inicial <> "" Then
                     FacFacturaProformaAuxiliar.Inicial = Me._ventana.Inicial
+                End If
+
+                If (Me._ventana.OrigenProforma IsNot Nothing) Then
+                    Dim StrOpcionElegida As String = DirectCast(Me._ventana.OrigenProforma, ListaDatosValores).Valor
+                    If StrOpcionElegida <> "NGN" Then
+                        FacFacturaProformaAuxiliar.OrigenProforma = DirectCast(Me._ventana.OrigenProforma, ListaDatosValores).Descripcion
+                    End If
                 End If
 
                 'If (filtroValido = True) Then

@@ -4398,4 +4398,16 @@ en Prensa:</value>
   <data name="btnVerOperaciones" xml:space="preserve">
     <value>Ver Operaciones</value>
   </data>
+  <data name="lblOrigenMarca" xml:space="preserve">
+    <value>Origen de Marca:</value>
+  </data>
+  <data name="lblOrigenMarcaTercero" xml:space="preserve">
+    <value>Origen de Marca Tercero:</value>
+  </data>
+  <data name="lblOrigenPatente" xml:space="preserve">
+    <value>Origen de Patente:</value>
+  </data>
+  <data name="lblRepresentante" xml:space="preserve">
+    <value>Representante:</value>
+  </data>
 </root>

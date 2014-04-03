@@ -39,6 +39,8 @@ Namespace Presentadores.FacFacturas
         Private _Marcas As IList(Of Marca)
         Private _detalleenvios As IList(Of FacDetalleEnvio)
         Private _Cartas As IList(Of Carta)
+        Private _OrigenesFactura As IList(Of ListaDatosValores)
+
         ''Private _FacOperaciones As IList(Of FacOperacion)
         Private _tasasServicios As ITasaServicios
         ''Private _FacCreditoServicios As IFacCreditoServicios
@@ -75,6 +77,7 @@ Namespace Presentadores.FacFacturas
         Private _FacContadorServicios As IContadorFacServicios
         Private _FacInternacionalesServicios As IFacInternacionalServicios
         Private _DepartamentoServicios As IDepartamentoServicios
+        Private _ListaDatosValoresServicios As IListaDatosValoresServicios
         Private _filtroFacFacturaProforma As Object
         Dim xoperacion As String
 
@@ -117,6 +120,7 @@ Namespace Presentadores.FacFacturas
                 Me._FacFactuDetaServicios = DirectCast(Activator.GetObject(GetType(IFacFactuDetalleServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFactuDetalleServicios")), IFacFactuDetalleServicios)
                 Me._FacFactuDetaProformasServicios = DirectCast(Activator.GetObject(GetType(IFacFactuDetaProformaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFactuDetaProformaServicios")), IFacFactuDetaProformaServicios)
                 Me._TarifaServiciosServicios = DirectCast(Activator.GetObject(GetType(ITarifaServicioServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("TarifaServicioServicios")), ITarifaServicioServicios)
+                Me._ListaDatosValoresServicios = DirectCast(Activator.GetObject(GetType(IListaDatosValoresServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("ListaDatosValoresServicios")), IListaDatosValoresServicios)
 
                 Me._DocumentosMarcasServicios = DirectCast(Activator.GetObject(GetType(IDocumentosMarcaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("DocumentosMarcaServicios")), IDocumentosMarcaServicios)
                 Me._DocumentosPatentesServicios = DirectCast(Activator.GetObject(GetType(IDocumentosPatenteServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("DocumentosPatenteServicios")), IDocumentosPatenteServicios)
@@ -223,6 +227,7 @@ Namespace Presentadores.FacFacturas
                 Me._FacContadorServicios = DirectCast(Activator.GetObject(GetType(IContadorFacServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("ContadorFacServicios")), IContadorFacServicios)
                 Me._FacInternacionalesServicios = DirectCast(Activator.GetObject(GetType(IFacInternacionalServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacInternacionalServicios")), IFacInternacionalServicios)
                 Me._DepartamentoServicios = DirectCast(Activator.GetObject(GetType(IDepartamentoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("DepartamentoServicios")), IDepartamentoServicios)
+                Me._ListaDatosValoresServicios = DirectCast(Activator.GetObject(GetType(IListaDatosValoresServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("ListaDatosValoresServicios")), IListaDatosValoresServicios)
 
                 eliminar_operacion_detalle_tm_usuario() ' para eliminar los operacion tmp de operacion_detalle_tm
 
@@ -371,6 +376,18 @@ Namespace Presentadores.FacFacturas
                     Else
                         'Me._ventana.Impuesto = Nothing
                     End If
+
+                    Me._OrigenesFactura =
+                        Me._ListaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(New ListaDatosValores(Recursos.Etiquetas.cbiOrigenClienteAsociado))
+                    Dim origenPredeterminado As ListaDatosValores = New ListaDatosValores()
+                    Me._ventana.OrigenesFactura = Me._OrigenesFactura
+                    If FacFactura.OrigenFactura IsNot Nothing Then
+                        origenPredeterminado.Valor = FacFactura.OrigenFactura
+                    Else
+                        origenPredeterminado.Valor = "BOLET"
+                    End If
+
+                    Me._ventana.OrigenFactura = Me.BuscarListaDeDatosValores(Me._OrigenesFactura, origenPredeterminado)
 
                     'Me._ventana.PDescuento = 0
 
@@ -538,6 +555,7 @@ Namespace Presentadores.FacFacturas
                     Me._ventana.SetXterrero = BuscarTerrero("1")
                 End If
                 factura.Status = 1
+                factura.OrigenFactura = proforma.OrigenProforma
                 ''--> fin guardar de proforma a factura
 
                 ''--> para pasar de detalleproforma a detalle
@@ -815,6 +833,10 @@ Namespace Presentadores.FacFacturas
                     End If
                     If FacFactura.CodigoDepartamento = "" Or FacFactura.CodigoDepartamento = Nothing Then
                         FacFactura.CodigoDepartamento = UsuarioLogeado.Departamento.Id
+                    End If
+
+                    If Me._ventana.OrigenFactura IsNot Nothing Then
+                        FacFactura.OrigenFactura = DirectCast(Me._ventana.OrigenFactura, ListaDatosValores).Descripcion
                     End If
 
 

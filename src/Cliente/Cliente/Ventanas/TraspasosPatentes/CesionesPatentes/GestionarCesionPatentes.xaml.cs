@@ -343,6 +343,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
                 this._chkAsientoEnLibro.IsEnabled = value;
                 this._cbxBoletin.IsEnabled = value;
 
+                this._btnPatente.IsEnabled = value;
+                this._btnCedente.IsEnabled = value;
+                this._btnCesionario.IsEnabled = value;
+
             }
         }
 
@@ -799,6 +803,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             this._btnIrAsociados.Visibility = (System.Windows.Visibility)value;
             this._txtAsociado.Visibility = (System.Windows.Visibility)value;
             this._txtIdAsociado.Visibility = (System.Windows.Visibility)value;
+            this._btnPatente.Visibility = (System.Windows.Visibility)value;
         }
 
 
@@ -1027,7 +1032,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
 
         private void GestionarVisibilidadDatosDeCedente(object value)
         {
-            this._lblNombreCedente.Visibility = (System.Windows.Visibility)value;
+            //this._lblNombreCedente.Visibility = (System.Windows.Visibility)value;
+            this._btnCedente.Visibility = (System.Windows.Visibility)value;
             this._txtNombreCedente.Visibility = (System.Windows.Visibility)value;
             this._txtIdCedente.Visibility = (System.Windows.Visibility)value;
             this._txtPaisCedente.Visibility = (System.Windows.Visibility)value;
@@ -1281,7 +1287,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
 
         private void GestionarVisibilidadDatosDeCesionario(object value)
         {
-            this._lblNombreCesionario.Visibility = (System.Windows.Visibility)value;
+            //this._lblNombreCesionario.Visibility = (System.Windows.Visibility)value;
+            this._btnCesionario.Visibility = (System.Windows.Visibility)value;
             this._txtNombreCesionario.Visibility = (System.Windows.Visibility)value;
             this._txtIdCesionario.Visibility = (System.Windows.Visibility)value;
             this._txtPaisCesionario.Visibility = (System.Windows.Visibility)value;
@@ -1377,6 +1384,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
         private void _btnIrAsociados_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrVentanaAsociado();
+        }
+
+        private void _btnConsultarInteresadosCesion_Click(object sender, RoutedEventArgs e)
+        {
+            Button botonPresionado = (Button)sender;
+            string nombreBoton = botonPresionado.Name;
+            this._presentador.ConsultarInteresadosDeCesion(nombreBoton);
+        }
+
+        private void _btnPatente_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarPatenteDeCesion();
         }
 
     }

@@ -342,5 +342,13 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         void PintarBotonExpTyR();
 
+        object OrigenMarcasSolicitud { get; set; }
+
+        object OrigenMarcaSolicitud { get; set; }
+
+        object OrigenMarcasDatos { get; set; }
+
+        object OrigenMarcaDatos { get; set; }
+
     }
 }

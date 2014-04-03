@@ -74,5 +74,10 @@ Namespace Contratos.FacFacturaProformas
         Property ListaResultados() As ListView
 
         WriteOnly Property Count As Integer
+
+        Property OrigenesProforma As Object
+
+        Property OrigenProforma As Object
+
     End Interface
 End Namespace

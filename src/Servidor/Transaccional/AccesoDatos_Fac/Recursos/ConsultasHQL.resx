@@ -788,4 +788,12 @@
     <value>fi.RevisionAprobada = '{0}'</value>
     <comment>Filtro para obtener las facturas internacionales con el valor del campo ISEL</comment>
   </data>
+  <data name="FiltroObtenerFacFacturaProformaOrigenProforma" xml:space="preserve">
+    <value>fp.OrigenProforma = '{0}'</value>
+    <comment>Filtro para obtener Proformas usando el campo OrigenProforma</comment>
+  </data>
+  <data name="FiltroObtenerFacFacturaOrigenFactura" xml:space="preserve">
+    <value>fp.OrigenFactura = '{0}'</value>
+    <comment>Filtro que obtiene FacFacturas a partir del campo OrigenFactura</comment>
+  </data>
 </root>

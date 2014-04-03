@@ -37,8 +37,8 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CesionesPatentes
         #region Cedente
 
         string NombreCedente { set; }
-        
-        string IdCedente { set; }
+
+        string IdCedente { get;  set; }
 
         object InteresadoCedente { get; set; }
 

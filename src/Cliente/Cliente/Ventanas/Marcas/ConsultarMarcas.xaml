@@ -116,6 +116,14 @@
                             <custom:ByTTextBox Name="_txtOtros" Text="{Binding Path=PrimerOtro}" Width="150" MaxLength="4000"
                              GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
                         </WrapPanel>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,60,0">
+                            <Label Name="_lblOrigenMarca">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblOrigenMarca}"/>
+                            </Label>
+                            <ComboBox Name="_cbxOrigenMarca" Width="120" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                            </ComboBox>
+                        </WrapPanel>
+                        
                         <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,60,0">
                         <Label>
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFichas}"/>

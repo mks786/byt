@@ -515,6 +515,15 @@ Namespace Recursos
         End Property
         
         '''<summary>
+        '''  Busca una cadena traducida similar a FAC_ASOC_ORIGENCLIENTE.
+        '''</summary>
+        Public Shared ReadOnly Property cbiOrigenClienteAsociado() As String
+            Get
+                Return ResourceManager.GetString("cbiOrigenClienteAsociado", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Busca una cadena traducida similar a Patente Reg o Solicitud.
         '''</summary>
         Public Shared ReadOnly Property cbiPatenteRegSolicitud() As String
@@ -3490,6 +3499,24 @@ Namespace Recursos
         Public Shared ReadOnly Property lblObservaciones() As String
             Get
                 Return ResourceManager.GetString("lblObservaciones", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca una cadena traducida similar a Origen Factura:.
+        '''</summary>
+        Public Shared ReadOnly Property lblOrigenFactura() As String
+            Get
+                Return ResourceManager.GetString("lblOrigenFactura", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca una cadena traducida similar a Origen Proforma:.
+        '''</summary>
+        Public Shared ReadOnly Property lblOrigenProforma() As String
+            Get
+                Return ResourceManager.GetString("lblOrigenProforma", resourceCulture)
             End Get
         End Property
         

@@ -55,6 +55,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IList<Corresponsal> _corresponsales;
         private IList<Auditoria> _auditorias;
         private IList<Poder> _poderesInterseccion;
+        private IList<ListaDatosValores> _origenDeMarcas;
 
 
         /// <summary>
@@ -414,6 +415,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.IdMarcaOrigenSolicitud = null;
                 this._ventana.IdMarcaOrigenDatos = null;
 
+                
+                this._origenDeMarcas = 
+                    this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiOrigenClienteAsociado));
+                this._ventana.OrigenMarcasSolicitud = this._origenDeMarcas;
+                this._ventana.OrigenMarcasDatos = this._origenDeMarcas;
+                ListaDatosValores origenPorDefecto = new ListaDatosValores();
+                origenPorDefecto.Valor = "BOLET";
+                this._ventana.OrigenMarcaSolicitud = this.BuscarListaDeDatosValores(this._origenDeMarcas, origenPorDefecto);
+                this._ventana.OrigenMarcaDatos = this.BuscarListaDeDatosValores(this._origenDeMarcas, origenPorDefecto);
 
                 CalcularSaldos();
 
@@ -544,6 +554,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         marca.StatusWeb = (StatusWeb)this._ventana.StatusWeb;
                     else
                         marca.StatusWeb = null;
+
+                    if (null != this._ventana.OrigenMarcaSolicitud)
+                    {
+                        marca.OrigenMarca = ((ListaDatosValores)this._ventana.OrigenMarcaSolicitud).Descripcion;
+                    }
+                    else
+                        marca.OrigenMarca = null;
 
 
                     if (null != this._ventana.DistingueSolicitud)
@@ -2261,5 +2278,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
 
+        /// <summary>
+        /// Metodo que cambia el origen de marca seleccionado
+        /// </summary>
+        /// <param name="nombreCombo">Nombre del combobox</param>
+        public void CambiarOrigenMarca(string nombreCombo)
+        {
+            if (nombreCombo.Equals("_cbxOrigenMarcaSolicitud"))
+            {
+
+            }
+        }
     }
 }

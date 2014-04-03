@@ -274,6 +274,11 @@ Namespace Contratos.FacFacturas
         WriteOnly Property Ocultar_Botones As Boolean
 
         Property TextoBotonModificar() As String
+
+        Property OrigenesFactura As Object
+
+        Property OrigenFactura As Object
+
         Sub Mensaje(ByVal mensaje__1 As String)
     End Interface
 End Namespace

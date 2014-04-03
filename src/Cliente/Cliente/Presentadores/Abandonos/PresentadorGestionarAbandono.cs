@@ -47,15 +47,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
 
 
         /// <summary>
-        /// Constructor Predeterminado
+        /// Constructor predeterminado
         /// </summary>
-        /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorGestionarAbandono(IGestionarAbandono ventana, object abandono)
+        /// <param name="ventana">Ventana Actual</param>
+        /// <param name="abandono">Abandono a mostrar</param>
+        /// <param name="ventanaPadre">Ventana que precede a esta ventana</param>
+        public PresentadorGestionarAbandono(IGestionarAbandono ventana, object abandono, object ventanaPadre)
         {
             try
             {
 
                 this._ventana = ventana;
+                this._ventanaPadre = ventanaPadre;
+             
 
                 if (abandono != null)
                 {

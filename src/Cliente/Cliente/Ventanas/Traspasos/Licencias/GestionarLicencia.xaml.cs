@@ -374,6 +374,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
                 this._btnIrMarcas.IsEnabled = value;
                 this._btnIrAsociados.IsEnabled = value;
 
+                this._btnVerLicenciante.IsEnabled = value;
+                this._btnVerLicenciatario.IsEnabled = value;
+
                 #region Internacional
 
                 this._txtIdMarcaInt.IsEnabled = value;
@@ -1024,7 +1027,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
 
         private void GestionarVisibilidadDatosDeLicenciante(object value)
         {
-            this._lblNombreLicenciante.Visibility = (System.Windows.Visibility)value;
+            //this._lblNombreLicenciante.Visibility = (System.Windows.Visibility)value;
+            this._btnVerLicenciante.Visibility = (System.Windows.Visibility)value;
             this._txtNombreLicenciante.Visibility = (System.Windows.Visibility)value;
             this._txtIdLicenciante.Visibility = (System.Windows.Visibility)value;
             this._txtPaisLicenciante.Visibility = (System.Windows.Visibility)value;
@@ -1274,7 +1278,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
 
         private void GestionarVisibilidadDatosDeLicenciatario(object value)
         {
-            this._lblNombreLicenciatario.Visibility = (System.Windows.Visibility)value;
+            //this._lblNombreLicenciatario.Visibility = (System.Windows.Visibility)value;
+            this._btnVerLicenciatario.Visibility = (System.Windows.Visibility)value;
             this._txtNombreLicenciatario.Visibility = (System.Windows.Visibility)value;
             this._txtIdLicenciatario.Visibility = (System.Windows.Visibility)value;
             this._txtPaisLicenciatario.Visibility = (System.Windows.Visibility)value;
@@ -1382,6 +1387,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
         private void _btnIrMarcas_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrConsultarMarca();
+        }
+
+        private void _btnVerInteresadosLicenciante_y_Licenciatario_Click(object sender, RoutedEventArgs e)
+        {
+            Button botonPresionado = (Button)sender;
+            string nombreBoton = botonPresionado.Name;
+            this._presentador.ConsultarInteresadosLicenciaUso(nombreBoton);
         }
 
     }

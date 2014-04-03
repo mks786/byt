@@ -96,6 +96,24 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 }
 
 
+                if ((null != marca.Poder) && (marca.Poder.Id != int.MinValue))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaIdPoder, marca.Poder.Id);
+                    variosFiltros = true;
+                }
+
+
+                if (!string.IsNullOrEmpty(marca.OrigenMarca))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaOrigenMarca, marca.OrigenMarca);
+                    variosFiltros = true;
+                }
+
+
                 if (!string.IsNullOrEmpty(marca.Fichas))
                 {
                     if (variosFiltros)

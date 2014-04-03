@@ -36,6 +36,8 @@ Namespace Presentadores.FacFacturaProformas
         Private _facbancosServicios As IFacBancoServicios
         Private _idiomasServicios As IIdiomaServicios
         Private _monedasServicios As IMonedaServicios
+        Private _ListaDatosValoresServicios As IListaDatosValoresServicios
+        Private _fitroValido As Integer
 
         ''' <summary>
         ''' Constructor Predeterminado
@@ -49,6 +51,7 @@ Namespace Presentadores.FacFacturaProformas
                 Me._facbancosServicios = DirectCast(Activator.GetObject(GetType(IFacBancoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacBancoServicios")), IFacBancoServicios)
                 Me._idiomasServicios = DirectCast(Activator.GetObject(GetType(IIdiomaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("IdiomaServicios")), IIdiomaServicios)
                 Me._monedasServicios = DirectCast(Activator.GetObject(GetType(IMonedaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("MonedaServicios")), IMonedaServicios)
+                Me._ListaDatosValoresServicios = DirectCast(Activator.GetObject(GetType(IListaDatosValoresServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("ListaDatosValoresServicios")), IListaDatosValoresServicios)
             Catch ex As Exception
                 logger.[Error](ex.Message)
                 Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
@@ -85,6 +88,13 @@ Namespace Presentadores.FacFacturaProformas
                 'Me._ventana.Resultados = FacFacturaProformas
                 'Consultar()
                 Me._ventana.FacFacturaProformaFiltrar = New FacFacturaProforma
+
+                Dim origenesProforma As IList(Of ListaDatosValores) = Me._ListaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(New ListaDatosValores(Recursos.Etiquetas.cbiOrigenClienteAsociado))
+                Dim primerOrigenProforma As ListaDatosValores = New ListaDatosValores()
+                primerOrigenProforma.Valor = "NGN"
+                origenesProforma.Insert(0, primerOrigenProforma)
+                Me._ventana.OrigenesProforma = origenesProforma
+
                 'sumar(FacFacturaProformas)
 
                 'Me._asociados = Me._asociadosServicios.ConsultarTodos()
@@ -215,10 +225,13 @@ Namespace Presentadores.FacFacturaProformas
                 'Variable utilizada para limitar a que el filtro se ejecute solo cuando 
                 'dos filtros sean utilizados
                 Dim FacFacturaProformaAuxiliar As New FacFacturaProforma()
+
+                Me._fitroValido = 0
                 'Dim FacFacturaProformas As FacFacturaProforma = DirectCast(_ventana.FacFacturaProformaFiltrar, FacFacturaProforma)
 
                 If Not Me._ventana.Id.Equals("") Then
                     FacFacturaProformaAuxiliar.Id = Integer.Parse(Me._ventana.Id)
+                    Me._fitroValido = 2
                 End If
 
                 'If Not Me._ventana.CreditoSent.Equals("") Then
@@ -227,6 +240,7 @@ Namespace Presentadores.FacFacturaProformas
 
                 If (Me._ventana.Asociado IsNot Nothing) AndAlso (DirectCast(Me._ventana.Asociado, Asociado).Id <> Integer.MinValue) Then
                     FacFacturaProformaAuxiliar.Asociado = DirectCast(Me._ventana.Asociado, Asociado)
+                    Me._fitroValido = 2
                 End If
 
                 'If (Me._ventana.Banco IsNot Nothing) AndAlso (DirectCast(Me._ventana.Banco, FacBanco).Id <> Integer.MinValue) Then
@@ -244,6 +258,7 @@ Namespace Presentadores.FacFacturaProformas
                 If Not Me._ventana.FechaFactura.Equals("") Then
                     Dim FechaFacFacturaProforma As DateTime = DateTime.Parse(Me._ventana.FechaFactura)
                     FacFacturaProformaAuxiliar.FechaFactura = FechaFacFacturaProforma
+                    Me._fitroValido = 2
                 End If
 
                 'If (filtroValido = True) Then
@@ -251,17 +266,45 @@ Namespace Presentadores.FacFacturaProformas
                 If FacFacturaProformaAuxiliar.Id Is Nothing Then
                     'FacFacturaProformaAuxiliar.CodigoDepartamento = UsuarioLogeado.Departamento.Id
                     FacFacturaProformaAuxiliar.Inicial = UsuarioLogeado.Iniciales
+                    Me._fitroValido = 2
                 End If
 
-                Dim FacFacturaProformas As IList(Of FacFacturaProforma)
-                FacFacturaProformas = Me._FacFacturaProformaServicios.ObtenerFacFacturaProformasFiltro(FacFacturaProformaAuxiliar)
-                Me._ventana.Resultados = Nothing
-                Me._ventana.Count = FacFacturaProformas.Count
-                If FacFacturaProformas.Count <= 0 Then
-                    MessageBox.Show("Mensaje: No se encontraron registros")
+                If (Me._ventana.OrigenProforma IsNot Nothing) Then
+                    Dim StrOpcionElegida As String = DirectCast(Me._ventana.OrigenProforma, ListaDatosValores).Valor
+                    If StrOpcionElegida <> "NGN" Then
+                        FacFacturaProformaAuxiliar.OrigenProforma = DirectCast(Me._ventana.OrigenProforma, ListaDatosValores).Descripcion
+                        Me._fitroValido = 2
+                    End If
                 End If
-                Me._ventana.Resultados = FacFacturaProformas
-                sumar(FacFacturaProformas)
+
+
+                If Me._fitroValido >= 2 Then
+                    Dim FacFacturaProformas As IList(Of FacFacturaProforma)
+                    FacFacturaProformas = Me._FacFacturaProformaServicios.ObtenerFacFacturaProformasFiltro(FacFacturaProformaAuxiliar)
+                    Me._ventana.Resultados = Nothing
+                    Me._ventana.Count = FacFacturaProformas.Count
+                    If FacFacturaProformas.Count <= 0 Then
+                        MessageBox.Show("Mensaje: No se encontraron registros")
+                    End If
+                    Me._ventana.Resultados = FacFacturaProformas
+                    sumar(FacFacturaProformas)
+                Else
+                    Me._ventana.Mensaje("Elija al menos un filtro para la consulta")
+                End If
+
+
+                '''Codigo original comentado NO BORRAR
+                'Dim FacFacturaProformas As IList(Of FacFacturaProforma)
+                'FacFacturaProformas = Me._FacFacturaProformaServicios.ObtenerFacFacturaProformasFiltro(FacFacturaProformaAuxiliar)
+                'Me._ventana.Resultados = Nothing
+                'Me._ventana.Count = FacFacturaProformas.Count
+                'If FacFacturaProformas.Count <= 0 Then
+                '    MessageBox.Show("Mensaje: No se encontraron registros")
+                'End If
+                'Me._ventana.Resultados = FacFacturaProformas
+                'sumar(FacFacturaProformas)
+
+
                 'Else
                 '    Me._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto)
                 'End If

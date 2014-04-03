@@ -318,5 +318,13 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         void PintarDetalleMemorias();
 
+        object OrigenPatentesSolicitud { get; set; }
+
+        object OrigenPatenteSolicitud { get; set; }
+
+        object OrigenPatentesDatos { get; set; }
+
+        object OrigenPatenteDatos { get; set; }
+
     }
 }

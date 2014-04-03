@@ -43,7 +43,9 @@ Namespace Presentadores.FacFacturaProformas
         Private _Marcas As IList(Of Marca)
         Private _detalleenvios As IList(Of FacDetalleEnvio)
         Private _Cartas As IList(Of Carta)
+        Private _OrigenesProforma As IList(Of ListaDatosValores)
         ''Private _FacOperaciones As IList(Of FacOperacion)
+
         Private _tasasServicios As ITasaServicios
         ''Private _FacCreditoServicios As IFacCreditoServicios
         Private _FacContadorProServicios As IFacContadorProServicios
@@ -72,6 +74,12 @@ Namespace Presentadores.FacFacturaProformas
         Private _FacOperacionDetaProformasServicios As IFacOperacionDetaProformaServicios
         Private _FacOperacionDetaTmProformasServicios As IFacOperacionDetaTmProformaServicios
         Private _FacDesgloseColesServicios As IFacDesgloseColeServicios
+        Private _ListaDatosValoresServicios As IListaDatosValoresServicios
+        Private _InstruccionCorrespondenciaServicios As IInstruccionCorrespondenciaServicios
+        Private _InstruccionEnvioOriginalesServicios As IInstruccionEnvioOriginalesServicios
+        Private _InstruccionDescuentoServicios As IInstruccionDescuentoServicios
+        Private _InstruccionOtrosServicios As IInstruccionOtrosServicios
+
         'FacOperacionDetaProforma
         ''Private _FacFormaServicios As IFacFormaServicios
         Dim xoperacion As String
@@ -100,6 +108,7 @@ Namespace Presentadores.FacFacturaProformas
                 Me._DepartamentoserviciosServicios = DirectCast(Activator.GetObject(GetType(IFacDepartamentoServicioServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("DepartamentoServicioServicios")), IFacDepartamentoServicioServicios)
                 Me._FacFactuDetaProformasServicios = DirectCast(Activator.GetObject(GetType(IFacFactuDetaProformaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFactuDetaProformaServicios")), IFacFactuDetaProformaServicios)
                 Me._TarifaServiciosServicios = DirectCast(Activator.GetObject(GetType(ITarifaServicioServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("TarifaServicioServicios")), ITarifaServicioServicios)
+                Me._ListaDatosValoresServicios = DirectCast(Activator.GetObject(GetType(IListaDatosValoresServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("ListaDatosValoresServicios")), IListaDatosValoresServicios)
 
                 Me._DocumentosMarcasServicios = DirectCast(Activator.GetObject(GetType(IDocumentosMarcaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("DocumentosMarcaServicios")), IDocumentosMarcaServicios)
                 Me._DocumentosPatentesServicios = DirectCast(Activator.GetObject(GetType(IDocumentosPatenteServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("DocumentosPatenteServicios")), IDocumentosPatenteServicios)
@@ -119,6 +128,10 @@ Namespace Presentadores.FacFacturaProformas
                 Me._FacOperacionDetaProformasServicios = DirectCast(Activator.GetObject(GetType(IFacOperacionDetaProformaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacOperacionDetaProformaServicios")), IFacOperacionDetaProformaServicios)
                 Me._FacOperacionDetaTmProformasServicios = DirectCast(Activator.GetObject(GetType(IFacOperacionDetaTmProformaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacOperacionDetaTmProformaServicios")), IFacOperacionDetaTmProformaServicios)
                 Me._FacDesgloseColesServicios = DirectCast(Activator.GetObject(GetType(IFacDesgloseColeServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacDesgloseColeServicios")), IFacDesgloseColeServicios)
+                Me._InstruccionCorrespondenciaServicios = DirectCast(Activator.GetObject(GetType(IInstruccionCorrespondenciaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("InstruccionCorrespondenciaServicios")), IInstruccionCorrespondenciaServicios)
+                Me._InstruccionEnvioOriginalesServicios = DirectCast(Activator.GetObject(GetType(IInstruccionEnvioOriginalesServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("InstruccionEnvioOriginalesServicios")), IInstruccionEnvioOriginalesServicios)
+                Me._InstruccionDescuentoServicios = DirectCast(Activator.GetObject(GetType(IInstruccionDescuentoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("InstruccionDescuentoServicios")), IInstruccionDescuentoServicios)
+                Me._InstruccionOtrosServicios = DirectCast(Activator.GetObject(GetType(IInstruccionOtrosServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("InstruccionOtrosServicios")), IInstruccionOtrosServicios)
 
                 Dim FacFacturaProforma As New FacFacturaProforma()
                 FacFacturaProforma.Auto = "0"
@@ -199,7 +212,11 @@ Namespace Presentadores.FacFacturaProformas
                     End If                    
                     Me._ventana.PDescuento = 0
 
-
+                    Me._OrigenesProforma = Me._ListaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(New ListaDatosValores(Recursos.Etiquetas.cbiOrigenClienteAsociado))
+                    Me._ventana.OrigenesProforma = Me._OrigenesProforma
+                    Dim origenPredeterminado As ListaDatosValores = New ListaDatosValores()
+                    origenPredeterminado.Valor = "BOLET"
+                    Me._ventana.OrigenProforma = Me.BuscarListaDeDatosValores(Me._OrigenesProforma, origenPredeterminado)
 
                     'Dim bancos As IList(Of FacBanco) = Me._bancosServicios.ObtenerFacBancosFiltro(Nothing)()
                     'Dim primerabanco As New FacBanco()
@@ -351,7 +368,7 @@ Namespace Presentadores.FacFacturaProformas
 
                 If validar = 2 Then
                     Mouse.OverrideCursor = Nothing
-                    MessageBox.Show("Error no se puede tener Asociado Impresion y Interesado en blanco, indique uno de los 2", "Error")
+                    MessageBox.Show("Error no se puede tener Asociado Impresion e Interesado en blanco, indique uno de los 2", "Error")
                     Exit Sub
                 End If
 
@@ -431,6 +448,7 @@ Namespace Presentadores.FacFacturaProformas
 
                 FacFacturaProforma.Local = Me._ventana.Localidad
                 FacFacturaProforma.BIMulmon = Me._ventana.BIMulmon
+                FacFacturaProforma.OrigenProforma = DirectCast(Me._ventana.OrigenProforma, ListaDatosValores).Valor
 
                 'FacFacturaProforma.Descuento = Me._ventana.Desc
                 FacFacturaProforma.MSubtimpo = Me._ventana.MSubtimpo
@@ -460,6 +478,7 @@ Namespace Presentadores.FacFacturaProformas
                 If FacFacturaProforma.CodigoDepartamento = "" Or FacFacturaProforma.CodigoDepartamento = Nothing Then
                     FacFacturaProforma.CodigoDepartamento = UsuarioLogeado.Departamento.Id
                 End If
+
 
 
                 'para el contador
@@ -2804,6 +2823,8 @@ Namespace Presentadores.FacFacturaProformas
             Dim v_anualidad As String = list_dat(16) '("anualidad")
             Dim v_recurso As String = list_dat(17) '("recurso")
             Dim v_material As String = list_dat(18) '("material")
+            Dim flag As Boolean
+            Dim cadenaMensaje As String
 
             Dim v_codmult As String = Nothing
             Dim Marcas As IList(Of Marca)
@@ -2812,7 +2833,7 @@ Namespace Presentadores.FacFacturaProformas
             v_codmult = servicio.Codmult
             Try
 
-
+                cadenaMensaje = String.Empty
                 Dim imult As String = servicio.Imult.ToString
                 If v_idioma = "ES" Then
                     If servicio.Imult <> "" And v_bsel = "False" Then
@@ -2918,6 +2939,101 @@ Namespace Presentadores.FacFacturaProformas
                                     End If
 
                                 End If
+                            End If
+
+                            'Instrucciones de Correspondencia
+
+                            Dim instruccionEnvioEmails As InstruccionCorrespondencia = New InstruccionCorrespondencia()
+                            Dim instruccion As InstruccionCorrespondencia = Nothing
+                            instruccionEnvioEmails.Id = Marcas(0).Id
+                            instruccionEnvioEmails.AplicadaA = "M"
+                            instruccionEnvioEmails.Concepto = "C"
+
+                            Dim instruccionEnvioOriginales As InstruccionEnvioOriginales = New InstruccionEnvioOriginales()
+                            Dim instruccionEO As InstruccionEnvioOriginales = Nothing
+                            instruccionEnvioOriginales.Id = Marcas(0).Id
+                            instruccionEnvioOriginales.AplicadaA = "M"
+                            instruccionEnvioOriginales.Concepto = "C"
+
+                            instruccion = Me._InstruccionCorrespondenciaServicios.ObtenerInstruccionCorrespondencia(instruccionEnvioEmails)
+                            instruccionEO = Me._InstruccionEnvioOriginalesServicios.ObtenerInstruccionEnvioOriginales(instruccionEnvioOriginales)
+
+                            If instruccion IsNot Nothing Then
+                                flag = True
+                                cadenaMensaje += " tiene Instrucción de Correspondencia por Envío de Email"
+                            End If
+
+                            If instruccionEO IsNot Nothing Then
+                                If flag Then
+                                    cadenaMensaje += ", "
+                                End If
+                                cadenaMensaje += "tiene Instrucción de Correspondencia por Envío de Originales"
+                            End If
+
+
+                            'Instrucciones de Facturacion
+
+                            Dim instruccionFacEnvioEmails As InstruccionCorrespondencia = New InstruccionCorrespondencia()
+                            Dim instruccionFac As InstruccionCorrespondencia = Nothing
+                            instruccionFacEnvioEmails.Id = Marcas(0).Id
+                            instruccionFacEnvioEmails.AplicadaA = "M"
+                            instruccionFacEnvioEmails.Concepto = "F"
+
+                            Dim instruccionFacEnvioOriginales As InstruccionEnvioOriginales = New InstruccionEnvioOriginales()
+                            Dim instruccionFac_EO As InstruccionEnvioOriginales = Nothing
+                            instruccionFacEnvioOriginales.Id = Marcas(0).Id
+                            instruccionFacEnvioOriginales.AplicadaA = "M"
+                            instruccionFacEnvioOriginales.Concepto = "F"
+
+                            instruccionFac = Me._InstruccionCorrespondenciaServicios.ObtenerInstruccionCorrespondencia(instruccionFacEnvioEmails)
+                            instruccionFac_EO = Me._InstruccionEnvioOriginalesServicios.ObtenerInstruccionEnvioOriginales(instruccionFacEnvioOriginales)
+
+                            If instruccionFac IsNot Nothing Then
+                                If flag Then
+                                    cadenaMensaje += ", "
+                                End If
+                                cadenaMensaje += "tiene Instrucción de Facturación por Envío de Email"
+                            End If
+
+                            If instruccionFac_EO IsNot Nothing Then
+                                If flag Then
+                                    cadenaMensaje += ", "
+                                End If
+                                cadenaMensaje += "tiene Instrucción de Facturación por Envío de Originales"
+                            End If
+
+                            'Instrucciones de Descuento de Marca
+                            Dim instruccionDescuentoFiltro As InstruccionDescuento = New InstruccionDescuento()
+                            instruccionDescuentoFiltro.CodigoOperacion = Marcas(0).Id
+                            instruccionDescuentoFiltro.AplicaA = "M"
+
+                            Dim instruccionesD As List(Of InstruccionDescuento) =
+                                Me._InstruccionDescuentoServicios.ObtenerInstruccionesDeDescuentoMarcaOPatente(instruccionDescuentoFiltro)
+
+                            If instruccionesD.Count > 0 Then
+                                If flag Then
+                                    cadenaMensaje += ", "
+                                End If
+                                cadenaMensaje += String.Format(" tiene {0} Instruccion(es) de Descuento", instruccionesD.Count.ToString())
+                            End If
+
+                            'Instrucciones No Tipificadas  De Marca
+                            Dim instruccionNoTipificadaFiltro As InstruccionOtros = New InstruccionOtros()
+                            instruccionNoTipificadaFiltro.Cod_MarcaOPatente = Marcas(0).Id
+                            instruccionNoTipificadaFiltro.AplicaA = "M"
+
+                            Dim instrucciones As List(Of InstruccionOtros) =
+                                Me._InstruccionOtrosServicios.ObtenerInstruccionesNoTipificadasPorFiltro(instruccionNoTipificadaFiltro)
+
+                            If instrucciones.Count > 0 Then
+                                If flag Then
+                                    cadenaMensaje += ", "
+                                End If
+                                cadenaMensaje += String.Format(" tiene {0} Instruccion(es) de Otro tipo", instrucciones.Count.ToString())
+                            End If
+
+                            If cadenaMensaje.Length > 0 Then
+                                Me._ventana.Mensaje(String.Format("La Marca {0}", Marcas(0).Id.ToString()) + cadenaMensaje, 2)
                             End If
 
                         End If
@@ -3501,7 +3617,7 @@ Namespace Presentadores.FacFacturaProformas
                                     sustituye(v_cadtmp_es, v_envia, v_lista_1_es(8), v_cadtmp_es)
 
                                 End If 'If (v_codmult = "M2") Then
-                                End If 'If i < Marcasselec.Count - 1 Then
+                            End If 'If i < Marcasselec.Count - 1 Then
                         Next
                     End If 'If (DirectCast(Me._ventana.ResultadosMultiplesMarcas, List(Of MarcaSelec)) IsNot Nothing) Then
                 End If 'If v_mult_marc <> "" And v_mult_marc <> Nothing Then

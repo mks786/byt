@@ -60,7 +60,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorConsultarCarta(IConsultarCarta ventana, object carta, object ventanaAVolver)
+        /// <param name="carta">Carta seleccionada para consultar</param>
+        /// <param name="ventanaAVolver">Ventana que antecede a esta ventana</param>
+        public PresentadorConsultarCarta(IConsultarCarta ventana, 
+                                         object carta, 
+                                         object ventanaAVolver)
         {
             try
             {
@@ -118,7 +122,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         /// Constructor Con Lista de Resultados
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorConsultarCarta(IConsultarCarta ventana, object carta, object cartasConsultadas, int posicion, object ventanaPadre, bool volverRefresca)
+        /// <param name="carta">Carta seleccionada en una lista de Resultados</param>
+        /// <param name="cartasConsultadas">Lista de Cartas producto del resultado de la consulta</param>
+        /// <param name="posicion">Posicion de la carta en la lista de cartas consultadas</param>
+        /// <param name="ventanaPadre">Ventana que antecede a esta ventana</param>
+        /// <param name="volverRefresca">Bit de bandera para indicar si se refresca al volver</param>
+        public PresentadorConsultarCarta(IConsultarCarta ventana, 
+                                         object carta,
+                                         object cartasConsultadas, 
+                                         int posicion, 
+                                         object ventanaPadre, 
+                                         bool volverRefresca)
         {
             try
             {
@@ -1589,7 +1603,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                         //int longitudListaCartas = _cartasARecorrer.Count;
 
-                        if (_posicion >= _cartasARecorrer.Count())
+                        //if (_posicion >= _cartasARecorrer.Count())
+                        if (_posicion > _cartasARecorrer.Count())
                         {
                             _posicion = 0;
                             this._ventana.Carta = this._cartasARecorrer[_posicion];
@@ -1705,7 +1720,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 contactoFiltro.Nombre = ((Contacto)this._ventana.Persona).Nombre;
                 contactoFiltro.Asociado = (Asociado)this._ventana.Asociado;
                 IList<Contacto> contactos = this._contactoServicios.ConsultarContactosFiltro(contactoFiltro);
-                Navegar(new ConsultarContacto(contactos[0], this._ventana));
+                if (!this._listaCartasCargada)
+                {
+                    //Navegar(new ConsultarContacto(contactos[0], this._ventana));
+                    Navegar(new ConsultarContacto(contactos[0], true, (Carta)this._ventana.Carta, null, 0, this._ventana, this._ventanaPadre));
+                }
+                else
+                {
+                    Navegar(new ConsultarContacto(contactos[0], true, (Carta)this._ventana.Carta, this._cartasARecorrer, this._posicion-1, this._ventana, this._ventanaPadre));
+                }
+                
             }
         }
 

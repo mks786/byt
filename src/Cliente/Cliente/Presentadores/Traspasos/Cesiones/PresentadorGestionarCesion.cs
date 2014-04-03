@@ -18,6 +18,7 @@ using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
 using Trascend.Bolet.Cliente.Ventanas.Asociados;
+using Trascend.Bolet.Cliente.Ventanas.Interesados;
 using Trascend.Bolet.Cliente.Ventanas.CadenaDeCambio;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
@@ -915,6 +916,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 //Para los poderes Cedentes
                 if (tipo.Equals("Cedente"))
                 {
+                    #region CODIGO ORIGINAL COMENTADO - NO BORRAR
                     //if ((listaPoderesA.Count != 0) && (listaPoderesB.Count != 0))
                     //{
                     //    foreach (Poder poderA in listaPoderesA)
@@ -936,11 +938,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
                     //}
 
-                    
+
                     //primerPoderCedente.Id = int.MinValue;
                     //listaPoderesCedente.Add(primerPoderCedente);
                     //if(poderDeBusqueda != null)
-                    //    listaPoderesCedente.Add(poderDeBusqueda);
+                    //    listaPoderesCedente.Add(poderDeBusqueda); 
+                    #endregion
 
                     listaPoderesCedente = listaPoderesA;
 
@@ -949,11 +952,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                         if (listaPoderesCedente.Count != 0)
                         {
                             primerPoderCedente.Id = int.MinValue;
-                            listaPoderesCedente.Insert(0,primerPoderCedente);
+                            listaPoderesCedente.Insert(0, primerPoderCedente);
                             Poder poderActual = (Poder)this._ventana.PoderCedenteFiltrado;
                             this._poderesInterseccionCedente = listaPoderesCedente;
                             this._ventana.PoderesCedenteFiltrados = listaPoderesCedente;
                             this._ventana.PoderCedenteFiltrado = BuscarPoder((IList<Poder>)this._ventana.PoderesCedenteFiltrados, poderActual);
+                            retorno = true;
                         } 
                     }
 
@@ -963,30 +967,32 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
                 //Para los poderes Cesionarios
                 else if (tipo.Equals("Cesionario"))
-                    {
+                {
 
-                    //if ((listaPoderesA.Count != 0) && (listaPoderesB.Count != 0))
-                    //{
-                    //    foreach (Poder poderA in listaPoderesA)
-                    //    {
-                    //        foreach (Poder poderB in listaPoderesB)
-                    //        {
-                    //            if (poderA.Id == poderB.Id)
-                    //            {
-                    //                poderDeBusqueda = poderA;
-                    //                retorno = true;
-                    //                break;
-                    //            }
+                        #region CODIGO ORIGINAL COMENTADO - NO BORRAR
+                        //if ((listaPoderesA.Count != 0) && (listaPoderesB.Count != 0))
+                        //{
+                        //    foreach (Poder poderA in listaPoderesA)
+                        //    {
+                        //        foreach (Poder poderB in listaPoderesB)
+                        //        {
+                        //            if (poderA.Id == poderB.Id)
+                        //            {
+                        //                poderDeBusqueda = poderA;
+                        //                retorno = true;
+                        //                break;
+                        //            }
 
-                    //        }
+                        //        }
 
-                    //    }
-                    //}
+                        //    }
+                        //}
 
-                    //primerPoderCesionario.Id = int.MinValue;
-                    //listaPoderesCesionario.Add(primerPoderCesionario);
-                    //if (poderDeBusqueda != null)
-                    //    listaPoderesCesionario.Add(poderDeBusqueda);
+                        //primerPoderCesionario.Id = int.MinValue;
+                        //listaPoderesCesionario.Add(primerPoderCesionario);
+                        //if (poderDeBusqueda != null)
+                        //    listaPoderesCesionario.Add(poderDeBusqueda); 
+                        #endregion
 
                     listaPoderesCesionario = listaPoderesA;
 
@@ -1000,13 +1006,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                             this._poderesInterseccionCesionario = listaPoderesCesionario;
                             this._ventana.PoderesCesionarioFiltrados = listaPoderesCesionario;
                             this._ventana.PoderCesionarioFiltrado = BuscarPoder((IList<Poder>)this._ventana.PoderesCesionarioFiltrados, poderActual);
+                            retorno = true;
                         } 
                     }
 
                 }
 
-                else
-                    retorno = false;
+                //else
+                //    retorno = false;
 
  
                 return retorno;
@@ -2226,20 +2233,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                         else
                         {
                             //this._poderesApoderadosCedente = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoCedenteFiltrado));
-                            this._poderesApoderadosCedente = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado((Agente)_ventana.ApoderadoCedenteFiltrado, (Interesado)this._ventana.CedenteFiltrado);
-
-                            LimpiarListaPoder("Cedente");
-
-                            listaPoderesValidada = this.ValidarListaDePoderes(this._poderesCedente, this._poderesApoderadosCedente, "Cedente");
-
+                            //LimpiarListaPoder("Cedente");
                             //if ((this.ValidarListaDePoderes(this._poderesCedente, this._poderesApoderadosCedente, "Cedente")))
+                            //else if (!this.ValidarListaDePoderes(this._poderesCedente, this._poderesApoderadosCedente, "Cedente"))
+
+                            this._poderesApoderadosCedente = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado((Agente)_ventana.ApoderadoCedenteFiltrado, (Interesado)this._ventana.CedenteFiltrado);
+                                                                                    
+
+                            listaPoderesValidada = this.ValidarListaDePoderes(this._poderesApoderadosCedente, this._poderesCedente, "Cedente");
+
+                            
                             if(listaPoderesValidada)
                             {
                                 this._ventana.ApoderadoCedente = this._ventana.ApoderadoCedenteFiltrado;
                                 this._ventana.NombreApoderadoCedente = ((Agente)this._ventana.ApoderadoCedenteFiltrado).Nombre;
+                                this._ventana.IdApoderadoCedente = ((Agente)this._ventana.ApoderadoCedenteFiltrado).Id;
                                 retorno = true;
                             }
-                            //else if (!this.ValidarListaDePoderes(this._poderesCedente, this._poderesApoderadosCedente, "Cedente"))
+                            
                             else
                             {
                                 this._ventana.ConvertirEnteroMinimoABlanco("Cedente");
@@ -2380,7 +2391,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                             }
                             else
                             {
-                                this._ventana.Mensaje("El Poder no pertenece al Interesado", 0);
+                                this._ventana.Mensaje("El Poder no pertenece al Cedente", 0);
                                 this._ventana.PoderCedente = this._ventana.PoderCedenteFiltrado;
                                 this._ventana.IdPoderCedente = ((Poder)this._ventana.PoderCedenteFiltrado).Id.ToString();
                                 retorno = true;
@@ -2390,7 +2401,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
                         else
                         {
-                            this._ventana.Mensaje("El Poder no pertenece al Interesado", 0);
+                            this._ventana.Mensaje("El Poder no relaciona al Apoderado con el Cedente", 0);
                             this._ventana.PoderCedente = this._ventana.PoderCedenteFiltrado;
                             this._ventana.IdPoderCedente = ((Poder)this._ventana.PoderCedenteFiltrado).Id.ToString();
                             retorno = true;
@@ -2987,6 +2998,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                             {
                                 this._ventana.ApoderadoCesionario = this._ventana.ApoderadoCesionarioFiltrado;
                                 this._ventana.NombreApoderadoCesionario = ((Agente)this._ventana.ApoderadoCesionarioFiltrado).Nombre;
+                                this._ventana.IdApoderadoCesionario = ((Agente)this._ventana.ApoderadoCesionarioFiltrado).Id;
                                 retorno = true;
                             }
                             //else if (!this.ValidarListaDePoderes(this._poderesCesionario, this._poderesApoderadosCesionario, "Cesionario"))
@@ -3132,7 +3144,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                             }
                             else
                             {
-                                this._ventana.Mensaje("El Poder no pertenece al Interesado", 0);
+                                this._ventana.Mensaje("El Poder no pertenece al Cesionario", 0);
                                 this._ventana.PoderCesionario = this._ventana.PoderCesionarioFiltrado;
                                 this._ventana.IdPoderCesionario = ((Poder)this._ventana.PoderCesionarioFiltrado).Id.ToString();
                                 retorno = true;
@@ -3142,7 +3154,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
                         else
                         {
-                            this._ventana.Mensaje("El Poder no pertenece al Interesado", 0);
+                            this._ventana.Mensaje("El Poder no relaciona al Apoderado con el Cesionario", 0);
                             this._ventana.PoderCesionario = this._ventana.PoderCesionarioFiltrado;
                             this._ventana.IdPoderCesionario = ((Poder)this._ventana.PoderCesionarioFiltrado).Id.ToString();
                             retorno = true;
@@ -3454,5 +3466,80 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             }
         }
 
+        /// <summary>
+        /// Metodo que presenta los datos del Interesado Cedente 
+        /// </summary>
+        public void VerInteresadoCedente()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (!this._ventana.IdCedente.Equals(String.Empty))
+                {
+                    Interesado interesadoCedente = new Interesado();
+                    interesadoCedente.Id = int.Parse(this._ventana.IdCedente);
+
+                    IList<Interesado> cedentes = this._interesadoServicios.ObtenerInteresadosFiltro(interesadoCedente);
+                    if (cedentes.Count > 0)
+                    {
+                        this.Navegar(new ConsultarInteresado(cedentes[0], this._ventana));
+                    }
+                    else
+                        this._ventana.Mensaje("El Interesado Cedente no existe", 0);
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+        }
+
+        /// <summary>
+        /// Metodo que presenta los datos del Interesado Cesionario
+        /// </summary>
+        public void VerInteresadoCesionario()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (!this._ventana.IdCesionario.Equals(String.Empty))
+                {
+                    Interesado interesadoCesionario = new Interesado();
+                    interesadoCesionario.Id = int.Parse(this._ventana.IdCesionario);
+
+                    IList<Interesado> cesionarios = this._interesadoServicios.ObtenerInteresadosFiltro(interesadoCesionario);
+                    if (cesionarios.Count > 0)
+                    {
+                        this.Navegar(new ConsultarInteresado(cesionarios[0], this._ventana));
+                    }
+                    else
+                        this._ventana.Mensaje("El Interesado Cesionario no existe", 0);
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+        }
     }
 }

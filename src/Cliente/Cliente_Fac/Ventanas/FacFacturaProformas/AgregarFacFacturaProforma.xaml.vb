@@ -43,6 +43,19 @@ Namespace Ventanas.FacFacturaProformas
         Public Sub Mensaje(ByVal mensaje__1 As String) Implements Contratos.FacFacturaProformas.IAgregarFacFacturaProforma.Mensaje
             MessageBox.Show(mensaje__1, "Error", MessageBoxButton.OK, MessageBoxImage.[Error])
         End Sub
+
+        Public Sub Mensaje(ByVal mensaje As String, ByVal tipo As Integer) Implements Contratos.FacFacturaProformas.IAgregarFacFacturaProforma.Mensaje
+            If tipo = 0 Then
+                MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.[Error])
+            ElseIf tipo = 1 Then
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning)
+            ElseIf tipo = 2 Then
+                MessageBox.Show(mensaje, "Información", MessageBoxButton.OK, MessageBoxImage.Information)
+            End If
+
+        End Sub
+
+
 #End Region
 
         Public Sub New()
@@ -232,6 +245,25 @@ Namespace Ventanas.FacFacturaProformas
                 Me._txtTarifa.Text = value
             End Set
         End Property
+
+        Public Property OrigenesProforma As Object Implements Contratos.FacFacturaProformas.IAgregarFacFacturaProforma.OrigenesProforma
+            Get
+                Return Me._cbxOrigenProforma.DataContext
+            End Get
+            Set(value As Object)
+                Me._cbxOrigenProforma.DataContext = value
+            End Set
+        End Property
+
+        Public Property OrigenProforma As Object Implements Contratos.FacFacturaProformas.IAgregarFacFacturaProforma.OrigenProforma
+            Get
+                Return Me._cbxOrigenProforma.SelectedItem
+            End Get
+            Set(value As Object)
+                Me._cbxOrigenProforma.SelectedItem = value
+            End Set
+        End Property
+
 
         Public Property Codeti As Object Implements Contratos.FacFacturaProformas.IAgregarFacFacturaProforma.Codeti
             Get

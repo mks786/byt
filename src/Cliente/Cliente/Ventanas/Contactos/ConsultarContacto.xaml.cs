@@ -111,13 +111,43 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
 
         #endregion
 
+        /// <summary>
+        /// Constructor predeterminado que recibe un contacto y una ventana padre
+        /// </summary>
+        /// <param name="contacto">Contacto a consultar</param>
+        /// <param name="ventanaPadre">Ventana anterior a esta ventana</param>
         public ConsultarContacto(object contacto, object ventanaPadre)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorConsultarContacto(this, contacto, ventanaPadre);
+            this._presentador = new PresentadorConsultarContacto(this, contacto, ventanaPadre,null);
 
         }
+
+
+        public ConsultarContacto(object contacto, object ventanaPadre, object ventanaPadrePrevia)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorConsultarContacto(this, contacto, ventanaPadre,ventanaPadrePrevia);
+
+        }
+
+        /// <summary>
+        /// Constructor predeterminador para la consulta de un contacto desde la ventana de ConsultarCarta
+        /// </summary>
+        /// <param name="contacto">Contacto a consultar</param>
+        /// <param name="vieneDeConsultarCarta">Bandera para saber si viene de la ventana ConsultarCarta</param>
+        /// <param name="carta">Carta mostrada en la pantalla de ConsultarCarta</param>
+        /// <param name="ventanaPadre">Ventana que antecede a esta ventana</param>
+        /// <param name="ventanaPadrePrevia">Ventana que antecede a la ventana padre</param>
+        public ConsultarContacto(object contacto, bool vieneDeConsultarCarta, object carta, object listaCartas, int posicion, object ventanaPadre, object ventanaPadrePrevia)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorConsultarContacto(this, contacto, vieneDeConsultarCarta, carta, listaCartas, posicion, ventanaPadre, ventanaPadrePrevia);
+        }
+
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)
         {

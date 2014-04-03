@@ -58,6 +58,15 @@
                             <custom:ByTTextBox Name="_txtId" Width="150" MaxLength="8" SoloNumero="False" Filtro="True" 
                                        GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
                         </WrapPanel>
+
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label Name="_lblOrigenMarcaTercero">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblOrigenMarcaTercero}"/>
+                            </Label>
+                            <ComboBox Name="_cbxOrigenMarcaTercero" Width="120" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                            </ComboBox>
+                        </WrapPanel>
+
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                             <Label Name="_lblSolicitud">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblSolicitud}"/>

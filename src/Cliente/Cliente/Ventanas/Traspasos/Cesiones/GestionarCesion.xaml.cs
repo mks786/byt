@@ -380,7 +380,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
                 this._btnConsultarCadenaCambios.IsEnabled = value;
                 this._btnIrAsociados.IsEnabled = value;
                 this._txtCadenaCambios.IsEnabled = value;
-
+                this._btnCedente.IsEnabled = value;
+                this._btnCesionario.IsEnabled = value;
 
                 #region Internacional
 
@@ -1046,7 +1047,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
         private void GestionarVisibilidadDatosDeCedente(object value)
         {
-            this._lblNombreCedente.Visibility = (System.Windows.Visibility)value;
+            //this._lblNombreCedente.Visibility = (System.Windows.Visibility)value;
+            this._btnCedente.Visibility = (System.Windows.Visibility)value;
             this._txtNombreCedente.Visibility = (System.Windows.Visibility)value;
             this._txtPaisCedente.Visibility = (System.Windows.Visibility)value;
             this._txtNacionalidadCedente.Visibility = (System.Windows.Visibility)value;
@@ -1283,7 +1285,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
         private void GestionarVisibilidadDatosDeCesionario(object value)
         {
-            this._lblNombreCesionario.Visibility = (System.Windows.Visibility)value;
+            //this._lblNombreCesionario.Visibility = (System.Windows.Visibility)value;
+            this._btnCesionario.Visibility = (System.Windows.Visibility)value;
             this._txtNombreCesionario.Visibility = (System.Windows.Visibility)value;
             this._txtPaisCesionario.Visibility = (System.Windows.Visibility)value;
             this._txtNacionalidadCesionario.Visibility = (System.Windows.Visibility)value;
@@ -1390,6 +1393,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         private void _btnIrMarcas_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrConsultarMarca();
+        }
+
+        private void _btnCedente_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.VerInteresadoCedente();
+        }
+
+        private void _btnCesionario_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.VerInteresadoCesionario();
         }
     }
 }

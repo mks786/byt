@@ -41,6 +41,14 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
+                if (!string.IsNullOrEmpty(Patente.OrigenPatente))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteOrigenPatente, Patente.OrigenPatente);
+                    variosFiltros = true;
+                }
+
                 if ((null != Patente) && (Patente.LocalidadPatente != null) && (!Patente.LocalidadPatente.Equals(string.Empty)))
                 {
                     //if (!Patente.LocalidadPatente.Equals("N"))
@@ -90,6 +98,14 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteOrigenInteresado, Patente.Interesado.OrigenCliente);
+                    variosFiltros = true;
+                }
+
+                if ((null != Patente.Poder) && (Patente.Poder.Id != int.MinValue))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteIdPoder, Patente.Poder.Id);
                     variosFiltros = true;
                 }
 

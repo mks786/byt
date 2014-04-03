@@ -16,6 +16,8 @@ using Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioPaten
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
+using Trascend.Bolet.Cliente.Ventanas.Interesados;
+using Trascend.Bolet.Cliente.Ventanas.Patentes;
 
 namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePeticionarioPatentes
 {
@@ -1767,14 +1769,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
                         }
                         else
                         {
-                            //this._poderesApoderadosAnterior = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoAnteriorFiltrado));
                             this._poderesApoderadosAnterior = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado((Agente)_ventana.ApoderadoAnteriorFiltrado, (Interesado)this._ventana.AnteriorFiltrado);
 
-                            LimpiarListaPoder("Anterior");
+                            #region CODIGO ORIGINAL COMENTADO - NO BORRAR
+                            //LimpiarListaPoder("Anterior");
+                            //listaDePoderesValidada = this.ValidarListaDePoderes(this._poderesAnterior, this._poderesApoderadosAnterior, "Anterior");
+                            #endregion
 
-                            listaDePoderesValidada = this.ValidarListaDePoderes(this._poderesAnterior, this._poderesApoderadosAnterior, "Anterior");
+                            if (this._poderesApoderadosAnterior.Count > 0)
+                            {
+                                this._poderesApoderadosAnterior.Insert(0, new Poder(int.MinValue));
+                                this._ventana.PoderesAnteriorFiltrados = this._poderesApoderadosAnterior;
+                                listaDePoderesValidada = true;
+                            }
 
-                            //if ((this.ValidarListaDePoderes(this._poderesAnterior, this._poderesApoderadosAnterior, "Anterior")))
                             if (listaDePoderesValidada)
                             {
                                 this._ventana.ApoderadoAnterior = this._ventana.ApoderadoAnteriorFiltrado;
@@ -1782,7 +1790,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
                                 this._ventana.IdApoderadoAnterior = ((Agente)this._ventana.ApoderadoAnteriorFiltrado).Id.ToString();
                                 retorno = true;
                             }
-                            //else if (!this.ValidarListaDePoderes(this._poderesAnterior, this._poderesApoderadosAnterior, "Anterior"))
                             else
                             {
                                 this._ventana.ConvertirEnteroMinimoABlanco("Anterior");
@@ -2704,5 +2711,92 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
 
         #endregion
 
+        /// <summary>
+        /// Metodo qeu consulta los Interesados del Cambio de Peticionario (Anterior y Actual)
+        /// </summary>
+        /// <param name="nombreBoton"></param>
+        public void ConsultarInteresadosCambioPeticionario(string nombreBoton)
+        {
+            Interesado interesadoAux = new Interesado();
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (nombreBoton.Equals("_btnInteresadoAnterior"))
+                {
+                    if (!this._ventana.IdAnterior.Equals(String.Empty))
+                        interesadoAux.Id = int.Parse(this._ventana.IdAnterior);
+                    else
+                        interesadoAux.Id = int.MinValue;
+                }
+                else if (nombreBoton.Equals("_btnInteresadoActual"))
+                {
+                    if (!this._ventana.IdActual.Equals(String.Empty))
+                        interesadoAux.Id = int.Parse(this._ventana.IdActual);
+                    else
+                        interesadoAux.Id = int.MinValue;
+                }
+
+                if (interesadoAux.Id != int.MinValue)
+                {
+                    IList<Interesado> interesados = this._interesadoServicios.ObtenerInteresadosFiltro(interesadoAux);
+                    if (interesados.Count > 0)
+                        this.Navegar(new ConsultarInteresado(interesados[0], this._ventana));
+                }
+
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+        }
+
+        /// <summary>
+        /// Metodo que consulta la Patente del Cambio de Peticionario
+        /// </summary>
+        public void ConsultarPatenteTraspasoPatente()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Patente patenteAux = new Patente();
+
+                if (!this._ventana.IdPatente.Equals(String.Empty))
+                {
+                    patenteAux.Id = int.Parse(this._ventana.IdPatente);
+                    IList<Patente> patentes = this._patenteServicios.ObtenerPatentesFiltro(patenteAux);
+                    if (patentes.Count > 0)
+                    {
+                        this.Navegar(new GestionarPatente(patentes[0], this._ventana));
+                    }
+                }
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+        }
     }
 }

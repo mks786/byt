@@ -107,9 +107,13 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <Label Grid.Column="0" Grid.Row="0">
+                        <!--<Label Grid.Column="0" Grid.Row="0">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPatente}"/>
-                        </Label>
+                        </Label>-->
+                        <Button Grid.Column="0" Grid.Row="0" Name="_btnPatente" Margin="0,0,5,0" VerticalContentAlignment="Center" 
+                                Click="_btnPatente_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPatente}"/>
+                        </Button>
 
                         <custom:ByTTextBox Name="_txtIdPatente" MaxLength="40"  Text="" IsEnabled="False" IsReadOnly="True"
                              VerticalContentAlignment="Center" Margin="0,0,5,0" Grid.ColumnSpan="1" Grid.Column="1"
@@ -249,10 +253,13 @@
                         </Grid.RowDefinitions>
 
                         <!--Datos de carga del Cedente-->
-                        <Label Name="_lblNombreCedente" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <!--<Label Name="_lblNombreCedente" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblCedente}"/>
-                        </Label>
-                        
+                        </Label>-->
+                        <Button Name="_btnCedente" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Click="_btnConsultarInteresadosCesion_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblCedente}"/>
+                        </Button>
+
                         <custom:ByTTextBox Name="_txtIdCedente" MaxLength="40"  Text="" IsEnabled="False" Margin="0,0,5,0"
                              VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" IsReadOnly="True" IsTabStop="False" BorderBrush="LightGreen"
                              Grid.ColumnSpan="1" MouseDoubleClick="_txtNombreCedente_MouseDoubleClick" />
@@ -574,9 +581,12 @@
                         </Grid.RowDefinitions>
 
                         <!--Datos de carga del Cesionario-->
-                        <Label Grid.Column="0" HorizontalAlignment="Right" Name="_lblNombreCesionario">
+                        <!--<Label Grid.Column="0" HorizontalAlignment="Right" Name="_lblNombreCesionario">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblCesionario}"/>
-                        </Label>
+                        </Label>-->
+                        <Button Name="_btnCesionario" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Click="_btnConsultarInteresadosCesion_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblCesionario}"/>
+                        </Button>
                         
                         <custom:ByTTextBox Name="_txtIdCesionario" MaxLength="40"  Text="" IsEnabled="False" Margin="0,0,5,0"
                              VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" IsReadOnly="True" IsTabStop="False" BorderBrush="LightGreen"

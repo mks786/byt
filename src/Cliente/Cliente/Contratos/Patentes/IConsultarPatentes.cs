@@ -146,6 +146,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         string FechaRegistro { get; set; }
 
+        object OrigenesPatente { get; set; }
+
+        object OrigenPatente { get; set; }
+
         
     }
 }

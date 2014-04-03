@@ -476,9 +476,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
                                 operacionTransferenciaBuscar.Valor = "Transferencia";
                                 ListaDatosValores valorEncontrado = this.BuscarListaDeDatosValores(formasDePago, operacionTransferenciaBuscar);
                                 item1.FormaPago = valorEncontrado.Valor;
-                                item1.DatosBancariosStr = datosTransferenciaAsocInt[0].BancoBenef + Environment.NewLine + datosTransferenciaAsocInt[0].Direccion +
-                                    Environment.NewLine + datosTransferenciaAsocInt[0].Cuenta + Environment.NewLine + datosTransferenciaAsocInt[0].Aba +
-                                    Environment.NewLine + datosTransferenciaAsocInt[0].Swif;
+                                //item1.DatosBancariosStr = datosTransferenciaAsocInt[0].BancoBenef + Environment.NewLine + datosTransferenciaAsocInt[0].Direccion +
+                                //    Environment.NewLine + datosTransferenciaAsocInt[0].Cuenta + Environment.NewLine + datosTransferenciaAsocInt[0].Aba +
+                                //    Environment.NewLine + datosTransferenciaAsocInt[0].Swif;
+
+                                item1.DatosBancariosStr = generarCadenaDatosBancarios(datosTransferenciaAsocInt[0]);
+
                                 item1.NumeroSecuenciaTransferencia = item1.DatosTransferencia.Id;
                             }
                         }
@@ -564,9 +567,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
                                 datoConsolidado.FormaPago = valorEncontrado.Valor;
                                 if (datoConsolidado.DatosBancariosStr.Equals(String.Empty))
                                 {
-                                    datoConsolidado.DatosBancariosStr = datosTransferenciaAsocInt[contador].BancoBenef + Environment.NewLine + datosTransferenciaAsocInt[contador].Direccion +
-                                    Environment.NewLine + datosTransferenciaAsocInt[contador].Cuenta + Environment.NewLine + datosTransferenciaAsocInt[contador].Aba +
-                                    Environment.NewLine + datosTransferenciaAsocInt[contador].Swif;
+                                    //datoConsolidado.DatosBancariosStr = datosTransferenciaAsocInt[contador].BancoBenef + Environment.NewLine + datosTransferenciaAsocInt[contador].Direccion +
+                                    //Environment.NewLine + datosTransferenciaAsocInt[contador].Cuenta + Environment.NewLine + datosTransferenciaAsocInt[contador].Aba +
+                                    //Environment.NewLine + datosTransferenciaAsocInt[contador].Swif;
+
+                                    datoConsolidado.DatosBancariosStr = generarCadenaDatosBancarios(datosTransferenciaAsocInt[contador]);
                                 }
                                 
                                 //datoConsolidado.DatosBancariosStr = datosTransferenciaAsocInt[0].BancoBenef + Environment.NewLine + datosTransferenciaAsocInt[0].Direccion +
@@ -637,6 +642,53 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
             {
                 throw;
             }
+        }
+
+        /// <summary>
+        /// Metodo que concatena los datos de Transferencia de un Asociado Internacional
+        /// </summary>
+        /// <param name="datosTransferencia">DatosTransferencia del Asociado consolidado</param>
+        /// <returns>Cadena con los datos bancarios del Asociado Internacional</returns>
+        private string generarCadenaDatosBancarios(DatosTransferencia datosTransferencia)
+        {
+            String datosBancariosStr = String.Empty;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                datosBancariosStr += "Asociado: " + datosTransferencia.Asociado.Nombre + Environment.NewLine;
+                if(!string.IsNullOrEmpty(datosTransferencia.Beneficiario))
+                    datosBancariosStr += "Beneficiario: " + datosTransferencia.Beneficiario + Environment.NewLine;
+                if (!string.IsNullOrEmpty(datosTransferencia.BancoBenef))
+                    datosBancariosStr += "Banco Beneficiario: " + datosTransferencia.Beneficiario + Environment.NewLine;
+                if (!string.IsNullOrEmpty(datosTransferencia.Direccion))
+                    datosBancariosStr += "Dirección: " + datosTransferencia.Direccion + Environment.NewLine;
+                if (!string.IsNullOrEmpty(datosTransferencia.Cuenta))
+                    datosBancariosStr += "Cuenta: " + datosTransferencia.Cuenta + Environment.NewLine;
+                if (!string.IsNullOrEmpty(datosTransferencia.Aba))
+                    datosBancariosStr += "Código ABA: " + datosTransferencia.Aba + Environment.NewLine;
+                if (!string.IsNullOrEmpty(datosTransferencia.Swif))
+                    datosBancariosStr += "Código SWIF: " + datosTransferencia.Swif + Environment.NewLine;
+                if (!string.IsNullOrEmpty(datosTransferencia.BancoInt))
+                    datosBancariosStr += "Banco Internacional: " + datosTransferencia.BancoInt + Environment.NewLine;
+                if (!string.IsNullOrEmpty(datosTransferencia.SwiftInt))
+                    datosBancariosStr += "SWIF Internacional: " + datosTransferencia.SwiftInt;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return datosBancariosStr;
         }
 
 

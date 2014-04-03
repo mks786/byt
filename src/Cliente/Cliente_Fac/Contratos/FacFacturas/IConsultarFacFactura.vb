@@ -276,6 +276,11 @@ Namespace Contratos.FacFacturas
         Property Guias() As Object
 
         Property TextoBotonModificar() As String
+
+        Property OrigenesFactura As Object
+
+        Property OrigenFactura As Object
+
         Sub Mensaje(ByVal mensaje__1 As String)
     End Interface
 End Namespace

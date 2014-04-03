@@ -344,6 +344,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
                 this._txtComentarioLicencia.IsEnabled = value;
                 this._chkAsientoEnLibro.IsEnabled = value;
                 this._cbxBoletin.IsEnabled = value;
+
+                this._btnPatente.IsEnabled = value;
+                this._btnLicenciante.IsEnabled = value;
+                this._btnLicenciatario.IsEnabled = value;
             }
         }
 
@@ -782,6 +786,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
             this._btnIrAsociados.Visibility = (System.Windows.Visibility)value;
             this._txtAsociado.Visibility = (System.Windows.Visibility)value;
             this._txtIdAsociado.Visibility = (System.Windows.Visibility)value;
+            this._btnPatente.Visibility = (System.Windows.Visibility)value;
         }
 
         private void GestionarVisibilidadFiltroPatente(object value)
@@ -982,7 +987,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
 
         private void GestionarVisibilidadDatosDeLicenciante(object value)
         {
-            this._lblNombreLicenciante.Visibility = (System.Windows.Visibility)value;
+            //this._lblNombreLicenciante.Visibility = (System.Windows.Visibility)value;
+            this._btnLicenciante.Visibility = (System.Windows.Visibility)value;
             this._txtNombreLicenciante.Visibility = (System.Windows.Visibility)value;
             this._txtIdLicenciante.Visibility = (System.Windows.Visibility)value;
             this._txtPaisLicenciante.Visibility = (System.Windows.Visibility)value;
@@ -1233,7 +1239,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
 
         private void GestionarVisibilidadDatosDeLicenciatario(object value)
         {
-            this._lblNombreLicenciatario.Visibility = (System.Windows.Visibility)value;
+            //this._lblNombreLicenciatario.Visibility = (System.Windows.Visibility)value;
+            this._btnLicenciatario.Visibility = (System.Windows.Visibility)value;
             this._txtNombreLicenciatario.Visibility = (System.Windows.Visibility)value;
             this._txtIdLicenciatario.Visibility = (System.Windows.Visibility)value;
             this._txtPaisLicenciatario.Visibility = (System.Windows.Visibility)value;
@@ -1316,6 +1323,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
         }
 
         #endregion
+
+        private void _btnPatente_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarPatenteDeTraspaso();
+        }
+
+        private void _btnInteresadosLicenciaDeUso_Click(object sender, RoutedEventArgs e)
+        {
+            Button botonPresionado = (Button)sender;
+            string nombreBoton = botonPresionado.Name;
+            this._presentador.ConsultarInteresadosLicenciaUso(nombreBoton);
+        }
 
     }
 }

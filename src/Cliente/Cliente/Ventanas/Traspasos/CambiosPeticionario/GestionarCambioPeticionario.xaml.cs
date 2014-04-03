@@ -349,6 +349,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
                 this._txtCadenaCambios.IsEnabled = value;
                 this._btnIrAsociados.IsEnabled = value;
 
+                this._btnVerInteresadoAnterior.IsEnabled = value;
+                this._btnVerInteresadoActual.IsEnabled = value;
+
                 #region Internacional
 
                 this._txtIdMarcaInt.IsEnabled = value;
@@ -898,7 +901,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
 
         private void GestionarVisibilidadDatosDeAnterior(object value)
         {
-            this._lblNombreAnterior.Visibility = (System.Windows.Visibility)value;
+            //this._lblNombreAnterior.Visibility = (System.Windows.Visibility)value;
+            this._btnVerInteresadoAnterior.Visibility = (System.Windows.Visibility)value;
             this._txtNombreAnterior.Visibility = (System.Windows.Visibility)value;
             this._txtIdAnterior.Visibility = (System.Windows.Visibility)value;
             this._txtPaisAnterior.Visibility = (System.Windows.Visibility)value;
@@ -1167,7 +1171,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
 
         private void GestionarVisibilidadDatosDeActual(object value)
         {
-            this._lblNombreActual.Visibility = (System.Windows.Visibility)value;
+            //this._lblNombreActual.Visibility = (System.Windows.Visibility)value;
+            this._btnVerInteresadoActual.Visibility = (System.Windows.Visibility)value;
             this._txtNombreActual.Visibility = (System.Windows.Visibility)value;
             this._txtIdActual.Visibility = (System.Windows.Visibility)value;
             this._txtPaisActual.Visibility = (System.Windows.Visibility)value;
@@ -1382,6 +1387,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
         private void _btnIrMarcas_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrConsultarMarca();
+        }
+
+        private void _btnVerInteresadosAnterior_y_Actual_Click(object sender, RoutedEventArgs e)
+        {
+            Button botonPresionado = (Button)sender;
+            string nombreBoton = botonPresionado.Name;
+            this._presentador.ConsultarInteresadosCambioPeticionario(nombreBoton);
         }
 
 

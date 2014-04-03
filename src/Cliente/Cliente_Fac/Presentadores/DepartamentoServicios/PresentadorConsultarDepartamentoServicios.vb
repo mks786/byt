@@ -69,8 +69,10 @@ Namespace Presentadores.DepartamentoServicios
 
                 ActualizarTitulo()
 
-                Dim newdepartamentoServicio As New FacDepartamentoServicio
+                'cargar los combos
+                CargarCombos()
 
+                Dim newdepartamentoServicio As New FacDepartamentoServicio
                 Me._DepartamentoServicios = Me._DepartamentoServicioServicios.ObtenerFacDepartamentoServiciosFiltro(newdepartamentoServicio)
                 Me._ventana.Count = Me._DepartamentoServicios.Count
                 Me._ventana.Resultados = Me._DepartamentoServicios
@@ -138,8 +140,7 @@ Namespace Presentadores.DepartamentoServicios
                 '#End Region
 
                 Dim DepartamentoServicio As FacDepartamentoServicio = DirectCast(Me._ventana.DepartamentoServicioFiltrar, FacDepartamentoServicio)
-                'DepartamentoServicio.Region = If(Not Me._ventana.Region.Equals(""), Me._ventana.Region, Nothing)
-                'DepartamentoServicio.Id = Nothing
+                
                 Dim DepartamentoServiciosFiltrados As IEnumerable(Of FacDepartamentoServicio) = Me._DepartamentoServicios
 
 
@@ -156,7 +157,7 @@ Namespace Presentadores.DepartamentoServicios
                     MessageBox.Show("Mensaje: No se encontraron registros")
                 End If
                 Me._ventana.Resultados = DepartamentoServiciosFiltrados.ToList()
-                'Me._ventana.Resultados = DepartamentoServiciosFiltrados.ToList(IEnumerable(Of DepartamentoServicio))
+
 
                 '#Region "trace"
                 If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
@@ -224,5 +225,41 @@ Namespace Presentadores.DepartamentoServicios
             End If
             '#End Region
         End Sub
+
+        Private Sub CargarCombos()
+            Try
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                Dim primerServicio As FacServicio = New FacServicio()
+                primerServicio.Id = "NGN"
+
+                Dim primerDpto As Departamento = New Departamento()
+                primerDpto.Id = "NGN"
+
+                Dim servicios As IList(Of FacServicio) = Me._servicioServicios.ConsultarTodos()
+                servicios.Insert(0, primerServicio)
+                Me._ventana.Servicios = servicios
+
+                Dim departamentos As IList(Of Departamento) = Me._ids_departamentoServicios.ConsultarTodos()
+                departamentos.Insert(0, primerDpto)
+                Me._ventana.GetSetIds = departamentos
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, True)
+            End Try
+
+        End Sub
+
     End Class
 End Namespace

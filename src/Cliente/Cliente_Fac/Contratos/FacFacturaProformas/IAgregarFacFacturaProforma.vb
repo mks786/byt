@@ -138,6 +138,9 @@ Namespace Contratos.FacFacturaProformas
 
         Property XAsociado() As Object
 
+        Property OrigenesProforma() As Object
+
+        Property OrigenProforma() As Object
 
         'Property Tarifas() As Object
 
@@ -266,5 +269,8 @@ Namespace Contratos.FacFacturaProformas
         Sub focos_elejir(ByVal valor As String)
 
         Sub Mensaje(ByVal mensaje__1 As String)
+
+        Sub Mensaje(mensaje As String, tipo As Integer)
+
     End Interface
 End Namespace

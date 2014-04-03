@@ -312,5 +312,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
 
         }
 
+
+        public void ActivarBotonEliminar()
+        {
+            this._btnEliminar.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        public void Mensaje(string mensaje, int opcion)
+        {
+            if (opcion == 0)
+                MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (opcion == 1)
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            else
+                MessageBox.Show(mensaje, "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
     }
 }

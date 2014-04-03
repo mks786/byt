@@ -350,7 +350,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         Operacion operacion = this._operacionServicios.
                                                         ConsultarPorId((Operacion)this._ventana.OperacionSeleccionado);
                         operacion.Marca = new Marca(((Operacion)this._ventana.OperacionSeleccionado).CodigoAplicada);
-                        this.Navegar(new GestionarAbandono(operacion, Visibility.Collapsed));
+                        this.Navegar(new GestionarAbandono(operacion, Visibility.Collapsed,this._ventana));
 
 
                         break;

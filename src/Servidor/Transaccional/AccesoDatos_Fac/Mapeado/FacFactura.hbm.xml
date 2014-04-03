@@ -62,5 +62,6 @@
     <property name="MTimpBf" column="MTIMP_BF" type="double"/>
     <property name="MTtotalBf" column="MTTOTAL_BF" type="double"/>
     <property name="XAsociado_O" column="XASOCIADO_O" type="string"/>
+    <property name="OrigenFactura" column="IORIGEN" type="string"/>
   </class>
 </hibernate-mapping>

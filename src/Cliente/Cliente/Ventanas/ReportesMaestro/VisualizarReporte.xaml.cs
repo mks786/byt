@@ -186,10 +186,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.ReportesMaestro
                     DataView tabla1 = (DataView)this._dataGrid.ItemsSource;
 
                     
-                    app.Range["A1", "Z1"].Merge();
-                    app.Range["A1", "Z1"].Value = this._presentador.ObtenerTituloReporte();
-                    app.Range["A1", "Z1"].Font.Bold = true;
-                    app.Range["A1", "Z1"].Font.Size = 12;
+                    app.Range["A1", "F1"].Merge();
+                    app.Range["A1", "F1"].Value = this._presentador.ObtenerTituloReporte();
+                    app.Range["A1", "F1"].Font.Bold = true;
+                    app.Range["A1", "F1"].Font.Size = 12;
 
                     
                     for (int i = 0; i < tablaDatos.Columns.Count; i++)

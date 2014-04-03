@@ -252,10 +252,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         public void pintarCorrespondencia()
         {
             this._btnCorrespondenciasDatos.Background = Brushes.LightGreen;
-            this._btnCorrespondenciasDatos.Background = Brushes.LightGreen;
+            //this._btnCorrespondenciasDatos.Background = Brushes.LightGreen;
 
             this._btnCorrespondenciasAdministracion.Background = Brushes.LightGreen;
-            this._btnCorrespondenciasAdministracion.Background = Brushes.LightGreen;
+            //this._btnCorrespondenciasAdministracion.Background = Brushes.LightGreen;
         }
 
         public void pintarEmails()

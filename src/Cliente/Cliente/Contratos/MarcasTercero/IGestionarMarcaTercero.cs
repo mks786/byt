@@ -230,5 +230,9 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         string Total { set; }
 
+        object OrigenesMarcaTercero { get; set; }
+
+        object OrigenMarcaTercero { get; set; }
+
     }
 }

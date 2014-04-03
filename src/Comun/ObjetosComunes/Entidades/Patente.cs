@@ -65,6 +65,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private int _patenteMadre;
         private InteresadoPatente _interesadosDePatente;
         private string _prioridadPresentada;
+        private string _origenPatente;
 
 
         #region Internacional
@@ -748,6 +749,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         #endregion
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Origen de la Patente
+        /// </summary>
+        public virtual string OrigenPatente
+        {
+            get { return _origenPatente; }
+            set { _origenPatente = value; }
+        }
 
 
         #endregion

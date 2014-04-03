@@ -278,6 +278,14 @@ Namespace Contratos.FacFacturaProformas
         Property ListaResultados() As ListView
 
         Property TextoBotonModificar() As String
+
+        Property OrigenesProforma As Object
+
+        Property OrigenProforma As Object
+
         Sub Mensaje(ByVal mensaje__1 As String)
+
+        Sub Mensaje(mensaje As String, tipo As Integer)
+
     End Interface
 End Namespace

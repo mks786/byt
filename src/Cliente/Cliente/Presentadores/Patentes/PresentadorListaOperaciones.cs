@@ -334,8 +334,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                         Operacion operacion = this._operacionServicios.
                                                         ConsultarPorId((Operacion)this._ventana.OperacionSeleccionado);
                         operacion.Patente = new Patente(((Operacion)this._ventana.OperacionSeleccionado).CodigoAplicada);
-                        this.Navegar(new GestionarAbandonoPatente(operacion, Visibility.Collapsed));
-
+                        //this.Navegar(new GestionarAbandonoPatente(operacion, Visibility.Collapsed));
+                        this.Navegar(new GestionarAbandonoPatente(operacion, Visibility.Collapsed,this._ventana));
 
                         break;
 

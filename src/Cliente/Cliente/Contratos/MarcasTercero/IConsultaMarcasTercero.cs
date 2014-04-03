@@ -86,5 +86,9 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
         void GestionarVisibilidadLimpiarFiltros();
 
         void LimpiarCampos();
+
+        object OrigenesMarcaTercero { get; set; }
+
+        object OrigenMarcaTercero { get; set; }
     }
 }

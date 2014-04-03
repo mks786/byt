@@ -73,10 +73,11 @@
                     <Label Grid.Row="0" Grid.Column="4" HorizontalAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                     </Label>
-                    <DatePicker Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="5"  HorizontalAlignment="Right"  Name="_dpkFechaCambioPeticionario"
+                    <DatePicker Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="5"  HorizontalAlignment="Right" 
+                                Name="_dpkFechaCambioPeticionario"
                                 Width="180" Focusable="False" BorderBrush="{x:Null}" IsEnabled="False">
                         <DatePicker.SelectedDate>
-                                <Binding Path="FechaPeticionario" UpdateSourceTrigger="PropertyChanged"/>
+                                <Binding Path="FechaPeticionario" UpdateSourceTrigger="PropertyChanged" StringFormat="{}{0:dd/MM/yyyy}"/>
                         </DatePicker.SelectedDate>
                     </DatePicker>
                     <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
@@ -289,9 +290,13 @@
                         </Grid.RowDefinitions>
 
                         <!--Datos de carga del Anterior-->
-                        <Label Name="_lblNombreAnterior" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <!--<Label Name="_lblNombreAnterior" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAnterior}"/>
-                        </Label>
+                        </Label>-->
+                        <Button Name="_btnVerInteresadoAnterior" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right"
+                                VerticalAlignment="Center" Click="_btnVerInteresadosAnterior_y_Actual_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblAnterior}"/>
+                        </Button>
 
                         <custom:ByTTextBox Name="_txtIdAnterior" MaxLength="40"  Text="" IsEnabled="False" Margin="0,0,5,0" 
                              VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" IsReadOnly="True" IsTabStop="False" BorderBrush="LightGreen"
@@ -617,9 +622,13 @@
                         </Grid.RowDefinitions>
 
                         <!--Datos de carga del Actual-->
-                        <Label Grid.Column="0" HorizontalAlignment="Right" Name="_lblNombreActual">
+                        <!--<Label Grid.Column="0" HorizontalAlignment="Right" Name="_lblNombreActual">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblActual}"/>
-                        </Label>
+                        </Label>-->
+                        <Button Name="_btnVerInteresadoActual" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right"
+                                VerticalAlignment="Center" Click="_btnVerInteresadosAnterior_y_Actual_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblActual}"/>
+                        </Button>
                         
                         <custom:ByTTextBox Name="_txtIdActual" MaxLength="40"  Text="" IsEnabled="False" Margin="0,0,5,0" 
                              VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" IsReadOnly="True" IsTabStop="False" BorderBrush="LightGreen"

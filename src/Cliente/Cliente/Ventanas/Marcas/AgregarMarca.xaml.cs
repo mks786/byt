@@ -2056,8 +2056,46 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._txtComentarioDatos.Text = null;
 
         }
-        
 
+
+        public object OrigenMarcasSolicitud
+        {
+            get { return this._cbxOrigenMarcaSolicitud.DataContext; }
+            set { this._cbxOrigenMarcaSolicitud.DataContext = value; }
+        }
+
+        public object OrigenMarcaSolicitud
+        {
+            get { return this._cbxOrigenMarcaSolicitud.SelectedItem; }
+            set { this._cbxOrigenMarcaSolicitud.SelectedItem = value; }
+        }
+
+        public object OrigenMarcasDatos
+        {
+            get { return this._cbxOrigenMarcaDatos.DataContext; }
+            set { this._cbxOrigenMarcaDatos.DataContext = value; }
+        }
+
+        public object OrigenMarcaDatos
+        {
+            get { return this._cbxOrigenMarcaDatos.SelectedItem; }
+            set { this._cbxOrigenMarcaDatos.SelectedItem = value; }
+        }
+
+        private void _cbxOrigenMarca_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox combo = (ComboBox)sender;
+            string nombreCombo = combo.Name;
+
+            if (nombreCombo.Equals("_cbxOrigenMarcaSolicitud"))
+            {
+                this._cbxOrigenMarcaDatos.SelectedIndex = this._cbxOrigenMarcaSolicitud.SelectedIndex;
+            }
+            else if (nombreCombo.Equals("_cbxOrigenMarcaDatos"))
+            {
+                this._cbxOrigenMarcaSolicitud.SelectedIndex = this._cbxOrigenMarcaDatos.SelectedIndex;
+            }
+        }
         
 
     }

@@ -99,9 +99,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
             InitializeComponent();
             this._cargada = false;
             this._regresarRefresca = regresarRefresca;
-            this._presentador = new PresentadorAgregarContacto(this, asociado, ventanaPadre, regresarRefresca);
+            this._presentador = new PresentadorAgregarContacto(this, asociado, ventanaPadre, null, regresarRefresca);
 
         }
+
+        public AgregarContacto(object asociado, object ventanaPadre, object ventanaPrevia, bool regresarRefresca)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._regresarRefresca = regresarRefresca;
+            this._presentador = new PresentadorAgregarContacto(this, asociado, ventanaPadre, ventanaPrevia, regresarRefresca);
+
+        }
+
+        #region Eventos
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
@@ -139,6 +150,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
                 this._presentador.ConsultarCarta();
             }
         }
+
+
+        #endregion
+
+        
 
 
 

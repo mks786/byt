@@ -156,6 +156,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 origenInteresados.Insert(0, primerOrigenInteresado);
                 this._ventana.OrigenesInteresados = origenInteresados;
 
+                IList<ListaDatosValores> origenesPatente =
+                            this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiOrigenClienteAsociado));
+                ListaDatosValores primerOrigenPatente = new ListaDatosValores();
+                primerOrigenPatente.Id = "NGN";
+                origenesPatente.Insert(0, primerOrigenPatente);
+                this._ventana.OrigenesPatente = origenesPatente;
+
                 this._ventana.TotalHits = "0";
                 this._ventana.FocoPredeterminado();
 
@@ -580,6 +587,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 {
                     _filtroValido = 2;
                     patenteAuxiliar.Id = int.Parse(this._ventana.Id);
+                }
+
+                if (this._ventana.OrigenPatente != null)
+                {
+                    _filtroValido = 2;
+                    patenteAuxiliar.OrigenPatente = ((ListaDatosValores)this._ventana.OrigenPatente).Valor;
                 }
 
                 if ((null != this._ventana.Asociado) && (((Asociado)this._ventana.Asociado).Id != int.MinValue))

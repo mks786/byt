@@ -19,7 +19,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
 
-        #region IConsultarFusion
+        #region IGestionarAbandono
 
         public bool EstaCargada
         {
@@ -271,13 +271,24 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
 
         #endregion
 
-        
+        /// <summary>
+        /// Constructor predeterminado que recibe solo un abandono
+        /// </summary>
+        /// <param name="abandono">Abandono a consultar</param>
         public GestionarAbandono(object abandono)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorGestionarAbandono(this, abandono);
+            this._presentador = new PresentadorGestionarAbandono(this, abandono,null);
         }
+
+
+        //public GestionarAbandono(object abandono, object ventanaPadre)
+        //{
+        //    InitializeComponent();
+        //    this._cargada = false;
+        //    this._presentador = new PresentadorGestionarAbandono(this, abandono, ventanaPadre);
+        //}
 
         
         /// <summary>
@@ -285,12 +296,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
         /// </summary>
         /// <param name="abandono">la abandono a mostrar</param>
         /// <param name="visibilidad">parametro que indica la visibilidad de los botones</param>
-        public GestionarAbandono(object abandono, object visibilidad)
+        public GestionarAbandono(object abandono, object visibilidad, object ventanaPadre)
         {
             InitializeComponent();
             this._cargada = false;
             this._btnEliminar.Visibility = (System.Windows.Visibility)visibilidad;
-            this._presentador = new PresentadorGestionarAbandono(this, abandono);
+            this._presentador = new PresentadorGestionarAbandono(this, abandono,ventanaPadre);
         }
 
         public void PintarAsociado(string tipo)

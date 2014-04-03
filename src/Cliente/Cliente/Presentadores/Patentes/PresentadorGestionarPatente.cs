@@ -70,6 +70,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         private IList<Operacion> _abandonos;
         private IList<Anualidad> _anualidades;
         private IList<Poder> _poderesInterseccion;
+        private IList<ListaDatosValores> _origenDePatentes;
 
 
         private Patente _patente;
@@ -223,7 +224,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                 ActualizarTitulo();
 
+                #region Origen de Patente
 
+                this._origenDePatentes =
+                            this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiOrigenClienteAsociado));
+                
+                
+
+                #endregion
 
                 #region Internacional
 
@@ -654,6 +662,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     if (listaFacturas.Count > 0)
                         this._ventana.PintarFacturacion();
 
+                    this._origenDePatentes.Insert(0, new ListaDatosValores("NGN"));
+                    this._ventana.OrigenPatentesSolicitud = this._origenDePatentes;
+                    this._ventana.OrigenPatentesDatos = this._origenDePatentes;
+                    ListaDatosValores origenPatente = new ListaDatosValores();
+                    if (!string.IsNullOrEmpty(_patente.OrigenPatente))
+                        origenPatente.Valor = _patente.OrigenPatente;
+                    else
+                        origenPatente.Valor = "";
+
+                    this._ventana.OrigenPatenteSolicitud = this.BuscarListaDeDatosValores(this._origenDePatentes, origenPatente);
+                    this._ventana.OrigenPatenteDatos = this.BuscarListaDeDatosValores(this._origenDePatentes, origenPatente);
 
                 }
                 else
@@ -669,6 +688,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this.CargarStatusWeb();
                     this.CargarBoletines();
                     CargarAsociadoInternacionalVacio();
+
+                    #region Carga Origen de Patente por defecto
+
+                    this._ventana.OrigenPatentesSolicitud = this._origenDePatentes;
+                    this._ventana.OrigenPatentesDatos = this._origenDePatentes;
+                    ListaDatosValores origenPatente = new ListaDatosValores();
+                    origenPatente.Valor = "BOLET";
+                    this._ventana.OrigenPatenteSolicitud = this.BuscarListaDeDatosValores(this._origenDePatentes, origenPatente);
+                    this._ventana.OrigenPatenteDatos = this.BuscarListaDeDatosValores(this._origenDePatentes, origenPatente);
+
+                    #endregion
+
                     this._ventana.MostrarBotonInteresadosDePatente(false);
                 }
 
@@ -970,6 +1001,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
             else
                 patente.PrioridadPresentada = "NO";
+
+            if ((null != this._ventana.OrigenPatenteSolicitud) && (!((ListaDatosValores)this._ventana.OrigenPatenteSolicitud).Id.Equals("NGN")))
+            {
+                patente.OrigenPatente = ((ListaDatosValores)this._ventana.OrigenPatenteSolicitud).Valor;
+            }
+            else
+                patente.OrigenPatente = null;
 
             return patente;
 

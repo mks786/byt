@@ -137,7 +137,7 @@
     <property name="MarcaOrigen" column="CMARCAO" type="int"/>
     <property name="ExpTraspasoRenovacion" column="EXPTYR" type="string"/>
     <property name="FechaCierreExpediente" column="FCIERRE_EXP" type="DateTime"/>
-    
+    <property name="OrigenMarca" column="IORIGEN" type="string"/>
     
     
   </class>

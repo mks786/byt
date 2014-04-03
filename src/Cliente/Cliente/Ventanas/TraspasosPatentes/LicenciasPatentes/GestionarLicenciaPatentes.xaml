@@ -108,10 +108,15 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <Label Grid.Column="0" Grid.Row="0">
+                        <!--<Label Grid.Column="0" Grid.Row="0">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPatente}"/>
-                        </Label>
-                        
+                        </Label>-->
+
+                        <Button Name="_btnPatente" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Margin="0,0,5,0"
+                                Click="_btnPatente_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPatente}"/>
+                        </Button>
+
                         <custom:ByTTextBox Name="_txtIdPatente" MaxLength="40"  Text="" IsEnabled="False" IsReadOnly="True" IsTabStop="False" 
                              VerticalContentAlignment="Center" Margin="0,0,5,0" Grid.ColumnSpan="1" Grid.Column="1"
                              Grid.Row="0" MouseDoubleClick="_txtNombrePatente_MouseDoubleClick" BorderBrush="LightGreen"/>
@@ -251,10 +256,14 @@
                         </Grid.RowDefinitions>
 
                         <!--Datos de carga del Licenciante-->
-                        <Label Name="_lblNombreLicenciante" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <!--<Label Name="_lblNombreLicenciante" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblLicenciante}"/>
-                        </Label>
-
+                        </Label>-->
+                        <Button Name="_btnLicenciante" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" 
+                                VerticalAlignment="Center" Click="_btnInteresadosLicenciaDeUso_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblLicenciante}"/>
+                        </Button>
+                        
                         <custom:ByTTextBox Name="_txtIdLicenciante" MaxLength="40"  Text="" IsEnabled="False" Margin="0,0,5,0"
                              VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" IsReadOnly="True" IsTabStop="False"  BorderBrush="LightGreen"
                              Grid.ColumnSpan="1" MouseDoubleClick="_txtNombreLicenciante_MouseDoubleClick" />
@@ -580,9 +589,13 @@
                         </Grid.RowDefinitions>
 
                         <!--Datos de carga del Licenciatario-->
-                        <Label Grid.Column="0" HorizontalAlignment="Right" Name="_lblNombreLicenciatario">
+                        <!--<Label Grid.Column="0" HorizontalAlignment="Right" Name="_lblNombreLicenciatario">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblLicenciatario}"/>
-                        </Label>
+                        </Label>-->
+                        <Button Name="_btnLicenciatario" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" 
+                                VerticalAlignment="Center" Click="_btnInteresadosLicenciaDeUso_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblLicenciatario}"/>
+                        </Button>
 
                         <custom:ByTTextBox Name="_txtIdLicenciatario" MaxLength="40"  Text="" IsEnabled="False" Margin="0,0,5,0" 
                              VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" IsReadOnly="True" IsTabStop="False"  BorderBrush="LightGreen"

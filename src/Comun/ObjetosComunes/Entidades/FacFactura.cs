@@ -69,6 +69,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             private int? _status;
             private int? _p_mip;
             private int? _bst;
+            private string _origenFactura;
 
         #endregion
 
@@ -800,7 +801,14 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             {
                 this._FechaHasta = value;
             }
-        }  
+        }
+
+
+        public virtual string OrigenFactura
+        {
+            get { return this._origenFactura; }
+            set { this._origenFactura = value; }
+        }
 
 
         #endregion

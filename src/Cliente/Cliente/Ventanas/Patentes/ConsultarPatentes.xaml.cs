@@ -399,6 +399,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._cbxOrigenInteresado.SelectedItem = value; }
         }
 
+        public object OrigenesPatente
+        {
+            get { return this._cbxOrigenPatente.DataContext; }
+            set { this._cbxOrigenPatente.DataContext = value; }
+        }
+
+        public object OrigenPatente
+        {
+            get { return this._cbxOrigenPatente.SelectedItem; }
+            set { this._cbxOrigenPatente.SelectedItem = value; }
+        }
+
         #endregion
 
 
@@ -517,6 +529,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             {
                 todosCamposVacios = false;
                 this._txtRegistroTYR.Focus();
+            }
+
+            if ((this._cbxOrigenPatente.SelectedIndex != 0) && (this._cbxOrigenPatente.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxOrigenPatente.Focus();
             }
 
 

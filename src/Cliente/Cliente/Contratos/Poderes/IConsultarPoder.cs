@@ -42,5 +42,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Poderes
         string NombreInteresadoConsultar { get; }
 
         bool ConfirmarModificacion(string mensaje);
+
+        void ActivarBotonEliminar();
+
+        void Mensaje(string mensaje, int opcion);
     }
 }

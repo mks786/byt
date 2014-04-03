@@ -322,7 +322,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select m from MarcaTercero m left join fetch m.Asociado as asociado left join fetch m.Interesado as interesado where .
+        ///   Busca una cadena traducida similar a Select m from MarcaTercero m left join fetch m.Asociado as asociado left join fetch m.Interesado as interesado left join fetch m.Poder as poder where .
         /// </summary>
         public static string CabeceraObtenerMarcaTercero {
             get {
@@ -1465,6 +1465,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a poder.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerMarcaIdPoder {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMarcaIdPoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a m.Rev = &apos;{0}&apos;.
         /// </summary>
         public static string FiltroObtenerMarcaInstruccionesRenovacion {
@@ -1542,6 +1551,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerMarcaOrigenInteresado {
             get {
                 return ResourceManager.GetString("FiltroObtenerMarcaOrigenInteresado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a m.OrigenMarca = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerMarcaOrigenMarca {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMarcaOrigenMarca", resourceCulture);
             }
         }
         
@@ -1695,6 +1713,24 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerMarcaTerceroInteresadoId {
             get {
                 return ResourceManager.GetString("FiltroObtenerMarcaTerceroInteresadoId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a m.OrigenMarcaTercero = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerMarcaTerceroOrigenMarcaTercero {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMarcaTerceroOrigenMarcaTercero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a poder.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerMarcaTerceroPoderId {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMarcaTerceroPoderId", resourceCulture);
             }
         }
         
@@ -1897,6 +1933,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a poder.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerPatenteIdPoder {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPatenteIdPoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a p.CorrelativoExpediente = {0}.
         /// </summary>
         public static string FiltroObtenerPatenteIntIdCorrelativoExp {
@@ -1947,6 +1992,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerPatenteOrigenInteresado {
             get {
                 return ResourceManager.GetString("FiltroObtenerPatenteOrigenInteresado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a p.OrigenPatente = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerPatenteOrigenPatente {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPatenteOrigenPatente", resourceCulture);
             }
         }
         

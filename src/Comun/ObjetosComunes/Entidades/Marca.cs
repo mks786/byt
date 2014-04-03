@@ -89,7 +89,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private int? _marcaOrigen;
         private string _expTraspasoRenovacion;
         private string _xdistingue;
-
+        private string _origenMarca;
 
         #endregion
 
@@ -824,6 +824,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _fechaCierreExpediente; }
             set { _fechaCierreExpediente = value; }
+        }
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene El Origen de la Marca
+        /// </summary>
+        public virtual string OrigenMarca
+        {
+            get { return this._origenMarca; }
+            set { this._origenMarca = value; }
         }
        
 

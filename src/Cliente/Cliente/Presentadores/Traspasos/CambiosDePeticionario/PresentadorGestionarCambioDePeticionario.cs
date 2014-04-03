@@ -18,6 +18,7 @@ using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
 using Trascend.Bolet.Cliente.Ventanas.Asociados;
+using Trascend.Bolet.Cliente.Ventanas.Interesados;
 using Trascend.Bolet.Cliente.Ventanas.CadenaDeCambio;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
@@ -1940,6 +1941,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
             IList<Poder> _poderesFiltrados = new List<Poder>();
             Poder poderABuscar = null;
             bool listaDePoderesValidada = false;
+            Poder primerPoder = new Poder();
+            primerPoder.Id = int.MinValue;
 
             try
             {
@@ -1960,8 +1963,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                             this._ventana.IdApoderadoAnterior = ((Agente)this._ventana.ApoderadoAnteriorFiltrado).Id;
                             //-- 
                             //Para validar que el Agente que estoy seleccionando tenga Poderes con el Sobreviviente
-                            Poder primerPoder = new Poder();
-                            primerPoder.Id = int.MinValue;
+                            //Poder primerPoder = new Poder();
+                            //primerPoder.Id = int.MinValue;
 
                             _poderesFiltrados = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.ApoderadoAnteriorFiltrado, (Interesado)this._ventana.AnteriorFiltrado);
 
@@ -1996,14 +1999,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                         }
                         else
                         {
-                            //this._poderesApoderadosAnterior = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoAnteriorFiltrado));
-                            this._poderesApoderadosAnterior = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado((Agente)_ventana.ApoderadoAnteriorFiltrado, (Interesado)this._ventana.AnteriorFiltrado);
+
                             
-                            LimpiarListaPoder("Anterior");
 
-                            listaDePoderesValidada = this.ValidarListaDePoderes(this._poderesAnterior, this._poderesApoderadosAnterior, "Anterior");
+                            this._poderesApoderadosAnterior = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado((Agente)_ventana.ApoderadoAnteriorFiltrado, (Interesado)this._ventana.AnteriorFiltrado);
 
-                            //if ((this.ValidarListaDePoderes(this._poderesAnterior, this._poderesApoderadosAnterior, "Anterior")))
+                            #region CODIGO ORIGINAL COMENTADO - NO BORRAR
+                            //LimpiarListaPoder("Anterior");
+                            //listaDePoderesValidada = this.ValidarListaDePoderes(this._poderesAnterior, this._poderesApoderadosAnterior, "Interesado Anterior");
+                            #endregion
+
+                            if (this._poderesApoderadosAnterior.Count > 0)
+                            {
+                                this._poderesApoderadosAnterior.Insert(0, primerPoder);
+                                this._ventana.PoderesAnteriorFiltrados = this._poderesApoderadosAnterior;
+                                listaDePoderesValidada = true;
+                            }
+
                             if(listaDePoderesValidada)
                             {
                                 this._ventana.ApoderadoAnterior = this._ventana.ApoderadoAnteriorFiltrado;
@@ -2011,10 +2023,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                                 this._ventana.IdApoderadoAnterior = ((Agente)this._ventana.ApoderadoAnteriorFiltrado).Id;
                                 retorno = true;
                             }
-                            //else if (!this.ValidarListaDePoderes(this._poderesAnterior, this._poderesApoderadosAnterior, "Anterior"))
                             else
                             {
-                                this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorAgenteNoPoseePoderConInteresado, "Anterior"), 0);
+                                this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorAgenteNoPoseePoderConInteresado, "Interesado Anterior"), 0);
                                 this._ventana.ApoderadoAnterior = this._ventana.ApoderadoAnteriorFiltrado;
                                 this._ventana.NombreApoderadoAnterior = ((Agente)this._ventana.ApoderadoAnteriorFiltrado).Nombre;
                                 this._ventana.IdApoderadoAnterior = ((Agente)this._ventana.ApoderadoAnteriorFiltrado).Id;
@@ -3028,5 +3039,55 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
             }
         }
 
+        /// <summary>
+        /// Metodo que consulta los interesados de un Cambio de Peticionario (Anterior y Actual)
+        /// </summary>
+        /// <param name="nombreBoton"></param>
+        public void ConsultarInteresadosCambioPeticionario(string nombreBoton)
+        {
+            Interesado interesadoAux = new Interesado();
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (nombreBoton.Equals("_btnVerInteresadoAnterior"))
+                {
+                    if (!this._ventana.IdAnterior.Equals(String.Empty))
+                        interesadoAux.Id = int.Parse(this._ventana.IdAnterior);
+                    else
+                        interesadoAux.Id = int.MinValue;
+                }
+                else if (nombreBoton.Equals("_btnVerInteresadoActual"))
+                {
+                    if (!this._ventana.IdActual.Equals(String.Empty))
+                        interesadoAux.Id = int.Parse(this._ventana.IdActual);
+                    else
+                        interesadoAux.Id = int.MinValue;
+                }
+
+                if (interesadoAux.Id != int.MinValue)
+                {
+                    IList<Interesado> interesados = this._interesadoServicios.ObtenerInteresadosFiltro(interesadoAux);
+                    if (interesados.Count > 0)
+                        this.Navegar(new ConsultarInteresado(interesados[0], this._ventana)); 
+                }
+                
+                
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+        }
     }
 }

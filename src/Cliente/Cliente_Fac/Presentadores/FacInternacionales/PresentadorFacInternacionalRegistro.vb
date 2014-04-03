@@ -34,6 +34,10 @@ Namespace Presentadores.FacInternacionales
         Private _asociadosServicios As IAsociadoServicios
 
         Private existe As Boolean
+        Private _numeroFactura As String
+        Private _numeroProforma As Integer
+
+
 
         Public Sub New(ByVal ventana As IFacInternacionalRegistro, ByVal proforma As FacFacturaProforma)
             Try
@@ -49,8 +53,10 @@ Namespace Presentadores.FacInternacionales
                 If facinternacional IsNot Nothing Then ' si ya se creo el registro 
                     Me._ventana.SetTipoPago = BuscarTipoPagoInternacional(facinternacional.TipoPago)
                     Me._ventana.FacInternacional = facinternacional
+                    Me._numeroFactura = facinternacional.Numerofactura
+                    Me._numeroProforma = facinternacional.Id
                     existe = True
-                Else ' si el registro no se a creado
+                Else ' si el registro no se ha creado
 
                     Dim facinternacionalnuevo As New FacInternacional
                     facinternacionalnuevo.Id = facfacturaproforma.Id
@@ -66,6 +72,8 @@ Namespace Presentadores.FacInternacionales
                         Me._ventana.Asociado = asociado(0)
                         Me._ventana.NombreAsociado = asociado(0).Id & " - " & asociado(0).Nombre
                     End If
+
+
 
                     existe = False
                 End If
@@ -233,13 +241,16 @@ Namespace Presentadores.FacInternacionales
 
                     Dim facturas As List(Of FacInternacional) = Me._FacInternacionalesServicios.ObtenerFacInternacionalesFiltro(FacturaAuxiliar)
                     If facturas.Count > 0 Then
-                        If Not Me._ventana.BSustProforma Then
-                            Mouse.OverrideCursor = Nothing
-                            Me._ventana.Mensaje("El número de Factura ingresado ya se encuentra registrado")
-                            Exit Sub
+                        If facturas(0).Id <> Me._numeroProforma Then
+                            If Not Me._ventana.BSustProforma Then
+                                Mouse.OverrideCursor = Nothing
+                                Me._ventana.Mensaje("El número de Factura ingresado ya se encuentra registrado")
+                                Exit Sub
+                            End If
                         End If
-                            'Mouse.OverrideCursor = Nothing
-                            'Me._ventana.Mensaje("El número de Factura ingresado ya se encuentra registrado")
+
+                        'Mouse.OverrideCursor = Nothing
+                        'Me._ventana.Mensaje("El número de Factura ingresado ya se encuentra registrado")
                         'Exit Sub
                         'Else
                         '    If Not Me._ventana.BSustProforma Then

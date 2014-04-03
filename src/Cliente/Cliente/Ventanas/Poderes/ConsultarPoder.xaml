@@ -236,6 +236,10 @@
                 </Button.Style>
                 <TextBlock Name="_txbModificar" Text="{x:Static recurso:Etiquetas.btnAceptar}"/>
             </Button>
+            <Button Name="_btnEliminar" VerticalAlignment="Bottom" Height="25" Width="90" Visibility="Collapsed" 
+                    Click="_btnEliminar_Click">
+                <TextBlock Text="{x:Static recurso:Etiquetas.btnEliminar}"/>
+            </Button>
             <Button Name="_btnCancelar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnRegresar_Click">
                 <TextBlock Name="_txbRegresar" Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
             </Button>

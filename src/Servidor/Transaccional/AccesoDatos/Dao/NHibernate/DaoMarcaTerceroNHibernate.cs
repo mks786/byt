@@ -57,6 +57,15 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaTerceroInteresadoId, marcaTercero.Interesado.Id);
                     variosFiltros = true;
                 }
+
+                if ((null != marcaTercero.Poder) && (marcaTercero.Poder.Id != int.MinValue))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaTerceroPoderId, marcaTercero.Poder.Id);
+                    variosFiltros = true;
+                }
+
                 if (null != marcaTercero.Internacional)
                 {
                     if (variosFiltros)
@@ -139,6 +148,14 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
 
                 #endregion
+
+                if (!string.IsNullOrEmpty(marcaTercero.OrigenMarcaTercero))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaTerceroOrigenMarcaTercero, marcaTercero.OrigenMarcaTercero);
+                    variosFiltros = true;
+                }
 
 
                 IQuery query = Session.CreateQuery(cabecera + filtro);

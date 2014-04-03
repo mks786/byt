@@ -18,6 +18,8 @@ using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
 using Trascend.Bolet.Cliente.Ventanas.Asociados;
+using Trascend.Bolet.Cliente.Ventanas.Interesados;
+using Trascend.Bolet.Cliente.Ventanas.Patentes;
 
 namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatentes
 {
@@ -2045,14 +2047,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
                         }
                         else
                         {
-                            //this._poderesApoderadosLicenciante = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoLicencianteFiltrado));
                             this._poderesApoderadosLicenciante = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.ApoderadoLicencianteFiltrado, (Interesado)this._ventana.LicencianteFiltrado);
+
+                            #region CODIGO ORIGINAL COMENTADO - NO BORRAR
+                            //LimpiarListaPoder("Licenciante");
+                            //listaDePoderesValidada = this.ValidarListaDePoderes(this._poderesLicenciante, this._poderesApoderadosLicenciante, "Licenciante"); 
+                            #endregion
+
+                            if (this._poderesApoderadosLicenciante.Count > 0)
+                            {
+                                this._poderesApoderadosLicenciante.Insert(0, new Poder(int.MinValue));
+                                this._ventana.PoderesLicencianteFiltrados = this._poderesApoderadosLicenciante;
+                                listaDePoderesValidada = true;
+                            }
                             
-                            LimpiarListaPoder("Licenciante");
-
-                            listaDePoderesValidada = this.ValidarListaDePoderes(this._poderesLicenciante, this._poderesApoderadosLicenciante, "Licenciante");
-
-                            //if ((this.ValidarListaDePoderes(this._poderesLicenciante, this._poderesApoderadosLicenciante, "Licenciante")))
                             if(listaDePoderesValidada)
                             {
                                 this._ventana.ApoderadoLicenciante = this._ventana.ApoderadoLicencianteFiltrado;
@@ -2060,10 +2068,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
                                 this._ventana.IdApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id;
                                 retorno = true;
                             }
-                            //else if (!this.ValidarListaDePoderes(this._poderesLicenciante, this._poderesApoderadosLicenciante, "Licenciante"))
                             else
                             {
-                                //this._ventana.ConvertirEnteroMinimoABlanco("Licenciante");
                                 this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorAgenteNoPoseePoderConInteresado, "Licenciante"), 0);
                                 this._ventana.ApoderadoLicenciante = this._ventana.ApoderadoLicencianteFiltrado;
                                 this._ventana.NombreApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Nombre;
@@ -3116,5 +3122,90 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
         //    return true;
         //}
 
+        /// <summary>
+        /// Metodo que consulta la Patente del Traspaso
+        /// </summary>
+        public void ConsultarPatenteDeTraspaso()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Patente patenteAux = new Patente();
+
+                if (!this._ventana.IdPatente.Equals(String.Empty))
+                {
+                    patenteAux.Id = int.Parse(this._ventana.IdPatente);
+                    IList<Patente> patentes = this._patenteServicios.ObtenerPatentesFiltro(patenteAux);
+                    if (patentes.Count > 0)
+                    {
+                        this.Navegar(new GestionarPatente(patentes[0], this._ventana));
+                    }
+                }
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+        }
+
+        /// <summary>
+        /// Metodo que consulta los Interesados de una Licencia de Uso (Licenciante y Licenciatario)
+        /// </summary>
+        /// <param name="nombreBoton">Nombre del boton presionado</param>
+        public void ConsultarInteresadosLicenciaUso(string nombreBoton)
+        {
+            Interesado interesadoAux = new Interesado();
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (nombreBoton.Equals("_btnLicenciante"))
+                {
+                    if (!this._ventana.IdLicenciante.Equals(String.Empty))
+                        interesadoAux.Id = int.Parse(this._ventana.IdLicenciante);
+                    else
+                        interesadoAux.Id = int.MinValue;
+                }
+                else if (nombreBoton.Equals("_btnLicenciatario"))
+                {
+                    if (!this._ventana.IdLicenciatario.Equals(String.Empty))
+                        interesadoAux.Id = int.Parse(this._ventana.IdLicenciatario);
+                    else
+                        interesadoAux.Id = int.MinValue;
+                }
+
+                if (interesadoAux.Id != int.MinValue)
+                {
+                    IList<Interesado> interesados = this._interesadoServicios.ObtenerInteresadosFiltro(interesadoAux);
+                    if (interesados.Count > 0)
+                        this.Navegar(new ConsultarInteresado(interesados[0], this._ventana));
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+        }
     }
 }

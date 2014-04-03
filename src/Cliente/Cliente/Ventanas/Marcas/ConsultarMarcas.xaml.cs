@@ -216,6 +216,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtOtros.Text = value; }
         }
 
+        public object OrigenesMarca
+        {
+            get { return this._cbxOrigenMarca.DataContext; }
+            set { this._cbxOrigenMarca.DataContext = value; }
+        }
+
+        public object OrigenMarca
+        {
+            get { return this._cbxOrigenMarca.SelectedItem; }
+            set { this._cbxOrigenMarca.SelectedItem = value; }
+        }
+
 
         public void Mensaje(string mensaje, int opcion)
         {
@@ -712,6 +724,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             {
                 todosCamposVacios = false;
                 this._txtOtros.Focus();
+            }
+
+            if ((this._cbxOrigenMarca.SelectedIndex != 0) && (this._cbxOrigenMarca.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxOrigenMarca.Focus();
             }
 
 

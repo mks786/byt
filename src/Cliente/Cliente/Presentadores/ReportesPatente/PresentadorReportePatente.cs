@@ -620,6 +620,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
                     retorno.CamposVienen += Environment.NewLine + Environment.NewLine + reportePatente.NombrePatente2;
 
                 if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Resumen2)))
+                    //retorno.CamposVienen += Environment.NewLine + reportePatente.Resumen2;
                     retorno.CamposVienen += Environment.NewLine + Environment.NewLine + reportePatente.Resumen2;
 
                 //if ((null!= _patente.Poder) && (int.MinValue != ((Poder)_patente.Poder).Id))

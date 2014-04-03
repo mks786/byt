@@ -8,6 +8,7 @@ using System.Runtime.Remoting;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows;
 using NLog;
 using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.Abandonos;
@@ -213,7 +214,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
 
             if (this._ventana.AbandonoSeleccionado != null)
             {
-                this.Navegar(new GestionarAbandono(this._ventana.AbandonoSeleccionado));
+                //this.Navegar(new GestionarAbandono(this._ventana.AbandonoSeleccionado));
+                this.Navegar(new GestionarAbandono(this._ventana.AbandonoSeleccionado, Visibility.Visible, this._ventana));
             }
 
             #region trace

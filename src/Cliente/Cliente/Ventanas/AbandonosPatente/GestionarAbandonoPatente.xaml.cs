@@ -226,6 +226,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
 
 
                 this._txtDescripcionOperacion.IsEnabled = value;
+                this._btnIrPatentes.IsEnabled = value;
 
             }
         }
@@ -286,7 +287,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorGestionarAbandonoPatente(this, abandono);
+            this._presentador = new PresentadorGestionarAbandonoPatente(this, abandono,null);
         }
 
         /// <summary>
@@ -294,12 +295,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
         /// </summary>
         /// <param name="abandono">la abandono a mostrar</param>
         /// <param name="visibilidad">parametro que indica la visibilidad de los botones</param>
-        public GestionarAbandonoPatente(object abandono, object visibilidad)
+        public GestionarAbandonoPatente(object abandono, object visibilidad, object ventanaPadre)
         {
             InitializeComponent();
             this._cargada = false;
             this._btnEliminar.Visibility = (System.Windows.Visibility)visibilidad;
-            this._presentador = new PresentadorGestionarAbandonoPatente(this, abandono);
+            this._presentador = new PresentadorGestionarAbandonoPatente(this, abandono,ventanaPadre);
         }
 
 
@@ -387,10 +388,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            if (this.TextoBotonRegresar == Recursos.Etiquetas.btnRegresar)
+            /*if (this.TextoBotonRegresar == Recursos.Etiquetas.btnRegresar)
                 this._presentador.Regresar();
             else if (this.TextoBotonRegresar == Recursos.Etiquetas.btnCancelar)
-                this._presentador.Cancelar();
+                this._presentador.Cancelar();*/
+
+            this._presentador.RegresarVentanaPadre();
+            
         }
 
         private void _btnEliminar_Click(object sender, RoutedEventArgs e)
@@ -625,6 +629,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
         }
 
         #endregion
+
+        private void _btnIrPatentes_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrConsultarPatente();
+        }
 
     }
 }

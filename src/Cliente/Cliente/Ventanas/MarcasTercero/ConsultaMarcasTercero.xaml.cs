@@ -273,6 +273,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             this._txtClaseNacional.Text = "";
         }
 
+        public object OrigenesMarcaTercero
+        {
+            get { return this._cbxOrigenMarcaTercero.DataContext; }
+            set { this._cbxOrigenMarcaTercero.DataContext = value; }
+        }
+
+        public object OrigenMarcaTercero
+        {
+            get { return this._cbxOrigenMarcaTercero.SelectedItem; }
+            set { this._cbxOrigenMarcaTercero.SelectedItem = value; }
+        }
+
         #endregion
 
         /// <summary>
@@ -355,6 +367,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             {
                 todosCamposVacios = false;
                 this._dpkFechaPresentacion.Focus();
+            }
+
+            if ((this._cbxOrigenMarcaTercero.SelectedIndex != 0) && (this._cbxOrigenMarcaTercero.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxOrigenMarcaTercero.Focus();
             }
 
             if (todosCamposVacios)

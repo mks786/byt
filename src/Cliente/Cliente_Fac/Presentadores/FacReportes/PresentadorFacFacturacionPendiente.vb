@@ -547,15 +547,40 @@ Namespace Presentadores.FacReportes
             structura = inicializar_enc()
             Try
 
-
                 If total_z.Caso IsNot Nothing Then
                     structura.Caso = total_z.Caso
                 Else
                     structura.Caso = ""
                 End If
 
+                If total_z.Status = 1 Then
+                    structura.TipoPago = "Condicion de Pago : Contado"
+                Else
+                    structura.TipoPago = "Condicion de Pago : Contado"
+                End If
+
+
+
                 If total_z.XAsociado IsNot Nothing Then
-                    structura.Cliente = total_z.XAsociado
+                    Dim primerGuionPosicion As Integer
+                    primerGuionPosicion = total_z.XAsociado.IndexOf("-")
+                    structura.Cliente = total_z.XAsociado.Substring(primerGuionPosicion + 1)
+                    Dim xAsociado As Asociado = New Asociado()
+                    Dim numeroAsociadoStr = total_z.XAsociado.Substring(0, primerGuionPosicion)
+                    Dim idAsociado As Integer = Integer.Parse(numeroAsociadoStr)
+                    xAsociado.Id = idAsociado
+                    xAsociado = Me._asociadosServicios.ConsultarAsociadoConTodo(xAsociado)
+                    structura.Cliente += Environment.NewLine + xAsociado.Domicilio
+                    If xAsociado.Idioma IsNot Nothing Then
+                        If xAsociado.Pais IsNot Nothing Then
+                            If xAsociado.Idioma.Id = "IN" Then
+                                structura.Cliente += Environment.NewLine + xAsociado.Pais.NombreIngles
+                            Else
+                                structura.Cliente += Environment.NewLine + xAsociado.Pais.NombreEspanol
+                            End If
+                        End If
+                    End If
+                    'structura.Cliente = total_z.XAsociado
                 Else
                     structura.Cliente = ""
                 End If
@@ -662,6 +687,8 @@ Namespace Presentadores.FacReportes
                         structura.Texto2 = textos(1)
                     End If
 
+                    structura.Moneda = total_z.Moneda.Id
+
                     If Buscar_Operacion(total_z.Id) = True Then
                         Select Case total_z.P_mip
                             Case 1 ' Factura 
@@ -694,7 +721,19 @@ Namespace Presentadores.FacReportes
                             structura.Mttotal = SetFormatoDouble2(factura.MTtotalBf)
                             structura.Mtimp = SetFormatoDouble2(factura.MTimpBf)
                         End If
+
+                        structura.Piva = SetFormatoDouble2(factura.Impuesto)
+
+                        'If factura.FechaFactura >= CDate("01-01-2008") Then
+                        '    structura.Piva = SetFormatoDouble2(factura.Impuesto)
+                        'Else
+                        '    structura.Piva = SetFormatoDouble2(_FacFactura.PSeniat)
+                        'End If
+
                     End If
+
+
+
                 End If
             Catch ex As Exception
                 'logger.Error(ex.Message)
@@ -747,12 +786,18 @@ Namespace Presentadores.FacReportes
             Dim retorno As IList(Of StructReporteFActuraDeta) = New List(Of StructReporteFActuraDeta)
             retorno = detalle
             Dim _FacFacturaDetalle As List(Of FacFactuDetalle) = consultar_facturadetalle(idfactura)
+            Dim facturaFiltro As FacFactura = New FacFactura()
+            facturaFiltro.Id = idfactura
+            Dim _FacFacturas As List(Of FacFactura) =
+                Me._FacFacturaServicios.ObtenerFacFacturasFiltro(facturaFiltro)
+            Dim _Factura As FacFactura = _FacFacturas(0)
 
             Dim structura As New StructReporteFActuraDeta()
             structura = inicializar_deta()
             Try
 
                 For i As Integer = 0 To _FacFacturaDetalle.Count - 1
+                    _FacFacturaDetalle(i).Factura = _Factura
                     structura.Servicio = _FacFacturaDetalle(i).XDetalle
                     If _FacFacturaDetalle(i).NCantidad Is Nothing Then
                         _FacFacturaDetalle(i).NCantidad = 0
@@ -771,7 +816,7 @@ Namespace Presentadores.FacReportes
                         structura.MMonto = _FacFacturaDetalle(i).BDetalleBf
                         structura.Ndesc = _FacFacturaDetalle(i).Descuento
                         If _FacFacturaDetalle(i).NCantidad <> 0 Then
-                            Dim w_cuadre As Double                            
+                            Dim w_cuadre As Double
                             w_cuadre = _FacFacturaDetalle(i).BDetalleBf / _FacFacturaDetalle(i).NCantidad
                             If (w_cuadre <> _FacFacturaDetalle(i).PuBf) Then
                                 structura.Npub = SetFormatoDouble2(w_cuadre)
@@ -781,6 +826,18 @@ Namespace Presentadores.FacReportes
                         Else
                             structura.Npub = SetFormatoDouble2(_FacFacturaDetalle(i).PuBf)
                         End If
+                    End If
+
+                    If _FacFacturaDetalle(i).Impuesto.ToString = "T" Then
+                        'structura.Na = _FacFactura.Impuesto
+
+                        If _FacFacturaDetalle(i).Factura.FechaFactura >= CDate("01-01-2008") Then
+                            structura.Na = SetFormatoDouble2(_FacFacturaDetalle(i).Factura.Impuesto)
+                        Else
+                            structura.Na = SetFormatoDouble2(_FacFacturaDetalle(i).Factura.PSeniat)
+                        End If
+                    Else
+                        structura.Na = ""
                     End If
 
                     'If (w_monto = 0) Then

@@ -361,6 +361,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._txtCodigoRegistro.IsEnabled = value;
                 this._txtCodIntlDatos.IsEnabled = value;
                 this._txtComentarioDatos.IsEnabled = value;
+                this._txtComentarioSolicitud.IsEnabled = value;
                 //this._txtConflictoDatos.IsEnabled = value;
                 //this._btnConflictoDatos.IsEnabled = value;
                 this._txtIdCorresponsalDatos.IsEnabled = value;
@@ -422,6 +423,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 //this._txtIdExpedienteTraspasoRenovacionDatos.IsEnabled = value;
                 this._txtIdExpedienteTraspasoRenovacionSolicitud.IsEnabled = value;
                 this._txtFechaCierreExpDatos.IsEnabled = value;
+                this._txtPaisSolicitud.IsEnabled = value;
+                this._txtCiudadSolicitud.IsEnabled = value;
+                this._txtRepresentante.IsEnabled = value;
 
                 #endregion
 
@@ -463,6 +467,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
                 this._cbxPaisIntDatos.IsEnabled = value;
                 this._cbxPaisIntSolicitud.IsEnabled = value;
+
+                this._cbxOrigenMarcaSolicitud.IsEnabled = value;
+                this._cbxOrigenMarcaDatos.IsEnabled = value;
 
                 #endregion
 
@@ -550,6 +557,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._btnEtiqueta.IsEnabled = value;
                 this._btnEtiquetaSolicitud.IsEnabled = value;
                 this._btnArchivoDatos.IsEnabled = value;
+                this._btnIrAsociados.IsEnabled = value;
+                this._btnIrAsociadosDatos.IsEnabled = value;
+                this._btnIrInteresados.IsEnabled = value;
+                this._btnIrInteresadosDatos.IsEnabled = value;
+                this._btnIrCorresponsal.IsEnabled = value;
+                this._btnIrCorresponsalDatos.IsEnabled = value;
+                this._btnIrPoder.IsEnabled = value;
+                this._btnIrPoderDatos.IsEnabled = value;
+                this._btnVerCartaOrdenSolicitud.IsEnabled = value;
+                this._btnVerCartaOrdenDatos.IsEnabled = value;
+                this._btnExptyrDatos.IsEnabled = value;
+                this._btnExptyrSolicitud.IsEnabled = value;
+                this._btnIrMarcaOrigen.IsEnabled = value;
+                this._btnIrMarcaOrigenDatos.IsEnabled = value;
                 this._camposHabilitados = value;
 
                 #endregion
@@ -2893,6 +2914,46 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             this._btnExptyrDatos.Background = Brushes.LightGreen;
             this._btnExptyrSolicitud.Background = Brushes.LightGreen;
+        }
+
+
+        public object OrigenMarcasSolicitud
+        {
+            get { return this._cbxOrigenMarcaSolicitud.DataContext; }
+            set { this._cbxOrigenMarcaSolicitud.DataContext = value; }
+        }
+
+        public object OrigenMarcaSolicitud
+        {
+            get { return this._cbxOrigenMarcaSolicitud.SelectedItem; }
+            set { this._cbxOrigenMarcaSolicitud.SelectedItem = value; }
+        }
+
+        public object OrigenMarcasDatos
+        {
+            get { return this._cbxOrigenMarcaDatos.DataContext; }
+            set { this._cbxOrigenMarcaDatos.DataContext = value; }
+        }
+
+        public object OrigenMarcaDatos
+        {
+            get { return this._cbxOrigenMarcaDatos.SelectedItem; }
+            set { this._cbxOrigenMarcaDatos.SelectedItem = value; }
+        }
+
+        private void _cbxOrigenMarca_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox combo = (ComboBox)sender;
+            string nombreCombo = combo.Name;
+
+            if (nombreCombo.Equals("_cbxOrigenMarcaSolicitud"))
+            {
+                this._cbxOrigenMarcaDatos.SelectedIndex = this._cbxOrigenMarcaSolicitud.SelectedIndex;
+            }
+            else if (nombreCombo.Equals("_cbxOrigenMarcaDatos"))
+            {
+                this._cbxOrigenMarcaSolicitud.SelectedIndex = this._cbxOrigenMarcaDatos.SelectedIndex;
+            }
         }
 
 

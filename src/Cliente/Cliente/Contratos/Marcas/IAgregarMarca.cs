@@ -252,5 +252,14 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         void BorrarLista();
 
         void LimpiarDatosVentanaMarcaDuplicada();
+
+        object OrigenMarcasSolicitud { get; set; }
+
+        object OrigenMarcaSolicitud { get; set; }
+
+        object OrigenMarcasDatos { get; set; }
+
+        object OrigenMarcaDatos { get; set; }
+
     }
 }

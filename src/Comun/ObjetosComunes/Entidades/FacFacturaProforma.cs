@@ -84,6 +84,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         private String _campoOrdenamiento;
         private String _tipoOrdenamiento;
+        private String _origenProforma;
 
         #endregion
 
@@ -1043,6 +1044,13 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             {
                 this._tipoOrdenamiento = value;
             }
+        }
+
+
+        public virtual string OrigenProforma
+        {
+            get { return this._origenProforma; }
+            set { this._origenProforma = value; }
         }
 
         #endregion

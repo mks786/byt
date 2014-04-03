@@ -96,6 +96,24 @@ Namespace Ventanas.FacFacturas
             End Set
         End Property
 
+        Public Property OrigenesFactura As Object Implements Contratos.FacFacturas.IConsultarFacFacturas.OrigenesFactura
+            Get
+                Return Me._cbxOrigenFactura.DataContext
+            End Get
+            Set(value As Object)
+                Me._cbxOrigenFactura.DataContext = value
+            End Set
+        End Property
+
+        Public Property OrigenFactura As Object Implements Contratos.FacFacturas.IConsultarFacFacturas.OrigenFactura
+            Get
+                Return Me._cbxOrigenFactura.SelectedItem
+            End Get
+            Set(value As Object)
+                Me._cbxOrigenFactura.SelectedItem = value
+            End Set
+        End Property
+
 #End Region
 
         Public Sub New()

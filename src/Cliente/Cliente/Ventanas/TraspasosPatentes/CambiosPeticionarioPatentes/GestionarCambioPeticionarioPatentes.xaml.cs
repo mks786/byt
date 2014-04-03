@@ -330,6 +330,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
                 this._txtObservacionCambioPeticionario.IsEnabled = value;
                 this._txtComentarioCambioPeticionario.IsEnabled = value;
                 this._chkAsientoEnLibro.IsEnabled = value;
+
+                this._btnPatente.IsEnabled = value;
+                this._btnInteresadoAnterior.IsEnabled = value;
+                this._btnInteresadoActual.IsEnabled = value;
             }
         }
 
@@ -739,6 +743,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
             this._txtNumRegistro.Visibility = (System.Windows.Visibility)value;
             this._lblTipo.Visibility = (System.Windows.Visibility)value;
             this._txtTipo.Visibility = (System.Windows.Visibility)value;
+            this._btnPatente.Visibility = (System.Windows.Visibility)value;
         }
 
         private void GestionarVisibilidadFiltroPatente(object value)
@@ -820,7 +825,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
 
         private void GestionarVisibilidadDatosDeAnterior(object value)
         {
-            this._lblNombreAnterior.Visibility = (System.Windows.Visibility)value;
+            //this._lblNombreAnterior.Visibility = (System.Windows.Visibility)value;
+            this._btnInteresadoAnterior.Visibility = (System.Windows.Visibility)value;
             this._txtNombreAnterior.Visibility = (System.Windows.Visibility)value;
             this._txtIdAnterior.Visibility = (System.Windows.Visibility)value;
             this._txtPaisAnterior.Visibility = (System.Windows.Visibility)value;
@@ -1085,7 +1091,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
 
         private void GestionarVisibilidadDatosDeActual(object value)
         {
-            this._lblNombreActual.Visibility = (System.Windows.Visibility)value;
+            //this._lblNombreActual.Visibility = (System.Windows.Visibility)value;
+            this._btnInteresadoActual.Visibility = (System.Windows.Visibility)value;
             this._txtNombreActual.Visibility = (System.Windows.Visibility)value;
             this._txtIdActual.Visibility = (System.Windows.Visibility)value;
             this._txtPaisActual.Visibility = (System.Windows.Visibility)value;
@@ -1289,6 +1296,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
         }
 
         #endregion
+
+        private void _btnInteresadosCambioPeticionario_Click(object sender, RoutedEventArgs e)
+        {
+            Button botonPresionado = (Button)sender;
+            string nombreBoton = botonPresionado.Name;
+            this._presentador.ConsultarInteresadosCambioPeticionario(nombreBoton);
+        }
+
+        private void _btnPatente_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarPatenteTraspasoPatente();
+        }
 
     }
 }

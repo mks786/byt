@@ -6780,6 +6780,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Origen de Marca:.
+        /// </summary>
+        public static string lblOrigenMarca {
+            get {
+                return ResourceManager.GetString("lblOrigenMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Origen de Marca Tercero:.
+        /// </summary>
+        public static string lblOrigenMarcaTercero {
+            get {
+                return ResourceManager.GetString("lblOrigenMarcaTercero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Origen de Patente:.
+        /// </summary>
+        public static string lblOrigenPatente {
+            get {
+                return ResourceManager.GetString("lblOrigenPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Otra Direccion:.
         /// </summary>
         public static string lblOtraDireccion {
@@ -7298,6 +7325,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblReporteDescripcion {
             get {
                 return ResourceManager.GetString("lblReporteDescripcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Representante:.
+        /// </summary>
+        public static string lblRepresentante {
+            get {
+                return ResourceManager.GetString("lblRepresentante", resourceCulture);
             }
         }
         

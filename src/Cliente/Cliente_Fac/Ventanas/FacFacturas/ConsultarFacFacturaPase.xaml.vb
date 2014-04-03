@@ -106,6 +106,24 @@ Namespace Ventanas.FacFacturas
             End Set
         End Property
 
+        Public Property OrigenesFactura As Object Implements Contratos.FacFacturas.IConsultarFacFacturaPase.OrigenesFactura
+            Get
+                Return Me._cbxOrigenFactura.DataContext
+            End Get
+            Set(value As Object)
+                Me._cbxOrigenFactura.DataContext = value
+            End Set
+        End Property
+
+        Public Property OrigenFactura As Object Implements Contratos.FacFacturas.IConsultarFacFacturaPase.OrigenFactura
+            Get
+                Return Me._cbxOrigenFactura.SelectedItem
+            End Get
+            Set(value As Object)
+                Me._cbxOrigenFactura.SelectedItem = value
+            End Set
+        End Property
+
         Public Sub Mensaje(ByVal mensaje__1 As String) Implements Contratos.FacFacturas.IConsultarFacFacturaPase.Mensaje
             MessageBox.Show(mensaje__1, "Error", MessageBoxButton.OK, MessageBoxImage.[Error])
         End Sub

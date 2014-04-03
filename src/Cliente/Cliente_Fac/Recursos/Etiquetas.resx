@@ -1678,4 +1678,13 @@
   <data name="btnCalcularTarifas" xml:space="preserve">
     <value>Calcular Tarifas</value>
   </data>
+  <data name="cbiOrigenClienteAsociado" xml:space="preserve">
+    <value>FAC_ASOC_ORIGENCLIENTE</value>
+  </data>
+  <data name="lblOrigenFactura" xml:space="preserve">
+    <value>Origen Factura:</value>
+  </data>
+  <data name="lblOrigenProforma" xml:space="preserve">
+    <value>Origen Proforma:</value>
+  </data>
 </root>

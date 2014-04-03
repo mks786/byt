@@ -80,7 +80,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IList<Interesado> _interesados;
         private IList<Corresponsal> _corresponsales;
         private IList<Auditoria> _auditorias;
-
+        private IList<ListaDatosValores> _origenDeMarcas;
 
         private Interesado _interesadoAnterior;
 
@@ -695,7 +695,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 #endregion
 
+                #region Origen de Marca
 
+                ListaDatosValores primerOrigenMarca = new ListaDatosValores();
+                primerOrigenMarca.Id = "NGN";
+                this._origenDeMarcas =
+                            this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiOrigenClienteAsociado));
+                this._origenDeMarcas.Insert(0, primerOrigenMarca);
+                this._ventana.OrigenMarcasSolicitud = this._origenDeMarcas;
+                this._ventana.OrigenMarcasDatos = this._origenDeMarcas;
+                ListaDatosValores origenMarca = new ListaDatosValores();
+
+                if (marca.OrigenMarca != null)
+                {
+                    origenMarca.Valor = marca.OrigenMarca;                    
+                }
+                else
+                {
+                    origenMarca.Valor = "";
+                }
+
+                this._ventana.OrigenMarcaSolicitud = this.BuscarListaDeDatosValores(this._origenDeMarcas, origenMarca);
+                this._ventana.OrigenMarcaDatos = this.BuscarListaDeDatosValores(this._origenDeMarcas, origenMarca);
+
+                #endregion
                 
 
 
@@ -958,7 +981,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             }
 
-
+            if ((this._ventana.OrigenMarcaSolicitud != null) && (!((ListaDatosValores)this._ventana.OrigenMarcaSolicitud).Id.Equals("NGN")))
+            {
+                marca.OrigenMarca = ((ListaDatosValores)this._ventana.OrigenMarcaSolicitud).Descripcion;
+            }
+            else
+                marca.OrigenMarca = null;
           
             
 

@@ -250,7 +250,8 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             }
 
 
-            return retorno.Equals(string.Empty) ? false : true;
+            //return retorno.Equals(string.Empty) ? false : true;
+            return retorno.ToString().Equals("0") ? false : true;
         }
 
 

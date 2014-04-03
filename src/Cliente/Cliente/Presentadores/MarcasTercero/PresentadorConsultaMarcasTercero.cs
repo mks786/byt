@@ -45,6 +45,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
         private IList<Corresponsal> _corresponsales;
+        private IList<ListaDatosValores> _origenesMarcaTercero;
 
 
         private int _filtroValido;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
@@ -194,6 +195,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 boletines.Insert(0, primerBoletin);
                 this._ventana.BoletinesPublicacion = boletines;
                 this._ventana.BoletinesConcesion = boletines;
+
+                this._origenesMarcaTercero =
+                            this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiOrigenClienteAsociado));
+                ListaDatosValores primerOrigenMarcaTercero = new ListaDatosValores();
+                primerOrigenMarcaTercero.Id = "NGN";
+                this._origenesMarcaTercero.Insert(0, primerOrigenMarcaTercero);
+                this._ventana.OrigenesMarcaTercero = this._origenesMarcaTercero;
 
                 this._ventana.TotalHits = "0";
                 this._ventana.FocoPredeterminado();
@@ -565,6 +573,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
                 }
 
+                if (this._ventana.OrigenMarcaTercero != null)
+                {
+                    _filtroValido = 2;
+                    marcaAuxiliar.OrigenMarcaTercero = ((ListaDatosValores)this._ventana.OrigenMarcaTercero).Valor;
+                }
+
                 if (this._ventana.Solicitud != "")
                 {
                     _filtroValido = 2;
@@ -850,6 +864,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
             this._ventana.TotalHits = "0";
             this._ventana.Resultados = null;
+            this._ventana.OrigenMarcaTercero = this.BuscarListaDeDatosValores((IList<ListaDatosValores>)this._ventana.OrigenesMarcaTercero, new ListaDatosValores("NGN"));
 
             this._ventana.GestionarVisibilidadFiltroNacional(true);
 

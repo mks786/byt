@@ -117,6 +117,18 @@ Namespace Ventanas.FacFacturaProformas
         Public Sub Mensaje(ByVal mensaje__1 As String) Implements Contratos.FacFacturaProformas.IConsultarFacFacturaProforma.Mensaje
             MessageBox.Show(mensaje__1, "Error", MessageBoxButton.OK, MessageBoxImage.[Error])
         End Sub
+
+        Public Sub Mensaje(ByVal mensaje As String, ByVal tipo As Integer) Implements Contratos.FacFacturaProformas.IConsultarFacFacturaProforma.Mensaje
+            If tipo = 0 Then
+                MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.[Error])
+            ElseIf tipo = 1 Then
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning)
+            ElseIf tipo = 2 Then
+                MessageBox.Show(mensaje, "Información", MessageBoxButton.OK, MessageBoxImage.Information)
+            End If
+
+        End Sub
+
 #End Region
 
         Public Sub New(ByVal FacFacturaProforma As Object)
@@ -373,6 +385,24 @@ Namespace Ventanas.FacFacturaProformas
                 Me._txtXAsociado.Text = value
             End Set
 
+        End Property
+
+        Public Property OrigenesProforma As Object Implements Contratos.FacFacturaProformas.IConsultarFacFacturaProforma.OrigenesProforma
+            Get
+                Return Me._cbxOrigenProforma.DataContext
+            End Get
+            Set(value As Object)
+                Me._cbxOrigenProforma.DataContext = value
+            End Set
+        End Property
+
+        Public Property OrigenProforma As Object Implements Contratos.FacFacturaProformas.IConsultarFacFacturaProforma.OrigenProforma
+            Get
+                Return Me._cbxOrigenProforma.SelectedItem
+            End Get
+            Set(value As Object)
+                Me._cbxOrigenProforma.SelectedItem = value
+            End Set
         End Property
 
         'Private Sub _btnConsultarAsociado_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)

@@ -75,9 +75,13 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <!--<Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPatente}"/>
-                        </Label>
+                        </Label>-->
+                        <Button Grid.Column="0" Grid.Row="0" Name="_btnIrPatentes" IsDefault="False" Height="25" 
+                                HorizontalAlignment="Right" VerticalAlignment="Center" Width="60" Click="_btnIrPatentes_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPatente}"/>
+                        </Button>
 
                         <custom:ByTTextBox Name="_txtIdPatente" MaxLength="40" IsEnabled="False" IsReadOnly="True"
                              VerticalContentAlignment="Center" MouseDoubleClick="_txtNombrePatente_MouseDoubleClick" Margin="0,0,5,0" Grid.ColumnSpan="1" Grid.Column="1"

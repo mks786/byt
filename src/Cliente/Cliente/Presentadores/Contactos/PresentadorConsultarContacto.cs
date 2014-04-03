@@ -28,20 +28,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
 
         private Contacto _contacto;
         private IList<Auditoria> _auditorias;
-
+        private object _ventanaPadrePrevia; //Ventana inmediatamente anterior a la ventana que llamo a esta ventana
+        private object _carta;
+        private object _listaCartas;
+        private int _posicionCarta;
+        private bool   _vieneDeConsultarCarta;
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
         /// <param name="contacto">Contacto a mostrar</param>
-        public PresentadorConsultarContacto(IConsultarContacto ventana, object contacto, object ventanaPadre)
+        public PresentadorConsultarContacto(IConsultarContacto ventana,
+                                            object contacto,
+                                            object ventanaPadre,
+                                            object ventanaPadrePrevia)
         {
             try
             {
                 this._ventana = ventana;
                 this._ventana.Contacto = contacto;
                 this._ventanaPadre = ventanaPadre;
+                if (ventanaPadrePrevia != null)
+                    this._ventanaPadrePrevia = ventanaPadrePrevia;
+
                 this._contacto = (Contacto)contacto;
                 this._contactoServicios = (IContactoServicios)Activator.GetObject(typeof(IContactoServicios),
                      ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ContactoServicios"]);
@@ -66,6 +76,63 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
+
+        
+        public PresentadorConsultarContacto(IConsultarContacto ventana,
+                                            object contacto,
+                                            bool vieneDeConsultarCarta,
+                                            object carta,
+                                            object listaCartas,
+                                            int posicion,
+                                            object ventanaPadre,
+                                            object ventanaPadrePrevia)
+        {
+            try
+            {
+                this._ventana = ventana;
+                this._ventana.Contacto = contacto;
+                this._ventanaPadre = ventanaPadre;
+                if (ventanaPadrePrevia != null)
+                    this._ventanaPadrePrevia = ventanaPadrePrevia;
+
+                this._carta = carta;
+
+                if (listaCartas != null)
+                {
+                    this._listaCartas = listaCartas;
+                    this._posicionCarta = posicion;
+                }
+
+                this._vieneDeConsultarCarta = vieneDeConsultarCarta;
+
+
+                this._contacto = (Contacto)contacto;
+                this._contactoServicios = (IContactoServicios)Activator.GetObject(typeof(IContactoServicios),
+                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ContactoServicios"]);
+                this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
+                this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
+
+                ListaDatosValores valorBuscado = new ListaDatosValores();
+                valorBuscado.Valor = ((Contacto)this._ventana.Contacto).Departamento;
+                this._ventana.Departamento = this.BuscarDepartamentoContacto(this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiDepartamentoDeContactos)), valorBuscado);
+                this._ventana.setFuncion = this.BuscarFuncionContacto(((Contacto)this._ventana.Contacto).Funcion);
+                this._ventana.setCorrespondencia = ((Contacto)this._ventana.Contacto).Carta == null ? "" : ((Contacto)this._ventana.Contacto).Carta.Id.ToString();
+
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+
 
 
         /// <summary>
@@ -97,8 +164,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                     this._ventana.Departamento = BuscarDepartamentoContacto(departamentos,departamentoBuscado);
                 }
                 //--
-                
-
 
                 this._ventana.AsignarAsociado(this._contacto.Asociado.Id, this._contacto.Asociado.Nombre);
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarContacto,
@@ -231,7 +296,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                 {
                     Asociado asociado = ((Contacto)this._ventana.Contacto).Asociado;
                     asociado.Contactos.Remove((Contacto)this._ventana.Contacto);
-                    this.Navegar(new ListaContactos(asociado, null));
+
+                    if ((this._ventanaPadrePrevia != null) && (!this._vieneDeConsultarCarta))
+                        this.Navegar(new ListaContactos(asociado, this._ventanaPadrePrevia));
+                    else if ((this._ventanaPadrePrevia != null) && (this._vieneDeConsultarCarta))
+                    {
+                        ((Carta)this._carta).Persona = null;
+                        if (this._listaCartas != null)
+                        {
+                            IList<Carta> cartasObtenidas = (IList<Carta>)this._listaCartas;
+                            this.Navegar(new ConsultarCarta((Carta)this._carta, cartasObtenidas, this._posicionCarta, this._ventanaPadrePrevia, true));
+                        }
+                        else
+                        {
+                            this.Navegar(new ConsultarCarta((Carta)this._carta, this._ventanaPadrePrevia));
+                        }
+                    }
+                    else
+                        this.Navegar(new ListaContactos(asociado, this._ventanaPadre));
+                    
                 }
 
                 #region trace

@@ -25,18 +25,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private bool _regresarRefresca = false;
-
+        private object _ventanaPrevia; //Ventana anterior a la ventana ListaContactos
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorAgregarContacto(IAgregarContacto ventana, object asociado, object ventanaPadre, bool regresarRefresca)
+        public PresentadorAgregarContacto(IAgregarContacto ventana, 
+                                          object asociado, 
+                                          object ventanaPadre, 
+                                          object ventanaPrevia,
+                                          bool regresarRefresca)
         {
             try
             {
                 this._ventana = ventana;
                 this._ventanaPadre = ventanaPadre;
+                if (ventanaPrevia != null)
+                    this._ventanaPrevia = ventanaPrevia;
+
                 this._asociado = (Asociado)asociado;
                 this._ventana.Contacto = new Contacto();
                 this._regresarRefresca = regresarRefresca;
@@ -163,7 +170,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                         if (_regresarRefresca)
                             RegresarVentanaPadreContacto();
                         else
-                            this.Navegar(new ListaContactos(this._asociado, this._ventanaPadre));
+                            //this.Navegar(new ListaContactos(this._asociado, this._ventanaPadre));
+                            this.Navegar(new ListaContactos(this._asociado, this._ventanaPrevia));
                     }
                 }
                 else

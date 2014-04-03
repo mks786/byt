@@ -109,6 +109,8 @@
       <column name="CSERVICIO"/>
     </many-to-one>
 
+    <property name="OrigenMarcaTercero" column="IORIGEN" type="string"/>
+
     <!--<bag name="MarcasBaseTercero">
         <key column="CMARCAT"/>
         <one-to-many class="MarcaBaseTercero"/>

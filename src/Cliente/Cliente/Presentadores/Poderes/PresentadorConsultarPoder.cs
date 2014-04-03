@@ -26,6 +26,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
         private IPoderServicios _poderServicios;
         private IInteresadoServicios _interesadoServicios;
         private IAgenteServicios _agentesServicios;
+        private IMarcaServicios _marcaServicios;
+        private IMarcaTerceroServicios _marcaTerceroServicios;
+        private IPatenteServicios _patenteServicios;
+
         private IList<Boletin> _boletines;
         private IList<Interesado> _interesados;
         private bool _conInteresado;
@@ -54,11 +58,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
                 this._agentesServicios = (IAgenteServicios)Activator.GetObject(typeof(IAgenteServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
+                this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
+                this._marcaTerceroServicios = (IMarcaTerceroServicios)Activator.GetObject(typeof(IMarcaTerceroServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaTerceroServicios"]);
+                this._patenteServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
             }
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
         }
 
@@ -92,7 +102,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
         }
 
@@ -115,6 +125,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
 
                 Poder poder = (Poder)this._ventana.Poder;
 
+                #region CODIGO COMENTADO
                 //if (this._conInteresado)
                 //{
                 //    this._boletines = this._boletinServicios.ConsultarTodos();
@@ -124,7 +135,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                 //{
                 //    this._boletines.RemoveAt(0);
                 //    this._interesados.RemoveAt(0);
-                //}
+                //} 
+                #endregion
 
                 _apoderados = poder.Agentes;
 
@@ -150,6 +162,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                 this._ventana.Interesado = poder.Interesado;
                 this._ventana.FocoPredeterminado();
 
+                if (UsuarioLogeado.Rol.Id.Equals("ADMINISTRADOR"))
+                    this._ventana.ActivarBotonEliminar();
+
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -158,7 +173,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
             finally
             {
@@ -289,7 +304,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
         }
 
@@ -328,6 +343,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
         /// </summary>
         public void Eliminar()
         {
+            Marca marcaAux = new Marca();
+            marcaAux.Id = int.MinValue;
+            MarcaTercero marcaTerceroAux = new MarcaTercero();
+            Patente patenteAux = new Patente();
+            patenteAux.Id = int.MinValue;
+            bool interrumpirOperacion = false;
+            bool espacioEnBlanco = false;
+            String cadenaMensaje = String.Empty;
+            String cabeceraMensaje = String.Empty;
+
             try
             {
                 #region trace
@@ -339,12 +364,57 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                 poder.Boletin = (Boletin)this._ventana.Boletin;
                 poder.Operacion = "DELETE";
 
-                bool exitoso = this._poderServicios.Eliminar(poder, UsuarioLogeado.Hash);
-                if (exitoso)
+                marcaAux.Poder = poder;
+                marcaTerceroAux.Poder = poder;
+                patenteAux.Poder = poder;
+                cabeceraMensaje += string.Format("El Poder {0} no puede ser eliminado porque está vinculado con: ",poder.Id.ToString());
+                
+                IList<Marca> marcas = this._marcaServicios.ObtenerMarcasFiltro(marcaAux);
+
+                if (marcas.Count > 0)
                 {
-                    _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.PoderEliminado;
-                    this.Navegar(_paginaPrincipal);
+                    cadenaMensaje += string.Format("{0} Marca(s)", marcas.Count.ToString());
+                    espacioEnBlanco = true;
                 }
+                
+                IList<MarcaTercero> marcasTercero = this._marcaTerceroServicios.ObtenerMarcaTerceroFiltro(marcaTerceroAux);
+
+                if (marcasTercero.Count > 0)
+                {
+                    if (espacioEnBlanco)
+                        cadenaMensaje += ", ";
+                    cadenaMensaje += string.Format("{0} Marca(s) a Tercero", marcasTercero.Count.ToString());
+                }
+
+                IList<Patente> patentes = this._patenteServicios.ObtenerPatentesFiltro(patenteAux);
+
+                if (patentes.Count > 0)
+                {
+                    if (espacioEnBlanco)
+                        cadenaMensaje += ", ";
+                    cadenaMensaje += string.Format("{0} Patente(s)", patentes.Count.ToString());
+                }
+
+                if(cadenaMensaje.Length > 0)
+                    interrumpirOperacion = true;
+
+
+
+                if (!interrumpirOperacion)
+                {
+                    bool exitoso = this._poderServicios.Eliminar(poder, UsuarioLogeado.Hash);
+                    if (exitoso)
+                    {
+                        _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.PoderEliminado;
+                        this.Navegar(_paginaPrincipal);
+                    }
+                }
+                else
+                {
+                    cabeceraMensaje += cadenaMensaje;
+                    this._ventana.Mensaje(cabeceraMensaje, 0);
+                }
+                    
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -369,7 +439,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
         }
 
@@ -417,7 +487,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
         }
 
@@ -449,7 +519,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
         }
 

@@ -202,7 +202,7 @@
     <value>c.FechaIngreso between '{0}' and '{1}'</value>
   </data>
   <data name="CabeceraObtenerMarca" xml:space="preserve">
-    <value>Select m from Marca m left join fetch m.Asociado as asociado left join fetch m.Agente as agente left join fetch m.Corresponsal as corresponsal left join fetch m.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as idioma left join fetch m.BoletinConcesion as boletinC left join fetch m.BoletinPublicacion as boletinP left join fetch m.BoletinOrdenPublicacion as boletinO left join fetch m.Nacional as nacional left join fetch m.Internacional as internacional left join fetch m.Servicio as servicio where </value>
+    <value>Select m from Marca m left join fetch m.Asociado as asociado left join fetch m.Agente as agente left join fetch m.Corresponsal as corresponsal left join fetch m.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as idioma left join fetch m.BoletinConcesion as boletinC left join fetch m.BoletinPublicacion as boletinP left join fetch m.BoletinOrdenPublicacion as boletinO left join fetch m.Nacional as nacional left join fetch m.Internacional as internacional left join fetch m.Servicio as servicio left join fetch m.Poder as poder where </value>
     <comment>Cabecera del query para el filtro de marcas</comment>
   </data>
   <data name="FiltroObtenerMarcaDescripcion" xml:space="preserve">
@@ -416,7 +416,7 @@
     <comment>Filtro por marca</comment>
   </data>
   <data name="CabeceraObtenerMarcaTercero" xml:space="preserve">
-    <value>Select m from MarcaTercero m left join fetch m.Asociado as asociado left join fetch m.Interesado as interesado where </value>
+    <value>Select m from MarcaTercero m left join fetch m.Asociado as asociado left join fetch m.Interesado as interesado left join fetch m.Poder as poder where </value>
     <comment>Cabecera del query para el filtro de marcaTercero</comment>
   </data>
   <data name="FiltroObtenerMarcaTerceroAsociadoId" xml:space="preserve">
@@ -521,7 +521,7 @@
     <comment>Filtro por Id de clase nacional</comment>
   </data>
   <data name="CabeceraObtenerPatente" xml:space="preserve">
-    <value>Select p from Patente p left join fetch p.Asociado as asociado left join fetch p.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as pais left join fetch p.BoletinConcesion as boletinC left join fetch p.BoletinPublicacion as boletinP left join fetch p.BoletinOrdenPublicacion as boletinO left join fetch p.Anualidades as anualidades left join fetch p.Agente as agente left join fetch p.TipoEstado as tipoEstado left join fetch p.Servicio as servicio left join fetch p.StatusWeb as statusWeb where </value>
+    <value>Select p from Patente p left join fetch p.Asociado as asociado left join fetch p.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as pais left join fetch p.BoletinConcesion as boletinC left join fetch p.BoletinPublicacion as boletinP left join fetch p.BoletinOrdenPublicacion as boletinO left join fetch p.Anualidades as anualidades left join fetch p.Agente as agente left join fetch p.TipoEstado as tipoEstado left join fetch p.Servicio as servicio left join fetch p.StatusWeb as statusWeb left join fetch p.Poder as poder  where </value>
     <comment>Cabecera del query para el filtro de Patentes</comment>
   </data>
   <data name="FiltroObtenerPatenteDescripcion" xml:space="preserve">
@@ -1326,5 +1326,29 @@
   <data name="FiltroObtenerOperacionCadenaCambios" xml:space="preserve">
     <value>o.CadenaDeCambios = {0}</value>
     <comment>Filtro para obtener Operaciones con el campo Cadena de Cambios</comment>
+  </data>
+  <data name="FiltroObtenerMarcaOrigenMarca" xml:space="preserve">
+    <value>m.OrigenMarca = '{0}'</value>
+    <comment>Filtro para obtener Marcas a partir del campo OrigenMarca</comment>
+  </data>
+  <data name="FiltroObtenerMarcaTerceroOrigenMarcaTercero" xml:space="preserve">
+    <value>m.OrigenMarcaTercero = '{0}'</value>
+    <comment>Filtro para obtener Marcas a Terceros a traves del campo OrigenMarcaTercero</comment>
+  </data>
+  <data name="FiltroObtenerPatenteOrigenPatente" xml:space="preserve">
+    <value>p.OrigenPatente = '{0}'</value>
+    <comment>Filtro para obtener Patentes por el campo OrigenPatente</comment>
+  </data>
+  <data name="FiltroObtenerMarcaIdPoder" xml:space="preserve">
+    <value>poder.Id = {0}</value>
+    <comment>Filtro para obtener marcas a partir del Id del Poder</comment>
+  </data>
+  <data name="FiltroObtenerMarcaTerceroPoderId" xml:space="preserve">
+    <value>poder.Id = {0}</value>
+    <comment>Filtro para obtener marcas a tercero a partir del Id del Poder</comment>
+  </data>
+  <data name="FiltroObtenerPatenteIdPoder" xml:space="preserve">
+    <value>poder.Id = {0}</value>
+    <comment>Filtro para obtener patentes a partir del Id del Poder </comment>
   </data>
 </root>

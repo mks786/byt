@@ -945,8 +945,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._txtResumenSolicitud.IsEnabled = value;
                 this._txtObservacionSolicitud.IsEnabled = value;
                 this._txtOrdenSolicitud.IsEnabled = value;
-                
-
+                this._txtIdPatenteMadreSolicitud.IsEnabled = value;
+                this._txtReferenciaInteresado.IsEnabled = value;
+                this._txtCod.IsEnabled = value;
+                this._txtNum.IsEnabled = value;
+                this._txtReferenciaAsocInt.IsEnabled = value;
 
                 //Datos
 
@@ -977,6 +980,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._txtReferenciaAsocIntDatos.IsEnabled = value;
                 //this._txtUbicacionDatos.IsEnabled = value;
                 //this._txtExpedienteDatos.IsEnabled = value;
+                this._txtIdPatenteMadreDatos.IsEnabled = value;
+                this._txtReferenciaInteresadoDatos.IsEnabled = value;
+                this._txtCodDatos.IsEnabled = value;
+                this._txtNumDatos.IsEnabled = value;
+                this._txtSituacionDescripcion.IsEnabled = value;
 
                 #endregion
 
@@ -1006,6 +1014,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._cbxPaisSolicitud.IsEnabled = value;
                 this._cbxPaisIntSolicitud.IsEnabled = value;
                 this._cbxPaisIntDatos.IsEnabled = value;
+                this._cbxOrigenPatenteSolicitud.IsEnabled = value;
 
                 //Datos
                 this._cbxPresentacionDatos.IsEnabled = value;
@@ -1017,6 +1026,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._cbxBoletinConcesionDatos.IsEnabled = value;
                 this._cbxBoletinPublicacionDatos.IsEnabled = value;
                 this._cbxOrdenPublicacionDatos.IsEnabled = value;
+                this._cbxOrigenPatenteDatos.IsEnabled = value;
 
                 #endregion
 
@@ -1048,6 +1058,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._btnInventoresSolicitud.IsEnabled = value;
                 this._btnImprimirEdoDeCuentaSolicitud.IsEnabled = value;
                 this._btnImprimirEdoDeCuentaDatos.IsEnabled = value;
+                this._btnIrAsociados.IsEnabled = value;
+                this._btnIrInteresados.IsEnabled = value;
+                this._btnConsultarPatenteMadre.IsEnabled = value;
+                this._btnInteresadosPatente.IsEnabled = value;
+                this._btnIrPoder.IsEnabled = value;
 
                 //Datos
                 this._btnDisenoDatos.IsEnabled = value;
@@ -1072,6 +1087,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._btnCertificadoDatos.IsEnabled = value;
                 this._btnCertificadoDatos.IsEnabled = value;
                 this._btnArchivoPatenteDatos.IsEnabled = value;
+                this._btnConsultarPatenteMadreDatos.IsEnabled = value;
+                this._btnAnualidadDatos.IsEnabled = value;
+
                 this._camposHabilitados = value;
                 #endregion
 
@@ -2473,6 +2491,41 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         public void PintarDetalleMemorias()
         {
             this._btnVerMemoriaDatos.Background = Brushes.LightGreen;
+        }
+
+
+        public object OrigenPatentesSolicitud
+        {
+            get { return this._cbxOrigenPatenteSolicitud.DataContext; }
+            set { this._cbxOrigenPatenteSolicitud.DataContext = value; }
+        }
+
+        public object OrigenPatenteSolicitud
+        {
+            get { return this._cbxOrigenPatenteSolicitud.SelectedItem; }
+            set { this._cbxOrigenPatenteSolicitud.SelectedItem = value; }
+        }
+
+        public object OrigenPatentesDatos
+        {
+            get { return this._cbxOrigenPatenteDatos.DataContext; }
+            set { this._cbxOrigenPatenteDatos.DataContext = value; }
+        }
+
+        public object OrigenPatenteDatos
+        {
+            get { return this._cbxOrigenPatenteDatos.SelectedItem; }
+            set { this._cbxOrigenPatenteDatos.SelectedItem = value; }
+        }
+
+        private void _cbxOrigenPatenteSolicitud_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._cbxOrigenPatenteDatos.SelectedIndex = this._cbxOrigenPatenteSolicitud.SelectedIndex;
+        }
+
+        private void _cbxOrigenPatenteDatos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._cbxOrigenPatenteSolicitud.SelectedIndex = this._cbxOrigenPatenteDatos.SelectedIndex;
         }
        
 

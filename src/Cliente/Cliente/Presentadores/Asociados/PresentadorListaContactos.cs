@@ -132,7 +132,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 contactoAConsultar.Asociado = this._asociado;
                 Contacto contacto = this._contactoServicios.ConsultarPorId(contactoAConsultar);
                 contacto.Asociado = this._asociado;
-                this.Navegar(new ConsultarContacto(contacto,this._ventana));
+                //this.Navegar(new ConsultarContacto(contacto,this._ventana));
+                this.Navegar(new ConsultarContacto(contacto,this._ventana,this._ventanaPadre));
             }
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -187,7 +188,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             #endregion
 
             //this.Navegar(new AgregarContacto(this._asociado,this._ventanaPadre, false));
-            this.Navegar(new AgregarContacto(this._asociado, this._ventana, false));
+            this.Navegar(new AgregarContacto(this._asociado, this._ventana, this._ventanaPadre, false));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

@@ -329,6 +329,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 this._txtSaldoVencido.IsEnabled = value;
                 this._txtSaldoPorVencer.IsEnabled = value;
                 this._txtTotalDeuda.IsEnabled = value;
+                this._txtSituacionDescripcion.IsEnabled = value;
 
 
                 #endregion
@@ -347,6 +348,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 this._cbxBoletinConcesion.IsEnabled = value;
                 this._cbxBoletinPublicacion.IsEnabled = value;
                 this._cbxOrdenPublicacion.IsEnabled = value;
+                this._cbxOrigenMarcaTercero.IsEnabled = value;
 
                 #endregion
 
@@ -373,6 +375,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 this._lstMarcasB.IsEnabled = value;
                 this._btnMas.IsEnabled = value;
                 this._btnMenos.IsEnabled = value;
+                this._btnIrAsociadosDatos.IsEnabled = value;
+                this._btnIrInteresadosDatos.IsEnabled = value;
+                this._btnSaldo.IsEnabled = value;
+
                 #endregion
 
 
@@ -754,6 +760,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             set { _CurAdorner = value; }
         }
 
+        public object OrigenesMarcaTercero
+        {
+            get { return this._cbxOrigenMarcaTercero.DataContext; }
+            set { this._cbxOrigenMarcaTercero.DataContext = value; }
+        }
+
+        public object OrigenMarcaTercero
+        {
+            get { return this._cbxOrigenMarcaTercero.SelectedItem; }
+            set { this._cbxOrigenMarcaTercero.SelectedItem = value; }
+        }
+
         #endregion
 
         /// <summary>
@@ -1051,7 +1069,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         {
             if (_agregar)
                 this._presentador.Cancelar();
-            this._presentador.IrConsultarMarcasTercero();
+            else
+                this._presentador.RegresarVentanaPadre();
+            //this._presentador.IrConsultarMarcasTercero();
         }
 
         private void _btnInfoAdicional_Click(object sender, RoutedEventArgs e)

@@ -69,6 +69,15 @@
                             <custom:ByTTextBox Name="_txtId" Width="150" MaxLength="40" SoloNumero="True" Filtro="True" 
                                        GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" TamanoMaximo="8"/>
                         </WrapPanel>
+
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label Name="_lblOrigenPatente">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblOrigenPatente}"/>
+                            </Label>
+                            <ComboBox Name="_cbxOrigenPatente" Width="120" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                            </ComboBox>
+                        </WrapPanel>
+
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                             <Label Name="_lblSolicitud">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblSolicitud}"/>
