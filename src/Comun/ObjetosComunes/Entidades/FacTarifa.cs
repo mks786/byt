@@ -10,6 +10,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         private string _id;
         private string _descripcion;
+        private char _desgMonto; 
 
         #endregion
 
@@ -18,7 +19,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        public FacTarifa() { }
+        public FacTarifa() 
+        {
+            this._desgMonto = 'F';
+        }
 
         /// <summary>
         /// Constructor que inicializa el condigo de la tarifa
@@ -49,6 +53,44 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return this._descripcion; }
             set { this._descripcion = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el caracter para activar el Desglose por Monto en la Facturacion  
+        /// </summary>
+        public virtual char DesgMonto
+        {
+            get { return this._desgMonto; }
+            set { this._desgMonto = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el bit para activar el Desglose por Monto en la Facturacion 
+        /// </summary>
+        public virtual bool BDesgMonto
+        {
+            get
+            {
+                if (this.DesgMonto.Equals('T'))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            set
+            {
+                if (value)
+                {
+                    this.DesgMonto = 'T';
+                }
+                else
+                {
+                    this.DesgMonto = 'F';
+                }
+            }
         }
 
         #endregion

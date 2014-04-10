@@ -47,6 +47,8 @@
 
         Function ObtenerDaoDesgloseServicio() As IDaoDesgloseServicio
 
+        Function ObtenerDaoDesgloseServicioTarifa() As IDaoDesgloseServicioTarifa
+
         Function ObtenerDaoTarifaServicio() As IDaoTarifaServicio
 
         Function ObtenerDaoConceptoGestion() As IDaoConceptoGestion

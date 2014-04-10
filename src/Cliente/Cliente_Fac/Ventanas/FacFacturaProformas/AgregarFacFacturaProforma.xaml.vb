@@ -1004,6 +1004,15 @@ Namespace Ventanas.FacFacturaProformas
             End Set
         End Property
 
+        Public Property ResultadosDesgloseServicioTarifa2() As Object Implements Contratos.FacFacturaProformas.IAgregarFacFacturaProforma.ResultadosDesgloseServicioTarifa2
+            Get
+                Return Me._lstDesgloseServicioTarifa_2.DataContext
+            End Get
+            Set(ByVal value As Object)
+                Me._lstDesgloseServicioTarifa_2.DataContext = value
+            End Set
+        End Property
+
         Public Property ResultadosDepartamentoServicio2() As Object Implements Contratos.FacFacturaProformas.IAgregarFacFacturaProforma.ResultadosDepartamentoServicio2
             Get
                 Return Me._lstDepartamentoServicio_2.DataContext
@@ -1152,6 +1161,12 @@ Namespace Ventanas.FacFacturaProformas
         Public ReadOnly Property DesgloseServicio_Seleccionado() As Object Implements Contratos.FacFacturaProformas.IAgregarFacFacturaProforma.DesgloseServicio_Seleccionado
             Get
                 Return Me._lstDesgloseServicio_2.SelectedItem
+            End Get
+        End Property
+
+        Public ReadOnly Property DesgloseServicioTarifa_Seleccionado() As Object Implements Contratos.FacFacturaProformas.IAgregarFacFacturaProforma.DesgloseServicioTarifa_Seleccionado
+            Get
+                Return Me._lstDesgloseServicioTarifa_2.SelectedItem
             End Get
         End Property
 
@@ -1382,6 +1397,23 @@ Namespace Ventanas.FacFacturaProformas
                         Me._GbDesgloseServicio.Visibility = Windows.Visibility.Visible
                         Me._Wp_Salir.Visibility = Windows.Visibility.Visible
 
+                    Case "14" 'Desglose de Servicio por Tarifa
+                        'Aqui se va al metodo para mostrar los servicios por tarifa
+                        Me._presentador.VerDesgloseServiciosPorMonto()
+
+                        Me._GbMarca.Visibility = Windows.Visibility.Collapsed
+                        Me._GbPatente.Visibility = Windows.Visibility.Collapsed
+                        Me._GbCantidades.Visibility = Windows.Visibility.Collapsed
+                        Me._GbDocumentoTraduccion.Visibility = Windows.Visibility.Collapsed
+                        Me._GbRecursos.Visibility = Windows.Visibility.Collapsed
+                        Me._GbMateriales.Visibility = Windows.Visibility.Collapsed
+                        Me._GbMultiplesMarcas.Visibility = Windows.Visibility.Collapsed
+                        Me._GbMultiplesPatentes.Visibility = Windows.Visibility.Collapsed
+                        Me._GbAnualidades.Visibility = Windows.Visibility.Collapsed
+                        Me._GbDesgloseServicio.Visibility = Windows.Visibility.Collapsed
+                        Me._GbDesgloseServicioPorTarifa.Visibility = Windows.Visibility.Visible
+                        Me._Wp_Salir.Visibility = Windows.Visibility.Visible
+
                     Case "13" 'despues de agregar detalle proforma
                         'Me._presentador.VerDesgloseServicios()
 
@@ -1395,6 +1427,7 @@ Namespace Ventanas.FacFacturaProformas
                         Me._GbMultiplesPatentes.Visibility = Windows.Visibility.Collapsed
                         Me._GbAnualidades.Visibility = Windows.Visibility.Collapsed
                         Me._GbDesgloseServicio.Visibility = Windows.Visibility.Collapsed
+                        Me._GbDesgloseServicioPorTarifa.Visibility = Windows.Visibility.Collapsed
                         Me._Wp_Salir.Visibility = Windows.Visibility.Collapsed
 
                         Me._GbDetalleProforma.Visibility = Windows.Visibility.Visible
@@ -1968,6 +2001,10 @@ Namespace Ventanas.FacFacturaProformas
 
         Private Sub _btnOurref_Click(sender As System.Object, e As System.Windows.RoutedEventArgs)
             Me._presentador.ConsultarMarcasPatentes()
+        End Sub
+
+        Private Sub _lstDesgloseServicioTarifa_2_MouseDoubleClick(sender As System.Object, e As System.Windows.Input.MouseButtonEventArgs)
+            Me._presentador.AgregarDetalleProforma()
         End Sub
     End Class
 End Namespace

@@ -35,7 +35,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Remitentes
 
         public void FocoPredeterminado()
         {
-            this._txtId.Focus();
+            //this._txtId.Focus();
+            this._txtDescripcion.Focus();
         }
 
         public object Remitente

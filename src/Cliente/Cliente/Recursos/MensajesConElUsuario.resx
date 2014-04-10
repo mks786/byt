@@ -1522,4 +1522,10 @@
   <data name="AlertaAgregarOModificarCadenaCambios" xml:space="preserve">
     <value>Desea guardar los datos de la Cadena de Cambios?</value>
   </data>
+  <data name="ConfirmarCrearNuevaEntradaAlterna" xml:space="preserve">
+    <value>Desea seguir creando Entradas Alternas?</value>
+  </data>
+  <data name="ConfirmarReiniciarEntradaAlterna" xml:space="preserve">
+    <value>Desea reiniciar los campos de la Entrada Alterna a agregar?</value>
+  </data>
 </root>

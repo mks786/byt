@@ -23,5 +23,8 @@
     <property name="Material" column="MATERIAL" type="Char"/>
     <property name="Aimpuesto" column="AIMPUESTO" type="Char"/>
     <property name="Desg" column="DESG" type="Char"/>
+    <property name="DesgMonto1" column="DESG_M1" type="Char"/>
+    <property name="DesgMonto2" column="DESG_M2" type="Char"/>
+    
   </class>
 </hibernate-mapping>

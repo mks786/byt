@@ -89,7 +89,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                bool exitoso = ControladorEntradaAlterna.InsertarOModificar(entradaAlterna, hash);
+                bool exitoso = ControladorEntradaAlterna.InsertarOModificar(ref entradaAlterna, hash);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

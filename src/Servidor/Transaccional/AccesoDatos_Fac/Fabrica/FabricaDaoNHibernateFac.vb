@@ -116,6 +116,10 @@ Namespace Fabrica
             Return New DaoDesgloseServicioNHibernate()
         End Function
 
+        Public Overrides Function ObtenerDaoDesgloseServicioTarifa() As IDaoDesgloseServicioTarifa
+            Return New DaoDesgloseServicioTarifaNHibernate()
+        End Function
+
         Public Overrides Function ObtenerDaoTarifaServicio() As IDaoTarifaServicio
             Return New DaoTarifaServicioNHibernate()
         End Function

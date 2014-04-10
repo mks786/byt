@@ -66,8 +66,12 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
                         </Label>
                         
-                        <custom:ByTTextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3"  Name="_txtAsociado" VerticalAlignment="Center"                                     
-                         HorizontalAlignment="Left" Width="200" Text="" MaxLength="255" MouseDoubleClick="_txtAsociado_MouseDoubleClick" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
+                        <custom:ByTTextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3"  Name="_txtAsociado"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left" Width="200" Text="" MaxLength="255" 
+                                           MouseDoubleClick="_txtAsociado_MouseDoubleClick" Height="20" FontSize="10" 
+                                           BorderBrush="LightGreen" BorderThickness="1"
+                                           IsReadOnly="True"></custom:ByTTextBox>
 
                         <custom:ByTTextBox Grid.Column="1" KeyDown="_Consultar_Enter" Grid.Row="0" Grid.ColumnSpan="4" Name="_txtIdAsociado" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="40" MaxLength="8" SoloNumero="True" Visibility="Collapsed"  ></custom:ByTTextBox>
@@ -137,27 +141,62 @@
 
         <!--Resultados-->
         <GroupBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Margin="5">
-            <ListView Name="_lstResultados" ItemsSource="{Binding}" MouseDoubleClick="_lstResultados_MouseDoubleClick" SelectionMode="Single" 
-                       Style="{DynamicResource EstiloListView}">
+            <ListView Name="_lstResultados" ItemsSource="{Binding}" MouseDoubleClick="_lstResultados_MouseDoubleClick" 
+                      SelectionMode="Single" 
+                      Style="{DynamicResource EstiloListView}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaOperacion, StringFormat={}{0:dd/MM/yyyy}}" Width="70">
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=FechaOperacion, StringFormat={}{0:dd/MM/yyyy}}" Width="70">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaOperacion" Content="Fecha"/>
-                        </GridViewColumn>                        
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="30">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="Tipo"/>
+                        </GridViewColumn>-->
+                        <GridViewColumn Width="90">
+                            <GridViewColumnHeader Tag="FechaOperacion" Content="Fecha" Click="_Ordenar_Click"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=FechaOperacion, StringFormat={}{0:dd/MM/yyyy}}" 
+                                               TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoOperacion}" Width="60">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="CodigoOperacion" Content="Operacion"/>
+                        
+                        <GridViewColumn Width="50">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="Tipo"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Id}" TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        
+                        <GridViewColumn Width="90">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="CodigoOperacion" Content="Operación"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=CodigoOperacion}" TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=XOperacion}" Width="350">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="XOperacion" Content="Descripción"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Moneda.Id}" Width="50">
+                        
+                        <GridViewColumn Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Moneda.Id" Content="Moneda"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Moneda.Id}" TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Monto}" Width="80">
+                        
+                        <GridViewColumn Width="100">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Monto" Content="Monto"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Monto, StringFormat= {}{0:N}, ConverterCulture=de-DE}"
+                                               TextAlignment="Right" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Id}" Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Asociado.Id" Content="Id Asociado"/>
@@ -165,8 +204,13 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Nombre}" Width="350">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Asociado.Nombre" Content="{x:Static recurso:Etiquetas.lsvAsociado}"/>                        
                         </GridViewColumn>-->
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=ValorQuery}" Width="80">
+                        <GridViewColumn Width="90">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="ValorQuery" Content="Status"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=ValorQuery}" TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
@@ -176,15 +220,16 @@
 
         <!--Botones Regresar-->
         <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
-            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                <Button Name="_btnCancelar" Width="100" Click="_btnConsultar">
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
+                <!--<Button Name="_btnCancelar" Width="100" Click="_btnConsultar">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnCancelar}"/>
-                </Button>
+                </Button>-->
                 <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="100"
                     Click="_btnRegresar_Click">
                     <TextBlock Name="_txbRegresar" Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
                 </Button>
-                <Button Name="_btnLimpiar" VerticalAlignment="Center" Width="100" Click="_btnLimpiar_Click" HorizontalAlignment="Right">Limpiar</Button>
+                <Button Name="_btnLimpiar" VerticalAlignment="Center" Height="25" Width="100" Click="_btnLimpiar_Click" 
+                        HorizontalAlignment="Right">Limpiar</Button>
             </StackPanel>
         </GroupBox>
        

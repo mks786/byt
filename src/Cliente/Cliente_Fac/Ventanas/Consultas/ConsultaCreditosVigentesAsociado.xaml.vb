@@ -32,7 +32,7 @@ Namespace Ventanas.Consultas
         End Property
 
         Public Sub FocoPredeterminado() Implements IPaginaBaseFac.FocoPredeterminado
-            'Me._txtId.Focus()
+            Me._btnConsulta.Focus()
         End Sub
 
         Public Property FacOperacionFiltrar() As Object Implements Contratos.Consultas.IConsultaCreditosVigentesAsociado.FacOperacionFiltrar
@@ -120,7 +120,7 @@ Namespace Ventanas.Consultas
         End Sub
 
         Private Sub _btnRegresar_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
-            Me._presentador.Regresar()
+            Me._presentador.RegresarVentanaPadre()
         End Sub
 
         'Private Sub _btnCancelar_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
@@ -133,7 +133,7 @@ Namespace Ventanas.Consultas
         'End Sub
 
         Private Sub _lstResultados_MouseDoubleClick(ByVal sender As Object, ByVal e As MouseButtonEventArgs)
-            ' Me._presentador.IrConsultarFacOperacion()
+            Me._presentador.IrConsultarFacOperacion()
         End Sub
 
         Private Sub _Ordenar_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
@@ -212,6 +212,7 @@ Namespace Ventanas.Consultas
             If Me._lstAsociados.SelectedItem IsNot Nothing Then
                 Me._presentador.CambiarAsociado()
                 ControlesOcultarAsociado()
+                Me._btnConsulta.Focus()
             End If
         End Sub
 
@@ -276,5 +277,17 @@ Namespace Ventanas.Consultas
                 _lblHits.Text = value
             End Set
         End Property
+
+        Public Sub Mensaje(ByVal mensaje As String, ByVal tipo As Integer) Implements Contratos.Consultas.IConsultaCreditosVigentesAsociado.Mensaje
+            If tipo = 0 Then
+                MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.[Error])
+            ElseIf tipo = 1 Then
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning)
+            ElseIf tipo = 2 Then
+                MessageBox.Show(mensaje, "Información", MessageBoxButton.OK, MessageBoxImage.Information)
+            End If
+
+        End Sub
+
     End Class
 End Namespace

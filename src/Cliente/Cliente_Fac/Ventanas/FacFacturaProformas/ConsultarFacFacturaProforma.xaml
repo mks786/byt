@@ -217,8 +217,10 @@
                             <Label HorizontalContentAlignment="Left" Width="30" VerticalAlignment="Bottom">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.faclblRif}" VerticalAlignment="Center"/>
                             </Label>
-                            <custom:ByTTextBox HorizontalContentAlignment="Left" Width="100" Height="20" Name="_txtRif" MaxLength="100" Focusable="True" 
-                    ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left" IsReadOnly="True">
+                            <custom:ByTTextBox HorizontalContentAlignment="Left" Width="100" Height="20" Name="_txtRif" MaxLength="100"
+                                               Focusable="True" 
+                                               ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" 
+                                               HorizontalAlignment="Left">
                                 <custom:ByTTextBox.Text>
                                     <Binding Path="Rif" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
@@ -236,8 +238,10 @@
                             <Label HorizontalContentAlignment="Left" Width="30" VerticalAlignment="Bottom">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.faclblNit}" VerticalAlignment="Center" />
                             </Label>
-                            <custom:ByTTextBox  HorizontalContentAlignment="Left" Width="100" Height="20" Name="_txtXNit" MaxLength="100" Focusable="True" 
-                    ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left" IsReadOnly="True">
+                            <custom:ByTTextBox  HorizontalContentAlignment="Left" Width="100" Height="20" Name="_txtXNit"
+                                                MaxLength="100" Focusable="True" 
+                                                ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" 
+                                                HorizontalAlignment="Left">
                                 <custom:ByTTextBox.Text>
                                     <Binding Path="XNit" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
@@ -1215,6 +1219,58 @@
                         </WrapPanel>
                     </StackPanel>
                 </GroupBox>
+
+
+                <!-- para desglose de servicios por tarifas -->
+                <GroupBox Grid.Column="0" Grid.Row="1" Name = "_GbDesgloseServicioPorTarifa"  DataContext="{Binding}" 
+                          Visibility="Collapsed">
+                    <StackPanel  VerticalAlignment="Top"  HorizontalAlignment="Center">
+
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0">
+                            <Label>
+                                <TextBlock Text="Desglose Servicios Por Tarifa"/>
+                            </Label>
+                        </WrapPanel>
+
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0">
+                            <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="2"
+                                      Name="_lstDesgloseServicioTarifa_2" ItemsSource="{Binding}" SelectionMode="Single" 
+                                      IsEnabled="True" HorizontalAlignment="Left" 
+                                      Style="{DynamicResource EstiloListView}" Height="150" VerticalAlignment="Top"
+                                      MouseDoubleClick="_lstDesgloseServicioTarifa_2_MouseDoubleClick">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Servicio.Id}" Width="45">
+                                            <GridViewColumnHeader  Tag="Servicio.Id" Content="Codigo"/>
+                                        </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Servicio.Detalle_Esp}" Width="90">
+                                            <GridViewColumnHeader  Tag="Servicio.Detalle_Esp" Content="Servicio"/>
+                                        </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=BId}" Width="90">
+                                            <GridViewColumnHeader  Tag="BId" Content="Tipo"/>
+                                        </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Moneda.Id}" Width="90">
+                                            <GridViewColumnHeader  Tag="Moneda.Id" Content="Moneda"/>
+                                        </GridViewColumn>
+
+                                        <GridViewColumn Width="90">
+                                            <GridViewColumnHeader Tag="Monto" Content="Monto"/>
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=Monto, StringFormat= {}{0:N}, 
+                                                        ConverterCulture=de-DE}" TextAlignment="Right"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </WrapPanel>
+                    </StackPanel>
+                </GroupBox>
+                <!-- Fin de desglose de servicios por tarifas -->
+
+
 
                 <!--- *para las Documento marcas-->
                 <GroupBox Grid.Column="0" Grid.Row="1" Name = "_GbMarca"  DataContext="{Binding}" Visibility="Collapsed">

@@ -1035,7 +1035,7 @@ Cuenta solo digital:</value>
     <value>Tipo Entrada</value>
   </data>
   <data name="lblCodigoDestinatario" xml:space="preserve">
-    <value>Codigo Destinatario:</value>
+    <value>Destinatario:</value>
   </data>
   <data name="lblEntrada" xml:space="preserve">
     <value>Entrada:</value>
@@ -4409,5 +4409,11 @@ en Prensa:</value>
   </data>
   <data name="lblRepresentante" xml:space="preserve">
     <value>Representante:</value>
+  </data>
+  <data name="lblGuiaReferencia" xml:space="preserve">
+    <value>Guía o Referencia:</value>
+  </data>
+  <data name="cbiCategoriaEntradaAlterna" xml:space="preserve">
+    <value>ENTRADA_ALT_ACUSE</value>
   </data>
 </root>

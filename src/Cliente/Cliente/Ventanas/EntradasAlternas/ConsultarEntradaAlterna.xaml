@@ -40,14 +40,15 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
                     <custom:ByTTextBox Name="_txtId" Width="180" MaxLength="8" Focusable="True" 
-                    ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="False">
-                        <TextBox.Text>
+                    ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="False"
+                                       Text="{Binding Path=Id}">
+                        <!--<TextBox.Text>
                             <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
                                     <reglas:Obligatorio ValidatesOnTargetUpdated="True" />
                                 </Binding.ValidationRules>
                             </Binding>
-                        </TextBox.Text>
+                        </TextBox.Text>-->
                     </custom:ByTTextBox>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
@@ -85,6 +86,16 @@
                               ItemsSource="{Binding}" DisplayMemberPath="Nombre" SelectedIndex="0" IsEnabled="False">
                     </ComboBox>
                 </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblGuiaReferencia}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtDescripcion" MaxLength="200"  Text="{Binding Path=Descripcion}" TextWrapping="Wrap"
+                                       VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
+                                       HorizontalAlignment="Left" Width="180" Height="75" SpellCheck.IsEnabled="True" 
+                                       IsEnabled="False"/>
+                </WrapPanel>
+                
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblRemitente}"/>
@@ -128,13 +139,15 @@
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" IsEnabled="False">
                     </ComboBox>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblDescripcion}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblGuiaReferencia}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtDescripcion" MaxLength="200"  Text="{Binding Path=Descripcion}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
-                             HorizontalAlignment="Left" Width="180" Height="75" SpellCheck.IsEnabled="True" IsEnabled="False"/>
-                </WrapPanel>
+                    <custom:ByTTextBox Name="_txtDescripcion" MaxLength="200"  Text="{Binding Path=Descripcion}" TextWrapping="Wrap"
+                                       VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
+                                       HorizontalAlignment="Left" Width="180" Height="75" SpellCheck.IsEnabled="True" 
+                                       IsEnabled="False"/>
+                </WrapPanel>-->
             </StackPanel>
         </GroupBox>
 

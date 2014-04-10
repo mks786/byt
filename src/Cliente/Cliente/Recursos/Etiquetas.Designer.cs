@@ -1557,6 +1557,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a ENTRADA_ALT_ACUSE.
+        /// </summary>
+        public static string cbiCategoriaEntradaAlterna {
+            get {
+                return ResourceManager.GetString("cbiCategoriaEntradaAlterna", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a ESCRITOERROR.
         /// </summary>
         public static string cbiCategoriaErrorEscritos {
@@ -5150,7 +5159,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Codigo Destinatario:.
+        ///   Busca una cadena traducida similar a Destinatario:.
         /// </summary>
         public static string lblCodigoDestinatario {
             get {
@@ -6119,6 +6128,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblFuncion {
             get {
                 return ResourceManager.GetString("lblFuncion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Guía o Referencia:.
+        /// </summary>
+        public static string lblGuiaReferencia {
+            get {
+                return ResourceManager.GetString("lblGuiaReferencia", resourceCulture);
             }
         }
         

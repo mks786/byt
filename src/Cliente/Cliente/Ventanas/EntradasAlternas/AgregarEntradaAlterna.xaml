@@ -44,17 +44,30 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
                     <custom:ByTTextBox Name="_txtId" Width="180" MaxLength="8" Focusable="True" 
-                    ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}">
-                        <TextBox.Text>
+                                       ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}"
+                                       IsReadOnly="True">
+                        <!--<TextBox.Text>
                             <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
                                     <reglas:Obligatorio ValidatesOnTargetUpdated="True" />
                                 </Binding.ValidationRules>
                             </Binding>
-                        </TextBox.Text>
+                        </TextBox.Text>-->
                     </custom:ByTTextBox>
+                    
                 </WrapPanel>
+             
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="Tipo:"/>
+                    </Label>
+                    <ComboBox IsEnabled="True" Name="_cbxAcuse" Height="20" HorizontalAlignment="Left"
+                          ItemsSource="{Binding}" SelectedIndex="0" DisplayMemberPath="Descripcion" Width="180">
+
+                    </ComboBox>
+                </WrapPanel>
+             
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaEntrada}"/>
                     </Label>
@@ -89,6 +102,15 @@
                               ItemsSource="{Binding}" DisplayMemberPath="Nombre" SelectedIndex="0">
                     </ComboBox>
                 </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblGuiaReferencia}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtDescripcion" MaxLength="200"  Text="{Binding Path=Descripcion}" TextWrapping="Wrap" 
+                                       VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
+                                       HorizontalAlignment="Left" Width="180" Height="75" SpellCheck.IsEnabled="True"/>
+                </WrapPanel>
+
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Button Name="_btnRemitente" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnRemitente_Click">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblRemitente}"/>
@@ -135,17 +157,18 @@
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                     </ComboBox>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblDescripcion}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblGuiaReferencia}"/>
                     </Label>
                     <custom:ByTTextBox Name="_txtDescripcion" MaxLength="200"  Text="{Binding Path=Descripcion}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
                              HorizontalAlignment="Left" Width="180" Height="75" SpellCheck.IsEnabled="True"/>
-                </WrapPanel>
+                </WrapPanel>-->
             </StackPanel>
         </GroupBox>
 
-        <WrapPanel Grid.Column="3" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
+        <WrapPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" Margin="15,0,5,5" 
+                   Orientation="Horizontal" Grid.RowSpan="1" HorizontalAlignment="Right">
             <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" 
                     Click="_btnAceptar_Click" IsDefault="True">
                 <Button.Style>
@@ -170,6 +193,9 @@
                     </Style>
                 </Button.Style>
                 <TextBlock Name="_txbAceptar" Text="{x:Static recurso:Etiquetas.btnAceptar}"/>
+            </Button>
+            <Button Name="_btnLimpiar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnLimpiar_Click">
+                Limpiar
             </Button>
             <Button Name="_btnCancelar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnCancelar_Click">Cancelar</Button>
         </WrapPanel>

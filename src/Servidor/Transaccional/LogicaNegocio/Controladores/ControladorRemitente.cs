@@ -49,9 +49,10 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         /// <param name="remitente">Remitente a modificar</param>
         /// <param name="hash">Hash del usuario que va a realizar la operacion</param>
         /// <returns>True si la insercion fue exitosa, en caso contrario False</returns>
-        public static bool InsertarOModificar(Remitente remitente, int hash)
+        public static bool InsertarOModificar(ref Remitente remitente, int hash)
         {
             bool exitoso = false;
+            int longitudId = 4; //Esto es la cantidad de caracteres que tendra el Id segun Base de Datos
 
             try
             {
@@ -60,9 +61,60 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                ComandoBase<bool> comandoRemitenteContador = null;
+
+                // si es una insercion
+                if (remitente.Operacion.Equals("CREATE"))
+                {
+                    ComandoBase<Contador> comandoContadorRemitenteProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("REMITENTE");
+                    comandoContadorRemitenteProximoValor.Ejecutar();
+                    Contador contador = comandoContadorRemitenteProximoValor.Receptor.ObjetoAlmacenado;
+                    String idContador = contador.ProximoValor++.ToString().Trim();
+                    int strLenght = idContador.Length;
+                    if (strLenght < longitudId)
+                    {
+                        String strId = idContador.PadLeft(4, '0');
+                        remitente.Id = strId;
+                    }
+                    else if (strLenght == longitudId)
+                    {
+                        remitente.Id = idContador;
+                    }
+                    else
+                    {
+                        throw new ApplicationException("El Id del Remitente está restringido a sólo 4 dígitos, consulte con el Administrador del Sistema");
+                    }
+
+                    //remitente.Id = contador.ProximoValor++.ToString();
+                    comandoRemitenteContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contador);
+                }
+
+                Auditoria auditoria = new Auditoria();
+                ComandoBase<ContadorAuditoria> comandoContadorAuditoriaPoximoValor = FabricaComandosContadorAuditoria.ObtenerComandoConsultarPorId("SEG_AUDITORIA");
+                comandoContadorAuditoriaPoximoValor.Ejecutar();
+                ContadorAuditoria contadorAuditoria = comandoContadorAuditoriaPoximoValor.Receptor.ObjetoAlmacenado;
+
+                auditoria.Id = contadorAuditoria.ProximoValor++;
+                auditoria.Usuario = ObtenerUsuarioPorHash(hash).Id;
+                auditoria.Fecha = System.DateTime.Now;
+                auditoria.Operacion = remitente.Operacion;
+                auditoria.Tabla = "REMITENTE";
+                auditoria.Fk = int.Parse(remitente.Id);
+
                 ComandoBase<bool> comando = FabricaComandosRemitente.ObtenerComandoInsertarOModificar(remitente);
+                ComandoBase<bool> comandoAuditoria = FabricaComandosAuditoria.ObtenerComandoInsertarOModificar(auditoria);
+                ComandoBase<bool> comandoAuditoriaContador = FabricaComandosContadorAuditoria.ObtenerComandoInsertarOModificar(contadorAuditoria);
+
                 comando.Ejecutar();
                 exitoso = comando.Receptor.ObjetoAlmacenado;
+
+                if (exitoso)
+                {
+                    comandoAuditoria.Ejecutar();
+                    comandoAuditoriaContador.Ejecutar();
+                    if (comandoRemitenteContador != null)
+                        comandoRemitenteContador.Ejecutar();
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

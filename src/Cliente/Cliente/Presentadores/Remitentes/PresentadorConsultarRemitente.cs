@@ -117,11 +117,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Remitentes
 
                     remitente.Pais = (Pais)this._ventana.Pais;
                     remitente.TipoRemitente = this._ventana.GetTipoRemitente;
+                    remitente.Operacion = "MODIFY";
 
                     bool exitoso = this._remitenteServicios.InsertarOModificar(remitente, UsuarioLogeado.Hash);
                     if (exitoso)
                     {
-                        _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.InteresadoModificado;
+                        _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.RemitenteModificado;
                         this.Navegar(_paginaPrincipal);
                     }
                 }

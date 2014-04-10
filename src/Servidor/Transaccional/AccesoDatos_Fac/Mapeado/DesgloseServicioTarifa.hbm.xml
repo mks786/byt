@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+  
+  <class name="FacDesgloseServicioTarifa" table="FAC_SERV_DESG_MONTO">
+    
+    <composite-id>
+      <key-property name="Id" column="ITIPO" type="Char"/>
+      <key-many-to-one name="Servicio" column="COD_SER" class="FacServicio" lazy="false"/>
+      <key-many-to-one name="Moneda" column="CMONEDA" class="Moneda" lazy="false"/>
+    </composite-id>
+
+    <property name="Monto" column="PMONTO" type="Double"/>
+
+    <many-to-one name="Tarifa" class="Tarifa" lazy="false">
+      <column name="COD_TAR"/>
+    </many-to-one>
+    
+  </class>
+</hibernate-mapping>

@@ -9,6 +9,9 @@ Namespace Entidades
         Private _mont_bs As Double
         Private _tasa As Double
         Private _mont_bf As Double
+        Private _tasaAlt As Double
+        Private _montAlt_bf As Double
+
 #End Region
 
 #Region "Constructores"
@@ -98,12 +101,30 @@ Namespace Entidades
             End Set
         End Property
 
+        Public Overridable Property TasaAlt() As Double
+            Get
+                Return Me._tasaAlt
+            End Get
+            Set(ByVal value As Double)
+                Me._tasaAlt = value
+            End Set
+        End Property
+
         Public Overridable Property Mont_Bf() As Double
             Get
                 Return Me._mont_bf
             End Get
             Set(ByVal value As Double)
                 Me._mont_bf = value
+            End Set
+        End Property
+
+        Public Overridable Property MontAlt_Bf() As Double
+            Get
+                Return Me._montAlt_bf
+            End Get
+            Set(ByVal value As Double)
+                Me._montAlt_bf = value
             End Set
         End Property
 

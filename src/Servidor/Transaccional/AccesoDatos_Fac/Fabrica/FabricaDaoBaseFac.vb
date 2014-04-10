@@ -65,6 +65,8 @@ Namespace Fabrica
 
         Public MustOverride Function ObtenerDaoDesgloseServicio() As Contrato.IDaoDesgloseServicio Implements Contrato.IFabricaDaoBaseFac.ObtenerDaoDesgloseServicio
 
+        Public MustOverride Function ObtenerDaoDesgloseServicioTarifa() As Contrato.IDaoDesgloseServicioTarifa Implements Contrato.IFabricaDaoBaseFac.ObtenerDaoDesgloseServicioTarifa
+
         Public MustOverride Function ObtenerDaoTarifaServicio() As Contrato.IDaoTarifaServicio Implements Contrato.IFabricaDaoBaseFac.ObtenerDaoTarifaServicio
 
         Public MustOverride Function ObtenerDaoConceptoGestion() As Contrato.IDaoConceptoGestion Implements Contrato.IFabricaDaoBaseFac.ObtenerDaoConceptoGestion

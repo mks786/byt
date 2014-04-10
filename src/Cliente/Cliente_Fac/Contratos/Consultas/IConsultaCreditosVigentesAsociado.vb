@@ -45,5 +45,8 @@ Namespace Contratos.Consultas
         Property ListaResultados() As ListView
 
         WriteOnly Property Count As Integer
+
+        Sub Mensaje(mensaje As String, tipo As Integer)
+
     End Interface
 End Namespace

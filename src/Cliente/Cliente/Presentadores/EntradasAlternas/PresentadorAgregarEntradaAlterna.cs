@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Net.Sockets;
 using System.Runtime.Remoting;
 using System.Windows.Input;
+using System.Windows;
 using NLog;
 using Trascend.Bolet.Cliente.Contratos.EntradasAlternas;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
@@ -13,6 +14,7 @@ using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Ventanas.Medios;
 using Trascend.Bolet.Cliente.Ventanas.Remitentes;
 using Trascend.Bolet.Cliente.Ventanas.Categorias;
+using Trascend.Bolet.Cliente.Ventanas.EntradasAlternas;
 
 namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
 {
@@ -25,6 +27,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
         private IRemitenteServicios _remitenteServicios;
         private ICategoriaServicios _categoriaServicios;
         private IDepartamentoServicios _departamentoServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -50,11 +53,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CategoriaServicios"]);
                 this._departamentoServicios = (IDepartamentoServicios)Activator.GetObject(typeof(IDepartamentoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["DepartamentoServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
             }
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
         }
 
@@ -105,6 +110,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                 categorias.Insert(0, primeraCategoria);
                 this._ventana.Categorias = categorias;
 
+                IList<ListaDatosValores> listaAcuse =
+                this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaEntradaAlterna));
+                ListaDatosValores primerDatoValor = new ListaDatosValores();
+                primerDatoValor.Id = "NGN";
+                listaAcuse.Insert(0, primerDatoValor);
+                this._ventana.TiposAcuse = listaAcuse;
+
                 this._ventana.Personas = this._ventana.Receptores;
 
                 this._ventana.Departamentos = this._departamentoServicios.ConsultarTodos();
@@ -136,7 +148,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
             finally
             {
@@ -163,6 +175,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                 entradaAlterna.Remitente = !((Remitente)this._ventana.Remitente).Id.Equals("NGN") ? (Remitente)this._ventana.Remitente : null;
                 entradaAlterna.Categoria = !((Categoria)this._ventana.Categoria).Id.Equals("NGN") ? (Categoria)this._ventana.Categoria : null;
                 entradaAlterna.TipoDestinatario = this._ventana.TipoDestinatario;
+                entradaAlterna.Operacion = "CREATE";
 
                 if (!entradaAlterna.Medio.Id.Equals("NGN"))
                 {
@@ -179,17 +192,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                             entradaAlterna.DescripcionDestinatario = entradaAlterna.TipoDestinatario == 'D' ? ((Departamento)_ventana.Departamento).Descripcion : ((Usuario)_ventana.Persona).NombreCompleto;
                         }
 
-                        if (!this._entradaAlternaServicios.VerificarExistencia(entradaAlterna))
-                        {
+                        //if (!this._entradaAlternaServicios.VerificarExistencia(entradaAlterna))
+                        //{
                             bool exitoso = this._entradaAlternaServicios.InsertarOModificar(entradaAlterna, UsuarioLogeado.Hash);
 
                             if (exitoso)
-                                this.Navegar(Recursos.MensajesConElUsuario.EntradaAlternaInsertado, false);
-                        }
-                        else
-                        {
-                            this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorEntradaAlternaRepetida);
-                        }
+                            {
+                                if (MessageBoxResult.Yes == MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmarCrearNuevaEntradaAlterna),
+                                    "Crear Nueva Entrada Alterna", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                                    this.Navegar(new AgregarEntradaAlterna());
+                                else
+                                    this.Navegar(Recursos.MensajesConElUsuario.EntradaAlternaInsertado, false);
+                            }
+                                
+                        //}
+                        //else
+                        //{
+                        //    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorEntradaAlternaRepetida);
+                        //}
 
                     }
                     else
@@ -226,7 +246,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
         }
 
@@ -299,6 +319,32 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
             this._ventana.Categorias = tiposEntradaCategorias;
 
             this._ventana.Categoria = this.BuscarCategoria(tiposEntradaCategorias, (Categoria)tipoEntradaCategoria);
+        }
+
+        /// <summary>
+        /// Metodo que permite limpiar la pantalla
+        /// </summary>
+        public void LimpiarPantalla()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                this.Navegar(new AgregarEntradaAlterna());
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
         }
     }
 }

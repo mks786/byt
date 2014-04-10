@@ -1331,6 +1331,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Desea seguir creando Entradas Alternas?.
+        /// </summary>
+        internal static string ConfirmarCrearNuevaEntradaAlterna {
+            get {
+                return ResourceManager.GetString("ConfirmarCrearNuevaEntradaAlterna", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Desea eliminar las correspondencias seleccionadas?.
         /// </summary>
         internal static string ConfirmarEliminarCartasSeleccionadas {
@@ -1498,6 +1507,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ConfirmarRegistroContactoCxp {
             get {
                 return ResourceManager.GetString("ConfirmarRegistroContactoCxp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Desea reiniciar los campos de la Entrada Alterna a agregar?.
+        /// </summary>
+        internal static string ConfirmarReiniciarEntradaAlterna {
+            get {
+                return ResourceManager.GetString("ConfirmarReiniciarEntradaAlterna", resourceCulture);
             }
         }
         

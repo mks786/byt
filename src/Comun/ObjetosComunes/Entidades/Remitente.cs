@@ -18,7 +18,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _estado;
         private Pais _pais;
         private string _telefono;
-        private string _fax;  
+        private string _fax;
+        private string _operacion;
 
         #endregion
 
@@ -121,6 +122,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _fax; }
             set { _fax = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la operacion de Base de Datos a realizar para la Auditoria
+        /// </summary>
+        public virtual string Operacion
+        {
+            get { return _operacion; }
+            set { _operacion = value; }
         }
 
         #endregion

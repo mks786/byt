@@ -146,6 +146,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.EntradasAlternas
             this._txtId.Text = string.Empty;
         }
 
+        public object TiposAcuse
+        {
+            get { return this._cbxAcuse.DataContext; }
+            set { this._cbxAcuse.DataContext = value; }
+        }
+
+        public object TipoAcuse
+        {
+            get { return this._cbxAcuse.SelectedItem; }
+            set { this._cbxAcuse.SelectedItem = value; }
+        }
+
         #endregion
 
         public AgregarEntradaAlterna()
@@ -259,6 +271,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.EntradasAlternas
         public void RefrescarTipoDeEntradaCategoria(object tipoEntradaCategoria)
         {
             this._presentador.RefrescarTipoEntradaCategoria(tipoEntradaCategoria);
+        }
+
+        private void _btnLimpiar_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBoxResult.Yes == MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmarReiniciarEntradaAlterna),
+                    "Reiniciar Entrada Alterna", MessageBoxButton.YesNo, MessageBoxImage.Question))
+            {
+                this._presentador.LimpiarPantalla();
+            }
+            
         }
 
         

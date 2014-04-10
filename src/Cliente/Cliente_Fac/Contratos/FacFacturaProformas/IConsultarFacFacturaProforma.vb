@@ -283,6 +283,10 @@ Namespace Contratos.FacFacturaProformas
 
         Property OrigenProforma As Object
 
+        Property ResultadosDesgloseServicioTarifa2 As Object
+
+        ReadOnly Property DesgloseServicioTarifa_Seleccionado As Object
+
         Sub Mensaje(ByVal mensaje__1 As String)
 
         Sub Mensaje(mensaje As String, tipo As Integer)

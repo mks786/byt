@@ -24,6 +24,9 @@
     <many-to-one name="Categoria" class="Categoria">
       <column name="TIPO_ENTRADA"/>
     </many-to-one>
+
+    <property name="TipoAcuse" column="ACUSE" type="char"/>
+    
   </class>
 
 </hibernate-mapping>

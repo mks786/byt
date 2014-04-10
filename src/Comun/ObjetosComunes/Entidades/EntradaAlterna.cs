@@ -21,6 +21,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private char _tipoDestinatario;
         private string _descripcion;
         private string _descripcionDestinatario;
+        private string _operacion;
+        private char _tipoAcuse;
 
         #endregion
 
@@ -141,6 +143,24 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return this._descripcionDestinatario; }
             set { this._descripcionDestinatario = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna la operacion en Base de Datos a realizar
+        /// </summary>
+        public virtual string Operacion
+        {
+            get { return this._operacion; }
+            set { this._operacion = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna el tipo de Acuse de la Entrada Alterna
+        /// </summary>
+        public virtual char TipoAcuse
+        {
+            get { return this._tipoAcuse; }
+            set { this._tipoAcuse = value; }
         }
 
         #endregion

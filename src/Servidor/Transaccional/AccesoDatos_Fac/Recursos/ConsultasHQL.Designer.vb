@@ -155,6 +155,15 @@ Namespace Recursos
         End Property
         
         '''<summary>
+        '''  Busca una cadena traducida similar a Select d from FacDesgloseServicioTarifa d left join fetch d.Servicio as servicio left join fetch d.Moneda as moneda left join fetch d.Tarifa as tarifa.
+        '''</summary>
+        Public Shared ReadOnly Property CabeceraObtenerFacDesgloseServicioTarifa() As String
+            Get
+                Return ResourceManager.GetString("CabeceraObtenerFacDesgloseServicioTarifa", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Busca una cadena traducida similar a Select dp from FacFactuDetaAnulada dp left join fetch dp.Factura as factura  left join fetch dp.Servicio as servicio.
         '''</summary>
         Public Shared ReadOnly Property CabeceraObtenerFacFactuDetaAnulada() As String
@@ -736,6 +745,33 @@ Namespace Recursos
         Public Shared ReadOnly Property FiltroObtenerFacDesgloseServicioServicio() As String
             Get
                 Return ResourceManager.GetString("FiltroObtenerFacDesgloseServicioServicio", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca una cadena traducida similar a moneda.Id = &apos;{0}&apos;.
+        '''</summary>
+        Public Shared ReadOnly Property FiltroObtenerFacDesgloseServicioTarifaIdMoneda() As String
+            Get
+                Return ResourceManager.GetString("FiltroObtenerFacDesgloseServicioTarifaIdMoneda", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca una cadena traducida similar a servicio.Id = &apos;{0}&apos;.
+        '''</summary>
+        Public Shared ReadOnly Property FiltroObtenerFacDesgloseServicioTarifaIdServicio() As String
+            Get
+                Return ResourceManager.GetString("FiltroObtenerFacDesgloseServicioTarifaIdServicio", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca una cadena traducida similar a tarifa.Id = &apos;{0}&apos;.
+        '''</summary>
+        Public Shared ReadOnly Property FiltroObtenerFacDesgloseServicioTarifaIdTarifa() As String
+            Get
+                Return ResourceManager.GetString("FiltroObtenerFacDesgloseServicioTarifaIdTarifa", resourceCulture)
             End Get
         End Property
         
@@ -1717,6 +1753,15 @@ Namespace Recursos
         Public Shared ReadOnly Property FiltroObtenerFacStatementProcesarId() As String
             Get
                 Return ResourceManager.GetString("FiltroObtenerFacStatementProcesarId", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca una cadena traducida similar a t.Id = &apos;{0}&apos;.
+        '''</summary>
+        Public Shared ReadOnly Property FiltroObtenerFacTarifaId() As String
+            Get
+                Return ResourceManager.GetString("FiltroObtenerFacTarifaId", resourceCulture)
             End Get
         End Property
         

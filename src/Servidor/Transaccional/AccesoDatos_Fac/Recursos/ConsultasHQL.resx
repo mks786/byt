@@ -796,4 +796,24 @@
     <value>fp.OrigenFactura = '{0}'</value>
     <comment>Filtro que obtiene FacFacturas a partir del campo OrigenFactura</comment>
   </data>
+  <data name="CabeceraObtenerFacDesgloseServicioTarifa" xml:space="preserve">
+    <value>Select d from FacDesgloseServicioTarifa d left join fetch d.Servicio as servicio left join fetch d.Moneda as moneda left join fetch d.Tarifa as tarifa</value>
+    <comment>Cabecera para filtrar Desgloses de Servicio por Tarifa</comment>
+  </data>
+  <data name="FiltroObtenerFacDesgloseServicioTarifaIdServicio" xml:space="preserve">
+    <value>servicio.Id = '{0}'</value>
+    <comment>Filtro para obtener Desgloses de Servicio por Tarifa usando el Id del Servicio</comment>
+  </data>
+  <data name="FiltroObtenerFacDesgloseServicioTarifaIdMoneda" xml:space="preserve">
+    <value>moneda.Id = '{0}'</value>
+    <comment>Filtro para obtener los Desgloses de Servicio por Tarifa por el Id de la moneda</comment>
+  </data>
+  <data name="FiltroObtenerFacDesgloseServicioTarifaIdTarifa" xml:space="preserve">
+    <value>tarifa.Id = '{0}'</value>
+    <comment>Filtro para obtener los Desgloses de Servicio por Tarifa por el Id de la Tarifa</comment>
+  </data>
+  <data name="FiltroObtenerFacTarifaId" xml:space="preserve">
+    <value>t.Id = '{0}'</value>
+    <comment>Filtro para obtener FacTarifas por el Id</comment>
+  </data>
 </root>

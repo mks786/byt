@@ -165,6 +165,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                     entradaAlterna.TipoDestinatario = this._ventana.GetTipoDestinatario;
                     entradaAlterna.Medio = (Medio)this._ventana.Medio;
                     entradaAlterna.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
+                    entradaAlterna.Operacion = "MODIFY";
 
                     if ((Remitente)this._ventana.Remitente != null)
                     entradaAlterna.Remitente = !((Remitente)this._ventana.Remitente).Id.Equals("NGN") ? (Remitente)this._ventana.Remitente : null;

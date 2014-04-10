@@ -266,6 +266,10 @@ Namespace Contratos.FacFacturaProformas
 
         Property ListaResultados() As ListView
 
+        Property ResultadosDesgloseServicioTarifa2 As Object
+
+        ReadOnly Property DesgloseServicioTarifa_Seleccionado As Object
+
         Sub focos_elejir(ByVal valor As String)
 
         Sub Mensaje(ByVal mensaje__1 As String)

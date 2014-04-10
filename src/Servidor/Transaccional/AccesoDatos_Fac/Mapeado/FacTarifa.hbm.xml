@@ -6,6 +6,7 @@
   <class name="FacTarifa" table="FAC_TARIFAS">
     <id name="Id" column="COD_TAR" type="string"/>
     <property name="Descripcion" column="DES_TAR" type="string"/>
+    <property name="DesgMonto" column="DESG_MONTO" type="char"/>
   </class>
 </hibernate-mapping>
 

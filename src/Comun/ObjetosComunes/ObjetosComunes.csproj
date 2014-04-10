@@ -186,6 +186,7 @@
     <Compile Include="Entidades\DetallePlantilla.cs" />
     <Compile Include="Entidades\EncabezadoPlantilla.cs" />
     <Compile Include="Entidades\FacAsociadoIntConsolidadoCxPInt.cs" />
+    <Compile Include="Entidades\FacDesgloseServicioTarifa.cs" />
     <Compile Include="Entidades\FacInternacionalConsolidada.cs" />
     <Compile Include="Entidades\FacTarifa.cs" />
     <Compile Include="Entidades\FacVistaFacturaServicio.cs" />

@@ -76,6 +76,7 @@
     <Compile Include="Controladores\ControladorCorrespondencia.vb" />
     <Compile Include="Controladores\ControladorDepartamentoServicio.vb" />
     <Compile Include="Controladores\ControladorDesgloseServicio.vb" />
+    <Compile Include="Controladores\ControladorDesgloseServicioTarifa.vb" />
     <Compile Include="Controladores\ControladorDetalleEnvio.vb" />
     <Compile Include="Controladores\ControladorDetallePago.vb" />
     <Compile Include="Controladores\ControladorDocumentosMarca.vb" />

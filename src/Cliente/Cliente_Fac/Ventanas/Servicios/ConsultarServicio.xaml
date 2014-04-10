@@ -90,7 +90,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="75"/>
                         <ColumnDefinition Width="310"/>
-                        <ColumnDefinition Width="125"/>
+                        <ColumnDefinition Width="135"/>
                         <ColumnDefinition Width="*"/>
                         <!--<ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>-->
@@ -125,7 +125,14 @@
                          HorizontalAlignment="Right" IsChecked="{Binding Path=BDesg}">
                         </CheckBox>
                         <Label VerticalAlignment="Center" HorizontalContentAlignment="Right" >
-                            <TextBlock Text="Desglose" />
+                            <TextBlock Text="Desglose Obligatorio" />
+                        </Label>
+
+                        <CheckBox  Name="_chkPrec" VerticalAlignment="Center" IsEnabled="False"
+                         HorizontalAlignment="Right" IsChecked="{Binding Path=BPrec}" Visibility="Collapsed">
+                        </CheckBox>
+                        <Label VerticalAlignment="Center" HorizontalContentAlignment="Right" Visibility="Collapsed">
+                            <TextBlock Text="Usar Montos"/>
                         </Label>
                     </WrapPanel>
                     <TextBox Name="_txtDomicilio" MaxLength="255"  Text="{Binding Path=Domicilio}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"

@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="ContratosServicios\ICarpetaGestionAutomaticaServicios.vb" />
     <Compile Include="ContratosServicios\IFacAsociadoIntConsolidadoCxPIntServicios.vb" />
+    <Compile Include="ContratosServicios\IFacDesgloseServicioTarifaServicios.vb" />
     <Compile Include="ContratosServicios\IFacInternacionalConsolidadaServicios.vb" />
     <Compile Include="ContratosServicios\IFacTarifaServicios.vb" />
     <Compile Include="ContratosServicios\IFacVistaFacturacionCxpInternaServicios.vb" />

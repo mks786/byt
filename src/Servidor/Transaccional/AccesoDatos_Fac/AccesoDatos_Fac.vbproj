@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contrato\IDaoCarpetaGestionAutomatica.vb" />
+    <Compile Include="Contrato\IDaoDesgloseServicioTarifa.vb" />
     <Compile Include="Contrato\IDaoFacAsociadoIntConsolidadoCxPInt.vb" />
     <Compile Include="Contrato\IDaoFacInternacionalConsolidada.vb" />
     <Compile Include="Contrato\IDaoFacTarifa.vb" />
@@ -163,6 +164,7 @@
     <Compile Include="Contrato\IDaoViGestionAsociado.vb" />
     <Compile Include="Contrato\IFabricaDaoBaseFac.vb" />
     <Compile Include="Dao\NHibernate\DaoCarpetaGestionAutomaticaNHibernate.vb" />
+    <Compile Include="Dao\NHibernate\DaoDesgloseServicioTarifaNHibernate.vb" />
     <Compile Include="Dao\NHibernate\DaoFacAsociadoIntConsolidadoCxPIntNHibernate.vb" />
     <Compile Include="Dao\NHibernate\DaoFacInternacionalConsolidadaNHibernate.vb" />
     <Compile Include="Dao\NHibernate\DaoFacTarifaNHibernate.vb" />
@@ -492,6 +494,7 @@
     <EmbeddedResource Include="Mapeado\FacAsociadoIntConsolidadoCxPInt.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Mapeado\DesgloseServicioTarifa.hbm.xml" />
     <Content Include="Mapeado\FacFacturaTotal.xml" />
     <EmbeddedResource Include="Mapeado\FacFacturaTotalZ.hbm.xml" />
   </ItemGroup>

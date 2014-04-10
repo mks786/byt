@@ -41,6 +41,10 @@ namespace Trascend.Bolet.Cliente.Contratos.EntradasAlternas
 
         object Minuto { get; set; }
 
+        object TiposAcuse { get; set; }
+
+        object TipoAcuse { get; set; }
+
         void BorrarCeros();
     }
 }

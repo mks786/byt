@@ -21,6 +21,10 @@ Imports Trascend.Bolet.ObjetosComunes.Entidades
 Imports Trascend.Bolet.ObjetosComunes.ContratosServicios
 Imports Trascend.Bolet.Cliente.Presentadores
 Imports Trascend.Bolet.Cliente.Ventanas.Principales
+Imports Diginsoft.Bolet.Cliente.Fac.Ventanas.FacCobros
+Imports Diginsoft.Bolet.Cliente.Fac.Ventanas.FacCreditos
+Imports Diginsoft.Bolet.Cliente.Fac.Ventanas.FacFacturas
+
 
 Namespace Presentadores.Consultas
     Class PresentadorConsultaOperacionesAsociado
@@ -38,6 +42,9 @@ Namespace Presentadores.Consultas
         Private _facbancosServicios As IFacBancoServicios
         Private _idiomasServicios As IIdiomaServicios
         Private _monedasServicios As IMonedaServicios
+        Private _facCobroServicios As IFacCobroServicios
+        Private _facCreditoServicios As IFacCreditoServicios
+        Private _facFacturaServicios As IFacFacturaServicios
 
         ''' <summary>
         ''' Constructor Predeterminado
@@ -51,9 +58,13 @@ Namespace Presentadores.Consultas
                 Me._facbancosServicios = DirectCast(Activator.GetObject(GetType(IFacBancoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacBancoServicios")), IFacBancoServicios)
                 Me._idiomasServicios = DirectCast(Activator.GetObject(GetType(IIdiomaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("IdiomaServicios")), IIdiomaServicios)
                 Me._monedasServicios = DirectCast(Activator.GetObject(GetType(IMonedaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("MonedaServicios")), IMonedaServicios)
+                Me._facCreditoServicios = DirectCast(Activator.GetObject(GetType(IFacCreditoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacCreditoServicios")), IFacCreditoServicios)
+                Me._facCobroServicios = DirectCast(Activator.GetObject(GetType(IFacCobroServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacCobroServicios")), IFacCobroServicios)
+                Me._facFacturaServicios = DirectCast(Activator.GetObject(GetType(IFacFacturaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFacturaServicios")), IFacFacturaServicios)
+
             Catch ex As Exception
                 logger.[Error](ex.Message)
-                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado & ": " & ex.Message, True)
             End Try
         End Sub
 
@@ -97,7 +108,7 @@ Namespace Presentadores.Consultas
                 Me.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, True)
             Catch ex As Exception
                 logger.[Error](ex.Message)
-                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado & ": " & ex.Message, True)
             Finally
                 Mouse.OverrideCursor = Nothing
             End Try
@@ -124,6 +135,9 @@ Namespace Presentadores.Consultas
         ''' por pantalla
         ''' </summary>
         Public Sub Consultar()
+
+            Mouse.OverrideCursor = Cursors.Wait
+
             Try
                 '#Region "trace"
                 If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
@@ -178,7 +192,9 @@ Namespace Presentadores.Consultas
                 End If
             Catch ex As Exception
                 logger.[Error](ex.Message)
-                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado & ": " & ex.Message, True)
+            Finally
+                Mouse.OverrideCursor = Nothing
             End Try
         End Sub
 
@@ -215,19 +231,65 @@ Namespace Presentadores.Consultas
         ''' Método que invoca una nueva página "ConsultarFacOperacion" y la instancia con el objeto seleccionado
         ''' </summary>
         Public Sub IrConsultarFacOperacion()
-            '#Region "trace"
-            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
-                logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
-            End If
-            '#End Region
-            'Me._ventana.FacOperacionSeleccionado.Accion = 2 'no modificar
-            Me.Navegar(New FacturaAnuladaRpt(Me._ventana.FacOperacionSeleccionado, Nothing))
-            'Me.Navegar(New ConsultarFacOperacion())
-            '#Region "trace"
-            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
-                logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
-            End If
-            '#End Region
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                If Me._ventana.FacOperacionSeleccionado IsNot Nothing Then
+
+                    Dim FacOperacionSeleccionada As FacOperacion = DirectCast(Me._ventana.FacOperacionSeleccionado, FacOperacion)
+                    Select Case FacOperacionSeleccionada.Id
+                        Case "NC"
+                            Dim FacCreditoAux As FacCredito = New FacCredito()
+                            FacCreditoAux.Id = FacOperacionSeleccionada.CodigoOperacion
+                            Dim creditos As IList(Of FacCredito) = Me._facCreditoServicios.ObtenerFacCreditosFiltro(FacCreditoAux)
+                            If creditos.Count > 0 Then
+                                Me.Navegar(New ConsultarFacCredito(creditos(0)))
+                            Else
+                                Me._ventana.Mensaje("La Operación seleccionada no existe", 0)
+                            End If
+                        Case "NP"
+                            If FacOperacionSeleccionada.Id = "NP" Then
+                                Dim FacCobroAux As FacCobro = New FacCobro()
+                                FacCobroAux.Id = FacOperacionSeleccionada.CodigoOperacion
+                                Dim cobros As IList(Of FacCobro) = Me._facCobroServicios.ObtenerFacCobrosFiltro(FacCobroAux)
+                                If cobros.Count > 0 Then
+                                    Me.Navegar(New ConsultarFacCobro(cobros(0)))
+                                Else
+                                    Me._ventana.Mensaje("El Pago seleccionado no existe", 0)
+                                End If
+                            End If
+                        Case "ND"
+                            If FacOperacionSeleccionada.Id = "ND" Then
+                                Dim FacFacturaAux As FacFactura = New FacFactura()
+                                FacFacturaAux.Id = FacOperacionSeleccionada.CodigoOperacion
+                                Dim facturas As IList(Of FacFactura) = Me._facFacturaServicios.ObtenerFacFacturasFiltro(FacFacturaAux)
+                                If facturas.Count > 0 Then
+                                    Me.Navegar(New ConsultarFacFactura(facturas(0), Me._ventana))
+                                Else
+                                    Me._ventana.Mensaje("La Factura seleccionada no existe", 0)
+                                End If
+                            End If
+                        Case Else
+                            Me._ventana.Mensaje("Operación no incluída en la consulta, dirijase al Administrador del Sistema", 1)
+                    End Select
+
+                End If
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado & ": " & ex.Message, True)
+            End Try
+            
         End Sub
 
 

@@ -20,7 +20,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         /// <param name="entradaAlterna">EntradaAlterna a insertar o modificar</param>
         /// <param name="hash">Hash del usuario que realiza la operacion</param>
         /// <returns>True: si la modificación fue exitosa; false: en caso contrario</returns>
-        public static bool InsertarOModificar(EntradaAlterna entradaAlterna, int hash)
+        public static bool InsertarOModificar(ref EntradaAlterna entradaAlterna, int hash)
         {
             bool exitoso = false;
             try
@@ -30,9 +30,44 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                ComandoBase<bool> comandoEntradaAlternaContador = null;
+
+                // si es una insercion
+                if (entradaAlterna.Operacion.Equals("CREATE"))
+                {
+                    ComandoBase<Contador> comandoContadorEntradaAlternaProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("ENTRADA_ALT");
+                    comandoContadorEntradaAlternaProximoValor.Ejecutar();
+                    Contador contador = comandoContadorEntradaAlternaProximoValor.Receptor.ObjetoAlmacenado;
+                    entradaAlterna.Id = contador.ProximoValor++;
+                    comandoEntradaAlternaContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contador);
+                }
+
+                Auditoria auditoria = new Auditoria();
+                ComandoBase<ContadorAuditoria> comandoContadorAuditoriaPoximoValor = FabricaComandosContadorAuditoria.ObtenerComandoConsultarPorId("SEG_AUDITORIA");
+                comandoContadorAuditoriaPoximoValor.Ejecutar();
+                ContadorAuditoria contadorAuditoria = comandoContadorAuditoriaPoximoValor.Receptor.ObjetoAlmacenado;
+
+                auditoria.Id = contadorAuditoria.ProximoValor++;
+                auditoria.Usuario = ObtenerUsuarioPorHash(hash).Id;
+                auditoria.Fecha = System.DateTime.Now;
+                auditoria.Operacion = entradaAlterna.Operacion;
+                auditoria.Tabla = "ENTRADA_ALT";
+                auditoria.Fk = entradaAlterna.Id;
+
                 ComandoBase<bool> comando = FabricaComandosEntradaAlterna.ObtenerComandoInsertarOModificar(entradaAlterna);
+                ComandoBase<bool> comandoAuditoria = FabricaComandosAuditoria.ObtenerComandoInsertarOModificar(auditoria);
+                ComandoBase<bool> comandoAuditoriaContador = FabricaComandosContadorAuditoria.ObtenerComandoInsertarOModificar(contadorAuditoria);
+
                 comando.Ejecutar();
-                exitoso = true;
+                exitoso = comando.Receptor.ObjetoAlmacenado;
+
+                if (exitoso)
+                {
+                    comandoAuditoria.Ejecutar();
+                    comandoAuditoriaContador.Ejecutar();
+                    if (comandoEntradaAlternaContador != null)
+                        comandoEntradaAlternaContador.Ejecutar();
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

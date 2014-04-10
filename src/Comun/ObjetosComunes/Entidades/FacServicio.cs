@@ -28,8 +28,11 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private char _recursos;
         private char _material;
         private char _aimpuesto;
-        #endregion
         private char _desg;
+        private char _desgMonto1;
+        private char _desgMonto2;
+        #endregion
+        
 
         #region "Constructores"
         public FacServicio()
@@ -43,6 +46,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             this.Material = 'F';
             this._aimpuesto = 'F';
             this._desg = 'F';
+            this._desgMonto1 = 'F';
+            this._desgMonto2 = 'F';
         }
         /// <summary>
         /// Constructor que inicializa el Id de la Servicio
@@ -477,6 +482,76 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
                 else
                 {
                     this.Desg = 'F';
+                }
+            }
+        }
+
+        public virtual char DesgMonto1
+        {
+            get { return this._desgMonto1; }
+            set { this._desgMonto1 = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que aplica el booleano de Prec
+        /// </summary>
+        public virtual bool BDesgMonto1
+        {
+            get
+            {
+                if (this.DesgMonto1.Equals('T'))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            set
+            {
+                if (value)
+                {
+                    this.DesgMonto1 = 'T';
+                }
+                else
+                {
+                    this.DesgMonto1 = 'F';
+                }
+            }
+        }
+
+        public virtual char DesgMonto2
+        {
+            get { return this._desgMonto2; }
+            set { this._desgMonto2 = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que aplica el booleano de Prec
+        /// </summary>
+        public virtual bool BDesgMonto2
+        {
+            get
+            {
+                if (this.DesgMonto2.Equals('T'))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            set
+            {
+                if (value)
+                {
+                    this.DesgMonto2 = 'T';
+                }
+                else
+                {
+                    this.DesgMonto2 = 'F';
                 }
             }
         }

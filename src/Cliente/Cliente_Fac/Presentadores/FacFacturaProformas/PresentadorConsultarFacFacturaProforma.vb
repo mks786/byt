@@ -75,6 +75,9 @@ Namespace Presentadores.FacFacturaProformas
         Private _InstruccionEnvioOriginalesServicios As IInstruccionEnvioOriginalesServicios
         Private _InstruccionDescuentoServicios As IInstruccionDescuentoServicios
         Private _InstruccionOtrosServicios As IInstruccionOtrosServicios
+        Private _desgloseServicioTarifaServicios As IFacDesgloseServicioTarifaServicios
+        Private _FacTarifaServicios As IFacTarifaServicios
+        Private _ContadorFacServicios As IContadorFacServicios
 
         'Private _facfacturaproforma As FacFacturaProforma
         'Private _facfacturaproformaentrada As FacFacturaProforma
@@ -115,6 +118,7 @@ Namespace Presentadores.FacFacturaProformas
                 Me._cartasServicios = DirectCast(Activator.GetObject(GetType(ICartaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("CartaServicios")), ICartaServicios)
                 Me._paisesServicios = DirectCast(Activator.GetObject(GetType(IPaisServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("PaisServicios")), IPaisServicios)
                 Me._desgloseserviciosServicios = DirectCast(Activator.GetObject(GetType(IFacDesgloseServicioServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("DesgloseservicioServicios")), IFacDesgloseServicioServicios)
+                Me._desgloseServicioTarifaServicios = DirectCast(Activator.GetObject(GetType(IFacDesgloseServicioTarifaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("DesgloseServicioTarifaServicios")), IFacDesgloseServicioTarifaServicios)
                 Me._DepartamentoserviciosServicios = DirectCast(Activator.GetObject(GetType(IFacDepartamentoServicioServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("DepartamentoServicioServicios")), IFacDepartamentoServicioServicios)
                 Me._FacFactuDetaProformasServicios = DirectCast(Activator.GetObject(GetType(IFacFactuDetaProformaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFactuDetaProformaServicios")), IFacFactuDetaProformaServicios)
                 Me._TarifaServiciosServicios = DirectCast(Activator.GetObject(GetType(ITarifaServicioServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("TarifaServicioServicios")), ITarifaServicioServicios)
@@ -144,6 +148,8 @@ Namespace Presentadores.FacFacturaProformas
                 Me._FacOperacionDetaTmProformasServicios = DirectCast(Activator.GetObject(GetType(IFacOperacionDetaTmProformaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacOperacionDetaTmProformaServicios")), IFacOperacionDetaTmProformaServicios)
                 Me._FacDesgloseColesServicios = DirectCast(Activator.GetObject(GetType(IFacDesgloseColeServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacDesgloseColeServicios")), IFacDesgloseColeServicios)
                 Me._DepartamentoServicios = DirectCast(Activator.GetObject(GetType(IDepartamentoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("DepartamentoServicios")), IDepartamentoServicios)
+                Me._FacTarifaServicios = DirectCast(Activator.GetObject(GetType(IFacTarifaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacTarifaServicios")), IFacTarifaServicios)
+                Me._ContadorFacServicios = DirectCast(Activator.GetObject(GetType(IContadorFacServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("ContadorFacServicios")), IContadorFacServicios)
 
             Catch ex As Exception
                 logger.[Error](ex.Message)
@@ -177,6 +183,7 @@ Namespace Presentadores.FacFacturaProformas
                 Me._cartasServicios = DirectCast(Activator.GetObject(GetType(ICartaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("CartaServicios")), ICartaServicios)
                 Me._paisesServicios = DirectCast(Activator.GetObject(GetType(IPaisServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("PaisServicios")), IPaisServicios)
                 Me._desgloseserviciosServicios = DirectCast(Activator.GetObject(GetType(IFacDesgloseServicioServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("DesgloseservicioServicios")), IFacDesgloseServicioServicios)
+                Me._desgloseServicioTarifaServicios = DirectCast(Activator.GetObject(GetType(IFacDesgloseServicioTarifaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("DesgloseServicioTarifaServicios")), IFacDesgloseServicioTarifaServicios)
                 Me._DepartamentoserviciosServicios = DirectCast(Activator.GetObject(GetType(IFacDepartamentoServicioServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("DepartamentoServicioServicios")), IFacDepartamentoServicioServicios)
                 Me._FacFactuDetaProformasServicios = DirectCast(Activator.GetObject(GetType(IFacFactuDetaProformaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFactuDetaProformaServicios")), IFacFactuDetaProformaServicios)
                 Me._TarifaServiciosServicios = DirectCast(Activator.GetObject(GetType(ITarifaServicioServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("TarifaServicioServicios")), ITarifaServicioServicios)
@@ -206,6 +213,8 @@ Namespace Presentadores.FacFacturaProformas
                 Me._FacOperacionDetaTmProformasServicios = DirectCast(Activator.GetObject(GetType(IFacOperacionDetaTmProformaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacOperacionDetaTmProformaServicios")), IFacOperacionDetaTmProformaServicios)
                 Me._FacDesgloseColesServicios = DirectCast(Activator.GetObject(GetType(IFacDesgloseColeServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacDesgloseColeServicios")), IFacDesgloseColeServicios)
                 Me._DepartamentoServicios = DirectCast(Activator.GetObject(GetType(IDepartamentoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("DepartamentoServicios")), IDepartamentoServicios)
+                Me._FacTarifaServicios = DirectCast(Activator.GetObject(GetType(IFacTarifaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacTarifaServicios")), IFacTarifaServicios)
+                Me._ContadorFacServicios = DirectCast(Activator.GetObject(GetType(IContadorFacServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("ContadorFacServicios")), IContadorFacServicios)
 
             Catch ex As Exception
                 logger.[Error](ex.Message)
@@ -1453,11 +1462,33 @@ Namespace Presentadores.FacFacturaProformas
 
         Public Sub VerTipoDesgloseServicio()
 
+            Dim departamento_servicio As FacDepartamentoServicio = DirectCast(Me._ventana.DepartamentoServicio_2Seleccionado, FacDepartamentoServicio)
+
             If (Me._ventana.Desglose = True) Then
-                Me._ventana.VerTipo = "12" ' degloseServicio
+                If Not Me._ventana.Tarifa.Equals(String.Empty) Then
+                    Dim FacTarifa As FacTarifa = New FacTarifa()
+                    FacTarifa.Id = Me._ventana.Tarifa
+                    Dim facTarifas As IList(Of FacTarifa) = Me._FacTarifaServicios.ObtenerFacTarifasFiltro(FacTarifa)
+                    If facTarifas.Count > 0 Then
+                        Dim TarifaEncontrada As FacTarifa = facTarifas(0)
+                        If (TarifaEncontrada.BDesgMonto = True) Then
+                            Me._ventana.VerTipo = "14"
+                        Else
+                            Me._ventana.VerTipo = "12"
+                        End If
+                    End If
+                End If
             Else
                 AgregarDetalleProforma()
             End If
+
+
+            'CODIGO ORIGINAL COMENTADO - NO BORRAR
+            'If (Me._ventana.Desglose = True) Then
+            '    Me._ventana.VerTipo = "12" ' degloseServicio
+            'Else
+            '    AgregarDetalleProforma()
+            'End If
         End Sub
 
         Public Sub VerDocumentoMarcas()
@@ -2778,7 +2809,11 @@ Namespace Presentadores.FacFacturaProformas
 
                 Dim tipo_desg As String = ""
                 If Me._ventana.Desglose = True Then
+
                     Dim desglose_servicio As FacDesgloseServicio = DirectCast(Me._ventana.DesgloseServicio_Seleccionado, FacDesgloseServicio)
+                    Dim desglose_servicio_monto As FacDesgloseServicioTarifa = DirectCast(Me._ventana.DesgloseServicioTarifa_Seleccionado, FacDesgloseServicioTarifa)
+
+                    '''DESGLOSE PORCENTUAL 
                     If desglose_servicio IsNot Nothing Then
                         If desglose_servicio.Id = "H" Then
                             facfactudetaproforma.Desactivar_Desglose = False
@@ -2835,22 +2870,106 @@ Namespace Presentadores.FacFacturaProformas
                                 End If
                             End If
                         End If
+                    ElseIf desglose_servicio_monto IsNot Nothing Then
+                        If desglose_servicio_monto.Id = "H" Then
+                            facfactudetaproforma.Desactivar_Desglose = False
+                        Else
+                            facfactudetaproforma.Desactivar_Desglose = True
+                            facfactudetaproforma.Descuento = 0
+                        End If
+
+                        If desglose_servicio_monto.Servicio IsNot Nothing Then
+                            If facfactudetaproforma.Pu.ToString <> "" And desglose_servicio_monto.Tarifa.ToString <> "" Then
+                                facfactudetaproforma.Pu = desglose_servicio_monto.Monto
+                            Else
+                                facfactudetaproforma.Pu = 0
+                                facfactudetaproforma.PuBf = 0
+                            End If
+                            If facfactudetaproforma.Descuento.ToString <> "" And facfactudetaproforma.NCantidad.ToString <> "" Then
+                                'facfactudetaproforma.BDetalle = (facfactudetaproforma.Pu * facfactudetaproforma.NCantidad) * (1 - (facfactudetaproforma.Descuento / 100))
+                                facfactudetaproforma.BDetalle = (facfactudetaproforma.Pu * facfactudetaproforma.NCantidad)
+                                facfactudetaproforma.BDetalle = facfactudetaproforma.BDetalle
+                                'facfactudetaproforma.BDetalleBf = (facfactudetaproforma.PuBf * facfactudetaproforma.NCantidad) * (1 - (facfactudetaproforma.Descuento / 100))
+                                facfactudetaproforma.BDetalleBf = (facfactudetaproforma.PuBf * facfactudetaproforma.NCantidad)
+                                facfactudetaproforma.BDetalleBf = facfactudetaproforma.BDetalleBf
+                            Else
+                                facfactudetaproforma.BDetalle = 0
+                                facfactudetaproforma.BDetalleBf = 0
+                                If facfactudetaproforma.NCantidad.ToString = Nothing Or facfactudetaproforma.NCantidad.ToString = "" Then
+                                    facfactudetaproforma.NCantidad = 0
+                                End If
+                                If facfactudetaproforma.Descuento.ToString = Nothing Or facfactudetaproforma.Descuento.ToString = "" Then
+                                    facfactudetaproforma.Descuento = 0
+                                End If
+                            End If
+                            Dim desglosecoleaux As New FacDesgloseCole
+                            desglosecoleaux.Id = desglose_servicio_monto.Id
+                            desglosecoleaux.Idioma = DirectCast(Me._ventana.Idioma, Idioma)
+                            Dim desglosecoles As List(Of FacDesgloseCole) = _FacDesgloseColesServicios.ObtenerFacDesgloseColesFiltro(desglosecoleaux)
+                            If desglosecoles IsNot Nothing Then
+                                If desglosecoles.Count > 0 Then
+                                    If DirectCast(Me._ventana.Idioma, Idioma).Id = "ES" Then
+                                        facfactudetaproforma.XDetalle = desglosecoles(0).Detalle & " " & facfactudetaproforma.XDetalle
+                                        facfactudetaproforma.XDetalleEs = desglosecoles(0).Detalle & " " & facfactudetaproforma.XDetalleEs
+                                    Else
+                                        facfactudetaproforma.XDetalle = desglosecoles(0).Detalle & " " & facfactudetaproforma.XDetalle
+                                        desglosecoleaux.Id = desglose_servicio_monto.Id
+                                        Dim idiomacole As New Idioma
+                                        idiomacole.Id = "ES"
+                                        desglosecoleaux.Idioma = idiomacole
+                                        desglosecoles = _FacDesgloseColesServicios.ObtenerFacDesgloseColesFiltro(desglosecoleaux)
+                                        If desglosecoles IsNot Nothing Then
+                                            If desglosecoles.Count > 0 Then
+                                                facfactudetaproforma.XDetalleEs = desglosecoles(0).Detalle & " " & facfactudetaproforma.XDetalleEs
+                                            End If
+                                        End If
+                                    End If
+                                End If
+                            End If
+                        End If
 
                     End If 'If desglose_servicio.Servicio IsNot Nothing Then
+
+
 
                     If facfactudetaproforma.Impuesto = "F" Then
                         facfactudetaproforma.Descuento = 0
                         Me._ventana.Desactivar_Descuento = True
                     End If
 
-                    If desglose_servicio.Id = "G" Then
-                        facfactudetaproforma.Impuesto = "F"
-                        facfactudetaproforma.Descuento = 0
-                        Me._ventana.Desactivar_Descuento = True
+                    If desglose_servicio IsNot Nothing Then
+                        If desglose_servicio.Id = "G" Then
+                            facfactudetaproforma.Impuesto = "F"
+                            facfactudetaproforma.Descuento = 0
+                            Me._ventana.Desactivar_Descuento = True
+                        End If
+                    ElseIf desglose_servicio_monto IsNot Nothing Then
+                        If desglose_servicio_monto.Id = "G" Then
+                            facfactudetaproforma.Impuesto = "F"
+                            facfactudetaproforma.Descuento = 0
+                            Me._ventana.Desactivar_Descuento = True
+                        End If
+
                     End If
 
+                    'CODIGO ORIGINAL COMENTADO - NO BORRAR
+                    'If desglose_servicio.Id = "G" Then
+                    '    facfactudetaproforma.Impuesto = "F"
+                    '    facfactudetaproforma.Descuento = 0
+                    '    Me._ventana.Desactivar_Descuento = True
+                    'End If
+
                     Me._ventana.Desactivar_Descuento = facfactudetaproforma.Desactivar_Desglose
-                    tipo_desg = desglose_servicio.Id
+
+                    If desglose_servicio IsNot Nothing Then
+                        tipo_desg = desglose_servicio.Id
+                    ElseIf desglose_servicio_monto IsNot Nothing Then
+                        tipo_desg = desglose_servicio_monto.Id
+                    End If
+
+                    'CODIGO ORIGINAL COMENTADO - NO BORRAR
+                    'tipo_desg = desglose_servicio.Id
+
                 End If 'If Me._ventana.Desglose = True Then
 
                 facfactudetaproforma.BBsel = Me._ventana.Seleccion
@@ -2894,9 +3013,22 @@ Namespace Presentadores.FacFacturaProformas
                 If detalle_proforma.Servicio.BAimpuesto <> False Then
                     asociado = DirectCast(Me._ventana.Asociado, Asociado)
                     detalle_proforma.Descuento = asociado.Descuento
-                    If asociado.Descuento < 25 And DirectCast(Me._ventana.Moneda, Moneda).Id = "BF" Then
-                        detalle_proforma.Descuento = 25
+
+                    Dim Descuento As Integer = 0
+                    Dim ValorDescuento As ContadorFac = Me._ContadorFacServicios.ConsultarPorId(New ContadorFac("FAC_FACTURAS_PRO_DCTO"))
+                    If (ValorDescuento IsNot Nothing) Then
+                        Descuento = ValorDescuento.ProximoValor
+                    Else
+                        Descuento = 0
                     End If
+
+                    If asociado.Descuento < Descuento And DirectCast(Me._ventana.Moneda, Moneda).Id = "BF" Then
+                        detalle_proforma.Descuento = Descuento
+                    End If
+
+                    'If asociado.Descuento < 25 And DirectCast(Me._ventana.Moneda, Moneda).Id = "BF" Then
+                    '    detalle_proforma.Descuento = 25
+                    'End If
                 Else
                     detalle_proforma.Descuento = 0
                 End If
@@ -4413,9 +4545,13 @@ Namespace Presentadores.FacFacturaProformas
                 End If
                 If (asociado.Rif IsNot Nothing) And (asociado.Rif <> "") Then
                     Me._ventana.Rif = asociado.Rif
+                Else
+                    Me._ventana.Rif = String.Empty
                 End If
                 If (asociado.Nit IsNot Nothing) And (asociado.Nit <> "") Then
                     Me._ventana.XNit = asociado.Nit
+                Else
+                    Me._ventana.XNit = String.Empty
                 End If
 
                 'Dim xasociado As String = ""
@@ -4434,10 +4570,23 @@ Namespace Presentadores.FacFacturaProformas
 
                 'Me._ventana.XAsociado = xasociado
                 xasociado(asociado)
-                If asociado.Descuento < 25 And moneda.Id = "BF" Then
-                    Me._ventana.MensajeError = "Se aplicara un descuento de 25%"
-                    MessageBox.Show("Se aplicara un descuento de 25%")
+                Dim Descuento As Integer = 0
+                Dim ValorDescuento As ContadorFac = Me._ContadorFacServicios.ConsultarPorId(New ContadorFac("FAC_FACTURAS_PRO_DCTO"))
+                If (ValorDescuento IsNot Nothing) Then
+                    Descuento = ValorDescuento.ProximoValor
+                Else
+                    Descuento = 0
                 End If
+
+                If asociado.Descuento < Descuento And moneda.Id = "BF" Then
+                    Me._ventana.MensajeError = String.Format("Se aplicara un descuento de {0}%", Descuento.ToString())
+                    MessageBox.Show(String.Format("Se aplicara un descuento de {0}%", Descuento.ToString()))
+                End If
+
+                'If asociado.Descuento < 25 And moneda.Id = "BF" Then
+                '    Me._ventana.MensajeError = "Se aplicara un descuento de 25%"
+                '    MessageBox.Show("Se aplicara un descuento de 25%")
+                'End If
             Else
                 Me._ventana.Idiomas = Nothing
                 Me._ventana.Idioma = Nothing
@@ -4764,6 +4913,57 @@ Namespace Presentadores.FacFacturaProformas
                 '#End Region
 
                 Me.Navegar(New ListaMarcasPatentesFacFacturaProforma(Me._ventana))
+
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                    '#End Region
+                End If
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, True)
+
+            End Try
+        End Sub
+
+
+        ''' Metodo que presenta la lista de Servicios por Tarifa dependiendo la Moneda y el status del Bit en FacTarifa
+        Public Sub VerDesgloseServiciosPorMonto()
+            Try
+                '#Region "trace"
+                If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                    logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+                End If
+                '#End Region
+
+                Dim departamento_servicio As FacDepartamentoServicio = DirectCast(Me._ventana.DepartamentoServicio_2Seleccionado, FacDepartamentoServicio)
+                Dim monedaProforma As Moneda = DirectCast(Me._ventana.Moneda, Moneda)
+
+                If departamento_servicio IsNot Nothing Then
+                    Dim _FacDesgloseServiciosTarifa As IList(Of FacDesgloseServicioTarifa)
+                    Dim DesgloseServiciosTarifaaux As New FacDesgloseServicioTarifa
+                    Dim Tarifaaux As New Tarifa()
+                    If Me._ventana.Tarifa Then
+                        Tarifaaux.Id = Me._ventana.Tarifa
+                    End If
+
+                    DesgloseServiciosTarifaaux.Servicio = departamento_servicio.Servicio
+                    DesgloseServiciosTarifaaux.Moneda = monedaProforma
+                    DesgloseServiciosTarifaaux.Tarifa = Tarifaaux
+                    _FacDesgloseServiciosTarifa = Me._desgloseServicioTarifaServicios.ObtenerFacDesgloseServicioTarifaFiltro(DesgloseServiciosTarifaaux)
+
+                    If (_FacDesgloseServiciosTarifa.Count > 0) Then
+                        Me._ventana.ResultadosDesgloseServicioTarifa2 = _FacDesgloseServiciosTarifa
+                        Me._ventana.MensajeError = ""
+                    Else
+                        Me._ventana.ResultadosDesgloseServicioTarifa2 = Nothing
+                        Me._ventana.Mensaje("No hay Servicios por Monto con la Moneda seleccionada", 0)
+                    End If
+
+                Else
+                    Me._ventana.ResultadosDesgloseServicioTarifa2 = Nothing
+                End If
+
 
                 '#Region "trace"
                 If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then

@@ -16,10 +16,11 @@ Namespace Dao.NHibernate
             Dim variosFiltros As Boolean = False
             Dim filtro As String = ""
             Dim cabecera As String = String.Format(Recursos.ConsultasHQL.CabeceraObtenerFacTarifa)
-            'If (FacTarifa IsNot Nothing) AndAlso (FacTarifa.Id <> 0) Then
-            '    filtro = String.Format(Recursos.ConsultasHQL.FiltroObtenerFacTarifaId, FacTarifa.Id)
-            '    variosFiltros = True
-            'End If
+
+            If (FacTarifa IsNot Nothing) AndAlso (FacTarifa.Id <> 0) Then
+                filtro = String.Format(Recursos.ConsultasHQL.FiltroObtenerFacTarifaId, FacTarifa.Id)
+                variosFiltros = True
+            End If
 
 
             'If (FacTarifa IsNot Nothing) AndAlso (FacTarifa.Id IsNot Nothing) Then
@@ -33,10 +34,11 @@ Namespace Dao.NHibernate
 
             Dim query As IQuery
             If (filtro = "") Then
-                query = Session.CreateQuery(cabecera & "  order by b.XBanco")
+                query = Session.CreateQuery(cabecera)
             Else
                 cabecera = cabecera & " Where "
-                cabecera = cabecera & filtro & "  order by b.XBanco"
+                'cabecera = cabecera & filtro & "  order by b.XBanco"
+                cabecera += filtro
                 query = Session.CreateQuery(cabecera)
             End If
             FacTarifas = query.List(Of FacTarifa)()

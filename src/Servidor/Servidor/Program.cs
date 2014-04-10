@@ -30,13 +30,13 @@ namespace Trascend.Bolet.Servidor
 
             #region Codigo de Prueba NO BORRAR 
             
-            /*CadenaDeCambiosServicios servicioPrueba = new CadenaDeCambiosServicios();
-            CadenaDeCambios cadenaCambiosFiltro = new CadenaDeCambios();
-            cadenaCambiosFiltro.TipoCambio = "M";
-            cadenaCambiosFiltro.CodigoOperacion = 860000;
+            /*DesgloseServicioTarifaServicios servicioPrueba = new DesgloseServicioTarifaServicios();
+            FacServicio servicioFacturar = new FacServicio();
+            servicioFacturar.Id = "IM1";
+            FacDesgloseServicioTarifa desgloseFiltro = new FacDesgloseServicioTarifa();
+            desgloseFiltro.Servicio = servicioFacturar;
 
-            IList<CadenaDeCambios> cadenasCambios = servicioPrueba.ObtenerCadenasCambioFiltro(cadenaCambiosFiltro);*/
-
+            IList<FacDesgloseServicioTarifa> resultados = servicioPrueba.ObtenerFacDesgloseServicioTarifaFiltro(desgloseFiltro);*/
 
             //Console.ReadLine();
 

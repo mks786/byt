@@ -99,6 +99,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Remitentes
 
                 remitente.Pais = (Pais)this._ventana.Pais;
                 remitente.TipoRemitente = this._ventana.TipoRemitente;
+                remitente.Operacion = "CREATE";
                 bool exitoso = this._remitenteServicios.InsertarOModificar(remitente, UsuarioLogeado.Hash);
 
                 if (exitoso)

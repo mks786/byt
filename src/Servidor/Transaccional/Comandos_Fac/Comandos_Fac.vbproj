@@ -71,6 +71,8 @@
   <ItemGroup>
     <Compile Include="Comandos\ComandosBancoG\ComandoConsultarFacBancosFiltro.vb" />
     <Compile Include="Comandos\ComandosCarpetaGestionAutomatica\ComandoObtenerCarpetasPorIniciales.vb" />
+    <Compile Include="Comandos\ComandosDesgloseServicioTarifa\ComandoConsultarFacDesgloseServicioTarifaFiltro.vb" />
+    <Compile Include="Comandos\ComandosDesgloseServicioTarifa\ComandoConsultarTodosDesgloseServiciosPorTarifas.vb" />
     <Compile Include="Comandos\ComandosDesgloseServicio\ComandoConsultarFacDesgloseServiciosFiltro.vb" />
     <Compile Include="Comandos\ComandosFacAnualidad\ComandoConsultarTodosFacAnualidades.vb" />
     <Compile Include="Comandos\ComandosFacAnualidad\ComandoEliminarFacAnualidad.vb" />
@@ -347,6 +349,7 @@
     <Compile Include="Comandos\ComandosFacTarifa\ComandoInsertarOModificarFacTarifa.vb" />
     <Compile Include="Comandos\ComandosFacTarifa\ComandoVerificarExistenciaFacTarifa.vb" />
     <Compile Include="Fabrica\FabricaComandosCarpetaGestionAutomatica.vb" />
+    <Compile Include="Fabrica\FabricaComandosDesgloseServicioTarifa.vb" />
     <Compile Include="Fabrica\FabricaComandosFacAsociadoIntConsolidadoCxPInt.vb" />
     <Compile Include="Fabrica\FabricaComandosFacInternacionalConsolidada.vb" />
     <Compile Include="Fabrica\FabricaComandosFacTarifa.vb" />
