@@ -636,7 +636,8 @@
 
 
                         <Label Grid.Column="0" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblOtrosImp}"/>
+                            <!--<TextBlock Text="{x:Static recurso:Etiquetas.lblOtrosImp}"/>-->
+                            <TextBlock Text="Búsqueda/Otros:"/>
                         </Label>
                         <custom:ByTTextBox  MaxLength="4000" Grid.Column="1" Grid.Row="12" Name="_txtOtrosImp" VerticalAlignment="Center" Grid.ColumnSpan="6" Text="{Binding Path=PrimerOtro}" CharacterCasing="Upper"></custom:ByTTextBox>
 
@@ -741,7 +742,8 @@
                         <custom:ByTTextBox  MaxLength="255" Grid.Column="11" Grid.Row="13" Name="_txtNumSapi" VerticalAlignment="Center"></custom:ByTTextBox>
 
                         <Label Grid.Column="0" Grid.Row="14" VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblBusqueda}"/>
+                            <!--<TextBlock Text="{x:Static recurso:Etiquetas.lblBusqueda}"/>-->
+                            <TextBlock Text="Imp. Planilla:"/>
                         </Label>
                         <custom:ByTTextBox  MaxLength="255" Grid.Column="1" Grid.Row="14" Name="_txtBusqueda" VerticalAlignment="Center" 
                          Grid.ColumnSpan="6" Text="{Binding Path=CodigoBus}"></custom:ByTTextBox>

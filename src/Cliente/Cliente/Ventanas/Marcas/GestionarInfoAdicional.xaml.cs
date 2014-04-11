@@ -146,7 +146,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         void bgw_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
-            this._txtMensaje.Text = "Operación realizada exitósamente.";
+            this._txtMensaje.Text = "Operación realizada exitosamente.";
         }
 
         void bgw_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)

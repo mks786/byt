@@ -14,6 +14,7 @@
     <property name="Mont_Bf" column="MONTO_BF" type="Double"/>
     <property name="TasaAlt" column="TASA_ALT" type="Double"/>
     <property name="MontAlt_Bf" column="MONTOA_BF" type="Double"/>
+    <property name="MontAlt_Us" column="MONTOA_US" type="Double"/>
     
   </class>
 </hibernate-mapping>

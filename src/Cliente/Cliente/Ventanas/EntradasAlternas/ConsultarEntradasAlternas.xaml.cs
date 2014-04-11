@@ -133,6 +133,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.EntradasAlternas
             set { this._cbxCategoria.DataContext = value; }
         }
 
+        public object TiposAcuse
+        {
+            get { return this._cbxAcuse.DataContext; }
+            set { this._cbxAcuse.DataContext = value; }
+        }
+
+        public object TipoAcuse
+        {
+            get { return this._cbxAcuse.SelectedItem; }
+            set { this._cbxAcuse.SelectedItem = value; }
+        }
+
         public string TotalHits
         {
             set { this._lblHits.Text = value; }
@@ -217,6 +229,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.EntradasAlternas
             {
                 todosCamposVacios = false;
                 this._cbxRemitente.Focus();
+            }
+
+            if ((this._cbxAcuse.SelectedIndex != 0) && (this._cbxAcuse.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxAcuse.Focus();
             }
 
             if (!this._txtDescripcion.Text.Equals(""))

@@ -1139,9 +1139,17 @@ Namespace Presentadores.FacFacturaProformas
                     If facTarifas.Count > 0 Then
                         Dim TarifaEncontrada As FacTarifa = facTarifas(0)
                         If (TarifaEncontrada.BDesgMonto = True) Then
-                            Me._ventana.VerTipo = "14"
+                            If (departamento_servicio.Servicio.BDesgMonto1 = True) Then
+                                Me._ventana.VerTipo = "14"
+                            Else
+                                Me._ventana.VerTipo = "12"
+                            End If
                         Else
-                            Me._ventana.VerTipo = "12"
+                            If (departamento_servicio.Servicio.BDesgMonto2 = True) Then
+                                Me._ventana.VerTipo = "14"
+                            Else
+                                Me._ventana.VerTipo = "12"
+                            End If
                         End If
                     End If
                 End If
@@ -1685,10 +1693,27 @@ Namespace Presentadores.FacFacturaProformas
                 If tarifaservicios.Count > 0 Then
                     If (moneda.Id = "BS") Then
                         Me._ventana.MensajeError = "La moneda debe ser BSF o $"
-                        facfactudetaproforma.BDetalle = tarifaservicios(0).Mont_Bs
-                        facfactudetaproforma.Pu = tarifaservicios(0).Mont_Bs
+                        If (departamento_servicio.Servicio.BDesgMonto1) Then
+                            facfactudetaproforma.BDetalle = tarifaservicios(0).MontAlt_Bf
+                            facfactudetaproforma.Pu = tarifaservicios(0).MontAlt_Bf
+                        ElseIf (departamento_servicio.Servicio.BDesgMonto2) Then
+                            facfactudetaproforma.BDetalle = tarifaservicios(0).Mont_Bs
+                            facfactudetaproforma.Pu = tarifaservicios(0).Mont_Bs
+                        End If
+                        'facfactudetaproforma.BDetalle = tarifaservicios(0).Mont_Bs
+                        'facfactudetaproforma.Pu = tarifaservicios(0).Mont_Bs
                     End If
                     If (moneda.Id = "US") Then
+                        Me._ventana.MensajeError = "La moneda debe ser BSF o $"
+                        If (departamento_servicio.Servicio.BDesgMonto1) Then
+                            facfactudetaproforma.BDetalle = tarifaservicios(0).MontAlt_Us
+                            facfactudetaproforma.Pu = tarifaservicios(0).MontAlt_Us
+                        ElseIf (departamento_servicio.Servicio.BDesgMonto2) Then
+                            facfactudetaproforma.BDetalle = tarifaservicios(0).Mont_Us
+                            facfactudetaproforma.Pu = tarifaservicios(0).Mont_Us
+                        End If
+
+
                         facfactudetaproforma.BDetalle = tarifaservicios(0).Mont_Us
                         facfactudetaproforma.Pu = tarifaservicios(0).Mont_Us
                     End If
@@ -2346,7 +2371,7 @@ Namespace Presentadores.FacFacturaProformas
                 Dim tipo_desg As String = ""
 
 
-
+                'DESGLOSE MANUAL - VENTANA PROFORMA
                 If Me._ventana.Desglose = True Then
 
                     Dim desglose_servicio As FacDesgloseServicio = DirectCast(Me._ventana.DesgloseServicio_Seleccionado, FacDesgloseServicio)

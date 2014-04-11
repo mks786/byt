@@ -51,6 +51,17 @@
                         </TextBox.Text>-->
                     </custom:ByTTextBox>
                 </WrapPanel>
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="Tipo:"/>
+                    </Label>
+                    <ComboBox IsEnabled="False" Name="_cbxAcuse" Height="20" HorizontalAlignment="Left"
+                          ItemsSource="{Binding}" SelectedIndex="0" DisplayMemberPath="Descripcion" Width="180">
+
+                    </ComboBox>
+                </WrapPanel>
+
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaEntrada}"/>
@@ -139,6 +150,11 @@
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" IsEnabled="False">
                     </ComboBox>
                 </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Name="_txtMensaje" Text="" Foreground="Green" />
+                    </Label>
+                </WrapPanel>
                 <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblGuiaReferencia}"/>
@@ -164,6 +180,9 @@
                     </Style>
                 </Button.Style>
                 <TextBlock Name="_txbModificar" Text="{x:Static recurso:Etiquetas.btnModificar}"/>
+            </Button>
+            <Button Name="_btnAuditoria" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnAuditoria_Click">
+                <TextBlock Text="{x:Static recurso:Etiquetas.btnAuditoria}"/>
             </Button>
             <Button Name="_btnEliminar" VerticalAlignment="Bottom" Height="25" Width="90"
                     Click="_btnEliminar_Click">

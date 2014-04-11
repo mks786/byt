@@ -167,6 +167,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
+                char[] acuse = null;
 
                 EntradaAlterna entradaAlterna = (EntradaAlterna)this._ventana.EntradaAlterna;
 
@@ -174,6 +175,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                 entradaAlterna.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
                 entradaAlterna.Remitente = !((Remitente)this._ventana.Remitente).Id.Equals("NGN") ? (Remitente)this._ventana.Remitente : null;
                 entradaAlterna.Categoria = !((Categoria)this._ventana.Categoria).Id.Equals("NGN") ? (Categoria)this._ventana.Categoria : null;
+                if (!((ListaDatosValores)this._ventana.TipoAcuse).Id.Equals("NGN"))
+                {
+                    acuse = (((ListaDatosValores)this._ventana.TipoAcuse).Valor).ToCharArray();
+                    entradaAlterna.TipoAcuse = acuse[0];
+                }
+                else
+                    entradaAlterna.TipoAcuse = null;
+
                 entradaAlterna.TipoDestinatario = this._ventana.TipoDestinatario;
                 entradaAlterna.Operacion = "CREATE";
 

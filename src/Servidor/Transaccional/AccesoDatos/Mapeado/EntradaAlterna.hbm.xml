@@ -25,7 +25,7 @@
       <column name="TIPO_ENTRADA"/>
     </many-to-one>
 
-    <property name="TipoAcuse" column="ACUSE" type="char"/>
+    <property name="TipoAcuse" column="ITIPO" type="char"/>
     
   </class>
 

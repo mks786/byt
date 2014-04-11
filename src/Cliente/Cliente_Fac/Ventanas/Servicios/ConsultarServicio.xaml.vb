@@ -101,7 +101,8 @@ Namespace Ventanas.Servicios
                 Me._chkMaterial.IsEnabled = value
                 Me._chkAimpuesto.IsEnabled = value
                 Me._chkDesg.IsEnabled = value
-                Me._chkPrec.IsEnabled = value
+                Me._chkDesgMonto1.IsEnabled = value
+                Me._chkDesgMonto2.IsEnabled = value
                 Me._txtDetalles_Ing.IsEnabled = value
             End Set
         End Property

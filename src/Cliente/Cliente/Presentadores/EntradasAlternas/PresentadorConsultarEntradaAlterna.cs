@@ -6,6 +6,7 @@ using System.Windows.Input;
 using NLog;
 using Trascend.Bolet.Cliente.Contratos.EntradasAlternas;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
+using Trascend.Bolet.Cliente.Ventanas.Auditorias;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using System.Collections.Generic;
@@ -22,6 +23,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
         private IRemitenteServicios _remitenteServicios;
         private ICategoriaServicios _categoriaServicios;
         private IDepartamentoServicios _departamentoServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
+
+        private IList<Auditoria> _auditorias;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -59,6 +63,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CategoriaServicios"]);
                 this._departamentoServicios = (IDepartamentoServicios)Activator.GetObject(typeof(IDepartamentoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["DepartamentoServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
             }
             catch (Exception ex)
             {
@@ -109,6 +115,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                 this._ventana.Categorias = categorias;
                 this._ventana.Categoria = this.BuscarCategoria(categorias, entradaAlterna.Categoria);
 
+                IList<ListaDatosValores> listaAcuse =
+                this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaEntradaAlterna));
+                ListaDatosValores primerDatoValor = new ListaDatosValores();
+                primerDatoValor.Id = "NGN";
+                listaAcuse.Insert(0, primerDatoValor);
+                this._ventana.TiposAcuse = listaAcuse;
+
+                if (entradaAlterna.TipoAcuse != null)
+                {
+                    ListaDatosValores acuseBuscado = new ListaDatosValores();
+                    acuseBuscado.Valor = entradaAlterna.TipoAcuse.ToString();
+                    this._ventana.TipoAcuse = this.BuscarListaDeDatosValores(listaAcuse, acuseBuscado);
+                }
+
                 this._ventana.Personas = receptores;
 
                 IList<Departamento> departamentos = this._departamentoServicios.ConsultarTodos();
@@ -118,6 +138,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                     this._ventana.Departamento = this.BuscarDepartamento(departamentos, new Departamento(((EntradaAlterna)this._ventana.EntradaAlterna).CodigoDestinatartio));
                 else if (((EntradaAlterna)this._ventana.EntradaAlterna).TipoDestinatario == 'P')
                     this._ventana.Persona = this.BuscarPersonaPorInicial(receptores, ((EntradaAlterna)this._ventana.EntradaAlterna).CodigoDestinatartio);
+
+                Auditoria auditoria = new Auditoria();
+                auditoria.Fk = ((EntradaAlterna)this._ventana.EntradaAlterna).Id;
+                auditoria.Tabla = "ENTRADA_ALT";
+                this._auditorias = this._entradaAlternaServicios.AuditoriaPorFkyTabla(auditoria);
+
+                if (null != this._auditorias && this._auditorias.Count > 0)
+                    this._ventana.PintarAuditoria();
                 
                 this._ventana.FocoPredeterminado();
 
@@ -150,11 +178,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                char[] acuse = null;
+
                 //Habilitar campos
                 if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnModificar)
                 {
                     this._ventana.HabilitarCampos = true;
                     this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
+                    this._ventana.MensajeConfirmacion(false);
                 }
 
                 //Modifica los datos del Agente
@@ -165,6 +196,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                     entradaAlterna.TipoDestinatario = this._ventana.GetTipoDestinatario;
                     entradaAlterna.Medio = (Medio)this._ventana.Medio;
                     entradaAlterna.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
+
+                    if (!((ListaDatosValores)this._ventana.TipoAcuse).Id.Equals("NGN"))
+                    {
+                        acuse = (((ListaDatosValores)this._ventana.TipoAcuse).Valor).ToCharArray();
+                        entradaAlterna.TipoAcuse = acuse[0];
+                    }
+                    else
+                        entradaAlterna.TipoAcuse = null;
+
                     entradaAlterna.Operacion = "MODIFY";
 
                     if ((Remitente)this._ventana.Remitente != null)
@@ -187,7 +227,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                     bool exitoso = this._entradaAlternaServicios.InsertarOModificar(entradaAlterna, UsuarioLogeado.Hash);
 
                     if (exitoso)
-                        this.Navegar(Recursos.MensajesConElUsuario.EntradaAlternaModificado, false);
+                    {
+                        this._ventana.MensajeConfirmacion(true);
+                        this._ventana.HabilitarCampos = false;
+                        this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                    }
+                        //this.Navegar(Recursos.MensajesConElUsuario.EntradaAlternaModificado, false);
 
                 }
 
@@ -235,6 +280,54 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                     _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.EntradaAlternaEliminado;
                     this.Navegar(_paginaPrincipal);
                 }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+
+        /// <summary>
+        /// Método que se encarga de mostrar la ventana con la lista de Auditorías
+        /// </summary>
+        public void Auditoria()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+
+                Auditoria auditoria = new Auditoria();
+                auditoria.Fk = ((EntradaAlterna)this._ventana.EntradaAlterna).Id;
+                auditoria.Tabla = "ENTRADA_ALT";
+                this._auditorias = this._entradaAlternaServicios.AuditoriaPorFkyTabla(auditoria);
+                this.Navegar(new ListaAuditorias(_auditorias));
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

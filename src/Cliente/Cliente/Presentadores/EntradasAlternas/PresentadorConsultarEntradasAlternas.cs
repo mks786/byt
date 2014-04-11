@@ -30,6 +30,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
         private IUsuarioServicios _usuarioServicios;
         private IRemitenteServicios _remitenteServicios;
         private ICategoriaServicios _categoriaServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
         private IList<EntradaAlterna> _entradasAlternas;
 
         /// <summary>
@@ -51,6 +52,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["RemitenteServicios"]);
                 this._categoriaServicios = (ICategoriaServicios)Activator.GetObject(typeof(ICategoriaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CategoriaServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
             }
             catch (Exception ex)
             {
@@ -124,6 +127,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                 categorias.Insert(0, primeraCategoria);
                 this._ventana.Categorias = categorias;
 
+                IList<ListaDatosValores> listaAcuse =
+                this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaEntradaAlterna));
+                ListaDatosValores primerDatoValor = new ListaDatosValores();
+                primerDatoValor.Id = "NGN";
+                listaAcuse.Insert(0, primerDatoValor);
+                this._ventana.TiposAcuse = listaAcuse;
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -196,6 +206,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                     entradasAlternasFiltrados = from e in entradasAlternasFiltrados
                                          where e.Fecha.Equals(fechaEntradaAlternaAux)
                                          select e;
+                }
+
+                if (this._ventana.TipoAcuse != null && !((ListaDatosValores)this._ventana.TipoAcuse).Id.Equals("NGN"))
+                {
+
+                    entradasAlternasFiltrados = from e in entradasAlternasFiltrados
+                                                where e.TipoAcuse.ToString().Equals(((ListaDatosValores)this._ventana.TipoAcuse).Valor) 
+                                                select e;
                 }
 
                 if (this._ventana.Medio != null && !((Medio)this._ventana.Medio).Id.Equals("NGN"))
@@ -318,6 +336,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
             this._ventana.Medio = ((IList<Medio>)this._ventana.Medios)[0];
             this._ventana.Remitente = ((IList<Remitente>)this._ventana.Remitentes)[0];
             this._ventana.Categoria = ((IList<Categoria>)this._ventana.Categorias)[0];
+            this._ventana.TipoAcuse = ((IList<ListaDatosValores>)this._ventana.TiposAcuse)[0];
             this._ventana.Descripcion = null;
 
             //this._ventana.Resultados = this._entradasAlternas.ToList<EntradaAlterna>();

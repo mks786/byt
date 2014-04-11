@@ -128,11 +128,18 @@
                             <TextBlock Text="Desglose Obligatorio" />
                         </Label>
 
-                        <CheckBox  Name="_chkPrec" VerticalAlignment="Center" IsEnabled="False"
-                         HorizontalAlignment="Right" IsChecked="{Binding Path=BPrec}" Visibility="Collapsed">
+                        <CheckBox  Name="_chkDesgMonto1" VerticalAlignment="Center" 
+                         HorizontalAlignment="Right" IsChecked="{Binding Path=BDesgMonto1}">
                         </CheckBox>
-                        <Label VerticalAlignment="Center" HorizontalContentAlignment="Right" Visibility="Collapsed">
-                            <TextBlock Text="Usar Montos"/>
+                        <Label VerticalAlignment="Center" HorizontalContentAlignment="Right" >
+                            <TextBlock Text="Desg. Monto Global"/>
+                        </Label>
+
+                        <CheckBox  Name="_chkDesgMonto2" VerticalAlignment="Center" 
+                         HorizontalAlignment="Right" IsChecked="{Binding Path=BDesgMonto2}">
+                        </CheckBox>
+                        <Label VerticalAlignment="Center" HorizontalContentAlignment="Right" >
+                            <TextBlock Text="Desg.Monto Específico"/>
                         </Label>
                     </WrapPanel>
                     <TextBox Name="_txtDomicilio" MaxLength="255"  Text="{Binding Path=Domicilio}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"

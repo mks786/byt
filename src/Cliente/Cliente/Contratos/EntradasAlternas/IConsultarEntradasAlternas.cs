@@ -32,6 +32,10 @@ namespace Trascend.Bolet.Cliente.Contratos.EntradasAlternas
 
         object Categorias { get; set; }
 
+        object TiposAcuse { get; set; }
+
+        object TipoAcuse { get; set; }
+
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }

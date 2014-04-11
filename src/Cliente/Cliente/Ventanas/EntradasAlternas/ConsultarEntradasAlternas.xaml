@@ -42,6 +42,15 @@
                     <custom:ByTTextBox Name="_txtId" MaxLength="8" Text="{Binding Path=Id}" HorizontalAlignment="Left" Width="180" SoloNumero="True" Filtro="True"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="Tipo:"/>
+                    </Label>
+                    <ComboBox IsEnabled="True" Name="_cbxAcuse" Height="20" HorizontalAlignment="Left"
+                          ItemsSource="{Binding}" SelectedIndex="0" DisplayMemberPath="Descripcion" Width="180">
+
+                    </ComboBox>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaEntrada}"/>
                     </Label>
@@ -85,7 +94,7 @@
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblDescripcion}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblGuiaReferencia}"/>
                     </Label>
                     <custom:ByTTextBox Name="_txtDescripcion" MaxLength="200"  Text="{Binding Path=Descripcion}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
                              HorizontalAlignment="Left" Width="180" Height="75" SpellCheck.IsEnabled="True"/>
@@ -106,14 +115,34 @@
                       MouseDoubleClick="_lstResultados_MouseDoubleClick" Style="{DynamicResource EstiloListView}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
+                        <GridViewColumn Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Id}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Medio.Id}" Width="120">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Medio" Content="{x:Static recurso:Etiquetas.lsvMedio}"/>
+                        
+                        <GridViewColumn Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Medio.Id" Content="{x:Static recurso:Etiquetas.lsvMedio}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Medio.Id}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="120">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvDescripcion}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="200">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" 
+                                                  Content="Guía o Referencia"/>
+                        </GridViewColumn>
+                        <GridViewColumn Width="120">
+                            <GridViewColumnHeader Tag="TipoAcuseDesccripcion" Content="Tipo" Click="_Ordenar_Click"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=TipoAcuseDescripcion}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>

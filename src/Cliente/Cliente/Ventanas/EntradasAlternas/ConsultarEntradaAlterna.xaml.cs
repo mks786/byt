@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using Trascend.Bolet.Cliente.Contratos.EntradasAlternas;
 using Trascend.Bolet.Cliente.Presentadores.EntradasAlternas;
 
@@ -44,6 +45,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.EntradasAlternas
                 this._cbxReceptor.IsEnabled = value;
                 this._cbxRemitente.IsEnabled = value;
                 this._cbxTipoDestinatario.IsEnabled = value;
+                this._cbxAcuse.IsEnabled = value;
                 this._dpkFecha.IsEnabled = value;
             }
         }
@@ -184,6 +186,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.EntradasAlternas
             set { this._cbxMinutos.Text = value; }
         }
 
+        public object TiposAcuse
+        {
+            get { return this._cbxAcuse.DataContext; }
+            set { this._cbxAcuse.DataContext = value; }
+        }
+
+        public object TipoAcuse
+        {
+            get { return this._cbxAcuse.SelectedItem; }
+            set { this._cbxAcuse.SelectedItem = value; }
+        }
+
         #endregion
 
         public ConsultarEntradaAlterna(object entradaAlterna)
@@ -287,6 +301,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.EntradasAlternas
                     this._cbxMinutos.IsEnabled = false;
                 }
             }
+        }
+
+        private void _btnAuditoria_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.Auditoria();
+        }
+
+        public void MensajeConfirmacion(bool flag)
+        {
+            if (flag)
+                this._txtMensaje.Text = "Operacion realizada exitosamente";
+            else
+                this._txtMensaje.Text = null;
+        }
+
+        
+        public void PintarAuditoria()
+        {
+            this._btnAuditoria.Background = Brushes.LightGreen;
         }
     }
 }

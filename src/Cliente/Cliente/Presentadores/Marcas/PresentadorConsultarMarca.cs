@@ -473,11 +473,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 if (File.Exists(ConfigurationManager.AppSettings["RutaImagenesDeMarcas"] + marca.Id + ".BMP"))
                 {
-                    marca.BEtiqueta = true;
+                    //marca.BEtiqueta = true;
                     this._ventana.PintarEtiqueta();
                 }
-                else
-                    marca.BEtiqueta = false;
+                //else
+                //    marca.BEtiqueta = false;
 
 
 

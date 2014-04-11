@@ -41,6 +41,10 @@ namespace Trascend.Bolet.Cliente.Contratos.EntradasAlternas
 
         object Minuto { get; set; }
 
+        object TiposAcuse { get; set; }
+
+        object TipoAcuse { get; set; }
+
         char GetTipoDestinatario { get; }
 
         string SetTipoDestinatario { set; }
@@ -48,5 +52,9 @@ namespace Trascend.Bolet.Cliente.Contratos.EntradasAlternas
         string SetHora { set; }
 
         string SetMinuto { set; }
+
+        void MensajeConfirmacion(bool flag);
+
+        void PintarAuditoria();
     }
 }

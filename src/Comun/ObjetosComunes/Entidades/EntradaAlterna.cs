@@ -22,7 +22,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _descripcion;
         private string _descripcionDestinatario;
         private string _operacion;
-        private char _tipoAcuse;
+        private char? _tipoAcuse;
+        private string _tipoAcuseDescipcion;
 
         #endregion
 
@@ -157,10 +158,36 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna el tipo de Acuse de la Entrada Alterna
         /// </summary>
-        public virtual char TipoAcuse
+        public virtual char? TipoAcuse
         {
             get { return this._tipoAcuse; }
             set { this._tipoAcuse = value; }
+        }
+
+
+        public virtual string TipoAcuseDescripcion
+        {
+            get
+            {
+                if (this._tipoAcuse.Equals('E'))
+                {
+                    this._tipoAcuseDescipcion = "ENTRADA";
+                    
+                }
+                else if (this._tipoAcuse.Equals('S'))
+                {
+                    this._tipoAcuseDescipcion = "SALIDA";
+
+                }
+                else
+                {
+                    this._tipoAcuseDescipcion = null;
+                }
+
+                return this._tipoAcuseDescipcion;
+            }
+
+            
         }
 
         #endregion

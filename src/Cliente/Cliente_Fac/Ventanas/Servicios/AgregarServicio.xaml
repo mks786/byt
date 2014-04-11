@@ -129,17 +129,17 @@
                         </Label>
 
                         <CheckBox  Name="_chkDesgMonto1" VerticalAlignment="Center" 
-                         HorizontalAlignment="Right" IsChecked="{Binding Path=DesgMonto1}">
+                         HorizontalAlignment="Right" IsChecked="{Binding Path=BDesgMonto1}">
                         </CheckBox>
                         <Label VerticalAlignment="Center" HorizontalContentAlignment="Right" >
-                            <TextBlock Text="Desglose Monto Global"/>
+                            <TextBlock Text="Desg. Monto Global"/>
                         </Label>
 
                         <CheckBox  Name="_chkDesgMonto2" VerticalAlignment="Center" 
-                         HorizontalAlignment="Right" IsChecked="{Binding Path=DesgMonto2}">
+                         HorizontalAlignment="Right" IsChecked="{Binding Path=BDesgMonto2}">
                         </CheckBox>
                         <Label VerticalAlignment="Center" HorizontalContentAlignment="Right" >
-                            <TextBlock Text="Desglose Monto Específico"/>
+                            <TextBlock Text="Desg.Monto Específico"/>
                         </Label>
 
                     </WrapPanel>

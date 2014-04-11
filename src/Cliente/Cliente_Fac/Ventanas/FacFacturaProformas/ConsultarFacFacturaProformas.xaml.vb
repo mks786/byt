@@ -187,6 +187,7 @@ Namespace Ventanas.FacFacturaProformas
         End Property
 
         Private Sub _btnConsultar(ByVal sender As Object, ByVal e As RoutedEventArgs)
+
             Dim nom As String = DirectCast(sender, Button).Name.ToString
             If nom = "_btnConsultarAsociado" Then
                 Me._presentador.BuscarAsociado2()
@@ -195,6 +196,7 @@ Namespace Ventanas.FacFacturaProformas
             ElseIf nom = "_btnConsulta" Then
                 Me._presentador.Consultar()
             End If
+            validarCamposVacios()
         End Sub
         'Public Property Banco As Object Implements Contratos.FacFacturaProformas.IConsultarFacFacturaProformas.Banco
         '    Get
@@ -406,6 +408,28 @@ Namespace Ventanas.FacFacturaProformas
                 _lblHits.Text = value
             End Set
         End Property
+
+        Private Sub validarCamposVacios()
+
+            Dim todosCamposVacios As Boolean
+            todosCamposVacios = True
+
+            If Me._txtId.Text = "" Then
+                todosCamposVacios = False
+                Me._txtId.Focus()
+            End If
+
+            If (Me._cbxOrigenProforma.SelectedIndex <> 0) AndAlso (Me._cbxOrigenProforma.SelectedIndex <> -1) Then
+                todosCamposVacios = False
+                Me._cbxOrigenProforma.Focus()
+            End If
+
+            If Me._dpkFechaFactura.Text = "" Then
+                todosCamposVacios = False
+                Me._dpkFechaFactura.Focus()
+            End If
+
+        End Sub
 
     End Class
 End Namespace

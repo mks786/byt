@@ -11,6 +11,7 @@ Namespace Entidades
         Private _mont_bf As Double
         Private _tasaAlt As Double
         Private _montAlt_bf As Double
+        Private _montoAlt_us As Double
 
 #End Region
 
@@ -125,6 +126,15 @@ Namespace Entidades
             End Get
             Set(ByVal value As Double)
                 Me._montAlt_bf = value
+            End Set
+        End Property
+
+        Public Overridable Property MontAlt_Us() As Double
+            Get
+                Return Me._montoAlt_us
+            End Get
+            Set(ByVal value As Double)
+                Me._montoAlt_us = value
             End Set
         End Property
 
