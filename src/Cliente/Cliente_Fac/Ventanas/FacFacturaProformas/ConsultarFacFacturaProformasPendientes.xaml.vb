@@ -171,7 +171,9 @@ Namespace Ventanas.FacFacturaProformas
             ElseIf nom = "_btnCancelar" Then
                 Me._presentador.Cancelar()
             ElseIf nom = "_btnConsulta" Then
+                Me._btnConsulta.Focus()
                 Me._presentador.Consultar()
+                validarCamposVacios()
             End If
         End Sub
         'Public Property Banco As Object Implements Contratos.FacFacturaProformas.IConsultarFacFacturaProformasPendientes.Banco
@@ -264,6 +266,8 @@ Namespace Ventanas.FacFacturaProformas
             If Me._lstAsociados.SelectedItem IsNot Nothing Then
                 Me._presentador.CambiarAsociado()
                 ControlesOcultarAsociado()
+                Me._btnConsulta.IsDefault = True
+                Me._btnConsulta.Focus()
             End If
         End Sub
 
@@ -383,5 +387,33 @@ Namespace Ventanas.FacFacturaProformas
                 _lblHits.Text = value
             End Set
         End Property
+
+        Private Sub validarCamposVacios()
+
+            Dim todosCamposVacios As Boolean
+            todosCamposVacios = True
+
+            If Me._txtId.Text <> "" Then
+                todosCamposVacios = False
+                Me._txtId.Focus()
+            End If
+
+            If Me._dpkFechaFactura.Text <> "" Then
+                todosCamposVacios = False
+                Me._dpkFechaFactura.Focus()
+            End If
+
+            If todosCamposVacios Then
+                Me._txtId.Focus()
+            End If
+
+        End Sub
+
+        Private Sub _dpkFechaFactura_SelectedDateChanged(sender As System.Object, e As System.Windows.Controls.SelectionChangedEventArgs)
+            If (Me._dpkFechaFactura.SelectedDate IsNot Nothing) Then
+                Me._btnConsulta.IsDefault = True
+                Me._btnConsulta.Focus()
+            End If
+        End Sub
     End Class
 End Namespace

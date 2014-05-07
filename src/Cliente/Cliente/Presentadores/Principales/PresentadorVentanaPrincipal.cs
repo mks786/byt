@@ -70,6 +70,7 @@ using Trascend.Bolet.Cliente.Ventanas.Administracion.SeguimientoCxPInternacional
 using Trascend.Bolet.Cliente.Ventanas.Plantillas;
 using Trascend.Bolet.Cliente.Ventanas.ReportesMaestro;
 using Trascend.Bolet.Cliente.Ventanas.CadenaDeCambio;
+using Trascend.Bolet.Cliente.Ventanas.SAPI.Materiales;
 using System.Diagnostics;
 using System.Collections.Generic;
 
@@ -2023,12 +2024,29 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
 
                                 #endregion
 
-
+                                    
                                 #region Extra
                                 //case "_menuItemLimitacionDelDistingue":
                                 //    if (objeto.Id.Equals(Recursos.Ids.Marca))
                                 //        itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                 //    break;
+                                #endregion
+
+                                #region SAPI
+
+                                case "_menuItemSapiMaestros":
+                                    if (objeto.Id.Equals(Recursos.Ids.MaestrosSapi))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemSapiMateriales":
+                                    if (objeto.Id.Equals(Recursos.Ids.MaterialesSapi))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemSapiPresentaciones":
+                                    if (objeto.Id.Equals(Recursos.Ids.PresentacionesSapi))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+
                                 #endregion
 
 
@@ -2061,7 +2079,32 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                             itemNivel3.Visibility = System.Windows.Visibility.Visible;
                                         break;
 
+                                    #region Items Internos de Submenu SAPI - MATERIALES
+                                    case "_menuItemSapiMaterialesControlExistencias":
+                                        if (objeto.Id.Equals(Recursos.Ids.ControlExistenciaSAPI))
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        break;
+                                    case "_menuItemSapiMaterialesCompras":
+                                        if (objeto.Id.Equals(Recursos.Ids.ComprasSAPI))
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        break;
+                                    case "_menuItemSapiMaterialesSolicitudes":
+                                        if (objeto.Id.Equals(Recursos.Ids.SolicitudSAPI))
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        break;
+                                    case "_menuItemSapiEntregaMaterial":
+                                        if (objeto.Id.Equals(Recursos.Ids.EntregaSAPI))
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        break;
+                                    #endregion
+
+                            
+
                                 }
+                            
+
+
+
                             #endregion
                         }
 
@@ -2547,6 +2590,36 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         public void IrConsultarCadenaDeCambios()
         {
             Navegar(new ConsultarCadenasDeCambios());
+        }
+
+        public void IrConsultarExistenciasMaterialesSapi()
+        {
+            Navegar(new ConsultarExistenciaMaterial());
+        }
+
+        public void IrRegistrarCompraMaterialSapi()
+        {
+            Navegar(new GestionarCompraMaterialesSapi());
+        }
+
+        public void ConsultarComprasSAPI()
+        {
+            Navegar(new ConsultarComprasMateriales());
+        }
+
+        public void GenerarSolicitudMaterialSapi()
+        {
+            Navegar(new GestionarMovimientoMaterialSapi());
+        }
+
+        public void ConsultarSolicitudesMaterialesSapi()
+        {
+            Navegar(new ConsultarSolicitudesMateriales());
+        }
+
+        public void GenerarEntregasMaterialesSapi()
+        {
+            Navegar(new GenerarEntregasMateriales());
         }
     }
 }

@@ -194,7 +194,9 @@ Namespace Ventanas.FacFacturaProformas
             ElseIf nom = "_btnCancelar" Then
                 Me._presentador.Cancelar()
             ElseIf nom = "_btnConsulta" Then
+                'Me._btnConsulta.Focus()
                 Me._presentador.Consultar()
+                validarCamposVacios()
             End If
             validarCamposVacios()
         End Sub
@@ -288,6 +290,7 @@ Namespace Ventanas.FacFacturaProformas
             If Me._lstAsociados.SelectedItem IsNot Nothing Then
                 Me._presentador.CambiarAsociado()
                 ControlesOcultarAsociado()
+                Me._btnConsulta.Focus()
             End If
         End Sub
 
@@ -414,7 +417,7 @@ Namespace Ventanas.FacFacturaProformas
             Dim todosCamposVacios As Boolean
             todosCamposVacios = True
 
-            If Me._txtId.Text = "" Then
+            If Me._txtId.Text <> "" Then
                 todosCamposVacios = False
                 Me._txtId.Focus()
             End If
@@ -424,12 +427,35 @@ Namespace Ventanas.FacFacturaProformas
                 Me._cbxOrigenProforma.Focus()
             End If
 
-            If Me._dpkFechaFactura.Text = "" Then
+            If Me._dpkFechaFactura.Text <> "" Then
                 todosCamposVacios = False
                 Me._dpkFechaFactura.Focus()
             End If
 
+            If todosCamposVacios Then
+                Me._txtId.Focus()
+            End If
+
         End Sub
+
+        Private Sub _cbxOrigenProforma_SelectionChanged(sender As System.Object, e As System.Windows.Controls.SelectionChangedEventArgs)
+            Me._btnConsulta.Focus()
+        End Sub
+
+        
+        
+        Private Sub _dpkFechaFactura_SelectedDateChanged(sender As System.Object, e As System.Windows.Controls.SelectionChangedEventArgs)
+            'MessageBox.Show("Escogi una fecha")
+            If (Me._dpkFechaFactura.SelectedDate IsNot Nothing) Then
+                'MessageBox.Show("La fecha no es nula")
+                Me._btnConsulta.IsDefault = True
+                Me._btnConsulta.Focus()
+                'MessageBox.Show("El boton consultar se resalto")
+            End If
+
+        End Sub
+
+        
 
     End Class
 End Namespace

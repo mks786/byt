@@ -20,7 +20,7 @@
       <column name="CPAIS"/>
     </many-to-one>
 
-    <many-to-one name="Nacionalidad" class="Pais">
+    <many-to-one name="Nacionalidad" class="Pais" lazy="false">
       <column name="CNACIONALIDAD"/>
     </many-to-one>
 

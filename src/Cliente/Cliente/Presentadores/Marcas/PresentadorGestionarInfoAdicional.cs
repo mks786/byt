@@ -52,6 +52,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._infoAdicionalServicios = (IInfoAdicionalServicios)Activator.GetObject(typeof(IInfoAdicionalServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoAdicionalServicios"]);
 
+                
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -163,6 +164,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 //Agregar o modificar datos
                 else
                 {
+
+                    this._ventana.AvisoBotonAceptar();
+
                     InfoAdicional infoAdicional = (InfoAdicional)this._ventana.InfoAdicional;
 
                     infoAdicional.Operacion = this._nuevaInfoAdicional ? "CREATE" : "MODIFY";
@@ -271,5 +275,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+
+        /// <summary>
+        /// Metodo que retorna el Id de la marca
+        /// </summary>
+        /// <returns></returns>
+        public string ObtenerIdMarca()
+        {
+            String codigoMarca = String.Empty;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            codigoMarca = this._marca.Id.ToString();
+            
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return codigoMarca;
+        }
     }
 }

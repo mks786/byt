@@ -529,6 +529,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a No se procesaron {0} solicitudes, porque la Cantidad Solicitada excede a la Cantidad de Material en existencia..
+        /// </summary>
+        internal static string AlertaSolicitudesSapiNoProcesadas {
+            get {
+                return ResourceManager.GetString("AlertaSolicitudesSapiNoProcesadas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Hay datos cargados para generar la vista previa de Consolidación. Desea verlos?. Si su respuesta es No se generarán los datos previos desde cero. .
         /// </summary>
         internal static string AlertaVistaPreviaConsolidacionCxPInt {
@@ -1277,6 +1286,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Desea registrar una nueva compra?.
+        /// </summary>
+        internal static string ConfirmacionNuevaCompraSapi {
+            get {
+                return ResourceManager.GetString("ConfirmacionNuevaCompraSapi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a El Reporte {0} ha sido guardado con éxito.
         /// </summary>
         internal static string ConfirmacionReporteModificado {
@@ -1309,6 +1327,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ConfirmacionTransferenciaPlantilla {
             get {
                 return ResourceManager.GetString("ConfirmacionTransferenciaPlantilla", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Desea registra la nueva Compra de Materiales?.
+        /// </summary>
+        internal static string ConfirmarAgregarNuevaCompraSAPI {
+            get {
+                return ResourceManager.GetString("ConfirmarAgregarNuevaCompraSAPI", resourceCulture);
             }
         }
         
@@ -1354,6 +1381,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ConfirmarEliminarCertificadoMarca {
             get {
                 return ResourceManager.GetString("ConfirmarEliminarCertificadoMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Desea eliminar la Solicitud?.
+        /// </summary>
+        internal static string ConfirmarEliminarSolicitudSapi {
+            get {
+                return ResourceManager.GetString("ConfirmarEliminarSolicitudSapi", resourceCulture);
             }
         }
         
@@ -1435,6 +1471,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ConfirmarModificarCertificadoMarca {
             get {
                 return ResourceManager.GetString("ConfirmarModificarCertificadoMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Desea modificar la Compra actual?.
+        /// </summary>
+        internal static string ConfirmarModificarCompraSAPI {
+            get {
+                return ResourceManager.GetString("ConfirmarModificarCompraSAPI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Confirma los cambios para la InfoAdicional de la Marca {0}.
+        /// </summary>
+        internal static string ConfirmarModificarInfoAdicionalMarca {
+            get {
+                return ResourceManager.GetString("ConfirmarModificarInfoAdicionalMarca", resourceCulture);
             }
         }
         
@@ -1637,6 +1691,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Disculpe, el Archivo PDF de la Compra {0} no existe.
+        /// </summary>
+        internal static string ErrorArchivoPDFCompraSAPINoExiste {
+            get {
+                return ResourceManager.GetString("ErrorArchivoPDFCompraSAPINoExiste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Hubo un problema al intentar abrir el archivo NDP.
         /// </summary>
         internal static string ErrorAsociadoArchivoNDP {
@@ -1727,6 +1790,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a No hay datos con el filtro utilizado.
+        /// </summary>
+        internal static string ErrorConsultaNoTrajoMateriales {
+            get {
+                return ResourceManager.GetString("ErrorConsultaNoTrajoMateriales", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Ha ocurrido un error al consultar las cartas del responsable {0}, posiblemente posea una carta asignada que no existe en base de datos.
         /// </summary>
         internal static string ErrorConsultarCartas {
@@ -1777,6 +1849,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ErrorEntradaAlternaRepetido {
             get {
                 return ResourceManager.GetString("ErrorEntradaAlternaRepetido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Las Entregas seleccionadas no fueron procesadas.
+        /// </summary>
+        internal static string ErrorEntregaSapiNoProcesadas {
+            get {
+                return ResourceManager.GetString("ErrorEntregaSapiNoProcesadas", resourceCulture);
             }
         }
         

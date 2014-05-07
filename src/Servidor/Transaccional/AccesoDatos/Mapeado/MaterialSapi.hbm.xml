@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="MaterialSapi" table="SAPI_MATERIAL">
+    <id name="Id" column="COD_MAT" />
+    <property name="Descripcion" column="DESC_MAT" type="string"/>
+    <property name="Tipo" column="CTIPO_MAT" type="string"/>
+    <property name="Precio" column="PRECIO" type="double"/>
+    <property name="FechaVigencia" column="FECHA_VIG" type="DateTime"/>
+    <property name="Existencia" column="EXISTENCIA" type="int"/>
+    <many-to-one name="Departamento" class="Departamento" lazy="false">
+      <column name="CODDPTO"/>
+    </many-to-one>
+       
+  </class>
+
+</hibernate-mapping>
+

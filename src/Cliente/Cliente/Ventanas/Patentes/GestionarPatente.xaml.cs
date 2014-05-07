@@ -296,7 +296,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         }
 
 
-        
+        public string IdExpCambioPendienteDatos
+        {
+            get { return this._txtExpCamPendDatos.Text; }
+            set { this._txtExpCamPendDatos.Text = value; }
+        }
 
 
         public void PintarAsociado(string tipo)
@@ -950,6 +954,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._txtCod.IsEnabled = value;
                 this._txtNum.IsEnabled = value;
                 this._txtReferenciaAsocInt.IsEnabled = value;
+                this._txtExpCamPendDatos.IsEnabled = value;
 
                 //Datos
 
@@ -985,6 +990,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._txtCodDatos.IsEnabled = value;
                 this._txtNumDatos.IsEnabled = value;
                 this._txtSituacionDescripcion.IsEnabled = value;
+                this._lblExpCamPendDatos.IsEnabled = value;
+                this._lblFechaCierreExp.IsEnabled = value;
 
                 #endregion
 
@@ -1002,6 +1009,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._dpkFechaBaseDatos.IsEnabled = value;
                 this._dpkFechaRegistroDatos.IsEnabled = value;
                 this._dpkFechaInscripcionDatos.IsEnabled = value;
+                this._txtFechaCierreExpDatos.IsEnabled = value;
                 
 
                 #endregion
@@ -1089,6 +1097,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._btnArchivoPatenteDatos.IsEnabled = value;
                 this._btnConsultarPatenteMadreDatos.IsEnabled = value;
                 this._btnAnualidadDatos.IsEnabled = value;
+                this._btnExpCamPendDatos.IsEnabled = value;
 
                 this._camposHabilitados = value;
                 #endregion
@@ -2527,7 +2536,29 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         {
             this._cbxOrigenPatenteSolicitud.SelectedIndex = this._cbxOrigenPatenteDatos.SelectedIndex;
         }
-       
 
+        public void DeshabilitarBotonExpCambioPendiente()
+        {
+            this._btnExpCamPendDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._lblExpCamPendDatos.Visibility = System.Windows.Visibility.Visible;
+            
+        }
+
+        public void OcultarFechaCierreExpediente()
+        {
+            this._lblFechaCierreExp.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtFechaCierreExpDatos.Visibility = System.Windows.Visibility.Collapsed;
+
+        }
+
+        public void PintarBotonExpCambioPendiente()
+        {
+            this._btnExpCamPendDatos.Background = Brushes.LightGreen;
+        }
+
+        private void _btnExpCamPendDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.VerExpedienteCambioPendiente();
+        }
     }
 }

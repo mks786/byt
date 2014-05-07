@@ -296,6 +296,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         string IdPatenteMadreDatosFiltrar { get; set; }
 
+        string IdExpCambioPendienteDatos { get; set; }
+
         void PintarArchivo();
 
         void PintarBotonInteresadosDePatente(bool flag);
@@ -325,6 +327,12 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
         object OrigenPatentesDatos { get; set; }
 
         object OrigenPatenteDatos { get; set; }
+
+        void DeshabilitarBotonExpCambioPendiente();
+
+        void OcultarFechaCierreExpediente();
+
+        void PintarBotonExpCambioPendiente();
 
     }
 }

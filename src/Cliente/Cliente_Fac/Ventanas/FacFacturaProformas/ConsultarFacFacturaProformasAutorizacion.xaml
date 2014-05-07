@@ -24,7 +24,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
         <!--Área de Filtrado-->
@@ -40,7 +40,7 @@
             </StackPanel>
         </GroupBox>
         
-        <GroupBox Grid.Column="0" Grid.Row="0" Margin="5">
+        <GroupBox Grid.Column="0" Grid.Row="0" Margin="5" BorderThickness="0">
             <StackPanel Name="_splFiltro"  VerticalAlignment="Center"  HorizontalAlignment="Left"
                         DataContext="{Binding}">
                 <Separator Margin="0,0,0,5"/>
@@ -92,8 +92,12 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
                         </Label>
                         
-                        <custom:ByTTextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3"  Name="_txtAsociado" VerticalAlignment="Center"                                     
-                         HorizontalAlignment="Left" Width="200" Text="" MaxLength="255" MouseDoubleClick="_txtAsociado_MouseDoubleClick" Height="20" FontSize="10" IsReadOnly="True"></custom:ByTTextBox>
+                        <custom:ByTTextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3"  Name="_txtAsociado" VerticalAlignment="Center"
+                                           HorizontalAlignment="Left" Width="200" Text="" MaxLength="255" BorderBrush="LightGreen"
+                                           BorderThickness="1" MouseDoubleClick="_txtAsociado_MouseDoubleClick" Height="20" FontSize="10" 
+                                           IsReadOnly="True">
+                            
+                        </custom:ByTTextBox>
 
                         <custom:ByTTextBox Grid.Column="1" KeyDown="_Consultar_Enter" Grid.Row="0" Grid.ColumnSpan="4" Name="_txtIdAsociado" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="80" MaxLength="8" SoloNumero="True" Visibility="Collapsed"  ></custom:ByTTextBox>
@@ -186,7 +190,8 @@
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="Fecha"/>
                     </Label>
-                    <DatePicker Name="_dpkFechaFactura" Width="150" Focusable="False" BorderBrush="{x:Null}">
+                    <DatePicker Name="_dpkFechaFactura" Width="150" Focusable="False" BorderBrush="{x:Null}"
+                                SelectedDateChanged="_dpkFechaFactura_SelectedDateChanged">
                         <DatePicker.SelectedDate>
                             <Binding Path="FechaFactura" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
@@ -210,7 +215,7 @@
         </GroupBox>
 
         <!--Resultados-->
-        <GroupBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Margin="5">
+        <GroupBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Margin="5" BorderThickness="0">
             <ListView Name="_lstResultados" ItemsSource="{Binding}" MouseDoubleClick="_lstResultados_MouseDoubleClick" SelectionMode="Single" 
                        Style="{DynamicResource EstiloListView}">
                 <ListView.View>
@@ -218,39 +223,79 @@
                         <GridViewColumn Header=">>" Width="50" >
                             <GridViewColumn.CellTemplate >
                                 <DataTemplate>
-                                    <CheckBox Tag="Seleccion"   IsChecked="{Binding Path=Seleccion}" />
+                                    <CheckBox Tag="Seleccion"   IsChecked="{Binding Path=Seleccion}" HorizontalAlignment="Center" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="80">
+                        <GridViewColumn Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.fac_LblProforma}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Id}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoDepartamento}" Width="60">
+                        <GridViewColumn Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="CodigoDepartamento" Content="Dpto"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=CodigoDepartamento}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaFactura, StringFormat={}{0:dd/MM/yyyy}}" Width="70">
+                        <GridViewColumn Width="100">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaFactura" Content="Fecha"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=FechaFactura, StringFormat={}{0:dd/MM/yyyy}}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Inicial}" Width="60">
+                        <GridViewColumn Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Inicial" Content="Iniciales"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Inicial}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>                        
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Ourref}" Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Ourref" Content="Nuestra"/>
+                        <GridViewColumn Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Ourref" Content="Nuestra Referencia"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Ourref}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Id}" Width="60">
+                        <GridViewColumn Width="100">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Asociado.Id" Content="Id Asociado"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Asociado.Id}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Nombre}" Width="120">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Nombre}" Width="280">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Asociado.Nombre" Content="{x:Static recurso:Etiquetas.lsvAsociado}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Caso}" Width="150">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Caso}" Width="280">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Caso" Content="Caso"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Auto}" Width="20">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Auto" Content=""/>
+                        <GridViewColumn Width="40">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Auto" Content="Auto"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Auto}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=BAuto}" Width="90">
+                        <GridViewColumn Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="BAuto" Content="Estado"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=BAuto}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Mttotal}" Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Mttotal" Content="Monto"/>
@@ -343,7 +388,7 @@
         </GroupBox>
 
         <!--Botones Regresar-->
-        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
+        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}" BorderThickness="0">
             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
                 <Button Name="_btnCancelar" Width="100" Click="_btnConsultar">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnCancelar}"/>

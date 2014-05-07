@@ -1653,6 +1653,33 @@
                                 </DatePicker.SelectedDate>
                             </DatePicker>
 
+                            <Button Grid.Column="0" Grid.Row="5" Height="25" Name="_btnExpCamPendDatos" 
+                                    Click="_btnExpCamPendDatos_Click">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblExpCamPend}"/>
+                            </Button>
+
+                            <Label  Grid.Column="0" Grid.Row="5" Height="25" Name="_lblExpCamPendDatos" Visibility="Collapsed">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblExpCamPend}"/>
+                            </Label>
+                            
+                            <custom:ByTTextBox  Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="1" Margin="3" Name="_txtExpCamPendDatos"
+                                                VerticalAlignment="Center" IsReadOnly="False" 
+                                                Text="{Binding Path=ExpCambioPendiente}"></custom:ByTTextBox>
+                            
+                            <Label Grid.Column="2" Grid.Row="5" Name="_lblFechaCierreExp" VerticalAlignment="Center" Margin="6,0,0,0"
+                                   Grid.ColumnSpan="2">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaCierreExp}"/>
+                            </Label>
+                            
+                            <DatePicker Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="2" Name="_txtFechaCierreExpDatos" 
+                                        Focusable="False" BorderBrush="{x:Null}" Margin="5,0,0,0" HorizontalAlignment="Left"
+                                        Width="120">
+                                <DatePicker.SelectedDate>
+                                    <Binding Path="FechaCierreExpediente" UpdateSourceTrigger="PropertyChanged" 
+                                         StringFormat="{}{0:dd/MM/yyyy}"/>
+                                </DatePicker.SelectedDate>
+                            </DatePicker>
+
 
                         </Grid>
 

@@ -1351,4 +1351,80 @@
     <value>poder.Id = {0}</value>
     <comment>Filtro para obtener patentes a partir del Id del Poder </comment>
   </data>
+  <data name="FiltroObtenerPatenteExpCambioPendiente" xml:space="preserve">
+    <value>p.ExpCambioPendiente = '{0}'</value>
+    <comment>Filtro para obtener patentes mediante el Expediente de Cambio Pendiente</comment>
+  </data>
+  <data name="CabeceraObtenerMaterialSapi" xml:space="preserve">
+    <value>Select m from MaterialSapi m left outer join fetch m.Departamento as departamento where </value>
+    <comment>Cabecera para consultar Materiales Sapi por filtro</comment>
+  </data>
+  <data name="FiltroObtenerMaterialSapiDepartamento" xml:space="preserve">
+    <value>departamento.Id = '{0}'</value>
+    <comment>Filtro para obtener Materiales Sapi por el Id del Departamento</comment>
+  </data>
+  <data name="FiltroObtenerMaterialSapiDescripcion" xml:space="preserve">
+    <value>m.Descripcion like '%{0}%'</value>
+    <comment>Filtro para obtener Materiales Sapi por la Descripcion del material</comment>
+  </data>
+  <data name="FiltroObtenerMaterialSapiId" xml:space="preserve">
+    <value>m.Id = '{0}'</value>
+    <comment>Filtro para obtener Materiales Sapi por el Id de la entidad</comment>
+  </data>
+  <data name="FiltroObtenerMaterialSapiTipo" xml:space="preserve">
+    <value>m.Tipo = '{0}'</value>
+    <comment>Filtro para obtener Materiales Sapi por el Tipo de Material</comment>
+  </data>
+  <data name="CabeceraObtenerCompraSapiDetalle" xml:space="preserve">
+    <value>Select c from CompraSapiDetalle c left outer join fetch c.Compra as compra left outer join fetch c.Material as material where </value>
+    <comment>Cabecera de la consulta HQL para obtener los detalles de las compras de materiales SAPI</comment>
+  </data>
+  <data name="FiltroObtenerDetalleCompraSapiFechaCompra" xml:space="preserve">
+    <value>c.Compra.FechaCompra = '{0}'</value>
+    <comment>Filtro para obtener Detalles de Compra SAPI a traves de la FechaCompra de la Compra</comment>
+  </data>
+  <data name="FiltroObtenerDetalleCompraSapiIdCompra" xml:space="preserve">
+    <value>c.Compra.Id = {0}</value>
+    <comment>Filtro para obtener Detalles de Compra SAPI a traves del Id de la Compra</comment>
+  </data>
+  <data name="FiltroObtenerDetalleCompraSapiIdMaterial" xml:space="preserve">
+    <value>c.Material.Id ='{0}'</value>
+    <comment>Filtro para obtener Detalles de Compra SAPI a traves del Id del Material</comment>
+  </data>
+  <data name="CabeceraObtenerSolicitudSapi" xml:space="preserve">
+    <value>Select s from SolicitudSapi s left outer join fetch s.Material as material left outer join fetch s.Departamento as departamento where </value>
+    <comment>Cabecera para obtener las Solicitudes de Materiales Sapi de acuerdo a un filtro determinado</comment>
+  </data>
+  <data name="FiltroObtenerSolicitudSapiDptoId" xml:space="preserve">
+    <value>departamento.Id = '{0}'</value>
+    <comment>Filtro para obtener Solicitudes Sapi por el Id del Departamento </comment>
+  </data>
+  <data name="FiltroObtenerSolicitudSapiFechaSolicitud" xml:space="preserve">
+    <value>s.FechaSolicitud = '{0}'</value>
+    <comment>Filtro para obtener Solicitudes Sapi por la fecha de la solicitud</comment>
+  </data>
+  <data name="FiltroObtenerSolicitudSapiId" xml:space="preserve">
+    <value>s.Id = {0}</value>
+    <comment>Filtro para obtener Solicitudes Sapi con el Id de la Solicitud</comment>
+  </data>
+  <data name="FiltroObtenerSolicitudSapiIniciales" xml:space="preserve">
+    <value>s.SolicitanteInic = '{0}'</value>
+    <comment>Filtro para obtener Solicitudes Sapi por las iniciales del Solicitante</comment>
+  </data>
+  <data name="FiltroObtenerSolicitudSapiMaterialId" xml:space="preserve">
+    <value>material.Id = '{0}'</value>
+    <comment>Filtro para obtener SolicitudesSapi por el Id del Material SAPI</comment>
+  </data>
+  <data name="FiltroObtenerSolicitudSapiStatusEntregado" xml:space="preserve">
+    <value>s.MaterialEntregado = '{0}'</value>
+    <comment>Filtro para obtener Solicitudes Sapi cuando el status de la solicitud es ENTREGADO</comment>
+  </data>
+  <data name="FiltroObtenerSolicitudSapiStatusRecibido" xml:space="preserve">
+    <value>s.MaterialRecibido = '{0}'</value>
+    <comment>Filtro para obtener Solicitudes Sapi cuando el status de la solicitud es RECIBIDO</comment>
+  </data>
+  <data name="FiltroObtenerSolicitudSapiStatusSolicitado" xml:space="preserve">
+    <value>s.MaterialSolicitado = '{0}'</value>
+    <comment>Filtro para obtener Solicitudes Sapi cuando el Status de la solicitud es SOLICITADO</comment>
+  </data>
 </root>

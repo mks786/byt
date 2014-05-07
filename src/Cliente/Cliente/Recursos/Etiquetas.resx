@@ -4416,4 +4416,184 @@ en Prensa:</value>
   <data name="cbiCategoriaEntradaAlterna" xml:space="preserve">
     <value>ENTRADA_ALT_ACUSE</value>
   </data>
+  <data name="menuItemMaestros" xml:space="preserve">
+    <value>Maestros</value>
+  </data>
+  <data name="menuItemMaestrosSapiMaterial" xml:space="preserve">
+    <value>Material</value>
+  </data>
+  <data name="menuItemMaestrosSapiTarifaMaterial" xml:space="preserve">
+    <value>Tarifa Material</value>
+  </data>
+  <data name="menuItemMaestrosSapiTipoMaterial" xml:space="preserve">
+    <value>Tipo de Material</value>
+  </data>
+  <data name="menuItemPresentacion" xml:space="preserve">
+    <value>Presentaciones</value>
+  </data>
+  <data name="menuItemSapi" xml:space="preserve">
+    <value>SAPI</value>
+  </data>
+  <data name="menuItemSapiCompraMateriales" xml:space="preserve">
+    <value>Compras de Material</value>
+  </data>
+  <data name="menuItemSapiControlExistenciaMaterial" xml:space="preserve">
+    <value>Existencia de Material</value>
+  </data>
+  <data name="menuItemSapiEntregaMateriales" xml:space="preserve">
+    <value>Entrega de Material</value>
+  </data>
+  <data name="menuItemSapiSolicitudMateriales" xml:space="preserve">
+    <value>Solicitud de Material</value>
+  </data>
+  <data name="menuItemMateriales" xml:space="preserve">
+    <value>Materiales</value>
+  </data>
+  <data name="menuItemMaterialesControlExistencias" xml:space="preserve">
+    <value>Consulta de Existencias</value>
+  </data>
+  <data name="menuItemSapiMaterialesCompras" xml:space="preserve">
+    <value>Compras</value>
+  </data>
+  <data name="menuItemSapiMaterialesComprasConsulta" xml:space="preserve">
+    <value>Consultar Compras</value>
+  </data>
+  <data name="menuItemSapiMaterialesComprasRegistro" xml:space="preserve">
+    <value>Registro de Compra</value>
+  </data>
+  <data name="menuItemSapiSolicitudes" xml:space="preserve">
+    <value>Solicitudes</value>
+  </data>
+  <data name="menuItemSapiSolicitudesConsultar" xml:space="preserve">
+    <value>Consultar Solicitudes</value>
+  </data>
+  <data name="menuItemSapiSolicitudesGenerar" xml:space="preserve">
+    <value>Generar Solicitud</value>
+  </data>
+  <data name="titleConsultarExistenciaMaterial" xml:space="preserve">
+    <value>Consulta de Existencias de Materiales SAPI</value>
+  </data>
+  <data name="lblMaterialCodigo" xml:space="preserve">
+    <value>Código:</value>
+  </data>
+  <data name="lblMaterialDepartamento" xml:space="preserve">
+    <value>Departamento:</value>
+  </data>
+  <data name="lblMaterialDescripcion" xml:space="preserve">
+    <value>Descripcion:</value>
+  </data>
+  <data name="lblMaterialTipo" xml:space="preserve">
+    <value>Tipo:</value>
+  </data>
+  <data name="lsvExistencia" xml:space="preserve">
+    <value>Existencia</value>
+  </data>
+  <data name="lsvFechaVigenciaMaterial" xml:space="preserve">
+    <value>Fecha Vigencia</value>
+  </data>
+  <data name="lsvTipoMaterial" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="cbiSapiTipoMaterial" xml:space="preserve">
+    <value>SAPI_TIPO_MATERIAL</value>
+  </data>
+  <data name="btnCalcular" xml:space="preserve">
+    <value>Calcular</value>
+  </data>
+  <data name="btnNuevaCompra" xml:space="preserve">
+    <value>Nueva Compra</value>
+  </data>
+  <data name="btnTotalizarCompra" xml:space="preserve">
+    <value>Totalizar Compra</value>
+  </data>
+  <data name="lblCantidadCompraMaterialSapi" xml:space="preserve">
+    <value>Cantidad :</value>
+  </data>
+  <data name="lblCompraMaterialSapi" xml:space="preserve">
+    <value>Materiales SAPI :</value>
+  </data>
+  <data name="lblPorcentajeIVA" xml:space="preserve">
+    <value>IVA :</value>
+  </data>
+  <data name="lblSubtotal" xml:space="preserve">
+    <value>Subtotal :</value>
+  </data>
+  <data name="lblSubtotalImporte" xml:space="preserve">
+    <value>Monto IVA :</value>
+  </data>
+  <data name="lsvPrecioUnitario" xml:space="preserve">
+    <value>P/U</value>
+  </data>
+  <data name="lsvTotal" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="titleGestionarCompraMaterialSapi" xml:space="preserve">
+    <value>Compra de Material SAPI</value>
+  </data>
+  <data name="lblMateriales" xml:space="preserve">
+    <value>Material SAPI:</value>
+  </data>
+  <data name="btnVerFacturaSAPI" xml:space="preserve">
+    <value>Ver Factura SAPI</value>
+  </data>
+  <data name="lsvCodigoMaterial" xml:space="preserve">
+    <value>Código Material</value>
+  </data>
+  <data name="lsvDescripcionMaterial" xml:space="preserve">
+    <value>Descripción Material</value>
+  </data>
+  <data name="titleConsultarComprasSapi" xml:space="preserve">
+    <value>Consulta de Compras de Materiales SAPI</value>
+  </data>
+  <data name="cbiStatusMovimientoMaterialSAPI" xml:space="preserve">
+    <value>SAPI_STATUS_MAT</value>
+  </data>
+  <data name="lblSolicitante" xml:space="preserve">
+    <value>Solicitante:</value>
+  </data>
+  <data name="lsvCantidadSolicitada" xml:space="preserve">
+    <value>Cant. Solicitada</value>
+  </data>
+  <data name="lsvStatusMaterial" xml:space="preserve">
+    <value>Status Material</value>
+  </data>
+  <data name="btnConfirmar" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
+  <data name="titleGestionarMovimientoMaterialSAPI" xml:space="preserve">
+    <value>Solicitud de Material SAPI</value>
+  </data>
+  <data name="lblStatus" xml:space="preserve">
+    <value>Status:</value>
+  </data>
+  <data name="titleConsultarSolicitudSAPI" xml:space="preserve">
+    <value>Consultar Solicitudes de Materiales SAPI</value>
+  </data>
+  <data name="lblTipoMovimiento" xml:space="preserve">
+    <value>Tipo de Movimiento:</value>
+  </data>
+  <data name="cbiTiposMovimientoMaterialSAPI" xml:space="preserve">
+    <value>SAPI_TIPO_MOVIMIENTO</value>
+  </data>
+  <data name="lsvMaterialEntregado" xml:space="preserve">
+    <value>Entregado</value>
+  </data>
+  <data name="lsvMaterialRecibido" xml:space="preserve">
+    <value>Recibido</value>
+  </data>
+  <data name="lsvMaterialSolicitado" xml:space="preserve">
+    <value>Solicitado</value>
+  </data>
+  <data name="lsvTipoMovimientoMaterial" xml:space="preserve">
+    <value>Tipo Movimiento</value>
+  </data>
+  <data name="lsvFechaEntrega" xml:space="preserve">
+    <value>F. Entrega</value>
+  </data>
+  <data name="titleGenerarEntregasMaterialSAPI" xml:space="preserve">
+    <value>Generar Entregas de Material SAPI</value>
+  </data>
+  <data name="lsvFechaRecepcion" xml:space="preserve">
+    <value>F. Recepción</value>
+  </data>
 </root>

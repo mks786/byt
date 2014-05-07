@@ -194,6 +194,8 @@ Namespace Ventanas.FacFacturas
                 'Me._presentador.reporte()
             ElseIf nom = "_btnConsulta" Then
                 Me._presentador.Consultar()
+                validarCamposVacios()
+                Me._btnConsulta.Focus()
             End If
         End Sub
         'Public Property Banco As Object Implements Contratos.FacFacturas.IConsultarFacFacturas.Banco
@@ -253,6 +255,7 @@ Namespace Ventanas.FacFacturas
         Private Sub _btnConsultarAsociado_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
             Me._presentador.BuscarAsociado2()
         End Sub
+
         Private Sub _Consultar_Enter(ByVal sender As Object, ByVal e As KeyEventArgs)
             If (e.Key = Key.Enter) Then
                 Dim nom As String = DirectCast(sender, ByTTextBox).Name.ToString
@@ -262,6 +265,7 @@ Namespace Ventanas.FacFacturas
                     Me._presentador.BuscarCarta()
                 ElseIf nom = "_txtId" Then
                     Me._presentador.Consultar()
+                    validarCamposVacios()
                 End If
             End If
         End Sub
@@ -289,6 +293,8 @@ Namespace Ventanas.FacFacturas
             If Me._lstAsociados.SelectedItem IsNot Nothing Then
                 Me._presentador.CambiarAsociado()
                 ControlesOcultarAsociado()
+                Me._btnConsulta.IsDefault = True
+                Me._btnConsulta.Focus()
             End If
         End Sub
 
@@ -484,6 +490,8 @@ Namespace Ventanas.FacFacturas
         Private Sub _lstCartas_MouseDoubleClick(ByVal sender As Object, ByVal e As MouseButtonEventArgs)
             Me._presentador.CambiarCarta()
             ControlesOcultarCarta()
+            Me._btnConsulta.IsDefault = True
+            Me._btnConsulta.Focus()
         End Sub
 
         Private Sub ControlesOcultarCarta()
@@ -547,5 +555,120 @@ Namespace Ventanas.FacFacturas
                 _txtNumeroControl.Text = value
             End Set
         End Property
+
+        Private Sub validarCamposVacios()
+
+            Dim todosCamposVacios As Boolean
+            todosCamposVacios = True
+
+            If Me._txtId.Text <> "" Then
+                todosCamposVacios = False
+                Me._txtId.Focus()
+            End If
+
+            If Me._txtInicial.Text <> "" Then
+                todosCamposVacios = False
+                Me._txtInicial.Focus()
+            End If
+
+            If Me._txtInstruc.Text <> "" Then
+                todosCamposVacios = False
+                Me._txtInstruc.Focus()
+            End If
+
+            If Me._txtNumeroControl.Text <> "" Then
+                todosCamposVacios = False
+                Me._txtNumeroControl.Focus()
+            End If
+
+            If Me._txtProforma.Text <> "" Then
+                todosCamposVacios = False
+                Me._txtProforma.Focus()
+            End If
+
+            If Me._txtSeniat.Text <> "" Then
+                todosCamposVacios = False
+                Me._txtSeniat.Focus()
+            End If
+
+            If Me._txtOurref.Text <> "" Then
+                todosCamposVacios = False
+                Me._txtOurref.Focus()
+            End If
+
+            If Me._txtCaso.Text <> "" Then
+                todosCamposVacios = False
+                Me._txtCaso.Focus()
+            End If
+
+            If (Me._cbxDetalleEnvio.SelectedIndex <> 0) AndAlso (Me._cbxDetalleEnvio.SelectedIndex <> -1) Then
+                todosCamposVacios = False
+                Me._cbxDetalleEnvio.Focus()
+            End If
+
+            If (Me._cbxguia.SelectedIndex <> 0) AndAlso (Me._cbxguia.SelectedIndex <> -1) Then
+                todosCamposVacios = False
+                Me._cbxguia.Focus()
+            End If
+
+            If (Me._cbxOrigenFactura.SelectedIndex <> 0) AndAlso (Me._cbxOrigenFactura.SelectedIndex <> -1) Then
+                todosCamposVacios = False
+                Me._cbxOrigenFactura.Focus()
+            End If
+
+            If Me._dpkFechaFactura.Text <> "" Then
+                todosCamposVacios = False
+                Me._dpkFechaFactura.Focus()
+            End If
+
+            If Me._dpkFechaSeniat.Text <> "" Then
+                todosCamposVacios = False
+                Me._dpkFechaSeniat.Focus()
+            End If
+
+            If todosCamposVacios Then
+                Me._txtId.Focus()
+            End If
+
+        End Sub
+
+        Private Sub _Activar_Consultar(sender As System.Object, e As System.Windows.Input.KeyEventArgs)
+
+            If (e.Key = Key.Enter) Then
+                Mouse.OverrideCursor = Cursors.Wait
+                Dim nom As String = DirectCast(sender, ByTTextBox).Name.ToString
+                Me._btnConsulta.Focus()
+                Me._presentador.Consultar()
+                Mouse.OverrideCursor = Nothing
+                validarCamposVacios()
+            End If
+
+        End Sub
+
+        Private Sub _dpkFechaFactura_SelectedDateChanged(sender As System.Object, e As System.Windows.Controls.SelectionChangedEventArgs)
+            If (Me._dpkFechaFactura.SelectedDate IsNot Nothing) Then
+                Me._btnConsulta.IsDefault = True
+                Me._btnConsulta.Focus()
+            End If
+        End Sub
+
+        Private Sub _dpkFechaSeniat_SelectedDateChanged(sender As System.Object, e As System.Windows.Controls.SelectionChangedEventArgs)
+            If (Me._dpkFechaSeniat.SelectedDate IsNot Nothing) Then
+                Me._btnConsulta.IsDefault = True
+                Me._btnConsulta.Focus()
+            End If
+        End Sub
+
+        Private Sub _cbxDetalleEnvio_SelectionChanged(sender As System.Object, e As System.Windows.Controls.SelectionChangedEventArgs)
+            Me._btnConsulta.Focus()
+        End Sub
+
+        Private Sub _cbxguia_SelectionChanged(sender As System.Object, e As System.Windows.Controls.SelectionChangedEventArgs)
+            Me._btnConsulta.Focus()
+        End Sub
+
+        Private Sub _cbxOrigenFactura_SelectionChanged(sender As System.Object, e As System.Windows.Controls.SelectionChangedEventArgs)
+            Me._btnConsulta.Focus()
+        End Sub
     End Class
 End Namespace

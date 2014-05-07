@@ -136,6 +136,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             {
                 _bgw.RunWorkerAsync();
             }
+            
         }
 
         void bgw_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -171,6 +172,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private void _btnAuditoria_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.Auditoria();
+        }
+
+        public void AvisoBotonAceptar()
+        {
+            MessageBox.Show("No presione el boton Aceptar mas de una vez", "Importante", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
     }
 }

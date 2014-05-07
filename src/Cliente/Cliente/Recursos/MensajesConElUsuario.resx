@@ -1528,4 +1528,31 @@
   <data name="ConfirmarReiniciarEntradaAlterna" xml:space="preserve">
     <value>Desea reiniciar los campos de la Entrada Alterna a agregar?</value>
   </data>
+  <data name="ConfirmarModificarInfoAdicionalMarca" xml:space="preserve">
+    <value>Confirma los cambios para la InfoAdicional de la Marca {0}</value>
+  </data>
+  <data name="ErrorConsultaNoTrajoMateriales" xml:space="preserve">
+    <value>No hay datos con el filtro utilizado</value>
+  </data>
+  <data name="ConfirmarAgregarNuevaCompraSAPI" xml:space="preserve">
+    <value>Desea registra la nueva Compra de Materiales?</value>
+  </data>
+  <data name="ConfirmarModificarCompraSAPI" xml:space="preserve">
+    <value>Desea modificar la Compra actual?</value>
+  </data>
+  <data name="ConfirmacionNuevaCompraSapi" xml:space="preserve">
+    <value>Desea registrar una nueva compra?</value>
+  </data>
+  <data name="ErrorArchivoPDFCompraSAPINoExiste" xml:space="preserve">
+    <value>Disculpe, el Archivo PDF de la Compra {0} no existe</value>
+  </data>
+  <data name="ConfirmarEliminarSolicitudSapi" xml:space="preserve">
+    <value>Desea eliminar la Solicitud?</value>
+  </data>
+  <data name="AlertaSolicitudesSapiNoProcesadas" xml:space="preserve">
+    <value>No se procesaron {0} solicitudes, porque la Cantidad Solicitada excede a la Cantidad de Material en existencia.</value>
+  </data>
+  <data name="ErrorEntregaSapiNoProcesadas" xml:space="preserve">
+    <value>Las Entregas seleccionadas no fueron procesadas</value>
+  </data>
 </root>

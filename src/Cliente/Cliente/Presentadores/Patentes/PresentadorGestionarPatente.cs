@@ -674,6 +674,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.OrigenPatenteSolicitud = this.BuscarListaDeDatosValores(this._origenDePatentes, origenPatente);
                     this._ventana.OrigenPatenteDatos = this.BuscarListaDeDatosValores(this._origenDePatentes, origenPatente);
 
+
+                    if ( _patente.ExpCambioPendiente != null)
+                    {
+                        String ruta = ConfigurationManager.AppSettings["RutaExpedienteTyRPatente"].ToString() + _patente.ExpCambioPendiente + ".pdf";
+                        if (File.Exists(ruta))
+                            this._ventana.PintarBotonExpCambioPendiente();
+                    }
+
+
                 }
                 else
                 {
@@ -688,6 +697,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this.CargarStatusWeb();
                     this.CargarBoletines();
                     CargarAsociadoInternacionalVacio();
+                    this._ventana.DeshabilitarBotonExpCambioPendiente();
+                    this._ventana.OcultarFechaCierreExpediente();
 
                     #region Carga Origen de Patente por defecto
 
@@ -3881,6 +3892,40 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
-        
+
+        /// <summary>
+        /// Metodo que presenta la imagen en PDF del Expediente de Cambio Pendiente de la patente consultada
+        /// </summary>
+        public void VerExpedienteCambioPendiente()
+        {
+            String ruta = String.Empty;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if ((this._ventana.IdExpCambioPendienteDatos != null) && (!this._ventana.IdExpCambioPendienteDatos.Equals(String.Empty)))
+                {
+                    ruta = ConfigurationManager.AppSettings["RutaExpedienteTyRPatente"].ToString() + this._ventana.IdExpCambioPendienteDatos + ".pdf";
+                    if (File.Exists(ruta))
+                        System.Diagnostics.Process.Start(ruta);
+                    else
+                        this._ventana.Mensaje("El archivo PDF del Expediente de Cambio Pendiente no existe",0);
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ":" + ex.Message, true);
+            }
+        }
     }
 }

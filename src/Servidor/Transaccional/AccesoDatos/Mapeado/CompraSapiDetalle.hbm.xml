@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="CompraSapiDetalle" table="SAPI_COMPRAS_DET">
+
+    <composite-id>
+      <key-many-to-one name="Compra" column="CFACTURA" class="CompraSapi" lazy="false"/>
+      <key-many-to-one name="Material" column="CMATERIAL" class="MaterialSapi" lazy="false"/>
+    </composite-id>
+    
+    <property name="Cantidad" column="CANTIDAD" type="int"/>
+    <property name="PUnit" column="PUNIT" type="double"/>
+    <property name="Total" column="TOTAL" type="double"/>
+    
+  </class>
+</hibernate-mapping>

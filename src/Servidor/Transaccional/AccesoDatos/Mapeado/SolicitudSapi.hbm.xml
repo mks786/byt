@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="SolicitudSapi" table="SAPI_MOVIMIENTO_MAT">
+
+    <composite-id>
+      <key-property name="Id" column="CSOLICITUD" type="int"/>
+      <key-many-to-one name="Material" column="COD_MAT" class="MaterialSapi" lazy="false"/>
+    </composite-id>
+
+    <property name="TipoMovimiento" column="TIPO_MOV" type="string"/>
+    <property name="FechaSolicitud" column="FSOLICITUD" type="DateTime"/>
+    <property name="FechaEntrega" column="FENTREGA" type="DateTime"/>
+    <property name="FechaRecepcion" column="FRECEPCION" type="DateTime"/>
+    <many-to-one name="Departamento" class="Departamento" lazy="false">
+      <column name="CDODPTO"/>
+    </many-to-one>
+    <property name="SolicitanteInic" column="XINICIAL" type="string"/>
+    <property name="CantMaterialSol" column="CANT_SOL" type="int"/>
+    <property name="MaterialSolicitado" column="IMATERIAL_SOL" type="char"/>
+    <property name="MaterialEntregado" column="IMATERIAL_ENT" type="char"/>
+    <property name="MaterialRecibido" column="IMATERIAL_REC" type="char"/>
+    <!--<property name="StatusMaterial" column="STATUS_MAT" type="string"/>-->
+
+  </class>
+</hibernate-mapping>

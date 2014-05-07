@@ -385,6 +385,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a SAPI_COMPRA_MAT.
+        /// </summary>
+        public static string ComprasSAPI {
+            get {
+                return ResourceManager.GetString("ComprasSAPI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a FAC_ASOC_CONECTIVIDAD.
         /// </summary>
         public static string Conectividad {
@@ -552,6 +561,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string ConsultarCesionPatente {
             get {
                 return ResourceManager.GetString("ConsultarCesionPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SAPI_COMPRAS.
+        /// </summary>
+        public static string ConsultarComprasSAPI {
+            get {
+                return ResourceManager.GetString("ConsultarComprasSAPI", resourceCulture);
             }
         }
         
@@ -1042,6 +1060,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a SAPI_EXISTENCIAS.
+        /// </summary>
+        public static string ControlExistenciaSAPI {
+            get {
+                return ResourceManager.GetString("ControlExistenciaSAPI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a MYP_PATENTE.
         /// </summary>
         public static string DatosPatente {
@@ -1290,6 +1317,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string EntradaAlterna {
             get {
                 return ResourceManager.GetString("EntradaAlterna", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SAPI_ENTREGA.
+        /// </summary>
+        public static string EntregaSAPI {
+            get {
+                return ResourceManager.GetString("EntregaSAPI", resourceCulture);
             }
         }
         
@@ -2617,6 +2653,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a SAPI_COMPRAS.
+        /// </summary>
+        public static string GestionarCompraMaterialSAPI {
+            get {
+                return ResourceManager.GetString("GestionarCompraMaterialSAPI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a MYPMFUSM.
         /// </summary>
         public static string GestionarFusion {
@@ -2658,6 +2703,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string GestionarLicencias {
             get {
                 return ResourceManager.GetString("GestionarLicencias", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SAPI_MOVIMIENTO_MAT.
+        /// </summary>
+        public static string GestionarMovimientoMaterialSAPI {
+            get {
+                return ResourceManager.GetString("GestionarMovimientoMaterialSAPI", resourceCulture);
             }
         }
         
@@ -2815,6 +2869,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a SAPI_MAESTROS.
+        /// </summary>
+        public static string MaestrosSapi {
+            get {
+                return ResourceManager.GetString("MaestrosSapi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a MYP_MARCAS.
         /// </summary>
         public static string Marca {
@@ -2829,6 +2892,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string MarcasATerceros {
             get {
                 return ResourceManager.GetString("MarcasATerceros", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SAPI_MATERIALES.
+        /// </summary>
+        public static string MaterialesSapi {
+            get {
+                return ResourceManager.GetString("MaterialesSapi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SAPI_MATERIAL.
+        /// </summary>
+        public static string MaterialSapi {
+            get {
+                return ResourceManager.GetString("MaterialSapi", resourceCulture);
             }
         }
         
@@ -3121,6 +3202,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a SAPI_PRESENT.
+        /// </summary>
+        public static string PresentacionesSapi {
+            get {
+                return ResourceManager.GetString("PresentacionesSapi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a RENO_MARCAS.
         /// </summary>
         public static string RecordatorioMarca {
@@ -3193,6 +3283,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a SAPI_SOLICITUD.
+        /// </summary>
+        public static string SolicitudSAPI {
+            get {
+                return ResourceManager.GetString("SolicitudSAPI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SAPI_TARIFA_MAT.
+        /// </summary>
+        public static string TarifaMaterialSapi {
+            get {
+                return ResourceManager.GetString("TarifaMaterialSapi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a MYP_TIPO_BASE.
         /// </summary>
         public static string TipoBaseMarca {
@@ -3216,6 +3324,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string TipoInfobol {
             get {
                 return ResourceManager.GetString("TipoInfobol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SAPI_TIPO_MAT.
+        /// </summary>
+        public static string TipoMaterialSapi {
+            get {
+                return ResourceManager.GetString("TipoMaterialSapi", resourceCulture);
             }
         }
         

@@ -223,6 +223,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Select c from CompraSapiDetalle c left outer join fetch c.Compra as compra left outer join fetch c.Material as material where .
+        /// </summary>
+        public static string CabeceraObtenerCompraSapiDetalle {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerCompraSapiDetalle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Select c from Contacto c left outer join fetch c.Asociado as asociado left outer join fetch c.Carta as carta where .
         /// </summary>
         public static string CabeceraObtenerContacto {
@@ -331,6 +340,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Select m from MaterialSapi m left outer join fetch m.Departamento as departamento where .
+        /// </summary>
+        public static string CabeceraObtenerMaterialSapi {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerMaterialSapi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Select o from Operacion o left join fetch o.Interesado as interesado left join fetch o.Asociado as asociado left join fetch o.Boletin as boletin left join fetch o.Servicio as servicio where .
         /// </summary>
         public static string CabeceraObtenerOperacion {
@@ -390,6 +408,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string CabeceraObtenerReporte {
             get {
                 return ResourceManager.GetString("CabeceraObtenerReporte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select s from SolicitudSapi s left outer join fetch s.Material as material left outer join fetch s.Departamento as departamento where .
+        /// </summary>
+        public static string CabeceraObtenerSolicitudSapi {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerSolicitudSapi", resourceCulture);
             }
         }
         
@@ -1020,6 +1047,33 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerCesionIdMarca {
             get {
                 return ResourceManager.GetString("FiltroObtenerCesionIdMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a c.Compra.FechaCompra = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerDetalleCompraSapiFechaCompra {
+            get {
+                return ResourceManager.GetString("FiltroObtenerDetalleCompraSapiFechaCompra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a c.Compra.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerDetalleCompraSapiIdCompra {
+            get {
+                return ResourceManager.GetString("FiltroObtenerDetalleCompraSapiIdCompra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a c.Material.Id =&apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerDetalleCompraSapiIdMaterial {
+            get {
+                return ResourceManager.GetString("FiltroObtenerDetalleCompraSapiIdMaterial", resourceCulture);
             }
         }
         
@@ -1771,6 +1825,42 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a departamento.Id = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerMaterialSapiDepartamento {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMaterialSapiDepartamento", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a m.Descripcion like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroObtenerMaterialSapiDescripcion {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMaterialSapiDescripcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a m.Id = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerMaterialSapiId {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMaterialSapiId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a m.Tipo = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerMaterialSapiTipo {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMaterialSapiTipo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a o.CadenaDeCambios = {0}.
         /// </summary>
         public static string FiltroObtenerOperacionCadenaCambios {
@@ -1875,6 +1965,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerPatenteDescripcion {
             get {
                 return ResourceManager.GetString("FiltroObtenerPatenteDescripcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a p.ExpCambioPendiente = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerPatenteExpCambioPendiente {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPatenteExpCambioPendiente", resourceCulture);
             }
         }
         
@@ -2298,6 +2397,78 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerReporteVistaReporte {
             get {
                 return ResourceManager.GetString("FiltroObtenerReporteVistaReporte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a departamento.Id = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerSolicitudSapiDptoId {
+            get {
+                return ResourceManager.GetString("FiltroObtenerSolicitudSapiDptoId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a s.FechaSolicitud = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerSolicitudSapiFechaSolicitud {
+            get {
+                return ResourceManager.GetString("FiltroObtenerSolicitudSapiFechaSolicitud", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a s.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerSolicitudSapiId {
+            get {
+                return ResourceManager.GetString("FiltroObtenerSolicitudSapiId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a s.SolicitanteInic = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerSolicitudSapiIniciales {
+            get {
+                return ResourceManager.GetString("FiltroObtenerSolicitudSapiIniciales", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a material.Id = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerSolicitudSapiMaterialId {
+            get {
+                return ResourceManager.GetString("FiltroObtenerSolicitudSapiMaterialId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a s.MaterialEntregado = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerSolicitudSapiStatusEntregado {
+            get {
+                return ResourceManager.GetString("FiltroObtenerSolicitudSapiStatusEntregado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a s.MaterialRecibido = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerSolicitudSapiStatusRecibido {
+            get {
+                return ResourceManager.GetString("FiltroObtenerSolicitudSapiStatusRecibido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a s.MaterialSolicitado = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerSolicitudSapiStatusSolicitado {
+            get {
+                return ResourceManager.GetString("FiltroObtenerSolicitudSapiStatusSolicitado", resourceCulture);
             }
         }
         

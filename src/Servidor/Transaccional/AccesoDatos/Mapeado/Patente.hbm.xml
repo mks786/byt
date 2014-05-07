@@ -126,6 +126,8 @@
     <property name="PatenteMadre" column="CPATENTEP" type="int"/>
     <property name="PrioridadPresentada" column="PRIPRE" type="string"/>
     <property name="OrigenPatente" column="IORIGEN" type="string"/>
+    <property name="ExpCambioPendiente" column="EXPCAMBIO" type="string"/>
+    <property name="FechaCierreExpediente" column="FCIERRE_EXP" type="DateTime"/>
 
 
   </class>

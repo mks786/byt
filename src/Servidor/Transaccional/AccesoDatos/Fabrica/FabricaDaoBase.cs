@@ -42,6 +42,34 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         public abstract IDaoDepartamento ObtenerDaoDepartamento();
 
         /// <summary>
+        /// Método que devuelve el DaoMaterialSapi del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoMaterialSapi</returns>
+        public abstract IDaoMaterialSapi ObtenerDaoMaterialSapi();
+
+
+        /// <summary>
+        /// Método que devuelve el DaoCompraSapi del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoCompraSapi</returns>
+        public abstract IDaoCompraSapi ObtenerDaoCompraSapi();
+
+
+        /// <summary>
+        /// Método que devuelve el DaoSolicitudSapi del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoSolicitudSapi</returns>
+        public abstract IDaoSolicitudSapi ObtenerDaoSolicitudSapi();
+
+
+        /// <summary>
+        /// Método que devuelve el DaoCompraSapiDetalle del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoCompraSapiDetalle</returns>
+        public abstract IDaoCompraSapiDetalle ObtenerDaoCompraSapiDetalle();
+
+
+        /// <summary>
         /// Método que devuelve el DaoEstado del manejador que se esté utilizando
         /// </summary>
         /// <returns>IDaoEstado</returns>

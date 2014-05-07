@@ -30,13 +30,20 @@ namespace Trascend.Bolet.Servidor
 
             #region Codigo de Prueba NO BORRAR 
             
-            /*DesgloseServicioTarifaServicios servicioPrueba = new DesgloseServicioTarifaServicios();
-            FacServicio servicioFacturar = new FacServicio();
-            servicioFacturar.Id = "IM1";
-            FacDesgloseServicioTarifa desgloseFiltro = new FacDesgloseServicioTarifa();
-            desgloseFiltro.Servicio = servicioFacturar;
+            //MaterialSapiServicios servicioPrueba = new MaterialSapiServicios();
+            //IList<MaterialSapi> materiales = servicioPrueba.ConsultarTodos();
+            //MaterialSapi materialExistente = materiales[0];
+            ////MaterialSapi materialNuevo = new MaterialSapi();
+            ////materialNuevo.Departamento = materialExistente.Departamento;
+            ////materialNuevo.Descripcion = "Planilla Solciitud Marca 1";
+            ////materialNuevo.Existencia = 0;
+            ////materialNuevo.Id = "P02";
+            ////materialNuevo.Tipo = "P";
+            
 
-            IList<FacDesgloseServicioTarifa> resultados = servicioPrueba.ObtenerFacDesgloseServicioTarifaFiltro(desgloseFiltro);*/
+            ////bool exitoso = servicioPrueba.InsertarOModificar(materialNuevo, usuarioPrueba.Hash);
+            //bool exitoso = servicioPrueba.Eliminar(materialExistente, usuarioPrueba.Hash);
+
 
             //Console.ReadLine();
 

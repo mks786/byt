@@ -66,7 +66,9 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private InteresadoPatente _interesadosDePatente;
         private string _prioridadPresentada;
         private string _origenPatente;
-
+        private string _expCambioPendiente;
+        private DateTime? _fechaCierreExpediente;
+            
 
         #region Internacional
 
@@ -758,6 +760,26 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _origenPatente; }
             set { _origenPatente = value; }
+        }
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Expediente Cambio Pendiente
+        /// </summary>
+        public virtual string ExpCambioPendiente
+        {
+            get { return _expCambioPendiente; }
+            set { _expCambioPendiente = value; }
+        }
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la Fecha de Cierre de Expediente
+        /// </summary>
+        public virtual DateTime? FechaCierreExpediente
+        {
+            get { return _fechaCierreExpediente; }
+            set { _fechaCierreExpediente = value; }
         }
 
 

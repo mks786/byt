@@ -150,6 +150,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         object OrigenPatente { get; set; }
 
+        string ExpCambioPendiente { get; set; }
+
         
     }
 }

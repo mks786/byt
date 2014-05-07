@@ -1176,4 +1176,43 @@
   <data name="CadenaDeCambios" xml:space="preserve">
     <value>MYP_CADCAMBIOS</value>
   </data>
+  <data name="MaestrosSapi" xml:space="preserve">
+    <value>SAPI_MAESTROS</value>
+  </data>
+  <data name="MaterialesSapi" xml:space="preserve">
+    <value>SAPI_MATERIALES</value>
+  </data>
+  <data name="MaterialSapi" xml:space="preserve">
+    <value>SAPI_MATERIAL</value>
+  </data>
+  <data name="PresentacionesSapi" xml:space="preserve">
+    <value>SAPI_PRESENT</value>
+  </data>
+  <data name="TarifaMaterialSapi" xml:space="preserve">
+    <value>SAPI_TARIFA_MAT</value>
+  </data>
+  <data name="TipoMaterialSapi" xml:space="preserve">
+    <value>SAPI_TIPO_MAT</value>
+  </data>
+  <data name="ComprasSAPI" xml:space="preserve">
+    <value>SAPI_COMPRA_MAT</value>
+  </data>
+  <data name="ControlExistenciaSAPI" xml:space="preserve">
+    <value>SAPI_EXISTENCIAS</value>
+  </data>
+  <data name="EntregaSAPI" xml:space="preserve">
+    <value>SAPI_ENTREGA</value>
+  </data>
+  <data name="SolicitudSAPI" xml:space="preserve">
+    <value>SAPI_SOLICITUD</value>
+  </data>
+  <data name="GestionarCompraMaterialSAPI" xml:space="preserve">
+    <value>SAPI_COMPRAS</value>
+  </data>
+  <data name="ConsultarComprasSAPI" xml:space="preserve">
+    <value>SAPI_COMPRAS</value>
+  </data>
+  <data name="GestionarMovimientoMaterialSAPI" xml:space="preserve">
+    <value>SAPI_MOVIMIENTO_MAT</value>
+  </data>
 </root>

@@ -1269,6 +1269,37 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.IrConsultarCadenaDeCambios();
         }
 
+
+        private void _menuItemSapiMaterialesControlExistencias_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrConsultarExistenciasMaterialesSapi();
+        }
+
+        private void _menuItemSapiMaterialesRegistroCompras_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrRegistrarCompraMaterialSapi();
+        }
+
+        private void _menuItemSapiMaterialesConsultaCompras_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarComprasSAPI();
+        }
+
+        private void _menuItemSapiMaterialesGenerarSolicitud_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.GenerarSolicitudMaterialSapi();
+        }
+
+        private void menuItemSapiSolicitudesConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarSolicitudesMaterialesSapi();
+        }
+
+        private void _menuItemSapiEntregaMaterial_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.GenerarEntregasMaterialesSapi();
+        }
+
         
 
         

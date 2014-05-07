@@ -55,6 +55,8 @@
     <Compile Include="Controladores\ControladorCamposReporte.cs" />
     <Compile Include="Controladores\ControladorCamposReporteRelacion.cs" />
     <Compile Include="Controladores\ControladorCertificadoMarca.cs" />
+    <Compile Include="Controladores\ControladorCompraSapi.cs" />
+    <Compile Include="Controladores\ControladorCompraSapiDetalle.cs" />
     <Compile Include="Controladores\ControladorContactoCxP.cs" />
     <Compile Include="Controladores\ControladorCorresponsal.cs" />
     <Compile Include="Controladores\ControladorEstado.cs" />
@@ -68,10 +70,12 @@
     <Compile Include="Controladores\ControladorInstruccionOtros.cs" />
     <Compile Include="Controladores\ControladorInteresadoPatente.cs" />
     <Compile Include="Controladores\ControladorMaestroDePlantilla.cs" />
+    <Compile Include="Controladores\ControladorMaterialSapi.cs" />
     <Compile Include="Controladores\ControladorObjeto.cs" />
     <Compile Include="Controladores\ControladorPlantilla.cs" />
     <Compile Include="Controladores\ControladorRegistrador.cs" />
     <Compile Include="Controladores\ControladorReporte.cs" />
+    <Compile Include="Controladores\ControladorSolicitudSapi.cs" />
     <Compile Include="Controladores\ControladorTipoBase.cs" />
     <Compile Include="Controladores\ControladorTipoCaja.cs" />
     <Compile Include="Controladores\ControladorTipoDocumento.cs" />

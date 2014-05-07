@@ -238,6 +238,14 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteFechaRegistro, fecha);
                 }
 
+                if (!string.IsNullOrEmpty(Patente.ExpCambioPendiente))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteExpCambioPendiente, Patente.ExpCambioPendiente);
+                    variosFiltros = true;
+                }
+
                 #endregion
 
 

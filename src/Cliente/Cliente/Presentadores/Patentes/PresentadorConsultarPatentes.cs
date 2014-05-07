@@ -809,7 +809,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     patenteAuxiliar.FechaRegistro = fechaRegistro;
                 }
 
-                
+                if (!this._ventana.ExpCambioPendiente.Equals(""))
+                {
+                    _filtroValido = 2;
+                    patenteAuxiliar.ExpCambioPendiente = this._ventana.ExpCambioPendiente;
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

@@ -173,6 +173,8 @@ Namespace Ventanas.FacFacturaProformas
                 Me._presentador.Cancelar()
             ElseIf nom = "_btnConsulta" Then
                 Me._presentador.Consultar("1")
+                validarCamposVacios()
+                Me._btnConsulta.Focus()
             ElseIf nom = "_btnAutorizacion" Then
                 Me._presentador.autorizacion()
             End If
@@ -277,6 +279,8 @@ Namespace Ventanas.FacFacturaProformas
             If Me._lstAsociados.SelectedItem IsNot Nothing Then
                 Me._presentador.CambiarAsociado()
                 ControlesOcultarAsociado()
+                Me._btnConsulta.IsDefault = True
+                Me._btnConsulta.Focus()
             End If
         End Sub
 
@@ -396,5 +400,33 @@ Namespace Ventanas.FacFacturaProformas
                 _lblHits.Text = value
             End Set
         End Property
+
+        Private Sub validarCamposVacios()
+
+            Dim todosCamposVacios As Boolean
+            todosCamposVacios = True
+
+            If Me._txtId.Text <> "" Then
+                todosCamposVacios = False
+                Me._txtId.Focus()
+            End If
+
+            If Me._dpkFechaFactura.Text <> "" Then
+                todosCamposVacios = False
+                Me._dpkFechaFactura.Focus()
+            End If
+
+            If todosCamposVacios Then
+                Me._txtId.Focus()
+            End If
+
+        End Sub
+
+        Private Sub _dpkFechaFactura_SelectedDateChanged(sender As System.Object, e As System.Windows.Controls.SelectionChangedEventArgs)
+            If (Me._dpkFechaFactura.SelectedDate IsNot Nothing) Then
+                Me._btnConsulta.IsDefault = True
+                Me._btnConsulta.Focus()
+            End If
+        End Sub
     End Class
 End Namespace

@@ -233,6 +233,9 @@ Namespace Presentadores.FacFacturas
         ''' por pantalla
         ''' </summary>
         Public Sub Consultar()
+
+            Mouse.OverrideCursor = Cursors.Wait
+
             Try
                 '#Region "trace"
                 If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
@@ -295,7 +298,7 @@ Namespace Presentadores.FacFacturas
                     If IsNumeric(Me._ventana.NumeroControl) Then
                         FacFacturaAuxiliar.NumeroControl = Me._ventana.NumeroControl
                     End If
-                End If                
+                End If
 
                 If Me._ventana.OrigenFactura IsNot Nothing Then
                     If DirectCast(Me._ventana.OrigenFactura, ListaDatosValores).Valor <> "NGN" Then
@@ -345,6 +348,8 @@ Namespace Presentadores.FacFacturas
             Catch ex As Exception
                 logger.[Error](ex.Message)
                 Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
+            Finally
+                Mouse.OverrideCursor = Nothing
             End Try
         End Sub
 

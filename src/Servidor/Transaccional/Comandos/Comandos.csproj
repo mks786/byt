@@ -120,6 +120,10 @@
     <Compile Include="Comandos\ComandosCesion\ComandoEliminarCesion.cs" />
     <Compile Include="Comandos\ComandosCesion\ComandoInsertarOModificarCesion.cs" />
     <Compile Include="Comandos\ComandosCesion\ComandoVerificarExistenciaCesion.cs" />
+    <Compile Include="Comandos\ComandosCompraSapiDetalle\ComandoConsultarCompraSapiDetalleFiltro.cs" />
+    <Compile Include="Comandos\ComandosCompraSapiDetalle\ComandoEliminarDetalleCompraSapi.cs" />
+    <Compile Include="Comandos\ComandosCompraSapiDetalle\ComandoInsertarOModificarDetalleCompraSapi.cs" />
+    <Compile Include="Comandos\ComandosCompraSapi\ComandoInsertarOModificarCompra.cs" />
     <Compile Include="Comandos\ComandosContactoCxP\ComandoConsultarContactoCxPFiltro.cs" />
     <Compile Include="Comandos\ComandosContactoCxP\ComandoConsultarTodosContactoCxP.cs" />
     <Compile Include="Comandos\ComandosContactoCxP\ComandoEliminarContactoCxP.cs" />
@@ -197,6 +201,10 @@
     <Compile Include="Comandos\ComandosMarca\ComandoConsultarMarcasPorFechaRenovacion.cs" />
     <Compile Include="Comandos\ComandosMarca\ComandoConsultarRecordatoriosVista.cs" />
     <Compile Include="Comandos\ComandosMarca\ComandoConsultarRecordatoriosVistaAutomatico.cs" />
+    <Compile Include="Comandos\ComandosMaterialSapi\ComandoConsultarMaterialesSapiFiltro.cs" />
+    <Compile Include="Comandos\ComandosMaterialSapi\ComandoConsultarTodosMateriales.cs" />
+    <Compile Include="Comandos\ComandosMaterialSapi\ComandoEliminarMaterial.cs" />
+    <Compile Include="Comandos\ComandosMaterialSapi\ComandoInsertarOModificarMaterial.cs" />
     <Compile Include="Comandos\ComandosMedio\ComandoConsultarMedioPorOtroCampo.cs" />
     <Compile Include="Comandos\ComandosMemoria\ComandoVerificarExistenciaMemoria.cs" />
     <Compile Include="Comandos\ComandosOperacion\ComandoConsultarOperacionesFiltro.cs" />
@@ -263,6 +271,10 @@
     <Compile Include="Comandos\ComandosRol\ComandoInsertarOModificarRol.cs" />
     <Compile Include="Comandos\ComandosRol\ComandoConsultarRolesYObjetos.cs" />
     <Compile Include="Comandos\ComandosRol\ComandoVerificarExistenciaRol.cs" />
+    <Compile Include="Comandos\ComandosSolicitudSapi\ComandoConsultarSolicitudesSapiFiltro.cs" />
+    <Compile Include="Comandos\ComandosSolicitudSapi\ComandoConsultarSolicitudesSapiPendientesFiltro.cs" />
+    <Compile Include="Comandos\ComandosSolicitudSapi\ComandoEliminarSolicitudMaterialSapi.cs" />
+    <Compile Include="Comandos\ComandosSolicitudSapi\ComandoInsertarOModificarSolicitudMaterialSapi.cs" />
     <Compile Include="Comandos\ComandosTarifa\ComandoConsultarTodosTarifas.cs" />
     <Compile Include="Comandos\ComandosTipoBase\ComandoConsultarTodosTiposBase.cs" />
     <Compile Include="Comandos\ComandosTipoBase\ComandoEliminarTipoBase.cs" />
@@ -494,6 +506,8 @@
     <Compile Include="Fabrica\FabricaComandosCamposReporte.cs" />
     <Compile Include="Fabrica\FabricaComandosCamposReporteRelacion.cs" />
     <Compile Include="Fabrica\FabricaComandosCertificadoMarca.cs" />
+    <Compile Include="Fabrica\FabricaComandosCompraSapi.cs" />
+    <Compile Include="Fabrica\FabricaComandosCompraSapiDetalle.cs" />
     <Compile Include="Fabrica\FabricaComandosContactoCxP.cs" />
     <Compile Include="Fabrica\FabricaComandosEmailAsociado.cs" />
     <Compile Include="Fabrica\FabricaComandosFechaMarca.cs" />
@@ -505,9 +519,11 @@
     <Compile Include="Fabrica\FabricaComandosInstruccionOtros.cs" />
     <Compile Include="Fabrica\FabricaComandosInteresadoPatente.cs" />
     <Compile Include="Fabrica\FabricaComandosMaestroDePlantilla.cs" />
+    <Compile Include="Fabrica\FabricaComandosMaterialSapi.cs" />
     <Compile Include="Fabrica\FabricaComandosPlantilla.cs" />
     <Compile Include="Fabrica\FabricaComandosRegistrador.cs" />
     <Compile Include="Fabrica\FabricaComandosReporte.cs" />
+    <Compile Include="Fabrica\FabricaComandosSolicitudSapi.cs" />
     <Compile Include="Fabrica\FabricaComandosTipoCaja.cs" />
     <Compile Include="Fabrica\FabricaComandosTipoDocumento.cs" />
     <Compile Include="Fabrica\FabricaComandosTipoEmailAsociado.cs" />

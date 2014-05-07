@@ -763,6 +763,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._dpkFechaTYR.Text = value; }
         }
 
+        public string ExpCambioPendiente
+        {
+            get { return this._txtCambioPendiente.Text; }
+            set { this._txtCambioPendiente.Text = value; }
+        }
+
         public void _chkTYR_Click(object sender, RoutedEventArgs e)
         {
             if (this._chkTYR.IsChecked.Value)

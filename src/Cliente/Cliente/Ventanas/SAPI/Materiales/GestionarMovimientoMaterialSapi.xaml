@@ -1,0 +1,155 @@
+﻿<Page x:Class="Trascend.Bolet.Cliente.Ventanas.SAPI.Materiales.GestionarMovimientoMaterialSapi"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
+      xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
+      xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
+      xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+	Title="GestionarMovimientoMaterialSapi" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Grid.Row="1" Grid.Column="1" BorderBrush="{x:Null}">
+            <StackPanel Name="_stkMovimientoMaterialSapi" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical" DataContext="{Binding}">
+
+                <!-- Datos de Encabezado del Movimiento de Materiales -->
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigo}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtIdMovimientoMaterial" Height="25" Width="100" IsEnabled="False" 
+                                       VerticalAlignment="Center" />
+                    
+                    <Label Margin="10,0,0,0">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
+                    </Label>
+                    <DatePicker   Name="_dpkFechaMovimientoMaterial" Focusable="False" BorderBrush="{x:Null}" 
+                                  VerticalAlignment="Center">
+                    </DatePicker>
+
+                    <Label Margin="8,0,0,0">
+                        <TextBlock  Text="{x:Static recurso:Etiquetas.lblTipoMovimiento}"/>
+                    </Label>
+                    <ComboBox IsEnabled="True" Name="_cbxTipoMovimiento" Height="25" VerticalAlignment="Center"
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" Width="100"/>
+
+                </WrapPanel>
+
+                <!-- Solicitante y Departamento -->
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblSolicitante}"/>
+                    </Label>
+                    <ComboBox IsEnabled="True" Name="_cbxSolicitanteMaterial" Height="25" VerticalAlignment="Center"
+                              ItemsSource="{Binding}" DisplayMemberPath="NombreCompleto" Width="200"/>
+                    <Label Margin="10,0,0,0">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblDepartamento}"/>
+                    </Label>
+                    <ComboBox IsEnabled="True" Name="_cbxDepartamento" Height="25" VerticalAlignment="Center"
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" Width="150"/>
+                </WrapPanel>
+
+                <!-- Materiales a Solicitar -->
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblMateriales}"/>
+                    </Label>
+                    <ComboBox IsEnabled="True" Name="_cbxMaterialesSapi" SelectedIndex="0" Height="25" VerticalAlignment="Center"
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" Width="200"/>
+                    <Button Name="_btnMas" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Margin="35,0,0,0"
+                            Click="_btnMas_Click">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.btnAgregarSimbolo}"></TextBlock>
+                    </Button>
+                    <Button Name="_btnMenos" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Margin="25 0 0 0"
+                            Click="_btnMenos_Click">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.btnEliminarSimbolo}"></TextBlock>
+                    </Button>
+                </WrapPanel>
+
+                <!-- WP Solicitud -->
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,5,0,0" 
+                           Visibility="Visible">
+                    <ListView Margin="30,10,0,0" Name="_lstDetalleSolicitud" ItemsSource="{Binding}" SelectionMode="Single" 
+                              VerticalAlignment="Top" Style="{DynamicResource EstiloListView}" Height="350" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="80">
+                                    <GridViewColumnHeader  Tag="=Material.Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Material.Id}" TextAlignment="Center" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Material.Descripcion}" Width="220">
+                                    <GridViewColumnHeader  Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                </GridViewColumn>
+
+                                <GridViewColumn Width="80">
+                                    <GridViewColumnHeader  Tag="Material.Existencia" 
+                                                           Content="{x:Static recurso:Etiquetas.lsvExistencia}"/>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Material.Existencia}" TextAlignment="Center" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Width="120">
+                                    <GridViewColumnHeader  Tag="CantMaterialSol" 
+                                                           Content="{x:Static recurso:Etiquetas.lsvCantidadSolicitada}"/>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <custom:ByTTextBox MaxLength="8" IsEnabled="True" FontSize="12"  
+                                                           HorizontalContentAlignment="Center" 
+                                                           Height="20" Width="45"
+                                                           Text="{Binding Path=CantMaterialSol}">
+                                            </custom:ByTTextBox>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    
+                    
+                </WrapPanel>
+              
+            </StackPanel>
+        </GroupBox>
+
+        <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" 
+                   Orientation="Horizontal">
+            <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" IsDefault="True" 
+                    Click="_btnAceptar_Click">
+                <TextBlock Name="_txbAceptar" Text="{x:Static recurso:Etiquetas.btnAceptar}"/>
+            </Button>
+            <Button Name="_btnEliminar" VerticalAlignment="Bottom" Height="25" Width="90" Visibility="Collapsed" 
+                    Click="_btnEliminar_Click">
+                <TextBlock Name="_txbEliminar" Text="{x:Static recurso:Etiquetas.btnEliminar}"/>
+            </Button>
+            <Button Name="_btnCancelar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnCancelar_Click">
+                Cancelar
+            </Button>
+        </WrapPanel>
+
+    </Grid>
+    
+    
+    
+</Page>

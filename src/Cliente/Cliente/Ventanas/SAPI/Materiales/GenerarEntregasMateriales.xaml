@@ -1,0 +1,246 @@
+﻿<Page x:Class="Trascend.Bolet.Cliente.Ventanas.SAPI.Materiales.GenerarEntregasMateriales"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
+      xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+	Title="GenerarEntregasMateriales" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Grid.Column="0" Grid.Row="0" Margin="5" Height="35" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label>
+                    <TextBlock FontSize="15" Text="{x:Static recurso:Etiquetas.lblTotalHits}"/>
+                </Label>
+                <Label>
+                    <TextBlock FontSize="15" Name="_lblHits"/>
+                </Label>
+
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Grid.Column="0" Grid.Row="0" Margin="5">
+            <StackPanel Name="_splFiltro"  VerticalAlignment="Center" DataContext="{Binding}" >
+
+                <!-- Fecha de Solicitud -->
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="45,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaSolicitud}"/>
+                    </Label>
+                    <DatePicker Name="_dpkFechaSolicitudSapi" Width="150" Focusable="False" BorderBrush="{x:Null}">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="FechaSolicitud" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                </WrapPanel>
+
+                <!-- Departamento -->
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblDepartamento}"/>
+                    </Label>
+                    <ComboBox Grid.Column="4" Grid.Row="0" Name="_cbxDptoSolicitudSapi" HorizontalAlignment="Left" 
+                              Width="200" ItemsSource="{Binding}" DisplayMemberPath="Descripcion">
+
+                    </ComboBox>
+                </WrapPanel>
+
+                <!-- Usuario -->
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblUsuarioLogueado}"/>
+                    </Label>
+                    <ComboBox Grid.Column="4" Grid.Row="0" Name="_cbxUsuarioSolicitudSapi" HorizontalAlignment="Left" 
+                              Width="200" ItemsSource="{Binding}" DisplayMemberPath="NombreCompleto">
+
+                    </ComboBox>
+                </WrapPanel>
+
+                <!-- Tipo de Movimiento -->
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblStatus}"/>
+                    </Label>
+                    <ComboBox Grid.Column="4" Grid.Row="0" Name="_cbxStatusSolicitudSapi" HorizontalAlignment="Left" 
+                              Width="200" ItemsSource="{Binding}" DisplayMemberPath="Descripcion">
+
+                    </ComboBox>
+                </WrapPanel>
+
+                <Separator Margin="0,5,0,5"/>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,5">
+                    <Button Name="_btnConsultar" Width="100" IsDefault="True" Click="_btnConsultar_Click">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                    </Button>
+                </WrapPanel>
+                <Separator Margin="0,5,0,5"/>
+
+            </StackPanel>
+        </GroupBox>
+
+        <!--Resultados-->
+        <GroupBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Margin="5">
+            <ListView Name="_lstResultados" ItemsSource="{Binding}" SelectionMode="Single" 
+                      Style="{DynamicResource EstiloListView}">
+                <ListView.View>
+                    <GridView>
+
+                        <GridViewColumn Header="{x:Static recurso:Etiquetas.lsvMaterialSolicitado}" Width="80" >
+                            <GridViewColumn.CellTemplate >
+                                <DataTemplate>
+                                    <CheckBox Tag="BSolicitado" IsChecked="{Binding Path=BSolicitado}" IsHitTestVisible="False"
+                                              HorizontalAlignment="Center" Focusable="False" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="{x:Static recurso:Etiquetas.lsvMaterialEntregado}" Width="80" >
+                            <GridViewColumn.CellTemplate >
+                                <DataTemplate>
+                                    <CheckBox Tag="BEntregado" IsChecked="{Binding Path=BEntregado}" 
+                                              HorizontalAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="{x:Static recurso:Etiquetas.lsvMaterialRecibido}" Width="80" >
+                            <GridViewColumn.CellTemplate >
+                                <DataTemplate>
+                                    <CheckBox Tag="BRecibido" IsChecked="{Binding Path=BRecibido}" 
+                                              HorizontalAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+
+                        <!--<GridViewColumn Width="120" >
+                            <GridViewColumnHeader Tag="Id" Click="_Ordenar_Click"
+                                                  Content="Cod. Movimiento"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Id}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>-->
+
+
+                        <GridViewColumn Width="120" >
+                            <GridViewColumnHeader Tag="FechaSolicitud" Click="_Ordenar_Click"
+                                                  Content="{x:Static recurso:Etiquetas.lsvFechaSolicitud}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=FechaSolicitud, StringFormat={}{0:dd/MM/yyyy}}"
+                                               TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="150">
+                            <GridViewColumnHeader Tag="Departamento.Descripcion" Click="_Ordenar_Click"
+                                                  Content="{x:Static recurso:Etiquetas.lsvDepartamento}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Departamento.Descripcion}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="120">
+                            <GridViewColumnHeader Tag="SolicitanteInic" Click="_Ordenar_Click"
+                                                  Content="{x:Static recurso:Etiquetas.lsvIniciales}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=SolicitanteInic}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="120">
+                            <GridViewColumnHeader Tag="Material.Id" Click="_Ordenar_Click"
+                                                  Content="{x:Static recurso:Etiquetas.lsvCodigoMaterial}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Material.Id}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Material.Descripcion}" Width="200">
+                            <GridViewColumnHeader Tag="Descripcion" Click="_Ordenar_Click"
+                                                  Content="{x:Static recurso:Etiquetas.lsvDescripcionMaterial}"/>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="120">
+                            <GridViewColumnHeader Tag="CantMaterialSol" Click="_Ordenar_Click"
+                                                  Content="{x:Static recurso:Etiquetas.lsvCantidadSolicitada}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=CantMaterialSol}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="120" >
+                            <GridViewColumnHeader Tag="FechaEntrega" Click="_Ordenar_Click"
+                                                  Content="{x:Static recurso:Etiquetas.lsvFechaEntrega}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=FechaEntrega, StringFormat={}{0:dd/MM/yyyy}}"
+                                               TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="120" >
+                            <GridViewColumnHeader Tag="FechaRecepcion" Click="_Ordenar_Click"
+                                                  Content="{x:Static recurso:Etiquetas.lsvFechaRecepcion}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=FechaRecepcion, StringFormat={}{0:dd/MM/yyyy}}"
+                                               TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+
+
+        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
+
+                <Button Name="_btnRecibirMaterial" Width="110" Height="25" Visibility="Collapsed"
+                        Click="_btnRecibirMaterial_Click">
+                    Recibir Materiales
+                </Button>
+                <Button Name="_btnEntregarMaterial" Width="110" Height="25" Click="_btnEntregarMaterial_Click">
+                    Entregar Materiales
+                </Button>
+                <Button Name="_btnLimpiarCampos" Width="100" Height="25" 
+                        Click="_btnLimpiarCampos_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnLimpiarCampos}"/>
+                </Button>
+                <Button Name="_btnCancelar" Width="100" Height="25" Click="_btnCancelar_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnCancelar}"/>
+                </Button>
+            </StackPanel>
+        </GroupBox>
+
+    </Grid>
+</Page>

@@ -50,6 +50,8 @@
     <Compile Include="ContratosServicios\ICamposReporteRelacionServicios.cs" />
     <Compile Include="ContratosServicios\ICamposReporteServicios.cs" />
     <Compile Include="ContratosServicios\ICertificadoMarcaServicios.cs" />
+    <Compile Include="ContratosServicios\ICompraSapiDetalleServicios.cs" />
+    <Compile Include="ContratosServicios\ICompraSapiServicios.cs" />
     <Compile Include="ContratosServicios\IContactoCxPServicios.cs" />
     <Compile Include="ContratosServicios\IEmailAsociadoServicios.cs" />
     <Compile Include="ContratosServicios\IFechaMarcaServicios.cs" />
@@ -61,12 +63,14 @@
     <Compile Include="ContratosServicios\IInstruccionOtrosServicios.cs" />
     <Compile Include="ContratosServicios\IInteresadoPatenteServicios.cs" />
     <Compile Include="ContratosServicios\IMaestroDePlantillaServicios.cs" />
+    <Compile Include="ContratosServicios\IMaterialSapiServicios.cs" />
     <Compile Include="ContratosServicios\IPlantillaServicios.cs" />
     <Compile Include="ContratosServicios\IRegistradorServicios.cs" />
     <Compile Include="ContratosServicios\IReporteServicios.cs" />
     <Compile Include="ContratosServicios\ISeguimientoClientesServicios.cs" />
     <Compile Include="ContratosServicios\ISeguimientoCxPInternacionalServicios.cs" />
     <Compile Include="ContratosServicios\ISeguimientoDeCobranzasServicios.cs" />
+    <Compile Include="ContratosServicios\ISolicitudSapiServicios.cs" />
     <Compile Include="ContratosServicios\ITipoCajaServicios.cs" />
     <Compile Include="ContratosServicios\ITipoDocumentoServicios.cs" />
     <Compile Include="ContratosServicios\ITipoEmailAsociadoServicios.cs" />
@@ -158,6 +162,8 @@
     <Compile Include="Entidades\CamposReporte.cs" />
     <Compile Include="Entidades\CamposReporteRelacion.cs" />
     <Compile Include="Entidades\CertificadoMarca.cs" />
+    <Compile Include="Entidades\CompraSapi.cs" />
+    <Compile Include="Entidades\CompraSapiDetalle.cs" />
     <Compile Include="Entidades\Concepto.cs" />
     <Compile Include="Entidades\Conectividad.cs" />
     <Compile Include="Entidades\Contacto.cs" />
@@ -247,10 +253,12 @@
     <Compile Include="Entidades\InstruccionOtros.cs" />
     <Compile Include="Entidades\InteresadoPatente.cs" />
     <Compile Include="Entidades\MaestroDePlantilla.cs" />
+    <Compile Include="Entidades\MaterialSapi.cs" />
     <Compile Include="Entidades\OrdenReporte.cs" />
     <Compile Include="Entidades\Plantilla.cs" />
     <Compile Include="Entidades\Registrador.cs" />
     <Compile Include="Entidades\Reporte.cs" />
+    <Compile Include="Entidades\SolicitudSapi.cs" />
     <Compile Include="Entidades\TipoCaja.cs" />
     <Compile Include="Entidades\TipoDocumento.cs" />
     <Compile Include="Entidades\TipoEmailAsociado.cs" />

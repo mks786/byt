@@ -64,6 +64,46 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
 
 
         /// <summary>
+        /// Método que devuelve el DaoMaterialSapi
+        /// </summary>
+        /// <returns>IDaoMaterialSapi</returns>
+        public override IDaoMaterialSapi ObtenerDaoMaterialSapi()
+        {
+            return new DaoMaterialSapiNHibernate();
+        }
+
+
+        /// <summary>
+        /// Método que devuelve el DaoCompraSapi
+        /// </summary>
+        /// <returns>IDaoCompraSapi</returns>
+        public override IDaoCompraSapi ObtenerDaoCompraSapi()
+        {
+            return new DaoCompraSapiNHibernate();
+        }
+
+
+        /// <summary>
+        /// Método que devuelve el DaoSolicitudSapi
+        /// </summary>
+        /// <returns>IDaoSolicitudSapi</returns>
+        public override IDaoSolicitudSapi ObtenerDaoSolicitudSapi()
+        {
+            return new DaoSolicitudSapiNHibernate();
+        }
+
+
+        /// <summary>
+        /// Método que devuelve el DaoCompraSapiDetalle
+        /// </summary>
+        /// <returns>IDaoCompraSapiDetalle</returns>
+        public override IDaoCompraSapiDetalle ObtenerDaoCompraSapiDetalle()
+        {
+            return new DaoCompraSapiDetalleNHibernate();
+        }
+
+
+        /// <summary>
         /// Método que devuelve el DaoEstado
         /// </summary>
         /// <returns>IDaoEstado</returns>

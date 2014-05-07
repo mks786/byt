@@ -190,6 +190,12 @@
     <Compile Include="Contratos\ReportesMaestro\IGestionarReporte.cs" />
     <Compile Include="Contratos\ReportesMaestro\IGestionarValoresFiltrosDeReporte.cs" />
     <Compile Include="Contratos\ReportesMaestro\IVisualizarReporte.cs" />
+    <Compile Include="Contratos\SAPI\Materiales\IConsultarComprasMateriales.cs" />
+    <Compile Include="Contratos\SAPI\Materiales\IConsultarExistenciaMaterial.cs" />
+    <Compile Include="Contratos\SAPI\Materiales\IConsultarSolicitudesMateriales.cs" />
+    <Compile Include="Contratos\SAPI\Materiales\IGenerarEntregasMateriales.cs" />
+    <Compile Include="Contratos\SAPI\Materiales\IGestionarCompraMaterialesSapi.cs" />
+    <Compile Include="Contratos\SAPI\Materiales\IGestionarMovimientoMaterialSapi.cs" />
     <Compile Include="Contratos\TiposEmailAsociado\IGestionarTipoEmailAsociado.cs" />
     <Compile Include="Contratos\TiposEmailAsociado\IConsultarTiposEmailAsociado.cs" />
     <Compile Include="Contratos\Corresponsales\IAgregarCorresponsal.cs" />
@@ -666,6 +672,12 @@
     <Compile Include="Presentadores\ReportesMaestro\PresentadorGestionarReporte.cs" />
     <Compile Include="Presentadores\ReportesMaestro\PresentadorGestionarValoresFiltrosDeReporte.cs" />
     <Compile Include="Presentadores\ReportesMaestro\PresentadorVisualizarReporte.cs" />
+    <Compile Include="Presentadores\SAPI\Materiales\PresentadorConsultarComprasMateriales.cs" />
+    <Compile Include="Presentadores\SAPI\Materiales\PresentadorConsultarExistenciaMaterial.cs" />
+    <Compile Include="Presentadores\SAPI\Materiales\PresentadorConsultarSolicitudesMateriales.cs" />
+    <Compile Include="Presentadores\SAPI\Materiales\PresentadorGenerarEntregasMateriales.cs" />
+    <Compile Include="Presentadores\SAPI\Materiales\PresentadorGestionarCompraMaterialesSapi.cs" />
+    <Compile Include="Presentadores\SAPI\Materiales\PresentadorGestionarMovimientoMaterialSapi.cs" />
     <Compile Include="Presentadores\TiposEmailAsociado\PresentadorGestionarTipoEmailAsociado.cs" />
     <Compile Include="Presentadores\TiposEmailAsociado\PresentadorConsultarTiposEmailAsociado.cs" />
     <Compile Include="Presentadores\Corresponsales\PresentadorAgregarCorresponsal.cs" />
@@ -1276,6 +1288,24 @@
     </Compile>
     <Compile Include="Ventanas\ReportesMaestro\VisualizarReporte.xaml.cs">
       <DependentUpon>VisualizarReporte.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\SAPI\Materiales\ConsultarComprasMateriales.xaml.cs">
+      <DependentUpon>ConsultarComprasMateriales.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\SAPI\Materiales\ConsultarExistenciaMaterial.xaml.cs">
+      <DependentUpon>ConsultarExistenciaMaterial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\SAPI\Materiales\ConsultarSolicitudesMateriales.xaml.cs">
+      <DependentUpon>ConsultarSolicitudesMateriales.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\SAPI\Materiales\GenerarEntregasMateriales.xaml.cs">
+      <DependentUpon>GenerarEntregasMateriales.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\SAPI\Materiales\GestionarCompraMaterialesSapi.xaml.cs">
+      <DependentUpon>GestionarCompraMaterialesSapi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\SAPI\Materiales\GestionarMovimientoMaterialSapi.xaml.cs">
+      <DependentUpon>GestionarMovimientoMaterialSapi.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\TiposEmailAsociado\ConsultarTiposEmailAsociado.xaml.cs">
       <DependentUpon>ConsultarTiposEmailAsociado.xaml</DependentUpon>
@@ -2171,6 +2201,30 @@
     <Page Include="Ventanas\ReportesMaestro\VisualizarReporte.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\SAPI\Materiales\ConsultarComprasMateriales.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\SAPI\Materiales\ConsultarExistenciaMaterial.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\SAPI\Materiales\ConsultarSolicitudesMateriales.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\SAPI\Materiales\GenerarEntregasMateriales.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\SAPI\Materiales\GestionarCompraMaterialesSapi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\SAPI\Materiales\GestionarMovimientoMaterialSapi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\TiposEmailAsociado\ConsultarTiposEmailAsociado.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -3415,7 +3469,14 @@
   <ItemGroup>
     <Resource Include="images\buscar.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Contratos\SAPI\Maestros\" />
+    <Folder Include="Contratos\SAPI\Presentaciones\" />
+    <Folder Include="Presentadores\SAPI\Maestros\" />
+    <Folder Include="Presentadores\SAPI\Presentaciones\" />
+    <Folder Include="Ventanas\SAPI\Maestros\" />
+    <Folder Include="Ventanas\SAPI\Presentaciones\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

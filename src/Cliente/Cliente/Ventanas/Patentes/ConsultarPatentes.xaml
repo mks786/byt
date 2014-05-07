@@ -518,7 +518,18 @@
                                 </DatePicker.SelectedDate>
                             </custom:ByTDatePicker>
                             
+                            
+                            
                         </WrapPanel>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label Name="_lblExpCambioPend">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblExpCambioPend}"/>
+                            </Label>
+                            <custom:ByTTextBox Name="_txtCambioPendiente" Width="150" MaxLength="50" SoloNumero="False" Filtro="True" 
+                                               GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" 
+                                               Text="{Binding Path=ExpCambioPendiente}" />
+                        </WrapPanel>
+                        
 
                     </StackPanel>
 

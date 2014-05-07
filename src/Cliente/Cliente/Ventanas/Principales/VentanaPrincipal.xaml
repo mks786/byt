@@ -641,8 +641,63 @@
                 </MenuItem>
             </MenuItem>
             <!--Fin Facturacion-->
-                 
             
+            <!-- SAPI -->
+            <MenuItem Name="_menuItemSapi" Header="{x:Static resx:Etiquetas.menuItemSapi}">
+                <MenuItem Name="_menuItemSapiMaestros" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemMaestros}">
+                    <MenuItem Name="_menuItemSapiMaestrosTipoMaterial" Visibility="Collapsed" 
+                              Header="{x:Static resx:Etiquetas.menuItemMaestrosSapiTipoMaterial}">
+                        <MenuItem Name="_menuItemSapiMaestrosTipoMaterialConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}"/>
+                        <MenuItem Name="_menuItemSapiMaestrosTipoMaterialAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}"/>
+                    </MenuItem>
+                    <MenuItem Name="_menuItemSapiMaestrosMaterial" Visibility="Collapsed" 
+                              Header="{x:Static resx:Etiquetas.menuItemMaestrosSapiMaterial}">
+                        <MenuItem Name="_menuItemSapiMaestrosMaterialConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}"/>
+                        <MenuItem Name="_menuItemSapiMaestrosMaterialAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}"/>
+                    </MenuItem>
+                    <MenuItem Name="_menuItemSapiMaestrosTarifaMaterial" Visibility="Collapsed" 
+                              Header="{x:Static resx:Etiquetas.menuItemMaestrosSapiTarifaMaterial}">
+                        <MenuItem Name="_menuItemSapiMaestrosTarifaMaterialConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}"/>
+                        <MenuItem Name="_menuItemSapiMaestrosTarifaMaterialAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}"/>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Name="_menuItemSapiMateriales" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemMateriales}">
+                    <MenuItem Name="_menuItemSapiMaterialesControlExistencias" Visibility="Collapsed" 
+                              Header="{x:Static resx:Etiquetas.menuItemMaterialesControlExistencias}" 
+                              Click="_menuItemSapiMaterialesControlExistencias_Click"/>
+                    
+                    <MenuItem Name="_menuItemSapiMaterialesCompras" Visibility="Collapsed" 
+                              Header="{x:Static resx:Etiquetas.menuItemSapiMaterialesCompras}">
+                        <MenuItem Name="_menuItemSapiMaterialesRegistroCompras" 
+                                  Header="{x:Static resx:Etiquetas.menuItemSapiMaterialesComprasRegistro}" 
+                                  Click="_menuItemSapiMaterialesRegistroCompras_Click"/>
+                        <MenuItem Name="_menuItemSapiMaterialesConsultaCompras" 
+                                  Header="{x:Static resx:Etiquetas.menuItemSapiMaterialesComprasConsulta}" 
+                                  Click="_menuItemSapiMaterialesConsultaCompras_Click"/>
+                    </MenuItem>
+                    
+                    <MenuItem Name="_menuItemSapiMaterialesSolicitudes" Visibility="Collapsed" 
+                              Header="{x:Static resx:Etiquetas.menuItemSapiSolicitudes}">
+                        <MenuItem Name="_menuItemSapiMaterialesGenerarSolicitud" 
+                                  Header="{x:Static resx:Etiquetas.menuItemSapiSolicitudesGenerar}" 
+                                  Click="_menuItemSapiMaterialesGenerarSolicitud_Click" />
+                        <MenuItem Name="menuItemSapiSolicitudesConsultar" 
+                                  Header="{x:Static resx:Etiquetas.menuItemSapiSolicitudesConsultar}" 
+                                  Click="menuItemSapiSolicitudesConsultar_Click"/>
+                    </MenuItem>
+                    
+                    <MenuItem Name="_menuItemSapiEntregaMaterial" Visibility="Collapsed" 
+                              Header="{x:Static resx:Etiquetas.menuItemSapiEntregaMateriales}" Click="_menuItemSapiEntregaMaterial_Click"/>
+                </MenuItem>
+                <MenuItem Name="_menuItemSapiPresentaciones" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemPresentacion}">
+
+                </MenuItem>
+
+            </MenuItem>
+
+            <!-- Fin SAPI -->
+
+
             <MenuItem Name="_menuItemAyuda" Header="{x:Static resx:Etiquetas.menuItemAyuda}">
                 <MenuItem Name="_menuItemAyudaAcerca" Header="{x:Static resx:Etiquetas.menuItemAyudaAcerca}" ></MenuItem>
             </MenuItem>
