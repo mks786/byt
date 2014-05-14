@@ -687,10 +687,27 @@
                     </MenuItem>
                     
                     <MenuItem Name="_menuItemSapiEntregaMaterial" Visibility="Collapsed" 
-                              Header="{x:Static resx:Etiquetas.menuItemSapiEntregaMateriales}" Click="_menuItemSapiEntregaMaterial_Click"/>
+                              Header="{x:Static resx:Etiquetas.menuItemSapiEntregaMateriales}" 
+                              Click="_menuItemSapiEntregaMaterial_Click"/>
                 </MenuItem>
-                <MenuItem Name="_menuItemSapiPresentaciones" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemPresentacion}">
-
+                
+                <MenuItem Name="_menuItemSapiPresentaciones" Visibility="Collapsed" 
+                          Header="{x:Static resx:Etiquetas.menuItemPresentacion}">
+                    <MenuItem Name="_menuItemSapiPresentacionRegistro" Visibility="Collapsed" 
+                              Header="{x:Static resx:Etiquetas.menuItemSapiPresentacionRegistro}">
+                        <MenuItem Name="_menuItemSapiPresentacionGenerarSolicitudPresentacion" 
+                                  Header="{x:Static resx:Etiquetas.menuItemSapiPresentRegGenerarSolicitud}" 
+                                  Click="_menuItemSapiPresentacionGenerarSolicitudPresentacion_Click"/>
+                        <MenuItem Name="_menuItemSapiPresentacionConsultaSolicitudPresentacion" 
+                                  Header="{x:Static resx:Etiquetas.menuItemSapiPresentRegConsultar}" 
+                                  Click="_menuItemSapiPresentacionConsultaSolicitudPresentacion_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="_menuItemSapPresentacionControl" Visibility="Collapsed" 
+                              Header="{x:Static resx:Etiquetas.menuItemSapiControlPresentaciones}">
+                        <MenuItem Name="_menuItemSapPresentacionControlRegistroEventos" 
+                                  Header="{x:Static resx:Etiquetas.menuItemSapiControlPresentRegistro}" 
+                                  Click="_menuItemSapPresentacionControlRegistroEventos_Click"/>
+                    </MenuItem>
                 </MenuItem>
 
             </MenuItem>

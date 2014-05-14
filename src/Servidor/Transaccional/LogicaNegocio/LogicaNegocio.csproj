@@ -73,6 +73,8 @@
     <Compile Include="Controladores\ControladorMaterialSapi.cs" />
     <Compile Include="Controladores\ControladorObjeto.cs" />
     <Compile Include="Controladores\ControladorPlantilla.cs" />
+    <Compile Include="Controladores\ControladorPresentacionSapi.cs" />
+    <Compile Include="Controladores\ControladorPresentacionSapiDetalle.cs" />
     <Compile Include="Controladores\ControladorRegistrador.cs" />
     <Compile Include="Controladores\ControladorReporte.cs" />
     <Compile Include="Controladores\ControladorSolicitudSapi.cs" />

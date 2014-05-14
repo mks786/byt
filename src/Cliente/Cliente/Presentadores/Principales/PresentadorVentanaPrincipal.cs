@@ -71,6 +71,7 @@ using Trascend.Bolet.Cliente.Ventanas.Plantillas;
 using Trascend.Bolet.Cliente.Ventanas.ReportesMaestro;
 using Trascend.Bolet.Cliente.Ventanas.CadenaDeCambio;
 using Trascend.Bolet.Cliente.Ventanas.SAPI.Materiales;
+using Trascend.Bolet.Cliente.Ventanas.SAPI.Presentaciones;
 using System.Diagnostics;
 using System.Collections.Generic;
 
@@ -2098,6 +2099,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                         break;
                                     #endregion
 
+                                    #region Item Internos de Submenu SAPI - PRESENTACIONES
+                                    case "_menuItemSapiPresentacionRegistro":
+                                        if (objeto.Id.Equals(Recursos.Ids.RegistroSolicitudPresentacion))
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        break;
+                                    case "_menuItemSapPresentacionControl":
+                                        if (objeto.Id.Equals(Recursos.Ids.ControlPresentaciones))
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        break;
+
+                                    #endregion
                             
 
                                 }
@@ -2620,6 +2632,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         public void GenerarEntregasMaterialesSapi()
         {
             Navegar(new GenerarEntregasMateriales());
+        }
+
+        public void GenerarSolicitudPresentacionSapi()
+        {
+            Navegar(new GestionarSolicitudPresentacion());
+        }
+
+        public void ConsultarSolicitudesPresentacionSapi()
+        {
+            Navegar(new ConsultarPresentacionesSapi());
+        }
+
+        public void RegistrarEventosPresentacionSAPI()
+        {
+            Navegar(new ControlarSolicitudesPresentaciones());
         }
     }
 }

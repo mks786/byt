@@ -89,6 +89,8 @@
     <Compile Include="Contrato\IDaoMaestroDePlantilla.cs" />
     <Compile Include="Contrato\IDaoMaterialSapi.cs" />
     <Compile Include="Contrato\IDaoPlantilla.cs" />
+    <Compile Include="Contrato\IDaoPresentacionSapi.cs" />
+    <Compile Include="Contrato\IDaoPresentacionSapiDetalle.cs" />
     <Compile Include="Contrato\IDaoRegistrador.cs" />
     <Compile Include="Contrato\IDaoReporte.cs" />
     <Compile Include="Contrato\IDaoSolicitudSapi.cs" />
@@ -203,6 +205,8 @@
     <Compile Include="Dao\NHibernate\DaoMaestroDePlantillaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoMaterialSapiNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoPlantillaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoPresentacionSapiDetalleNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoPresentacionSapiNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoRegistradorNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoReporteNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoSolicitudSapiNHibernate.cs" />
@@ -846,6 +850,14 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapeado\SolicitudSapi.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\PresentacionSapi.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\PresentacionSapiDetalle.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

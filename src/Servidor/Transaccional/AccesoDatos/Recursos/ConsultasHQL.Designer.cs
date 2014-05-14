@@ -385,6 +385,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Select p from PresentacionSapiDetalle p left outer join fetch p.Presentacion_Enc as encabezado left outer join fetch p.Material as documento where .
+        /// </summary>
+        public static string CabeceraObtenerPresentacionSapiDetalle {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerPresentacionSapiDetalle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Select r from RecordatorioVista r left join fetch r.Asociado as asociado left join fetch r.Marca as marca left join fetch asociado.Pais as pais where r.Localidad = &apos;{0}&apos; and .
         /// </summary>
         public static string CabeceraObtenerRecordatorioVista {
@@ -1074,6 +1083,87 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerDetalleCompraSapiIdMaterial {
             get {
                 return ResourceManager.GetString("FiltroObtenerDetalleCompraSapiIdMaterial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a documento.Id = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerDetallePresentacionSapiDocumento {
+            get {
+                return ResourceManager.GetString("FiltroObtenerDetallePresentacionSapiDocumento", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a encabezado.Departamento.Id = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerDetallePresentacionSapiDpto {
+            get {
+                return ResourceManager.GetString("FiltroObtenerDetallePresentacionSapiDpto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a p.CodExpediente = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerDetallePresentacionSapiExpediente {
+            get {
+                return ResourceManager.GetString("FiltroObtenerDetallePresentacionSapiExpediente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a p.Presentacion_Enc.Fecha = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerDetallePresentacionSapiFecha {
+            get {
+                return ResourceManager.GetString("FiltroObtenerDetallePresentacionSapiFecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a p.FechaPres_Gestor2 = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerDetallePresentacionSapiFechaPresentASapi {
+            get {
+                return ResourceManager.GetString("FiltroObtenerDetallePresentacionSapiFechaPresentASapi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a p.ReceptorMatPresent = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerDetallePresentacionSapiGestor1 {
+            get {
+                return ResourceManager.GetString("FiltroObtenerDetallePresentacionSapiGestor1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a encabezado.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerDetallePresentacionSapiIdEnc {
+            get {
+                return ResourceManager.GetString("FiltroObtenerDetallePresentacionSapiIdEnc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a encabezado.Iniciales = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerDetallePresentacionSapiIniciales {
+            get {
+                return ResourceManager.GetString("FiltroObtenerDetallePresentacionSapiIniciales", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a p.StatusDocumento = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerDetallePresentacionSapiStatusDoc {
+            get {
+                return ResourceManager.GetString("FiltroObtenerDetallePresentacionSapiStatusDoc", resourceCulture);
             }
         }
         

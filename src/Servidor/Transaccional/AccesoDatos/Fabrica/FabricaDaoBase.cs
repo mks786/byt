@@ -56,6 +56,20 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
 
 
         /// <summary>
+        /// Método que devuelve el DaoPresentacionSapi del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoPresentacionSapi</returns>
+        public abstract IDaoPresentacionSapi ObtenerDaoPresentacionSapi();
+
+
+        /// <summary>
+        /// Método que devuelve el DaoPresentacionSapiDetalle del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoPresentacionSapiDEtalle</returns>
+        public abstract IDaoPresentacionSapiDetalle ObtenerDaoPresentacionSapiDetalle();
+
+
+        /// <summary>
         /// Método que devuelve el DaoSolicitudSapi del manejador que se esté utilizando
         /// </summary>
         /// <returns>IDaoSolicitudSapi</returns>

@@ -4596,4 +4596,106 @@ en Prensa:</value>
   <data name="lsvFechaRecepcion" xml:space="preserve">
     <value>F. Recepción</value>
   </data>
+  <data name="menuItemSapiPresentacionRegistro" xml:space="preserve">
+    <value>Registro de Presentaciones</value>
+  </data>
+  <data name="menuItemSapiPresentRegConsultar" xml:space="preserve">
+    <value>Consulta Solicitudes Presentación</value>
+  </data>
+  <data name="menuItemSapiPresentRegGenerarSolicitud" xml:space="preserve">
+    <value>Generar Solicitud Presentación</value>
+  </data>
+  <data name="titleGestionarSolicitudPresentacionSAPI" xml:space="preserve">
+    <value>Registro de Solicitud de Presentacion SAPI</value>
+  </data>
+  <data name="cbiStatusDocumentoPresentacionSAPI" xml:space="preserve">
+    <value>SAPI_STATUS_DOC_PRE</value>
+  </data>
+  <data name="lblCantidadDocumentos" xml:space="preserve">
+    <value>Cantidad de Documentos: </value>
+  </data>
+  <data name="lsvCodigoExpediente" xml:space="preserve">
+    <value>Cod. Expediente</value>
+  </data>
+  <data name="lsvDocumento" xml:space="preserve">
+    <value>Documento</value>
+  </data>
+  <data name="lsvStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="lblCodigoExpediente" xml:space="preserve">
+    <value>Código de Expediente: </value>
+  </data>
+  <data name="titleConsultarPresentacionesSapi" xml:space="preserve">
+    <value>Consulta de Solicitudes de Presentacion SAPI</value>
+  </data>
+  <data name="btnConfirmarPresentacionAnteSAPI" xml:space="preserve">
+    <value>Presentación en SAPI</value>
+  </data>
+  <data name="btnRecepcionDeSAPI" xml:space="preserve">
+    <value>Recepción de SAPI</value>
+  </data>
+  <data name="btnRecepcionDpto" xml:space="preserve">
+    <value>Recepción en Dpto</value>
+  </data>
+  <data name="btnRecibidaPorGestor" xml:space="preserve">
+    <value>Recepción Gestor</value>
+  </data>
+  <data name="lblFechaSolicitudSAPI" xml:space="preserve">
+    <value>Fecha de Solicitud :</value>
+  </data>
+  <data name="lblGestor" xml:space="preserve">
+    <value>Gestor :</value>
+  </data>
+  <data name="lsvCodigoDocumento" xml:space="preserve">
+    <value>Cód Documento</value>
+  </data>
+  <data name="lsvCodigoSolicitudPresentacionSAPI" xml:space="preserve">
+    <value>Cód Solicitud</value>
+  </data>
+  <data name="lsvFechaPresentacionSAPI" xml:space="preserve">
+    <value>Fecha Presentación</value>
+  </data>
+  <data name="lsvFechaRecepcionSAPI" xml:space="preserve">
+    <value>Fecha Recepción</value>
+  </data>
+  <data name="lsvFechaSolicitudPresentSAPI" xml:space="preserve">
+    <value>Fecha Solicitud</value>
+  </data>
+  <data name="lsvTipoDocumento" xml:space="preserve">
+    <value>Tipo Documento</value>
+  </data>
+  <data name="menuItemSapiControlPresentaciones" xml:space="preserve">
+    <value>Control Presentaciones</value>
+  </data>
+  <data name="menuItemSapiControlPresentRegistro" xml:space="preserve">
+    <value>Registrar Eventos</value>
+  </data>
+  <data name="lblFechaPresentacionSAPI" xml:space="preserve">
+    <value>Fecha Presentacion de Documentos a SAPI:</value>
+  </data>
+  <data name="lblFechaRecepcionDocumentos" xml:space="preserve">
+    <value>Fecha Recepción de Documentos:</value>
+  </data>
+  <data name="lblFechaRecepcionDpto" xml:space="preserve">
+    <value>Fecha de Recepción en Dpto:</value>
+  </data>
+  <data name="lblFechaRecepcionSAPI" xml:space="preserve">
+    <value>Fecha Recepción de Documentos de SAPI:</value>
+  </data>
+  <data name="lsvPresentadoEnSapi" xml:space="preserve">
+    <value>Presentado SAPI</value>
+  </data>
+  <data name="lsvRecibdoDpto" xml:space="preserve">
+    <value>Recibido Dpto</value>
+  </data>
+  <data name="lsvRecibidoPorGestor" xml:space="preserve">
+    <value>Recibido Gestor</value>
+  </data>
+  <data name="lsvRecibodDeSapi" xml:space="preserve">
+    <value>Recibido SAPI</value>
+  </data>
+  <data name="titleControlarPresentacionSAPI" xml:space="preserve">
+    <value>Registro de Eventos Presentacion SAPI</value>
+  </data>
 </root>

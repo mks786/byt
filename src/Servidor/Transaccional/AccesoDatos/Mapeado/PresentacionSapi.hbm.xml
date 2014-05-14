@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="PresentacionSapi" table="SAPI_PRESENTACION_ENC">
+    <id name="Id" column="CSOLICITUD" />
+    <property name="Fecha" column="FSOLICITUD" type="DateTime"/>
+    <property name="Iniciales" column="XINICIAL" type="string"/>
+    <property name="CantDocumentos" column="CANT_DOCS" type="int"/>
+    <many-to-one name="Departamento" class="Departamento" lazy="false">
+      <column name="CODDPTO"/>
+    </many-to-one>
+  </class>
+</hibernate-mapping>

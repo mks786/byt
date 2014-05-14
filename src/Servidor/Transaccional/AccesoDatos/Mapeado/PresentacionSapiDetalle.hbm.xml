@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="PresentacionSapiDetalle" table="SAPI_PRESENTACION_DET">
+
+    <composite-id>
+      <key-many-to-one name="Presentacion_Enc" column="CSOLICITUD" class="PresentacionSapi" lazy="false"/>
+      <key-many-to-one name="Material" column="CMATERIAL" class="MaterialSapi" lazy="false"/>
+    </composite-id>
+
+    <property name="CodExpediente" column="COD_EXP" type="string"/>
+    <property name="StatusDocumento" column="STATUS_DOC" type="string"/>
+    <property name="ReceptorMatPresent" column="GESTOR1" type="string"/>
+    <property name="FechaRecep_Gestor1" column="FREC_GESTOR1" type="DateTime"/>
+    <property name="RecibeDocumento" column="IRECIB_G1" type="char"/>
+    
+    <property name="PresentadorAnteSAPI" column="GESTOR2" type="string"/>
+    <property name="FechaPres_Gestor2" column="FPRES_SAPI" type="DateTime"/>
+    <property name="PresentadoASapi" column="IPRES_G2" type="char"/>
+    
+    <property name="ReceptorAnteSAPI" column="GESTOR3" type="string"/>
+    <property name="FechaRecep_Gestor3" column="FREC_SAPI" type="DateTime"/>
+    <property name="RecibioDeSapi" column="IRECIB_G3" type="char"/>
+    
+    <property name="InicDptoReceptor" column="XINIC_DPTO" type="string"/>
+    <property name="FechaRecep_Dpto" column="FREC_DPTO" type="DateTime"/>
+    <property name="RecibioDpto" column="IRECIB_DPTO" type="char"/>
+
+  </class>
+</hibernate-mapping>

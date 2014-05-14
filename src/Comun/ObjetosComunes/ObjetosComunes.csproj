@@ -65,6 +65,8 @@
     <Compile Include="ContratosServicios\IMaestroDePlantillaServicios.cs" />
     <Compile Include="ContratosServicios\IMaterialSapiServicios.cs" />
     <Compile Include="ContratosServicios\IPlantillaServicios.cs" />
+    <Compile Include="ContratosServicios\IPresentacionSapiDetalleServicios.cs" />
+    <Compile Include="ContratosServicios\IPresentacionSapiServicios.cs" />
     <Compile Include="ContratosServicios\IRegistradorServicios.cs" />
     <Compile Include="ContratosServicios\IReporteServicios.cs" />
     <Compile Include="ContratosServicios\ISeguimientoClientesServicios.cs" />
@@ -256,6 +258,8 @@
     <Compile Include="Entidades\MaterialSapi.cs" />
     <Compile Include="Entidades\OrdenReporte.cs" />
     <Compile Include="Entidades\Plantilla.cs" />
+    <Compile Include="Entidades\PresentacionSapi.cs" />
+    <Compile Include="Entidades\PresentacionSapiDetalle.cs" />
     <Compile Include="Entidades\Registrador.cs" />
     <Compile Include="Entidades\Reporte.cs" />
     <Compile Include="Entidades\SolicitudSapi.cs" />

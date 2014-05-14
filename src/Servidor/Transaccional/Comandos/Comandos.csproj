@@ -219,6 +219,10 @@
     <Compile Include="Comandos\ComandosPoder\ComandoConsultarPoderesFiltro.cs" />
     <Compile Include="Comandos\ComandosPoder\ComandoConsultarPoderesPorAgente.cs" />
     <Compile Include="Comandos\ComandosPoder\ComandoConsultarPoderesEntreAgentesEInteresado.cs" />
+    <Compile Include="Comandos\ComandosPresentacionSapiDetalle\ComandoConsultarPresentacionesSapiFiltro.cs" />
+    <Compile Include="Comandos\ComandosPresentacionSapiDetalle\ComandoEliminarDetallePresentacion.cs" />
+    <Compile Include="Comandos\ComandosPresentacionSapiDetalle\ComandoInsertarOModificarDetallePresentacion.cs" />
+    <Compile Include="Comandos\ComandosPresentacionSapi\ComandoInsertarOModificarPresentacionSapi.cs" />
     <Compile Include="Comandos\ComandosRegistrador\ComandoConsultarTodosRegistradores.cs" />
     <Compile Include="Comandos\ComandosRenovacion\ComandoConsultarRenovacionesFiltro.cs" />
     <Compile Include="Comandos\ComandosRenovacion\ComandoVerificarExistenciaRenovacion.cs" />
@@ -521,6 +525,8 @@
     <Compile Include="Fabrica\FabricaComandosMaestroDePlantilla.cs" />
     <Compile Include="Fabrica\FabricaComandosMaterialSapi.cs" />
     <Compile Include="Fabrica\FabricaComandosPlantilla.cs" />
+    <Compile Include="Fabrica\FabricaComandosPresentacionSapi.cs" />
+    <Compile Include="Fabrica\FabricaComandosPresentacionSapiDetalle.cs" />
     <Compile Include="Fabrica\FabricaComandosRegistrador.cs" />
     <Compile Include="Fabrica\FabricaComandosReporte.cs" />
     <Compile Include="Fabrica\FabricaComandosSolicitudSapi.cs" />

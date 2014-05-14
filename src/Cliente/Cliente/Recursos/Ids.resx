@@ -1215,4 +1215,16 @@
   <data name="GestionarMovimientoMaterialSAPI" xml:space="preserve">
     <value>SAPI_MOVIMIENTO_MAT</value>
   </data>
+  <data name="RegistroSolicitudPresentacion" xml:space="preserve">
+    <value>SAPI_REG_PRESENT</value>
+  </data>
+  <data name="GestionarSolicitudPresentacionSapi" xml:space="preserve">
+    <value>SAPI_PRESENTACION_ENC</value>
+  </data>
+  <data name="ConsultarPresentacionesSAPI" xml:space="preserve">
+    <value>SAPI_PRESENTACIONES_ENC</value>
+  </data>
+  <data name="ControlPresentaciones" xml:space="preserve">
+    <value>SAPI_CTRL_PRESEN</value>
+  </data>
 </root>

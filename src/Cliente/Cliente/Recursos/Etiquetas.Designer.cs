@@ -340,6 +340,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Presentación en SAPI.
+        /// </summary>
+        public static string btnConfirmarPresentacionAnteSAPI {
+            get {
+                return ResourceManager.GetString("btnConfirmarPresentacionAnteSAPI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Consolidar.
         /// </summary>
         public static string btnConsolidar {
@@ -1094,6 +1103,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string btnQuitarSeleccion {
             get {
                 return ResourceManager.GetString("btnQuitarSeleccion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Recepción de SAPI.
+        /// </summary>
+        public static string btnRecepcionDeSAPI {
+            get {
+                return ResourceManager.GetString("btnRecepcionDeSAPI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Recepción en Dpto.
+        /// </summary>
+        public static string btnRecepcionDpto {
+            get {
+                return ResourceManager.GetString("btnRecepcionDpto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Recepción Gestor.
+        /// </summary>
+        public static string btnRecibidaPorGestor {
+            get {
+                return ResourceManager.GetString("btnRecibidaPorGestor", resourceCulture);
             }
         }
         
@@ -2111,6 +2147,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string cbiSoltero {
             get {
                 return ResourceManager.GetString("cbiSoltero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SAPI_STATUS_DOC_PRE.
+        /// </summary>
+        public static string cbiStatusDocumentoPresentacionSAPI {
+            get {
+                return ResourceManager.GetString("cbiStatusDocumentoPresentacionSAPI", resourceCulture);
             }
         }
         
@@ -5024,6 +5069,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Cantidad de Documentos: .
+        /// </summary>
+        public static string lblCantidadDocumentos {
+            get {
+                return ResourceManager.GetString("lblCantidadDocumentos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Cantidad De Numerales:.
         /// </summary>
         public static string lblCantidadNumerales {
@@ -5245,6 +5299,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblCodigoDestinatario {
             get {
                 return ResourceManager.GetString("lblCodigoDestinatario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Código de Expediente: .
+        /// </summary>
+        public static string lblCodigoExpediente {
+            get {
+                return ResourceManager.GetString("lblCodigoExpediente", resourceCulture);
             }
         }
         
@@ -6069,6 +6132,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Fecha Presentacion de Documentos a SAPI:.
+        /// </summary>
+        public static string lblFechaPresentacionSAPI {
+            get {
+                return ResourceManager.GetString("lblFechaPresentacionSAPI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a F/Próxima Renovación.
         /// </summary>
         public static string lblFechaProxima {
@@ -6092,6 +6164,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblFechaReal {
             get {
                 return ResourceManager.GetString("lblFechaReal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Fecha Recepción de Documentos:.
+        /// </summary>
+        public static string lblFechaRecepcionDocumentos {
+            get {
+                return ResourceManager.GetString("lblFechaRecepcionDocumentos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Fecha de Recepción en Dpto:.
+        /// </summary>
+        public static string lblFechaRecepcionDpto {
+            get {
+                return ResourceManager.GetString("lblFechaRecepcionDpto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Fecha Recepción de Documentos de SAPI:.
+        /// </summary>
+        public static string lblFechaRecepcionSAPI {
+            get {
+                return ResourceManager.GetString("lblFechaRecepcionSAPI", resourceCulture);
             }
         }
         
@@ -6128,6 +6227,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblFechaSolicitud {
             get {
                 return ResourceManager.GetString("lblFechaSolicitud", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Fecha de Solicitud :.
+        /// </summary>
+        public static string lblFechaSolicitudSAPI {
+            get {
+                return ResourceManager.GetString("lblFechaSolicitudSAPI", resourceCulture);
             }
         }
         
@@ -6218,6 +6326,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblFuncion {
             get {
                 return ResourceManager.GetString("lblFuncion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Gestor :.
+        /// </summary>
+        public static string lblGestor {
+            get {
+                return ResourceManager.GetString("lblGestor", resourceCulture);
             }
         }
         
@@ -8526,6 +8643,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Cód Documento.
+        /// </summary>
+        public static string lsvCodigoDocumento {
+            get {
+                return ResourceManager.GetString("lsvCodigoDocumento", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cod. Expediente.
+        /// </summary>
+        public static string lsvCodigoExpediente {
+            get {
+                return ResourceManager.GetString("lsvCodigoExpediente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Código Interesado.
         /// </summary>
         public static string lsvCodigoInteresado {
@@ -8603,6 +8738,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvCodigoRegistro {
             get {
                 return ResourceManager.GetString("lsvCodigoRegistro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cód Solicitud.
+        /// </summary>
+        public static string lsvCodigoSolicitudPresentacionSAPI {
+            get {
+                return ResourceManager.GetString("lsvCodigoSolicitudPresentacionSAPI", resourceCulture);
             }
         }
         
@@ -8747,6 +8891,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvDireccion {
             get {
                 return ResourceManager.GetString("lsvDireccion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Documento.
+        /// </summary>
+        public static string lsvDocumento {
+            get {
+                return ResourceManager.GetString("lsvDocumento", resourceCulture);
             }
         }
         
@@ -8985,6 +9138,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Fecha Presentación.
+        /// </summary>
+        public static string lsvFechaPresentacionSAPI {
+            get {
+                return ResourceManager.GetString("lsvFechaPresentacionSAPI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Fecha Proxima Renovación.
         /// </summary>
         public static string lsvFechaProxima {
@@ -8999,6 +9161,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvFechaRecepcion {
             get {
                 return ResourceManager.GetString("lsvFechaRecepcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Fecha Recepción.
+        /// </summary>
+        public static string lsvFechaRecepcionSAPI {
+            get {
+                return ResourceManager.GetString("lsvFechaRecepcionSAPI", resourceCulture);
             }
         }
         
@@ -9035,6 +9206,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvFechaSolicitud {
             get {
                 return ResourceManager.GetString("lsvFechaSolicitud", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Fecha Solicitud.
+        /// </summary>
+        public static string lsvFechaSolicitudPresentSAPI {
+            get {
+                return ResourceManager.GetString("lsvFechaSolicitudPresentSAPI", resourceCulture);
             }
         }
         
@@ -9435,6 +9615,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Presentado SAPI.
+        /// </summary>
+        public static string lsvPresentadoEnSapi {
+            get {
+                return ResourceManager.GetString("lsvPresentadoEnSapi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Próximo Evento.
         /// </summary>
         public static string lsvProximoPaso {
@@ -9453,11 +9642,38 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Recibido Dpto.
+        /// </summary>
+        public static string lsvRecibdoDpto {
+            get {
+                return ResourceManager.GetString("lsvRecibdoDpto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Recibido Gestor.
+        /// </summary>
+        public static string lsvRecibidoPorGestor {
+            get {
+                return ResourceManager.GetString("lsvRecibidoPorGestor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Recibo.
         /// </summary>
         public static string lsvRecibo {
             get {
                 return ResourceManager.GetString("lsvRecibo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Recibido SAPI.
+        /// </summary>
+        public static string lsvRecibodDeSapi {
+            get {
+                return ResourceManager.GetString("lsvRecibodDeSapi", resourceCulture);
             }
         }
         
@@ -9588,6 +9804,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Status.
+        /// </summary>
+        public static string lsvStatus {
+            get {
+                return ResourceManager.GetString("lsvStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Estatus Acuse.
         /// </summary>
         public static string lsvStatusAcuse {
@@ -9674,6 +9899,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvTipoDeReporte {
             get {
                 return ResourceManager.GetString("lsvTipoDeReporte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tipo Documento.
+        /// </summary>
+        public static string lsvTipoDocumento {
+            get {
+                return ResourceManager.GetString("lsvTipoDocumento", resourceCulture);
             }
         }
         
@@ -10875,6 +11109,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Control Presentaciones.
+        /// </summary>
+        public static string menuItemSapiControlPresentaciones {
+            get {
+                return ResourceManager.GetString("menuItemSapiControlPresentaciones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Registrar Eventos.
+        /// </summary>
+        public static string menuItemSapiControlPresentRegistro {
+            get {
+                return ResourceManager.GetString("menuItemSapiControlPresentRegistro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Entrega de Material.
         /// </summary>
         public static string menuItemSapiEntregaMateriales {
@@ -10907,6 +11159,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string menuItemSapiMaterialesComprasRegistro {
             get {
                 return ResourceManager.GetString("menuItemSapiMaterialesComprasRegistro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Registro de Presentaciones.
+        /// </summary>
+        public static string menuItemSapiPresentacionRegistro {
+            get {
+                return ResourceManager.GetString("menuItemSapiPresentacionRegistro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Consulta Solicitudes Presentación.
+        /// </summary>
+        public static string menuItemSapiPresentRegConsultar {
+            get {
+                return ResourceManager.GetString("menuItemSapiPresentRegConsultar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Generar Solicitud Presentación.
+        /// </summary>
+        public static string menuItemSapiPresentRegGenerarSolicitud {
+            get {
+                return ResourceManager.GetString("menuItemSapiPresentRegGenerarSolicitud", resourceCulture);
             }
         }
         
@@ -12261,6 +12540,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Consulta de Solicitudes de Presentacion SAPI.
+        /// </summary>
+        public static string titleConsultarPresentacionesSapi {
+            get {
+                return ResourceManager.GetString("titleConsultarPresentacionesSapi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Consultar Recordatorios de Marcas.
         /// </summary>
         public static string titleConsultarRecordatorios {
@@ -12473,6 +12761,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleConsultarUsuarios {
             get {
                 return ResourceManager.GetString("titleConsultarUsuarios", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Registro de Eventos Presentacion SAPI.
+        /// </summary>
+        public static string titleControlarPresentacionSAPI {
+            get {
+                return ResourceManager.GetString("titleControlarPresentacionSAPI", resourceCulture);
             }
         }
         
@@ -13157,6 +13454,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleGestionarReporteDeMarca {
             get {
                 return ResourceManager.GetString("titleGestionarReporteDeMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Registro de Solicitud de Presentacion SAPI.
+        /// </summary>
+        public static string titleGestionarSolicitudPresentacionSAPI {
+            get {
+                return ResourceManager.GetString("titleGestionarSolicitudPresentacionSAPI", resourceCulture);
             }
         }
         

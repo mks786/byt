@@ -96,6 +96,8 @@
     <Compile Include="Implementacion\MaestroDePlantillaServicios.cs" />
     <Compile Include="Implementacion\MaterialSapiServicios.cs" />
     <Compile Include="Implementacion\PlantillaServicios.cs" />
+    <Compile Include="Implementacion\PresentacionSapiDetalleServicios.cs" />
+    <Compile Include="Implementacion\PresentacionSapiServicios.cs" />
     <Compile Include="Implementacion\RegistradorServicios.cs" />
     <Compile Include="Implementacion\ReporteServicios.cs" />
     <Compile Include="Implementacion\SeguimientoClientesServicios.cs" />

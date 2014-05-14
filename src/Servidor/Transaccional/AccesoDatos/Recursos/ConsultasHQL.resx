@@ -1427,4 +1427,44 @@
     <value>s.MaterialSolicitado = '{0}'</value>
     <comment>Filtro para obtener Solicitudes Sapi cuando el Status de la solicitud es SOLICITADO</comment>
   </data>
+  <data name="CabeceraObtenerPresentacionSapiDetalle" xml:space="preserve">
+    <value>Select p from PresentacionSapiDetalle p left outer join fetch p.Presentacion_Enc as encabezado left outer join fetch p.Material as documento where </value>
+    <comment>Cabecera para consultar Solicitudes de Presentacion SAPI por filtro</comment>
+  </data>
+  <data name="FiltroObtenerDetallePresentacionSapiDocumento" xml:space="preserve">
+    <value>documento.Id = '{0}'</value>
+    <comment>Filtro para obtener Solicitudes de Presentacion SAPI usando el Id del Documento</comment>
+  </data>
+  <data name="FiltroObtenerDetallePresentacionSapiDpto" xml:space="preserve">
+    <value>encabezado.Departamento.Id = '{0}'</value>
+    <comment>Filtro para obtener Solicitudes de Presentacion SAPI por el Id del Dpto que genero la solicitud de presentacion</comment>
+  </data>
+  <data name="FiltroObtenerDetallePresentacionSapiExpediente" xml:space="preserve">
+    <value>p.CodExpediente = '{0}'</value>
+    <comment>Filtro para obtener Solicitudes de Presentacion SAPI con el Codigo de Expediente del Documento</comment>
+  </data>
+  <data name="FiltroObtenerDetallePresentacionSapiFecha" xml:space="preserve">
+    <value>p.Presentacion_Enc.Fecha = '{0}'</value>
+    <comment>Filtro para obtener Solicitudes de Presentacion SAPI por la Fecha del encabezado de la Presentacion</comment>
+  </data>
+  <data name="FiltroObtenerDetallePresentacionSapiIdEnc" xml:space="preserve">
+    <value>encabezado.Id = {0}</value>
+    <comment>Filtro para obtener el Detalle de una Solicitud de una Presentacion SAPI ´por el Id del encabezado</comment>
+  </data>
+  <data name="FiltroObtenerDetallePresentacionSapiIniciales" xml:space="preserve">
+    <value>encabezado.Iniciales = '{0}'</value>
+    <comment>Filtro para obtener Solicitudes de Presentacion SAPI usando las Iniciales del Usuario que la genero</comment>
+  </data>
+  <data name="FiltroObtenerDetallePresentacionSapiStatusDoc" xml:space="preserve">
+    <value>p.StatusDocumento = '{0}'</value>
+    <comment>Filtro para obtener Solicitudes de Presentacion SAPI con el Status del Documento d de la solicitud.</comment>
+  </data>
+  <data name="FiltroObtenerDetallePresentacionSapiFechaPresentASapi" xml:space="preserve">
+    <value>p.FechaPres_Gestor2 = '{0}'</value>
+    <comment>Filtro para obtener Solicitudes de Presentacion SAPI utilizando la fecha de presentacion de la solicitud ante SAPI</comment>
+  </data>
+  <data name="FiltroObtenerDetallePresentacionSapiGestor1" xml:space="preserve">
+    <value>p.ReceptorMatPresent = '{0}'</value>
+    <comment>Filtro para obtener Solicitudes de Presentacion SAPI usando como filtro el Gestor Receptor de los Documentos a Presentar a SAPI</comment>
+  </data>
 </root>

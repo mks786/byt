@@ -1300,6 +1300,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.GenerarEntregasMaterialesSapi();
         }
 
+        private void _menuItemSapiPresentacionGenerarSolicitudPresentacion_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.GenerarSolicitudPresentacionSapi();
+        }
+
+        private void _menuItemSapiPresentacionConsultaSolicitudPresentacion_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarSolicitudesPresentacionSapi();
+        }
+
+        private void _menuItemSapPresentacionControlRegistroEventos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.RegistrarEventosPresentacionSAPI();
+        }
+
         
 
         

@@ -1,0 +1,171 @@
+﻿<Page x:Class="Trascend.Bolet.Cliente.Ventanas.SAPI.Presentaciones.GestionarSolicitudPresentacion"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
+      xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
+      xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
+      xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
+      mc:Ignorable="d" 
+      d:DesignHeight="580" d:DesignWidth="800"
+	Title="GestionarSolicitudPresentacion" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <!-- Encabezado de la Solicitud de Presentacion -->
+        <GroupBox Grid.Row="1" Grid.Column="1" BorderBrush="{x:Null}" HorizontalAlignment="Stretch" BorderThickness="0">
+            <StackPanel Name="_stkPresentacionEnc" VerticalAlignment="Stretch" HorizontalAlignment="Center"
+                        Orientation="Vertical" DataContext="{Binding}">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigo}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtIdPresentacion" Height="25" Width="60" IsEnabled="False"
+                                       VerticalAlignment="Center" Text="{Binding Path=Id}">
+                    </custom:ByTTextBox>
+
+                    <Label>
+                        <TextBlock  Text="{x:Static recurso:Etiquetas.lblUsuarioLogueado}"/>
+                    </Label>
+                    <ComboBox IsEnabled="True" Name="_cbxUsuarioPresentacion" Height="25" VerticalAlignment="Center"
+                              ItemsSource="{Binding}" DisplayMemberPath="NombreCompleto" Width="170"/>
+
+                    <Label>
+                        <TextBlock  Text="{x:Static recurso:Etiquetas.lblDepartamento}"/>
+                    </Label>
+                    <ComboBox IsEnabled="True" Name="_cbxDptoPresentacion" Height="25" VerticalAlignment="Center"
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" Width="126"/>
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
+                    </Label>
+                    <DatePicker   Name="_dpkFechaPresentacion" Focusable="False" BorderBrush="{x:Null}" 
+                                  VerticalAlignment="Center">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged" StringFormat="{}{0:dd/MM/yyyy}"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                </WrapPanel>
+
+            </StackPanel>
+        </GroupBox>
+
+        <!--Seleccion de los Documentos -->
+        <GroupBox Grid.Row="2" Grid.Column="1" BorderBrush="{x:Null}" HorizontalAlignment="Stretch" BorderThickness="0">
+            <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Center" Orientation="Vertical" DataContext="{Binding}">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,0,0">
+                    <!--Documentos-->
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblDocumento}"/>
+                    </Label>
+                    <ComboBox IsEnabled="True" Name="_cbxDocumentosPresentacion" SelectedIndex="0" Height="25"
+                              VerticalAlignment="Center" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" Width="200"/>
+                    <!--Codigo de Expediente-->
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigo}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtCodExpPresentacion" Height="25" Width="100" VerticalAlignment="Center" />
+                    
+                    <Button Name="_btnMas" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Margin="35,0,0,0" 
+                            Click="_btnMas_Click">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.btnAgregarSimbolo}"></TextBlock>
+                    </Button>
+                    <Button Name="_btnMenos" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Margin="25 0 0 0" 
+                            Click="_btnMenos_Click">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.btnEliminarSimbolo}"></TextBlock>
+                    </Button>
+                </WrapPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <!--Renglones de Detalle de la Solicitud de Presentacion-->
+        <GroupBox Grid.Row="3" Grid.Column="1" BorderBrush="{x:Null}" HorizontalAlignment="Stretch" BorderThickness="0">
+            <StackPanel Name="_stkPresentacionDet" VerticalAlignment="Stretch" HorizontalAlignment="Center"
+                        Orientation="Vertical">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5,0,0">
+                    <ListView Margin="0,10,0,0" Name="_lstDetallePresentacion" ItemsSource="{Binding}" SelectionMode="Single" 
+                              VerticalAlignment="Top" Style="{DynamicResource EstiloListView}" Height="335" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="80">
+                                    <GridViewColumnHeader  Tag="=Material.Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Material.Id}" TextAlignment="Center" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Width="120">
+                                    <GridViewColumnHeader  Tag="=Material.Tipo" Content="{x:Static recurso:Etiquetas.lsvTipo}"/>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Material.Tipo}" TextAlignment="Center" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Material.Descripcion}" Width="180">
+                                    <GridViewColumnHeader  Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                </GridViewColumn>
+
+                                <GridViewColumn Width="120">
+                                    <GridViewColumnHeader  Tag="CodExpediente" 
+                                                           Content="{x:Static recurso:Etiquetas.lsvCodigoExpediente}"/>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=CodExpediente}" TextAlignment="Center" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Width="120">
+                                    <GridViewColumnHeader  Tag="StatusDocumento" 
+                                                           Content="{x:Static recurso:Etiquetas.lsvStatus}"/>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=StatusDocumento}" TextAlignment="Center" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </WrapPanel>
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCantidadDocumentos}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtCantDocsPresentacion" Height="25" Width="100" VerticalAlignment="Center" 
+                                       IsReadOnly="True" HorizontalContentAlignment="Center" FontWeight="Bold" />
+                </WrapPanel>
+
+            </StackPanel>
+        </GroupBox>
+
+        <WrapPanel Grid.Row="4" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" 
+                   Orientation="Horizontal">
+            <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" IsDefault="True" 
+                    Click="_btnAceptar_Click">
+                <TextBlock Name="_txbAceptar" Text="{x:Static recurso:Etiquetas.btnAceptar}"/>
+            </Button>
+            <Button Name="_btnCancelar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnCancelar_Click">
+                Cancelar
+            </Button>
+        </WrapPanel>
+
+    </Grid>
+</Page>

@@ -880,6 +880,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a SAPI_PRESENTACIONES_ENC.
+        /// </summary>
+        public static string ConsultarPresentacionesSAPI {
+            get {
+                return ResourceManager.GetString("ConsultarPresentacionesSAPI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a ConsultarRecordatorio.
         /// </summary>
         public static string ConsultarRecordatorios {
@@ -1065,6 +1074,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string ControlExistenciaSAPI {
             get {
                 return ResourceManager.GetString("ControlExistenciaSAPI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SAPI_CTRL_PRESEN.
+        /// </summary>
+        public static string ControlPresentaciones {
+            get {
+                return ResourceManager.GetString("ControlPresentaciones", resourceCulture);
             }
         }
         
@@ -2734,6 +2752,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a SAPI_PRESENTACION_ENC.
+        /// </summary>
+        public static string GestionarSolicitudPresentacionSapi {
+            get {
+                return ResourceManager.GetString("GestionarSolicitudPresentacionSapi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a MYPTAGENTE.
         /// </summary>
         public static string InfoAdicional {
@@ -3216,6 +3243,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string RecordatorioMarca {
             get {
                 return ResourceManager.GetString("RecordatorioMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SAPI_REG_PRESENT.
+        /// </summary>
+        public static string RegistroSolicitudPresentacion {
+            get {
+                return ResourceManager.GetString("RegistroSolicitudPresentacion", resourceCulture);
             }
         }
         

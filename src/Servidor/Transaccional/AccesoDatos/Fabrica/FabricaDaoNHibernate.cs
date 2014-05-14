@@ -84,6 +84,26 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
 
 
         /// <summary>
+        /// Método que devuelve el DaoPresentacionSapi
+        /// </summary>
+        /// <returns>IDaoPresentacionSapi</returns>
+        public override IDaoPresentacionSapi ObtenerDaoPresentacionSapi()
+        {
+            return new DaoPresentacionSapiNHibernate();
+        }
+
+
+        /// <summary>
+        /// Método que devuelve el DaoPresentacionSapiDetalle
+        /// </summary>
+        /// <returns>IDaoPresentacionSapiDetalle</returns>
+        public override IDaoPresentacionSapiDetalle ObtenerDaoPresentacionSapiDetalle()
+        {
+            return new DaoPresentacionSapiDetalleNHibernate();
+        }
+
+
+        /// <summary>
         /// Método que devuelve el DaoSolicitudSapi
         /// </summary>
         /// <returns>IDaoSolicitudSapi</returns>
