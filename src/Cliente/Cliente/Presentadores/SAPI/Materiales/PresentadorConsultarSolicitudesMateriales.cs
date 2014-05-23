@@ -235,6 +235,41 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
 
 
         /// <summary>
+        /// Método que ordena una columna
+        /// </summary>
+        public void OrdenarColumna(GridViewColumnHeader column)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            String field = column.Tag as String;
+
+            if (this._ventana.CurSortCol != null)
+            {
+                AdornerLayer.GetAdornerLayer(this._ventana.CurSortCol).Remove(this._ventana.CurAdorner);
+                this._ventana.ListaResultados.Items.SortDescriptions.Clear();
+            }
+
+            ListSortDirection newDir = ListSortDirection.Ascending;
+            if (this._ventana.CurSortCol == column && this._ventana.CurAdorner.Direction == newDir)
+                newDir = ListSortDirection.Descending;
+
+            this._ventana.CurSortCol = column;
+            this._ventana.CurAdorner = new SortAdorner(this._ventana.CurSortCol, newDir);
+            AdornerLayer.GetAdornerLayer(this._ventana.CurSortCol).Add(this._ventana.CurAdorner);
+            this._ventana.ListaResultados.Items.SortDescriptions.Add(
+                new SortDescription(field, newDir));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+
+        /// <summary>
         /// Metodo que obtiene la Solicitud Sapi para hacer la consulta
         /// </summary>
         /// <returns>Solicitud Sapi filtro</returns>
@@ -338,6 +373,139 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
             }
         }
 
+
+        /// <summary>
+        /// Metodo que exportar a Excel el resultado de la Consulta que se muestra en Pantalla
+        /// </summary>
+        public void ExportarResultadosExcel()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                IList<SolicitudSapi> datosResultadosConsulta;
+                DataTable datosExportar = CrearDataTableExportacion();
+                datosResultadosConsulta = (IList<SolicitudSapi>)this._ventana.Resultados;
+                datosExportar = LlenarDataTableExportacion(datosResultadosConsulta, datosExportar);
+
+                this._ventana.ExportarDatosConsolidadosExcel(datosExportar);
+                
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + "en el metodo: " + (new System.Diagnostics.StackFrame()).GetMethod().Name + ". Error: " + ex.Message, true);
+            }
+        }
+
         
+
+
+        /// <summary>
+        /// Metodo que crea el DataTable necesario para exportar los datos resultantes de la consulta
+        /// </summary>
+        /// <returns></returns>
+        private DataTable CrearDataTableExportacion()
+        {
+
+            DataTable datos = new DataTable();
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                datos.Columns.Add("Solicitud No", typeof(int));
+                datos.Columns.Add("Fecha", typeof(DateTime));
+                datos.Columns.Add("Cod Material", typeof(string));
+                datos.Columns.Add("Material", typeof(string));
+                datos.Columns.Add("Cant Solicitada", typeof(int));
+                datos.Columns.Add("Solicitado", typeof(string));
+                datos.Columns.Add("Entregado", typeof(string));
+                datos.Columns.Add("Recibido", typeof(string));
+                
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return datos;
+        }
+
+
+        private DataTable LlenarDataTableExportacion(IList<SolicitudSapi> datosResultadosConsulta, DataTable datosExportar)
+        {
+
+            DataTable datos = datosExportar;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                foreach (SolicitudSapi item in datosResultadosConsulta)
+                {
+                    DataRow filaNueva = datos.NewRow();
+                    filaNueva["Solicitud No"] = item.Id;
+                    filaNueva["Fecha"] = item.FechaSolicitud;
+                    filaNueva["Cod Material"] = item.Material.Id;
+                    filaNueva["Material"] = item.Material.Descripcion;
+                    filaNueva["Cant Solicitada"] = item.CantMaterialSol;
+                    if (item.BSolicitado)
+                        filaNueva["Solicitado"] = "SI";
+                    else
+                        filaNueva["Solicitado"] = "NO";
+
+                    if(item.BEntregado)
+                        filaNueva["Entregado"] = "SI";
+                    else
+                        filaNueva["Entregado"] = "NO";
+
+                    if (item.BRecibido)
+                        filaNueva["Recibido"] = "SI";
+                    else
+                        filaNueva["Recibido"] = "NO";
+                    
+                    datos.Rows.Add(filaNueva);
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return datos;
+        }
+
+
+        /// <summary>
+        /// Metodo que obtiene el nombre del Usuario que genera el reporte
+        /// </summary>
+        /// <returns>Nombre del usuario logueado</returns>
+        public string ObtenerNombreUsuario()
+        {
+            return UsuarioLogeado.NombreCompleto;
+        }
     }
 }

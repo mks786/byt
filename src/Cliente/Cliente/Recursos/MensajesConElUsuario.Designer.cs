@@ -1394,6 +1394,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Desea exportar el resultado de la Consulta a Excel?.
+        /// </summary>
+        internal static string ConfirmarExportarConsulta {
+            get {
+                return ResourceManager.GetString("ConfirmarExportarConsulta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Desea exportar el contenido del reporte a Excel?.
         /// </summary>
         internal static string ConfirmarExportarReporteAExcel {

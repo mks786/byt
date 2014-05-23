@@ -2349,10 +2349,25 @@ Namespace Presentadores.FacFacturaProformas
                             lista_marca_patente = generar_marca()
                             marca_patente = True
                             v_ninter = lista_marca_patente(1)
-                            v_citipom = lista_marca_patente(3)
-                            '"clasi=%%v_citipom"
-                            lista_ad = "clasi=" & lista_marca_patente(3)
-                            lista_en(10) = lista_marca_patente(3).ToString
+                            If lista_marca_patente(3) IsNot Nothing Then
+                                v_citipom = lista_marca_patente(3)
+                                '"clasi=%%v_citipom"
+                                lista_ad = "clasi=" & lista_marca_patente(3)
+                                lista_en(10) = lista_marca_patente(3).ToString
+                            Else
+                                Me._ventana.VerTipo = "13"
+                                Mouse.OverrideCursor = Nothing
+                                'Me._ventana.MensajeError = "La Marca o Patente seleccionada no tiene Tipo"
+                                Me._ventana.Mensaje("La Marca seleccionada no tiene Tipo", 0)
+                                Exit Sub
+                            End If
+
+
+                            'CODIGO ORIGINAL COMENTADO - NO BORRAR
+                            'v_citipom = lista_marca_patente(3)
+                            ''"clasi=%%v_citipom"
+                            'lista_ad = "clasi=" & lista_marca_patente(3)
+                            'lista_en(10) = lista_marca_patente(3).ToString
                         End If
 
                     Else
@@ -2375,9 +2390,21 @@ Namespace Presentadores.FacFacturaProformas
                                 lista_marca_patente = generar_Patente()
                                 marca_patente = True
                                 v_ninter = lista_marca_patente(1)
-                                v_citipop = lista_marca_patente(3)
-                                lista_ad = ""
-                                lista_en(10) = ""
+                                If lista_marca_patente(3) IsNot Nothing Then
+                                    v_citipop = lista_marca_patente(3)
+                                    lista_ad = ""
+                                    lista_en(10) = ""
+                                Else
+                                    Me._ventana.VerTipo = "13"
+                                    Mouse.OverrideCursor = Nothing
+                                    Me._ventana.Mensaje("La Patente seleccionada no tiene Tipo", 0)
+                                    Exit Sub
+                                End If
+
+                                'CODIGO ORIGINAL COMENTADO - NO BORRAR
+                                'v_citipop = lista_marca_patente(3)
+                                'lista_ad = ""
+                                'lista_en(10) = ""
                             End If
                         End If
 

@@ -1550,7 +1550,8 @@
                     </WrapPanel>
 
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0" Name="_WPLtvMultiplesMarcas"  Visibility="Collapsed">
-                        <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="2" Name="_lstMultiplesMarcas" ItemsSource="{Binding}" 
+                        <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="2" Name="_lstMultiplesMarcas"
+                                  ItemsSource="{Binding}" 
                                   SelectionMode="Single" IsEnabled="True" HorizontalAlignment="Left"
                                   Style="{DynamicResource EstiloListView}" Height="150" VerticalAlignment="Top">
                             <ListView.View>

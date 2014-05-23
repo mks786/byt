@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Trascend.Bolet.Cliente.Ayuda;
+using System.Data;
 using System.Windows.Controls;
+using Trascend.Bolet.Cliente.Ayuda;
 
 namespace Trascend.Bolet.Cliente.Contratos.SAPI.Materiales
 {
@@ -40,5 +41,7 @@ namespace Trascend.Bolet.Cliente.Contratos.SAPI.Materiales
         object SolicitudSapiSeleccionada { get; set; }
 
         void Mensaje(string mensaje, int opcion);
+
+        void ExportarDatosConsolidadosExcel(DataTable datosResumen);
     }
 }

@@ -4698,4 +4698,16 @@ en Prensa:</value>
   <data name="titleControlarPresentacionSAPI" xml:space="preserve">
     <value>Registro de Eventos Presentacion SAPI</value>
   </data>
+  <data name="btnTipoCorrespondencia" xml:space="preserve">
+    <value>Tipo Correspondencia</value>
+  </data>
+  <data name="lblCodigoFacturaSAPI" xml:space="preserve">
+    <value>Código Factura SAPI :</value>
+  </data>
+  <data name="lblEntregaMaterial" xml:space="preserve">
+    <value>Entrega Material:</value>
+  </data>
+  <data name="lsvFechaRecepcionGestor" xml:space="preserve">
+    <value>Fecha Recepción Gestor</value>
+  </data>
 </root>

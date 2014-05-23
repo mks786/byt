@@ -41,11 +41,11 @@
                                   VerticalAlignment="Center">
                     </DatePicker>
 
-                    <Label Margin="8,0,0,0">
+                    <!--<Label Margin="8,0,0,0">
                         <TextBlock  Text="{x:Static recurso:Etiquetas.lblTipoMovimiento}"/>
                     </Label>
                     <ComboBox IsEnabled="True" Name="_cbxTipoMovimiento" Height="25" VerticalAlignment="Center"
-                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" Width="100"/>
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" Width="100"/>-->
 
                 </WrapPanel>
 
@@ -106,6 +106,16 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding Path=Material.Existencia}" TextAlignment="Center" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Width="100">
+                                    <GridViewColumnHeader  Tag="TipoMovimiento" 
+                                                           Content="{x:Static recurso:Etiquetas.lsvStatusMaterial}"/>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=TipoMovimiento}" TextAlignment="Center" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>

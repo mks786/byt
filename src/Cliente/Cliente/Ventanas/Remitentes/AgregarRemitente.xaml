@@ -127,7 +127,7 @@
                 </Button.Style>
                 <TextBlock Name="_txbModificar" Text="{x:Static recurso:Etiquetas.btnAceptar}"/>
             </Button>
-            <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnRegresar_Click">Regresar</Button>
+            <!--<Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnRegresar_Click">Regresar</Button>-->
             <Button Name="_btnCancelar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnCancelar_Click">Cancelar</Button>
         </WrapPanel>
     </Grid>

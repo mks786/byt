@@ -81,6 +81,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Remitentes
             this._presentador = new PresentadorAgregarRemitente(this, ventanaPadre);
         }
 
+        #region Eventos
+
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.Aceptar();
@@ -110,9 +112,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Remitentes
                 e.Handled = false;
         }
 
-        private void _btnRegresar_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.Regresar();
-        }
+        //private void _btnRegresar_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this._presentador.Regresar();
+        //} 
+
+        #endregion
     }
 }

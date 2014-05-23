@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -100,6 +101,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
 
                 this._ventana.TotalHits = "0";
 
+                if (UsuarioLogeado.BEntregaMaterial)
+                    this._ventana.MostarBotonEntregarMateriales();
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -135,6 +139,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                 usuarios = this.FiltrarUsuariosRepetidos(usuarios);
                 usuarios.Insert(0, new Usuario("NGN"));
                 this._ventana.Usuarios = usuarios;
+                this._ventana.Usuario = this.BuscarUsuarioPorIniciales(usuarios, UsuarioLogeado);
+
 
                 IList<ListaDatosValores> statusMaterialesEnSolicitud = 
                     this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiStatusMovimientoMaterialSAPI));
@@ -179,8 +185,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                     IList<SolicitudSapi> solicitudesSapi = this._solicitudSapiServicios.ObtenerSolicitudesSapiPendientesFiltro(solicitudAux);
                     if (solicitudesSapi.Count > 0)
                     {
-                        this._ventana.Resultados = solicitudesSapi;
-                        this._ventana.TotalHits = solicitudesSapi.Count.ToString();
+                        IList<SolicitudSapi> solicitudesResultantes = solicitudesSapi.OrderBy(o => o.FechaSolicitud).ThenBy(o => o.Id).ToList();
+                        this._ventana.Resultados = solicitudesResultantes;
+
+                        this._ventana.TotalHits = solicitudesResultantes.Count.ToString();
                     }
                     else
                     {
@@ -325,7 +333,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                     IList<SolicitudSapi> movimientos = (IList<SolicitudSapi>)this._ventana.Resultados;
                     foreach (SolicitudSapi movimiento in movimientos)
                     {
-                        if (movimiento.BEntregado)
+                        if ((movimiento.BEntregado) && (movimiento.FechaEntrega == null))
                             solicitudesEntregar.Add(movimiento);
                     }
                     if (solicitudesEntregar.Count > 0)
@@ -390,7 +398,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                             material.Existencia -= movimientoSapi.CantMaterialSol;
                             bool exito = this._materialSapiServicios.InsertarOModificar(material, UsuarioLogeado.Hash);
                             movimientoSapi.FechaEntrega = DateTime.Today;
-                            movimientoSapi.TipoMovimiento = "ENTREGA";
+                            movimientoSapi.TipoMovimiento = "ENTREGADO";
                             movimientoModificado.Add(movimientoSapi);
                             continue;
                         }
@@ -492,7 +500,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                 foreach (SolicitudSapi movimientoSapi in solicitudesRecibir)
                 {
                     movimientoSapi.FechaRecepcion = DateTime.Today;
-                    movimientoSapi.TipoMovimiento = "RECEPCION";
+                    movimientoSapi.TipoMovimiento = "RECIBIDO";
                 }
 
                 bool exitoso = this._solicitudSapiServicios.InsertarOModificarSolicitudMaterialSapi(ref solicitudesRecibir, "MODIFY", UsuarioLogeado.Hash);

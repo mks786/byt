@@ -45,6 +45,8 @@ namespace Trascend.Bolet.Cliente.Contratos.EntradasAlternas
 
         object TipoAcuse { get; set; }
 
+        string Destinatario { get; set; }
+
         char GetTipoDestinatario { get; }
 
         string SetTipoDestinatario { set; }

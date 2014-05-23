@@ -10,6 +10,7 @@ using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Trascend.Bolet.Cliente.Ventanas.EntradasAlternas;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Remitentes
 {
@@ -72,6 +73,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Remitentes
 
                 this._ventana.Pais = this.BuscarPais(paises, remitente.Pais);
 
+                if (this._ventanaPadre != null)
+                {
+                    if (this._ventanaPadre.GetType().ToString().Equals("Trascend.Bolet.Cliente.Ventanas.EntradasAlternas.AgregarEntradaAlterna"))
+                    {
+                        this._ventana.MostrarBotonSeleccionarRemitente();
+                    } 
+                }
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -122,8 +131,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Remitentes
                     bool exitoso = this._remitenteServicios.InsertarOModificar(remitente, UsuarioLogeado.Hash);
                     if (exitoso)
                     {
-                        _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.RemitenteModificado;
-                        this.Navegar(_paginaPrincipal);
+                        this._ventana.HabilitarCampos = false;
+                        this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                        //_paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.RemitenteModificado;
+                        //this.Navegar(_paginaPrincipal);
                     }
                 }
 
@@ -198,6 +209,40 @@ namespace Trascend.Bolet.Cliente.Presentadores.Remitentes
             {
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo que permite seleccionar el Remitente en pantalla e incluirlo en el combo de los Remitentes en la ventana
+        /// de Entrada Alterna
+        /// </summary>
+        public void SeleccionarRemitente()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if ((this._ventanaPadre != null) && 
+                    (this._ventanaPadre.GetType().ToString().Equals("Trascend.Bolet.Cliente.Ventanas.EntradasAlternas.AgregarEntradaAlterna")))
+                {
+                    Remitente remitente = (Remitente)this._ventana.Remitente;
+                    ((AgregarEntradaAlterna)this._ventanaPadre).RefrescarRemitente(remitente);
+                    RegresarVentanaPadre();
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ":" + ex.Message, true);
             }
         }
     }

@@ -112,6 +112,46 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
 
         /// <summary>
+        /// Servicio que inserta o modifica una nuevo Remitente
+        /// </summary>
+        /// <param name="remitente">Remitente a insertar o modificar</param>
+        /// <param name="hash">Hash del usuario logueado</param>
+        /// <returns>Id del Remitente insertado o modificado</returns>
+        public string InsertarOModificarRemitente(Remitente remitente, int hash)
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                bool exitoso = ControladorRemitente.InsertarOModificar(ref remitente, hash);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (exitoso)
+                    return remitente.Id;
+                else
+                    return null;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
+        }
+
+
+        /// <summary>
         /// Servicio que elimina a una entidad
         /// </summary>
         /// <param name="entidad">Entidad a eliminar</param>

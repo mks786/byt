@@ -1260,6 +1260,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Tipo Correspondencia.
+        /// </summary>
+        public static string btnTipoCorrespondencia {
+            get {
+                return ResourceManager.GetString("btnTipoCorrespondencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Tipo Entrada.
         /// </summary>
         public static string btnTipoEntrada {
@@ -5312,6 +5321,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Código Factura SAPI :.
+        /// </summary>
+        public static string lblCodigoFacturaSAPI {
+            get {
+                return ResourceManager.GetString("lblCodigoFacturaSAPI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a CFomento.
         /// </summary>
         public static string lblCodigoFomento {
@@ -5786,6 +5804,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblEntre {
             get {
                 return ResourceManager.GetString("lblEntre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Entrega Material:.
+        /// </summary>
+        public static string lblEntregaMaterial {
+            get {
+                return ResourceManager.GetString("lblEntregaMaterial", resourceCulture);
             }
         }
         
@@ -9161,6 +9188,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvFechaRecepcion {
             get {
                 return ResourceManager.GetString("lsvFechaRecepcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Fecha Recepción Gestor.
+        /// </summary>
+        public static string lsvFechaRecepcionGestor {
+            get {
+                return ResourceManager.GetString("lsvFechaRecepcionGestor", resourceCulture);
             }
         }
         

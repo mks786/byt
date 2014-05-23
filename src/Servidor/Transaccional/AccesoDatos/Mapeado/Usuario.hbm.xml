@@ -20,6 +20,9 @@
     <many-to-one name="Departamento" class="Departamento" lazy="false">
       <column name="CODDPTO"/>
     </many-to-one>
+
+    <property name="EntregaMaterial" column="IMAT" type="string"/>
+    
   </class>
 
   

@@ -38,5 +38,7 @@ namespace Trascend.Bolet.Cliente.Contratos.SAPI.Materiales
         void Mensaje(string mensaje, int opcion);
 
         void MostrarBotonRecepcionMateriales();
+
+        void MostarBotonEntregarMateriales();
     }
 }

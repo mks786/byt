@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Windows.Controls;
 using System.Collections.Generic;
+using System.Data;
+using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Ayuda;
 
 namespace Trascend.Bolet.Cliente.Contratos.SAPI.Presentaciones
@@ -54,6 +55,8 @@ namespace Trascend.Bolet.Cliente.Contratos.SAPI.Presentaciones
         void MostrarCamposRegistroEvento(string tipoBandera);
 
         void OcultarCamposRegistroEvento(string tipoBandera);
+
+        void ExportarDatosConsolidadosExcel(DataTable datosResumen);
 
     }
 }

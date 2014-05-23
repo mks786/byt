@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -11,9 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.SAPI.Materiales;
 using Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales;
-using Trascend.Bolet.Cliente.Ayuda;
 
 namespace Trascend.Bolet.Cliente.Ventanas.SAPI.Materiales
 {
@@ -193,7 +194,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.SAPI.Materiales
 
         private void _Ordenar_Click(object sender, RoutedEventArgs e)
         {
-            //this._presentador.OrdenarColumna(sender as GridViewColumnHeader);
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader);
+        }
+
+        private void _btnExportar_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBoxResult.Yes == System.Windows.MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmarExportarConsulta),
+                    "Exportar Consulta de Solicitudes de Materiales", MessageBoxButton.YesNo, MessageBoxImage.Question))
+            {
+                this._presentador.ExportarResultadosExcel();
+            }
         }
 
 	    #endregion
@@ -255,7 +265,94 @@ namespace Trascend.Bolet.Cliente.Ventanas.SAPI.Materiales
             }
         }
 
+
+        /// <summary>
+        /// Metodo que recibe un DataTable para mostrar su contenido en una hoja Excel
+        /// </summary>
+        /// <param name="datosResumen">Datos a mostrar en la hoja de Excel</param>
+        public void ExportarDatosConsolidadosExcel(DataTable datosResumen)
+        {
+
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            DataTable tablaDatos = null;
+
+            try
+            {
+                System.Windows.Forms.SaveFileDialog archivo = new System.Windows.Forms.SaveFileDialog();
+                archivo.Filter = "Excel (*.xls)|*.xls";
+
+                if (archivo.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
+                    Microsoft.Office.Interop.Excel._Workbook workbook;
+                    Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+                    object misValue = System.Reflection.Missing.Value;
+
+                    workbook = app.Workbooks.Add(misValue);
+                    worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Worksheets.get_Item(1);
+
+
+                    tablaDatos = datosResumen;
+
+                    app.Range["A1", "Z1"].Merge();
+                    //app.Range["A1", "Z1"].Value = this._presentador.ObtenerTituloReporte(tipo);
+                    app.Range["A1", "Z1"].Value = "Solicitud de Materiales SAPI";
+                    app.Range["A1", "Z1"].Font.Bold = true;
+                    app.Range["A1", "Z1"].Font.Size = 12;
+
+                    app.Range["A3", "Z2"].Merge();
+                    app.Range["A3", "Z2"].Value = "Generado por: " + this._presentador.ObtenerNombreUsuario();
+                    app.Range["A3", "Z2"].Font.Size = 10;
+
+
+                    for (int i = 0; i < tablaDatos.Columns.Count; i++)
+                    {
+                        worksheet.Range["A5"].Offset[0, i].Value = tablaDatos.Columns[i].ColumnName;
+                        worksheet.Range["A5"].Offset[0, i].HorizontalAlignment =
+                            Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                        worksheet.Range["A5"].Offset[0, i].VerticalAlignment =
+                            Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                        worksheet.Range["A5"].Offset[0, i].Font.Bold = true;
+                        worksheet.Range["A5"].Offset[0, i].Font.ColorIndex = 2;
+                        worksheet.Range["A5"].Offset[0, i].Borders.LineStyle =
+                            Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                        worksheet.Range["A5"].Offset[0, i].Cells.Interior.ColorIndex = 10;
+                    }
+
+                    worksheet.Range["A6", "E6"].Style.WrapText = true;
+                    worksheet.Range["A6", "E6"].ColumnWidth = 50;
+                    worksheet.Range["A6", "F6"].ColumnWidth = 45;
+                    worksheet.Range["A6", "B6"].ColumnWidth = 45;
+
+                    for (int Idx = 0; Idx < tablaDatos.Rows.Count; Idx++)
+                    {
+                        worksheet.Range["A6"].Offset[Idx].Resize[1, tablaDatos.Columns.Count].Value =
+                            tablaDatos.Rows[Idx].ItemArray;
+                        worksheet.Range["A6"].Offset[Idx].Resize[1, tablaDatos.Columns.Count].HorizontalAlignment =
+                            Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignGeneral;
+                        worksheet.Range["A6"].Offset[Idx].Resize[1, tablaDatos.Columns.Count].VerticalAlignment =
+                            Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
+                        worksheet.Range["A6"].Offset[Idx].Resize[1, tablaDatos.Columns.Count].Borders.LineStyle =
+                            Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+
+                    }
+
+                    app.Columns.AutoFit();
+                    workbook.SaveAs(archivo.FileName, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal);
+                    Mouse.OverrideCursor = null;
+                    app.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         #endregion
+
+        
 
         
         

@@ -15,6 +15,7 @@ using Trascend.Bolet.Cliente.Ventanas.Medios;
 using Trascend.Bolet.Cliente.Ventanas.Remitentes;
 using Trascend.Bolet.Cliente.Ventanas.Categorias;
 using Trascend.Bolet.Cliente.Ventanas.EntradasAlternas;
+using System.Linq;
 
 namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
 {
@@ -98,7 +99,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                 receptores.Insert(0, primerUsuario);
                 this._ventana.Receptores = receptores;
 
-                IList<Remitente> remitentes = this._remitenteServicios.ConsultarTodos();
+                //IList<Remitente> remitentes = this._remitenteServicios.ConsultarTodos();
+                IList<Remitente> remitentes = this._remitenteServicios.ConsultarTodos().OrderBy(o => o.Descripcion).ToList();
                 Remitente primerRemitente = new Remitente();
                 primerRemitente.Id = "NGN";
                 remitentes.Insert(0, primerRemitente);
@@ -175,6 +177,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                 entradaAlterna.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
                 entradaAlterna.Remitente = !((Remitente)this._ventana.Remitente).Id.Equals("NGN") ? (Remitente)this._ventana.Remitente : null;
                 entradaAlterna.Categoria = !((Categoria)this._ventana.Categoria).Id.Equals("NGN") ? (Categoria)this._ventana.Categoria : null;
+                entradaAlterna.Destinatario = this._ventana.Destinatario;
+
                 if (!((ListaDatosValores)this._ventana.TipoAcuse).Id.Equals("NGN"))
                 {
                     acuse = (((ListaDatosValores)this._ventana.TipoAcuse).Valor).ToCharArray();
@@ -310,10 +314,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
         public void RefrescarRemitente(object remitente)
         {
 
-            IList<Remitente> remitentes = this._remitenteServicios.ConsultarTodos();
+            IList<Remitente> remitentes = this._remitenteServicios.ConsultarTodos().OrderBy(o => o.Descripcion).ToList();
             Remitente primerRemitente = new Remitente();
             primerRemitente.Id = "NGN";
             remitentes.Insert(0, primerRemitente);
+            
             this._ventana.Remitentes = remitentes;
 
             this._ventana.Remitente = this.BuscarRemitente(remitentes, (Remitente)remitente);

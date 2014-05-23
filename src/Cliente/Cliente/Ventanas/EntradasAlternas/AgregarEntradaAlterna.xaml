@@ -62,14 +62,15 @@
                         <TextBlock Text="Tipo:"/>
                     </Label>
                     <ComboBox IsEnabled="True" Name="_cbxAcuse" Height="20" HorizontalAlignment="Left"
-                          ItemsSource="{Binding}" SelectedIndex="0" DisplayMemberPath="Descripcion" Width="180">
+                              ItemsSource="{Binding}" SelectedIndex="0" DisplayMemberPath="Descripcion" Width="180"
+                              SelectionChanged="_cbxAcuse_SelectionChanged">
 
                     </ComboBox>
                 </WrapPanel>
              
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaEntrada}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                     </Label>
                     <DatePicker HorizontalAlignment="Left"  Name="_dpkFecha" Width="180" Focusable="False" BorderBrush="{x:Null}">
                         <DatePicker.SelectedDate>
@@ -118,9 +119,14 @@
                     <ComboBox Name="_cbxRemitente" HorizontalAlignment="Left" Width="180" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                     </ComboBox>
+                    
+                    <Label Name="_lblDestinatario" Visibility="Collapsed">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblDestinatario}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtDestinatario" Width="180" Visibility="Collapsed" Text="{Binding Path=Destinatario}" />
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                    <Label Name="_lblTipoDestinatario" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoDestinatario}"/>
                     </Label>
                     <ComboBox Name="_cbxTipoDestinatario" Width="180" SelectionChanged="_cbxTipoDestinatario_SelectionChanged">
@@ -150,8 +156,9 @@
                     <!--<Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoEntrada}"/>
                     </Label>-->
-                    <Button Name="_btnTipoEntrada_Categoria" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnTipoEntrada_Categoria_Click">
-                        <TextBlock Text="{x:Static recurso:Etiquetas.btnTipoEntrada}"/>
+                    <Button Name="_btnTipoEntrada_Categoria" VerticalAlignment="Bottom" Height="25" Width="125" Click="_btnTipoEntrada_Categoria_Click">
+                        <!--<TextBlock Text="{x:Static recurso:Etiquetas.btnTipoEntrada}"/>-->
+                        <TextBlock Text="{x:Static recurso:Etiquetas.btnTipoCorrespondencia}"/>
                     </Button>
                     <ComboBox Name="_cbxCategoria" HorizontalAlignment="Left" Width="180" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">

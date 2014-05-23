@@ -840,7 +840,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Mapeado\MaterialSapi.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\MaterialSapi.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapeado\CompraSapi.hbm.xml" />

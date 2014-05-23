@@ -102,6 +102,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.SAPI.Materiales
             set { this._txbAceptar.Text = value; }
         }
 
+        public string FechaCompraSapi
+        {
+            get { return this._dpkFechaCompraMaterial.Text; }
+            set { this._dpkFechaCompraMaterial.Text = value; }
+        }
+
         public bool HabilitarCampos
         {
             set
@@ -273,6 +279,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.SAPI.Materiales
             this._btnNuevaCompra.Visibility = System.Windows.Visibility.Collapsed;
             this._btnTotalizarCompra.Visibility = System.Windows.Visibility.Collapsed;
             this._btnVerFacturaSAPI.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdCompraMaterial.IsEnabled = false;
+            this._dpkFechaCompraMaterial.IsEnabled = false;
+            this._cbxMaterialesCompra.IsEnabled = false;
+            ActivarCampoCantidad(false);
         }
 
         public void PintarBotonVerFacturaSAPI()
@@ -283,6 +293,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.SAPI.Materiales
         public void ArchivoNoEncontrado(string mensaje)
         {
             MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        public void DeshabilitarBotonAceptar()
+        {
+            this._btnAceptar.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         #endregion

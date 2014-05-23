@@ -163,6 +163,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Administracion.SeguimientoCxPInte
                     factura.TipoPago = GetTipoPago();
                     factura.Banco = (FacBanco)this._ventana.Banco;
                     factura.DescripcionPago = this._ventana.DescripcionPago;
+                    factura.BIsel = false;
                     exitoso = this._facInternacionalServicios.InsertarOModificar(factura, UsuarioLogeado.Hash);
                     if (exitoso)
                     {

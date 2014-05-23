@@ -127,44 +127,12 @@
                         </GridViewColumn>
 
 
-                        <!--<GridViewColumn Width="120" >
+                        <GridViewColumn Width="120" >
                             <GridViewColumnHeader Tag="Id" Click="_Ordenar_Click"
-                                                  Content="Cod. Movimiento"/>
+                                                  Content="Cod. Solicitud"/>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=Id}" TextAlignment="Center"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>-->
-
-
-                        <GridViewColumn Width="120" >
-                            <GridViewColumnHeader Tag="FechaSolicitud" Click="_Ordenar_Click"
-                                                  Content="{x:Static recurso:Etiquetas.lsvFechaSolicitud}"/>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Path=FechaSolicitud, StringFormat={}{0:dd/MM/yyyy}}"
-                                               TextAlignment="Center"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-
-                        <GridViewColumn Width="150">
-                            <GridViewColumnHeader Tag="Departamento.Descripcion" Click="_Ordenar_Click"
-                                                  Content="{x:Static recurso:Etiquetas.lsvDepartamento}"/>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Path=Departamento.Descripcion}" TextAlignment="Center"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-
-                        <GridViewColumn Width="120">
-                            <GridViewColumnHeader Tag="SolicitanteInic" Click="_Ordenar_Click"
-                                                  Content="{x:Static recurso:Etiquetas.lsvIniciales}"/>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Path=SolicitanteInic}" TextAlignment="Center"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -195,6 +163,17 @@
                         </GridViewColumn>
 
                         <GridViewColumn Width="120" >
+                            <GridViewColumnHeader Tag="FechaSolicitud" Click="_Ordenar_Click"
+                                                  Content="{x:Static recurso:Etiquetas.lsvFechaSolicitud}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=FechaSolicitud, StringFormat={}{0:dd/MM/yyyy}}"
+                                               TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="120" >
                             <GridViewColumnHeader Tag="FechaEntrega" Click="_Ordenar_Click"
                                                   Content="{x:Static recurso:Etiquetas.lsvFechaEntrega}"/>
                             <GridViewColumn.CellTemplate>
@@ -216,6 +195,26 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
+                        <GridViewColumn Width="120">
+                            <GridViewColumnHeader Tag="SolicitanteInic" Click="_Ordenar_Click"
+                                                  Content="{x:Static recurso:Etiquetas.lsvIniciales}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=SolicitanteInic}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="150">
+                            <GridViewColumnHeader Tag="Departamento.Descripcion" Click="_Ordenar_Click"
+                                                  Content="{x:Static recurso:Etiquetas.lsvDepartamento}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Departamento.Descripcion}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -229,7 +228,7 @@
                         Click="_btnRecibirMaterial_Click">
                     Recibir Materiales
                 </Button>
-                <Button Name="_btnEntregarMaterial" Width="110" Height="25" Click="_btnEntregarMaterial_Click">
+                <Button Name="_btnEntregarMaterial" Width="110" Height="25" Visibility="Collapsed" Click="_btnEntregarMaterial_Click">
                     Entregar Materiales
                 </Button>
                 <Button Name="_btnLimpiarCampos" Width="100" Height="25" 

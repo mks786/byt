@@ -252,6 +252,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.SAPI.Materiales
             this._btnRecibirMaterial.Visibility = System.Windows.Visibility.Visible;
         }
 
+        public void MostarBotonEntregarMateriales()
+        {
+            this._btnEntregarMaterial.Visibility = System.Windows.Visibility.Visible;
+        }
+
         #endregion
 
         

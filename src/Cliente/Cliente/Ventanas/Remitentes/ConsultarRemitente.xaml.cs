@@ -135,5 +135,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Remitentes
                 EstaCargada = true;
             }
         }
+
+        private void _btnSeleccionar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.SeleccionarRemitente();
+        }
+
+        public void MostrarBotonSeleccionarRemitente()
+        {
+            this._btnSeleccionar.Visibility = System.Windows.Visibility.Visible;
+        }
     }
 }

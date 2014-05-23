@@ -247,7 +247,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
         /// </summary>
         public void BuscarMateriales()
         {
+            
             Mouse.OverrideCursor = Cursors.Wait;
+            IList<MaterialSapi> materialesFiltrados;
             try
             {
                 #region trace
@@ -259,18 +261,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
 
                 if (this._hayFiltro)
                 {
-                    IList<MaterialSapi> materialesFiltrados = this._materialSapiServicios.ObtenerMaterialSapiFiltro(materialSapi);
-                    if (materialesFiltrados.Count > 0)
-                    {
-                        this._ventana.Resultados = materialesFiltrados;
-                    }
-                    else
-                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorConsultaNoTrajoMateriales, 0);
-
+                    materialesFiltrados = this._materialSapiServicios.ObtenerMaterialSapiFiltro(materialSapi);
                     this._hayFiltro = false;
                 }
                 else
-                    this._ventana.Mensaje("Seleccione al menos un filtro válido", 0);
+                {
+                    materialesFiltrados=this._materialSapiServicios.ConsultarTodos();
+                }
+
+                if (materialesFiltrados.Count > 0)
+                {
+                    this._ventana.Resultados = materialesFiltrados;
+                }
+                else
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorConsultaNoTrajoMateriales, 0);
+
+                    
                 
 
                 #region trace

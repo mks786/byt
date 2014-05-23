@@ -110,9 +110,37 @@
                 <ListView.View>
                     <GridView>
 
+                        <GridViewColumn Header="{x:Static recurso:Etiquetas.lsvMaterialSolicitado}" Width="80" >
+                            <GridViewColumn.CellTemplate >
+                                <DataTemplate>
+                                    <CheckBox Tag="BSolicitado"   IsChecked="{Binding Path=BSolicitado}"
+                                              HorizontalAlignment="Center"  />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="{x:Static recurso:Etiquetas.lsvMaterialEntregado}" Width="80" >
+                            <GridViewColumn.CellTemplate >
+                                <DataTemplate>
+                                    <CheckBox Tag="BEntregado" IsChecked="{Binding Path=BEntregado}" 
+                                              HorizontalAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="{x:Static recurso:Etiquetas.lsvMaterialRecibido}" Width="80" >
+                            <GridViewColumn.CellTemplate >
+                                <DataTemplate>
+                                    <CheckBox Tag="BRecibido" IsChecked="{Binding Path=BRecibido}" 
+                                              HorizontalAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+
                         <GridViewColumn Width="120" >
                             <GridViewColumnHeader Tag="Id" Click="_Ordenar_Click"
-                                                  Content="Cod. Movimiento"/>
+                                                  Content="Cod. Solicitud"/>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=Id}" TextAlignment="Center"/>
@@ -177,32 +205,7 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Header="{x:Static recurso:Etiquetas.lsvMaterialSolicitado}" Width="80" >
-                            <GridViewColumn.CellTemplate >
-                                <DataTemplate>
-                                    <CheckBox Tag="BSolicitado"   IsChecked="{Binding Path=BSolicitado}"
-                                              HorizontalAlignment="Center"  />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-
-                        <GridViewColumn Header="{x:Static recurso:Etiquetas.lsvMaterialEntregado}" Width="80" >
-                            <GridViewColumn.CellTemplate >
-                                <DataTemplate>
-                                    <CheckBox Tag="BEntregado" IsChecked="{Binding Path=BEntregado}" 
-                                              HorizontalAlignment="Center" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-
-                        <GridViewColumn Header="{x:Static recurso:Etiquetas.lsvMaterialRecibido}" Width="80" >
-                            <GridViewColumn.CellTemplate >
-                                <DataTemplate>
-                                    <CheckBox Tag="BRecibido" IsChecked="{Binding Path=BRecibido}" 
-                                              HorizontalAlignment="Center"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
+                        
 
                     </GridView>
                 </ListView.View>
@@ -212,12 +215,15 @@
         <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
                 
+                <Button Name="_btnExportar" Width="100" Height="25" Click="_btnExportar_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnExportar}"/>
+                </Button>
                 
-                <Button Grid.Row="0" Grid.Column="1" Name="_btnLimpiarCampos" Width="100" Height="25"
+                <Button Name="_btnLimpiarCampos" Width="100" Height="25"
                         Click="_btnLimpiarCampos_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnLimpiarCampos}"/>
                 </Button>
-                <Button Grid.Row="0" Grid.Column="1" Name="_btnCancelar" Width="100" Height="25" Click="_btnCancelar_Click">
+                <Button Name="_btnCancelar" Width="100" Height="25" Click="_btnCancelar_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnCancelar}"/>
                 </Button>
 

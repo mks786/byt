@@ -114,24 +114,24 @@ namespace Trascend.Bolet.Cliente.Ventanas.SAPI.Materiales
                 this._cbxDepartamento.IsEnabled = value;
                 this._cbxSolicitanteMaterial.IsEnabled = value;
                 this._cbxMaterialesSapi.IsEnabled = value;
-                this._cbxTipoMovimiento.IsEnabled = value;
+                //this._cbxTipoMovimiento.IsEnabled = value;
                 this._lstDetalleSolicitud.IsEnabled = value;
                 this._btnMas.IsEnabled = value;
                 this._btnMenos.IsEnabled = value;
             }
         }
 
-        public object TiposMovimientosMaterial
-        {
-            get { return this._cbxTipoMovimiento.DataContext; }
-            set { this._cbxTipoMovimiento.DataContext = value; }
-        }
+        //public object TiposMovimientosMaterial
+        //{
+        //    get { return this._cbxTipoMovimiento.DataContext; }
+        //    set { this._cbxTipoMovimiento.DataContext = value; }
+        //}
 
-        public object TipoMovimientoMaterial
-        {
-            get { return this._cbxTipoMovimiento.SelectedItem; }
-            set { this._cbxTipoMovimiento.SelectedItem = value; }
-        }
+        //public object TipoMovimientoMaterial
+        //{
+        //    get { return this._cbxTipoMovimiento.SelectedItem; }
+        //    set { this._cbxTipoMovimiento.SelectedItem = value; }
+        //}
 
         public string TextoBotonModificar
         {

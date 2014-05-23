@@ -55,6 +55,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Usuarios
                 this._cbxDepartamento.IsEnabled = value;
                 this._txtEmail.IsEnabled = value;
                 this._cbxAutorizar.IsEnabled = value;
+                this._cbxEntregaMaterial.IsEnabled = value;
             }
         }
 

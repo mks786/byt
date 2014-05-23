@@ -1138,19 +1138,54 @@ Namespace Presentadores.FacFacturaProformas
                     Dim facTarifas As IList(Of FacTarifa) = Me._FacTarifaServicios.ObtenerFacTarifasFiltro(FacTarifa)
                     If facTarifas.Count > 0 Then
                         Dim TarifaEncontrada As FacTarifa = facTarifas(0)
+
                         If (TarifaEncontrada.BDesgMonto = True) Then
-                            If (departamento_servicio.Servicio.BDesgMonto1 = True) Then
+                            If departamento_servicio.Servicio.BDesg Then
                                 Me._ventana.VerTipo = "14"
                             Else
-                                Me._ventana.VerTipo = "12"
+                                If (Me._ventana.Desglose = True) Then
+                                    If (departamento_servicio.Servicio.BDesgMonto2 = True) Then
+                                        Me._ventana.VerTipo = "14"
+                                    Else
+                                        Me._ventana.VerTipo = "12"
+                                    End If
+                                End If
                             End If
                         Else
-                            If (departamento_servicio.Servicio.BDesgMonto2 = True) Then
-                                Me._ventana.VerTipo = "14"
+                            If departamento_servicio.Servicio.BDesg Then
+                                If (departamento_servicio.Servicio.BDesgMonto1 = True) Then
+                                    Me._ventana.VerTipo = "14"
+                                Else
+                                    Me._ventana.VerTipo = "12"
+                                End If
                             Else
-                                Me._ventana.VerTipo = "12"
+                                If (Me._ventana.Desglose = True) Then
+                                    If (departamento_servicio.Servicio.BDesgMonto1 = True) Then
+                                        Me._ventana.VerTipo = "14"
+                                    Else
+                                        Me._ventana.VerTipo = "12"
+                                    End If
+                                End If
                             End If
                         End If
+
+
+
+                            'If (TarifaEncontrada.BDesgMonto = True) Then
+                            '    If (departamento_servicio.Servicio.BDesgMonto1 = True) Then
+                            '        Me._ventana.VerTipo = "14"
+                            '    Else
+                            '        Me._ventana.VerTipo = "12"
+                            '    End If
+                            'Else
+                            '    If (departamento_servicio.Servicio.BDesgMonto2 = True) Then
+                            '        Me._ventana.VerTipo = "14"
+                            '    Else
+                            '        Me._ventana.VerTipo = "12"
+                            '    End If
+                            'End If
+
+
                     End If
                 End If
             Else
@@ -1692,26 +1727,34 @@ Namespace Presentadores.FacFacturaProformas
 
                 If tarifaservicios.Count > 0 Then
                     If (moneda.Id = "BS") Then
-                        Me._ventana.MensajeError = "La moneda debe ser BSF o $"
-                        If (departamento_servicio.Servicio.BDesgMonto1) Then
-                            facfactudetaproforma.BDetalle = tarifaservicios(0).MontAlt_Bf
-                            facfactudetaproforma.Pu = tarifaservicios(0).MontAlt_Bf
-                        ElseIf (departamento_servicio.Servicio.BDesgMonto2) Then
-                            facfactudetaproforma.BDetalle = tarifaservicios(0).Mont_Bs
-                            facfactudetaproforma.Pu = tarifaservicios(0).Mont_Bs
-                        End If
+                        'Me._ventana.MensajeError = "La moneda debe ser BSF o $"
+
+                        facfactudetaproforma.BDetalle = tarifaservicios(0).MontAlt_Us
+                        facfactudetaproforma.Pu = tarifaservicios(0).MontAlt_Us
+
+
+
+                        'If (departamento_servicio.Servicio.BDesgMonto1) Then
+                        '    facfactudetaproforma.BDetalle = tarifaservicios(0).MontAlt_Bf
+                        '    facfactudetaproforma.Pu = tarifaservicios(0).MontAlt_Bf
+                        'ElseIf (departamento_servicio.Servicio.BDesgMonto2) Then
+                        '    facfactudetaproforma.BDetalle = tarifaservicios(0).Mont_Bs
+                        '    facfactudetaproforma.Pu = tarifaservicios(0).Mont_Bs
+                        'End If
+
                         'facfactudetaproforma.BDetalle = tarifaservicios(0).Mont_Bs
                         'facfactudetaproforma.Pu = tarifaservicios(0).Mont_Bs
                     End If
                     If (moneda.Id = "US") Then
-                        Me._ventana.MensajeError = "La moneda debe ser BSF o $"
-                        If (departamento_servicio.Servicio.BDesgMonto1) Then
-                            facfactudetaproforma.BDetalle = tarifaservicios(0).MontAlt_Us
-                            facfactudetaproforma.Pu = tarifaservicios(0).MontAlt_Us
-                        ElseIf (departamento_servicio.Servicio.BDesgMonto2) Then
-                            facfactudetaproforma.BDetalle = tarifaservicios(0).Mont_Us
-                            facfactudetaproforma.Pu = tarifaservicios(0).Mont_Us
-                        End If
+                        'Me._ventana.MensajeError = "La moneda debe ser BSF o $"
+
+                        'If (departamento_servicio.Servicio.BDesgMonto1) Then
+                        '    facfactudetaproforma.BDetalle = tarifaservicios(0).MontAlt_Us
+                        '    facfactudetaproforma.Pu = tarifaservicios(0).MontAlt_Us
+                        'ElseIf (departamento_servicio.Servicio.BDesgMonto2) Then
+                        '    facfactudetaproforma.BDetalle = tarifaservicios(0).Mont_Us
+                        '    facfactudetaproforma.Pu = tarifaservicios(0).Mont_Us
+                        'End If
 
 
                         facfactudetaproforma.BDetalle = tarifaservicios(0).Mont_Us
@@ -1910,10 +1953,23 @@ Namespace Presentadores.FacFacturaProformas
                             lista_marca_patente = generar_marca()
                             marca_patente = True
                             v_ninter = lista_marca_patente(1)
-                            v_citipom = lista_marca_patente(3)
-                            '"clasi=%%v_citipom"
-                            lista_ad = "clasi=" & lista_marca_patente(3)
-                            lista_en(10) = lista_marca_patente(3).ToString
+                            If lista_marca_patente(3) IsNot Nothing Then
+                                v_citipom = lista_marca_patente(3)
+                                '"clasi=%%v_citipom"
+                                lista_ad = "clasi=" & lista_marca_patente(3)
+                                lista_en(10) = lista_marca_patente(3).ToString
+                            Else
+                                Me._ventana.VerTipo = "13"
+                                Mouse.OverrideCursor = Nothing
+                                'Me._ventana.MensajeError = "La Marca o Patente seleccionada no tiene Tipo"
+                                Me._ventana.Mensaje("La Marca seleccionada no tiene Tipo", 0)
+                                Exit Sub
+                            End If
+                            ' CODIGO ORIGINAL COMENTADO - NO BORRAR
+                            'v_citipom = lista_marca_patente(3)
+                            ''"clasi=%%v_citipom"
+                            'lista_ad = "clasi=" & lista_marca_patente(3)
+                            'lista_en(10) = lista_marca_patente(3).ToString
                         End If
 
                     Else
@@ -1936,9 +1992,21 @@ Namespace Presentadores.FacFacturaProformas
                                 lista_marca_patente = generar_Patente()
                                 marca_patente = True
                                 v_ninter = lista_marca_patente(1)
-                                v_citipop = lista_marca_patente(3)
-                                lista_ad = ""
-                                lista_en(10) = ""
+                                If lista_marca_patente(3) IsNot Nothing Then
+                                    v_citipop = lista_marca_patente(3)
+                                    lista_ad = ""
+                                    lista_en(10) = ""
+                                Else
+                                    Me._ventana.VerTipo = "13"
+                                    Mouse.OverrideCursor = Nothing
+                                    Me._ventana.Mensaje("La Patente seleccionada no tiene Tipo", 0)
+                                    Exit Sub
+                                End If
+
+
+                                'v_citipop = lista_marca_patente(3)
+                                'lista_ad = ""
+                                'lista_en(10) = ""
                             End If
                         End If
 

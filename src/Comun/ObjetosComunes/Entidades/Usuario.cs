@@ -20,6 +20,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private char _autorizar;
         private int _hash;
         private char _archivo;
+        private string _entregaMaterial;
 
         #endregion
 
@@ -197,6 +198,35 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _asignaciones; }
             set { _asignaciones = value; }
+        }
+
+        public virtual string EntregaMaterial
+        {
+            get { return _entregaMaterial; }
+            set { _entregaMaterial = value; }
+        }
+
+        public virtual bool BEntregaMaterial
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(this.EntregaMaterial))
+                {
+                    if (this.EntregaMaterial.Equals("SI"))
+                        return true;
+                    else
+                        return false;
+                }
+                else
+                    return false;
+            }
+            set
+            {
+                if (value)
+                    this.EntregaMaterial = "SI";
+                else
+                    this.EntregaMaterial = "NO";
+            }
         }
 
         #endregion

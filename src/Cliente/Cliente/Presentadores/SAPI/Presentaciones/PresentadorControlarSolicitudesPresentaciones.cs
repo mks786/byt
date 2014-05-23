@@ -673,5 +673,136 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Presentaciones
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + "en el metodo: " + (new System.Diagnostics.StackFrame()).GetMethod().Name + ". Error: " + ex.Message, true);
             }
         }
+
+
+        /// <summary>
+        /// Metodo que sirve para exportar el Detalle de la Consulta en pantalla a Excel
+        /// </summary>
+        public void ExportarResultadosExcel()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                IList<PresentacionSapiDetalle> datosResultadosConsulta;
+                DataTable datosExportar = CrearDataTableExportacion();
+                datosResultadosConsulta = (IList<PresentacionSapiDetalle>)this._ventana.Resultados;
+                datosExportar = LlenarDataTableExportacion(datosResultadosConsulta, datosExportar);
+                this._ventana.ExportarDatosConsolidadosExcel(datosExportar);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + "en el metodo: " + (new System.Diagnostics.StackFrame()).GetMethod().Name + ". Error: " + ex.Message, true);
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo que crea el DataTable necesario para exportar los datos resultantes de la consulta
+        /// </summary>
+        /// <returns></returns>
+        private DataTable CrearDataTableExportacion()
+        {
+
+            DataTable datos = new DataTable();
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                datos.Columns.Add("Solicitud No", typeof(int));
+                datos.Columns.Add("Cod Material", typeof(string));
+                datos.Columns.Add("Material", typeof(string));
+                datos.Columns.Add("Tipo Material", typeof(string));
+                datos.Columns.Add("Expediente", typeof(string));
+                datos.Columns.Add("Departamento", typeof(string));
+                datos.Columns.Add("Fecha Solicitud", typeof(DateTime));
+                datos.Columns.Add("Fecha RecepDcto", typeof(DateTime));
+                datos.Columns.Add("Fecha PresentSAPI", typeof(DateTime));
+                datos.Columns.Add("Fecha RecepSAPI", typeof(DateTime));
+                
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return datos;
+        }
+
+        /// <summary>
+        /// Metodo que llena el DataTable que se va a mostar en la hoja de Excel
+        /// </summary>
+        /// <param name="datosResultadosConsulta">Datos de la consulta en pantalla</param>
+        /// <param name="datosExportar">DataTable que se va a exportar</param>
+        /// <returns>DAtaTable lleno con los datos para exportar</returns>
+        private DataTable LlenarDataTableExportacion(IList<PresentacionSapiDetalle> datosResultadosConsulta, DataTable datosExportar)
+        {
+
+            DataTable datos = datosExportar;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                foreach (PresentacionSapiDetalle item in datosResultadosConsulta)
+                {
+                    DataRow filaNueva = datos.NewRow();
+                    filaNueva["Solicitud No"] = item.Presentacion_Enc.Id;
+                    filaNueva["Cod Material"] = item.Material.Id;
+                    filaNueva["Material"] = item.Material.Descripcion;
+                    filaNueva["Tipo Material"] = item.Material.TipoDescripcion;
+                    filaNueva["Expediente"] = item.CodExpediente;
+                    filaNueva["Departamento"] = item.Presentacion_Enc.Departamento.Descripcion;
+                    filaNueva["Fecha Solicitud"] = item.Presentacion_Enc.Fecha;
+
+                    if (item.FechaRecep_Gestor1 != null)
+                        filaNueva["Fecha RecepDcto"] = item.FechaRecep_Gestor1;
+
+                    if(item.FechaPres_Gestor2 != null)
+                        filaNueva["Fecha PresentSAPI"] = item.FechaPres_Gestor2;
+
+                    if (item.FechaRecep_Gestor3 != null)
+                        filaNueva["Fecha RecepSAPI"] = item.FechaRecep_Gestor3;
+
+                    datos.Rows.Add(filaNueva);
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return datos;
+        }
+
+        public string ObtenerNombreUsuario()
+        {
+            return UsuarioLogeado.NombreCompleto;
+        }
     }
 }

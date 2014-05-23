@@ -8,9 +8,9 @@
     <composite-id>
       <key-many-to-one name="Presentacion_Enc" column="CSOLICITUD" class="PresentacionSapi" lazy="false"/>
       <key-many-to-one name="Material" column="CMATERIAL" class="MaterialSapi" lazy="false"/>
+      <key-property name="CodExpediente" column="COD_EXP" type="string"/>
     </composite-id>
 
-    <property name="CodExpediente" column="COD_EXP" type="string"/>
     <property name="StatusDocumento" column="STATUS_DOC" type="string"/>
     <property name="ReceptorMatPresent" column="GESTOR1" type="string"/>
     <property name="FechaRecep_Gestor1" column="FREC_GESTOR1" type="DateTime"/>

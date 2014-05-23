@@ -51,7 +51,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             var t = obj as PresentacionSapiDetalle;
             if (t == null)
                 return false;
-            if ((Presentacion_Enc.Id == (t.Presentacion_Enc.Id)) && (Material.Id == (t.Material.Id)))
+            if ((Presentacion_Enc.Id == (t.Presentacion_Enc.Id)) && (Material.Id == (t.Material.Id)) && (CodExpediente == (t.CodExpediente)))
                 return true;
             return false;
         }

@@ -30,9 +30,9 @@ namespace Trascend.Bolet.Cliente.Contratos.SAPI.Materiales
 
         bool HabilitarCampos { set; }
 
-        object TiposMovimientosMaterial { get; set; }
+        //object TiposMovimientosMaterial { get; set; }
 
-        object TipoMovimientoMaterial { get; set; }
+        //object TipoMovimientoMaterial { get; set; }
 
         string TextoBotonModificar { get; set; }
 

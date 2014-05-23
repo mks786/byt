@@ -47,6 +47,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.EntradasAlternas
                 this._cbxTipoDestinatario.IsEnabled = value;
                 this._cbxAcuse.IsEnabled = value;
                 this._dpkFecha.IsEnabled = value;
+                this._txtDestinatario.IsEnabled = value;
             }
         }
 
@@ -198,6 +199,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.EntradasAlternas
             set { this._cbxAcuse.SelectedItem = value; }
         }
 
+        public string Destinatario
+        {
+            get { return this._txtDestinatario.Text; }
+            set { this._txtDestinatario.Text = value; }
+        }
+
         #endregion
 
         public ConsultarEntradaAlterna(object entradaAlterna)
@@ -320,6 +327,34 @@ namespace Trascend.Bolet.Cliente.Ventanas.EntradasAlternas
         public void PintarAuditoria()
         {
             this._btnAuditoria.Background = Brushes.LightGreen;
+        }
+
+        private void _cbxAcuse_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this._cbxAcuse.SelectedIndex == 0 || this._cbxAcuse.SelectedIndex == 1)
+                OcultarCampoDestinatario();
+            if (this._cbxAcuse.SelectedIndex == 2)
+                MostrarCampoDestinatario();
+        }
+
+        public void MostrarCampoDestinatario()
+        {
+            this._lblRemitente.Visibility = System.Windows.Visibility.Collapsed;
+            this._cbxRemitente.Visibility = System.Windows.Visibility.Collapsed;
+            this._lblTipoDestinatario.Visibility = System.Windows.Visibility.Collapsed;
+            this._cbxTipoDestinatario.Visibility = System.Windows.Visibility.Collapsed;
+            this._lblDestinatario.Visibility = System.Windows.Visibility.Visible;
+            this._txtDestinatario.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        public void OcultarCampoDestinatario()
+        {
+            this._lblRemitente.Visibility = System.Windows.Visibility.Visible;
+            this._cbxRemitente.Visibility = System.Windows.Visibility.Visible;
+            this._lblTipoDestinatario.Visibility = System.Windows.Visibility.Visible;
+            this._cbxTipoDestinatario.Visibility = System.Windows.Visibility.Visible;
+            this._lblDestinatario.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtDestinatario.Visibility = System.Windows.Visibility.Collapsed;
         }
     }
 }

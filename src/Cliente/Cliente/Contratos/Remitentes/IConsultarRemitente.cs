@@ -16,5 +16,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Remitentes
         object Paises { get; set; }
 
         object Pais { get; set; }
+
+        void MostrarBotonSeleccionarRemitente();
     }
 }

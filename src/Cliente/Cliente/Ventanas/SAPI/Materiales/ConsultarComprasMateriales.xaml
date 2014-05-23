@@ -38,7 +38,7 @@
                 <Separator Margin="0,0,0,5"/>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="45,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigoFacturaSAPI}"/>
                     </Label>
                     <custom:ByTTextBox Name="_txtIdCompraSapi" Width="150" MaxLength="8" SoloNumero="True" Filtro="True"/>
                 </WrapPanel>
@@ -54,12 +54,12 @@
                     </DatePicker>
                 </WrapPanel>
                 
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="45,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblMateriales}"/>
                     </Label>
                     <ComboBox Grid.Column="4" Grid.Row="0" Name="_cbxMaterialCompraSapi" HorizontalAlignment="Left" 
-                              Width="200" ItemsSource="{Binding}" DisplayMemberPath="Descripcion">
+                              Width="190" ItemsSource="{Binding}" DisplayMemberPath="Descripcion">
 
                     </ComboBox>
                 </WrapPanel>

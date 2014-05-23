@@ -172,6 +172,16 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
+                        <GridViewColumn Width="120" >
+                            <GridViewColumnHeader Tag="Presentacion_Enc.Id"
+                                                  Content="Cod Solicitud"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Presentacion_Enc.Id}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
                         <GridViewColumn Width="100" >
                             <GridViewColumnHeader Tag="Material.Id"
                                                   Content="{x:Static recurso:Etiquetas.lsvCodigoDocumento}"/>
@@ -182,6 +192,11 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Material.Descripcion}" Width="200">
+                            <GridViewColumnHeader Tag="Descripcion"
+                                                  Content="{x:Static recurso:Etiquetas.lsvDocumento}"/>
+                        </GridViewColumn>
+
                         <GridViewColumn Width="100" >
                             <GridViewColumnHeader Tag="Material.TipoDescripcion"
                                                   Content="{x:Static recurso:Etiquetas.lsvTipoDocumento}"/>
@@ -190,11 +205,6 @@
                                     <TextBlock Text="{Binding Path=Material.TipoDescripcion}" TextAlignment="Center"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Material.Descripcion}" Width="200">
-                            <GridViewColumnHeader Tag="Descripcion"
-                                                  Content="{x:Static recurso:Etiquetas.lsvDocumento}"/>
                         </GridViewColumn>
 
                         <GridViewColumn Width="100">
@@ -240,6 +250,17 @@
                         </GridViewColumn>
 
                         <GridViewColumn Width="120" >
+                            <GridViewColumnHeader Tag="FechaRecep_Gestor1"
+                                                  Content="{x:Static recurso:Etiquetas.lsvFechaRecepcionGestor}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=FechaRecep_Gestor1, StringFormat={}{0:dd/MM/yyyy}}"
+                                               TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="120" >
                             <GridViewColumnHeader Tag="FechaPres_Gestor2"
                                                   Content="{x:Static recurso:Etiquetas.lsvFechaPresentacionSAPI}"/>
                             <GridViewColumn.CellTemplate>
@@ -262,15 +283,7 @@
                         </GridViewColumn>
 
 
-                        <!--<GridViewColumn Width="120" >
-                            <GridViewColumnHeader Tag="Presentacion_Enc.Id"
-                                                  Content="Cod Solicitud"/>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Path=Presentacion_Enc.Id}" TextAlignment="Center"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>-->
+                        
 
                         <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Material.Descripcion}" Width="200">
                             <GridViewColumnHeader Tag="Descripcion"
@@ -355,6 +368,9 @@
                 </Button>
                 <Button Name="_btnRecepcionDpto" Width="110" Height="25" Click="_RegistarEvento_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnRecepcionDpto}"/>
+                </Button>
+                <Button Name="_btnExportarDetalle" Width="110" Height="25" Click="_btnExportarDetalle_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnExportar}"/>
                 </Button>
                 <Button Name="_btnLimpiarCampos" Width="100" Height="25" Click="_btnLimpiarCampos_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnLimpiarCampos}"/>

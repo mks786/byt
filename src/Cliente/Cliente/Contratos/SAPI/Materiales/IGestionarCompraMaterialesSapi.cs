@@ -30,6 +30,8 @@ namespace Trascend.Bolet.Cliente.Contratos.SAPI.Materiales
 
         string TextoBotonModificar { get; set; }
 
+        string FechaCompraSapi { get; set; }
+
         bool HabilitarCampos { set; }
 
         void Mensaje(string mensaje, int opcion);
@@ -45,5 +47,7 @@ namespace Trascend.Bolet.Cliente.Contratos.SAPI.Materiales
         void PintarBotonVerFacturaSAPI();
 
         void ArchivoNoEncontrado(string mensaje);
+
+        void DeshabilitarBotonAceptar();
     }
 }

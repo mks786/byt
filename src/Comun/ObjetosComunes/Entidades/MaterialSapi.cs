@@ -16,6 +16,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private DateTime? _fechaVigencia;
         private int _existencia;
         private Departamento _departamento;
+        private string _tablaReferencia;
+        private string _campoReferencia;
 
         #endregion
 
@@ -135,6 +137,24 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return this._departamento; }
             set { this._departamento = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la Tabla a la que hace referencia el Material
+        /// </summary>
+        public virtual string TablaReferencia
+        {
+            get { return this._tablaReferencia; }
+            set { this._tablaReferencia = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el campo de la Tabla a la que hace referencia el Material
+        /// </summary>
+        public virtual string CampoReferencia
+        {
+            get { return this._campoReferencia; }
+            set { this._campoReferencia = value; }
         }
 
 

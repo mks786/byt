@@ -119,6 +119,10 @@
         </GroupBox>
 
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
+            <Button Name="_btnSeleccionar" VerticalAlignment="Bottom" Height="25" Width="90" Visibility="Collapsed"
+                    Click="_btnSeleccionar_Click">
+                <TextBlock Name="_txbSeleccionar" Text="{x:Static recurso:Etiquetas.btnSeleccionar}"/>
+            </Button>
             <Button Name="_btnModificar"  VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnModificar_Click">
                 <TextBlock Name="_txbModificar" Text="{x:Static recurso:Etiquetas.btnModificar}"/>
             </Button>

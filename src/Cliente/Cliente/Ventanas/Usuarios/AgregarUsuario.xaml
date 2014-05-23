@@ -48,6 +48,7 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
@@ -133,6 +134,14 @@
                 <CheckBox  Name="_cbxAutorizar" Grid.Column="2" Grid.Row="7" VerticalAlignment="Center"
                          HorizontalAlignment="Left" IsChecked="{Binding Path=BAutorizar}">
                 </CheckBox>
+
+                <Label Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblEntregaMaterial}"/>
+                </Label>
+                <CheckBox  Name="_cbxEntregaMaterial" Grid.Column="2" Grid.Row="8" VerticalAlignment="Center"
+                         HorizontalAlignment="Left" IsChecked="{Binding Path=BEntregaMaterial}">
+                </CheckBox>
+
             </Grid>
         </GroupBox>
 

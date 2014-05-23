@@ -1555,4 +1555,7 @@
   <data name="ErrorEntregaSapiNoProcesadas" xml:space="preserve">
     <value>Las Entregas seleccionadas no fueron procesadas</value>
   </data>
+  <data name="ConfirmarExportarConsulta" xml:space="preserve">
+    <value>Desea exportar el resultado de la Consulta a Excel?</value>
+  </data>
 </root>

@@ -10,6 +10,7 @@ using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using System.Collections.Generic;
 using Trascend.Bolet.Cliente.Ventanas.EntradasAlternas;
+using Trascend.Bolet.Cliente.Ventanas.Remitentes;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Remitentes
 {
@@ -93,6 +94,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Remitentes
         /// </summary>
         public void Aceptar()
         {
+            String exitoso = null;
+
             try
             {
                 Remitente remitente = (Remitente)this._ventana.Remitente;
@@ -100,16 +103,37 @@ namespace Trascend.Bolet.Cliente.Presentadores.Remitentes
                 remitente.Pais = (Pais)this._ventana.Pais;
                 remitente.TipoRemitente = this._ventana.TipoRemitente;
                 remitente.Operacion = "CREATE";
-                bool exitoso = this._remitenteServicios.InsertarOModificar(remitente, UsuarioLogeado.Hash);
+                //bool exitoso = this._remitenteServicios.InsertarOModificar(remitente, UsuarioLogeado.Hash);
+                exitoso = this._remitenteServicios.InsertarOModificarRemitente(remitente, UsuarioLogeado.Hash);
 
-                if (exitoso)
+                if (!string.IsNullOrEmpty(exitoso))
+                {
+                    remitente.Id = exitoso;
+                    
+                    if (this._ventanaPadre != null)
+                    {
+                        this.Navegar(new ConsultarRemitente(remitente, this._ventanaPadre));
+                    }
+                    else
+                    {
+                        this.Navegar(new ConsultarRemitente(remitente, null));
+                    }
+                }
+
+                #region CODIGO ORIGINAL COMENTADO -  NO BORRAR
+                /*if (exitoso)
                     if (_ventanaPadre == null)
                         this.Navegar(Recursos.MensajesConElUsuario.RemitenteInsertado, false);
                     else
                     {
+
                         ((AgregarEntradaAlterna)this._ventanaPadre).RefrescarRemitente(remitente);
                         RegresarVentanaPadre();
-                    }
+                    }*/
+                
+                #endregion
+
+                
             }
             catch (ApplicationException ex)
             {

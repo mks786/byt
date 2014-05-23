@@ -45,6 +45,12 @@ namespace Trascend.Bolet.Cliente.Contratos.EntradasAlternas
 
         object TipoAcuse { get; set; }
 
+        string Destinatario { get; set; }
+
         void BorrarCeros();
+
+        void MostrarCampoDestinatario();
+
+        void OcultarCampoDestinatario();
     }
 }

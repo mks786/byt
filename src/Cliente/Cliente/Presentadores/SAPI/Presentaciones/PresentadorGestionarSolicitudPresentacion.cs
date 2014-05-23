@@ -11,6 +11,15 @@ using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.Cliente.Ventanas.SAPI.Presentaciones;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using Trascend.Bolet.Cliente.Ventanas.Marcas;
+using Trascend.Bolet.Cliente.Ventanas.Patentes;
+using Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones;
+using Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones;
+using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio;
+using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre;
+using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario;
+using Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias;
+using Trascend.Bolet.Cliente.Ventanas.Renovaciones;
 using System.Threading;
 using System.Globalization;
 using System.Diagnostics;
@@ -28,7 +37,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Presentaciones
         private IPresentacionSapiServicios _presentacionSapiServicios;
         private IPresentacionSapiDetalleServicios _presentacionSapiDetalleServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
-
+        private IMarcaServicios _marcaServicios;
+        private ICesionServicios _cesionServicios;
+        private IFusionServicios _fusionServicios;
+        private ICambioDeNombreServicios _cambioDeNombreServicios;
+        private ICambioDeDomicilioServicios _cambioDeDomicilioServicios;
+        private ICambioPeticionarioServicios _cambioPeticionarioServicios;
+        private ILicenciaServicios _licenciaServicios;
+        private IPatenteServicios _patenteServicios;
+        private ICesionPatenteServicios _cesionPatenteServicios;
+        private IFusionPatenteServicios _fusionPatenteServicios;
+        private ICambioDeNombrePatenteServicios _cambioDeNombrePatenteServicios;
+        private ICambioDeDomicilioPatenteServicios _cambioDeDomicilioPatenteServicios;
+        private ICambioPeticionarioPatenteServicios _cambioPeticionarioPatenteServicios;
+        private ILicenciaPatenteServicios _licenciaPatenteServicios;
+        private IRenovacionServicios _renovacionServicio;
+        
         private bool _agregar;
         private IList<ListaDatosValores> _statusDocumentos;
        
@@ -77,7 +101,37 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Presentaciones
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PresentacionSapiServicios"]);
                 this._presentacionSapiDetalleServicios = (IPresentacionSapiDetalleServicios)Activator.GetObject(typeof(IPresentacionSapiDetalleServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PresentacionSapiDetalleServicios"]);
-                
+                this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
+                this._patenteServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
+                this._cesionServicios = (ICesionServicios)Activator.GetObject(typeof(ICesionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CesionServicios"]);
+                this._cesionPatenteServicios = (ICesionPatenteServicios)Activator.GetObject(typeof(ICesionPatenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CesionPatenteServicios"]);
+                this._fusionServicios = (IFusionServicios)Activator.GetObject(typeof(IFusionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FusionServicios"]);
+                this._fusionPatenteServicios = (IFusionPatenteServicios)Activator.GetObject(typeof(IFusionPatenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FusionPatenteServicios"]);
+                this._cambioDeNombreServicios = (ICambioDeNombreServicios)Activator.GetObject(typeof(ICambioDeNombreServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioDeNombreServicios"]);
+                this._cambioDeNombrePatenteServicios = (ICambioDeNombrePatenteServicios)Activator.GetObject(typeof(ICambioDeNombrePatenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioDeNombrePatenteServicios"]);
+                this._cambioDeDomicilioServicios = (ICambioDeDomicilioServicios)Activator.GetObject(typeof(ICambioDeDomicilioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioDeDomicilioServicios"]);
+                this._cambioDeDomicilioPatenteServicios = (ICambioDeDomicilioPatenteServicios)Activator.GetObject(typeof(ICambioDeDomicilioPatenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioDeDomicilioPatenteServicios"]);
+                this._cambioPeticionarioServicios = (ICambioPeticionarioServicios)Activator.GetObject(typeof(ICambioPeticionarioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioPeticionarioServicios"]);
+                this._cambioPeticionarioPatenteServicios = (ICambioPeticionarioPatenteServicios)Activator.GetObject(typeof(ICambioPeticionarioPatenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioPeticionarioPatenteServicios"]);
+                this._licenciaServicios = (ILicenciaServicios)Activator.GetObject(typeof(ILicenciaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["LicenciaServicios"]);
+                this._licenciaPatenteServicios = (ILicenciaPatenteServicios)Activator.GetObject(typeof(ILicenciaPatenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["LicenciaPatenteServicios"]);
+                this._renovacionServicio = (IRenovacionServicios)Activator.GetObject(typeof(IRenovacionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["RenovacionServicios"]);
+                                
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -136,6 +190,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Presentaciones
                 else
                 {
                     this._ventana.IdPresentacionSapi = String.Empty;
+                    this._ventana.FechaPresentacion = DateTime.Today.ToString();
                     this._ventana.CantidadDocumentos = ((PresentacionSapi)this._ventana.EncabezadoPresentacion).CantDocumentos.ToString();
                 }
 
@@ -262,24 +317,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Presentaciones
                 {
                     if (!this._ventana.CodigoExpedientePresentacion.Equals(String.Empty) && !this._ventana.CodigoExpedientePresentacion.Equals(""))
                     {
-                        if (null == ((PresentacionSapi)this._ventana.EncabezadoPresentacion).DetalleSolicitudPresentacion)
-                            renglonesDetalle = new List<PresentacionSapiDetalle>();
-                        else
-                            renglonesDetalle = ((PresentacionSapi)this._ventana.EncabezadoPresentacion).DetalleSolicitudPresentacion;
+                        if (ValidarRegistroDeOperaciones((MaterialSapi)this._ventana.Documento, this._ventana.CodigoExpedientePresentacion))
+                        {
+                            if (null == ((PresentacionSapi)this._ventana.EncabezadoPresentacion).DetalleSolicitudPresentacion)
+                                renglonesDetalle = new List<PresentacionSapiDetalle>();
+                            else
+                                renglonesDetalle = ((PresentacionSapi)this._ventana.EncabezadoPresentacion).DetalleSolicitudPresentacion;
 
-                        renglonDetalle = new PresentacionSapiDetalle();
-                        renglonDetalle.Material = (MaterialSapi)this._ventana.Documento;
-                        renglonDetalle.Presentacion_Enc = (PresentacionSapi)this._ventana.EncabezadoPresentacion;
-                        renglonDetalle.CodExpediente = this._ventana.CodigoExpedientePresentacion;
-                        renglonDetalle.StatusDocumento = this.BuscarListaDeDatosValores(this._statusDocumentos, statusPendiente).Descripcion;
-                                                
-                        renglonesDetalle.Add(renglonDetalle);
-                        ((PresentacionSapi)this._ventana.EncabezadoPresentacion).DetalleSolicitudPresentacion = renglonesDetalle;
-                        this._ventana.DetallePresentacion = null;
-                        this._ventana.DetallePresentacion = ((PresentacionSapi)this._ventana.EncabezadoPresentacion).DetalleSolicitudPresentacion;
-                        this._ventana.CantidadDocumentos = ((PresentacionSapi)this._ventana.EncabezadoPresentacion).DetalleSolicitudPresentacion.Count.ToString();
-                        ((PresentacionSapi)this._ventana.EncabezadoPresentacion).CantDocumentos = ((PresentacionSapi)this._ventana.EncabezadoPresentacion).DetalleSolicitudPresentacion.Count;
-                        this._ventana.SeleccionarPrimerItem();
+                            renglonDetalle = new PresentacionSapiDetalle();
+                            renglonDetalle.Material = (MaterialSapi)this._ventana.Documento;
+                            renglonDetalle.Presentacion_Enc = (PresentacionSapi)this._ventana.EncabezadoPresentacion;
+                            renglonDetalle.CodExpediente = this._ventana.CodigoExpedientePresentacion;
+                            renglonDetalle.StatusDocumento = this.BuscarListaDeDatosValores(this._statusDocumentos, statusPendiente).Descripcion;
+
+                            renglonesDetalle.Add(renglonDetalle);
+                            ((PresentacionSapi)this._ventana.EncabezadoPresentacion).DetalleSolicitudPresentacion = renglonesDetalle;
+                            this._ventana.DetallePresentacion = null;
+                            this._ventana.DetallePresentacion = ((PresentacionSapi)this._ventana.EncabezadoPresentacion).DetalleSolicitudPresentacion;
+                            this._ventana.CantidadDocumentos = ((PresentacionSapi)this._ventana.EncabezadoPresentacion).DetalleSolicitudPresentacion.Count.ToString();
+                            ((PresentacionSapi)this._ventana.EncabezadoPresentacion).CantDocumentos = ((PresentacionSapi)this._ventana.EncabezadoPresentacion).DetalleSolicitudPresentacion.Count;
+                            this._ventana.SeleccionarPrimerItem();
+                        }
+                        else
+                            this._ventana.Mensaje
+                                (string.Format("El documento de {0} para el expediente {1} no se encuentra registrado en el Sistema. Créelo y vuelva intentar incluirlo",((MaterialSapi)this._ventana.Documento).Descripcion,this._ventana.CodigoExpedientePresentacion), 0);
                     }
                     else
                         this._ventana.Mensaje("Introduzca el Código del Expediente al que pertenece el Documento a presentar", 0);
@@ -297,6 +358,167 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Presentaciones
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + "en el metodo: " + (new System.Diagnostics.StackFrame()).GetMethod().Name + ". Error: " + ex.Message, true);
             }
+        }
+
+
+        /// <summary>
+        /// Metodo que valida si el Documento que se incluye tiene su operacion creada
+        /// </summary>
+        /// <param name="documento">Documento a validar</param>
+        /// <param name="codigoExpediente">Codigo de Expediente</param>
+        /// <returns>True si la operacion existe; false, en caso contrario</returns>
+        private bool ValidarRegistroDeOperaciones(MaterialSapi documento, string codigoExpediente)
+        {
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                MaterialSapi DocumentoAgregar = documento;
+                String tablaDocumento = documento.TablaReferencia;
+
+                switch (tablaDocumento)
+                {
+                    case "MYP_MARCAS":
+                        Marca marca = new Marca();
+                        marca.Id = int.Parse(codigoExpediente);
+                        IList<Marca> marcas = this._marcaServicios.ObtenerMarcasFiltro(marca);
+                        if (marcas.Count > 0)
+                            retorno = true;
+                        break;
+
+                    case "MYP_MCESIONES":
+                        Cesion cesion = new Cesion();
+                        cesion.Id = int.Parse(codigoExpediente);
+                        IList<Cesion> cesiones = this._cesionServicios.ObtenerCesionFiltro(cesion);
+                        if (cesiones.Count > 0)
+                            retorno = true;
+                        break;
+
+                    case "MYP_MFUSIONES":
+                        Fusion fusion = new Fusion();
+                        fusion.Id = int.Parse(codigoExpediente);
+                        IList<Fusion> fusiones = this._fusionServicios.ObtenerFusionFiltro(fusion);
+                        if (fusiones.Count > 0)
+                            retorno = true;
+                        break;
+
+                    case "MYP_MNOMBRES":
+                        CambioDeNombre cambioDeNombre = new CambioDeNombre();
+                        cambioDeNombre.Id = int.Parse(codigoExpediente);
+                        IList<CambioDeNombre> cambiosNombre = this._cambioDeNombreServicios.ObtenerCambioDeNombreFiltro(cambioDeNombre);
+                        if (cambiosNombre.Count > 0)
+                            retorno = true;
+                        break;
+
+                    case "MYP_MDOMICILIOS":
+                        CambioDeDomicilio cambioDomicilio = new CambioDeDomicilio();
+                        cambioDomicilio.Id = int.Parse(codigoExpediente);
+                        IList<CambioDeDomicilio> cambiosDomicilio = this._cambioDeDomicilioServicios.ObtenerCambioDeDomicilioFiltro(cambioDomicilio);
+                        if (cambiosDomicilio.Count > 0)
+                            retorno = true;
+                        break;
+
+                    case "MYP_MPETICIONARIOS":
+                        CambioPeticionario cambioPeticionario = new CambioPeticionario();
+                        cambioPeticionario.Id = int.Parse(codigoExpediente);
+                        IList<CambioPeticionario> cambiosPeticionario = this._cambioPeticionarioServicios.ObtenerCambioPeticionarioFiltro(cambioPeticionario);
+                        if (cambiosPeticionario.Count > 0)
+                            retorno = true;
+                        break;
+
+                    case "MYP_MLICENCIAS":
+                        Licencia licencia = new Licencia();
+                        licencia.Id = int.Parse(codigoExpediente);
+                        IList<Licencia> licencias = this._licenciaServicios.ObtenerLicenciaFiltro(licencia);
+                        if (licencias.Count > 0)
+                            retorno = true;
+                        break;
+
+
+                    case "MYP_PATENTES":
+                        Patente patente = new Patente();
+                        patente.Id = int.Parse(codigoExpediente);
+                        IList<Patente> patentes = this._patenteServicios.ObtenerPatentesFiltro(patente);
+                        if (patentes.Count > 0)
+                            retorno = true;
+                        break;
+
+                    case "MYP_PCESIONES":
+                        CesionPatente cesionPatente = new CesionPatente();
+                        cesionPatente.Id = int.Parse(codigoExpediente);
+                        IList<CesionPatente> cesionesPatente = this._cesionPatenteServicios.ObtenerCesionPatenteFiltro(cesionPatente);
+                        if (cesionesPatente.Count > 0)
+                            retorno = true;
+                        break;
+
+                    case "MYP_PFUSIONES":
+                        FusionPatente fusionPatente = new FusionPatente();
+                        fusionPatente.Id = int.Parse(codigoExpediente);
+                        IList<FusionPatente> fusionesPatente = this._fusionPatenteServicios.ObtenerFusionPatenteFiltro(fusionPatente);
+                        if (fusionesPatente.Count > 0)
+                            retorno = true;
+                        break;
+
+                    case "MYP_PNOMBRES":
+                        CambioDeNombrePatente cambioDeNombrePatente = new CambioDeNombrePatente();
+                        cambioDeNombrePatente.Id = int.Parse(codigoExpediente);
+                        IList<CambioDeNombrePatente> cambiosNombrePatente = 
+                            this._cambioDeNombrePatenteServicios.ObtenerCambioDeNombrePatenteFiltro(cambioDeNombrePatente);
+                        if (cambiosNombrePatente.Count > 0)
+                            retorno = true;
+                        break;
+
+                    case "MYP_PDOMICILIOS":
+                        CambioDeDomicilioPatente cambioDomicilioPatente = new CambioDeDomicilioPatente();
+                        cambioDomicilioPatente.Id = int.Parse(codigoExpediente);
+                        IList<CambioDeDomicilioPatente> cambiosDomicilioPatente = 
+                            this._cambioDeDomicilioPatenteServicios.ObtenerCambioDeDomicilioPatenteFiltro(cambioDomicilioPatente);
+                        if (cambiosDomicilioPatente.Count > 0)
+                            retorno = true;
+                        break;
+
+                    case "MYP_PPETICIONARIOS":
+                        CambioPeticionarioPatente cambioPeticionarioPatente = new CambioPeticionarioPatente();
+                        cambioPeticionarioPatente.Id = int.Parse(codigoExpediente);
+                        IList<CambioPeticionarioPatente> cambiosPeticionarioPatente = 
+                            this._cambioPeticionarioPatenteServicios.ObtenerCambioPeticionarioFiltro(cambioPeticionarioPatente);
+                        if (cambiosPeticionarioPatente.Count > 0)
+                            retorno = true;
+                        break;
+
+                    case "MYP_PLICENCIAS":
+                        LicenciaPatente licenciaPatente = new LicenciaPatente();
+                        licenciaPatente.Id = int.Parse(codigoExpediente);
+                        IList<LicenciaPatente> licenciasPatente = this._licenciaPatenteServicios.ObtenerLicenciaFiltro(licenciaPatente);
+                        if (licenciasPatente.Count > 0)
+                            retorno = true;
+                        break;
+
+                    case "MYP_RENOVACIONES":
+                        Renovacion renovacion = new Renovacion();
+                        renovacion.Id = int.Parse(codigoExpediente);
+                        IList<Renovacion> renovaciones = this._renovacionServicio.ObtenerRenovacionFiltro(renovacion);
+                        if (renovaciones.Count > 0)
+                            retorno = true;
+                        break;
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return retorno;
         }
 
 
@@ -325,18 +547,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Presentaciones
 
                     renglonDetalle = (PresentacionSapiDetalle)this._ventana.DetallePresentacionSeleccionado;
 
-                    if (!this._agregar)
+                    if (!renglonDetalle.BRecibeDocumento)
                     {
-                        bool exitoso = this._presentacionSapiDetalleServicios.Eliminar(renglonDetalle,UsuarioLogeado.Hash);
-                    }
+                        if (!this._agregar)
+                        {
+                            bool exitoso = this._presentacionSapiDetalleServicios.Eliminar(renglonDetalle, UsuarioLogeado.Hash);
+                        }
 
-                    renglonesDetalle.Remove((PresentacionSapiDetalle)this._ventana.DetallePresentacionSeleccionado);
-                    ((PresentacionSapi)this._ventana.EncabezadoPresentacion).DetalleSolicitudPresentacion = renglonesDetalle;
-                    this._ventana.DetallePresentacion = null;
-                    this._ventana.DetallePresentacion = ((PresentacionSapi)this._ventana.EncabezadoPresentacion).DetalleSolicitudPresentacion;
-                    this._ventana.CantidadDocumentos = ((PresentacionSapi)this._ventana.EncabezadoPresentacion).DetalleSolicitudPresentacion.Count.ToString();
-                    ((PresentacionSapi)this._ventana.EncabezadoPresentacion).CantDocumentos = ((PresentacionSapi)this._ventana.EncabezadoPresentacion).DetalleSolicitudPresentacion.Count;
-                    this._ventana.DetallePresentacionSeleccionado = null;
+                        renglonesDetalle.Remove((PresentacionSapiDetalle)this._ventana.DetallePresentacionSeleccionado);
+                        ((PresentacionSapi)this._ventana.EncabezadoPresentacion).DetalleSolicitudPresentacion = renglonesDetalle;
+                        this._ventana.DetallePresentacion = null;
+                        this._ventana.DetallePresentacion = ((PresentacionSapi)this._ventana.EncabezadoPresentacion).DetalleSolicitudPresentacion;
+                        this._ventana.CantidadDocumentos = ((PresentacionSapi)this._ventana.EncabezadoPresentacion).DetalleSolicitudPresentacion.Count.ToString();
+                        ((PresentacionSapi)this._ventana.EncabezadoPresentacion).CantDocumentos = ((PresentacionSapi)this._ventana.EncabezadoPresentacion).DetalleSolicitudPresentacion.Count;
+                        this._ventana.DetallePresentacionSeleccionado = null;
+                    }
+                    else
+                        this._ventana.Mensaje("No se puede eliminar este Documento fue retirado por el Gestor para su respectiva Presentación ante SAPI", 0);
                 }
 
                 #region trace
@@ -391,6 +618,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Presentaciones
                                     {
                                         this._agregar = false;
                                         this._ventana.Mensaje("La Solicitud de Presentacion fue registrada con éxito", 2);
+                                        this._ventana.IdPresentacionSapi = presentacionSapiEnc.Id.ToString();
+                                        ((PresentacionSapi)this._ventana.EncabezadoPresentacion).Id = int.Parse(this._ventana.IdPresentacionSapi);
                                     }
                                     else
                                         this._ventana.Mensaje(string.Format("La Solicitud de Presentacion {0} fue modificada", presentacionSapiEnc.Id.ToString()), 2);

@@ -26,6 +26,7 @@
     </many-to-one>
 
     <property name="TipoAcuse" column="ITIPO" type="char"/>
+    <property name="Destinatario" column="DESTINATARIO" type="string" />
     
   </class>
 

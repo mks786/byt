@@ -11,6 +11,8 @@ using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.Cliente.Ventanas.SAPI.Materiales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using Diginsoft.Bolet.ObjetosComunes.Entidades;
+using Diginsoft.Bolet.ObjetosComunes.ContratosServicios;
 
 namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
 {
@@ -22,6 +24,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
         private IMaterialSapiServicios _materialSapiServicios;
         private ICompraSapiServicios _compraSapiServicios;
         private ICompraSapiDetalleServicios _compraSapiDetalleServicios;
+        private IFacImpuestoServicios _facImpuestoServicios;
         private CompraSapi _compra;
         private IList<CompraSapiDetalle> _detalleCompra;
         private bool _agregar = false;
@@ -64,6 +67,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CompraSapiServicios"]);
                 this._compraSapiDetalleServicios = (ICompraSapiDetalleServicios)Activator.GetObject(typeof(ICompraSapiDetalleServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CompraSapiDetalleServicios"]);
+                this._facImpuestoServicios = (IFacImpuestoServicios)Activator.GetObject(typeof(IFacImpuestoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FacImpuestoServicios"]);
 
 
                 #region trace
@@ -130,6 +135,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                 else
                 {
                     this._ventana.IdCompraSapi = String.Empty;
+                    ObtenerPorcentajeIva();
+                    this._ventana.FechaCompraSapi = DateTime.Today.ToString();
                 }
 
                 this._ventana.FocoPredeterminado();
@@ -145,6 +152,33 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + "en el metodo: " + (new System.Diagnostics.StackFrame()).GetMethod().Name + ". Error: " + ex.Message, true);
             }
 
+        }
+
+        private void ObtenerPorcentajeIva()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                IList<FacImpuesto> impuestos = this._facImpuestoServicios.ObtenerFacImpuestosFiltro(null);
+                if (impuestos.Count > 0)
+                {
+                    this._ventana.PorcentajeImpuesto = impuestos[0].Impuesto.ToString("N");
+
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -236,28 +270,34 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                             else
                                 renglonesDetalle = ((CompraSapi)this._ventana.CompraSapi).DetalleCompra;
 
-
-
-                            renglonDetalle = new CompraSapiDetalle();
-                            renglonDetalle.Compra = (CompraSapi)this._ventana.CompraSapi;
-                            renglonDetalle.Material = (MaterialSapi)this._ventana.Material;
-                            renglonDetalle.Cantidad = int.Parse(this._ventana.CantidadMaterial);
-                            renglonDetalle.PUnit = ((MaterialSapi)this._ventana.Material).Precio;
-                            renglonDetalle.Total = renglonDetalle.Cantidad * renglonDetalle.PUnit.Value;
-
-                            if (!this._agregar)
+                            if (!BuscarMaterialRepetido((MaterialSapi)this._ventana.Material, renglonesDetalle))
                             {
-                                AjustarExistenciaMaterial(renglonDetalle, true);
-                                bool exitoso = this._compraSapiDetalleServicios.InsertarOModificar(renglonDetalle, UsuarioLogeado.Hash);
-                                this._ventana.Mensaje("Presione el botón Totalizar Compra", 1);
+                                renglonDetalle = new CompraSapiDetalle();
+                                renglonDetalle.Compra = (CompraSapi)this._ventana.CompraSapi;
+                                renglonDetalle.Material = (MaterialSapi)this._ventana.Material;
+                                renglonDetalle.Cantidad = int.Parse(this._ventana.CantidadMaterial);
+                                renglonDetalle.PUnit = ((MaterialSapi)this._ventana.Material).Precio;
+                                renglonDetalle.Total = renglonDetalle.Cantidad * renglonDetalle.PUnit.Value;
+
+                                if (!this._agregar)
+                                {
+                                    AjustarExistenciaMaterial(renglonDetalle, true);
+                                    bool exitoso = this._compraSapiDetalleServicios.InsertarOModificar(renglonDetalle, UsuarioLogeado.Hash);
+                                    this._ventana.Mensaje("Presione el botón Totalizar Compra", 1);
+                                }
+
+                                renglonesDetalle.Add(renglonDetalle);
+                                ((CompraSapi)this._ventana.CompraSapi).DetalleCompra = renglonesDetalle;
+                                this._ventana.DetallesDeCompraSapi = null;
+                                this._ventana.DetallesDeCompraSapi = ((CompraSapi)this._ventana.CompraSapi).DetalleCompra;
+                                this._ventana.SeleccionarPrimerItem();
                             }
 
-                            renglonesDetalle.Add(renglonDetalle);
-                            ((CompraSapi)this._ventana.CompraSapi).DetalleCompra = renglonesDetalle;
-                            this._ventana.DetallesDeCompraSapi = null;
-                            this._ventana.DetallesDeCompraSapi = ((CompraSapi)this._ventana.CompraSapi).DetalleCompra;
-                            this._ventana.SeleccionarPrimerItem();
-
+                            else
+                            {
+                                this._ventana.Mensaje("El Material seleccionado ya se encuentra incluido en la Compra", 0);
+                                this._ventana.CantidadMaterial = String.Empty;
+                            }
                         }
                         else
                         {
@@ -293,6 +333,44 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + "en el metodo: " + (new System.Diagnostics.StackFrame()).GetMethod().Name + ". Error: " + ex.Message, true);
             }
+        }
+
+
+        /// <summary>
+        /// Metodo que determina si un Material Sapi esta repetido o no
+        /// </summary>
+        /// <param name="materialSapi">Material a buscar</param>
+        /// <param name="renglonesDetalle">Lista de Detalle de la Compra SAPI</param>
+        /// <returns>True si el material ya se encuentra en la lista de detalles; False, en caso contrario</returns>
+        private bool BuscarMaterialRepetido(MaterialSapi materialSapi, IList<CompraSapiDetalle> renglonesDetalle)
+        {
+            bool retorno = false;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                foreach (CompraSapiDetalle item in renglonesDetalle)
+                {
+                    if (materialSapi.Id.Equals(item.Material.Id))
+                    {
+                        retorno = true;
+                    }
+                }
+                
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return retorno;
         }
 
 
@@ -415,8 +493,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                 if(((CompraSapi)this._ventana.CompraSapi).DetalleCompra != null)
                 {
                     IList<CompraSapiDetalle> renglonesDetalleCompra = ((CompraSapi)this._ventana.CompraSapi).DetalleCompra;
-                    if ((!this._ventana.PorcentajeImpuesto.Equals("")) && (!this._ventana.PorcentajeImpuesto.Equals("0,00")))
-                    {
+                    //if ((!this._ventana.PorcentajeImpuesto.Equals("")) && (!this._ventana.PorcentajeImpuesto.Equals("0,00")))
+                    //{
                         foreach (CompraSapiDetalle renglonDetalle in renglonesDetalleCompra)
                         {
                             montoImporte += renglonDetalle.Total;
@@ -427,9 +505,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                         this._ventana.MontoImporte = montoImporte.ToString("N");
                         this._ventana.MontoIva = montoIva.ToString("N");
                         this._ventana.TotalCompraSapi = montoTotal.ToString("N");
-                    }
-                    else
-                        this._ventana.Mensaje("Introduzca el porcentaje de IVA a aplicar", 0);
+                    //}
+                    //else
+                    //    this._ventana.Mensaje("Introduzca el porcentaje de IVA a aplicar", 0);
                 }
                 else
                     this._ventana.Mensaje("La Compra no tiene detalles, no se puede totalizar",0);
@@ -524,11 +602,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                                 //} 
                                 #endregion
 
-                                this._ventana.Mensaje(string.Format("La Compra {0} fue registrada", compra.Id.ToString()), 2);
+                                this._ventana.Mensaje(string.Format("La Compra {0} fue registrada y no puede ser modificada", compra.Id.ToString()), 2);
                                 this._ventana.HabilitarCampos = false;
-                                this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
-                                this._ventana.ActivarBotonesIncluirYBorrar(false);
-                                this._ventana.ActivarCampoCantidad(false);
+                                this._ventana.DeshabilitarBotonAceptar();
+                                //this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                                //this._ventana.ActivarBotonesIncluirYBorrar(false);
+                                //this._ventana.ActivarCampoCantidad(false);
                             }
                         }
                         else
