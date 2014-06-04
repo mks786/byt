@@ -393,7 +393,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                         IList<MaterialSapi> materialesEncontrados = this._materialSapiServicios.ObtenerMaterialSapiFiltro(material);
                         material = materialesEncontrados[0];
 
-                        if (movimientoSapi.CantMaterialSol < material.Existencia)
+                        if (movimientoSapi.CantMaterialSol <= material.Existencia)
                         {
                             material.Existencia -= movimientoSapi.CantMaterialSol;
                             bool exito = this._materialSapiServicios.InsertarOModificar(material, UsuarioLogeado.Hash);

@@ -4,15 +4,16 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Windows.Input;
+using Diginsoft.Bolet.ObjetosComunes.ContratosServicios;
+using Diginsoft.Bolet.ObjetosComunes.Entidades;
 using NLog;
 using Trascend.Bolet.Cliente.Contratos.SAPI.Materiales;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.Cliente.Ventanas.SAPI.Materiales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
-using Diginsoft.Bolet.ObjetosComunes.Entidades;
-using Diginsoft.Bolet.ObjetosComunes.ContratosServicios;
 
 namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
 {
@@ -225,9 +226,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                 #endregion
 
                 IList<MaterialSapi> materiales = this._materialSapiServicios.ConsultarTodos();
+                IList<MaterialSapi> materialesOrdenados = materiales.OrderBy(o => o.Descripcion).ToList();
                 MaterialSapi primerMaterial = new MaterialSapi("NGN");
-                materiales.Insert(0, primerMaterial);
-                this._ventana.Materiales = materiales;
+                //materiales.Insert(0, primerMaterial);
+                materialesOrdenados.Insert(0, primerMaterial);
+                //this._ventana.Materiales = materiales;
+                this._ventana.Materiales = materialesOrdenados;
 
 
                 #region trace
@@ -571,50 +575,52 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                 {
                     CompraSapi compra = ObtenerCompraSapiPantalla();
 
-                    if (compra.Total != 0)
+                    if (!ValidarExistenciaCompra(compra))
                     {
-                        if (compra.DetalleCompra != null)
+                        if (compra.Total != 0)
                         {
-                            exitoso = this._compraSapiServicios.InsertarOModificar(compra, UsuarioLogeado.Hash);
-                            if (exitoso)
+                            if (compra.DetalleCompra != null)
                             {
-                                GuardarDetalleCompraSapi(compra);
+                                exitoso = this._compraSapiServicios.InsertarOModificar(compra, UsuarioLogeado.Hash);
+                                if (exitoso)
+                                {
+                                    GuardarDetalleCompraSapi(compra);
 
-                                if(this._agregar)
-                                    this._agregar = false;
+                                    if (this._agregar)
+                                        this._agregar = false;
 
-                                #region CODIGO ORIGINAL COMENTADO - NO BORRAR
-                                //if (this._agregar)
-                                //    GuardarDetalleCompraSapi(compra);
-                                //else
-                                //{
-                                //    //Buscar los detalles por el numero de la compra
-                                //    foreach (CompraSapiDetalle item in compra.DetalleCompra)
-                                //    {
-                                //        //Ajustar el inventario de materiales
-                                //        AjustarExistenciaMaterial(item, false);
-                                //        //Borrar cada uno de los detalles
-                                //        bool exitosoEliminarItem = this._compraSapiDetalleServicios.Eliminar(item, UsuarioLogeado.Hash);
-                                //    }
+                                    #region CODIGO ORIGINAL COMENTADO - NO BORRAR
+                                    //if (this._agregar)
+                                    //    GuardarDetalleCompraSapi(compra);
+                                    //else
+                                    //{
+                                    //    //Buscar los detalles por el numero de la compra
+                                    //    foreach (CompraSapiDetalle item in compra.DetalleCompra)
+                                    //    {
+                                    //        //Ajustar el inventario de materiales
+                                    //        AjustarExistenciaMaterial(item, false);
+                                    //        //Borrar cada uno de los detalles
+                                    //        bool exitosoEliminarItem = this._compraSapiDetalleServicios.Eliminar(item, UsuarioLogeado.Hash);
+                                    //    }
 
-                                //    //Volver a agregar los detalles que esten
-                                //    GuardarDetalleCompraSapi(compra);
-                                //} 
-                                #endregion
+                                    //    //Volver a agregar los detalles que esten
+                                    //    GuardarDetalleCompraSapi(compra);
+                                    //} 
+                                    #endregion
 
-                                this._ventana.Mensaje(string.Format("La Compra {0} fue registrada y no puede ser modificada", compra.Id.ToString()), 2);
-                                this._ventana.HabilitarCampos = false;
-                                this._ventana.DeshabilitarBotonAceptar();
-                                //this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
-                                //this._ventana.ActivarBotonesIncluirYBorrar(false);
-                                //this._ventana.ActivarCampoCantidad(false);
+                                    this._ventana.Mensaje(string.Format("La Compra {0} fue registrada y no puede ser modificada", compra.Id.ToString()), 2);
+                                    this._ventana.HabilitarCampos = false;
+                                    this._ventana.DeshabilitarBotonAceptar();
+                                }
                             }
+                            else
+                                this._ventana.Mensaje("La Compra no tiene detalle, revise", 0);
                         }
                         else
-                            this._ventana.Mensaje("La Compra no tiene detalle, revise", 0);
+                            this._ventana.Mensaje("La Compra de Materiales no esta Totalizada", 0);
                     }
                     else
-                        this._ventana.Mensaje("La Compra de Materiales no esta Totalizada", 0);
+                        this._ventana.Mensaje("El número de Factura ya existe", 0);
                 }
 
                 #region trace
@@ -627,6 +633,38 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + "en el metodo: " + (new System.Diagnostics.StackFrame()).GetMethod().Name + ". Error: " + ex.Message, true);
             }
+        }
+
+
+        /// <summary>
+        /// Metodo que permite validar si la compra ingresada ya existe o no
+        /// </summary>
+        /// <param name="compra"></param>
+        /// <returns></returns>
+        private bool ValidarExistenciaCompra(CompraSapi compra)
+        {
+            bool existe = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                existe = this._compraSapiServicios.VerificarExistencia(compra);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return existe;
         }
 
         /// <summary>

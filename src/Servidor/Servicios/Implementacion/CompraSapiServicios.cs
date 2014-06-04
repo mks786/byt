@@ -49,6 +49,42 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
         /// <summary>
+        /// Servicio que verifica la existencia de una Entidad
+        /// </summary>
+        /// <param name="compra">Entidad a verificar existencia</param>
+        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
+        public bool VerificarExistencia(CompraSapi compra)
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                //bool exitoso = ControladorCarta.VerificarExistencia(carta);
+                bool exitoso = ControladorCompraSapi.VerificarExistencia(compra);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                return exitoso;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
+        }
+
+        /// <summary>
         /// Servicio que consulta todos los elementos de una entidad
         /// </summary>
         /// <returns>Lista de entidades</returns>
@@ -67,15 +103,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
             throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Servicio que verifica la existencia de una Entidad
-        /// </summary>
-        /// <param name="entidad">Entidad a verificar existencia</param>
-        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
-        public bool VerificarExistencia(CompraSapi entidad)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         /// <summary>
         /// Servicio que consulta una entidad por su Id

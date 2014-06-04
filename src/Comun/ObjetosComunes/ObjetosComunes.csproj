@@ -43,12 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContratosServicios\IAccionServicios.cs" />
     <Compile Include="ContratosServicios\IAlmacenServicios.cs" />
     <Compile Include="ContratosServicios\IArchivoServicios.cs" />
     <Compile Include="ContratosServicios\ICadenaDeCambiosServicios.cs" />
     <Compile Include="ContratosServicios\ICajaServicios.cs" />
     <Compile Include="ContratosServicios\ICamposReporteRelacionServicios.cs" />
     <Compile Include="ContratosServicios\ICamposReporteServicios.cs" />
+    <Compile Include="ContratosServicios\ICasoBaseServicios.cs" />
+    <Compile Include="ContratosServicios\ICasoServicios.cs" />
     <Compile Include="ContratosServicios\ICertificadoMarcaServicios.cs" />
     <Compile Include="ContratosServicios\ICompraSapiDetalleServicios.cs" />
     <Compile Include="ContratosServicios\ICompraSapiServicios.cs" />
@@ -74,6 +77,7 @@
     <Compile Include="ContratosServicios\ISeguimientoDeCobranzasServicios.cs" />
     <Compile Include="ContratosServicios\ISolicitudSapiServicios.cs" />
     <Compile Include="ContratosServicios\ITipoCajaServicios.cs" />
+    <Compile Include="ContratosServicios\ITipoCasoServicios.cs" />
     <Compile Include="ContratosServicios\ITipoDocumentoServicios.cs" />
     <Compile Include="ContratosServicios\ITipoEmailAsociadoServicios.cs" />
     <Compile Include="ContratosServicios\IReportePatenteServicios.cs" />
@@ -153,6 +157,7 @@
     <Compile Include="ContratosServicios\IRolServicios.cs" />
     <Compile Include="ContratosServicios\IServicioBase.cs" />
     <Compile Include="ContratosServicios\IVistaReporteServicios.cs" />
+    <Compile Include="Entidades\Accion.cs" />
     <Compile Include="Entidades\Almacen.cs" />
     <Compile Include="Entidades\Archivo.cs" />
     <Compile Include="Entidades\Auditoria.cs" />
@@ -163,6 +168,8 @@
     <Compile Include="Entidades\Caja.cs" />
     <Compile Include="Entidades\CamposReporte.cs" />
     <Compile Include="Entidades\CamposReporteRelacion.cs" />
+    <Compile Include="Entidades\Caso.cs" />
+    <Compile Include="Entidades\CasoBase.cs" />
     <Compile Include="Entidades\CertificadoMarca.cs" />
     <Compile Include="Entidades\CompraSapi.cs" />
     <Compile Include="Entidades\CompraSapiDetalle.cs" />
@@ -264,6 +271,7 @@
     <Compile Include="Entidades\Reporte.cs" />
     <Compile Include="Entidades\SolicitudSapi.cs" />
     <Compile Include="Entidades\TipoCaja.cs" />
+    <Compile Include="Entidades\TipoCaso.cs" />
     <Compile Include="Entidades\TipoDocumento.cs" />
     <Compile Include="Entidades\TipoEmailAsociado.cs" />
     <Compile Include="Entidades\ReportePatente.cs" />

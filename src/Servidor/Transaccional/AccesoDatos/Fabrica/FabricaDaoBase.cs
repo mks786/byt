@@ -641,11 +641,25 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// <returns>IDaoMarcaTercero</returns>
         public abstract IDaoMarcaTercero ObtenerDaoMarcaTercero();
 
+
+        /// <summary>
+        /// Método que devuelve el DaoCaso del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoMarcaTercero</returns>
+        public abstract IDaoCaso ObtenerDaoCaso();
+
+
         /// <summary>
         /// Método que devuelve el DaoMarcabaseTercero del manejador que se esté utilizando
         /// </summary>
         /// <returns>IDaoMarcaBaseTercero</returns>
         public abstract IDaoMarcaBaseTercero ObtenerDaoMarcaBaseTercero();
+
+        /// <summary>
+        /// Método que devuelve el DaoCasoBase del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoCasoBase</returns>
+        public abstract IDaoCasoBase ObtenerDaoCasoBase();
 
         /// <summary>
         /// Método que devuelve el DaoPlanilla del manejador que se esté utilizando
@@ -741,5 +755,18 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// </summary>
         /// <returns>IDaoTipoEmailAsociado</returns>
         public abstract IDaoTipoEmailAsociado ObtenerDaoTipoEmailAsociado();
+
+        /// <summary>
+        /// Método que devuelve el DaoTipoCaso del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoTipoCaso</returns>
+        public abstract IDaoTipoCaso ObtenerDaoTipoCaso();
+
+        /// <summary>
+        /// Método que devuelve el DaoAccion del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoAccion</returns>
+        public abstract IDaoAccion ObtenerDaoAccion();
+        
     }
 }

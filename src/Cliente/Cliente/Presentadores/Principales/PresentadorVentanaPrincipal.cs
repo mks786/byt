@@ -72,6 +72,7 @@ using Trascend.Bolet.Cliente.Ventanas.ReportesMaestro;
 using Trascend.Bolet.Cliente.Ventanas.CadenaDeCambio;
 using Trascend.Bolet.Cliente.Ventanas.SAPI.Materiales;
 using Trascend.Bolet.Cliente.Ventanas.SAPI.Presentaciones;
+using Trascend.Bolet.Cliente.Ventanas.Pirateria.Casos;
 using System.Diagnostics;
 using System.Collections.Generic;
 
@@ -2050,6 +2051,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
 
                                 #endregion
 
+                                case "_menuItemPirateriaCasos":
+                                    if (objeto.Id.Equals(Recursos.Ids.CasosPirateria))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+
 
                             }
 
@@ -2647,6 +2653,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         public void RegistrarEventosPresentacionSAPI()
         {
             Navegar(new ControlarSolicitudesPresentaciones());
+        }
+
+        public void AgregarCasoDePirateria()
+        {
+            Navegar(new GestionarCaso());
+        }
+
+        public void ConsultarCasosDePirateria()
+        {
+            Navegar(new ConsultarCasos());
         }
     }
 }

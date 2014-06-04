@@ -32,5 +32,6 @@
     <property name="MImpuestoBf" column="MIMPUESTO_BF" type="double"/>
     <property name="MDescuentoBf" column="MDESCU_BF" type="double"/>
     <property name="Desglose" column="DESG" type="char"/>
+    <property name="TipoDesglose" column="IDESG" type="char"/>
   </class>
 </hibernate-mapping>

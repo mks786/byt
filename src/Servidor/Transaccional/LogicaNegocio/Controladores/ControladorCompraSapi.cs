@@ -46,5 +46,39 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             }
             return exitoso;
         }
+
+
+        /// <summary>
+        /// Metodo que verifica la existencia de una Compra Sapi
+        /// </summary>
+        /// <param name="compra">Compra Sapi a verificar su existencia</param>
+        /// <returns>True si la compra existe; False, en caso contrario</returns>
+        public static bool VerificarExistencia(CompraSapi compra)
+        {
+            bool existe = false;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<bool> comando = FabricaComandosCompraSapi.ObtenerComandoVerificarExistenciaCompraSapi(compra);
+                comando.Ejecutar();
+                existe = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+
+            return existe;
+        }
     }
 }

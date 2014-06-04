@@ -67,12 +67,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato\IDaoAccion.cs" />
     <Compile Include="Contrato\IDaoAlmacen.cs" />
     <Compile Include="Contrato\IDaoArchivo.cs" />
     <Compile Include="Contrato\IDaoCadenaDeCambios.cs" />
     <Compile Include="Contrato\IDaoCaja.cs" />
     <Compile Include="Contrato\IDaoCamposReporte.cs" />
     <Compile Include="Contrato\IDaoCamposReporteRelacion.cs" />
+    <Compile Include="Contrato\IDaoCaso.cs" />
+    <Compile Include="Contrato\IDaoCasoBase.cs" />
     <Compile Include="Contrato\IDaoCertificadoMarca.cs" />
     <Compile Include="Contrato\IDaoCompraSapi.cs" />
     <Compile Include="Contrato\IDaoCompraSapiDetalle.cs" />
@@ -95,6 +98,7 @@
     <Compile Include="Contrato\IDaoReporte.cs" />
     <Compile Include="Contrato\IDaoSolicitudSapi.cs" />
     <Compile Include="Contrato\IDaoTipoCaja.cs" />
+    <Compile Include="Contrato\IDaoTipoCaso.cs" />
     <Compile Include="Contrato\IDaoTipoDocumento.cs" />
     <Compile Include="Contrato\IDaoTipoEmailAsociado.cs" />
     <Compile Include="Contrato\IDaoReportePatente.cs" />
@@ -183,12 +187,15 @@
     <Compile Include="Contrato\IDaoUsuario.cs" />
     <Compile Include="Contrato\IDaoVistaReporte.cs" />
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
+    <Compile Include="Dao\NHibernate\DaoAccionNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoAlmacenNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoArchivoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCadenaDeCambiosNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCajaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCamposReporteRelacionNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCamposReporteNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoCasoBaseNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoCasoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCertificadoMarcaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCompraSapiDetalleNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCompraSapiNHibernate.cs" />
@@ -211,6 +218,7 @@
     <Compile Include="Dao\NHibernate\DaoReporteNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoSolicitudSapiNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoTipoCajaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoTipoCasoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoTipoDocumentoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoTipoEmailAsociadoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoReportePatenteNHibernate.cs" />
@@ -860,6 +868,22 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapeado\PresentacionSapiDetalle.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\Caso.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\TipoCaso.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\Accion.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\CasoBase.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

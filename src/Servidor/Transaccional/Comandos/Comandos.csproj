@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Comandos\ComandoBase.cs" />
+    <Compile Include="Comandos\ComandosAccion\ComandoConsultarTodosAcciones.cs" />
     <Compile Include="Comandos\ComandosAgente\ComandoConsultarAgentesYPoderes.cs" />
     <Compile Include="Comandos\ComandosAgente\ComandoConsultarAgentesFiltro.cs" />
     <Compile Include="Comandos\ComandosAgente\ComandoVerificarExistenciaAgente.cs" />
@@ -112,6 +113,12 @@
     <Compile Include="Comandos\ComandosCarta\ComandoConsultarTodasCarta.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoEliminarCarta.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoInsertarOModificarCarta.cs" />
+    <Compile Include="Comandos\ComandosCasoBase\ComandoConsultarCasosBaseDeCaso.cs" />
+    <Compile Include="Comandos\ComandosCasoBase\ComandoEliminarCasoBase.cs" />
+    <Compile Include="Comandos\ComandosCasoBase\ComandoInsertarOModificarCasoBase.cs" />
+    <Compile Include="Comandos\ComandosCaso\ComandoConsultarCasosFiltro.cs" />
+    <Compile Include="Comandos\ComandosCaso\ComandoConsultarTodosCasos.cs" />
+    <Compile Include="Comandos\ComandosCaso\ComandoInsertarOModificarCaso.cs" />
     <Compile Include="Comandos\ComandosCertificadoMarca\ComandoConsultarCertificadoMarcaPorID.cs" />
     <Compile Include="Comandos\ComandosCertificadoMarca\ComandoEliminarCertificado.cs" />
     <Compile Include="Comandos\ComandosCertificadoMarca\ComandoInsertarOModificarCertificado.cs" />
@@ -124,6 +131,7 @@
     <Compile Include="Comandos\ComandosCompraSapiDetalle\ComandoEliminarDetalleCompraSapi.cs" />
     <Compile Include="Comandos\ComandosCompraSapiDetalle\ComandoInsertarOModificarDetalleCompraSapi.cs" />
     <Compile Include="Comandos\ComandosCompraSapi\ComandoInsertarOModificarCompra.cs" />
+    <Compile Include="Comandos\ComandosCompraSapi\ComandoVerificarExistenciaCompraSapi.cs" />
     <Compile Include="Comandos\ComandosContactoCxP\ComandoConsultarContactoCxPFiltro.cs" />
     <Compile Include="Comandos\ComandosContactoCxP\ComandoConsultarTodosContactoCxP.cs" />
     <Compile Include="Comandos\ComandosContactoCxP\ComandoEliminarContactoCxP.cs" />
@@ -286,6 +294,7 @@
     <Compile Include="Comandos\ComandosTipoBase\ComandoVerificarExistenciaTipoBase.cs" />
     <Compile Include="Comandos\ComandosTipoCaja\ComandoConsultarTodosTipoCaja.cs" />
     <Compile Include="Comandos\ComandosTipoCaja\ComandoObtenerTipoCajaMarcaOPatente.cs" />
+    <Compile Include="Comandos\ComandosTipoCaso\ComandoConsultarTodosTiposDeCaso.cs" />
     <Compile Include="Comandos\ComandosTipoCliente\ComandoConsultarTodosTipoClientes.cs" />
     <Compile Include="Comandos\ComandosTipoDocumento\ComandoConsultarTodosTipoDocumento.cs" />
     <Compile Include="Comandos\ComandosTipoDocumento\ComandoObtenerTipoDocumentoMarcaOPatente.cs" />
@@ -503,12 +512,15 @@
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosAccion.cs" />
     <Compile Include="Fabrica\FabricaComandosAlmacen.cs" />
     <Compile Include="Fabrica\FabricaComandosArchivo.cs" />
     <Compile Include="Fabrica\FabricaComandosCadenaDeCambios.cs" />
     <Compile Include="Fabrica\FabricaComandosCaja.cs" />
     <Compile Include="Fabrica\FabricaComandosCamposReporte.cs" />
     <Compile Include="Fabrica\FabricaComandosCamposReporteRelacion.cs" />
+    <Compile Include="Fabrica\FabricaComandosCaso.cs" />
+    <Compile Include="Fabrica\FabricaComandosCasoBase.cs" />
     <Compile Include="Fabrica\FabricaComandosCertificadoMarca.cs" />
     <Compile Include="Fabrica\FabricaComandosCompraSapi.cs" />
     <Compile Include="Fabrica\FabricaComandosCompraSapiDetalle.cs" />
@@ -531,6 +543,7 @@
     <Compile Include="Fabrica\FabricaComandosReporte.cs" />
     <Compile Include="Fabrica\FabricaComandosSolicitudSapi.cs" />
     <Compile Include="Fabrica\FabricaComandosTipoCaja.cs" />
+    <Compile Include="Fabrica\FabricaComandosTipoCaso.cs" />
     <Compile Include="Fabrica\FabricaComandosTipoDocumento.cs" />
     <Compile Include="Fabrica\FabricaComandosTipoEmailAsociado.cs" />
     <Compile Include="Fabrica\FabricaComandosReportePatente.cs" />

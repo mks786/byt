@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="CasoBase" table="PRT_CASO_BASE">
+    <composite-id>
+      <key-property name="Id" column="CCODIGO" type="string"/>
+      <key-many-to-one name="Caso" column="CCASO" class="Caso" lazy="false"/>
+    </composite-id>
+
+    <property name="TipoBase" column="ITIPO_BASE" type="string"/>
+    <property name="Interno" column="IINTERNO" type="char"/>
+    <property name="Descripcion" column="XCODIGO" type="string"/>
+    <property name="TipoCodigoBase" column="ITIPO" type="string"/>
+    
+    <many-to-one name="Internacional" class="Internacional">
+      <column name="CINTER"/>
+    </many-to-one>
+
+    <many-to-one name="Nacional" class="Nacional">
+      <column name="CNACIONAL"/>
+    </many-to-one>
+
+  </class>
+
+</hibernate-mapping>

@@ -67,8 +67,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\lib\CrystalDecisions.Shared.dll</HintPath>
     </Reference>
-    <Reference Include="Diginsoft.Bolet.Cliente.Fac, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Diginsoft.Bolet.Cliente.Fac">
       <HintPath>..\..\..\lib\Diginsoft.Bolet.Cliente.Fac.dll</HintPath>
     </Reference>
     <Reference Include="LinFu.DynamicProxy">
@@ -178,6 +177,9 @@
     <Compile Include="Contratos\Patentes\IListaInteresadosPatente.cs" />
     <Compile Include="Contratos\Patentes\IListaPatentesPrioridadVencida.cs" />
     <Compile Include="Contratos\Patentes\IListaPatentesPrioridadVencidaStartUp.cs" />
+    <Compile Include="Contratos\Pirateria\Casos\IConsultarCasos.cs" />
+    <Compile Include="Contratos\Pirateria\Casos\IGestionarCaso.cs" />
+    <Compile Include="Contratos\Pirateria\Casos\IGestionarInfoTerceros.cs" />
     <Compile Include="Contratos\Plantillas\IAnalizarDetallePlantilla.cs" />
     <Compile Include="Contratos\Plantillas\IAnalizarEncabezadoPlantilla.cs" />
     <Compile Include="Contratos\Plantillas\IConsultarMaestrosPlantillas.cs" />
@@ -663,6 +665,9 @@
     <Compile Include="Presentadores\Patentes\PresentadorListaInteresadosPatente.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorListaPatentesPrioridadVencida.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorListaPatentesPrioridadVencidaStartUp.cs" />
+    <Compile Include="Presentadores\Pirateria\Casos\PresentadorConsultarCasos.cs" />
+    <Compile Include="Presentadores\Pirateria\Casos\PresentadorGestionarCaso.cs" />
+    <Compile Include="Presentadores\Pirateria\Casos\PresentadorGestionarInfoTerceros.cs" />
     <Compile Include="Presentadores\Plantillas\PresentadorAnalizarDetallePlantilla.cs" />
     <Compile Include="Presentadores\Plantillas\PresentadorAnalizarEncabezadoPlantilla.cs" />
     <Compile Include="Presentadores\Plantillas\PresentadorConsultarMaestrosPlantillas.cs" />
@@ -1258,6 +1263,15 @@
     </Compile>
     <Compile Include="Ventanas\Patentes\ListaPatentesPrioridadVencidaStartUp.xaml.cs">
       <DependentUpon>ListaPatentesPrioridadVencidaStartUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Pirateria\Casos\ConsultarCasos.xaml.cs">
+      <DependentUpon>ConsultarCasos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Pirateria\Casos\GestionarCaso.xaml.cs">
+      <DependentUpon>GestionarCaso.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Pirateria\Casos\GestionarInfoTerceros.xaml.cs">
+      <DependentUpon>GestionarInfoTerceros.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Plantillas\AnalizarDetallePlantilla.xaml.cs">
       <DependentUpon>AnalizarDetallePlantilla.xaml</DependentUpon>
@@ -2166,6 +2180,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\Patentes\ListaPatentesPrioridadVencidaStartUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Pirateria\Casos\ConsultarCasos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Pirateria\Casos\GestionarCaso.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Pirateria\Casos\GestionarInfoTerceros.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

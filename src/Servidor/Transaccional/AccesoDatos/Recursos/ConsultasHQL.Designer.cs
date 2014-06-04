@@ -205,6 +205,24 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Select cb from CasoBase cb left join fetch cb.Caso as caso left join fetch cb.Internacional as internacional left join fetch cb.Nacional as nacional where .
+        /// </summary>
+        public static string CabeceraObtenerCasoBaseCaso {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerCasoBaseCaso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select c from Caso c left join fetch c.Asociado as asociado left join fetch c.Interesado as interesado left join fetch c.Servicio as servicio where .
+        /// </summary>
+        public static string CabeceraObtenerCasos {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerCasos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Select c from Cesion c left join fetch c.Marca as marca left join fetch c.Cedente as cedente left join fetch c.AgenteCedente as agenteCed left join fetch c.AgenteCesionario as agenteCes left join fetch c.PoderCedente as PoderCed  left join fetch c.PoderCesionario as PoderCes left join fetch c.Cedente as interesadoCed left join fetch c.Cesionario as interesadoCes left join fetch c.BoletinPublicacion as boletin where .
         /// </summary>
         public static string CabeceraObtenerCesion {
@@ -1011,6 +1029,78 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerCartaTracking {
             get {
                 return ResourceManager.GetString("FiltroObtenerCartaTracking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a asociado.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerCasoAsociado {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCasoAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a caso.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerCasoBaseIdCaso {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCasoBaseIdCaso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a c.Descripcion like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroObtenerCasoDescripcion {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCasoDescripcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a c.Fecha = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerCasoFechaApertura {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCasoFechaApertura", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a c.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerCasoId {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCasoId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a interesado.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerCasoInteresado {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCasoInteresado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a c.Origen = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerCasoOrigenDeCaso {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCasoOrigenDeCaso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a servicio.Id = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerCasoServicio {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCasoServicio", resourceCulture);
             }
         }
         

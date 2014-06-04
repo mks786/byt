@@ -713,6 +713,19 @@
             </MenuItem>
 
             <!-- Fin SAPI -->
+            
+            <!-- Pirateria -->
+            <MenuItem Name="_menuItemPirateria" Header="{x:Static resx:Etiquetas.menuItemPirateria}">
+                <MenuItem Name="_menuItemPirateriaCasos" Visibility="Collapsed" 
+                          Header="{x:Static resx:Etiquetas.menuItemPirateriaCasos}">
+                    <MenuItem Name="_menuItemPirateriaCasosAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}"
+                              Click="_menuItemPirateriaCasosAgregar_Click"/>
+                    <MenuItem Name="_menuItemPirateriaCasosConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}"
+                              Click="_menuItemPirateriaCasosConsultar_Click"/>
+                </MenuItem>
+            </MenuItem>
+
+            <!-- Fin Pirateria -->
 
 
             <MenuItem Name="_menuItemAyuda" Header="{x:Static resx:Etiquetas.menuItemAyuda}">

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades"
+                   auto-import="true">
+
+  <class name="Caso" table="PRT_CASOS">
+
+    <id name="Id" column="CCASO" type="int"/>
+    <property name="Descripcion" column="XCASO" type="string"/>
+    <property name="Fecha" column="FCASO" type="DateTime"/>
+    <property name="Origen" column="IORIGEN" type="string"/>
+    <property name="PrimeraReferencia" column="XREFERENCIA1" type="string"/>
+    <property name="Observacion" column="XOBSERVACION" type="string"/>
+    <property name="TipoCaso" column="TIPO_CASO" type="string"/>
+    <property name="TipoAccion" column="TIPO_ACCION" type="string"/>
+    
+    <property name="InteresadoCaso" column="XINTERESADO" type="string"/>
+    <property name="DomicilioInteresado" column="XDOMICILIO_I" type="string"/>
+    <property name="RifInteresado" column="XRIF_I" type="string"/>
+    <property name="ContactoInteresado" column="XCONTACTO_I" type="string"/>
+    <property name="CargoInteresado" column="XCARGO_I" type="string"/>
+    <property name="TelefonoInteresado" column="XTELEFONO_I" type="string"/>
+    <property name="FaxInteresado" column="XFAX_I" type="string"/>
+    <property name="EmailInteresado" column="XEMAIL_I" type="string"/>
+    <property name="ComentarioInteresado" column="XCOMENTARIO_I" type="string"/>
+    <property name="AsociadoCaso" column="XASOCIADO" type="string"/>
+    <property name="DomicilioAsociado" column="XDOMICILIO_A" type="string"/>
+    <property name="RifAsociado" column="XRIF_A" type="string"/>
+    <property name="ContactoAsociado" column="XCONTACTO_A" type="string"/>
+    <property name="CargoAsociado" column="XCARGO_A" type="string"/>
+    <property name="TelefonoAsociado" column="XTELEFONO_A" type="string"/>
+    <property name="FaxAsociado" column="XFAX_A" type="string"/>
+    <property name="EmailAsociado" column="XEMAIL_A" type="string"/>
+    <property name="ComentarioAsociado" column="XCOMENTARIO_A" type="string"/>
+    <many-to-one name="Asociado" class="Asociado">
+      <column name="CASOCIADO"/>
+    </many-to-one>
+    <many-to-one name="Interesado" class="Interesado" lazy="false">
+      <column name="CINTERESADO"/>
+    </many-to-one>
+    <many-to-one name="Servicio" class="Servicio" lazy="false">
+      <column name="CSERVICIO"/>
+    </many-to-one>
+
+    <bag name="TiposCaso" table="PRT_REL_TIPOCASO" lazy="false">
+      <key column="CCASO"/>
+      <many-to-many column="CTIPO" class="TipoCaso" not-found="ignore"/>
+    </bag>
+
+    <bag name="Acciones" table="PRT_REL_ACCION_CASO" lazy="false">
+      <key column="CCASO"/>
+      <many-to-many column="CACCION" class="Accion" not-found="ignore"/>
+    </bag>
+    
+  </class>
+
+</hibernate-mapping>
+
+

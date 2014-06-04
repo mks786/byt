@@ -1315,6 +1315,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.RegistrarEventosPresentacionSAPI();
         }
 
+        private void _menuItemPirateriaCasosAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarCasoDePirateria();
+        }
+
+        private void _menuItemPirateriaCasosConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarCasosDePirateria();
+        }
+
         
 
         

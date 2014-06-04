@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="Accion" table="PRT_ACCIONES">
+
+    <id name="Id" column="CACCION" type="string" />
+    <property name="Descripcion" column="XACCION" type="string"/>
+
+    <bag name="Casos" table="PRT_REL_ACCION_CASO" lazy="false">
+      <key column="CACCION"/>
+      <many-to-many column="CCASO" class="Caso" not-found="ignore"/>
+    </bag>
+    
+
+  </class>
+</hibernate-mapping>

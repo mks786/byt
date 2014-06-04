@@ -1227,4 +1227,10 @@
   <data name="ControlPresentaciones" xml:space="preserve">
     <value>SAPI_CTRL_PRESEN</value>
   </data>
+  <data name="CasosPirateria" xml:space="preserve">
+    <value>PIRATERIA_CASOS</value>
+  </data>
+  <data name="ConsultarCasosPirateria" xml:space="preserve">
+    <value>PRT_CASOS</value>
+  </data>
 </root>

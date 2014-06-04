@@ -1467,4 +1467,44 @@
     <value>p.ReceptorMatPresent = '{0}'</value>
     <comment>Filtro para obtener Solicitudes de Presentacion SAPI usando como filtro el Gestor Receptor de los Documentos a Presentar a SAPI</comment>
   </data>
+  <data name="CabeceraObtenerCasos" xml:space="preserve">
+    <value>Select c from Caso c left join fetch c.Asociado as asociado left join fetch c.Interesado as interesado left join fetch c.Servicio as servicio where </value>
+    <comment>Cabecera para obtener Casos por filtro</comment>
+  </data>
+  <data name="FiltroObtenerCasoAsociado" xml:space="preserve">
+    <value>asociado.Id = {0}</value>
+    <comment>Filtro para obtener Casos a traves del Id del Asociado del Caso</comment>
+  </data>
+  <data name="FiltroObtenerCasoDescripcion" xml:space="preserve">
+    <value>c.Descripcion like '%{0}%'</value>
+    <comment>Filtro para obtener Casos a traves de la Descripcion del Caso</comment>
+  </data>
+  <data name="FiltroObtenerCasoFechaApertura" xml:space="preserve">
+    <value>c.Fecha = '{0}'</value>
+    <comment>Filtro para obtener Casos a traves de su fecha de apertura</comment>
+  </data>
+  <data name="FiltroObtenerCasoId" xml:space="preserve">
+    <value>c.Id = {0}</value>
+    <comment>Filtro para obtener Casos a traves del Id del Caso</comment>
+  </data>
+  <data name="FiltroObtenerCasoInteresado" xml:space="preserve">
+    <value>interesado.Id = {0}</value>
+    <comment>Filtro para obtener Casos a traves del Id del Interesado del Caso</comment>
+  </data>
+  <data name="FiltroObtenerCasoOrigenDeCaso" xml:space="preserve">
+    <value>c.Origen = '{0}'</value>
+    <comment>Filtro para obtener Casos a traves del tipo de Origen del Caso</comment>
+  </data>
+  <data name="FiltroObtenerCasoServicio" xml:space="preserve">
+    <value>servicio.Id = '{0}'</value>
+    <comment>Filtro para obtener Casos a traves del Id del Servicio asociado al Caso</comment>
+  </data>
+  <data name="CabeceraObtenerCasoBaseCaso" xml:space="preserve">
+    <value>Select cb from CasoBase cb left join fetch cb.Caso as caso left join fetch cb.Internacional as internacional left join fetch cb.Nacional as nacional where </value>
+    <comment>Cabecera para obtener los Casos Base de un Caso</comment>
+  </data>
+  <data name="FiltroObtenerCasoBaseIdCaso" xml:space="preserve">
+    <value>caso.Id = {0}</value>
+    <comment>Filtro para obtener Casos Base a partir del Id del Caso</comment>
+  </data>
 </root>

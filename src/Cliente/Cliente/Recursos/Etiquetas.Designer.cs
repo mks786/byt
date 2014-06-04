@@ -1386,6 +1386,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Ver Documentos.
+        /// </summary>
+        public static string btnVerDocumentos {
+            get {
+                return ResourceManager.GetString("btnVerDocumentos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Ver Expediente.
         /// </summary>
         public static string btnVerExpediente {
@@ -1508,6 +1517,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string btnVolverAMarca {
             get {
                 return ResourceManager.GetString("btnVolverAMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ACCIONES.
+        /// </summary>
+        public static string cbiAccionPirateria {
+            get {
+                return ResourceManager.GetString("cbiAccionPirateria", resourceCulture);
             }
         }
         
@@ -2178,6 +2196,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a TIPO_BASE_PRT.
+        /// </summary>
+        public static string cbiTipoBasePirateria {
+            get {
+                return ResourceManager.GetString("cbiTipoBasePirateria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a TIPO_BUSQUEDA.
         /// </summary>
         public static string cbiTipoBusqueda {
@@ -2192,6 +2219,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string cbiTipoCadenaCambios {
             get {
                 return ResourceManager.GetString("cbiTipoCadenaCambios", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a TIPO_CASO.
+        /// </summary>
+        public static string cbiTipoCasoPirateria {
+            get {
+                return ResourceManager.GetString("cbiTipoCasoPirateria", resourceCulture);
             }
         }
         
@@ -4645,6 +4681,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Acciones:.
+        /// </summary>
+        public static string lblAcciones {
+            get {
+                return ResourceManager.GetString("lblAcciones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Activo:.
         /// </summary>
         public static string lblActivo {
@@ -5240,11 +5285,29 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Clase Int..
+        /// </summary>
+        public static string lblClaseIntCasoBase {
+            get {
+                return ResourceManager.GetString("lblClaseIntCasoBase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Clase Nac:.
         /// </summary>
         public static string lblClaseNac {
             get {
                 return ResourceManager.GetString("lblClaseNac", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Clase Nac..
+        /// </summary>
+        public static string lblClaseNacCasoBase {
+            get {
+                return ResourceManager.GetString("lblClaseNacCasoBase", resourceCulture);
             }
         }
         
@@ -6002,6 +6065,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblFechaAnualidad {
             get {
                 return ResourceManager.GetString("lblFechaAnualidad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Fecha de Apertura:.
+        /// </summary>
+        public static string lblFechaApertura {
+            get {
+                return ResourceManager.GetString("lblFechaApertura", resourceCulture);
             }
         }
         
@@ -7059,6 +7131,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Origen del Caso:.
+        /// </summary>
+        public static string lblOrigenCaso {
+            get {
+                return ResourceManager.GetString("lblOrigenCaso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Origen del Cliente:.
         /// </summary>
         public static string lblOrigenCliente {
@@ -7995,6 +8076,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Tipo Base:.
+        /// </summary>
+        public static string lblTipoCasoBase {
+            get {
+                return ResourceManager.GetString("lblTipoCasoBase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a TipoClasnac:.
         /// </summary>
         public static string lblTipoClasNac {
@@ -8468,6 +8558,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblY {
             get {
                 return ResourceManager.GetString("lblY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Acción.
+        /// </summary>
+        public static string lsvAccion {
+            get {
+                return ResourceManager.GetString("lsvAccion", resourceCulture);
             }
         }
         
@@ -9575,6 +9674,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvOperadorReporte {
             get {
                 return ResourceManager.GetString("lsvOperadorReporte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Origen.
+        /// </summary>
+        public static string lsvOrigen {
+            get {
+                return ResourceManager.GetString("lsvOrigen", resourceCulture);
             }
         }
         
@@ -10992,6 +11100,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Piratería.
+        /// </summary>
+        public static string menuItemPirateria {
+            get {
+                return ResourceManager.GetString("menuItemPirateria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Casos.
+        /// </summary>
+        public static string menuItemPirateriaCasos {
+            get {
+                return ResourceManager.GetString("menuItemPirateriaCasos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Plantillas.
         /// </summary>
         public static string menuItemPlantillas {
@@ -12131,6 +12257,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleConsultarCartas {
             get {
                 return ResourceManager.GetString("titleConsultarCartas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Consutlar Casos de Pirateria.
+        /// </summary>
+        public static string titleConsultarCasosPirateria {
+            get {
+                return ResourceManager.GetString("titleConsultarCasosPirateria", resourceCulture);
             }
         }
         
@@ -13323,6 +13458,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Caso de Pirateria .
+        /// </summary>
+        public static string titleGestionarCasoPirateria {
+            get {
+                return ResourceManager.GetString("titleGestionarCasoPirateria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Gestionar Certificado de Marca.
         /// </summary>
         public static string titleGestionarCertificadoMarca {
@@ -13517,6 +13661,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleInfoAdicionalMarca {
             get {
                 return ResourceManager.GetString("titleInfoAdicionalMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Casos - Informacion de Terceros.
+        /// </summary>
+        public static string titleInfoTercerosCaso {
+            get {
+                return ResourceManager.GetString("titleInfoTercerosCaso", resourceCulture);
             }
         }
         

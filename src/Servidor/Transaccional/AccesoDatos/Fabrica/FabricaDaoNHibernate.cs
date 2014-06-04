@@ -280,6 +280,26 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
 
 
         /// <summary>
+        /// Método que devuelve el DaoTipoCaso
+        /// </summary>
+        /// <returns>IDaoTipoCaso</returns>
+        public override IDaoTipoCaso ObtenerDaoTipoCaso()
+        {
+            return new DaoTipoCasoNHibernate();
+        }
+
+
+        /// <summary>
+        /// Método que devuelve el DaoAccion
+        /// </summary>
+        /// <returns>IDaoAccion</returns>
+        public override IDaoAccion ObtenerDaoAccion()
+        {
+            return new DaoAccionNHibernate();
+        }
+
+
+        /// <summary>
         /// Método que devuelve el DaoPlantilla
         /// </summary>
         /// <returns>IDaoPlantilla</returns>
@@ -1021,12 +1041,32 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
 
 
         /// <summary>
+        /// Método que devuelve el DaoCaso
+        /// </summary>
+        /// <returns>IDaoCaso</returns>
+        public override IDaoCaso ObtenerDaoCaso()
+        {
+            return new DaoCasoNHibernate();
+        }
+
+
+        /// <summary>
         /// Método que devuelve el DaoMarcabaseTercero
         /// </summary>
         /// <returns>IDaomarcaBaseTercero</returns>
         public override IDaoMarcaBaseTercero ObtenerDaoMarcaBaseTercero()
         {
             return new DaoMarcaBaseTerceroNHibernate();
+        }
+
+
+        /// <summary>
+        /// Método que devuelve el DaoCasoBase
+        /// </summary>
+        /// <returns>IDaoCasoBase</returns>
+        public override IDaoCasoBase ObtenerDaoCasoBase()
+        {
+            return new DaoCasoBaseNHibernate();
         }
 
 

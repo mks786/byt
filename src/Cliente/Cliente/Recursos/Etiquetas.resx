@@ -4710,4 +4710,55 @@ en Prensa:</value>
   <data name="lsvFechaRecepcionGestor" xml:space="preserve">
     <value>Fecha Recepción Gestor</value>
   </data>
+  <data name="lblFechaApertura" xml:space="preserve">
+    <value>Fecha de Apertura:</value>
+  </data>
+  <data name="menuItemPirateria" xml:space="preserve">
+    <value>Piratería</value>
+  </data>
+  <data name="menuItemPirateriaCasos" xml:space="preserve">
+    <value>Casos</value>
+  </data>
+  <data name="cbiAccionPirateria" xml:space="preserve">
+    <value>ACCIONES</value>
+  </data>
+  <data name="cbiTipoBasePirateria" xml:space="preserve">
+    <value>TIPO_BASE_PRT</value>
+  </data>
+  <data name="cbiTipoCasoPirateria" xml:space="preserve">
+    <value>TIPO_CASO</value>
+  </data>
+  <data name="lblAcciones" xml:space="preserve">
+    <value>Acciones:</value>
+  </data>
+  <data name="lblTipoCasoBase" xml:space="preserve">
+    <value>Tipo Base:</value>
+  </data>
+  <data name="lsvAccion" xml:space="preserve">
+    <value>Acción</value>
+  </data>
+  <data name="titleGestionarCasoPirateria" xml:space="preserve">
+    <value>Caso de Pirateria </value>
+  </data>
+  <data name="btnVerDocumentos" xml:space="preserve">
+    <value>Ver Documentos</value>
+  </data>
+  <data name="lblOrigenCaso" xml:space="preserve">
+    <value>Origen del Caso:</value>
+  </data>
+  <data name="lblClaseIntCasoBase" xml:space="preserve">
+    <value>Clase Int.</value>
+  </data>
+  <data name="lblClaseNacCasoBase" xml:space="preserve">
+    <value>Clase Nac.</value>
+  </data>
+  <data name="titleConsultarCasosPirateria" xml:space="preserve">
+    <value>Consutlar Casos de Pirateria</value>
+  </data>
+  <data name="lsvOrigen" xml:space="preserve">
+    <value>Origen</value>
+  </data>
+  <data name="titleInfoTercerosCaso" xml:space="preserve">
+    <value>Casos - Informacion de Terceros</value>
+  </data>
 </root>

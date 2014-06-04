@@ -54,6 +54,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MensajesAlServidor.resx</DependentUpon>
     </Compile>
+    <Compile Include="Implementacion\AccionServicios.cs" />
     <Compile Include="Implementacion\AgenteServicios.cs" />
     <Compile Include="Implementacion\AlmacenServicios.cs" />
     <Compile Include="Implementacion\AnexoServicios.cs" />
@@ -64,6 +65,8 @@
     <Compile Include="Implementacion\CajaServicios.cs" />
     <Compile Include="Implementacion\CamposReporteRelacionServicios.cs" />
     <Compile Include="Implementacion\CamposReporteServicios.cs" />
+    <Compile Include="Implementacion\CasoBaseServicios.cs" />
+    <Compile Include="Implementacion\CasoServicios.cs" />
     <Compile Include="Implementacion\CertificadoMarcaServicios.cs" />
     <Compile Include="Implementacion\CompraSapiDetalleServicios.cs" />
     <Compile Include="Implementacion\CompraSapiServicios.cs" />
@@ -105,6 +108,7 @@
     <Compile Include="Implementacion\SeguimientoDeCobranzasServicios.cs" />
     <Compile Include="Implementacion\SolicitudSapiServicios.cs" />
     <Compile Include="Implementacion\TipoCajaServicios.cs" />
+    <Compile Include="Implementacion\TipoCasoServicios.cs" />
     <Compile Include="Implementacion\TipoDocumentoServicios.cs" />
     <Compile Include="Implementacion\TipoEmailAsociadoServicios.cs" />
     <Compile Include="Implementacion\EmailAsociadoServicios.cs" />

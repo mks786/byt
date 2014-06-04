@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Linq;
+using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Input;
 using NLog;
+using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.SAPI.Materiales;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.Cliente.Ventanas.SAPI.Materiales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
-using Trascend.Bolet.Cliente.Ayuda;
-using System.Windows.Documents;
-using System.Windows.Controls;
-using System.ComponentModel;
 
 namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
 {
@@ -26,6 +27,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
         private IMaterialSapiServicios _materialSapiServicios;
         private int _filtroValido;
 
+        /// <summary>
+        /// Constructor predeterminado
+        /// </summary>
+        /// <param name="ventana">Ventana actual</param>
         public PresentadorConsultarComprasMateriales(IConsultarComprasMateriales ventana)
         {
             try
@@ -109,8 +114,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                 #endregion
 
                 IList<MaterialSapi> materiales = this._materialSapiServicios.ConsultarTodos();
-                materiales.Insert(0, new MaterialSapi("NGN"));
-                this._ventana.MaterialesSapi = materiales;
+                IList<MaterialSapi> materialesOrdenados = materiales.OrderBy(o => o.Descripcion).ToList();
+                //materiales.Insert(0, new MaterialSapi("NGN"));
+                materialesOrdenados.Insert(0, new MaterialSapi("NGN"));
+                //this._ventana.MaterialesSapi = materiales;
+                this._ventana.MaterialesSapi = materialesOrdenados;
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

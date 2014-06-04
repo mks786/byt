@@ -1601,8 +1601,16 @@ Namespace Presentadores.FacFacturaProformas
                     End If
 
                     If detalle_proforma.Servicio.BAimpuesto = False Then
-                        detalle_proforma.Descuento = 0
-                        Me._ventana.Desactivar_Descuento = True
+                        'LOGICA QUE VIENE DE AgregarFacFacturaProforma
+                        If (detalle_proforma.BDesglose And detalle_proforma.BTipoDesglose) Then
+                            Me._ventana.Desactivar_Descuento = False
+                        Else
+                            detalle_proforma.Descuento = 0
+                            Me._ventana.Desactivar_Descuento = True
+                        End If
+
+                        'detalle_proforma.Descuento = 0
+                        'Me._ventana.Desactivar_Descuento = True
                     End If
 
                     'If detalle_proforma.Servicio.BAimpuesto = False And DirectCast(Me._ventana.Moneda, Moneda).Id = "BF" Then
@@ -2843,6 +2851,7 @@ Namespace Presentadores.FacFacturaProformas
                     '''DESGLOSE PORCENTUAL 
                     If desglose_servicio IsNot Nothing Then
                         If desglose_servicio.Id = "H" Then
+                            facfactudetaproforma.BTipoDesglose = True
                             facfactudetaproforma.Desactivar_Desglose = False
                         Else
                             facfactudetaproforma.Desactivar_Desglose = True
@@ -2959,10 +2968,10 @@ Namespace Presentadores.FacFacturaProformas
 
 
 
-                    If facfactudetaproforma.Impuesto = "F" Then
-                        facfactudetaproforma.Descuento = 0
-                        Me._ventana.Desactivar_Descuento = True
-                    End If
+                    'If facfactudetaproforma.Impuesto = "F" Then
+                    '    facfactudetaproforma.Descuento = 0
+                    '    Me._ventana.Desactivar_Descuento = True
+                    'End If
 
                     If desglose_servicio IsNot Nothing Then
                         If desglose_servicio.Id = "G" Then

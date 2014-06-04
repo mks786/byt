@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controladores\ControladorAccion.cs" />
     <Compile Include="Controladores\ControladorAlmacen.cs" />
     <Compile Include="Controladores\ControladorAnexo.cs" />
     <Compile Include="Controladores\ControladorArchivo.cs" />
@@ -54,6 +55,8 @@
     <Compile Include="Controladores\ControladorCaja.cs" />
     <Compile Include="Controladores\ControladorCamposReporte.cs" />
     <Compile Include="Controladores\ControladorCamposReporteRelacion.cs" />
+    <Compile Include="Controladores\ControladorCaso.cs" />
+    <Compile Include="Controladores\ControladorCasoBase.cs" />
     <Compile Include="Controladores\ControladorCertificadoMarca.cs" />
     <Compile Include="Controladores\ControladorCompraSapi.cs" />
     <Compile Include="Controladores\ControladorCompraSapiDetalle.cs" />
@@ -80,6 +83,7 @@
     <Compile Include="Controladores\ControladorSolicitudSapi.cs" />
     <Compile Include="Controladores\ControladorTipoBase.cs" />
     <Compile Include="Controladores\ControladorTipoCaja.cs" />
+    <Compile Include="Controladores\ControladorTipoCaso.cs" />
     <Compile Include="Controladores\ControladorTipoDocumento.cs" />
     <Compile Include="Controladores\ControladorUsuario.cs" />
     <Compile Include="Controladores\ControladorDepartamento.cs" />

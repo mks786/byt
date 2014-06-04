@@ -29,12 +29,13 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             private double _mimpuesto;
             private double _mdescuento;
             private double _bdetallebf;
-                    private double _pubf;
-                    private double _mimpuestobf;
-                    private double _mdescuentobf;
-                    private char _desglose;
+            private double _pubf;
+            private double _mimpuestobf;
+            private double _mdescuentobf;
+            private char _desglose;
             private bool _seleccion;
             private bool _desactivar_desglose;
+            private char? _tipoDesglose;
 
         #endregion
 
@@ -477,6 +478,46 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set
             {
                 this._desactivar_desglose = value;
+            }
+        }
+
+
+        public virtual char? TipoDesglose
+        {
+            get
+            {
+                return this._tipoDesglose;
+            }
+            set
+            {
+                this._tipoDesglose = value;
+            }
+        }
+
+
+        public virtual bool BTipoDesglose
+        {
+            get
+            {
+                if (this.TipoDesglose.Equals('H'))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            set
+            {
+                if (value)
+                {
+                    this.TipoDesglose = 'H';
+                }
+                else
+                {
+                    this.TipoDesglose = 'G';
+                }
             }
         }
 

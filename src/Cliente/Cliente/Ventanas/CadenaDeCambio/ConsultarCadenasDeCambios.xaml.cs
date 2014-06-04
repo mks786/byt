@@ -35,8 +35,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.CadenaDeCambio
 
         #region IConsultarCadenasDeCambios
 
-        #endregion
-
         public bool EstaCargada
         {
             get { return this._cargada; }
@@ -100,6 +98,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.CadenaDeCambio
             get { return this._txtFechaCadenaCambios.Text; }
             set { this._txtFechaCadenaCambios.Text = value; }
         }
+
+        #endregion
 
         #region Eventos
 

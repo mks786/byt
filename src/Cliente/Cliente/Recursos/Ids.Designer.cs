@@ -376,6 +376,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a PIRATERIA_CASOS.
+        /// </summary>
+        public static string CasosPirateria {
+            get {
+                return ResourceManager.GetString("CasosPirateria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a COR_TENTRADA.
         /// </summary>
         public static string Categoria {
@@ -543,6 +552,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string ConsultarCartas {
             get {
                 return ResourceManager.GetString("ConsultarCartas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a PRT_CASOS.
+        /// </summary>
+        public static string ConsultarCasosPirateria {
+            get {
+                return ResourceManager.GetString("ConsultarCasosPirateria", resourceCulture);
             }
         }
         

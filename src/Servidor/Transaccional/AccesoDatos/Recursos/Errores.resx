@@ -351,4 +351,7 @@
   <data name="exObtenerPatentesPorVencerPrioridad" xml:space="preserve">
     <value>Ocurrió un error obteniendo las patentes por vencer su prioridad</value>
   </data>
+  <data name="exConsultarCasosFiltro" xml:space="preserve">
+    <value>Ocurrió un error consultando Casos por filtro :</value>
+  </data>
 </root>

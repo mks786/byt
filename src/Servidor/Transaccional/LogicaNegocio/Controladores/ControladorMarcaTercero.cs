@@ -113,7 +113,39 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                         ComandoBase<string> idBuscado = FabricaComandosMarcaTercero.ObtenerComandoConsultarMarcaTerceroMaxId(id);
                         idBuscado.Ejecutar();
 
-                        indice = idBuscado.Receptor.ObjetoAlmacenado.Length - 2;
+                        if (idBuscado.Receptor.ObjetoAlmacenado != null)
+                        {
+                            indice = idBuscado.Receptor.ObjetoAlmacenado.Length - 2;
+                            contadorStr = idBuscado.Receptor.ObjetoAlmacenado.Substring(2, indice);
+                            contador = int.Parse(contadorStr) + 1;
+                            //Este proceso se hace para mantener el formato de 3 digitos del numero de la Marca a Tercero
+                            if (contador.ToString().Length == 1)
+                            {
+                                //contadorStr = "00" + contadorStr;
+                                idResultante = "00" + contador.ToString();
+                                marcaTercero.Id = idBuscado.Receptor.ObjetoAlmacenado.Substring(0, 2) + idResultante;
+                            }
+                            else if (contador.ToString().Length == 2)
+                            {
+                                //contadorStr = "0" + contadorStr;
+                                idResultante = "0" + contador.ToString();
+                                marcaTercero.Id = idBuscado.Receptor.ObjetoAlmacenado.Substring(0, 2) + idResultante;
+                            }
+                            else
+                            {
+                                marcaTercero.Id = idBuscado.Receptor.ObjetoAlmacenado.Substring(0, 2) + contador.ToString();
+                            }
+
+                            marcaTercero.Anexo = 1;
+                        }
+                        else
+                        {
+                            marcaTercero.Id = id + "-001";
+                            marcaTercero.Anexo = 1;
+                        }
+
+                        #region CODIGO ORIGINAL COMENTADO - NO BORRAR
+                        /*indice = idBuscado.Receptor.ObjetoAlmacenado.Length - 2;
                         contadorStr = idBuscado.Receptor.ObjetoAlmacenado.Substring(2, indice);
                         contador = int.Parse(contadorStr) + 1;
                         //Este proceso se hace para mantener el formato de 3 digitos del numero de la Marca a Tercero
@@ -133,7 +165,10 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                         {
                             marcaTercero.Id = idBuscado.Receptor.ObjetoAlmacenado.Substring(0, 2) + contador.ToString();
                         }
-                        marcaTercero.Anexo = 1;
+
+                        marcaTercero.Anexo = 1;*/
+
+                        #endregion
                     }
                     
                     if (marcaTercero.Internacional != null)

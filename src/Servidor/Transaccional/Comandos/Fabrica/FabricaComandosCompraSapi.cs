@@ -17,5 +17,15 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoInsertarOModificarCompra(compra);
         }
+
+        /// <summary>
+        /// Metodo para obtener el comando para verificar la existencia de una Compra Sapi
+        /// </summary>
+        /// <param name="compra">Compra Sapi a verificar</param>
+        /// <returns>Comando para realizar la operacion</returns>
+        public static ComandoBase<bool> ObtenerComandoVerificarExistenciaCompraSapi(CompraSapi compra)
+        {
+            return new ComandoVerificarExistenciaCompraSapi(compra);
+        }
     }
 }

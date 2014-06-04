@@ -30,21 +30,15 @@ namespace Trascend.Bolet.Servidor
 
             #region Codigo de Prueba NO BORRAR 
             
-            //MaterialSapiServicios servicioPrueba = new MaterialSapiServicios();
-            //IList<MaterialSapi> materiales = servicioPrueba.ConsultarTodos();
-            //MaterialSapi materialExistente = materiales[0];
-            ////MaterialSapi materialNuevo = new MaterialSapi();
-            ////materialNuevo.Departamento = materialExistente.Departamento;
-            ////materialNuevo.Descripcion = "Planilla Solciitud Marca 1";
-            ////materialNuevo.Existencia = 0;
-            ////materialNuevo.Id = "P02";
-            ////materialNuevo.Tipo = "P";
+            /*Caso caso = new Caso();
+            caso.Id = 1;
+            CasoBase casoBase = new CasoBase();
+            casoBase.Caso = caso;
+
+            CasoBaseServicios servicioPrueba = new CasoBaseServicios();
+            IList<CasoBase> casosBase = servicioPrueba.ObtenerCasosBasePorCaso(casoBase);*/
             
-
-            ////bool exitoso = servicioPrueba.InsertarOModificar(materialNuevo, usuarioPrueba.Hash);
-            //bool exitoso = servicioPrueba.Eliminar(materialExistente, usuarioPrueba.Hash);
-
-
+            
             //Console.ReadLine();
 
 
