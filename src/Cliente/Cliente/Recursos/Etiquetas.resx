@@ -4761,4 +4761,16 @@ en Prensa:</value>
   <data name="titleInfoTercerosCaso" xml:space="preserve">
     <value>Casos - Informacion de Terceros</value>
   </data>
+  <data name="lsvFacturado" xml:space="preserve">
+    <value>Facturado</value>
+  </data>
+  <data name="lsvFechaFacturado" xml:space="preserve">
+    <value>Fecha Facturación</value>
+  </data>
+  <data name="lsvFechaRecepDpto" xml:space="preserve">
+    <value>Fecha Recepción Dpto.</value>
+  </data>
+  <data name="titleListaDocumentosCaso" xml:space="preserve">
+    <value>Documentos de Caso</value>
+  </data>
 </root>

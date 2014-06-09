@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -127,8 +128,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                 #endregion
 
                 IList<MaterialSapi> materiales = this._materialSapiServicios.ConsultarTodos();
-                materiales.Insert(0, new MaterialSapi("NGN"));
-                this._ventana.MaterialesSapi = materiales;
+                IList<MaterialSapi> materialesOrdenados = materiales.OrderBy(o => o.Descripcion).ToList();
+                //materiales.Insert(0, new MaterialSapi("NGN"));
+                materialesOrdenados.Insert(0, new MaterialSapi("NGN"));
+                //this._ventana.MaterialesSapi = materiales;
+                this._ventana.MaterialesSapi = materialesOrdenados;
 
                 IList<Departamento> departamentos = this._departamentoServicios.ConsultarTodos();
                 departamentos.Insert(0, new Departamento("NGN"));
@@ -210,6 +214,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                     else
                     {
                         this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 0);
+                        this._ventana.Resultados = null;
                         this._ventana.TotalHits = "0";
                     }
                 }
@@ -276,7 +281,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
         private SolicitudSapi ObtenerSolicitudFiltroPantalla()
         {
 
-            SolicitudSapi solicitud = null;
+            SolicitudSapi solicitud = new SolicitudSapi();
 
             try
             {
@@ -285,7 +290,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                solicitud = (SolicitudSapi)this._ventana.SolicitudSapiFiltro;
+                //solicitud = (SolicitudSapi)this._ventana.SolicitudSapiFiltro;
 
                 if((this._ventana.FechaSolicitudSapi != null) && (!this._ventana.FechaSolicitudSapi.Equals("")))
                 {

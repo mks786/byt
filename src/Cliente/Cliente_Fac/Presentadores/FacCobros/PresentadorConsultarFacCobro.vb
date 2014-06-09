@@ -13,6 +13,8 @@ Imports Trascend.Bolet.ObjetosComunes.ContratosServicios
 Imports Trascend.Bolet.Cliente.Presentadores
 Imports Trascend.Bolet.Cliente.Ventanas.Principales
 Imports Diginsoft.Bolet.Cliente.Fac.Ventanas.FacFacturas
+Imports Trascend.Bolet.Cliente.Ventanas.Asociados
+
 Namespace Presentadores.FacCobros
     Class PresentadorConsultarFacCobro
         Inherits PresentadorBase
@@ -46,9 +48,12 @@ Namespace Presentadores.FacCobros
         ''' </summary>
         ''' <param name="ventana">Página que satisface el contrato</param>
         ''' <param name="FacCobro">FacCobro a mostrar</param>
-        Public Sub New(ByVal ventana As IConsultarFacCobro, ByVal FacCobro As Object)
+        Public Sub New(ByVal ventana As IConsultarFacCobro, ByVal FacCobro As Object, ByVal ventanaPadre As Object)
             Try
                 Me._ventana = ventana
+                If ventanaPadre IsNot Nothing Then
+                    Me._ventanaPadre = ventanaPadre
+                End If
 
                 Me._FacCobroServicios = DirectCast(Activator.GetObject(GetType(IFacCobroServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacCobroServicios")), IFacCobroServicios)
                 Me._asociadosServicios = DirectCast(Activator.GetObject(GetType(IAsociadoServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("AsociadoServicios")), IAsociadoServicios)
@@ -386,7 +391,8 @@ Namespace Presentadores.FacCobros
             If _faccobro.Accion = 1 Then
                 LimpiarAgregar()
             Else
-                Regresar()
+                'Regresar()
+                RegresarVentanaPadre()
             End If
         End Sub
 
@@ -1006,6 +1012,32 @@ Namespace Presentadores.FacCobros
                 banco.Id = cbanco
                 Me._ventana.Banco = Me.BuscarFacBanco(DirectCast(Me._ventana.Bancos, List(Of FacBanco)), banco)
             End If
+        End Sub
+
+        ''' METODO QUE CONSULTA UN ASOCIADO
+        Public Sub ConsultarAsociado()
+
+            Dim strArray() As String
+            Dim idAsociado As String
+            Dim asociado As Asociado = New Asociado()
+            Dim asociados As IList(Of Asociado)
+
+            Try
+                If Me._ventana.NombreAsociado <> "" Then
+                    strArray = Me._ventana.NombreAsociado.Split("-")
+                    idAsociado = strArray(0).Trim()
+                    asociado.Id = Integer.Parse(idAsociado)
+                    asociados = Me._asociadosServicios.ObtenerAsociadosFiltro(asociado)
+                    If asociados.Count > 0 Then
+                        asociado = asociados(0)
+                        Me.Navegar(New ConsultarAsociado(asociado, Me._ventana, False))
+                    End If
+                End If
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, True)
+            End Try
+
         End Sub
 
     End Class

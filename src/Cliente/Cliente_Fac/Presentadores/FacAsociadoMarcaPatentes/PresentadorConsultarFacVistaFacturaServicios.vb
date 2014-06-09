@@ -32,6 +32,12 @@ Namespace Presentadores.FacAsociadoMarcaPatentes
         Private _FacFacturaServicios As IFacFacturaServicios
         Private _id As String
         Private _tipo As String
+        Private _cFactura As String
+        Private _cAlterno As String
+        Private _referencia As String
+        Private _presentacion As Boolean
+
+
         ''' <summary>
         ''' Constructor Predeterminado
         ''' </summary>
@@ -64,6 +70,24 @@ Namespace Presentadores.FacAsociadoMarcaPatentes
                 Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
             End Try
         End Sub
+
+        ' Constructor para cuando la ventana se llama desde Control de Eventos de Presentacion
+        Public Sub New(ByVal ventana As IConsultarFacVistaFacturaServicios, ByVal cFactura As String, ByVal cAlterno As String, ByVal referencia As String, ByVal presentacion As Boolean)
+            Try
+                Me._ventana = ventana
+                _cFactura = cFactura
+                _cAlterno = cAlterno
+                _presentacion = presentacion
+
+                Me._FacVistaFacturaServicioservicios = DirectCast(Activator.GetObject(GetType(IFacVistaFacturaServicioServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacVistaFacturaServicioServicios")), IFacVistaFacturaServicioServicios)
+                Me._FacFacturaServicios = DirectCast(Activator.GetObject(GetType(IFacFacturaServicios), ConfigurationManager.AppSettings("RutaServidor") + ConfigurationManager.AppSettings("FacFacturaServicios")), IFacFacturaServicios)
+
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, True)
+            End Try
+        End Sub
+
 
         Public Sub ActualizarTitulo()
             Me.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.fac_titleConsultarFacVistaFacturaServicio, Recursos.Ids.fac_ConsultarFacGestion)
@@ -168,6 +192,19 @@ Namespace Presentadores.FacAsociadoMarcaPatentes
                 FacVistaFacturaServicioAuxiliar.Id = _id
 
                 FacVistaFacturaServicioAuxiliar.Tipo = _tipo
+
+                '''En caso de que venga desde el Control de las Presentaciones
+                If _presentacion Then
+                    If (_cFactura IsNot Nothing) Then
+                        FacVistaFacturaServicioAuxiliar.Factura = Integer.Parse(_cFactura)
+                    ElseIf (_cAlterno IsNot Nothing) Then
+                        FacVistaFacturaServicioAuxiliar.CodigoAlterno = _cAlterno
+                    ElseIf (_referencia IsNot Nothing) Then
+                        FacVistaFacturaServicioAuxiliar.Ourref = _referencia
+                    End If
+                    FacVistaFacturaServicioAuxiliar.Id = Nothing
+                    FacVistaFacturaServicioAuxiliar.Tipo = ""
+                End If
 
 
                 'If (filtroValido = True) Then

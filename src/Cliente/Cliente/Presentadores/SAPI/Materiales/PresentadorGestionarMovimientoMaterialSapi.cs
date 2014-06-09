@@ -129,8 +129,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                         CargarDetalleSolicitud();
                     }
 
-                    this._ventana.MostrarBotonEliminar(true);
-                    this._ventana.HabilitarCampos = false;
+                    if (this._solicitudEncabezado.SolicitanteInic.Equals(UsuarioLogeado.Iniciales))
+                    {
+                        this._ventana.MostrarBotonEliminar(true);
+                        this._ventana.HabilitarCampos = false;
+                    }
+                    else
+                    {
+                        this._ventana.Mensaje("Ud. no es el usuario que generó esta solicitud, solo podra verla mas no modificarla", 0);
+                        this._ventana.HabilitarCampos = false;
+                        this._ventana.OcultarBotonAceptar();
+                    }
                     
                 }
                 else
@@ -154,6 +163,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
 
         }
 
+        /// <summary>
+        /// Metodo que carga los materiales que fueron solicitados
+        /// </summary>
         private void CargarDetalleSolicitud()
         {
             try

@@ -28,5 +28,9 @@
     <property name="FechaRecep_Dpto" column="FREC_DPTO" type="DateTime"/>
     <property name="RecibioDpto" column="IRECIB_DPTO" type="char"/>
 
+    <property name="FechaFacturacion" column="FFACTURADO" type="DateTime"/>
+    <property name="DocFacturado" column="IFACTURADO" type="char"/>
+    <property name="CodFactura" column="FACTURA_DOC" type="char"/>
+
   </class>
 </hibernate-mapping>

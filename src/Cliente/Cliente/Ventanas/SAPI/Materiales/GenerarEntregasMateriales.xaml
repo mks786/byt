@@ -138,6 +138,26 @@
                         </GridViewColumn>
 
                         <GridViewColumn Width="120">
+                            <GridViewColumnHeader Tag="SolicitanteInic" Click="_Ordenar_Click"
+                                                  Content="{x:Static recurso:Etiquetas.lsvIniciales}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=SolicitanteInic}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="150">
+                            <GridViewColumnHeader Tag="Departamento.Descripcion" Click="_Ordenar_Click"
+                                                  Content="{x:Static recurso:Etiquetas.lsvDepartamento}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Departamento.Descripcion}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="120">
                             <GridViewColumnHeader Tag="Material.Id" Click="_Ordenar_Click"
                                                   Content="{x:Static recurso:Etiquetas.lsvCodigoMaterial}"/>
                             <GridViewColumn.CellTemplate>
@@ -194,27 +214,6 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-
-                        <GridViewColumn Width="120">
-                            <GridViewColumnHeader Tag="SolicitanteInic" Click="_Ordenar_Click"
-                                                  Content="{x:Static recurso:Etiquetas.lsvIniciales}"/>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Path=SolicitanteInic}" TextAlignment="Center"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-
-                        <GridViewColumn Width="150">
-                            <GridViewColumnHeader Tag="Departamento.Descripcion" Click="_Ordenar_Click"
-                                                  Content="{x:Static recurso:Etiquetas.lsvDepartamento}"/>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Path=Departamento.Descripcion}" TextAlignment="Center"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-
                     </GridView>
                 </ListView.View>
             </ListView>

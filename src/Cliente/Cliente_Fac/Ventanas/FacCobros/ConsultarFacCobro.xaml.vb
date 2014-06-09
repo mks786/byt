@@ -56,6 +56,8 @@ Namespace Ventanas.FacCobros
 
                 _txtAsociado.IsEnabled = value
 
+                _btnVerAsociado.IsEnabled = value
+
 
                 'End If
                 '_btnModificar.IsEnabled = value
@@ -78,8 +80,16 @@ Namespace Ventanas.FacCobros
         Public Sub New(ByVal FacCobro As Object)
             InitializeComponent()
             Me._cargada = False
-            Me._presentador = New PresentadorConsultarFacCobro(Me, FacCobro)
+            Me._presentador = New PresentadorConsultarFacCobro(Me, FacCobro, Nothing)
         End Sub
+
+        Public Sub New(ByVal FacCobro As Object, ByVal ventanaPadre As Object)
+            InitializeComponent()
+            Me._cargada = False
+            Me._presentador = New PresentadorConsultarFacCobro(Me, FacCobro, ventanaPadre)
+        End Sub
+
+
         Private Sub _btnModificar_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
             Me._presentador.Modificar()
         End Sub
@@ -476,7 +486,8 @@ Namespace Ventanas.FacCobros
 
         Private Sub ControlesMostrarAsociado()
             Me._txtAsociado.Visibility = System.Windows.Visibility.Collapsed
-            Me._lblasociado2.Visibility = System.Windows.Visibility.Collapsed
+            'Me._lblasociado2.Visibility = System.Windows.Visibility.Collapsed
+            Me._btnVerAsociado.Visibility = System.Windows.Visibility.Collapsed
             'Me._txtAsociadoId.Visibility = System.Windows.Visibility.Collapsed
             Me._lstAsociados.Visibility = System.Windows.Visibility.Visible
             Me._lstAsociados.IsEnabled = True
@@ -502,7 +513,8 @@ Namespace Ventanas.FacCobros
             Me._txtNombreAsociado.Visibility = System.Windows.Visibility.Collapsed
             Me._lblasociado.Visibility = System.Windows.Visibility.Collapsed
             Me._txtAsociado.Visibility = System.Windows.Visibility.Visible
-            Me._lblasociado2.Visibility = System.Windows.Visibility.Visible
+            'Me._lblasociado2.Visibility = System.Windows.Visibility.Visible
+            Me._btnVerAsociado.Visibility = System.Windows.Visibility.Visible
             'Me._txtAsociadoId.Visibility = System.Windows.Visibility.Visible
             Me._lblIdAsociado.Visibility = System.Windows.Visibility.Collapsed
             Me._lblNombreAsociado.Visibility = System.Windows.Visibility.Collapsed
@@ -658,5 +670,10 @@ Namespace Ventanas.FacCobros
         End Sub
 
         Public Shared Mostrar_Factura As New RoutedCommand("Mostrar_Factura", GetType(ConsultarFacCobro))
+
+        Private Sub _btnVerAsociado_Click(sender As System.Object, e As System.Windows.RoutedEventArgs)
+            Me._presentador.ConsultarAsociado()
+        End Sub
+
     End Class
 End Namespace

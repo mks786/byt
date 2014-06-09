@@ -1611,13 +1611,40 @@ Namespace Presentadores.FacFacturaProformas
                     w_monto = FacFactuDetaProformas(i).BDetalle
                     w_monto_bf = FacFactuDetaProformas(i).BDetalleBf
 
-                    If FacFactuDetaProformas(i).Impuesto = "T" Or FacFactuDetaProformas(i).Impuesto = "1" Then
-                        MSubtimpo = MSubtimpo + w_monto
-                        MSubtimpoBf = MSubtimpoBf + w_monto_bf
+
+                    If FacFactuDetaProformas(i).TipoDesglose IsNot Nothing Then
+                        If FacFactuDetaProformas(i).BTipoDesglose = True Then
+                            MSubtimpo = MSubtimpo + w_monto
+                            MSubtimpoBf = MSubtimpoBf + w_monto_bf
+                        Else
+                            Mtbexc = (Mtbexc + w_monto)
+                            MtbexcBf = (MtbexcBf + w_monto_bf)
+                        End If
                     Else
-                        Mtbexc = (Mtbexc + w_monto)
-                        MtbexcBf = (MtbexcBf + w_monto_bf)
+                        If FacFactuDetaProformas(i).Impuesto = "T" Or FacFactuDetaProformas(i).Impuesto = "1" Then
+                            MSubtimpo = MSubtimpo + w_monto
+                            MSubtimpoBf = MSubtimpoBf + w_monto_bf
+                        Else
+                            Mtbexc = (Mtbexc + w_monto)
+                            MtbexcBf = (MtbexcBf + w_monto_bf)
+                        End If
                     End If
+
+
+
+                    
+
+                    'CODIGO ORIGINAL COMENTADO - NO BORRAR
+                    'If FacFactuDetaProformas(i).Impuesto = "T" Or FacFactuDetaProformas(i).Impuesto = "1" Then
+                    '    MSubtimpo = MSubtimpo + w_monto
+                    '    MSubtimpoBf = MSubtimpoBf + w_monto_bf
+                    'Else
+                    '    Mtbexc = (Mtbexc + w_monto)
+                    '    MtbexcBf = (MtbexcBf + w_monto_bf)
+                    'End If
+
+
+
                     MDescuento = MDescuento + ((FacFactuDetaProformas(i).Pu * FacFactuDetaProformas(i).NCantidad) * FacFactuDetaProformas(i).Descuento) / 100
                     MDescuento = MDescuento
 

@@ -18,12 +18,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private DateTime? _fechaPres_Gestor2;
         private string _receptorAnteSAPI;
         private DateTime? _fechaRecep_Gestor3;
+        private DateTime? _fechaFacturacion;
         private string _inicDptoReceptor;
         private DateTime? _fechaRecep_Dpto;
         private char? _recibeDocumento;
         private char? _presentadoASapi;
         private char? _recibioDeSapi;
         private char? _recibioDpto;
+        private char? _docFacturado;
+        private string _codFactura;
         
         #endregion
 
@@ -331,6 +334,58 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
                 }
             }
         }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el indicador que señala si se facturo el Documento de la solicitud de Presentacion
+        /// </summary>
+        public virtual char? DocFacturado
+        {
+            get { return _docFacturado; }
+            set { _docFacturado = value; }
+        }
+
+        public virtual bool BDocFacturado
+        {
+            get
+            {
+                if (this.DocFacturado.Equals('T'))
+                    return true;
+                else
+                    return false;
+            }
+
+            set
+            {
+                if (value)
+                {
+                    this.DocFacturado = 'T';
+                }
+                else
+                {
+                    this.DocFacturado = 'F';
+                }
+            }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el indicador que señala la Fecha de Facturacion del Documento
+        /// </summary>
+        public virtual DateTime? FechaFacturacion
+        {
+            get { return _fechaFacturacion; }
+            set { _fechaFacturacion = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el codigo de Factura asociado al Documento presentado
+        /// </summary>
+        public virtual string CodFactura
+        {
+            get { return _codFactura; }
+            set { _codFactura = value; }
+        }
+
+
         #endregion
     }
 }

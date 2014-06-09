@@ -15,6 +15,8 @@ Imports Trascend.Bolet.ObjetosComunes.ContratosServicios
 Imports Trascend.Bolet.Cliente.Presentadores
 Imports Trascend.Bolet.Cliente.Ventanas.Principales
 Imports Diginsoft.Bolet.Cliente.Fac.Ventanas.FacFacturas
+Imports Trascend.Bolet.Cliente.Ventanas.Asociados
+
 
 
 Namespace Presentadores.FacCobros
@@ -943,6 +945,34 @@ Namespace Presentadores.FacCobros
                 banco.Id = cbanco
                 Me._ventana.Banco = Me.BuscarFacBanco(DirectCast(Me._ventana.Bancos, List(Of FacBanco)), banco)
             End If
+        End Sub
+
+        ''' METODO QUE CONSULTA UN ASOCIADO
+        Public Sub ConsultarAsociado()
+
+            Dim strArray() As String
+            Dim idAsociado As String
+            Dim asociado As Asociado = New Asociado()
+            Dim asociados As IList(Of Asociado)
+
+            Try
+                If Me._ventana.NombreAsociado <> "" Then
+                    strArray = Me._ventana.NombreAsociado.Split("-")
+                    idAsociado = strArray(0).Trim()
+                    asociado.Id = Integer.Parse(idAsociado)
+                    asociados = Me._asociadosServicios.ObtenerAsociadosFiltro(asociado)
+                    If asociados.Count > 0 Then
+                        asociado = asociados(0)
+                        Me.Navegar(New ConsultarAsociado(asociado, Me._ventana, False))
+                    Else
+                        Me._ventana.Mensaje("El Asociado no existe")
+                    End If
+                End If
+            Catch ex As Exception
+                logger.[Error](ex.Message)
+                Me.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, True)
+            End Try
+
         End Sub
 
     End Class

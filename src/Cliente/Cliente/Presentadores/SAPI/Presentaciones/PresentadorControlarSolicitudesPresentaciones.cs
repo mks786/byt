@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using Diginsoft.Bolet.Cliente.Fac.Ventanas.FacAsociadoMarcaPatentes;
+using Diginsoft.Bolet.ObjetosComunes.ContratosServicios;
 using NLog;
 using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.SAPI.Presentaciones;
@@ -27,6 +30,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Presentaciones
         private IUsuarioServicios _usuariosServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
         private IDepartamentoServicios _departamentoServicios;
+        private IFacVistaFacturaServicioServicios _facVistaFacturaServicioServicios;
 
         private int _filtroValido;
         private string _accion = String.Empty;
@@ -60,6 +64,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Presentaciones
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["DepartamentoServicios"]);
                 this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
+                this._facVistaFacturaServicioServicios =
+                    (IFacVistaFacturaServicioServicios)Activator.GetObject(typeof(IFacVistaFacturaServicioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FacVistaFacturaServicioServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -140,6 +147,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Presentaciones
                 this._ventana.GestoresRegistro = usuarios;
 
                 IList<MaterialSapi> documentos = this._materialSapiServicios.ConsultarTodos();
+                documentos = documentos.OrderBy(o => o.Descripcion).ToList();
                 documentos.Insert(0, new MaterialSapi("NGN"));
                 this._ventana.Documentos = documentos;
 
@@ -408,54 +416,76 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Presentaciones
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                switch (nombreBotonPresionado)
+                if (listaDocumentosPantalla != null)
                 {
-                    case "_btnRecepcionPorGestor":
-                        this._accion = "1";
-                        documentosSeleccionados = ObtenerDocumentos(listaDocumentosPantalla, this._accion);
-                        if (documentosSeleccionados.Count > 0)
-                        {
-                            this._documentosPresentaciones = documentosSeleccionados;
-                            this._ventana.MostrarCamposRegistroEvento(this._accion);
-                        }
-                        else
-                            this._ventana.Mensaje("No hay Documentos para realizar la acción", 0);
-                        
-                        break;
-                    case "_btnPresentacionEnSAPI":
-                        this._accion = "2";
-                        documentosSeleccionados = ObtenerDocumentos(listaDocumentosPantalla, this._accion);
-                        if (documentosSeleccionados.Count > 0)
-                        {
-                            this._documentosPresentaciones = documentosSeleccionados;
-                            this._ventana.MostrarCamposRegistroEvento(this._accion);
-                        }
-                        else
-                            this._ventana.Mensaje("No hay Documentos para realizar la acción", 0);
-                        break;
-                    case "_btnRecepcionDeSAPI":
-                        this._accion = "3";
-                        documentosSeleccionados = ObtenerDocumentos(listaDocumentosPantalla, this._accion);
-                        if (documentosSeleccionados.Count > 0)
-                        {
-                            this._documentosPresentaciones = documentosSeleccionados;
-                            this._ventana.MostrarCamposRegistroEvento(this._accion);
-                        }
-                        else
-                            this._ventana.Mensaje("No hay Documentos para realizar la acción", 0);
-                        break;
-                    case "_btnRecepcionDpto":
-                        this._accion = "4";
-                        documentosSeleccionados = ObtenerDocumentos(listaDocumentosPantalla, this._accion);
-                        if (documentosSeleccionados.Count > 0)
-                        {
-                            this._documentosPresentaciones = documentosSeleccionados;
-                            this._ventana.MostrarCamposRegistroEvento(this._accion);
-                        }
-                        else
-                            this._ventana.Mensaje("No hay Documentos para realizar la acción seleccionada", 0);
-                        break;
+                    switch (nombreBotonPresionado)
+                    {
+                        case "_btnRecepcionPorGestor":
+                            this._accion = "1";
+                            documentosSeleccionados = ObtenerDocumentos(listaDocumentosPantalla, this._accion);
+                            if (documentosSeleccionados.Count > 0)
+                            {
+                                this._documentosPresentaciones = documentosSeleccionados;
+                                this._ventana.MostrarCamposRegistroEvento(this._accion);
+                            }
+                            else
+                                this._ventana.Mensaje("No hay Documentos para realizar la acción", 0);
+
+                            break;
+                        case "_btnPresentacionEnSAPI":
+                            this._accion = "2";
+                            documentosSeleccionados = ObtenerDocumentos(listaDocumentosPantalla, this._accion);
+                            if (documentosSeleccionados.Count > 0)
+                            {
+                                this._documentosPresentaciones = documentosSeleccionados;
+                                this._ventana.MostrarCamposRegistroEvento(this._accion);
+                            }
+                            else
+                                this._ventana.Mensaje("No hay Documentos para realizar la acción", 0);
+                            break;
+                        case "_btnRecepcionDeSAPI":
+                            this._accion = "3";
+                            documentosSeleccionados = ObtenerDocumentos(listaDocumentosPantalla, this._accion);
+                            if (documentosSeleccionados.Count > 0)
+                            {
+                                this._documentosPresentaciones = documentosSeleccionados;
+                                this._ventana.MostrarCamposRegistroEvento(this._accion);
+                            }
+                            else
+                                this._ventana.Mensaje("No hay Documentos para realizar la acción", 0);
+                            break;
+                        case "_btnRecepcionDpto":
+                            this._accion = "4";
+                            documentosSeleccionados = ObtenerDocumentos(listaDocumentosPantalla, this._accion);
+                            if (documentosSeleccionados.Count > 0)
+                            {
+                                this._documentosPresentaciones = documentosSeleccionados;
+                                this._ventana.MostrarCamposRegistroEvento(this._accion);
+                            }
+                            else
+                                this._ventana.Mensaje("No hay Documentos para realizar la acción seleccionada", 0);
+                            break;
+
+                        case "_btnFacturacion":
+                            this._accion = "5";
+                            documentosSeleccionados = ObtenerDocumentos(listaDocumentosPantalla, this._accion);
+                            if (documentosSeleccionados.Count > 0)
+                            {
+                                if (documentosSeleccionados.Count == 1)
+                                {
+                                    this._documentosPresentaciones = documentosSeleccionados;
+                                    this._ventana.MostrarCamposRegistroEvento(this._accion);
+                                }
+                                else
+                                    this._ventana.Mensaje("Para registrar el Status de Facturación debe seleccionar solo uno a la vez", 0);
+                            }
+                            else
+                                this._ventana.Mensaje("No hay Documentos para realizar la acción", 0);
+                            break;
+                    }
                 }
+                else
+                    this._ventana.Mensaje("No hay Documentos para ejecutar la acción deseada", 0);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -531,6 +561,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Presentaciones
                             && item.BPresentadoASapi
                             && item.BRecibioDeSapi
                             && item.BRecibioDpto)
+                        {
+                            documentosSeleccionados.Add(item);
+                        }
+                    }
+                    else if (this._accion.Equals("5"))
+                    {
+                        if ((item.FechaRecep_Gestor1 != null)
+                            && (item.FechaPres_Gestor2 != null)
+                            && (item.FechaRecep_Gestor3 != null)
+                            && (item.FechaRecep_Dpto != null)
+                            && (item.FechaFacturacion == null)
+                            && item.BRecibeDocumento
+                            && item.BPresentadoASapi
+                            && item.BRecibioDeSapi
+                            && item.BRecibioDpto
+                            && item.BDocFacturado)
                         {
                             documentosSeleccionados.Add(item);
                         }
@@ -639,8 +685,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Presentaciones
                                     documentoLista.StatusDocumento = this.BuscarListaDeDatosValores(this._statusDocumentos, statusDocumento).Descripcion;
                                     exitoso = this._presentacionSapiDetalleServicios.InsertarOModificar(documentoLista, UsuarioLogeado.Hash);
                                     break;
-
-
                             }
                             if (exitoso)
                                 continue;
@@ -661,6 +705,133 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Presentaciones
                 }
                 else
                     this._ventana.Mensaje("Seleccione un Gestor para hacer el Registro de la operación", 0);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + "en el metodo: " + (new System.Diagnostics.StackFrame()).GetMethod().Name + ". Error: " + ex.Message, true);
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo que registra el evento de Facturacion 
+        /// </summary>
+        public void RegistrarEventoFacturacion()
+        {
+            bool exitoso = false;
+            ListaDatosValores statusDocumento = new ListaDatosValores();
+            PresentacionSapiDetalle detallePresentacion = this._documentosPresentaciones[0];
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (this._ventana.IdFactura.Equals(String.Empty) || this._ventana.Ourref.Equals(String.Empty))
+                {
+                    detallePresentacion.BDocFacturado = true;
+                    detallePresentacion.FechaFacturacion = DateTime.Today;
+                    statusDocumento.Id = "NGN";
+                    statusDocumento.Valor = "6";
+                    detallePresentacion.StatusDocumento = this.BuscarListaDeDatosValores(this._statusDocumentos, statusDocumento).Descripcion;
+                    exitoso = this._presentacionSapiDetalleServicios.InsertarOModificar(detallePresentacion, UsuarioLogeado.Hash);
+
+                    if (exitoso)
+                    {
+                        this._ventana.OcultarCamposRegistroEvento("5");
+                        this._ventana.IdFactura = String.Empty;
+                        this._ventana.Ourref = String.Empty;
+                        Consultar();
+                    }
+                }
+                else
+                    this._ventana.Mensaje("Para registrar el Status de Facturado debe escribir el Código de la Factura o el Código Alterno o la Referencia", 0);
+
+                #region CODIGO ORIGINAL COMENTADO - NO BORRAR
+                /*if (this._ventana.GestorRegistro != null)
+                {
+                    if (!string.IsNullOrEmpty(this._ventana.FechaConfirmacion))
+                    {
+                        foreach (PresentacionSapiDetalle documentoLista in this._documentosPresentaciones)
+                        {
+                            switch (this._accion)
+                            {
+                                case "1":
+                                    documentoLista.ReceptorMatPresent = ((Usuario)this._ventana.GestorRegistro).Iniciales;
+                                    documentoLista.FechaRecep_Gestor1 = DateTime.Parse(this._ventana.FechaConfirmacion);
+                                    documentoLista.BRecibeDocumento = true;
+                                    statusDocumento.Id = "NGN";
+                                    statusDocumento.Valor = "2";
+                                    documentoLista.StatusDocumento = this.BuscarListaDeDatosValores(this._statusDocumentos, statusDocumento).Descripcion;
+                                    exitoso = this._presentacionSapiDetalleServicios.InsertarOModificar(documentoLista, UsuarioLogeado.Hash);
+                                    break;
+                                case "2":
+                                    documentoLista.PresentadorAnteSAPI = ((Usuario)this._ventana.GestorRegistro).Iniciales;
+                                    documentoLista.FechaPres_Gestor2 = DateTime.Parse(this._ventana.FechaConfirmacion);
+                                    documentoLista.BPresentadoASapi = true;
+                                    statusDocumento.Id = "NGN";
+                                    statusDocumento.Valor = "3";
+                                    documentoLista.StatusDocumento = this.BuscarListaDeDatosValores(this._statusDocumentos, statusDocumento).Descripcion;
+                                    exitoso = this._presentacionSapiDetalleServicios.InsertarOModificar(documentoLista, UsuarioLogeado.Hash);
+                                    break;
+                                case "3":
+                                    documentoLista.ReceptorAnteSAPI = ((Usuario)this._ventana.GestorRegistro).Iniciales;
+                                    documentoLista.FechaRecep_Gestor3 = DateTime.Parse(this._ventana.FechaConfirmacion);
+                                    documentoLista.BRecibioDeSapi = true;
+                                    statusDocumento.Id = "NGN";
+                                    statusDocumento.Valor = "4";
+                                    documentoLista.StatusDocumento = this.BuscarListaDeDatosValores(this._statusDocumentos, statusDocumento).Descripcion;
+                                    exitoso = this._presentacionSapiDetalleServicios.InsertarOModificar(documentoLista, UsuarioLogeado.Hash);
+                                    break;
+                                case "4":
+                                    documentoLista.InicDptoReceptor = ((Usuario)this._ventana.GestorRegistro).Departamento.Id;
+                                    documentoLista.FechaRecep_Dpto = DateTime.Parse(this._ventana.FechaConfirmacion);
+                                    documentoLista.BRecibioDpto = true;
+                                    statusDocumento.Id = "NGN";
+                                    statusDocumento.Valor = "5";
+                                    documentoLista.StatusDocumento = this.BuscarListaDeDatosValores(this._statusDocumentos, statusDocumento).Descripcion;
+                                    exitoso = this._presentacionSapiDetalleServicios.InsertarOModificar(documentoLista, UsuarioLogeado.Hash);
+                                    break;
+                                case "5":
+                                    /*documentoLista.InicDptoReceptor = ((Usuario)this._ventana.GestorRegistro).Departamento.Id;
+                                    documentoLista.FechaFacturacion = DateTime.Parse(this._ventana.FechaConfirmacion);
+                                    documentoLista.BRecibioDpto = true;
+                                    statusDocumento.Id = "NGN";
+                                    statusDocumento.Valor = "5";
+                                    documentoLista.StatusDocumento = this.BuscarListaDeDatosValores(this._statusDocumentos, statusDocumento).Descripcion;
+                                    exitoso = this._presentacionSapiDetalleServicios.InsertarOModificar(documentoLista, UsuarioLogeado.Hash);
+                                    break;
+
+                            }
+                            if (exitoso)
+                                continue;
+                            else
+                            {
+                                this._ventana.Mensaje("El proceso de Registro falló", 0);
+                                break;
+                            }
+                        }
+
+                        this._ventana.OcultarCamposRegistroEvento(this._accion);
+                        this._ventana.GestorRegistro = null;
+                        this._ventana.FechaConfirmacion = "";
+                        Consultar();
+                    }
+                    else
+                        this._ventana.Mensaje("Debe seleccionar una Fecha para generar el Registro de la operación", 0);
+                }
+                else
+                    this._ventana.Mensaje("Seleccione un Gestor para hacer el Registro de la operación", 0);*/
+
+                #endregion
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -800,9 +971,92 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Presentaciones
             return datos;
         }
 
+        /// <summary>
+        /// Metodo que toma el nombre del usuario logueado para el Reporte de exportacion
+        /// </summary>
+        /// <returns>Nombre Completo del usuario logueado</returns>
         public string ObtenerNombreUsuario()
         {
             return UsuarioLogeado.NombreCompleto;
         }
+
+
+        /// <summary>
+        /// Metodo que presenta la ventana para ver las Facturas del Documento de la presentacion
+        /// Esto va a depender del tipo de facturacion que posea el documento
+        /// <param name="nombreCuadroTexto">Nombre del cuadro de Texto seleccionado</param>
+        /// </summary>
+        public void VerFacturaDocumento(String nombreCuadroTexto)
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                PresentacionSapiDetalle detalleSeleccionado = this._documentosPresentaciones[0];
+                MaterialSapi documento = detalleSeleccionado.Material;
+                String tipoElemento = String.Empty;
+
+                if (nombreCuadroTexto.Equals("_txtFactura"))
+                {
+                    if (!this._ventana.IdFactura.Equals(String.Empty))
+                    {
+                        if(documento.TipoFacturacion != null)
+                        {
+                            switch (documento.TipoFacturacion)
+                            {
+                                case '1':
+                                    Navegar(new ConsultarFacVistaFacturaServicios(this._ventana.IdFactura, null, null, true));
+                                    break;
+                                case '2':
+                                    Navegar(new ConsultarFacVistaFacturaServicios(null, this._ventana.IdFactura, null, true));
+                                    break;
+                                case '3':
+                                    this._ventana.Mensaje("EL tipo de Facturación para este documento no permite filtrar por Codigo de Factura ni por Código Alterno", 0);
+                                    break;
+                            }
+                        }
+                        else
+                            this._ventana.Mensaje("El Material no tiene asignado un Tipo de Facturación",0);
+                    }
+                    else
+                        this._ventana.Mensaje("Escriba un codigo de Factura o codigo Alterno para consultarlo", 0);
+
+                }
+                else if (nombreCuadroTexto.Equals("_txtOurref"))
+                {
+                    if (!this._ventana.Ourref.Equals(String.Empty))
+                    {
+                        if (documento.TipoFacturacion != null)
+                        {
+                            if (documento.TipoFacturacion.Equals('1') || documento.TipoFacturacion.Equals('2'))
+                                this._ventana.Mensaje("El Tipo de Facturación para este documento no es por Nuestra Referencia", 0);
+                            else if(documento.TipoFacturacion.Equals('3'))
+                                Navegar(new ConsultarFacVistaFacturaServicios(null, null, this._ventana.Ourref, true));
+                        }
+                        else
+                            this._ventana.Mensaje("El Material no tiene asignado un Tipo de Facturación", 0);
+                    }
+                    else
+                        this._ventana.Mensaje("Escriba un codigo de Referencia para consultarlo", 0);
+                }
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + "en el metodo: " + (new System.Diagnostics.StackFrame()).GetMethod().Name + ". Error: " + ex.Message, true);
+            }
+        }
+
+
+        
     }
 }

@@ -9,6 +9,8 @@
       <key-property name="Detalle" column="CDETALLE"  type="int"/>
     </composite-id>
     <!--<id name="Id" column="CODIGO" />-->
+    <property name="CodigoAlterno" column="CODIGOALT" type="string"/>
+    <property name="Ourref" column="REFERENCIA" type="string"/>
     <property name="Inicial" column="XINICIAL" type="string"/>
     <property name="CodigoServicio" column="COD_SER" type="string"/>
     <property name="Referencia" column="XREFERENCIA" type="string"/>

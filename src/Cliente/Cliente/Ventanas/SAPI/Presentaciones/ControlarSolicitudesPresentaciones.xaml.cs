@@ -160,6 +160,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.SAPI.Presentaciones
             set { this._dpkFechaEvento.Text = value; }
         }
 
+        public string IdFactura
+        {
+            get { return this._txtFactura.Text; }
+            set { this._txtFactura.Text = value; }
+        }
+
+        public string Ourref
+        {
+            get { return this._txtOurref.Text; }
+            set { this._txtOurref.Text = value; }
+        }
 
         public object Resultados
         {
@@ -237,6 +248,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.SAPI.Presentaciones
             }
         }
 
+        private void _txtFactura_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            TextBox cuadroTexto = (TextBox)sender;
+            String nombreCuadroTexto = cuadroTexto.Name;
+            this._presentador.VerFacturaDocumento(nombreCuadroTexto);
+        }
+
+        private void _btnConfirmarFacturacion_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.RegistrarEventoFacturacion();
+        }
+
+        
 
 
         #endregion
@@ -325,8 +349,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.SAPI.Presentaciones
             this._btnLimpiarCampos.Visibility = System.Windows.Visibility.Collapsed;
             this._btnCancelar.Visibility = System.Windows.Visibility.Collapsed;
 
-            this._lblGestor.Visibility = System.Windows.Visibility.Visible;
-            this._cbxGestoresProceso.Visibility = System.Windows.Visibility.Visible;
+            if (!tipoBandera.Equals("5"))
+            {
+                this._lblGestor.Visibility = System.Windows.Visibility.Visible;
+                this._cbxGestoresProceso.Visibility = System.Windows.Visibility.Visible; 
+            }
+
             switch (tipoBandera)
             {
                 case "1":
@@ -341,10 +369,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.SAPI.Presentaciones
                 case "4":
                     this._lblFechaRecepcionDpto.Visibility = System.Windows.Visibility.Visible;
                     break;
+                case "5":
+                    this._lblCodigoFactura.Visibility = System.Windows.Visibility.Visible;
+                    this._txtFactura.Visibility = System.Windows.Visibility.Visible;
+                    this._lblReferencia.Visibility = System.Windows.Visibility.Visible;
+                    this._txtOurref.Visibility = System.Windows.Visibility.Visible;
+                    break;
             }
+
+            if (!tipoBandera.Equals("5"))
+            {
+                this._dpkFechaEvento.Visibility = System.Windows.Visibility.Visible;
+                this._btnConfirmar.Visibility = System.Windows.Visibility.Visible;
+            }
+            else
+                this._btnConfirmarFacturacion.Visibility = System.Windows.Visibility.Visible;
             
-            this._dpkFechaEvento.Visibility = System.Windows.Visibility.Visible;
-            this._btnConfirmar.Visibility = System.Windows.Visibility.Visible;
             this._btnSuspender.Visibility = System.Windows.Visibility.Visible;
         }
 
@@ -367,11 +407,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.SAPI.Presentaciones
                 case "4":
                     this._lblFechaRecepcionDpto.Visibility = System.Windows.Visibility.Collapsed;
                     break;
+                case "5":
+                    this._lblCodigoFactura.Visibility = System.Windows.Visibility.Collapsed;
+                    this._txtFactura.Visibility = System.Windows.Visibility.Collapsed;
+                    this._lblReferencia.Visibility = System.Windows.Visibility.Collapsed;
+                    this._txtOurref.Visibility = System.Windows.Visibility.Collapsed;
+                    break;
             }
 
             this._dpkFechaEvento.Visibility = System.Windows.Visibility.Collapsed;
             this._btnConfirmar.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnConfirmarFacturacion.Visibility = System.Windows.Visibility.Collapsed;
             this._btnSuspender.Visibility = System.Windows.Visibility.Collapsed;
+
             this._btnRecepcionPorGestor.Visibility = System.Windows.Visibility.Visible;
             this._btnPresentacionEnSAPI.Visibility = System.Windows.Visibility.Visible;
             this._btnRecepcionDeSAPI.Visibility = System.Windows.Visibility.Visible;
@@ -467,6 +515,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.SAPI.Presentaciones
 
         #endregion
 
+        
         
         
 

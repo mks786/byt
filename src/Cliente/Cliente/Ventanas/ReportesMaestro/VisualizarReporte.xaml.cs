@@ -183,7 +183,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.ReportesMaestro
                     worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Worksheets.get_Item(1);
 
                     DataTable tablaDatos = (DataTable)this._dataGrid.DataContext;
-                    DataView tabla1 = (DataView)this._dataGrid.ItemsSource;
+                    
+                    //DataView tabla1 = (DataView)this._dataGrid.ItemsSource;
 
                     
                     app.Range["A1", "F1"].Merge();

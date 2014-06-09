@@ -109,35 +109,6 @@
                        Style="{DynamicResource EstiloListView}" MouseDoubleClick="_lstResultados_MouseDoubleClick">
                 <ListView.View>
                     <GridView>
-
-                        <GridViewColumn Header="{x:Static recurso:Etiquetas.lsvMaterialSolicitado}" Width="80" >
-                            <GridViewColumn.CellTemplate >
-                                <DataTemplate>
-                                    <CheckBox Tag="BSolicitado"   IsChecked="{Binding Path=BSolicitado}"
-                                              HorizontalAlignment="Center"  />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-
-                        <GridViewColumn Header="{x:Static recurso:Etiquetas.lsvMaterialEntregado}" Width="80" >
-                            <GridViewColumn.CellTemplate >
-                                <DataTemplate>
-                                    <CheckBox Tag="BEntregado" IsChecked="{Binding Path=BEntregado}" 
-                                              HorizontalAlignment="Center" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-
-                        <GridViewColumn Header="{x:Static recurso:Etiquetas.lsvMaterialRecibido}" Width="80" >
-                            <GridViewColumn.CellTemplate >
-                                <DataTemplate>
-                                    <CheckBox Tag="BRecibido" IsChecked="{Binding Path=BRecibido}" 
-                                              HorizontalAlignment="Center"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-
-
                         <GridViewColumn Width="120" >
                             <GridViewColumnHeader Tag="Id" Click="_Ordenar_Click"
                                                   Content="Cod. Solicitud"/>
@@ -147,7 +118,6 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-
 
                         <GridViewColumn Width="120" >
                             <GridViewColumnHeader Tag="FechaSolicitud" Click="_Ordenar_Click"
@@ -160,22 +130,22 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Width="150">
-                            <GridViewColumnHeader Tag="Departamento.Descripcion" Click="_Ordenar_Click"
-                                                  Content="{x:Static recurso:Etiquetas.lsvDepartamento}"/>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Path=Departamento.Descripcion}" TextAlignment="Center"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-
                         <GridViewColumn Width="120">
                             <GridViewColumnHeader Tag="SolicitanteInic" Click="_Ordenar_Click"
                                                   Content="{x:Static recurso:Etiquetas.lsvIniciales}"/>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=SolicitanteInic}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="150">
+                            <GridViewColumnHeader Tag="Departamento.Descripcion" Click="_Ordenar_Click"
+                                                  Content="{x:Static recurso:Etiquetas.lsvDepartamento}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Departamento.Descripcion}" TextAlignment="Center"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -205,7 +175,32 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        
+                        <GridViewColumn Header="{x:Static recurso:Etiquetas.lsvMaterialSolicitado}" Width="80" >
+                            <GridViewColumn.CellTemplate >
+                                <DataTemplate>
+                                    <CheckBox Tag="BSolicitado"   IsChecked="{Binding Path=BSolicitado}"
+                                              HorizontalAlignment="Center"  />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="{x:Static recurso:Etiquetas.lsvMaterialEntregado}" Width="80" >
+                            <GridViewColumn.CellTemplate >
+                                <DataTemplate>
+                                    <CheckBox Tag="BEntregado" IsChecked="{Binding Path=BEntregado}" 
+                                              HorizontalAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="{x:Static recurso:Etiquetas.lsvMaterialRecibido}" Width="80" >
+                            <GridViewColumn.CellTemplate >
+                                <DataTemplate>
+                                    <CheckBox Tag="BRecibido" IsChecked="{Binding Path=BRecibido}" 
+                                              HorizontalAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
 
                     </GridView>
                 </ListView.View>

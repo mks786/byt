@@ -9093,6 +9093,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Facturado.
+        /// </summary>
+        public static string lsvFacturado {
+            get {
+                return ResourceManager.GetString("lsvFacturado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Facultad.
         /// </summary>
         public static string lsvFacultad {
@@ -9219,6 +9228,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Fecha Facturación.
+        /// </summary>
+        public static string lsvFechaFacturado {
+            get {
+                return ResourceManager.GetString("lsvFechaFacturado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Fecha de impresion.
         /// </summary>
         public static string lsvFechaImpresion {
@@ -9305,6 +9323,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvFechaRecepcionSAPI {
             get {
                 return ResourceManager.GetString("lsvFechaRecepcionSAPI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Fecha Recepción Dpto..
+        /// </summary>
+        public static string lsvFechaRecepDpto {
+            get {
+                return ResourceManager.GetString("lsvFechaRecepDpto", resourceCulture);
             }
         }
         
@@ -13751,6 +13778,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleListaDeTiposEmail {
             get {
                 return ResourceManager.GetString("titleListaDeTiposEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Documentos de Caso.
+        /// </summary>
+        public static string titleListaDocumentosCaso {
+            get {
+                return ResourceManager.GetString("titleListaDocumentosCaso", resourceCulture);
             }
         }
         

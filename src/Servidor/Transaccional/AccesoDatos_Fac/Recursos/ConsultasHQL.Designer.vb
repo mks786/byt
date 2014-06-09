@@ -1793,6 +1793,33 @@ Namespace Recursos
         End Property
         
         '''<summary>
+        '''  Busca una cadena traducida similar a v.CodigoAlterno like &apos;%{0}%&apos;.
+        '''</summary>
+        Public Shared ReadOnly Property FiltroObtenerFacVistaFacturaCodigoAlterno() As String
+            Get
+                Return ResourceManager.GetString("FiltroObtenerFacVistaFacturaCodigoAlterno", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca una cadena traducida similar a v.Factura={0}.
+        '''</summary>
+        Public Shared ReadOnly Property FiltroObtenerFacVistaFacturaIdFactura() As String
+            Get
+                Return ResourceManager.GetString("FiltroObtenerFacVistaFacturaIdFactura", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca una cadena traducida similar a v.Referencia like &apos;%{0}%&apos;.
+        '''</summary>
+        Public Shared ReadOnly Property FiltroObtenerFacVistaFacturaOurref() As String
+            Get
+                Return ResourceManager.GetString("FiltroObtenerFacVistaFacturaOurref", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Busca una cadena traducida similar a v.Id = {0}.
         '''</summary>
         Public Shared ReadOnly Property FiltroObtenerFacVistaFacturaServicioId() As String

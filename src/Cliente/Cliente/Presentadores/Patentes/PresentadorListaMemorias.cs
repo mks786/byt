@@ -31,6 +31,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Memorias
         private IPatenteServicios _patenteServicios;
         private IMemoriaServicios _memoriaServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
+        private bool _esPatente = true;
+        private string _tipoEntidad = String.Empty;
+        private Caso _caso;
+        private object _entidad;
 
 
         //private IList<Memoria> _memorias;
@@ -69,6 +73,38 @@ namespace Trascend.Bolet.Cliente.Presentadores.Memorias
         }
 
 
+        public PresentadorListaMemorias(IListaMemorias ventana, object entidad, object ventanaPadre, bool esPatente)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this._ventana = ventana;
+            this._ventanaPadre = ventanaPadre;
+            this._esPatente = false;
+            string tipo = entidad.GetType().ToString();
+            this._entidad = entidad;
+
+            if (tipo.Equals("Trascend.Bolet.ObjetosComunes.Entidades.Caso"))
+            {
+                this._tipoEntidad = "Trascend.Bolet.ObjetosComunes.Entidades.Caso";
+            }
+
+            this._patenteServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
+            this._memoriaServicios = (IMemoriaServicios)Activator.GetObject(typeof(IMemoriaServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MemoriaServicios"]);
+            this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -78,6 +114,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Memorias
             IList<Memoria> listaMemorias = new List<Memoria>();
             int contador = 1;
             Mouse.OverrideCursor = Cursors.Wait;
+            string rutaArchivo = String.Empty;
+            string nombreArchivo = String.Empty;
+            string[] archivos = null;
 
             try
             {
@@ -86,8 +125,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Memorias
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaMemorias,
-                    "");
+                
 
                 #region CODIGO ORIGINAL COMENTADO
                 //_memorias = this._memoriaServicios.ConsultarMemoriasPorPatente(this._patente);
@@ -107,36 +145,85 @@ namespace Trascend.Bolet.Cliente.Presentadores.Memorias
                 //this._ventana.TiposMensajes = _tiposMensaje; 
                 #endregion
 
-                string rutaArchivo = ConfigurationManager.AppSettings["RutaMemoriaPatente"];
-                string nombreArchivo = 
-                    ConfigurationManager.AppSettings["NombreMemoriaPatente"] + this._patente.Id.ToString() + "?";
-                string[] archivos = Directory.GetFiles(rutaArchivo, nombreArchivo + ".*");
-
-                if (archivos.Length != 0)
+                if (this._esPatente)
                 {
+                    this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaMemorias,
+                    "");
 
-                    foreach (string archivo in archivos)
+                    rutaArchivo = ConfigurationManager.AppSettings["RutaMemoriaPatente"];
+                    nombreArchivo = ConfigurationManager.AppSettings["NombreMemoriaPatente"] + this._patente.Id.ToString() + "?";
+                    archivos = Directory.GetFiles(rutaArchivo, nombreArchivo + ".*");
+
+                    if (archivos.Length != 0)
                     {
-                        Memoria memoriaAux = new Memoria();
-                        memoriaAux.Id = contador;
-                        memoriaAux.Ruta = archivo;
-                        DateTime fileCreatedDate = File.GetCreationTime(archivo);
-                        memoriaAux.Fecha = fileCreatedDate;
-                        memoriaAux.Patente = this._patente;
-                        listaMemorias.Add(memoriaAux);
-                        contador++;
+
+                        foreach (string archivo in archivos)
+                        {
+                            Memoria memoriaAux = new Memoria();
+                            memoriaAux.Id = contador;
+                            memoriaAux.Ruta = archivo;
+                            DateTime fileCreatedDate = File.GetCreationTime(archivo);
+                            memoriaAux.Fecha = fileCreatedDate;
+                            memoriaAux.Patente = this._patente;
+                            listaMemorias.Add(memoriaAux);
+                            contador++;
+                        }
+
+                        this._ventana.Memorias = listaMemorias;
+
+                        this._ventana.TotalHits = listaMemorias.Count.ToString();
+                    }
+                    else
+                    {
+                        this._ventana.TotalHits = "0";
+                        this._ventana.Mensaje("La Patente no posee archivos de Memoria asociados", 0);
                     }
 
-                    this._ventana.Memorias = listaMemorias;
-
-                    this._ventana.TotalHits = listaMemorias.Count.ToString();
                 }
-
                 else
                 {
-                    this._ventana.TotalHits = "0";
-                    this._ventana.Mensaje("La Patente no posee archivos de Memoria asociados", 0);
+                    if (this._tipoEntidad.Equals("Trascend.Bolet.ObjetosComunes.Entidades.Caso"))
+                    {
+                        this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaDocumentosCaso, "");
+                        //Esto solo se usa para poder mostrar los datos. El Documento de Caso no esta ligado a ninguna patente
+                        this._patente = new Patente();
+                        this._patente.Id = int.MinValue;
+                        this._caso = (Caso)this._entidad;
+                        rutaArchivo = ConfigurationManager.AppSettings["RutaDocumentoCaso"];
+                        nombreArchivo = ConfigurationManager.AppSettings["NombreDocumentoCaso"] + this._caso.Id.ToString() + "?";
+                        archivos = Directory.GetFiles(rutaArchivo, nombreArchivo + ".*");
+                        if (archivos.Length != 0)
+                        {
+
+                            foreach (string archivo in archivos)
+                            {
+                                Memoria memoriaAux = new Memoria();
+                                memoriaAux.Id = contador;
+                                memoriaAux.Ruta = archivo;
+                                DateTime fileCreatedDate = File.GetCreationTime(archivo);
+                                memoriaAux.Fecha = fileCreatedDate;
+                                memoriaAux.Patente = this._patente;
+                                listaMemorias.Add(memoriaAux);
+                                contador++;
+                            }
+
+                            this._ventana.Memorias = listaMemorias;
+
+                            this._ventana.TotalHits = listaMemorias.Count.ToString();
+                        }
+                        else
+                        {
+                            this._ventana.TotalHits = "0";
+                            if (this._tipoEntidad.Equals("Trascend.Bolet.ObjetosComunes.Entidades.Caso"))
+                                this._ventana.Mensaje("El Caso no posee archivos PDF asociados", 0);
+                        }
+
+                    }
                 }
+
+                
+
+                
 
                 this._ventana.FocoPredeterminado();
 
@@ -309,7 +396,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Memorias
                 if (this._ventana.MemoriaSeleccionada != null)
                 {
                     nombreArchivoMemoria = ((Memoria)this._ventana.MemoriaSeleccionada).Ruta;
-                    this.AbrirArchivoPorConsola(nombreArchivoMemoria, "Abriendo Archivo de Memoria de la Patente: " + this._patente.Id.ToString());
+                    if (this._esPatente)
+                        this.AbrirArchivoPorConsola(nombreArchivoMemoria, "Abriendo Archivo de Memoria de la Patente: " + this._patente.Id.ToString());
+                    else
+                    {
+                        if (this._tipoEntidad.Equals("Trascend.Bolet.ObjetosComunes.Entidades.Caso"))
+                            this.AbrirArchivoPorConsola(nombreArchivoMemoria, "Abriendo Documento de Caso: " + this._caso.Id.ToString());
+                    }
+
                 }
 
                 #region trace

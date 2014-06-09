@@ -3,26 +3,27 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
+using System.Globalization;
 using System.IO;
+using System.Linq;
+using System.Threading;
 using System.Windows.Input;
 using NLog;
 using Trascend.Bolet.Cliente.Contratos.SAPI.Presentaciones;
-using Trascend.Bolet.Cliente.Ventanas.Principales;
-using Trascend.Bolet.Cliente.Ventanas.SAPI.Presentaciones;
-using Trascend.Bolet.ObjetosComunes.ContratosServicios;
-using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.Cliente.Ventanas.Patentes;
-using Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones;
-using Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones;
+using Trascend.Bolet.Cliente.Ventanas.Principales;
+using Trascend.Bolet.Cliente.Ventanas.Renovaciones;
+using Trascend.Bolet.Cliente.Ventanas.SAPI.Presentaciones;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario;
+using Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones;
+using Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias;
-using Trascend.Bolet.Cliente.Ventanas.Renovaciones;
-using System.Threading;
-using System.Globalization;
-using System.Diagnostics;
+using Trascend.Bolet.ObjetosComunes.ContratosServicios;
+using Trascend.Bolet.ObjetosComunes.Entidades;
 
 namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Presentaciones
 {
@@ -251,6 +252,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Presentaciones
 
                 /*Carga de Documentos (Materiales Sapi) */
                 IList<MaterialSapi> documentos = this._materialSapiServicios.ConsultarTodos();
+                documentos = documentos.OrderBy(o => o.Descripcion).ToList();
                 documentos.Insert(0, new MaterialSapi("NGN"));
                 this._ventana.Documentos = documentos;
 

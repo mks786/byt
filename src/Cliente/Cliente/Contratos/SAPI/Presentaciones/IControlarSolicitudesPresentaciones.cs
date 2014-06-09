@@ -46,6 +46,10 @@ namespace Trascend.Bolet.Cliente.Contratos.SAPI.Presentaciones
 
         string FechaConfirmacion { get; set; }
 
+        string IdFactura { get; set; }
+
+        string Ourref { get; set; }
+
         string TotalHits { set; }
 
         object Resultados { get; set; }

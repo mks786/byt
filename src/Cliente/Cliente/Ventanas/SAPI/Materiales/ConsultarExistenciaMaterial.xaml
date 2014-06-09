@@ -100,6 +100,7 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="200">
                             <GridViewColumnHeader Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvDescripcion}"/>
                         </GridViewColumn>
+                        
                         <GridViewColumn Width="100">
                             <GridViewColumnHeader Tag="TipoDescripcion" Content="{x:Static recurso:Etiquetas.lsvTipoMaterial}"/>
                             <GridViewColumn.CellTemplate>
@@ -108,6 +109,7 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
+                        
                         <GridViewColumn Width="160">
                             <GridViewColumnHeader Tag="Departamento.Descripcion" Content="{x:Static recurso:Etiquetas.lsvDepartamento}"/>
                             <GridViewColumn.CellTemplate>

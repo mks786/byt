@@ -143,6 +143,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.SAPI.Materiales
 
         #region Constructores
 
+        /// <summary>
+        /// Constructor predeterminado sin parametros
+        /// </summary>
         public GestionarMovimientoMaterialSapi()
         {
             InitializeComponent();
@@ -150,6 +153,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.SAPI.Materiales
             this._presentador = new PresentadorGestionarMovimientoMaterialSapi(this,null,null);
         }
 
+        /// <summary>
+        /// Constructor predeterminado que recibe una Solicitud Sapi y una ventana Padre
+        /// </summary>
+        /// <param name="solicitudSapi">Solicitud Sapi a visualizar</param>
+        /// <param name="ventanaPadre">Ventana que precede a esta ventana</param>
         public GestionarMovimientoMaterialSapi(object solicitudSapi, object ventanaPadre)
         {
             InitializeComponent();
@@ -227,6 +235,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.SAPI.Materiales
             if (flag)
                 this._btnEliminar.Visibility = System.Windows.Visibility.Visible;
         }
+
+        
+        public void OcultarBotonAceptar()
+        {
+            this._btnAceptar.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
 
         #endregion
 

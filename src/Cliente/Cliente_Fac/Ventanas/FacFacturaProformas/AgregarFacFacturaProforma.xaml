@@ -7,9 +7,7 @@
       xmlns:local="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Ventanas.FacFacturaProformas"
       mc:Ignorable="d" 
       xmlns:reglas="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Validaciones"    
-      xmlns:conv="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Transformadores"
-      d:DesignHeight="550" d:DesignWidth="800"
-      xmlns:recurso="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Recursos" Loaded="Page_Loaded">
+      xmlns:conv="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Transformadores" xmlns:recurso="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Recursos" Loaded="Page_Loaded" Height="727" Width="800">
     <Page.Resources>
         <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
         <conv:DosValresAUno x:Key="convertirADosValores"></conv:DosValresAUno>

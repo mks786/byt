@@ -24,6 +24,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
         private Reporte _reporte;
         private IFiltroReporteServicios _filtroReporteServicios;
 
+
+        /// <summary>
+        /// Constructor por defecto
+        /// </summary>
+        /// <param name="ventana">Ventana actual</param>
+        /// <param name="reporte">Reporte a visualizar</param>
+        /// <param name="resultado">Resultado obtenido al ejecutar el reporte</param>
+        /// <param name="ventanaPadre">Ventana que antecede a esta ventana</param>
         public PresentadorVisualizarReporte(IVisualizarReporte ventana, object reporte, object resultado, object ventanaPadre)
         {
             try
@@ -240,6 +248,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesMaestro
                 System.Type tipo = columna.DataType;
             }
             
+        }
+
+        public bool LocalizarCampoFecha(DataTable tablaDatos)
+        {
+            throw new NotImplementedException();
         }
     }
 }

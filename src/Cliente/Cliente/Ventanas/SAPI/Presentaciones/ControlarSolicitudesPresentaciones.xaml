@@ -172,12 +172,42 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
+                        <GridViewColumn Header="{x:Static recurso:Etiquetas.lsvFacturado}" Width="95" >
+                            <GridViewColumn.CellTemplate >
+                                <DataTemplate>
+                                    <CheckBox Tag="BDocFacturado" IsChecked="{Binding Path=BDocFacturado}"
+                                              HorizontalAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
                         <GridViewColumn Width="120" >
                             <GridViewColumnHeader Tag="Presentacion_Enc.Id"
                                                   Content="Cod Solicitud"/>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=Presentacion_Enc.Id}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="80">
+                            <GridViewColumnHeader Tag="Presentacion_Enc.Iniciales"
+                                                  Content="{x:Static recurso:Etiquetas.lsvIniciales}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Presentacion_Enc.Iniciales}" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="120">
+                            <GridViewColumnHeader Tag="Presentacion_Enc.Departamento.Descripcion"
+                                                  Content="{x:Static recurso:Etiquetas.lsvDepartamento}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Presentacion_Enc.Departamento.Descripcion}" 
+                                               TextAlignment="Center"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -213,27 +243,6 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=CodExpediente}" TextAlignment="Center"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-
-                        <GridViewColumn Width="120">
-                            <GridViewColumnHeader Tag="Presentacion_Enc.Departamento.Descripcion"
-                                                  Content="{x:Static recurso:Etiquetas.lsvDepartamento}"/>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Path=Presentacion_Enc.Departamento.Descripcion}" 
-                                               TextAlignment="Center"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-
-                        <GridViewColumn Width="80">
-                            <GridViewColumnHeader Tag="Presentacion_Enc.Iniciales"
-                                                  Content="{x:Static recurso:Etiquetas.lsvIniciales}"/>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Path=Presentacion_Enc.Iniciales}" TextAlignment="Center"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -282,8 +291,30 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
+                        <GridViewColumn Width="130" >
+                            <GridViewColumnHeader Tag="FechaRecep_Dpto"
+                                                  Content="{x:Static recurso:Etiquetas.lsvFechaRecepDpto}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=FechaRecep_Dpto, StringFormat={}{0:dd/MM/yyyy}}"
+                                               TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
 
-                        
+                        <GridViewColumn Width="120" >
+                            <GridViewColumnHeader Tag="FechaFacturacion"
+                                                  Content="{x:Static recurso:Etiquetas.lsvFechaFacturado}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=FechaFacturacion, StringFormat={}{0:dd/MM/yyyy}}"
+                                               TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+
+
 
                         <!--<GridViewColumn DisplayMemberBinding="{Binding Path=Material.Descripcion}" Width="200">
                             <GridViewColumnHeader Tag="Descripcion"
@@ -335,44 +366,59 @@
                     <Label Name="_lblFechaRecepcionDpto" Visibility="Collapsed" Margin="15,0,0,0">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaRecepcionDpto}"/>
                     </Label>
+                    <Label Name="_lblCodigoFactura" Visibility="Collapsed" Margin="15,0,0,0">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFactura}"/>
+                    </Label>
+                    
                     <DatePicker Name="_dpkFechaEvento" Width="150" Focusable="False" BorderBrush="{x:Null}"
                                 Visibility="Collapsed">
-                        <!--<DatePicker.SelectedDate>
-                            <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
-                        </DatePicker.SelectedDate>-->
                     </DatePicker>
+                    <custom:ByTTextBox Name="_txtFactura" BorderBrush="LightGreen" BorderThickness="1" Height="25" Width="100" 
+                                       VerticalAlignment="Center" Visibility="Collapsed" MouseDoubleClick="_txtFactura_MouseDoubleClick"/>
+                    
+                    <Label Name="_lblReferencia" Visibility="Collapsed" Margin="15,0,0,0">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblReferencia}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtOurref" BorderBrush="LightGreen" BorderThickness="1" Height="25" Width="100" 
+                                       VerticalAlignment="Center" Visibility="Collapsed" MouseDoubleClick="_txtFactura_MouseDoubleClick"/>
                 </WrapPanel>
-                <WrapPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,5,0,0">
+
+                 <WrapPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,5,0,0">
                     <Button Name="_btnConfirmar" Width="100" Height="25" Visibility="Collapsed" Click="_btnConfirmar_Click">
                         <TextBlock Text="Confirmar"/>
                     </Button>
-                    <Button Name="_btnSuspender" Width="120" Height="25" Visibility="Collapsed" Click="_btnSuspender_Click">
+                    <Button Name="_btnConfirmarFacturacion" Width="100" Height="25" Visibility="Collapsed" Click="_btnConfirmarFacturacion_Click">
+                        <TextBlock Text="Confirmar"/>
+                    </Button>
+                    <Button Name="_btnSuspender" Width="100" Height="25" Visibility="Collapsed" Click="_btnSuspender_Click" Margin="5">
                         <TextBlock Text="Cancelar"/>
                     </Button>
                 </WrapPanel>
-
             </Grid>
         </GroupBox>
 
         <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" BorderBrush="{x:Null}" BorderThickness="0">
             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
 
-                <Button Name="_btnRecepcionPorGestor" Width="100" Height="25" Click="_RegistarEvento_Click">
+                <Button Name="_btnFacturacion" Width="100" Height="25" Click="_RegistarEvento_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnFacturacion}"/>
+                </Button>
+                <Button Name="_btnRecepcionPorGestor" Width="100" Height="25" Click="_RegistarEvento_Click" Margin="3">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnRecibidaPorGestor}"/>
                 </Button>
-                <Button Name="_btnPresentacionEnSAPI" Width="120" Height="25" Click="_RegistarEvento_Click">
+                <Button Name="_btnPresentacionEnSAPI" Width="120" Height="25" Click="_RegistarEvento_Click" Margin="3">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnConfirmarPresentacionAnteSAPI}"/>
                 </Button>
-                <Button Name="_btnRecepcionDeSAPI" Width="110" Height="25" Click="_RegistarEvento_Click">
+                <Button Name="_btnRecepcionDeSAPI" Width="110" Height="25" Click="_RegistarEvento_Click" Margin="3">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnRecepcionDeSAPI}"/>
                 </Button>
-                <Button Name="_btnRecepcionDpto" Width="110" Height="25" Click="_RegistarEvento_Click">
+                <Button Name="_btnRecepcionDpto" Width="110" Height="25" Click="_RegistarEvento_Click" Margin="3">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnRecepcionDpto}"/>
                 </Button>
-                <Button Name="_btnExportarDetalle" Width="110" Height="25" Click="_btnExportarDetalle_Click">
+                <Button Name="_btnExportarDetalle" Width="110" Height="25" Click="_btnExportarDetalle_Click" Margin="3">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnExportar}"/>
                 </Button>
-                <Button Name="_btnLimpiarCampos" Width="100" Height="25" Click="_btnLimpiarCampos_Click">
+                <Button Name="_btnLimpiarCampos" Width="100" Height="25" Click="_btnLimpiarCampos_Click" Margin="3">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnLimpiarCampos}"/>
                 </Button>
                 <Button Name="_btnCancelar" Width="100" Height="25" Click="_btnCancelar_Click">

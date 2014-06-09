@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Linq;
 using System.Windows.Input;
 using NLog;
 using Trascend.Bolet.Cliente.Contratos.SAPI.Materiales;
@@ -22,7 +23,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
         private IDepartamentoServicios _departamentoServicios;
         private bool _hayFiltro = false;
 
-        
+        /// <summary>
+        /// Constructor predeterminado 
+        /// </summary>
+        /// <param name="ventana">Ventana actual</param>
         public PresentadorConsultarExistenciaMaterial(IConsultarExistenciaMaterial ventana)
         {
             try
@@ -97,9 +101,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                 this._ventana.MaterialDepartamentos = departamentos;
 
                 IList<MaterialSapi> materiales = this._materialSapiServicios.ConsultarTodos();
+                IList<MaterialSapi> materialesOrdenados = materiales.OrderBy(o => o.Descripcion).ToList();
+                materiales = materiales.OrderBy(o => o.Id).ToList();
                 materiales.Insert(0, primerMaterial);
+                materialesOrdenados.Insert(0, primerMaterial);
                 this._ventana.MaterialIds = materiales;
-                this._ventana.MaterialDescripciones = materiales;
+                //this._ventana.MaterialDescripciones = materiales;
+                this._ventana.MaterialDescripciones = materialesOrdenados;
 
                 this._ventana.FocoPredeterminado();
 

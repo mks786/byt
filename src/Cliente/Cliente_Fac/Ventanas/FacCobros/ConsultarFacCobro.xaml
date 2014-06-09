@@ -106,9 +106,14 @@
                             </Grid.RowDefinitions>
                             <!--<custom:ByTTextBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4"  Name="_txtAsociadoId" VerticalAlignment="Center"                                     
                          HorizontalAlignment="Left" Width="50" Text="" MaxLength="255" GotFocus="_txtAsociado_GotFocus" GotKeyboardFocus="_txtAsociado_GotFocus" Height="20" FontSize="10"></custom:ByTTextBox>-->
-                            <Label  Name ="_lblasociado2"  Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <!--<Label  Name ="_lblasociado2"  Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
-                            </Label>
+                            </Label>-->
+
+                            <Button Grid.Column="0" Grid.Row="0" Name="_btnVerAsociado" IsDefault="False" Height="25"
+                                    HorizontalAlignment="Right" Click="_btnVerAsociado_Click">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
+                            </Button>
 
                             <custom:ByTTextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3"  Name="_txtAsociado" VerticalAlignment="Center"                                     
                          HorizontalAlignment="Left" Width="200" Text="" MaxLength="255" MouseDoubleClick="_txtAsociado_MouseDoubleClick" Height="20" FontSize="10" IsReadOnly="True" IsEnabled="True"></custom:ByTTextBox>

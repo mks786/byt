@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Runtime.Remoting;
@@ -16,11 +17,12 @@ using Trascend.Bolet.Cliente.Contratos.Pirateria.Casos;
 using Trascend.Bolet.Cliente.Ventanas.Asociados;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
 using Trascend.Bolet.Cliente.Ventanas.Interesados;
+using Trascend.Bolet.Cliente.Ventanas.Pirateria.Casos;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ControlesByT.Ventanas;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
-using Trascend.Bolet.Cliente.Ventanas.Pirateria.Casos;
+using Trascend.Bolet.Cliente.Ventanas.Memorias;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Pirateria.Casos
 {
@@ -205,6 +207,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Pirateria.Casos
                     auditoria.Tabla = "PRT_CASOS";
                     this._auditorias = this._casoServicios.AuditoriaPorFkyTabla(auditoria);
 
+                    if (this._auditorias.Count > 0)
+                    {
+                        this._ventana.PintarBotonAuditoria();
+                    }
+
+                    String rutaExpediente = ConfigurationManager.AppSettings["rutaExpedientesPirateria"].ToString() + ((Caso)this._ventana.Caso).Id.ToString() + ".pdf";
+                    if (File.Exists(rutaExpediente))
+                    {
+                        this._ventana.PintarBotonExpediente();
+                    }
+
+                    if (ValidarExistenciaDocumentos())
+                    {
+                        this._ventana.PintarBotonDocumentos();
+                    }
+
+
                 }
                 else
                 {
@@ -224,6 +243,45 @@ namespace Trascend.Bolet.Cliente.Presentadores.Pirateria.Casos
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
             }
             
+        }
+
+
+        /// <summary>
+        /// Metodo que validar si existen o no documentos PDF asociados al Caso, con el fin de pintar el boton de Verde
+        /// </summary>
+        /// <returns>True si hay archivos; False, en caso contrario</returns>
+        private bool ValidarExistenciaDocumentos()
+        {
+            bool retorno = false;
+            string rutaArchivo = String.Empty;
+            string nombreArchivo = String.Empty;
+            string[] archivos = null;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                rutaArchivo = ConfigurationManager.AppSettings["RutaDocumentoCaso"];
+                nombreArchivo = ConfigurationManager.AppSettings["NombreDocumentoCaso"] + ((Caso)this._ventana.Caso).Id.ToString() + "?";
+                archivos = Directory.GetFiles(rutaArchivo, nombreArchivo + ".*");
+
+                if (archivos.Length > 0)
+                    retorno = true;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return retorno;
         }
 
         /// <summary>
@@ -1623,6 +1681,68 @@ namespace Trascend.Bolet.Cliente.Presentadores.Pirateria.Casos
                 #endregion
 
                 this.Navegar(new ListaAuditorias(_auditorias));
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+        }
+
+        /// <summary>
+        /// Metodo para visualizar el documento PDF del Expediente del Caso
+        /// </summary>
+        public void VerExpedienteCaso()
+        {
+            String rutaExpediente = String.Empty;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                rutaExpediente = ConfigurationManager.AppSettings["rutaExpedientesPirateria"].ToString() + ((Caso)this._ventana.Caso).Id.ToString() + ".pdf";
+
+                if (File.Exists(rutaExpediente))
+                {
+                    System.Diagnostics.Process.Start(rutaExpediente);
+                }
+                else
+                    this._ventana.Mensaje("El PDF del Expediente de este Caso no existe", 0);
+                
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado + ": " + ex.Message, true);
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo que visualiza la lista de documentos de un Caso
+        /// </summary>
+        public void VerDocumentos()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                this.Navegar(new Trascend.Bolet.Cliente.Ventanas.Patentes.ListaMemorias(this._ventana.Caso, this._ventana,false));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

@@ -77,6 +77,15 @@ Namespace Ventanas.FacAsociadoMarcaPatentes
             Me._presentador = New PresentadorConsultarFacVistaFacturaServicios(Me, Id, Tipo)
         End Sub
 
+        Public Sub New(ByVal cFactura As String, ByVal cAlterno As String, ByVal referencia As String, ByVal presentacion As Boolean)
+            InitializeComponent()
+            Me._cargada = False
+            Me._presentador = New PresentadorConsultarFacVistaFacturaServicios(Me, cFactura, cAlterno, referencia, presentacion)
+        End Sub
+
+
+
+
         Private Sub Page_Loaded(ByVal sender As Object, ByVal e As RoutedEventArgs)
             If Not EstaCargada Then
                 Me._presentador.CargarPagina()
@@ -85,7 +94,6 @@ Namespace Ventanas.FacAsociadoMarcaPatentes
                 Me._presentador.ActualizarTitulo()
             End If
         End Sub
-
         Private Sub _btnRegresar_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
             Me._presentador.Regresar()
         End Sub

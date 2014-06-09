@@ -17,10 +17,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
            private DateTime? _FechaFactura;
            private int? _Proforma;
            private string _Tipo;
-
-
            private int? _accion;
            private double _saldo;
+           private string _codigoAlterno;
+           private string _ourref;
 
         #endregion
 
@@ -204,6 +204,30 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set
             {
                 this._saldo = value;
+            }
+        }
+
+        public virtual string CodigoAlterno
+        {
+            get
+            {
+                return this._codigoAlterno;
+            }
+            set
+            {
+                this._codigoAlterno = value;
+            }
+        }
+
+        public virtual string Ourref
+        {
+            get
+            {
+                return this._ourref;
+            }
+            set
+            {
+                this._ourref = value;
             }
         }
         #endregion

@@ -18,6 +18,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Departamento _departamento;
         private string _tablaReferencia;
         private string _campoReferencia;
+        private char? _tipoFacturacion;
 
         #endregion
 
@@ -155,6 +156,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return this._campoReferencia; }
             set { this._campoReferencia = value; }
+        }
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Tipo de Facturacion del Material 
+        /// </summary>
+        public virtual char? TipoFacturacion
+        {
+            get { return this._tipoFacturacion; }
+            set { this._tipoFacturacion = value; }
         }
 
 

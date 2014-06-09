@@ -15,6 +15,7 @@
     </many-to-one>
     <property name="TablaReferencia" column="TABLA_MAT" type="string"/>
     <property name="CampoReferencia" column="CAMPO_MAT" type="string"/>
+    <property name="TipoFacturacion" column="IFAC" type="char"/>
        
   </class>
 

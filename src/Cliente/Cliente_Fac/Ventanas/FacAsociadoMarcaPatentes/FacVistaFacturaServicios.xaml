@@ -62,32 +62,77 @@
                        Style="{DynamicResource EstiloListView}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Inicial}" Width="120">
+                        <GridViewColumn Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Inicial" Content="Inicial"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Inicial}" TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoServicio}" Width="150">
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=CodigoServicio}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="CodigoServicio" Content="Servicio"/>
+                        </GridViewColumn>-->
+                        <GridViewColumn Width="100">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="CodigoServicio" Content="Servicio"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=CodigoServicio}" TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Referencia}" Width="120">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Referencia}" Width="200">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Referencia" Content="Referencia"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Factura}" Width="150">
+                        <GridViewColumn Width="100">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Factura" Content="Factura"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Factura}" TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaFactura, StringFormat={}{0:dd/MM/yyyy}}" Width="120">
+                        <GridViewColumn  Width="100">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaFactura" Content="Fecha"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=FechaFactura, StringFormat={}{0:dd/MM/yyyy}}"
+                                               TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Saldo}" Width="120">
+                        <GridViewColumn Width="100">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Saldo" Content="Saldo"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Saldo, StringFormat= {}{0:N}, ConverterCulture=de-DE}"
+                                               TextAlignment="Right" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Proforma}" Width="170">
+                        <GridViewColumn Width="100">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Proforma" Content="Proforma"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Proforma}" TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Width="40" Header="">
+                        <GridViewColumn Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="CodigoAlterno" Content="Codigo Alterno"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=CodigoAlterno}" TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="80" Header="">
                             <!--<GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>-->
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Name="Btn_Factura" Content="Factura"  Command="local:ConsultarFacVistaFacturaServicios.Mostrar_Factura" CommandParameter="{Binding Factura}" />
+                                    <Button Name="Btn_Factura" Content="Factura" Width="50" Height="25" HorizontalAlignment="Center"
+                                            Command="local:ConsultarFacVistaFacturaServicios.Mostrar_Factura" 
+                                            CommandParameter="{Binding Factura}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

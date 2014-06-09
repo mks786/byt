@@ -593,12 +593,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Pirateria.Casos
 
         private void _btnDocumentos_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.VerDocumentos();
         }
 
         private void _btnExpediente_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.VerExpedienteCaso();
         }
 
         private void _btnAuditoria_Click(object sender, RoutedEventArgs e)
@@ -802,7 +802,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Pirateria.Casos
             this._btnExpediente.IsEnabled = flag;
         }
 
-        
+        public void PintarBotonExpediente()
+        {
+            this._btnExpediente.Background = Brushes.LightGreen;
+        }
+
+        public void PintarBotonDocumentos()
+        {
+            this._btnDocumentos.Background = Brushes.LightGreen;
+        }
+
+        public void PintarBotonAuditoria()
+        {
+            this._btnAuditoria.Background = Brushes.LightGreen;
+        }
+
         #endregion
 
          

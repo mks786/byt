@@ -115,5 +115,11 @@ namespace Trascend.Bolet.Cliente.Contratos.Pirateria.Casos
 
         void mostrarListaCasosBase();
 
+        void PintarBotonExpediente();
+
+        void PintarBotonDocumentos();
+
+        void PintarBotonAuditoria();
+
     }
 }

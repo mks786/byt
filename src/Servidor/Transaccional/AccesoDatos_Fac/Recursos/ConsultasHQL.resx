@@ -816,4 +816,16 @@
     <value>t.Id = '{0}'</value>
     <comment>Filtro para obtener FacTarifas por el Id</comment>
   </data>
+  <data name="FiltroObtenerFacVistaFacturaCodigoAlterno" xml:space="preserve">
+    <value>v.CodigoAlterno like '%{0}%'</value>
+    <comment>Filtro para obtener FacVistaFacturaServicio a traves del Codigo Alterno</comment>
+  </data>
+  <data name="FiltroObtenerFacVistaFacturaIdFactura" xml:space="preserve">
+    <value>v.Factura={0}</value>
+    <comment>Filtro para obtener FacVistaFacturaServicio a traves del Id de la Factura</comment>
+  </data>
+  <data name="FiltroObtenerFacVistaFacturaOurref" xml:space="preserve">
+    <value>v.Referencia like '%{0}%'</value>
+    <comment>Filtro para obtener FacVistaFacturaServicio a traves de Nuestra Referencia</comment>
+  </data>
 </root>

@@ -126,6 +126,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         }
 
+        public ListaMemorias(object entidad, object ventanaPadre, bool esPatente)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            esPatente = false;
+            this._presentador = new PresentadorListaMemorias(this, entidad, ventanaPadre, esPatente);
+        }
+    
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             if (!EstaCargada)

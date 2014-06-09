@@ -30,14 +30,6 @@ namespace Trascend.Bolet.Servidor
 
             #region Codigo de Prueba NO BORRAR 
             
-            /*Caso caso = new Caso();
-            caso.Id = 1;
-            CasoBase casoBase = new CasoBase();
-            casoBase.Caso = caso;
-
-            CasoBaseServicios servicioPrueba = new CasoBaseServicios();
-            IList<CasoBase> casosBase = servicioPrueba.ObtenerCasosBasePorCaso(casoBase);*/
-            
             
             //Console.ReadLine();
 

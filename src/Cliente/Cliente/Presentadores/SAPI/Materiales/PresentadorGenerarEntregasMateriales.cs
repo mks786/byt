@@ -187,12 +187,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                     {
                         IList<SolicitudSapi> solicitudesResultantes = solicitudesSapi.OrderBy(o => o.FechaSolicitud).ThenBy(o => o.Id).ToList();
                         this._ventana.Resultados = solicitudesResultantes;
-
                         this._ventana.TotalHits = solicitudesResultantes.Count.ToString();
                     }
                     else
                     {
                         this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 0);
+                        this._ventana.Resultados = null;
                         this._ventana.TotalHits = "0";
                     }
                 }
@@ -224,7 +224,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
         private SolicitudSapi ObtenerSolicitudFiltroPantalla()
         {
 
-            SolicitudSapi solicitud = null;
+            SolicitudSapi solicitud = new SolicitudSapi();
 
             try
             {
@@ -233,7 +233,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                solicitud = (SolicitudSapi)this._ventana.SolicitudSapiFiltro;
+                //solicitud = (SolicitudSapi)this._ventana.SolicitudSapiFiltro;
 
                 if ((this._ventana.FechaSolicitudSapi != null) && (!this._ventana.FechaSolicitudSapi.Equals("")))
                 {
@@ -346,7 +346,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                         this._ventana.Mensaje("Seleccione al menos una Solicitud para procesar la Entrega de Material", 0);
                 }
                 else
-                    this._ventana.Mensaje("No existen Solicitudes con Materiales a Entregar", 0);
+                    this._ventana.Mensaje("No existen Solicitudes para Entregar", 0);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -444,6 +444,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
         {
 
             IList<SolicitudSapi> solicitudesRecibir = new List<SolicitudSapi>();
+            int cantSolicNoProcesadas = 0;
 
             try
             {
@@ -457,16 +458,38 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                     IList<SolicitudSapi> movimientos = (IList<SolicitudSapi>)this._ventana.Resultados;
                     foreach (SolicitudSapi movimiento in movimientos)
                     {
-                        if ((movimiento.BRecibido) && (movimiento.FechaRecepcion == null))
-                            solicitudesRecibir.Add(movimiento);
+                        if ((movimiento.BEntregado) &&
+                            (movimiento.FechaEntrega != null) &&
+                            (movimiento.BRecibido) &&
+                            (movimiento.FechaRecepcion == null))
+                        {
+                            if (movimiento.SolicitanteInic.Equals(UsuarioLogeado.Iniciales))
+                            {
+                                solicitudesRecibir.Add(movimiento);
+                            }
+                            else
+                                cantSolicNoProcesadas++;
+                        }
+
                     }
                     if (solicitudesRecibir.Count > 0)
                     {
                         ProcesarRecepcionDeMaterial(solicitudesRecibir);
+                        if (cantSolicNoProcesadas > 0)
+                        {
+                            this._ventana.Mensaje(string.Format("Hay {0}solicitud(es) que no pudieron ser procesados porque usted no es el Solicitante", cantSolicNoProcesadas.ToString()), 0);
+                        }
                         Consultar();
                     }
                     else
-                        this._ventana.Mensaje("Seleccione al menos una Solicitud para procesar la Recepción de Material", 0);
+                    {
+                        if (cantSolicNoProcesadas > 0)
+                        {
+                            this._ventana.Mensaje(string.Format("Hay {0}solicitud(es) que no pudieron ser procesados porque usted no es el Solicitante", cantSolicNoProcesadas.ToString()), 0);
+                        }
+                        else
+                            this._ventana.Mensaje("Seleccione al menos una Solicitud con los datos necesarios para procesar la Recepción de Material", 0);
+                    }
                 }
                 else
                     this._ventana.Mensaje("No existen Solicitudes con Materiales a Recibir", 0);

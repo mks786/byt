@@ -222,7 +222,9 @@ Namespace Presentadores.FacCobros
                 End If
                 '#End Region
 
-                Me.Navegar(New ConsultarFacCobro(Me._ventana.FacCobroSeleccionado))
+                'Me.Navegar(New ConsultarFacCobro(Me._ventana.FacCobroSeleccionado))
+                Me.Navegar(New ConsultarFacCobro(Me._ventana.FacCobroSeleccionado, Me._ventana))
+
                 'Me.Navegar(New ConsultarFacCobro())
                 '#Region "trace"
                 If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then

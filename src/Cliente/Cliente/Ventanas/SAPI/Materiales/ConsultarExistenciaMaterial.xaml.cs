@@ -149,7 +149,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.SAPI.Materiales
 
         private void _cbxMaterialSapiCodigo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            this._btnBuscarMateriales.Focus();
+            //this._btnBuscarMateriales.Focus();
+            if (!this._btnBuscarMateriales.IsFocused)
+                this._btnBuscarMateriales.Focus();
         }
 
         private void _cbxMaterialSapiDescripcion_SelectionChanged(object sender, SelectionChangedEventArgs e)

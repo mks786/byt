@@ -41,5 +41,7 @@ namespace Trascend.Bolet.Cliente.Contratos.SAPI.Materiales
         void SeleccionarPrimerItem();
 
         void MostrarBotonEliminar(bool flag);
+
+        void OcultarBotonAceptar();
     }
 }

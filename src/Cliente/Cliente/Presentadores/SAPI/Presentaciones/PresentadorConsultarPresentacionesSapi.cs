@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -136,6 +137,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Presentaciones
                 this._ventana.UsuariosPresentacion = usuarios;
 
                 IList<MaterialSapi> documentos = this._materialSapiServicios.ConsultarTodos();
+                documentos = documentos.OrderBy(o => o.Descripcion).ToList();
                 documentos.Insert(0, new MaterialSapi("NGN"));
                 this._ventana.DctosPresentacion = documentos;
 

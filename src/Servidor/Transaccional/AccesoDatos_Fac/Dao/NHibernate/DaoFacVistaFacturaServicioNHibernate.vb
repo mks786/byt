@@ -32,7 +32,29 @@ Namespace Dao.NHibernate
                 variosFiltros = True
             End If
 
+            If (FacVistaFacturaServicio IsNot Nothing) AndAlso (FacVistaFacturaServicio.Factura IsNot Nothing) Then
+                If variosFiltros Then
+                    filtro += " and "
+                End If
+                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacVistaFacturaIdFactura, FacVistaFacturaServicio.Factura)
+                variosFiltros = True
+            End If
 
+            If (FacVistaFacturaServicio IsNot Nothing) AndAlso (FacVistaFacturaServicio.CodigoAlterno IsNot Nothing) Then
+                If variosFiltros Then
+                    filtro += " and "
+                End If
+                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacVistaFacturaCodigoAlterno, FacVistaFacturaServicio.CodigoAlterno)
+                variosFiltros = True
+            End If
+
+            If (FacVistaFacturaServicio IsNot Nothing) AndAlso (FacVistaFacturaServicio.Referencia IsNot Nothing) Then
+                If variosFiltros Then
+                    filtro += " and "
+                End If
+                filtro += String.Format(Recursos.ConsultasHQL.FiltroObtenerFacVistaFacturaOurref, FacVistaFacturaServicio.Ourref)
+                variosFiltros = True
+            End If
 
             Dim query As IQuery
             If (filtro = "") Then

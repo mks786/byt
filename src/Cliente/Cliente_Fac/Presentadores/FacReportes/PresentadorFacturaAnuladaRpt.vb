@@ -595,15 +595,31 @@ Namespace Presentadores.FacReportes
                     structura.TituloNumeroControl = "NUMERO DE CONTROL"
                     structura.TituloNumeroFactura = "NUMERO DE STATEMENT"
                 End If
+
                 If fechas <= CDate("31-12-2007") Then
-                    If _FacFacturaAnulada.Moneda.Id = "US" Then
-                        structura.TituloMonto = "MONTO " & _FacFacturaAnulada.Moneda.Id
-                    Else
-                        structura.TituloMonto = "MONTO " & _FacFacturaAnulada.Moneda.Id
-                    End If
+                    'If _FacFacturaAnulada.Moneda.Id = "US" Then
+                    '    structura.TituloMonto = "MONTO " & _FacFacturaAnulada.Moneda.Id
+                    'Else
+                    '    structura.TituloMonto = "MONTO " & _FacFacturaAnulada.Moneda.Id
+                    'End If
+                    'Dim facoperacionanulada As FacOperacionAnulada = consultar_operaciones_anuladas(_FacFacturaAnulada.Id)
+                    'If facoperacionanulada IsNot Nothing Then
+                    '    structura.Monto = SetFormatoDouble2(facoperacionanulada.Monto)
+                    'End If
                     Dim facoperacionanulada As FacOperacionAnulada = consultar_operaciones_anuladas(_FacFacturaAnulada.Id)
                     If facoperacionanulada IsNot Nothing Then
-                        structura.Monto = SetFormatoDouble2(facoperacionanulada.Monto)
+                        If _FacFacturaAnulada.Xter = 1 Then
+                            structura.TituloMonto = "MONTO BsF"
+                            structura.Monto = SetFormatoDouble2(facoperacionanulada.SaldoBf)
+                        End If
+                        If _FacFacturaAnulada.Xter = 2 Then
+                            structura.TituloMonto = "MONTO US"
+                            structura.Monto = SetFormatoDouble2(facoperacionanulada.Saldo)
+                        End If
+                        If _FacFacturaAnulada.Xter = 3 Then
+                            structura.TituloMonto = "MONTO US"
+                            structura.Monto = SetFormatoDouble2(facoperacionanulada.Saldo)
+                        End If
                     End If
                 Else
                     Dim facoperacionanulada As FacOperacionAnulada = consultar_operaciones_anuladas(_FacFacturaAnulada.Id)
@@ -622,6 +638,36 @@ Namespace Presentadores.FacReportes
                         End If
                     End If
                 End If
+
+
+                'CODIGO ORIGINAL COMENTADO - NO BORRAR
+                'If fechas <= CDate("31-12-2007") Then
+                '    If _FacFacturaAnulada.Moneda.Id = "US" Then
+                '        structura.TituloMonto = "MONTO " & _FacFacturaAnulada.Moneda.Id
+                '    Else
+                '        structura.TituloMonto = "MONTO " & _FacFacturaAnulada.Moneda.Id
+                '    End If
+                '    Dim facoperacionanulada As FacOperacionAnulada = consultar_operaciones_anuladas(_FacFacturaAnulada.Id)
+                '    If facoperacionanulada IsNot Nothing Then
+                '        structura.Monto = SetFormatoDouble2(facoperacionanulada.Monto)
+                '    End If
+                'Else
+                '    Dim facoperacionanulada As FacOperacionAnulada = consultar_operaciones_anuladas(_FacFacturaAnulada.Id)
+                '    If facoperacionanulada IsNot Nothing Then
+                '        If _FacFacturaAnulada.Xter = 1 Then
+                '            structura.TituloMonto = "MONTO BsF"
+                '            structura.Monto = SetFormatoDouble2(facoperacionanulada.SaldoBf)
+                '        End If
+                '        If _FacFacturaAnulada.Xter = 2 Then
+                '            structura.TituloMonto = "MONTO US"
+                '            structura.Monto = SetFormatoDouble2(facoperacionanulada.Saldo)
+                '        End If
+                '        If _FacFacturaAnulada.Xter = 3 Then
+                '            structura.TituloMonto = "MONTO US"
+                '            structura.Monto = SetFormatoDouble2(facoperacionanulada.Saldo)
+                '        End If
+                '    End If
+                'End If
 
             Catch ex As Exception
                 'logger.Error(ex.Message)

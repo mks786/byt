@@ -476,7 +476,8 @@ Namespace Ventanas.FacCobros
 
         Private Sub ControlesMostrarAsociado()
             Me._txtAsociado.Visibility = System.Windows.Visibility.Collapsed
-            Me._lblasociado2.Visibility = System.Windows.Visibility.Collapsed
+            'Me._lblasociado2.Visibility = System.Windows.Visibility.Collapsed
+            Me._btnVerAsociado.Visibility = System.Windows.Visibility.Collapsed
             'Me._txtAsociadoId.Visibility = System.Windows.Visibility.Collapsed
             Me._lstAsociados.Visibility = System.Windows.Visibility.Visible
             Me._lstAsociados.IsEnabled = True
@@ -502,7 +503,8 @@ Namespace Ventanas.FacCobros
             Me._txtNombreAsociado.Visibility = System.Windows.Visibility.Collapsed
             Me._lblasociado.Visibility = System.Windows.Visibility.Collapsed
             Me._txtAsociado.Visibility = System.Windows.Visibility.Visible
-            Me._lblasociado2.Visibility = System.Windows.Visibility.Visible
+            'Me._lblasociado2.Visibility = System.Windows.Visibility.Visible
+            Me._btnVerAsociado.Visibility = System.Windows.Visibility.Visible
             'Me._txtAsociadoId.Visibility = System.Windows.Visibility.Visible
             Me._lblIdAsociado.Visibility = System.Windows.Visibility.Collapsed
             Me._lblNombreAsociado.Visibility = System.Windows.Visibility.Collapsed
@@ -627,5 +629,9 @@ Namespace Ventanas.FacCobros
         End Sub
 
         Public Shared Mostrar_Factura As New RoutedCommand("Mostrar_Factura", GetType(AgregarFacCobro))
+
+        Private Sub _btnVerAsociado_Click(sender As System.Object, e As System.Windows.RoutedEventArgs)
+            Me._presentador.ConsultarAsociado()
+        End Sub
     End Class
 End Namespace
