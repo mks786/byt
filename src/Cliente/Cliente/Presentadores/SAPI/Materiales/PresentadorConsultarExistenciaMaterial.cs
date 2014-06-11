@@ -143,13 +143,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
 
                 materialesFiltrados = (IList<MaterialSapi>)this._ventana.Resultados;
 
-                if (materialesFiltrados.Count > 0)
+                if (this._ventana.Resultados != null)
                 {
-                    datosExportar = LlenarDataTableExportacion(materialesFiltrados, datosExportar);
-                    this._ventana.ExportarDatosExcel(datosExportar);
+                    if (materialesFiltrados.Count > 0)
+                    {
+                        datosExportar = LlenarDataTableExportacion(materialesFiltrados, datosExportar);
+                        this._ventana.ExportarDatosExcel(datosExportar);
+                    }
+                    else
+                        this._ventana.Mensaje("No existen datos para exportar", 0); 
                 }
-                else
-                    this._ventana.Mensaje("No existen datos para exportar", 0);
 
 
                 #region trace

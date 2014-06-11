@@ -1244,7 +1244,7 @@
     <comment>Filtro para obtener una Patente por el campo OrigenCliente del Interesado</comment>
   </data>
   <data name="ObtenerInteresadosPorPatente" xml:space="preserve">
-    <value>Select ip from InteresadoPatente ip where ip.Id = {0}</value>
+    <value>Select im from InteresadoMultiple im where im.Id = {0} and im.Tipo='P'</value>
     <comment>Obtiene los interesados asociados a una patente especifica</comment>
   </data>
   <data name="CabeceraObtenerPatentesPorVencerPrioridad" xml:space="preserve">
@@ -1506,5 +1506,9 @@
   <data name="FiltroObtenerCasoBaseIdCaso" xml:space="preserve">
     <value>caso.Id = {0}</value>
     <comment>Filtro para obtener Casos Base a partir del Id del Caso</comment>
+  </data>
+  <data name="ObtenerInteresadosPorMarca" xml:space="preserve">
+    <value>Select im from InteresadoMultiple im where im.Id = {0} and im.Tipo='M'</value>
+    <comment>Query para obtener los Intersados multiples de una Marca especifica</comment>
   </data>
 </root>

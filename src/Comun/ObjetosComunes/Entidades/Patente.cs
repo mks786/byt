@@ -63,7 +63,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<InfoBolPatente> _infoBoles;
         private IList<Memoria> _memorias;
         private int _patenteMadre;
-        private InteresadoPatente _interesadosDePatente;
+        private InteresadoMultiple _interesadosDePatente;
         private string _prioridadPresentada;
         private string _origenPatente;
         private string _expCambioPendiente;
@@ -666,7 +666,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// Propiedad que asigna u obtiene los Interesados vinculados a la Patente
         /// NOTA: PUEDEN SER MAS DE UNO
         /// </summary>
-        public virtual InteresadoPatente InteresadosDePatente
+        public virtual InteresadoMultiple InteresadosDePatente
         {
             get { return _interesadosDePatente; }
             set { _interesadosDePatente = value; }

@@ -79,8 +79,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Pirateria.Casos
                 }
                 else
                 {
-                    //Caso nuevoCaso = new Caso();
-                    //this._ventana.Caso = nuevoCaso;
                     this._agregar = true;
                 }
 
@@ -150,6 +148,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Pirateria.Casos
 
                     Caso caso = (Caso)this._ventana.Caso;
                     this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+
+                    this._ventana.FechaCaso = caso.Fecha.ToString();
                     
                     IList<Asociado> listaAsociado = new List<Asociado>();
                     Asociado primerAsociado = new Asociado(int.MinValue);
@@ -228,6 +228,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Pirateria.Casos
                 else
                 {
                     this._ventana.HabilitarCampos = true;
+                    this._ventana.FechaCaso = DateTime.Today.ToString();
                 }
 
                 this._ventana.FocoPredeterminado();
@@ -1079,7 +1080,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Pirateria.Casos
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
                 
-                if(!((TipoCaso)this._ventana.TipoDeCaso).Id.Equals("NGN"))
+                if((this._ventana.TipoDeCaso != null) && (!((TipoCaso)this._ventana.TipoDeCaso).Id.Equals("NGN")))
                 {
                     
                     if (null == this._ventana.ListaTiposCaso)
@@ -1169,7 +1170,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Pirateria.Casos
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (!((Accion)this._ventana.AccionCaso).Id.Equals("NGN"))
+                if ((this._ventana.AccionCaso != null) && (!((Accion)this._ventana.AccionCaso).Id.Equals("NGN")))
                 {
 
                     if (null == this._ventana.ListaAccionesCaso)

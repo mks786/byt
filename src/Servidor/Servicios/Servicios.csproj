@@ -95,7 +95,7 @@
     <Compile Include="Implementacion\InstruccionDescuentoServicios.cs" />
     <Compile Include="Implementacion\InstruccionEnvioOriginalesServicios.cs" />
     <Compile Include="Implementacion\InstruccionOtrosServicios.cs" />
-    <Compile Include="Implementacion\InteresadoPatenteServicios.cs" />
+    <Compile Include="Implementacion\InteresadoMultipleServicios.cs" />
     <Compile Include="Implementacion\MaestroDePlantillaServicios.cs" />
     <Compile Include="Implementacion\MaterialSapiServicios.cs" />
     <Compile Include="Implementacion\PlantillaServicios.cs" />

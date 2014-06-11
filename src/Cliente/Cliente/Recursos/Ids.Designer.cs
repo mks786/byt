@@ -2842,7 +2842,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a MYP_INTERESADOS_PAT.
+        ///   Busca una cadena traducida similar a MYP_INTERESADO_MULTI.
         /// </summary>
         public static string InteresadoPatente {
             get {

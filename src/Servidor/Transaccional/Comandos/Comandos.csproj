@@ -176,9 +176,10 @@
     <Compile Include="Comandos\ComandosInstruccionOtros\ComandoConsultarInstruccionesNoTipificadasPorCodigo.cs" />
     <Compile Include="Comandos\ComandosInstruccionOtros\ComandoConsultarTodasInstruccionesNoTipificadas.cs" />
     <Compile Include="Comandos\ComandosInstruccionOtros\ComandoInsertarOModificarInstruccionNoTipificada.cs" />
-    <Compile Include="Comandos\ComandosInteresadoPatente\ComandoConsultarInteresadosDePatente.cs" />
-    <Compile Include="Comandos\ComandosInteresadoPatente\ComandoConsultarTodosInteresadosDePatente.cs" />
-    <Compile Include="Comandos\ComandosInteresadoPatente\ComandoInsertarOModificarInteresadoPatente.cs" />
+    <Compile Include="Comandos\ComandosInteresadoMultiple\ComandoConsultarInteresadosMultiplesDeMarca.cs" />
+    <Compile Include="Comandos\ComandosInteresadoMultiple\ComandoConsultarInteresadosMultiplesDePatente.cs" />
+    <Compile Include="Comandos\ComandosInteresadoMultiple\ComandoConsultarTodosInteresadosMultiples.cs" />
+    <Compile Include="Comandos\ComandosInteresadoMultiple\ComandoInsertarOModificarInteresadoMultiple.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoConsultarInteresadoConTodo.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoConsultarInteresadosFiltro.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoConsultarTodosInteresados.cs" />
@@ -533,7 +534,7 @@
     <Compile Include="Fabrica\FabricaComandosInstruccionDescuento.cs" />
     <Compile Include="Fabrica\FabricaComandosInstruccionEnvioOriginales.cs" />
     <Compile Include="Fabrica\FabricaComandosInstruccionOtros.cs" />
-    <Compile Include="Fabrica\FabricaComandosInteresadoPatente.cs" />
+    <Compile Include="Fabrica\FabricaComandosInteresadoMultiple.cs" />
     <Compile Include="Fabrica\FabricaComandosMaestroDePlantilla.cs" />
     <Compile Include="Fabrica\FabricaComandosMaterialSapi.cs" />
     <Compile Include="Fabrica\FabricaComandosPlantilla.cs" />

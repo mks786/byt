@@ -415,7 +415,7 @@
                 <Button Name="_btnRecepcionDpto" Width="110" Height="25" Click="_RegistarEvento_Click" Margin="3">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnRecepcionDpto}"/>
                 </Button>
-                <Button Name="_btnExportarDetalle" Width="110" Height="25" Click="_btnExportarDetalle_Click" Margin="3">
+                <Button Name="_btnExportarDetalle" Width="100" Height="25" Click="_btnExportarDetalle_Click" Margin="3">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnExportar}"/>
                 </Button>
                 <Button Name="_btnLimpiarCampos" Width="100" Height="25" Click="_btnLimpiarCampos_Click" Margin="3">

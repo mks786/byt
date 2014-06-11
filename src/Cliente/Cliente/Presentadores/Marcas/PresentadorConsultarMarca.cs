@@ -4447,5 +4447,36 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
+        /// <summary>
+        /// Metodo que muestra la lista de los Interesados asociados a la Marca consultada
+        /// </summary>
+        public void VerAsociadosMultiplesMarca()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                this.Navegar(new ListaInteresadosMarca(this._ventana.Marca, this._ventana, this._ventanaPadre));
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Win32Exception ex)
+            {
+                logger.Error(ex.Message);
+                this._ventana.ArchivoNoEncontrado(string.Format(Recursos.MensajesConElUsuario.ErrorExpedienteTyRMarcaNoExiste, this._ventana.IdExpTraspasoRenovacionDatos));
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
     }
 }

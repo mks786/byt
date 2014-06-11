@@ -470,8 +470,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                         {
                             if (this._agregar)
                             {
-                                exitoso = this._solicitudSapiServicios.InsertarOModificarSolicitudMaterialSapi(ref solicitudesMaterial, "CREATE", UsuarioLogeado.Hash);
-                                this._ultimoIdSolicitud = solicitudesMaterial[0].Id;
+                                if (((Usuario)this._ventana.UsuarioSolicitante).Iniciales.Equals(UsuarioLogeado.Iniciales))
+                                {
+                                    exitoso = this._solicitudSapiServicios.InsertarOModificarSolicitudMaterialSapi(ref solicitudesMaterial, "CREATE", UsuarioLogeado.Hash);
+                                    this._ultimoIdSolicitud = solicitudesMaterial[0].Id;
+                                }
+                                else
+                                    this._ventana.Mensaje("El Solicitante del Material no es el Usuario de la sesión. Ingrese con su sesión y genere la solicitud a su nombre", 0);
                             }
                             else
                             {
@@ -514,7 +519,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
                             }
                             else
                             {
-                                this._ventana.Mensaje("La Solicitud no pudo modificarse", 0);
+                                this._ventana.Mensaje("La Solicitud no pudo ser registrada o modificada", 0);
                             }
                         }
                         else

@@ -162,6 +162,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         #region Constructores
 
+        /// <summary>
+        /// Constructor predeterminado que recibe una patente y sus ventanas padre
+        /// </summary>
+        /// <param name="patente">Patente consultada</param>
+        /// <param name="ventanaPadre">Ventana que precede a esta ventana</param>
+        /// <param name="ventanaGestionarPatente">Ventana GestionarPatente</param>
+        /// <param name="ventanaConsultarPatente">Ventana ConsultarPatentes</param>
         public GestionarInteresadosDePatente(object patente, object ventanaPadre, object ventanaGestionarPatente, object ventanaConsultarPatente)
         {
             InitializeComponent();
@@ -175,6 +182,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             _bgw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(bgw_ProgressChanged);
         }
 
+
+
+        /// <summary>
+        /// Constructor predeterminado que recibe una patente, sus ventanas padre, el objeto de los interesados adicionales
+        /// </summary>
+        /// <param name="patente">Patente consultada</param>
+        /// <param name="interesadoPatente">Interesados Adicionales de la Patente</param>
+        /// <param name="ventanaPadre">Ventana que precede a esta ventana</param>
+        /// <param name="ventanaGestionarPatente">Ventana GestionarPatente</param>
+        /// <param name="ventanaConsultarPatentes">Ventana ConsultarPatentes</param>
         public GestionarInteresadosDePatente(object patente, object interesadoPatente, object ventanaPadre, object ventanaGestionarPatente, object ventanaConsultarPatentes)
         {
             InitializeComponent();

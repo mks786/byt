@@ -23,7 +23,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
         private IReportePatente _ventana;
         private IReportePatenteServicios _reportePatenteServicios;
         private IPatenteServicios _patenteServicios;
-        private IInteresadoPatenteServicios _interesadoPatenteServicios;
+        private IInteresadoMultipleServicios _interesadoMultipleServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -49,8 +49,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ReportePatenteServicios"]);
                 this._patenteServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
-                this._interesadoPatenteServicios = (IInteresadoPatenteServicios)Activator.GetObject(typeof(IInteresadoPatenteServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoPatenteServicios"]);
+                this._interesadoMultipleServicios = (IInteresadoMultipleServicios)Activator.GetObject(typeof(IInteresadoMultipleServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoMultipleServicios"]);
                 CargarPagina();
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -698,11 +698,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
             {
                 retorno += Environment.NewLine;
 
-                IList<InteresadoPatente> interesadosDeLaPatente = this._interesadoPatenteServicios.ConsultarInteresadosDePatente(this._patente);
+                IList<InteresadoMultiple> interesadosDeLaPatente = this._interesadoMultipleServicios.ConsultarInteresadosDePatente(this._patente);
 
                 if (interesadosDeLaPatente.Count > 0)
                 {
-                    InteresadoPatente interesadoPatente = interesadosDeLaPatente[0];
+                    InteresadoMultiple interesadoPatente = interesadosDeLaPatente[0];
 
                     if (interesadoPatente.Interesado != null)
                     {

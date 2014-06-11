@@ -3031,7 +3031,16 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select ip from InteresadoPatente ip where ip.Id = {0}.
+        ///   Busca una cadena traducida similar a Select im from InteresadoMultiple im where im.Id = {0} and im.Tipo=&apos;M&apos;.
+        /// </summary>
+        public static string ObtenerInteresadosPorMarca {
+            get {
+                return ResourceManager.GetString("ObtenerInteresadosPorMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select im from InteresadoMultiple im where im.Id = {0} and im.Tipo=&apos;P&apos;.
         /// </summary>
         public static string ObtenerInteresadosPorPatente {
             get {

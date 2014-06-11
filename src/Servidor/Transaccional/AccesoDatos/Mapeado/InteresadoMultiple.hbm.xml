@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="InteresadoMultiple" table="MYP_INTERESADO_MULTI">
+
+    <composite-id>
+      <key-property name="Id" column="CODIGO" type="int"/>
+      <key-property name="Tipo" column="ITIPO" type="char"/>
+    </composite-id>
+
+    <many-to-one name="Interesado" class="Interesado" lazy="false">
+      <column name="CINTERESADO"/>
+    </many-to-one>
+    
+    <many-to-one name="Interesado1" class="Interesado" lazy="false">
+      <column name="CINTERESADO1"/>
+    </many-to-one>
+
+    <many-to-one name="Interesado2" class="Interesado" lazy="false">
+      <column name="CINTERESADO2"/>
+    </many-to-one>
+
+    <many-to-one name="Interesado3" class="Interesado" lazy="false">
+      <column name="CINTERESADO3"/>
+    </many-to-one>
+
+    <property name="Observaciones" column="XOBSERVACION" type="string"/>
+
+    
+
+
+  </class>
+</hibernate-mapping>

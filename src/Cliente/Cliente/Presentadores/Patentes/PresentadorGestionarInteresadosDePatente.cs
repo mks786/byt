@@ -25,8 +25,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private IInteresadoServicios _interesadoServicios;
-        private IInteresadoPatenteServicios _interesadoPatenteServicios;
-        private InteresadoPatente _interesadoPatente;
+        private IInteresadoMultipleServicios _interesadoMultipleServicios;
+        private InteresadoMultiple _interesadoMultiple;
         private object _ventanaGestionarPatente;
         private object _ventanaConsultarPatentes;
 
@@ -64,8 +64,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                 this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
-                this._interesadoPatenteServicios = (IInteresadoPatenteServicios)Activator.GetObject(typeof(IInteresadoPatenteServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoPatenteServicios"]);
+                this._interesadoMultipleServicios = (IInteresadoMultipleServicios)Activator.GetObject(typeof(IInteresadoMultipleServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoMultipleServicios"]);
                                 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -92,7 +92,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         /// 
         public PresentadorGestionarInteresadosDePatente (IGestionarInteresadosDePatente ventana, 
                                                          object patente, 
-                                                         object interesadoPatente, 
+                                                         object interesadoMultiple, 
                                                          object ventanaPadre, 
                                                          object ventanaGestionarPatente, 
                                                          object ventanaConsultarPatentes)
@@ -110,13 +110,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 this._ventanaGestionarPatente = ventanaGestionarPatente;
                 this._ventanaConsultarPatentes = ventanaConsultarPatentes;
                 this._ventana.Patente = (Patente)patente;
-                this._interesadoPatente = (InteresadoPatente)interesadoPatente;
+                this._interesadoMultiple = (InteresadoMultiple)interesadoMultiple;
 
 
                 this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
-                this._interesadoPatenteServicios = (IInteresadoPatenteServicios)Activator.GetObject(typeof(IInteresadoPatenteServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoPatenteServicios"]);
+                this._interesadoMultipleServicios = (IInteresadoMultipleServicios)Activator.GetObject(typeof(IInteresadoMultipleServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoMultipleServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -148,14 +148,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionalInfoBol,
                     Recursos.Ids.AgregarInfoBol);
 
-                if (this._interesadoPatente != null)
+                if (this._interesadoMultiple != null)
                     CargarInteresadosAdicionales();
                 else
                 {
-                    InteresadoPatente interesadoPatente = new InteresadoPatente();
+                    InteresadoMultiple interesadoPatente = new InteresadoMultiple();
                     interesadoPatente.Id = ((Patente)this._ventana.Patente).Id;
+                    interesadoPatente.Tipo = 'P';
                     interesadoPatente.Interesado = ((Patente)this._ventana.Patente).Interesado;
-                    this._interesadoPatente = interesadoPatente;
+                    this._interesadoMultiple = interesadoPatente;
                     CargarInteresadosAdicionales();
                 }
                    
@@ -213,14 +214,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (this._interesadoPatente.Interesado1 != null)
+                if (this._interesadoMultiple.Interesado1 != null)
                 {
-                    this._ventana.IdInteresado1 = ((Interesado)this._interesadoPatente.Interesado1).Id.ToString();
-                    this._ventana.NombreInteresado1 = ((Interesado)this._interesadoPatente.Interesado1).Nombre;
+                    this._ventana.IdInteresado1 = ((Interesado)this._interesadoMultiple.Interesado1).Id.ToString();
+                    this._ventana.NombreInteresado1 = ((Interesado)this._interesadoMultiple.Interesado1).Nombre;
                     this._listaInteresado1.Add(primerInteresado1);
-                    this._listaInteresado1.Add(this._interesadoPatente.Interesado1);
+                    this._listaInteresado1.Add(this._interesadoMultiple.Interesado1);
                     this._ventana.Interesados1 = this._listaInteresado1;
-                    this._ventana.Interesado1 = this.BuscarInteresado(this._listaInteresado1, this._interesadoPatente.Interesado1);
+                    this._ventana.Interesado1 = this.BuscarInteresado(this._listaInteresado1, this._interesadoMultiple.Interesado1);
                 }
                 else
                 {
@@ -228,14 +229,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.Interesados1 = this._listaInteresado1;
                 }
 
-                if (this._interesadoPatente.Interesado2 != null)
+                if (this._interesadoMultiple.Interesado2 != null)
                 {
-                    this._ventana.IdInteresado2 = ((Interesado)this._interesadoPatente.Interesado2).Id.ToString();
-                    this._ventana.NombreInteresado2 = ((Interesado)this._interesadoPatente.Interesado2).Nombre;
+                    this._ventana.IdInteresado2 = ((Interesado)this._interesadoMultiple.Interesado2).Id.ToString();
+                    this._ventana.NombreInteresado2 = ((Interesado)this._interesadoMultiple.Interesado2).Nombre;
                     this._listaInteresado2.Add(primerInteresado2);
-                    this._listaInteresado2.Add(this._interesadoPatente.Interesado2);
+                    this._listaInteresado2.Add(this._interesadoMultiple.Interesado2);
                     this._ventana.Interesados2 = this._listaInteresado2;
-                    this._ventana.Interesado2 = this.BuscarInteresado(this._listaInteresado2, this._interesadoPatente.Interesado2);
+                    this._ventana.Interesado2 = this.BuscarInteresado(this._listaInteresado2, this._interesadoMultiple.Interesado2);
                 }
                 else
                 {
@@ -243,14 +244,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.Interesados2 = this._listaInteresado2;
                 }
 
-                if (this._interesadoPatente.Interesado3 != null)
+                if (this._interesadoMultiple.Interesado3 != null)
                 {
-                    this._ventana.IdInteresado3 = ((Interesado)this._interesadoPatente.Interesado3).Id.ToString();
-                    this._ventana.NombreInteresado3 = ((Interesado)this._interesadoPatente.Interesado3).Nombre;
+                    this._ventana.IdInteresado3 = ((Interesado)this._interesadoMultiple.Interesado3).Id.ToString();
+                    this._ventana.NombreInteresado3 = ((Interesado)this._interesadoMultiple.Interesado3).Nombre;
                     this._listaInteresado3.Add(primerInteresado3);
-                    this._listaInteresado3.Add(this._interesadoPatente.Interesado3);
+                    this._listaInteresado3.Add(this._interesadoMultiple.Interesado3);
                     this._ventana.Interesados3 = this._listaInteresado3;
-                    this._ventana.Interesado3 = this.BuscarInteresado(this._listaInteresado3, this._interesadoPatente.Interesado3);
+                    this._ventana.Interesado3 = this.BuscarInteresado(this._listaInteresado3, this._interesadoMultiple.Interesado3);
                 }
                 else
                 {
@@ -378,7 +379,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                         this._ventana.NombreInteresado1 = String.Empty;
                     }
 
-                    this._interesadoPatente.Interesado1 = interesadoAux;
+                    this._interesadoMultiple.Interesado1 = interesadoAux;
                 }
                 else if ((nombreListView.Equals("_lstInteresados2")) && (this._ventana.Interesado2 != null))
                 {
@@ -394,7 +395,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                         this._ventana.NombreInteresado2 = String.Empty;
                     }
 
-                    this._interesadoPatente.Interesado2 = interesadoAux;
+                    this._interesadoMultiple.Interesado2 = interesadoAux;
                 }
                 else if ((nombreListView.Equals("_lstInteresados3")) && (this._ventana.Interesado3 != null))
                 {
@@ -410,7 +411,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                         this._ventana.NombreInteresado3 = String.Empty;
                     }
 
-                    this._interesadoPatente.Interesado3 = interesadoAux;
+                    this._interesadoMultiple.Interesado3 = interesadoAux;
 
                 }
 
@@ -445,11 +446,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                InteresadoPatente interesadoPatenteAux = new InteresadoPatente();
+                InteresadoMultiple interesadoPatenteAux = new InteresadoMultiple();
 
-                interesadoPatenteAux = this._interesadoPatente;
+                interesadoPatenteAux = this._interesadoMultiple;
 
-                exitoso = this._interesadoPatenteServicios.InsertarOModificar(interesadoPatenteAux, UsuarioLogeado.Hash);
+                exitoso = this._interesadoMultipleServicios.InsertarOModificar(interesadoPatenteAux, UsuarioLogeado.Hash);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

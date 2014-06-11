@@ -64,7 +64,7 @@
     <Compile Include="ContratosServicios\IInstruccionDescuentoServicios.cs" />
     <Compile Include="ContratosServicios\IInstruccionEnvioOriginalesServicios.cs" />
     <Compile Include="ContratosServicios\IInstruccionOtrosServicios.cs" />
-    <Compile Include="ContratosServicios\IInteresadoPatenteServicios.cs" />
+    <Compile Include="ContratosServicios\IInteresadoMultipleServicios.cs" />
     <Compile Include="ContratosServicios\IMaestroDePlantillaServicios.cs" />
     <Compile Include="ContratosServicios\IMaterialSapiServicios.cs" />
     <Compile Include="ContratosServicios\IPlantillaServicios.cs" />
@@ -260,7 +260,7 @@
     <Compile Include="Entidades\InstruccionDescuento.cs" />
     <Compile Include="Entidades\InstruccionEnvioOriginales.cs" />
     <Compile Include="Entidades\InstruccionOtros.cs" />
-    <Compile Include="Entidades\InteresadoPatente.cs" />
+    <Compile Include="Entidades\InteresadoMultiple.cs" />
     <Compile Include="Entidades\MaestroDePlantilla.cs" />
     <Compile Include="Entidades\MaterialSapi.cs" />
     <Compile Include="Entidades\OrdenReporte.cs" />

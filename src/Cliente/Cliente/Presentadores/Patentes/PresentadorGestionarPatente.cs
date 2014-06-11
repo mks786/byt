@@ -60,7 +60,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         private IInventorServicios _inventorServicios;
         private IMemoriaServicios _memoriaServicios;
         private IArchivoServicios _archivoServicios;
-        private IInteresadoPatenteServicios _interesadoPatenteServicios;
+        private IInteresadoMultipleServicios _interesadoMultipleServicios;
         private IFacVistaFacturaServicioServicios _facVistaFacturaServicioServicios;
 
         private IList<Asociado> _asociados;
@@ -129,8 +129,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
                 this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
-                this._interesadoPatenteServicios = (IInteresadoPatenteServicios)Activator.GetObject(typeof(IInteresadoPatenteServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoPatenteServicios"]);
+                this._interesadoMultipleServicios = (IInteresadoMultipleServicios)Activator.GetObject(typeof(IInteresadoMultipleServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoMultipleServicios"]);
                 this._servicioServicios = (IServicioServicios)Activator.GetObject(typeof(IServicioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ServicioServicios"]);
                 this._tipoEstadoServicios = (ITipoEstadoServicios)Activator.GetObject(typeof(ITipoEstadoServicios),
@@ -596,10 +596,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                         this._ventana.PintarArchivo();
                     }
 
-                    IList<InteresadoPatente> interesadosDePatente = 
-                        this._interesadoPatenteServicios.ConsultarInteresadosDePatente(this._patente);
+                    IList<InteresadoMultiple> interesadosMultiples = 
+                        this._interesadoMultipleServicios.ConsultarInteresadosDePatente(this._patente);
 
-                    if (interesadosDePatente.Count > 0)
+                    if (interesadosMultiples.Count > 0)
                     {
                         this._ventana.PintarBotonInteresadosDePatente(true);
                     }

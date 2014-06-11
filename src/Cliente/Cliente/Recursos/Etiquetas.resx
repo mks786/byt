@@ -4773,4 +4773,13 @@ en Prensa:</value>
   <data name="titleListaDocumentosCaso" xml:space="preserve">
     <value>Documentos de Caso</value>
   </data>
+  <data name="titleInteresadosMultiplesMarca" xml:space="preserve">
+    <value>Interesados de Marca</value>
+  </data>
+  <data name="lblDatosMarca" xml:space="preserve">
+    <value>Datos de la Marca</value>
+  </data>
+  <data name="titleGestionarInteresadosMarca" xml:space="preserve">
+    <value>Interesados Adicionales de Marca</value>
+  </data>
 </root>

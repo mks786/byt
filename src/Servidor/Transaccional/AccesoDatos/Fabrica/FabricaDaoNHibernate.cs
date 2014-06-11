@@ -1111,12 +1111,12 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
 
 
         /// <summary>
-        /// Método que devuelve el DaoInteresadoPatente
+        /// Método que devuelve el DaoInteresadoMultiple
         /// </summary>
         /// <returns>IDaoInteresadoPatente</returns>
-        public override IDaoInteresadoPatente ObtenerDaoInteresadoPatente()
+        public override IDaoInteresadoMultiple ObtenerDaoInteresadoMultiple()
         {
-            return new DaoInteresadoPatenteNHibernate();
+            return new DaoInteresadoMultipleNHibernate();
         }
 
 

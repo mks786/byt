@@ -170,9 +170,11 @@
     <Compile Include="Contratos\Marcas\IGestionarInstruccionEnvioOriginalesMarca.cs" />
     <Compile Include="Contratos\Marcas\IGestionarInstruccionFacturacionMarca.cs" />
     <Compile Include="Contratos\Marcas\IGestionarInstruccionNoTipificadaMarca.cs" />
+    <Compile Include="Contratos\Marcas\IGestionarInteresadosDeMarca.cs" />
     <Compile Include="Contratos\Marcas\IListaFechasDeMarca.cs" />
     <Compile Include="Contratos\Marcas\IListaInstruccionesDescuentoMarca.cs" />
     <Compile Include="Contratos\Marcas\IListaInstruccionesNoTipificadasDeMarca.cs" />
+    <Compile Include="Contratos\Marcas\IListaInteresadosMarca.cs" />
     <Compile Include="Contratos\Patentes\IGestionarArchivoDePatente.cs" />
     <Compile Include="Contratos\Patentes\IGestionarInteresadosDePatente.cs" />
     <Compile Include="Contratos\Patentes\IListaInteresadosPatente.cs" />
@@ -658,9 +660,11 @@
     <Compile Include="Presentadores\Marcas\PresentadorGestionarInstruccionDeDescuentoMarca.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorGestionarInstruccionFacturacionMarca.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorGestionarInstruccionNoTipificadaMarca.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorGestionarInteresadosDeMarca.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorListaFechasDeMarca.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorListaInstruccionesDescuentoMarca.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorListaInstruccionesNoTipificadasDeMarca.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorListaInteresadosMarca.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorGestionarArchivoDePatente.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorGestionarInteresadosDePatente.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorListaInteresadosPatente.cs" />
@@ -1241,6 +1245,9 @@
     <Compile Include="Ventanas\Marcas\GestionarInstruccionNoTipificadaMarca.xaml.cs">
       <DependentUpon>GestionarInstruccionNoTipificadaMarca.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\Marcas\GestionarInteresadosDeMarca.xaml.cs">
+      <DependentUpon>GestionarInteresadosDeMarca.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Marcas\ListaFechasDeMarca.xaml.cs">
       <DependentUpon>ListaFechasDeMarca.xaml</DependentUpon>
     </Compile>
@@ -1249,6 +1256,9 @@
     </Compile>
     <Compile Include="Ventanas\Marcas\ListaInstruccionesNoTipificadasDeMarca.xaml.cs">
       <DependentUpon>ListaInstruccionesNoTipificadasDeMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\ListaInteresadosMarca.xaml.cs">
+      <DependentUpon>ListaInteresadosMarca.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Patentes\GestionarArchivoDePatente.xaml.cs">
       <DependentUpon>GestionarArchivoDePatente.xaml</DependentUpon>
@@ -2152,6 +2162,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Ventanas\Marcas\GestionarInteresadosDeMarca.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Ventanas\Marcas\ListaFechasDeMarca.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -2161,6 +2175,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\Marcas\ListaInstruccionesNoTipificadasDeMarca.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Marcas\ListaInteresadosMarca.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

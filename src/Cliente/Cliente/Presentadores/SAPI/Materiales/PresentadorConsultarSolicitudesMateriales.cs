@@ -393,10 +393,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.SAPI.Materiales
 
                 IList<SolicitudSapi> datosResultadosConsulta;
                 DataTable datosExportar = CrearDataTableExportacion();
-                datosResultadosConsulta = (IList<SolicitudSapi>)this._ventana.Resultados;
-                datosExportar = LlenarDataTableExportacion(datosResultadosConsulta, datosExportar);
 
-                this._ventana.ExportarDatosConsolidadosExcel(datosExportar);
+                if (this._ventana.Resultados != null)
+                {
+                    datosResultadosConsulta = (IList<SolicitudSapi>)this._ventana.Resultados;
+                    datosExportar = LlenarDataTableExportacion(datosResultadosConsulta, datosExportar);
+
+                    this._ventana.ExportarDatosConsolidadosExcel(datosExportar);
+                }
+                else
+                    this._ventana.Mensaje("No hay datos para exportar", 0);
                 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

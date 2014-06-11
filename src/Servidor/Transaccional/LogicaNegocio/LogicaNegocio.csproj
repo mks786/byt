@@ -71,7 +71,7 @@
     <Compile Include="Controladores\ControladorInstruccionDescuento.cs" />
     <Compile Include="Controladores\ControladorInstruccionEnvioOriginales.cs" />
     <Compile Include="Controladores\ControladorInstruccionOtros.cs" />
-    <Compile Include="Controladores\ControladorInteresadoPatente.cs" />
+    <Compile Include="Controladores\ControladorInteresadoMultiple.cs" />
     <Compile Include="Controladores\ControladorMaestroDePlantilla.cs" />
     <Compile Include="Controladores\ControladorMaterialSapi.cs" />
     <Compile Include="Controladores\ControladorObjeto.cs" />

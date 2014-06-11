@@ -1162,7 +1162,7 @@
     <value>SEG_COB</value>
   </data>
   <data name="InteresadoPatente" xml:space="preserve">
-    <value>MYP_INTERESADOS_PAT</value>
+    <value>MYP_INTERESADO_MULTI</value>
   </data>
   <data name="PatentesVencPrioridad" xml:space="preserve">
     <value>PATENTES_RECORDAT</value>

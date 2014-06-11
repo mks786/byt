@@ -2956,6 +2956,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             }
         }
 
+        private void _btnInteresadosMultiplesMarca_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.VerAsociadosMultiplesMarca();
+        }
+
 
     }
 }

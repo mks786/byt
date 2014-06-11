@@ -572,8 +572,11 @@
                          HorizontalAlignment="Left" IsChecked="{Binding Path=BEtiqueta}" Margin="0,0,0,0" Grid.ColumnSpan="1">
                         </CheckBox>
 
-                        <custom:ByTTextBox  MaxLength="2000" Grid.Column="3" Grid.Row="9" Name="_txtEtiqueta" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="9" Text="{Binding Path=EtiquetaDescripcion}"></custom:ByTTextBox>
+                        <custom:ByTTextBox  MaxLength="2000" Grid.Column="3" Grid.Row="9" Name="_txtEtiqueta"
+                                            VerticalAlignment="Center" Grid.ColumnSpan="9" 
+                                            Text="{Binding Path=EtiquetaDescripcion}"></custom:ByTTextBox>
+                        
+                        
 
                         <Label Grid.Column="0" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseInt}"/>
@@ -2083,6 +2086,10 @@
                         </Label>
                         <custom:ByTTextBox  MaxLength="255" Grid.Column="4" Grid.Row="25" Name="_txtSaldoPorVencerDatos" HorizontalContentAlignment="Right"  VerticalAlignment="Center" 
                          Grid.ColumnSpan="2"></custom:ByTTextBox>
+                        <Button Grid.Column="6" Grid.Row="25" Margin="8,0,0,0" IsDefault="False" 
+                                Name="_btnInteresadosMultiplesMarca" Click="_btnInteresadosMultiplesMarca_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnInteresadosPatente}"/>
+                        </Button>
 
                         <!--<Label Grid.Column="6" Grid.Row="24" VerticalAlignment="Center" Margin="8,0,0,0">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblExpCamPend}"/>

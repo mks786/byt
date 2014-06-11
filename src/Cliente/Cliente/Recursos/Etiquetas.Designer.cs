@@ -5645,6 +5645,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Datos de la Marca.
+        /// </summary>
+        public static string lblDatosMarca {
+            get {
+                return ResourceManager.GetString("lblDatosMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Datos de la Patente:.
         /// </summary>
         public static string lblDatosPatente {
@@ -13584,6 +13593,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Interesados Adicionales de Marca.
+        /// </summary>
+        public static string titleGestionarInteresadosMarca {
+            get {
+                return ResourceManager.GetString("titleGestionarInteresadosMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Gestionar Licencia  de Marcas.
         /// </summary>
         public static string titleGestionarLicencia {
@@ -13706,6 +13724,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleInstruccionesDeRenovacion {
             get {
                 return ResourceManager.GetString("titleInstruccionesDeRenovacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Interesados de Marca.
+        /// </summary>
+        public static string titleInteresadosMultiplesMarca {
+            get {
+                return ResourceManager.GetString("titleInteresadosMultiplesMarca", resourceCulture);
             }
         }
         

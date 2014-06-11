@@ -51,7 +51,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                         </Label>
                         <custom:ByTTextBox Name="_txtIdCaso" Width="100" MaxLength="15" Height="25" 
-                                       HorizontalAlignment="Left"/>
+                                       HorizontalAlignment="Left" SoloNumero="True"/>
                     </WrapPanel>
 
                     <!--Fecha de Apertura de Caso-->
