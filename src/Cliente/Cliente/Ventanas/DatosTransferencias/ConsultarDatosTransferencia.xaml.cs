@@ -43,6 +43,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.DatosTransferencias
                 this._txtDireccion.IsEnabled = value;
                 this._txtSwif.IsEnabled = value;
                 this._txtSwiftInt.IsEnabled = value;
+                this._txtIban.IsEnabled = value;
             }
         }
 

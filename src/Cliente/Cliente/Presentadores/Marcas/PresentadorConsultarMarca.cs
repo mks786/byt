@@ -73,6 +73,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IInstruccionOtrosServicios _instruccionOtrosServicios;
         private IInstruccionDescuentoServicios _instruccionDescuentoServicios;
         private IFacVistaFacturaServicioServicios _facVistaFacturaServicioServicios;
+        private IInteresadoMultipleServicios _interesadoMultipleServicios;
 
 
         private IList<Asociado> _asociados;
@@ -139,6 +140,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
                 this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
+                this._interesadoMultipleServicios = (IInteresadoMultipleServicios)Activator.GetObject(typeof(IInteresadoMultipleServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoMultipleServicios"]);
                 this._servicioServicios = (IServicioServicios)Activator.GetObject(typeof(IServicioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ServicioServicios"]);
                 this._tipoEstadoServicios = (ITipoEstadoServicios)Activator.GetObject(typeof(ITipoEstadoServicios),
@@ -837,7 +840,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     if (File.Exists(ruta))
                         this._ventana.PintarBotonExpTyR();
                 }
-                
+
+                IList<InteresadoMultiple> interesadosAdicionales = this._interesadoMultipleServicios.ConsultarInteresadosDeMarca(this._marca);
+                if (interesadosAdicionales.Count > 0)
+                    this._ventana.PintarOtrosInteresados();
 
                 
 

@@ -17,6 +17,7 @@
     <property name="Direccion" type="String" column="`DIRECCION`"/>
     <property name="Swif" type="String" column="`SWIF`"/>
     <property name="SwiftInt" type="String" column="`SWIFT_INT`"/>
+    <property name="Iban" type="String" column="IBAN"/>
   </class>
 </hibernate-mapping>
 

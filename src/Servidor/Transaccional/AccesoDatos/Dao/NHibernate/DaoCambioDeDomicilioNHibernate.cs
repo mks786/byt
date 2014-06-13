@@ -52,6 +52,16 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioDeDomicilioCadenaDeCambios, cambioDeDomicilio.CadenaDeCambios);
                     variosFiltros = true;
                 }
+
+                if ((null != cambioDeDomicilio.FechaDomicilio) && (!cambioDeDomicilio.FechaDomicilio.Equals(DateTime.MinValue)))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    string fecha = String.Format("{0:dd/MM/yyyy}", cambioDeDomicilio.FechaDomicilio);
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioDeDomicilioFechaDomicilio, fecha);
+                }
+
+                #region CODIGO ORIGINAL COMENTADO - NO BORRAR
                 //if ((null != cambioDeDomicilio.Interesado) && (!cambioDeDomicilio.Interesado.Id.Equals("")))
                 //{
                 //    if (variosFiltros)
@@ -78,7 +88,9 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 //    string fecha = String.Format("{0:dd/MM/yy}", cambioDeDomicilio.Fecha);
                 //    string fecha2 = String.Format("{0:dd/MM/yy}", cambioDeDomicilio.Fecha.Value.AddDays(1));
                 //    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioDeDomicilioFecha, fecha, fecha2);
-                //}
+                //} 
+                #endregion
+
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 CambioDeDomicilios = query.List<CambioDeDomicilio>();
 

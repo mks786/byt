@@ -6483,6 +6483,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Iban:.
+        /// </summary>
+        public static string lblIban {
+            get {
+                return ResourceManager.GetString("lblIban", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Código:.
         /// </summary>
         public static string lblId {

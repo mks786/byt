@@ -1193,6 +1193,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._btnArchivoDatos.Background = Brushes.LightGreen;
         }
 
+        public void PintarOtrosInteresados()
+        {
+            this._btnInteresadosMultiplesMarca.Background = Brushes.LightGreen;
+        }
 
         public void PintarIconoBotonCorrespondencia()
         {

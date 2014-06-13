@@ -187,9 +187,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
                 if (!this._ventana.Fecha.Equals(""))
                 {
-                    DateTime fechaPublicacion = DateTime.Parse(this._ventana.Fecha);
+                    DateTime fechaDomicilio = DateTime.Parse(this._ventana.Fecha);
                     filtroValido = 2;
-                    CambioDeDomicilioAuxiliar.FechaPublicacion = fechaPublicacion;
+                    //CambioDeDomicilioAuxiliar.FechaPublicacion = fechaPublicacion;
+                    CambioDeDomicilioAuxiliar.FechaDomicilio = fechaDomicilio;
                 }
 
                 if (this._ventana.IdCadenaCambios != null)

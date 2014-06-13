@@ -187,9 +187,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
 
                 if (!this._ventana.Fecha.Equals(""))
                 {
-                    DateTime fechaPublicacion = DateTime.Parse(this._ventana.Fecha);
+                    //DateTime fechaPublicacion = DateTime.Parse(this._ventana.Fecha);
+                    DateTime fecha = DateTime.Parse(this._ventana.Fecha);
                     filtroValido = 2;
-                    FusionAuxiliar.FechaPublicacion = fechaPublicacion;
+                    //FusionAuxiliar.FechaPublicacion = fechaPublicacion;
+                    FusionAuxiliar.Fecha = fecha;
                 }
 
                 if (filtroValido >= 2)

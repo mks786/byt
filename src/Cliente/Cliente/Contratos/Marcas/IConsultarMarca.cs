@@ -350,5 +350,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         object OrigenMarcaDatos { get; set; }
 
+        void PintarOtrosInteresados();
+
     }
 }

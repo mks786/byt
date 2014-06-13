@@ -55,6 +55,7 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
@@ -119,6 +120,13 @@
                 </Label>
                 <custom:ByTTextBox Name="_txtSwiftInt" Grid.Column="2" Grid.Row="9" VerticalAlignment="Center" IsEnabled="False" 
                          HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="40" Text="{Binding Path=SwiftInt}">
+                </custom:ByTTextBox>
+
+                <Label Grid.Column="0" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblIban}"/>
+                </Label>
+                <custom:ByTTextBox Name="_txtIban" Grid.Column="2" Grid.Row="10" VerticalAlignment="Center" IsEnabled="False"
+                         HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="40" Text="{Binding Path=Iban}">
                 </custom:ByTTextBox>
 
             </Grid>

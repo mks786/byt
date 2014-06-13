@@ -18,6 +18,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _direccion;
         private string _swif;
         private string _swiftInt;
+        private string _iban;
 
         #endregion
 
@@ -147,6 +148,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _swiftInt; }
             set { _swiftInt = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Iban del intermediario
+        /// </summary>
+        public virtual string Iban
+        {
+            get { return _iban; }
+            set { _iban = value; }
         }
 
         #endregion

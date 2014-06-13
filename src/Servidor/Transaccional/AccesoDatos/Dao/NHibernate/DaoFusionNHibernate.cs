@@ -74,9 +74,9 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 {
                     if (variosFiltros)
                         filtro += " and ";
-                    string fecha = String.Format("{0:dd/MM/yy}", fusion.Fecha);
-                    string fecha2 = String.Format("{0:dd/MM/yy}", fusion.Fecha.Value.AddDays(1));
-                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerFusionFecha, fecha, fecha2);
+                    string fecha = String.Format("{0:dd/MM/yyyy}", fusion.Fecha);
+                    //string fecha2 = String.Format("{0:dd/MM/yy}", fusion.Fecha.Value.AddDays(1));
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerFusionFecha, fecha);
                 }
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 //IQuery query = Session.CreateSQLQuery(cabecera + filtro);

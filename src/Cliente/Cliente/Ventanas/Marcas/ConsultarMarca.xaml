@@ -1223,7 +1223,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnInteresado}"/>
                         </Button>
 
-                        <Grid Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="7" VerticalAlignment="Center">
+                        <Grid Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="6" VerticalAlignment="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
@@ -1235,7 +1235,7 @@
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="22*"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
@@ -1244,7 +1244,7 @@
                          MaxLength="255" Margin="0,0,5,0" MouseDoubleClick="_txtInteresadoDatos_GotFocus"  Text="{Binding Path=Interesado.Id}"></custom:ByTTextBox>
 
                             <custom:ByTTextBox  MaxLength="255" Grid.Column="1" Grid.Row="1" Name="_txtInteresadoDatos" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="6" MouseDoubleClick="_txtInteresadoDatos_GotFocus" IsReadOnly="True"></custom:ByTTextBox>
+                         Grid.ColumnSpan="5" MouseDoubleClick="_txtInteresadoDatos_GotFocus" IsReadOnly="True"></custom:ByTTextBox>
 
                             <Label Name="_lblIdInteresadoDatos" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
@@ -1290,9 +1290,15 @@
                             </ListView>
                         </Grid>
 
-                        <!--<Label Grid.Column="8" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
+                        <!--<Label Grid.Column="7" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                            Otros Interesados
                         </Label>-->
+                        <Button Grid.Column="7" Grid.Row="5" IsDefault="False" Name="_btnInteresadosMultiplesMarca"
+                                Click="_btnInteresadosMultiplesMarca_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnInteresadosPatente}"/>
+                        </Button>
+                        
+                        
                         <Button Grid.Column="8" Grid.Row="5" Name="_btnIrPoderDatos" IsDefault="False" Height="25" HorizontalAlignment="Right" Click="_btnIrPoder_Click">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
                         </Button>
@@ -2086,10 +2092,7 @@
                         </Label>
                         <custom:ByTTextBox  MaxLength="255" Grid.Column="4" Grid.Row="25" Name="_txtSaldoPorVencerDatos" HorizontalContentAlignment="Right"  VerticalAlignment="Center" 
                          Grid.ColumnSpan="2"></custom:ByTTextBox>
-                        <Button Grid.Column="6" Grid.Row="25" Margin="8,0,0,0" IsDefault="False" 
-                                Name="_btnInteresadosMultiplesMarca" Click="_btnInteresadosMultiplesMarca_Click">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.btnInteresadosPatente}"/>
-                        </Button>
+                        
 
                         <!--<Label Grid.Column="6" Grid.Row="24" VerticalAlignment="Center" Margin="8,0,0,0">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblExpCamPend}"/>

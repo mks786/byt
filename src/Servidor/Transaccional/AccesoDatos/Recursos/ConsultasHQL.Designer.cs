@@ -736,6 +736,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a c.FechaDomicilio = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerCambioDeDomicilioFechaDomicilio {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCambioDeDomicilioFechaDomicilio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a c.Id = {0}.
         /// </summary>
         public static string FiltroObtenerCambioDeDomicilioId {
@@ -790,6 +799,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a c.Fecha = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerCambioDeNombreFecha {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCambioDeNombreFecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a c.Id = {0}.
         /// </summary>
         public static string FiltroObtenerCambioDeNombreId {
@@ -817,7 +835,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a c.Fecha between &apos;{0}&apos; and &apos;{1}&apos;.
+        ///   Busca una cadena traducida similar a c.Fecha = &apos;{0}&apos;.
         /// </summary>
         public static string FiltroObtenerCambioDeNombrePatenteFecha {
             get {
@@ -844,7 +862,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a c.FechaCesion between &apos;{0}&apos; and &apos;{1}&apos;.
+        ///   Busca una cadena traducida similar a c.FechaPeticionario = &apos;{0}&apos;.
         /// </summary>
         public static string FiltroObtenerCambioPeticionarioFecha {
             get {
@@ -871,7 +889,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a c.Fecha between &apos;{0}&apos; and &apos;{1}&apos;.
+        ///   Busca una cadena traducida similar a c.FechaPeticionario = &apos;{0}&apos;.
         /// </summary>
         public static string FiltroObtenerCambioPeticionarioPatenteFecha {
             get {
@@ -1267,7 +1285,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a f.Fecha between &apos;{0}&apos; and &apos;{1}&apos;.
+        ///   Busca una cadena traducida similar a f.Fecha = &apos;{0}&apos; .
         /// </summary>
         public static string FiltroObtenerFusionFecha {
             get {

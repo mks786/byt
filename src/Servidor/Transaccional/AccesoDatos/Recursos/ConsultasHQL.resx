@@ -258,7 +258,7 @@
     <comment>Cabecera del query para el filtro de fusion</comment>
   </data>
   <data name="FiltroObtenerFusionFecha" xml:space="preserve">
-    <value>f.Fecha between '{0}' and '{1}'</value>
+    <value>f.Fecha = '{0}' </value>
   </data>
   <data name="FiltroObtenerFusionId" xml:space="preserve">
     <value>f.Id = {0}</value>
@@ -376,7 +376,7 @@
     <comment>Cabecera del query para el filtro de fusion</comment>
   </data>
   <data name="FiltroObtenerCambioPeticionarioFecha" xml:space="preserve">
-    <value>c.FechaCesion between '{0}' and '{1}'</value>
+    <value>c.FechaPeticionario = '{0}'</value>
     <comment>Filtro agregado a la cabecera para filtrar por fecha</comment>
   </data>
   <data name="FiltroObtenerCambioPeticionarioId" xml:space="preserve">
@@ -595,7 +595,7 @@
     <comment>Filtro por patente</comment>
   </data>
   <data name="FiltroObtenerCambioDeNombrePatenteFecha" xml:space="preserve">
-    <value>c.Fecha between '{0}' and '{1}'</value>
+    <value>c.Fecha = '{0}'</value>
     <comment>Filtro por Fecha</comment>
   </data>
   <data name="FiltroObtenerCambioDeNombrePatenteId" xml:space="preserve">
@@ -607,7 +607,7 @@
     <comment>Cabecera del query para el filtro de peticionario patente</comment>
   </data>
   <data name="FiltroObtenerCambioPeticionarioPatenteFecha" xml:space="preserve">
-    <value>c.Fecha between '{0}' and '{1}'</value>
+    <value>c.FechaPeticionario = '{0}'</value>
     <comment>filtro por fecha</comment>
   </data>
   <data name="FiltroObtenerCambioPeticionarioPatenteId" xml:space="preserve">
@@ -1510,5 +1510,13 @@
   <data name="ObtenerInteresadosPorMarca" xml:space="preserve">
     <value>Select im from InteresadoMultiple im where im.Id = {0} and im.Tipo='M'</value>
     <comment>Query para obtener los Intersados multiples de una Marca especifica</comment>
+  </data>
+  <data name="FiltroObtenerCambioDeDomicilioFechaDomicilio" xml:space="preserve">
+    <value>c.FechaDomicilio = '{0}'</value>
+    <comment>Filtro para obtener Cambios de Domicilio por la fecha de Creacion del cambio</comment>
+  </data>
+  <data name="FiltroObtenerCambioDeNombreFecha" xml:space="preserve">
+    <value>c.Fecha = '{0}'</value>
+    <comment>Filtro para obtener Cambios de Nombre por la fecha de la creacion del cambio</comment>
   </data>
 </root>

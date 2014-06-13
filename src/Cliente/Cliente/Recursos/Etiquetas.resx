@@ -4782,4 +4782,7 @@ en Prensa:</value>
   <data name="titleGestionarInteresadosMarca" xml:space="preserve">
     <value>Interesados Adicionales de Marca</value>
   </data>
+  <data name="lblIban" xml:space="preserve">
+    <value>Iban:</value>
+  </data>
 </root>

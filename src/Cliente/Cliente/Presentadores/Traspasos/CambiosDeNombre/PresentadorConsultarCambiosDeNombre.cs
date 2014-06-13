@@ -185,9 +185,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 
                 if (!this._ventana.Fecha.Equals(""))
                 {
-                    DateTime fechaPublicacion = DateTime.Parse(this._ventana.Fecha);
+                    //DateTime fechaPublicacion = DateTime.Parse(this._ventana.Fecha);
+                    DateTime fecha = DateTime.Parse(this._ventana.Fecha);
                     filtroValido = 2;
-                    CambioDeNombreAuxiliar.FechaPublicacion = fechaPublicacion;
+                    //CambioDeNombreAuxiliar.FechaPublicacion = fechaPublicacion;
+                    CambioDeNombreAuxiliar.Fecha = fecha;
                 }
 
                 if (this._ventana.IdCadenaCambios != null)

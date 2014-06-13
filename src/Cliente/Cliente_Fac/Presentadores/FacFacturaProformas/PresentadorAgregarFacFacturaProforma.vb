@@ -2680,7 +2680,7 @@ Namespace Presentadores.FacFacturaProformas
                 End If
             End If
 
-            If tipo_desg <> "G" Then
+            If (tipo_desg <> "G") Then
                 Dim asociado As Asociado
                 If detalle_proforma.Servicio.BAimpuesto <> False Then
                     asociado = DirectCast(Me._ventana.Asociado, Asociado)

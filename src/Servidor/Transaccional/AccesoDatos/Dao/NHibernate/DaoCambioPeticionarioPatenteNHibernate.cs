@@ -66,9 +66,9 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 {
                     if (variosFiltros)
                         filtro += " and ";
-                    string fecha = String.Format("{0:dd/MM/yy}", cambioPeticionario.FechaPeticionario);
-                    string fecha2 = String.Format("{0:dd/MM/yy}", cambioPeticionario.FechaPeticionario.Value.AddDays(1));
-                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioPeticionarioPatenteFecha, fecha, fecha2);
+                    string fecha = String.Format("{0:dd/MM/yyyy}", cambioPeticionario.FechaPeticionario);
+                    //string fecha2 = String.Format("{0:dd/MM/yy}", cambioPeticionario.FechaPeticionario.Value.AddDays(1));
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioPeticionarioPatenteFecha, fecha);
                 }
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 CambioPeticionarios = query.List<CambioPeticionarioPatente>();
