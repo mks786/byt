@@ -1779,6 +1779,8 @@ Namespace Presentadores.FacFacturaProformas
                 Dim tarifaservicios As IList(Of TarifaServicio)
                 tarifaservicios = Me._TarifaServiciosServicios.ObtenerTarifaServiciosFiltro(tarifaservicioaux)
 
+                Dim icambia_monto_tar_espc = True ''cambia monto tarifa especial para cuando no es desglose
+
                 If tarifaservicios.Count > 0 Then
                     If (moneda.Id = "BS") Then
                         'Me._ventana.MensajeError = "La moneda debe ser BSF o $"
@@ -1871,15 +1873,31 @@ Namespace Presentadores.FacFacturaProformas
                     If departamento_servicio.Servicio.Itipo = "M" Then ' si es tipo es marca busco documento marca
                         Dim documento_marca As DocumentosMarca = DirectCast(Me._ventana.DocumentoMarca_Seleccionado, DocumentosMarca)
                         If (documento_marca.Mont_Bf <> Nothing) Then
-                            monto_bf = documento_marca.Mont_Bf
+                            icambia_monto_tar_espc = False
+                            If estarifaespecial() = False Then
+                                monto_bf = documento_marca.Mont_Bf
+                            Else
+                                monto_bf = documento_marca.MontAlt_Bf
+                            End If
+
                             tipodoc_bf = True
                         End If
                         If (documento_marca.Mont_Bs <> Nothing) Then
+                            icambia_monto_tar_espc = False
+                            'If estarifaespecial() = False Then
                             monto_bs = documento_marca.Mont_Bs
+                            'Else
+                            'monto_bs = documento_marca.MontAlt_Bs
+                            'End If
                             tipodoc_bs = True
                         End If
                         If (documento_marca.Mont_Us <> Nothing) Then
-                            monto_us = documento_marca.Mont_Us
+                            icambia_monto_tar_espc = False
+                            If estarifaespecial() = False Then
+                                monto_us = documento_marca.Mont_Us
+                            Else
+                                monto_us = documento_marca.MontAlt_Us
+                            End If
                             tipodoc_us = True
                         End If
                         ctdoc = documento_marca.Id
@@ -1887,57 +1905,68 @@ Namespace Presentadores.FacFacturaProformas
                         If departamento_servicio.Servicio.Itipo = "P" Then ' si es tipo es Patente busco documento Patente
                             Dim documento_Patente As DocumentosPatente = DirectCast(Me._ventana.DocumentoPatente_Seleccionado, DocumentosPatente)
                             If (documento_Patente.Mont_Bf <> Nothing) Then
-                                monto_bf = documento_Patente.Mont_Bf
+                                If estarifaespecial() = False Then
+                                    monto_bf = documento_Patente.Mont_Bf
+                                Else
+                                    monto_bf = documento_Patente.MontAlt_Bf
+                                End If
                                 tipodoc_bf = True
+                                icambia_monto_tar_espc = False
                             End If
                             If (documento_Patente.Mont_Bs <> Nothing) Then
                                 monto_bs = documento_Patente.Mont_Bs
                                 tipodoc_bs = True
+                                icambia_monto_tar_espc = False
                             End If
                             If (documento_Patente.Mont_Us <> Nothing) Then
-                                monto_us = documento_Patente.Mont_Us
+                                If estarifaespecial() = False Then
+                                    monto_us = documento_Patente.Mont_Us
+                                Else
+                                    monto_us = documento_Patente.MontAlt_Us
+                                End If
                                 tipodoc_us = True
+                                icambia_monto_tar_espc = False
                             End If
                             ctdoc = documento_Patente.Id
                         End If
-                    End If
-
-                    If (tipodoc_bf = True) Then
-                        facfactudetaproforma.BDetalleBf = monto_bf
-                        facfactudetaproforma.PuBf = monto_bf
-
-                        If (moneda.Id = "BF") Then
-                            facfactudetaproforma.BDetalle = monto_bf
-                            facfactudetaproforma.Pu = monto_bf
                         End If
-                    End If
 
-                    If (moneda.Id = "BS") Then
-                        If (tipodoc_bs = True) Then
-                            facfactudetaproforma.BDetalle = monto_bs
-                            facfactudetaproforma.Pu = monto_bs
-                        End If
-                    End If
+                        If (tipodoc_bf = True) Then
+                            facfactudetaproforma.BDetalleBf = monto_bf
+                            facfactudetaproforma.PuBf = monto_bf
 
-                    If (moneda.Id = "US") Then
-                        If (tipodoc_us = True) Then
-                            facfactudetaproforma.BDetalle = monto_us
-                            facfactudetaproforma.Pu = monto_us
+                            If (moneda.Id = "BF") Then
+                                facfactudetaproforma.BDetalle = monto_bf
+                                facfactudetaproforma.Pu = monto_bf
+                            End If
                         End If
-                    End If
-                    ' fin si tipo de documento es true entro y evaluo
+
+                        If (moneda.Id = "BS") Then
+                            If (tipodoc_bs = True) Then
+                                facfactudetaproforma.BDetalle = monto_bs
+                                facfactudetaproforma.Pu = monto_bs
+                            End If
+                        End If
+
+                        If (moneda.Id = "US") Then
+                            If (tipodoc_us = True) Then
+                                facfactudetaproforma.BDetalle = monto_us
+                                facfactudetaproforma.Pu = monto_us
+                            End If
+                        End If
+                        ' fin si tipo de documento es true entro y evaluo
                 Else
-                    ' para las cantidades
-                    If IsNumeric(Me._ventana.Cantidad) Then
-                        v_pagina = Me._ventana.Cantidad
-                    Else
-                        'v_pagina = 0
-                    End If
+                        ' para las cantidades
+                        If IsNumeric(Me._ventana.Cantidad) Then
+                            v_pagina = Me._ventana.Cantidad
+                        Else
+                            'v_pagina = 0
+                        End If
 
-                    'lista_en = "Pagina=" & v_pagina & ";" 'aqui tengo que verificar como trabajar esta variable mas adelante                
-                    If v_pagina IsNot Nothing Then
-                        lista_en(11) = v_pagina
-                    End If
+                        'lista_en = "Pagina=" & v_pagina & ";" 'aqui tengo que verificar como trabajar esta variable mas adelante                
+                        If v_pagina IsNot Nothing Then
+                            lista_en(11) = v_pagina
+                        End If
                 End If
 
                 If (departamento_servicio.Servicio.BItraduc = True) Then
@@ -2664,7 +2693,7 @@ Namespace Presentadores.FacFacturaProformas
                     '
                 Else
                     'si no es desglose verificar que sea tarifa especial para hacer el calculo
-                    If estarifaespecial() = True Then
+                    If estarifaespecial() = True And icambia_monto_tar_espc = True Then
 
                         If (moneda.Id = "BF") Then
                             facfactudetaproforma.BDetalle = tarifaservicios(0).TasaAlt * tarifaservicios(0).MontAlt_Us
@@ -2682,18 +2711,23 @@ Namespace Presentadores.FacFacturaProformas
 
                 End If 'If Me._ventana.Desglose = True Then
 
-                    facfactudetaproforma.BBsel = Me._ventana.Seleccion
-                    facfactudetaproforma.BDesglose = Me._ventana.Desglose
-                    'GUARDAR EL DETALLE DE LA PROFORMA
-                    Dim factura_proforma As New FacFacturaProforma
-                    Dim guardar As Boolean = False
-                    factura_proforma.Id = 0
-                    facfactudetaproforma.Factura = factura_proforma
-                    'guardar = _FacFactuDetaProformasServicios.InsertarOModificar(facfactudetaproforma, UsuarioLogeado.Hash)
-                    'If guardar = True Then
-                    agrega_detalle(facfactudetaproforma, tipo_desg)
-                    recalcular(moneda.Id)
-                    ' End If
+                facfactudetaproforma.BBsel = Me._ventana.Seleccion
+                facfactudetaproforma.BDesglose = Me._ventana.Desglose
+                'GUARDAR EL DETALLE DE LA PROFORMA
+                Dim factura_proforma As New FacFacturaProforma
+                Dim guardar As Boolean = False
+                factura_proforma.Id = 0
+                facfactudetaproforma.Factura = factura_proforma
+                'guardar = _FacFactuDetaProformasServicios.InsertarOModificar(facfactudetaproforma, UsuarioLogeado.Hash)
+                'If guardar = True Then
+                agrega_detalle(facfactudetaproforma, tipo_desg)
+                recalcular(moneda.Id)
+
+                '06-11-2014 inicializar las ventanas de desglose y desglose monto
+                Me._ventana.ResultadosDesgloseServicio2 = Nothing
+                Me._ventana.ResultadosDesgloseServicioTarifa2 = Nothing
+
+                ' End If
             Catch ex As Exception
                 Throw
             End Try
