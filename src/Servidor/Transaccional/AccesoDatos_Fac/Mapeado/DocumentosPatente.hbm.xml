@@ -10,5 +10,7 @@
     <property name="Mont_Bs" column="MONT_BS" type="Double"/>
     <property name="Mont_Us" column="MONT_US" type="Double"/>
     <property name="Mont_Bf" column="MONT_BF" type="Double"/>
+    <property name="MontAlt_Us" column="MONTA_US" type="Double"/>
+    <property name="MontAlt_Bf" column="MONTA_BF" type="Double"/>
   </class>
 </hibernate-mapping>
