@@ -2006,5 +2006,7 @@ Namespace Ventanas.FacFacturaProformas
         Private Sub _lstDesgloseServicioTarifa_2_MouseDoubleClick(sender As System.Object, e As System.Windows.Input.MouseButtonEventArgs)
             Me._presentador.AgregarDetalleProforma()
         End Sub
+
+  
     End Class
 End Namespace

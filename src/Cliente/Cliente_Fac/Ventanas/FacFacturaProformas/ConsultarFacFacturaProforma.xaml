@@ -1318,6 +1318,12 @@
                                         <GridViewColumn DisplayMemberBinding="{Binding Path=Mont_Bf}" Width="90">
                                             <GridViewColumnHeader  Tag="Mont_Bf" Content="Bf"/>
                                         </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=MontAlt_Us}" Width="90">
+                                            <GridViewColumnHeader  Tag="MontAlt_Us" Content="US Alt"/>
+                                        </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=MontAlt_Bf}" Width="90">
+                                            <GridViewColumnHeader  Tag="MontAlt_Bf" Content="Bf Alt"/>
+                                        </GridViewColumn>                                        
                                     </GridView>
                                 </ListView.View>
                             </ListView>
@@ -1369,6 +1375,12 @@
                                         </GridViewColumn>
                                         <GridViewColumn DisplayMemberBinding="{Binding Path=Mont_Bf}" Width="90">
                                             <GridViewColumnHeader  Tag="Mont_Bf" Content="Bf"/>
+                                        </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=MontAlt_Us}" Width="90">
+                                            <GridViewColumnHeader  Tag="MontAlt_Us" Content="US Alt"/>
+                                        </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=MontAlt_Bf}" Width="90">
+                                            <GridViewColumnHeader  Tag="MontAlt_Bf" Content="Bf Alt"/>
                                         </GridViewColumn>
                                     </GridView>
                                 </ListView.View>
