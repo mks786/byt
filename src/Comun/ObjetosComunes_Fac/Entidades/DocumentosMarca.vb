@@ -9,6 +9,8 @@
         Private _mont_bs As Double
         Private _mont_us As Double
         Private _mont_bf As Double
+        Private _montalt_us As Double
+        Private _montalt_bf As Double
 #End Region
 
 #Region "Constructores"
@@ -84,6 +86,24 @@
             End Get
             Set(ByVal value As Double)
                 Me._mont_bf = value
+            End Set
+        End Property
+
+        Public Overridable Property MontAlt_Us() As Double
+            Get
+                Return Me._montalt_us
+            End Get
+            Set(ByVal value As Double)
+                Me._montalt_us = value
+            End Set
+        End Property
+
+        Public Overridable Property MontAlt_Bf() As Double
+            Get
+                Return Me._montalt_bf
+            End Get
+            Set(ByVal value As Double)
+                Me._montalt_bf = value
             End Set
         End Property
 
