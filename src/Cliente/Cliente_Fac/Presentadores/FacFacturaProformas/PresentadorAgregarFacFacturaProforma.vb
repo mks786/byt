@@ -1140,11 +1140,11 @@ Namespace Presentadores.FacFacturaProformas
                         Dim TarifaEncontrada As FacTarifa = facTarifas(0)
 
                         If (TarifaEncontrada.BDesgMonto = True) Then
-                            If departamento_servicio.Servicio.BDesg Then
+                            If departamento_servicio.Servicio.BDesg Then 'obligatorio
                                 Me._ventana.VerTipo = "14"
                             Else
                                 If (Me._ventana.Desglose = True) Then
-                                    If (departamento_servicio.Servicio.BDesgMonto2 = True) Then
+                                    If (departamento_servicio.Servicio.BDesgMonto2 = True) Then 'desglose monto dos
                                         Me._ventana.VerTipo = "14"
                                     Else
                                         Me._ventana.VerTipo = "12"
@@ -1728,6 +1728,25 @@ Namespace Presentadores.FacFacturaProformas
             Next
         End Sub
 
+        Public Function estarifaespecial() As Boolean
+            Dim iestarifaespecial As Boolean = False
+
+            If Not Me._ventana.Tarifa.Equals(String.Empty) Then
+                Dim FacTarifa As FacTarifa = New FacTarifa()
+                FacTarifa.Id = Me._ventana.Tarifa
+                Dim facTarifas As IList(Of FacTarifa) = Me._FacTarifaServicios.ObtenerFacTarifasFiltro(FacTarifa)
+                If facTarifas.Count > 0 Then
+                    Dim TarifaEncontrada As FacTarifa = facTarifas(0)
+                    If (TarifaEncontrada.BDesgMonto = True) Then
+                        iestarifaespecial = True
+                    End If
+                End If
+            End If
+
+            Return iestarifaespecial
+        End Function
+
+
         Public Sub InsertarDetalleProforma(ByVal contador As Integer)
             Dim departamento_servicio As FacDepartamentoServicio = DirectCast(Me._ventana.DepartamentoServicio_2Seleccionado, FacDepartamentoServicio)
             Dim facfactudetaproforma As New FacFactuDetaProforma
@@ -1764,8 +1783,13 @@ Namespace Presentadores.FacFacturaProformas
                     If (moneda.Id = "BS") Then
                         'Me._ventana.MensajeError = "La moneda debe ser BSF o $"
 
+                        'verificar este punto 06-11-2014
                         facfactudetaproforma.BDetalle = tarifaservicios(0).MontAlt_Us
                         facfactudetaproforma.Pu = tarifaservicios(0).MontAlt_Us
+
+                        ''verificar este punto 06-11-2014
+                        'facfactudetaproforma.BDetalle = (tarifaservicios(0).Mont_Us * btasa)
+                        'facfactudetaproforma.Pu = (tarifaservicios(0).Mont_Us * btasa)
 
 
 
@@ -1806,10 +1830,11 @@ Namespace Presentadores.FacFacturaProformas
                     Else
                         btasa = 0
                     End If
-                    If (moneda.Id = "BF") Then
+                    If (moneda.Id = "BF") Then                       
                         facfactudetaproforma.BDetalle = (tarifaservicios(0).Mont_Us * btasa)
                         facfactudetaproforma.Pu = (tarifaservicios(0).Mont_Us * btasa)
                     End If
+
                     facfactudetaproforma.BDetalleBf = (tarifaservicios(0).Mont_Us * btasa)
                     facfactudetaproforma.PuBf = (tarifaservicios(0).Mont_Us * btasa)
                 End If
@@ -2636,26 +2661,39 @@ Namespace Presentadores.FacFacturaProformas
                     End If
 
                     'tipo_desg = desglose_servicio.Id
+                    '
+                Else
+                    'si no es desglose verificar que sea tarifa especial para hacer el calculo
+                    If estarifaespecial() = True Then
+
+                        If (moneda.Id = "BF") Then
+                            facfactudetaproforma.BDetalle = tarifaservicios(0).TasaAlt * tarifaservicios(0).MontAlt_Us
+                            facfactudetaproforma.Pu = tarifaservicios(0).TasaAlt * tarifaservicios(0).MontAlt_Us
+                        Else
+                            facfactudetaproforma.BDetalle = tarifaservicios(0).MontAlt_Us
+                            facfactudetaproforma.Pu = tarifaservicios(0).MontAlt_Us
+                        End If
+                        facfactudetaproforma.BDetalleBf = tarifaservicios(0).TasaAlt * tarifaservicios(0).MontAlt_Us
+                        facfactudetaproforma.PuBf = tarifaservicios(0).TasaAlt * tarifaservicios(0).MontAlt_Us
+
+                        'facfactudetaproforma.BDetalle = tarifaservicios(0).TasaAlt * tarifaservicios(0).MontAlt_Us
+                        'facfactudetaproforma.Pu = tarifaservicios(0).TasaAlt * tarifaservicios(0).MontAlt_Us
+                    End If
 
                 End If 'If Me._ventana.Desglose = True Then
 
-
-
-
-
-
-                facfactudetaproforma.BBsel = Me._ventana.Seleccion
-                facfactudetaproforma.BDesglose = Me._ventana.Desglose
-                'GUARDAR EL DETALLE DE LA PROFORMA
-                Dim factura_proforma As New FacFacturaProforma
-                Dim guardar As Boolean = False
-                factura_proforma.Id = 0
-                facfactudetaproforma.Factura = factura_proforma
-                'guardar = _FacFactuDetaProformasServicios.InsertarOModificar(facfactudetaproforma, UsuarioLogeado.Hash)
-                'If guardar = True Then
-                agrega_detalle(facfactudetaproforma, tipo_desg)
-                recalcular(moneda.Id)
-                ' End If
+                    facfactudetaproforma.BBsel = Me._ventana.Seleccion
+                    facfactudetaproforma.BDesglose = Me._ventana.Desglose
+                    'GUARDAR EL DETALLE DE LA PROFORMA
+                    Dim factura_proforma As New FacFacturaProforma
+                    Dim guardar As Boolean = False
+                    factura_proforma.Id = 0
+                    facfactudetaproforma.Factura = factura_proforma
+                    'guardar = _FacFactuDetaProformasServicios.InsertarOModificar(facfactudetaproforma, UsuarioLogeado.Hash)
+                    'If guardar = True Then
+                    agrega_detalle(facfactudetaproforma, tipo_desg)
+                    recalcular(moneda.Id)
+                    ' End If
             Catch ex As Exception
                 Throw
             End Try
@@ -4654,6 +4692,10 @@ Namespace Presentadores.FacFacturaProformas
 
             End Try
         End Sub
+
+        Private Function esvenezolano() As Boolean
+            Throw New NotImplementedException
+        End Function
 
     End Class
 End Namespace
