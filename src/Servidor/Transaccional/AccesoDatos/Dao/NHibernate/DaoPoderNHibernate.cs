@@ -211,13 +211,23 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                //poderes = Session.CreateCriteria(typeof(Poder))
+                //        .CreateAlias("Agentes", "a")
+                //        .SetFetchMode("Agentes", FetchMode.Join)
+                //        .SetFetchMode("Interesado", FetchMode.Join)
+                //        .Add(Restrictions.Eq("a.Id", agente.Id))
+                //        .Add(Restrictions.Eq("Interesado.Id", interesado.Id))
+                //        .List<Poder>();
+
+                //cambio el 14-11-2014
                 poderes = Session.CreateCriteria(typeof(Poder))
-                        .CreateAlias("Agentes", "a")
-                        .SetFetchMode("Agentes", FetchMode.Join)
-                        .SetFetchMode("Interesado", FetchMode.Join)
-                        .Add(Restrictions.Eq("a.Id", agente.Id))
-                        .Add(Restrictions.Eq("Interesado.Id", interesado.Id))
-                        .List<Poder>();
+                          .CreateAlias("Agentes", "a")
+                          .SetFetchMode("Agentes", FetchMode.Join)
+                          .SetFetchMode("Interesado", FetchMode.Join)
+                          .Add(Restrictions.Eq("a.Id", agente.Id))
+                          .Add(Restrictions.Eq("Interesado.Id", interesado.Id))
+                          .AddOrder(Order.Desc("NumPoder"))//verificar esto es nuevo para el punto10
+                          .List<Poder>();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

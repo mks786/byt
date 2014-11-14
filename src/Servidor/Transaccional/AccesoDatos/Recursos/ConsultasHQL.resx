@@ -1519,4 +1519,12 @@
     <value>c.Fecha = '{0}'</value>
     <comment>Filtro para obtener Cambios de Nombre por la fecha de la creacion del cambio</comment>
   </data>
+  <data name="FiltroObtenerAsociadoAlarmaDescripcion" xml:space="preserve">
+    <value>a.AlarmaDescripcion like '%{0}%'</value>
+    <comment>Filtro para obtener un Asociado por el campo XEMAIL</comment>
+  </data>
+  <data name="FiltroObtenerAsociadoTelefono1" xml:space="preserve">
+    <value>upper(a.Telefono1) like '%{0}%'</value>
+    <comment>Filtro por Nombre</comment>
+  </data>
 </root>

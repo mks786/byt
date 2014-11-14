@@ -574,6 +574,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a a.AlarmaDescripcion like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroObtenerAsociadoAlarmaDescripcion {
+            get {
+                return ResourceManager.GetString("FiltroObtenerAsociadoAlarmaDescripcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a detallePago.Id = &apos;{0}&apos;.
         /// </summary>
         public static string FiltroObtenerAsociadoDetallePago {
@@ -669,6 +678,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerAsociadoTarifa {
             get {
                 return ResourceManager.GetString("FiltroObtenerAsociadoTarifa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a upper(a.Telefono1) like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroObtenerAsociadoTelefono1 {
+            get {
+                return ResourceManager.GetString("FiltroObtenerAsociadoTelefono1", resourceCulture);
             }
         }
         

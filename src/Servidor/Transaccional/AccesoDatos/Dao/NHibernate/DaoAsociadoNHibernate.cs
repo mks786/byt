@@ -104,6 +104,14 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
+                if (!string.IsNullOrEmpty(asociado.Telefono1))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerAsociadoTelefono1, asociado.Telefono1);
+                    variosFiltros = true;
+                }
+
                 if (!string.IsNullOrEmpty(asociado.Email))
                 {
                     if (variosFiltros)
@@ -149,6 +157,14 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerAsociadoTipoCliente, asociado.TipoCliente.Id);
+                    variosFiltros = true;
+                }
+
+                if (!string.IsNullOrEmpty(asociado.AlarmaDescripcion))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerAsociadoAlarmaDescripcion, asociado.AlarmaDescripcion);
                     variosFiltros = true;
                 }
 
