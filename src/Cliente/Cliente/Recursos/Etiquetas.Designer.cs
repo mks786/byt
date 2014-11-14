@@ -4728,6 +4728,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         /// <summary>
         ///   Busca una cadena traducida similar a Alerta:.
         /// </summary>
+        public static string lblAlarmaDescripcion {
+            get {
+                return ResourceManager.GetString("lblAlarmaDescripcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Alerta:.
+        /// </summary>
         public static string lblAlerta {
             get {
                 return ResourceManager.GetString("lblAlerta", resourceCulture);
@@ -8027,6 +8036,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblTelefono {
             get {
                 return ResourceManager.GetString("lblTelefono", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Teléfono:.
+        /// </summary>
+        public static string lblTelefono1 {
+            get {
+                return ResourceManager.GetString("lblTelefono1", resourceCulture);
             }
         }
         

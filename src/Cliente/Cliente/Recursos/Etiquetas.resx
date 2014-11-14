@@ -4785,4 +4785,10 @@ en Prensa:</value>
   <data name="lblIban" xml:space="preserve">
     <value>Iban:</value>
   </data>
+  <data name="lblAlarmaDescripcion" xml:space="preserve">
+    <value>Alerta:</value>
+  </data>
+  <data name="lblTelefono1" xml:space="preserve">
+    <value>Teléfono:</value>
+  </data>
 </root>

@@ -487,6 +487,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 this._filtroValido = 2;
             }
 
+            if (!this._ventana.Telefono1Asociado.Equals(""))
+            {
+                asociado.Telefono1 = this._ventana.Telefono1Asociado;
+                this._filtroValido = 2;
+            }
+
+            if (!this._ventana.AlarmaDescripcionAsociado.Equals(""))
+            {
+                asociado.AlarmaDescripcion = this._ventana.AlarmaDescripcionAsociado;
+                this._filtroValido = 2;
+            }
+
             if ((null != this._ventana.TipoPersona) && !((ListaDatosDominio)this._ventana.TipoPersona).Id.Equals("NGN"))
             {
                 asociado.TipoPersona = ((ListaDatosDominio)this._ventana.TipoPersona).Id.ToCharArray()[0];

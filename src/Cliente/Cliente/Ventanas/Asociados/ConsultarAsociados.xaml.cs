@@ -230,6 +230,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             set { this._txtEmail.Text = value; }
         }
 
+        public string Telefono1Asociado
+        {
+            get { return this._txtTelefono1.Text; }
+            set { this._txtTelefono1.Text = value; }
+        }
+
+        public string AlarmaDescripcionAsociado
+        {
+            get { return this._txtAlarmaDescripcion.Text; }
+            set { this._txtAlarmaDescripcion.Text = value; }
+        }
+
         #endregion
 
         public ConsultarAsociados(object ventanaPadre, object asociado)

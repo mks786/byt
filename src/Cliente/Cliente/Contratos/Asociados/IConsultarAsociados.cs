@@ -69,6 +69,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
 
         string EmailAsociado { get; set; }
 
+        string Telefono1Asociado { get; set; }
+
+        string AlarmaDescripcionAsociado { get; set; }
+
         object Conceptos { get; set; }
 
         object Concepto { get; set; }

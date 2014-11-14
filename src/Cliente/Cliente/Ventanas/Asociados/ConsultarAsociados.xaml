@@ -131,6 +131,18 @@
                     </Label>
                     <custom:ByTTextBox Name="_txtEmail" Width="150" MaxLength="255"  Text="{Binding Path=Email}"/>
                 </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTelefono1}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtTelefono1" Width="150" MaxLength="255"  Text="{Binding Path=Telefono1}"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblAlarmaDescripcion}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtAlarmaDescripcion" Width="150" MaxLength="255"  Text="{Binding Path=AlarmaDescripcion}"/>
+                </WrapPanel>
 
                 <Separator Margin="0,5,0,5"/>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,5">
