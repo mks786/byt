@@ -625,7 +625,7 @@
                         <Label Grid.Column="2" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                         </Label>
-                        <DatePicker  Grid.Column="3" Grid.Row="13" HorizontalAlignment="Left"  Name="_dpkFecha" Focusable="False" BorderBrush="{x:Null}" >
+                        <DatePicker  Grid.Column="3" Grid.Row="13" Width="110"  HorizontalAlignment="Left"  Name="_dpkFecha" Focusable="False" BorderBrush="{x:Null}" >
                             <DatePicker.SelectedDate>
                                 <Binding Path="FechaInscripcion" UpdateSourceTrigger="PropertyChanged"/>
                             </DatePicker.SelectedDate>
@@ -708,7 +708,7 @@
                         <Label Grid.Column="0" Grid.Row="17" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                         </Label>
-                        <DatePicker  Grid.Column="1" Grid.Row="17" HorizontalAlignment="Left"  Name="_dpkFechaPrioridad" Focusable="False" BorderBrush="{x:Null}" >
+                        <DatePicker  Grid.Column="1" Grid.Row="17"  Width="110" HorizontalAlignment="Left"  Name="_dpkFechaPrioridad" Focusable="False" BorderBrush="{x:Null}" >
                             <DatePicker.SelectedDate>
                                 <Binding Path="FechaPrioridad" UpdateSourceTrigger="PropertyChanged"/>
                             </DatePicker.SelectedDate>
@@ -767,7 +767,7 @@
                         </CheckBox>
                         <Button Name="_btnPoder" HorizontalAlignment="Right" Grid.Column="7" Grid.Row="20" Grid.ColumnSpan="2"
                             Height="25" Width="90">Poder</Button>
-                        <DatePicker  Grid.Column="9" Grid.Row="20" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaPoder" Focusable="False" BorderBrush="{x:Null}" >
+                        <DatePicker  Grid.Column="9" Grid.Row="20"  Width="110" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaPoder" Focusable="False" BorderBrush="{x:Null}" >
                             <DatePicker.SelectedDate>
                                 <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
                             </DatePicker.SelectedDate>
@@ -782,7 +782,7 @@
                         </CheckBox>
                         <Button Name="_btnPrioridad" HorizontalAlignment="Right" Grid.Column="7" Grid.Row="21" Grid.ColumnSpan="2" 
                             Height="25" Width="90">Poder</Button>
-                        <DatePicker Grid.Column="9" Grid.Row="21" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaPrioridad" Focusable="False" BorderBrush="{x:Null}" >
+                        <DatePicker Grid.Column="9" Grid.Row="21" Width="110"  HorizontalAlignment="Center"  Name="_dpkFechaRequeridaPrioridad" Focusable="False" BorderBrush="{x:Null}" >
                             <DatePicker.SelectedDate>
                                 <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
                             </DatePicker.SelectedDate>
@@ -797,7 +797,7 @@
                         </CheckBox>
                         <Button Name="_btnPoderYPrioridad" HorizontalAlignment="Right" Grid.Column="7" Grid.Row="22"  Grid.ColumnSpan="2"
                             Height="25" Width="90">Poder y Prioridad</Button>
-                        <DatePicker Grid.Column="9" Grid.Row="22" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaPoderYPrioridad" Focusable="False" BorderBrush="{x:Null}" >
+                        <DatePicker Grid.Column="9" Grid.Row="22"  Width="110" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaPoderYPrioridad" Focusable="False" BorderBrush="{x:Null}" >
                             <DatePicker.SelectedDate>
                                 <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
                             </DatePicker.SelectedDate>
@@ -812,7 +812,7 @@
                         </CheckBox>
                         <Button Name="_btnReclasificacionNacional" HorizontalAlignment="Right" Grid.Column="7" Grid.Row="23"
                             Height="25" Width="90" Grid.ColumnSpan="2">Reclas. Nacional</Button>
-                        <DatePicker  Grid.Column="9" Grid.Row="23" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaReclasificacionNacional" Focusable="False" BorderBrush="{x:Null}" >
+                        <DatePicker  Grid.Column="9" Grid.Row="23" Width="110"  HorizontalAlignment="Center"  Name="_dpkFechaRequeridaReclasificacionNacional" Focusable="False" BorderBrush="{x:Null}" >
                             <DatePicker.SelectedDate>
                                 <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
                             </DatePicker.SelectedDate>
@@ -827,7 +827,7 @@
                         </CheckBox>
                         <Button Name="_btnConflicto" HorizontalAlignment="Right" Grid.Column="7" Grid.Row="24"
                             Height="25" Width="90" Grid.ColumnSpan="2">Conflicto</Button>
-                        <DatePicker  Grid.Column="9" Grid.Row="24" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaConflicto" Focusable="False" BorderBrush="{x:Null}" >
+                        <DatePicker  Grid.Column="9" Grid.Row="24" Width="110"  HorizontalAlignment="Center"  Name="_dpkFechaRequeridaConflicto" Focusable="False" BorderBrush="{x:Null}" >
                             <DatePicker.SelectedDate>
                                 <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
                             </DatePicker.SelectedDate>
@@ -842,7 +842,7 @@
                         </CheckBox>
                         <Button Name="_btnOtraInf" HorizontalAlignment="Right" Grid.Column="7" Grid.Row="25"
                             Height="25" Width="90" Grid.ColumnSpan="2">Otra Inf.</Button>
-                        <DatePicker  Grid.Column="9" Grid.Row="25" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaOtraInf" Focusable="False" BorderBrush="{x:Null}" >
+                        <DatePicker  Grid.Column="9" Grid.Row="25" Width="110"  HorizontalAlignment="Center"  Name="_dpkFechaRequeridaOtraInf" Focusable="False" BorderBrush="{x:Null}" >
                             <DatePicker.SelectedDate>
                                 <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
                             </DatePicker.SelectedDate>
@@ -1606,7 +1606,7 @@
                             <!--<custom:ByTTextBox  Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="1"  Name="_txtFechaInscripcion" VerticalAlignment="Center"  
                           Text="{Binding Path=FechaInscripcion}"></custom:ByTTextBox>-->
 
-                            <DatePicker  Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="1" Name="_txtFechaInscripcion" Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" >
+                            <DatePicker  Grid.Column="2" Grid.Row="0"  Width="110" Grid.ColumnSpan="1" Name="_txtFechaInscripcion" Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" >
                                 <DatePicker.SelectedDate>
                                     <Binding Path="FechaInscripcion" UpdateSourceTrigger="PropertyChanged" StringFormat="{}{0:dd/MM/yyyy}"/>
                                 </DatePicker.SelectedDate>
@@ -1673,7 +1673,7 @@
                           Text=""></custom:ByTTextBox>
                             <!--<custom:ByTTextBox  Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1" Name="_txtFechaRegistro" VerticalAlignment="Center"  
                           Text=""></custom:ByTTextBox>-->
-                            <DatePicker  Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1" Name="_txtFechaRegistro" Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" >
+                            <DatePicker  Grid.Column="2" Grid.Row="4" Width="110"  Grid.ColumnSpan="1" Name="_txtFechaRegistro" Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" >
                                 <DatePicker.SelectedDate>
                                     <Binding Path="FechaRegistro" UpdateSourceTrigger="PropertyChanged" StringFormat="{}{0:dd/MM/yyyy}"/>
                                 </DatePicker.SelectedDate>

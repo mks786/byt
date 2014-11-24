@@ -678,7 +678,7 @@
                         <Label Grid.Column="2" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                         </Label>
-                        <DatePicker  Grid.Column="3" Grid.Row="13" HorizontalAlignment="Left"  Name="_dpkFecha" Focusable="False" BorderBrush="{x:Null}" >
+                        <DatePicker  Grid.Column="3" Grid.Row="13" Width="110" HorizontalAlignment="Left"  Name="_dpkFecha" Focusable="False" BorderBrush="{x:Null}" >
                             <DatePicker.SelectedDate>
                                 <Binding Path="FechaInscripcion" UpdateSourceTrigger="PropertyChanged" StringFormat="{}{0:dd/MM/yyyy}"/>
                             </DatePicker.SelectedDate>
@@ -1848,7 +1848,7 @@
                             </custom:ByTTextBox>-->
 
 
-                            <DatePicker  Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="1" Name="_txtFechaInscripcion" Focusable="False" BorderBrush="{x:Null}" Margin="3">
+                            <DatePicker  Grid.Column="2" Grid.Row="0" Width="110" Grid.ColumnSpan="1" Name="_txtFechaInscripcion" Focusable="False" BorderBrush="{x:Null}" Margin="3">
                                 <DatePicker.SelectedDate>
                                     <Binding Path="FechaInscripcion" UpdateSourceTrigger="PropertyChanged" StringFormat="{}{0:dd/MM/yyyy}"/>
                                 </DatePicker.SelectedDate>
@@ -1919,7 +1919,7 @@
                             <!--<custom:ByTTextBox  Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1" Margin="3" Name="_txtFechaRegistro" VerticalAlignment="Center"  
                           Text="{Binding Path=FechaRegistro, StringFormat={}{0:dd/MM/yyyy}}"></custom:ByTTextBox>-->
 
-                            <DatePicker  Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1" Margin="3" Name="_txtFechaRegistro" Focusable="False" BorderBrush="{x:Null}" >
+                            <DatePicker  Grid.Column="2" Grid.Row="4" Width="110" Grid.ColumnSpan="1" Margin="3" Name="_txtFechaRegistro" Focusable="False" BorderBrush="{x:Null}" >
                                 <DatePicker.SelectedDate>
                                     <Binding Path="FechaRegistro" UpdateSourceTrigger="PropertyChanged" StringFormat="{}{0:dd/MM/yyyy}"/>
                                 </DatePicker.SelectedDate>
@@ -2034,7 +2034,7 @@
                         <Label Grid.Column="8" Grid.Row="22" VerticalAlignment="Center" Margin="6,0,0,0" Grid.ColumnSpan="1">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaCierreExp}"/>
                         </Label>
-                        <DatePicker Grid.Column="9" Grid.Row="22" Grid.ColumnSpan="1" Name="_txtFechaCierreExpDatos" Focusable="False"
+                        <DatePicker Grid.Column="9" Grid.Row="22" Grid.ColumnSpan="1"  Width="110" Name="_txtFechaCierreExpDatos" Focusable="False"
                                     BorderBrush="{x:Null}" Margin="8,0,0,0">
                             <DatePicker.SelectedDate>
                                 <Binding Path="FechaCierreExpediente" UpdateSourceTrigger="PropertyChanged" 
