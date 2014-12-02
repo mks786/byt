@@ -21,6 +21,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private int _hash;
         private char _archivo;
         private string _entregaMaterial;
+        private string _ipermiso;
 
         #endregion
 
@@ -227,6 +228,13 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
                 else
                     this.EntregaMaterial = "NO";
             }
+        }
+
+
+        public virtual string IPermiso
+        {
+            get { return _ipermiso; }
+            set { _ipermiso = value; }
         }
 
         #endregion

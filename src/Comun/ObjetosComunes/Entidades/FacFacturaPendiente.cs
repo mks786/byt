@@ -10,6 +10,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
             private  int? _id;
             private string _anulada;
+            private string _domicilio;
             private DateTime? _fechafactura; 
             private  Asociado _asociado;
             private  Idioma _idioma;
@@ -96,6 +97,19 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
                 this._anulada = value;
             }
         }
+
+        public virtual string Domicilio
+        {
+            get
+            {
+                return this._domicilio;
+            }
+            set
+            {
+                this._domicilio = value;
+            }
+        }
+
         // ''' <summary>
         // ''' Propiedad que asigna u obtiene xbanco
         // ''' </summary>
