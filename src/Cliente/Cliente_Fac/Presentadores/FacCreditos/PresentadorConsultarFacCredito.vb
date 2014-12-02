@@ -135,7 +135,16 @@ Namespace Presentadores.FacCreditos
 
                 'End If
 
-
+                'permiso para ocultar el boton de eliminar
+                If UsuarioLogeado.IPermiso IsNot Nothing Then
+                    If UsuarioLogeado.IPermiso = "T" Then
+                        Me._ventana.OcultarBtnEliminar = False 'tiene permiso
+                    Else
+                        Me._ventana.OcultarBtnEliminar = True
+                    End If
+                Else
+                    Me._ventana.OcultarBtnEliminar = True
+                End If
 
                 Me._ventana.FocoPredeterminado()
 

@@ -18,7 +18,7 @@ Namespace Ventanas.FacCreditos
 
 #Region "IConsultarFacCredito"
 
-        Public Property EstaCargada() As Boolean Implements IPaginaBasefac.EstaCargada
+        Public Property EstaCargada() As Boolean Implements IPaginaBaseFac.EstaCargada
             Get
                 Return Me._cargada
             End Get
@@ -27,13 +27,13 @@ Namespace Ventanas.FacCreditos
             End Set
         End Property
 
-        Public Sub FocoPredeterminado() Implements IPaginaBasefac.FocoPredeterminado
+        Public Sub FocoPredeterminado() Implements IPaginaBaseFac.FocoPredeterminado
             Me._txtId.Focus()
         End Sub
 
 
         Public WriteOnly Property HabilitarCampos() As Boolean Implements Contratos.FacCreditos.IConsultarFacCredito.HabilitarCampos
-            Set(ByVal value As Boolean)                
+            Set(ByVal value As Boolean)
                 'Me._txtId.IsEnabled = value
                 Me._txtCreditoSent.IsEnabled = value
                 Me._txtBCreditoBf.IsEnabled = value
@@ -44,7 +44,7 @@ Namespace Ventanas.FacCreditos
                 Me._cbxBanco.IsEnabled = value
                 Me._txtAsociado.IsEnabled = value
                 Me._cbxIdioma.IsEnabled = value
-                Me._cbxMoneda.IsEnabled = value                
+                Me._cbxMoneda.IsEnabled = value
             End Set
         End Property
 
@@ -346,5 +346,16 @@ Namespace Ventanas.FacCreditos
         Private Sub _lstResultadosFormas_MouseDoubleClick(sender As System.Object, e As System.Windows.Input.MouseButtonEventArgs)
             Me._presentador.ConsultarCobroSeleccionado()
         End Sub
+
+
+        Public WriteOnly Property OcultarBtnEliminar As Boolean Implements Contratos.FacCreditos.IConsultarFacCredito.OcultarBtnEliminar
+            Set(value As Boolean)
+                If value = True Then
+                    _btnEliminar.Visibility = Windows.Visibility.Hidden
+                Else
+                    _btnEliminar.Visibility = Windows.Visibility.Visible                    
+                End If
+            End Set
+        End Property
     End Class
 End Namespace

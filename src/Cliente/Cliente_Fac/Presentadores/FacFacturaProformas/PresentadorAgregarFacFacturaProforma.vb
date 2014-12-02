@@ -447,6 +447,14 @@ Namespace Presentadores.FacFacturaProformas
                     End If
                 End If
 
+
+                If Me._ventana.Mttotal = 0 Then
+                    Mouse.OverrideCursor = Nothing
+                    Me._ventana.MensajeError = "no se puede procesar la proforma dado que tiene monto cero"
+                    MessageBox.Show("no se puede procesar la proforma dado que tiene monto cero", "Error")
+                    Exit Sub
+                End If
+
                 FacFacturaProforma.Auto = "0"
                 FacFacturaProforma.Terrero = "3"
                 FacFacturaProforma.Anulada = "NO"
@@ -1476,12 +1484,13 @@ Namespace Presentadores.FacFacturaProformas
             Me._ventana.MensajeError = ""
         End Sub
 
-        Public Sub ElimDepartamentoServicios()
+        Public Sub ElimDepartamentoServicios()            
+
             If MessageBoxResult.Yes = MessageBox.Show("Esta seguro de Eliminar el detalle de la proforma? ", "Eliminar Detalle", MessageBoxButton.YesNo, MessageBoxImage.Question) Then
             Else
                 Mouse.OverrideCursor = Nothing
                 Exit Sub
-            End If
+            End If                        
 
             Dim FacFactuDetaProformas As List(Of FacFactuDetaProforma) = DirectCast(Me._ventana.ResultadosFacFactuDetaProforma, List(Of FacFactuDetaProforma))
             If FacFactuDetaProformas IsNot Nothing Then
@@ -1502,6 +1511,37 @@ Namespace Presentadores.FacFacturaProformas
 
                 Me._ventana.ResultadosFacFactuDetaProforma = Nothing
                 Me._ventana.ResultadosFacFactuDetaProforma = FacFactuDetaProformasaux
+
+                Dim moneda As Moneda = DirectCast(Me._ventana.Moneda, Moneda)
+                If moneda IsNot Nothing Then
+                    recalcular(moneda.Id)
+                Else
+                    recalcular("")
+                End If
+                Me._ventana.MensajeError = ""
+            End If
+        End Sub
+
+        Public Sub ElimDepartamentoServiciosTodos()
+
+            'If MessageBoxResult.Yes = MessageBox.Show("Esta seguro de Eliminar el detalle de la proforma? ", "Eliminar Detalle", MessageBoxButton.YesNo, MessageBoxImage.Question) Then
+            'Else
+            '    Mouse.OverrideCursor = Nothing
+            '    Exit Sub
+            'End If
+
+            Dim FacFactuDetaProformas As List(Of FacFactuDetaProforma) = DirectCast(Me._ventana.ResultadosFacFactuDetaProforma, List(Of FacFactuDetaProforma))
+            If FacFactuDetaProformas IsNot Nothing Then
+                Dim FacFactuDetaProformasaux As New List(Of FacFactuDetaProforma)
+                Dim j As Integer = 0
+                For i As Integer = 0 To FacFactuDetaProformas.Count - 1
+
+                    eliminar_operacion_detalle_tm_cdetalle(FacFactuDetaProformas.Item(i).Id)
+
+                Next
+
+                Me._ventana.ResultadosFacFactuDetaProforma = Nothing
+                ''Me._ventana.ResultadosFacFactuDetaProforma = FacFactuDetaProformasaux
 
                 Dim moneda As Moneda = DirectCast(Me._ventana.Moneda, Moneda)
                 If moneda IsNot Nothing Then
@@ -4110,7 +4150,14 @@ Namespace Presentadores.FacFacturaProformas
                 If DirectCast(Me._ventana.Asociado, Asociado) IsNot Nothing Then
                     If Me._ventana.Asociado.id <> Integer.MinValue Then
                         Dim asociado As Asociado = Me._asociadosServicios.ConsultarAsociadoConTodo(DirectCast(Me._ventana.Asociado, Asociado))
+                        Dim xnombreant As String = Me._ventana.NombreAsociado
                         Me._ventana.NombreAsociado = DirectCast(Me._ventana.Asociado, Asociado).Id & " - " & DirectCast(Me._ventana.Asociado, Asociado).Nombre
+
+                        If xnombreant <> Me._ventana.NombreAsociado Then
+                            ElimDepartamentoServiciosTodos()
+                        End If
+
+
                         'Me._ventana.IdAsociado = DirectCast(Me._ventana.Asociado, Asociado).Id
                         Dim idiomas As IList(Of Idioma) = Me._idiomasServicios.ConsultarTodos()
                         Me._ventana.Idiomas = idiomas

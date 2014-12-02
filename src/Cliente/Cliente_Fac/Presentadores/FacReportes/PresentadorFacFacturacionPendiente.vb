@@ -679,6 +679,22 @@ Namespace Presentadores.FacReportes
                                 End If
                             End If
                     End Select
+                    ' esto hay que verificarlo bien
+                    If total_z.Asociado.BPendienteStatement = False Then ' si este campo es falsee verificar si sele pone invoice o factura
+                        'si es español poner factura sino invoice
+                        If total_z.Asociado.Idioma.Id = "ES" Then
+                            structura.Invoice = "FACTURA  N°" & w_s
+                        Else
+                            structura.Invoice = "INVOICE  N°" & w_s
+                        End If
+                    Else
+                        structura.Invoice = "STATEMENT  N°" & w_s
+                    End If
+                    ' fin esto hay que verificarlo bien
+
+
+
+
 
                     If total_z.Codeti <> "" And total_z.Codeti IsNot Nothing Then
                         Dim textos(2) As String

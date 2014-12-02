@@ -44,5 +44,7 @@ Namespace Contratos.FacCreditos
 
         Property CobroSeleccionado() As Object
 
+        WriteOnly Property OcultarBtnEliminar As Boolean
+
     End Interface
 End Namespace
