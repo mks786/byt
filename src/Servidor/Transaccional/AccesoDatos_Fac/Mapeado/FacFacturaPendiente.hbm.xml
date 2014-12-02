@@ -8,6 +8,7 @@
     <property name="Anulada" column="IANULADA" type="string"/>
     <property name="FechaFactura" column="FFACTURA" type="DateTime"/>
     <many-to-one  name="Asociado" column="CASOCIADO" class="Asociado"/>
+    <property  name="Domicilio" column="DOMICILIO" type="string"/>
     <many-to-one  name="Idioma" column="CIDIOMA" class="Idioma"/>
     <many-to-one  name="Moneda" column="CMONEDA" class="Moneda"/>
     <property name="Caso" column="XCASO" type="string"/>

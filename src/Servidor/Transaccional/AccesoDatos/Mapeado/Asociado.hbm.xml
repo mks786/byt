@@ -30,8 +30,8 @@
     <property name="Alerta" column="IALERTA" type="char"/>
     <property name="AlarmaDescripcion" column="XALERTA" type="string"/>
     <property name="OrigenCliente" column="IORIGEN" type="string"/>
-    <property name="CartaDomicilio" column="CCARTAD" type="int"/>
-
+    <property name="CartaDomicilio" column="CCARTAD" type="int"/>    
+    
     <many-to-one name="Pais" class="Pais" lazy="false">
       <column name="CPAIS"/>
     </many-to-one>
