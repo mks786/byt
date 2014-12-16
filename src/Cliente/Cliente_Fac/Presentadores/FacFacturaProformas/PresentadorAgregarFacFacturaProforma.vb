@@ -218,11 +218,12 @@ Namespace Presentadores.FacFacturaProformas
                     End If                    
                     Me._ventana.PDescuento = 0
 
-                    Me._OrigenesProforma = Me._ListaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(New ListaDatosValores(Recursos.Etiquetas.cbiOrigenClienteAsociado))
-                    Me._ventana.OrigenesProforma = Me._OrigenesProforma
-                    Dim origenPredeterminado As ListaDatosValores = New ListaDatosValores()
-                    origenPredeterminado.Valor = "BOLET"
-                    Me._ventana.OrigenProforma = Me.BuscarListaDeDatosValores(Me._OrigenesProforma, origenPredeterminado)
+                    'Me._OrigenesProforma = Me._ListaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(New ListaDatosValores(Recursos.Etiquetas.cbiOrigenClienteAsociado))
+                    'Me._ventana.OrigenesProforma = Me._OrigenesProforma
+                    'Dim origenPredeterminado As ListaDatosValores = New ListaDatosValores()
+                    'origenPredeterminado.Valor = "BOLET"
+                    'Me._ventana.OrigenProforma = Me.BuscarListaDeDatosValores(Me._OrigenesProforma, origenPredeterminado)
+                    iorigen("BOLET")
 
                     'Dim bancos As IList(Of FacBanco) = Me._bancosServicios.ObtenerFacBancosFiltro(Nothing)()
                     'Dim primerabanco As New FacBanco()
@@ -249,6 +250,17 @@ Namespace Presentadores.FacFacturaProformas
                 Mouse.OverrideCursor = Nothing
             End Try
         End Sub
+
+
+        Public Sub iorigen(xorigen As String)
+            Me._OrigenesProforma = Me._ListaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(New ListaDatosValores(Recursos.Etiquetas.cbiOrigenClienteAsociado))
+            Me._ventana.OrigenesProforma = Me._OrigenesProforma
+            Dim origenPredeterminado As ListaDatosValores = New ListaDatosValores()
+            origenPredeterminado.Valor = xorigen
+            Me._ventana.OrigenProforma = Me.BuscarListaDeDatosValores(Me._OrigenesProforma, origenPredeterminado)
+        End Sub
+
+
 
         ''' <summary>
         ''' Método que realiza toda la lógica para agregar al Usuario dentro de la base de datos
@@ -677,7 +689,7 @@ Namespace Presentadores.FacFacturaProformas
                 Me._ventana.Asociados = Nothing
                 Mouse.OverrideCursor = Nothing
                 MessageBox.Show("Error: No Existe Asociado Relacionado a la Búsqueda")
-                Exit Sub                
+                Exit Sub
             End If
 
             Dim primerasociado As New Asociado()
@@ -1047,7 +1059,7 @@ Namespace Presentadores.FacFacturaProformas
                 If (departamento_servicio.Servicio.Itipo = "C") Then
                     Me._ventana.VerTipo = "3" ' Cantidad                    
                 Else
-                    VerTipoTraduccion()                    
+                    VerTipoTraduccion()
                 End If
             End If
 
@@ -1179,19 +1191,19 @@ Namespace Presentadores.FacFacturaProformas
 
 
 
-                            'If (TarifaEncontrada.BDesgMonto = True) Then
-                            '    If (departamento_servicio.Servicio.BDesgMonto1 = True) Then
-                            '        Me._ventana.VerTipo = "14"
-                            '    Else
-                            '        Me._ventana.VerTipo = "12"
-                            '    End If
-                            'Else
-                            '    If (departamento_servicio.Servicio.BDesgMonto2 = True) Then
-                            '        Me._ventana.VerTipo = "14"
-                            '    Else
-                            '        Me._ventana.VerTipo = "12"
-                            '    End If
-                            'End If
+                        'If (TarifaEncontrada.BDesgMonto = True) Then
+                        '    If (departamento_servicio.Servicio.BDesgMonto1 = True) Then
+                        '        Me._ventana.VerTipo = "14"
+                        '    Else
+                        '        Me._ventana.VerTipo = "12"
+                        '    End If
+                        'Else
+                        '    If (departamento_servicio.Servicio.BDesgMonto2 = True) Then
+                        '        Me._ventana.VerTipo = "14"
+                        '    Else
+                        '        Me._ventana.VerTipo = "12"
+                        '    End If
+                        'End If
 
 
                     End If
@@ -1277,7 +1289,7 @@ Namespace Presentadores.FacFacturaProformas
 
         Public Sub SeleccionarDetalle()
             If DirectCast(Me._ventana.FacFactuDetaProforma_Seleccionado, FacFactuDetaProforma) IsNot Nothing Then
-                Dim detalle_proforma As FacFactuDetaProforma = DirectCast(Me._ventana.FacFactuDetaProforma_Seleccionado, FacFactuDetaProforma)               
+                Dim detalle_proforma As FacFactuDetaProforma = DirectCast(Me._ventana.FacFactuDetaProforma_Seleccionado, FacFactuDetaProforma)
                 'Dim desglose_servicio As FacDesgloseServicio = DirectCast(Me._ventana.DesgloseServicio_Seleccionado, FacDesgloseServicio)
                 'Dim servicio As New FacServicio
                 If detalle_proforma IsNot Nothing Then
@@ -1438,7 +1450,7 @@ Namespace Presentadores.FacFacturaProformas
             End Try
 
 
-            
+
         End Sub
 
         Public Sub focus2()
@@ -1484,13 +1496,13 @@ Namespace Presentadores.FacFacturaProformas
             Me._ventana.MensajeError = ""
         End Sub
 
-        Public Sub ElimDepartamentoServicios()            
+        Public Sub ElimDepartamentoServicios()
 
             If MessageBoxResult.Yes = MessageBox.Show("Esta seguro de Eliminar el detalle de la proforma? ", "Eliminar Detalle", MessageBoxButton.YesNo, MessageBoxImage.Question) Then
             Else
                 Mouse.OverrideCursor = Nothing
                 Exit Sub
-            End If                        
+            End If
 
             Dim FacFactuDetaProformas As List(Of FacFactuDetaProforma) = DirectCast(Me._ventana.ResultadosFacFactuDetaProforma, List(Of FacFactuDetaProforma))
             If FacFactuDetaProformas IsNot Nothing Then
@@ -1672,7 +1684,7 @@ Namespace Presentadores.FacFacturaProformas
 
 
 
-                    
+
 
                     'CODIGO ORIGINAL COMENTADO - NO BORRAR
                     'If FacFactuDetaProformas(i).Impuesto = "T" Or FacFactuDetaProformas(i).Impuesto = "1" Then
@@ -1872,7 +1884,7 @@ Namespace Presentadores.FacFacturaProformas
                     Else
                         btasa = 0
                     End If
-                    If (moneda.Id = "BF") Then                       
+                    If (moneda.Id = "BF") Then
                         facfactudetaproforma.BDetalle = (tarifaservicios(0).Mont_Us * btasa)
                         facfactudetaproforma.Pu = (tarifaservicios(0).Mont_Us * btasa)
                     End If
@@ -1969,44 +1981,44 @@ Namespace Presentadores.FacFacturaProformas
                             End If
                             ctdoc = documento_Patente.Id
                         End If
-                        End If
+                    End If
 
-                        If (tipodoc_bf = True) Then
-                            facfactudetaproforma.BDetalleBf = monto_bf
-                            facfactudetaproforma.PuBf = monto_bf
+                    If (tipodoc_bf = True) Then
+                        facfactudetaproforma.BDetalleBf = monto_bf
+                        facfactudetaproforma.PuBf = monto_bf
 
-                            If (moneda.Id = "BF") Then
-                                facfactudetaproforma.BDetalle = monto_bf
-                                facfactudetaproforma.Pu = monto_bf
-                            End If
+                        If (moneda.Id = "BF") Then
+                            facfactudetaproforma.BDetalle = monto_bf
+                            facfactudetaproforma.Pu = monto_bf
                         End If
+                    End If
 
-                        If (moneda.Id = "BS") Then
-                            If (tipodoc_bs = True) Then
-                                facfactudetaproforma.BDetalle = monto_bs
-                                facfactudetaproforma.Pu = monto_bs
-                            End If
+                    If (moneda.Id = "BS") Then
+                        If (tipodoc_bs = True) Then
+                            facfactudetaproforma.BDetalle = monto_bs
+                            facfactudetaproforma.Pu = monto_bs
                         End If
+                    End If
 
-                        If (moneda.Id = "US") Then
-                            If (tipodoc_us = True) Then
-                                facfactudetaproforma.BDetalle = monto_us
-                                facfactudetaproforma.Pu = monto_us
-                            End If
+                    If (moneda.Id = "US") Then
+                        If (tipodoc_us = True) Then
+                            facfactudetaproforma.BDetalle = monto_us
+                            facfactudetaproforma.Pu = monto_us
                         End If
-                        ' fin si tipo de documento es true entro y evaluo
+                    End If
+                    ' fin si tipo de documento es true entro y evaluo
                 Else
-                        ' para las cantidades
-                        If IsNumeric(Me._ventana.Cantidad) Then
-                            v_pagina = Me._ventana.Cantidad
-                        Else
-                            'v_pagina = 0
-                        End If
+                    ' para las cantidades
+                    If IsNumeric(Me._ventana.Cantidad) Then
+                        v_pagina = Me._ventana.Cantidad
+                    Else
+                        'v_pagina = 0
+                    End If
 
-                        'lista_en = "Pagina=" & v_pagina & ";" 'aqui tengo que verificar como trabajar esta variable mas adelante                
-                        If v_pagina IsNot Nothing Then
-                            lista_en(11) = v_pagina
-                        End If
+                    'lista_en = "Pagina=" & v_pagina & ";" 'aqui tengo que verificar como trabajar esta variable mas adelante                
+                    If v_pagina IsNot Nothing Then
+                        lista_en(11) = v_pagina
+                    End If
                 End If
 
                 If (departamento_servicio.Servicio.BItraduc = True) Then
@@ -2865,8 +2877,8 @@ Namespace Presentadores.FacFacturaProformas
         Public Sub eliminar_operacion_detalle_tm_usuario()
             Dim FacOperacionDetalleTm As List(Of FacOperacionDetalleTm)
             Dim FacOperacionDetalleTmaux As New FacOperacionDetalleTm
-            Dim elim As Boolean = False            
-            FacOperacionDetalleTmaux.Usuario = UsuarioLogeado            
+            Dim elim As Boolean = False
+            FacOperacionDetalleTmaux.Usuario = UsuarioLogeado
             FacOperacionDetalleTm = _FacOperacionDetalleTmsServicios.ObtenerFacOperacionDetalleTmsFiltro(FacOperacionDetalleTmaux)
             If FacOperacionDetalleTm IsNot Nothing Then
                 For i As Integer = 0 To FacOperacionDetalleTm.Count - 1
@@ -4318,7 +4330,7 @@ Namespace Presentadores.FacFacturaProformas
 
         Public Sub adivinar(ByVal asociado As Asociado, ByVal moneda As Moneda)
 
-            
+
             If asociado.BActivo = True Then
                 If asociado.BAlerta = True Then
                     Dim mensaje As String = "ALERTA: " & asociado.AlarmaDescripcion
@@ -4378,6 +4390,14 @@ Namespace Presentadores.FacFacturaProformas
                     Me._ventana.MensajeError = String.Format("Se aplicara un descuento de {0}%", Descuento.ToString())
                     MessageBox.Show(String.Format("Se aplicara un descuento de {0}%", Descuento.ToString()))
                 End If
+
+                If asociado.OrigenCliente <> "BOLET" Then
+                    Me._ventana.MensajeError = String.Format("El origen es diferente de Bolet")
+                    MessageBox.Show(String.Format("El origen es diferente de Bolet"))
+                    iorigen(asociado.OrigenCliente)
+                End If
+
+
 
 
             Else

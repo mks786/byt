@@ -496,6 +496,14 @@ Namespace Presentadores.FacFacturaProformas
             End Try
         End Sub
 
+        Public Sub iorigen(xorigen As String)
+            Me._OrigenesProforma = Me._ListaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(New ListaDatosValores(Recursos.Etiquetas.cbiOrigenClienteAsociado))
+            Me._ventana.OrigenesProforma = Me._OrigenesProforma
+            Dim origenPredeterminado As ListaDatosValores = New ListaDatosValores()
+            origenPredeterminado.Valor = xorigen
+            Me._ventana.OrigenProforma = Me.BuscarListaDeDatosValores(Me._OrigenesProforma, origenPredeterminado)
+        End Sub
+
         Public Sub agregar_operacion_detalle_tm(ByVal factura As FacFacturaProforma)
             Dim FacOperacionDetalleProformaTm As List(Of FacOperacionDetaTmProforma)
             Dim FacOperacionDetalleProformaTmaux As New FacOperacionDetaTmProforma
@@ -4756,6 +4764,12 @@ Namespace Presentadores.FacFacturaProformas
                 If asociado.Descuento < Descuento And moneda.Id = "BF" Then
                     Me._ventana.MensajeError = String.Format("Se aplicara un descuento de {0}%", Descuento.ToString())
                     MessageBox.Show(String.Format("Se aplicara un descuento de {0}%", Descuento.ToString()))
+                End If
+
+                If asociado.OrigenCliente <> "BOLET" Then
+                    Me._ventana.MensajeError = String.Format("El origen es diferente de Bolet")
+                    MessageBox.Show(String.Format("El origen es diferente de Bolet"))
+                    iorigen(asociado.OrigenCliente)
                 End If
 
                 'If asociado.Descuento < 25 And moneda.Id = "BF" Then
