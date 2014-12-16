@@ -238,7 +238,7 @@ Namespace Ventanas.FacFacturas
                 Dim nom As String = DirectCast(sender, ByTTextBox).Name.ToString
                 If nom = "_txtIdAsociado" Or nom = "_txtNombreAsociado" Then
                     Me._presentador.BuscarAsociado2()
-                ElseIf nom = "_txtId" Then
+                Else
                     Me._presentador.Consultar()
                 End If
             End If

@@ -65,7 +65,7 @@
                     <Label Name="_lblOrigenProforma">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblOrigenProforma}"/>
                     </Label>
-                    <ComboBox Name="_cbxOrigenProforma" Width="130" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectionChanged="_cbxOrigenProforma_SelectionChanged">
+                    <ComboBox Name="_cbxOrigenProforma" Width="130"  KeyDown="_Consultar_Enter" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectionChanged="_cbxOrigenProforma_SelectionChanged">
                     </ComboBox>
                 </WrapPanel>
 
@@ -196,7 +196,7 @@
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="Fecha"/>
                     </Label>
-                    <DatePicker Name="_dpkFechaFactura" Width="150" Focusable="False" BorderBrush="{x:Null}" 
+                    <DatePicker Name="_dpkFechaFactura" Width="150" KeyDown="_Consultar_Enter"  Focusable="False" BorderBrush="{x:Null}" 
                                 SelectedDateChanged="_dpkFechaFactura_SelectedDateChanged">
                         <DatePicker.SelectedDate>
                             <Binding Path="FechaFactura" UpdateSourceTrigger="PropertyChanged"/>

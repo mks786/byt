@@ -263,7 +263,7 @@ Namespace Ventanas.FacFacturas
                     Me._presentador.BuscarAsociado2()
                 ElseIf nom = "_txtIdCarta" Or nom = "_txtNombreCarta" Or nom = "_dpkFechaCarta" Then
                     Me._presentador.BuscarCarta()
-                ElseIf nom = "_txtId" Then
+                Else
                     Me._presentador.Consultar()
                     validarCamposVacios()
                 End If

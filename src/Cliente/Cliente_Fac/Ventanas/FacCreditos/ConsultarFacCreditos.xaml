@@ -61,7 +61,7 @@
                     <Label>
                         <TextBlock Text="Credito"/>
                     </Label>
-                    <TextBox Name="_txtId" Width="130" MaxLength="12" Focusable="True" 
+                    <TextBox Name="_txtId" Width="130" KeyDown="_Consultar_Enter"  MaxLength="12" Focusable="True" 
                     ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True">
                         <TextBox.Text>
                             <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">
@@ -74,7 +74,7 @@
                     <Label>
                         <TextBlock Text="  "/>
                     </Label>
-                    <TextBox Name="_txtCreditoSent" Width="130" MaxLength="12" Focusable="True" 
+                    <TextBox Name="_txtCreditoSent" Width="130"  KeyDown="_Consultar_Enter" MaxLength="12" Focusable="True" 
                     ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="CreditoSent" UpdateSourceTrigger="PropertyChanged">
@@ -210,7 +210,7 @@
                     <Label>
                         <TextBlock Text="Idioma"/>
                     </Label>
-                    <ComboBox Grid.ColumnSpan="2" Name="_cbxIdioma" HorizontalAlignment="Left" Width="230" Height="20" 
+                    <ComboBox Grid.ColumnSpan="2" Name="_cbxIdioma" KeyDown="_Consultar_Enter"  HorizontalAlignment="Left" Width="230" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                     </ComboBox>
                 </WrapPanel>
@@ -218,7 +218,7 @@
                     <Label>
                         <TextBlock Text="Moneda"/>
                     </Label>
-                    <ComboBox Grid.ColumnSpan="2" Name="_cbxMoneda" HorizontalAlignment="Left" Width="230" Height="20" 
+                    <ComboBox Grid.ColumnSpan="2" Name="_cbxMoneda" KeyDown="_Consultar_Enter"  HorizontalAlignment="Left" Width="230" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                     </ComboBox>
                 </WrapPanel>
@@ -227,7 +227,7 @@
                     <Label>
                         <TextBlock Text="Concepto"/>
                     </Label>
-                    <TextBox Name="_txtConcepto" Width="150" MaxLength="225" Focusable="True" 
+                    <TextBox Name="_txtConcepto" Width="150" KeyDown="_Consultar_Enter"  MaxLength="225" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="Concepto" UpdateSourceTrigger="PropertyChanged">
@@ -243,7 +243,7 @@
                     <Label>
                         <TextBlock Text="Banco"/>
                     </Label>
-                    <ComboBox Grid.ColumnSpan="2" Name="_cbxBanco" HorizontalAlignment="Left" Width="230" Height="20" 
+                    <ComboBox Grid.ColumnSpan="2" Name="_cbxBanco" KeyDown="_Consultar_Enter"  HorizontalAlignment="Left" Width="230" Height="20" 
                               ItemsSource="{Binding}" SelectedIndex="0">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
@@ -264,7 +264,7 @@
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="Fecha Credito"/>
                     </Label>
-                    <DatePicker Name="_dpkFechaCredito" Width="150" Focusable="False" BorderBrush="{x:Null}">
+                    <DatePicker Name="_dpkFechaCredito" Width="150" KeyDown="_Consultar_Enter"  Focusable="False" BorderBrush="{x:Null}">
                         <DatePicker.SelectedDate>
                             <Binding Path="FechaCredito" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>

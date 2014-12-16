@@ -65,7 +65,7 @@
                     <Label Name="_lblOrigenProforma">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblOrigenProforma}"/>
                     </Label>
-                    <ComboBox Name="_cbxOrigenProforma" Width="130" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                    <ComboBox Name="_cbxOrigenProforma" Width="130" KeyDown="_Consultar_Enter"   ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
                     </ComboBox>
                 </WrapPanel>
 
@@ -194,7 +194,7 @@
                     <Label VerticalAlignment="Center" Width="60"  HorizontalContentAlignment="left">
                         <TextBlock Text="Fecha"/>
                     </Label>
-                    <DatePicker Name="_dpkFechaFactura" Width="150" Focusable="False" BorderBrush="{x:Null}">
+                    <DatePicker Name="_dpkFechaFactura" Width="150"  KeyDown="_Consultar_Enter"  Focusable="False" BorderBrush="{x:Null}">
                         <DatePicker.SelectedDate>
                             <Binding Path="FechaFactura" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
@@ -204,7 +204,7 @@
                     <Label VerticalAlignment="Center" Width="60"  HorizontalContentAlignment="left">
                         <TextBlock Text="Auto"/>
                     </Label>
-                    <ComboBox  Name="_cbxAuto" VerticalAlignment="Center" SelectedIndex="0"  Width="100" Height="20" HorizontalAlignment="Left">
+                    <ComboBox  Name="_cbxAuto" VerticalAlignment="Center"  KeyDown="_Consultar_Enter"  SelectedIndex="0"  Width="100" Height="20" HorizontalAlignment="Left">
                         <ComboBoxItem>
                             <TextBlock Text="{x:Static recurso:Etiquetas.cbiNinguno}"/>
                         </ComboBoxItem>
@@ -227,7 +227,7 @@
                     <Label Width="60">
                         <TextBlock Text="Inicial"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtInicial" Width="80" MaxLength="7" Focusable="True" CharacterCasing="Upper">
+                    <custom:ByTTextBox Name="_txtInicial"  KeyDown="_Consultar_Enter"  Width="80" MaxLength="7" Focusable="True" CharacterCasing="Upper">
                     </custom:ByTTextBox>
                 </WrapPanel>
 

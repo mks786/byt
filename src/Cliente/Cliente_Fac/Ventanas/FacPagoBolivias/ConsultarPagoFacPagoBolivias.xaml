@@ -148,7 +148,7 @@
                     <Label>
                         <TextBlock Text="Banco"/>
                     </Label>
-                    <ComboBox Grid.ColumnSpan="2" Name="_cbxBancoPag" HorizontalAlignment="Left" Width="230" Height="20" 
+                    <ComboBox Grid.ColumnSpan="2" Name="_cbxBancoPag" KeyDown="_Consultar_Enter"  HorizontalAlignment="Left" Width="230" Height="20" 
                               ItemsSource="{Binding}" SelectedIndex="0">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
@@ -168,7 +168,7 @@
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="Forma Pago"/>
                     </Label>
-                    <ComboBox Grid.ColumnSpan="2" Name="_cbxPagoPag" HorizontalAlignment="Left" Width="230" Height="20">
+                    <ComboBox Grid.ColumnSpan="2" Name="_cbxPagoPag" KeyDown="_Consultar_Enter"  HorizontalAlignment="Left" Width="230" Height="20">
                         <ComboBoxItem>
                             <TextBlock Text="{x:Static recurso:Etiquetas.cbiNinguno}"/>
                         </ComboBoxItem>
@@ -188,7 +188,7 @@
                     <Label>
                         <TextBlock Text="Numero Pago"/>
                     </Label>
-                    <TextBox Name="_txtNumeroPag" Width="230" MaxLength="200" Focusable="True" 
+                    <TextBox Name="_txtNumeroPag" Width="230" KeyDown="_Consultar_Enter"  MaxLength="200" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="NumeroPag" UpdateSourceTrigger="PropertyChanged">

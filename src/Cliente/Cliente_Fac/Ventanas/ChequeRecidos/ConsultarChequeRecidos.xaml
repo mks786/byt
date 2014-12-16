@@ -174,7 +174,7 @@
                     <Label>
                         <TextBlock Text="Banco"/>
                     </Label>
-                    <ComboBox Grid.ColumnSpan="2" Name="_cbxBanco" HorizontalAlignment="Left" Width="230" Height="20" 
+                    <ComboBox Grid.ColumnSpan="2" Name="_cbxBanco" KeyDown="_Consultar_Enter"  HorizontalAlignment="Left" Width="230" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="XBanco" SelectedIndex="0">
                     </ComboBox>
                 </WrapPanel>
@@ -183,7 +183,7 @@
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="Fecha Cheque"/>
                     </Label>
-                    <DatePicker Name="_dpkFecha" Width="150" Focusable="False" BorderBrush="{x:Null}">
+                    <DatePicker Name="_dpkFecha" Width="150" KeyDown="_Consultar_Enter"  Focusable="False" BorderBrush="{x:Null}">
                         <DatePicker.SelectedDate>
                             <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
@@ -194,7 +194,7 @@
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="Fecha Ingreso"/>
                     </Label>
-                    <DatePicker Name="_dpkFechaReg" Width="150" IsEnabled="False"  Focusable="False" BorderBrush="{x:Null}">
+                    <DatePicker Name="_dpkFechaReg" Width="150"  KeyDown="_Consultar_Enter" IsEnabled="False"  Focusable="False" BorderBrush="{x:Null}">
                         <DatePicker.SelectedDate>
                             <Binding Path="FechaReg" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
@@ -206,7 +206,7 @@
                     <Label>
                         <TextBlock Text="Monto"/>
                     </Label>
-                    <TextBox Name="_txtValor" Width="150" MaxLength="15" Focusable="True" 
+                    <TextBox Name="_txtValor" Width="150"  KeyDown="_Consultar_Enter" MaxLength="15" Focusable="True" 
                     ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="Monto" UpdateSourceTrigger="PropertyChanged">
@@ -222,7 +222,7 @@
                     <Label>
                         <TextBlock Text="Cheque"/>
                     </Label>
-                    <TextBox Name="_txtNCheque" Width="150" MaxLength="50" Focusable="True" 
+                    <TextBox Name="_txtNCheque" Width="150" KeyDown="_Consultar_Enter"  MaxLength="50" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="NCheque" UpdateSourceTrigger="PropertyChanged">

@@ -326,6 +326,10 @@ Namespace Ventanas.FacInternacionales
                 Dim nom As String = DirectCast(sender, ByTTextBox).Name.ToString
                 If nom = "_txtIdAsociado" Or nom = "_txtNombreAsociado" Then
                     Me._presentador.BuscarAsociado2()
+                ElseIf nom = "_txtIdAsociadoInt" Or nom = "_txtNombreAsociadoInt" Then
+                    Me._presentador.BuscarAsociadoInternacional()
+                Else
+                    Me._presentador.Consultar()
                 End If
             End If
         End Sub

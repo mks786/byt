@@ -45,7 +45,7 @@
                     <Label>
                         <TextBlock Text="Proforma"/>
                     </Label>
-                    <TextBox Name="_txtId" Width="130" MaxLength="12" Focusable="True" 
+                    <TextBox Name="_txtId" Width="130" KeyDown="_Consultar_Enter"  MaxLength="12" Focusable="True" 
                     ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True">
                         <TextBox.Text>
                             <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">
@@ -182,7 +182,7 @@
                     <Label VerticalAlignment="Top"  Width="110" HorizontalContentAlignment="Right">
                         <TextBlock  Width="110" Text="Fecha"/>
                     </Label>
-                    <DatePicker Name="_dpkFechaFactura" Width="150" Focusable="False" BorderBrush="{x:Null}" HorizontalAlignment="Left">
+                    <DatePicker Name="_dpkFechaFactura" KeyDown="_Consultar_Enter"  Width="150" Focusable="False" BorderBrush="{x:Null}" HorizontalAlignment="Left">
                         <DatePicker.SelectedDate>
                             <Binding Path="FechaFactura" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
@@ -195,7 +195,7 @@
                         <TextBlock Width="110" Text="F/Factura Inic."/>
                     </Label>
 
-                    <DatePicker Name="_dpkFecha1"  Width="150" Focusable="False" BorderBrush="{x:Null}" HorizontalAlignment="Left">
+                    <DatePicker Name="_dpkFecha1"  KeyDown="_Consultar_Enter" Width="150" Focusable="False" BorderBrush="{x:Null}" HorizontalAlignment="Left">
                         <DatePicker.SelectedDate>
                             <Binding Path="FechaDesde" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
@@ -209,7 +209,7 @@
                         <TextBlock Width="110" Text="F/Factura Fin"/>
                     </Label>
 
-                    <DatePicker Name="_dpkFecha2"  Width="150" Focusable="False" BorderBrush="{x:Null}" HorizontalAlignment="Left">
+                    <DatePicker Name="_dpkFecha2"  KeyDown="_Consultar_Enter" Width="150" Focusable="False" BorderBrush="{x:Null}" HorizontalAlignment="Left">
                         <DatePicker.SelectedDate>
                             <Binding Path="FechaHasta" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
@@ -249,9 +249,9 @@
 
                         <custom:ByTTextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3"  Name="_txtAsociadoInt" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200" Text="" MaxLength="255"  Height="20" FontSize="10" IsReadOnly="True" BorderBrush="LightGreen" MouseDoubleClick="_txtAsociadoInt_MouseDoubleClick"></custom:ByTTextBox>
 
-                        <custom:ByTTextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4" Name="_txtIdAsociadoInt" VerticalAlignment="Center" HorizontalAlignment="Left" Width="80" MaxLength="8" SoloNumero="True" Visibility="Collapsed"  ></custom:ByTTextBox>
+                        <custom:ByTTextBox Grid.Column="1" Grid.Row="0" KeyDown="_Consultar_Enter"  Grid.ColumnSpan="4" Name="_txtIdAsociadoInt" VerticalAlignment="Center" HorizontalAlignment="Left" Width="80" MaxLength="8" SoloNumero="True" Visibility="Collapsed"  ></custom:ByTTextBox>
 
-                        <custom:ByTTextBox Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="4" Name="_txtNombreAsociadoInt" VerticalAlignment="Center" HorizontalAlignment="Left" Width="140" MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
+                        <custom:ByTTextBox Grid.Column="3" Grid.Row="0" KeyDown="_Consultar_Enter"  Grid.ColumnSpan="4" Name="_txtNombreAsociadoInt" VerticalAlignment="Center" HorizontalAlignment="Left" Width="140" MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
 
                         <Label Name="_lblIdAsociadoIntFiltrar" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
@@ -297,7 +297,7 @@
                     <Label>
                         <TextBlock Text="Numero Factura Asoc Internacional:"/>
                     </Label>
-                    <TextBox Name="_txtNumeroFacInt" Width="130" MaxLength="12" Focusable="True" IsEnabled="True">
+                    <TextBox Name="_txtNumeroFacInt" KeyDown="_Consultar_Enter"  Width="130" MaxLength="12" Focusable="True" IsEnabled="True">
                         <TextBox.Text>
                             <Binding Path="NumeroFacInt" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
@@ -312,7 +312,7 @@
                     <Label>
                         <TextBlock Text="Pais Asoc Internacional:"/>
                     </Label>
-                    <ComboBox Height="20" Name="_CbxPaisAsocInt" HorizontalAlignment="Left" Width="195"
+                    <ComboBox Height="20" Name="_CbxPaisAsocInt" KeyDown="_Consultar_Enter"  HorizontalAlignment="Left" Width="195"
                               ItemsSource="{Binding}" DisplayMemberPath="NombreEspanol">
                     </ComboBox>
                 </WrapPanel>
@@ -321,7 +321,7 @@
                     <Label>
                         <TextBlock Text="Detalle Asoc Internacional:"/>
                     </Label>
-                    <TextBox Name="_txtDetalleFacAsocInt" Width="178" MaxLength="500" Focusable="True" IsEnabled="True">
+                    <TextBox Name="_txtDetalleFacAsocInt" Width="178"  KeyDown="_Consultar_Enter" MaxLength="500" Focusable="True" IsEnabled="True">
                         <TextBox.Text>
                             <Binding Path="DetalleFacAsocInt" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>

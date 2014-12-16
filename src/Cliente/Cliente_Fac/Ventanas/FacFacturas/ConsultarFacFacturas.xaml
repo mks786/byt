@@ -191,7 +191,7 @@
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="Fecha"/>
                     </Label>
-                    <DatePicker Name="_dpkFechaFactura" Width="150" Focusable="False" BorderBrush="{x:Null}"
+                    <DatePicker Name="_dpkFechaFactura" KeyDown="_Consultar_Enter"  Width="150" Focusable="False" BorderBrush="{x:Null}"
                                 SelectedDateChanged="_dpkFechaFactura_SelectedDateChanged">
                         <DatePicker.SelectedDate>
                             <Binding Path="FechaFactura" UpdateSourceTrigger="PropertyChanged"/>
@@ -284,7 +284,7 @@
                     <Label VerticalAlignment="Top" HorizontalContentAlignment="Left">
                         <TextBlock Text="Fecha Seniat: " VerticalAlignment="Center" />
                     </Label>
-                    <DatePicker  Name="_dpkFechaSeniat" Width="100"  Height="23"  IsEnabled="True" Focusable="False" BorderBrush="{x:Null}"
+                    <DatePicker  Name="_dpkFechaSeniat" Width="100"  Height="23"  KeyDown="_Consultar_Enter"  IsEnabled="True" Focusable="False" BorderBrush="{x:Null}"
                                  HorizontalAlignment="Left" SelectedDateChanged="_dpkFechaSeniat_SelectedDateChanged">
                         <DatePicker.SelectedDate>
                             <Binding Path="FechaSeniat" UpdateSourceTrigger="PropertyChanged"/>
@@ -331,7 +331,7 @@
                     <Label  VerticalAlignment="Top" HorizontalContentAlignment="Right" Margin="0,0,0,0">
                         <TextBlock Text="{x:Static recurso:Etiquetas.faclblMedioEnvio}" VerticalAlignment="Center"/>
                     </Label>
-                    <ComboBox Name="_cbxDetalleEnvio" VerticalAlignment="Center" HorizontalAlignment="Left" Width="190" Height="20" 
+                    <ComboBox Name="_cbxDetalleEnvio" VerticalAlignment="Center" KeyDown="_Consultar_Enter"  HorizontalAlignment="Left" Width="190" Height="20" 
                               ItemsSource="{Binding}" SelectedIndex="0" FontSize="9" SelectionChanged="_cbxDetalleEnvio_SelectionChanged">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
@@ -348,7 +348,7 @@
                     </ComboBox>
                 </WrapPanel>
 
-                <WrapPanel Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,5,0,0">
+                <WrapPanel Orientation="Horizontal" Height="20"  KeyDown="_Consultar_Enter" HorizontalAlignment="Left" Margin="0,5,0,0">
                     <Label Width="70"  HorizontalContentAlignment="left" VerticalAlignment="Top">
                         <TextBlock Text="Guias: "  VerticalAlignment="Center"/>
                     </Label>

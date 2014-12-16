@@ -173,7 +173,7 @@
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="Fecha Banco"/>
                     </Label>
-                    <DatePicker Name="_dpkFechaBanco" Width="230" Focusable="False" BorderBrush="{x:Null}">
+                    <DatePicker Name="_dpkFechaBanco" Width="230" KeyDown="_Consultar_Enter"  Focusable="False" BorderBrush="{x:Null}">
                         <DatePicker.SelectedDate>
                             <Binding Path="FechaBanco" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
@@ -184,7 +184,7 @@
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="Banco"/>
                     </Label>
-                    <ComboBox Grid.ColumnSpan="2" Name="_cbxBancoRec" HorizontalAlignment="Left" Width="230" Height="20" 
+                    <ComboBox Grid.ColumnSpan="2" Name="_cbxBancoRec" KeyDown="_Consultar_Enter"  HorizontalAlignment="Left" Width="230" Height="20" 
                               ItemsSource="{Binding}" SelectedIndex="0">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
@@ -205,7 +205,7 @@
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="Tipo Pago"/>
                     </Label>
-                    <ComboBox Grid.ColumnSpan="2" Name="_cbxPagoRec" HorizontalAlignment="Left" Width="230" Height="20">
+                    <ComboBox Grid.ColumnSpan="2" Name="_cbxPagoRec" KeyDown="_Consultar_Enter"  HorizontalAlignment="Left" Width="230" Height="20">
                         <ComboBoxItem>
                             <TextBlock Text="{x:Static recurso:Etiquetas.cbiNinguno}"/>
                         </ComboBoxItem>
@@ -222,7 +222,7 @@
                     <Label>
                         <TextBlock Text="Descripcion"/>
                     </Label>
-                    <TextBox Name="_txtDescripcionRec" Width="230" MaxLength="200" Focusable="True" 
+                    <TextBox Name="_txtDescripcionRec" KeyDown="_Consultar_Enter"  Width="230" MaxLength="200" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="DescripcionRec" UpdateSourceTrigger="PropertyChanged">

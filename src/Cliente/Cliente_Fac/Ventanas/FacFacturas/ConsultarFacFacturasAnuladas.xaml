@@ -190,7 +190,7 @@
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="Fecha"/>
                     </Label>
-                    <DatePicker Name="_dpkFechaFactura" Width="150" Focusable="False" BorderBrush="{x:Null}"
+                    <DatePicker Name="_dpkFechaFactura" Width="150" KeyDown="_Consultar_Enter"  Focusable="False" BorderBrush="{x:Null}"
                                 SelectedDateChanged="_dpkFechaFactura_SelectedDateChanged">
                         <DatePicker.SelectedDate>
                             <Binding Path="FechaFactura" UpdateSourceTrigger="PropertyChanged"/>

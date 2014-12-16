@@ -226,6 +226,8 @@ Namespace Ventanas.FacPagoBolivias
                 Dim nom As String = DirectCast(sender, ByTTextBox).Name.ToString
                 If nom = "_txtIdAsociado" Or nom = "_txtNombreAsociado" Then
                     Me._presentador.BuscarAsociado2()
+                Else
+                    Me._presentador.Consultar()
                 End If
             End If
         End Sub
