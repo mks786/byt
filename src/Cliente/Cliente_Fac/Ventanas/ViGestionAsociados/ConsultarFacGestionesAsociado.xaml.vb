@@ -135,8 +135,8 @@ Namespace Ventanas.ViGestionAsociados
         End Sub
 
         Private Sub _btnRegresar_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
-            'Me._presentador.Regresar()
-            Me._presentador.RegresarVentanaPadre()
+            Me._presentador.Regresar()
+            'Me._presentador.RegresarVentanaPadre()
         End Sub
 
         'Private Sub _btnConsultar_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
