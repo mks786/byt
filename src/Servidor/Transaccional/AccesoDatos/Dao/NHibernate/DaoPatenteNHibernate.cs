@@ -294,6 +294,14 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                         filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteReferenciaInteresadoInternacional, Patente.ReferenciaInteresadoInternacional.ToUpper());
                         variosFiltros = true;
                     }
+
+                    if ((null != Patente.AsociadoInternacional) && (Patente.AsociadoInternacional.Id != int.MinValue))
+                    {
+                        if (variosFiltros)
+                            filtro += " and ";
+                        filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteIdAsociadoInternacional, Patente.AsociadoInternacional.Id);
+                        variosFiltros = true;
+                    }
                 }
 
                 #endregion

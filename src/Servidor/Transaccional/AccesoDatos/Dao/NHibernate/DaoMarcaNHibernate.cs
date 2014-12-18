@@ -397,6 +397,15 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                         filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaReferenciaInteresadoInternacional, marca.ReferenciaInteresadoInternacional.ToUpper());
                         variosFiltros = true;
                     }
+
+                    if ((null != marca.AsociadoInternacional) && (marca.AsociadoInternacional.Id != int.MinValue))
+                    {
+                        if (variosFiltros)
+                            filtro += " and ";
+                        filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaIdAsociadoInternacional, marca.AsociadoInternacional.Id);
+                        variosFiltros = true;
+                    }
+
                 }
 
                 #endregion

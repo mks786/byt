@@ -322,7 +322,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select m from Marca m left join fetch m.Asociado as asociado left join fetch m.Agente as agente left join fetch m.Corresponsal as corresponsal left join fetch m.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as idioma left join fetch m.BoletinConcesion as boletinC left join fetch m.BoletinPublicacion as boletinP left join fetch m.BoletinOrdenPublicacion as boletinO left join fetch m.Nacional as nacional left join fetch m.Internacional as internacional left joi [resto de la cadena truncado]&quot;;.
+        ///   Busca una cadena traducida similar a Select m from Marca m left join fetch m.Asociado as asociado left join fetch m.AsociadoInternacional as asociadointernacional left join fetch m.Agente as agente left join fetch m.Corresponsal as corresponsal left join fetch m.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as idioma left join fetch m.BoletinConcesion as boletinC left join fetch m.BoletinPublicacion as boletinP left join fetch m.BoletinOrdenPublicacion as boletinO left join fetch m.Nacional as n [resto de la cadena truncado]&quot;;.
         /// </summary>
         public static string CabeceraObtenerMarca {
             get {
@@ -376,7 +376,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select p from Patente p left join fetch p.Asociado as asociado left join fetch p.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as pais left join fetch p.BoletinConcesion as boletinC left join fetch p.BoletinPublicacion as boletinP left join fetch p.BoletinOrdenPublicacion as boletinO left join fetch p.Anualidades as anualidades left join fetch p.Agente as agente left join fetch p.TipoEstado as tipoEstado left join fetch p.Servicio as servicio left join fetch  [resto de la cadena truncado]&quot;;.
+        ///   Busca una cadena traducida similar a Select p from Patente p left join fetch p.Asociado as asociado left join fetch  p.AsociadoInternacional as asociadointernacional left join fetch p.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as pais left join fetch p.BoletinConcesion as boletinC left join fetch p.BoletinPublicacion as boletinP left join fetch p.BoletinOrdenPublicacion as boletinO left join fetch p.Anualidades as anualidades left join fetch p.Agente as agente left join fetch p.TipoEstado as  [resto de la cadena truncado]&quot;;.
         /// </summary>
         public static string CabeceraObtenerPatente {
             get {
@@ -1726,6 +1726,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a asociadointernacional.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerMarcaIdAsociadoInternacional {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMarcaIdAsociadoInternacional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a interesado.Id = {0}.
         /// </summary>
         public static string FiltroObtenerMarcaIdInteresado {
@@ -2235,6 +2244,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerPatenteIdAsociado {
             get {
                 return ResourceManager.GetString("FiltroObtenerPatenteIdAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a asociadointernacional.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerPatenteIdAsociadoInternacional {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPatenteIdAsociadoInternacional", resourceCulture);
             }
         }
         
