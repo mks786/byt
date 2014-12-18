@@ -51,13 +51,13 @@
                     </Label>
                     <custom:ByTTextBox Name="_txtId" Width="130" KeyDown="_Consultar_Enter" MaxLength="12" Focusable="True" 
                     ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True">
-                        <custom:ByTTextBox.Text>
+                        <TextBox.Text>
                             <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
 
                                 </Binding.ValidationRules>
                             </Binding>
-                        </custom:ByTTextBox.Text>
+                        </TextBox.Text>
                     </custom:ByTTextBox>
                 </WrapPanel>
 
@@ -167,13 +167,13 @@
                     </Label>
                     <custom:ByTTextBox Name="_txtConcepto" Width="150" MaxLength="225" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}">
-                        <custom:ByTTextBox.Text>
+                        <TextBox.Text>
                             <Binding Path="Concepto" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
                                     
                                 </Binding.ValidationRules>
                             </Binding>
-                        </custom:ByTTextBox.Text>
+                        </TextBox.Text>
                     </custom:ByTTextBox>
                 </WrapPanel>-->
 

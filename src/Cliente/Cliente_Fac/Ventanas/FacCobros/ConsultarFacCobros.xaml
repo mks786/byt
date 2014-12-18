@@ -53,7 +53,7 @@
                     <Label>
                         <TextBlock Text="Cobro"/>
                     </Label>
-                    <TextBox Name="_txtId" Width="130"  KeyDown="_Consultar_Enter" MaxLength="12" Focusable="True" 
+                    <custom:ByTTextBox Name="_txtId" Width="130"  KeyDown="_Consultar_Enter" MaxLength="12" Focusable="True" 
                     ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True">
                         <TextBox.Text>
                             <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">
@@ -62,7 +62,7 @@
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
-                    </TextBox>
+                    </custom:ByTTextBox>
                 </WrapPanel>
 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
@@ -166,7 +166,7 @@
                     <Label>
                         <TextBlock Text="Concepto"/>
                     </Label>
-                    <TextBox Name="_txtConcepto" Width="150" MaxLength="225" Focusable="True" 
+                    <custom:ByTTextBox Name="_txtConcepto" Width="150" MaxLength="225" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="Concepto" UpdateSourceTrigger="PropertyChanged">
@@ -175,7 +175,7 @@
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
-                    </TextBox>
+                   </custom:ByTTextBox>
                 </WrapPanel>-->
 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">

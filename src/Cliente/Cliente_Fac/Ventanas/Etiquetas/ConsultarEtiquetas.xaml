@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="800"
       xmlns:recurso="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Recursos" Loaded="Page_Loaded">
@@ -40,7 +41,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
-                    <TextBox Name="_txtId" Width="150" MaxLength="4" Focusable="True" 
+                    <custom:ByTTextBox Name="_txtId" Width="150" MaxLength="4" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">
@@ -50,14 +51,14 @@
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
-                    </TextBox>
+                   </custom:ByTTextBox>
                 </WrapPanel>
 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="Detalle # 1"/>
                     </Label>
-                    <TextBox Name="_txtDescripcion1" Width="150" MaxLength="300" Focusable="True" 
+                    <custom:ByTTextBox Name="_txtDescripcion1" Width="150" MaxLength="300" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="Descripcion1" UpdateSourceTrigger="PropertyChanged">
@@ -66,14 +67,14 @@
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
-                    </TextBox>
+                   </custom:ByTTextBox>
                 </WrapPanel>
 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="Detalle # 2"/>
                     </Label>
-                    <TextBox Name="_txtDescripcion2" Width="150" MaxLength="300" Focusable="True" 
+                    <custom:ByTTextBox Name="_txtDescripcion2" Width="150" MaxLength="300" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="Descripcion2" UpdateSourceTrigger="PropertyChanged">
@@ -82,7 +83,7 @@
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
-                    </TextBox>
+                   </custom:ByTTextBox>
                 </WrapPanel>
 
                 <Separator Margin="0,5,0,5"/>

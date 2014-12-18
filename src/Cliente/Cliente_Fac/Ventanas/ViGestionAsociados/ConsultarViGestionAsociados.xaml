@@ -121,17 +121,17 @@
                     <Label Name="_lblIdAsociado"  HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
-                    <TextBox  Grid.ColumnSpan="4" Name="_txtIdAsociado" VerticalAlignment="Center" 
+                    <custom:ByTTextBox  Grid.ColumnSpan="4" Name="_txtIdAsociado" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="45" MaxLength="255"  Visibility="Collapsed"  ></TextBox>
 
                     <Label Name="_lblNombreAsociado"  HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                     </Label>
 
-                    <TextBox  Grid.ColumnSpan="4" Name="_txtNombreAsociado" VerticalAlignment="Center" 
+                    <custom:ByTTextBox  Grid.ColumnSpan="4" Name="_txtNombreAsociado" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="177" MaxLength="255" Visibility="Collapsed"></TextBox>
 
-                    <TextBox  Grid.ColumnSpan="4"  Name="_txtAsociado" VerticalAlignment="Center"
+                    <custom:ByTTextBox  Grid.ColumnSpan="4"  Name="_txtAsociado" VerticalAlignment="Center"
                          HorizontalAlignment="Left" Width="300" Text="" MaxLength="255" GotFocus="_txtAsociado_GotFocus" GotKeyboardFocus="_txtAsociado_GotFocus"  ></TextBox>
                     <Button Name="_btnConsultarAsociado" Width="80" IsDefault="False"  Height="25" HorizontalAlignment="Right" Click="_btnConsultarAsociado_Click" Visibility="Collapsed">
                         <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
@@ -160,7 +160,7 @@
                     <Label Visibility="Hidden">
                         <TextBlock Text="Cantidad"/>
                     </Label>
-                    <TextBox Name="_txtNCantidad" Width="150" MaxLength="10" Focusable="True" 
+                    <custom:ByTTextBox Name="_txtNCantidad" Width="150" MaxLength="10" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" Visibility="Hidden">
                         <TextBox.Text>
                             <Binding Path="NCantidad" UpdateSourceTrigger="PropertyChanged">
@@ -169,7 +169,7 @@
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
-                    </TextBox>
+                   </custom:ByTTextBox>
                 </WrapPanel>
 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
@@ -192,7 +192,7 @@
                     <Label>
                         <TextBlock Text="Moneda"/>
                     </Label>
-                    <TextBox Name="_txtMoneda" Width="150" MaxLength="2" Focusable="True" 
+                    <custom:ByTTextBox Name="_txtMoneda" Width="150" MaxLength="2" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="Moneda" UpdateSourceTrigger="PropertyChanged">
@@ -201,14 +201,14 @@
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
-                    </TextBox>
+                   </custom:ByTTextBox>
                 </WrapPanel>
 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label Visibility="Hidden">
                         <TextBlock Text="Saldo"/>
                     </Label>
-                    <TextBox Name="_txtNSaldo" Width="150" MaxLength="2" Focusable="True" 
+                    <custom:ByTTextBox Name="_txtNSaldo" Width="150" MaxLength="2" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" Visibility="Hidden">
                         <TextBox.Text>
                             <Binding Path="NSaldo" UpdateSourceTrigger="PropertyChanged">
@@ -217,7 +217,7 @@
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
-                    </TextBox>
+                   </custom:ByTTextBox>
                 </WrapPanel>
 
                 <Separator Margin="0,5,0,5"/>

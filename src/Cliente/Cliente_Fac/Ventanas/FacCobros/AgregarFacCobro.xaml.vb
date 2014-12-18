@@ -169,6 +169,15 @@ Namespace Ventanas.FacCobros
             Me._txtXForma.Visibility = Windows.Visibility.Collapsed
             Me._btnmodificarforma.Visibility = Windows.Visibility.Collapsed
             Me._btnsalirmodificarforma.Visibility = Windows.Visibility.Collapsed
+            Me._btnIrCredito.Visibility = Windows.Visibility.Collapsed
+            'Me._presentador.AgregarForma()
+        End Sub
+
+
+        Private Sub _btnIrCredito_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
+            ' If Me._lstResultados.SelectedItem IsNot Nothing Then
+            Me._presentador.IrConsultarFacCredito()
+            ' End If
             'Me._presentador.AgregarForma()
         End Sub
 
@@ -192,6 +201,7 @@ Namespace Ventanas.FacCobros
             Me._txtXForma.Visibility = Windows.Visibility.Visible
             Me._btnmodificarforma.Visibility = Windows.Visibility.Visible
             Me._btnsalirmodificarforma.Visibility = Windows.Visibility.Visible
+            Me._btnIrCredito.Visibility = Windows.Visibility.Visible
             Me._presentador.MostrarForma()
         End Sub
 
@@ -201,6 +211,7 @@ Namespace Ventanas.FacCobros
             Me._txtXForma.Visibility = Windows.Visibility.Collapsed
             Me._btnmodificarforma.Visibility = Windows.Visibility.Collapsed
             Me._btnsalirmodificarforma.Visibility = Windows.Visibility.Collapsed
+            Me._btnIrCredito.Visibility = Windows.Visibility.Collapsed
             Me._presentador.ModificarForma()
         End Sub
 

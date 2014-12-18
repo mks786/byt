@@ -62,7 +62,7 @@
                     <Label Width="100">
                         <TextBlock Text="No Gestion"/>
                     </Label>
-                    <TextBox Name="_txtId" Width="80" MaxLength="7" KeyDown="_Consultar_Enter"  Focusable="True" 
+                    <custom:ByTTextBox Name="_txtId" Width="80" MaxLength="7" KeyDown="_Consultar_Enter"  Focusable="True" 
                     ToolTip="{Binding ElementName=_lstId, Path=(Validation.Errors)[0].ErrorContent}" IsEnabled="True" IsReadOnly="False">
                         <TextBox.Text>
                             <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">
@@ -71,7 +71,7 @@
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
-                    </TextBox>
+                    </custom:ByTTextBox>
                     <Label>
                         <TextBlock Text="  "/>
                     </Label>

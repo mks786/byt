@@ -188,7 +188,7 @@
                     <Label>
                         <TextBlock Text="Numero Pago"/>
                     </Label>
-                    <TextBox Name="_txtNumeroPag" Width="230" KeyDown="_Consultar_Enter"  MaxLength="200" Focusable="True" 
+                    <custom:ByTTextBox Name="_txtNumeroPag" Width="230" KeyDown="_Consultar_Enter"  MaxLength="200" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="NumeroPag" UpdateSourceTrigger="PropertyChanged">
@@ -197,7 +197,7 @@
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
-                    </TextBox>
+                   </custom:ByTTextBox>
                 </WrapPanel>
                 <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">

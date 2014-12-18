@@ -2,7 +2,8 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="800"
       xmlns:recurso="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Recursos" Loaded="Page_Loaded">
@@ -64,7 +65,7 @@
                     <Label>
                         <TextBlock Text="Impuesto"/>
                     </Label>
-                    <TextBox Name="_txtValor" Width="150" MaxLength="2" Focusable="True" 
+                    <custom:ByTTextBox Name="_txtValor" Width="150" MaxLength="2" Focusable="True" 
                     ToolTip="{Binding ElementName=_dpkId, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="Valor" UpdateSourceTrigger="PropertyChanged">
@@ -73,7 +74,7 @@
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
-                    </TextBox>
+                   </custom:ByTTextBox>
                 </WrapPanel>
 
                 <Separator Margin="0,5,0,5"/>

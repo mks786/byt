@@ -14,6 +14,7 @@ Imports Trascend.Bolet.Cliente.Presentadores
 Imports Trascend.Bolet.Cliente.Ventanas.Principales
 Imports Diginsoft.Bolet.Cliente.Fac.Ventanas.FacFacturas
 Imports Trascend.Bolet.Cliente.Ventanas.Asociados
+Imports Diginsoft.Bolet.Cliente.Fac.Ventanas.FacCreditos
 
 Namespace Presentadores.FacCobros
     Class PresentadorConsultarFacCobro
@@ -1040,5 +1041,33 @@ Namespace Presentadores.FacCobros
 
         End Sub
 
+
+
+        ''' <summary>
+        ''' Método que invoca una nueva página "ConsultarFacCredito" y la instancia con el objeto seleccionado
+        ''' </summary>
+        Public Sub IrConsultarFacCredito()
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+
+            Dim FacForma As FacForma = DirectCast(Me._ventana.FacFormaSeleccionada, FacForma)            
+            If FacForma.Credito IsNot Nothing Then
+                Me.Navegar(New ConsultarFacCredito(FacForma.Credito))
+            Else                            
+                MessageBox.Show("Debe existir una credito", "Error", MessageBoxButton.OK)
+                Exit Sub
+            End If
+
+
+            'Me.Navegar(New ConsultarFacCredito())
+            '#Region "trace"
+            If ConfigurationManager.AppSettings("ambiente").ToString().Equals("desarrollo") Then
+                logger.Debug("Saliendo del metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
+            End If
+            '#End Region
+        End Sub
     End Class
 End Namespace

@@ -91,13 +91,13 @@
                         </Label>
                         <custom:ByTTextBox Grid.Column="2" Grid.Row="0"  Name="_txtAnulada" Width="50"  Height="20" MaxLength="2" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left">
-                            <custom:ByTTextBox.Text>
+                            <TextBox.Text>
                                 <Binding Path="Anulada" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
                                         <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
                                     </Binding.ValidationRules>
                                 </Binding>
-                            </custom:ByTTextBox.Text>
+                            </TextBox.Text>
                         </custom:ByTTextBox>
 
                         <WrapPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">
@@ -106,13 +106,13 @@
                             </Label>
                             <custom:ByTTextBox  Name="_txtProforma" Width="90"  Height="20" MaxLength="100" Focusable="True" 
                        HorizontalAlignment="Left" IsReadOnly="True">
-                                <custom:ByTTextBox.Text>
+                                <TextBox.Text>
                                     <Binding Path="Proforma.Id" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
                                             <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
                                         </Binding.ValidationRules>
                                     </Binding>
-                                </custom:ByTTextBox.Text>
+                                </TextBox.Text>
                             </custom:ByTTextBox>
                         </WrapPanel>
 
@@ -145,13 +145,13 @@
                             </Label>
                             <custom:ByTTextBox Name="_txtCodeti"  Height="20" Width="100" MaxLength="100" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left" IsReadOnly="True">
-                                <custom:ByTTextBox.Text>
+                                <TextBox.Text>
                                     <Binding Path="Codeti" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
                                             <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
                                         </Binding.ValidationRules>
                                     </Binding>
-                                </custom:ByTTextBox.Text>
+                                </TextBox.Text>
                             </custom:ByTTextBox>
                         </WrapPanel>
 
@@ -161,13 +161,13 @@
                             </Label>
                             <custom:ByTTextBox Name="_txtControl"  Height="20" Width="100" MaxLength="100" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left" IsReadOnly="True">
-                                <custom:ByTTextBox.Text>
+                                <TextBox.Text>
                                     <Binding Path="Control" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
                                             <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
                                         </Binding.ValidationRules>
                                     </Binding>
-                                </custom:ByTTextBox.Text>
+                                </TextBox.Text>
                             </custom:ByTTextBox>
                         </WrapPanel>
 
@@ -186,13 +186,13 @@
                             </Label>
                             <custom:ByTTextBox Name="_txtCaso" Width="256"  Height="40" MaxLength="100" TextWrapping="Wrap"  Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left" >
-                                <custom:ByTTextBox.Text>
+                                <TextBox.Text>
                                     <Binding Path="Caso" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
                                             <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
                                         </Binding.ValidationRules>
                                     </Binding>
-                                </custom:ByTTextBox.Text>
+                                </TextBox.Text>
                             </custom:ByTTextBox>
                         </WrapPanel>
 
@@ -202,13 +202,13 @@
                             </Label>
                             <custom:ByTTextBox Name="_txtInicial" Width="30"  Height="20" MaxLength="40" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left" IsReadOnly="True" IsEnabled="True">
-                                <custom:ByTTextBox.Text>
+                                <TextBox.Text>
                                     <Binding Path="Inicial" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
                                             <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
                                         </Binding.ValidationRules>
                                     </Binding>
-                                </custom:ByTTextBox.Text>
+                                </TextBox.Text>
                             </custom:ByTTextBox>
                             <custom:ByTTextBox Name="_txtDepartamento" Width="70"  Height="20" MaxLength="100" Focusable="True" 
                   HorizontalAlignment="Left" IsReadOnly="True" IsEnabled="True">
@@ -233,13 +233,13 @@
                             </Label>
                             <custom:ByTTextBox HorizontalContentAlignment="Left" Width="100" Height="20" Name="_txtRif" MaxLength="100" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left" IsReadOnly="True">
-                                <custom:ByTTextBox.Text>
+                                <TextBox.Text>
                                     <Binding Path="Rif" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
                                             <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
                                         </Binding.ValidationRules>
                                     </Binding>
-                                </custom:ByTTextBox.Text>
+                                </TextBox.Text>
                             </custom:ByTTextBox>
                         </WrapPanel>
 
@@ -252,13 +252,13 @@
                             </Label>
                             <custom:ByTTextBox  HorizontalContentAlignment="Left" Width="100" Height="20" Name="_txtXNit" MaxLength="100" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left" IsReadOnly="True">
-                                <custom:ByTTextBox.Text>
+                                <TextBox.Text>
                                     <Binding Path="XNit" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
                                             <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
                                         </Binding.ValidationRules>
                                     </Binding>
-                                </custom:ByTTextBox.Text>
+                                </TextBox.Text>
                             </custom:ByTTextBox>
                         </WrapPanel>
 
@@ -277,13 +277,13 @@
                             </Label>
                             <custom:ByTTextBox  Name="_txtTarifa" Width="100"  Height="20" MaxLength="100" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True">
-                                <custom:ByTTextBox.Text>
+                                <TextBox.Text>
                                     <Binding Path="Tarifa" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
                                             <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
                                         </Binding.ValidationRules>
                                     </Binding>
-                                </custom:ByTTextBox.Text>
+                                </TextBox.Text>
                             </custom:ByTTextBox>
                         </WrapPanel>
 
@@ -298,13 +298,13 @@
                             </Label>
                             <custom:ByTTextBox Height="20" Name="_txtId" Width="100" MaxLength="100" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left" IsReadOnly="True">
-                                <custom:ByTTextBox.Text>
+                                <TextBox.Text>
                                     <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
                                             <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
                                         </Binding.ValidationRules>
                                     </Binding>
-                                </custom:ByTTextBox.Text>
+                                </TextBox.Text>
                             </custom:ByTTextBox>
                         </WrapPanel>
 
@@ -317,13 +317,13 @@
                             </Label>
                             <custom:ByTTextBox Name="_txtSeniat"  Height="20" Width="100" MaxLength="100" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left" IsReadOnly="True">
-                                <custom:ByTTextBox.Text>
+                                <TextBox.Text>
                                     <Binding Path="Seniat" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
                                             <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
                                         </Binding.ValidationRules>
                                     </Binding>
-                                </custom:ByTTextBox.Text>
+                                </TextBox.Text>
                             </custom:ByTTextBox>
                         </WrapPanel>
 
@@ -440,13 +440,13 @@
                             </Button>
                             <custom:ByTTextBox Grid.Row="7"  Grid.ColumnSpan="2" Grid.Column="1" VerticalAlignment="Top" HorizontalContentAlignment="Left" Width="320" Height="20" Name="_txtOurref" MaxLength="100" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left" IsReadOnly="False" Margin="12,0,0,0">
-                                <custom:ByTTextBox.Text>
+                                <TextBox.Text>
                                     <Binding Path="Ourref" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
                                             <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
                                         </Binding.ValidationRules>
                                     </Binding>
-                                </custom:ByTTextBox.Text>
+                                </TextBox.Text>
                             </custom:ByTTextBox>
                         </WrapPanel>
 
@@ -456,13 +456,13 @@
                             </Label>
                             <custom:ByTTextBox Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2"   Name="_txtInstruc" Width="320" Height="20" MaxLength="400" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left" Margin="0,0,0,0">
-                                <custom:ByTTextBox.Text>
+                                <TextBox.Text>
                                     <Binding Path="Instruc" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
                                             <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
                                         </Binding.ValidationRules>
                                     </Binding>
-                                </custom:ByTTextBox.Text>
+                                </TextBox.Text>
                             </custom:ByTTextBox>
                         </WrapPanel>
 
@@ -1361,13 +1361,13 @@
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0">
                             <custom:ByTTextBox Grid.Row="4" Grid.Column="5"  Name="_txtCantidad" Width="100"  KeyDown="_Consultar_Enter" Height="20" MaxLength="100" Focusable="True" 
                         ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <custom:ByTTextBox.Text>
+                                <TextBox.Text>
                                     <Binding Path="Cantidad" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
                                             <!--<reglas:Obligatorio ValidatesOnTargetUpdated="True" />-->
                                         </Binding.ValidationRules>
                                     </Binding>
-                                </custom:ByTTextBox.Text>
+                                </TextBox.Text>
                             </custom:ByTTextBox>
                         </WrapPanel>
 

@@ -603,7 +603,13 @@
                 </Label>
                 <Button Name="_btnsaliragregarforma" Width="90" IsDefault="True" IsEnabled="False"  Height="25" HorizontalAlignment="Left" Click="_btnsaliragregarforma_Click" Visibility="Collapsed">
                     <TextBlock Text="Cerrar Creditos"/>
-                </Button>                
+                </Button>
+                <Label>
+                    <TextBlock Text=" "/>
+                </Label>                
+                <Button Name="_btnIrCredito" Width="40" IsDefault="True"  Height="25" HorizontalAlignment="Left" Click="_btnIrCredito_Click"  Visibility="Collapsed">
+                    <TextBlock Text="Ver"/>
+                </Button>
             </WrapPanel>
 
             <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">

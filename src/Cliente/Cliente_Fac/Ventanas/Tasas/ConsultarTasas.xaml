@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="800"
       xmlns:recurso="clr-namespace:Diginsoft.Bolet.Cliente.Fac.Recursos" Loaded="Page_Loaded">
@@ -64,7 +65,7 @@
                     <Label>
                         <TextBlock Text="Cod Moneda"/>
                     </Label>                    
-                    <!--<TextBox Name="_txtMoneda" Width="150" MaxLength="2" Focusable="True" Text="{Binding Path=moneda}"></TextBox>-->
+                    <!--<custom:ByTTextBox Name="_txtMoneda" Width="150" MaxLength="2" Focusable="True" Text="{Binding Path=moneda}"></TextBox>-->
                     <ComboBox Name="_cbxMoneda" Width="150"  Text="{Binding Path=Moneda}" >
                         <ComboBoxItem >
                             <TextBlock Text="BS"/>
@@ -81,15 +82,15 @@
                     <Label>
                         <TextBlock Text="Tasa Bsf"/>
                     </Label>
-                    <TextBox Name="_txtTasabf" Width="150" Text="{Binding Path=tasabf}">
-                    </TextBox>
+                    <custom:ByTTextBox Name="_txtTasabf" Width="150" Text="{Binding Path=tasabf}">
+                   </custom:ByTTextBox>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="Tasa Bs"/>
                     </Label>
-                    <TextBox Name="_txtTasabs" Width="150" Text="{Binding Path=tasabs}">
-                    </TextBox>
+                    <custom:ByTTextBox Name="_txtTasabs" Width="150" Text="{Binding Path=tasabs}">
+                   </custom:ByTTextBox>
                 </WrapPanel>
                 <Separator Margin="0,5,0,5"/>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,5">
