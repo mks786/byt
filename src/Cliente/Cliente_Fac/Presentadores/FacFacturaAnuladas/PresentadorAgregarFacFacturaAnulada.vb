@@ -625,7 +625,7 @@ Namespace Presentadores.FacFacturaAnuladas
                 logger.Debug("Entrando al metodo {0}", (New System.Diagnostics.StackFrame()).GetMethod().Name)
             End If
             '#End Region
-            'Me._ventana.FacFacturaSeleccionado.Accion = 2 'no modificar
+            'Me._ventana.FacFacturaSeleccionado.Accion = 2 'no modificar           
             Me.Navegar(New FacturaAnuladaRpt(factura, facfacturaanulada))
             'Me.Navegar(New ConsultarFacFactura())
             '#Region "trace"
