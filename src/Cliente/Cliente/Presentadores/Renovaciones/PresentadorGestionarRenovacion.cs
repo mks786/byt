@@ -16,6 +16,7 @@ using Trascend.Bolet.Cliente.Ventanas.Renovaciones;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
+using Trascend.Bolet.Cliente.Ventanas.Marcas;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
 {
@@ -2559,6 +2560,41 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+        }
+
+        /// <summary>
+        /// Método que invoca una nueva página "ConsultarPoder" y la instancia con el objeto seleccionado
+        /// </summary>
+        public void IrConsultarMarca()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            if (this._ventana.Marca != null)
+            {
+                Marca marcaParaNavegar = null;
+                bool encontrada = false;
+                int cont = 0;
+                while (!encontrada)
+                {
+                    Marca marca = this._marcas[cont];
+                    if (marca.Id == ((Marca)this._ventana.Marca).Id)
+                    {
+                        marcaParaNavegar = marca;
+                        encontrada = true;
+                    }
+                    cont++;
+                }
+                
+                this.Navegar(new ConsultarMarca(marcaParaNavegar, this._ventana));
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
     }
 }

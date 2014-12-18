@@ -710,6 +710,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Ir.
+        /// </summary>
+        public static string btnIr {
+            get {
+                return ResourceManager.GetString("btnIr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Justificaciones.
         /// </summary>
         public static string btnJustificaciones {

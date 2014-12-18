@@ -186,5 +186,22 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         object OrigenesMarca { get; set; }
 
         object OrigenMarca { get; set; }
+
+
+        string IdAsociadoIntFiltrar { get; set; }
+
+        string NombreAsociadoIntFiltrar { get; set; }
+
+        object AsociadosInt { get; set; }
+
+        object AsociadoInt { get; set; }
+
+        string AsociadoIntFiltro { set; }
+
+        //object OrigenesAsociadosInt { get; set; }
+
+        //object OrigenAsociadoInt { get; set; }
+
+
     }
 }

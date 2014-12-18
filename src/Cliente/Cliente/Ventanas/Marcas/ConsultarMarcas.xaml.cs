@@ -132,6 +132,33 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._lstAsociados.SelectedItem = value; }
         }
 
+//--
+                public string IdAsociadoIntFiltrar
+        {
+            get { return this._txtIdAsociadoInt.Text; }
+            set { this._txtIdAsociadoInt.Text = value; }
+        }
+
+
+        public string NombreAsociadoIntFiltrar
+        {
+            get { return this._txtNombreAsociadoInt.Text; }
+            set { this._txtNombreAsociadoInt.Text = value; }
+        }
+
+
+        public object AsociadosInt
+        {
+            get { return this._lstAsociadosInt.DataContext; }
+            set { this._lstAsociadosInt.DataContext = value; }
+        }
+
+
+        public object AsociadoInt
+        {
+            get { return this._lstAsociadosInt.SelectedItem; }
+            set { this._lstAsociadosInt.SelectedItem = value; }
+        }
 
         public string IdCorresponsalFiltrar
         {
@@ -241,6 +268,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public string AsociadoFiltro
         {
             set { this._txtAsociado.Text = value; }
+        }
+
+        public string AsociadoIntFiltro
+        {
+            set { this._txtAsociadoInt.Text = value; }
         }
 
 
@@ -604,6 +636,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxOrigenAsociado.SelectedItem = value; }
         }
 
+        //public object OrigenesAsociadosInt
+        //{
+        //    get { return this._cbxOrigenAsociadoInt.DataContext; }
+        //    set { this._cbxOrigenAsociadoInt.DataContext = value; }
+        //}
+
+        //public object OrigenAsociado
+        //{
+        //    get { return this._cbxOrigenAsociadoInt.SelectedItem; }
+        //    set { this._cbxOrigenAsociadoInt.SelectedItem = value; }
+        //}
+
         public object OrigenesInteresados
         {
             get { return this._cbxOrigenInteresado.DataContext; }
@@ -761,6 +805,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private void _txtAsociado_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             GestionarVisibilidadFiltroAsociado(true);
+            GestionarVisibilidadFiltroAsociadoInt(false);
             GestionarVisibilidadFiltroInteresado(false);
             GestionarVisibilidadFiltroCorresponsal(false);
         }
@@ -817,12 +862,73 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         #endregion
 
+        #region AsociadoInt
+
+        private void _txtAsociadoInt_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            GestionarVisibilidadFiltroAsociadoInt(true);
+            GestionarVisibilidadFiltroAsociado(false);
+            GestionarVisibilidadFiltroInteresado(false);
+            GestionarVisibilidadFiltroCorresponsal(false);
+        }
+
+        private void _lstAsociadosInt_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (this._presentador.CambiarAsociadoInt())
+                GestionarVisibilidadFiltroAsociadoInt(false);
+        }
+
+        private void GestionarVisibilidadFiltroAsociadoInt(bool visibilidad)
+        {
+            if (visibilidad)
+            {
+                this._txtAsociadoInt.Visibility = Visibility.Collapsed;
+
+                this._txtIdAsociadoInt.Visibility = Visibility.Visible;
+                this._txtNombreAsociadoInt.Visibility = Visibility.Visible;
+                this._lblIdAsociadoInt.Visibility = Visibility.Visible;
+                this._lblNombreAsociadoInt.Visibility = Visibility.Visible;
+                this._lstAsociadosInt.Visibility = Visibility.Visible;
+                this._btnConsultarAsociadoInt.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                this._txtAsociadoInt.Visibility = Visibility.Visible;
+
+                this._txtIdAsociadoInt.Visibility = Visibility.Collapsed;
+                this._txtNombreAsociadoInt.Visibility = Visibility.Collapsed;
+                this._lblIdAsociadoInt.Visibility = Visibility.Collapsed;
+                this._lblNombreAsociadoInt.Visibility = Visibility.Collapsed;
+                this._lstAsociadosInt.Visibility = Visibility.Collapsed;
+                this._btnConsultarAsociadoInt.Visibility = Visibility.Collapsed;
+            }
+        }
+
+
+        private void _btnConsultarAsociadoInt_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.BuscarAsociadoInt();
+        }
+
+
+        private void _btnConsultarAsociadoIntFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultar.IsDefault = false;
+            this._btnConsultarAsociadoInt.IsDefault = true;
+            this._btnConsultarInteresado.IsDefault = false;
+            this._btnConsultarCorresponsal.IsDefault = false;
+        }
+
+
+        #endregion
+
 
         #region Interesado
 
         private void _txtInteresado_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             GestionarVisibilidadFiltroAsociado(false);
+            GestionarVisibilidadFiltroAsociadoInt(false);
             GestionarVisibilidadFiltroCorresponsal(false);
             GestionarVisibilidadFiltroInteresado(true);
         }
@@ -888,6 +994,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             GestionarVisibilidadFiltroCorresponsal(true);
             GestionarVisibilidadFiltroInteresado(false);
             GestionarVisibilidadFiltroAsociado(false);
+            GestionarVisibilidadFiltroAsociadoInt(false);
         }
 
 

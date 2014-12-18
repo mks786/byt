@@ -4791,4 +4791,7 @@ en Prensa:</value>
   <data name="lblTelefono1" xml:space="preserve">
     <value>Teléfono:</value>
   </data>
+  <data name="btnIr" xml:space="preserve">
+    <value>Ir</value>
+  </data>
 </root>

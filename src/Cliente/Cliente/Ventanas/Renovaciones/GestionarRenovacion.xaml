@@ -86,9 +86,13 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <Label Grid.Column="0" Grid.Row="0">
+                        <!--<Label Grid.Column="0" Grid.Row="0">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
-                        </Label>
+                        </Label>-->
+                        <Button IsEnabled="True" Name="_btnIrMarca" Width="50" IsDefault="False" Grid.Row="0" Grid.Column="0" Height="20" 
+                    HorizontalAlignment="Right" Click="_btnIrMarca_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
+                        </Button>
                         <custom:ByTTextBox Name="_txtIdMarca" MaxLength="40"  Text="" IsEnabled="False" IsReadOnly="True"
                              VerticalContentAlignment="Center" Margin="0,0,6,0" Grid.ColumnSpan="1" Grid.Column="1"
                              Grid.Row="0" BorderBrush="LightGreen" MouseDoubleClick="_txtNombreMarca_MouseDoubleClick"/>

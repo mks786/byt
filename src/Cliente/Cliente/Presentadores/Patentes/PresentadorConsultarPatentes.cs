@@ -243,6 +243,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                         patenteAuxiliar = new Patente(patente.Id);
                         Asociado asociadoAuxiliar = new Asociado();
+                        Asociado asociadoIntAuxiliar = new Asociado();
                         Interesado interesadoAuxiliar = new Interesado();
                         Servicio servicioAuxiliar = new Servicio();
 
@@ -250,6 +251,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                         patenteAuxiliar.Descripcion = patente.Descripcion != null ? patente.Descripcion : "";
 
                         flagError = 1;
+                        if ((null != patente.AsociadoInternacional) && (!string.IsNullOrEmpty(patente.AsociadoInternacional.Nombre)))
+                        {
+                            asociadoIntAuxiliar = patente.AsociadoInternacional;
+                            patenteAuxiliar.AsociadoInternacional = asociadoIntAuxiliar;
+                        }
+
                         if ((null != patente.Asociado) && (!string.IsNullOrEmpty(patente.Asociado.Nombre)))
                         {
                             asociadoAuxiliar = patente.Asociado;
@@ -604,6 +611,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 }
                 else
                     patenteAuxiliar.Asociado = null;
+
+                if ((null != this._ventana.AsociadoInt) && (((Asociado)this._ventana.AsociadoInt).Id != int.MinValue))
+                {
+                    //patenteAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
+                    patenteAuxiliar.AsociadoInternacional = new Asociado();
+                    patenteAuxiliar.AsociadoInternacional.Id = ((Asociado)this._ventana.AsociadoInt).Id;
+                    _filtroValido = 2;
+                }
+                else
+                    patenteAuxiliar.AsociadoInternacional = null;
 
                 if ((null != this._ventana.OrigenAsociado) && (!((ListaDatosValores)this._ventana.OrigenAsociado).Id.Equals("NGN")))
                 {
@@ -975,6 +992,100 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             if (this._ventana.Asociado != null)
             {
                 this._ventana.AsociadoFiltro = ((Asociado)this._ventana.Asociado).Nombre;
+                retorno = true;
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return retorno;
+        }
+
+        #endregion
+
+        #region AsociadoInt
+
+
+        /// <summary>
+        /// Método que se encarga de buscar el asociado definido en el filtro
+        /// </summary>
+        public void BuscarAsociadoInt()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            try
+            {
+                Mouse.OverrideCursor = Cursors.Wait;
+
+                Asociado asociadoIntABuscar = new Asociado();
+
+                //asociadoABuscar.Id = !this._ventana.IdAsociadoFiltrar.Equals("") ?
+                //                     int.Parse(this._ventana.IdAsociadoFiltrar) : 0;
+
+                asociadoIntABuscar.Id = !this._ventana.IdAsociadoIntFiltrar.Equals("") ?
+                                    int.Parse(this._ventana.IdAsociadoIntFiltrar) : int.MinValue;
+
+                asociadoIntABuscar.Nombre = !this._ventana.NombreAsociadoIntFiltrar.Equals("") ?
+                                         this._ventana.NombreAsociadoIntFiltrar.ToUpper() : "";
+
+                //if ((asociadoABuscar.Id != 0) || !(asociadoABuscar.Nombre.Equals("")))
+                if ((asociadoIntABuscar.Id != int.MinValue) || !(asociadoIntABuscar.Nombre.Equals("")))
+                {
+                    IList<Asociado> asociados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoIntABuscar);
+
+                    if (asociados.Count > 0)
+                    {
+                        asociados.Insert(0, new Asociado(int.MinValue));
+                        this._ventana.AsociadosInt = asociados;
+                    }
+                    else
+                    {
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                        this._ventana.AsociadosInt = this._asociados;
+                    }
+                }
+
+                else
+                    this._ventana.Mensaje("Ingrese criterios validos para la busqueda del Asociado Int", 1);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+
+        /// <summary>
+        /// Metodo que cambia el texto del Asociado en la interfaz
+        /// </summary>
+        /// <returns>true en caso de que el Asociado haya sido valido, false en caso contrario</returns>
+        public bool CambiarAsociadoInt()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            bool retorno = false;
+
+            if (this._ventana.AsociadoInt != null)
+            {
+                this._ventana.AsociadoIntFiltro = ((Asociado)this._ventana.AsociadoInt).Nombre;
                 retorno = true;
             }
 

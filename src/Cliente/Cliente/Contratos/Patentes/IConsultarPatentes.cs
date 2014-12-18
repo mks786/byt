@@ -152,6 +152,16 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         string ExpCambioPendiente { get; set; }
 
+        string IdAsociadoIntFiltrar { get; set; }
+
+        string NombreAsociadoIntFiltrar { get; set; }
+
+        object AsociadosInt { get; set; }
+
+        object AsociadoInt { get; set; }
+
+        string AsociadoIntFiltro { set; }
+
         
     }
 }

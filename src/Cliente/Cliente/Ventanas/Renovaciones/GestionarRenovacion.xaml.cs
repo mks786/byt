@@ -497,6 +497,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             this._presentador.Agregar();
         }
 
+        private void _btnIrMarca_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrConsultarMarca();
+        }
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
